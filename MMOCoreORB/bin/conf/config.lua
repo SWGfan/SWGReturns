@@ -107,7 +107,7 @@ Core3 = {
 	"tutorial",
 	"yavin4",
 	"mandalore",
-	"kaas",
+	--"kaas",
 	"hoth",
 	-------- TEST ZONES -------
 	--"09",

@@ -303,7 +303,7 @@ lok = {
 	},
 
 	planetObjects = {
-		-- {templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.999879, oz = 0, ow = 0.015506, x = 464.677, z = 8.75806, y = 5506.49, parentid = 0}
+		{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.999879, oz = 0, ow = 0.015506, x = 464.677, z = 8.75806, y = 5506.49, parentid = 0}
 	}
 }
 
@@ -677,6 +677,7 @@ creature_test = {
 	},
 
 	badgeAreas = {
+
 	},
 
 	navAreas = {
