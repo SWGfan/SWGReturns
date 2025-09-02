@@ -7,7 +7,7 @@ startingCash = 200000
 startingBank = 200000
 --startingBank = 100000
 --How many skill points a new characters start with
-skillPoints = 250
+skillPoints = 500
 
 professions = {
 	"combat_brawler",
@@ -16,7 +16,7 @@ professions = {
 	"outdoors_scout",
 	"science_medic",
 	"social_entertainer",
-	"jedi_padawan"
+	--"jedi_padawan"
 }
 
 marksmanPistol = "object/weapon/ranged/pistol/pistol_cdef.iff"
@@ -55,7 +55,7 @@ professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
 	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
 	crafting_artisan = { genericTool, mineralTool, chemicalTool },
-	jedi_padawan = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool },
+	--jedi_padawan = { robe, jediTool, jediCrystal, genericTool, mineralTool, chemicalTool, gasTool },
 	outdoors_scout = { genericTool },
 	science_medic = { foodTool },
 	social_entertainer = { slitherhorn }

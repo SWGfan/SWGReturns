@@ -13,7 +13,7 @@
 
 require("scripts.managers.planet.regions")
 
-hoth_regions = {
+tanaab_regions = {
 	-- Named Regions, POIs and Decor
 
 	-- Cities

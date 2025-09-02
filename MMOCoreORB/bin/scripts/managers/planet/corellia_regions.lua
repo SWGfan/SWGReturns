@@ -107,7 +107,7 @@ corellia_regions = {
 	{"@corellia_region_names:vreni_island", -5472, -6272, {CIRCLE, 690}, CITY + NOSPAWNAREA},
 	{"@corellia_region_names:vreni_island_1", -5488, -6288, {CIRCLE, 528}, NOBUILDZONEAREA},
 
-	{"coronet_nobuild_1", -178, -4504, {CIRCLE, 1000}, CAMPINGAREA + NOBUILDZONEAREA},
+	{"coronet_nobuild_1", -178, -4504, {CIRCLE, 600}, CAMPINGAREA + NOBUILDZONEAREA},
 	{"tyrena_nobuild_1", -5282, -2526, {CIRCLE, 1200}, CAMPINGAREA + NOBUILDZONEAREA},
 	{"bela_vistal_nobuild_1", 6788, -5654, {CIRCLE, 1000}, CAMPINGAREA + NOBUILDZONEAREA},
 	{"vreni_island_nobuild_1", -5472, -6272, {CIRCLE, 1400}, CAMPINGAREA + NOBUILDZONEAREA},
