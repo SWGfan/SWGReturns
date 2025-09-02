@@ -109,7 +109,6 @@ Core3 = {
 	"mandalore",
 	"kass",
 	"hoth",
-	"kashyyyk",
 	-------- TEST ZONES -------
 	--"09",
 	--"10",
