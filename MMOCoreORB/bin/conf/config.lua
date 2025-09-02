@@ -154,6 +154,9 @@ Core3 = {
 	TreFiles = {
 		"mandalore.tre",
 		"skills_01.tre",
+		"returns1.tre",
+		"NGE.tre",
+		"house.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
 		"patch_14_00.tre",
