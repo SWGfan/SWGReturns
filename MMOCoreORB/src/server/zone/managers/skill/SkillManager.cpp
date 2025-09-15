@@ -922,6 +922,17 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
     return fullTrees >= 2 && totalJediPoints >= 206;
 }
 
+void SkillManager::getPlayerDroidCommands(PlayerObject* ghost, Vector<String>& playerDroidCommands) {
+	if (ghost == nullptr) {
+		return;
+	}
+
+	for (int i = 0; i < droidCommands.size(); ++i) {
+		if (ghost->hasAbility(droidCommands.get(i)))
+			playerDroidCommands.add(droidCommands.get(i));
+	}
+}
+
 // ---------------------------------------------------------------------------
 // Combat/Grey Jedi helpers (used by admin/repair flows)
 // ---------------------------------------------------------------------------
