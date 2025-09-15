@@ -413,7 +413,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
             	ghost->setJediState(2);
             	ghost->addHologrindProfession(0);
             	// Award force_title_jedi_rank_02 skill
-            	SkillManager::instance()->awardSkill("combat_jedi", playerCreature, false, true, true);
+            	SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
             }
 	 
 	// Training lightsaber into inventory
