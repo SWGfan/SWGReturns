@@ -415,8 +415,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			// ghost->addHologrindProfession(0); // intentionally removed
 			// Award base Jedi title/skill
 			SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
-			// Explicitly enroll in the Village system at creation time
-			JediManager::instance()->registerVillageCandidate(playerCreature);
 		}
 	 
 	// Training lightsaber into inventory
