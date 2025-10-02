@@ -1,3 +1,4 @@
+
 ForceShrineMenuComponent = {}
 
 function ForceShrineMenuComponent:fillObjectMenuResponse(pSceneObject, pMenuResponse, pPlayer)
@@ -5,18 +6,16 @@ function ForceShrineMenuComponent:fillObjectMenuResponse(pSceneObject, pMenuResp
 
 	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
 		menuResponse:addRadialMenuItem(120, 3, "@jedi_trials:meditate") -- Meditate
-		menuResponse:addRadialMenuItem(122, 3, "Check unlock professions.")
 	end
 
 	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02")) then
 		menuResponse:addRadialMenuItem(121, 3, "@force_rank:recover_jedi_items") -- Recover Jedi Items
-		-- Added fix for Jedi Knight Trial which can bug out for certain players!
-		if (JediTrials:isEligibleForKnightTrials(pPlayer)) then
+			if (JediTrials:isEligibleForKnightTrials(pPlayer)) then
 			menuResponse:addRadialMenuItem(123, 3, "My knight trial is bugged!")
 			menuResponse:addRadialMenuItemToRadialID(123, 124, 3, "1. Create new kill observer!")
 			menuResponse:addRadialMenuItemToRadialID(123, 125, 3, "2. Reset current step!")
 			menuResponse:addRadialMenuItemToRadialID(123, 126, 3, "3. Complete trial reset!")
-		end
+			end
 	end
 
 end
@@ -34,39 +33,6 @@ function ForceShrineMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selec
 		end
 	elseif (selectedID == 121 and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02")) then
 		self:recoverRobe(pPlayer)
-	-- Show unlock professions!
-	elseif (selectedID == 122) then
-			if (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
-				--local pGhost = CreatureObject(pPlayer):getPlayerObject()
-				HologrindJediManager:showUnlockProfessions(pPlayer)
-			else
-				local suiManager = LuaSuiManager()
-				local playerName = CreatureObject(pPlayer):getFirstName()
-				suiManager:sendMessageBox(pPlayer, pPlayer, "Unlock professions for " .. playerName, "1. Never\n2. Gonna\n3. Give\n4. You\n5. Up!\n6. Never\n7. Gonna\n8. Let\n9. You\n10. Down!!", "@ok", "ForceShrineMenuComponent", "notifyOkPressed")
-			end
-	-- If menu is selected it forces a reset to the player!
-	elseif (selectedID == 123 and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02")) then
-		CreatureObject(pPlayer):sendSystemMessage("Please select a sub menu item!")
-	elseif ((selectedID == 124 or selectedID == 125 or selectedID == 126) and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02")) then
-			if (CreatureObject(pPlayer):getPosture() ~= CROUCHED) then
-				CreatureObject(pPlayer):sendSystemMessage("Well.. You want me to fix this?.. Show me some respect first youngling!") -- Must respect
-			else
-				if (JediTrials:isEligibleForKnightTrials(pPlayer)) then
-					if (selectedID == 124) then
-						KnightTrials:resetCurrentTrialObservers(pPlayer)
-						CreatureObject(pPlayer):sendSystemMessage("Your trial kill observer have been reset")
-					elseif (selectedID == 125) then
-						KnightTrials:resetCompletedTrialsToCurrent(pPlayer)
-						CreatureObject(pPlayer):sendSystemMessage("Your trial data has been reset current!")
-					elseif (selectedIF == 126) then
-						KnightTrials:resetCompletedTrialsToStart(pPlayer)
-						CreatureObject(pPlayer):sendSystemMessage("Your trial data has been reset!")
-					end
-					self:doMeditate(pObject, pPlayer)
-				else
-					CreatureObject(pPlayer):sendSystemMessage("You've already completed the Trials, or you're still a youngling!")
-				end
-			end
 	end
 
 	return 0
@@ -76,30 +42,16 @@ function ForceShrineMenuComponent:doMeditate(pObject, pPlayer)
 	if (tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
 		KnightTrials:resetCompletedTrialsToStart(pPlayer)
 	end
-	if (not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02")) then
-		local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-		if (pGhost == nil) then
-			return
-		end
+	if (not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression")) then
+		local currentTrial = JediTrials:getCurrentTrial(pPlayer)
 
-		local suiManager = LuaSuiManager()
-		suiManager:sendMessageBox(pPlayer, pPlayer, "@quest/force_sensitive/intro:force_sensitive", "Your attunement to the force has not gone unnoticed. A strange force lightning struck you, and you're now elegible to train Jedi. Be mindful of your surroundings, you're a target now for certain professions.", "@ok", "ForceShrineMenuComponent", "notifyOkPressed")
-
-		PlayerObject(pGhost):setJediState(2)
-
-		awardSkill(pPlayer, "force_title_jedi_rank_02")
-
-		CreatureObject(pPlayer):playEffect("clienteffect/trap_electric_01.cef", "")
-		CreatureObject(pPlayer):playMusicMessage("sound/music_become_jedi.snd")
-
-		local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
-
-		if (pInventory == nil or SceneObject(pInventory):isContainerFullRecursive()) then
-			CreatureObject(pCreatureObject):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
+		if (not JediTrials:isOnPadawanTrials(pPlayer)) then
+			PadawanTrials:startPadawanTrials(pObject, pPlayer)
+		elseif (currentTrial == 0) then
+			PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
 		else
-			local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
-			local pItem = giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_padawan.iff", -1)
+			PadawanTrials:showCurrentTrial(pObject, pPlayer)
 		end
 	elseif (JediTrials:isOnKnightTrials(pPlayer)) then
 		local pPlayerShrine = KnightTrials:getTrialShrine(pPlayer)
