@@ -994,7 +994,7 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
 		totalJediPoints -= skillBeingDropped->getSkillPointsRequired();
 	}
 
-	return fullTrees >= 2 && totalJediPoints >= 125;
+	return fullTrees >= 2 && totalJediPoints >= 206;
 }
 
 void SkillManager::getPlayerDroidCommands(PlayerObject* ghost, Vector<String>& playerDroidCommands) {
