@@ -408,49 +408,48 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
 
-	// === Instant Jedi start + Village integration (no Hologrind) ===
 	if (profession.contains("jedi"))
-		if (ghost != nullptr) {
-			ghost->setJediState(2); // Padawan/Jedi
-			// ghost->addHologrindProfession(0); // intentionally removed
-			// Award base Jedi title/skill
-			SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
-		}
+            if (ghost != nullptr) {
+            	ghost->setJediState(2);
+            	ghost->addHologrindProfession(0);
+            	// Award force_title_jedi_rank_02 skill
+            	SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
+            }
 	 
 	// Training lightsaber into inventory
-	if (SceneObject* inventory = playerCreature->getSlottedObject("inventory")) {
-		const String saberTpls[] = {
-			"object/weapon/melee/sword/crafted_saber/generic_sword_lightsaber_training.iff",
-			"object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
-		};
+if (SceneObject* inventory = playerCreature->getSlottedObject("inventory")) {
+    const String saberTpls[] = {
+        "object/weapon/melee/sword/crafted_saber/generic_sword_lightsaber_training.iff",
+        "object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
+    };
 
-		for (int i = 0; i < 2; ++i) {
-			const String& saberTpl = saberTpls[i];
+    for (int i = 0; i < 2; ++i) {
+        const String& saberTpl = saberTpls[i];
 
-			ManagedReference<SceneObject*> saber = nullptr;
-			try {
-				saber = zoneServer->createObject(saberTpl.hashCode(), 1);
-			} catch (...) {
-				saber = nullptr;
-			}
+        ManagedReference<SceneObject*> saber = nullptr;
+        try {
+            saber = zoneServer->createObject(saberTpl.hashCode(), 1);
+        } catch (...) {
+            saber = nullptr;
+        }
 
-			if (saber != nullptr) {
-				if (inventory->transferObject(saber, -1, false)) {
-					// success — stop trying further templates
-					break;
-				} else {
-					// failed to transfer — clean up and try next template
-					saber->destroyObjectFromDatabase(true);
-				}
-			}
-		}
-	} // === End Jedi-start patch ===
+        if (saber != nullptr) {
+            if (inventory->transferObject(saber, -1, false)) {
+                // success — stop trying further templates
+                break;
+            } else {
+                // failed to transfer — clean up and try next template
+                saber->destroyObjectFromDatabase(true);
+            }
+        }
+    }
+} // === End Jedi-start patch ===
 
-	if (ghost != nullptr) {
-		// Set skillpoints before adding any skills.
-		ghost->setSkillPoints(skillPoints);
-		ghost->setStarterProfession(profession);
-	}
+if (ghost != nullptr) {
+    // Set skillpoints before adding any skills.
+    ghost->setSkillPoints(skillPoints);
+    ghost->setStarterProfession(profession);
+}
 
 
 	addCustomization(playerCreature, customization, playerTemplate->getAppearanceFilename());
@@ -587,6 +586,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	client->addCharacter(playerCreature->getObjectID(), zoneServer.get()->getGalaxyID());
 
+	JediManager::instance()->onPlayerCreated(playerCreature);
+
 	// Welcome Mail
 	chatManager->sendMail("system", "@newbie_tutorial/newbie_mail:welcome_subject", "@newbie_tutorial/newbie_mail:welcome_body", playerCreature->getFirstName());
 
@@ -601,8 +602,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	ghost->addChatRoom(chatManager->getAuctionRoom()->getRoomID());
 
 	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(playerCreature, SuiWindowType::NONE);
-	box->setPromptTitle("SWG Returns");
-	box->setPromptText("SWG Returns welcomes you! Enjoy and have fun!");
+	box->setPromptTitle("PLEASE NOTE");
+	box->setPromptText("You are limited to creating one character per hour. Attempting to create another character or deleting your character before the 1 hour timer expires will reset the timer.");
 
 	ghost->addSuiBox(box);
 	playerCreature->sendMessage(box->generateMessage());
