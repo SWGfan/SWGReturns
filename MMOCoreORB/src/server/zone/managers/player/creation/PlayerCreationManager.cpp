@@ -587,10 +587,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	client->addCharacter(playerCreature->getObjectID(), zoneServer.get()->getGalaxyID());
 
-	JediManager::instance()->onPlayerCreated(playerCreature);
-	// Failsafe Village enrollment to ensure Village path is active regardless
-	JediManager::instance()->registerVillageCandidate(playerCreature);
-
 	// Welcome Mail
 	chatManager->sendMail("system", "@newbie_tutorial/newbie_mail:welcome_subject", "@newbie_tutorial/newbie_mail:welcome_body", playerCreature->getFirstName());
 
@@ -605,8 +601,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	ghost->addChatRoom(chatManager->getAuctionRoom()->getRoomID());
 
 	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(playerCreature, SuiWindowType::NONE);
-	box->setPromptTitle("PLEASE NOTE");
-	box->setPromptText("You are limited to creating one character per hour. Attempting to create another character or deleting your character before the 1 hour timer expires will reset the timer.");
+	box->setPromptTitle("SWG Returns");
+	box->setPromptText("SWG Returns welcomes you! Enjoy and have fun!");
 
 	ghost->addSuiBox(box);
 	playerCreature->sendMessage(box->generateMessage());
