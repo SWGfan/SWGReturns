@@ -254,9 +254,9 @@ Core3 = {
 	TermsOfServiceVersion = 0,
 	TermsOfService = "",
 
-	--Enable JTL
-	Core3.JTL = {
-		JTLEnabled = true
+    --Enable JTL
+    JTL = {
+        JTLEnabled = true
+    }
 }
-
 -- NOTE: conf/config-local.lua is parsed after this file if it exists
