@@ -335,7 +335,7 @@ public:
 	//		SceneObject* item = creo->getSlottedObject(i);
 	//		if (item != nullptr && item->isArmorObject())
 	//			return true;
-		}
+	//	}
 
 		return false;
 	}
