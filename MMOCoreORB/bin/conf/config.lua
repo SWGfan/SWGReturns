@@ -257,7 +257,6 @@ Core3 = {
 	--Enable JTL
 	Core3.JTL = {
 		JTLEnabled = true
-	}
 }
 
 -- NOTE: conf/config-local.lua is parsed after this file if it exists
