@@ -153,7 +153,7 @@ Core3 = {
 	TrePath = "/home/swgadmin/tre",
 	TreFiles = {
 		"mandalore.tre",
-		"returns1.tre",
+		"returns2.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
 		"patch_14_00.tre",
