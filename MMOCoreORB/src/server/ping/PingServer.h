@@ -1,40 +1,85 @@
 /*
-                Copyright <SWGEmu>
-        See file COPYING for copying conditions.*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
-#ifndef PINGCLIENT_H_
-#define PINGCLIENT_H_
+#include "PingServer.h"
 
-#include "server/Socket.h"
-#include "server/SocketAddress.h"
-#include "server/DatagramServiceThread.h"
-#include "server/ServiceHandler.h"
-#include "server/BaseClientProxy.h"
+PingServer::PingServer() : DatagramServiceThread("PingServer") {
+	//setLockName("PingServerLock");
 
-class PingClient : public ServiceClient {
-public:
-    PingClient(BaseClientProxy* session)
-        : ServiceClient(session) {
-        // Use getIPAddress() which returns a sys::lang::String (or std::string equivalent)
-        // If you want ip:port, you can use:
-        // setLoggingName("PingClient " + getIPAddress() + ":" + String::valueOf(getPort()));
-        setLoggingName("PingClient " + getIPAddress());
-        setLogging(false);
-    }
+	setHandler(this);
 
-    virtual ~PingClient() {
-    }
+	setLogging(false);
+}
 
-    // If your code expects these helpers on the client object, forward to underlying session
-    sys::lang::String getIPAddress() const {
-        return ServiceClient::getIPAddress();
-    }
+PingServer::~PingServer() {
+}
 
-    int getPort() const {
-        return ServiceClient::getPort();
-    }
+void PingServer::initialize() {
+}
 
-    // Other PingClient-specific methods can go here
-};
+void PingServer::run() {
+	// recieve messages
+	receiveMessages();
 
-#endif /* PINGCLIENT_H_ */
+	shutdown();
+}
+
+void PingServer::shutdown() {
+}
+
+PingClient* PingServer::createConnection(Socket* sock, SocketAddress& addr) {
+	PingClient* client = new PingClient(this, sock, addr);
+
+	info("client connected from \'" + client->getFullIPAddress() + "\'");
+
+	return client;
+}
+
+void PingServer::handleMessage(ServiceClient* client, Packet* message) {
+	PingClient* lclient = cast<PingClient*>(client);
+
+	try {
+
+		if (lclient->isAvailable() && (message->size() == 4)) {
+			lclient->resetNetStatusTimeout();
+
+			Packet* mess = message->clone();
+
+			lclient->send(mess);
+		}
+
+	} catch (PacketIndexOutOfBoundsException& e) {
+		System::out << e.getMessage();
+
+		error("incorrect packet - " + message->toStringData());
+	} catch (Exception& e) {
+		error(e.getMessage());
+	}
+}
+
+bool PingServer::handleError(ServiceClient* client, Exception& e) {
+	PingClient* lclient = cast<PingClient*>(client);
+
+	if (lclient != nullptr) {
+		lclient->setError();
+
+		lclient->disconnect();
+	}
+
+	return true;
+}
+
+void PingServer::processMessage(Message* message) {
+
+}
+
+void PingServer::printInfo() {
+	lock();
+
+	StringBuffer msg;
+	msg << "MessageQueue - size = " << messageQueue.size();
+	info(msg, true);
+
+	unlock();
+}
