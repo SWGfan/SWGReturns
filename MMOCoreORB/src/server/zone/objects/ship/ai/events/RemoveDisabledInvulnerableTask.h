@@ -45,7 +45,7 @@ public:
         }
 
         // Core3 replacement for removed DISABLED_INVULNERABLE flag
-        strongShip->removeShipFlag(ShipFlag::INVULNERABLE);
+        strongShip->removeShipFlag(OptionBitmask::INVULNERABLE);
     }
 };
 
