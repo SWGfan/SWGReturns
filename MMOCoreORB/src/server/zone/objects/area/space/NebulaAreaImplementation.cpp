@@ -15,6 +15,9 @@
 #include "server/zone/managers/spacecombat/SpaceCombatManager.h"
 #include "server/zone/packets/ship/OnShipHit.h"
 
+// Use the INVULNERABLE constant available in the destructible building component for Core3
+#include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
+
 // #define DEBUG_NEBULA_AREAS
 
 void NebulaAreaImplementation::notifyPositionUpdate(TreeEntry* entry) {
@@ -178,7 +181,8 @@ void NebulaAreaImplementation::shipLightningDamage(ShipObject* ship, const Vecto
 
 		Reference<ShipObject*> targetShip = object->asShipObject();
 
-		if (targetShip == nullptr || (targetShip->getOptionsBitmask() & OptionBitmask::INVULNERABLE))
+		// CORE3: use the INVULNERABLE constant defined in DestructibleBuildingDataComponent
+		if (targetShip == nullptr || (targetShip->getOptionsBitmask() & DestructibleBuildingDataComponent::INVULNERABLE))
 			continue;
 
 #ifdef DEBUG_NEBULA_AREAS
