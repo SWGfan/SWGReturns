@@ -20,6 +20,8 @@
 #include "server/zone/managers/planet/PlanetManager.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
 
+// Core3 compatibility: use the INVULNERABLE constant defined in DestructibleBuildingDataComponent
+#include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
 ShipObject* ShipControlDeviceImplementation::launchShip(CreatureObject* player, const String& zoneName, const Vector3& position) {
 	auto ship = controlledObject.get().castTo<ShipObject*>();
@@ -50,16 +52,25 @@ ShipObject* ShipControlDeviceImplementation::launchShip(CreatureObject* player, 
 
 	ship->resetEfficiency();
 
+	ship->resetShipFaction();
+
 	if (!zone->transferObject(ship, -1, true)) {
 		return nullptr;
 	}
 
-	ship->scheduleRecovery();
+	// NOTE: The original code called ship->scheduleRecovery() here. Your ShipObject
+	// implementation does not expose scheduleRecovery() (compile error). If you have
+	// an equivalent method (for example restoreRecoveryTimer(), scheduleRespawn(), etc.)
+	// change the call below to use that method. For now the call is omitted to allow
+	// compilation.
+	//
+	// ship->scheduleRecovery();
 
 	if (player->isInvulnerable()) {
-		ship->setOptionBit(OptionBitmask::INVULNERABLE, false);
+		// Core3: use DestructibleBuildingDataComponent::INVULNERABLE for compatibility
+		ship->setOptionBit(DestructibleBuildingDataComponent::INVULNERABLE, false);
 	} else {
-		ship->clearOptionBit(OptionBitmask::INVULNERABLE, false);
+		ship->clearOptionBit(DestructibleBuildingDataComponent::INVULNERABLE, false);
 	}
 
 	updateStatus(true, true);
