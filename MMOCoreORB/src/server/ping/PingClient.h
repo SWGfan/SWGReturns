@@ -6,10 +6,6 @@
 #ifndef PINGCLIENT_H_
 #define PINGCLIENT_H_
 
-#include "server/network/DatagramServiceThread.h"
-#include "server/network/BaseClientProxy.h"
-#include "server/network/Socket.h"
-#include "server/network/SocketAddress.h"
 #include "engine/engine.h"
 
 class PingClient : public BaseClientProxy {
