@@ -2,84 +2,33 @@
 				Copyright <SWGEmu>
 		See file COPYING for copying conditions.*/
 
-#include "PingServer.h"
+#ifndef PINGSERVER_H_
+#define PINGSERVER_H_
 
-PingServer::PingServer() : DatagramServiceThread("PingServer") {
-	//setLockName("PingServerLock");
+#include "PingClient.h"
 
-	setHandler(this);
+class PingServer : public DatagramServiceThread, public ServiceHandler {
+public:
+	PingServer();
 
-	setLogging(false);
-}
+	~PingServer();
 
-PingServer::~PingServer() {
-}
+	void initialize();
 
-void PingServer::initialize() {
-}
+	void run();
 
-void PingServer::run() {
-	// recieve messages
-	receiveMessages();
+	void shutdown();
 
-	shutdown();
-}
+	PingClient* createConnection(Socket* sock, SocketAddress& addr);
 
-void PingServer::shutdown() {
-}
+	void handleMessage(ServiceClient* client, Packet* message);
 
-PingClient* PingServer::createConnection(Socket* sock, SocketAddress& addr) {
-	PingClient* client = new PingClient(this, sock, addr);
+	void processMessage(Message* message);
 
-	info("client connected from \'" + client->getFullIPAddress() + "\'");
+	bool handleError(ServiceClient* client, Exception& e);
 
-	return client;
-}
+	void printInfo();
 
-void PingServer::handleMessage(ServiceClient* client, Packet* message) {
-	PingClient* lclient = cast<PingClient*>(client);
+};
 
-	try {
-
-		if (lclient->isAvailable() && (message->size() == 4)) {
-			lclient->resetNetStatusTimeout();
-
-			Packet* mess = message->clone();
-
-			lclient->send(mess);
-		}
-
-	} catch (PacketIndexOutOfBoundsException& e) {
-		System::out << e.getMessage();
-
-		error("incorrect packet - " + message->toStringData());
-	} catch (Exception& e) {
-		error(e.getMessage());
-	}
-}
-
-bool PingServer::handleError(ServiceClient* client, Exception& e) {
-	PingClient* lclient = cast<PingClient*>(client);
-
-	if (lclient != nullptr) {
-		lclient->setError();
-
-		lclient->disconnect();
-	}
-
-	return true;
-}
-
-void PingServer::processMessage(Message* message) {
-
-}
-
-void PingServer::printInfo() {
-	lock();
-
-	StringBuffer msg;
-	msg << "MessageQueue - size = " << messageQueue.size();
-	info(msg, true);
-
-	unlock();
-}
+#endif /*PINGSERVERSERVER_H_*/
