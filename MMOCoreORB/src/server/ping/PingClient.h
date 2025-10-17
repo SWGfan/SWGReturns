@@ -9,10 +9,13 @@
 #include "engine/engine.h"
 
 class PingClient : public BaseClientProxy {
+private:
+    int port; // store port manually from SocketAddress
+
 public:
     PingClient(DatagramServiceThread* serv, Socket* sock, SocketAddress& addr)
-        : BaseClientProxy(sock, addr) {
-        // Use getIPAddress() instead of removed getFullIPAddress()
+        : BaseClientProxy(sock, addr), port(addr.getPort()) {
+        // Use getIPAddress() for logging
         setLoggingName("PingClient " + getIPAddress());
         setLogging(false);
         setLogLevel(Logger::FATAL);
@@ -41,13 +44,14 @@ public:
         BaseClientProxy::sendPacket(cast<BasePacket*>(msg));
     }
 
-    // Optional: accessors for convenience
+    // Accessor for IP address
     sys::lang::String getIPAddress() const {
         return BaseClientProxy::getIPAddress();
     }
 
+    // Accessor for port (stored manually)
     int getPort() const {
-        return BaseClientProxy::getPort();
+        return port;
     }
 };
 
