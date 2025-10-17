@@ -13,6 +13,8 @@
 #include "server/zone/objects/area/areashapes/RectangularAreaShape.h"
 #include "server/zone/objects/area/areashapes/CuboidAreaShape.h"
 #include "server/zone/objects/player/PlayerObject.h"
+
+// Core3 compatibility: use the INVULNERABLE constant defined in DestructibleBuildingDataComponent
 #include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
 bool ActiveAreaImplementation::containsPoint(float px, float py, uint64 cellid) const {
@@ -58,6 +60,7 @@ void ActiveAreaImplementation::enqueueEnterEvent(SceneObject* obj) {
 #else
 	Reference<Task*> task = new ActiveAreaEvent(_this.getReferenceUnsafeStaticCast(), obj, ActiveAreaEvent::ENTEREVENT);
 	obj->executeOrderedTask(task);
+
 #endif
 }
 
@@ -67,6 +70,7 @@ void ActiveAreaImplementation::enqueueExitEvent(SceneObject* obj) {
 #else
 	Reference<Task*> task = new ActiveAreaEvent(_this.getReferenceUnsafeStaticCast(), obj, ActiveAreaEvent::EXITEVENT);
 	obj->executeOrderedTask(task);
+
 #endif
 }
 
