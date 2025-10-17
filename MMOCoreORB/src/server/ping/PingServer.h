@@ -1,34 +1,40 @@
 /*
-				Copyright <SWGEmu>
-		See file COPYING for copying conditions.*/
+                Copyright <SWGEmu>
+        See file COPYING for copying conditions.*/
 
-#ifndef PINGSERVER_H_
-#define PINGSERVER_H_
+#ifndef PINGCLIENT_H_
+#define PINGCLIENT_H_
 
-#include "PingClient.h"
+#include "server/Socket.h"
+#include "server/SocketAddress.h"
+#include "server/DatagramServiceThread.h"
+#include "server/ServiceHandler.h"
+#include "server/BaseClientProxy.h"
 
-class PingServer : public DatagramServiceThread, public ServiceHandler {
+class PingClient : public ServiceClient {
 public:
-	PingServer();
+    PingClient(BaseClientProxy* session)
+        : ServiceClient(session) {
+        // Use getIPAddress() which returns a sys::lang::String (or std::string equivalent)
+        // If you want ip:port, you can use:
+        // setLoggingName("PingClient " + getIPAddress() + ":" + String::valueOf(getPort()));
+        setLoggingName("PingClient " + getIPAddress());
+        setLogging(false);
+    }
 
-	~PingServer();
+    virtual ~PingClient() {
+    }
 
-	void initialize();
+    // If your code expects these helpers on the client object, forward to underlying session
+    sys::lang::String getIPAddress() const {
+        return ServiceClient::getIPAddress();
+    }
 
-	void run();
+    int getPort() const {
+        return ServiceClient::getPort();
+    }
 
-	void shutdown();
-
-	PingClient* createConnection(Socket* sock, SocketAddress& addr);
-
-	void handleMessage(ServiceClient* client, Packet* message);
-
-	void processMessage(Message* message);
-
-	bool handleError(ServiceClient* client, Exception& e);
-
-	void printInfo();
-
+    // Other PingClient-specific methods can go here
 };
 
-#endif /*PINGSERVERSERVER_H_*/
+#endif /* PINGCLIENT_H_ */
