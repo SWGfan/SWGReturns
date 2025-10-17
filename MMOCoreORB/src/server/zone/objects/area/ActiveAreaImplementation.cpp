@@ -14,6 +14,9 @@
 #include "server/zone/objects/area/areashapes/CuboidAreaShape.h"
 #include "server/zone/objects/player/PlayerObject.h"
 
+// Core3: OptionBitmask::INVULNERABLE isn't present — use this project's INVULNERABLE constant
+#include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
+
 bool ActiveAreaImplementation::containsPoint(float px, float py, uint64 cellid) const {
 	if (cellObjectID != 0 && cellObjectID != cellid)
 		return false;
@@ -57,7 +60,6 @@ void ActiveAreaImplementation::enqueueEnterEvent(SceneObject* obj) {
 #else
 	Reference<Task*> task = new ActiveAreaEvent(_this.getReferenceUnsafeStaticCast(), obj, ActiveAreaEvent::ENTEREVENT);
 	obj->executeOrderedTask(task);
-
 #endif
 }
 
@@ -67,7 +69,6 @@ void ActiveAreaImplementation::enqueueExitEvent(SceneObject* obj) {
 #else
 	Reference<Task*> task = new ActiveAreaEvent(_this.getReferenceUnsafeStaticCast(), obj, ActiveAreaEvent::EXITEVENT);
 	obj->executeOrderedTask(task);
-
 #endif
 }
 
