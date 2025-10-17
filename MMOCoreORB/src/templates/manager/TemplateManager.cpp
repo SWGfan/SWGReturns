@@ -59,7 +59,6 @@
 #include "templates/params/PaletteColorCustomizationVariable.h"
 
 #include "templates/resource/ResourceSpawnTemplate.h"
-
 #include "templates/slots/SlotId.h"
 
 #include "templates/tangible/tool/CraftingStationTemplate.h"
@@ -136,103 +135,107 @@
 #include "conf/ConfigManager.h"
 #include "tre3/TreeArchive.h"
 
+// Static members
 Lua* TemplateManager::luaTemplatesInstance = nullptr;
 AtomicInteger TemplateManager::loadedTemplatesCount;
 int TemplateManager::ERROR_CODE = NO_ERROR;
 
+// Constructor / Destructor
 TemplateManager::TemplateManager() {
-	setLogging(false);
-	setGlobalLogging(true);
-	setLoggingName("TemplateManager");
+    setLogging(false);
+    setGlobalLogging(true);
+    setLoggingName("TemplateManager");
 
-	registerTemplateObjects();
+    registerTemplateObjects();
 
-	luaTemplatesInstance = new Lua();
-	luaTemplatesInstance->init();
+    luaTemplatesInstance = new Lua();
+    luaTemplatesInstance->init();
 
-	templateCRCMap = new TemplateCRCMap();
-	clientTemplateCRCMap = new ClientTemplateCRCMap();
+    templateCRCMap = new TemplateCRCMap();
+    clientTemplateCRCMap = new ClientTemplateCRCMap();
 
-	portalLayoutMap = new PortalLayoutMap();
-	floorMeshMap = new FloorMeshMap();
-	appearanceMap = new AppearanceMap();
-	interiorMap = new InteriorMap();
+    portalLayoutMap = new PortalLayoutMap();
+    floorMeshMap = new FloorMeshMap();
+    appearanceMap = new AppearanceMap();
+    interiorMap = new InteriorMap();
 
-	registerFunctions();
-	registerGlobals();
+    registerFunctions();
+    registerGlobals();
 
-	loadTreArchive();
-	loadSlotDefinitions();
-	loadPlanetMapCategories();
-	loadAssetCustomizationManager();
+    loadTreArchive();
+    loadSlotDefinitions();
+    loadPlanetMapCategories();
+    loadAssetCustomizationManager();
 }
 
 TemplateManager::~TemplateManager() {
-	delete templateCRCMap;
-	templateCRCMap = nullptr;
-
-	delete clientTemplateCRCMap;
-	clientTemplateCRCMap = nullptr;
-
-	delete luaTemplatesInstance;
-	luaTemplatesInstance = nullptr;
-
-	delete portalLayoutMap;
-	portalLayoutMap = nullptr;
-
-	delete floorMeshMap;
-	floorMeshMap = nullptr;
-
-	delete interiorMap;
-	interiorMap = nullptr;
-
-	delete appearanceMap;
-	appearanceMap = nullptr;
+    delete templateCRCMap; templateCRCMap = nullptr;
+    delete clientTemplateCRCMap; clientTemplateCRCMap = nullptr;
+    delete luaTemplatesInstance; luaTemplatesInstance = nullptr;
+    delete portalLayoutMap; portalLayoutMap = nullptr;
+    delete floorMeshMap; floorMeshMap = nullptr;
+    delete interiorMap; interiorMap = nullptr;
+    delete appearanceMap; appearanceMap = nullptr;
 }
 
-void TemplateManager::registerGlobals() {
-	luaTemplatesInstance->setGlobalLong("DISEASED", CreatureState::DISEASED);
-	luaTemplatesInstance->setGlobalLong("ONFIRE", CreatureState::ONFIRE);
-	luaTemplatesInstance->setGlobalLong("POISONED", CreatureState::POISONED);
-	luaTemplatesInstance->setGlobalLong("BLINDED", CreatureState::BLINDED);
-	luaTemplatesInstance->setGlobalLong("STUNNED", CreatureState::STUNNED);
-	luaTemplatesInstance->setGlobalLong("DIZZY", CreatureState::DIZZY);
-	luaTemplatesInstance->setGlobalLong("INTIMIDATED", CreatureState::INTIMIDATED);
-	luaTemplatesInstance->setGlobalLong("IMMOBILIZED", CreatureState::IMMOBILIZED);
-	luaTemplatesInstance->setGlobalLong("FROZEN", CreatureState::FROZEN);
+// --- Loading helpers ---
+void TemplateManager::loadSlotDefinitions() {
+    debug("Loading slot definitions");
+    IffStream* iffStream = openIffFile("abstract/slot/slot_definition/slot_definitions.iff");
 
-	luaTemplatesInstance->setGlobalShort("HEALTH", CreatureAttribute::HEALTH);
-	luaTemplatesInstance->setGlobalShort("ACTION", CreatureAttribute::ACTION);
-	luaTemplatesInstance->setGlobalShort("MIND", CreatureAttribute::MIND);
+    if (!iffStream) {
+        error("Slot definitions can't be found.");
+        ERROR_CODE = SLOT_DEFINITION_FILE_NOT_FOUND;
+        return;
+    }
 
-	luaTemplatesInstance->setGlobalInt("KINETIC", SharedWeaponObjectTemplate::KINETIC);
-	luaTemplatesInstance->setGlobalInt("ENERGY", SharedWeaponObjectTemplate::ENERGY);
-	luaTemplatesInstance->setGlobalInt("ELECTRICITY", SharedWeaponObjectTemplate::ELECTRICITY);
-	luaTemplatesInstance->setGlobalInt("STUN", SharedWeaponObjectTemplate::STUN);
-	luaTemplatesInstance->setGlobalInt("BLAST", SharedWeaponObjectTemplate::BLAST);
-	luaTemplatesInstance->setGlobalInt("HEAT", SharedWeaponObjectTemplate::HEAT);
-	luaTemplatesInstance->setGlobalInt("COLD", SharedWeaponObjectTemplate::COLD);
-	luaTemplatesInstance->setGlobalInt("ACID", SharedWeaponObjectTemplate::ACID);
-	luaTemplatesInstance->setGlobalInt("LIGHTSABER", SharedWeaponObjectTemplate::LIGHTSABER);
+    iffStream->openForm('0006');
+    Chunk* data = iffStream->openChunk('DATA');
 
-	luaTemplatesInstance->setGlobalInt("NONE", SharedWeaponObjectTemplate::NONE);
-	luaTemplatesInstance->setGlobalInt("LIGHT", SharedWeaponObjectTemplate::LIGHT);
-	luaTemplatesInstance->setGlobalInt("MEDIUM", SharedWeaponObjectTemplate::MEDIUM);
-	luaTemplatesInstance->setGlobalInt("HEAVY", SharedWeaponObjectTemplate::HEAVY);
+    while (data->hasData()) {
+        Reference<SlotId*> slotId = new SlotId();
+        slotId->readObject(data);
+        slotDefinitions.put(slotId->getSlotName(), slotId);
+    }
 
-	luaTemplatesInstance->setGlobalInt("ATTACKABLE", ObjectFlag::ATTACKABLE);
-	luaTemplatesInstance->setGlobalInt("AGGRESSIVE", ObjectFlag::AGGRESSIVE);
-	luaTemplatesInstance->setGlobalInt("OVERT", ObjectFlag::OVERT);
-	luaTemplatesInstance->setGlobalInt("TEF", ObjectFlag::TEF);
-	luaTemplatesInstance->setGlobalInt("PLAYER", ObjectFlag::PLAYER);
-	luaTemplatesInstance->setGlobalInt("ENEMY", ObjectFlag::ENEMY);
-	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", ObjectFlag::WILLBEDECLARED);
-	luaTemplatesInstance->setGlobalInt("WASDECLARED", ObjectFlag::WASDECLARED);
+    iffStream->closeChunk('DATA');
+    iffStream->closeForm('0006');
+    delete iffStream;
 
-	luaTemplatesInstance->setGlobalInt("CONVERSABLE", OptionBitmask::CONVERSE);
-	luaTemplatesInstance->setGlobalInt("AIENABLED", OptionBitmask::AIENABLED);
-	// Removed problematic line: INVULNERABLE
-	luaTemplatesInstance->setGlobalInt("FACTIONAGGRO", OptionBitmask::FACTIONAGGRO);
-	luaTemplatesInstance->setGlobalInt("INTERESTING", OptionBitmask::INTERESTING);
-	luaTemplatesInstance->setGlobalInt("JTLINTERESTING", OptionBitmask::JTLINTERESTING);
+    info() << "Loaded " << slotDefinitions.size() << " slot definitions.";
+}
+
+void TemplateManager::loadAssetCustomizationManager() {
+    debug("loading asset customization manager");
+
+    auto readIFF = [&](const String& path) -> IffStream* {
+        IffStream* iffStream = openIffFile(path);
+        if (!iffStream) ERROR_CODE = ASSETCUSTOMIZATIONMANAGER_FILE_NOT_FOUND;
+        return iffStream;
+    };
+
+    IffStream* iffStream = readIFF("customization/asset_customization_manager.iff");
+    if (!iffStream) return;
+    AssetCustomizationManagerTemplate::instance()->readObject(iffStream);
+    delete iffStream;
+
+    iffStream = readIFF("customization/customization_id_manager.iff");
+    if (!iffStream) return;
+    CustomizationIdManager::instance()->readObject(iffStream);
+    delete iffStream;
+
+    iffStream = readIFF("datatables/customization/palette_columns.iff");
+    if (!iffStream) return;
+    CustomizationIdManager::instance()->loadPaletteColumns(iffStream);
+    delete iffStream;
+
+    iffStream = readIFF("datatables/customization/hair_assets_skill_mods.iff");
+    if (!iffStream) return;
+    CustomizationIdManager::instance()->loadHairAssetsSkillMods(iffStream);
+    delete iffStream;
+
+    iffStream = readIFF("datatables/customization/allow_bald.iff");
+    if (!iffStream) return;
+    CustomizationIdManager::instance()->loadAllowBald(iffStream);
+    delete iffStream;
 }
