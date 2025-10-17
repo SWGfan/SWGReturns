@@ -13,8 +13,6 @@
 #include "server/zone/objects/area/areashapes/RectangularAreaShape.h"
 #include "server/zone/objects/area/areashapes/CuboidAreaShape.h"
 #include "server/zone/objects/player/PlayerObject.h"
-
-// Core3: OptionBitmask::INVULNERABLE isn't present — use this project's INVULNERABLE constant
 #include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
 bool ActiveAreaImplementation::containsPoint(float px, float py, uint64 cellid) const {
