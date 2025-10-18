@@ -1,4 +1,4 @@
-local regions = require("scripts.managers.planet.regions")
+require("scripts.managers.planet.regions")
 
 mandalore_regions = {
 	{"an_imperial_outpost",6498,-4719,{CIRCLE,200},NOSPAWNAREA + NOBUILDZONEAREA,1},
