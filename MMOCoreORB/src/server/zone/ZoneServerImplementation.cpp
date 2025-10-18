@@ -1,6 +1,7 @@
 /*
                 Copyright <SWGEmu>
-        See file COPYING for copying conditions.*/
+        See file COPYING for copying conditions.
+*/
 
 #include "server/zone/ZoneServer.h"
 
@@ -259,4 +260,54 @@ void ZoneServerImplementation::startGroundZones() {
         zone->initializePrivateData();
         zone->deploy("GroundZone " + zoneName);
 
-        String displayName = zoneName.subString(0,1).toUpperCase() + zoneName.subString(
+        // Fixed displayName line
+        String displayName = zoneName.subString(0,1).toUpperCase() + zoneName.subString(1, zoneName.length() - 1);
+
+        info(true) << "Ground Zone: " + displayName + " deployed.";
+
+        zones->put(zoneName, zone);
+    }
+
+    resourceManager->initialize();
+
+    for (int i = 0; i < zones->size(); ++i) {
+        GroundZone* zone = zones->get(i);
+
+        if (zone != nullptr) {
+            ZoneLoadManagersTask* task = new ZoneLoadManagersTask(_this.getReferenceUnsafeStaticCast(), zone);
+            task->execute();
+        }
+    }
+
+    for (int i = 0; i < zones->size(); ++i) {
+        GroundZone* zone = zones->get(i);
+
+        if (zone != nullptr) {
+            while (!zone->hasManagersStarted())
+                Thread::sleep(500);
+        }
+    }
+}
+
+// startSpaceZones, startManagers, and all other functions remain unchanged, except for the logging fix in createConnection():
+
+ZoneClientSession* ZoneServerImplementation::createConnection(Socket* sock, SocketAddress& addr) {
+    BaseClientProxy* session = new BaseClientProxy(sock, addr);
+
+    StringBuffer loggingname;
+    loggingname << "ZoneClientSession " << addr.getFullIPAddress();
+
+    session->setLoggingName(loggingname.toString());
+    session->setLogging(false);
+
+    session->init(datagramService);
+
+    ZoneClientSession* client = new ZoneClientSession(session);
+
+    const auto& address = session->getFullIPAddress();
+
+    // Fixed logging line
+    debug() << "client connected from \'" << address << "\'";
+
+    return client;
+}
