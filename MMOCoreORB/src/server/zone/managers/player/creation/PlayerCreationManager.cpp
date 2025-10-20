@@ -409,15 +409,15 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
 
 	// === Instant Jedi start + Village integration (no Hologrind) ===
-	if (profession.contains("jedi"))
+	/*if (profession.contains("jedi"))
             if (ghost != nullptr) {
             	ghost->setJediState(2);
             	ghost->addHologrindProfession(0);
             	// Award force_title_jedi_rank_02 skill
             	SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
-            }
+            }*/
 	// Training lightsaber into inventory
-	if (SceneObject* inventory = playerCreature->getSlottedObject("inventory")) {
+	/*if (SceneObject* inventory = playerCreature->getSlottedObject("inventory")) {
 		const String saberTpls[] = {
 			"object/weapon/melee/sword/crafted_saber/generic_sword_lightsaber_training.iff",
 			"object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
@@ -443,7 +443,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 				}
 			}
 		}
-	} // === End Jedi-start patch ===
+	}*/ // === End Jedi-start patch ===
 
 	if (ghost != nullptr) {
 		// Set skillpoints before adding any skills.
