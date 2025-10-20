@@ -6,6 +6,9 @@ jediManagerName = "HologrindJediManager"
 NUMBEROFPROFESSIONSTOMASTER = 3
 MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 1
 
+USEDHOLOCRON = "used_holocron"
+HOLOCRONCOOLDOWNTIME = 60 * 60 * 1000 -- 1 hour
+
 HologrindJediManager = JediManager:new {
 	screenplayName = jediManagerName,
 	jediManagerName = jediManagerName,
