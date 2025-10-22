@@ -1054,7 +1054,12 @@ function CorellianCorvette:giveBadgeToGroup(pCorvette)
 
 					if (pGhost ~= nil and not PlayerObject(pGhost):hasBadge(badgeNum)) then
 						PlayerObject(pGhost):awardBadge(badgeNum)
-					end
+					
+						-- Hologrind Force award: Corvette completion
+						if HologrindJediManager and HologrindJediManager.addForceForDungeon then
+							HologrindJediManager:addForceForDungeon(pObject)
+						end
+end
 				end
 			end
 		end
