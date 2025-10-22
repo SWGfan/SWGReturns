@@ -25,11 +25,25 @@
 #include "server/zone/managers/jedi/JediManager.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
 #include "server/zone/managers/player/creation/SendJtlRecruitment.h"
-#include "server/login/Client.h"  // <-- REQUIRED for Client*
+
+// ---- Portable client type detection (Core3/Returns/NGE forks) ----
+#if __has_include("server/zone/ZoneClientSession.h")
+  #include "server/zone/ZoneClientSession.h"
+  using ReturnsClient = ZoneClientSession;
+#elif __has_include("server/login/LoginClient.h")
+  #include "server/login/LoginClient.h"
+  using ReturnsClient = LoginClient;
+#elif __has_include("server/login/LoginSession.h")
+  #include "server/login/LoginSession.h"
+  using ReturnsClient = LoginSession;
+#else
+  #error "No compatible client session header found (ZoneClientSession/LoginClient/LoginSession)."
+#endif
+// -----------------------------------------------------------------
 
 // -------------- helper to avoid “silent fail → client hangs” --------------
 static bool sendCreateErrorAndCleanup(const String& msg,
-                                      Client* client,
+                                      ReturnsClient* client,
                                       ManagedReference<CreatureObject*> playerCreature) {
     if (client != nullptr) {
         ErrorMessage* err = new ErrorMessage("Create Error", msg, 0x0);
@@ -326,8 +340,8 @@ void PlayerCreationManager::loadLuaStartingItems(Lua* lua) {
 bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callback) const {
     TemplateManager* templateManager = TemplateManager::instance();
 
-    auto client = callback->getClient();
-    auto maxchars = ConfigManager::instance()->getInt("Core3.PlayerCreationManager.MaxCharactersPerGalaxy", 10);
+    ReturnsClient* client = callback->getClient();
+    int maxchars = ConfigManager::instance()->getInt("Core3.PlayerCreationManager.MaxCharactersPerGalaxy", 10);
 
     if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= maxchars) {
         return sendCreateErrorAndCleanup("You are limited to 10 characters per galaxy.", client, nullptr);
