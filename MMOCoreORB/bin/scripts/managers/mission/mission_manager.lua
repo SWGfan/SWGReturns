@@ -107,3 +107,21 @@ entertainerMissionBaseReward = 1500
 entertainerMissionSkillRewardFactor = 1000
 entertainerMissionRandomReward = 1000
 entertainerMissionSkillRandomReward = 25
+
+
+-- =====================================================
+-- Hologrind: terminal mission completion helper
+-- Call from mission payout code after credits/xp are awarded.
+--   HGJ_NotifyTerminalMissionComplete(pPlayer, missionTypeString, tierNumber)
+if not HGJ_NotifyTerminalMissionComplete then
+function HGJ_NotifyTerminalMissionComplete(pPlayer, missionType, tier)
+	if not pPlayer then return end
+	if HologrindJediManager and HologrindJediManager.notifyMissionCompleted then
+		HologrindJediManager:notifyMissionCompleted(pPlayer, missionType or "mission", tonumber(tier) or 1)
+	elseif HologrindJediManager and HologrindJediManager.addForceForMission then
+		-- Back-compat with earlier manager version
+		HologrindJediManager:addForceForMission(pPlayer)
+	end
+end
+end
+-- =====================================================
