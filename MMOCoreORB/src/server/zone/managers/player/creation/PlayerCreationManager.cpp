@@ -607,9 +607,13 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	zBroadcast << "\\#00ace6" << playerName << " \\#ffb90f Has Joined Returns!";
 	playerCreature->getZoneServer()->getChatManager()->broadcastGalaxy(NULL, zBroadcast.toString());
 
-	
 	ghost->addSuiBox(box);
 	playerCreature->sendMessage(box->generateMessage());
+
+	// === EULA: gate movement until acceptance ===
+	// This relies on your Lua EulaEnforcer to restore to 1.0 on accept:
+	// CreatureObject(pCreature):setSpeedMultiplierBase(1.0)
+	playerCreature->setSpeedMultiplierBase(0.0f);
 
 	return true;
 }
