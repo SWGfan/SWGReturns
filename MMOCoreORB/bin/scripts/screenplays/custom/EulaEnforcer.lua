@@ -64,8 +64,11 @@ end
 function EulaEnforcer:onAccept(pCreature)
     if not pCreature then return end
     writeStringData(K(pCreature, "accepted"), self.EULA_VERSION)
+    -- UNGATE movement:
+    CreatureObject(pCreature):setSpeedMultiplierBase(1.0)
     CreatureObject(pCreature):sendSystemMessage("Thank you. EULA accepted. Enjoy SWG Returns!")
 end
+
 
 function EulaEnforcer:onDecline(pCreature)
     if not pCreature then return end
