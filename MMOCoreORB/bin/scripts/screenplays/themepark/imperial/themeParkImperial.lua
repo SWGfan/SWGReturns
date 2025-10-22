@@ -839,3 +839,26 @@ theme_park_imperial_mission_target_conv_handler = mission_target_conv_handler:ne
 	themePark = ThemeParkImperial
 }
 
+
+
+-- =====================================================
+-- Hologrind hook: grant Force when the Imperial Theme Park badge is awarded
+ImperialThemeParkForceHook = { className = "ImperialThemeParkForceHook" }
+
+function ImperialThemeParkForceHook:onPlayerLoggedIn(pCreature)
+	if not pCreature then return end
+	createObserver(BADGEAWARDED, "ImperialThemeParkForceHook", "onBadgeAwarded", pCreature)
+end
+
+function ImperialThemeParkForceHook:onBadgeAwarded(pCreature, _, badgeId)
+	if not pCreature then return 0 end
+	if badgeId == THEME_PARK_IMPERIAL_BADGE then
+		if HologrindJediManager and HologrindJediManager.addForceForDungeon then
+			HologrindJediManager:addForceForDungeon(pCreature, 1200) -- group-scaled in manager
+		end
+	end
+	return 0
+end
+
+registerScreenPlay("ImperialThemeParkForceHook", true)
+-- =====================================================
