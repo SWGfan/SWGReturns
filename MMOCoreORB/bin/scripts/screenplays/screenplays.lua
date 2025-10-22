@@ -755,4 +755,4 @@ includeFile("tasks/naboo/mission_terminal_spawner.lua")
 includeFile("custom/bastilla.lua")
 
 --EulaEnforcer
-includeFIle("custom/EulaEnforcer.lua")
+includeFIle("custom/login_eula.lua")
