@@ -1,1 +1,26 @@
-Please dont forget to hard restart your clients if the server crashed/restarted.
+Welcome to SWG Returns! Read the EULA in order to move!
+
+SWG Returns — EULA
+✕
+Effective Date: October 21, 2025 · Last Updated: October 21, 2025
+
+1. Legal Disclaimer
+Non-Commercial Project. SWG Returns is a non-profit, fan-run emulator built on the SWGEmu Core3 framework (GNU AGPLv3).
+Not Affiliated. Not affiliated with Lucasfilm Ltd., Disney, SOE/Daybreak, or LucasArts. All Star Wars IP remains with its owners.
+Use at Your Own Risk. Service is provided “AS IS” without warranties of any kind.
+2. Age & Conduct
+You must be 13+. If under 18, parental/guardian consent is required.
+No harassment, hate speech, cheating, exploiting, or real-money trading.
+3. Accounts & Data
+Accounts remain property of SWG Returns; access is a revocable license.
+Player data is used for gameplay/admin only; not sold or shared externally.
+Accounts may be suspended/removed for violations, inactivity, or maintenance.
+4. SWGEmu Core3 Compliance
+Server runs on SWGEmu Core3 and complies with AGPLv3.
+Public redistribution of modified server code must remain open-source with complete source access.
+Custom scripts/Lua modules are released under compatible open-source terms.
+5. Liability & Indemnification
+You agree to hold harmless SWG Returns staff and contributors for any losses or claims arising from your use of the service.
+
+6. Agreement Acceptance
+By connecting to SWG Returns or creating an account, you confirm that you have read and agree to this EULA, meet the minimum age requirement, and understand this is a fan-run emulator.
