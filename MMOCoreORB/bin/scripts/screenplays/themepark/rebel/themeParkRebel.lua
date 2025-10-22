@@ -1037,3 +1037,26 @@ theme_park_rebel_mission_giver_conv_handler = mission_giver_conv_handler:new {
 theme_park_rebel_mission_target_conv_handler = mission_target_conv_handler:new {
 	themePark = ThemeParkRebel
 }
+
+
+-- =====================================================
+-- Hologrind hook: grant Force when the Rebel Theme Park badge is awarded
+RebelThemeParkForceHook = { className = "RebelThemeParkForceHook" }
+
+function RebelThemeParkForceHook:onPlayerLoggedIn(pCreature)
+	if not pCreature then return end
+	createObserver(BADGEAWARDED, "RebelThemeParkForceHook", "onBadgeAwarded", pCreature)
+end
+
+function RebelThemeParkForceHook:onBadgeAwarded(pCreature, _, badgeId)
+	if not pCreature then return 0 end
+	if badgeId == THEME_PARK_REBEL_BADGE then
+		if HologrindJediManager and HologrindJediManager.addForceForDungeon then
+			HologrindJediManager:addForceForDungeon(pCreature, 1200) -- group-scaled in manager
+		end
+	end
+	return 0
+end
+
+registerScreenPlay("RebelThemeParkForceHook", true)
+-- =====================================================
