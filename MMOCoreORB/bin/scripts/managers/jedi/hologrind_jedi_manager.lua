@@ -24,7 +24,7 @@ local LEGACY_FORCE_GRANT         = 10000
 local FP_KILL_BASE               = 15
 local FP_KILL_LEVEL_SCALE        = 0.50    -- extra FP per (victimLvl - playerLvl)
 local FP_KILL_MIN                = 1
-local FP_KILL_MAX                = 30
+local FP_KILL_MAX                = 60
 
 -- Terminal missions (use notifyMissionCompleted)
 local FP_MISSION_BASE            = 180
