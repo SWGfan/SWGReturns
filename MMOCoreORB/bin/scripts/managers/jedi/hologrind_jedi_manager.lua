@@ -21,7 +21,7 @@ local LEGACY_REQUIRED_MASTERED   = 3
 local LEGACY_FORCE_GRANT         = 10000
 
 -- Per-kill Force (base + optional level diff scaling)
-local FP_KILL_BASE               = 15
+local FP_KILL_BASE               = 30
 local FP_KILL_LEVEL_SCALE        = 0.50    -- extra FP per (victimLvl - playerLvl)
 local FP_KILL_MIN                = 1
 local FP_KILL_MAX                = 60
