@@ -39,7 +39,7 @@ local GROUP_STEP                 = 0.12
 local GROUP_MAX                  = 2.0
 
 -- ====== Compatibility vars kept for your holocron snippet ======
-NUMBEROFPROFESSIONSTOMASTER                 = 3
+NUMBEROFPROFESSIONSTOMASTER                  = 3
 MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 1
 
 HologrindJediManager = JediManager:new {
@@ -123,17 +123,18 @@ end
 -- Group bonus helpers
 -- =========================
 local function getGroupSizeFor(creo)
+  -- safest way across branches; fallbacks included
   if CreatureObject(creo).getGroupSize then
     local n = CreatureObject(creo):getGroupSize()
     if n and n > 0 then return n end
   end
   if CreatureObject(creo).getGroupObject then
     local pGroup = CreatureObject(creo):getGroupObject()
-    if pGroup and GroupObject and GroupObject(pGroup).getMemberCount then
-      local n = GroupObject(pGroup):getMemberCount()
+    if pGroup and pGroup.getMemberCount then
+      local n = pGroup:getMemberCount()
       if n and n > 0 then return n end
-    elseif pGroup and GroupObject and GroupObject(pGroup).getGroupSize then
-      local n = GroupObject(pGroup):getGroupSize()
+    elseif pGroup and pGroup.getGroupSize then
+      local n = pGroup:getGroupSize()
       if n and n > 0 then return n end
     end
   end
@@ -209,6 +210,8 @@ function HologrindJediManager:legacyAutograntIfEligible(pCreature)
     writeData(K(pCreature,"migrated"), 1)
     CreatureObject(pCreature):sendSystemMessage("Your past trials resonate with the Force. Your attunement surges to a new height.")
     self:checkAndConvertIfReady(pCreature)
+  else
+    writeData(K(pCreature,"migrated"), 1) -- mark checked so we don't re-check every login
   end
 end
 
@@ -225,7 +228,7 @@ function HologrindJediManager:onKilledCreature(pCreature, pVictim)
   if CreatureObject(pCreature).getLevel then lvlP = CreatureObject(pCreature):getLevel() end
   if CreatureObject(pVictim).getLevel then lvlV = CreatureObject(pVictim):getLevel() end
   if lvlP and lvlV then
-    fp = fp + ( (lvlV - lvlP) * FP_KILL_LEVEL_SCALE )
+    fp = fp + ((lvlV - lvlP) * FP_KILL_LEVEL_SCALE)
   end
   if fp < FP_KILL_MIN then fp = FP_KILL_MIN end
   if fp > FP_KILL_MAX then fp = FP_KILL_MAX end
