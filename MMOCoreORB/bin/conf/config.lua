@@ -107,8 +107,8 @@ Core3 = {
 	"tutorial",
 	"yavin4",
 	"mandalore",
-	--"kaas",
-	--"hoth",
+	"kaas",
+	"hoth",
 	-------- TEST ZONES -------
 	--"09",
 	--"10",
@@ -152,8 +152,9 @@ Core3 = {
 	------TRE config------
 	TrePath = "/home/swgadmin/tre",
 	TreFiles = {
+		"returns_planets.tre",
 		"mandalore.tre",
-		"returns2.tre",
+		"returns1.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
 		"patch_14_00.tre",
