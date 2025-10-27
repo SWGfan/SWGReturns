@@ -69,3 +69,5 @@ includeFile("legendaries/darth_vader.lua")
 includeFile("legendaries/luke_skywalker_rotj.lua")
 includeFile("legendaries/hk47.lua")
 -- === End custom set ===
+-- Dromund Kaas mobiles
+includeFile("kaas/serverobjects.lua")

@@ -603,3 +603,9 @@ includeFile("lair/creature_lair/yavin4/yavin4_whisper_bird_lair_neutral_medium.l
 includeFile("lair/creature_lair/yavin4/yavin4_whisper_bird_male_neutral_medium_boss_01.lua")
 
 
+includeFile("lair/creature_lair/kaas_kell_dragon_lair_small.lua")
+includeFile("lair/creature_lair/kaas_gundark_lair_small.lua")
+includeFile("lair/creature_lair/kaas_mailoc_lair_small.lua")
+includeFile("lair/creature_lair/kaas_sleen_lair_small.lua")
+includeFile("lair/creature_lair/kaas_vine_cat_lair_small.lua")
+includeFile("lair/creature_lair/kaas_ysalamiri_lair_small.lua")

@@ -504,4 +504,5 @@ includeFile("spawn/destroy_mission/yavin4_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_imperial_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_neutral_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_rebel_destroy_missions.lua")
-includeFile("spawn/destroy_mission/mandalore_destroy_missions.lua")
+includeFile("spawn/destroy_mission/mandalore_destroy_missions.lua")-- Dromund Kaas spawns
+includeFile("spawn/kaas_world.lua")

@@ -22,4 +22,4 @@ NOPETAREA           = 0x010000
 
 CIRCLE = 1
 RECTANGLE = 2
-RING = 3
+RING = 3includeFile("managers/planet/kaas_regions.lua")
