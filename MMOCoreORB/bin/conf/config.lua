@@ -109,6 +109,11 @@ Core3 = {
 	"mandalore",
 	"kaas",
 	"hoth",
+	"mustafar",
+	"coruscant",
+	"chandrila",
+	"moraband",
+	"hutta",
 	-------- TEST ZONES -------
 	--"09",
 	--"10",
