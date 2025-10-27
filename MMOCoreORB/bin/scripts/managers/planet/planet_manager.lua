@@ -741,27 +741,94 @@ outpostRegionNames = { },
 	}
 }
 
-kaas = {
+chandrila = { -- 21
   weatherEnabled = 1,
   gcwEnabled = 1,
-
-	outpostRegionNames = { },
-
+  
   planetTravelPoints = {
-    {name = "a Prophet Trooper Garrison", x = -5163, z = 80, y = -2238, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
-    {name = "a Smuggler Outpost", x = 2946, z = 121, y = 3886, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    {name = "Hanna City Spaceport", x = 178, z = 6, y = -2961, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    {name = "Nayli Outpost", x = -5272, z = 18, y = 264, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
     },
+    
+    badgeAreas = {
+     {"chandrila_mon_mothma_house",2469,2307,0,30,140},
+     {"chandrila_jedi_tomb",4339,-4287,0,30,141},
+     {"chandrila_state_park",-5013,4089,0,30,142},
+  },
+  
+  navAreas = {
+   --[[ {"dark_jedi_enclave",5080,306,100},--]]
+  },
+}
 
-		badgeAreas = {
-		{"exp_kaa_city_ruins",-6172,2690,0,30,172},
-		{"exp_kaa_separatist_facility",825,-1230,0,30,173},
-		{"exp_kaa_vitiate_tomb",6017,-1142,0,30,174},
-		{"exp_kaa_imperial_garrison",-5163,-2238,0,30,175},
-		},
+kaas = { -- 22
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+  
+  planetTravelPoints = {
+    {name = "an Imperial Garrison", x = -5163, z = 80, y = -2238, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    {name = "a Smuggler Outpost", x = 2852, z = 125, y = 3896, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = { 
+      {"kaas_vitiate_tomb",5915,-1109,0,30,144},
+      {"kaas_kaas_city", -6131,2715,0,300,145},       
+  },
+}
+hutta = { -- 23
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+  
+  planetTravelPoints = {
+    {name = "Bilbousa Starport", x = -789, z = 80, y = 1769, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = {
+      {"hutta_jiguuna",4716,1937,0,15,150},   
+  },
+}
+coruscant = { -- 24
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+  
+  planetTravelPoints = {
+    {name = "Collective Commerce District", x = -1851, z = 40, y = -175, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 1},
+    {name = "Monument Square", x = 1538, z = 40, y = 779, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 1},
+    {name = "Entertainment District", x = 2248, z = 0, y = -4546, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 1},
+    {name = "Spaceport District Shuttle", x = -28, z = 40, y = 3202, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 1},
+    {name = "Coruscant Spaceport", x = -96, z = 40, y = 3149, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    {name = "Lower City Level 1312", x = -5815, z = 0, y = -4850, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = { 
+      {"coruscant_imperial_palace", -120,3311,0,30,146},   
+  },
+}
+moraband = { -- 25
+  weatherEnabled = 1,
+  gcwEnabled = 1,
+  
+  planetTravelPoints = {
+    {name = "Archaeological Outpost", x = -1696, z = 91, y = -624, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+    },
+    
+    badgeAreas = {   
+      {"moraband_valley", -1626,-669,0,20,148}, 
+      {"moraband_dreshdae", 1091,-5328,0,90,149}, 
+  },
+}
 
-		navAreas = {
-			},
+mustafar = {
+  weatherEnabled = 0,
+  gcwEnabled = 0,
+  
+  planetTravelPoints = {
+    {name = "Mensix Mining Facility", x = -2471, z = 230, y = 1620, interplanetaryTravelAllowed = 0, incomingTravelAllowed = 0},
+    },
+    
+    badgeAreas = {   
+      --{"hondo_camp", 3245,-756,0,20,153}, 
+       
+  },
+}
 
-		planetObjects = {
-		}
-	}
