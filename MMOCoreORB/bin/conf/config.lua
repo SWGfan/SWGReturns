@@ -110,7 +110,6 @@ Core3 = {
 	"kaas",
 	"hoth",
 	"mustafar",
-	"coruscant",
 	"chandrila",
 	"moraband",
 	"hutta",
@@ -157,7 +156,6 @@ Core3 = {
 	------TRE config------
 	TrePath = "/home/swgadmin/tre",
 	TreFiles = {
-		"returns_planets.tre",
 		"mandalore.tre",
 		"returns1.tre",
 		"default_patch.tre",

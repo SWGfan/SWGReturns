@@ -757,21 +757,10 @@ includeFile("custom/bastilla.lua")
 --EulaEnforcer
 includeFile("custom/login_eula.lua")
 
--- Planet spawns
-includeFile("planets/kaas_spawns.lua")
-includeFile("planets/hoth_spawns.lua")
-includeFile("planets/mustafar_spawns.lua")
-includeFile("planets/chandrila_spawns.lua")
-includeFile("planets/moraband_spawns.lua")
-includeFile("planets/hutta_spawns.lua")
-
--- Heroics
-includeFile("heroics/_heroic_framework.lua")
-includeFile("heroics/revan_heroic.lua")
-includeFile("heroics/malak_heroic.lua")
-includeFile("heroics/palpatine_heroic.lua")
-includeFile("heroics/vader_heroic.lua")
-includeFile("heroics/luke_heroic.lua")
-includeFile("heroics/hk47_heroic.lua")
-includeFile("heroics/wampa_heroic.lua")
-includeFile("heroics/sith_triune_heroic.lua")
+-- === Mandalore custom screenplays ===
+-- Top-level files in screenplays/custom
+includeFile("custom/DarthCaedusCave.lua")
+includeFile("custom/ShadowCollectiveCave.lua")
+includeFile("custom/VizslaHideout.lua")
+includeFile("custom/MandalMotors.lua")
+includeFile("custom/TaunoWarriorBunker.lua")

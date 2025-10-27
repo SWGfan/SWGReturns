@@ -68,7 +68,7 @@ object_draft_schematic_weapon_lightsaber_lightsaber_refined_crystal_pack = objec
    ingredientTitleNames = {"module_housing", "ultrasonic_vibration_generator", "conductive_circuits"},
    ingredientSlotType = {0, 0, 0},
    resourceTypes = {"steel", "gemstone", "copper"},
-   resourceQuantities = {25, 25, 25},
+   resourceQuantities = {10, 20, 6},
    contribution = {100, 100, 100},
 
 

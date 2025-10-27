@@ -1,2 +1,0 @@
--- Kashyyyk mobile spawn includes (empty stub)
--- Add Kashyyyk creature/NPC spawn scripts here

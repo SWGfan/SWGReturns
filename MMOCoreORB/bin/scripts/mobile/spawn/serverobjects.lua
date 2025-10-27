@@ -488,6 +488,7 @@ includeFile("spawn/yavin4/yavin4_southwestern_easy.lua")
 includeFile("spawn/yavin4/yavin4_western_medium.lua")
 includeFile("spawn/yavin4/yavin4_western_peak.lua")
 includeFile("spawn/yavin4/yavin4_world.lua")
+includeFile("spawn/mandalore_world.lua")
 
 -- destroy_mission
 includeFile("spawn/destroy_mission/corellia_destroy_missions.lua")
@@ -503,3 +504,4 @@ includeFile("spawn/destroy_mission/yavin4_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_imperial_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_neutral_destroy_missions.lua")
 includeFile("spawn/destroy_mission/factional_rebel_destroy_missions.lua")
+includeFile("spawn/destroy_mission/mandalore_destroy_missions.lua")

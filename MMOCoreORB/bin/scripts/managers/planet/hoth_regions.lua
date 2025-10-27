@@ -1,4 +1,4 @@
-require("scripts.managers.planet.planet_manager.regions")
+require("scripts.managers.planet.regions")
 
 hoth_regions = {
 	{"Scavenger Outpost",0,-2000,{CIRCLE,1000},NOSPAWNAREA + NOBUILDZONEAREA,1},
