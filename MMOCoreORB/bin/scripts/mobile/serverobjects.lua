@@ -50,5 +50,22 @@ includeFile("outfits/serverobjects.lua")
 includeFile("../custom_scripts/mobile/serverobjects.lua")
 includeFile("custom/serverobjects.lua")
 
--- Kashyyyk Mobiles
---includeFile("kashyyyk/serverobjects.lua")
+-- === Custom Sith/Wampa set ===
+-- Shared (must be first)
+includeFile("shared/_boss_attacks.lua")
+
+-- Generics
+includeFile("generics/sith_acolyte.lua")
+includeFile("generics/sith_lord.lua")
+includeFile("generics/sith_boss.lua")
+includeFile("generics/wampa_alpha.lua")
+
+-- Legendaries
+includeFile("legendaries/darth_revan.lua")
+includeFile("legendaries/bastila_shan.lua")
+includeFile("legendaries/darth_malak.lua")
+includeFile("legendaries/emperor_palpatine.lua")
+includeFile("legendaries/darth_vader.lua")
+includeFile("legendaries/luke_skywalker_rotj.lua")
+includeFile("legendaries/hk47.lua")
+-- === End custom set ===
