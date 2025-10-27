@@ -755,4 +755,23 @@ includeFile("tasks/naboo/mission_terminal_spawner.lua")
 includeFile("custom/bastilla.lua")
 
 --EulaEnforcer
-includeFIle("custom/login_eula.lua")
+includeFile("custom/login_eula.lua")
+
+-- Planet spawns
+includeFile("screenplays/planets/kaas_spawns.lua")
+includeFile("screenplays/planets/hoth_spawns.lua")
+includeFile("screenplays/planets/mustafar_spawns.lua")
+includeFile("screenplays/planets/chandrila_spawns.lua")
+includeFile("screenplays/planets/moraband_spawns.lua")
+includeFile("screenplays/planets/hutta_spawns.lua")
+
+-- Heroics
+includeFile("screenplays/heroics/_heroic_framework.lua")
+includeFile("screenplays/heroics/revan_heroic.lua")
+includeFile("screenplays/heroics/malak_heroic.lua")
+includeFile("screenplays/heroics/palpatine_heroic.lua")
+includeFile("screenplays/heroics/vader_heroic.lua")
+includeFile("screenplays/heroics/luke_heroic.lua")
+includeFile("screenplays/heroics/hk47_heroic.lua")
+includeFile("screenplays/heroics/wampa_heroic.lua")
+includeFile("screenplays/heroics/sith_triune_heroic.lua")
