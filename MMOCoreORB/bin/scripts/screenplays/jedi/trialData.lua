@@ -145,7 +145,43 @@ knightTrialQuests = {
 		trialName = "tusken_raider",
 		trialType = TRIAL_HUNT,
 		huntTarget = "tusken_raider",
-		huntGoal = 25
+		huntGoal = 19
+	},
+	{
+		trialName = "ancient_bull_rancor",
+		trialType = TRIAL_HUNT,
+		huntTarget = "ancient_bull_rancor",
+		huntGoal = 8
+	},
+	{
+		trialName = "stintaril_prowler",
+		trialType = TRIAL_HUNT,
+		huntTarget = "stintaril_prowler",
+		huntGoal = 8
+	},
+	{
+		trialName = "blurrg_raptor",
+		trialType = TRIAL_HUNT,
+		huntTarget = "blurrg_raptor",
+		huntGoal = 3
+	},
+	{
+		trialName = "enraged_kimogila",
+		trialType = TRIAL_HUNT,
+		huntTarget = "enraged_kimogila",
+		huntGoal = 3
+	},
+	{
+		trialName = "peko_peko_albatross",
+		trialType = TRIAL_HUNT,
+		huntTarget = "peko_peko_albatross",
+		huntGoal = 2
+	},
+	{
+		trialName = "graul_marauder",
+		trialType = TRIAL_HUNT,
+		huntTarget = "graul_marauder",
+		huntGoal = 2
 	},
 	{
 		trialName = "light_or_dark",
@@ -157,6 +193,19 @@ knightTrialQuests = {
 		rebelTarget = "storm_commando",
 		imperialTarget = "rebel_commando",
 		huntGoal = 10
+	},
+	{
+		trialName = "high_general",
+		trialType = TRIAL_HUNT_FACTION,
+		rebelTarget = "imperial_surface_marshal;imperial_high_general;imperial_general",
+		imperialTarget = "rebel_high_general;rebel_surface_marshal;rebel_general",
+		huntGoal = 10
+	},
+	{
+		trialName = "giant_canyon_krayt",
+		trialType = TRIAL_HUNT,
+		huntTarget = "giant_canyon_krayt_dragon",
+		huntGoal = 1
 	},
 }
 
