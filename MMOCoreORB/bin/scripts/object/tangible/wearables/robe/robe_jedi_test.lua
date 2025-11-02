@@ -94,4 +94,11 @@ object_tangible_wearables_robe_robe_jedi_test = object_tangible_wearables_robe_s
 				"object/mobile/vendor/zabrak_male.iff" },
 }
 
-ObjectTemplates:addTemplate(object_tangible_wearables_robe_robe_jedi_test, "object/tangible/wearables/robe/robe_jedi_test.iff")
+skillMods = {
+\t{"onehandedlightsaber_damage", 45},
+\t{"twohandedlightsaber_damage", 55},
+\t{"doublebladedlightsaber_damage", 65},
+\t{"melee_defense", 40},
+\t{"range_defense", 40},
+\t{"dodge", 30},
+}ObjectTemplates:addTemplate(object_tangible_wearables_robe_robe_jedi_test, "object/tangible/wearables/robe/robe_jedi_test.iff")
