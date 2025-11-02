@@ -399,7 +399,7 @@ trainerSkills = {
 		"returns_jedi_elder_dark_powers_01",
 		"returns_jedi_elder_dark_powers_02",
 		"returns_jedi_elder_dark_powers_03",
-		"returns_jedi_elder_dark_powers_04"
+		"returns_jedi_elder_dark_powers_04",
 	  "force_rank_light_rank_10",
 	  "force_rank_dark_rank_10",
 	  "force_rank_light_rank_09", 
@@ -1518,7 +1518,7 @@ trainerSkills = {
 	},
 
 	trainer_jedi = {
-	"jedi_padawan_novice",
+		"jedi_padawan_novice",
 		"jedi_padawan_master",
 		"jedi_padawan_saber_01",
 		"jedi_padawan_saber_02",
