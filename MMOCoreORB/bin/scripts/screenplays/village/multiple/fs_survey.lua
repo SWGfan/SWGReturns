@@ -3,24 +3,19 @@ local QuestManager = require("managers.quest.quest_manager")
 
 FsSurvey = {  }
 
--- Old Function to redirect on quest observers
 function FsSurvey:sampleEventHandler(pPlayer, pResourceSpawn, density)
-	if (pPlayer == nil) then
-		return 0
-	end
-
-	createObserver(SURVEY, "FsSurvey", "surveyEventHandler", pPlayer, 1)
-
-	return 1
-end
-
-function FsSurvey:surveyEventHandler(pPlayer, pResourceSpawn, density)
 	if (pPlayer == nil or pResourceSpawn == nil) then
 		return 0
 	end
 
-	local phase = VillageJediManagerTownship:getCurrentPhase()
+	local chance = getRandomNumber(1,5)
 
+	if (chance ~= 1) then
+		return 0
+	end
+
+	local phase = VillageJediManagerTownship:getCurrentPhase()
+	
 	if (phase ~= 2 and phase ~= 3) then
 		return 0
 	end

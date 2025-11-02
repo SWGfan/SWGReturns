@@ -224,7 +224,7 @@ function FsCounterStrike:despawnAllCamps()
 		if (pMesh ~= nil) then
 			SceneObject(pMesh):destroyObjectFromWorld()
 		end
-
+		
 		self:despawnCamp(tonumber(campTable[i]))
 	end
 end
@@ -324,12 +324,10 @@ function FsCounterStrike:completeQuest(pPlayer, teamComplete)
 	local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 
 	if (pInventory ~= nil) then
-		local crystalID = createLoot(pInventory, "color_crystals", 1, true)
-		local pCrystal = getSceneObject(crystalID)
+		local pCrystal = giveItem(pInventory, "object/tangible/component/weapon/lightsaber/lightsaber_module_force_crystal.iff", -1, true)
 
 		if (pCrystal == nil) then
-			Logger:log("Crystal is nil. Unable to set Sunriders Crystal Color for Player ID: " .. SceneObject(pPlayer):getObjectID(), LT_ERROR)
-			CreatureObject(pPlayer):sendSystemMessage("There was an error generating your Crystal Reward. Please see Support and screenshot this message.")
+			CreatureObject(pPlayer):sendSystemMessage("Error: Unable to generate item.")
 		else
 			local colorCrystal = LuaLightsaberCrystalComponent(pCrystal)
 			colorCrystal:setColor(29)
@@ -551,6 +549,6 @@ function FsCounterStrike:giveCampWaypoint(pPlayer)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 	if (pGhost ~= nil) then
-		PlayerObject(pGhost):addWaypoint("dathomir", "Aurilian Enemy", "", campData[2], 0, campData[4], WAYPOINT_YELLOW, true, true, 0)
+		PlayerObject(pGhost):addWaypoint("dathomir", "Aurilian Enemy", "", campData[2], campData[4], WAYPOINTYELLOW, true, true, 0)
 	end
 end

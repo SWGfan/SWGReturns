@@ -371,6 +371,17 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
         ghost->setStarterProfession(profession);
     }
 
+    // === Instant Jedi start + Village integration (only when profession contains "jedi") ===
+    if (profession.contains("jedi") && ghost != nullptr) {
+        // Enable hologrind list and set Padawan state for Village-style unlock path
+        ghost->setJediState(2);
+        ghost->addHologrindProfession(0);
+
+        // Grant Padawan title so systems depending on this flag work immediately
+        SkillManager::instance()->awardSkill("force_title_jedi_rank_02", playerCreature, false, true, true);
+    }
+    // === End Jedi-start patch ===
+
     addCustomization(playerCreature, customization, playerTemplate->getAppearanceFilename());
     addHair(playerCreature, hairTemplate, hairCustomization);
 
@@ -383,6 +394,36 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
         addStartingItems(playerCreature, clientTemplate, true);
         addRacialMods(playerCreature, fileName, &playerTemplate->getStartingSkills(), &playerTemplate->getStartingItems(), true);
     }
+
+    // === Seed a training lightsaber only for Jedi starts ===
+    if (profession.contains("jedi")) {
+        if (SceneObject* inventory = playerCreature->getSlottedObject("inventory")) {
+            const String saberTpls[] = {
+                "object/weapon/melee/sword/crafted_saber/generic_sword_lightsaber_training.iff",
+                "object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
+            };
+
+            for (int i = 0; i < 2; ++i) {
+                ManagedReference<SceneObject*> saber = nullptr;
+
+                try {
+                    saber = zoneServer->createObject(saberTpls[i].hashCode(), 1);
+                } catch (...) {
+                    saber = nullptr;
+                }
+
+                if (saber != nullptr) {
+                    if (inventory->transferObject(saber, -1, false)) {
+                        // Success; stop after first saber that transfers
+                        break;
+                    } else {
+                        saber->destroyObjectFromDatabase(true);
+                    }
+                }
+            }
+        }
+    }
+    // === End training lightsaber seed ===
 
     if (ghost != nullptr) {
         int accID = client->getAccountID();

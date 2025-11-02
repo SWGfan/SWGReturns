@@ -11,62 +11,58 @@ require("screenplays.screenplay")
 ExperienceConverter = ScreenPlay:new {
 	xpConversion = {
 		combat = {
-			{ "jedi_general", 1 },
-			{ "bountyhunter", 5 },
+			{ "bountyhunter", 3 },
 			{ "combat_general", 3 },
-			{ "combat_meleespecialize_onehand", 30 },
-			{ "combat_meleespecialize_polearm", 30 },
-			{ "combat_meleespecialize_twohand", 30 },
-			{ "combat_meleespecialize_unarmed", 30 },
-			{ "combat_rangedspecialize_carbine", 30 },
-			{ "combat_rangedspecialize_heavy", 30 },
-			{ "combat_rangedspecialize_pistol", 30 },
-			{ "combat_rangedspecialize_rifle", 30 },
-			{ "squadleader", 90 }
+			{ "combat_meleespecialize_onehand", 20 },
+			{ "combat_meleespecialize_polearm", 20 },
+			{ "combat_meleespecialize_twohand", 20 },
+			{ "combat_meleespecialize_unarmed", 20 },
+			{ "combat_rangedspecialize_carbine", 20 },
+			{ "combat_rangedspecialize_heavy", 20 },
+			{ "combat_rangedspecialize_pistol", 20 },
+			{ "combat_rangedspecialize_rifle", 20 },
+			{ "squadleader", 60 }
 		},
 		senses = {
-			{ "jedi_general", 1 },
-			{ "bio_engineer_dna_harvesting", 3 },
-			{ "camp", 5 },
-			{ "creaturehandler", 9 },
-			{ "dance", 10 },
-			{ "entertainer_healing", 10 },
-			{ "imagedesigner", 7 },
-			{ "medical", 10 },
-			{ "merchant", 4 },
-			{ "music", 10 },
-			{ "political", 3 },
-			{ "resource_harvesting_inorganic", 10 },
-			{ "scout", 8 },
-			{ "slicing", 3 },
-			{ "trapping", 25 },
+			{ "bio_engineer_dna_harvesting", 2 },
+			{ "camp", 4 },
+			{ "creaturehandler", 7 },
+			{ "dance", 8 },
+			{ "entertainer_healing", 8 },
+			{ "imagedesigner", 5 },
+			{ "medical", 8 },
+			{ "merchant", 3 },
+			{ "music", 8 },
+			{ "political", 2 },
+			{ "resource_harvesting_inorganic", 8 },
+			{ "scout", 7 },
+			{ "slicing", 2 },
+			{ "trapping", 12 },
 		},
 		reflex = {
-			{ "jedi_general", 1 },
-			{ "bountyhunter", 1 },
+			{ "bountyhunter", 5 },
 			{ "combat_general", 3 },
-			{ "combat_meleespecialize_onehand", 30 },
-			{ "combat_meleespecialize_polearm", 30 },
-			{ "combat_meleespecialize_twohand", 30 },
-			{ "combat_meleespecialize_unarmed", 30 },
-			{ "combat_rangedspecialize_carbine", 30 },
-			{ "combat_rangedspecialize_heavy", 30 },
-			{ "combat_rangedspecialize_pistol", 30 },
-			{ "combat_rangedspecialize_rifle", 30 },
-			{ "squadleader", 90 }
+			{ "combat_meleespecialize_onehand", 20 },
+			{ "combat_meleespecialize_polearm", 20 },
+			{ "combat_meleespecialize_twohand", 20 },
+			{ "combat_meleespecialize_unarmed", 20 },
+			{ "combat_rangedspecialize_carbine", 20 },
+			{ "combat_rangedspecialize_heavy", 20 },
+			{ "combat_rangedspecialize_pistol", 20 },
+			{ "combat_rangedspecialize_rifle", 20 },
+			{ "squadleader", 60 }
 		},
 		crafting = {
-			{ "jedi_general", 1 },
-			{ "crafting_bio_engineer_creature", 4 },
-			{ "crafting_clothing_armor", 5 },
-			{ "crafting_clothing_general", 5 },
-			{ "crafting_droid_general", 5 },
-			{ "crafting_food_general", 5 },
-			{ "crafting_general", 8 },
-			{ "crafting_medicine_general", 5 },
-			{ "crafting_spice", 5 },
-			{ "crafting_structure_general", 35 },
-			{ "crafting_weapons_general", 5 }
+			{ "crafting_bio_engineer_creature", 3 },
+			{ "crafting_clothing_armor", 4 },
+			{ "crafting_clothing_general", 4 },
+			{ "crafting_droid_general", 4 },
+			{ "crafting_food_general", 4 },
+			{ "crafting_general", 6 },
+			{ "crafting_medicine_general", 4 },
+			{ "crafting_spice", 4 },
+			{ "crafting_structure_general", 20 },
+			{ "crafting_weapons_general", 4 }
 		}
 	}
 }
@@ -77,7 +73,7 @@ function ExperienceConverter:getBranchLearnList(pPlayer)
 	end
 
 	local branchList = "\nNothing"
-	local hasBranch = true --false
+	local hasBranch = false
 	for i = 1, #VillageJediManagerCommon.forceSensitiveBranches, 1 do
 		local branchName = VillageJediManagerCommon.forceSensitiveBranches[i]
 
@@ -286,20 +282,20 @@ function ExperienceConverter:convertXpTransferCallback(pPlayer, pSui, eventIndex
 	local fsXpAmount = PlayerObject(pGhost):getExperience("fs_" .. conversionType)
 	local fsXpCap = PlayerObject(pGhost):getExperienceCap("fs_" .. conversionType)
 
-	-- if (fsXpCap > 0) then
-		-- if (fsXpCap <= fsXpAmount) then
-			-- CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/utils:convert_at_fs_skill_cap")
-			-- return
-		-- end
+	if (fsXpCap > 0) then
+		if (fsXpCap <= fsXpAmount) then
+			CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/utils:convert_at_fs_skill_cap")
+			return
+		end
 
-		-- if (fsXpAmount + convertedXp > fsXpCap) then
-			-- convertedXp = fsXpCap - fsXpAmount;
-			-- xpToConvert = convertedXp * ratio;
-		-- end
-	-- else
-		-- CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/utils:convert_no_skill")
-		-- return
-	-- end
+		if (fsXpAmount + convertedXp > fsXpCap) then
+			convertedXp = fsXpCap - fsXpAmount;
+			xpToConvert = convertedXp * ratio;
+		end
+	else
+		CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/utils:convert_no_skill")
+		return
+	end
 
 	if (convertedXp < 1) then
 		CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/utils:convert_allocate_more_xp")

@@ -424,7 +424,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -441,7 +441,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 			creature->setLevel(playerManager->calculatePlayerLevel(creature));
 		}
 
-		if (skill->getSkillName().contains("force_sensitive") && skill->getSkillName().contains("_04"))
+		if (skill->getSkillName().contains("force_") && skill->getSkillName().contains("_04"))
 			JediManager::instance()->onFSTreeCompleted(creature, skill->getSkillName());
 
 		MissionManager* missionManager = creature->getZoneServer()->getMissionManager();
@@ -449,7 +449,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		if (skill->getSkillName() == "force_title_jedi_rank_02") {
 			if (missionManager != nullptr)
 				missionManager->addPlayerToBountyList(creature->getObjectID(), ghost->calculateBhReward());
-		} else if (skill->getSkillName().contains("force_discipline")) {
+		} else if (skill->getSkillName().contains("jedi_padawan_")) {
 			if (missionManager != nullptr)
 				missionManager->updatePlayerBountyReward(creature->getObjectID(), ghost->calculateBhReward());
 		} else if (skill->getSkillName().contains("squadleader")) {
@@ -630,7 +630,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -653,7 +653,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 		if (skill->getSkillName() == "force_title_jedi_rank_02") {
 			if (missionManager != nullptr)
 				missionManager->removePlayerFromBountyList(creature->getObjectID());
-		} else if (skill->getSkillName().contains("force_discipline")) {
+		} else if (skill->getSkillName().contains("jedi_")) {
 			if (missionManager != nullptr)
 				missionManager->updatePlayerBountyReward(creature->getObjectID(), ghost->calculateBhReward());
 		} else if (skill->getSkillName().contains("squadleader")) {
@@ -956,7 +956,7 @@ int SkillManager::getForceSensitiveSkillCount(CreatureObject* creature, bool inc
 
 	for (int i = 0; i < skills->size(); ++i) {
 		const String& skillName = skills->get(i)->getSkillName();
-		if (skillName.contains("force_sensitive") && (includeNoviceMasterBoxes || skillName.indexOf("0") != -1)) {
+		if (skillName.contains("force_title_") && (includeNoviceMasterBoxes || skillName.indexOf("0") != -1)) {
 			forceSensitiveSkillCount++;
 		}
 	}
@@ -974,8 +974,8 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
 		Skill* skill = skillList->get(i);
 
 		String skillName = skill->getSkillName();
-		if (skillName.contains("force_discipline_") &&
-			(skillName.indexOf("0") != -1 || skillName.contains("novice") || skillName.contains("master") )) {
+		if (skillName.contains("jedi_") &&
+			(skillName.indexOf("0") != -1 || skillName.contains("_journeyman_novice") )) {
 			totalJediPoints += skill->getSkillPointsRequired();
 
 			if (skillName.indexOf("4") != -1) {
@@ -994,7 +994,7 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
 		totalJediPoints -= skillBeingDropped->getSkillPointsRequired();
 	}
 
-	return fullTrees >= 2 && totalJediPoints >= 206;
+	return fullTrees >= 1 && totalJediPoints >= 206;
 }
 
 void SkillManager::getPlayerDroidCommands(PlayerObject* ghost, Vector<String>& playerDroidCommands) {

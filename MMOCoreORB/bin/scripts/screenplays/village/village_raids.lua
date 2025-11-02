@@ -219,8 +219,8 @@ function VillageRaids:setupSpawnedRaider(pMobile)
 		return
 	end
 
-	AiAgent(pMobile):addObjectFlag(AI_ESCORT)
-	AiAgent(pMobile):setMovementState(AI_PATROLLING)
+	AiAgent(pMobile):setAiTemplate("villageraider")
+	AiAgent(pMobile):setFollowState(4)
 
 	createObserver(OBJECTDESTRUCTION, "FsVillageDefense", "notifyKilledRaider", pMobile)
 
@@ -257,7 +257,10 @@ function VillageRaids:startAttackerPatrolPath(pMobile)
 
 	local locInfo = self.victimSpawnLocs[closestVictimLoc]
 	AiAgent(pMobile):setHomeLocation(locInfo[1], locInfo[2], locInfo[3], 0)
+	AiAgent(pMobile):stopWaiting()
+	AiAgent(pMobile):setWait(0)
 	AiAgent(pMobile):setNextPosition(locInfo[1], locInfo[2], locInfo[3], 0)
+	AiAgent(pMobile):executeBehavior()
 end
 
 function VillageRaids:despawnTurrets()

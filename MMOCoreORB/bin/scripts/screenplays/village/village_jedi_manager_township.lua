@@ -9,6 +9,7 @@ VillageJediManagerTownship = ScreenPlay:new {
 	VILLAGE_TOTAL_NUMBER_OF_PHASES = 4,
 	phaseChangeTimeOfDay = { hour = 18, min = 0 }, -- Hour of day, server military time, to change the phase. Comment out to disable
 
+	--VILLAGE_PHASE_DURATION = 1 * 7 * 24 * 60 * 60 * 1000 -- 1 weeks
 	VILLAGE_PHASE_DURATION = 120 * 60 * 1000 -- 2 hours
 }
 
@@ -215,8 +216,7 @@ function VillageJediManagerTownship:start()
 		VillageJediManagerTownship:spawnSceneObjects(currentPhase, true)
 		VillageJediManagerTownship:createVillageMasterObject()
 
-		-- Handled in Dathomir Planet Regions
-		--createNavMesh("dathomir", 5292, -4119, 210, true, "village_township")
+		createNavMesh("dathomir", 5292, -4119, 210, true, "village_township")
 
 		if (currentPhase == 3 or currentPhase == 4) then
 			local pMaster = VillageJediManagerTownship:getMasterObject()
@@ -281,20 +281,15 @@ function VillageJediManagerTownship:spawnMobiles(currentPhase, spawnStaticMobs)
 		for i = 1, #mobileTable, 1 do
 			local mobile = mobileTable[i]
 			local pMobile = spawnMobile("dathomir", mobile[1], 0, mobile[2], mobile[3], mobile[4], mobile[5], 0)
-
 			if (pMobile ~= nil) then
 				CreatureObject(pMobile):setPvpStatusBitmask(0)
-
 				if (mobile[6] ~= "") then
 					self[mobile[6]](pMobile)
 				end
-
 				if (mobile[7] ~= "") then
 					CreatureObject(pMobile):setOptionsBitmask(136)
 					AiAgent(pMobile):setConvoTemplate(mobile[7])
 				end
-
-				AiAgent(pMobile):addObjectFlag(AI_STATIC)
 			end
 		end
 	end
@@ -314,9 +309,6 @@ function VillageJediManagerTownship:spawnMobiles(currentPhase, spawnStaticMobs)
 				CreatureObject(pMobile):setOptionsBitmask(136)
 				AiAgent(pMobile):setConvoTemplate(mobile[7])
 			end
-
-			AiAgent(pMobile):addObjectFlag(AI_STATIC)
-
 			local mobileID = SceneObject(pMobile):getObjectID()
 			writeData("village:npc:object:" .. i, mobileID)
 		end

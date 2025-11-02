@@ -43,8 +43,6 @@ function FsReflex1Theater:onObjectsSpawned(pPlayer, mobileList)
 
 	if (SpawnMobiles.isValidMobile(mobileList[1])) then
 		writeData(SceneObject(mobileList[1]):getObjectID() .. ":ownerID", SceneObject(pPlayer):getObjectID())
-
-		AiAgent(mobileList[1]):addObjectFlag(AI_STATIONARY)
 		CreatureObject(mobileList[1]):setPvpStatusBitmask(0)
 	end
 end

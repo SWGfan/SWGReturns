@@ -1,19 +1,9 @@
-local Logger = require("utils.logger")
-
 VillageGmSui = ScreenPlay:new {
 	productionServer = false
 }
 
 function VillageGmSui:showMainPage(pPlayer)
-	if (pPlayer == nil or not SceneObject(pPlayer):isPlayerCreature()) then
-		return
-	end
-
-	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-	if (pGhost == nil or not PlayerObject(pGhost):isPrivileged()) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " non Privileged player attempted to acces GMFSVillage -- VillageGmSui:showMainPage."
-		Logger:log(msg, LT_WARNING)
+	if (pPlayer == nil) then
 		return
 	end
 
@@ -40,6 +30,8 @@ function VillageGmSui:showMainPage(pPlayer)
 	sui.add("Lookup player by name", "playerLookupByName")
 	sui.add("Lookup player by oid", "playerLookupByOID")
 	sui.add("List players in village", "listOnlineVillagePlayers")
+	sui.add("Regrant FRS Light by target", "completeKnightLight")
+	sui.add("Regrant FRS Dark by target", "completeKnightDark")
 
 	if (curPhase == 3) then
 		sui.add("Manage CounterStrike Bases", "manageCounterStrikeBases")
@@ -50,9 +42,6 @@ function VillageGmSui:showMainPage(pPlayer)
 	if (not self.productionServer) then
 		sui.add("Change to next phase", "changePhase")
 	end
-
-	sui.add("Show Light Council Ranks", "showLightRanks")
-	sui.add("Show Dark Council Ranks", "showDarkRanks")
 
 	sui.sendTo(pPlayer)
 end
@@ -82,13 +71,13 @@ function VillageGmSui:mainCallback(pPlayer, pSui, eventIndex, args)
 		local pTarget = getSceneObject(targetID)
 
 		if (pTarget == nil) then
-			Logger:log("Unable to find player for VillageGmSui function " .. menuOption .. " using oid " .. targetID, LT_ERROR)
+			printLuaError("Unable to find player for VillageGmSui function " .. menuOption .. " using oid " .. targetID)
 			return
 		end
 	end
 
 	if (self[menuOption] == nil) then
-		Logger:log("Tried to execute invalid function " .. menuOption .. " in VillageGmSui", LT_ERROR)
+		printLuaError("Tried to execute invalid function " .. menuOption .. " in VillageGmSui")
 		return
 	end
 
@@ -154,6 +143,59 @@ function VillageGmSui.playerLookupByTarget(pPlayer)
 
 	VillageGmSui.playerInfo(pPlayer, targetID)
 end
+
+function VillageGmSui:completeKnightLight(pPlayer)
+	if (pPlayer == nil) then
+		return
+	end
+
+	local targetID = CreatureObject(pPlayer):getTargetID()
+
+	local pTarget = getCreatureObject(targetID)
+	local pGhost = CreatureObject(pTarget):getPlayerObject()
+
+	if (pTarget == nil or not CreatureObject(pTarget):isPlayerCreature()) then
+		CreatureObject(pPlayer):sendSystemMessage("Invalid target, must be a valid player.")
+		VillageGmSui:showMainPage(pPlayer)
+		return
+	end
+
+	JediTrials:resetTrialData(pGhost, "knight")
+	writeScreenPlayData(pGhost, "KnightTrials", "startedTrials", 1)
+	writeScreenPlayData(pGhost, "JediTrials", "JediCouncil", 1)
+	JediTrials:setTrialsCompleted(pGhost, #knightTrialQuests)
+	JediTrials:unlockJediKnight(pGhost)
+
+
+	CreatureObject(pPlayer):sendSystemMessage("Success! Light FRS regranted")
+end
+
+function VillageGmSui:completeKnightDark(pPlayer)
+	if (pPlayer == nil) then
+		return
+	end
+
+	local targetID = CreatureObject(pPlayer):getTargetID()
+
+	local pTarget = getCreatureObject(targetID)
+	local pGhost = CreatureObject(pTarget):getPlayerObject()
+
+	if (pTarget == nil or not CreatureObject(pTarget):isPlayerCreature()) then
+		CreatureObject(pPlayer):sendSystemMessage("Invalid target, must be a valid player.")
+		VillageGmSui:showMainPage(pPlayer)
+		return
+	end
+
+	JediTrials:resetTrialData(pGhost, "knight")
+	writeScreenPlayData(pGhost, "KnightTrials", "startedTrials", 1)
+	writeScreenPlayData(pGhost, "JediTrials", "JediCouncil", 2)
+	JediTrials:setTrialsCompleted(pGhost, #knightTrialQuests)
+	JediTrials:unlockJediKnight(pGhost)
+
+
+	CreatureObject(pPlayer):sendSystemMessage("Success! Dark FRS regranted")
+end
+
 
 function VillageGmSui.playerLookupByName(pPlayer)
 	if (pPlayer == nil) then
@@ -272,10 +314,8 @@ function VillageGmSui.playerInfo(pPlayer, targetID)
 		return
 	end
 
-	local jediState = PlayerObject(pGhost):getJediState()
-
 	local promptBuf = " \\#pcontrast1 " .. "Player:" .. " \\#pcontrast2 " .. SceneObject(pTarget):getCustomObjectName() .. " (" .. targetID .. ")\n"
-	promptBuf = promptBuf .. " \\#pcontrast1 " .. "Jedi State:" .. " \\#pcontrast2 " .. jediState .. "\n"
+	promptBuf = promptBuf .. " \\#pcontrast1 " .. "Jedi State:" .. " \\#pcontrast2 " .. PlayerObject(pGhost):getJediState() .. "\n"
 	promptBuf = promptBuf .. " \\#pcontrast1 " .. "Progression:" .. " \\#pcontrast2 "
 
 	if (CreatureObject(pTarget):hasSkill("force_title_jedi_rank_03")) then
@@ -413,10 +453,7 @@ function VillageGmSui.playerInfo(pPlayer, targetID)
 	sui.add("FS Branch Management", "branchManagement" .. targetID)
 
 	if (CreatureObject(pTarget):hasSkill("force_title_jedi_rank_03")) then
-		sui.add("Manage Player FRS", "frsManagement" .. targetID)
-	elseif (jediState >= 4) then
-		sui.add("Unlock Light FRS", "unlockLightFrs" .. targetID)
-		sui.add("Unlock Dark FRS", "unlockDarkFrs" .. targetID)
+		sui.add("Show Player FRS", "frsManagement" .. targetID)
 	end
 
 	if (VillageJediManagerCommon.hasActiveQuestThisPhase(pTarget)) then
@@ -790,12 +827,6 @@ function VillageGmSui:manageVisibilityCallback(pPlayer, pSui, eventIndex, args)
 	end
 end
 
---[[
-
-	FRS Management
-
-]]
-
 function VillageGmSui.frsManagement(pPlayer, targetID)
 	local pTarget = getSceneObject(targetID)
 
@@ -813,7 +844,7 @@ function VillageGmSui.frsManagement(pPlayer, targetID)
 	local luaCouncil = JediTrials:getJediCouncil(pTarget)
 	local councilRank = PlayerObject(pGhost):getFrsRank()
 
-	local sui = SuiListBox.new("VillageGmSui", "frsManageCallback")
+	local sui = SuiListBox.new("VillageGmSui", "mainCallback")
 	sui.setTitle("FRS Info")
 
 	local promptBuf = " \\#pcontrast1 " .. "Player:" .. " \\#pcontrast2 " .. SceneObject(pTarget):getCustomObjectName() .. " (" .. targetID .. ")\n"
@@ -835,278 +866,8 @@ function VillageGmSui.frsManagement(pPlayer, targetID)
 
 	sui.setPrompt(promptBuf)
 
-	sui.add("Set FRS Rank", "setFrsRank" .. targetID)
-	sui.add("Set FRS XP", "setFrsXp" .. targetID)
-
 	sui.sendTo(pPlayer)
 end
-
-function VillageGmSui:frsManageCallback(pPlayer, pSui, eventIndex, args)
-	local cancelPressed = (eventIndex == 1)
-
-	if (cancelPressed or args == nil or tonumber(args) < 0) then
-		return
-	end
-
-	local pPageData = LuaSuiBoxPage(pSui):getSuiPageData()
-
-	if (pPageData == nil) then
-		return
-	end
-
-	local suiPageData = LuaSuiPageData(pPageData)
-	local menuOption = suiPageData:getStoredData(tostring(args))
-	local targetID, pTarget
-
-	if (string.find(menuOption, "%d")) then
-		targetID = string.match(menuOption, '%d+')
-		menuOption = string.gsub(menuOption, targetID, "")
-
-		pTarget = getSceneObject(targetID)
-	end
-
-	if (pTarget == nil or not SceneObject(pTarget):isPlayerCreature()) then
-		Logger:log("Unable to find player for VillageGmSui function frsManageCallback - " .. menuOption .. " using oid " .. targetID, LT_ERROR)
-		return
-	end
-
-	if (menuOption == "setFrsRank") then
-		local sui = SuiInputBox.new("VillageGmSui", "suiSetFrsRankCallback")
-
-		sui.setTargetNetworkId(SceneObject(pTarget):getObjectID())
-
-		local suiBody = "\r\\#FFFFFF Target Player: \r\\#pcontrast1 " .. CreatureObject(pTarget):getFirstName() .. "\r\\#FFFFFF \n"
-		suiBody = suiBody .. " Target Player ID: \r\\#pcontrast1 " .. targetID .. "\r\\#FFFFFF \n\n"
-		suiBody = suiBody .. " Enter the FRS Rank you wish to set on the target:"
-
-		sui.setTitle("Set Player FRS Rank")
-		sui.setPrompt(suiBody)
-
-		sui.sendTo(pPlayer)
-
-	elseif (menuOption == "setFrsXp") then
-		local sui = SuiInputBox.new("VillageGmSui", "suiSetFrsXpCallback")
-
-		sui.setTargetNetworkId(SceneObject(pTarget):getObjectID())
-
-		local suiBody = "Enter the amount of FRS XP you wish to grant:"
-		sui.setTitle("Set Player FRS XP")
-		sui.setPrompt(suiBody)
-
-		sui.sendTo(pPlayer)
-	end
-end
-
-function VillageGmSui:suiSetFrsRankCallback(pPlayer, pSui, eventIndex, args)
-	if (pPlayer == nil) then
-		return
-	end
-
-	local cancelPressed = (eventIndex == 1)
-
-	if (cancelPressed or args == "") then
-		return
-	end
-
-	local pPageData = LuaSuiBoxPage(pSui):getSuiPageData()
-
-	if (pPageData == nil) then
-		return
-	end
-
-	local suiPageData = LuaSuiPageData(pPageData)
-	local targetID = suiPageData:getTargetNetworkId()
-
-	local pTarget = getSceneObject(targetID)
-
-	if (pTarget == nil or not SceneObject(pTarget):isPlayerCreature()) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " attempted to use GMFSVillage:suiSetFrsRankCallback on an improper target."
-		Logger:log(msg, LT_ERROR)
-
-		CreatureObject(pPlayer):sendSystemMessage("Please select a proper target to set their FRS Rank.")
-		return
-	end
-
-	local pGhost = CreatureObject(pTarget):getPlayerObject()
-
-	if (pGhost == nil) then
-		return
-	end
-
-	local rank = tonumber(args)
-
-	if (rank < 0 or rank > 11) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " attempted to use GMFSVillage:suiSetFrsRankCallback and input an improper rank number."
-		Logger:log(msg, LT_ERROR)
-
-		CreatureObject(pPlayer):sendSystemMessage("Please input a FRS Rank ranging from 0 to 11.")
-		return
-	end
-
-	-- Set the rank
-	PlayerObject(pGhost):setFrsRank(rank)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:suiSetFrsRankCallback on " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-	msg = msg .. " granting them Rank " .. rank
-	Logger:log(msg, LT_WARNING)
-
-	CreatureObject(pPlayer):sendSystemMessage(msg)
-end
-
-function VillageGmSui:suiSetFrsXpCallback(pPlayer, pSui, eventIndex, args)
-	if (pPlayer == nil) then
-		return
-	end
-
-	local cancelPressed = (eventIndex == 1)
-
-	if (cancelPressed or args == "") then
-		return
-	end
-
-	local pPageData = LuaSuiBoxPage(pSui):getSuiPageData()
-
-	if (pPageData == nil) then
-		return
-	end
-
-	local suiPageData = LuaSuiPageData(pPageData)
-	local targetID = suiPageData:getTargetNetworkId()
-
-	local pTarget = getSceneObject(targetID)
-
-	if (pTarget == nil or not SceneObject(pTarget):isPlayerCreature()) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " attempted to use GMFSVillage:suiSetFrsRankCallback on an improper target."
-		Logger:log(msg, LT_ERROR)
-
-		CreatureObject(pPlayer):sendSystemMessage("Please select a proper target to set their FRS Rank.")
-		return
-	end
-
-	local amount = tonumber(args)
-
-	CreatureObject(pTarget):awardExperience("force_rank_xp", amount, true)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:suiSetFrsXpCallback on " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-	msg = msg .. " granting them " .. amount .. " Force Rank Experience"
-	Logger:log(msg, LT_WARNING)
-
-	CreatureObject(pPlayer):sendSystemMessage(msg)
-end
-
-function VillageGmSui.unlockLightFrs(pPlayer, targetID)
-	if (pPlayer == nil) then
-		return
-	end
-
-	local pTarget = getSceneObject(targetID)
-
-	if (pTarget == nll or not SceneObject(pTarget):isPlayerCreature()) then
-		return
-	end
-
-	local pGhost = CreatureObject(pTarget):getPlayerObject()
-
-	if (pGhost == nil) then
-		return
-	end
-
-	local jediState = PlayerObject(pGhost):getJediState()
-
-	-- Player must have manually completed the trials
-	if (jediState ~= 4) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " attempted to use GMFSVillage:unlockLightFrs on Player: " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-		msg = msg .. " with an invalid Jedi State of " .. jediState
-		Logger:log(msg, LT_ERROR)
-
-		CreatureObject(pPlayer):sendSystemMessage(SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID .. " must have have completed the Jedi Knight Trials and have a Jedi State of 4 to Unlock Light FRS.")
-		return
-	end
-
-	JediTrials:unlockJediKnight(pTarget)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:unlockLightFrs on Player: " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-	Logger:log(msg, LT_WARNING)
-
-	CreatureObject(pPlayer):sendSystemMessage(SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID .. " is now a member of the Light Jedi Enclave.")
-end
-
-function VillageGmSui.unlockDarkFrs(pPlayer, targetID)
-	if (pPlayer == nil) then
-		return
-	end
-
-	local pTarget = getSceneObject(targetID)
-
-	if (pTarget == nll or not SceneObject(pTarget):isPlayerCreature()) then
-		return
-	end
-
-	local pGhost = CreatureObject(pTarget):getPlayerObject()
-
-	if (pGhost == nil) then
-		return
-	end
-
-	local jediState = PlayerObject(pGhost):getJediState()
-
-	-- Player must have manually completed the trials
-	if (jediState ~= 8) then
-		local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " attempted to use GMFSVillage:unlockDarkFrs on Player: " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-		msg = msg .. " with an invalid Jedi State of " .. jediState
-		Logger:log(msg, LT_ERROR)
-
-		CreatureObject(pPlayer):sendSystemMessage(SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID .. " must have have completed the Jedi Knight Trials and have a Jedi State of 8 to Unlock Dark FRS.")
-		return
-	end
-
-	JediTrials:unlockJediKnight(pTarget)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:unlockDarkFrs on Player: " .. SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID
-	Logger:log(msg, LT_WARNING)
-
-	CreatureObject(pPlayer):sendSystemMessage(SceneObject(pTarget):getCustomObjectName() .. " ID: " .. targetID .. " is now a member of the Dark Jedi Enclave.")
-end
-
-function VillageGmSui.showLightRanks(pPlayer)
-	if (pPlayer == nil or not SceneObject(pPlayer):isPlayerCreature()) then
-		return
-	end
-
-	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-	if (pGhost == nil) then
-		return
-	end
-
-	PlayerObject(pGhost):showCouncilRank(JediTrials.COUNCIL_LIGHT)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:showLightRanks."
-	Logger:log(msg, LT_WARNING)
-end
-
-function VillageGmSui.showDarkRanks(pPlayer)
-	if (pPlayer == nil or not SceneObject(pPlayer):isPlayerCreature()) then
-		return
-	end
-
-	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-
-	if (pGhost == nil) then
-		return
-	end
-
-	PlayerObject(pGhost):showCouncilRank(JediTrials.COUNCIL_DARK)
-
-	local msg = SceneObject(pPlayer):getCustomObjectName() .. " ID: " .. SceneObject(pPlayer):getObjectID() .. " used GMFSVillage:showDarkRanks."
-	Logger:log(msg, LT_WARNING)
-end
-
---[[
-
-	End of FRS Management
-
-]]
 
 function VillageGmSui.branchManagement(pPlayer, targetID)
 	local pTarget = getSceneObject(targetID)

@@ -19,29 +19,18 @@ function oldManIntroConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc,
 	local screenID = screen:getScreenID()
 
 	if screenID == "perhaps_meet_again" or screenID == "perhaps_another_time" then
-		-- Clear conversable option bit and schedule Removal of old man agent
-		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
 		OldManIntroEncounter:scheduleDespawnOfOldMan(pPlayer)
+		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
 	elseif screenID == "here_is_the_crystal" then
-		-- Clear conversable option bit and schedule Removal of old man agent
-		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
 		OldManIntroEncounter:scheduleDespawnOfOldMan(pPlayer)
-
-		-- Give the FS force crystal to the player
 		OldManIntroEncounter:giveForceCrystalToPlayer(pPlayer)
-	elseif screenID == "where_camp" then
-		-- Update player FS Progression
-		FsOutro:setCurrentStep(pPlayer, 3)
-
-		-- Clear conversable option bit and schedule Removal of old man agent
 		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
+	elseif screenID == "where_camp" then
 		OldManOutroEncounter:scheduleDespawnOfOldMan(pPlayer)
-
-		-- Update players quest status
 		QuestManager.completeQuest(pPlayer, QuestManager.quests.OLD_MAN_FINAL)
-
-		-- Start the Mellicae Village Outro
 		MellichaeOutroTheater:start(pPlayer)
+		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
+		FsOutro:setCurrentStep(pPlayer, 3)
 	end
 
 	return pConvScreen

@@ -67,6 +67,11 @@ function VillageJediManager:onPlayerLoggedIn(pPlayer)
 		FsOutro:onLoggedIn(pPlayer)
 	end
 
+	FsPhase1:onLoggedIn(pPlayer)
+	FsPhase2:onLoggedIn(pPlayer)
+	FsPhase3:onLoggedIn(pPlayer)
+	FsPhase4:onLoggedIn(pPlayer)
+
 	if (not VillageCommunityCrafting:isOnActiveCrafterList(pPlayer)) then
 		VillageCommunityCrafting:removeSchematics(pPlayer, 2)
 		VillageCommunityCrafting:removeSchematics(pPlayer, 3)
@@ -88,6 +93,9 @@ function VillageJediManager:onPlayerLoggedOut(pPlayer)
 		FsOutro:onLoggedOut(pPlayer)
 	end
 
+	FsPhase1:onLoggedOut(pPlayer)
+	FsPhase2:onLoggedOut(pPlayer)
+	FsPhase3:onLoggedOut(pPlayer)
 end
 
 --Check for force skill prerequisites
@@ -102,9 +110,9 @@ function VillageJediManager:canLearnSkill(pPlayer, skillName)
 		end
 	end
 
-	--if skillName == "force_title_jedi_rank_01" and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) < 24 then
-	--	return false
-	--end
+	if skillName == "force_title_jedi_rank_01" and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) < 24 then
+		return false
+	end
 
 	if skillName == "force_title_jedi_rank_03" and not CreatureObject(pPlayer):villageKnightPrereqsMet("") then
 		return false
@@ -121,9 +129,10 @@ function VillageJediManager:canSurrenderSkill(pPlayer, skillName)
 		return false
 	end
 
-	--if string.find(skillName, "force_sensitive_") and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) <= 24 then
-	--	return false
-	--end
+	if string.find(skillName, "force_sensitive_") and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and CreatureObject(pPlayer):getForceSensitiveSkillCount(false) <= 24 then
+		CreatureObject(pPlayer):sendSystemMessage("@jedi_spam:revoke_force_sensitive")
+		return false
+	end
 
 	if string.find(skillName, "force_discipline_") and CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03") and not CreatureObject(pPlayer):villageKnightPrereqsMet(skillName) then
 		return false

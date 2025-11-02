@@ -1,3 +1,4 @@
+
 local ObjectManager = require("managers.object.object_manager")
 
 PadawanTrials = ScreenPlay:new {}

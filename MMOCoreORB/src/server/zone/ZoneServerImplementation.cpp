@@ -600,7 +600,7 @@ ZoneClientSession* ZoneServerImplementation::createConnection(Socket* sock, Sock
     BaseClientProxy* session = new BaseClientProxy(sock, addr);
 
     StringBuffer loggingname;
-    loggingname << "ZoneClientSession " << addr.getFullIPAddress();
+    loggingname << "ZoneClientSession " << addr.getIPAddress();
 
     session->setLoggingName(loggingname.toString());
     session->setLogging(false);
@@ -612,7 +612,7 @@ ZoneClientSession* ZoneServerImplementation::createConnection(Socket* sock, Sock
     //client->deploy("ZoneClientSession " + addr.getFullIPAddress());
     //client->deploy();
 
-    const auto& address = session->getFullIPAddress();
+    const auto& address = session->getIPAddress();
 
     // Fix: stream address directly (SocketAddress has no toString())
     debug() << "client connected from \'" << address << "\'";
