@@ -426,7 +426,7 @@ trainerSkills = {
 		"base_bust_security_hacker_01",
 		"base_bust_genetic_decrypter_01",
 		"base_bust_power_disruptor_01",
-		"base_bust_destruction_sequencer_01",
+		"base_bust_destruction_sequencer_01"
 	},
 
 	trainer_entertainer = {
