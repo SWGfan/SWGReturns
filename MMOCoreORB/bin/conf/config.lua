@@ -106,7 +106,7 @@ Core3 = {
 	"tatooine",
 	"tutorial",
 	"yavin4",
-	"mandalore",
+	--"mandalore",
 	-------- TEST ZONES -------
 	--"09",
 	--"10",
@@ -151,7 +151,7 @@ Core3 = {
 	TrePath = "/home/swgadmin/tre",
 	TreFiles = {
 	--	"returns_planets.tre",
-		"mandalore.tre",
+		--"mandalore.tre",
 		"returns1.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
