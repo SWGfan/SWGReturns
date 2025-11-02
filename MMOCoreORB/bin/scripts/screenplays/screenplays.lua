@@ -759,8 +759,3 @@ includeFile("custom/login_eula.lua")
 
 -- === Mandalore custom screenplays ===
 -- Top-level files in screenplays/custom
-includeFile("custom/mandalore/DarthCaedusCave.lua")
-includeFile("custom/mandalore/ShadowCollectiveCave.lua")
-includeFile("custom/mandalore/VizslaHideout.lua")
-includeFile("custom/mandalore/MandalMotors.lua")
-includeFile("custom/mandalore/TaungWarriorBunker.lua")
