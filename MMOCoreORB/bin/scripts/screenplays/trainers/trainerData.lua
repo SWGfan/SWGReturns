@@ -421,7 +421,12 @@ trainerSkills = {
     "force_rank_light_rank_01", 
     "force_rank_dark_rank_01",
     "force_rank_light_master", 
-    "force_rank_dark_master"
+    "force_rank_dark_master",
+		"base_bust_novice",
+		"base_bust_security_hacker_01",
+		"base_bust_genetic_decrypter_01",
+		"base_bust_power_disruptor_01",
+		"base_bust_destruction_sequencer_01",
 	},
 
 	trainer_entertainer = {
@@ -2225,5 +2230,12 @@ trainerSkills = {
 		"crafting_weaponsmith_techniques_04"
 	},
 	
+		trainer_basebuster = {
+		"base_bust_novice",
+		"base_bust_security_hacker_01",
+		"base_bust_genetic_decrypter_01",
+		"base_bust_power_disruptor_01",
+		"base_bust_destruction_sequencer_01",
+	},
 	
 }
