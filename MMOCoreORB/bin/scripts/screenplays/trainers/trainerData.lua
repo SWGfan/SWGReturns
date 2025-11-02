@@ -425,6 +425,7 @@ trainerSkills = {
     "force_rank_dark_novice",
     "force_rank_light_novice",
     "force_title_jedi_rank_03",
+    "force_title_jedi_rank_04",
 		"base_bust_novice",
 		"base_bust_security_hacker_01",
 		"base_bust_genetic_decrypter_01",
@@ -1676,7 +1677,8 @@ trainerSkills = {
     "force_rank_dark_master",
      "force_rank_dark_novice",
     "force_rank_light_novice",
-    "force_title_jedi_rank_03"
+    "force_title_jedi_rank_03",
+    ""force_title_jedi_rank_04"
 	},
 	
 	trainer_myswg = {
