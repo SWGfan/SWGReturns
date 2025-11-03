@@ -1678,7 +1678,7 @@ trainerSkills = {
      "force_rank_dark_novice",
     "force_rank_light_novice",
     "force_title_jedi_rank_03",
-    ""force_title_jedi_rank_04"
+    "force_title_jedi_rank_04"
 	},
 	
 	trainer_myswg = {
