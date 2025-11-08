@@ -59,6 +59,10 @@ gasTool = "object/tangible/survey_tool/survey_tool_gas.iff"
 
 stim = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff"
 
+holocron_light = "object/tangible/jedi/jedi_holocron_light.iff"
+
+holocron_dark = "object/tangible/jedi/jedi_holocron_dark.iff"
+
 professionSpecificItems = {
 	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
 	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
@@ -69,4 +73,4 @@ professionSpecificItems = {
 	social_entertainer = { slitherhorn }
 }
 
-commonStartingItems = { survivalKnife, SwoopBike }
+commonStartingItems = { survivalKnife, SwoopBike, holocron_light, holocron_dark }
