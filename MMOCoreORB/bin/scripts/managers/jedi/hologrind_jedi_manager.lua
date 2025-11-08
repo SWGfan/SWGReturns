@@ -1,32 +1,42 @@
 -- scripts/managers/jedi/hologrind_jedi_manager.lua
+-- Force accumulation → instant auto-grant on login if not unlocked
+-- Compatible with FRS-style progression
+-- Uses readData/writeData only
 
 local JediManager = require("managers.jedi.jedi_manager")
 
 jediManagerName = "HologrindJediManager"
 
+-- Core thresholds
 local FORCE_TO_UNLOCK            = 10000
 local STARTING_JEDI_SKILL        = "force_title_jedi_novice"
 local STARTING_JEDI_STATE        = 1
+
+-- Passive Force regen
 local FORCE_REGEN_TICK_MS        = 5000
 local FORCE_REGEN_AMOUNT         = 25
 
+-- Legacy autogrant (old hologrind)
 local LEGACY_REQUIRED_MASTERED   = 3
 local LEGACY_FORCE_GRANT         = 10000
 
+-- Per-kill accumulation (kept for completeness)
 local FP_KILL_BASE               = 6
 local FP_KILL_LEVEL_SCALE        = 0.50
 local FP_KILL_MIN                = 1
 local FP_KILL_MAX                = 30
 
+-- Mission/dungeon
 local FP_MISSION_BASE            = 180
 local FP_MISSION_TIER_BONUS      = 90
-
 local FP_DUNGEON_BASE            = 800
 local FP_DUNGEON_TIER_BONUS      = 300
 
+-- Group bonus
 local GROUP_STEP                 = 0.12
 local GROUP_MAX                  = 2.0
 
+-- Kept for holocron text compatibility
 NUMBEROFPROFESSIONSTOMASTER                  = 3
 MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = 1
 
@@ -37,9 +47,9 @@ HologrindJediManager = JediManager:new {
   startingEvent       = nil,
 }
 
--- =========================
--- helpers
--- =========================
+-- =========================================================
+-- Profession list (legacy/combat)
+-- =========================================================
 function HologrindJediManager:getGrindableProfessionList()
   return {
     { "combat_bountyhunter_master", COMBAT_BOUNTYHUNTER_MASTER },
@@ -82,13 +92,17 @@ function HologrindJediManager:getNumberOfMasteredProfessions(pCreature)
   return n
 end
 
--- =========================
--- data keys
--- =========================
+-- =========================================================
+-- Data keys
+-- =========================================================
 local PREFIX = "hgj:"
 local function oid(creo) return SceneObject(creo):getObjectID() end
 local function K(creo, suffix) return PREFIX .. tostring(oid(creo)) .. ":" .. suffix end
--- fp, regen, migrated, villagemig, autofp
+-- Keys we use:
+--   fp         current Force Points
+--   regen      1 if passive regen enabled
+--   migrated   1 if legacy hologrind check done
+--   villagemig 1 if village→hologrind migration question resolved
 
 function HologrindJediManager:getForcePoints(pCreature)
   local v = tonumber(readData(K(pCreature, "fp")))
@@ -109,9 +123,9 @@ function HologrindJediManager:addForcePoints(pCreature, amt)
   self:checkAndConvertIfReady(pCreature)
 end
 
--- =========================
--- group bonus
--- =========================
+-- =========================================================
+-- Group bonus helpers
+-- =========================================================
 local function getGroupSizeFor(creo)
   if CreatureObject(creo).getGroupSize then
     local n = CreatureObject(creo):getGroupSize()
@@ -138,9 +152,9 @@ local function applyGroupBonus(creo, base)
   return math.floor(base * mult)
 end
 
--- =========================
--- jedi conversion
--- =========================
+-- =========================================================
+-- Jedi conversion/regen
+-- =========================================================
 function HologrindJediManager:isJedi(pCreature)
   local pGhost = CreatureObject(pCreature):getPlayerObject()
   return pGhost and PlayerObject(pGhost):isJedi() or false
@@ -150,17 +164,20 @@ function HologrindJediManager:convertToJedi(pCreature)
   local pGhost = CreatureObject(pCreature):getPlayerObject()
   if not pGhost or self:isJedi(pCreature) then return end
 
-  PlayerObject(pGhost):setJediState(2)
-  PlayerObject(pGhost):setJediProgressionType(4)
+  -- core jedi state
+  PlayerObject(pGhost):setJediState(2)                -- unlocked
+  PlayerObject(pGhost):setJediProgressionType(4)      -- your FRS-compatible type
 
+  -- publish-9 style title
   awardSkill(pCreature, "force_title_jedi_novice")
   awardSkill(pCreature, "force_title_jedi_rank_02")
 
-  -- ensure padawan novice is in place for your flow
+  -- ensure padawan tree is started
   if not CreatureObject(pCreature):hasSkill("jedi_padawan_novice") then
     awardSkill(pCreature, "jedi_padawan_novice")
   end
 
+  -- give robe if possible
   local pInventory = SceneObject(pCreature):getSlottedObject("inventory")
   if pInventory ~= nil and not SceneObject(pInventory):isContainerFullRecursive() then
     giveItem(pInventory, "object/tangible/wearables/robe/robe_jedi_padawan.iff", -1)
@@ -168,13 +185,15 @@ function HologrindJediManager:convertToJedi(pCreature)
     CreatureObject(pCreature):sendSystemMessage("@jedi_spam:inventory_full_jedi_robe")
   end
 
+  -- fx/music
   CreatureObject(pCreature):playEffect("clienteffect/trap_electric_01.cef", "")
   CreatureObject(pCreature):playMusicMessage("sound/music_become_jedi.snd")
 
+  -- enable regen
   writeData(K(pCreature, "regen"), 1)
   self:scheduleForceRegenTick(pCreature)
 
-  CreatureObject(pCreature):sendSystemMessage("The holocron knowledge surges through you. The Force flows. You are now a Jedi.")
+  CreatureObject(pCreature):sendSystemMessage("The Force flows through you. You have become a Jedi.")
 end
 
 function HologrindJediManager:checkAndConvertIfReady(pCreature)
@@ -205,9 +224,9 @@ function HologrindJediManager:forceRegenTick(pCreature, _)
   end
 end
 
--- =========================
--- legacy autogrant
--- =========================
+-- =========================================================
+-- Legacy autogrant (old hologrind finished)
+-- =========================================================
 function HologrindJediManager:legacyAutograntIfEligible(pCreature)
   if tonumber(readData(K(pCreature, "migrated"))) == 1 then return end
   local pGhost = CreatureObject(pCreature):getPlayerObject()
@@ -225,9 +244,9 @@ function HologrindJediManager:legacyAutograntIfEligible(pCreature)
   end
 end
 
--- =========================
--- village migration offer
--- =========================
+-- =========================================================
+-- Village→hologrind migration for existing Jedi
+-- =========================================================
 function HologrindJediManager:shouldOfferVillageMigration(pCreature)
   if not pCreature then return false end
   if tonumber(readData(K(pCreature, "villagemig"))) == 1 then return false end
@@ -239,6 +258,7 @@ function HologrindJediManager:shouldOfferVillageMigration(pCreature)
   if PlayerObject(pGhost).getJediProgressionType then
     prog = PlayerObject(pGhost):getJediProgressionType()
   end
+
   local hasVillageFlag = CreatureObject(pCreature):hasScreenPlayState(32, "VillageJediProgression")
 
   if prog ~= 4 or hasVillageFlag then
@@ -249,14 +269,17 @@ end
 
 function HologrindJediManager:showVillageMigrationChoice(pCreature)
   local sui = LuaSuiManager()
-  local text = "This character appears to be an older Village-unlocked Jedi.\n\nDo you want to migrate this Jedi to the hologrind/FRS-compatible progression?"
-  sui:sendMessageBox(pCreature, pCreature,
+  local text = "This character uses the older Village Jedi unlock.\n\nDo you want to migrate to the hologrind/FRS-compatible progression?"
+  sui:sendMessageBox(
+    pCreature,
+    pCreature,
     "Jedi Migration",
     text,
     "@yes",
     "@no",
     "HologrindJediManager",
-    "onVillageMigrationChoice")
+    "onVillageMigrationChoice"
+  )
 end
 
 function HologrindJediManager:onVillageMigrationChoice(pCreature, pSui, eventIndex, ...)
@@ -272,13 +295,13 @@ function HologrindJediManager:onVillageMigrationChoice(pCreature, pSui, eventInd
     writeData(K(pCreature, "villagemig"), 1)
   else
     writeData(K(pCreature, "villagemig"), 1)
-    CreatureObject(pCreature):sendSystemMessage("You chose to keep your existing Village Jedi configuration.")
+    CreatureObject(pCreature):sendSystemMessage("Village-style Jedi progression retained.")
   end
 end
 
--- =========================
--- kill, mission, dungeon
--- =========================
+-- =========================================================
+-- Kill/missions/dungeons
+-- =========================================================
 function HologrindJediManager:onKilledCreature(pCreature, pVictim)
   if not pCreature or not pVictim then return 0 end
   if self:isJedi(pCreature) then return 0 end
@@ -319,9 +342,9 @@ function HologrindJediManager:notifyDungeonCompleted(pCreature, dungeonName, tie
   CreatureObject(pCreature):sendSystemMessage(string.format("Victory in %s deepens your attunement. (+%d Force)", dungeonName or "the depths", fp))
 end
 
--- =========================
--- holocron + auto FP toggle
--- =========================
+-- =========================================================
+-- Holocrons (just do the classic message + destroy)
+-- =========================================================
 local function isHolocronTemplate(path)
   if not path then return false end
   local t = string.lower(path)
@@ -344,55 +367,8 @@ function HologrindJediManager:sendHolocronMessage(pCreatureObject)
         CreatureObject(pCreatureObject):sendSystemMessageWithTO("@jedi_spam:holocron_light_information", "@skl_n:" .. professionText)
       end
     end
+
     return false
-  end
-end
-
-local function whisperForceProgress(pCreature)
-  local cur = HologrindJediManager:getForcePoints(pCreature)
-  local need = FORCE_TO_UNLOCK
-  CreatureObject(pCreature):sendSystemMessage(string.format("You sense the Force... %d / %d.", cur, need))
-end
-
-function HologrindJediManager:showAutoFPChoice(pCreature)
-  local current = tonumber(readData(K(pCreature, "autofp"))) or 0
-  local isOn = (current == 1)
-  local desc
-  if isOn then
-    desc = "Auto 10000 Force Points on login is currently ENABLED.\n\nDo you want to DISABLE it for this character?"
-  else
-    desc = "Auto 10000 Force Points on login is currently DISABLED.\n\nDo you want to ENABLE it for this character?\nThis will also make sure you have Jedi Padawan Novice."
-  end
-  local sui = LuaSuiManager()
-  sui:sendMessageBox(
-    pCreature,
-    pCreature,
-    "Holocron: Auto Force Option",
-    desc,
-    "@yes",
-    "@no",
-    "HologrindJediManager",
-    "onAutoFPChoice"
-  )
-end
-
-function HologrindJediManager:onAutoFPChoice(pCreature, pSui, eventIndex, ...)
-  if not pCreature then return end
-  if eventIndex == 0 then
-    local current = tonumber(readData(K(pCreature, "autofp"))) or 0
-    if current == 1 then
-      writeData(K(pCreature, "autofp"), 0)
-      CreatureObject(pCreature):sendSystemMessage("Auto 10000 Force Points on login has been DISABLED for this character.")
-    else
-      -- enable and grant padawan right now
-      writeData(K(pCreature, "autofp"), 1)
-      if not CreatureObject(pCreature):hasSkill("jedi_padawan_novice") then
-        awardSkill(pCreature, "jedi_padawan_novice")
-      end
-      CreatureObject(pCreature):sendSystemMessage("Auto 10000 Force Points on login has been ENABLED for this character.")
-    end
-  else
-    CreatureObject(pCreature):sendSystemMessage("Auto Force option unchanged.")
   end
 end
 
@@ -402,39 +378,43 @@ function HologrindJediManager:useItem(pSceneObject, _, pCreature)
   if not isHolocronTemplate(template) then return end
 
   self:sendHolocronMessage(pCreature)
-  whisperForceProgress(pCreature)
-  self:checkAndConvertIfReady(pCreature)
-
-  -- show toggle
-  self:showAutoFPChoice(pCreature)
 
   SceneObject(pSceneObject):destroyObjectFromWorld()
   SceneObject(pSceneObject):destroyObjectFromDatabase()
 end
 
--- =========================
--- login
--- =========================
+-- =========================================================
+-- Login: AUTO-GRANT if not unlocked
+-- =========================================================
 function HologrindJediManager:onPlayerLoggedIn(pCreature)
   if not pCreature then return end
 
-  -- if auto FP is enabled, set to 10000 and ensure padawan
-  if tonumber(readData(K(pCreature, "autofp"))) == 1 then
-    self:setForcePoints(pCreature, FORCE_TO_UNLOCK)
-    if not CreatureObject(pCreature):hasSkill("jedi_padawan_novice") then
-      awardSkill(pCreature, "jedi_padawan_novice")
+  -- 1) If not Jedi yet and FP is below unlock, force it to 10000 and start padawan
+  if not self:isJedi(pCreature) then
+    local curFP = self:getForcePoints(pCreature)
+    if curFP < FORCE_TO_UNLOCK then
+      self:setForcePoints(pCreature, FORCE_TO_UNLOCK)
+      if not CreatureObject(pCreature):hasSkill("jedi_padawan_novice") then
+        awardSkill(pCreature, "jedi_padawan_novice")
+      end
     end
   end
 
+  -- 2) Run legacy one-time check
   self:legacyAutograntIfEligible(pCreature)
 
+  -- 3) Resume regen if it was enabled
   if tonumber(readData(K(pCreature, "regen"))) == 1 then
     self:scheduleForceRegenTick(pCreature)
   end
 
+  -- 4) Now attempt to convert (with the FP we just set)
   self:checkAndConvertIfReady(pCreature)
+
+  -- 5) Observe kills
   createObserver(KILLEDCREATURE, "HologrindJediManager", "onKilledCreature", pCreature)
 
+  -- 6) Force progression type to your FRS-compatible type for already-Jedi players
   local pGhost = CreatureObject(pCreature):getPlayerObject()
   if pGhost and PlayerObject(pGhost):isJedi() then
     if PlayerObject(pGhost).setJediProgressionType then
@@ -442,12 +422,14 @@ function HologrindJediManager:onPlayerLoggedIn(pCreature)
     end
   end
 
+  -- 7) Offer village→hologrind migration for old Jedi
   if self:shouldOfferVillageMigration(pCreature) then
     self:showVillageMigrationChoice(pCreature)
   end
 end
 
 function HologrindJediManager:onPlayerCreated(pCreature)
+  -- nothing heavy here
 end
 
 function HologrindJediManager:canLearnSkill()
