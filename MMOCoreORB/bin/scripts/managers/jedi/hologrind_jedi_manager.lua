@@ -109,6 +109,7 @@ end
 --   K(creo,"regen")      -> 1 if regen enabled
 --   K(creo,"migrated")   -> 1 if legacy autogrant performed
 --   K(creo,"villagemig") -> 1 if village-to-hologrind/FRS choice was already presented
+--   K(creo,"autofp")     -> 1 if "auto 10000 FP on login" is enabled
 
 function HologrindJediManager:getForcePoints(pCreature)
   local v = tonumber(readData(K(pCreature, "fp")))
@@ -322,7 +323,6 @@ function HologrindJediManager:onVillageMigrationChoice(pCreature, pSui, eventInd
     return
   end
   if eventIndex == 0 then
-    -- Yes, migrate
     local pGhost = CreatureObject(pCreature):getPlayerObject()
     if pGhost then
       PlayerObject(pGhost):setJediProgressionType(4)
@@ -332,7 +332,6 @@ function HologrindJediManager:onVillageMigrationChoice(pCreature, pSui, eventInd
     end
     writeData(K(pCreature, "villagemig"), 1)
   else
-    -- No, do not migrate, remember answer
     writeData(K(pCreature, "villagemig"), 1)
     CreatureObject(pCreature):sendSystemMessage("You chose to keep your existing Village Jedi configuration.")
   end
@@ -423,7 +422,7 @@ function HologrindJediManager:addForceForDungeon(pCreature, amountOverride)
 end
 
 -- =========================
--- Holocrons (destroy on use)
+-- Holocrons (destroy on use) + toggle for auto FP on login
 -- =========================
 local function isHolocronTemplate(path)
   if not path then
@@ -463,6 +462,49 @@ local function whisperForceProgress(pCreature)
   CreatureObject(pCreature):sendSystemMessage(string.format("You sense the Force... %d / %d.", cur, need))
 end
 
+-- show toggle SUI after holocron use
+function HologrindJediManager:showAutoFPChoice(pCreature)
+  local current = tonumber(readData(K(pCreature, "autofp"))) or 0
+  local isOn = (current == 1)
+  local desc
+  if isOn then
+    desc = "Auto 10000 Force Points on login is currently ENABLED.\n\nDo you want to DISABLE it for this character?"
+  else
+    desc = "Auto 10000 Force Points on login is currently DISABLED.\n\nDo you want to ENABLE it for this character?"
+  end
+
+  local sui = LuaSuiManager()
+  sui:sendMessageBox(
+    pCreature,
+    pCreature,
+    "Holocron: Auto Force Option",
+    desc,
+    "@yes",
+    "@no",
+    "HologrindJediManager",
+    "onAutoFPChoice"
+  )
+end
+
+function HologrindJediManager:onAutoFPChoice(pCreature, pSui, eventIndex, ...)
+  if not pCreature then
+    return
+  end
+  if eventIndex == 0 then
+    -- toggle
+    local current = tonumber(readData(K(pCreature, "autofp"))) or 0
+    if current == 1 then
+      writeData(K(pCreature, "autofp"), 0)
+      CreatureObject(pCreature):sendSystemMessage("Auto 10000 Force Points on login has been DISABLED for this character.")
+    else
+      writeData(K(pCreature, "autofp"), 1)
+      CreatureObject(pCreature):sendSystemMessage("Auto 10000 Force Points on login has been ENABLED for this character.")
+    end
+  else
+    CreatureObject(pCreature):sendSystemMessage("Auto Force option unchanged.")
+  end
+end
+
 function HologrindJediManager:useItem(pSceneObject, _, pCreature)
   if not pCreature or not pSceneObject then
     return
@@ -476,6 +518,10 @@ function HologrindJediManager:useItem(pSceneObject, _, pCreature)
   whisperForceProgress(pCreature)
   self:checkAndConvertIfReady(pCreature)
 
+  -- show toggle
+  self:showAutoFPChoice(pCreature)
+
+  -- destroy holocron
   SceneObject(pSceneObject):destroyObjectFromWorld()
   SceneObject(pSceneObject):destroyObjectFromDatabase()
 end
@@ -491,6 +537,12 @@ function HologrindJediManager:onPlayerLoggedIn(pCreature)
   if not pCreature then
     return
   end
+
+  -- auto FP on login if enabled
+  if tonumber(readData(K(pCreature, "autofp"))) == 1 then
+    self:setForcePoints(pCreature, FORCE_TO_UNLOCK)
+  end
+
   self:legacyAutograntIfEligible(pCreature)
 
   if tonumber(readData(K(pCreature, "regen"))) == 1 then
