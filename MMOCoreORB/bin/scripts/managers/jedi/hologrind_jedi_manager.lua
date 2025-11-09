@@ -197,7 +197,11 @@ function HologrindJediManager:convertToJedi(pCreature)
   writeData(K(pCreature, "regen"), 1)
   self:scheduleForceRegenTick(pCreature)
 
+  -- existing flavor line
   CreatureObject(pCreature):sendSystemMessage("The Force flows through you. You have become a Jedi.")
+  -- explicit unlock notification
+  CreatureObject(pCreature):sendSystemMessage("You have unlocked the Jedi path. Visit a Force Shrine to continue your Trials.")
+
 end
 
 function HologrindJediManager:checkAndConvertIfReady(pCreature)
