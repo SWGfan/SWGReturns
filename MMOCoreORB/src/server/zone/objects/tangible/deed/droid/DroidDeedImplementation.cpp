@@ -43,7 +43,6 @@ void DroidDeedImplementation::onCloneObject(SceneObject* objectToClone) {
 	DeedImplementation::onCloneObject(objectToClone);
 
 	ManagedReference<DroidDeed*> deed = cast<DroidDeed*>(objectToClone);
-
 	if (deed == nullptr) {
 		error("Invalid object type used in DroidDeedImplementation::onCloneObject");
 		return;
@@ -76,62 +75,43 @@ void DroidDeedImplementation::onCloneObject(SceneObject* objectToClone) {
 void DroidDeedImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	DeedImplementation::fillAttributeList(alm, object);
 
-	// Use species to set challenge_level
-	if (species == DroidObject::PROBOT) {
-		level = 19;
-	} else if (species == DroidObject::LE_REPAIR || species == DroidObject::DZ70 || (species == DroidObject::R_SERIES && combatRating > 0)) {
-		level = 18;
-	} else if (species == DroidObject::R_SERIES) {
-		level = 7;
-	} else {
-		level = 1;
-	}
-
-	alm->insertAttribute("challenge_level", level);
-
-	// HAM
+	// Deed needs to show a few important bits
+	// 1.) HAM
 	int maxHam = DroidMechanics::determineHam(overallQuality,species);
+	alm->insertAttribute("challenge_level", level);
 	alm->insertAttribute("creature_health", maxHam);
 	alm->insertAttribute("creature_action", maxHam);
 	alm->insertAttribute("creature_mind", maxHam);
-
-    // Check for combat rating and apply attack, to-hit, and damage range attributes
-	if (combatRating > 0) {
+	if(combatRating > 0 || (species == DroidObject::DZ70 || species == DroidObject::PROBOT) ) {
+		StringBuffer attdisplayValue;
 		float attackSpeed = DroidMechanics::determineSpeed(species,maxHam);
 		float chanceHit = DroidMechanics::determineHit(species,maxHam);
+		// do we have a combat module installed?
 		float damageMin = DroidMechanics::determineMinDamage(species,combatRating);
 		float damageMax = DroidMechanics::determineMaxDamage(species,combatRating);
-
-		StringBuffer attdisplayValue;
-		StringBuffer hitdisplayValue;
-
 		attdisplayValue << Math::getPrecision(attackSpeed, 2);
+		StringBuffer hitdisplayValue;
 		hitdisplayValue << Math::getPrecision(chanceHit, 2);
-
 		alm->insertAttribute("creature_attack", attdisplayValue);
 		alm->insertAttribute("creature_tohit", hitdisplayValue);
 		alm->insertAttribute("creature_damage", String::valueOf(damageMin) + " - " + String::valueOf(damageMax));
 	}
-
+	// hit and speed?
+	// if object is the master
 	String key;
 	ManagedReference<DroidComponent*> comp = nullptr;
 	HashTableIterator<String, ManagedReference<DroidComponent*> > iterator = modules.iterator();
-
-	for (int i = 0; i < modules.size(); ++i) {
+	for(int i = 0; i < modules.size(); ++i) {
 		iterator.getNextKeyAndValue(key, comp);
-
-		if (comp != nullptr) {
+		if (comp) {
 			DataObjectComponentReference* data = comp->getDataObjectComponent();
 			BaseDroidModuleComponent* module = nullptr;
-
 			if(data != nullptr && data->get() != nullptr && data->get()->isDroidModuleData() ){
 				module = cast<BaseDroidModuleComponent*>(data->get());
 			}
-
 			if (module == nullptr) {
 				continue;
 			}
-
 			module->fillAttributeList(alm,object);
 		}
 	}
@@ -214,85 +194,62 @@ void DroidDeedImplementation::updateCraftingValues(CraftingValues* values, bool 
 
 	overallQuality = values->getCurrentPercentage("power_level"); // effectiveness
 	if (overallQuality < 0)
-		overallQuality = 0.1f;
+		overallQuality = 0.1;
 
 	combatRating = values->getCurrentValue("cmbt_module");
 	if (combatRating < 0)
 		combatRating = 0;
-
-	if (combatRating > 600)
-		combatRating = 600;
-
 	// @TODO Add crafting values, this should adjust toHit and Speed based on droid ham, also
 	// we need to stack modules if they are stackable.
 	// walk all components and ensure we have all modules that are stackable there.
 
 	ManagedReference<ManufactureSchematic*> manufact = values->getManufactureSchematic();
-
 	for (int i = 0; i < manufact->getSlotCount(); ++i) {
 		// Droid Component Slots
-		Reference<IngredientSlot*> iSlot = manufact->getSlot(i);
-
-		if (iSlot == nullptr || !iSlot->isComponentSlot())
-			continue;
-
-		ComponentSlot* componentSlot = cast<ComponentSlot*>(iSlot.get());
-
-		if (componentSlot == nullptr)
-			continue;
-
-		ManagedReference<DroidComponent*> component = cast<DroidComponent*>(componentSlot->getPrototype());
-
-		if (component == nullptr)
-			continue;
-
-		// only check modules
-		if (component->isSocketCluster()) {
-			// pull out the objects
-			ManagedReference<SceneObject*> craftingComponents = component->getSlottedObject("crafted_components");
-
-			if (craftingComponents != nullptr) {
-				SceneObject* satchel = craftingComponents->getContainerObject(0);
-
-				for (int i = 0; i < satchel->getContainerObjectsSize(); ++i) {
-					ManagedReference<SceneObject*> sceno = satchel->getContainerObject(i);
-
-					if (sceno != nullptr) {
-						// now we have the component used in this socket item
-						ManagedReference<DroidComponent*> sub = cast<DroidComponent*>( sceno.get());
-
-						if (sub != nullptr) {
-							DataObjectComponentReference* data = sub->getDataObjectComponent();
-							BaseDroidModuleComponent* module = nullptr;
-
-							if (data != nullptr && data->get() != nullptr && data->get()->isDroidModuleData()){
-								module = cast<BaseDroidModuleComponent*>(data->get());
+		Reference<IngredientSlot* > iSlot = manufact->getSlot(i);
+		if (iSlot->isComponentSlot()) {
+			ComponentSlot* cSlot = cast<ComponentSlot*>(iSlot.get());
+			ManagedReference<TangibleObject*> tano = cSlot->getPrototype();
+			ManagedReference<DroidComponent*> component = cast<DroidComponent*>( tano.get());
+			// only check modules
+			if (component != nullptr) {
+				if (component->isSocketCluster()) {
+					// pull out the objects
+					ManagedReference<SceneObject*> craftingComponents = component->getSlottedObject("crafted_components");
+					if(craftingComponents != nullptr) {
+						SceneObject* satchel = craftingComponents->getContainerObject(0);
+						for (int i = 0; i < satchel->getContainerObjectsSize(); ++i) {
+							ManagedReference<SceneObject*> sceno = satchel->getContainerObject(i);
+							if (sceno != nullptr) {
+								// now we have the component used in this socket item
+								ManagedReference<DroidComponent*> sub = cast<DroidComponent*>( sceno.get());
+								if (sub != nullptr) {
+									DataObjectComponentReference* data = sub->getDataObjectComponent();
+									BaseDroidModuleComponent* module = nullptr;
+									if(data != nullptr && data->get() != nullptr && data->get()->isDroidModuleData() ){
+										module = cast<BaseDroidModuleComponent*>(data->get());
+									}
+									if (module == nullptr) {
+										continue;
+									}
+									processModule(module,sceno->getServerObjectCRC());
+								}
 							}
-
-							if (module == nullptr) {
-								continue;
-							}
-
-							processModule(module, sceno->getServerObjectCRC());
 						}
 					}
+				} else {
+					DataObjectComponentReference* data = component->getDataObjectComponent();
+					BaseDroidModuleComponent* module = nullptr;
+					if(data != nullptr && data->get() != nullptr && data->get()->isDroidModuleData() ){
+						module = cast<BaseDroidModuleComponent*>(data->get());
+					}
+					if (module == nullptr) {
+						continue;
+					}
+					processModule(module,tano->getServerObjectCRC());
 				}
 			}
-		} else {
-			DataObjectComponentReference* data = component->getDataObjectComponent();
-			BaseDroidModuleComponent* module = nullptr;
-
-			if (data != nullptr && data->get() != nullptr && data->get()->isDroidModuleData() ){
-				module = cast<BaseDroidModuleComponent*>(data->get());
-			}
-
-			if (module == nullptr) {
-				continue;
-			}
-
-			processModule(module, component->getServerObjectCRC());
 		}
-
 	}
 	// module stacking is completed!
 }
@@ -300,47 +257,22 @@ void DroidDeedImplementation::updateCraftingValues(CraftingValues* values, bool 
 void DroidDeedImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	DeedImplementation::fillObjectMenuResponse(menuResponse, player);
 
-	if (!isASubChildOf(player)) {
-		return;
-	}
-
-	menuResponse->addRadialMenuItem(RadialOptions::ITEM_USE, 3, "@pet/pet_menu:menu_unpack"); //"Ready Droid Unit"
+	if(isASubChildOf(player))
+		menuResponse->addRadialMenuItem(20, 3, "@pet/pet_menu:menu_unpack"); //"Ready Droid Unit"
 }
 
 int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
-	if (player == nullptr) {
-		return 1;
-	}
 
-	if (selectedID == RadialOptions::ITEM_USE) {
-		if (generated || !isASubChildOf(player)) {
+	if (selectedID == 20) {
+		if (generated || !isASubChildOf(player))
 			return 1;
-		}
 
-		bool bombDroid = isBombDroid();
-
-		if (player->isDead()) {
+		if (player->isInCombat() || player->isRidingMount() || player->isSwimming() || player->isDead() || player->isIncapacitated()) {
 			player->sendSystemMessage("@pet/pet_menu:cant_call"); // "You cannot call this pet right now."
 			return 1;
 		}
 
-		if ((!bombDroid && player->isIncapacitated()) || (bombDroid && player->isIncapacitated() && !player->isFeigningDeath())) {
-			player->sendSystemMessage("@pet/pet_menu:cant_call"); // "You cannot call this pet right now."
-			return 1;
-		}
-
-		if (!bombDroid && (player->isInCombat() || player->isRidingMount() || player->isSwimming())) {
-			player->sendSystemMessage("@pet/pet_menu:cant_call"); // "You cannot call this pet right now."
-			return 1;
-		}
-
-		auto zoneServer = player->getZoneServer();
-
-		if (zoneServer == nullptr) {
-			return 1;
-		}
-
-		ManagedReference<SceneObject*> datapad = player->getDatapad();
+		ManagedReference<SceneObject*> datapad = player->getSlottedObject("datapad");
 
 		if (datapad == nullptr) {
 			player->sendSystemMessage("Datapad doesn't exist when trying to generate droid");
@@ -369,42 +301,35 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 			return 1;
 		}
 
-		Reference<CreatureManager*> creatureManager = player->getZone()->getCreatureManager();\
-
-		if (creatureManager == nullptr) {
+		Reference<CreatureManager*> creatureManager = player->getZone()->getCreatureManager();
+		if (creatureManager == nullptr)
 			return 1;
-		}
 
 		CreatureTemplateManager* creatureTemplateManager = CreatureTemplateManager::instance();
 		Reference<CreatureTemplate*> creatureTemplate =  creatureTemplateManager->getTemplate(mobileTemplate.hashCode());
-
 		if (creatureTemplate == nullptr) {
-			warning() << "Improper droid template: " << mobileTemplate;
+			player->sendSystemMessage("wrong droid template;mobileTemplate=[" + mobileTemplate + "]" );
 			return 1;
 		}
 
 		Reference<PetControlDevice*> controlDevice = (server->getZoneServer()->createObject(controlDeviceObjectTemplate.hashCode(), 1)).castTo<PetControlDevice*>();
-
 		if (controlDevice == nullptr) {
-			warning() << "Improper droid control device template " << controlDeviceObjectTemplate;
+			player->sendSystemMessage("wrong droid control device template " + controlDeviceObjectTemplate);
 			return 1;
 		}
 
-		Locker locker(controlDevice, player);
+		Locker locker(controlDevice);
 
 		Reference<CreatureObject*> creatureObject = creatureManager->createCreature(generatedObjectTemplate.hashCode(), true, mobileTemplate.hashCode());
-
 		if (creatureObject == nullptr) {
 			controlDevice->destroyObjectFromDatabase(true);
-
-			warning() << "Improper droid templates -- mobileTemplate: " << mobileTemplate << " generatedObjectTemplate: " << generatedObjectTemplate;
+			player->sendSystemMessage("wrong droid templates;mobileTemplate=[" + mobileTemplate + "];generatedObjectTemplate=[" + generatedObjectTemplate + "]");
 			return 1;
 		}
 
 		Locker clocker(creatureObject, player);
 
 		Reference<DroidObject*> droid = creatureObject.castTo<DroidObject*>();
-
 		if (droid == nullptr) {
 			controlDevice->destroyObjectFromDatabase(true);
 			creatureObject->destroyObjectFromDatabase(true);
@@ -415,10 +340,8 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 		droid->setCustomObjectName(StringIdManager::instance()->getStringId(*droid->getObjectName()), true);
 		droid->createChildObjects();
 		droid->setControlDevice(controlDevice);
-		droid->setLevel(level);
 
 		float maxHam = DroidMechanics::determineHam(overallQuality, species);
-
 		for (int i = 0; i < 9; ++i) {
 			if (i % 3 == 0) {
 				droid->setBaseHAM(i, maxHam, false);
@@ -440,19 +363,14 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 
 		for (int i = 0; i < modules.size(); ++i) {
 			iterator.getNextKeyAndValue(key, comp);
+			if (comp != nullptr) {
+				if (!craftingComponentsSatchel->transferObject(comp, -1, false)) {
+					error("Error transferring droid module from Deed to Object");
+				}
 
-			if (comp == nullptr) {
-				continue;
-			}
-
-			if (!craftingComponentsSatchel->transferObject(comp, -1, false)) {
-				error("Error transferring droid module from Deed to Object");
-			}
-
-			BaseDroidModuleComponent* data = cast<BaseDroidModuleComponent*>(comp->getDataObjectComponent()->get());
-
-			if (data != nullptr) {
-				data->initialize(droid);
+				BaseDroidModuleComponent* data = cast<BaseDroidModuleComponent*>(comp->getDataObjectComponent()->get());
+				if (data != nullptr)
+					data->initialize(droid);
 			}
 		}
 
@@ -464,7 +382,6 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 
 		// Copy color customization from deed to droid
 		CustomizationVariables* customVars = getCustomizationVariables();
-
 		if (customVars != nullptr) {
 			for (int i = 0; i < customVars->size(); ++i) {
 				uint8 id = customVars->elementAt(i).getKey();
@@ -472,7 +389,7 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 
 				String name = CustomizationIdManager::instance()->getCustomizationVariable(id);
 
-				if (name != "/private/index_color_0" && name.contains("color")) {
+				if (name.contains("color")) {
 					droid->setCustomizationVariable(name, val, true);
 				}
 			}
@@ -496,7 +413,7 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 
 		datapad->broadcastObject(controlDevice, true);
 
-		controlDevice->callObject(player, true);
+		controlDevice->callObject(player);
 
 		//Remove the deed from its container.
 		ManagedReference<SceneObject*> deedContainer = getParent().get();
@@ -513,27 +430,4 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 	}
 
 	return DeedImplementation::handleObjectMenuSelect(player, selectedID);
-}
-
-bool DroidDeedImplementation::isBombDroid() {
-	ManagedReference<DroidComponent*> droidComponent = nullptr;
-	HashTableIterator<String, ManagedReference<DroidComponent*> > iterator = modules.iterator();
-
-	for (int i = 0; i < modules.size(); ++i) {
-		droidComponent = iterator.getNextValue();
-
-		if (droidComponent == nullptr) {
-			continue;
-		}
-
-		BaseDroidModuleComponent* data = cast<BaseDroidModuleComponent*>(droidComponent->getDataObjectComponent()->get());
-
-		if (data == nullptr || !data->isDetonationModule()) {
-			continue;
-		}
-
-		return true;
-	}
-
-	return false;
 }

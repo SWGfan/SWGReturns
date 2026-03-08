@@ -2,7 +2,6 @@ mammoth_thune = Creature:new {
 	objectName = "@mob/creature_names:mammoth_thune",
 	socialGroup = "thune",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 129,
 	chanceHit = 4.75,
 	damageMin = 720,
@@ -19,7 +18,7 @@ mammoth_thune = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -30,17 +29,12 @@ mammoth_thune = Creature:new {
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.4,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"dizzyattack",""}, {"posturedownattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"dizzyattack",""},
+		{"posturedownattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(mammoth_thune, "mammoth_thune")

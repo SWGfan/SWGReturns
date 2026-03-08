@@ -2,7 +2,6 @@ blood_razor_guard = Creature:new {
 	objectName = "@mob/creature_names:blood_razor_guard",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "bloodrazor",
 	faction = "bloodrazor",
 	level = 39,
@@ -21,7 +20,7 @@ blood_razor_guard = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -38,22 +37,23 @@ blood_razor_guard = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "bloodrazor_tier_1", chance = 10000000}
+				{group = "junk", chance = 3800000},
+				{group = "tailor_components", chance = 1000000},
+				{group = "color_crystals", chance = 400000},
+				{group = "power_crystals", chance = 400000},
+				{group = "melee_unarmed", chance = 600000},
+				{group = "melee_polearm", chance = 600000},
+				{group = "pistols", chance = 600000},
+				{group = "clothing_attachments", chance = 300000},
+				{group = "armor_attachments", chance = 300000},
+				{group = "bloodrazor_common", chance = 2000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "blood_razer_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"blood_razer_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pistoleermaster,pikemanmaster,tkamaster,brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(pistoleermaster,pikemanmaster,tkamaster,brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(blood_razor_guard, "blood_razor_guard")

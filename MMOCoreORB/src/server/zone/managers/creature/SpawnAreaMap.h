@@ -8,48 +8,65 @@
 #ifndef SPAWNAREAMAP_H_
 #define SPAWNAREAMAP_H_
 
-#include "server/zone/objects/region/SpawnArea.h"
+#include "server/zone/objects/area/SpawnArea.h"
 #include "server/zone/Zone.h"
 
 class SpawnAreaMap : public SynchronizedVectorMap<uint32, ManagedReference<SpawnArea*> > , public Logger {
+	Lua* lua;
 protected:
 
 	ManagedReference<Zone*> zone;
 
 	SynchronizedVector<ManagedReference<SpawnArea*> > noSpawnAreas;
 
+	SynchronizedVector<ManagedReference<SpawnArea*> > worldSpawnAreas;
+
+	void readAreaObject(LuaObject& areaObj);
+	void loadRegions();
+
 public:
+
+	enum {
+		UNDEFINEDAREA       = 0x00000000,
+		SPAWNAREA           = 0x00000001,
+		NOSPAWNAREA         = 0x00000002,
+		WORLDSPAWNAREA      = 0x00000010,
+		NOWORLDSPAWNAREA    = 0x00000020,
+		NOBUILDZONEAREA     = 0x00000100
+	};
+
+	enum {
+		CIRCLE = 1,
+		RECTANGLE,
+		RING
+	};
+
 	SpawnAreaMap() : Logger("SpawnAreaMap") {
+		lua = new Lua();
 		setAllowDuplicateInsertPlan();
 	}
 
 	SpawnAreaMap(const SpawnAreaMap& l) : SynchronizedVectorMap<uint32, ManagedReference<SpawnArea*> >(l) , Logger("SpawnAreaMap"),
-		zone(l.zone), noSpawnAreas(l.noSpawnAreas) {
-	}
+			zone(l.zone), noSpawnAreas(l.noSpawnAreas), worldSpawnAreas(l.worldSpawnAreas) {
 
-	SpawnAreaMap& operator=(const SpawnAreaMap& m) {
-		if (this == &m) {
-			return *this;
-		}
-
-		zone = m.zone;
-		noSpawnAreas = m.noSpawnAreas;
-
-		return *this;
+		lua = l.lua;
 	}
 
 	virtual ~SpawnAreaMap() {
+		if (lua != nullptr) {
+			delete lua;
+			lua = nullptr;
+		}
 	}
+
+	void loadMap(Zone* z);
 
 	void unloadMap();
 
-	void addSpawnArea(uint32 spawnHash, ManagedReference<SpawnArea*> area) {
-		put(spawnHash, area);
+	SynchronizedVector<ManagedReference<SpawnArea*> >* getWorldSpawnAreas() {
+		return &worldSpawnAreas;
 	}
 
-	void addNoSpawnArea(ManagedReference<SpawnArea*> area) {
-		noSpawnAreas.add(area);
-	}
 };
 
 

@@ -2,7 +2,6 @@ fbase_rebel_elite_sand_rat_extreme = Creature:new {
 	objectName = "@mob/creature_names:fbase_rebel_elite_sand_rat_extreme",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 210,
@@ -39,24 +38,22 @@ fbase_rebel_elite_sand_rat_extreme = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rebel_tier_4", chance = 10000000}
+				{group = "color_crystals", chance = 300000},
+				{group = "junk", chance = 6500000},
+				{group = "holocron_dark", chance = 150000},
+				{group = "holocron_light", chance = 150000},
+				{group = "imppoints", chance = 550000},
+				{group = "armor_all", chance = 1050000},
+				{group = "clothing_attachments", chance = 150000},
+				{group = "armor_attachments", chance = 150000},
+				{group = "wearables_all", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_carbine",
-	secondaryWeapon = "rebel_pistol",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"rebel_weapons_light"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,carbineermaster),
-	secondaryAttacks = merge(marksmanmaster,pistoleermaster)
+	attacks = merge(marksmanmaster,brawlermaster,pistoleermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_rebel_elite_sand_rat_extreme, "fbase_rebel_elite_sand_rat_extreme")

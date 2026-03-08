@@ -12,9 +12,9 @@ import server.zone.objects.creature.CreatureObject;
 import system.util.VectorMap;
 import system.util.Vector;
 import server.zone.objects.scene.SceneObject;
+import server.zone.objects.region.CityRegion;
 import server.zone.objects.waypoint.WaypointObject;
 import server.zone.objects.structure.StructureObject;
-include server.zone.objects.region.CityRegion;
 include server.chat.StringIdChatParameter;
 include server.zone.managers.city.CitiesAllowed;
 include server.zone.managers.city.CitySpecialization;
@@ -212,11 +212,11 @@ class CityManager extends ManagedService implements Logger {
 	}
 
 	public boolean renameCity(CityRegion city, final string newName) {
-		if(cities.contains(city.getCityRegionName())){
-			cities.drop(city.getCityRegionName());
+		if(cities.contains(city.getRegionName())){
+			cities.drop(city.getRegionName());
 			cities.put(newName, city);
 			return true;
-		}
+		}	
 
 		return false;
 

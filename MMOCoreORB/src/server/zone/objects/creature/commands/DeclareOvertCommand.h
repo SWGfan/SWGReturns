@@ -5,6 +5,11 @@
 #ifndef DECLAREOVERTCOMMAND_H_
 #define DECLAREOVERTCOMMAND_H_
 
+#include "server/zone/objects/scene/SceneObject.h"
+#include "server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.h"
+#include "server/zone/objects/player/sui/inputbox/SuiInputBox.h"
+#include "server/zone/packets/player/PlayMusicMessage.h"
+
 class DeclareOvertCommand : public QueueCommand {
 public:
 
@@ -14,65 +19,36 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (!ConfigManager::instance()->useCovertOvertSystem())
+		if(creature->hasSkill("force_rank_dark_novice") || creature->hasSkill("force_rank_light_novice") || creature->hasSkill("combat_jedi_novice")){
+			creature->sendSystemMessage("You may not use this command.");
 			return GENERALERROR;
-
-		uint32 creatureFaction = creature->getFaction();
-
-		if (creatureFaction == Factions::FACTIONNEUTRAL || creature->getFactionStatus() != FactionStatus::COVERT)
-			return GENERALERROR;
-
-		Zone* zone = creature->getZone();
-
-		if (zone == nullptr)
-			return GENERALERROR;
-
-		// 	This command allows a covert faction member to declare overt faction status. Usage of this command is restricted to a 50m radius around friendly player-placed faction headquarters.
-		CloseObjectsVector* vec = (CloseObjectsVector*) creature->getCloseObjects();
-		SortedVector<TreeEntry*> closeObjects;
-
-		if (vec != nullptr) {
-			closeObjects.removeAll(vec->size(), 20);
-
-			vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::STRUCTURETYPE);
-		} else {
-	#ifdef COV_DEBUG
-			sourceCreature->info("Null closeobjects vector in DeclareOvertCommand", true);
-	#endif
-			zone->getInRangeObjects(creature->getWorldPositionX(), creature->getWorldPositionZ(), creature->getWorldPositionY(), 50, &closeObjects, true);
 		}
 
-		int result = false;
-
-		for (int i = 0; i < closeObjects.size(); i++) {
-			SceneObject* object = static_cast<SceneObject*>(closeObjects.get(i));
-
-			if (object == nullptr || !object->isGCWBase())
-				continue;
-
-			TangibleObject* baseTano = object->asTangibleObject();
-
-			if (baseTano != nullptr && creatureFaction == baseTano->getFaction() && baseTano->isInRange(creature, 50.f)) {
-				result = true;
-				break;
-			}
+		if (creature->getFaction() == 0){
+			creature->sendSystemMessage("You may not use this command if you are not a Rebel Or Imperial, You must be apart of the GCW.");
+			return GENERALERROR;
 		}
 
-		if (result) {
-			Locker lock(creature);
-			creature->setFactionStatus(FactionStatus::OVERT);
-		} else {
-			creature->sendSystemMessage("You must be within 50m of a friendly player-placed faction headquarters to declare your faction allegiance.");
+ 		PlayerObject* targetGhost = creature->getPlayerObject();
+ 		Zone* zone = creature->getZone();
+ 		
+ 		if (targetGhost == nullptr)
+ 			return GENERALERROR;
+  
+ 		if (creature->getFactionStatus() == FactionStatus::ONLEAVE || creature->getFactionStatus() == FactionStatus::COVERT) {
+ 			creature->setFactionStatus(FactionStatus::OVERT);
 		}
 
-		return result ? SUCCESS : GENERALERROR;
+		return SUCCESS;
 	}
+
 };
 
 #endif //DECLAREOVERTCOMMAND_H_

@@ -1,7 +1,6 @@
 /*
-	Copyright <SWGEmu>
-	See file COPYING for copying conditions.
-*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
 #ifndef CALLARAKYDTASK_H_
 #define CALLARAKYDTASK_H_
@@ -40,6 +39,7 @@ public:
 	}
 
 	~CallArakydTask() {
+
 	}
 
 	void run() {
@@ -79,9 +79,7 @@ public:
 				objectiveRef->setArakydDroid(droid);
 				olocker.release();
 
-				Locker lock(droid);
-				droid->addObjectFlag(ObjectFlag::STATIC);
-				droid->setAITemplate();
+				droid->activateLoad("stationary");
 				time -= 1;
 				reschedule(300 * 1000);
 		}
@@ -105,18 +103,66 @@ public:
 
 	Vector3 getLandingCoordinates(CreatureObject* player) {
 		Vector3 position = player->getPosition();
-		auto zone = player->getZone();
 
-		if (zone == nullptr) {
+		if (player->getZone() == nullptr || player->getZone()->getPlanetManager() == nullptr) {
 			return position;
 		}
 
-		auto planetManager = zone->getPlanetManager();
+		PlanetManager* planetManager = player->getZone()->getPlanetManager();
 
-		if (planetManager == nullptr)
-			return position;
+		int distance = 30;
+		int angle = 15;
 
-		return planetManager->getInSightSpawnPoint(player, 30, 120, 15);
+		do {
+			for (int i = 0; i < 10; i++) {
+				position = player->getWorldCoordinate(distance + System::random(20), angle - System::random(2 * angle), true);
+
+				if (noInterferingObjects(player, position)) {
+					return position;
+				}
+			}
+
+			distance += 10;
+			angle += 5;
+		} while (distance <= 120);
+
+		return player->getPosition();
+	}
+
+	bool noInterferingObjects(CreatureObject* player, const Vector3& position) {
+		CloseObjectsVector* vec = player->getCloseObjects();
+
+		if (vec == nullptr)
+			return true;
+
+		SortedVector<QuadTreeEntry*> closeObjects;
+		vec->safeCopyTo(closeObjects);
+
+		for (int j = 0; j < closeObjects.size(); j++) {
+			SceneObject* obj = static_cast<SceneObject*>(closeObjects.get(j));
+
+			SharedObjectTemplate* objectTemplate = obj->getObjectTemplate();
+
+			if (objectTemplate != nullptr) {
+				float radius = objectTemplate->getNoBuildRadius();
+
+				if (radius > 0) {
+					Vector3 objWorldPos = obj->getWorldPosition();
+
+					if (objWorldPos.squaredDistanceTo(position) < radius * radius) {
+						return false;
+					}
+				}
+
+				if (objectTemplate->isSharedStructureObjectTemplate()) {
+					if (StructureManager::instance()->isInStructureFootprint(cast<StructureObject*>(obj), position.getX(), position.getY(), 2)) {
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
 	}
 };
 

@@ -42,52 +42,35 @@ public:
 		if (player == nullptr)
 			return;
 
-		ZoneServer* zoneServer = server->getZoneServer();
-
-		if (zoneServer == nullptr)
-			return;
-
-		SceneObject* container = zoneServer->getObject(containerID);
-
-		if (container == nullptr)
-			return;
-
-		ManagedReference<SceneObject*> parent = container->getParent().get();
-
-		if (parent == nullptr || !parent->isAiAgent())
-			return;
-
 		//Get the corpse the lottery is for.
-		AiAgent* agentCorpse = parent.castTo<AiAgent*>();
-
-		if (agentCorpse == nullptr)
+		ManagedReference<AiAgent*> corpse = server->getZoneServer()->getObject(containerID)->getParent().get().castTo<AiAgent*>();
+		if (corpse == nullptr)
 			return;
 
-		Locker locker(agentCorpse);
+		Locker locker(corpse);
 
 		//Make sure there is an active lottery in progress.
-		if (!agentCorpse->containsActiveSession(SessionFacadeType::LOOTLOTTERY))
-			return;
+		if (corpse->containsActiveSession(SessionFacadeType::LOOTLOTTERY)) {
+			Reference<LootLotterySession*> session = corpse->getActiveSession(SessionFacadeType::LOOTLOTTERY).castTo<LootLotterySession*>();
+			if (session == nullptr || session->isLotteryFinished())
+				return;
 
-		Reference<LootLotterySession*> session = agentCorpse->getActiveSession(SessionFacadeType::LOOTLOTTERY).castTo<LootLotterySession*>();
+			if (!session->containsEligiblePlayer(player))
+				return;
 
-		if (session == nullptr || session->isLotteryFinished())
-			return;
+			//If player made no selections, remove them from the Lottery.
+			if (listSize < 1) {
+				session->removeEligiblePlayer(player);
+				return;
+			}
 
-		if (!session->containsEligiblePlayer(player))
-			return;
+			//Create a new Lottery Ballot with the player's item selections.
+			LootLotteryBallot* ballot = new LootLotteryBallot(player, lootIDs);
+			session->addPlayerSelections(player, ballot);
 
-		//If player made no selections, remove them from the Lottery.
-		if (listSize < 1) {
-			session->removeEligiblePlayer(player);
+		} else {
 			return;
 		}
-
-		//Create a new Lottery Ballot with the player's item selections.
-		LootLotteryBallot* ballot = new LootLotteryBallot(player, lootIDs);
-
-		if (ballot != nullptr)
-			session->addPlayerSelections(player, ballot);
 	}
 };
 

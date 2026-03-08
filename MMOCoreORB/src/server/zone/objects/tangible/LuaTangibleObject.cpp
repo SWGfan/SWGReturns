@@ -11,21 +11,18 @@
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
 #include "templates/appearance/PaletteTemplate.h"
 #include "server/zone/objects/player/FactionStatus.h"
+#include "server/zone/objects/tangible/wearables/WearableObject.h"
 
 const char LuaTangibleObject::className[] = "LuaTangibleObject";
 
 Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "_setObject", &LuaTangibleObject::_setObject },
 		{ "_getObject", &LuaSceneObject::_getObject },
-		{ "getOptionsBitmask", &LuaTangibleObject::getOptionsBitmask },
 		{ "setOptionsBitmask", &LuaTangibleObject::setOptionsBitmask },
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask },
 		{ "setPvpStatusBit", &LuaTangibleObject::setPvpStatusBit },
-		{ "broadcastPvpStatusBitmask", &LuaTangibleObject::broadcastPvpStatusBitmask },
-		{ "sendPvpStatusTo", &LuaTangibleObject::sendPvpStatusTo },
 		{ "getPvpStatusBitmask", &LuaTangibleObject::getPvpStatusBitmask },
 		{ "isChangingFactionStatus", &LuaTangibleObject::isChangingFactionStatus },
-		{ "getFactionStatus", &LuaTangibleObject::getFactionStatus },
 		{ "setFutureFactionStatus", &LuaTangibleObject::setFutureFactionStatus },
 		{ "isOnLeave", &LuaTangibleObject::isOnLeave },
 		{ "isOvert", &LuaTangibleObject::isOvert },
@@ -54,9 +51,9 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "isBroken", &LuaTangibleObject::isBroken},
 		{ "isSliced", &LuaTangibleObject::isSliced},
 		{ "isNoTrade", &LuaTangibleObject::isNoTrade},
-		{ "getMainDefender", &LuaTangibleObject::getMainDefender},
-		{ "getConditionDamage", &LuaTangibleObject::getConditionDamage},
-		{ "isActivated", &LuaTangibleObject::isActivated},
+		{ "setSocketCount", &LuaTangibleObject::setSocketCount},
+		{ "getUseCount", &LuaTangibleObject::getUseCount},
+		{ "setUseCount", &LuaTangibleObject::setUseCount},
 		{ 0, 0 }
 };
 
@@ -64,7 +61,7 @@ LuaTangibleObject::LuaTangibleObject(lua_State *L) : LuaSceneObject(L) {
 #ifdef DYNAMIC_CAST_LUAOBJECTS
 	realObject = dynamic_cast<TangibleObject*>(_getRealSceneObject());
 
-	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
+	assert(!_getRealSceneObject() || realObject != nullptr);
 #else
 	realObject = static_cast<TangibleObject*>(lua_touserdata(L, 1));
 #endif
@@ -82,7 +79,7 @@ int LuaTangibleObject::_setObject(lua_State* L) {
 	if (realObject != obj)
 		realObject = obj;
 
-	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
+	assert(!_getRealSceneObject() || realObject != nullptr);
 #else
 	auto obj = static_cast<TangibleObject*>(lua_touserdata(L, -1));
 
@@ -113,8 +110,8 @@ int LuaTangibleObject::getPaletteColorCount(lua_State* L) {
 
 	int colors = 0;
 
-	for (int i = 0; i < variables.size(); ++i) {
-		const String& varkey = variables.elementAt(i).getKey();
+	for (int i = 0; i< variables.size(); ++i) {
+		String varkey = variables.elementAt(i).getKey();
 
 		if (varkey.contains(variableName)) {
 			CustomizationVariable* customizationVariable = variables.get(varkey).get();
@@ -125,13 +122,15 @@ int LuaTangibleObject::getPaletteColorCount(lua_State* L) {
 			PaletteColorCustomizationVariable* palette = dynamic_cast<PaletteColorCustomizationVariable*>(customizationVariable);
 
 			if (palette != nullptr) {
-				const auto& paletteFileName = palette->getPaletteFileName();
-				UniqueReference<PaletteTemplate*> paletteTemplate(TemplateManager::instance()->getPaletteTemplate(paletteFileName));
+				String paletteFileName = palette->getPaletteFileName();
+				PaletteTemplate* paletteTemplate = TemplateManager::instance()->getPaletteTemplate(paletteFileName);
 
 				if (paletteTemplate == nullptr)
 					continue;
 
 				colors = paletteTemplate->getColorCount();
+
+				delete paletteTemplate;
 
 				break;
 			}
@@ -175,23 +174,6 @@ int LuaTangibleObject::getPvpStatusBitmask(lua_State* L) {
 	return 1;
 }
 
-int LuaTangibleObject::broadcastPvpStatusBitmask(lua_State* L) {
-	realObject->broadcastPvpStatusBitmask();
-
-	return 0;
-}
-
-int LuaTangibleObject::sendPvpStatusTo(lua_State* L) {
-	CreatureObject* creature = (CreatureObject*) lua_touserdata(L, -1);
-
-	if (creature == nullptr)
-		return 0;
-
-	realObject->sendPvpStatusTo(creature);
-
-	return 0;
-}
-
 int LuaTangibleObject::isChangingFactionStatus(lua_State* L) {
 	lua_pushboolean(L, realObject->getFutureFactionStatus() >= 0);
 
@@ -204,12 +186,6 @@ int LuaTangibleObject::setFutureFactionStatus(lua_State* L) {
 	realObject->setFutureFactionStatus(status);
 
 	return 0;
-}
-
-int LuaTangibleObject::getFactionStatus(lua_State* L) {
-	lua_pushinteger(L, realObject->getFactionStatus());
-
-	return 1;
 }
 
 int LuaTangibleObject::isOnLeave(lua_State* L) {
@@ -328,14 +304,6 @@ int LuaTangibleObject::getLuaStringData(lua_State *L) {
 	return 1;
 }
 
-int LuaTangibleObject::getOptionsBitmask(lua_State* L) {
-	uint32 bitmask = realObject->getOptionsBitmask();
-
-	lua_pushinteger(L, bitmask);
-
-	return 1;
-}
-
 int LuaTangibleObject::setOptionBit(lua_State* L) {
 	uint32 bit = lua_tointeger(L, -1);
 
@@ -419,33 +387,43 @@ int LuaTangibleObject::isNoTrade(lua_State* L){
 	return 1;
 }
 
-int LuaTangibleObject::getMainDefender(lua_State* L) {
-	Locker lock(realObject);
+int LuaTangibleObject::setSocketCount(lua_State* L){
 
-	SceneObject* defender = realObject->getMainDefender();
+    int count = lua_tointeger(L, -1);
+    
+    if (realObject->isWearableObject() && realObject != nullptr)
+    {
+        Locker locker(realObject);
+        
+        WearableObject* wo = cast<WearableObject*>(realObject);
+        
+        // Prevent over 4 sockets
+        if (count > 4)
+        { count = 4; }
+        // Prevent trying to set negative sockets
+        if (count < 0)
+        { count = 0; }
+        
+        wo->setSockets(count);
+    }
+    
+    return 0;
+}
 
-	if (defender == nullptr || !defender->isTangibleObject()) {
-		lua_pushnil(L);
-		return 1;
-	}
+int LuaTangibleObject::getUseCount(lua_State* L){
+	int useCount = realObject->getUseCount();
 
-	lua_pushlightuserdata(L, defender);
+	lua_pushinteger(L, useCount);
 
 	return 1;
 }
 
-int LuaTangibleObject::getConditionDamage(lua_State* L){
-	int conditionDamage = realObject->getConditionDamage();
+int LuaTangibleObject::setUseCount(lua_State* L){
+	float useCount = lua_tonumber(L, -1);
 
-	lua_pushinteger(L, conditionDamage);
+	Locker locker(realObject);
 
-	return 1;
-}
+	realObject->setUseCount(useCount, true);
 
-int LuaTangibleObject::isActivated(lua_State* L){
-	bool isActivated = (realObject->getOptionsBitmask() & OptionBitmask::ACTIVATED);
-
-	lua_pushboolean(L, isActivated);
-
-	return 1;
+	return 0;
 }

@@ -2,9 +2,6 @@ barn_sinkko = Creature:new {
 	objectName = "@npc_spawner_n:barn_sinkko",
 	socialGroup = "imperial",
 	faction = "imperial",
-	mobType = MOB_NPC,
-	planetMapCategory = "trainer",
-	planetMapSubCategory = "trainer_pilot_imperial",
 	level = 100,
 	chanceHit = 1,
 	damageMin = 645,
@@ -25,22 +22,15 @@ barn_sinkko = Creature:new {
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = PACK,
-	optionsBitmask = AIENABLED + JTLINTERESTING,
+	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_imperial_trainer_space_03.iff"},
+	templates = {"object/mobile/space_greeter_kadaara_imperial_officer.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(barn_sinkko, "barn_sinkko")

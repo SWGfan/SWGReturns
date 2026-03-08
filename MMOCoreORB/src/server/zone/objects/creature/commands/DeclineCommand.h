@@ -38,13 +38,19 @@ public:
 
 		StringIdChatParameter stringId;
 		stringId.setStringId("group", "decline_leader");
-
-		stringId.setTT(creature->getDisplayedName());
+		stringId.setTT(creature->getObjectID());
 
 		inviter->sendSystemMessage(stringId);
 		creature->sendSystemMessage("@group:decline_self");
 
 		return SUCCESS;
+		/*DECLINE DUEL CODE
+				CombatManager* combatManager = server->getCombatManager();
+				if (combatManager == nullptr)
+					return false;
+
+				 uint64 target = packet->parseLong();
+				 combatManager->declineDuel(player, target);*/
 	}
 
 };

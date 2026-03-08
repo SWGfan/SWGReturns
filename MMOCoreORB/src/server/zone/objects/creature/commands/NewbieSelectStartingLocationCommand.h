@@ -65,7 +65,6 @@ public:
 
 		if (ghost != nullptr) {
 			ghost->setCloningFacility(nullptr);
-
 			if (ghost->getBankLocation() != "")
 				ghost->setBankLocation(startingLocation->getZoneName());
 		}

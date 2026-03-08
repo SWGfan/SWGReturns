@@ -1,19 +1,16 @@
 mauler_lord = Creature:new {
-	objectName = "@mob/creature_names:mauler_lord",
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
-	mobType = MOB_NPC,
+	customName = "\\#00ff00<<< Mauler Lord >>> \\#0000ff[lvl 300]",
 	socialGroup = "mauler",
 	faction = "",
-	level = 27,
-	chanceHit = 0.360000,
-	damageMin = 250,
-	damageMax = 260,
-	baseXp = 2822,
-	baseHAM = 6800,
-	baseHAMmax = 8300,
-	armor = 0,
-	resists = {20,40,0,0,0,0,-1,-1,-1},
+	level = 300,
+	chanceHit = 80.00,
+	damageMin = 1800,
+	damageMax = 3800,
+	baseXp = 30000,
+	baseHAM = 300000,
+	baseHAMmax = 500000,
+	armor = 2,
+	resists = {150,150,150,150,150,150,150,150,150},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,31 +18,169 @@ mauler_lord = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE + AGGRESSIVE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	diet = HERBIVORE,
+	scale = 1.5,	
 
 	templates = {"object/mobile/dressed_mauler_lord.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "mauler_tier_1", chance = 10000000}
-			}
+				{group = "boss_rare", chance = 10000000},
+			},
+			lootChance = 1000000
+		},		
+		{
+			groups = {
+				{group = "boss_rare", chance = 10000000},
+			},
+			lootChance = 1000000
+		},	
+		{
+			groups = {
+				{group = "g_named_crystals", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "nge_all", chance = 2500000},
+ 				{group = "weapon_all", chance = 2500000}, 
+                                {group = "armor_all", chance = 5000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "weapon_component_advanced", chance = 2500000},
+				{group = "fire_breathing_spider", chance = 2500000},
+				{group = "geonosian_cubes", chance = 2500000},
+				{group = "krayt_tissue_rare", chance = 2500000}, 
+        
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2500000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 3000000
+		},
+		{
+			groups = {
+				{group = "boss_rare", chance = 10000000},
+			},
+			lootChance = 1000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 4500000},
+				{group = "tiertwo", chance = 2500000},
+				{group = "tierthree", chance = 1500000},
+				{group = "tierdiamond", chance = 1500000},
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 4500000},
+				{group = "tiertwo", chance = 2500000},
+				{group = "tierthree", chance = 1500000},
+				{group = "tierdiamond", chance = 1500000},
+			},
+			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"dark_jedi_weapons_gen3"},
 	reactionStf = "@npc_reaction/fancy",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,bountyhuntermaster),
-	secondaryAttacks = { }
+	attacks = merge(lightsabermaster,forcepowermaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(mauler_lord, "mauler_lord")

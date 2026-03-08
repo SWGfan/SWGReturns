@@ -2,7 +2,6 @@ mawgax_raptor = Creature:new {
 	objectName = "@mob/creature_names:mawgax_raptor",
 	socialGroup = "mawgax",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 30,
 	chanceHit = 0.39,
 	damageMin = 240,
@@ -13,7 +12,7 @@ mawgax_raptor = Creature:new {
 	armor = 0,
 	resists = {120,120,10,-1,10,10,130,-1,-1},
 	meatType = "meat_domesticated",
-	meatAmount = 100,
+	meatAmount = 90,
 	hideType = "hide_leathery",
 	hideAmount = 70,
 	boneType = "bone_avian",
@@ -31,17 +30,11 @@ mawgax_raptor = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/mawgax_hue.iff",
 	scale = 1.2,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"intimidationattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"intimidationattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(mawgax_raptor, "mawgax_raptor")

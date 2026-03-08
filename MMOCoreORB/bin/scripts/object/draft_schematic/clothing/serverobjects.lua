@@ -138,6 +138,17 @@ includeFile("draft_schematic/clothing/clothing_armor_mandalorian_chest_plate.lua
 includeFile("draft_schematic/clothing/clothing_armor_mandalorian_gloves.lua")
 includeFile("draft_schematic/clothing/clothing_armor_mandalorian_helmet.lua")
 includeFile("draft_schematic/clothing/clothing_armor_mandalorian_leggings.lua")
+--Spy Armor - Disabled for now.
+--includeFile("draft_schematic/clothing/clothing_armor_spy_belt.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_bicep_l.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_bicep_r.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_boots.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_bracer_l.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_bracer_r.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_chest_plate.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_gloves.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_helmet.lua")
+--includeFile("draft_schematic/clothing/clothing_armor_spy_leggings.lua")
 includeFile("draft_schematic/clothing/clothing_armor_padded_belt.lua")
 includeFile("draft_schematic/clothing/clothing_armor_padded_bicep_l.lua")
 includeFile("draft_schematic/clothing/clothing_armor_padded_bicep_r.lua")
@@ -550,3 +561,10 @@ includeFile("draft_schematic/clothing/clothing_wke_skirt_s01.lua")
 includeFile("draft_schematic/clothing/clothing_wke_skirt_s02.lua")
 includeFile("draft_schematic/clothing/clothing_wke_skirt_s03.lua")
 includeFile("draft_schematic/clothing/clothing_wke_skirt_s04.lua")
+
+--testing pouch
+--includeFile("draft_schematic/clothing/clothing_padawan_pouch.lua")
+--Jedi Belt
+includeFile("draft_schematic/clothing/clothing_armor_jedi_belt_01.lua")
+includeFile("draft_schematic/clothing/clothing_armor_jedi_belt_02.lua")
+includeFile("draft_schematic/clothing/clothing_armor_jedi_belt_03.lua")

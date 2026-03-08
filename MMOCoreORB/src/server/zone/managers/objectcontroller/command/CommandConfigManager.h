@@ -133,11 +133,11 @@ public:
 	void registerSpecialCommands(CommandList* sCommands);
 
 	bool loadSlashCommandsFile() {
-		info("Loading commands...");
 
+		info("Loading commands...");
 		loadCommandData("datatables/command/command_tables_shared.iff");
 		loadCommandData("datatables/command/command_tables_shared_ground.iff");
-		loadCommandData("datatables/command/command_tables_shared_space.iff");
+		//loadCommandData("datatables/command/command_tables_shared_space.iff"); disabled cause taunt is conflicting
 		bool res = runFile("scripts/commands/commands.lua");
 
 		if (!res)
@@ -146,7 +146,7 @@ public:
 		return res;
 	}
 
-	bool contains(String name) const {
+	bool contains(String name) {
 		return commandFactory.containsCommand(name);
 	}
 

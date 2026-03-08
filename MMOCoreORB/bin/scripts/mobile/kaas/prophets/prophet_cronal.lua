@@ -3,7 +3,6 @@ prophet_cronal = Creature:new {
 	customName ="Cronal (a Prophet of the Dark Side)",
 	socialGroup = "thug",
 	faction = "prophets",
-	mobType = MOB_NPC,
 	level = 126,
 	chanceHit = 4,
 	damageMin = 745,

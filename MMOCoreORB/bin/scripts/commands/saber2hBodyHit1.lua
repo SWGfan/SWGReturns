@@ -42,10 +42,9 @@
 --true = 1, false = 0
 
 Saber2hBodyHit1Command = {
-	name = "saber2hbodyhit1",
-
-	damageMultiplier = 1.5,
-	accuracyBonus = 50,
+        name = "saber2hbodyhit1",
+        
+    damageMultiplier = 1.5,
 	speedMultiplier = 1.5,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
@@ -53,14 +52,14 @@ Saber2hBodyHit1Command = {
 	forceCostMultiplier = 1.25,
 	visMod = 25,
 
-	animation = "combo_3b",
+	animation = "combo_3b", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "saber2hbodyhit1",
-
+	
 	poolsToDamage = HEALTH_ATTRIBUTE,
-
-	weaponType = TWOHANDJEDIWEAPON,
+	
+	weaponType = JEDIWEAPON,
 
 	range = -1
 }

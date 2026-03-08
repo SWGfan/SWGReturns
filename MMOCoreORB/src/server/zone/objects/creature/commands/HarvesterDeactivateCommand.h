@@ -9,49 +9,43 @@
 
 class HarvesterDeactivateCommand : public QueueCommand {
 public:
-	HarvesterDeactivateCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	HarvesterDeactivateCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-		if (!checkStateMask(creature)) {
+
+		if (!checkStateMask(creature))
 			return INVALIDSTATE;
-		}
 
-		if (!checkInvalidLocomotions(creature)) {
+		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
-		}
 
-		auto zoneServer = server->getZoneServer();
+		CreatureObject* player = cast<CreatureObject*>(creature);
 
-		if (zoneServer == nullptr) {
+		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
+
+		if (object == nullptr || !object->isInstallationObject())
 			return GENERALERROR;
-		}
 
-		ManagedReference<SceneObject*> object = zoneServer->getObject(target);
-
-		if (object == nullptr || (!object->isHarvesterObject() && !object->isGeneratorObject())) {
-			return GENERALERROR;
-		}
-
-		if (!object->isInRange(creature, 20.f)) {
-			return TOOFAR;
-		}
-
-		InstallationObject* insO = cast<InstallationObject*>(object.get());
-
-		if (insO == nullptr || !insO->isActive() || !insO->isOnAdminList(creature)) {
-			return GENERALERROR;
-		}
+		InstallationObject* inso = cast<InstallationObject*>( object.get());
 
 		try {
-			Locker clocker(insO, creature);
+			Locker clocker(inso, player);
 
-			insO->setActive(false);
+			if (inso->isOnAdminList(player) && inso->isInRange(player, 20))
+				inso->setOperating(false);
+			else
+				player->sendSystemMessage("You are too far.");
+
 		} catch (Exception& e) {
 		}
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // HARVESTERDEACTIVATECOMMAND_H_
+#endif //HARVESTERDEACTIVATECOMMAND_H_

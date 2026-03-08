@@ -16,67 +16,61 @@ namespace minigames {
 namespace events {
 
 class FishingEvent : public Task {
-	ManagedWeakReference<CreatureObject*> weakPlayer;
+	ManagedWeakReference<CreatureObject*> player;
 	int fishingState;
 
 public:
-	FishingEvent(CreatureObject* player, int state) : Task(7000) {
-		weakPlayer = player;
-		fishingState = state;
+	FishingEvent(CreatureObject* player, int fishingState) : Task(7000) {
+		this->player = player;
+		this->fishingState = fishingState;
 	}
 
 	void run() {
-		ManagedReference<CreatureObject*> player = weakPlayer.get();
+		// FIXME
+		ManagedReference<CreatureObject*> strong = player.get();
 
-		if (player == nullptr) {
+		if (strong == nullptr)
 			return;
-		}
-
-		auto zoneProcessServer = player->getZoneProcessServer();
-
-		if (zoneProcessServer == nullptr) {
-			clearPlayerFishing(player);
-			return;
-		}
-
-		auto fishingManager = zoneProcessServer->getFishingManager();
-
-		if (fishingManager == nullptr) {
-			clearPlayerFishing(player);
-			return;
-		}
 
 		try {
-			Locker lock(player);
+			Locker _locker(strong);
 
-			ManagedReference<FishingManager*> manager = zoneProcessServer->getFishingManager();
+			//player->info("activating command queue action");
 
+			ManagedReference<FishingManager*> manager = strong->getZoneProcessServer()->getFishingManager();
+			//Locker lockerManager(manager);
+			//player->removePendingTask("fishing");
 			if (fishingState != FishingManagerImplementation::NOTFISHING) {
-				manager->continueFishing(player);
-			} else {
-				manager->stopFishingEvent(player);
+				manager->fishingStep(strong);
+
+			} /*else if (marker != nullptr) {
+					// new event
+				manager->createFishingEvent(player, nextAction, zoneServer, marker, fish, boxID, fishingState, mood);
+
+			}*/ else {
+
+				manager->stopFishingEvent(strong);
+
 			}
+
+			//player->info("command queue action activated");
+
+
 		} catch (...) {
+			//player = nullptr;
+
 			throw;
 		}
-	}
 
-	void clearPlayerFishing(CreatureObject* player) {
-		if (player == nullptr) {
-			return;
-		}
-
-		Locker lock(player);
-
-		player->setMoodString("none");
+		//player = nullptr;
 	}
 };
 
-} // namespace events
-} // namespace minigames
-} // namespace managers
-} // namespace zone
-} // namespace server
+}
+}
+}
+}
+}
 
 using namespace server::zone::managers::minigames::events;
 

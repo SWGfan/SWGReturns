@@ -13,24 +13,21 @@ import server.zone.objects.creature.CreatureObject;
 @json
 class GeneticComponent extends Component {
 
-	protected float cleverness;
-	protected float endurance;
-	protected float fierceness;
-	protected float power;
-	protected float intellect;
-	protected float courage;
-	protected float dependability;
-	protected float dexterity;
-	protected float fortitude;
-	protected float hardiness;
-
+	protected int cleverness;
+	protected int endurance;
+	protected int fierceness;
+	protected int power;
+	protected int intelligence;
+	protected int courage;
+	protected int dependency;
+	protected int dexterity;
+	protected int fortitude;
+	protected int hardiness;
 	protected string special1;
 	protected string special2;
 	protected boolean ranged;
-
 	protected int quality;
 	protected int armorRating;
-
 	protected float kinResist;
 	protected float energyResist;
 	protected float blastResist;
@@ -58,25 +55,22 @@ class GeneticComponent extends Component {
 
 	protected float hit;
 	protected float speed;
-
 	protected int minDam;
 	protected int maxDam;
 	protected int specialResists;
 
 	public GeneticComponent() {
 		Logger.setLoggingName("GeneticComponent");
-
-		fortitude = 0.f;
-		hardiness = 0.f;
-		dexterity = 0.f;
-		endurance = 0.f;
-		intellect = 0.f;
-		cleverness = 0.f;
-		dependability = 0.f;
-		courage = 0.f;
-		fierceness = 0.f;
-		power = 0.f;
-
+		cleverness = 0;
+		endurance = 0;
+		fierceness = 0;
+		power = 0;
+		intelligence = 0;
+		courage = 0;
+		dependency = 0;
+		dexterity = 0;
+		fortitude = 0;
+		hardiness = 0;
 		willPower = 0;
 		constitution = 0;
 		stamina = 0;
@@ -88,23 +82,21 @@ class GeneticComponent extends Component {
 		special2 = "none";
 		ranged = false;
 		quality = 7;
-
 		armorRating = 0;
-		kinResist = 0.f;
-		energyResist = 0.f;
-		blastResist = 0.f;
-		coldResist = 0.f;
-		heatResist = 0.f;
-		elecResist = 0.f;
-		acidResist = 0.f;
-		stunResist = 0.f;
-		saberResist = -1.f;
-
+		kinResist = 0;
+		energyResist = 0;
+		blastResist = 0;
+		coldResist = 0;
+		heatResist = 0;
+		elecResist = 0;
+		acidResist = 0;
+		stunResist = 0;
+		saberResist = -1;
 		level = 1;
 		health = 10;
 		action = 10;
 		mind = 10;
-		hit = 0.f;
+		hit = 0;
 		speed = 0;
 		minDam = 1;
 		maxDam = 1;
@@ -112,19 +104,21 @@ class GeneticComponent extends Component {
 	}
 
 	@dirty
-	public native void setSpecialResist(unsigned int type);
+	public native void setSpecialResist(int type);
 
 	@dirty
-	public native boolean isSpecialResist(unsigned int type);
+	public native boolean isSpecialResist(int type);
 
-	public void setStats(int cle, int end, int fie, int pow, int ite, int cou, int dep, int dex, int frt, int har){
+	public void setStats(int cle, int end, int fie, int pow,
+						    int ite, int cou, int dep, int dex,
+						    int frt, int har){
 		cleverness = cle;
 		endurance = end;
 		fierceness = fie;
 		power = pow;
-		intellect = ite;
+		intelligence = ite;
 		courage = cou;
-		dependability = dep;
+		dependency = dep;
 		fortitude = frt;
 		hardiness = har;
 		dexterity = dex;
@@ -151,8 +145,8 @@ class GeneticComponent extends Component {
 	}
 
 	@dirty
-	public int getIntellect() {
-		return intellect;
+	public int getIntelligence() {
+		return intelligence;
 	}
 
 	@dirty
@@ -161,8 +155,8 @@ class GeneticComponent extends Component {
 	}
 
 	@dirty
-	public int getDependability() {
-		return dependability;
+	public int getDependency() {
+		return dependency;
 	}
 
 	@dirty
@@ -338,43 +332,43 @@ class GeneticComponent extends Component {
 		constitution = value;
 	}
 
-	public void setCleverness(float value) {
+	public void setCleverness(int value) {
 		cleverness = value;
 	}
 
-	public void setEndurance(float value) {
+	public void setEndurance(int value) {
 		endurance = value;
 	}
 
-	public void setFierceness(float value) {
+	public void setFierceness(int value) {
 		fierceness = value;
 	}
 
-	public void setPower(float value) {
+	public void setPower(int value) {
 		power = value;
 	}
 
-	public void setIntellect(float value) {
-		intellect = value;
+	public void setIntellect(int value) {
+		intelligence = value;
 	}
 
-	public void setCourage(float value) {
+	public void setCourage(int value) {
 		courage = value;
 	}
 
-	public void setDependability(float value) {
-		dependability = value;
+	public void setDependency(int value) {
+		dependency = value;
 	}
 
-	public void setDexterity(float value) {
+	public void setDexterity(int value) {
 		dexterity = value;
 	}
 
-	public void setFortitude(float value) {
+	public void setFortitude(int value) {
 		fortitude = value;
 	}
 
-	public void setHardiness(float value) {
+	public void setHardiness(int value) {
 		hardiness = value;
 	}
 
@@ -462,5 +456,5 @@ class GeneticComponent extends Component {
 	public native void resetResists(CraftingValues values);
 
 	@local
-	public native float getEffectiveArmor();
+	public native int getEffectiveArmor();
 }

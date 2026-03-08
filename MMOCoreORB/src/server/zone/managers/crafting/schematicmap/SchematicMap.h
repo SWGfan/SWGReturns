@@ -22,9 +22,9 @@
 
 class SchematicMap : public Singleton<SchematicMap>, public Lua {
 
-	VectorMap<uint32, Reference<DraftSchematic* > > schematicCrcMap;
+	VectorMap<uint32, ManagedReference<DraftSchematic* > > schematicCrcMap;
 	VectorMap<String, DraftSchematicGroup* > groupMap;
-	Reference<ZoneServer*> zoneServer;
+	ManagedReference<ZoneServer*> zoneServer;
 	ObjectManager* objectManager;
 
 	VectorMap<uint32, String> iffGroupMap;
@@ -53,7 +53,7 @@ public:
 private:
 
 	void loadSchematicGroups();
-	void loadDraftSchematicFile(String file);
+	void loadDraftSchematicFile();
 	void buildSchematicGroups();
 };
 

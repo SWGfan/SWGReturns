@@ -30,7 +30,7 @@ public:
 		//scno->info("sending z = " + String::valueOf(scno->getPositionZ()), true);
 		insertFloat(scno->getPositionY());
 		insertInt(scno->getClientObjectCRC());  // ObjectCRC
-		insertByte(const_cast<SceneObject*>(scno)->isHyperspacing() ? 0x01 : 0x00);
+		insertByte(0);
 
 		setCompression(true);
 	}

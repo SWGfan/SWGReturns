@@ -8,53 +8,33 @@
 #ifndef TELEPORTACKCALLBACK_H_
 #define TELEPORTACKCALLBACK_H_
 
+
 class TeleportAckCallback : public MessageCallback {
 	uint32 movementCounter;
-	ObjectControllerMessageCallback* objectControllerMain;
 
+	ObjectControllerMessageCallback* objectControllerMain;
 public:
-	TeleportAckCallback(ObjectControllerMessageCallback* objectControllerCallback) : MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()), movementCounter(0), objectControllerMain(objectControllerCallback) {
+	TeleportAckCallback(ObjectControllerMessageCallback* objectControllerCallback) :
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
+		movementCounter(0), objectControllerMain(objectControllerCallback) {
 	}
 
 	void parse(Message* message) {
+		//System::out << message->toStringData() << endl;
 		movementCounter = message->parseInt();
+		//missionObjectID = message->parseLong();
 	}
 
 	void run() {
 		ManagedReference<CreatureObject*> player = client->getPlayer();
 
-		if (player == nullptr) {
+		if (player == nullptr)
 			return;
-		}
 
-		auto ghost = player->getPlayerObject();
+		PlayerObject* ghost = player->getPlayerObject();
 
-		if (ghost == nullptr) {
-			return;
-		}
-
-		ghost->setTeleporting(false);
-
-		if (player->isPilotingShip()) {
-			setHyperspacing(player);
-		}
-	}
-
-	void setHyperspacing(CreatureObject* player) {
-		auto root = player->getRootParent();
-
-		if (root == nullptr || !root->isShipObject()) {
-			return;
-		}
-
-		auto ship = root->asShipObject();
-
-		if (ship == nullptr || !ship->isHyperspacing()) {
-			return;
-		}
-
-		Locker lock(root, player);
-		ship->setHyperspacing(false);
+		if (ghost != nullptr)
+			ghost->setTeleporting(false);
 	}
 };
 

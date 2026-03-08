@@ -42,34 +42,39 @@
 
 
 object_draft_schematic_slicing_slicing_laser_knife = object_draft_schematic_slicing_shared_slicing_laser_knife:new {
-	templateType = DRAFTSCHEMATIC,
 
-	customObjectName = "Precision Laser Knife",
+   templateType = DRAFTSCHEMATIC,
 
-	craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 7,
-	size = 1,
-	factoryCrateType = "object/factory/factory_crate_electronics.iff",
+   customObjectName = "Precision Laser Knife",
 
-	xpType = "crafting_general",
-	xp = 32,
+   craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
+   complexity = 7, 
+   size = 1, 
+   factoryCrateSize = 1000,
 
-	assemblySkill = "general_assembly",
-	experimentingSkill = "general_experimentation",
-	customizationSkill = "spice_customization",
+   xpType = "crafting_general", 
+   xp = 32, 
 
-	customizationOptions = {},
-	customizationStringNames = {},
-	customizationDefaults = {},
+   assemblySkill = "general_assembly", 
+   experimentingSkill = "general_experimentation", 
+   customizationSkill = "spice_customization", 
 
-	ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n"},
-	ingredientTitleNames = {"assembly_enclosure", "controller", "laser_assembly"},
-	ingredientSlotType = {0, 0, 0},
-	resourceTypes = {"metal", "metal", "metal"},
-	resourceQuantities = {7, 7, 2},
-	contribution = {100, 100, 100},
+   customizationOptions = {},
+   customizationStringNames = {},
+   customizationDefaults = {},
 
-	targetTemplate = "object/tangible/slicing/slicing_laser_knife.iff",
+   ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n"},
+   ingredientTitleNames = {"assembly_enclosure", "controller", "laser_assembly"},
+   ingredientSlotType = {0, 0, 0},
+   resourceTypes = {"metal", "metal", "metal"},
+   resourceQuantities = {7, 7, 2},
+   contribution = {100, 100, 100},
 
-	additionalTemplates = { }
-} ObjectTemplates:addTemplate(object_draft_schematic_slicing_slicing_laser_knife, "object/draft_schematic/slicing/slicing_laser_knife.iff")
+
+   targetTemplate = "object/tangible/slicing/slicing_laser_knife.iff",
+
+   additionalTemplates = {
+             }
+
+}
+ObjectTemplates:addTemplate(object_draft_schematic_slicing_slicing_laser_knife, "object/draft_schematic/slicing/slicing_laser_knife.iff")

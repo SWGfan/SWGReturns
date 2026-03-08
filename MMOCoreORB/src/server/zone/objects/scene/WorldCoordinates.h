@@ -28,17 +28,14 @@ using namespace server::zone::objects::scene;
 class WorldCoordinates : public Object {
 protected:
 	Vector3 point;
+
 	ManagedReference<CellObject*> cell;
 
 public:
-	// Constructors
 	WorldCoordinates();
 	WorldCoordinates(const WorldCoordinates& c);
 	WorldCoordinates(SceneObject* obj);
 	WorldCoordinates(const Vector3& position, CellObject* cell);
-
-	// Destructor
-	~WorldCoordinates();
 
 #ifdef CXX11_COMPILER
 	WorldCoordinates(WorldCoordinates&& c) : Object(), point(c.point), cell(std::move(c.cell)) {
@@ -121,26 +118,10 @@ public:
 	}
 
 	inline String toString() const {
-		StringBuffer buf;
-
-		buf <<"WorldCoordinates(x:" << point.getX()
-			<< ", y:" << point.getY()
-			<< ", z:" << point.getZ()
-			<< ", cell: ";
-
-		if (cell == nullptr) {
-			buf << "nullptr";
-		} else {
-			buf << cell->getCellNumber();
-		}
-
-		buf << ")";
-
-		return buf.toString();
-	}
-
-	String toStringData() const {
-		return toString();
+		StringBuffer sb;
+		sb << point.toString();
+		sb << " in " << String::valueOf(cell != nullptr ? cell->getCellNumber() : 0) << ".";
+		return sb.toString();
 	}
 };
 

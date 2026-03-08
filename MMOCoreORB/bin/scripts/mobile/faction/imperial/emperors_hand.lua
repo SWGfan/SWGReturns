@@ -2,7 +2,6 @@ emperors_hand = Creature:new {
 	objectName = "@mob/creature_names:emperors_hand",
 	socialGroup = "imperial",
 	faction = "imperial",
-	mobType = MOB_NPC,
 	level = 252,
 	chanceHit = 23.5,
 	damageMin = 1395,
@@ -34,21 +33,21 @@ emperors_hand = Creature:new {
 	lootGroups = {
      	{
 			groups = {
-				{group = "imperial_marshall_tier_5", chance = 10000000}
+				{group = "holocron_dark", chance = 850000},
+				{group = "holocron_light", chance = 850000},
+				{group = "power_crystals", chance = 1600000},
+				{group = "rifles", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "melee_weapons", chance = 1500000},
+				{group = "armor_attachments", chance = 1100000},
+				{group = "clothing_attachments", chance = 1100000},
+				{group = "carbines", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen3",
-	secondaryWeapon = "dark_jedi_weapons_ranged",
+	weapons = {"dark_jedi_weapons_gen3"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(lightsabermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	attacks = merge(lightsabermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(emperors_hand, "emperors_hand")

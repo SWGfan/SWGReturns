@@ -42,35 +42,39 @@
 
 
 object_draft_schematic_slicing_slicing_flow_analyzer = object_draft_schematic_slicing_shared_slicing_flow_analyzer:new {
-	templateType = DRAFTSCHEMATIC,
 
-	customObjectName = "Flow Analyzer Node",
+   templateType = DRAFTSCHEMATIC,
 
-	craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 7,
-	size = 1,
-	factoryCrateType = "object/factory/factory_crate_electronics.iff",
+   customObjectName = "Flow Analyzer Node",
 
-	xpType = "crafting_general",
-	xp = 80,
+   craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
+   complexity = 7, 
+   size = 1, 
+   factoryCrateSize = 1000,
 
-	assemblySkill = "general_assembly",
-	experimentingSkill = "general_experimentation",
-	customizationSkill = "spice_customization",
+   xpType = "crafting_general", 
+   xp = 80, 
 
-	customizationOptions = {},
-	customizationStringNames = {},
-	customizationDefaults = {},
+   assemblySkill = "general_assembly", 
+   experimentingSkill = "general_experimentation", 
+   customizationSkill = "spice_customization", 
 
-	ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n"},
-	ingredientTitleNames = {"assembly_enclosure", "controller", "scanner_assembly"},
-	ingredientSlotType = {0, 0, 0},
-	resourceTypes = {"metal", "copper", "metal"},
-	resourceQuantities = {10, 20, 10},
-	contribution = {100, 100, 100},
+   customizationOptions = {},
+   customizationStringNames = {},
+   customizationDefaults = {},
+
+   ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n"},
+   ingredientTitleNames = {"assembly_enclosure", "controller", "scanner_assembly"},
+   ingredientSlotType = {0, 0, 0},
+   resourceTypes = {"metal", "copper", "metal"},
+   resourceQuantities = {10, 20, 10},
+   contribution = {100, 100, 100},
 
 
-	targetTemplate = "object/tangible/slicing/slicing_flow_analyzer.iff",
+   targetTemplate = "object/tangible/slicing/slicing_flow_analyzer.iff",
 
-	additionalTemplates = { }
-} ObjectTemplates:addTemplate(object_draft_schematic_slicing_slicing_flow_analyzer, "object/draft_schematic/slicing/slicing_flow_analyzer.iff")
+   additionalTemplates = {
+             }
+
+}
+ObjectTemplates:addTemplate(object_draft_schematic_slicing_slicing_flow_analyzer, "object/draft_schematic/slicing/slicing_flow_analyzer.iff")

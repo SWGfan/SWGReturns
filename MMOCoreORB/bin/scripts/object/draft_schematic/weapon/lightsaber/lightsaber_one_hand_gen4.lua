@@ -50,8 +50,7 @@ object_draft_schematic_weapon_lightsaber_lightsaber_one_hand_gen4 = object_draft
    craftingToolTab = 2048, -- (See DraftSchematicObjectTemplate.h)
    complexity = 19, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
-   
+
    xpType = "jedi_general", 
    xp = 0, 
 
@@ -88,6 +87,7 @@ object_draft_schematic_weapon_lightsaber_lightsaber_one_hand_gen4 = object_draft
               "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s11_gen4.iff",
               "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s12_gen4.iff",
               "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s13_gen4.iff",
+			  "object/weapon/melee/sword/crafted_saber/sword_lightsaber_one_handed_gen4_must.iff",
              }
 
 }

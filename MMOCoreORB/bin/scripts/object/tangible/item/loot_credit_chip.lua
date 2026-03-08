@@ -42,7 +42,6 @@
 
 
 object_tangible_item_loot_credit_chip = object_tangible_item_shared_loot_credit_chip:new {
-	gameObjectType = 8255,
 
 }
 

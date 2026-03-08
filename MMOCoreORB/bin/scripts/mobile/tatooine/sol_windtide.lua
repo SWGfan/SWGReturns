@@ -3,7 +3,6 @@ sol_windtide = Creature:new {
 	customName = "Sol Windtide",
 	socialGroup = "townsperson",
 	faction = "townsperson",
-	mobType = MOB_NPC,
 	level = 21,
 	chanceHit = 0.330000,
 	damageMin = 190,
@@ -20,7 +19,7 @@ sol_windtide = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = NONE,
@@ -28,16 +27,8 @@ sol_windtide = Creature:new {
 
 	templates = {"object/mobile/dressed_noble_old_human_male_01.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	weapons = {},
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(sol_windtide, "sol_windtide")

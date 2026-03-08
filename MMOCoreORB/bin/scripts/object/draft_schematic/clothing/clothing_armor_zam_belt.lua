@@ -50,7 +50,6 @@ object_draft_schematic_clothing_clothing_armor_zam_belt = object_draft_schematic
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
    complexity = 20, 
    size = 4, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_armor", 
    xp = 40, 
@@ -59,9 +58,9 @@ object_draft_schematic_clothing_clothing_armor_zam_belt = object_draft_schematic
    experimentingSkill = "armor_experimentation", 
    customizationSkill = "armor_customization", 
 
-   customizationOptions = {1},
-   customizationStringNames = {"/private/index_color_2"},
-   customizationDefaults = {82},
+   customizationOptions = {},
+   customizationStringNames = {},
+   customizationDefaults = {},
 
    ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
    ingredientTitleNames = {"auxilary_coverage", "body", "liner"},

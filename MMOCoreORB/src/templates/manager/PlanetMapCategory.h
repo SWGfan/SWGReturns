@@ -14,7 +14,8 @@ class PlanetMapCategory : public Object {
 	String name;
 	int nameCRC;
 	int index;
-
+	bool category;
+	bool subCategory;
 	bool activatable;
 	String faction;
 	bool factionVisibleOnly;
@@ -23,7 +24,8 @@ public:
 	PlanetMapCategory() {
 		nameCRC = 0;
 		index = 0;
-
+		category = false;
+		subCategory = false;
 		activatable = false;
 		factionVisibleOnly = false;
 	}
@@ -32,7 +34,8 @@ public:
 		name = pmc.name;
 		nameCRC = pmc.nameCRC;
 		index =  pmc.index;
-
+		category = pmc.category;
+		subCategory = pmc.subCategory;
 		activatable = pmc.activatable;
 		faction = pmc.faction;
 		factionVisibleOnly = pmc.factionVisibleOnly;
@@ -45,7 +48,8 @@ public:
 		name = pmc.name;
 		nameCRC = pmc.nameCRC;
 		index =  pmc.index;
-
+		category = pmc.category;
+		subCategory = pmc.subCategory;
 		activatable = pmc.activatable;
 		faction = pmc.faction;
 		factionVisibleOnly = pmc.factionVisibleOnly;
@@ -61,24 +65,18 @@ public:
 		return name.compareTo(pmc.name);
 	}
 
-	void parseFromDataTableRow(const DataTableRow* row) {
+	void parseFromDataTableRow(DataTableRow* row) {
 		try {
-			bool primaryCat = false;
-			row->getValue(2, primaryCat);
-
-			if (!primaryCat)
-				return;
-
 			row->getValue(0, name);
 			nameCRC = name.hashCode();
 			row->getValue(1, index);
-			// row->getValue(2, category);
-			// row->getValue(3, subCategory);
+			row->getValue(2, category);
+			row->getValue(3, subCategory);
 			row->getValue(4, activatable);
 			row->getValue(5, faction);
 			row->getValue(6, factionVisibleOnly);
 
-		} catch (const Exception& ex) {
+		} catch (Exception& ex) {
 			System::out << "Error parsing PlanetMapCategory: " + ex.getMessage() << endl;
 		}
 
@@ -94,6 +92,14 @@ public:
 
 	inline int getIndex() const {
 		return index;
+	}
+
+	inline bool isCategory() const {
+		return category;
+	}
+
+	inline bool isSubCategory() const {
+		return subCategory;
 	}
 
 	inline bool canBeActive() const {

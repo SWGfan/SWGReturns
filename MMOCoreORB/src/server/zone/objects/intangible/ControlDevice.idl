@@ -38,7 +38,7 @@ class ControlDevice extends IntangibleObject {
 	public void updateToDatabaseAllObjects(boolean startTask) {
 		TangibleObject obj = controlledObject;
 
-		if (obj) {
+		if (obj != null) {
 			obj.updateToDatabaseWithoutChildren();
 
 			super.updateToDatabaseAllObjects(startTask);
@@ -55,7 +55,7 @@ class ControlDevice extends IntangibleObject {
 		Logger.error("called generateObject on an abstract method");
 	}
 
-	public abstract void callObject(CreatureObject player, boolean initialCall = false) {
+	public abstract void callObject(CreatureObject player) {
 		Logger.error("called callObject on an abstract method");
 	}
 

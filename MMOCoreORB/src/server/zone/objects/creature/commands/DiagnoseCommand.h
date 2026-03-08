@@ -118,8 +118,6 @@ public:
 		ghost->addSuiBox(sui);
 		creature->sendMessage(sui->generateMessage());
 
-		creature->notifyObservers(ObserverEventType::ABILITYUSED, creatureTarget, STRING_HASHCODE("diagnose"));
-
 		return SUCCESS;
 	}
 

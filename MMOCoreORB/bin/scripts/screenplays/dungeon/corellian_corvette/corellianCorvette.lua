@@ -418,7 +418,8 @@ function CorellianCorvette:setupBrokenDroid(pDroid)
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "repairDroidDestinationReached", pDroid)
 	SceneObject(pDroid):setContainerComponent("corvetteBrokenDroidContainerComponent")
 
-	AiAgent(pDroid):setMovementState(AI_PATROLLING)
+	AiAgent(pDroid):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
+	AiAgent(pDroid):setFollowState(4) -- Patrolling
 
 	writeData(corvetteID .. ":electricTrapEnabled", 1)
 end
@@ -540,7 +541,8 @@ function CorellianCorvette:setupPrisoner(pPrisoner)
 	end
 
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "prisonerDestinationReached", pPrisoner)
-	AiAgent(pPrisoner):setMovementState(AI_PATROLLING)
+	AiAgent(pPrisoner):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
+	AiAgent(pPrisoner):setFollowState(4) -- Patrolling
 
 	if (SceneObject(pPrisoner):getObjectName() == "prisoner") then
 		CreatureObject(pPrisoner):setOptionBit(CONVERSABLE)
@@ -880,16 +882,8 @@ function CorellianCorvette:transportPlayer(pPlayer)
 	local corvetteFaction = self:getBuildingFaction(pCorvette)
 	local factionCRC = self:getFactionCRC(corvetteFaction)
 
-	if (corvetteFaction ~= "neutral") then
-		local covertOvert = useCovertOvert()
-
-		if (covertOvert) then
-			if (not ThemeParkLogic:isInFaction(factionCRC, pPlayer) or not CreatureObject(pPlayer):isOvert() or TangibleObject(pPlayer):isChangingFactionStatus()) then
-				return
-			end
-		elseif (not ThemeParkLogic:isInFaction(factionCRC, pPlayer) or CreatureObject(pPlayer):isOnLeave() or TangibleObject(pPlayer):isChangingFactionStatus()) then
-			return
-		end
+	if (corvetteFaction ~= "neutral" and (not ThemeParkLogic:isInFaction(factionCRC, pPlayer) or ThemeParkLogic:isOnLeave(pPlayer) or TangibleObject(pPlayer):isChangingFactionStatus())) then
+		return
 	end
 
 	local pCell = BuildingObject(pCorvette):getCell(1)
@@ -899,11 +893,6 @@ function CorellianCorvette:transportPlayer(pPlayer)
 	end
 
 	local cellID = SceneObject(pCell):getObjectID()
-	local player = CreatureObject(pPlayer)
-
-	if (player:isRidingMount()) then
-		player:dismount()
-	end
 	SceneObject(pPlayer):switchZone("dungeon1", -42.9, 0, 0.1, cellID)
 end
 
@@ -1054,12 +1043,7 @@ function CorellianCorvette:giveBadgeToGroup(pCorvette)
 
 					if (pGhost ~= nil and not PlayerObject(pGhost):hasBadge(badgeNum)) then
 						PlayerObject(pGhost):awardBadge(badgeNum)
-					
-						-- Hologrind Force award: Corvette completion
-						if HologrindJediManager and HologrindJediManager.addForceForDungeon then
-							HologrindJediManager:addForceForDungeon(pObject)
-						end
-end
+					end
 				end
 			end
 		end

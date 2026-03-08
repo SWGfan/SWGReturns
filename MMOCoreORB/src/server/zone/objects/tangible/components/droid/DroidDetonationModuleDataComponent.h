@@ -19,7 +19,7 @@ class DroidDetonationModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
 	bool initialized;
-	float rating;
+	int rating;
 	int moduleCount;
 	bool started;
 	bool mseDroid;
@@ -29,7 +29,7 @@ public:
 
 	~DroidDetonationModuleDataComponent();
 
-	String getModuleName() const;
+	String getModuleName();
 
 	void initializeTransientMembers();
 
@@ -43,7 +43,7 @@ public:
 
 	void deactivate();
 
-	String toString() const;
+	String toString();
 
 	void onCall();
 
@@ -73,10 +73,6 @@ public:
 	void setSpecies(int i);
 
 	void initialize(DroidObject* droid);
-
-	virtual bool isDetonationModule() {
-		return true;
-	}
 };
 
 } // droid

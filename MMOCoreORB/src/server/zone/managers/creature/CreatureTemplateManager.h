@@ -37,13 +37,13 @@ protected:
 	HashTable<String, Reference<PatrolPathTemplate*> > patrolPaths;
 	HashTable<String, Reference<MobileOutfitGroup*> > outfits;
 	static AtomicInteger loadedMobileTemplates;
-	float globalAttackSpeedOverride;
 
 public:
 	static int DEBUG_MODE;
 	enum LUA_ERROR_CODE { NO_ERROR = 0, GENERAL_ERROR, DUPLICATE_MOBILE, INCORRECT_ARGUMENTS, DUPLICATE_CONVO };
 	static int ERROR_CODE;
 
+public:
 	CreatureTemplateManager();
 	virtual ~CreatureTemplateManager();
 
@@ -136,10 +136,6 @@ public:
 
 	const Vector<String>& getDressGroup(const String& ascii) {
 		return dressMap.get(ascii.hashCode());
-	}
-
-	float getGlobalAttackSpeedOverride() const {
-		return globalAttackSpeedOverride;
 	}
 
 };

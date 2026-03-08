@@ -7,7 +7,6 @@
 #include "server/zone/managers/mission/spawnmaps/events/DespawnMissionNpcTask.h"
 #include "server/zone/managers/name/NameManager.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
-#include "server/zone/managers/collision/CollisionManager.h"
 
 NpcSpawnPoint::NpcSpawnPoint() {
 	inUseByNumberOfMissions = 0;
@@ -31,12 +30,6 @@ NpcSpawnPoint::NpcSpawnPoint(CreatureObject* player, const String& spawnTypes) {
 	}
 	if (st.contains("bhtarget")) {
 		spawnType |= BHTARGETSPAWN;
-	}
-	if (st.contains("lambda")) {
-		spawnType |= LAMBDASHUTTLESPAWN;
-	}
-	if (st.contains("containmentteam")) {
-		spawnType |= CONTAINMENTTEAMSPAWN;
 	}
 	if (st.contains("nospawn")) {
 		//No spawn overrides all other spawn types.
@@ -82,7 +75,7 @@ bool NpcSpawnPoint::toBinaryStream(ObjectOutputStream* stream) {
 	return result & npc.toBinaryStream(stream);
 }
 
-void NpcSpawnPoint::allocateNpc(Zone* zone, CreatureManager* creatureManager) {
+void NpcSpawnPoint::allocateNpc(TerrainManager* terrainManager, CreatureManager* creatureManager) {
 	inUseByNumberOfMissions++;
 
 	if (inUseByNumberOfMissions > 0) {
@@ -93,11 +86,8 @@ void NpcSpawnPoint::allocateNpc(Zone* zone, CreatureManager* creatureManager) {
 		if (!npcSpawned) {
 			//Spawn the NPC.
 			String deliverNpc = "deliver_npc";
-
-			float z = CollisionManager::getWorldFloorCollision(position.getX(), position.getY(), zone, false);
-
+			float z = terrainManager->getHeight(position.getX(), position.getY());
 			npc = cast<AiAgent*>(creatureManager->spawnCreature(deliverNpc.hashCode(), 0, position.getX(), z, position.getY(), 0));
-
 			if (npc != nullptr) {
 				npc->updateDirection(direction.getW(), direction.getX(), direction.getY(), direction.getZ());
 				//Set the name of the NPC.

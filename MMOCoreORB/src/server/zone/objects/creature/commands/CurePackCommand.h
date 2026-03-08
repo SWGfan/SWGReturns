@@ -8,6 +8,7 @@
 #ifndef CUREPACKCOMMAND_H_
 #define CUREPACKCOMMAND_H_
 
+#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/tangible/pharmaceutical/CurePack.h"
 #include "server/zone/ZoneServer.h"
@@ -38,17 +39,11 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	uint64 parseObjectID(const String& objectIDString) const {
-		if (objectIDString.isEmpty())
-			return 0;
-
-		// Ensure that we are receiving a proper objectID
-		for (int i = 0; i < objectIDString.length(); i++) {
-			if (!Character::isDigit(objectIDString.charAt(i)))
-				return 0;
-		}
-
-		return Long::valueOf(objectIDString);
+	void parseModifier(const String& modifier, uint64& objectId) const {
+		if (!modifier.isEmpty())
+			objectId = Long::valueOf(modifier);
+		else
+			objectId = 0;
 	}
 
 	CurePack* findCurePack(CreatureObject* creature) const {
@@ -184,10 +179,6 @@ public:
 			return false;
 		}
 
-		if (!playerEntryCheck(creature, creatureTarget)) {
-			return false;
-		}
-
 		if (creature != creatureTarget && checkForArenaDuel(creatureTarget))
 			return false;
 
@@ -208,7 +199,7 @@ public:
 
 		// TODO: Convert this to a CombatManager::getAreaTargets() call
 		try {
-			SortedVector<TreeEntry*> closeObjects;
+			SortedVector<QuadTreeEntry*> closeObjects;
 			CloseObjectsVector* vec = (CloseObjectsVector*) areaCenter->getCloseObjects();
 			vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
@@ -223,6 +214,30 @@ public:
 
 				if (areaCenter->getWorldPosition().distanceTo(object->getWorldPosition()) - object->getTemplateRadius() > range)
 					continue;
+
+				if (creature->isPlayerCreature() && object->getParentID() != 0 && creature->getParentID() != object->getParentID()) {
+					Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
+
+					if (targetCell != nullptr) {
+						if (object->isPlayerCreature()) {
+							auto perms = targetCell->getContainerPermissions();
+
+							if (!perms->hasInheritPermissionsFromParent()) {
+								if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN))
+									continue;
+							}
+						}
+
+						ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+						if (parentSceneObject != nullptr) {
+							BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+							if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature))
+								continue;
+						}
+					}
+				}
 
 				CreatureObject* creatureTarget = cast<CreatureObject*>( object);
 
@@ -347,10 +362,6 @@ public:
 			return false;
 		}
 
-		if (!playerEntryCheck(creature, creatureTarget)) {
-			return false;
-		}
-
 		return true;
 	}
 
@@ -377,7 +388,7 @@ public:
 
 		uint64 objectId = 0;
 
-		objectId = parseObjectID(arguments.toString());
+		parseModifier(arguments.toString(), objectId);
 
 		ManagedReference<CurePack*> curePack;
 
@@ -393,6 +404,34 @@ public:
 
 		if(!checkDistance(creature, targetCreature, range))
 			return TOOFAR;
+
+		if (creature->isPlayerCreature() && targetCreature->getParentID() != 0 && creature->getParentID() != targetCreature->getParentID()) {
+			Reference<CellObject*> targetCell = targetCreature->getParent().get().castTo<CellObject*>();
+
+			if (targetCell != nullptr) {
+				if (!targetCreature->isPlayerCreature()) {
+					auto perms = targetCell->getContainerPermissions();
+
+					if (perms->hasInheritPermissionsFromParent()) {
+						if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
+							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+							return GENERALERROR;
+						}
+					}
+				}
+
+				ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+				if (parentSceneObject != nullptr) {
+					BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+					if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
+						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+						return GENERALERROR;
+					}
+				}
+			}
+		}
 
 		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 

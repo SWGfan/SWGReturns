@@ -44,33 +44,21 @@
 Melee2hSpinAttack2Command = {
         name = "melee2hspinattack2",
 	damageMultiplier = 3.0,
-	speedMultiplier = 1.0,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
+	speedMultiplier = 2.5,
+	healthCostMultiplier = 1.5,
+	actionCostMultiplier = 2.0,
+	mindCostMultiplier = 1.5,
         accuracyBonus = 10,
 
 	areaAction = true,
-	areaRange = 32,
-	
-	stateEffects = {
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
-		{ "jedi_state_defense", "resistance_states" },
-		75, 
-		0, 
-		25 
-	  )
-	},
+	areaRange = 16,
 
 	animation = "combo_4b", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "spinslam",
 	
-	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
+	weaponType = TWOHANDMELEEWEAPON,
 
 	range = -1
 }

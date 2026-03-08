@@ -26,12 +26,15 @@ public:
 	}
 
 	void run() {
-		if (creature == nullptr)
-			return;
-
 		Locker locker(creature);
 
 		creature->respawn(zone, level);
+
+		//creature->printReferenceHolders();
+
+		/*PatrolPoint* homeLocation = creature->getHomeLocation();
+
+		if (homeLocation->getPosit)*/
 	}
 };
 

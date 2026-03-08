@@ -2,7 +2,6 @@ imperial_observer = Creature:new {
 	objectName = "@mob/creature_names:geonosian_imperial_observer",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 53,
@@ -38,25 +37,44 @@ imperial_observer = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "clothing_attachments", chance = 350000},
-				{group = "armor_attachments", chance = 350000},
-				{group = "geonosian_hard", chance = 900000},
-				{group = "geonosian_common", chance = 4200000},
-				{group = "geonosian_relic", chance = 4200000}
-			}
-		}
+				{group = "clothing_attachments", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "nge_all", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "armor_attachments", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "geonosian_hard", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "geonosian_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "geonosian_relic", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "imperial_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"imperial_weapons_heavy"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,riflemanmaster,carbineermaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster,riflemanmaster,carbineermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(imperial_observer, "imperial_observer")

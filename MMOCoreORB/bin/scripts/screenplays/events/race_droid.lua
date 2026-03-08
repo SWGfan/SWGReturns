@@ -239,7 +239,7 @@ function raceDroidEventPerk:createNextRacePoint(pPlayer, pNpc)
 	writeData(areaID .. ":raceOwnerID", playerID)
 	writeData(playerID .. ":eventPerkRace:nextPointAreaID", areaID)
 
-	local waypointID = PlayerObject(pGhost):addWaypoint(SceneObject(pPlayer):getZoneName(), "@event_perk:racing_waypoint_name", "@theme_park/racing/racing:waypoint_desc_1", nextPoint[1], 0, nextPoint[2], WAYPOINT_BLUE, true, true, WAYPOINTRACETRACK, 0)
+	local waypointID = PlayerObject(pGhost):addWaypoint(SceneObject(pPlayer):getZoneName(), "@event_perk:racing_waypoint_name", "@theme_park/racing/racing:waypoint_desc_1", nextPoint[1],nextPoint[2], WAYPOINTBLUE, true, true, WAYPOINTRACETRACK, 0)
 	writeData(playerID .. ":eventPerkRace:nextPointWaypointID", waypointID)
 
 	if (nextPointNum <= maxPoints) then
@@ -322,7 +322,7 @@ function raceDroidEventPerk:updateRecords(pNpc, pPlayer, timeDelta)
 		CreatureObject(pPlayer):sendSystemMessage("@theme_park/racing/racing:beat_the_record")
 		SceneObject(pPlayer):showFlyText("theme_park/racing/racing", "beat_record_fly", 173, 255, 47)
 		CreatureObject(pPlayer):playMusicMessage("sound/music_combat_bfield_vict.snd")
-		playClientEffectLoc(pPlayer, "clienteffect/droid_effect_confetti.cef", SceneObject(pPlayer):getZoneName(), SceneObject(pNpc):getWorldPositionX(), SceneObject(pNpc):getWorldPositionZ(), SceneObject(pNpc):getWorldPositionY(), 0)
+		playClientEffectLoc(SceneObject(pPlayer):getObjectID(), "clienteffect/droid_effect_confetti.cef", SceneObject(pPlayer):getZoneName(), SceneObject(pNpc):getWorldPositionX(), SceneObject(pNpc):getWorldPositionZ(), SceneObject(pNpc):getWorldPositionY(), 0)
 	elseif (timeDelta > topRecord) then
 		if (topRecordName == playerName) then
 			CreatureObject(pPlayer):sendSystemMessage("@theme_park/racing/racing:still_hold_record")

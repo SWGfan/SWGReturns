@@ -2,16 +2,15 @@ mauler = Creature:new {
 	objectName = "@mob/creature_names:mauler",
 	socialGroup = "mauler",
 	faction = "",
-	mobType = MOB_NPC,
-	level = 16,
-	chanceHit = 0.310000,
-	damageMin = 160,
-	damageMax = 170,
-	baseXp = 1102,
-	baseHAM = 3500,
-	baseHAMmax = 4300,
+	level = 300,
+	chanceHit = 15.00,
+	damageMin = 1400,
+	damageMax = 1800,
+	baseXp = 25000,
+	baseHAM = 95000,
+	baseHAMmax = 125000,
 	armor = 0,
-	resists = {10,0,15,-1,-1,-1,-1,-1,-1},
+	resists = {115,115,115,115,115,115,115,115,115},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -19,7 +18,7 @@ mauler = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE + AGGRESSIVE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -29,21 +28,35 @@ mauler = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "mauler_tier_1", chance = 10000000}
-			}
+				{group = "trash_common", chance = 10000000},
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "mauler_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "trash_rare", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 1500000},
+				{group = "tiertwo", chance = 3500000},
+				{group = "tierthree", chance = 2500000},
+				{group = "tierdiamond", chance = 2500000},
+			},
+			lootChance = 3000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_heavy"},
 	reactionStf = "@npc_reaction/fancy",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,carbineermaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster,carbineermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(mauler, "mauler")

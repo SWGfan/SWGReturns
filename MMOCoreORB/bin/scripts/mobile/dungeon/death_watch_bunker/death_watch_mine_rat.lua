@@ -2,7 +2,6 @@ death_watch_mine_rat = Creature:new {
 	objectName = "@mob/creature_names:death_watch_quenker",
 	socialGroup = "death_watch",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 102,
 	chanceHit = 1,
 	damageMin = 645,
@@ -27,18 +26,50 @@ death_watch_mine_rat = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/womp_rat.iff"},
-	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	lootGroups = {
+		{
+			groups = {
+				{group = "wearables_uncommon", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "wearables_common", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "jetpack_base", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "death_watch_bunker_commoners", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "black_suns", chance = 10000000}
+			},
+			lootChance = 100000
+		},
+	},
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"intimidationattack",""}, {"knockdownattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"intimidationattack",""},
+		{"knockdownattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(death_watch_mine_rat, "death_watch_mine_rat")

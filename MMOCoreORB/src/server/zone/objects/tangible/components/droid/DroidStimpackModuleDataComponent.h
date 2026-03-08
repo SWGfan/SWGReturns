@@ -20,7 +20,7 @@ class DroidStimpackModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
 	int capacity;
-	float speed;
+	int speed;
 	int loaded;
 public:
 	int rate;
@@ -29,7 +29,7 @@ public:
 
 	~DroidStimpackModuleDataComponent();
 
-	String getModuleName() const;
+	String getModuleName();
 
 	void initializeTransientMembers();
 
@@ -37,7 +37,7 @@ public:
 
 	int getBatteryDrain();
 
-	String toString() const;
+	String toString();
 
 	void onCall();
 

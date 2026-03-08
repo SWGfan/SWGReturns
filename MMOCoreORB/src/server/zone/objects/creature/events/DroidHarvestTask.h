@@ -18,19 +18,18 @@ namespace creature {
 namespace events {
 
 class DroidHarvestTask : public Task {
+
 	Reference<DroidHarvestModuleDataComponent*> module;
-	ManagedWeakReference<CreatureObject*> creature;
 
 public:
-	DroidHarvestTask(DroidHarvestModuleDataComponent* module, CreatureObject* creo) : Task() {
+	DroidHarvestTask(DroidHarvestModuleDataComponent* module) : Task() {
 		this->module = module;
-		creature = creo;
 	}
 
 	void run() {
-		ManagedReference<CreatureObject*> tarCreo = creature.get();
-
-		if (module == nullptr || tarCreo == nullptr) {
+		// ReVamp: This should always run while the droid is active. auto harvest should just auto add targets to the module.
+		// droid command should just add a single target id, and this re-scheduling task should just pick it up.
+		if( module == nullptr){
 			return;
 		}
 
@@ -41,98 +40,195 @@ public:
 		}
 
 		Locker droidLock(droid);
+		droid->removePendingTask( "droid_harvest" );
 
 		ManagedReference<CreatureObject*> owner = droid->getLinkedCreature().get();
-
 		if (owner == nullptr) {
 			return;
 		}
+		// Check if droid is spawned
+		if( droid->getLocalZone() == nullptr ){  // Not outdoors
 
-		ManagedReference<Creature*> cr = cast<Creature*>(tarCreo->asTangibleObject());
-
-		if (cr == nullptr) {
+			ManagedReference<SceneObject*> parent = droid->getParent().get();
+			if( parent == nullptr || !parent->isCellObject() ){ // Not indoors either
+				droid->removePendingTask("droid_harvest");
+				return;
+			}
+		}
+		// Droid must have power move to module itself.
+		if( !droid->hasPower() ){
+			droid->showFlyText("npc_reaction/flytext","low_power", 204, 0, 0);  // "*Low Power*"
+			droid->removePendingTask("droid_harvest");
 			return;
 		}
-
-		// Droid should be in range now.
-		int harvestInterest = module->getHarvestInterest();
-		int bonus = module->getHarvestPower();
-
-		// we have all the info we need form the droid for now.
-		Locker tpLock(tarCreo, droid);
-
-		Vector<int> types;
-		int type = 0;
-
-		if (harvestInterest == DroidHarvestModuleDataComponent::INTEREST_BONE) {
-			type = 236;
+		if (droid->isDead()) {
+			droid->removePendingTask("droid_harvest");
+			return;
 		}
+		// Check droid states, droids cant harvest while in combat
 
-		if (harvestInterest == DroidHarvestModuleDataComponent::INTEREST_HIDE) {
-			type = 235;
-		}
+		// droid isnt in combat and has power. it can do a harvest if there are available targets
+		if (module->hasMoreTargets()) {
+			uint64 droidTarget = module->getNextHarvestTarget();
 
-		if (harvestInterest == DroidHarvestModuleDataComponent::INTEREST_MEAT) {
-			type = 234;
-		}
+			if(droid->isIncapacitated()){
+				reschedule(1000); // check again in a second
+				return;
+			}
+			if (droid->isInCombat()) {
+				reschedule(1000);
+				return;
+			}
 
-		if ((harvestInterest == DroidHarvestModuleDataComponent::INTEREST_BONE && cr->getBoneType().isEmpty()) ||
-			(harvestInterest == DroidHarvestModuleDataComponent::INTEREST_HIDE && cr->getHideType().isEmpty()) ||
-			(harvestInterest == DroidHarvestModuleDataComponent::INTEREST_MEAT && cr->getMeatType().isEmpty())) {
+			if (!droid->isInRange(owner,64.0f)) {
+				// droid out of range, just re-schedule till we are back in range.
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
 
-			owner->sendSystemMessage("@pet/droid_modules:target_type_not_found");
+			// check for no target
+			if (droidTarget == -1) {
+				reschedule(1000);
+				return;
+			}
+			// end re-do
+			Reference<CreatureObject*> target = droid->getZoneServer()->getObject(droidTarget, true).castTo<CreatureObject*>();
+			if (target == nullptr) {
+				reschedule(1000);
+				return;
+			}
+
+			Creature* cr = cast<Creature*>(target.get());
+			if (cr == nullptr) {
+				reschedule(1000);
+				return;
+			}
+
+			if (!target->isInRange(droid,64.0f)) {
+				reschedule(1000);
+				return;
+			}
+
+			if (!target->isInRange(droid,7.0f + target->getTemplateRadius() + droid->getTemplateRadius())) { // this should run the droid to the target for harvesting
+				Locker ownerLocker(owner, droid);
+
+				module->addHarvestTarget(droidTarget,true);
+				droid->setTargetObject(target);
+				droid->storeFollowObject(); // calling store here as a tthe end of a task we reset the follow object
+				droid->activateInterrupt(owner, ObserverEventType::STARTCOMBAT);
+				reschedule(1000); // wait 5 seconds for the droid to get there before checking again.
+
+				return;
+			}
+			// droid should be in rnge now.
+			int harvestInterest = module->getHarvestInterest();
+			int bonus = module->getHarvestPower();
+			// we have all the info we need form the droid for now.
+			Locker tpLock(target, droid);
+
+			Vector<int> types;
+			int type = 0;
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_BONE) {
+				type = 236;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_HIDE) {
+				type = 235;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_MEAT) {
+				type = 234;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_BONE && cr->getBoneType().isEmpty()) {
+				owner->sendSystemMessage("@pet/droid_modules:target_type_not_found");
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_HIDE && cr->getHideType().isEmpty()) {
+				owner->sendSystemMessage("@pet/droid_modules:target_type_not_found");
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_MEAT && cr->getMeatType().isEmpty()) {
+				owner->sendSystemMessage("@pet/droid_modules:target_type_not_found");
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
+
+			if (harvestInterest == DroidHarvestModuleDataComponent::INTREST_RANDOM) {
+				// pick one at random
+				if(!cr->getMeatType().isEmpty()) {
+					types.add(234);
+				}
+
+				if(!cr->getHideType().isEmpty()) {
+					types.add(235);
+				}
+
+				if(!cr->getBoneType().isEmpty()) {
+					types.add(236);
+				}
+
+				if(types.size() > 0)
+					type = types.get(System::random(types.size() -1));
+			}
+
+			if (type == 0) {
+				owner->sendSystemMessage("@pet/droid_modules:no_resources_to_harvest");
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
+
+			if (cr->getDnaState() == CreatureManager::DNADEATH) {
+				owner->sendSystemMessage("@pet/droid_modules:no_resources_to_harvest");
+				droid->setFollowObject(owner);
+				droid->storeFollowObject();
+				reschedule(1000);
+				return;
+			}
+
+			Zone* zone = cr->getZone();
+
+			if (zone != nullptr) {
+				ManagedReference<CreatureManager*> manager = zone->getCreatureManager();
+				manager->droidHarvest(cr, droid, type,bonus);
+			}
+
 			droid->setFollowObject(owner);
 			droid->storeFollowObject();
-			return;
-		}
 
-		if (harvestInterest == DroidHarvestModuleDataComponent::INTEREST_RANDOM) {
-			// pick one at random
-			if (!cr->getMeatType().isEmpty()) {
-				types.add(234);
+			if (module->hasMoreTargets()) {
+				reschedule(10); // we have mroe targets just recheck it
+			} else {
+				reschedule(1000);
 			}
-
-			if (!cr->getHideType().isEmpty()) {
-				types.add(235);
-			}
-
-			if (!cr->getBoneType().isEmpty()) {
-				types.add(236);
-			}
-
-			if (types.size() > 0)
-				type = types.get(System::random(types.size() - 1));
-		}
-
-		if (type == 0 || cr->getDnaState() == CreatureManager::DNADEATH) {
-			owner->sendSystemMessage("@pet/droid_modules:no_resources_to_harvest");
-
+		} else {
 			droid->setFollowObject(owner);
 			droid->storeFollowObject();
-
-			droid->setMovementState(AiAgent::FOLLOWING);
-
+			reschedule(1000); // try again in 1 scond to see if we got targets to harvest
 			return;
 		}
-
-		Zone* zone = cr->getZone();
-
-		if (zone == nullptr) {
-			return;
-		}
-
-		ManagedReference<CreatureManager*> creatureManager = zone->getCreatureManager();
-
-		if (creatureManager != nullptr)
-			creatureManager->droidHarvest(cr, droid, type,bonus);
 	}
 };
 
-} // namespace events
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
+} // events
+} // creature
+} // objects
+} // zone
+} // server
 
 using namespace server::zone::objects::creature::events;
 

@@ -28,7 +28,7 @@ public:
 
 
 		/*insertLong(hino->getActiveResourceID());
-		insertByte(hino->isActive());
+		insertByte(hino->isOperating());
 		insertFloat(hino->getActualRate());
 		insertFloat(hino->getSpecRate());
 		insertFloat(hino->getTotalHopperQuantity());
@@ -37,7 +37,7 @@ public:
 		insertInt(hino->getHopperSize());*/
 
 		insertLong(hino->getActiveResourceSpawnID());
-		insertByte(hino->isActive());
+		insertByte(hino->isOperating());
 		insertInt((int)hino->getExtractionRate()); // Extraction Rate Displayed
 		insertFloat(hino->getExtractionRate()); // Extract Rate Max
 
@@ -65,7 +65,7 @@ public:
 
 	}
 
-	void insertResourceIDList(const Vector<ManagedReference<ResourceSpawn*> >* hino) {
+	void insertResourceIDList(Vector<ManagedReference<ResourceSpawn*> >* hino) {
 		for (int x = 0; x < 2; x++) {
 			insertInt(hino->size());
 			insertInt(hino->size());
@@ -75,7 +75,7 @@ public:
 		}
 	}
 
-	void insertResourceNameList(const Vector<ManagedReference<ResourceSpawn*> >* hino) {
+	void insertResourceNameList(Vector<ManagedReference<ResourceSpawn*> >* hino) {
 		insertInt(hino->size());
 		insertInt(hino->size());
 		for (int i = 0; i < hino->size(); i++) {
@@ -83,7 +83,7 @@ public:
 		}
 	}
 
-	void insertResourceTypeList(const Vector<ManagedReference<ResourceSpawn*> >* hino) {
+	void insertResourceTypeList(Vector<ManagedReference<ResourceSpawn*> >* hino) {
 		insertInt(hino->size());
 		insertInt(hino->size());
 		for (int i = 0; i < hino->size(); i++) {

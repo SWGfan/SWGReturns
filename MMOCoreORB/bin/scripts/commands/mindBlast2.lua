@@ -44,14 +44,27 @@
 MindBlast2Command = {
 	name = "mindblast2",
 
-	minDamage = 250,
-	maxDamage = 500,
-	speed = 4.0,
+	minDamage = 500,
+	maxDamage = 800,
+	speed = 2.0,
 	forceCost = 160,
 	visMod = 25,
 	accuracySkillMod = "mindblast_accuracy";
 	coneAngle = 40,
 	coneAction = true,
+  
+	dotEffects = {
+	  DotEffect( 
+		BLEEDING, 
+		{ "resistance_bleeding", "bleed_resist" },
+		MIND,
+		true,
+		0,
+		100,
+		60, 
+		60
+	  )
+	},  
 
 	stateEffects = {
 		StateEffect(
@@ -90,7 +103,7 @@ MindBlast2Command = {
 
 	combatSpam = "mindblast2",
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = MIND_ATTRIBUTE,
 
 	forceAttack = true,
 	damageType = LIGHTSABER_DAMAGE,

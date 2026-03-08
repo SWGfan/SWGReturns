@@ -44,11 +44,10 @@
 object_building_player_city_cityhall_naboo = object_building_player_city_shared_cityhall_naboo:new {
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "naboo", "rori"},
-	length = 7,
+	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	width = 9,
 	cityRankRequired = 0,
-	groundZoneComponent = "CityHallZoneComponent",
+	zoneComponent = "CityHallZoneComponent",
 	abilityRequired = "place_cityhall",
 	uniqueStructure = true,
 	cityMaintenanceBase = 35000,

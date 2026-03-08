@@ -7,15 +7,14 @@ package server.zone.objects.player.sessions;
 import engine.util.Facade;
 import server.zone.objects.creature.conversation.ConversationScreen;
 import server.zone.objects.creature.CreatureObject;
-import server.zone.objects.scene.SceneObject;
 
 class ConversationSession extends Facade {
 	protected ConversationScreen lastConversationScreen;
-
+	
 	@weakReference
-	protected SceneObject npc;
+	protected CreatureObject npc;
 
-	public ConversationSession(SceneObject conversingCreature) {
+	public ConversationSession(CreatureObject conversingCreature) {
 		lastConversationScreen = null;
 		npc = conversingCreature;
 	}
@@ -29,9 +28,9 @@ class ConversationSession extends Facade {
 	public ConversationScreen getLastConversationScreen() {
 		return lastConversationScreen;
 	}
-
+	
 	@weakReference
-	public SceneObject getNPC() {
+	public CreatureObject getNPC() {
 		return npc;
 	}
 }

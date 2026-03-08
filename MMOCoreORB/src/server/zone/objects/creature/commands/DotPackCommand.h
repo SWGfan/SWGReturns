@@ -18,6 +18,7 @@
 #include "server/zone/objects/creature/buffs/DelayedBuff.h"
 #include "server/zone/packets/object/CombatAction.h"
 #include "QueueCommand.h"
+#include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/objects/tangible/threat/ThreatMap.h"
 
 class DotPackCommand : public QueueCommand {
@@ -25,100 +26,44 @@ protected:
 	String effectName;
 	String skillName;
 public:
-	DotPackCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	DotPackCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
 		effectName = "clienteffect/healing_healenhance.cef";
+		//defaultTime = 0;
 	}
 
-	void doAnimationsRange(CreatureObject* creature, CreatureObject* targetCreature, uint64 oid, float range, bool area, bool isPoisonDot) const {
-		StringBuffer crc;
-		StringBuffer type;
-
-		if (area) {
-			type << "area_";
-		}
-
-		if (isPoisonDot) {
-			type << "poison";
-		} else {
-			type << "disease";
-		}
+	void doAnimationsRange(CreatureObject* creature, CreatureObject* creatureTarget, uint64 oid, float range, bool area) const {
+		String crc;
 
 		if (range < 10.0f) {
-			crc << "throw_grenade_near_" << type;
-		} else if (range >= 10.0f && range < 25.f) {
-			crc << "throw_grenade_medium_" << type;
-		} else {
-			crc << "throw_grenade_far_" << type;
+			if (area)
+				crc = "throw_grenade_near_area_poison";
+			else
+				crc = "throw_grenade_near_poison";
+		}
+		else if (10.0f <= range && range < 20.f) {
+			if (area)
+				crc = "throw_grenade_medium_area_poison";
+			else
+				crc = "throw_grenade_medium_poison";
+		}
+		else {
+			if (area)
+				crc = "throw_grenade_far_area_poison";
+			else
+				crc = "throw_grenade_far_poison";
 		}
 
-		CombatAction* action = new CombatAction(creature, targetCreature,  crc.toString().hashCode(), 0x01, 0L);
+		CombatAction* action = new CombatAction(creature, creatureTarget,  crc.hashCode(), 1, 0L);
+
 		creature->broadcastMessage(action, true);
 	}
 
-	DotPack* findDotPack(CreatureObject* creature, uint8 pool, bool poolGiven) const {
-		if (creature == nullptr)
-			return nullptr;
-
-		SceneObject* inventory = creature->getSlottedObject("inventory");
-
-		if (inventory == nullptr) {
-			return nullptr;
-		}
-
-		int combatMedUse = creature->getSkillMod("combat_healing_ability");
-
-		for (int i = 0; i < inventory->getContainerObjectsSize(); ++i) {
-			SceneObject* item = inventory->getContainerObject(i);
-
-			if (!item->isDotPackObject()) {
-				continue;
-			}
-
-			DotPack* pack = cast<DotPack*>(item);
-
-			if (pack == nullptr)
-				continue;
-
-			if (combatMedUse < pack->getMedicineUseRequired())
-				continue;
-
-			if ((skillName == "applypoison") && pack->isPoisonDeliveryUnit()) {
-				if (!poolGiven) {
-					return pack;
-				} else if (pack->getPool() == pool) {
-					return pack;
-				}
-			}
-
-			if ((skillName == "applydisease") && pack->isDiseaseDeliveryUnit()) {
-				if (!poolGiven) {
-					return pack;
-				} else if (pack->getPool() == pool) {
-					return pack;
-				}
-			}
-		}
-
-		return nullptr;
-	}
-
-	void parseModifier(const String& modifier, uint8& pool, uint64& objectId) const {
-		if (!modifier.isEmpty()) {
-			StringTokenizer tokenizer(modifier);
-			tokenizer.setDelimeter("|");
-
-			String poolName;
-
-			tokenizer.getStringToken(poolName);
-			pool = BuffAttribute::getAttribute(poolName);
-
-			if (tokenizer.hasMoreTokens()) {
-				objectId = tokenizer.getLongToken();
-			}
-		} else {
-			pool = BuffAttribute::UNKNOWN;
+	void parseModifier(const String& modifier, uint64& objectId) const {
+		if (!modifier.isEmpty())
+			objectId = Long::valueOf(modifier);
+		else
 			objectId = 0;
-		}
 	}
 
 	bool checkTarget(CreatureObject* creature, CreatureObject* targetCreature, uint32 dotType) const {
@@ -128,19 +73,8 @@ public:
 		if (targetCreature->hasDotImmunity(dotType))
 			return false;
 
-		if (targetCreature->isAiAgent()) {
-			AiAgent* targetAgent = targetCreature->asAiAgent();
-
-			if (targetAgent != nullptr && (targetAgent->getCreatureBitmask() & ObjectFlag::NODOT))
-				return false;
-		}
-
-		if (!CollisionManager::checkLineOfSight(creature, targetCreature))
+		if (creature != targetCreature && !CollisionManager::checkLineOfSight(creature, targetCreature))
 			return false;
-
-		if (!playerEntryCheck(creature, targetCreature)) {
-			return false;
-		}
 
 		return true;
 	}
@@ -160,47 +94,67 @@ public:
 		playerManager->awardExperience(player, type, amount, true);
 	}
 
-	void handleArea(CreatureObject* attackerCreo, CreatureObject* targetCreature, DotPack* pharma, float range) const {
-		Zone* zone = attackerCreo->getZone();
+	void handleArea(CreatureObject* creature, CreatureObject* areaCenter, DotPack* pharma,
+			float range) const {
+
+		Zone* zone = creature->getZone();
 
 		if (zone == nullptr)
 			return;
 
+
+		//TODO: Convert this to a CombatManager::getAreaTargets call
 		try {
-			CloseObjectsVector* vec = (CloseObjectsVector*)attackerCreo->getCloseObjects();
-
-			SortedVector<TreeEntry*> closeObjects;
-
-			if (vec != nullptr) {
-				closeObjects.removeAll(vec->size(), 10);
-				vec->safeCopyTo(closeObjects);
-			} else {
-	#ifdef COV_DEBUG
-				attacker->info("Null closeobjects vector in DotPackCommand::handleArea", true);
-	#endif
-				zone->getInRangeObjects(attackerCreo->getPositionX(), attackerCreo->getPositionZ(), attackerCreo->getPositionY(), 128, &closeObjects, true);
-			}
-
+			SortedVector<QuadTreeEntry*> closeObjects;
+			CloseObjectsVector* vec = (CloseObjectsVector*) areaCenter->getCloseObjects();
+			vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
 			for (int i = 0; i < closeObjects.size(); i++) {
-				SceneObject* object = static_cast<SceneObject*>(closeObjects.get(i));
+				SceneObject* object = static_cast<SceneObject*>( closeObjects.get(i));
 
-				if (object == nullptr || !object->isCreatureObject())
+				if (!object->isCreatureObject())
 					continue;
 
-				CreatureObject* areaCreo = object->asCreatureObject();
-
-				if (areaCreo == nullptr || areaCreo == targetCreature || areaCreo == attackerCreo)
+				if (object == areaCenter || object == creature)
 					continue;
 
-				if (targetCreature->getWorldPosition().distanceTo(areaCreo->getWorldPosition()) - areaCreo->getTemplateRadius() > range)
+				if (areaCenter->getWorldPosition().distanceTo(object->getWorldPosition()) - object->getTemplateRadius() > range)
 					continue;
+
+				if (creature->isPlayerCreature() && object->getParentID() != 0 && creature->getParentID() != object->getParentID()) {
+					Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
+
+					if (targetCell != nullptr) {
+						if (object->isPlayerCreature()) {
+							auto perms = targetCell->getContainerPermissions();
+
+							if (!perms->hasInheritPermissionsFromParent()) {
+								if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN))
+									continue;
+							}
+						}
+
+						ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+						if (parentSceneObject != nullptr) {
+							BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+							if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature))
+								continue;
+						}
+					}
+				}
+
+				CreatureObject* creatureTarget = cast<CreatureObject*>( object);
 
 				try {
-					Locker crossLocker(areaCreo, attackerCreo);
+					Locker crossLocker(creatureTarget, creature);
 
-					if (checkTarget(attackerCreo, areaCreo, pharma->getDotType()))
-						doAreaMedicActionTarget(attackerCreo, areaCreo, pharma);
+					if (!creatureTarget->isAttackableBy(creature))
+						continue;
+
+					if (checkTarget(creature, creatureTarget, pharma->getDotType()))
+						doAreaMedicActionTarget(creature, creatureTarget, pharma);
 
 				} catch (Exception& e) {
 				}
@@ -209,60 +163,52 @@ public:
 		}
 	}
 
-	void doAreaMedicActionTarget(CreatureObject* creature, CreatureObject* targetCreature, DotPack* dotPack) const {
+	void doAreaMedicActionTarget(CreatureObject* creature, CreatureObject* creatureTarget, DotPack* dotPack) const {
 		int dotPower = dotPack->calculatePower(creature);
-		int dotDMG = 0;
 
+		//sendDotMessage(creature, creatureTarget, dotPower);
+
+		int dotDMG = 0;
 		if (dotPack->isPoisonDeliveryUnit()) {
 			StringIdChatParameter stringId("healing", "apply_poison_self");
-			stringId.setTT(targetCreature->getObjectID());
+			stringId.setTT(creatureTarget->getObjectID());
 
 			creature->sendSystemMessage(stringId);
 
 			StringIdChatParameter stringId2("healing", "apply_poison_other");
 			stringId2.setTU(creature->getObjectID());
 
-			targetCreature->sendSystemMessage(stringId2);
+			creatureTarget->sendSystemMessage(stringId2);
 
-			dotDMG = targetCreature->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), targetCreature->getSkillMod("resistance_poison") + targetCreature->getSkillMod("poison_disease_resist"));
+			dotDMG = creatureTarget->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_poison") + creatureTarget->getSkillMod("poison_disease_resist"));
 		} else {
 			StringIdChatParameter stringId("healing", "apply_disease_self");
-			stringId.setTT(targetCreature->getObjectID());
+			stringId.setTT(creatureTarget->getObjectID());
 
 			creature->sendSystemMessage(stringId);
 
 			StringIdChatParameter stringId2("healing", "apply_disease_other");
 			stringId2.setTU(creature->getObjectID());
 
-			targetCreature->sendSystemMessage(stringId2);
+			creatureTarget->sendSystemMessage(stringId2);
 
-			dotDMG = targetCreature->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), targetCreature->getSkillMod("resistance_disease") + targetCreature->getSkillMod("poison_disease_resist"));
+			dotDMG = creatureTarget->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_disease") + creatureTarget->getSkillMod("poison_disease_resist"));
 		}
 
 		if (dotDMG) {
-			awardXp(creature, "medical", dotDMG); // No experience for healing yourself.
+			awardXp(creature, "medical", dotDMG); //No experience for healing yourself.
 
-			targetCreature->getThreatMap()->addDamage(creature, dotDMG, "dotDMG");
-			creature->addDefender(targetCreature);
+			creatureTarget->addDefender(creature);
+			creatureTarget->getThreatMap()->addDamage(creature, dotDMG, "");
+			creature->addDefender(creatureTarget);
 		} else {
 			StringIdChatParameter stringId("dot_message", "dot_resisted");
-			stringId.setTT(targetCreature->getObjectID());
+			stringId.setTT(creatureTarget->getObjectID());
 
 			creature->sendSystemMessage(stringId);
 		}
 
-		if (creature->isPlayerCreature()) {
-			PlayerObject* ghost = creature->getPlayerObject();
-
-			if (ghost != nullptr) {
-				bool shouldGcwCrackdownTef = false, shouldGcwTef = false, shouldBhTef = false, shouldGroupTef = false, shouldBhGroupTef = false;
-
-				CombatManager::instance()->checkForTefs(creature, targetCreature, &shouldGcwCrackdownTef, &shouldGcwTef, &shouldBhTef);
-				if (shouldGcwCrackdownTef || shouldGcwTef || shouldBhTef) {
-					ghost->updateLastCombatActionTimestamp(shouldGcwCrackdownTef, shouldGcwTef, shouldBhTef);
-				}
-			}
-		}
+		checkCmTef(creature, creatureTarget);
 	}
 
 	int hasCost(CreatureObject* creature) const {
@@ -292,6 +238,7 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		int result = doCommonMedicalCommandChecks(creature);
 
 		if (result != SUCCESS)
@@ -302,167 +249,171 @@ public:
 		if (cost < 0)
 			return INSUFFICIENTHAM;
 
-		// Check cooldown timer
-		if (!creature->checkCooldownRecovery(skillName)) {
-			creature->sendSystemMessage("@healing_response:healing_must_wait"); //You must wait before you can do that.
-			return GENERALERROR;
-		}
-
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
-
 		if (object == nullptr || !object->isCreatureObject() || creature == object)
 			return INVALIDTARGET;
 
-		CreatureObject* targetCreature = cast<CreatureObject*>(object.get());
+		uint64 objectId = 0;
 
-		if (targetCreature == nullptr)
+		parseModifier(arguments.toString(), objectId);
+		ManagedReference<DotPack*> dotPack = nullptr;
+
+		SceneObject* inventory = creature->getSlottedObject("inventory");
+
+		if (inventory != nullptr) {
+			dotPack = inventory->getContainerObject(objectId).castTo<DotPack*>();
+		}
+
+		if (dotPack == nullptr)
 			return GENERALERROR;
 
-		if (!targetCreature->isAttackableBy(creature))
-			return INVALIDTARGET;
+		PlayerManager* playerManager = server->getPlayerManager();
+		CombatManager* combatManager = CombatManager::instance();
 
-		// Collision & Player Entry check
-		if (!CollisionManager::checkLineOfSight(creature, targetCreature) || !playerEntryCheck(creature, targetCreature)) {
+		CreatureObject* creatureTarget = cast<CreatureObject*>(object.get());
+
+		if (creature != creatureTarget && !CollisionManager::checkLineOfSight(creature, creatureTarget)) {
 			creature->sendSystemMessage("@healing:no_line_of_sight"); // You cannot see your target.
 			return GENERALERROR;
 		}
 
-		uint8 pool = BuffAttribute::UNKNOWN;
-		bool poolGiven = false;
-		uint64 objectId = 0;
+		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target);
 
-		ManagedReference<DotPack*> dotPack;
+		if (creature->isPlayerCreature() && targetObject->getParentID() != 0 && creature->getParentID() != targetObject->getParentID()) {
+			Reference<CellObject*> targetCell = targetObject->getParent().get().castTo<CellObject*>();
 
-		parseModifier(arguments.toString(), pool, objectId);
+			if (targetCell != nullptr) {
+				if (!targetObject->isPlayerCreature()) {
+					auto perms = targetCell->getContainerPermissions();
 
-		if (objectId == 0) {
-			if (pool != BuffAttribute::UNKNOWN) {
-				poolGiven = true;
+					if (!perms->hasInheritPermissionsFromParent()) {
+						if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
+							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+							return GENERALERROR;
+						}
+					}
+				}
+
+				ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+				if (parentSceneObject != nullptr) {
+					BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+					if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
+						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+						return GENERALERROR;
+					}
+				}
 			}
-
-			dotPack = findDotPack(creature, pool, poolGiven);
-		} else {
-			SceneObject* inventory = creature->getSlottedObject("inventory");
-
-			if (inventory != nullptr) {
-				dotPack = inventory->getContainerObject(objectId).castTo<DotPack*>();
-			}
-		}
-
-		if (dotPack == nullptr) {
-			return GENERALERROR;
 		}
 
 		int	range = int(dotPack->getRange() + creature->getSkillMod("healing_range") / 100 * 14);
 
-		// Distance Check
-		if (!checkDistance(creature, targetCreature, range))
-			return TOOFAR;
+		if (range > 64)
+			range = 64;
 
-		// Checks Successful
-		Locker clocker(targetCreature, creature);
+		if(!checkDistance(creature, creatureTarget, range))
+					return TOOFAR;
+		//timer
+		if (!creature->checkCooldownRecovery(skillName)) {
+			creature->sendSystemMessage("@healing_response:healing_must_wait"); //You must wait before you can do that.
+			return GENERALERROR;
 
-		float modSkill = (float)creature->getSkillMod("healing_range_speed");
-		int delay = (int)round(12.0f - (6.0f * modSkill / 100 ));
+		} else {
+			float modSkill = (float)creature->getSkillMod("healing_range_speed");
+			int delay = (int)round(12.0f - (6.0f * modSkill / 100 ));
 
-		if (creature->hasBuff(BuffCRC::FOOD_HEAL_RECOVERY)) {
-			DelayedBuff* buff = cast<DelayedBuff*>( creature->getBuff(BuffCRC::FOOD_HEAL_RECOVERY));
+			if (creature->hasBuff(BuffCRC::FOOD_HEAL_RECOVERY)) {
+				DelayedBuff* buff = cast<DelayedBuff*>( creature->getBuff(BuffCRC::FOOD_HEAL_RECOVERY));
 
-			if (buff != nullptr) {
-				float percent = buff->getSkillModifierValue("heal_recovery");
+				if (buff != nullptr) {
+					float percent = buff->getSkillModifierValue("heal_recovery");
 
-				delay = round(delay * (100.0f - percent) / 100.0f);
+					delay = round(delay * (100.0f - percent) / 100.0f);
+				}
 			}
+
+			//Force the delay to be at least 4 seconds.
+			delay = (delay < 4) ? 4 : delay;
+
+			creature->addCooldown(skillName, delay * 1000);
 		}
 
-		// If the delay is less that 4 seconds, use the default time
-		delay = (delay < 4) ? defaultTime : delay;
+		Locker clocker(creatureTarget, creature);
 
-		creature->addCooldown(skillName, delay * 1000);
+		if (!combatManager->startCombat(creature, creatureTarget))
+			return INVALIDTARGET;
 
 		applyCost(creature, cost);
 
 		int dotPower = dotPack->calculatePower(creature);
 		int dotDMG = 0;
-		bool isPoisonDot = dotPack->isPoisonDeliveryUnit();
 
-		if (isPoisonDot) {
-			if (!targetCreature->hasDotImmunity(dotPack->getDotType())) {
+		if (dotPack->isPoisonDeliveryUnit()) {
+			if (!creatureTarget->hasDotImmunity(dotPack->getDotType())) {
 				StringIdChatParameter stringId("healing", "apply_poison_self");
-				stringId.setTT(targetCreature->getObjectID());
+				stringId.setTT(creatureTarget->getObjectID());
 
 				creature->sendSystemMessage(stringId);
 
 				StringIdChatParameter stringId2("healing", "apply_poison_other");
 				stringId2.setTU(creature->getObjectID());
 
-				targetCreature->sendSystemMessage(stringId2);
+				creatureTarget->sendSystemMessage(stringId2);
 
-				dotDMG = targetCreature->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), targetCreature->getSkillMod("resistance_poison") + targetCreature->getSkillMod("poison_disease_resist"));
+				dotDMG = creatureTarget->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_poison") + creatureTarget->getSkillMod("poison_disease_resist"));
 			}
+
 		} else {
-			if (!targetCreature->hasDotImmunity(dotPack->getDotType())) {
+			if (!creatureTarget->hasDotImmunity(dotPack->getDotType())) {
 				StringIdChatParameter stringId("healing", "apply_disease_self");
-				stringId.setTT(targetCreature->getObjectID());
+				stringId.setTT(creatureTarget->getObjectID());
 
 				creature->sendSystemMessage(stringId);
 
 				StringIdChatParameter stringId2("healing", "apply_disease_other");
 				stringId2.setTU(creature->getObjectID());
 
-				targetCreature->sendSystemMessage(stringId2);
+				creatureTarget->sendSystemMessage(stringId2);
 
-				dotDMG = targetCreature->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), targetCreature->getSkillMod("resistance_disease") + targetCreature->getSkillMod("poison_disease_resist"));
+				dotDMG = creatureTarget->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_disease") + creatureTarget->getSkillMod("poison_disease_resist"));
 			}
 		}
 
 		if (dotDMG) {
-			awardXp(creature, "medical", dotDMG);
-			targetCreature->getThreatMap()->addDamage(creature, dotDMG, "dotDMG");
+			awardXp(creature, "medical", dotDMG); //No experience for healing yourself.
+			creatureTarget->getThreatMap()->addDamage(creature, dotDMG, "");
 		} else {
 			StringIdChatParameter stringId("dot_message", "dot_resisted");
-			stringId.setTT(targetCreature->getObjectID());
+			stringId.setTT(creatureTarget->getObjectID());
 
 			creature->sendSystemMessage(stringId);
 
 			StringIdChatParameter stringId2("healing", "dot_resist_other");
 
-			targetCreature->sendSystemMessage(stringId2);
+			creatureTarget->sendSystemMessage(stringId2);
 		}
+
+		checkCmTef(creature, creatureTarget);
 
 		if (dotPack->isArea()) {
-			if (targetCreature != creature)
+			if (creatureTarget != creature)
 				clocker.release();
 
-			handleArea(creature, targetCreature, dotPack, dotPack->getArea());
+			handleArea(creature, creatureTarget, dotPack, dotPack->getArea());
 		}
 
-		// Check for TEFs
-		if (creature->isPlayerCreature()) {
-			PlayerObject* ghost = creature->getPlayerObject();
+		if (dotPack != nullptr) {
+			if (creatureTarget != creature)
+				clocker.release();
 
-			if (ghost != nullptr) {
-				bool shouldGcwCrackdownTef = false, shouldGcwTef = false, shouldBhTef = false;
-
-				CombatManager::instance()->checkForTefs(creature, targetCreature, &shouldGcwCrackdownTef, &shouldGcwTef, &shouldBhTef);
-				if (shouldGcwCrackdownTef || shouldGcwTef || shouldBhTef) {
-					ghost->updateLastCombatActionTimestamp(shouldGcwCrackdownTef, shouldGcwTef, shouldBhTef);
-				}
-			}
+			Locker dlocker(dotPack, creature);
+			dotPack->decreaseUseCount();
 		}
 
-		doAnimationsRange(creature, targetCreature, dotPack->getObjectID(), creature->getWorldPosition().distanceTo(targetCreature->getWorldPosition()), dotPack->isArea(), isPoisonDot);
+		doAnimationsRange(creature, creatureTarget, dotPack->getObjectID(), creature->getWorldPosition().distanceTo(creatureTarget->getWorldPosition()), dotPack->isArea());
 
-		if (targetCreature != creature)
-			clocker.release();
-
-		Locker dlocker(dotPack, creature);
-
-		dotPack->decreaseUseCount();
 		creature->notifyObservers(ObserverEventType::MEDPACKUSED);
-
-		// Ensure the player does not break the throw animation
-		creature->setNextAllowedMoveTime(3 * 1000);
 
 		return SUCCESS;
 	}

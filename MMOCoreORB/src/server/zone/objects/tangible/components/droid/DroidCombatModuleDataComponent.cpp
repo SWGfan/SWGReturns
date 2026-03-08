@@ -15,7 +15,7 @@ DroidCombatModuleDataComponent::~DroidCombatModuleDataComponent() {
 
 }
 
-String DroidCombatModuleDataComponent::getModuleName() const {
+String DroidCombatModuleDataComponent::getModuleName() {
 	return String("combat_module");
 }
 
@@ -37,7 +37,7 @@ void DroidCombatModuleDataComponent::updateCraftingValues(CraftingValues* values
 
 void DroidCombatModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* creature) {
 	// convert module rating to actual rating
-	alm->insertAttribute("cmbt_module", (int)rating);
+	alm->insertAttribute("cmbt_module", rating);
 
 	// Should insert Base Stuff for hit/min/max/speed values
 	ManagedReference<DroidObject*> droid = getDroidObject();
@@ -62,7 +62,7 @@ void DroidCombatModuleDataComponent::fillAttributeList(AttributeListMessage* alm
 	alm->insertAttribute("creature_damage", String::valueOf(damageMin) + " - " + String::valueOf(damageMax));
 }
 
-String DroidCombatModuleDataComponent::toString() const {
+String DroidCombatModuleDataComponent::toString() {
 	return BaseDroidModuleComponent::toString();
 }
 
@@ -72,9 +72,6 @@ void DroidCombatModuleDataComponent::addToStack(BaseDroidModuleComponent* other)
 		return;
 
 	rating = rating + otherModule->rating;
-	if (rating > 600) {
-		rating = 600;
-	}
 
 	DroidComponent* droidComponent = cast<DroidComponent*>(getParent());
 	if (droidComponent != nullptr)

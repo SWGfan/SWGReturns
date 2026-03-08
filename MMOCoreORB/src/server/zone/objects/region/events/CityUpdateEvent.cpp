@@ -29,7 +29,7 @@ void CityUpdateEvent::run() {
 	Locker locker(city);
 
 	if (zoneServer->isServerLoading()) {
-		city->rescheduleUpdateEvent(600 + System::random(30 * 60));
+		city->rescheduleUpdateEvent(10000);
 		return;
 	}
 

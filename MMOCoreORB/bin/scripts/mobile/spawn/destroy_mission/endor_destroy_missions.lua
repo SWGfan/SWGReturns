@@ -248,24 +248,6 @@ endor_destroy_missions = {
 			maxDifficulty = 58,
 			size = 25,
 		},
-		{
-			lairTemplateName = "endor_blurrg_raptor_neutral_small",									--Jedi Knight Trials
-			minDifficulty = 54,
-			maxDifficulty = 58,
-			size = 25,
-		},
-		{
-			lairTemplateName = "global_imperial_outpost_trials_large_theater",						--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_rebel_outpost_trials_large_theater",							--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
 	}
 }
 

@@ -1,10 +1,9 @@
-nightsister_spell_weaver = Creature:new {
-	objectName = "@mob/creature_names:nightsister_spell_weaver",
+singing_mountain_clan_arch_witch = Creature:new {
+	objectName = "@mob/creature_names:singing_mtn_clan_arch_witch",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
-	socialGroup = "nightsister",
-	faction = "nightsister",
+	socialGroup = "mtn_clan",
+	faction = "mtn_clan",
 	level = 107,
 	chanceHit = 1,
 	damageMin = 645,
@@ -13,7 +12,7 @@ nightsister_spell_weaver = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {5,100,5,100,100,100,100,100,-1},
+	resists = {100,5,5,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,33 +20,61 @@ nightsister_spell_weaver = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + HEALER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_dathomir_nightsister_spellweaver.iff"},
+	templates = {"object/mobile/dressed_dathomir_sing_mt_clan_arch_witch.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "nightsister_tier_4", chance = 10000000}
+				{group = "power_crystals", chance = 10000000},
 			},
-			lootChance = 7000000
-		}
+			lootChance = 500000
+		},
+		{
+			groups = {
+				{group = "color_crystals", chance = 10000000},
+			},
+			lootChance = 500000
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 2000000
+		},
+		{
+			groups = {
+				{group = "armor_attachments", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
+				{group = "wearables_common", chance = 10000000},
+			},
+			lootChance = 500000
+		},
+		{
+			groups = {
+				{group = "tailor_components", chance = 10000000},
+			},
+			lootChance = 500000
+		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "force_sword_ranged",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(fencermid,swordsmanmid,pikemanmaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
 }
 
-CreatureTemplates:addCreatureTemplate(nightsister_spell_weaver, "nightsister_spell_weaver")
+CreatureTemplates:addCreatureTemplate(singing_mountain_clan_arch_witch, "singing_mountain_clan_arch_witch")

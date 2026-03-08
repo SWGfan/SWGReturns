@@ -2,7 +2,6 @@ brackaset_female = Creature:new {
 	objectName = "@mob/creature_names:brackaset_female",
 	socialGroup = "brackaset",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 29,
 	chanceHit = 0.37,
 	damageMin = 260,
@@ -19,7 +18,7 @@ brackaset_female = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 80,
 	milkType = "milk_wild",
-	milk = 50,
+	milk = 400,
 	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
@@ -39,17 +38,11 @@ brackaset_female = Creature:new {
 			lootChance = 1580000
 		}
 	   },
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(brackaset_female, "brackaset_female")

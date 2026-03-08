@@ -1,0 +1,7 @@
+make[2]: src/CMakeFiles/idlobjects.dir/build.make: No such file or directory
+make[2]: *** No rule to make target 'src/CMakeFiles/idlobjects.dir/build.make'.  Stop.
+make[1]: *** [CMakeFiles/Makefile2:752: src/CMakeFiles/idlobjects.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[  0%] Building engine3 idl sources
+[  0%] Building CXX object utils/googletest-release-1.10.0/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[  0%] Built target engine3idl

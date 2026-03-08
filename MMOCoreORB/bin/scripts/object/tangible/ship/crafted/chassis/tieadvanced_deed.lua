@@ -42,11 +42,9 @@
 
 
 object_tangible_ship_crafted_chassis_tieadvanced_deed = object_tangible_ship_crafted_chassis_shared_tieadvanced_deed:new {
-	templateType = SHIPDEED,
-	gameObjectType = 8388617,
 
-	shipType = 1, --FIGHTERSHIP,
-	shipControlDevice = "object/intangible/ship/tieadvanced_pcd.iff",
+    templateType = SHIPDEED,
+	shipControlObject = "object/intangible/ship/tieadvanced_pcd.iff",
 	generatedObjectTemplate = "object/ship/player/player_tieadvanced.iff",
 }
 

@@ -172,9 +172,7 @@ void ContainerObjectsMap::unloadObjects() {
 		if (obj != nullptr) {
 			Locker olocker(obj);
 			parent->broadcastDestroy(obj, true);
-
-			if (zone != nullptr)
-				obj->removeObjectFromZone(zone, parent);
+			obj->removeObjectFromZone(zone, parent);
 		}
 	}
 }

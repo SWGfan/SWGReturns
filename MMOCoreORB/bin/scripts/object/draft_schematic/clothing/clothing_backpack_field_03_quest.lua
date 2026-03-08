@@ -49,7 +49,6 @@ object_draft_schematic_clothing_clothing_backpack_field_03_quest = object_draft_
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 110, 
@@ -76,10 +75,10 @@ object_draft_schematic_clothing_clothing_backpack_field_03_quest = object_draft_
              },
 		
 	skillMods = {	    
-		{"aim", 5},
-	    {"take_cover", 5},
-	    {"melee_defense", 3},
-	    {"ranged_defense", 3}
+		{"resistance_bleeding", 25},
+	    {"slope_move", 25},
+	    {"melee_defense", 25},
+	    {"ranged_defense", 25}
 
 	}
 }

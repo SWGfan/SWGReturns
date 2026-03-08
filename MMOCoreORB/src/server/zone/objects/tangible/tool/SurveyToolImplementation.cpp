@@ -1,3 +1,4 @@
+#include "server/zone/managers/director/DirectorManager.h"
 /*
 				Copyright <SWGEmu>
 		See file COPYING for copying conditions.*/
@@ -50,7 +51,7 @@ int SurveyToolImplementation::handleObjectMenuSelect(CreatureObject* player, byt
 		if (selectedID == 20) { // use object
 			int range = getRange(player);
 
-			if(range <= 0 || range > 384) {
+			if(range <= 0) {
 				sendRangeSui(player);
 				return 0;
 			}
@@ -95,22 +96,22 @@ void SurveyToolImplementation::sendRangeSui(CreatureObject* player) {
 	suiToolRangeBox->setPromptText("@survey:select_range");
 
 	if (surveyMod >= 20)
-		suiToolRangeBox->addMenuItem("64m x 3pts", 0);
+		suiToolRangeBox->addMenuItem("64m", 0);
 
 	if (surveyMod >= 35)
-		suiToolRangeBox->addMenuItem("128m x 4pts", 1);
+		suiToolRangeBox->addMenuItem("256m", 1);
 
 	if (surveyMod >= 55)
-		suiToolRangeBox->addMenuItem("192m x 4pts", 2);
+		suiToolRangeBox->addMenuItem("512m", 2);
 
 	if (surveyMod >= 75)
-		suiToolRangeBox->addMenuItem("256m x 5pts", 3);
+		suiToolRangeBox->addMenuItem("1024m", 3);
 
 	if (surveyMod >= 100)
-		suiToolRangeBox->addMenuItem("320m x 5pts", 4);
+		suiToolRangeBox->addMenuItem("2048m", 4);
 
 	if (surveyMod >= 120)
-		suiToolRangeBox->addMenuItem("384m x 5pts", 5);
+		suiToolRangeBox->addMenuItem("4096m", 5);
 
 	suiToolRangeBox->setUsingObject(_this.getReferenceUnsafeStaticCast());
 	suiToolRangeBox->setCallback(new SurveyToolSetRangeSuiCallback(server->getZoneServer()));
@@ -132,15 +133,15 @@ int SurveyToolImplementation::getRange(CreatureObject* player) {
 int SurveyToolImplementation::getSkillBasedRange(int skillLevel) {
 
 	if (skillLevel >= 120)
-		return 384;
+		return 4096;
 	else if (skillLevel >= 100)
-		return 320;
+		return 2048;
 	else if (skillLevel >= 75)
-		return 256;
+		return 1024;
 	else if (skillLevel >= 55)
-		return 192;
+		return 512;
 	else if (skillLevel >= 35)
-		return 128;
+		return 256;
 	else if (skillLevel >= 20)
 		return 64;
 
@@ -177,6 +178,16 @@ void SurveyToolImplementation::sendRadioactiveWarning(CreatureObject* player) {
 
 void SurveyToolImplementation::consentRadioactiveSample(CreatureObject* player) {
 	radioactiveOk = true;
+	// Jedi Point System Hook
+	Lua* lua = DirectorManager::instance()->getLuaInstance();
+	if (lua != nullptr && player != nullptr) {
+		lua_State* L = lua->getLuaState();
+		lua_getglobal(L, "jedi_on_survey");
+		if (lua_isfunction(L, -1)) {
+			lua_pushlightuserdata(L, player);
+			if (lua_pcall(L, 1, 0, 0) != 0) { String err = lua_tostring(L, -1); lua_pop(L, 1); error("jedi_on_survey hook error: " + err); }
+		} else { lua_pop(L, 1); }
+	}
 
 	player->sendSystemMessage("@survey:radioactive_sample_unknown");
 }

@@ -52,6 +52,7 @@ object_tangible_crafting_station_weapon_repair = object_tangible_crafting_statio
 
 	stationType = 7,
 	useCount = 5,
+
 	numberExperimentalProperties = {1, 1, 1, 1},
 	experimentalProperties = {"XX", "XX", "UT", "CD"},
 	experimentalWeights = {1, 1, 1, 1},
@@ -61,5 +62,6 @@ object_tangible_crafting_station_weapon_repair = object_tangible_crafting_statio
 	experimentalMax = {0, 0, 1000, 100},
 	experimentalCombineType = {0, 0, 4, 1},
 	experimentalPrecision = {0, 0, 0, 0},
+	experimentalCombineType = {1, 1, 1, 1},
 }
 ObjectTemplates:addTemplate(object_tangible_crafting_station_weapon_repair, "object/tangible/crafting/station/weapon_repair.iff")

@@ -50,7 +50,6 @@ object_draft_schematic_clothing_clothing_armor_composite_bracer_l = object_draft
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
    complexity = 45, 
    size = 4, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_armor", 
    xp = 420, 
@@ -74,7 +73,7 @@ object_draft_schematic_clothing_clothing_armor_composite_bracer_l = object_draft
    targetTemplate = "object/tangible/wearables/armor/composite/armor_composite_bracer_l.iff",
 
    additionalTemplates = {
-             }
+              }
 
 }
 ObjectTemplates:addTemplate(object_draft_schematic_clothing_clothing_armor_composite_bracer_l, "object/draft_schematic/clothing/clothing_armor_composite_bracer_l.iff")

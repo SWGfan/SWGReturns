@@ -44,13 +44,13 @@
 object_mobile_vendor_nikto_male = object_mobile_vendor_shared_nikto_male:new {
 
 	templateType = VENDORCREATURE,
-	optionsBitmask = 258,
+	optionsBitmask = 386,
 	pvpStatusBitmask = 0,
 
 	objectMenuComponent = "VendorMenuComponent",
 	dataObjectComponent = "VendorDataComponent",	
 	containerComponent = "VendorContainerComponent",
-	groundZoneComponent = "VendorZoneComponent",
+	zoneComponent = "VendorZoneComponent",
 
 	noTrade = 1,
 

@@ -2,7 +2,6 @@ stintaril_prowler = Creature:new {
 	objectName = "@mob/creature_names:stintaril_prowler",
 	socialGroup = "stinaril",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 83,
 	chanceHit = 0.85,
 	damageMin = 595,
@@ -19,7 +18,7 @@ stintaril_prowler = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 6,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 3,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -30,17 +29,11 @@ stintaril_prowler = Creature:new {
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.5,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
-	secondaryWeapon = "unarmed",
+	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""} },
-	secondaryAttacks = { {"stunattack",""} }
+	attacks = {
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(stintaril_prowler, "stintaril_prowler")

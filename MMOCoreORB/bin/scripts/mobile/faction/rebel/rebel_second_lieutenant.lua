@@ -2,7 +2,6 @@ rebel_second_lieutenant = Creature:new {
 	objectName = "@mob/creature_names:rebel_second_lieutenant",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 19,
@@ -38,23 +37,24 @@ rebel_second_lieutenant = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rebel_officer_tier_1", chance = 10000000}
+				{group = "color_crystals", chance = 100000},
+				{group = "junk", chance = 4150000},
+				{group = "rifles", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "melee_weapons", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "clothing_attachments", chance = 150000},
+				{group = "armor_attachments", chance = 150000},
+				{group = "rebel_officer_common", chance = 450000},
+				{group = "wearables_common", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "general_carbine",
-	secondaryWeapon = "general_pistol",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
 	personalityStf = "@hireling/hireling_military",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,carbineermid),
-	secondaryAttacks = merge(marksmanmaster,pistoleermid)
+	attacks = merge(brawlermaster,marksmanmaster,riflemanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_second_lieutenant, "rebel_second_lieutenant")

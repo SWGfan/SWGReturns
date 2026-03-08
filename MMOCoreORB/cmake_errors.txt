@@ -1,0 +1,73 @@
+-- The CXX compiler identification is GNU 12.2.0
+-- The C compiler identification is GNU 12.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found Lua: /usr/lib/x86_64-linux-gnu/liblua5.3.so;/usr/lib/x86_64-linux-gnu/libm.so (found suitable exact version "5.3.6") 
+-- Found MySQL Include dir: /usr/include/mysql  library dir: /usr/lib/x86_64-linux-gnu
+-- Found MySQL client libraries: mysqlclient
+-- Found berkeley db version: Berkeley DB 5.3.28: (September  9, 2013)
+-- Found berkeley db includes: /usr/include
+-- Found berkeley db library: /usr/lib/x86_64-linux-gnu/libdb-5.3.so
+-- Found Java: /usr/bin/java (found suitable version "17.0.18", minimum required is "1.5") found components: Runtime 
+-- Using engine3 git submodule
+-- Initializing git submodules
+-- CMAKE_MODULE_PATH: /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/cmake/Modules//home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.18")  
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.13") 
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: thread 
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB - Failed
+-- Found GCC's libatomic.so: lib=/usr/lib/x86_64-linux-gnu/libatomic.so.1
+-- Performing Test CxxFlag-Wall
+-- Performing Test CxxFlag-Wall - Success
+-- Performing Test CxxFlag-Wextra
+-- Performing Test CxxFlag-Wextra - Success
+-- Performing Test CxxFlag-Wno-unused
+-- Performing Test CxxFlag-Wno-unused - Success
+-- Performing Test CxxFlag-Wno-sign-compare
+-- Performing Test CxxFlag-Wno-sign-compare - Success
+-- Performing Test CxxFlag-Wno-multichar
+-- Performing Test CxxFlag-Wno-multichar - Success
+-- Performing Test CxxFlag-Wno-unused-parameter
+-- Performing Test CxxFlag-Wno-unused-parameter - Success
+-- Performing Test CxxFlag-Wno-overloaded-virtual
+-- Performing Test CxxFlag-Wno-overloaded-virtual - Success
+-- Performing Test CxxFlag-Wno-missing-declarations
+-- Performing Test CxxFlag-Wno-missing-declarations - Success
+-- Performing Test CxxFlag-Wno-return-std-move
+-- Performing Test CxxFlag-Wno-return-std-move - Failed
+-- Performing Test CxxFlag-Wno-implicit-fallthrough
+-- Performing Test CxxFlag-Wno-implicit-fallthrough - Success
+-- Performing Test CxxFlag-Wno-class-memaccess
+-- Performing Test CxxFlag-Wno-class-memaccess - Success
+-- Performing Test CxxFlag-fcolor-diagnostics
+-- Performing Test CxxFlag-fcolor-diagnostics - Failed
+-- Performing Test CxxFlag-Wno-deprecated-copy
+-- Performing Test CxxFlag-Wno-deprecated-copy - Success
+-- Performing Test CxxFlagMnative
+-- Performing Test CxxFlagMnative - Success
+-- Performing Test CxxFlagFramePointer
+-- Performing Test CxxFlagFramePointer - Success
+-- Building private engine
+CMake Error at CMakeLists.txt:105 (if):
+  if given arguments:
+
+    "STREQUAL" "Debug"
+
+  Unknown arguments specified
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/CMakeFiles/CMakeOutput.log".
+See also "/home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/CMakeFiles/CMakeError.log".

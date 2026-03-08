@@ -6,7 +6,6 @@ package server.zone.objects.mission;
 
 import engine.core.ManagedObject;
 include system.util.SortedVector;
-include system.util.VectorMap;
 
 class PlayerBounty extends ManagedObject {
 	protected unsigned long targetPlayerID;
@@ -14,23 +13,19 @@ class PlayerBounty extends ManagedObject {
 	protected int reward;
 
 	protected boolean online;
-
+	
 	protected unsigned long lastBountyKill;
 
 	protected unsigned long lastBountyDebuff;
 
 	@dereferenced
 	protected SortedVector<unsigned long> bountyHunterIDs;
-	
-	@dereferenced
-	protected VectorMap<unsigned long, unsigned long> missionCooldownList;
 
 	public PlayerBounty(unsigned long targetID, int payout) {
 		targetPlayerID = targetID;
 		reward = payout;
 		online = true;
 		bountyHunterIDs.setNoDuplicateInsertPlan();
-		missionCooldownList.setNoDuplicateInsertPlan();
 		lastBountyKill = 0;
 		lastBountyDebuff = 0;
 	}
@@ -71,22 +66,21 @@ class PlayerBounty extends ManagedObject {
 		bountyHunterIDs.drop(id);
 	}
 
-	@read
+	@dirty
 	public boolean hasBountyHunter(unsigned long id) {
 		return bountyHunterIDs.contains(id);
 	}
 
 	@local
-	@read
-	public final SortedVector<unsigned long> getBountyHunters() {
+	public SortedVector<unsigned long> getBountyHunters() {
 		return bountyHunterIDs;
 	}
-
+	
 	@read
 	public unsigned long getLastBountyKill() {
 		return lastBountyKill;
 	}
-
+	
 	public void setLastBountyKill(unsigned long newTime) {
 		lastBountyKill = newTime;
 	}
@@ -98,10 +92,5 @@ class PlayerBounty extends ManagedObject {
 
 	public void setLastBountyDebuff(unsigned long newTime) {
 	    lastBountyDebuff = newTime;
-	}
-	
-	public native boolean canTakeMission(unsigned long enemyID, unsigned long cooldownTime);
-	public void addMissionCooldown(unsigned long enemyID, unsigned long newTime) {
-		missionCooldownList.put(enemyID, newTime);
 	}
 }

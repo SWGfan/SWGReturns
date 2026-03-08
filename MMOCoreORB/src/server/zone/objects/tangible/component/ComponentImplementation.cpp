@@ -18,84 +18,40 @@ void ComponentImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuRes
 	TangibleObjectImplementation::fillObjectMenuResponse(menuResponse, player);
 }
 
-void ComponentImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
-	// info(true) << "ComponentImplementation::fillAttributeList - called for: " << getCustomObjectName();
+void ComponentImplementation::fillAttributeList(AttributeListMessage* alm,
+		CreatureObject* object) {
+	TangibleObjectImplementation::fillAttributeList(alm, object);
 
-	alm->insertAttribute("volume", 1);
-	alm->insertAttribute("crafter", craftersName);
-	alm->insertAttribute("serial_number", objectSerial);
+	String attribute;
 
-	StringBuffer displayvalue;
+	float value;
+	double power;
+	int precision;
+	bool hidden;
+
+	String footer;
 
 	for (int i = 0; i < keyList.size(); ++i) {
-		String attribute = keyList.get(i);
-		String listedName = attribute;
+		footer = "";
 
-		float value = attributeMap.get(attribute);
-		int precision = precisionMap.get(attribute);
-		bool hidden = hiddenMap.get(attribute);
-
-		// info(true) << "Adding #" << i << " Attribute: " << attribute << " with a value of " << value;
-
-		// Handle of the Geonosian cubes that list attributes for Weapons and Armor
-		if ((getGameObjectType() == SceneObjectType::ARMORCOMPONENT) && (attribute == "attackactioncost" || attribute == "attackhealthcost" || attribute == "attackmindcost" || attribute == "maxdamge" || attribute == "maxdamage"))
-			continue;
+		attribute = keyList.get(i);
+		value = attributeMap.get(attribute);
+		precision = precisionMap.get(attribute);
+		hidden = hiddenMap.get(attribute);
 
 		if (precision >= 0 && !hidden) {
-			uint32 attributeHash = attribute.hashCode();
-
-			switch (attributeHash) {
-			case STRING_HASHCODE("zerorangemod"):
-				listedName = "wpn_range_attack_mod_zero";
-				break;
-			case STRING_HASHCODE("midrangemod"):
-				listedName = "wpn_range_attack_mod_mid";
-				break;
-			case STRING_HASHCODE("maxrangemod"):
-				listedName = "wpn_range_attack_mod_max";
-				break;
-			case STRING_HASHCODE("armor_effectiveness"):
-				listedName = "baseeffectiveness";
-				break;
-			case STRING_HASHCODE("woundchance"):
-				listedName = "wpn_wound_chance";
-				break;
-			case STRING_HASHCODE("attackhealthcost"):
-				listedName = "wpn_attack_cost_health";
-				break;
-			case STRING_HASHCODE("attackactioncost"):
-				listedName = "wpn_attack_cost_action";
-				break;
-			case STRING_HASHCODE("attackmindcost"):
-				listedName = "wpn_attack_cost_mind";
-				break;
-			case STRING_HASHCODE("armor_integrity"):
-				listedName = "baseintegrity";
-				break;
-			case STRING_HASHCODE("armor_health_encumbrance"):
-				listedName = "healthencumbrance";
-				break;
-			case STRING_HASHCODE("armor_action_encumbrance"):
-				listedName = "actionencumbrance";
-				break;
-			case STRING_HASHCODE("armor_mind_encumbrance"):
-				listedName = "mindencumbrance";
-				break;
-			default:
-				listedName = attribute;
-			}
-
 			if (precision >= 10) {
-				StringBuffer msg;
-				msg.append(value, (precision - 10));
-
-				displayvalue << msg.toString() << "%";
-			} else {
-				displayvalue.append(value, precision);
+				footer = "%";
+				precision -= 10;
 			}
 
-			alm->insertAttribute(listedName, displayvalue.toString());
-			displayvalue.deleteAll();
+			StringBuffer displayvalue;
+
+			displayvalue << Math::getPrecision(value, precision);
+
+			displayvalue << footer;
+
+			alm->insertAttribute(attribute, displayvalue.toString());
 		}
 	}
 }
@@ -108,7 +64,7 @@ int ComponentImplementation::getAttributePrecision(const String& attributeName){
 	return precisionMap.get(attributeName);
 }
 
-String ComponentImplementation::getAttributeGroup(const String& attributeName){
+String ComponentImplementation::getAttributeTitle(const String& attributeName){
 	return titleMap.get(attributeName);
 }
 
@@ -126,9 +82,10 @@ void ComponentImplementation::setPropertyToHidden(const String& property) {
 }
 
 void ComponentImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
-	String attribute, group;
+	String attribute;
 	float value;
 	int precision;
+	String title;
 	bool hidden;
 
 	attributeMap.removeAll();
@@ -136,27 +93,23 @@ void ComponentImplementation::updateCraftingValues(CraftingValues* values, bool 
 	titleMap.removeAll();
 	keyList.removeAll();
 
-	if (firstUpdate && values->hasExperimentalAttribute("useCount")) {
+	if(firstUpdate && values->hasProperty("useCount")) {
 		int count = values->getCurrentValue("useCount");
 
 		// Crafting components dropped or crafted with a single use do not display a "1" (#6924)
-		if (count > 1)
+		if(count > 1)
 			setUseCount(count);
 	}
 
-	// info(true) << "ComponentImplementation::updateCraftingValues called with total attributes #" << values->getTotalExperimentalAttributes();
+	for (int i = 0; i < values->getExperimentalPropertySubtitleSize(); ++i) {
+		attribute = values->getExperimentalPropertySubtitle(i);
 
-	for (int i = 0; i < values->getTotalExperimentalAttributes(); ++i) {
-		attribute = values->getAttribute(i);
-
-		// info(true) << "updateCraftingValues -- #" << i << " Attribute: " << attribute;
-
-		if (attribute == "useCount")
+		if(attribute == "useCount")
 			continue;
 
 		value = values->getCurrentValue(attribute);
 		precision = values->getPrecision(attribute);
-		group = values->getAttributeGroup(attribute);
+		title = values->getExperimentalPropertyTitle(attribute);
 		hidden = values->isHidden(attribute);
 
 		if (!hasKey(attribute))
@@ -164,15 +117,15 @@ void ComponentImplementation::updateCraftingValues(CraftingValues* values, bool 
 
 		attributeMap.put(attribute, value);
 		precisionMap.put(attribute, precision);
-		titleMap.put(attribute, group);
+		titleMap.put(attribute, title);
 
-		if (firstUpdate)
+		if(firstUpdate)
 			hiddenMap.put(attribute, hidden);
 	}
 }
 
 void ComponentImplementation::addProperty(const String& attributeName, const float value,
-	const int precision, const String& craftingTitle, const bool hidden) {
+		const int precision, const String& craftingTitle, const bool hidden) {
 
 	if (!hasKey(attributeName))
 		keyList.add(attributeName);
@@ -184,6 +137,7 @@ void ComponentImplementation::addProperty(const String& attributeName, const flo
 }
 
 void ComponentImplementation::addProperty(const String& attribute, const float value, const int precision, const String& title) {
+
 	if (!attributeMap.contains(attribute)) {
 
 		keyList.add(attribute);
@@ -193,11 +147,13 @@ void ComponentImplementation::addProperty(const String& attribute, const float v
 		titleMap.put(attribute, title);
 		hiddenMap.put(attribute, false);
 	} else {
+
 		attributeMap.put(attribute, value);
 	}
 }
 
 bool ComponentImplementation::changeAttributeValue(const String& property, float value) {
+
 	if (!hasKey(property))
 		return false;
 

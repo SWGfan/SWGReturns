@@ -109,9 +109,9 @@ class ManufactureSchematic extends IntangibleObject {
 		permissions.clearDenyPermission("owner", ContainerPermissions.MOVECONTAINER);
 	}
 
-	public native void initializeTransientMembers();
-
-	public abstract native void destroyObjectFromDatabase(boolean destroyContainedObjects = false);
+	public void initializeTransientMembers() {
+		super.initializeTransientMembers();
+	}
 
 	/**
 	 * Fills the attribute list message options that are sent to player creature
@@ -338,7 +338,4 @@ class ManufactureSchematic extends IntangibleObject {
 
 	@dirty
 	public native int getLabratory();
-
-	@dirty
-	public native string getFactoryCrateType();
 }

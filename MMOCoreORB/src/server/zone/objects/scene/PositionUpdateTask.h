@@ -13,9 +13,9 @@
 
 class PositionUpdateTask : public Task {
 	ManagedReference<SceneObject*> object;
-	ManagedReference<TreeEntry*> entry;
+	ManagedReference<QuadTreeEntry*> entry;
 public:
-	PositionUpdateTask(SceneObject* obj, TreeEntry* ent) {
+	PositionUpdateTask(SceneObject* obj, QuadTreeEntry* ent) {
 		object = obj;
 		entry = ent;
 	}

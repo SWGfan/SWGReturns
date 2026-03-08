@@ -18,12 +18,9 @@ class CraftingStation extends ToolTangibleObject {
 	private float effectiveness;
 	private int complexityLevel;
 
-	@weakReference
-	protected CreatureObject droidParent;
-
 	public CraftingStation() {
 		Logger.setLoggingName("CraftingStation");
-		complexityLevel = 100;
+		complexityLevel = 0;
 		effectiveness = 25;
 	}
 
@@ -35,8 +32,6 @@ class CraftingStation extends ToolTangibleObject {
 
 	@local
 	public native void loadTemplateData(SharedObjectTemplate templateData);
-
-	public native void notifyLoadFromDatabase();
 
 	@local
 	@dirty
@@ -63,6 +58,7 @@ class CraftingStation extends ToolTangibleObject {
 
 	@dirty
 	public native void sendInputHopper(CreatureObject player);
+
 
 	@local
 	public native void updateCraftingValues(CraftingValues values, boolean firstUpdate);
@@ -94,16 +90,5 @@ class CraftingStation extends ToolTangibleObject {
 
 	public void setEffectiveness(float newValue) {
 		effectiveness = newValue;
-	}
-
-	@dirty
-	public void setDroidParent(CreatureObject parentCreO) {
-		droidParent = parentCreO;
-	}
-
-	@dirty
-	@weakReference
-	public CreatureObject getDroidParent() {
-		return droidParent;
 	}
 }

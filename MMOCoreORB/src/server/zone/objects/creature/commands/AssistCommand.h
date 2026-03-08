@@ -9,47 +9,38 @@
 
 class AssistCommand : public QueueCommand {
 public:
-	AssistCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	AssistCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		auto zoneServer = server->getZoneServer();
-
-		if (zoneServer == nullptr) {
-			return GENERALERROR;
-		}
-
-		ManagedReference<SceneObject*> targetObject = zoneServer->getObject(target);
-
+		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target);
+          
 		if (targetObject == nullptr || !targetObject->isCreatureObject() || targetObject == creature)
 			return INVALIDTARGET;
 
-		auto targetCreo = targetObject->asCreatureObject();
+		CreatureObject *targetCreo = targetObject->asCreatureObject();
+		unsigned long targetID = targetCreo->getTargetID();
+          
+		if(targetID == 0)
+			return INVALIDTARGET;
 
-		if (targetCreo == nullptr) {
-			return GENERALERROR;
-		}
+		creature->setTargetID(targetID, false); // This should allow people to use heals and buffs on an assisted target
 
-		uint64 targetID = targetCreo->getTargetID();
-
-		if (targetID == 0) {
-			return GENERALERROR;
-		}
-
-		// This should update the using players target to the target of their target.
-		creature->setTargetID(targetID, true);
-
-		 // This will be added to the queue with normal priority
-		creature->enqueueCommand(STRING_HASHCODE("attack"), 1, targetID, "", 2);
+		creature->enqueueCommand(STRING_HASHCODE("attack"), 1, targetID, ""); // Should we limit the amount of times this can be enqueued?
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // ASSISTCOMMAND_H_
+#endif //ASSISTCOMMAND_H_

@@ -7,27 +7,28 @@
 
 class PetRechargeCommand : public QueueCommand {
 public:
-	PetRechargeCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	PetRechargeCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
 	}
 
+
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().get().castTo<PetControlDevice*>();
 
 		if (controlDevice == nullptr)
 			return GENERALERROR;
 
 		// Droid specific command
-		if (controlDevice->getPetType() != PetManager::DROIDPET)
+		if( controlDevice->getPetType() != PetManager::DROIDPET )
 			return GENERALERROR;
 
 		ManagedReference<DroidObject*> droidPet = cast<DroidObject*>(creature);
-
-		if (droidPet == nullptr || droidPet->isDead() || droidPet->isIncapacitated())
+		if( droidPet == nullptr )
 			return GENERALERROR;
 
-		ManagedReference<CreatureObject*> player = droidPet->getLinkedCreature().get();
-
-		if (player == nullptr)
+		ManagedReference< CreatureObject*> player = droidPet->getLinkedCreature().get();
+		if( player == nullptr )
 			return GENERALERROR;
 
 		// Recharge
@@ -36,6 +37,8 @@ public:
 
 		return SUCCESS;
 	}
+
 };
+
 
 #endif /* PETRECHARGECOMMAND_H_ */

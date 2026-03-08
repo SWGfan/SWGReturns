@@ -11,7 +11,8 @@ class CreatureObjectDeltaMessage4 : public DeltaMessage {
 	CreatureObject* creo;
 
 public:
-	CreatureObjectDeltaMessage4(CreatureObject* cr) : DeltaMessage(cr->getObjectID(), 'CREO', 0x04) {
+	CreatureObjectDeltaMessage4(CreatureObject* cr)
+			: DeltaMessage(cr->getObjectID(), 0x4352454F, 4) {
 		creo = cr;
 	}
 
@@ -31,52 +32,56 @@ public:
 		addFloatUpdate(0x05, creo->getSpeedMultiplierMod());
 	}
 
+	void updateRunSpeed() {
+		addFloatUpdate(0x07, creo->getRunSpeed());
+	}
+
+	void updateEntertainerValue(uint32 value) {
+		startUpdate(0x09);
+		insertInt(value);
+	}
+
 	void updateListenToID(uint64 objectid) {
 		startUpdate(0x06);
 		insertLong(objectid);
 	}
 
-	void updateRunSpeed() {
-		addFloatUpdate(0x07, creo->getRunSpeed());
-	}
 
-	void updateSlopeModAngle() {
-		addFloatUpdate(0x08, creo->getSlopeModAngle());
-	}
-
-	void updateSlopeModPercent() {
-		addFloatUpdate(0x09, creo->getSlopeModPercent());
+	void updateTerrainNegotiation() {
+		addFloatUpdate(0x09, creo->getTerrainNegotiation());
 	}
 
 	void updateTurnScale() {
 		addFloatUpdate(0x0A, creo->getTurnScale());
 	}
 
-	void updateWalkSpeed() {
-		addFloatUpdate(0x0B, creo->getWalkSpeed());
+	/*void updateAcceleration() {
+		addFloatUpdate(0x0B, creo->acceleration);
 	}
 
-	void updateWaterModPercent() {
-		addFloatUpdate(0x0C, creo->getWaterModPercent());
+
+
+	void startSkillModsUpdate(int skillModsToUpdate) {
+		startUpdate(0x03);
+		startList(skillModsToUpdate, creo->skillModsCounter += skillModsToUpdate);
 	}
 
-	void updateSpeedAndAccelerationMods(bool sendSelf = true) {
-		float aScale = creo->getAccelerationMultiplierMod();
-		float mScale = creo->getSpeedMultiplierMod();
-		float tScale = creo->getTurnScale();
-
-		if (aScale == 0.f && mScale == 0.f) {
-			aScale = 0.1f;
-		}
-
-		if (mScale == 0.f && !sendSelf) {
-			mScale = 0.1f;
-		}
-
-		addFloatUpdate(0x01, aScale); // accelerationMultiplierMod
-		addFloatUpdate(0x05, mScale); // speedMultiplierMod
-		addFloatUpdate(0x0A, tScale); // turnScale
+	void addSkillMod(const String& skillMod, int value) {
+		insertByte(0);
+		insertAscii(skillMod.toCharArray());
+		insertInt(value);
+		insertInt(0);
 	}
+
+	void removeSkillMod(const String& skillMod, int value) {
+		insertByte(1);
+		insertAscii(skillMod.toCharArray());
+		insertInt(value);
+		insertInt(0);
+	}
+
+	*/
+
 };
 
 #endif /*CREATUREOBJECTDELTAMESSAGE4_H_*/

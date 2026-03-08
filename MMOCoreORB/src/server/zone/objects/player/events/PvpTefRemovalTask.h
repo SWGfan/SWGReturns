@@ -3,7 +3,7 @@
 #define PVPTEFREMOVALTASK_H_
 
 #include "server/zone/objects/player/PlayerObject.h"
-#include "templates/params/creature/ObjectFlag.h"
+#include "templates/params/creature/CreatureFlag.h"
 
 namespace server {
 namespace zone {
@@ -33,24 +33,18 @@ public:
 
 		Locker locker(player);
 
-		if (ghost->hasTef()) {
-			auto gcwCrackdownTefMs = ghost->getLastGcwCrackdownCombatActionTimestamp().miliDifference();
+		if (ghost->hasPvpTef()) {
 			auto gcwTefMs = ghost->getLastGcwPvpCombatActionTimestamp().miliDifference();
 			auto bhTefMs = ghost->getLastBhPvpCombatActionTimestamp().miliDifference();
-			auto pvpAreaMs = ghost->getLastPvpAreaCombatActionTimestamp().miliDifference();
-
-			auto rescheduleTime = gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs;
-			rescheduleTime = gcwCrackdownTefMs < rescheduleTime ? gcwCrackdownTefMs : rescheduleTime;
-			rescheduleTime = pvpAreaMs < rescheduleTime ? pvpAreaMs : rescheduleTime;
-
-			this->reschedule(llabs(rescheduleTime));
+			auto jediTefMs = ghost->getLastJediPvpCombatActionTimestamp().miliDifference();
+			if (jediTefMs < 0){
+				this->reschedule(llabs(jediTefMs));
+			}else{
+				this->reschedule(llabs(jediTefMs < gcwTefMs ? (jediTefMs < bhTefMs ? jediTefMs : bhTefMs) : (gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs )));
+			}
 		} else {
 			ghost->updateInRangeBuildingPermissions();
-			ghost->setCrackdownTefTowards(0, false);
-			player->clearPvpStatusBit(ObjectFlag::TEF, true);
-
-			if (ConfigManager::instance()->useCovertOvertSystem())
-				player->broadcastPvpStatusBitmask();
+			player->clearPvpStatusBit(CreatureFlag::TEF);
 		}
 
 		if (!ghost->hasBhTef())

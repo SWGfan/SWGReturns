@@ -70,9 +70,6 @@ public:
 	}
 
 	void dumpItemInfoList() {
-		Time expireTime;
-		uint64 currentTime = expireTime.getMiliTime() / 1000;
-
 		int ilSize = itemList.size();
 
 		insertInt(ilSize);
@@ -96,7 +93,8 @@ public:
 
 			insertInt(il->getPrice()); //item cost.
 
-			uint32 expire = il->getExpireTime() > currentTime ? il->getExpireTime() - currentTime : 0;
+			Time expireTime;
+			uint32 expire = il->getExpireTime() - expireTime.getMiliTime() / 1000;
 
 			insertInt(expire);
 

@@ -2,10 +2,9 @@ janta_loreweaver = Creature:new {
 	objectName = "@mob/creature_names:janta_loreweaver",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "janta_tribe",
 	faction = "janta_tribe",
-	level = 300,
+	level = 55,
 	chanceHit = 0.6,
 	damageMin = 445,
 	damageMax = 600,
@@ -21,7 +20,7 @@ janta_loreweaver = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -34,24 +33,26 @@ janta_loreweaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "janta_common", chance = 5000000},
-				{group = "loot_kit_parts", chance = 3000000},
-				{group = "wearables_all", chance = 500000}
-			}
+				{group = "junk", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "loot_kit_parts", chance = 10000000}
+			},
+			lootChance = 5000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "primitive_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"primitive_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,fencermaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(pikemanmaster,fencermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(janta_loreweaver, "janta_loreweaver")

@@ -287,12 +287,16 @@ void ObjectVersionUpdateManager::updateTangibleObjectsVersion6() {
 			}
 
 
-			const Vector<String>* attributes = tanotmp->getExperimentalAttributes();
+			const Vector<String>* subGroups = tanotmp->getExperimentalSubGroupTitles();
 
-			for(int i=0; i < attributes->size(); i++) {
-				String attribute = attributes->get(i).toLowerCase();
+			for(int i=0; i<subGroups->size(); i++) {
+				String subGroupTitle = subGroups->get(i).toLowerCase();
 
-				if (attribute == "usecount" || attribute == "quantity" || attribute == "charges" || attribute == "uses" || attribute == "charge") {
+				if(subGroupTitle == "usecount" ||
+						subGroupTitle == "quantity" ||
+						subGroupTitle == "charges" ||
+						subGroupTitle == "uses" ||
+						subGroupTitle == "charge") {
 					templateKeys.put(key);
 					info("Adding Tangible Template: " + tanotmp->getTemplateFileName(), true);
 					continue;
@@ -307,17 +311,24 @@ void ObjectVersionUpdateManager::updateTangibleObjectsVersion6() {
 	HashTable<String, Reference<LootItemTemplate*> > itemTemplates = lootMap->itemTemplates;
 	HashTableIterator<String, Reference<LootItemTemplate*> > lootIter = itemTemplates.iterator();
 
-	while (lootIter.hasNext()) {
+	while(lootIter.hasNext()) {
+
 		Reference<LootItemTemplate*> lootTmpl = lootIter.next();
 
-		AttributesMap attributesMap = lootTmpl->getAttributesMapCopy();
+		ValuesMap craftingValues = lootTmpl->getValuesMapCopy();
 
-		for (int i = 0; i < attributesMap.getSize(); ++i) {
-			String attribute = attributesMap.getAttribute(i);
+		for (int i = 0; i < craftingValues.getExperimentalPropertySubtitleSize(); ++i) {
+
+			String subtitle = craftingValues.getExperimentalPropertySubtitle(i);
 
 			// if a loot template contains any of the following subtitles then it will be generated in stacks
 			// add the base template to the exclusion list
-			if (attribute == "useCount" || attribute == "quantity" || attribute == "charges" || attribute == "uses" || attribute == "charge") {
+			if (subtitle == "useCount" ||
+				subtitle == "quantity" ||
+				subtitle == "charges" ||
+				subtitle == "uses" ||
+				subtitle == "charge") {
+
 				uint32 hash = lootTmpl->getDirectObjectTemplate().hashCode();
 
 				SharedObjectTemplate *tmpl = templateMap.get(hash);
@@ -345,7 +356,7 @@ void ObjectVersionUpdateManager::updateTangibleObjectsVersion6() {
 		while (iterator.getNextKeyAndValue(objectID, &objectData)) {
 
 			int useCount = 0;
-			uint32 objCRC = 0;
+			uint objCRC = 0;
 			AbilityListMigrator abilityList;
 
 			String className;
@@ -418,7 +429,7 @@ void ObjectVersionUpdateManager::updateTangibleObjectsVersion6() {
 
 			try {
 				if (!Serializable::getVariable<int>(STRING_HASHCODE("TangibleObject.useCount"), &useCount, &objectData) ||
-						!Serializable::getVariable<uint32>(STRING_HASHCODE("SceneObject.serverObjectCRC"), &objCRC, &objectData)) {
+						!Serializable::getVariable<uint>(STRING_HASHCODE("SceneObject.serverObjectCRC"), &objCRC, &objectData)) {
 					objectData.clear();
 					continue;
 				}
@@ -616,7 +627,7 @@ void ObjectVersionUpdateManager::setResidence(uint64 buildingID, bool isResidenc
 
 void ObjectVersionUpdateManager::updateCityTreasury(){
 
-	info("---------------Modifying City Treasury---------------------",true);
+	info("---------------MOdifying City Treasury---------------------",true);
 	info("Converting treasury to float for all cities ", true);
 	ObjectDatabase* database = ObjectDatabaseManager::instance()->loadObjectDatabase("cityregions", true);
 	ObjectInputStream objectData(2000);
@@ -676,7 +687,7 @@ void ObjectVersionUpdateManager::updateCityTreasury(){
 
 void ObjectVersionUpdateManager::updateCityTreasuryToDouble(){
 
-	info("---------------Modifying City Treasury---------------------",true);
+	info("---------------MOdifying City Treasury---------------------",true);
 	info("Converting treasury to double for all cities ", true);
 	ObjectDatabase* database = ObjectDatabaseManager::instance()->loadObjectDatabase("cityregions", true);
 	ObjectInputStream objectData(2000);

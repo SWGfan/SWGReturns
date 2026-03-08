@@ -50,8 +50,7 @@ object_draft_schematic_food_dish_synthsteak = object_draft_schematic_food_shared
    craftingToolTab = 4, -- (See DraftSchematicObjectTemplate.h)
    complexity = 6, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_food.iff",
-   
+
    xpType = "crafting_food_general", 
    xp = 180, 
 

@@ -14,44 +14,34 @@
 
 class ShutdownTask : public Task {
 	int minutesRemaining;
-	int shutdownFlags;;
 	ManagedReference<ZoneServer*> zoneServer;
 public:
-	ShutdownTask(ZoneServer* srv, int minutes, int flags = 0) {
+	ShutdownTask(ZoneServer* srv, int minutes) {
 		zoneServer = srv;
 		minutesRemaining = minutes;
-		shutdownFlags = flags;
 	}
 
 	void run() {
 		--minutesRemaining;
 
-		StringBuffer shutdownMsg;
+		String str = "Server will shutdown in " + String::valueOf(minutesRemaining) + " minutes";
+
+		if (minutesRemaining <= 0)
+			str = "SHUTTING DOWN NOW!";
+
+		Logger::console.info(str, true);
+
+		zoneServer->getChatManager()->broadcastGalaxy(nullptr, str);
+		zoneServer->getChatManager()->handleGeneralDiscordShutdownChat(nullptr, str);
 
 		if (minutesRemaining <= 0) {
-			shutdownMsg << "You will now be disconnected so the server can perform a final save before shutting down.";
-		} else {
-			shutdownMsg << "You will be disconnected in ";
-
-			if (minutesRemaining > 1) {
-				shutdownMsg << minutesRemaining << " minutes ";
-			} else {
-				shutdownMsg << minutesRemaining << " minute ";
-			}
-
-			shutdownMsg << "so the server can perform a final save before shutting down. Please find a safe place to logout.";
-		}
-
-		Logger::console.info(true) << shutdownMsg.toString();
-
-		zoneServer->getChatManager()->broadcastGalaxy(nullptr, shutdownMsg.toString());
-
-		if (minutesRemaining <= 0) {
-			ServerCore::getInstance()->signalShutdown(static_cast<ServerCore::ShutdownFlags>(shutdownFlags));
+			ServerCore::getInstance()->signalShutdown();
 		} else {
 			schedule(60 * 1000);
 		}
+
 	}
 };
+
 
 #endif /* SHUTDOWNTASK_H_ */

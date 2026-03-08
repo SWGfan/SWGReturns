@@ -2,7 +2,6 @@ mercenary = Creature:new {
 	objectName = "@mob/creature_names:mercenary",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "mercenary",
 	faction = "",
 	level = 12,
@@ -23,35 +22,17 @@ mercenary = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
+	pvpBitmask = NONE,
 	creatureBitmask = PACK + STALKER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {
-		    "object/mobile/dressed_mercenary_weak_hum_m.iff",
-		    "object/mobile/dressed_mercenary_messanger_sullustan_m.iff"
-		    },
-
-	lootGroups = {
-		{
-			groups = {
-				{group = "mercenary_tier_1", chance = 10000000}
-			},
-			lootChance = 5000000
-		}
-	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	templates = {"object/mobile/dressed_mercenary_weak_hum_m.iff",
+		"object/mobile/dressed_mercenary_messanger_sullustan_m.iff" },
+	lootGroups = {},
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(mercenary, "mercenary")

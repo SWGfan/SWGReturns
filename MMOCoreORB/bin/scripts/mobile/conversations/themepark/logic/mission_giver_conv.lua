@@ -18,7 +18,7 @@ function createMissionGiverConvoTemplate(templateName, convoHandler)
 
 	mission_giver_failure = ConvoScreen:new {
 		id = "failure",
-		leftDialog = ":npc_failure_n",
+		leftDialog = "",
 		stopConversation = "true",
 		options = {
 		}

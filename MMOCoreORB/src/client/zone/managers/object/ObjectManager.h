@@ -13,7 +13,6 @@
 class SceneObject;
 class ObjectMap;
 class Zone;
-class SpaceZone;
 
 class ObjectManager : public Mutex, public Logger {
 	ObjectMap* objectMap;
@@ -23,7 +22,6 @@ class ObjectManager : public Mutex, public Logger {
 	static Mutex luaMutex;
 
 	Zone* zone;
-	SpaceZone* spaceZone;
 
 	void registerObjectTypes();
 
@@ -40,12 +38,6 @@ public:
 
 	inline void setZone(Zone* zn) {
 		zone = zn;
-		spaceZone = nullptr;
-	}
-
-	inline void setZone(SpaceZone* zn) {
-		spaceZone = zn;
-		zone = nullptr;
 	}
 
 	uint32 getObjectMapSize();

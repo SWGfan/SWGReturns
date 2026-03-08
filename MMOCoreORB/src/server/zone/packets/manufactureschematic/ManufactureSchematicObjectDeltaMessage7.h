@@ -8,10 +8,10 @@
 #include "server/zone/packets/DeltaMessage.h"
 #include "templates/params/RangedIntCustomizationVariable.h"
 
-class ManufactureSchematicObjectDeltaMessage7 : public DeltaMessage, public Logger {
+class ManufactureSchematicObjectDeltaMessage7 : public DeltaMessage {
 public:
-	ManufactureSchematicObjectDeltaMessage7(SceneObject* schematic) : DeltaMessage(schematic->getObjectID(), 0x4D53434F, 7) {
-		setLoggingName("ManufactureSchematicObjectDeltaMessage7");
+	ManufactureSchematicObjectDeltaMessage7(SceneObject* schematic) :
+		DeltaMessage(schematic->getObjectID(), 0x4D53434F, 7) {
 	}
 
 	void updateForAssembly(ManufactureSchematic* manufactureSchematic, float failureRate){
@@ -24,7 +24,8 @@ public:
 		update13(manufactureSchematic);
 	}
 
-	void updateCustomizationOptions(VectorMap<String, Reference<CustomizationVariable*> >* vars, int custpoints){
+	void updateCustomizationOptions(VectorMap<String, Reference<CustomizationVariable*> >* vars,
+			int custpoints){
 		update0D(vars);
 		update0E(vars);
 		update0F(vars);
@@ -34,20 +35,19 @@ public:
 
 	// update 8
 	void initialAssemblyUpdate(ManufactureSchematic* manufactureSchematic) {
+
 		CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
 
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - initialAssemblyUpdate Update 8";
+		startUpdate(8);
 
-		startUpdate(0x08);
-
-		int totalGroups = craftingValues->getTotalVisibleAttributeGroups();
+		int titleCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 		int counter = manufactureSchematic->getExperimentingCounter();
 
-		insertInt(totalGroups);
-		insertInt(totalGroups);
+		insertInt(titleCount);
+		insertInt(titleCount);
 
-		for (int i = 0; i < totalGroups; i++) {
-			String title = craftingValues->getVisibleAttributeGroup(i);
+		for (int i = 0; i < titleCount; i++) {
+			String title = craftingValues->getVisibleExperimentalPropertyTitle(i);
 
 			insertByte(1);
 			insertShort(i);
@@ -57,140 +57,132 @@ public:
 		}
 
 		// Initialize update 9************
-		startUpdate(0x09);
+		startUpdate(9);
 
-		startList(totalGroups, totalGroups);  // totalGroups, counter
+		startList(titleCount, titleCount);  // titleCount, counter
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			addListFloatElement(i, 0); //0
 		}
-
 		//!*********************************
 		// Initialize update 0A************
 		startUpdate(0x0A);
 
-		startList(totalGroups, totalGroups);
+		startList(titleCount, titleCount);
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			addListFloatElement(i, 0);
 		}
-
 		//!*********************************
 		// Initialize update 0B************
 		startUpdate(0x0B);
 
-		startList(totalGroups, totalGroups);
+		startList(titleCount, titleCount);
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			addListFloatElement(i, 0);
 		}
-
 		//!*********************************
 		// Initialize update 0C************
 		startUpdate(0x0C);
 
-		startList(totalGroups, totalGroups);
+		startList(titleCount, titleCount);
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			addListFloatElement(i, 0);
 		}
 		//!**********************************
 
-
-		// info(true) << "END ManufactureSchematicObjectDeltaMessage7 - initialAssemblyUpdate Update 8";
 	}
 
 	// This sends the experimental values shown in the Screen after hitting assemble
 	void update9(ManufactureSchematic* manufactureSchematic, bool initial) {
-		//info(true) << "ManufactureSchematicObjectDeltaMessage7 - update9";
 
 		int count;
 
-		startUpdate(0x09);
+		startUpdate(9);
 
 		CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
 
-		int totalGroups = craftingValues->getTotalVisibleAttributeGroups();
+		int titleCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 
 		if (initial) {
-			manufactureSchematic->setExperimentingCounter(totalGroups * 2);
-			manufactureSchematic->setExperimentingCounter(totalGroups * 3);
+			manufactureSchematic->setExperimentingCounter(titleCount * 2);
+			manufactureSchematic->setExperimentingCounter(titleCount * 3);
 		}
+
+//System::out << "Visible: " << titleCount << "  Count: " << count << endl;
 
 		count = manufactureSchematic->getExperimentingCounterPrevious();
 
-		// info(true) << "Visible Groups: " << totalGroups << " Current Count: " << count;
+		startList(titleCount, count);
 
-		startList(totalGroups, count);
+		for (int i = 0; i < titleCount; i++) {
 
-		for (int i = 0; i < totalGroups; i++) {
-			String group = craftingValues->getVisibleAttributeGroup(i);
+			String title = craftingValues->getVisibleExperimentalPropertyTitle(i);
 
-			float value = craftingValues->getCurrentVisiblePercentage(group);
+			float value = craftingValues->getCurrentVisiblePercentage(title);
 
 			if(value > 0 && value < .01)
 				value = .01f;
 
 			removeListFloatElement(i, value);
+
 		}
 	}
 
 	void update0A(ManufactureSchematic* manufactureSchematic) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 10 (0A)";
 
 		CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
 
 		startUpdate(0x0A);
 
-		int totalGroups = craftingValues->getTotalVisibleAttributeGroups();
+		int titleCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 
-		startList(totalGroups, totalGroups * 2);
+		startList(titleCount, titleCount * 2);
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			removeListFloatElement(i, 1.0f);
 		}
 	}
-
 	// I think this is usually 1.0
 	void update0B(ManufactureSchematic* manufactureSchematic) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 11 (0B)";
 
 		CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
 
 		startUpdate(0x0B);
 
-		int totalGroups = craftingValues->getTotalVisibleAttributeGroups();
+		int titleCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 
-		startList(totalGroups, totalGroups * 2);
+		startList(titleCount, titleCount * 2);
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 			removeListFloatElement(i, 1.0f);
 		}
 	}
 	// This is the MAX experimental value.  How many bars
 	void update0C(ManufactureSchematic* manufactureSchematic) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 12 (0C)";
 
 		CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
 
 		startUpdate(0x0C);
 
-		int totalGroups = craftingValues->getTotalVisibleAttributeGroups();
+		int titleCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 
-		startList(totalGroups, totalGroups * 2);
+		startList(titleCount, titleCount * 2);
 
 		float value;
 
-		for (int i = 0; i < totalGroups; i++) {
+		for (int i = 0; i < titleCount; i++) {
 
 			value = craftingValues->getMaxVisiblePercentage(i);
 
 			removeListFloatElement(i, value);
+
 		}
 	}
 
 	void update0D(VectorMap<String, Reference<CustomizationVariable*> >* vars) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 13 (0D)";
 
 		startUpdate(0x0D);
 
@@ -210,7 +202,6 @@ public:
 
 	// Starting COlor chooser position
 	void update0E(VectorMap<String, Reference<CustomizationVariable*> >* vars) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 14 (0E)";
 
 		startUpdate(0x0E);
 
@@ -229,7 +220,6 @@ public:
 	}
 
 	void update0F(VectorMap<String, Reference<CustomizationVariable*> >* vars) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 15 (0F)";
 
 		startUpdate(0x0F);
 
@@ -244,7 +234,6 @@ public:
 
 	// Number of palette colors
 	void update10(VectorMap<String, Reference<CustomizationVariable*> >* vars, int custpoints) {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7 - Update 16 (10)";
 
 		startUpdate(0x10);
 
@@ -258,21 +247,17 @@ public:
 	}
 
 	void update11() {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7::update11";
 
 		startUpdate(0x11);
 		insertByte(1);
 	}
 
 	void update12(float failureRate){
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7::update12";
-
 		startUpdate(0x12);
 		insertFloat(failureRate);
 	}
 
 	void update13(ManufactureSchematic* manufactureSchematic){
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7::update13";
 
 		ManagedReference<DraftSchematic*> draftSchematic = manufactureSchematic->getDraftSchematic();
 		if(draftSchematic == nullptr)
@@ -294,7 +279,6 @@ public:
 	}
 
 	void update14() {
-		// info(true) << "ManufactureSchematicObjectDeltaMessage7::update14";
 
 		startUpdate(0x14);
 		insertByte(1);

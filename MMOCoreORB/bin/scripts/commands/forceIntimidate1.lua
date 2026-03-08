@@ -45,11 +45,11 @@ ForceIntimidate1Command = {
 	name = "forceintimidate1",
 
 	damageMultiplier = 0,
-	speed = 1.0,
-	forceCost = 300,
+	speed = 4.0,
+	forceCost = 75,
 	accuracySkillMod = "forceintimidate_accuracy",
-	areaAction = true,
-	areaRange = 32,
+	coneAngle = 30,
+	coneAction = true,
 	forceAttack = true,
 	visMod = 25,
 
@@ -71,7 +71,7 @@ ForceIntimidate1Command = {
 
 	poolsToDamage = NO_ATTRIBUTE,
 
-	range = 64
+	range = 32
 }
 
 AddCommand(ForceIntimidate1Command)

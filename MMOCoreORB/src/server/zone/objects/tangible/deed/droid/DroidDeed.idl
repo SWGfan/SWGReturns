@@ -81,6 +81,4 @@ class DroidDeed extends Deed {
 
 	public abstract native void destroyObjectFromDatabase(boolean destroyContainedObjects = false);
 
-	@dirty
-	public native boolean isBombDroid();
 }

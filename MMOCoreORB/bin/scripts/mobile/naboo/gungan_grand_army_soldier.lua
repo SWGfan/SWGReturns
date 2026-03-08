@@ -2,7 +2,6 @@ gungan_grand_army_soldier = Creature:new {
 	objectName = "@mob/creature_names:gungan_grand_army_soldier",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "gungan",
 	faction = "gungan",
 	level = 18,
@@ -21,7 +20,7 @@ gungan_grand_army_soldier = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -32,21 +31,16 @@ gungan_grand_army_soldier = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "gungan_tier_1", chance = 10000000}
+				{group = "junk", chance = 4000000},
+				{group = "gungan_common", chance = 2000000},
+				{group = "tailor_components", chance = 2000000},
+				{group = "loot_kit_parts", chance = 2000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(gungan_grand_army_soldier, "gungan_grand_army_soldier")

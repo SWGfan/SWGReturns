@@ -18,9 +18,7 @@
 #include "server/zone/objects/tangible/deed/structure/StructureDeed.h"
 #include "templates/tangible/SharedStructureObjectTemplate.h"
 #include "server/zone/objects/area/areashapes/CircularAreaShape.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 #include "server/zone/Zone.h"
-#include "server/zone/managers/gcw/GCWManager.h"
 
 
 int PlaceStructureSessionImplementation::constructStructure(float x, float y, int angle) {
@@ -68,19 +66,11 @@ int PlaceStructureSessionImplementation::constructStructure(float x, float y, in
 
 			constructionDuration = serverTemplate->getLotSize() * 3000; //3 seconds per lot.
 
-			if (serverTemplatePath.contains("faction_perk")) {
-				GCWManager* gcwMan = thisZone->getGCWManager();
-
-				if (gcwMan != nullptr) {
-					constructionDuration = gcwMan->getBasePlacementDelay() * 1000;
-				}
-			}
-
 			constructionBarricade = barricade;
 		}
 	}
 
-	Reference<Task*> task = new StructureConstructionCompleteTask(creature);
+	Reference<Task*> task = new StructureConstructionCompleteTask(creature, false);
 	task->schedule(constructionDuration);
 
 	return 0;
@@ -111,7 +101,7 @@ void PlaceStructureSessionImplementation::placeTemporaryNoBuildZone(const Shared
 
 	noBuildZone->initializePosition(positionX, 0, positionY);
 	noBuildZone->setAreaShape(areaShape);
-	noBuildZone->addAreaFlag(ActiveArea::NOBUILDZONEAREA);
+	noBuildZone->setNoBuildArea(true);
 
 	thisZone->transferObject(noBuildZone, -1, true);
 
@@ -150,9 +140,6 @@ int PlaceStructureSessionImplementation::completeSession() {
 	ManagedReference<StructureObject*> structureObject = structureManager->placeStructure(creature, serverTemplatePath, positionX, positionY, directionAngle);
 
 	removeTemporaryNoBuildZone();
-
-	TransactionLog trx(deed, creature, structureObject, TrxCode::STRUCTUREDEED);
-	trx.addState("subjectTemplate", serverTemplatePath);
 
 	if (structureObject == nullptr) {
 		ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");

@@ -11,16 +11,13 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "engine/engine.h"
 
-//#define SHUTTLE_TIMER_DEBUG
-
-class ShuttleDepartureTask : public Task, public Logger {
+class ShuttleDepartureTask : public Task {
 	ManagedWeakReference<CreatureObject*> shuttleObject;
 
 protected:
 	int landedTime; //In seconds
 	int landingTime; //How long the landing animation takes to complete in seconds.
 	int departedTime; //In seconds
-	int shuttleType; // Type of Shuttle
 
 public:
 	ShuttleDepartureTask(CreatureObject* shuttle) : Task() {
@@ -28,23 +25,12 @@ public:
 		departedTime = 300;
 		landingTime = 11;
 		landedTime = 120;
-		shuttleType = 0;
-
-		Logger::setLoggingName("ShuttleDepartureTask");
 	}
 
 	void run() {
 		ManagedReference<CreatureObject*> strongReference = shuttleObject.get();
 
 		if (strongReference == nullptr) {
-			error() << " run() - shuttle strongReference has a nullptr.";
-			return;
-		}
-
-		ZoneServer* zoneServer = strongReference->getZoneServer();
-
-		if (zoneServer != nullptr && zoneServer->isServerShuttingDown()) {
-			cancel();
 			return;
 		}
 
@@ -52,10 +38,10 @@ public:
 
 		if (strongReference->isStanding()) {
 			strongReference->setPosture(CreaturePosture::PRONE);
-			reschedule(getDepartedTime() * 1000);
+			reschedule(departedTime * 1000);
 		} else {
 			strongReference->setPosture(CreaturePosture::UPRIGHT);
-			reschedule(getLandedTime() * 1000);
+			reschedule((landedTime + landingTime) * 1000);
 		}
 	}
 
@@ -69,21 +55,14 @@ public:
 		ManagedReference<CreatureObject*> strongReference = shuttleObject.get();
 
 		if (strongReference == nullptr) {
-			error() << " isLanded - shuttle strongReference has a nullptr.";
 			return false;
 		}
 
 		if (!strongReference->isStanding())
 			return false;
 
-		int landedCalc = landedTime - getSecondsRemaining();
-
-#ifdef SHUTTLE_TIMER_DEBUG
-		info(true) << " isLanded - landing time = " << landingTime << " landed calc = " << landedCalc;
-#endif
-
 		//Make sure the shuttle isn't still landing
-		if (landingTime >= landedCalc)
+		if ((landedTime - getSecondsRemaining()) <= landingTime)
 			return false;
 
 		return true;
@@ -93,17 +72,10 @@ public:
 		ManagedReference<CreatureObject*> strongReference = shuttleObject.get();
 
 		if (strongReference == nullptr) {
-			error() << "ShuttleDepartureTask::isLanding - shuttle strongReference has a nullptr.";
 			return false;
 		}
 
-		int landedCalc = landedTime - getSecondsRemaining();
-
-#ifdef SHUTTLE_TIMER_DEBUG
-		info(true) << " isLanded - landing time = " << landingTime << " landed calc = " << landedCalc;
-#endif
-
-		if (strongReference->isStanding() && landedCalc <= landingTime)
+		if (strongReference->isStanding() && (landedTime - getSecondsRemaining()) <= landingTime)
 			return true;
 
 		return false;
@@ -114,29 +86,11 @@ public:
 	}
 
 	int getLandedTime() {
-		// Landed Time is 120s for all shuttle
-		// Shuttleports = 11s	Startports = 14s
-		int timeLanded = landedTime + landingTime;
-
-#ifdef SHUTTLE_TIMER_DEBUG
-		info(true) << " Shuttle Type = " << getShuttleType() <<  " Setting time landed to " << timeLanded << " seconds.";
-#endif
-
-		return timeLanded;
+		return landedTime;
 	}
 
 	int getDepartedTime() {
-		// Startport departedTime is 60s and shuttleport departedTime is 300s
-
-#ifdef SHUTTLE_TIMER_DEBUG
-		info(true) << " Shuttle Type = " << getShuttleType() << " Setting departed time to " << departedTime << " seconds.";
-#endif
-
 		return departedTime;
-	}
-
-	int getShuttleType() {
-		return shuttleType;
 	}
 
 	void setLandingTime(int landing) {
@@ -149,10 +103,6 @@ public:
 
 	void setDepartedTime(int departed) {
 		departedTime = departed;
-	}
-
-	void setShuttleType (int type) {
-		shuttleType = type;
 	}
 };
 

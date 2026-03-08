@@ -51,8 +51,7 @@ object_draft_schematic_structure_installation_generator_solar = object_draft_sch
 	complexity = 15,
 	size = 10,
 	factoryCrateSize = 1,
-	factoryCrateType = "object/factory/factory_crate_installation.iff",
-   
+
 	xpType = "crafting_structure_general",
 	xp = 1900,
 

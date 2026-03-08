@@ -43,7 +43,6 @@
 
 GmReviveCommand = {
         name = "gmrevive",
-		cooldown = 3000,
 }
 
 AddCommand(GmReviveCommand)

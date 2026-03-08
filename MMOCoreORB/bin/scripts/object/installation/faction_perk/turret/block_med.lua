@@ -46,14 +46,8 @@ object_installation_faction_perk_turret_block_med = object_installation_faction_
 	pvpStatusBitmask = ATTACKABLE,
 	optionsBitmask = 0,
 	maxCondition = 200000,
-
-	gameObjectType = 4105,
-
-	groundZoneComponent = "TurretZoneComponent",
+	zoneComponent = "TurretZoneComponent",
 	dataObjectComponent = "TurretDataComponent",
-	containerComponent = "TurretContainerComponent",
-	objectMenuComponent = "TurretMenuComponent",
-
 	-- Damagetypes in WeaponObject
 	vulnerability = BLAST + LIGHTSABER,
 	-- LIGHT, MEDIUM, HEAVY

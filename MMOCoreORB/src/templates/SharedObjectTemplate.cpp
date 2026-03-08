@@ -45,7 +45,6 @@ SharedObjectTemplate::SharedObjectTemplate() : Logger("SharedObjectTemplate") {
 	inheritPermissionsFromParent = false;
 
 	noTrade = false;
-	forceNoTrade = false;
 	delayedContainerLoad = false;
 }
 
@@ -139,7 +138,7 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 	} else if (varName == "planetMapCategory") {
 		planetMapCategory = templateManager->getPlanetMapCategoryByName(Lua::getStringParameter(state));
 	} else if (varName == "planetMapSubCategory") {
-		planetMapSubCategory = templateManager->getPlanetMapSubCategoryByName(Lua::getStringParameter(state));
+		planetMapSubCategory = templateManager->getPlanetMapCategoryByName(Lua::getStringParameter(state));
 	} else if (varName == "autoRegisterWithPlanetMap") {
 		autoRegisterWithPlanetMap = (bool) Lua::getByteParameter(state);
 	} else if (varName == "childObjects") {
@@ -162,10 +161,8 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 		}
 
 		luaItemList.pop();
-	} else if (varName == "groundZoneComponent") {
-		groundZoneComponent = Lua::getStringParameter(state);
-	} else if (varName == "spaceZoneComponent") {
-		spaceZoneComponent = Lua::getStringParameter(state);
+	} else if (varName == "zoneComponent") {
+		zoneComponent = Lua::getStringParameter(state);
 	} else if (varName == "objectMenuComponent") {
 		objectMenuComponent = Lua::getStringParameter(state);
 	} else if (varName == "attributeListComponent") {
@@ -182,15 +179,13 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 		inheritPermissionsFromParent = Lua::getBooleanParameter(state);
 	} else if (varName == "noTrade") {
 		noTrade = (bool) Lua::getByteParameter(state);
-	} else if (varName == "forceNoTrade") {
-		forceNoTrade = (bool) Lua::getByteParameter(state);
 	} else if (varName == "groupPermissions") {
 		groupPermissions.removeAll();
 
 		LuaObject obj(state);
 
 		if (obj.isValidTable()) {
-			for (int i = 1; i <= obj.getTableSize(); ++i) {
+			for (int i = 1; i <= obj.getTableSize(); +i) {
 				LuaObject group = obj.getObjectAt(i);
 
 				groupPermissions.put(group.getStringAt(1).hashCode(), group.getIntAt(2));
@@ -370,7 +365,7 @@ void SharedObjectTemplate::readObject(IffStream* iffStream) {
 	uint32 nextType = iffStream->getNextFormType();
 
 	if (nextType != 'SHOT') {
-		warning() << "expecting SHOT got " << getType(nextType) << " in " << iffStream->getFileName();
+		warning() << "expecting SHOT got " << getType(nextType) << " in file: " << iffStream->getFileName();
 
 		iffStream->openForm(nextType);
 		iffStream->closeForm(nextType);

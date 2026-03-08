@@ -50,11 +50,8 @@ public:
 				String firstArg;
 				String firstName = "";
 				String modName = "";
-
 				bool buff = false;
 				bool skillmod = false;
-				bool modifiers = false;
-
 				args.getStringToken(firstArg);
 
 				if (firstArg.toLowerCase() == "buff") { // First argument is buff, get second argument
@@ -68,13 +65,12 @@ public:
 						args.getStringToken(modName);
 					else
 						return GENERALERROR;
-				} else if (firstArg.toLowerCase() == "modifiers") {
-					modifiers = true;
 				} else { // First argument is not buff, must be a name or area
 					firstName = firstArg;
 				}
 
 				if (firstName != "") { // There's an argument for a name or area
+
 					if (firstName.toLowerCase() == "area") { // Area argument found, check for range argument
 						int range = 32;
 						String faction = "";
@@ -104,14 +100,14 @@ public:
 							args.getStringToken(faction);
 						}
 
-						SortedVector<TreeEntry*> closeObjects;
+						SortedVector<QuadTreeEntry*> closeObjects;
 						Zone* zone = creature->getZone();
 
 						if (creature->getCloseObjects() == nullptr) {
 #ifdef COV_DEBUG
 							creature->info("Null closeobjects vector in GmReviveCommand::doQueueCommand", true);
 #endif
-							zone->getInRangeObjects(creature->getPositionX(), creature->getPositionZ(), creature->getPositionY(), range, &closeObjects, true);
+							zone->getInRangeObjects(creature->getPositionX(), creature->getPositionY(), range, &closeObjects, true);
 						} else {
 							CloseObjectsVector* closeVector = (CloseObjectsVector*) creature->getCloseObjects();
 							closeVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
@@ -188,33 +184,6 @@ public:
 						patient->removeSkillMod(SkillModManager::BUFF, modName, patient->getSkillMod(modName), true);
 					} else
 						return INVALIDTARGET;
-				} else if (modifiers) {
-					if (object == nullptr || !object->isPlayerCreature()) {
-						creature->sendSystemMessage("Invalid target for GMRevive modifiers command.");
-						return INVALIDTARGET;
-					}
-
-					patient = cast<CreatureObject*>(object.get());
-
-					if (patient == nullptr) {
-						creature->sendSystemMessage("Invalid target for GMRevive modifiers command.");
-						return GENERALERROR;
-					}
-
-					Locker clocker(patient, creature);
-
-					patient->clearBuffs(true, true);
-
-					for (int i = 0; i < 9; i++) {
-						int base = patient->getBaseHAM(i);
-
-						patient->setMaxHAM(i, base, true);
-					}
-
-					StringBuffer msg;
-					msg << "GMRevive modifiers: Player buffs removed and HAM values reset to base values for: " << patient->getFirstName();
-
-					creature->sendSystemMessage(msg.toString());
 				} else { // Shouldn't ever end up here
 					creature->sendSystemMessage("Syntax: /gmrevive [buff] [ [<name>] | [area [<range>] [imperial | rebel | neutral]] ]");
 					return INVALIDTARGET;

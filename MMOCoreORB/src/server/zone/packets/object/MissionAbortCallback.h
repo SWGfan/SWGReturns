@@ -8,70 +8,56 @@
 #ifndef MISSIONABORTCALLBACK_H_
 #define MISSIONABORTCALLBACK_H_
 
+
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "ObjectControllerMessageCallback.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/objects/mission/MissionObject.h"
 
+
 class MissionAbortCallback : public MessageCallback {
 	uint64 missionObjectID;
 
 	ObjectControllerMessageCallback* objectControllerMain;
-
 public:
-	MissionAbortCallback(ObjectControllerMessageCallback* objectControllerCallback) : MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()), missionObjectID(0), objectControllerMain(objectControllerCallback) {
+	MissionAbortCallback(ObjectControllerMessageCallback* objectControllerCallback) :
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
+		missionObjectID(0), objectControllerMain(objectControllerCallback) {
+
 	}
 
 	void parse(Message* message) {
-		// System::out << message->toStringData() << endl;
+		//System::out << message->toStringData() << endl;
 		message->parseInt();
 		missionObjectID = message->parseLong();
+
 	}
 
 	void run() {
 		ManagedReference<CreatureObject*> player = client->getPlayer();
 
-		if (player == nullptr) {
+		if (player == nullptr)
 			return;
-		}
 
-		auto zoneServer = player->getZoneServer();
+		ManagedReference<SceneObject*> mission = server->getZoneServer()->getObject(missionObjectID);
 
-		if (zoneServer == nullptr) {
+		if (mission == nullptr)
 			return;
-		}
 
-		ManagedReference<SceneObject*> mission = zoneServer->getObject(missionObjectID);
-
-		if (mission == nullptr || !mission->isMissionObject()) {
+		if (!mission->isMissionObject())
 			return;
-		}
 
-		MissionObject* missionObject = cast<MissionObject*>(mission.get());
+		MissionObject* missionObject = cast<MissionObject*>( mission.get());
 
-		if (missionObject == nullptr) {
-			return;
-		}
-
-		MissionManager* missionMan = zoneServer->getMissionManager();
-
-		if (missionMan == nullptr) {
-			return;
-		}
-
-		Locker lock(player);
-		Locker clock(missionObject, player);
-
-		missionMan->handleMissionAbort(missionObject, player, true);
+		MissionManager* manager = server->getZoneServer()->getMissionManager();
+		manager->handleMissionAbort(missionObject, player);
 
 		// MissionAbortResponse
-		ObjectControllerMessage* abortResponse = new ObjectControllerMessage(player->getObjectID(), 0x0B, 0x142);
-
-		if (abortResponse != nullptr) {
-			abortResponse->insertLong(missionObject->getObjectID());
-			player->sendMessage(abortResponse);
-		}
+		ObjectControllerMessage* mar = new ObjectControllerMessage(player->getObjectID(), 0x0B, 0x142);
+		mar->insertLong(missionObject->getObjectID());
+		player->sendMessage(mar);
 	}
 };
+
 
 #endif /* MISSIONABORTCALLBACK_H_ */

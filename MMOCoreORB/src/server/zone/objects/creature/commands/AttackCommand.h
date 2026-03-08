@@ -9,22 +9,21 @@
 
 class AttackCommand : public CombatQueueCommand {
 public:
-	AttackCommand(const String& name, ZoneProcessServer* server) : CombatQueueCommand(name, server) {
+
+	AttackCommand(const String& name, ZoneProcessServer* server)
+		: CombatQueueCommand(name, server) {
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-		bool ridingMount = creature->isRidingMount();
 
-		if ((ridingMount && !creature->isSwimming() && !checkStateMask(creature)) || (!ridingMount && !checkStateMask(creature))) {
+		if (!checkStateMask(creature))
 			return INVALIDSTATE;
-		}
 
-		if (!checkInvalidLocomotions(creature)) {
+		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
-		}
 
 		return doCombatAction(creature, target);
 	}
 };
 
-#endif // ATTACKCOMMAND_H_
+#endif //ATTACKCOMMAND_H_

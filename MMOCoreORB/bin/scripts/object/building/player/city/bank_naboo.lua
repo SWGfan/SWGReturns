@@ -45,19 +45,18 @@ object_building_player_city_bank_naboo = object_building_player_city_shared_bank
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "naboo", "rori"},
-	length = 4,
+	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	width = 4,
 	planetMapCategory = "bank",
 	gameObjectType = 4096,
 	cityRankRequired = 2,
 	cityMaintenanceBase = 1500,
 	abilityRequired = "place_bank",
-	groundZoneComponent = "StructureZoneComponent",
+	zoneComponent = "StructureZoneComponent",
 	childObjects = {
 		{templateFile = "object/tangible/terminal/terminal_player_structure.iff", x = 0, z = 0, y = -1, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1},
-		{templateFile = "object/tangible/terminal/terminal_bank.iff", x = -1, z = 0, y = 0, ox = 0, oy = -0.707107, oz = 0, ow = 0.707107, cellid = -1, containmentType = -1},
-		{templateFile = "object/tangible/terminal/terminal_bank.iff", x = 0, z = 0, y = 1, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1},
+		{templateFile = "object/tangible/terminal/terminal_bazaar.iff", x = -1, z = 0, y = 0, ox = 0, oy = -0.707107, oz = 0, ow = 0.707107, cellid = -1, containmentType = -1},
+		{templateFile = "object/tangible/beta/beta_terminal_wound.iff", x = 0, z = 0, y = 1, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1},
 		{templateFile = "object/tangible/terminal/terminal_bank.iff", x = 1, z = 0, y = 0, ox = 0, oy = 0.707107, oz = 0, ow = 0.707107, cellid = -1, containmentType = -1}
 	}
 

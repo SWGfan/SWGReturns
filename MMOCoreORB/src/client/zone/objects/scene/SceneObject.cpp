@@ -53,7 +53,7 @@ SceneObject::SceneObject(LuaObject* templateData) : Logger("SceneObject") {
 
 SceneObject::~SceneObject() {
 	/*if (parent != nullptr) {
-		error("DELETING OBJECT WITH PARENT NOT NULL");
+		error("DELETING OBJECT WITH PARENT NOT nullptr");
 	}*/
 	info("destroying object");
 
@@ -109,7 +109,7 @@ bool SceneObject::transferObject(SceneObject* object, int containmentType) {
 
 		containerObjects.put(object->getObjectID(), object);
 	} else {
-		error("unknown container type");
+		error("unkown container type");
 		return false;
 	}
 

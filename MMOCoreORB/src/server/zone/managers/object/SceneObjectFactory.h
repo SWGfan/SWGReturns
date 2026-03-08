@@ -49,12 +49,10 @@ namespace server {
 
    public:
 	   BaseClassType createObject(UniqueIdType uniqueID) {
-		   const auto entry = objectCreator.getEntry(uniqueID);
-
-		   if (!entry)
+		   if (!objectCreator.containsKey(uniqueID))
 			   return nullptr;
 
-		   return entry->getValue()();
+		   return objectCreator.get(uniqueID)();
 	   }
 
 	   template<typename ClassType> bool registerObject(UniqueIdType uniqueID) {
@@ -70,7 +68,7 @@ namespace server {
 		   return objectCreator.drop(uniqueID);
 	   }
 
-	   bool containsObject(UniqueIdType uniqueID) const {
+	   bool containsObject(UniqueIdType uniqueID) {
 		   return objectCreator.containsKey(uniqueID);
 	   }
 

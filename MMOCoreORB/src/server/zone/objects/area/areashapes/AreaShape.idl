@@ -6,10 +6,9 @@ package server.zone.objects.area.areashapes;
 
 include engine.core.ManagedObject;
 include engine.util.u3d.Vector3;
-import engine.log.Logger;
 
 @mock
-class AreaShape extends ManagedObject implements Logger {
+class AreaShape extends ManagedObject {
 
 	/** The center coordinate of the area. */
 	@dereferenced
@@ -18,8 +17,6 @@ class AreaShape extends ManagedObject implements Logger {
 	/** Constructor */
 	public AreaShape() {
 		areaCenter.set(0, 0, 0);
-
-		Logger.setLoggingName("AreaShape");
 	}
 
 	/**
@@ -33,23 +30,12 @@ class AreaShape extends ManagedObject implements Logger {
 	}
 
 	/**
-	 * Set the area center.
-	 * @param x the x coordinate.
-	 * @param y the y coordinate.
-	 * @paran z the z coordinate.
-	 */
-	@preLocked
-	public void setAreaCenter(float x, float z, float y) {
-		areaCenter.set(x, z, y);
-	}
-
-	/**
 	 * Get the area center.
 	 * @return the area center.
 	 */
 	@dereferenced
 	@local
-	@read
+	@dirty
 	public native Vector3 getAreaCenter();
 
 	/**
@@ -58,20 +44,8 @@ class AreaShape extends ManagedObject implements Logger {
 	 * @param y the y coordinate.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	@read
+	@dirty
 	public abstract boolean containsPoint(float x, float y) {
-		return false;
-	}
-
-	/**
-	 * Check if the coordinate is within the area shape.
-	 * @param x the x coordinate.
-	 * @param y the y coordinate.
-	 * @param z the z coordinate.
-	 * @return true if the coordinate is within the area shape.
-	 */
-	@read
-	public abstract boolean containsPoint(float x, float z, float y) {
 		return false;
 	}
 
@@ -83,7 +57,7 @@ class AreaShape extends ManagedObject implements Logger {
 	@dereferenced
 	@local
 	@mock
-	@read
+	@dirty
 	public abstract boolean containsPoint(@dereferenced final Vector3 point) {
 		return false;
 	}
@@ -92,7 +66,7 @@ class AreaShape extends ManagedObject implements Logger {
 	 * Get the minimum radius of a circle bounding the area shape.
 	 * @return the minimum bonding radius.
 	 */
-	@read
+	@dirty
 	public abstract float getRadius() {
 		return 0;
 	}
@@ -103,7 +77,7 @@ class AreaShape extends ManagedObject implements Logger {
 	 */
 	@dereferenced
 	@local
-	@read
+	@dirty
 	public native abstract Vector3 getRandomPosition();
 
 	/**
@@ -115,29 +89,14 @@ class AreaShape extends ManagedObject implements Logger {
 	 */
 	@dereferenced
 	@local
-	@read
+	@dirty
 	public native abstract Vector3 getRandomPosition(@dereferenced final Vector3 origin, float minDistance, float maxDistance);
-
-	@read
-	public abstract float getWidth() {
-		return 0;
-	}
-
-	@read
-	public abstract float getHeight() {
-		return 0;
-	}
-
-	@read
-	public abstract float getLength() {
-		return 0;
-	}
 
 	/**
 	 * Check if this is a circular area shape.
 	 * @return true if it is a circular area shape.
 	 */
-	@read
+	@dirty
 	public abstract boolean isCircularAreaShape() {
 		return false;
 	}
@@ -146,7 +105,7 @@ class AreaShape extends ManagedObject implements Logger {
 	 * Check if this is a rectangular area shape.
 	 * @return true if it is a rectangular area shape.
 	 */
-	@read
+	@dirty
 	public abstract boolean isRectangularAreaShape() {
 		return false;
 	}
@@ -155,26 +114,8 @@ class AreaShape extends ManagedObject implements Logger {
 	 * Check if this is a ring area shape.
 	 * @return true if it is a ring area shape.
 	 */
-	@read
+	@dirty
 	public abstract boolean isRingAreaShape() {
-		return false;
-	}
-
-	/**
-	 * Check if this is a cuboid area shape.
-	 * @return true if it is a cuboid area shape.
-	 */
-	@read
-	public abstract boolean isCuboidAreaShape() {
-		return false;
-	}
-
-	/**
-	 * Check if this is a sphere area shape.
-	 * @return true if it is a sphere area shape.
-	 */
-	@read
-	public abstract boolean isSphereAreaShape() {
 		return false;
 	}
 
@@ -183,7 +124,7 @@ class AreaShape extends ManagedObject implements Logger {
 	 * @param areaShape the area shape to check for intersections with.
 	 * @return true if the area shapes intersects each other.
 	 */
-	@read
+	@dirty
 	public abstract boolean intersectsWith(AreaShape areaShape) {
 		return false;
 	}
@@ -192,7 +133,7 @@ class AreaShape extends ManagedObject implements Logger {
 	 * Get the area of the areaShape.
 	 * @return the area of the area shape.
 	 */
-	@read
+	@dirty
 	public abstract float getArea() {
 		return 0;
 	}

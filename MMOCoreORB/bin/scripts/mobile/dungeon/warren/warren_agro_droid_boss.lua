@@ -2,7 +2,6 @@ warren_agro_droid_boss = Creature:new {
 	objectName = "@mob/creature_names:warren_agro_droid_boss",
 	socialGroup = "warren_imperial",
 	faction = "",
-	mobType = MOB_ANDROID,
 	level = 46,
 	chanceHit = 0.36,
 	damageMin = 400,

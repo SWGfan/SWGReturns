@@ -22,8 +22,7 @@ public:
 		SKILL,
 		JEDI,
 		INNATE,
-		STATE,
-		TRAP
+		STATE
 	};
 };
 

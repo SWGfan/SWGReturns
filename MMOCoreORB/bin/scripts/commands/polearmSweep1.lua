@@ -45,12 +45,12 @@ PolearmSweep1Command = {
 	name = "polearmsweep1",
 
 	damageMultiplier = 2.0,
-	speedMultiplier = 1.0,
+	speedMultiplier = 1.5,
 	accuracyBonus = 10,
 	
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1.5,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 1.0,
 
 	stateEffects = {
 	  StateEffect( 
@@ -68,7 +68,7 @@ PolearmSweep1Command = {
 
 	combatSpam = "backcracker",
 	
-	weaponType = POLEARMWEAPON + ONEHANDMELEEWEAPON + TWOHANDMELEEWEAPON,
+	weaponType = POLEARMWEAPON,
 
 	range = -1
 }

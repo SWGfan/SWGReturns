@@ -53,15 +53,13 @@ public:
 			return false;
 		}
 
+		if (player->hasAttackDelay() || !player->checkPostureChangeDelay())
+			return false;
+
 		return true;
 	}
 
 	static bool isValidGroupAbilityTarget(CreatureObject* leader, CreatureObject* target, bool allowPet) {
-
-		if (target == nullptr || target->isDead() || target->isIncapacitated()) {
-			return false;
-		}
-
 		if (allowPet) {
 			if (!target->isPlayerCreature() && !target->isPet()) {
 				return false;
@@ -78,16 +76,28 @@ public:
 
 		CreatureObject* targetCreo = target;
 
-		if (allowPet && target->isPet()) {
+		if (allowPet && target->isPet())
 			targetCreo = target->getLinkedCreature().get();
 
-			if (targetCreo == nullptr)
-				return false;
-		}
-
-		// Use healing checks
-		if (!targetCreo->isHealableBy(leader))
+		PlayerObject* ghost = targetCreo->getPlayerObject();
+		if (ghost == nullptr)
 			return false;
+
+		uint32 leaderFaction = leader->getFaction();
+		uint32 targetFaction = target->getFaction();
+		int targetStatus = targetCreo->getFactionStatus();
+
+		if (leaderFaction == 0) {
+			if (targetFaction != 0 && (targetStatus = FactionStatus::OVERT || ghost->hasPvpTef()))
+				return false;
+		} else if (targetFaction != 0) {
+			if (leaderFaction != targetFaction && (targetStatus = FactionStatus::OVERT || ghost->hasPvpTef()))
+				return false;
+
+			//Comment out for the time being to allow SLs buff and get tefed
+			//if (leaderFaction == targetFaction && targetStatus > leader->getFactionStatus())
+			//	return false;
+		}
 
 		if (target->getParentRecursively(SceneObjectType::BUILDING) != leader->getParentRecursively(SceneObjectType::BUILDING))
 			return false;
@@ -117,7 +127,9 @@ public:
 		if (group == nullptr)
 			return 0;
 
-		float modifier = 1.0f + ((float)(group->getGroupSize()) / 20.0f);
+		float modifier = (float)(group->getGroupSize()) / 10.0f;
+			if (modifier < 1.0)
+				modifier += 1.0f;
 
 			return modifier;
 	}

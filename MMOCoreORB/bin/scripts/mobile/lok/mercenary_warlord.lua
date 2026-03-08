@@ -2,7 +2,6 @@ mercenary_warlord = Creature:new {
 	objectName = "@mob/creature_names:mercenary_warlord",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "lok_mercenaries",
 	faction = "lok_mercenaries",
 	level = 44,
@@ -21,7 +20,7 @@ mercenary_warlord = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -36,22 +35,26 @@ mercenary_warlord = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "lok_mercenaries_tier_2", chance = 10000000}
+				{group = "junk", chance = 2600000},
+				{group = "wearables_common", chance = 1500000},
+				{group = "wearables_uncommon", chance = 500000},
+				{group = "tailor_components", chance = 1000000},
+				{group = "color_crystals", chance = 400000},
+				{group = "power_crystals", chance = 400000},
+				{group = "melee_unarmed", chance = 600000},
+				{group = "melee_polearm", chance = 600000},
+				{group = "pistols", chance = 600000},
+				{group = "carbines", chance = 600000},
+				{group = "rifles", chance = 600000},
+				{group = "clothing_attachments", chance = 300000},
+				{group = "armor_attachments", chance = 300000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(commandomaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(mercenary_warlord, "mercenary_warlord")

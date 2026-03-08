@@ -17,6 +17,9 @@ void HarvesterObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* m
 
 	InstallationObjectImplementation::fillObjectMenuResponse(menuResponse, player);
 
+	menuResponse->addRadialMenuItemToRadialID(118, 79, 3, "Retreive all resources"); //Empty Harvester
+	menuResponse->addRadialMenuItemToRadialID(118, 80, 3, "+ 10k Maintenance"); //10k maint
+	menuResponse->addRadialMenuItemToRadialID(118, 81, 3, "+ 10k Power"); //10k power
 	menuResponse->addRadialMenuItemToRadialID(118, 78, 3, "@harvester:manage"); //Operate Machinery
 }
 
@@ -61,6 +64,20 @@ int HarvesterObjectImplementation::handleObjectMenuSelect(CreatureObject* player
 		return 1;
 
 	switch (selectedID) {
+		// Stack adding in harvester empty/power/maint quick addd
+	case 81: { // add 10k power
+		float energy = 10000.0;
+		quickAddPower(player, energy);
+    break;
+	}
+	case 80: { // 10k maint
+		quickAddMaint(player, 10000.0);
+		break;
+	}
+	case 79: { // Retrieve all from Harvester
+		quickRetrieveAllResources(player);
+		break;
+	}
 	case 78: {
 		ResourceHarvesterActivatePageMessage* rhapm = new ResourceHarvesterActivatePageMessage(getObjectID());
 		player->sendMessage(rhapm);
@@ -78,10 +95,11 @@ int HarvesterObjectImplementation::handleObjectMenuSelect(CreatureObject* player
 }
 
 String HarvesterObjectImplementation::getRedeedMessage() {
-	if (isActive())
+
+	if(operating)
 		return "destroy_deactivate_first";
 
-	if (getHopperSize() > 0)
+	if(getHopperSize() > 0)
 		return "destroy_empty_hopper";
 
 	return "";

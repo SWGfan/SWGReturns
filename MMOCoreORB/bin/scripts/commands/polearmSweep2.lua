@@ -44,11 +44,11 @@
 PolearmSweep2Command = {
         name = "polearmsweep2",
 
-	damageMultiplier = 2.5,
+	damageMultiplier = 3.0,
 	speedMultiplier = 2.5,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 1.5,
+	mindCostMultiplier = 1.5,
 	accuracyBonus = 15,
 
 	stateEffects = {
@@ -62,7 +62,7 @@ PolearmSweep2Command = {
 		0 
 	  )
 	},
-	areaRange = 32,
+	areaRange = 16,
 	areaAction = true,
 
 	animation = "knockdown_polearm_2",
@@ -71,7 +71,7 @@ PolearmSweep2Command = {
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 	
-	weaponType = POLEARMWEAPON + ONEHANDMELEEWEAPON + TWOHANDMELEEWEAPON,
+	weaponType = POLEARMWEAPON,
 
 	range = -1
 }

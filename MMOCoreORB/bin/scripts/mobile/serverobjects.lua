@@ -1,8 +1,21 @@
+-- Custom content
+includeFile("../custom_scripts/mobile/serverobjects.lua")
 -- Conversations
 includeFile("conversations.lua")
-
 -- Dress Groups - Must be loaded before mobiles
 includeFile("dressgroup/serverobjects.lua") 
+--New Content
+includeFile("custom_content/serverobjects.lua")
+includeFile("custom_vendors/serverobjects.lua")
+--New Content Mob Template Files
+includeFile("hoth/serverobjects.lua")
+--includeFile("kashyyyk/serverobjects.lua")
+includeFile("nalhutta/serverobjects.lua")
+includeFile("taanab/serverobjects.lua")
+includeFile("mustafar/serverobjects.lua")
+includeFile("geonosis/serverobjects.lua")
+includeFile("korriban/serverobjects.lua")
+includeFile("mandalore/serverobjects.lua")
 
 -- Creatures
 includeFile("corellia/serverobjects.lua")
@@ -24,50 +37,31 @@ includeFile("thug/serverobjects.lua")
 includeFile("townsperson/serverobjects.lua")
 includeFile("tutorial/serverobjects.lua")
 includeFile("yavin4/serverobjects.lua")
-
 includeFile("faction/serverobjects.lua")
-includeFile("dungeon/serverobjects.lua") 
-
+includeFile("dungeon/serverobjects.lua")
+includeFile("worldboss/serverobjects.lua")
 -- Weapons
 includeFile("weapon/serverobjects.lua") 
-
 -- Spawn Groups
 includeFile("spawn/serverobjects.lua")
-
 -- Trainer
 includeFile("trainer/serverobjects.lua")
-
 -- Mission
 includeFile("mission/serverobjects.lua")
-
 -- Lairs
 includeFile("lair/serverobjects.lua")
-
 -- Outfits
 includeFile("outfits/serverobjects.lua")
+--Fallen Friends
+includeFile("ghost/serverobjects.lua")
 
--- Custom content - Loads last to allow for overrides
-includeFile("../custom_scripts/mobile/serverobjects.lua")
-includeFile("custom/serverobjects.lua")
+--New Beast Master BE Pets
+includeFile("be/serverobjects.lua")
 
--- === Custom Sith/Wampa set ===
--- Shared (must be first)
-includeFile("shared/_boss_attacks.lua")
+--Merchants
+includeFile("merchants/serverobjects.lua")
 
--- Generics
-includeFile("generics/sith_acolyte.lua")
-includeFile("generics/sith_lord.lua")
-includeFile("generics/sith_boss.lua")
-includeFile("generics/wampa_alpha.lua")
-
--- Legendaries
-includeFile("legendaries/darth_revan.lua")
-includeFile("legendaries/bastila_shan.lua")
-includeFile("legendaries/darth_malak.lua")
-includeFile("legendaries/emperor_palpatine.lua")
-includeFile("legendaries/darth_vader.lua")
-includeFile("legendaries/luke_skywalker_rotj.lua")
-includeFile("legendaries/hk47.lua")
--- === End custom set ===
--- Dromund Kaas mobiles
+-- New content
+includeFile("custom-dlswg/serverobjects.lua")
 includeFile("kaas/serverobjects.lua")
+includeFile("hutta/serverobjects.lua")

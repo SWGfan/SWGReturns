@@ -7,342 +7,263 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/chat/ChatManager.h"
-#include "server/zone/objects/group/GroupObject.h"
-#include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
+#include "server/zone/objects/creature/ai/CreatureTemplate.h"
+
 
 class GetObjVarsCommand : public QueueCommand {
 public:
-	GetObjVarsCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	GetObjVarsCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-		if (!creature->isPlayerCreature()) {
-			return GENERALERROR;
-		}
 
-		auto ghost = creature->getPlayerObject();
+		if (!checkStateMask(creature))
+			return INVALIDSTATE;
 
-		if (ghost == nullptr) {
+		if (!checkInvalidLocomotions(creature))
+			return INVALIDLOCOMOTION;
+
+		if (!creature->isPlayerCreature())
 			return GENERALERROR;
-		}
 
 		uint64 objectID = 0;
-		UnicodeTokenizer tokenizer(arguments);
-		tokenizer.setDelimeter(" ");
+		//UnicodeTokenizer tokenizer(arguments);
+        //tokenizer.setDelimeter(" ");
+        StringTokenizer args(arguments.toString());
+		
 
 		// if we have an argument passed, use it
-		if (tokenizer.hasMoreTokens()) {
-			try {
-				objectID = tokenizer.getLongToken();
-			} catch (Exception& err) {
-				creature->sendSystemMessage("INVALID OBJECT.  Please specify a valid object name or objectid");
-				return INVALIDPARAMETERS;
-			}
+		if (args.hasMoreTokens()) {
+            String commandType;
+            args.getStringToken(commandType);
+            
+            if (commandType.beginsWith("spout")) {
+                if (target == 0){
+                    creature->sendSystemMessage("You must target an object for /getObjVars spout to function.");
+                    return INVALIDPARAMETERS;
+                }
+
+                objectID = target;
+                ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(objectID, false);
+                
+                String planetName = object->getZone()->getZoneName();
+                String templateFile = object->getObjectTemplate()->getFullTemplateString();
+                StringBuffer text;
+                
+                if (templateFile.contains("object/mobile")){
+                    int angle = object->getDirectionAngle();
+                    
+                    // Beause they crash the server if we try to use them as an AI agent.
+                    if (templateFile.contains("junk") || templateFile.contains("vehicle") || templateFile.contains("vendor")){ 
+                       creature->sendSystemMessage("Sorry, this feature does not support the selected object or NPC.");
+                       return INVALIDPARAMETERS;
+                    }
+                    
+                    AiAgent* mob = object.castTo<AiAgent*> ();
+                    const CreatureTemplate* creatureTemplate = mob->getCreatureTemplate();
+                    String mobileName = creatureTemplate->getTemplateName();
+
+                    text << "spawnMobile(\"" << planetName << "\", " <<  "\"" << mobileName << "\", 1, ";
+		    info(text, true);
+                
+                    if (object->getParent() != nullptr && object->getParent().get()->isCellObject()) {
+                        // Inside
+                        ManagedReference<CellObject*> cell = cast<CellObject*>( object->getParent().get().get());
+                        Vector3 cellPosition = object->getPosition();
+
+                        text << cellPosition.getX() << ", " << cellPosition.getZ() << ", " << cellPosition.getY() << ", " << angle << ", " << cell->getObjectID() << ")";
+			info(text, true);
+                    }else {
+                        // Outside
+                        Vector3 worldPosition = object->getWorldPosition();
+                        
+                        text << worldPosition.getX() << ", " << worldPosition.getZ() << ", " << worldPosition.getY() << ", " << angle << ", " << "0" << ")\n";
+			info(text, true);
+                    }
+                    
+                    creature->sendSystemMessage(text.toString());// spawnMobile("planet", "mobileTemplate", respawnTimer, x, z, y, heading, cellid)
+                } else {
+                    text << "spawnSceneObject(\"" << planetName << "\", \"" << templateFile << "\", ";
+                
+                    if (object->getParent() != nullptr && object->getParent().get()->isCellObject()) {
+                        // Inside
+                        ManagedReference<CellObject*> cell = cast<CellObject*>( object->getParent().get().get());
+                        Vector3 cellPosition = object->getPosition();
+
+                        text << cellPosition.getX() << ", " << cellPosition.getZ() << ", " << cellPosition.getY() << ", " << cell->getObjectID() << ", ";
+			info(text, true);
+                    }else {
+                        // Outside
+                        Vector3 worldPosition = object->getWorldPosition();
+                        text << worldPosition.getX() << ", " << worldPosition.getZ() << ", " << worldPosition.getY() << ", " << "0" << ", ";
+			info(text, true);
+                    }
+                    
+                    const Quaternion* dir = object->getDirection();
+                    
+                    text << dir->getW() << ", " << dir->getX() << ", " << dir->getY() << ", " << dir->getZ() << ")\n";
+		    info(text, true);
+                    
+                    creature->sendSystemMessage(text.toString()); // spawnSceneObject("planet", "objectTemplateFilePathAndName", x, z, y, cellNumber, dw, dx, dy, dz> 
+                }
+                
+                return SUCCESS;
+            } 
+            else if (commandType.beginsWith("static")){ // Having this seperate function allows you to still use /getObjVars spout if you want to use the tangible object version instead.
+                if (target == 0){
+                    creature->sendSystemMessage("You must target an object for /getObjVars static to function.");
+                    return INVALIDPARAMETERS;
+                }
+                
+                objectID = target;
+                ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(objectID, false);
+                
+                String planetName = object->getZone()->getZoneName();
+                String templateFile = object->getObjectTemplate()->getFullTemplateString();
+                
+                if (!templateFile.contains("furniture/static")){
+                    creature->sendSystemMessage("Incorrect Usage: Target object must be a decendant of object/tangible/furniture/static/");
+                    creature->sendSystemMessage("These items are available on a special character builder style terminal.");
+                    creature->sendSystemMessage("/object createitem object/tangible/beta/donham_terminal.iff");
+                    return INVALIDPARAMETERS;
+                }
+                
+                templateFile = templateFile.replaceAll("tangible/furniture/", ""); // Convert from Admin-handy tangible version to the normal static version.
+                
+                 if (templateFile.contains("static/building"))
+                    templateFile = templateFile.replaceAll("static/building", "building"); // Fix path for filler type buildings
+                
+                StringBuffer text;
+                
+                text << "spawnSceneObject(\"" << planetName << "\", \"" << templateFile << "\", ";
+		info(text, true);
+                
+                if (object->getParent() != nullptr && object->getParent().get()->isCellObject()) {
+                    // Inside
+                    ManagedReference<CellObject*> cell = cast<CellObject*>( object->getParent().get().get());
+                    Vector3 cellPosition = object->getPosition();
+
+                    text << cellPosition.getX() << ", " << cellPosition.getZ() << ", " << cellPosition.getY() << ", " << cell->getObjectID() << ", ";
+	            info(text, true);
+                }else {
+                    // Outside
+                    Vector3 worldPosition = object->getWorldPosition();
+                    text << worldPosition.getX() << ", " << worldPosition.getZ() << ", " << worldPosition.getY() << ", " << "0" << ", ";
+		    info(text, true);
+                }
+                
+                const Quaternion* dir = object->getDirection();
+                
+                text << dir->getW() << ", " << dir->getX() << ", " << dir->getY() << ", " << dir->getZ() << ")\n";
+		info(text, true);
+                
+                creature->sendSystemMessage(text.toString()); // spawnSceneObject("planet", "staticObjectTemplateFilePathAndName", x, z, y, cellNumber, dw, dx, dy, dz> 
+                return SUCCESS;
+            } 
+            else if (commandType.beginsWith("onme")){
+                //PlayerObject* targetGhost = creature->getPlayerObject();
+                
+                String planetName = creature->getZone()->getZoneName();
+                int angle = creature->getDirectionAngle();
+                
+                StringBuffer text;
+                
+                text << "spawnMobile(\"" << planetName << "\", " <<  "\"commoner" << "\", 1, ";
+		info(text, true);
+                
+                if (creature->getParent() != nullptr && creature->getParent().get()->isCellObject()) {
+                    // Inside
+                    ManagedReference<CellObject*> cell = cast<CellObject*>( creature->getParent().get().get());
+                    Vector3 cellPosition = creature->getPosition();
+
+                    text << cellPosition.getX() << ", " << cellPosition.getZ() << ", " << cellPosition.getY() << ", " << angle << ", " << cell->getObjectID() << ")";
+		    info(text, true);
+                }else {
+                    // Outside
+                    Vector3 worldPosition = creature->getWorldPosition();
+                    
+                    text << worldPosition.getX() << ", " << worldPosition.getZ() << ", " << worldPosition.getY() << ", " << angle << ", " << "0" << ")\n";
+		    info(text, true);
+                }
+                
+                creature->sendSystemMessage(text.toString());// spawnMobile("planet", "mobileTemplate", respawnTimer, x, z, y, heading, cellid)
+                return SUCCESS;
+            } 
+            else if (commandType.beginsWith("id")){
+                try {
+                    objectID = args.getLongToken();
+                } catch ( Exception& err ) {
+                    creature->sendSystemMessage("INVALID OBJECT.  Please specify a valid object name or objectID");
+                    return INVALIDPARAMETERS;
+                }
+            }
+            else if (commandType.beginsWith("myparent")){
+                if (creature->getParent() != nullptr && creature->getParent().get()->isCellObject()) {
+                    ManagedReference<CellObject*> cell = cast<CellObject*>( creature->getParent().get().get());
+                    ManagedReference<SceneObject*> parent = cell->getParent().get();
+                    creature->sendSystemMessage("Parent Structure ID: " + String::valueOf(parent->getObjectID()));
+                } else {
+                    creature->sendSystemMessage("/getObjVars myparent is only useful when you're inside a structure.");
+                }
+                return SUCCESS;
+            }
 		} else {
 			objectID = target;
 		}
 
-		if (objectID == 0) {
+		if ( objectID == 0 ) {
 			creature->sendSystemMessage("You need to target an object or specify an object id: /getobjvars <objectID> ");
 		}
 
-		auto zoneServer = server->getZoneServer();
+		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(objectID, false);
 
-		if (zoneServer == nullptr) {
-			return GENERALERROR;
-		}
-
-		ManagedReference<SceneObject*> object = zoneServer->getObject(objectID, false);
-
-		if (object == nullptr) {
+		if ( object == nullptr) {
 			creature->sendSystemMessage("ERROR GETTIGN OBJECT - nullptr " + String::valueOf(objectID));
-			return INVALIDTARGET;
-		}
+		} else {
 
-		ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, SuiWindowType::NONE);
+			String strClassName = object->getObjectNameStringIdName();
+			String strDescription = object->getDetailedDescription();
+			bool bMarkedForDelete = object->_isMarkedForDeletion();
+			bool bIsUpdated = object->_isUpdated();
+			int rCount = object.get()->getReferenceCount();
+			uint64 parentID = object->getParentID();
+			StringBuffer msg;
+			msg << endl << "OBJECTID: " << String::valueOf(objectID) << endl;
+			msg << "OBJECTTYPE: " << String::valueOf(object->getGameObjectType()) << endl;
 
-		if (box == nullptr) {
-			return GENERALERROR;
-		}
-
-		/*
-		*	General Object Information
-		*/
-
-		String nameString = object->getObjectNameStringIdName();
-		String strDescription = object->getDetailedDescription();
-		bool bMarkedForDelete = object->_isMarkedForDeletion();
-
-		bool bIsUpdated = object->_isUpdated();
-		int rCount = object.get()->getReferenceCount();
-		uint64 parentID = object->getParentID();
-
-		uint32 covSize = 0;
-		auto closeObjectsVector = object->getCloseObjects();
-
-		if (closeObjectsVector != nullptr) {
-			covSize = closeObjectsVector->size();
-		}
-
-		StringBuffer msg;
-		msg << endl << "General Object Information:" << endl << endl <<
-		"Object ID: " << objectID << endl << endl <<
-		"Parent ID: " << parentID << endl <<
-		"Child Objects Size: " << object->getChildObjects()->size() << endl <<
-		"Close Objects Vector COV Size: " << covSize << endl <<
-
-		endl << // Spacer
-
-		"Object Type: " << object->getGameObjectType() << endl <<
-		"Object Name String: " << nameString << endl <<
-		"_className: " << object->_getClassName() << endl <<
-		"Template Path: " << object->getObjectTemplate()->getFullTemplateString() << endl <<
-
-		endl << // Spacer
-
-		"Reference Count: " << rCount << endl <<
-		"Marked for deletion: " << bMarkedForDelete << endl <<
-		"IsUpdated: " << bIsUpdated << endl << endl <<
-		"TreeNode is null: " << (object->getNode() == nullptr ? "true" : "false") << endl;
-
-		auto zone = object->getZone();
-		msg << "Zone: " << (zone != nullptr ? zone->getZoneName() : "nullptr") << endl;
-
-		if (object->isCreatureObject()) {
-			auto creoObject = object->asCreatureObject();
-
-			if (creoObject != nullptr) {
-				/*
-				*	CreatureObject Information
-				*/
-
-				msg << endl << "Creature Object Information:" << endl << endl <<
-				"Displayed Name: " << creoObject->getDisplayedName() << endl <<
-				"PvP Status Bitmask: " << creoObject->getPvpStatusBitmask() << endl <<
-				"Options Bitmask: " << creoObject->getOptionsBitmask() << endl;
-
- 				if (creoObject->isPlayerCreature()) {
-					auto playerManager = server->getPlayerManager();
-
-					if (playerManager != nullptr) {
-						int playerLevel = playerManager->calculatePlayerLevel(creoObject);
-
-						msg << "Player Level: " << playerLevel << endl;
-					}
-				}
-
-				if (creoObject->isGrouped()) {
-					GroupObject* group = creoObject->getGroup();
-
-					if (group != nullptr) {
-						msg << "Group Level: " << group->getGroupLevel() << endl;
-					}
-				}
-
-				msg << endl;
-
-				/*
-				*	AiAgentObject Information
-				*/
-				if (creoObject->isAiAgent()) {
-					auto objectAgent = creoObject->asAiAgent();
-
-					if (objectAgent != nullptr) {
-						msg << endl << "AiAgent Object Information:" << endl << endl;
-
-						String aiEnabled = ((objectAgent->getOptionsBitmask() & OptionBitmask::AIENABLED) ? "True" : "False");
-						msg << "AI Enabled: " << aiEnabled << endl;
-
-						msg << "Creature Bitmask: " << objectAgent->getCreatureBitmask() << endl;
-						msg << "Creature Movement State: " << objectAgent->getMovementState() << endl;
-
-						ManagedReference<SceneObject*> followCopy = objectAgent->getFollowObject();
-						StringBuffer hasFollow;
-
-						if (followCopy != nullptr) {
-							hasFollow << "True - " << " OID: " << followCopy->getObjectID();
-						} else {
-							hasFollow << "False";
-						}
-
-						msg << "Has Follow Object: " << hasFollow.toString() << endl;
-						msg << "Current total Patrol Points: " << objectAgent->getPatrolPointSize() << endl;
-						msg << "In Navmesh: " << (objectAgent->isInNavMesh() ? "True" : "False") << endl;
-
-						msg << "\n\n";
-
-						msg << "Current Weapon: ";
-
-						if (objectAgent->getCurrentWeapon() != nullptr) {
-							msg << objectAgent->getCurrentWeapon()->getObjectTemplate()->getTemplateFileName() << " ID: " << objectAgent->getCurrentWeapon()->getObjectID() << endl;
-						} else {
-							msg << "nullptr" << endl;
-						}
-
-						msg << "Default Weapon: ";
-
-						if (objectAgent->getDefaultWeapon() != nullptr) {
-							msg << objectAgent->getDefaultWeapon()->getObjectTemplate()->getTemplateFileName() << " ID: " << objectAgent->getDefaultWeapon()->getObjectID() << endl;
-						} else {
-							msg << "nullptr" << endl;
-						}
-
-						msg << "Primary Weapon: ";
-
-						if (objectAgent->getPrimaryWeapon() != nullptr) {
-							msg << objectAgent->getPrimaryWeapon()->getObjectTemplate()->getTemplateFileName() << " ID: " << objectAgent->getPrimaryWeapon()->getObjectID() << endl;
-						} else {
-							msg << "nullptr" << endl;
-						}
-
-						msg << "Secondary Weapon: ";
-
-						if (objectAgent->getSecondaryWeapon() != nullptr) {
-							msg << objectAgent->getSecondaryWeapon()->getObjectTemplate()->getTemplateFileName() << " ID: " << objectAgent->getSecondaryWeapon()->getObjectID() << endl;
-						} else {
-							msg << "nullptr" << endl;
-						}
-
-						msg << endl; // Spacing
-
-						// Inventory Contents
-						auto inventory = objectAgent->getInventory();
-
-						if (inventory != nullptr) {
-							msg << "Agent Inventory size: " << inventory->getContainerObjectsSize() << endl;
-
-							for (int i = 0; i < inventory->getContainerObjectsSize(); ++i) {
-								auto invObject = inventory->getContainerObject(i);
-
-								if (invObject != nullptr) {
-									msg << "Inventory - #" << i << " Item: " << invObject->getObjectNameStringIdName() << " -- " << invObject->getObjectTemplate()->getTemplateFileName() << " ID: " << invObject->getObjectID() << endl;
-								}
-							}
-						}
-
-						msg << endl; // Spacing
-
-						// Home Object - Lairs
-						uint64 homeID = 0;
-						String homeName = "none";
-						ManagedReference<SceneObject*> homeLair = objectAgent->getHomeObject().get();
-
-						if (homeLair != nullptr) {
-							homeID = homeLair->getObjectID();
-							homeName = homeLair->getObjectNameStringIdName();
-						}
-
-						msg << "Home Object: " << homeName << " ID: " << homeID << endl;
-
-						msg << endl; // Spacing
-					}
-				}
-
-				// Movement Modifiers
-				msg << "Walk Speed: " << creoObject->getWalkSpeed() << endl;
-				msg << "Run Speed: " << creoObject->getRunSpeed() << endl;
-				msg << "Current Speed: " << creoObject->getCurrentSpeed() << endl;
-				msg << "Speed Multi Base: " << creoObject->getSpeedMultiplierBase() << endl;
-				msg << "Speed Multi Mod: " << creoObject->getSpeedMultiplierMod() << endl;
-				msg << "Creature Height: " << creoObject->getHeight() << endl;
-
-				msg << "Walk Acceleration: " << creoObject->getWalkAcceleration() << endl;
-				msg << "Run Acceleration: " << creoObject->getRunAcceleration() << endl;
-				msg << "Acceleration Multi Base: " << creoObject->getAccelerationMultiplierBase() << endl;
-				msg << "Acceleration Multi Mod: " << creoObject->getAccelerationMultiplierMod() << endl;
-
-				// Slope Modifiers
-				msg << "Slope Angle: " << creoObject->getSlopeModAngle() << endl;
-				msg << "Slope Mod Percent: " << creoObject->getSlopeModPercent() << endl;
-				msg << "Water Mod Percent: " << creoObject->getWaterModPercent() << endl;
-				msg << "Turn Scale: " << creoObject->getTurnScale() << endl;
-
-				msg << endl;
-
-				// List the active areas
-				SortedVector<ManagedReference<ActiveArea*>>* areas = creoObject->getActiveAreas();
-
-				if (areas != nullptr) {
-					msg << endl << endl << "Current Active Areas:" << endl << endl;
-
-					for (int i = 0; i < areas->size(); i++) {
-						ActiveArea* area = areas->get(i);
-
-						if (area == nullptr)
-							continue;
-
-						msg << "Area #" << i << " -- " << area->getAreaName() << endl;
-					}
-				}
+			if(object->isCreatureObject()) {
+				msg << "Creature First Name: " << object.castTo<CreatureObject*>()->getFirstName() << endl;
 			}
-		/*
-			ShipObject Information
-		*/
-		} else if (object->isShipObject()) {
-			ShipObject* ship = object->asShipObject();
 
-			if (ship != nullptr) {
-				String aiEnabled = (ship->getOptionsBitmask() & OptionBitmask::AIENABLED ? "True" : "False");
-				msg << "AI Enabled: " << aiEnabled << endl;
-				msg << "PvP Status Bitmask: " << ship->getPvpStatusBitmask() << endl;
-				msg << "Options Bitmask: " << ship->getOptionsBitmask() << endl;
+			msg << "CLASS: " << strClassName << endl;
+			msg << "Marked for deletion: " << String::valueOf(bMarkedForDelete) << endl;
+			msg << "IsUpdated: " <<  String::valueOf(bIsUpdated) << endl;
+			msg << "REFERENCE COUNT " << String::valueOf(rCount) << endl;
+			msg << "Path: " << object->getObjectTemplate()->getFullTemplateString() << endl;
+			msg << "Children: " << String::valueOf(object->getChildObjects()->size()) << endl;
+			msg << "PARENT OBJECTID: " << String::valueOf(parentID) << endl;
 
-				if (ship->isShipAiAgent()) {
-					ShipAiAgent* shipAgent = ship->asShipAiAgent();
+			if(object->getZone() != nullptr)
+				msg << "location: " << String::valueOf(object->getPositionX()) << " "  << String::valueOf(object->getPositionY()) << " " << object->getZone()->getZoneName() << endl;
 
-					if (shipAgent != nullptr) {
-						msg << "Ship Agent Movement State: " << shipAgent->getMovementState() << endl;
+			ManagedReference<CityRegion*> city = object->getCityRegion().get();
+			if (city != nullptr)
+				msg << "City Region oid: " << String::valueOf(city->getObjectID()) << ", name: " << city->getRegionDisplayedName() << endl;
 
-						ManagedReference<ShipObject*> followCopy = shipAgent->getFollowShipObject();
-						StringBuffer hasFollow;
+			creature->sendSystemMessage(msg.toString());
 
-						if (followCopy != nullptr) {
-							hasFollow << "True - " << " OID: " << followCopy->getObjectID();
-						} else {
-							hasFollow << "False";
-						}
-
-						msg << "Has Follow Object: " << hasFollow.toString() << endl;
-
-						ManagedReference<ShipObject*> targetCopy = shipAgent->getTargetShipObject();
-						StringBuffer hasTarget;
-
-						if (targetCopy != nullptr) {
-							hasTarget << "True - " << " OID: " << targetCopy->getObjectID();
-						} else {
-							hasTarget << "False";
-						}
-
-						msg << "Has Target Object: " << hasTarget.toString() << endl;
-						msg << "Current total Patrol Points: " << shipAgent->getPatrolPointSize() << endl;
-					}
-				}
-			}
+			ChatManager* chatManager = server->getZoneServer()->getChatManager();
+			String title = "getObjVars - " + String::valueOf(objectID);
+			chatManager->sendMail("System", title , msg.toString(), creature->getFirstName());
 		}
 
-		// Send information in a system message
-		creature->sendSystemMessage(msg.toString());
-
-		StringBuffer titleStr;
-		titleStr << "GetObjVars: " << objectID;
-
-		ChatManager* chatManager = zoneServer->getChatManager();
-
-		if (chatManager != nullptr) {
-			// Send information as in game mail
-			chatManager->sendMail("System", titleStr.toString(), msg.toString(), creature->getFirstName());
-		}
-
-		box->setPromptTitle(titleStr.toString());
-		box->setPromptText(msg.toString());
-
-		ghost->addSuiBox(box);
-
-		// Send information via sui box
-		creature->sendMessage(box->generateMessage());
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // GETOBJVARSCOMMAND_H_
+#endif //GETOBJVARSCOMMAND_H_

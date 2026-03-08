@@ -11,7 +11,6 @@
 #include "templates/tangible/SharedStructureObjectTemplate.h"
 #include "templates/ChildCreatureObject.h"
 #include "templates/building/SignTemplate.h"
-#include "server/zone/managers/gcw/SecurityPatrolSpawn.h"
 
 class SharedBuildingObjectTemplate : public SharedStructureObjectTemplate {
 	StringParam terrainModificationFileName;
@@ -33,8 +32,6 @@ class SharedBuildingObjectTemplate : public SharedStructureObjectTemplate {
 	float ejectDistance;
 
 	Vector<SignTemplate> shopSigns;
-
-	Vector<SecurityPatrolSpawn> securitySpawns;
 
 public:
 	SharedBuildingObjectTemplate() : medicalRating(0), publicStructure(false), alwaysPublic(false), factionBaseType(0), ejectDistance(2.5f) {
@@ -66,7 +63,7 @@ public:
 		return alwaysPublic;
 	}
 
-	inline const ChildObject* getSign() const {
+	inline ChildObject* getSign() {
 		return &sign;
 	}
 
@@ -82,11 +79,11 @@ public:
 		return &childCreatureObjects.get(indx);
 	}
 
-	inline const String& getTerrainModificationFile() const {
+	inline String getTerrainModificationFile() const {
 		return terrainModificationFileName.get();
 	}
 
-	inline const String& getInteriorLayoutFileName() const {
+	inline String getInteriorLayoutFileName() const {
 		return interiorLayoutFileName.get();
 	}
 
@@ -108,14 +105,6 @@ public:
 
 	inline float getEjectDistance() const {
 		return ejectDistance;
-	}
-
-	inline int getSecuritySpawnsSize() const {
-		return securitySpawns.size();
-	}
-
-	inline const SecurityPatrolSpawn* getSecurityPatrol(int idx) const {
-		return &securitySpawns.get(idx);
 	}
 };
 

@@ -50,8 +50,7 @@ object_draft_schematic_food_dessert_felbar = object_draft_schematic_food_shared_
    craftingToolTab = 4, -- (See DraftSchematicObjectTemplate.h)
    complexity = 18, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_food.iff",
-   
+
    xpType = "crafting_food_general", 
    xp = 100, 
 

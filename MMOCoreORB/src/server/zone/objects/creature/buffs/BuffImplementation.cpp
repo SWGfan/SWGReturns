@@ -18,7 +18,7 @@ void BuffImplementation::init() {
 	skillModifiers.setNoDuplicateInsertPlan();
 	skillModifiers.setNullValue(0);
 
-	E3_ASSERT(buffDuration >= 0);
+	assert(buffDuration >= 0);
 }
 
 void BuffImplementation::initializeTransientMembers() {
@@ -84,28 +84,26 @@ void BuffImplementation::sendDestroyTo(CreatureObject* player) {
 	}
 }
 
-Time BuffImplementation::getTimeApplied() const {
+Time BuffImplementation::getTimeApplied() {
 	return timeApplied;
 }
 
-int BuffImplementation::compareTo(const Buff* buff) const {
+int BuffImplementation::compareTo(Buff *buff) {
 	Time rhs = buff->getTimeApplied();
-
 	return timeApplied.compareTo(rhs);
 }
-
 void BuffImplementation::activate(bool applyModifiers) {
-	debug() << "activating buff with crc " << hex << buffCRC;
-
+	//info("activating buff with crc " + String::hexvalueOf((int)buffCRC), true);
 	try {
-		if (applyModifiers)
+
+		if(applyModifiers)
 			applyAllModifiers();
 
 		scheduleBuffEvent();
 
 		timeApplied.updateToCurrentTime();
 
-		debug() << "nextExecutionTime miliDifference:" << nextExecutionTime.miliDifference();
+		//info("nextExecutionTime miliDifference:" + String::valueOf(nextExecutionTime.miliDifference()), true);
 
 		ManagedReference<CreatureObject*> creo = creature.get();
 		if (creo->isPlayerCreature())
@@ -121,7 +119,7 @@ void BuffImplementation::activate(bool applyModifiers) {
 			creo->sendStateCombatSpam(startSpam.getFile(), startSpam.getStringID(), spamColor, 0, broadcastSpam);
 		}
 
-	} catch (const Exception& e) {
+	} catch (Exception& e) {
 		error(e.getMessage());
 		e.printStackTrace();
 	}
@@ -152,7 +150,7 @@ void BuffImplementation::deactivate(bool removeModifiers) {
 		return;
 
 	try {
-		if (removeModifiers)
+		if(removeModifiers)
 			removeAllModifiers();
 
 		if (strongRef->isPlayerCreature())
@@ -170,7 +168,7 @@ void BuffImplementation::deactivate(bool removeModifiers) {
 
 		clearBuffEvent();
 
-	} catch (const Exception& e) {
+	} catch (Exception& e) {
 		error(e.getMessage());
 		e.printStackTrace();
 	}
@@ -216,33 +214,32 @@ void BuffImplementation::parseSkillModifierString(const String& modifierstring) 
 	}
 }
 
-String BuffImplementation::getAttributeModifierString() const {
+String BuffImplementation::getAttributeModifierString() {
 	if (attributeModifiers.size() == 0)
 		return String("none");
 
-	StringBuffer retString;
+	String retString = "";
 
 	for (int i = 0; i < attributeModifiers.size(); i++) {
-		const auto& entry = attributeModifiers.elementAt(i);
-		retString << CreatureAttribute::getName(entry.getKey()) << " +"
-			<< entry.getValue() << ";";
+		VectorMapEntry<byte, int> entry = attributeModifiers.elementAt(i);
+		retString += CreatureAttribute::getName(entry.getKey()) + " +" + String::valueOf(entry.getValue()) + ";";
 	}
 
-	return retString.toString();
+	return retString;
 }
 
-String BuffImplementation::getSkillModifierString() const {
+String BuffImplementation::getSkillModifierString() {
 	if (skillModifiers.size() == 0)
 		return String("none");
 
-	StringBuffer retString;
+	String retString = "";
 
 	for (int i = 0; i < skillModifiers.size(); i++) {
-		const auto& entry = skillModifiers.elementAt(i);
-		retString << entry.getKey() << " +" << entry.getValue() << "; ";
+		VectorMapEntry<String, int> entry = skillModifiers.elementAt(i);
+		retString += entry.getKey() + " +" + String::valueOf(entry.getValue()) + "; ";
 	}
 
-	return retString.toString();
+	return retString;
 }
 
 void BuffImplementation::scheduleBuffEvent() {
@@ -254,7 +251,7 @@ void BuffImplementation::scheduleBuffEvent() {
 	nextExecutionTime = time.getTimeObject();
 }
 
-float BuffImplementation::getTimeLeft() const {
+float BuffImplementation::getTimeLeft() {
 	if (buffEvent == nullptr || !buffEvent->isScheduled()) {
 		//info("buffEvent == nullptr || !buffEvent->isScheduled()", true);
 		return 0.0f;
@@ -270,6 +267,7 @@ float BuffImplementation::getTimeLeft() const {
 
 	return Math::max(0.0f, timeleft);
 }
+
 
 void BuffImplementation::applyAttributeModifiers() {
 	ManagedReference<CreatureObject*> creo = creature.get();
@@ -293,13 +291,12 @@ void BuffImplementation::applyAttributeModifiers() {
 
 		try {
 			int currentMaxHAM = creo->getMaxHAM(attribute);
-			int newMaxHAM = currentMaxHAM + value;
 
+			int newMaxHAM = currentMaxHAM + value;
 			if (newMaxHAM < 1)
 					newMaxHAM = 1;
 
 			int buffAmount = newMaxHAM - currentMaxHAM;
-
 			attributeModifiers.drop(attribute);
 			attributeModifiers.put(attribute, buffAmount);
 
@@ -321,6 +318,7 @@ void BuffImplementation::applyAttributeModifiers() {
 			e.printStackTrace();
 		}
 	}
+
 }
 
 void BuffImplementation::applySkillModifiers() {
@@ -343,6 +341,7 @@ void BuffImplementation::applySkillModifiers() {
 	// if there was a speed or acceleration mod change, this will take care of immediately setting them.
 	// the checks for if they haven't changed are in these methods
 	creo->updateSpeedAndAccelerationMods();
+	creo->updateTerrainNegotiation();
 }
 
 void BuffImplementation::applyStates() {
@@ -380,21 +379,18 @@ void BuffImplementation::removeAttributeModifiers() {
 			continue;
 
 		try {
-			int attributeMax = creo->getMaxHAM(attribute) - value;
+
+			int attributemax = creo->getMaxHAM(attribute) - value;
 
 			int currentVal = creo->getHAM(attribute);
 
-			// info(true) << "removeAttributeModifiers - setting max HAM for attribute " << attribute << " to a value of " << attributeMax;
+			creo->setMaxHAM(attribute, attributemax);
 
-			creo->setMaxHAM(attribute, attributeMax);
+			if (currentVal >= attributemax) {
+				//creature.get()->inflictDamage(creature.get(), attribute, currentVal - attributemax, isSpiceBuff());
 
-			if (currentVal >= attributeMax) {
 				if (attribute % 3 == 0) {
-					int newValue = currentVal - attributeMax;
-
-					// info(true) << "removeAttributeModifiers - inflict damage: " << newValue;
-
-					creo->inflictDamage(creo, attribute, newValue, true, true);
+					creo->inflictDamage(creo, attribute, currentVal - attributemax, false);
 				} // else setMaxHam sets secondaries to max
 			}
 
@@ -432,6 +428,7 @@ void BuffImplementation::removeSkillModifiers() {
 	// if there was a speed or acceleration mod change, this will take care of immediately setting them.
 	// the checks for if they haven't changed are in these methods
 	creo->updateSpeedAndAccelerationMods();
+	creo->updateTerrainNegotiation();
 }
 
 void BuffImplementation::removeStates() {
@@ -458,7 +455,7 @@ void BuffImplementation::clearBuffEvent() {
 	}
 }
 
-bool BuffImplementation::isActive() const {
+bool BuffImplementation::isActive() {
 	return (buffEvent != nullptr && buffEvent->isScheduled());
 }
 

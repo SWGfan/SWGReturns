@@ -5,7 +5,11 @@
 #ifndef ANIMALCALMCOMMAND_H_
 #define ANIMALCALMCOMMAND_H_
 
+#include "server/zone/objects/creature/commands/JediQueueCommand.h"
 #include "ForcePowersQueueCommand.h"
+#include "server/zone/objects/creature/ai/Creature.h"
+#include "server/zone/managers/combat/CombatManager.h"
+#include "server/zone/objects/tangible/threat/ThreatMap.h"
 
 class AnimalCalmCommand : public ForcePowersQueueCommand {
 public:
@@ -16,69 +20,55 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (isWearingArmor(creature)) {
-			return NOJEDIARMOR;
+		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target);
+
+		Creature* targetCreature = cast<Creature*>(targetObject.get());
+
+		if (targetCreature == nullptr)
+			return INVALIDTARGET;
+
+		if (!targetCreature->isCreature()) {
+			creature->sendSystemMessage("@error_message:target_not_creature");
+			return false;
+		}
+		if (targetCreature->getDistanceTo(creature) > 32.f){
+			creature->sendSystemMessage("@error_message:target_out_of_range");
+			return false;
+		}
+		if (targetCreature->getMainDefender() != creature) {
+			creature->sendSystemMessage("@error_message:not_your_target");
+			return false;
 		}
 
-		ZoneServer* zoneServer = creature->getZoneServer();
+		int res = doCombatAction(creature, target);
 
-		if (zoneServer == nullptr)
-			return GENERALERROR;
+		if (res == SUCCESS) {
+			ManagedReference<Creature*> creatureTarget = targetObject.castTo<Creature*>();
 
-		ManagedReference<SceneObject*> targetObject = zoneServer->getObject(target);
+			Locker clocker(creatureTarget, creature);
 
-		StringIdChatParameter param;
-		param.setStringId("@error_message:target_not_creature");
+			creatureTarget->removeDefender(creature);
+			creatureTarget->notifyObservers(ObserverEventType::DEFENDERDROPPED);
+			creatureTarget->getThreatMap()->clearAggro(creature);
 
-		if (targetObject == nullptr)
-			return GENERALERROR;
+			creature->doCombatAnimation(creatureTarget, STRING_HASHCODE("mind_trick_1"), 1, 0);
+			creature->sendSystemMessage("@jedi_spam:calm_target");
 
-		if (!targetObject->isCreatureObject()) {
-			creature->sendSystemMessage(param);
-			return GENERALERROR;
+			return SUCCESS;
+		} else {
+			creature->sendSystemMessage("@jedi_spam:fail_calm_target");
 		}
 
-		CreatureObject* tarCreo = targetObject->asCreatureObject();
-
-		if (tarCreo == nullptr || !tarCreo->isAiAgent() || tarCreo->isNonPlayerCreatureObject()) {
-			creature->sendSystemMessage(param);
-			return GENERALERROR;
-		}
-
-		AiAgent* agent = tarCreo->asAiAgent();
-
-		if (agent == nullptr)
-			return GENERALERROR;
-
-		int result = doCombatAction(creature, target);
-
-		if (result == SUCCESS) {
-			int playerLevel = creature->getLevel() * 2;
-			int targetLevel = tarCreo->getLevel();
-			int failCalc = (targetLevel - playerLevel + System::random(250));
-
-			if (agent->getCreatureBitmask() & ObjectFlag::AGGRESSIVE)
-				failCalc += 75;
-
-			if (failCalc < 300) {
-
-				CombatManager::instance()->forcePeace(agent);
-				param.setStringId("@jedi_spam:calm_target");
-			} else {
-				param.setStringId("@jedi_spam:fail_calm_target");
-			}
-
-			creature->sendSystemMessage(param);
-		}
-
-		return result;
+		return res;
 	}
+
 };
 
 #endif //ANIMALCALMCOMMAND_H_

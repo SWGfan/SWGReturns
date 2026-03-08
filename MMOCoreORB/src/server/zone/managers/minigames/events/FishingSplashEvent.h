@@ -16,44 +16,48 @@ namespace minigames {
 namespace events {
 
 class FishingSplashEvent : public Task {
-	ManagedWeakReference<SceneObject*> splashWeak;
+	ManagedReference<CreatureObject*> player;
+	ManagedReference<SceneObject*> splash;
 
 public:
-	FishingSplashEvent(SceneObject* splashObj) : Task(1000) {
-		splashWeak = splashObj;
+	FishingSplashEvent(CreatureObject* player, SceneObject* splash) : Task(1000) {
+		this->player = player;
+		this->splash = splash;
 	}
 
 	void run() {
-		auto splash = splashWeak.get();
-
-		if (splash == nullptr)
-			return;
-
-		auto zoneProcServer = splash->getZoneProcessServer();
-
-		if (zoneProcServer == nullptr)
-			return;
-
-		ManagedReference<FishingManager*> fishingManager = zoneProcServer->getFishingManager();
-
-		if (fishingManager == nullptr)
-			return;
-
 		try {
-			Locker splashLocker(splash);
+			Locker _locker(player);
 
-			fishingManager->removeSplash(splash);
+			//player->info("activating command queue action");
+
+			ManagedReference<FishingManager*> manager = player->getZoneProcessServer()->getFishingManager();
+			Locker splashLocker(splash);
+			manager->removeSplash(splash);
+
+			//player->info("command queue action activated");
+
 		} catch (...) {
+			//player = nullptr;
 
 			throw;
 		}
+
+		//player = nullptr;
+
 	}
+
+	SceneObject* getSplash() {
+		return splash;
+	}
+
 };
-} // namespace events
-} // namespace minigames
-} // namespace managers
-} // namespace zone
-} // namespace server
+
+}
+}
+}
+}
+}
 
 using namespace server::zone::managers::minigames::events;
 

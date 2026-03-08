@@ -124,8 +124,8 @@ naboo_destroy_missions = {
 		},
 		{
 			lairTemplateName = "naboo_mauler_sect_neutral_medium_theater",
-			minDifficulty = 10,
-			maxDifficulty = 14,
+			minDifficulty = 60,
+			maxDifficulty = 75,
 			size = 25,
 		},
 		{
@@ -208,38 +208,14 @@ naboo_destroy_missions = {
 		},
 		{
 			lairTemplateName = "naboo_bolle_bol_lair_neutral_large_boss_01",
-			minDifficulty = 100,
-			maxDifficulty = 150,
+			minDifficulty = 25,
+			maxDifficulty = 29,
 			size = 30,
 		},
 		{
 			lairTemplateName = "naboo_fambaa_lair_neutral_large_boss_01",
-			minDifficulty = 100,
-			maxDifficulty = 150,
-			size = 35,
-		},
-		{
-			lairTemplateName = "naboo_peko_peko_albatross",							--Jedi Knight Trials
 			minDifficulty = 32,
 			maxDifficulty = 36,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_imperial_outpost_trials_large_theater",		--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_rebel_outpost_trials_large_theater",			--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "endor_acklay_neutral_large",						--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
 			size = 35,
 		},
 	}

@@ -42,11 +42,9 @@
 
 
 object_tangible_ship_crafted_chassis_tiebomber_deed = object_tangible_ship_crafted_chassis_shared_tiebomber_deed:new {
-	templateType = SHIPDEED,
-	gameObjectType = 8388617,
 
-	shipType = 1, --FIGHTERSHIP,
-	shipControlDevice = "object/intangible/ship/tiebomber_pcd.iff",
+    templateType = SHIPDEED,
+	shipControlObject = "object/intangible/ship/tiebomber_pcd.iff",
 	generatedObjectTemplate = "object/ship/player/player_tiebomber.iff",
 }
 

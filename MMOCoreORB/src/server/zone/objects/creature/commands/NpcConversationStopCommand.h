@@ -5,14 +5,16 @@
 #ifndef NPCCONVERSATIONSTOPCOMMAND_H_
 #define NPCCONVERSATIONSTOPCOMMAND_H_
 
-#include "server/zone/objects/scene/SceneObject.h"
-
 class NpcConversationStopCommand : public QueueCommand {
 public:
-	NpcConversationStopCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	NpcConversationStopCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -22,39 +24,28 @@ public:
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
-		PlayerObject* ghost = creature->getPlayerObject();
+		CreatureObject* player = cast<CreatureObject*>(creature);
+		PlayerObject* ghost = player->getPlayerObject();
 
-		if (ghost == nullptr)
-			return GENERALERROR;
+		uint64 conversationCreatureOid = ghost->getConversatingCreature();
+		ManagedReference<CreatureObject*> object = (server->getZoneServer()->getObject(conversationCreatureOid)).castTo<CreatureObject*>();
 
-		ZoneServer* zoneServer = creature->getZoneServer();
+		if (object != nullptr) {
 
-		if (zoneServer == nullptr)
-			return GENERALERROR;
+			try {
+				Locker clocker(object, creature);
 
-		uint64 conversationCreatureOid = ghost->getConversatingObject();
-		ManagedReference<SceneObject*> object = zoneServer->getObject(conversationCreatureOid);
+				//object->selectConversationOption(option, player);
 
-		if (object == nullptr)
-			return GENERALERROR;
+				object->notifyObservers(ObserverEventType::STOPCONVERSATION, creature);
+			} catch (Exception& e) {
 
-		Locker clocker(object, creature);
-
-		object->notifyObservers(ObserverEventType::STOPCONVERSATION, creature);
-
-		if (object->isCreatureObject()) {
-			auto targetCreature = object->asCreatureObject();
-
-			if (targetCreature != nullptr) {
-				try {
-					targetCreature->stopConversation();
-				} catch (Exception& e) {
-				}
 			}
 		}
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // NPCCONVERSATIONSTOPCOMMAND_H_
+#endif //NPCCONVERSATIONSTOPCOMMAND_H_

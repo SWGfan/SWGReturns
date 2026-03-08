@@ -50,9 +50,8 @@ object_draft_schematic_structure_component_wall_module = object_draft_schematic_
 	craftingToolTab = 1024, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 15,
 	size = 6,
-	factoryCrateSize = 10,
-	factoryCrateType = "object/factory/factory_crate_installation.iff",
-   
+	factoryCrateSize = 1000,
+
 	xpType = "crafting_structure_general",
 	xp = 1000,
 
@@ -68,7 +67,7 @@ object_draft_schematic_structure_component_wall_module = object_draft_schematic_
 	ingredientTitleNames = {"load_bearing_truss", "section_joints", "wall_foundation", "structure_modules"},
 	ingredientSlotType = {0, 0, 0, 2},
 	resourceTypes = {"metal", "metal", "ore", "object/tangible/component/structure/shared_structural_module.iff"},
-	resourceQuantities = {200, 100, 200, 10},
+	resourceQuantities = {50, 50, 50, 1},
 	contribution = {100, 100, 100, 100},
 
 	targetTemplate = "object/tangible/component/structure/wall_module.iff",

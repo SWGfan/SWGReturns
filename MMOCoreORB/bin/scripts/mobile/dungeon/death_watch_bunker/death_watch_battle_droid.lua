@@ -2,7 +2,6 @@ death_watch_battle_droid = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_battle_droid",
 	socialGroup = "death_watch",
 	faction = "",
-	mobType = MOB_ANDROID,
 	level = 134,
 	chanceHit = 5.5,
 	damageMin = 795,
@@ -34,22 +33,50 @@ death_watch_battle_droid = Creature:new {
 	lootGroups = {
 		{
 			groups = {
+				{group = "wearables_uncommon", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "death_watch_bunker_lieutenants", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "wearables_common", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "jetpack_base", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
 				{group = "death_watch_bunker_commoners", chance = 10000000}
 			},
-			lootChance = 500000
-		}
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "jedi_comp_group", chance = 10000000},
+			},
+			lootChance = 200000
+		},
+		{
+			groups = {
+				{group = "black_suns", chance = 10000000}
+			},
+			lootChance = 100000
+		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "battle_droid_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"battle_droid_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pistoleermaster,carbineermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(death_watch_battle_droid, "death_watch_battle_droid")

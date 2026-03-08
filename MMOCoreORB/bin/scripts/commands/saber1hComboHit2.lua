@@ -42,10 +42,9 @@
 --true = 1, false = 0
 
 Saber1hComboHit2Command = {
-	name = "saber1hcombohit2",
+        name = "saber1hcombohit2",
 
 	damageMultiplier = 2.5,
-	accuracyBonus = 50,
 	speedMultiplier = 2.0,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
@@ -53,19 +52,19 @@ Saber1hComboHit2Command = {
 	forceCostMultiplier = 1.75,
 	visMod = 25,
 
-	animation = "combo_5b",
+	animation = "combo_5b", 
 	animType = GENERATE_INTENSITY,
 
 	stateEffects = {
-		StateEffect(
-			POSTUREDOWN_EFFECT,
-			{ "postureDownRecovery" },
-			{ "posture_change_down_defense" },
-			{},
-			40,
-			0,
-			0
-		)
+	  StateEffect( 
+		POSTUREDOWN_EFFECT, 
+		{ "postureDownRecovery" }, 
+		{ "posture_change_down_defense" }, 
+		{},
+		40, 
+		0, 
+		0 
+	  )
 	},
 
 	combatSpam = "saber1hcombohit2",

@@ -93,9 +93,6 @@ function TatooineJabbasPalaceMobsScreenPlay:spawnStatics()
 	pNpc = spawnMobile("tatooine", "commoner_tatooine", 60, -15.4, 0.1, 87.7, 42, 1177498)
 	self:setMoodString(pNpc, "nervous")
 
-	pNpc = spawnMobile("tatooine", "smuggler_pilot", 60, -5868.38, 90, -6199.5, 90, 0)
-	self:setMoodString(pNpc, "neutral")
-
 	pNpc = spawnMobile("tatooine", "fringer", 300, -8.7, 2.0, 49.6, 347, 1177487)
 	createEvent(5000, "TatooineJabbasPalaceMobsScreenPlay", "palaceConverse", pNpc, "")
 
@@ -220,7 +217,8 @@ end
 function TatooineJabbasPalaceMobsScreenPlay:setupJabbaPatrol(pMobile)
 	createEvent(getRandomNumber(30,45) * 1000, "TatooineJabbasPalaceMobsScreenPlay", "JabbaPatrol", pMobile, "")
 	createObserver(DESTINATIONREACHED, "TatooineJabbasPalaceMobsScreenPlay", "jabbaPatrolDestReached", pMobile)
-	AiAgent(pMobile):setMovementState(AI_PATROLLING)
+	AiAgent(pMobile):setAiTemplate("manualescortwalk")
+	AiAgent(pMobile):setFollowState(4)
 end
 
 function TatooineJabbasPalaceMobsScreenPlay:palaceConverseJawa(pMobile)
@@ -245,13 +243,12 @@ end
 
 
 function TatooineJabbasPalaceMobsScreenPlay:palaceConverse(pMobile)
-	if (pMobile == nil or AiAgent(pMobile):isInCombat() or CreatureObject(pMobile):isDead()) then
+	if AiAgent(pMobile):isInCombat() or CreatureObject(pMobile):isDead() then
 		return 0
 	end
 
 	local action
 	local int = getRandomNumber(1,12)
-
 	if int == 1 then action = "check_wrist_device"
 	elseif int == 2 then action = "angry"
 	elseif int == 3 then action = "cover_mouth"
@@ -270,7 +267,6 @@ function TatooineJabbasPalaceMobsScreenPlay:palaceConverse(pMobile)
 	end
 
 	createEvent(getRandomNumber(40,70) * 100, "TatooineJabbasPalaceMobsScreenPlay", "palaceConverse", pMobile, "")
-
 	return 0
 end
 
@@ -467,6 +463,7 @@ function TatooineJabbasPalaceMobsScreenPlay:JabbaPatrol(pMobile)
 	end
 
 	AiAgent(pMobile):stopWaiting()
+	AiAgent(pMobile):setWait(0)
 	AiAgent(pMobile):setNextPosition(nextLoc[1], nextLoc[2], nextLoc[3], nextLoc[4])
 	AiAgent(pMobile):executeBehavior()
 end

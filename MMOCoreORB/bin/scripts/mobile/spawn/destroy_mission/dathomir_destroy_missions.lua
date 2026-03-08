@@ -159,16 +159,10 @@ dathomir_destroy_missions = {
 			size = 35,
 		},
 		{
-			lairTemplateName = "dathomir_mtn_clan_arch_witch_squad_neutral_none",
-			minDifficulty = 90,
+			lairTemplateName = "dathomir_rancor_ancient_bull_lair_neutral_large",
+			minDifficulty = 85,
 			maxDifficulty = 90,
-			size = 25,
-		},
-		{
-			lairTemplateName = "dathomir_mtn_clan_councilwoman_escort_neutral_none",
-			minDifficulty = 125,
-			maxDifficulty = 125,
-			size = 25,
+			size = 35,
 		},
 	}
 }

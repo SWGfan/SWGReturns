@@ -33,7 +33,6 @@ protected:
 	StringIdParameter TT;
 	StringIdParameter TU;
 	StringIdParameter TO;
-	StringIdParameter NU;
 
 	uint32 DI;
 	float DF;
@@ -61,7 +60,7 @@ public:
 
 	friend void to_json(nlohmann::json& j, const StringIdChatParameter& p);
 
-	virtual String toString() const override {
+	virtual String toString() const {
 		return StringId::getFullPath();
 	}
 
@@ -72,7 +71,6 @@ public:
 		TT = id.TT;
 		TU = id.TU;
 		TO = id.TO;
-		NU = id.NU;
 
 		DI = id.DI;
 		DF = id.DF;
@@ -182,20 +180,6 @@ public:
 		DF = f;
 	}
 
-	/**
-	* Sets the NU variable of a stf string
-	* @pre { obj is one of the following:
-	* 		String, UnicodeString, pointer to SceneObject that is in the client's memory,
-	* 		objectid of SceneObject that is in the client's memory, StringId, pointer to StringId
-	*  	   }
-	* @post { NU variable is set }
-	* @param obj Data that the NU variable is to be set as
-	*/
-	template<class T>
-	inline void setNU(const T& obj) {
-		NU.set(obj);
-	}
-
 	inline void setUnknownByte(uint16 val) {
 		unknownByte = val;
 	}
@@ -222,10 +206,6 @@ public:
 
 	const StringIdParameter* getTO() const {
 		return &TO;
-	}
-
-	const StringIdParameter* getNU() const {
-		return &NU;
 	}
 };
 

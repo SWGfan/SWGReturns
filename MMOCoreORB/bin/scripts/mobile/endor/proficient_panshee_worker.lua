@@ -2,7 +2,6 @@ proficient_panshee_worker = Creature:new {
 	objectName = "@mob/creature_names:proficient_panshee_worker",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "panshee_tribe",
 	faction = "panshee_tribe",
 	level = 33,
@@ -21,7 +20,7 @@ proficient_panshee_worker = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -37,28 +36,18 @@ proficient_panshee_worker = Creature:new {
 		"object/mobile/dressed_ewok_f_08.iff",
 		"object/mobile/dressed_ewok_f_09.iff",
 		"object/mobile/dressed_ewok_f_12.iff",
-		"object/mobile/dressed_ewok_m_01.iff"
-	},
-
+		"object/mobile/dressed_ewok_m_01.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "panshee_tribe_tier_1", chance = 10000000}
+				{group = "ewok", chance = 10000000}
 			},
 			lootChance = 1660000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ewok_melee",
-	secondaryWeapon = "ewok_ranged",
+	weapons = {"ewok_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = brawlermaster,
-	secondaryAttacks = marksmanmaster
+	attacks = merge(riflemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(proficient_panshee_worker, "proficient_panshee_worker")

@@ -42,34 +42,38 @@
 
 
 object_draft_schematic_munition_mine_xg = object_draft_schematic_munition_shared_mine_xg:new {
-	templateType = DRAFTSCHEMATIC,
 
-	craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 30,
-	size = 2,
-	factoryCrateType = "object/factory/factory_crate_weapon.iff",
+   templateType = DRAFTSCHEMATIC,
 
-	xpType = "crafting_weapons_general",
-	xp = 60,
+   customObjectName = "XG Mine",
 
-	assemblySkill = "weapon_assembly",
-	experimentingSkill = "weapon_experimentation",
-	customizationSkill = "weapon_customization",
+   craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
+   complexity = 30, 
+   size = 2, 
 
-	customizationOptions = {},
-	customizationStringNames = {},
-	customizationDefaults = {},
+   xpType = "crafting_weapons_general", 
+   xp = 60, 
 
-	ingredientTemplateNames = {"craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n"},
-	ingredientTitleNames = {"weapon_casing", "load_bearing_frame", "activation_panel", "warhead_assembly", "warhead_fusing"},
-	ingredientSlotType = {0, 0, 0, 1, 1},
-	resourceTypes = {"metal", "steel", "chemical", "object/tangible/component/munition/shared_warhead_light.iff", "object/tangible/component/munition/shared_warhead_fusing_mechanism.iff"},
-	resourceQuantities = {8, 3, 2, 1, 1},
-	contribution = {100, 100, 100, 100, 100},
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
+   customizationSkill = "weapon_customization", 
+
+   customizationOptions = {},
+   customizationStringNames = {},
+   customizationDefaults = {},
+
+   ingredientTemplateNames = {"craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n"},
+   ingredientTitleNames = {"weapon_casing", "load_bearing_frame", "activation_panel", "warhead_assembly", "warhead_fusing"},
+   ingredientSlotType = {0, 0, 0, 1, 1},
+   resourceTypes = {"metal", "steel", "chemical", "object/tangible/component/munition/shared_warhead_light.iff", "object/tangible/component/munition/shared_warhead_fusing_mechanism.iff"},
+   resourceQuantities = {8, 3, 2, 1, 1},
+   contribution = {100, 100, 100, 100, 100},
 
 
-	targetTemplate = "object/weapon/mine/wp_mine_xg.iff",
+   targetTemplate = "object/weapon/mine/wp_mine_xg.iff",
 
-	additionalTemplates = {}
+   additionalTemplates = {
+             }
+
 }
 ObjectTemplates:addTemplate(object_draft_schematic_munition_mine_xg, "object/draft_schematic/munition/mine_xg.iff")

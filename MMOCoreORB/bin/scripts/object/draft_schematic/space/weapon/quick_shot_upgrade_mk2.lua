@@ -50,13 +50,12 @@ object_draft_schematic_space_weapon_quick_shot_upgrade_mk2 = object_draft_schema
    craftingToolTab = 131072, -- (See DraftSchematicObjectTemplate.h)
    complexity = 23, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_electronics.iff",
-   
+
    xpType = "shipwright", 
    xp = 63, 
 
    assemblySkill = "weapon_systems", 
-   experimentingSkill = "weapon_systems_experimentation", 
+   experimentingSkill = "weapons_systems_experimentation", 
    customizationSkill = "medicine_customization", 
 
    customizationOptions = {},

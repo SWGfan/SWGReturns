@@ -10,23 +10,23 @@ TuskenBunkerScreenPlay = ScreenPlay:new {
 			5995609
 	},
 
-	lootLevel = 300,
+	lootLevel = 26,
 
 	lootGroups = {
 		{
 			groups = {
-				{group = "color_crystals", chance = 10},
+				{group = "color_crystals", chance = 160000},
 				{group = "junk", chance = 8240000},
 				{group = "rifles", chance = 500000},
 				{group = "pistols", chance = 500000},
-				{group = "clothing_attachments", chance = 10},
-				{group = "armor_attachments", chance = 10}
+				{group = "clothing_attachments", chance = 300000},
+				{group = "armor_attachments", chance = 300000}
 			},
 			lootChance = 8000000
 		}
 	},
 
-	lootContainerRespawn = 300
+	lootContainerRespawn = 1800
 }
 
 registerScreenPlay("TuskenBunkerScreenPlay", true)
@@ -52,7 +52,7 @@ function TuskenBunkerScreenPlay:spawnMobiles()
 	spawnMobile("tatooine", "tusken_guard",300,1.22038,-20.7332,4.1939,290.603,4235605)
 	spawnMobile("tatooine", "tusken_guard",300,-0.26899,-20.7332,4.75359,0,4235605)
 
-	spawnMobile("tatooine", "tusken_king",300,1.5864,-20.75,32.0004,0,4235606)
+	spawnMobile("tatooine", "tusken_king",10800,1.5864,-20.75,32.0004,0,4235606)
 
 	spawnMobile("tatooine", "tusken_savage",300,3.74075,0.25,-4.07544,318.495,4235599)
 	spawnMobile("tatooine", "tusken_savage",300,-8,-13.8,7,7.99216,4235603)

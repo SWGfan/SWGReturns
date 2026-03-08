@@ -2,7 +2,6 @@ guf_drolg_female = Creature:new {
 	objectName = "@mob/creature_names:guf_drolg_female",
 	socialGroup = "guf_drolg",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 15,
 	chanceHit = 0.3,
 	damageMin = 150,
@@ -18,7 +17,8 @@ guf_drolg_female = Creature:new {
 	hideAmount = 265,
 	boneType = "bone_mammal",
 	boneAmount = 190,
-	milk = 0,
+	milkType = "milk_wild",
+	milk = 400,
 	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
@@ -31,17 +31,12 @@ guf_drolg_female = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/guf_drolg_hue.iff",
 	scale = 1.05,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"",""}, {"intimidationattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"",""},
+		{"intimidationattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(guf_drolg_female, "guf_drolg_female")

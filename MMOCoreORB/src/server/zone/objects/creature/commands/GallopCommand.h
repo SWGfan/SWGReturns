@@ -18,6 +18,7 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -31,17 +32,9 @@ public:
 			return GENERALERROR;
 		}
 
-		auto zoneServer = server->getZoneServer();
-
-		if (zoneServer == nullptr) {
+		ManagedReference<CreatureObject*> mount = cast<CreatureObject*>(parent.get());
+		if (mount == nullptr)
 			return GENERALERROR;
-		}
-
-		auto mount = parent->asCreatureObject();
-
-		if (mount == nullptr) {
-			return GENERALERROR;
-		}
 
 		Locker crossLocker(mount, creature);
 
@@ -57,20 +50,16 @@ public:
 			return GENERALERROR;
 		}
 
-		PetManager* petManager = zoneServer->getPetManager();
+		PetManager* petManager = server->getZoneServer()->getPetManager();
 		ManagedReference<PetControlDevice*> pcd = mount->getControlDevice().get().castTo<PetControlDevice*>();
-
-		if (petManager == nullptr || pcd == nullptr) {
+		if (petManager == nullptr || pcd == nullptr)
 			return GENERALERROR;
-		}
 
 		SharedObjectTemplate* objectTemplate = pcd->getObjectTemplate();
-
 		if (objectTemplate == nullptr)
 			return GENERALERROR;
 
 		MountSpeedData* mountSpeedData = petManager->getMountSpeedData(objectTemplate->getAppearanceFilename());
-
 		if (mountSpeedData == nullptr)
 			return GENERALERROR;
 
@@ -89,7 +78,6 @@ public:
 		buff->setAccelerationMultiplierMod(magnitude);
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
-
 		mount->addBuff(buff);
 
 		mount->updateCooldownTimer("gallop", (cooldown + duration) * 1000);

@@ -1,7 +1,6 @@
 /*
-                Copyright <SWGEmu>
-        See file COPYING for copying conditions.
-*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
 #ifndef PINGCLIENT_H_
 #define PINGCLIENT_H_
@@ -10,49 +9,41 @@
 
 class PingClient : public BaseClientProxy {
 private:
-    int port; // store port manually from SocketAddress
+	String ip;
 
 public:
-    PingClient(DatagramServiceThread* serv, Socket* sock, SocketAddress& addr)
-        : BaseClientProxy(sock, addr), port(addr.getPort()) {
-        // Use getIPAddress() for logging
-        setLoggingName("PingClient " + getIPAddress());
-        setLogging(false);
-        setLogLevel(Logger::FATAL);
+	PingClient(DatagramServiceThread* serv, Socket* sock, SocketAddress& addr)
+		: BaseClientProxy(sock, addr) {
 
-        init(serv);
-    }
+		// Cache the IP string for logging (BaseClientProxy no longer exposes `ip`).
+		ip = addr.getIPAddress();
 
-    virtual ~PingClient() {
-    }
+		setLoggingName("PingClient " + ip);
+		setLogging(false);
 
-    void disconnect(bool doLock = true) {
-        if (isDisconnected())
-            return;
+		init(serv);
+	}
 
-        String time;
-        Logger::getTime(time);
+	virtual ~PingClient() {
+	}
 
-        StringBuffer msg;
-        msg << time << " [PingServer] disconnecting client '" << getIPAddress() << "'\n";
-        Logger::console.log(msg);
+	void disconnect(bool doLock = true) {
+		if (isDisconnected())
+			return;
 
-        BaseClientProxy::disconnect(doLock);
-    }
+		String time;
+		Logger::getTime(time);
 
-    void sendMessage(Message* msg) {
-        BaseClientProxy::sendPacket(cast<BasePacket*>(msg));
-    }
+		StringBuffer msg;
+		msg << time << " [PingServer] disconnecting client '" << ip << "'\n";
+		Logger::console.log(msg);
 
-    // Accessor for IP address
-    sys::lang::String getIPAddress() const {
-        return BaseClientProxy::getIPAddress();
-    }
+		BaseClientProxy::disconnect(doLock);
+	}
 
-    // Accessor for port (stored manually)
-    int getPort() const {
-        return port;
-    }
+	void sendMessage(Message* msg) {
+		BaseClientProxy::sendPacket(cast<BasePacket*>(msg));
+	}
 };
 
 #endif /* PINGCLIENT_H_ */

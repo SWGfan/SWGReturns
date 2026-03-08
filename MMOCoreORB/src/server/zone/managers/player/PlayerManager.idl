@@ -38,7 +38,6 @@ include server.zone.managers.collision.IntersectionResults;
 include server.zone.managers.player.VeteranRewardList;
 include server.zone.managers.player.JukeboxSong;
 include server.zone.managers.player.QuestInfo;
-include server.zone.managers.player.QuestTasks;
 include server.zone.objects.player.badges.Badge;
 include system.util.Vector;
 include system.lang.ref.Reference;
@@ -48,10 +47,6 @@ import system.thread.Mutex;
 include engine.util.JSONSerializationType;
 import server.zone.objects.player.events.OnlinePlayerLogTask;
 import system.lang.Time;
-include server.zone.managers.player.PlayerNameIterator;
-include server.zone.objects.region.CityRegion;
-include server.zone.objects.ship.ai.ShipAiAgent;
-import engine.util.u3d.Vector3;
 
 @dirty
 class PlayerManager extends Observer implements Logger {
@@ -71,8 +66,8 @@ class PlayerManager extends Observer implements Logger {
 
 	@weakReference
 	protected transient OnlinePlayerLogTask onlinePlayerLogTask;
-	protected transient int onlinePlayerLogSum = 0;
-	protected transient boolean onlinePlayersLogOnSessionChange = false;
+	protected transient int onlinePlayerLogSum;
+	protected transient boolean onlinePlayersLogOnSessionChange;
 
 	@dereferenced
 	protected transient Time lastOnlinePlayerLogMsg;
@@ -90,8 +85,6 @@ class PlayerManager extends Observer implements Logger {
 	protected int baseStoredShips;
 	protected boolean allowSameAccountPvpRatingCredit;
 	protected int onlineCharactersPerAccount;
-
-	protected unsigned int coaWinningFaction;
 
 	@dereferenced
 	protected XpBonusList xpBonusList;
@@ -120,28 +113,7 @@ class PlayerManager extends Observer implements Logger {
 	protected transient Vector<Reference<QuestInfo> > questInfo;
 
 	@dereferenced
-	protected transient VectorMap<unsigned int, string> questCrcTable;
-
-	@dereferenced
-	private transient ReadWriteLock questTaskMutex;
-
-	@dereferenced
-	protected transient VectorMap<unsigned int, Reference<QuestTasks> > questTasksCache;
-
-	@dereferenced
 	private transient OnlineZoneClientMap onlineZoneClientMap;
-
-	public static final float DELTA_SPEED_CHECK = 1000.f;
-
-	public static final unsigned int CORSEC_SQUADRON = 1;
-	public static final unsigned int RSF_SQUADRON = 2;
-	public static final unsigned int SMUGGLER_SQUADRON = 3;
-	public static final unsigned int BLACK_EPSILON_SQUADRON = 4;
-	public static final unsigned int STORM_SQUADRON = 5;
-	public static final unsigned int INQUISITION_SQUADRON = 6;
-	public static final unsigned int CRIMSON_PHOENIX_SQUADRON = 7;
-	public static final unsigned int VORTEX_SQUADRON = 8;
-	public static final unsigned int HAVOC_SQUADRON = 9;
 
 	public native PlayerManager(ZoneServer zoneServer, ZoneProcessServer impl, boolean trackOnlineUsers);
 	public native void loadNameMap();
@@ -150,7 +122,6 @@ class PlayerManager extends Observer implements Logger {
 	private native void loadStartingLocations();
 	private native void loadPermissionLevels();
 	private native void loadQuestInfo();
-	private native void loadQuestCrcTable();
 
 	public native void finalize();
 
@@ -177,7 +148,7 @@ class PlayerManager extends Observer implements Logger {
 	@local
 	public native boolean checkPlayerName(ClientCreateCharacterCallback callback);
 
-	public native string setFirstName(CreatureObject creature, final string newFirstName, boolean skipVerify = false);
+	public native string setFirstName(CreatureObject creature, final string newFirstName);
 
 	public native string setLastName(CreatureObject creature, final string newLastName, boolean skipVerify = false);
 
@@ -220,13 +191,16 @@ class PlayerManager extends Observer implements Logger {
 	public native void awardBadge(PlayerObject ghost, final Badge badge);
 
 	public native void setExperienceMultiplier(float globalMultiplier);
-	public native int awardExperience(CreatureObject player, final string xpType, int amount, boolean sendSystemMessage = true, float localMultiplier = 1.0f, boolean applyModifiers = true, boolean spaceBonus = false);
+	public native int awardExperience(CreatureObject player, final string xpType, int amount, boolean sendSystemMessage = true, float localMultiplier = 1.0f, boolean applyModifiers = true);
+	public native void frsSkillCheck(CreatureObject player, final string skill, final string skillParent);
+	public native void gcwSkillCheck(CreatureObject player, final string skill, final string skillParent);
+	public native void bhgSkillCheck(CreatureObject player, final string skill, final string skillParent);
 
 	@local @dereferenced
 	public native SortedVector<SceneObject> getInsurableItems(CreatureObject player, boolean onlyInsurable = true);
 
 	/**
-	* Returns a collection of items, in the players inventory, whose GameObjectType is
+	* Returns a collection of items, in the players inventory, whose GameObjectType is 
 	* indicated in the given mask
 	* @param player The player for which to find the items.
 	* @param mask A bitmask representing the GambeObjectTypes to search for
@@ -238,21 +212,12 @@ class PlayerManager extends Observer implements Logger {
 	@local
 	public native void addInsurableItemsRecursive(SceneObject obj, SortedVector<SceneObject> items, boolean onlyInsurable);
 
-	@arg1preLocked
 	public native void handleAbortTradeMessage(CreatureObject player);
-
-	@arg1preLocked
 	public native void handleAddItemToTradeWindow(CreatureObject player, unsigned long itemID);
-
-	@arg1preLocked
 	public native void handleGiveMoneyMessage(CreatureObject player, unsigned int value);
-
 	public native void handleAcceptTransactionMessage(CreatureObject player);
 	public native void handleUnAcceptTransactionMessage(CreatureObject player);
-
-	@arg1preLocked
 	public native void handleVerifyTradeMessage(CreatureObject player);
-
 	public native boolean checkTradeItems(CreatureObject player, CreatureObject receiver);
 
 	/**
@@ -396,10 +361,6 @@ class PlayerManager extends Observer implements Logger {
 	@local
 	public native void disseminateExperience(TangibleObject destructedObject, ThreatMap threatMap, SynchronizedVector<CreatureObject> lairSpawnedCreatures = null,Zone lairZone=null);
 
-	@local
-	@arg1preLocked
-	public native void disseminateSpaceExperience(ShipAiAgent destructedObject, ThreatMap threatMap);
-
 	public native int calculatePlayerLevel(CreatureObject player);
 	public native int calculatePlayerLevel(CreatureObject player, string xpType);
 
@@ -407,7 +368,7 @@ class PlayerManager extends Observer implements Logger {
 	public native void resendLoginMessageToAll();
 
 	public native void sendActivateCloneRequest(CreatureObject player, int typeofdeath = 0);
-	public native boolean isValidClosestCloner(CreatureObject player, SceneObject cloner, CityRegion cityRegion);
+	public native boolean isValidClosestCloner(CreatureObject player, SceneObject cloner);
 	public native void sendPlayerToCloner(CreatureObject player, unsigned long clonerID, int typeofdeath = 0);
 
 	public native void ejectPlayerFromBuilding(CreatureObject player);
@@ -419,12 +380,9 @@ class PlayerManager extends Observer implements Logger {
 
 	@local
 	public native void updateSwimmingState(CreatureObject player, float newZ, IntersectionResults intersections = null, CloseObjectsVector closeObjects = null);
-
 	@local
-	public native boolean checkPlayerSpeedTest(CreatureObject player, SceneObject parent, float parsedSpeed, ValidatedPosition lastValidPosition, @dereferenced final Vector3 lastValidatedWorldPosition, @dereferenced final Vector3 newWorldPosition, float errorMultiplier = 1);
-
-	@local
-	public native int checkSpeedHackTests(CreatureObject player, PlayerObject ghost, ValidatedPosition lastValidPosition, @dereferenced final Vector3 newWorldPosition, unsigned int newStamp, float floorZ, SceneObject newParent = null);
+	public native int checkSpeedHackFirstTest(CreatureObject player, float parsedSpeed, @dereferenced ValidatedPosition teleportPosition, float errorMultiplier = 1);
+	public native int checkSpeedHackSecondTest(CreatureObject player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject newParent = null);
 
 	@dirty
 	public native boolean existsName(final string name);
@@ -522,17 +480,6 @@ class PlayerManager extends Observer implements Logger {
 		return questInfo.get(questID);
 	}
 
-	@local
-	public native QuestTasks getQuestTasks(final unsigned int questCrc);
-
-	public unsigned int getCoaWinningFaction() {
-		return coaWinningFaction;
-	}
-
-	public void setCoaWinningFaction(unsigned int faction) {
-		coaWinningFaction = faction;
-	}
-
 	/**
 	 * Sends a confirmation box to the student asking if they want to learn the skill.
 	 * @pre student crosslocked with teacher
@@ -584,7 +531,7 @@ class PlayerManager extends Observer implements Logger {
 	 * @returns true if it was added
 	 * @param crc CRC of the buff, player target of buff, amount is the attribute modifier for the buff, duration of the buff, buffType specifies whether medical or performance and attribute sets the creature attribute to modify
 	 */
-	private native boolean doEnhanceCharacter(unsigned int crc, CreatureObject player, int amount, int duration, int buffType, byte attribute);
+	public native boolean doEnhanceCharacter(unsigned int crc, CreatureObject player, int amount, int duration, int buffType, byte attribute);
 
 	public int getBaseStoredCreaturePets() {
 		return baseStoredCreaturePets;
@@ -627,14 +574,11 @@ class PlayerManager extends Observer implements Logger {
 		onlineCharactersPerAccount = count;
 	}
 
-	public int getOnlineCharactersPerAccount() {
-	    return onlineCharactersPerAccount;
-	}
-
 	@local
 	@arg1preLocked
 	public native void doPvpDeathRatingUpdate(CreatureObject player, ThreatMap threatMap);
-
+	public native void updatePvPKillCount(CreatureObject player);
+	public native void offerPlayerBounty(CreatureObject attacker, CreatureObject defender);
 	private native void loadXpBonusList();
 	public native float getSpeciesXpModifier(final string species, final string xpType);
 
@@ -656,7 +600,4 @@ class PlayerManager extends Observer implements Logger {
 	}
 
 	public native void stopOnlinePlayerLogTask();
-
-	@local
-	public native void iteratePlayerNames(@dereferenced final PlayerNameIterator iterator);
 }

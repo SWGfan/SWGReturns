@@ -9,10 +9,14 @@
 
 class CounterAttackCommand : public CombatQueueCommand {
 public:
-	CounterAttackCommand(const String& name, ZoneProcessServer* server) : CombatQueueCommand(name, server) {
+
+	CounterAttackCommand(const String& name, ZoneProcessServer* server)
+		: CombatQueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -21,6 +25,7 @@ public:
 
 		return doCombatAction(creature, target);
 	}
+
 };
 
-#endif // COUNTERATTACKCOMMAND_H_
+#endif //COUNTERATTACKCOMMAND_H_

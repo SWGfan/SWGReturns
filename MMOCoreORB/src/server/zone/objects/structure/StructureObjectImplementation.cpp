@@ -24,8 +24,9 @@
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/chat/ChatManager.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
+#include "server/zone/objects/building/BuildingObject.h"
+#include "server/zone/objects/cell/CellObject.h"
 void StructureObjectImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	TangibleObjectImplementation::loadTemplateData(templateData);
 
@@ -148,6 +149,13 @@ void StructureObjectImplementation::notifyLoadFromDatabase() {
 
 		task->execute();
 	}
+
+	if (!staticObject && getBaseMaintenanceRate() != 0 && !isTurret() && !isMinefield()) {
+		//Decay is 4 weeks.
+		maxCondition = getBaseMaintenanceRate() * 24 * 7 * 4;
+
+		scheduleMaintenanceExpirationEvent();
+	}
 }
 
 void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
@@ -155,16 +163,15 @@ void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
 	if (!staticObject && isBuildingObject())
 		info("notifyInsertToZone", true);
 #endif // DEBUG_STRUCTURE_MAINT
-
 	StringBuffer logName;
 
-	if (isClientObject()) {
-		logName << "BuildingObject-Client ID: " << getObjectID();
-	} else {
-		logName << "BuildingObject ID: " << getObjectID() << " Owner ID: " << getOwnerObjectID();
-	}
-
-	logName << " Zone: " << zone->getZoneName(); // << " WorldPosition: " << getPosition().toString() << " ObjectName: " << getObjectName()->getFullPath();
+	logName << getLoggingName()
+		// << " 0x" << String::hexvalueOf((int64)getObjectID())
+		<< " owner: " << String::valueOf(getOwnerObjectID())
+		<< " " << String::valueOf((int)getPositionX()) << " " << String::valueOf((int)getPositionY())
+		<< " " << zone->getZoneName()
+		<< " " << String::valueOf((int)getPositionZ())
+		<< " " << getObjectName()->getFullPath();
 
 	setLoggingName(logName.toString());
 
@@ -187,73 +194,32 @@ void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
 			structurePermissionList.dropList("VENDOR");
 	}
 
-	if (!staticObject && getBaseMaintenanceRate() != 0 && !isTurret() && !isMinefield() && !isScanner()) {
+	if (!staticObject && getBaseMaintenanceRate() != 0 && !isTurret() && !isMinefield()) {
 		//Decay is 4 weeks.
 		maxCondition = getBaseMaintenanceRate() * 24 * 7 * 4;
 
 		scheduleMaintenanceExpirationEvent();
-	} else if((getOwnerObjectID() > 0) && (getCityRegion().get() == nullptr) && !isTurret() && !isMinefield() && !isScanner()) {
+	} else if(getOwnerObjectID() != 0 && getCityRegion().get() == nullptr && !isTurret() && !isMinefield()) {
 		auto ssot = dynamic_cast<SharedStructureObjectTemplate*>(templateObject.get());
 
-		if (ssot == nullptr) {
-			error() << "SharedStructureObjectTemplate is null";
-		} else if (ssot->getCityRankRequired() > 0 || ssot->isCivicStructure()) {
-			Reference<StructureObject*> strucRef = _this.getReferenceUnsafeStaticCast();
-
-			Core::getTaskManager()->scheduleTask([strucRef] {
-				if (strucRef == nullptr) {
-					return;
-				}
-
-				Locker locker(strucRef);
-
-				strucRef->destroyOrphanCivicStructure();
-			}, "destroyOrphanCivicStrucLambda", 240000);
-		}
+		if (ssot == nullptr)
+			error("SharedStructureObjectTemplate is null?");
+		else if (ssot->getCityRankRequired() > 0 || ssot->isCivicStructure())
+			destroyOrphanCivicStructure();
 	}
 
 	if (isGCWBase() && !isClientObject()) {
 		createNavMesh();
-	} else if (isClientObject()) {
-		String configKey = "Core3.StructureManager.CreateNavMesh." + objectName.getFullPath();
-
-		if (ConfigManager::instance()->getBool(configKey, false)) {
-			info() << configKey << " = true; building navArea around this structure.";
-			createNavMesh();
-		}
 	}
 }
 
 void StructureObjectImplementation::destroyOrphanCivicStructure() {
-	if (!ConfigManager::instance()->getBool("Core3.Tweaks.StructureObject.DestoryOrphans", false)) {
+	error("Civic structure but not in a city!");
+
+	if (!ConfigManager::instance()->getBool("Core3.Tweaks.StructureObject.DestoryOrphans", false))
 		return;
-	}
 
-	auto zoneServer = getZoneServer();
-
-	if (zoneServer == nullptr) {
-		return;
-	}
-
-	auto zone = getZone();
-
-	if (zone == nullptr) {
-		return;
-	}
-
-	// Double check to make sure there is no city region
-	if (getCityRegion().get() != nullptr) {
-		return;
-	}
-
-	auto errorMsg = error();
-
-	errorMsg << "StructureObjectImplementation::destroyOrphanCivicStructure - Civic Structure is not in a city: " << getDisplayedName() << "\n";
-	errorMsg << "Zone: " << zone->getZoneName() << " World Positon: " << getWorldPosition().toString() << " Position: " << getPosition().toString();
-
-	errorMsg.flush();
-
-	auto chatManager = zoneServer->getChatManager();
+	auto chatManager = getZoneServer()->getChatManager();
 	auto structureManager = StructureManager::instance();
 
 	if (chatManager == nullptr || structureManager == nullptr) {
@@ -261,30 +227,26 @@ void StructureObjectImplementation::destroyOrphanCivicStructure() {
 		return;
 	}
 
-	auto playerManager = zoneServer->getPlayerManager();
+	auto name = getZoneServer()->getPlayerManager()->getPlayerName(getOwnerObjectID());
 
-	if (playerManager != nullptr) {
-		auto name = playerManager->getPlayerName(getOwnerObjectID());
+	if (!name.isEmpty()) {
+		UnicodeString subject = "Orphaned city structure destroyed!";
 
-		if (!name.isEmpty()) {
-			UnicodeString subject = "Orphaned city structure destroyed!";
+		StringBuffer msg;
 
-			StringBuffer msg;
+		msg << name << "," << endl << endl;
+		msg << "You are the last known mayor releated to a " << StringIdManager::instance()->getStringId(getObjectName()->getFullPath().hashCode()).toString();
+		msg << " at " << (int)getPositionX() << ", " << (int)getPositionY() << " on " << getZone()->getZoneName() << "." << endl;
+		msg << endl;
+		msg << "This structre has been destroyed because it did not belong to an active city." << endl;
+		msg << endl;
+		msg << "-- The Planetary Civic Authority" << endl;
 
-			msg << name << "," << endl << endl;
-			msg << "You are the last known mayor releated to a " << StringIdManager::instance()->getStringId(getObjectName()->getFullPath().hashCode()).toString();
-			msg << " at " << (int)getPositionX() << ", " << (int)getPositionY() << " on " << zone->getZoneName() << "." << endl;
-			msg << endl;
-			msg << "This structre has been destroyed because it did not belong to an active city." << endl;
-			msg << endl;
-			msg << "-- The Planetary Civic Authority" << endl;
+		UnicodeString body = msg.toString();
 
-			UnicodeString body = msg.toString();
-
-			chatManager->sendMail("@city/city:new_city_from", subject, body, name);
-		} else {
-			error("destroyOrphanCivicStructure: Unable to find owner oid: " + String::valueOf(getOwnerObjectID()) + ", destruction email not sent.");
-		}
+		chatManager->sendMail("@city/city:new_city_from", subject, body, name);
+	} else {
+		error("destroyOrphanCivicStructure: Unable to find owner oid: " + String::valueOf(getOwnerObjectID()) + ", destruction email not sent.");
 	}
 
 	String path = exportJSON("Destroyed by destroyOrphanCivicStructure");
@@ -365,7 +327,7 @@ void StructureObjectImplementation::scheduleMaintenanceExpirationEvent() {
 		if (getOwnerObjectID() == 0)
 			return;
 
-		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield() && !isScanner())
+		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield())
 			error("scheduleMaintenanceExpirationEvent: getMaintenanceRate() <= 0 but not in a city!");
 
 		// No maintenance cost, structure maintenance cannot expire.
@@ -419,7 +381,7 @@ void StructureObjectImplementation::scheduleMaintenanceExpirationEvent() {
 			//any further rescheduling.
 
 			//Randomize maintenance tasks over the first hour after server restart.
-			secondsRemaining = ConfigManager::instance()->getInt("Core3.StructureObject.MaintenanceBootDelay", 600) + System::random(60 * 60);
+			secondsRemaining = System::random(60 * 60);
 		} else if (secondsRemaining > 24 * 60 * 60) {
 			//Run maintenance task at least one time every day but randomized to spread it out.
 			secondsRemaining = 12 * 60 * 60 + System::random(12 * 60 * 60);
@@ -441,7 +403,7 @@ void StructureObjectImplementation::scheduleMaintenanceTask(int secondsFromNow) 
 		if (getOwnerObjectID() == 0)
 			return;
 
-		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield() && !isScanner())
+		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield())
 			error("scheduleMaintenanceTask: getMaintenanceRate() <= 0 but not in a city!");
 
 		return;
@@ -528,7 +490,7 @@ void StructureObjectImplementation::updateStructureStatus() {
 	 */
 
 	if(isCivicStructure()) {
-		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield() && !isScanner())
+		if (getCityRegion().get() == nullptr && !isTurret() && !isMinefield())
 			error("updateStructureStatus: isCivicStructure() but not in a city!");
 
 		return;
@@ -617,7 +579,7 @@ String StructureObjectImplementation::getDebugStructureStatus() const {
 		if (getBaseMaintenanceRate() > 0) {
 			status << "WARNING: No maintenance task running on this structure";
 			error("getDebugStructureStatus: structureMaintenanceTask == nullptr");
-		} else if (getOwnerObjectID() != 0 && getCityRegion().get() == nullptr && !isTurret() && !isMinefield() && !isScanner()) {
+		} else if (getOwnerObjectID() != 0 && getCityRegion().get() == nullptr && !isTurret() && !isMinefield()) {
 			status << "WARNING: City object without a city!";
 			error("getDebugStructureStatus: City structure but not in a city!");
 		}
@@ -664,43 +626,25 @@ int StructureObjectImplementation::getDecayPercentage() {
 void StructureObjectImplementation::payMaintenance(int maintenance, CreditObject* creditObj, bool cashFirst) {
 	//Pay maintenance.
 
-	auto structure = _this.getReferenceUnsafeStaticCast();
 	int payedSoFar;
 	if (cashFirst) {
 		if (creditObj->getCashCredits() >= maintenance) {
-			TransactionLog trx(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance, true);
 			creditObj->subtractCashCredits(maintenance);
-			addMaintenance(maintenance);
 		} else {
 			payedSoFar = creditObj->getCashCredits();
-
-			TransactionLog trxCash(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, payedSoFar, true);
 			creditObj->subtractCashCredits(payedSoFar);
-			addMaintenance(payedSoFar);
-
-			TransactionLog trxBank(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance - payedSoFar, false);
-			trxBank.groupWith(trxCash);
 			creditObj->subtractBankCredits(maintenance - payedSoFar);
-			addMaintenance(maintenance - payedSoFar);
 		}
 	} else {
 		if (creditObj->getBankCredits() >= maintenance) {
-			TransactionLog trx(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance, false);
 			creditObj->subtractBankCredits(maintenance);
-			addMaintenance(maintenance);
 		} else {
 			payedSoFar = creditObj->getBankCredits();
-
-			TransactionLog trxCash(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, payedSoFar, false);
 			creditObj->subtractBankCredits(payedSoFar);
-			addMaintenance(payedSoFar);
-
-			TransactionLog trxBank(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance - payedSoFar, true);
-			trxBank.groupWith(trxCash);
 			creditObj->subtractCashCredits(maintenance - payedSoFar);
-			addMaintenance(maintenance - payedSoFar);
 		}
 	}
+	addMaintenance(maintenance);
 }
 
 bool StructureObjectImplementation::isCampStructure() const {
@@ -708,17 +652,15 @@ bool StructureObjectImplementation::isCampStructure() const {
 }
 
 void StructureObjectImplementation::addTemplateSkillMods(TangibleObject* targetObject) const {
-	if (targetObject == nullptr || !targetObject->isPlayerCreature()) {
+	if(!targetObject->isPlayerCreature())
 		return;
-	}
 
-	const SharedTangibleObjectTemplate* tanoTemplate = dynamic_cast<SharedTangibleObjectTemplate*>(templateObject.get());
+	const SharedTangibleObjectTemplate* tano = dynamic_cast<SharedTangibleObjectTemplate*>(templateObject.get());
 
-	if (tanoTemplate == nullptr) {
+	if (tano == nullptr)
 		return;
-	}
 
-	const auto mods = tanoTemplate->getSkillMods();
+	const auto mods = tano->getSkillMods();
 
 	for (int i = 0; i < mods->size(); ++i) {
 		const auto& entry = mods->elementAt(i);
@@ -730,17 +672,15 @@ void StructureObjectImplementation::addTemplateSkillMods(TangibleObject* targetO
 }
 
 void StructureObjectImplementation::removeTemplateSkillMods(TangibleObject* targetObject) const {
-	if (targetObject == nullptr || !targetObject->isPlayerCreature()) {
+	if(!targetObject->isPlayerCreature())
 		return;
-	}
 
-	const SharedTangibleObjectTemplate* tanoTemplate = dynamic_cast<SharedTangibleObjectTemplate*>(templateObject.get());
+	const SharedTangibleObjectTemplate* tano = dynamic_cast<SharedTangibleObjectTemplate*>(templateObject.get());
 
-	if (tanoTemplate == nullptr) {
+	if (tano == nullptr)
 		return;
-	}
 
-	const auto mods = tanoTemplate->getSkillMods();
+	const auto mods = tano->getSkillMods();
 
 	for (int i = 0; i < mods->size(); ++i) {
 		const auto& entry = mods->elementAt(i);
@@ -762,7 +702,7 @@ bool StructureObjectImplementation::isCivicStructure() const {
 }
 
 bool StructureObjectImplementation::isCityHall() {
-	return dynamic_cast<CityHallZoneComponent*>(getGroundZoneComponent()) != nullptr;
+	return dynamic_cast<CityHallZoneComponent*>(getZoneComponent()) != nullptr;
 }
 
 bool StructureObjectImplementation::isCommercialStructure() const {
@@ -814,9 +754,9 @@ bool StructureObjectImplementation::isOnAdminList(CreatureObject* player) const 
 
 	if (ghost != nullptr && ghost->isPrivileged())
 		return true;
-	else if (structurePermissionList.isOnPermissionList("ADMIN", player->getObjectID())) {
+	else if (structurePermissionList.isOnPermissionList("ADMIN", player->getObjectID()))
 		return true;
-	} else {
+	else {
 		ManagedReference<GuildObject*> guild = player->getGuildObject().get();
 
 		if (guild != nullptr && structurePermissionList.isOnPermissionList("ADMIN", guild->getObjectID()))
@@ -901,4 +841,79 @@ bool StructureObjectImplementation::isOnPermissionList(const String& listName, C
 	}
 
 	return false;
+}
+
+bool StructureObjectImplementation::unloadFromZone(bool sendSelfDestroy) {
+	ManagedReference<Zone*> zone = getZone();
+
+	if (zone == nullptr)
+		return false;
+
+	ManagedReference<BuildingObject*> building = cast<BuildingObject*>(asSceneObject());
+
+	if (building == nullptr)
+		return false;
+
+	ManagedReference<SceneObject*> owner = zone->getZoneServer()->getObject(getOwnerObjectID());
+
+	if (owner == nullptr)
+		return false;
+
+	ManagedReference<SceneObject*> ghost = owner->getSlottedObject("ghost");
+
+	if (ghost == nullptr || !ghost->isPlayerObject())
+		return false;
+
+	if (navArea != nullptr) {
+		ManagedReference<NavArea*> nav = navArea;
+		Core::getTaskManager()->executeTask([nav, sendSelfDestroy] () {
+			Locker locker(nav);
+			nav->destroyObjectFromWorld(sendSelfDestroy);
+		}, "destroyStructureNavAreaLambda2");
+	}
+
+	PlayerObject* playerObject = cast<PlayerObject*>(ghost.get());
+
+	if (getObjectID() == playerObject->getDeclaredResidence())
+		playerObject->setDeclaredResidence(nullptr);
+
+	uint64 waypointID = getWaypointID();
+
+	if (waypointID != 0)
+		playerObject->removeWaypoint(waypointID, true, true);
+
+	float x = getPositionX();
+	float y = getPositionY();
+	float z = zone->getHeight(x, y);
+
+	building->destroyChildObjects();
+
+	for (uint32 i = 1; i <= building->getTotalCellNumber(); ++i) {
+		ManagedReference<CellObject*> cellObject = building->getCell(i);
+
+		if (cellObject == nullptr)
+			continue;
+
+		int childObjects = cellObject->getContainerObjectsSize();
+
+		if (childObjects <= 0)
+			continue;
+
+		for (int j = childObjects - 1; j >= 0; --j) {
+			ManagedReference<SceneObject*> containedObject = cellObject->getContainerObject(j);
+
+			if (containedObject->isPlayerCreature() || containedObject->isPet()) {
+				CreatureObject* creature = cast<CreatureObject*>(containedObject.get());
+				creature->teleport(x, z, y, 0);
+				building->onExit(creature, 0);
+				continue;
+			}
+		}
+	}
+
+	removeObjectFromZone(zone, asSceneObject());
+	setZone(nullptr);
+	scheduleMaintenanceExpirationEvent();
+
+	return true;
 }

@@ -2,7 +2,6 @@ grel_rommo = Creature:new {
 	objectName = "@mob/creature_names:rebel_pilot",
 	socialGroup = "rebel",
 	faction = "rebel",
-	mobType = MOB_NPC,
 	level = 20,
 	chanceHit = 0.33,
 	damageMin = 190,
@@ -31,17 +30,9 @@ grel_rommo = Creature:new {
 	"object/mobile/dressed_rebel_pilot_human_male_02.iff",
 	"object/mobile/dressed_rebel_pilot_rodian_male_01.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "arven_wendik_mission_target_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(grel_rommo, "grel_rommo")

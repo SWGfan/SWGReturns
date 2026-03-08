@@ -2,25 +2,24 @@ razor_cat_eviscerator = Creature:new {
 	objectName = "@mob/creature_names:razor_cat_eviscerator",
 	socialGroup = "panther",
 	faction = "",
-	mobType = MOB_CARNIVORE,
-	level = 24,
-	chanceHit = 0.35,
-	damageMin = 240,
-	damageMax = 250,
-	baseXp = 2543,
-	baseHAM = 7200,
-	baseHAMmax = 8800,
-	armor = 0,
-	resists = {110,110,10,115,10,10,-1,10,-1},
+	level = 25,
+	chanceHit = 1.25,
+	damageMin = 270,
+	damageMax = 280,
+	baseXp = 5043,
+	baseHAM = 8000,
+	baseHAMmax = 9600,
+	armor = 1,
+	resists = {160,160,145,165,170,145,145,140,-1},
 	meatType = "meat_carnivore",
-	meatAmount = 65,
+	meatAmount = 130,
 	hideType = "hide_bristley",
-	hideAmount = 35,
+	hideAmount = 70,
 	boneType = "bone_mammal",
-	boneAmount = 30,
+	boneAmount = 60,
 	milk = 0,
-	tamingChance = 0.05,
-	ferocity = 2,
+	tamingChance = 0.25,
+	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD + KILLER,
 	optionsBitmask = AIENABLED,
@@ -31,17 +30,12 @@ razor_cat_eviscerator = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/corellian_sand_panther_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"knockdownattack",""}, {"intimidationattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"knockdownattack","stateAccuracyBonus=75"},
+		{"intimidationattack","stateAccuracyBonus=100"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(razor_cat_eviscerator, "razor_cat_eviscerator")

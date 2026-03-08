@@ -1,4 +1,3 @@
-
 local ObjectManager = require("managers.object.object_manager")
 
 PadawanTrials = ScreenPlay:new {}
@@ -123,7 +122,7 @@ function PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
 	if (trialsCompleted == #padawanTrialQuests) then
 		JediTrials:unlockJediPadawan(pPlayer)
 		return
-	elseif (trialsCompleted == 7) then
+	elseif (trialsCompleted == 2) then
 		local trialNum = self:getSaberCraftingTrialNumber()
 		self:startTrial(pPlayer, trialNum)
 	else
@@ -1061,6 +1060,13 @@ function PadawanTrials:showCurrentTrial(pShrine, pPlayer)
 	local trialNumber = JediTrials:getCurrentTrial(pPlayer)
 	local trialData = padawanTrialQuests[trialNumber]
 
+	if (trialData == nil) then
+		printLuaError("PadawanTrials:showCurrentTrial, nil trialData for player " .. SceneObject(pPlayer):getCustomObjectName() .. " on trial " .. trialNumber .. " (resetting all trials)")
+		PadawanTrials:resetAllPadawanTrials(pPlayer)
+		CreatureObject(pPlayer):sendSystemMessage("Your trial data was invalid and has been reset. Please speak to a Force shrine to begin again.")
+		return
+	end
+
 	local sui = SuiMessageBox.new("PadawanTrials", "handleShowInfoChoice")
 	sui.setTitle("@jedi_trials:force_shrine_title")
 	sui.setTargetNetworkId(SceneObject(pShrine):getObjectID())
@@ -1126,8 +1132,15 @@ function PadawanTrials:onPlayerLoggedIn(pPlayer)
 	local trialNumber = JediTrials:getCurrentTrial(pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 
-	if (trialNumber >= 1) then
+	if (trialNumber >= 1 and trialNumber <= #padawanTrialQuests) then
 		local trialData = padawanTrialQuests[trialNumber]
+
+		if (trialData == nil) then
+			printLuaError("PadawanTrials:onPlayerLoggedIn, nil trialData for player " .. SceneObject(pPlayer):getCustomObjectName() .. " on trial " .. trialNumber .. " (resetting trials)")
+			JediTrials:setCurrentTrial(pPlayer, 0)
+			return
+		end
+
 		local trialState = JediTrials:getTrialStateName(pPlayer, trialNumber)
 
 		if (trialData.trialType == TRIAL_HUNT and tonumber(readScreenPlayData(pPlayer, "JediTrials", "huntTargetGoal")) ~= nil) then

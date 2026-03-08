@@ -14,27 +14,6 @@
 
 void ShuttleInstallationZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zone) const {
 	StructureZoneComponent::notifyInsertToZone(sceneObject, zone);
-
-	if (zone == nullptr) {
-		return;
-	}
-
-	int bootDelay = ConfigManager::instance()->getInt("Core3.ShuttleZoneComponent.BootDelay", 5 * 60 * 1000);
-	Reference<SceneObject*> sceneRef = sceneObject;
-	Reference<Zone*> zoneRef = zone;
-
-	// Re-Schedule the registering of player city shuttles with the map after the shuttles have started post boot delay
-	Core::getTaskManager()->scheduleTask([sceneRef, zoneRef] () {
-		if (sceneRef == nullptr || zoneRef == nullptr) {
-			return;
-		}
-
-		Locker lock(sceneRef);
-
-		zoneRef->unregisterObjectWithPlanetaryMap(sceneRef);
-		zoneRef->registerObjectWithPlanetaryMap(sceneRef);
-
-	}, "UpdateShuttleportMapLambda", bootDelay);
 }
 
 void ShuttleInstallationZoneComponent::notifyRemoveFromZone(SceneObject* sceneObject) const {
@@ -58,7 +37,7 @@ void ShuttleInstallationZoneComponent::destroyObjectFromWorld(SceneObject* scene
 
 				if (cityRegion != nullptr) {
 
-					planetManager->removePlayerCityTravelPoint(cityRegion->getCityRegionName());
+					planetManager->removePlayerCityTravelPoint(cityRegion->getRegionName());
 
 					Locker clocker(cityRegion, sceneObject);
 
@@ -84,5 +63,5 @@ void ShuttleInstallationZoneComponent::destroyObjectFromWorld(SceneObject* scene
 		}
 	}
 
-	GroundZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
+	ZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
 }

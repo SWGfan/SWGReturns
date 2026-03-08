@@ -5,53 +5,39 @@
 #include "DroidDatapadContainerComponent.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/intangible/PetControlDevice.h"
+#include "server/zone/objects/creature/ai/DroidObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 
-#include "server/zone/objects/creature/ai/DroidObject.h"
-
-
 bool DroidDatapadContainerComponent::checkContainerPermission(SceneObject* sceneObject, CreatureObject* creature, uint16 permission) const {
-	ManagedReference<SceneObject*> parent = sceneObject->getParent().get();
+	ManagedReference<SceneObject*> p = sceneObject->getParent().get();
 
-	if (parent == nullptr || !parent->isPetControlDevice()) {
+	if (p == nullptr || !p->isDroidObject()) {
 		return false;
 	}
 
-	auto controlDevice = parent.castTo<PetControlDevice*>();
+	DroidObject* droid = p.castTo<DroidObject*>();
 
-	if (controlDevice == nullptr) {
+	if(droid == nullptr){
 		return false;
 	}
 
-	auto rootParent = controlDevice->getParentRecursively(SceneObjectType::PLAYERCREATURE);
-
-	if (rootParent == nullptr) {
+	if (!creature->getPlayerObject()->isPrivileged() && droid->getLinkedCreature() != creature){
 		return false;
 	}
 
-	auto ghost = creature->getPlayerObject();
-
-	if (ghost == nullptr) {
-		return false;
-	}
-
-	if (!ghost->isPrivileged() && rootParent->getObjectID() != creature->getObjectID()) {
-		return false;
-	}
-
-	if (permission == ContainerPermissions::MOVEIN || permission == ContainerPermissions::MOVEOUT || permission == ContainerPermissions::OPEN) {
+	if(permission == ContainerPermissions::MOVEIN){
+		return true;
+	}else if (permission == ContainerPermissions::MOVEOUT ){
+		return true;
+	} else if ( permission == ContainerPermissions::OPEN  ) {
 		return true;
 	}
-
 	return false;
 }
-
 int DroidDatapadContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject* object, int containmentType, String& errorDescription) const {
 	if (!object->isManufactureSchematic()) {
 		errorDescription = "@container_error_message:container12";
 		return TransferErrorCode::INVALIDTYPE;
 	}
-
 	return 0;
 }

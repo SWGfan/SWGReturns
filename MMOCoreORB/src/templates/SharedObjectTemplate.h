@@ -14,7 +14,6 @@
 #include "templates/IffTemplate.h"
 #include "templates/ChildObject.h"
 #include "templates/manager/PlanetMapCategory.h"
-#include "templates/manager/PlanetMapSubCategory.h"
 #include "templates/slots/SlotDescriptor.h"
 #include "templates/slots/ArrangementDescriptor.h"
 #include "templates/params/primitives/IntegerParam.h"
@@ -67,7 +66,7 @@ protected:
 	String clientTemplateFileName;
 
 	Reference<const PlanetMapCategory*> planetMapCategory;
-	Reference<const PlanetMapSubCategory*> planetMapSubCategory;
+	Reference<const PlanetMapCategory*> planetMapSubCategory;
 	bool autoRegisterWithPlanetMap;
 
 	String fullTemplateString;
@@ -77,11 +76,10 @@ protected:
 
 	Vector<ChildObject> childObjects;
 
-	AtomicReference<PortalLayout*> portalLayout;
-	AtomicReference<AppearanceTemplate*> appearanceTemplate;
-	AtomicBoolean loadedPortalLayout, loadedAppearanceTemplate;
-	String groundZoneComponent, attributeListComponent;
-	String spaceZoneComponent;
+	PortalLayout* portalLayout;
+	AppearanceTemplate* appearanceTemplate;
+	bool loadedPortalLayout, loadedAppearanceTemplate;
+	String zoneComponent, attributeListComponent;
 	String containerComponent;
 	String objectMenuComponent;
 
@@ -93,7 +91,6 @@ protected:
 	SortedVector<String> loadedDerivedFiles;
 
 	bool noTrade;
-	bool forceNoTrade;
 	bool updatesNavMesh;
 	bool delayedContainerLoad;
 
@@ -200,9 +197,6 @@ public:
 	const static int DROIDMODULEPERSONALITY = 0x4000057;
 	const static int VEHICLE = 0x4000058;
 	const static int XPPURCHASE = 0x4000059;
-	const static int SHIPCOMPONENT = 0x400005A;
-	const static int SCHEMATICFRAGMENT = 0x400005B;
-	const static int NAVICOMPUTERDEED = 0x400005C;
 public:
 	SharedObjectTemplate();
 
@@ -310,12 +304,12 @@ public:
 	const PortalLayout* getPortalLayout();
 	AppearanceTemplate* getAppearanceTemplate();
 
-	const Vector <Vector<String>>& getArrangementDescriptors() const {
+	const Vector < Vector<String> >* getArrangementDescriptors() const {
 		if (arrangementDescriptors == nullptr) {
 			const static Vector < Vector<String> > EMPTY_DESCRIPTORS;
-			return EMPTY_DESCRIPTORS;
+			return &EMPTY_DESCRIPTORS;
 		} else
-			return arrangementDescriptors->getArrangementSlots();
+			return &arrangementDescriptors->getArrangementSlots();
 	}
 
 	/*inline Vector<float>* getScale() {
@@ -336,10 +330,6 @@ public:
 
 	inline bool isNoTrade() const {
 		return noTrade;
-	}
-
-	inline bool isForceNoTrade() const {
-		return forceNoTrade;
 	}
 
 	inline float getScaleThresholdBeforeExtentTest() const {
@@ -401,12 +391,8 @@ public:
 		return containerComponent;
 	}
 
-	inline const String& getGroundZoneComponent() const {
-		return groundZoneComponent;
-	}
-
-	inline const String& getSpaceZoneComponent() const {
-		return spaceZoneComponent;
+	inline const String& getZoneComponent() const {
+		return zoneComponent;
 	}
 
 	inline const String& getObjectMenuComponent() const {
@@ -421,7 +407,7 @@ public:
 		return planetMapCategory;
 	}
 
-	inline const PlanetMapSubCategory* getPlanetMapSubCategory() const {
+	inline const PlanetMapCategory* getPlanetMapSubCategory() const {
 		return planetMapSubCategory;
 	}
 
@@ -433,7 +419,7 @@ public:
 		return childObjects.size();
 	}
 
-	inline const ChildObject* getChildObject(int idx) const {
+	inline ChildObject* getChildObject(int idx) const {
 		return &childObjects.get(idx);
 	}
 
@@ -446,17 +432,17 @@ public:
 	}
 
 	bool hasArrangementDescriptor(const String& s) const {
-		const auto& hAD = getArrangementDescriptors();
+		bool foundIt = false;
 
-		for (int i = 0; i < hAD.size(); ++i) {
-			const auto& slotItems = hAD.get(i);
+		const Vector < Vector <String> >* hAD = getArrangementDescriptors();
 
-			if (slotItems.contains(s)) {
-				return true;
-			}
+		for (int i = 0; i < hAD->size() && !foundIt; ++i) {
+			Vector <String>& slotItems = hAD->get(i);
+
+			foundIt = slotItems.contains(s);
 		}
 
-		return false;
+		return foundIt;
 	}
 
 	bool getDelayedContainerLoad() const {
@@ -464,7 +450,7 @@ public:
 	}
 
 public:
-	void setAppearanceFilename(const String& appearanceFilename) {
+	void setAppearanceFilename(String appearanceFilename) {
 		this->appearanceFilename = appearanceFilename;
 	}
 
@@ -472,7 +458,7 @@ public:
 		this->clearFloraRadius = clearFloraRadius;
 	}
 
-	void setClientDataFile(const String& clientDataFile) {
+	void setClientDataFile(String clientDataFile) {
 		this->clientDataFile = clientDataFile;
 	}
 
@@ -528,7 +514,7 @@ public:
 		this->noBuildRadius = noBuildRadius;
 	}
 
-	void setObjectName(const String& objectName) {
+	void setObjectName(String objectName) {
 		this->objectName = objectName;
 	}
 
@@ -568,7 +554,7 @@ public:
 		this->surfaceType = surfaceType;
 	}
 
-	void setTintPallete(const String& tintPallete) {
+	void setTintPallete(String tintPallete) {
 		this->tintPallete = tintPallete;
 	}
 
@@ -591,7 +577,7 @@ public:
 		return false;
 	}
 
-	virtual bool isSharedTangibleObjectTemplate() const {
+	virtual bool isSharedTangibleObjectTemplate() {
 		return false;
 	}
 
@@ -675,7 +661,7 @@ public:
 		return false;
 	}
 
-	virtual bool isInstrumentObjectTemplate() const {
+	virtual bool isInstrumentObjectTemplate() {
 		return false;
 	}
 
@@ -699,11 +685,11 @@ public:
 		return false;
 	}
 
-	virtual bool isCreatureHabitatTemplate() const {
+	virtual bool isCreatureHabitatTemplate() {
 		return false;
 	}
 
-	virtual bool isRepairToolTemplate() const {
+	virtual bool isRepairToolTemplate() {
 		return false;
 	}
 
@@ -715,16 +701,16 @@ public:
 		return false;
 	}
 
-	virtual bool isRecycleToolTemplate() const {
-			return false;
+	virtual bool isRecycleToolTemplate() {
+	    	return false;
 	}
 
 	virtual bool isVehicleCustomKitTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDnaSampleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isPetDeedTemplate() {
@@ -732,30 +718,30 @@ public:
 	}
 
 	virtual bool isDroidCustomKitTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidComponentTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidCraftingModuleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidEffectsModuleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isVehicleObjectTemplate() {
 		return false;
 	}
 
-	virtual bool isPlayerCreatureTemplate() const {
+	virtual bool isPlayerCreatureTemplate() {
 		return false;
 	}
 
-	virtual bool isCraftingStationTemplate() const {
+	virtual bool isCraftingStationTemplate() {
 		return false;
 	}
 

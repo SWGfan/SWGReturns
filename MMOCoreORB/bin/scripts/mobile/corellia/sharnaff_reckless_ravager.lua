@@ -2,25 +2,24 @@ sharnaff_reckless_ravager = Creature:new {
 	objectName = "@mob/creature_names:sharnaff_reckless_ravager",
 	socialGroup = "sharnaff",
 	faction = "",
-	mobType = MOB_HERBIVORE,
-	level = 34,
-	chanceHit = 0.41,
-	damageMin = 315,
-	damageMax = 340,
-	baseXp = 3460,
-	baseHAM = 8800,
-	baseHAMmax = 10800,
-	armor = 0,
-	resists = {115,115,20,120,120,120,120,120,-1},
+	level = 60,
+	chanceHit = 0.55,
+	damageMin = 470,
+	damageMax = 650,
+	baseXp = 5830,
+	baseHAM = 11000,
+	baseHAMmax = 14000,
+  armor = 3,
+	resists = {160,160,160,140,150,160,150,145,140},
 	meatType = "meat_carnivore",
-	meatAmount = 450,
+	meatAmount = 900,
 	hideType = "hide_scaley",
-	hideAmount = 300,
+	hideAmount = 600,
 	boneType = "bone_mammal",
-	boneAmount = 180,
+	boneAmount = 360,
 	milk = 0,
-	tamingChance = 0.05,
-	ferocity = 5,
+	tamingChance = 0.25,
+	ferocity = 8,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
@@ -34,20 +33,15 @@ sharnaff_reckless_ravager = Creature:new {
 			groups = {
 				{group = "sharnaff_common", chance = 10000000}
 			},
-			lootChance = 1680000
+			lootChance = 5680000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"dizzyattack",""}, {"knockdownattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"dizzyattack","stateAccuracyBonus=100"},
+		{"knockdownattack","stateAccuracyBonus=75"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(sharnaff_reckless_ravager, "sharnaff_reckless_ravager")

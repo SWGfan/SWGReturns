@@ -9,9 +9,6 @@
 #include "templates/tangible/TrapTemplate.h"
 #include "server/zone/managers/creature/PetManager.h"
 #include "server/zone/managers/object/ObjectManager.h"
-#include "server/zone/objects/creature/ai/DroidObject.h"
-#include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/intangible/PetControlDevice.h"
 
 const String DroidTrapModuleDataComponent::EMPTY_TRAP_MESSAGE = "@pet/droid_modules:no_trap_loaded";
 DroidTrapModuleDataComponent::DroidTrapModuleDataComponent() {
@@ -19,15 +16,12 @@ DroidTrapModuleDataComponent::DroidTrapModuleDataComponent() {
 	trapBonus = 0;
 	modules = 1;
 }
-
 DroidTrapModuleDataComponent::~DroidTrapModuleDataComponent() {
 
 }
-
-String DroidTrapModuleDataComponent::getModuleName() const {
+String DroidTrapModuleDataComponent::getModuleName() {
 	return String("trap_module");
 }
-
 void DroidTrapModuleDataComponent::initializeTransientMembers() {
 	DroidComponent* droidComponent = cast<DroidComponent*>(getParent());
 	if (droidComponent == nullptr) {
@@ -41,14 +35,12 @@ void DroidTrapModuleDataComponent::initializeTransientMembers() {
 		modules = droidComponent->getAttributeValue( "module_count");
 	}
 }
-
 void DroidTrapModuleDataComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	trapBonus = values->getCurrentValue("trap_bonus");
 }
-
 void DroidTrapModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
 	// convert module rating to actual rating
-	alm->insertAttribute( "trap_bonus", (int)trapBonus);
+	alm->insertAttribute( "trap_bonus", trapBonus);
 	ManagedReference<DroidObject*> d = getDroidObject();
 	TangibleObject* o;
 	if (d != nullptr) {
@@ -67,11 +59,9 @@ void DroidTrapModuleDataComponent::fillAttributeList(AttributeListMessage* alm, 
 	sb << (modules * 10);
 	alm->insertAttribute("max_trap_load",sb.toString());
 }
-
-String DroidTrapModuleDataComponent::toString() const {
+String DroidTrapModuleDataComponent::toString(){
 	return BaseDroidModuleComponent::toString();
 }
-
 void DroidTrapModuleDataComponent::addToStack(BaseDroidModuleComponent* other) {
 	DroidTrapModuleDataComponent* otherModule = cast<DroidTrapModuleDataComponent*>(other);
 	if(otherModule == nullptr)
@@ -80,11 +70,10 @@ void DroidTrapModuleDataComponent::addToStack(BaseDroidModuleComponent* other) {
 	modules += 1;
 	DroidComponent* droidComponent = cast<DroidComponent*>(getParent());
 	if (droidComponent != nullptr){
-		droidComponent->changeAttributeValue("trap_bonus", (float)trapBonus);
-		droidComponent->changeAttributeValue("module_count", (float)modules);
+		droidComponent->changeAttributeValue("trap_bonus",(float)trapBonus);
+		droidComponent->changeAttributeValue("module_count",(float)modules);
 	}
 }
-
 void DroidTrapModuleDataComponent::copy(BaseDroidModuleComponent* other) {
 	DroidTrapModuleDataComponent* otherModule = cast<DroidTrapModuleDataComponent*>(other);
 	if(otherModule == nullptr)
@@ -93,11 +82,10 @@ void DroidTrapModuleDataComponent::copy(BaseDroidModuleComponent* other) {
 	modules = 1;
 	DroidComponent* droidComponent = cast<DroidComponent*>(getParent());
 	if (droidComponent != nullptr){
-		droidComponent->addProperty("trap_bonus", (float)trapBonus,0,"exp_effectiveness");
-		droidComponent->addProperty("module_count", (float)modules,0,"hidden",true);
+		droidComponent->addProperty("trap_bonus",(float)trapBonus,0,"exp_effectiveness");
+		droidComponent->addProperty("module_count",(float)modules,0,"hidden",true);
 	}
 }
-
 void DroidTrapModuleDataComponent::onCall() {
 	// ensure the trap loaded can be used by the current owner
 }
@@ -127,7 +115,6 @@ bool DroidTrapModuleDataComponent::compatibleTrap(CreatureObject* player, uint32
 
 	return true;
 }
-
 void DroidTrapModuleDataComponent::onStore() {
 }
 /**
@@ -196,7 +183,7 @@ void DroidTrapModuleDataComponent::handlePetCommand(String cmd, CreatureObject* 
 	if( droid->getLinkedCreature().get() != speaker ) {
 		return;
 	}
-	if (petManager->getTrainedCommandNum( pcd, cmd) == PetManager::THROWTRAP) {
+	if( petManager->isTrainedCommand( pcd, PetManager::THROWTRAP, cmd ) ){
 		if (trap == nullptr) {
 			speaker->sendSystemMessage("@pet/droid_modules:no_trap_loaded");
 			return;

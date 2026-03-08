@@ -44,6 +44,7 @@
 object_installation_manufacture_food_factory = object_installation_manufacture_shared_food_factory:new {
 	templateType = FACTORY,
 	lotSize = 1,
+	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	baseMaintenanceRate = 50,
 	basePowerRate = 50,
 	width = 3,

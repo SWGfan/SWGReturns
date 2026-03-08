@@ -45,10 +45,10 @@ Melee1hSpinAttack2Command = {
         name = "melee1hspinattack2",
 
 	damageMultiplier = 3.0,
-	speedMultiplier = 1.0,
-	healthCostMultiplier = 0.0,
-	actionCostMultiplier = 0.0,
-	mindCostMultiplier = 0.0,
+	speedMultiplier = 2.5,
+	healthCostMultiplier = 1.25,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 2.0,
         accuracyBonus = 25,
 
 	animation = "lower_posture_2hmelee_6",
@@ -56,7 +56,7 @@ Melee1hSpinAttack2Command = {
 	combatSpam = "blindspin",
 
 	areaAction = true,
-	areaRange = 32,
+	areaRange = 16,
 
 	stateEffects = {
 	  StateEffect( 
@@ -70,7 +70,7 @@ Melee1hSpinAttack2Command = {
 	  )
 	},
 	
-	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
+	weaponType = ONEHANDMELEEWEAPON,
 
 	range = -1
 }

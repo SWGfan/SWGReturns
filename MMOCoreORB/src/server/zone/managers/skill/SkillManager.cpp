@@ -20,9 +20,6 @@
 #include "server/zone/packets/creature/CreatureObjectDeltaMessage4.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/managers/frs/FrsManager.h"
-#include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
-#include "server/zone/objects/player/sui/callbacks/SurrenderPilotSuiCallback.h"
-#include "templates/faction/Factions.h"
 
 SkillManager::SkillManager()
 	: Logger("SkillManager") {
@@ -92,55 +89,20 @@ void SkillManager::loadClientData() {
 		parent->addChild(skill);
 
 		if (skillMap.put(skill->getSkillName().hashCode(), skill) != nullptr) {
-			fatal("overwriting skill name");
+			error("overwriting skill name");
+
+			assert(0 && "skill name hashcode error");
 		}
 
 		//Load the abilities of the skill into the ability map.
-		const auto& commands = skill->commands;
+		Vector<String> commands = skill->commands;
 
 		for (int i = 0; i < commands.size(); ++i) {
-			const auto& command = commands.get(i);
+			String command = commands.get(i);
 
 			if (!abilityMap.containsKey(command)) {
 				abilityMap.put(command, new Ability(command));
 			}
-		}
-	}
-
-	// Load Droid Commands
-	iffStream = TemplateManager::instance()->openIffFile("datatables/space_command/droid_program_size.iff");
-
-	if (iffStream != nullptr) {
-		DataTableIff datatableIff;
-		datatableIff.readObject(iffStream);
-
-		delete iffStream;
-
-		for (int i = 0; i < datatableIff.getTotalRows(); ++i) {
-			DataTableRow* row = datatableIff.getRow(i);
-
-			if (row == nullptr) {
-				continue;
-			}
-
-			String programName = "";
-			int programSize = 1;
-
-			row->getValue(0, programName);
-			row->getValue(1, programSize);
-
-			if (programName.isEmpty()) {
-				continue;
-			}
-
-			droidProgramSizes.put(programName.hashCode(), programSize);
-
-			String droidCommand = "droid+" + programName;
-			if (!abilityMap.containsKey(droidCommand))
-				abilityMap.put(droidCommand, new Ability(droidCommand));
-
-			if (!droidCommands.contains(programName))
-				droidCommands.put(programName);
 		}
 	}
 
@@ -160,8 +122,8 @@ void SkillManager::loadClientData() {
 
 	loadXpLimits();
 
-	info(true) << "Loaded " << skillMap.size() << " skills and " << abilityMap.size() << " abilities.";
-	info(true) << "Loaded " << droidProgramSizes.size() << " Droid Space Command Sizes.";
+	info(true) << "Successfully loaded " << skillMap.size() <<
+	       	" skills and " << abilityMap.size() << " abilities.";
 }
 
 void SkillManager::loadFromLua() {
@@ -226,10 +188,6 @@ void SkillManager::loadXpLimits() {
 }
 
 void SkillManager::addAbility(PlayerObject* ghost, const String& abilityName, bool notifyClient) {
-	if (ghost == nullptr) {
-		return;
-	}
-
 	Ability* ability = abilityMap.get(abilityName);
 
 	if (ability != nullptr)
@@ -237,10 +195,6 @@ void SkillManager::addAbility(PlayerObject* ghost, const String& abilityName, bo
 }
 
 void SkillManager::removeAbility(PlayerObject* ghost, const String& abilityName, bool notifyClient) {
-	if (ghost == nullptr) {
-		return;
-	}
-
 	Ability* ability = abilityMap.get(abilityName);
 
 	if (ability != nullptr)
@@ -248,10 +202,6 @@ void SkillManager::removeAbility(PlayerObject* ghost, const String& abilityName,
 }
 
 void SkillManager::addAbilities(PlayerObject* ghost, const Vector<String>& abilityNames, bool notifyClient) {
-	if (ghost == nullptr) {
-		return;
-	}
-
 	Vector<Ability*> abilities;
 
 	for (int i = 0; i < abilityNames.size(); ++i) {
@@ -267,10 +217,6 @@ void SkillManager::addAbilities(PlayerObject* ghost, const Vector<String>& abili
 }
 
 void SkillManager::removeAbilities(PlayerObject* ghost, const Vector<String>& abilityNames, bool notifyClient) {
-	if (ghost == nullptr) {
-		return;
-	}
-
 	Vector<Ability*> abilities;
 
 	for (int i = 0; i < abilityNames.size(); ++i) {
@@ -285,40 +231,6 @@ void SkillManager::removeAbilities(PlayerObject* ghost, const Vector<String>& ab
 	ghost->removeAbilities(abilities, notifyClient);
 }
 
-void SkillManager::addDroidCommands(PlayerObject* ghost, const Vector<String>& abilityNames, bool notifyClient) {
-	if (ghost == nullptr || abilityNames.size() == 0) {
-		return;
-	}
-
-	Vector<Ability*> droidCommands;
-
-	for (int i = 0; i < abilityNames.size(); ++i) {
-		const String& abilityName = abilityNames.get(i);
-
-		if (ghost->hasDroidCommand(abilityName)) {
-			continue;
-		}
-
-		Ability* ability = abilityMap.get(abilityName);
-
-		if (ability == nullptr) {
-			continue;
-		}
-
-		droidCommands.add(ability);
-	}
-
-	ghost->addDroidCommands(droidCommands, notifyClient);
-}
-
-void SkillManager::removeDroidCommands(PlayerObject* ghost) {
-	if (ghost == nullptr) {
-		return;
-	}
-
-	ghost->removeDroidCommands();
-}
-
 /*bool SkillManager::checkPrerequisiteSkill(const String& skillName, CreatureObject* creature) {
 	return true;
 }*/
@@ -330,8 +242,6 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		return false;
 
 	Locker locker(creature);
-	TransactionLog trx(TrxCode::SKILLTRAININGSYSTEM, creature);
-	trx.addState("skill", skillName);
 
 	//Check for required skills.
 	auto requiredSkills = skill->getSkillsRequired();
@@ -365,9 +275,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		//Witdraw experience.
 		if (!noXpRequired) {
-			TransactionLog trxExperience(TrxCode::EXPERIENCE, creature);
-			trxExperience.groupWith(trx);
-			ghost->addExperience(trxExperience, skill->getXpType(), -skill->getXpCost(), true);
+			ghost->addExperience(skill->getXpType(), -skill->getXpCost(), true);
 		}
 
 		creature->addSkill(skill, notifyClient);
@@ -441,15 +349,23 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 			creature->setLevel(playerManager->calculatePlayerLevel(creature));
 		}
 
-		if (skill->getSkillName().contains("force_") && skill->getSkillName().contains("_04"))
+		if (skill->getSkillName().contains("force_sensitive") && skill->getSkillName().contains("_04"))
 			JediManager::instance()->onFSTreeCompleted(creature, skill->getSkillName());
 
 		MissionManager* missionManager = creature->getZoneServer()->getMissionManager();
 
 		if (skill->getSkillName() == "force_title_jedi_rank_02") {
-			if (missionManager != nullptr)
+			if (missionManager != nullptr) {
+				if (ghost->hasPlayerBounty()) {
+					missionManager->removePlayerFromBountyList(creature->getObjectID());
+					ghost->refundPlayerBountyCredits();
+
+				}
 				missionManager->addPlayerToBountyList(creature->getObjectID(), ghost->calculateBhReward());
-		} else if (skill->getSkillName().contains("jedi_padawan_")) {
+				if (ghost->isOnline())
+					missionManager->updatePlayerBountyOnlineStatus(creature->getObjectID(), true);
+			}
+		} else if (skill->getSkillName().contains("force_discipline")) {
 			if (missionManager != nullptr)
 				missionManager->updatePlayerBountyReward(creature->getObjectID(), ghost->calculateBhReward());
 		} else if (skill->getSkillName().contains("squadleader")) {
@@ -473,16 +389,110 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 	msg4->updateSpeedMultiplierBase();
 	msg4->updateSpeedMultiplierMod();
 	msg4->updateRunSpeed();
-	msg4->updateWalkSpeed();
-	msg4->updateSlopeModAngle();
-	msg4->updateSlopeModPercent();
-	msg4->updateWaterModPercent();
+	msg4->updateTerrainNegotiation();
 	msg4->close();
 	creature->sendMessage(msg4);
 
 	SkillModManager::instance()->verifySkillBoxSkillMods(creature);
+	creature->playEffect("clienteffect/skill_granted.cef", "");
 
 	return true;
+}
+
+void SkillManager::awardForceFromSkills(CreatureObject* creature) {
+	int forceMax = 0;
+	int forceRegen = 0;
+
+	if (creature == nullptr)
+		return;
+
+	Locker locker(creature);
+
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
+	const SkillList* skillList = creature->getSkillList();
+
+	Vector<String> listOfNames;
+	skillList->getStringList(listOfNames);
+	SkillList copyOfList;
+
+	copyOfList.loadFromNames(listOfNames);
+
+	for (int i = 0; i < copyOfList.size(); i++) {
+		Skill* skill = copyOfList.get(i);
+		auto skillModifiers = skill->getSkillModifiers();
+
+		for (int i = 0; i < skillModifiers->size(); ++i) {
+			auto entry = &skillModifiers->elementAt(i);
+			if (entry->getKey() == "jedi_force_power_max"){
+				forceMax += entry->getValue();
+			}
+			if (entry->getKey() == "jedi_force_power_regen"){
+				forceRegen += entry->getValue();
+			}
+		}
+
+	}
+
+	int currentFPR = creature->getSkillMod("jedi_force_power_regen");
+	int currentFMax = creature->getSkillMod("jedi_force_power_max");
+
+	error("Current force max: " + String::valueOf(currentFMax) + " Current regen: " + String::valueOf(currentFPR) );
+
+		if (currentFPR < forceRegen){
+			creature->addSkillMod(SkillModManager::PERMANENTMOD, "jedi_force_power_regen", forceRegen - currentFPR, true);
+			error("difference of " + String::valueOf(currentFPR - forceRegen) + " detected in force regen, correcting");
+		}
+		if (currentFMax < forceMax){
+			creature->addSkillMod(SkillModManager::PERMANENTMOD, "jedi_force_power_max", forceMax - currentFMax, true);
+			error("difference of " + String::valueOf(currentFMax - forceMax) + " detected in force max, correcting");
+		}
+	error("New Force max: " + String::valueOf(forceMax) + " New Regen: " + String::valueOf(forceRegen));
+
+	if (ghost != nullptr)
+		ghost->setForcePowerMax(forceMax, true);
+
+	ManagedReference<PlayerObject*> playerObject = creature->getPlayerObject();
+
+	if (playerObject != nullptr)
+		playerObject->setForcePower(forceMax);
+
+	return;
+}
+
+void SkillManager::awardResetSkills(CreatureObject* creature) {
+
+		if (creature == nullptr)
+			return;
+
+		Locker locker(creature);
+
+		SkillManager* skillManager = SkillManager::instance();
+		const SkillList* skillList = creature->getSkillList();
+
+		if (skillList == nullptr) 
+			return;
+
+		String skillName = "";
+		Vector<String> listOfNames;
+		skillList->getStringList(listOfNames);
+		SkillList copyOfList;
+		copyOfList.loadFromNames(listOfNames);
+
+
+		for (int i = 0; i < copyOfList.size(); i++) {
+			Skill* skill = copyOfList.get(i);
+			String skillName = skill->getSkillName();
+
+			if (!skillName.beginsWith("admin")) {
+				skillManager->surrenderSkill(skillName, creature, true);
+				bool skillGranted = skillManager->awardSkill(skillName, creature, true, true, true);
+				creature->sendSystemMessage("Regranting SKill: " + skillName);
+				ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+			}
+		}
+
+	return;
 }
 
 void SkillManager::removeSkillRelatedMissions(CreatureObject* creature, Skill* skill) {
@@ -491,84 +501,35 @@ void SkillManager::removeSkillRelatedMissions(CreatureObject* creature, Skill* s
 		if(zoneServer != nullptr) {
 			ManagedReference<MissionManager*> missionManager = zoneServer->getMissionManager();
 			if(missionManager != nullptr) {
-				missionManager->failPlayerBountyMission(creature->getObjectID(), 0);
+				missionManager->failPlayerBountyMission(creature->getObjectID());
 			}
 		}
 	}
 }
 
-bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creature, bool notifyClient, bool checkFrs, bool allowPilot) {
+bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creature, bool notifyClient, bool checkFrs) {
 	Skill* skill = skillMap.get(skillName.hashCode());
 
-	if (skill == nullptr) {
+	if (skill == nullptr)
 		return false;
-	}
 
 	Locker locker(creature);
 
 	//If they have already surrendered the skill, then return true.
-	if (!creature->hasSkill(skill->getSkillName())) {
+	if (!creature->hasSkill(skill->getSkillName()))
 		return true;
-	}
 
 	const SkillList* skillList = creature->getSkillList();
 
 	for (int i = 0; i < skillList->size(); ++i) {
 		Skill* checkSkill = skillList->get(i);
 
-		if (checkSkill->isRequiredSkillOf(skill)) {
+		if (checkSkill->isRequiredSkillOf(skill))
 			return false;
-		}
 	}
 
-	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
-
-	if (ghost == nullptr) {
+	if (skillName.beginsWith("force_") && !(JediManager::instance()->canSurrenderSkill(creature, skillName)))
 		return false;
-	}
-
-	if (skillName.beginsWith("force_") && !(JediManager::instance()->canSurrenderSkill(creature, skillName))) {
-		return false;
-	} else if (!allowPilot && skillName.beginsWith("pilot_")) {
-		if (ghost->hasSuiBoxWindowType(SuiWindowType::SURRENDER_PILOT_DENY)) {
-			return false;
-		}
-
-		ManagedReference<SuiMessageBox*> pilotBox = new SuiMessageBox(creature, SuiWindowType::SURRENDER_PILOT_DENY);
-
-		if (pilotBox == nullptr) {
-			return false;
-		}
-
-		pilotBox->setPromptTitle("@space/space_interaction:retire_warning_title"); // "Surrender Skill"
-
-		uint32 faction = Factions::FACTIONNEUTRAL;
-
-		if (skillName.contains("rebel")) {
-			pilotBox->setPromptText("@space/space_interaction:retire_rebel_warning"); // "You cannot manually surrender pilot skills.If you wish to retire from the Rebel Navy, you should speak to the recruiter for the Rebel Alliance on Corellia. If you need a waypoint to the location of your local recruiter, please press the Get Waypoint button below."
-			faction = Factions::FACTIONREBEL;
-
-		} else if (skillName.contains("imperial")) {
-			pilotBox->setPromptText("@space/space_interaction:retire_imperial_warning"); // "You cannot manually surrender pilot skills.If you wish to retire from the Imperial Navy, you should speak to the navy recruiter for the Empire on Naboo. If you need a waypoint to the location of your local recruiter, please press the Get Waypoint button below."
-			faction = Factions::FACTIONIMPERIAL;
-		} else {
-			pilotBox->setPromptText("@space/space_interaction:retire_neutral_warning"); // "You cannot manually surrender pilot skills.If you wish to retire your pilot skills, you should speak to the recruiter for the Pilot's Guild on Tatooine. If you need a waypoint to the location of your local recruiter, please press the Get Waypoint button below."
-		}
-
-		pilotBox->setCallback(new SurrenderPilotSuiCallback(creature->getZoneServer(), faction));
-
-		pilotBox->setUsingObject(creature);
-		pilotBox->setForceCloseDisabled();
-
-		pilotBox->setOkButton(true, "@ok");
-		pilotBox->setCancelButton(true, "@space/space_interaction:retire_waypoint_btn");
-		pilotBox->setOtherButton(false, "");
-
-		ghost->addSuiBox(pilotBox);
-		creature->sendMessage(pilotBox->generateMessage());
-
-		return false;
-	}
 
 	removeSkillRelatedMissions(creature, skill);
 
@@ -577,39 +538,42 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 	//Remove skill modifiers
 	auto skillModifiers = skill->getSkillModifiers();
 
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
 	for (int i = 0; i < skillModifiers->size(); ++i) {
 		auto entry = &skillModifiers->elementAt(i);
 		creature->removeSkillMod(SkillModManager::SKILLBOX, entry->getKey(), entry->getValue(), notifyClient);
 
 	}
 
-	//Give the player the used skill points back.
-	ghost->addSkillPoints(skill->getSkillPointsRequired());
+	if (ghost != nullptr) {
+		//Give the player the used skill points back.
+		ghost->addSkillPoints(skill->getSkillPointsRequired());
 
-	//Remove abilities but only if the creature doesn't still have a skill that grants the
-	//ability.  Some abilities are granted by multiple skills. For example Dazzle for dancers
-	//and musicians.
-	auto skillAbilities = skill->getAbilities();
-
-	if (skillAbilities->size() > 0) {
-		SortedVector<String> abilitiesLost;
-		for (int i = 0; i < skillAbilities->size(); i++) {
-			abilitiesLost.put(skillAbilities->get(i));
-		}
-		for (int i = 0; i < skillList->size(); i++) {
-			Skill* remainingSkill = skillList->get(i);
-			auto remainingAbilities = remainingSkill->getAbilities();
-			for(int j = 0; j < remainingAbilities->size(); j++) {
-				if (abilitiesLost.contains(remainingAbilities->get(j))) {
-					abilitiesLost.drop(remainingAbilities->get(j));
-					if (abilitiesLost.size() == 0) {
-						break;
+		//Remove abilities but only if the creature doesn't still have a skill that grants the
+		//ability.  Some abilities are granted by multiple skills. For example Dazzle for dancers
+		//and musicians.
+		auto skillAbilities = skill->getAbilities();
+		if (skillAbilities->size() > 0) {
+			SortedVector<String> abilitiesLost;
+			for (int i = 0; i < skillAbilities->size(); i++) {
+				abilitiesLost.put(skillAbilities->get(i));
+			}
+			for (int i = 0; i < skillList->size(); i++) {
+				Skill* remainingSkill = skillList->get(i);
+				auto remainingAbilities = remainingSkill->getAbilities();
+				for(int j = 0; j < remainingAbilities->size(); j++) {
+					if (abilitiesLost.contains(remainingAbilities->get(j))) {
+						abilitiesLost.drop(remainingAbilities->get(j));
+						if (abilitiesLost.size() == 0) {
+							break;
+						}
 					}
 				}
 			}
-		}
-		if (abilitiesLost.size() > 0) {
-			removeAbilities(ghost, abilitiesLost, notifyClient);
+			if (abilitiesLost.size() > 0) {
+				removeAbilities(ghost, abilitiesLost, notifyClient);
+			}
 		}
 
 		//Remove draft schematic groups
@@ -653,7 +617,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 		if (skill->getSkillName() == "force_title_jedi_rank_02") {
 			if (missionManager != nullptr)
 				missionManager->removePlayerFromBountyList(creature->getObjectID());
-		} else if (skill->getSkillName().contains("jedi_")) {
+		} else if (skill->getSkillName().contains("force_discipline")) {
 			if (missionManager != nullptr)
 				missionManager->updatePlayerBountyReward(creature->getObjectID(), ghost->calculateBhReward());
 		} else if (skill->getSkillName().contains("squadleader")) {
@@ -679,10 +643,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 	msg4->updateSpeedMultiplierBase();
 	msg4->updateSpeedMultiplierMod();
 	msg4->updateRunSpeed();
-	msg4->updateWalkSpeed();
-	msg4->updateSlopeModAngle();
-	msg4->updateSlopeModPercent();
-	msg4->updateWaterModPercent();
+	msg4->updateTerrainNegotiation();
 	msg4->close();
 	creature->sendMessage(msg4);
 
@@ -692,7 +653,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 	return true;
 }
 
-void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClient, bool removeForceProgression, bool removePilot) {
+void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClient, bool removeForceProgression) {
 	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
 	const SkillList* skillList = creature->getSkillList();
@@ -703,14 +664,10 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 
 	copyOfList.loadFromNames(listOfNames);
 
-	bool surrenderedPilot = false;
-
 	for (int i = 0; i < copyOfList.size(); i++) {
 		Skill* skill = copyOfList.get(i);
 
-		surrenderedPilot = (removePilot && skill->getSkillName().contains("pilot"));
-
-		if (skill->getSkillPointsRequired() > 0 || surrenderedPilot) {
+		if (skill->getSkillPointsRequired() > 0) {
 			if (!removeForceProgression and skill->getSkillName().contains("force_"))
 				continue;
 
@@ -740,11 +697,45 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 				JediManager::instance()->onSkillRevoked(creature, skill);
 			}
 		}
-	}
+		if (skill->getSkillPointsRequired() == 0) {
+			if (skill->getSkillName().contains("species_"))
+				continue;
 
-	// Reset players pilot tier
-	if (surrenderedPilot) {
-		ghost->resetPilotTier();
+			if (skill->getSkillName().contains("_language_"))
+				continue;
+
+			if (skill->getSkillName().contains("admin_"))
+				continue;
+
+			if (skill->getSkillName().contains("special_"))
+				continue;
+
+			removeSkillRelatedMissions(creature, skill);
+
+			creature->removeSkill(skill, notifyClient);
+
+			//Remove skill modifiers
+			auto skillModifiers = skill->getSkillModifiers();
+
+			for (int i = 0; i < skillModifiers->size(); ++i) {
+				auto entry = &skillModifiers->elementAt(i);
+				creature->removeSkillMod(SkillModManager::SKILLBOX, entry->getKey(), entry->getValue(), notifyClient);
+			}
+
+			if (ghost != nullptr) {
+				//Give the player the used skill points back.
+				ghost->addSkillPoints(skill->getSkillPointsRequired());
+
+				//Remove abilities
+				auto abilityNames = skill->getAbilities();
+				removeAbilities(ghost, *abilityNames, notifyClient);
+
+				//Remove draft schematic groups
+				auto schematicsGranted = skill->getSchematicsGranted();
+				SchematicMap::instance()->removeSchematics(ghost, *schematicsGranted, notifyClient);
+				JediManager::instance()->onSkillRevoked(creature, skill);
+			}
+		}
 	}
 
 	SkillModManager::instance()->verifySkillBoxSkillMods(creature);
@@ -791,7 +782,18 @@ void SkillManager::updateXpLimits(PlayerObject* ghost) {
 	}
 
 	VectorMap<String, int>* xpTypeCapList = ghost->getXpTypeCapList();
-	xpTypeCapList->removeAll();
+
+	//Clear all xp limits to the default limits.
+	for (int i = 0; i < defaultXpLimits.size(); ++i) {
+		String xpType = defaultXpLimits.elementAt(i).getKey();
+		int xpLimit = defaultXpLimits.elementAt(i).getValue();
+
+		if (xpTypeCapList->contains(xpType)) {
+			xpTypeCapList->get(xpType) = xpLimit;
+		} else {
+			xpTypeCapList->put(xpType, xpLimit);
+		}
+	}
 
 	//Iterate over the player skills and update xp limits accordingly.
 	ManagedReference<CreatureObject*> player = ghost->getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
@@ -804,23 +806,12 @@ void SkillManager::updateXpLimits(PlayerObject* ghost) {
 	for(int i = 0; i < playerSkillBoxList->size(); ++i) {
 		Skill* skillBox = playerSkillBoxList->get(i);
 
-		if (skillBox == nullptr || skillBox->getXpCap() == 0)
+		if (skillBox == nullptr)
 			continue;
 
-		if (!xpTypeCapList->contains(skillBox->getXpType())) {
-			xpTypeCapList->put(skillBox->getXpType(), skillBox->getXpCap());
-		} else if (xpTypeCapList->get(skillBox->getXpType()) < skillBox->getXpCap()) {
+		if (xpTypeCapList->contains(skillBox->getXpType()) && (xpTypeCapList->get(skillBox->getXpType()) < skillBox->getXpCap())) {
 			xpTypeCapList->get(skillBox->getXpType()) = skillBox->getXpCap();
 		}
-	}
-
-	//Add defaults when no skill box caps exist
-	for (int i = 0; i < defaultXpLimits.size(); ++i) {
-		String xpType = defaultXpLimits.elementAt(i).getKey();
-		int xpLimit = defaultXpLimits.elementAt(i).getValue();
-
-		if (!xpTypeCapList->contains(xpType))
-			xpTypeCapList->put(xpType, xpLimit);
 	}
 
 	//Iterate over the player xp types and cap all xp types to the limits.
@@ -829,8 +820,7 @@ void SkillManager::updateXpLimits(PlayerObject* ghost) {
 	for (int i = 0; i < experienceList->size(); ++i) {
 		String xpType = experienceList->getKeyAt(i);
 		if (experienceList->get(xpType) > xpTypeCapList->get(xpType)) {
-			TransactionLog trx(TrxCode::EXPERIENCE, player);
-			ghost->addExperience(trx, xpType, xpTypeCapList->get(xpType) - experienceList->get(xpType), true);
+			ghost->addExperience(xpType, xpTypeCapList->get(xpType) - experienceList->get(xpType), true);
 		}
 	}
 }
@@ -950,13 +940,26 @@ bool SkillManager::fulfillsSkillPrerequisites(const String& skillName, CreatureO
 	return true;
 }
 
+int SkillManager::getSpecificSkillCount(CreatureObject* creature, const String& skill) {
+	const SkillList* skills =  creature->getSkillList();
+	int skillCount = 0;
+
+	for (int i = 0; i < skills->size(); ++i) {
+		const String& skillName = skills->get(i)->getSkillName();
+		if (skillName.contains(skill))
+			skillCount++;
+	}
+
+	return skillCount;
+}
+
 int SkillManager::getForceSensitiveSkillCount(CreatureObject* creature, bool includeNoviceMasterBoxes) {
 	const SkillList* skills =  creature->getSkillList();
 	int forceSensitiveSkillCount = 0;
 
 	for (int i = 0; i < skills->size(); ++i) {
 		const String& skillName = skills->get(i)->getSkillName();
-		if (skillName.contains("force_title_") && (includeNoviceMasterBoxes || skillName.indexOf("0") != -1)) {
+		if (skillName.contains("force_sensitive") && (includeNoviceMasterBoxes || skillName.indexOf("0") != -1)) {
 			forceSensitiveSkillCount++;
 		}
 	}
@@ -974,11 +977,11 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
 		Skill* skill = skillList->get(i);
 
 		String skillName = skill->getSkillName();
-		if (skillName.contains("jedi_") &&
-			(skillName.indexOf("0") != -1 || skillName.contains("_journeyman_novice") )) {
+		if (skillName.contains("force_discipline_") &&
+			(skillName.indexOf("0") != -1 || skillName.contains("novice") || skillName.contains("master") )) {
 			totalJediPoints += skill->getSkillPointsRequired();
 
-			if (skillName.indexOf("4") != -1) {
+			if (skillName.indexOf("4") != -1 || skillName.contains("master")) {
 				fullTrees++;
 			}
 		}
@@ -994,16 +997,5 @@ bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const Strin
 		totalJediPoints -= skillBeingDropped->getSkillPointsRequired();
 	}
 
-	return fullTrees >= 1 && totalJediPoints >= 206;
-}
-
-void SkillManager::getPlayerDroidCommands(PlayerObject* ghost, Vector<String>& playerDroidCommands) {
-	if (ghost == nullptr) {
-		return;
-	}
-
-	for (int i = 0; i < droidCommands.size(); ++i) {
-		if (ghost->hasAbility(droidCommands.get(i)))
-			playerDroidCommands.add(droidCommands.get(i));
-	}
+	return fullTrees >= 2 && totalJediPoints >= 206;
 }

@@ -1,7 +1,6 @@
 /*
-*			Copyright <SWGEmu>
-*	See file COPYING for copying conditions.
-*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
 #ifndef CLIENTCREATECHARACTER_H_
 #define CLIENTCREATECHARACTER_H_
@@ -12,20 +11,20 @@ class ClientCreateCharacter : public BaseMessage {
 public:
 	ClientCreateCharacter(const UnicodeString& name) {
 		insertShort(12);
-		insertInt(STRING_HASHCODE("ClientCreateCharacter"));
+		insertInt(0xB97F3074);
 
 		insertAscii(""); // customization
 		insertUnicode(name); // name
 
-		insertAscii("object/creature/player/human_male.iff"); // Template File
-		insertAscii(""); // Starting Location
-		insertAscii(""); // Hair Object
-		insertAscii(""); // Hair Customization
+		insertAscii("object/creature/player/human_male.iff"); // racefile
+		insertAscii(""); // location
+		insertAscii(""); // hairobj
+		insertAscii(""); // haircust
 		insertAscii("crafting_artisan"); // profession
-		insertByte(0x00); // unknown byte
-		insertFloat(1.f); // Height
-		insertUnicode(""); // Biography
-		insertByte(0x00); // Tutorial Flag
+		insertByte(0); // unknown byte
+		insertFloat(1); // height
+		insertInt(0); // bio
+		insertByte(0); // char
 	}
 };
 

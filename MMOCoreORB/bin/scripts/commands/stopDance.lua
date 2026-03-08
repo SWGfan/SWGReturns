@@ -42,8 +42,7 @@
 --true = 1, false = 0
 
 StopDanceCommand = {
-	 name = "stopdance",
-	 defaultTime = 1.0,
+        name = "stopdance",
 }
 
 AddCommand(StopDanceCommand)

@@ -1,10 +1,8 @@
 coa3_rebel_research_captain = Creature:new {
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
+	objectName = "",
 	customName = "a Rebel Research Captain",
-	faction = "rebel",
 	socialGroup = "rebel",
-	mobType = MOB_NPC,
+	faction = "rebel",
 	level = 23,
 	chanceHit = 0.35,
 	damageMin = 220,
@@ -28,11 +26,7 @@ coa3_rebel_research_captain = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {
-		"object/mobile/dressed_rebel_army_captain_human_male_01.iff",
-		"object/mobile/dressed_rebel_army_captain_moncal_male_01.iff"
-	},
-
+	templates = {"object/mobile/dressed_stormtrooper_groupleader_m.iff"},
 	lootGroups = {
 		{
 			groups = {
@@ -43,17 +37,9 @@ coa3_rebel_research_captain = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_light",
-	secondaryWeapon = "none",
+	weapons = {"rebel_weapons_light"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(coa3_rebel_research_captain, "coa3_rebel_research_captain")

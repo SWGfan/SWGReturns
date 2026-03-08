@@ -302,18 +302,6 @@ corellia_destroy_missions = {
 			maxDifficulty = 34,
 			size = 35,
 		},
-		{
-			lairTemplateName = "global_imperial_outpost_trials_large_theater",		--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
-		{
-			lairTemplateName = "global_rebel_outpost_trials_large_theater",			--Jedi Knight Trials
-			minDifficulty = 50,
-			maxDifficulty = 55,
-			size = 35,
-		},
 	}
 }
 

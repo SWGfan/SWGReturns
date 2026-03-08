@@ -44,22 +44,22 @@
 PolearmSpinAttack1Command = {
 	name = "polearmspinattack1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.0,
+	damageMultiplier = 1.5,
+	speedMultiplier = 1.5,
 	accuracyBonus = 10,
 	
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1.5,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 1.0,
 
 	areaAction = true,
-	areaRange = 32,
+	areaRange = 16,
 
 	animation = "attack_high_left_light_2",
 
 	combatSpam = "limbsmasher",
 	
-	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
+	weaponType = POLEARMWEAPON,
 
 	range = -1
 

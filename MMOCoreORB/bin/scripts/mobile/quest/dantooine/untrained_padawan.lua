@@ -2,7 +2,6 @@ untrained_padawan = Creature:new {
 	objectName = "",
 	customName = "Untrained Padawan",	
 	socialGroup = "force",
-	mobType = MOB_NPC,
 	faction = "",
 	level = 100,
 	chanceHit = 1,
@@ -27,27 +26,19 @@ untrained_padawan = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_dark_force_crystal_hunter.iff"},
-
+	templates = {"object/mobile/dressed_dark_force_crystal_hunter.iff"}, 
+	lootGroups = {},
 	lootGroups = {
-		 {
-			groups = {
+	 {
+	        groups = {
 				{group = "task_loot_padawan_braid", chance = 10000000}
 			},
 			lootChance = 10000000
 		}
-	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "force_sword_ranged",
+	},	
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(pikemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(untrained_padawan, "untrained_padawan")

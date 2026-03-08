@@ -12,6 +12,7 @@
 
 class MinefieldContainerComponent : public ContainerComponent {
 public:
+
 	bool checkContainerPermission(SceneObject* sceneObject, CreatureObject* creature, uint16 permission) const;
 	/**
 	 * Evaluates if this object has the necessary free slots to be able to add the specified SceneObject
@@ -34,6 +35,11 @@ public:
 	 * @param object object that has been inserted
 	 */
 	int notifyObjectRemoved(SceneObject* sceneObject, SceneObject* object, SceneObject* destination) const;
+
 };
+
+
+
+
 
 #endif /* MINEFIELDCONTAINERCOMPONENT_H_ */

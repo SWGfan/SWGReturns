@@ -32,12 +32,10 @@ namespace scene {
 		int _getObject(lua_State* L);
 		// Methods we will need to use
 		int getParent(lua_State* L);
-		int getRootParent(lua_State* L);
 		int getPositionX(lua_State* L);
 		int getPositionZ(lua_State* L);
 		int getPositionY(lua_State* L);
 		int getDirectionAngle(lua_State* L);
-		int getDirection(lua_State* L);
 		int getWorldPositionX(lua_State* L);
 		int getWorldPositionZ(lua_State* L);
 		int getWorldPositionY(lua_State* L);
@@ -51,9 +49,7 @@ namespace scene {
 		int getServerObjectCRC(lua_State* L);
 		int showFlyText(lua_State* L);
 		int getDistanceTo(lua_State* L);
-		int getDistanceTo3d(lua_State* L);
 		int getDistanceToPosition(lua_State* L);
-		int getDistanceToPosition3d(lua_State* L);
 		int getContainerObject(lua_State* L);
 		int getContainerObjectById(lua_State* L);
 		int getContainerObjectsSize(lua_State* L);
@@ -62,7 +58,6 @@ namespace scene {
 		int isContainerFull(lua_State* L);
 		int isContainerFullRecursive(lua_State* L);
 		int getSlottedObject(lua_State* L);
-		int setPosition(lua_State* L);
 		int transferObject(lua_State* L);
 		//int removeObject(lua_State* L);
 		int getGameObjectType(lua_State* L);
@@ -76,11 +71,7 @@ namespace scene {
 		int isPlayerCreature(lua_State* L);
 		int isCreature(lua_State* L);
 		int isBuildingObject(lua_State* L);
-		int isCellObject(lua_State* L);
 		int isActiveArea(lua_State* L);
-		int isMissionObject(lua_State* L);
-		int isVehicleObject(lua_State* L);
-		int isSpawnEggObject(lua_State* L);
 		int getZoneName(lua_State* L);
 		int sendTo(lua_State* L);
 		int getCustomObjectName(lua_State* L);
@@ -101,28 +92,17 @@ namespace scene {
 		int setContainerDefaultDenyPermission(lua_State* L);
 		int clearContainerDefaultDenyPermission(lua_State* L);
 		int setContainerOwnerID(lua_State* L);
-		int setContainerLockedStatus(lua_State* L);
 		int setObjectName(lua_State* L);
-		int setRadius(lua_State* L);
 		int isASubChildOf(lua_State* L);
 		int isOwned(lua_State* L);
 		int playEffect(lua_State* L);
 		int addPendingTask(lua_State* L);
-		int hasPendingTask(lua_State* L);
 		int cancelPendingTask(lua_State* L);
 		int getChildObject(lua_State* L);
 		int getContainerOwnerID(lua_State* L);
 		int info(lua_State* L);
 		int getPlayersInRange(lua_State* L);
 		int isInNavMesh(lua_State* L);
-		int checkInConversationRange(lua_State* L);
-
-		// JTL
-		int isShipObject(lua_State* L);
-		int isShipAiAgent(lua_State* L);
-		int isPlayerShip(lua_State* L);
-		int isShipComponent(lua_State* L);
-		int isShipComponentRepairKit(lua_State* L);
 
 	protected:
 		SceneObject* _getRealSceneObject() {

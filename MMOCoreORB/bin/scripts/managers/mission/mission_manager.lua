@@ -35,7 +35,7 @@ bh_targets_at_mission_level = {
 		"bh_bodyguard_zabrak_female", --level 18
 		"bh_assassin_twilek_mate", --level 18
 		"bh_pirate_captain", --level 20
-		"bh_brigand_leader" --level 20
+		"bh_brigand_leader", --level 20
 	},
 	level2 = { --level 21 - 50
 		"bh_bounty_hunter_thug", --level 24
@@ -72,56 +72,6 @@ enable_factional_entertainer_missions = "true"
 
 enable_same_account_bounty_missions = "false"
 
-playerBountyKillBuffer = 30 * 60 * 1000 -- Buffer before player bounty can be put back on terminal after target is killed, set 0 to disable
+playerBountyKillBuffer = 0 -- Buffer before player bounty can be put back on terminal after target is killed, set 0 to disable
 
 playerBountyDebuffLength = 3 * 24 * 60 * 60 * 1000 -- Time before their bounty resets from the minimum amount
-
--- Destroy Mission Configuration
--- Distance calculated as: 
---    <BaseDistance> + <DifficultyDistanceFactor> * <difficultyLevel> + 
---    rand(<RandomDistance>) + rand(<DifficutlyRandomDistance * <difficultyLevel>)
-destroyMissionBaseDistance = 500
-destroyMissionDifficultyDistanceFactor = 0
-destroyMissionRandomDistance = 150
-destroyMissionDifficultyRandomDistance = 0
-
--- Mission payout calculated as: 
---    <BaseReward> + <DifficultyRewardFactor> * <difficultyLevel> + 
---    rand(<RandomReward>) + rand(<DifficutlyRandomReward * <difficultyLevel>)
-destroyMissionBaseReward = 0
-destroyMissionDifficultyRewardFactor = 1000
-destroyMissionRandomReward = 0
-destroyMissionDifficultyRandomReward = 25
-
--- Entertainer Mission Configuration
--- Duration in seconds is simulated as:
---    <BaseDuration> + rand(<RandomDuration>) + <SkillDurationFactor> * <entertainerSkillLevel>
-entertainerMissionBaseDuration = 180          -- 3 minutes base
-entertainerMissionRandomDuration = 120        -- up to +2 minutes
-entertainerMissionSkillDurationFactor = 5     -- 5 seconds per skill level
-
--- Mission payout calculated as: 
---    <BaseReward> + <SkillRewardFactor> * <entertainerSkillLevel> + 
---    rand(<RandomReward>) + rand(<SkillRandomReward> * <entertainerSkillLevel>)
-entertainerMissionBaseReward = 1500
-entertainerMissionSkillRewardFactor = 1000
-entertainerMissionRandomReward = 1000
-entertainerMissionSkillRandomReward = 25
-
-
--- =====================================================
--- Hologrind: terminal mission completion helper
--- Call from mission payout code after credits/xp are awarded.
---   HGJ_NotifyTerminalMissionComplete(pPlayer, missionTypeString, tierNumber)
-if not HGJ_NotifyTerminalMissionComplete then
-function HGJ_NotifyTerminalMissionComplete(pPlayer, missionType, tier)
-	if not pPlayer then return end
-	if HologrindJediManager and HologrindJediManager.notifyMissionCompleted then
-		HologrindJediManager:notifyMissionCompleted(pPlayer, missionType or "mission", tonumber(tier) or 1)
-	elseif HologrindJediManager and HologrindJediManager.addForceForMission then
-		-- Back-compat with earlier manager version
-		HologrindJediManager:addForceForMission(pPlayer)
-	end
-end
-end
--- =====================================================

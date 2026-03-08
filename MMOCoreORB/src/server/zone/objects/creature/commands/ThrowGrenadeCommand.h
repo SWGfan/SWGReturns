@@ -9,10 +9,14 @@
 
 class ThrowGrenadeCommand : public CombatQueueCommand {
 public:
-	ThrowGrenadeCommand(const String& name, ZoneProcessServer* server) : CombatQueueCommand(name, server) {
+
+	ThrowGrenadeCommand(const String& name, ZoneProcessServer* server)
+		: CombatQueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -20,24 +24,27 @@ public:
 			return INVALIDLOCOMOTION;
 
 		StringTokenizer tokenizer(arguments.toString());
-
 		if (!tokenizer.hasMoreTokens())
 			return INVALIDPARAMETERS;
 
 		try {
+
 			uint64 weaponID = tokenizer.getLongToken();
-
 			Reference<WeaponObject*> grenade = server->getZoneServer()->getObject(weaponID).castTo<WeaponObject*>();
+			if (grenade == nullptr)
+				return INVALIDPARAMETERS;
 
-			if (grenade == nullptr || !grenade->isThrownWeapon())
+			if (!grenade->isThrownWeapon())
 				return INVALIDPARAMETERS;
 
 			if (!grenade->isASubChildOf(creature))
 				return GENERALERROR;
 
 			ManagedReference<TangibleObject*> targetObject = server->getZoneServer()->getObject(target).castTo<TangibleObject*>();
-
 			if (targetObject == nullptr)
+				return GENERALERROR;
+
+			if (!(targetObject->isAttackableBy(creature)))
 				return GENERALERROR;
 
 			SharedObjectTemplate* templateData = TemplateManager::instance()->getTemplate(grenade->getServerObjectCRC());
@@ -67,6 +74,7 @@ public:
 			return result;
 
 		} catch (Exception& e) {
+
 		}
 
 		return GENERALERROR;
@@ -81,14 +89,12 @@ public:
 		}
 
 		String type = weaponData->getAnimationType();
-
 		if (type.isEmpty())
 			return "throw_grenade";
 
 		int range = attacker->getWorldPosition().distanceTo(defender->getWorldPosition());
 
 		String distance = "";
-
 		if (range < 10) {
 			distance = "_near_";
 		} else if (range < 20) {
@@ -100,29 +106,18 @@ public:
 		return "throw_grenade" + distance + type;
 	}
 
-	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+	float getCommandDuration(CreatureObject *object, const UnicodeString& arguments) const {
 		StringTokenizer tokenizer(arguments.toString());
-
-		if (!tokenizer.hasMoreTokens()) {
-			return 10.f;
-		}
-
 		uint64 weaponID = tokenizer.getLongToken();
 
-		auto zoneServer = server->getZoneServer();
+		Reference<WeaponObject*> grenade = server->getZoneServer()->getObject(weaponID).castTo<WeaponObject*>();
 
-		if (zoneServer == nullptr) {
-			return 10.f;
-		}
-
-		Reference<WeaponObject*> grenade = zoneServer->getObject(weaponID).castTo<WeaponObject*>();
-
-		if (grenade == nullptr) {
-			return 10.f;
-		}
-
-		return CombatManager::instance()->calculateWeaponAttackSpeed(object, grenade, speedMultiplier);
+		if (grenade != nullptr)
+			return CombatManager::instance()->calculateWeaponAttackSpeed(object, grenade, speedMultiplier);
+		else
+			return defaultTime * speedMultiplier;
 	}
+
 };
 
-#endif // THROWGRENADECOMMAND_H_
+#endif //THROWGRENADECOMMAND_H_

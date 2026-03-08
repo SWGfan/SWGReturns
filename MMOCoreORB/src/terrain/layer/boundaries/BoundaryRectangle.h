@@ -18,7 +18,6 @@ class BoundaryRectangle : public Boundary {
 	float y0;
 	float x1;
 	float y1;
-
 	int var7;
 	int localWaterTableEnabled;
 	float localWaterTableHeight;
@@ -50,6 +49,7 @@ public:
 	}
 
 	~BoundaryRectangle() {
+
 	}
 
 	void executeRule(ProceduralTerrainAppearance* generator) final {
@@ -259,6 +259,9 @@ public:
 	float getMaxY() const final {
 		return y1;
 	}
+
 };
+
+
 
 #endif /* BOUNDARYRECTANGLE_H_ */

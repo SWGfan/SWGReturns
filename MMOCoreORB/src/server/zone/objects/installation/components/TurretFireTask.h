@@ -9,7 +9,6 @@
 #define TURRETFIRETASK_H_
 
 #include "engine/engine.h"
-#include "server/zone/objects/installation/TurretObject.h"
 #include "server/zone/managers/collision/CollisionManager.h"
 #include "server/zone/objects/creature/commands/CombatQueueCommand.h"
 #include "server/zone/managers/combat/CombatManager.h"
@@ -18,35 +17,29 @@
 #include "server/zone/objects/tangible/terminal/components/TurretControlTerminalDataComponent.h"
 
 class TurretFireTask : public Task {
-	ManagedWeakReference<TurretObject*> weakTurret;
-	ManagedWeakReference<TangibleObject*> weakTerminal;
+	ManagedWeakReference<TangibleObject*> turretObject;
+	ManagedWeakReference<TangibleObject*> terminalObject;
 	bool isManual;
 
 public:
-	TurretFireTask(TurretObject* turret, TangibleObject* terminal, bool manual) {
-		weakTurret = turret;
-		weakTerminal = terminal;
+
+	TurretFireTask(TangibleObject* turret, TangibleObject* terminal, bool manual) {
+		turretObject = turret;
+		terminalObject = terminal;
 		isManual = manual;
 	}
 
-	void run() {
-		ManagedReference<TurretObject*> turret = weakTurret.get();
 
-		if (turret == nullptr) {
+	void run() {
+		ManagedReference<TangibleObject*> turret = turretObject.get();
+
+		if (turret == nullptr)
 			return;
-		}
 
 		TurretDataComponent* turretData = cast<TurretDataComponent*>(turret->getDataObjectComponent()->get());
 
-		if (turretData == nullptr) {
+		if (turretData == nullptr)
 			return;
-		}
-
-		auto zoneServer = turret->getZoneServer();
-
-		if (zoneServer == nullptr) {
-			return;
-		}
 
 		Locker lock(turret);
 
@@ -77,48 +70,36 @@ public:
 			}
 		}
 
-		ManagedReference<ObjectController*> objectController = zoneServer->getObjectController();
+		ManagedReference<ObjectController*> objectController = turret->getZoneServer()->getObjectController();
 
-		if (objectController == nullptr) {
-			return;
-		}
+		CombatQueueCommand* command = cast<CombatQueueCommand*>(objectController->getQueueCommand(STRING_HASHCODE("turretfire")));
+		ManagedReference<WeaponObject*> weapon = turret->getSlottedObject("hold_r").castTo<WeaponObject*>();
 
-		ManagedReference<WeaponObject*> turretWeapon = turret->getTurretWeapon();
+		if (command != nullptr && weapon != nullptr) {
+			Locker clocker(target, turret);
 
-		if (turretWeapon == nullptr) {
-			return;
-		}
+			target->setCombatState();
+			turret->setDefender(target);
 
-		const CombatQueueCommand* command = cast<const CombatQueueCommand*>(objectController->getQueueCommand(STRING_HASHCODE("turretfire")));
+			CombatManager::instance()->doCombatAction(turret, weapon, target, command);
 
-		if (command == nullptr) {
-			return;
-		}
-
-		Locker clocker(target, turret);
-
-		turret->setDefender(target);
-		target->setCombatState();
-
-		CombatManager::instance()->doCombatAction(turret, turretWeapon, target, command);
-
-		if (isManual) {
-			if (checkTurretController(turretData))
-				turretData->rescheduleFireTask(true, true);
-			else
-				turretData->rescheduleFireTask(true, false);
-		} else {
-			turretData->rescheduleFireTask(false, false);
+			if (isManual) {
+				if (checkTurretController(turretData))
+					turretData->rescheduleFireTask(true, true);
+				else
+					turretData->rescheduleFireTask(true, false);
+			} else {
+				turretData->rescheduleFireTask(false, false);
+			}
 		}
 	}
 
 	bool checkTurretController(TurretDataComponent* turretData) {
 		ManagedReference<CreatureObject*> attacker = cast<CreatureObject*>(turretData->getController());
-		ManagedReference<TangibleObject*> terminal = weakTerminal.get();
+		ManagedReference<TangibleObject*> terminal = terminalObject.get();
 
-		if (attacker == nullptr || terminal == nullptr) {
+		if (attacker == nullptr || terminal == nullptr)
 			return false;
-		}
 
 		PlayerObject* ghost = attacker->getPlayerObject();
 
@@ -190,7 +171,7 @@ public:
 	}
 
 	void setTerminal(TangibleObject* terminal) {
-		weakTerminal = terminal;
+		terminalObject = terminal;
 	}
 };
 

@@ -2,7 +2,6 @@ trone_thanamiroc = Creature:new {
 	objectName = "",
 	socialGroup = "",
 	faction = "",
-	mobType = MOB_NPC,
 	level = 23,
 	chanceHit = 0.35,
 	damageMin = 210,
@@ -45,17 +44,9 @@ trone_thanamiroc = Creature:new {
 			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(trone_thanamiroc, "trone_thanamiroc")

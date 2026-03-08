@@ -43,7 +43,6 @@
 
 CreateNPCCommand = {
         name = "createnpc",
-		cooldown = 3000,
 }
 
 AddCommand(CreateNPCCommand)

@@ -2,7 +2,6 @@ herald_dathomir_azzenaj = Creature:new {
 	objectName = "",
 	customName = "Arch Witch Azzenaj",
 	socialGroup = "mtn_clan",
-	mobType = MOB_NPC,
 	faction = "mtn_clan",
 	level = 100,
 	chanceHit = 1,
@@ -29,17 +28,9 @@ herald_dathomir_azzenaj = Creature:new {
 
 	templates = {"object/mobile/dressed_herald_dathomir_nsister_cave_azzenaj.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "heraldConvoTemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(herald_dathomir_azzenaj, "herald_dathomir_azzenaj")

@@ -2,7 +2,6 @@ bh_mercenary_sentry = Creature:new {
 	objectName = "@mob/creature_names:geonosian_human_security_force",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "geonosian",
 	faction = "",
 	level = 66,
@@ -10,10 +9,10 @@ bh_mercenary_sentry = Creature:new {
 	damageMin = 470,
 	damageMax = 650,
 	baseXp = 6380,
-	baseHAM = 12000,
-	baseHAMmax = 14000,
+	baseHAM = 112000,
+	baseHAMmax = 114000,
 	armor = 1,
-	resists = {40,40,20,20,20,20,20,-1,-1},
+	resists = {60,60,60,60,60,60,60,60,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,12 +32,27 @@ bh_mercenary_sentry = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 500000},
+				{group = "tierthree", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
+				{group = "nge_all", chance = 1000000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
+				{group = "clothing_attachments", chance = 1000000},
+				{group = "armor_attachments", chance = 1000000}
+			},
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 500000},
+				{group = "tierthree", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "power_crystals", chance = 1000000},
+				{group = "tierdiamond", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
@@ -48,28 +62,13 @@ bh_mercenary_sentry = Creature:new {
 		},
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1000000},
-				{group = "armor_all", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 4320000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
-				{group = "loot_kit_parts", chance = 500000},
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 500000},
+				{group = "tierthree", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 500000},
 				{group = "power_crystals", chance = 500000},
-				{group = "wearables_all", chance = 1000000},
+				{group = "nge_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
@@ -78,18 +77,10 @@ bh_mercenary_sentry = Creature:new {
 			lootChance = 4320000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "geonosian_mercenary_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"geonosian_mercenary_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,pistoleermaster,riflemanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster,pistoleermaster,riflemanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_mercenary_sentry, "bh_mercenary_sentry")

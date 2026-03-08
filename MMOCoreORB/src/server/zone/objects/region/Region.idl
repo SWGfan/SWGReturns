@@ -43,9 +43,8 @@ class Region extends ActiveArea {
 
 		CityRegion strongReference = cityRegion;
 
-		if (!strongReference) {
+		if (strongReference == null)
 			return;
-		}
 
 		synchronized (strongReference) {
 			strongReference.notifyEnter(object);
@@ -57,7 +56,7 @@ class Region extends ActiveArea {
 
 		CityRegion strongReference = cityRegion;
 
-		if (!strongReference)
+		if (strongReference == null)
 			return;
 
 		synchronized (strongReference) {
@@ -69,12 +68,5 @@ class Region extends ActiveArea {
 	public boolean isRegion() {
 		return true;
 	}
-
-	public boolean isSpawnAreaObject() {
-		return false;
-	}
-
-	public boolean isPlayerCity() {
-		return cityRegion != null;
-	}
 }
+

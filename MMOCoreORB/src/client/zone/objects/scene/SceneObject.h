@@ -9,7 +9,6 @@
 
 class ZoneClient;
 class Zone;
-class SpaceZone;
 
 class SceneObject : public Coordinate, public Mutex, public Logger, public Object {
 protected:
@@ -34,7 +33,6 @@ protected:
 
 	ZoneClient* client;
 	Zone* zone;
-	SpaceZone* spaceZone;
 
 public:
 	SceneObject(LuaObject* templateData);
@@ -59,7 +57,6 @@ public:
 	const static int CREATURE = 0x400;
 	const static int NPCCREATURE = 0x401;
 	const static int DROIDCREATURE = 0x402;
-	const static int HELPERDROIDCREATURE = 0x40F;
 	const static int PROBOTCREATURE = 0x403;
 	const static int PLAYERCREATURE = 0x409;
 
@@ -81,7 +78,6 @@ public:
 	const static int HARVESTER = 0x1003;
 	const static int TURRET = 0x1004;
 	const static int MINEFIELD = 0x1005;
-	const static int COVERTSCANNER = 0x1008;
 
 	const static int TANGIBLE = 0x2000;
 	const static int AMMUNITION = 0x2001;
@@ -118,7 +114,7 @@ public:
 	const static int PILOTCHAIR = 0x2024;
 	const static int OPERATIONSCHAIR = 0x2025;
 	const static int TURRETACCESSLADDER = 0x2026;
-	const static int SHIPCONTAINER = 0x2027;
+	const static int CONTAINER2 = 0x2027;
 	const static int CAMOKIT = 0x2028;
 
 	const static int TERMINAL = 0x4000;
@@ -229,16 +225,10 @@ public:
 	const static int ROBE = 0x100000D;
 	const static int SHIRT = 0x100000E;
 	const static int VEST = 0x100000F;
-	const static int WOOKIEEGARB = 0x1000010;
+	const static int WOOKIEGARB = 0x1000010;
 	const static int MISCCLOTHING = 0x1000011;
 	const static int SKIRT = 0x1000012;
 	const static int ITHOGARB = 0x1000013;
-
-	const static int SHIP = 0x20000000;
-	const static int SHIPFIGHTER = 0x20000001;
-	const static int SHIPCAPITAL = 0x20000002;
-	const static int SPACEOBJECT = 0x20000003;
-	const static int SHIPTRANSPORT = 0x20000004;
 
 	virtual void parseBaseline3(Message* message) {
 	}
@@ -311,12 +301,6 @@ public:
 
 	inline void setZone(Zone* zn) {
 		zone = zn;
-		spaceZone = nullptr;
-	}
-
-	inline void setZone(SpaceZone* zn) {
-		spaceZone = zn;
-		zone = nullptr;
 	}
 };
 

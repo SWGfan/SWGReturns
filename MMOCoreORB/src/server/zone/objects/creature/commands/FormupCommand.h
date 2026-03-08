@@ -6,6 +6,9 @@
 #define FORMUPCOMMAND_H_
 
 #include "SquadLeaderCommand.h"
+#include "CombatQueueCommand.h"
+#include "server/zone/managers/combat/CombatManager.h"
+#include "server/zone/objects/scene/SceneObject.h"
 
 class FormupCommand : public SquadLeaderCommand {
 public:
@@ -26,6 +29,7 @@ public:
 			return GENERALERROR;
 
 		ManagedReference<CreatureObject*> player = cast<CreatureObject*>(creature);
+		player->playEffect("clienteffect/combat_special_defender_rally.cef", "head");
 
 		if (player == nullptr)
 			return GENERALERROR;
@@ -70,6 +74,7 @@ public:
 		for (int i = 0; i < group->getGroupSize(); i++) {
 
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
+			member->playEffect("clienteffect/combat_special_defender_rally.cef", "head");
 
 			if (member == nullptr || !member->isPlayerCreature())
 				continue;
@@ -88,6 +93,7 @@ public:
 				member->removeStateBuff(CreatureState::STUNNED);
 
 			checkForTef(leader, member);
+			member->playEffect("clienteffect/combat_special_defender_rally.cef", "head");
 		}
 
 		return true;

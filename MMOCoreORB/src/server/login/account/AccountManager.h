@@ -27,8 +27,6 @@ namespace server {
 
 				bool autoRegistration;
 
-				bool enableSessionId;
-
 				uint32 maxOnlineCharacters;
 
 				String dbSecret;
@@ -41,13 +39,9 @@ namespace server {
 
 				void loginAccount(LoginClient* client, Message* packet);
 
-#ifdef WITH_SESSION_API
-				void loginApprovedAccount(LoginClient* client, ManagedReference<Account*> account);
-#endif // WITH_SESSION_API
+				Account* validateAccountCredentials(LoginClient* client, const String& username, const String& password);
 
-				Reference<Account*> validateAccountCredentials(LoginClient* client, const String& username, const String& password);
-
-				Reference<Account*> createAccount(const String& username, const String& password, String& passwordStored);
+				Account* createAccount(const String& username, const String& password, String& passwordStored);
 
 				void updateHash(const String& username, const String& password);
 
@@ -79,16 +73,14 @@ namespace server {
 					return autoRegistration;
 				}
 
-				static void expireSession(Reference<Account*> account, const String& sessionID);
+				static ManagedReference<Account*> getAccount(uint32 accountID, bool forceSqlUpdate = false);
 
-				static Reference<Account*> getAccount(uint32 accountID, bool forceSqlUpdate = false);
+				static ManagedReference<Account*> getAccount(const String& accountName, bool forceSqlUpdate = false);
 
-				static Reference<Account*> getAccount(const String& accountName, bool forceSqlUpdate = false);
-
-				static Reference<Account*> getAccount(uint32 accountID, String& passwordStored, bool forceSqlUpdate = false);
+				static ManagedReference<Account*> getAccount(uint32 accountID, String& passwordStored, bool forceSqlUpdate = false);
 
 			private:
-				static Reference<Account*> getAccount(String query, String& passwordStored, bool forceSqlUpdate = false);
+				static ManagedReference<Account*> getAccount(String query, String& passwordStored, bool forceSqlUpdate = false);
 			};
 		}
 	}

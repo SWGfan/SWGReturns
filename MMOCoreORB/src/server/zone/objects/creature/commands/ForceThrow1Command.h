@@ -23,9 +23,13 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (isWearingArmor(creature)) {
-			return NOJEDIARMOR;
-		}
+		ManagedReference<SceneObject* > object = server->getZoneServer()->getObject(target);
+
+		ManagedReference<CreatureObject* > targetPlayer = nullptr;
+		targetPlayer = cast<CreatureObject*>( object.get());
+
+		if (targetPlayer != nullptr)
+			targetPlayer->playEffect("clienteffect/mustafar/dark_jedi_rock_attack_1.cef", "");
 
 		return doCombatAction(creature, target);
 	}

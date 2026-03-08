@@ -2,24 +2,22 @@ furious_devastator = Creature:new {
 	objectName = "@mob/creature_names:fambaa_furious_devastator",
 	socialGroup = "fambaa",
 	faction = "",
-	mobType = MOB_HERBIVORE,
-	level = 38,
-	chanceHit = 0.4,
-	damageMin = 375,
-	damageMax = 460,
-	baseXp = 3824,
-	baseHAM = 8600,
-	baseHAMmax = 10600,
-	armor = 0,
-	resists = {125,145,-1,-1,160,160,-1,0,-1},
+	level = 60,
+	chanceHit = 0.55,
+	damageMin = 470,
+	damageMax = 650,
+	baseXp = 5830,
+	baseHAM = 11000,
+	baseHAMmax = 14000,
+	resists = {165,160,180,150,160,160,150,150,140},
 	meatType = "meat_reptilian",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
-	hideAmount = 750,
+	hideAmount = 1000,
 	boneType = "bone_mammal",
-	boneAmount = 675,
+	boneAmount = 1000,
 	milk = 0,
-	tamingChance = 0.05,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -37,17 +35,12 @@ furious_devastator = Creature:new {
 			lootChance = 1760000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"intimidationattack",""}, {"posturedownattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"intimidationattack","stateAccuracyBonus=100"},
+		{"posturedownattack","stateAccuracyBonus=100"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(furious_devastator, "furious_devastator")

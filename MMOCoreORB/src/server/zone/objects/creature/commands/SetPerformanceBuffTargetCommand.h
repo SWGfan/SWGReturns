@@ -8,10 +8,13 @@
 class SetPerformanceBuffTargetCommand : public QueueCommand {
 public:
 
-	SetPerformanceBuffTargetCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	SetPerformanceBuffTargetCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -19,46 +22,33 @@ public:
 			return INVALIDLOCOMOTION;
 
 		if(!creature->isPlayerCreature())
-			return GENERALERROR;
+			return GENERALERROR
+					;
+		ManagedReference<PlayerObject*> playerObj = creature->getPlayerObject();
 
-		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+		ManagedReference<CreatureObject*> targetObject = server->getZoneServer()->getObject(target).castTo<CreatureObject*>();
 
-		if (ghost == nullptr)
-			return GENERALERROR;
 
-		ZoneServer* zoneServer = server->getZoneServer();
-
-		if (zoneServer == nullptr)
-			return GENERALERROR;
-
-		ManagedReference<SceneObject*> targetObject = zoneServer->getObject(target);
-
-		if (targetObject == nullptr || targetObject == creature || !targetObject->isPlayerCreature()) {
+		if(targetObject == nullptr) {
 			creature->sendSystemMessage("@performance:buff_invalid_target_self");
 			return GENERALERROR;
 		}
 
-		if (!CollisionManager::checkLineOfSight(targetObject, creature)) {
-			creature->sendSystemMessage("@healing:no_line_of_sight"); // You cannot see your target.
+		if(targetObject == creature || !targetObject->isPlayerCreature())
 			return GENERALERROR;
-		}
 
-		CreatureObject* targetCreature = targetObject->asCreatureObject();
-
-		if (targetCreature == nullptr)
-			return GENERALERROR;
 
 		StringIdChatParameter selfMessage;
 		StringIdChatParameter otherMessage;
 		selfMessage.setStringId("performance", "buff_set_target_self");
-		selfMessage.setTT(targetCreature->getDisplayedName());
+		selfMessage.setTT(targetObject->getDisplayedName());
 
 		otherMessage.setStringId("performance", "buff_set_target_other");
 		otherMessage.setTU(creature->getDisplayedName());
 		creature->sendSystemMessage(selfMessage);
-		targetCreature->sendSystemMessage(otherMessage);
+		targetObject->sendSystemMessage(otherMessage);
 
-		ghost->setPerformanceBuffTarget(target);
+		playerObj->setPerformanceBuffTarget(target);
 		return SUCCESS;
 	}
 

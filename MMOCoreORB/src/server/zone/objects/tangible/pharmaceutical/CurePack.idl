@@ -35,7 +35,7 @@ class CurePack extends PharmaceuticalObject {
 		super.medicineUseRequired = values.getCurrentValue("skillmodmin");
 		setUseCount(values.getCurrentValue("charges"));
 
-		if (values.hasExperimentalAttribute("area")) {
+		if (values.hasProperty("area")) {
 			area = values.getCurrentValue("area");
 		}
 	}
@@ -105,7 +105,7 @@ class CurePack extends PharmaceuticalObject {
 		string eff = "@obj_attr_n:dot_type_";
 		msg.insertAttribute("examine_dot_cure", eff + CreatureState.instance().getSpecialName(state));
 
-		msg.insertAttribute("examine_dot_cure_power", Math.getPrecision(effectiveness, 0));
+		msg.insertAttribute("examine_dot_cure_power", effectiveness);
 
 		if (isArea()) {
 			msg.insertAttribute("examine_heal_area", Math.getPrecision(area, 0));

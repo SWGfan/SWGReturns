@@ -5,52 +5,35 @@
 #ifndef TRANSFERITEMMISCCOMMAND_H_
 #define TRANSFERITEMMISCCOMMAND_H_
 
-#include "server/ServerCore.h"
-#include "server/zone/ZoneServer.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/objects/player/sessions/TradeSession.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
-#include "server/zone/managers/collision/CollisionManager.h"
-#include "server/zone/objects/scene/TransferErrorCode.h"
-#include "QueueCommand.h"
 
 class TransferItemMiscCommand : public QueueCommand {
 public:
-	TransferItemMiscCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	TransferItemMiscCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		/*creature->info("transfer item misc");
+		/*
+		creature->info("transfer item misc");
 
 		StringBuffer infoMsg;
 		infoMsg << "target: 0x" << hex << target << " arguments" << arguments.toString();
-		creature->info(infoMsg.toString(), true);*/
+		creature->info(infoMsg.toString(), true); */
 
 		StringTokenizer tokenizer(arguments.toString());
-
-		if (!tokenizer.hasMoreTokens()) {
-			return GENERALERROR;
-		}
-
-		auto zoneServer = creature->getZoneServer();
-
-		if (zoneServer == nullptr) {
-			return GENERALERROR;
-		}
-
-		auto playerManager = zoneServer->getPlayerManager();
-
-		if (playerManager == nullptr) {
-			return GENERALERROR;
-		}
 
 		uint64 destinationID = tokenizer.getLongToken();
 		int transferType = tokenizer.getIntToken(); // containment type .. -1 container, >=4 slotted container
@@ -61,94 +44,38 @@ public:
 		ManagedReference<TradeSession*> tradeContainer = creature->getActiveSession(SessionFacadeType::TRADE).castTo<TradeSession*>();
 
 		if (tradeContainer != nullptr) {
-			playerManager->handleAbortTradeMessage(creature);
+			server->getZoneServer()->getPlayerManager()->handleAbortTradeMessage(creature);
 		}
 
-		auto objectToTransfer = zoneServer->getObject(target);
+		ManagedReference<SceneObject*> objectToTransfer = server->getZoneServer()->getObject(target);
 
 		if (objectToTransfer == nullptr) {
 			creature->error("objectToTransfer nullptr in transferItemMisc command");
-			return GENERALERROR;
-		}
-
-		auto destinationObject = zoneServer->getObject(destinationID);
-
-		if (destinationObject == nullptr) {
-			creature->error("destinationObject nullptr in tansferItemMisc command");
-			return GENERALERROR;
-		}
-
-		auto src = TransactionLog::getTrxParticipant(objectToTransfer->getParent().get(), creature);
-		auto dst = TransactionLog::getTrxParticipant(destinationObject, destinationObject);
-
-		TransactionLog trx(src, dst, objectToTransfer, TrxCode::TRANSFERITEMMISC);
-
-		if (trx.isVerbose()) {
-			// Include extra details
-			trx.addState("creature", creature->getObjectID());
-			trx.addState("target", target);
-			trx.addRelatedObject(target, true);
-			trx.addState("arguments", arguments.toString());
-			trx.addState("destinationID", destinationID);
-			trx.addState("transferType", transferType);
-			trx.addState("destinationClassName", destinationObject->_getClassName());
-		}
-
-		// Filter noisy stuff
-		if (destinationObject->isCellObject() && (objectToTransfer->isCreature() || objectToTransfer->isDroidObject())) {
-			trx.discard();
-		}
-
-		return doTransferItemMisc(creature, objectToTransfer, destinationObject, transferType, trx);
-	}
-
-	int static doTransferItemMisc(CreatureObject* creature, SceneObject* objectToTransfer, SceneObject* destinationObject, int transferType, TransactionLog& trx) {
-		trx.addState("transferType", transferType);
-
-		if (objectToTransfer == nullptr) {
-			creature->error("objectToTransfer nullptr in transferItemMisc command");
-			trx.abort() << "objectToTransfer nullptr";
-			return GENERALERROR;
-		}
-
-		if (destinationObject == nullptr) {
-			creature->error("destinationObject nullptr in tansferItemMisc command");
-			trx.abort() << "destinationObject nullptr";
-			return GENERALERROR;
-		}
-
-		if (destinationObject->isIntangibleObject()) {
-			trx.abort() << "destinationObject is IntangibleObject";
 			return GENERALERROR;
 		}
 
 		if (objectToTransfer->isClientObject() || (!objectToTransfer->isTangibleObject())){
 			if (!objectToTransfer->isManufactureSchematic()){
-				trx.abort() << "expected objectToTransfer to be ManufactureSchematic";
 				return GENERALERROR;
 			}
 		}
 
 		if (!objectToTransfer->checkContainerPermission(creature, ContainerPermissions::MOVECONTAINER)) {
 			creature->sendSystemMessage("@error_message:perm_no_move");
-			trx.abort() << "No permission to move objectToTransfer";
 			return GENERALERROR;
 		}
 
 		ManagedReference<SceneObject*> objectsParent = objectToTransfer->getParent().get();
 
 		if (objectsParent == nullptr) {
-			trx.abort() << "Failed to get parent";
 			return GENERALERROR;
 		}
 
-		if (objectToTransfer->isVendor() && !objectsParent->checkContainerPermission(creature, ContainerPermissions::MOVEVENDOR)) {
-			trx.abort() << "Not allowed to move vendor from parent";
+		if(objectToTransfer->isVendor() && !objectsParent->checkContainerPermission(creature, ContainerPermissions::MOVEVENDOR)){
 			return GENERALERROR;
 		}
 
-		if (!objectToTransfer->isVendor() && !objectsParent->checkContainerPermission(creature, ContainerPermissions::MOVEOUT)) {
-			trx.abort() << "Not allowed to move object out of parent";
+		if (!objectToTransfer->isVendor() && !objectsParent->checkContainerPermission(creature, ContainerPermissions::MOVEOUT)){
 			return GENERALERROR;
 		}
 
@@ -159,32 +86,9 @@ public:
 
 				if (descriptor == "inventory" || descriptor == "datapad" || descriptor == "default_weapon"
 						|| descriptor == "mission_bag" || descriptor == "ghost" || descriptor == "bank" || descriptor == "hair"){
-					trx.abort() << "Attempted to transfer " << descriptor;
 					return GENERALERROR;
 				}
 			}
-		}
-
-		// Check for any parent that is containerType == NONE
-		for (auto parent = objectToTransfer->getParent().get(); parent != nullptr; parent = parent->getParent().get()) {
-			Locker clocker(parent, creature);
-
-			if (parent->getContainerType() == ContainerType::NONE) {
-				creature->error() << "Trying to remove object from containerType==NONE: oid " << parent->getObjectID();
-				trx.abort() << "Attempted to transfer from containerType == NONE";
-				creature->sendSystemMessage("@error_message:perm_no_move");
-				return GENERALERROR;
-			}
-		}
-
-		ManagedReference<SceneObject*> parent = objectToTransfer->getParent().get();
-
-		// Check bank transfer
-		SceneObject* bank = creature->getSlottedObject("bank");
-
-		if (bank != nullptr && (bank == destinationObject || bank == parent) && !creature->isNearBank()) {
-			trx.discard();
-			return TOOFAR;
 		}
 
 		Zone* zoneObject = objectToTransfer->getZone();
@@ -192,100 +96,45 @@ public:
 		if (zoneObject != nullptr) {
 			ManagedReference<SceneObject*> rootParent = objectToTransfer->getRootParent();
 
-			float maxDistance =  16.5;
+			float maxDistance = 12.5;
 
-			if (rootParent != nullptr && !rootParent->isBuildingObject() && !rootParent->isPobShip() && parent != nullptr && !parent->isBuildingObject() && !parent->isPobShip()) {
-				float rootDist = rootParent->getDistanceTo(creature);
-
-				if (rootDist > maxDistance) { // Handles Hoppers in Factories
-					trx.abort() << "Too far from root: " << (int)rootDist;
+			if (!rootParent->isBuildingObject()) {
+				if (rootParent->getDistanceTo(creature) > maxDistance) {
 					return TOOFAR;
-				}
-
-				ManagedReference<SceneObject*> destParent = destinationObject->getParent().get();
-
-				if (destParent != nullptr) {
-					if (destParent->isCellObject()) {
-						destParent = destinationObject;
-					}
-
-					float destDistance = destParent->getDistanceTo(creature);
-					ManagedReference<SceneObject*> destGrandParent = destParent->getParent().get();
-
-					if (((destinationObject->isContainerObject() && destGrandParent != nullptr && destGrandParent->isCellObject()) || destParent->isInstallationObject() || destParent->isCraftingStation()) && destDistance > maxDistance) {
-						trx.abort() << "Too far from root: " << (int)destinationObject->getParent().get()->getDistanceTo(creature);
-						return TOOFAR;
-					}
 				}
 			} else {
 				ManagedReference<SceneObject*> par = nullptr;
 				ManagedReference<SceneObject*> obj = objectToTransfer;
 
 				if (rootParent->containsChildObject(objectToTransfer)){
-					trx.abort() << "objectToTransfer contained in rootParent";
 					return INVALIDTARGET;
 				}
 
-				// Container Inside Cell to Player Transfer
-
 				while ((par = obj->getParent().get()) != nullptr) {
 					if (par->isCellObject()) {
-						float distance = obj->getDistanceTo(creature);
-
-						if (distance > maxDistance) {
-							trx.abort() << "Too far from creature: " << (int)distance;
+						if (obj->getDistanceTo(creature) > maxDistance) {
 							return TOOFAR;
-						} else {
-							break;
 						}
-					} else {
-						obj = par;
-					}
-				}
-
-				// Player Inside Cell to Container Transfer
-
-				bool isChildOfCreo = objectToTransfer->isASubChildOf(creature);
-
-				obj = objectToTransfer;
-
-				while ((par = obj->getParent().get()) != nullptr) {
-					if (par == creature) {
-						ManagedReference<SceneObject*> destPar = destinationObject->getParent().get();
-
-						if (destPar != nullptr) {
-							ManagedReference<SceneObject*> destGrandParent = destPar->getParent().get();
-							ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
-
-							if (destPar == creature || destinationObject->isCellObject() || (destGrandParent != nullptr && inventory != nullptr && (destGrandParent == inventory || destPar == inventory))) {
-								break;
-							} else if (destPar->isCellObject()) {
-								destPar = destinationObject;
-							}
-
-							if (isChildOfCreo && destPar->isASubChildOf(creature)) {
-								break;
-							}
-
-							float distance = destPar->getDistanceTo(creature);
-
-							if (distance > maxDistance) {
-								trx.abort() << "Too far from creature: " << (int)distance;
-								return TOOFAR;
-							} else {
-								break;
-							}
-						} else {
+						else
 							break;
-						}
 					} else {
 						obj = par;
 					}
 				}
 			}
 		} else {
-			creature->error() << creature->getDisplayedName() << " ID: " << creature->getObjectID() << " Attempted to transfer an object with null zone Item: " << objectToTransfer->getDisplayedName() << " ID: " << objectToTransfer->getObjectID();
-			trx.abort() << "objectToTransfer has nullptr zone";
+			creature->error("trying to transfer an object with null zone");
+			return GENERALERROR;
+		}
+
+		ManagedReference<SceneObject*> destinationObject = server->getZoneServer()->getObject(destinationID);
+
+		if (destinationObject == nullptr) {
+			creature->error("destinationObject nullptr in tansferItemMisc command");
+			return GENERALERROR;
+		}
+
+		if (destinationObject->isIntangibleObject()) {
 			return GENERALERROR;
 		}
 
@@ -296,21 +145,13 @@ public:
 			if (errorDescription.length() > 1)
 				creature->sendSystemMessage(errorDescription);
 			else
-				creature->error() << "cannot add objectToTransfer to destinationObject: errorNumber: " << errorNumber << " destinationID: " << destinationObject->getObjectID();
-			if (errorNumber == TransferErrorCode::CONTAINERFULL || errorNumber == TransferErrorCode::NOTNEARBANK) {
-				// Very noisy and not really useful
-				trx.discard();
-			} else {
-				trx.addState("transferErrorCode", errorNumber);
-				trx.abort() << "canAddObject failed: " << errorNumber << " - " << errorDescription;
-			}
+				creature->error("cannot add objectToTransfer to destinationObject: errorNumber: " + String::valueOf(errorNumber) + " destinationID: " + String::valueOf(destinationID));
 			return GENERALERROR;
 		}
 
 		if(destinationObject->isCellObject()) {
 			if (creature->getParent().get() != destinationObject) {
 				creature->sendSystemMessage("@player_structure:not_valid_location"); //That is not a valid location.
-				trx.abort() << "Not valid location";
 				return GENERALERROR;
 			}
 
@@ -318,32 +159,22 @@ public:
 
 			if (!CollisionManager::checkLineOfSightInParentCell(creature, endPoint)) {
 				creature->sendSystemMessage("@player_structure:not_valid_location"); //That is not a valid location.
-				trx.abort() << "Out of line of sight";
 				return GENERALERROR;
 			}
 		}
 		if(objectToTransfer->isManufactureSchematic() && !destinationObject->isDataPad()) {
-			trx.abort() << "ManufactureSchematic but destination is not data pad";
 			return GENERALERROR;
 		}
 
 		if (objectToTransfer->isVendor() && !destinationObject->checkContainerPermission(creature, ContainerPermissions::MOVEVENDOR)) {
-			trx.abort() << "Not allowed to move vendor to destinationObject";
 			return GENERALERROR;
 		}
 
 		if (!objectToTransfer->isVendor() && !destinationObject->checkContainerPermission(creature, ContainerPermissions::MOVEIN)) {
-			trx.abort() << "Not allowed to move object into destinationObject";
 			return GENERALERROR;
 		}
 
-		auto zoneServer = ServerCore::getZoneServer();
-
-		if (zoneServer == nullptr) {
-			trx.abort() << "zoneServer is null";
-			return GENERALERROR;
-		}
-
+		ZoneServer* zoneServer = server->getZoneServer();
 		ObjectController* objectController = zoneServer->getObjectController();
 
 		objectToTransfer->initializePosition(creature->getPositionX(), creature->getPositionZ(), creature->getPositionY());
@@ -352,24 +183,21 @@ public:
 
 		bool notifyLooted = (objectToTransfer->getParentRecursively(SceneObjectType::CREATURE) != nullptr || objectToTransfer->getParentRecursively(SceneObjectType::NPCCREATURE) != nullptr);
 
-		bool notifyContainerContentsChanged = (objectToTransfer->getParentRecursively(SceneObjectType::STATICLOOTCONTAINER) != nullptr || (objectToTransfer->getParentRecursively(SceneObjectType::CONTAINER)) != nullptr);
+		bool notifyContainerContentsChanged = (objectToTransfer->getParentRecursively(SceneObjectType::STATICLOOTCONTAINER) != nullptr);
 
 		Locker clocker(objectsParent, creature);
 
 		if (!objectController->transferObject(objectToTransfer, destinationObject, transferType, true)){
-			trx.abort() << "transferObject failed";
 			return GENERALERROR;
 		}
 
 		if (clearWeapon) {
 			creature->setWeapon(nullptr, true);
 
-			if (creature->hasBuff(STRING_HASHCODE("centerofbeing"))) {
+			if (creature->hasBuff(STRING_HASHCODE("centerofbeing")))
 				creature->removeBuff(STRING_HASHCODE("centerofbeing"));
-			}
 
-			ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
-
+			ManagedReference<PlayerManager*> playerManager = creature->getZoneServer()->getPlayerManager();
 			if (playerManager != nullptr) {
 				creature->setLevel(playerManager->calculatePlayerLevel(creature));
 			}
@@ -382,9 +210,10 @@ public:
 		if (notifyContainerContentsChanged)
 			objectsParent->notifyObservers(ObserverEventType::CONTAINERCONTENTSCHANGED, creature, 0);
 
-		trx.commit();
 		return SUCCESS;
 	}
+
 };
 
 #endif //TRANSFERITEMMISCCOMMAND_H_
+

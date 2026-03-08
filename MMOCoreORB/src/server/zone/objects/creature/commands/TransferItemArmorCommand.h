@@ -5,7 +5,6 @@
 #ifndef TRANSFERITEMARMORCOMMAND_H_
 #define TRANSFERITEMARMORCOMMAND_H_
 
-#include "server/zone/objects/creature/commands/QueueCommand.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/managers/player/PlayerManager.h"
@@ -36,9 +35,6 @@ public:
 		*/
 
 		StringTokenizer tokenizer(arguments.toString());
-
-		if (!tokenizer.hasMoreTokens())
-			return GENERALERROR;
 
 		uint64 destinationID = tokenizer.getLongToken();
 		int transferType = tokenizer.getIntToken(); // I've seen -1 usually.. 4 when equipping most clothes (I think -1 is remove)
@@ -132,7 +128,7 @@ public:
 
 						ManagedReference<SceneObject*> objectToRemove = destinationObject->getSlottedObject(childArrangement);
 
-						if (objectToRemove == nullptr || objectToRemove == objectToTransfer)
+						if (objectToRemove == nullptr)
 							return GENERALERROR;
 
 						if (!objectController->transferObject(objectToRemove, parent, 0xFFFFFFFF, true))
@@ -149,9 +145,27 @@ public:
 			if (!objectController->transferObject(objectToTransfer, destinationObject, transferType, true))
 				return GENERALERROR;
 
-		} else {
-			creature->error("unknown transferType in transferitemarmor command");
-		}
+		} /*else if (transferType == 4) {
+
+						}*/ else {
+							creature->error("unknown transferType in transferitemarmor command");
+						}
+
+		/*
+
+				uint64 target = packet->parseLong();
+
+				TangibleObject* targetTanoObject;
+				targetTanoObject = cast<TangibleObject*>( player->getInventoryItem(target));
+
+				if (targetTanoObject != nullptr) {
+					Inventory* inventory = player->getInventory();
+
+					if (inventory != nullptr)
+						inventory->moveObjectToTopLevel(player, targetTanoObject);
+
+					player->changeArmor(target, false);
+				}*/
 
 		return SUCCESS;
 	}

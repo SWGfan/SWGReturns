@@ -9,39 +9,15 @@
 
 class ClientPermissionsMessage : public BaseMessage {
 public:
-	ClientPermissionsMessage() : BaseMessage() {
+	ClientPermissionsMessage() : BaseMessage(7) {
 		insertShort(0x04);
-		insertInt(STRING_HASHCODE("ClientPermissionsMessage"));
-
-		// Galaxy Available
-		insertBoolean(true);
-
-		// Allow to create character
-		insertBoolean(true);
-
-		// Ignores character creation max bool, possibly Jedi Slot
-		insertBoolean(false);
-
-		// Unknown
-		insertBoolean(false);
+		insertInt(0xE00730E5);
+		insertByte(1);
+		insertByte(1);
+		insertByte(0);
+		
 	}
 
-	ClientPermissionsMessage(bool canConnect, bool canCreateCharacter) : BaseMessage() {
-		insertShort(0x04);
-		insertInt(STRING_HASHCODE("ClientPermissionsMessage"));
-
-		// Galaxy Available
-		insertBoolean(canConnect);
-
-		// Allow to create character
-		insertBoolean(canCreateCharacter);
-
-		// Ignores character creation max bool, possibly Jedi Slot
-		insertBoolean(false);
-
-		// Unknown
-		insertBoolean(false);
-	}
 };
 
 #endif /*CLIENTPERMISSIONSMESSAGE_H_*/

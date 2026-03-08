@@ -14,9 +14,8 @@
 class AppearanceTemplate : public Object {
 	String floorName;
 	String fileName;
-	BaseBoundingVolume* volume = nullptr;
-	BaseBoundingVolume* collisionVolume = nullptr;
-	VectorMap<String, Matrix4> hardpoints;
+	BaseBoundingVolume* volume;
+	BaseBoundingVolume* collisionVolume;
 public:
 
 	virtual uint32 getType() const {
@@ -29,10 +28,6 @@ public:
 
 	const BaseBoundingVolume* getBoundingVolume() const {
 		return volume;
-	}
-
-	const VectorMap<String, Matrix4>& getHardpoints() const {
-		return hardpoints;
 	}
 
 	const BaseBoundingVolume* getCollisionVolume() const {
@@ -69,39 +64,10 @@ public:
 			volume = BoundingVolumeFactory::getVolume(iffStream);
 			collisionVolume = BoundingVolumeFactory::getVolume(iffStream);
 
-			Chunk *chunk = iffStream->openForm('HPTS');
-			try {
-				int numHardpoints = chunk->getChunksSize();
-				for (int i = 0; i < numHardpoints; i++) {
-					iffStream->openChunk('HPNT');
-					Matrix4 transform;
-					transform[0][0] = iffStream->getFloat();
-					transform[0][1] = iffStream->getFloat();
-					transform[0][2] = iffStream->getFloat();
 
-					transform[3][0] = iffStream->getFloat();
+			iffStream->openForm('HPTS');
 
-					transform[1][0] = iffStream->getFloat();
-					transform[1][1] = iffStream->getFloat();
-					transform[1][2] = iffStream->getFloat();
-
-					transform[3][1] = iffStream->getFloat();
-
-					transform[2][0] = iffStream->getFloat();
-					transform[2][1] = iffStream->getFloat();
-					transform[2][2] = iffStream->getFloat();
-
-					transform[3][2] = iffStream->getFloat();
-
-					String name;
-					iffStream->getString(name);
-					hardpoints.put(name, transform);
-					//Logger::console.info(fileName + " Loading hardpoint: " + name + " Transform: " + toString(transform), true);
-					iffStream->closeChunk('HPNT');
-				}
-			} catch (Exception &e) {
-				e.printStackTrace();
-			}
+			// Skip loading hardpoints
 			iffStream->closeForm('HPTS');
 
 			iffStream->openForm('FLOR');

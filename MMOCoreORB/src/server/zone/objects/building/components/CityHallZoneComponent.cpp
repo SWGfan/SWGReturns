@@ -16,7 +16,7 @@ void CityHallZoneComponent::destroyObjectFromWorld(SceneObject* sceneObject, boo
 	ZoneServer* zoneServer = sceneObject->getZoneServer();
 
 	if (zoneServer == nullptr || zoneServer->isServerShuttingDown()) {
-		GroundZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
+		ZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
 		return;
 	}
 
@@ -31,12 +31,10 @@ void CityHallZoneComponent::destroyObjectFromWorld(SceneObject* sceneObject, boo
 
 		clocker.release();
 
-		info(true) << "City Hall Removed for City: " << cityRegion->getRegionDisplayedName();
-
 		CityManager* cityManager = zoneServer->getCityManager();
 
 		cityManager->destroyCity(cityRegion);
 	}
 
-	GroundZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
+	ZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
 }

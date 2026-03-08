@@ -46,8 +46,7 @@ object_building_player_city_cloning_naboo = object_building_player_city_shared_c
 	baseMaintenanceRate = 0,
 	planetMapCategory = "cloningfacility",
 	facilityType = CLONER_PLAYER_CITY,
-	allowedZones = {"dantooine", "naboo", "rori"},
-	length = 5,
+	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	width = 5,
 	cityRankRequired = 3,
 	uniqueStructure = true,
@@ -56,7 +55,7 @@ object_building_player_city_cloning_naboo = object_building_player_city_shared_c
 	templateType = CLONINGBUILDING,
 	abilityRequired = "place_cloning",
 	alwaysPublic = 1,
-	groundZoneComponent = "StructureZoneComponent",
+	zoneComponent = "StructureZoneComponent",
 	skillMods = {
 		{"private_safe_logout", 1}
 	},

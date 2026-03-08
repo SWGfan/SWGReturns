@@ -1,8 +1,7 @@
 cavern_spider_hunter = Creature:new {
-	objectName = "@mob/creature_names:cave_gaping_spider_hunter",
+	objectName = "@mob/creature_names:gaping_spider_hunter",
 	socialGroup = "spider_nightsister",
 	faction = "spider_nightsister",
-	mobType = MOB_CARNIVORE,
 	level = 46,
 	chanceHit = 0.46,
 	damageMin = 390,
@@ -19,8 +18,8 @@ cavern_spider_hunter = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
-	ferocity = 5,
+	tamingChance = 0.25,
+	ferocity = 9,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
 	optionsBitmask = AIENABLED,
@@ -30,17 +29,12 @@ cavern_spider_hunter = Creature:new {
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.15,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_green.iff",
-	secondaryWeapon = "unarmed",
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""}, {"mediumpoison",""} },
-	secondaryAttacks = { {"stunattack",""}, {"mediumpoison",""} }
+	attacks = {
+		{"stunattack",""},
+		{"mediumpoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(cavern_spider_hunter, "cavern_spider_hunter")

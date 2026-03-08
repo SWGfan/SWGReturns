@@ -1,6 +1,6 @@
 /*
-                Copyright <SWGEmu>
-        See file COPYING for copying conditions.*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
 #include "server/login/LoginServer.h"
 #include "server/login/LoginClient.h"
@@ -18,184 +18,186 @@
 #include "objects.h"
 
 LoginServerImplementation::LoginServerImplementation(ConfigManager* configMan) :
-        ManagedServiceImplementation(), Logger("LoginServer") {
+		ManagedServiceImplementation(), Logger("LoginServer") {
 
-    phandler = nullptr;
+	phandler = nullptr;
 
-    datagramService = new DatagramServiceThread("LoginDatagramService");
-    datagramService->setLogging(false);
-    datagramService->setLockName("LoginServerLock");
+	datagramService = new DatagramServiceThread("LoginDatagramService");
+	datagramService->setLogging(false);
+	datagramService->setLockName("LoginServerLock");
 
-    loginHandler = new LoginHandler();
-    datagramService->setHandler(loginHandler);
+	loginHandler = new LoginHandler();
+	datagramService->setHandler(loginHandler);
 
-    configManager = configMan;
+	configManager = configMan;
 
-    processor = nullptr;
+	processor = nullptr;
 
-    accountManager = nullptr;
+	accountManager = nullptr;
 
-    setLogging(false);
+	setLogging(false);
 }
 
 void LoginServerImplementation::initializeTransientMembers() {
-    phandler = nullptr;
+	phandler = nullptr;
 
-    processor = nullptr;
+	processor = nullptr;
 
-    ManagedObjectImplementation::initializeTransientMembers();
+	ManagedObjectImplementation::initializeTransientMembers();
 }
 
 void LoginServerImplementation::initialize() {
-    processor = new LoginProcessServerImplementation(_this.getReferenceUnsafeStaticCast());
-    processor->initialize();
+	processor = new LoginProcessServerImplementation(_this.getReferenceUnsafeStaticCast());
+	processor->initialize();
 
-    phandler = new BasePacketHandler("LoginServer", loginHandler);
-    phandler->setLogging(false);
+	phandler = new BasePacketHandler("LoginServer", loginHandler);
+	phandler->setLogging(false);
 
-    startManagers();
+	startManagers();
 
-    //taskManager->setLogging(false);
+	//taskManager->setLogging(false);
 
-    return;
+	return;
 }
 
 
 void LoginServerImplementation::startManagers() {
-    info("loading managers..");
+	info("loading managers..");
 
-    accountManager = new AccountManager(_this.getReferenceUnsafeStaticCast());
-    accountManager->setAutoRegistrationEnabled(configManager->getAutoReg());
-    accountManager->setRequiredVersion(configManager->getLoginRequiredVersion());
-    accountManager->setDBSecret(configManager->getDBSecret());
+	accountManager = new AccountManager(_this.getReferenceUnsafeStaticCast());
+	accountManager->setAutoRegistrationEnabled(configManager->getAutoReg());
+	accountManager->setRequiredVersion(configManager->getLoginRequiredVersion());
+	accountManager->setDBSecret(configManager->getDBSecret());
 }
 
 void LoginServerImplementation::start(int p, int mconn) {
-    loginHandler->setLoginSerrver(_this.getReferenceUnsafeStaticCast());
+	loginHandler->setLoginSerrver(_this.getReferenceUnsafeStaticCast());
 
-    datagramService->start(p, mconn);
+	datagramService->start(p, mconn);
 }
 
 void LoginServerImplementation::stop() {
-    shutdown();
+	shutdown();
 
-    datagramService->stop();
-    datagramService = nullptr;
+	datagramService->stop();
+	datagramService = nullptr;
 }
 
 void LoginServerImplementation::shutdown() {
-    stopManagers();
-    loginHandler = nullptr;
-    phandler = nullptr;
-    processor = nullptr;
+	stopManagers();
+	loginHandler = nullptr;
+	phandler = nullptr;
+	processor = nullptr;
 
-    printInfo();
+	printInfo();
 
-    info("shut down complete", true);
+	info("shut down complete", true);
 }
 
 void LoginServerImplementation::stopManagers() {
-    accountManager = nullptr;
-    configManager = nullptr;
+	accountManager = nullptr;
+	configManager = nullptr;
 
-    info("managers stopped", true);
+	info("managers stopped", true);
 }
 
 LoginClient* LoginServerImplementation::createConnection(Socket* sock, SocketAddress& addr) {
-    BaseClientProxy* session = new BaseClientProxy(sock, addr);
+	BaseClientProxy* session = new BaseClientProxy(sock, addr);
 
-    session->setLoggingName("LoginClient " + session->getIPAddress());
-    session->setLogging(false);
+	session->setLoggingName("LoginClient " + session->getIPAddress());
+	session->setLogging(false);
 
-    session->init(datagramService);
+	session->init(datagramService);
 
-    LoginClient* client = new LoginClient(session);
+	LoginClient* client = new LoginClient(session);
 
-    // Use getIPAddress() which returns a std::string to avoid invalid concatenation
-    info(std::string("client connected from '") + session->getIPAddress() + "'");
+		StringBuffer msg; msg << "client connected from '" << session->getAddress().getFullIPAddress() << "'"; info(msg.toString());
 
-    return client;
+	return client;
 }
 
 void LoginServerImplementation::handleMessage(LoginClient* client, Packet* message) {
-    if (phandler == nullptr)
-        return;
+	if (phandler == nullptr)
+		return;
 
-    BaseClientProxy* session = cast<BaseClientProxy*>(client->getSession());
+	BaseClientProxy* session = cast<BaseClientProxy*>(client->getSession());
 
-    try {
-        if (session != nullptr && session->isAvailable())
-            phandler->handlePacket(session, message);
+	try {
+		if (session != nullptr && session->isAvailable())
+			phandler->handlePacket(session, message);
 
-    } catch (PacketIndexOutOfBoundsException& e) {
-        System::out << e.getMessage();
+	} catch (PacketIndexOutOfBoundsException& e) {
+		System::out << e.getMessage();
 
-        error("incorrect packet - " + message->toStringData());
-    } catch (Exception& e) {
-        error(e.getMessage());
-    }
+		error("incorrect packet - " + message->toStringData());
+	} catch (Exception& e) {
+		error(e.getMessage());
+	}
 }
 
 void LoginServerImplementation::processMessage(Message* message) {
-    debug() << "processing message " << *message;
+	//info("processing message " + message->toStringData());
 
-    Reference<Task*> task = new LoginMessageProcessorTask(message, processor->getPacketHandler());
-    task->execute();
+	Reference<Task*> task = new LoginMessageProcessorTask(message, processor->getPacketHandler());
+
+	Core::getTaskManager()->executeTask(task);
 }
 
 LoginClient* LoginServerImplementation::getLoginClient(ServiceClient* session) {
-    return loginHandler->getClient(session);
+	return loginHandler->getClient(session);
 }
 
 bool LoginServerImplementation::handleError(ServiceClient* client, Exception& e) {
-    BaseClientProxy* bclient = cast<BaseClientProxy*>(client);
+	BaseClientProxy* bclient = cast<BaseClientProxy*>(client);
 
-    if (bclient != nullptr) {
-        bclient->setError();
+	if (bclient != nullptr) {
+		bclient->setError();
 
-        bclient->disconnect();
-    }
+		bclient->disconnect();
+	}
 
-    return true;
+	return true;
 }
 
 void LoginServerImplementation::printInfo() {
-    lock();
+	lock();
 
-    info(true) << "MessageQueue - size = " << datagramService->getMessageQueue()->size();
+	StringBuffer msg;
+	msg << "MessageQueue - size = " << datagramService->getMessageQueue()->size();
+	info(msg, true);
 
-    unlock();
+	unlock();
 }
 
 LoginEnumCluster* LoginServerImplementation::getLoginEnumClusterMessage(Account* account) {
-    auto galaxies = GalaxyList(account->getAccountID());
-    uint32 galaxyCount = galaxies.size();
+	auto galaxies = GalaxyList(account->getUsername());
+	uint32 galaxyCount = galaxies.size();
 
-    auto msg = new LoginEnumCluster(galaxyCount);
+	auto msg = new LoginEnumCluster(galaxyCount);
 
-    while (galaxies.next()) {
-        msg->addGalaxy(galaxies.getID(), galaxies.getName());
-    }
+	while (galaxies.next()) {
+		msg->addGalaxy(galaxies.getID(), galaxies.getName());
+	}
 
-    msg->finish();
+	msg->finish();
 
-    return msg;
+	return msg;
 }
 
 LoginClusterStatus* LoginServerImplementation::getLoginClusterStatusMessage(Account* account) {
-    auto galaxies = GalaxyList(account->getAccountID());
-    uint32 galaxyCount = galaxies.size();
+	auto galaxies = GalaxyList(account->getUsername());
+	uint32 galaxyCount = galaxies.size();
 
-    auto msg = new LoginClusterStatus(galaxyCount);
+	auto msg = new LoginClusterStatus(galaxyCount);
 
-    while (galaxies.next()) {
-        msg->addGalaxy(
-            galaxies.getID(),
-            galaxies.getAddress(),
-            galaxies.getRandomPort(),
-            galaxies.getPingPort()
-        );
-    }
+	while (galaxies.next()) {
+		msg->addGalaxy(
+			galaxies.getID(),
+			galaxies.getAddress(),
+			galaxies.getRandomPort(),
+			galaxies.getPingPort()
+		);
+	}
 
-    return msg;
+	return msg;
 }

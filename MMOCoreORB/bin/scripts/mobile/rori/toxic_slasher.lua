@@ -2,24 +2,23 @@ toxic_slasher = Creature:new {
 	objectName = "@mob/creature_names:vir_vur_toxic_slasher",
 	socialGroup = "vir_vur",
 	faction = "",
-	mobType = MOB_HERBIVORE,
-	level = 15,
-	chanceHit = 0.31,
-	damageMin = 170,
-	damageMax = 180,
-	baseXp = 831,
-	baseHAM = 1200,
-	baseHAMmax = 1400,
-	armor = 0,
-	resists = {110,0,0,0,0,-1,0,-1,-1},
+	level = 60,
+	chanceHit = 0.55,
+	damageMin = 470,
+	damageMax = 650,
+	baseXp = 5830,
+	baseHAM = 11000,
+	baseHAMmax = 14000,
+  armor = 3,
+	resists = {160,160,130,120,140,140,0,110,140},
 	meatType = "meat_avian",
-	meatAmount = 10,
+	meatAmount = 20,
 	hideType = "hide_wooly",
-	hideAmount = 10,
+	hideAmount = 20,
 	boneType = "bone_mammal",
-	boneAmount = 2,
+	boneAmount = 4,
 	milk = 0,
-	tamingChance = 0.05,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD,
@@ -30,17 +29,12 @@ toxic_slasher = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/vir_vur_hue.iff",
 	scale = 1.25,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"mildpoison",""}, {"posturedownattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"mildpoison","stateAccuracyBonus=100"},
+		{"posturedownattack","stateAccuracyBonus=100"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(toxic_slasher, "toxic_slasher")

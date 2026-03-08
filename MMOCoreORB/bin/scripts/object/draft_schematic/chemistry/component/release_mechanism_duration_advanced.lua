@@ -50,8 +50,7 @@ object_draft_schematic_chemistry_component_release_mechanism_duration_advanced =
 	craftingToolTab = 64, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 17,
 	size = 4,
-	factoryCrateSize = 50,
-	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
+	factoryCrateSize = 1000,
 
 	xpType = "crafting_medicine_general",
 	xp = 65,

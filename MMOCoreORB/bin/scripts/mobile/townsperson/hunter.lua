@@ -2,7 +2,6 @@ hunter = Creature:new {
 	objectName = "@mob/creature_names:hunter",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "poacher",
 	faction = "",
 	level = 16,
@@ -27,28 +26,24 @@ hunter = Creature:new {
 	creatureBitmask = PACK + KILLER + STALKER,
 	diet = HERBIVORE,
 
-	templates = {
-		"object/mobile/dressed_criminal_smuggler_human_male_01.iff",
-		"object/mobile/dressed_criminal_smuggler_human_female_01.iff",
-	},
+        templates = {
+                        "object/mobile/dressed_commoner_naboo_twilek_female_02.iff",
+                        "object/mobile/dressed_commoner_tatooine_devaronian_male_03.iff",
+                        "object/mobile/dressed_commoner_naboo_twilek_male_01.iff",
+                        "object/mobile/dressed_commoner_naboo_moncal_male_01.iff"
+        },
 	lootGroups = {
 		{
 			groups = {
-				{group = "poacher_tier_1", chance = 10000000}
+				{group = "junk", chance = 7000000},
+				{group = "tailor_components", chance = 1500000},
+				{group = "loot_kit_parts", chance = 1500000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_light"},
 	reactionStf = "@npc_reaction/townperson",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(hunter, "hunter")

@@ -44,15 +44,15 @@
 PolearmSpinAttack2Command = {
         name = "polearmspinattack2",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 1.0,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
+	damageMultiplier = 2.5,
+	speedMultiplier = 2.5,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 1.5,
+	mindCostMultiplier = 1.5,
 	accuracyBonus = 10,
 
 	areaAction = true,
-	areaRange = 32,
+	areaRange = 16,
 
 	stateEffects = {
 	  StateEffect( 
@@ -71,7 +71,7 @@ PolearmSpinAttack2Command = {
 
 	combatSpam = "limbbreaker",
 	
-	weaponType = TWOHANDMELEEWEAPON + ONEHANDMELEEWEAPON + POLEARMWEAPON,
+	weaponType = POLEARMWEAPON,
 
 	range = -1
 }

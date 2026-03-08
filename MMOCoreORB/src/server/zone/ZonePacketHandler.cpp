@@ -8,7 +8,7 @@
 #include "server/zone/ZoneClientSession.h"
 #include "server/zone/ZoneProcessServer.h"
 
-#include "packets/zone/ClientIdMessageCallback.h"
+#include "packets/zone/ClientIDMessageCallback.h"
 #include "packets/zone/SelectCharacterCallback.h"
 #include "packets/zone/CmdSceneReadyCallback.h"
 #include "packets/zone/ClientInactivityMessage.h"
@@ -47,16 +47,9 @@
 #include "packets/object/CraftingCustomizationCallback.h"
 #include "packets/object/ImageDesignRejectMessageCallback.h"
 #include "packets/object/ImageDesignChangeMessageCallback.h"
-#include "packets/object/LotteryWindowCallback.h"
-
-#include "packets/ship/ShipUpdateTransformCallback.h"
+#include "packets/object/InsertedAsPilotCallback.h"
 #include "packets/object/JtlShipListRequestCallback.h"
-#include "packets/object/GroupMemberSendSpaceInviteCallback.h"
-#include "packets/object/GroupMemberSpaceInviteResponseCallback.h"
-#include "packets/object/DroidCommandProgrammingCallback.h"
-#include "packets/object/UpdateShipTargetSlot.h"
-
-#include "packets/jtl/CreateProjectileMessage.h"
+#include "packets/object/LotteryWindowCallback.h"
 
 #include "packets/ui/RequestCategoriesResponseMessage.h"
 #include "packets/ui/NewTicketActivityResponseMessage.h"
@@ -100,11 +93,9 @@
 #include "packets/trade/GiveMoneyMessageCallback.h"
 #include "packets/trade/DenyTradeMessage.h"
 
-#include "packets/auction/IsVendorOwnerMessageCallback.h"
+#include "packets/ship/ShipUpdateTransformCallback.h"
 
-ZonePacketHandler::ZonePacketHandler() : Logger() {
-	server = nullptr;
-}
+#include "packets/auction/IsVendorOwnerMessageCallback.h"
 
 ZonePacketHandler::ZonePacketHandler(const String& s, ZoneProcessServer* serv) : Logger(s) {
 	processServer = serv;
@@ -112,19 +103,18 @@ ZonePacketHandler::ZonePacketHandler(const String& s, ZoneProcessServer* serv) :
 	server = processServer->getZoneServer();
 
 	setGlobalLogging(true);
-	setLogLevel(Logger::INFO);
+	setLogging(true);
 
 	registerMessages();
 	registerObjectControllerMessages();
-}
 
-ZonePacketHandler::~ZonePacketHandler() {
+	MessageCallbackFactory<MessageCallback* (ZoneClientSession*, ZoneProcessServer*), uint32> messageCallbackFactory2;
 }
 
 void ZonePacketHandler::registerMessages() {
-	debug("registering Messages");
+	info("registering Messages");
 
-	messageCallbackFactory.registerObject<ClientIdMessageCallback>(0xD5899226);
+	messageCallbackFactory.registerObject<ClientIDMessageCallback>(0xD5899226);
 	messageCallbackFactory.registerObject<ClientCreateCharacterCallback>(0xB97F3074);
 	messageCallbackFactory.registerObject<ClientRandomNameRequest>(0xD6D1B6D1);
 	messageCallbackFactory.registerObject<SelectCharacterCallback>(0xB5098D76);
@@ -183,14 +173,13 @@ void ZonePacketHandler::registerMessages() {
 	messageCallbackFactory.registerObject<ChatBanFromRoomCallback>(0xD9FA0194);
 	messageCallbackFactory.registerObject<ChatUnbanFromRoomCallback>(0x4C8F94A9);
 	messageCallbackFactory.registerObject<ChatDeleteAllPersistentMessagesCallback>(0x8B1E8E72);
-	messageCallbackFactory.registerObject<CreateProjectileMessageCallback>(STRING_HASHCODE("CreateProjectileMessage"));
 }
 
 void ZonePacketHandler::registerObjectControllerMessages() {
-	debug("registering ObjectController Messages");
+	info("registering ObjectController Messages");
 
 	ObjectControllerMessageCallback::objectMessageControllerFactory = new MessageCallbackFactory<MessageCallback* (ObjectControllerMessageCallback*), uint32>();
-	auto objectMessageControllerFactory = ObjectControllerMessageCallback::objectMessageControllerFactory.get();
+	MessageCallbackFactory<MessageCallback* (ObjectControllerMessageCallback*), uint32>* objectMessageControllerFactory = ObjectControllerMessageCallback::objectMessageControllerFactory;
 
 	objectMessageControllerFactory->registerObject<DataTransformCallback>(0x71);
 	objectMessageControllerFactory->registerObject<DataTransformWithParentCallback>(0xF1);
@@ -210,18 +199,14 @@ void ZonePacketHandler::registerObjectControllerMessages() {
 	objectMessageControllerFactory->registerObject<CraftingCustomizationCallback>(0x15A);
 	objectMessageControllerFactory->registerObject<ImageDesignChangeMessageCallback>(0x238);
 	objectMessageControllerFactory->registerObject<ImageDesignRejectMessageCallback>(0x239);
+	objectMessageControllerFactory->registerObject<InsertedAsPilotCallback>(0x3fa);
+	objectMessageControllerFactory->registerObject<JtlShipListRequestCallback>(0x41C);
 	objectMessageControllerFactory->registerObject<LotteryWindowCallback>(0x43f);
 
-	// Space Callbacks
-	objectMessageControllerFactory->registerObject<UpdateShipTargetSlotCallback>(0x3FA);
-	objectMessageControllerFactory->registerObject<JtlShipListRequestCallback>(0x41C);
-	objectMessageControllerFactory->registerObject<DroidCommandProgrammingCallback>(0x435);
-	objectMessageControllerFactory->registerObject<GroupMemberSendSpaceInviteCallback>(0x436);
-	objectMessageControllerFactory->registerObject<GroupMemberSpaceInviteResponseCallback>(0x438);
 }
 
-Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message* pack) const {
-	debug() << "parsing " << *pack;
+Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message* pack) {
+	//info("parsing " + pack->toStringData(), true);
 
 	if (client == nullptr)
 		return nullptr;
@@ -230,28 +215,33 @@ Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message*
 		uint16 opcount = pack->parseShort();
 		uint32 opcode = pack->parseInt();
 
-		debug() << "handleMessage: opcount: " << opcount << " opcode: 0x" << hex << opcode;
+		/*
+		StringBuffer buffer;
+		buffer << "handleMessage: opcount: " << hex << opcount << dec << " opcode: " << hex << opcode << endl;
+		info(buffer);
+		*/
 
 		MessageCallback* messageCallback = messageCallbackFactory.createObject(opcode, client, processServer);
 
 		if (messageCallback == nullptr) {
-			warning() << "unknown opcode 0x" << hex << opcode;
+			StringBuffer msg;
+			msg << "unknown opcode 0x" << hex << opcode;
+			info(msg, true);
+
+			//System::out << pack->toStringData() << endl;
 
 			return nullptr;
 		}
 
-		//TODO: move this into the task itself eventually
 		if (!messageCallback->parseMessage(pack)) {
 			delete messageCallback;
 			return nullptr;
 		} else
 			return messageCallback;
 
-	} catch (const Exception& e) {
+	} catch (Exception& e) {
 		error("unreported exception caught creating message task");
-		e.printMessage();
 	}
 
 	return nullptr;
 }
-

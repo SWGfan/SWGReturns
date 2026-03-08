@@ -50,7 +50,6 @@ object_draft_schematic_clothing_clothing_bandolier_field_04_quest = object_draft
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 120, 
@@ -74,9 +73,9 @@ object_draft_schematic_clothing_clothing_bandolier_field_04_quest = object_draft
    targetTemplate = "object/tangible/wearables/bandolier/bandolier_s04_quest.iff",
 				
 	skillMods = {
-	    {"weapon_assembly", 5},
-	    {"weapon_repair", 5},
-	    {"weapon_experimentation", 3}
+	    {"weapon_assembly", 25},
+	    {"weapon_repair", 25},
+	    {"weapon_experimentation", 25}
 	},
 
    additionalTemplates = {

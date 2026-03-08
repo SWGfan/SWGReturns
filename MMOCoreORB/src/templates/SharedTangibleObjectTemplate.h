@@ -40,9 +40,6 @@ protected:
 
 	bool sliceable;
 
-	bool insurable;
-	bool jediRobe;
-
 	bool invisible;
 
 	unsigned int faction;
@@ -55,8 +52,8 @@ protected:
 	Vector<short>* numberExperimentalProperties;
 	Vector<String>* experimentalProperties;
 	Vector<short>* experimentalWeights;
-	Vector<String>* experimentalAttributes;
-	Vector<String>* experimentalGroups;
+	Vector<String>* experimentalGroupTitles;
+	Vector<String>* experimentalSubGroupTitles;
 	Vector<float>* experimentalMin;
 	Vector<float>* experimentalMax;
 	Vector<short>* experimentalPrecision;
@@ -71,8 +68,8 @@ public:
 
 	~SharedTangibleObjectTemplate();
 
-	void readObject(LuaObject* templateData) override;
-	void readObject(IffStream* iffStream) override;
+	void readObject(LuaObject* templateData);
+	void readObject(IffStream* iffStream);
 
 	void parseFileData(IffStream* str);
 
@@ -111,7 +108,7 @@ public:
 		return level;
 	}
 
-	inline bool isInvisible() const {
+	inline bool isInvisible() {
 		return invisible;
 	}
 
@@ -159,22 +156,6 @@ public:
 		return sliceable;
 	}
 
-	inline bool isInsurable() const {
-		return insurable;
-	}
-
-	void setInsurable(bool val) {
-		this->insurable = val;
-	}
-
-	inline bool isJediRobe() const {
-		return jediRobe;
-	}
-
-	void setJediRobe(bool val) {
-		this->jediRobe = val;
-	}
-
 	const Vector<short >* getNumberExperimentalProperties() const {
 		return numberExperimentalProperties;
 	}
@@ -187,12 +168,12 @@ public:
 		return experimentalWeights;
 	}
 
-	const Vector<String>* getExperimentalGroups() const {
-		return experimentalGroups;
+	const Vector<String>* getExperimentalGroupTitles() const {
+		return experimentalGroupTitles;
 	}
 
-	const Vector<String>* getExperimentalAttributes() const {
-		return experimentalAttributes;
+	const Vector<String>* getExperimentalSubGroupTitles() const {
+		return experimentalSubGroupTitles;
 	}
 
 	const Vector<float>* getExperimentalMin() const {
@@ -223,7 +204,7 @@ public:
 		return skillMods.get(mod);
 	}
 
-	bool isSharedTangibleObjectTemplate() const override {
+	bool isSharedTangibleObjectTemplate() {
 		return true;
 	}
 };

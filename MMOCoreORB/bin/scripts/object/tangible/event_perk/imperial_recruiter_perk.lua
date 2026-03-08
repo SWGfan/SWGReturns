@@ -46,7 +46,7 @@ object_tangible_event_perk_imperial_recruiter_perk = object_tangible_poi_base_sh
 
 	dataObjectComponent = "EventPerkDataComponent",
 	attributeListComponent = "EventPerkAttributeListComponent",
-	groundZoneComponent = "PersonnelPerkZoneComponent",
+	zoneComponent = "PersonnelPerkZoneComponent",
 }
 
 ObjectTemplates:addTemplate(object_tangible_event_perk_imperial_recruiter_perk, "object/tangible/event_perk/imperial_recruiter_perk.iff")

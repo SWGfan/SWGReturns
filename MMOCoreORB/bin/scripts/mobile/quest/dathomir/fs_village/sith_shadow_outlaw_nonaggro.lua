@@ -2,7 +2,6 @@ sith_shadow_outlaw_nonaggro = Creature:new {
 	objectName = "@mob/creature_names:shadow_outlaw_nonaggro",
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow_nonaggro",
-	mobType = MOB_NPC,
 	level = 68,
 	chanceHit = 0.6,
 	damageMin = 445,
@@ -26,7 +25,33 @@ sith_shadow_outlaw_nonaggro = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = { "sith_shadow" },
+	templates = {
+		"object/mobile/dressed_sith_shadow_hum_f_01.iff",
+		"object/mobile/dressed_sith_shadow_hum_f_02.iff",
+		"object/mobile/dressed_sith_shadow_hum_f_03.iff",
+		"object/mobile/dressed_sith_shadow_hum_m_01.iff",
+		"object/mobile/dressed_sith_shadow_hum_m_02.iff",
+		"object/mobile/dressed_sith_shadow_hum_m_03.iff",
+		"object/mobile/dressed_sith_shadow_aqualish_f_01.iff",
+		"object/mobile/dressed_sith_shadow_aqualish_f_02.iff",
+		"object/mobile/dressed_sith_shadow_aqualish_m_01.iff",
+		"object/mobile/dressed_sith_shadow_aqualish_m_02.iff",
+		"object/mobile/dressed_sith_shadow_nikto_m_01.iff",
+		"object/mobile/dressed_sith_shadow_nikto_m_02.iff",
+		"object/mobile/dressed_sith_shadow_nikto_m_03.iff",
+		"object/mobile/dressed_sith_shadow_rodian_f_01.iff",
+		"object/mobile/dressed_sith_shadow_rodian_f_02.iff",
+		"object/mobile/dressed_sith_shadow_rodian_m_01.iff",
+		"object/mobile/dressed_sith_shadow_rodian_m_02.iff",
+		"object/mobile/dressed_sith_shadow_trn_f_01.iff",
+		"object/mobile/dressed_sith_shadow_trn_m_01.iff",
+		"object/mobile/dressed_sith_shadow_trn_m_02.iff",
+		"object/mobile/dressed_sith_shadow_trn_m_03.iff",
+		"object/mobile/dressed_sith_shadow_zab_f_01.iff",
+		"object/mobile/dressed_sith_shadow_zab_f_02.iff",
+		"object/mobile/dressed_sith_shadow_zab_m_01.iff",
+		"object/mobile/dressed_sith_shadow_zab_m_02.iff",
+		"object/mobile/dressed_sith_shadow_zab_m_03.iff"},
 	lootGroups = {
 		{
 			groups = {
@@ -46,17 +71,9 @@ sith_shadow_outlaw_nonaggro = Creature:new {
 			lootChance = 1000000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "none",
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = {}
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(sith_shadow_outlaw_nonaggro, "sith_shadow_outlaw_nonaggro")

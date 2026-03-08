@@ -74,8 +74,6 @@ class FactoryCrate extends TangibleObject {
 		return true;
 	}
 
-	public native boolean isValidFactoryCrate();
-
 	@read
 	public int getMaxCapacity() {
 		return maxCapacity;
@@ -83,6 +81,7 @@ class FactoryCrate extends TangibleObject {
 
 	@preLocked
 	public void setMaxCapacity(int value) {
+		value = 1000;
 		maxCapacity = value;
 	}
 
@@ -99,13 +98,10 @@ class FactoryCrate extends TangibleObject {
 	@dirty
 	public native string getSerialNumber();
 
-	@dirty
-	public native int getPrototypeUseCount();
-
 	public native boolean extractObjectToInventory(CreatureObject player);
 
 	@reference
-	public native TangibleObject extractObject();
+	public native TangibleObject extractObject(int count = 1);
 
 	@preLocked
 	public native void split(int newStackSize);

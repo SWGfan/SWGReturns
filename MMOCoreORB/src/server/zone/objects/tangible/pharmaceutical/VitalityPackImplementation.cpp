@@ -87,14 +87,12 @@ int VitalityPackImplementation::handleObjectMenuSelect(CreatureObject* player, b
 
 	vitalityLoss *= ((vitalityLost - 1) / (effectiveness > 0 ? effectiveness : 1)) + 1;
 
-	int newMaxVitality = controlDevice->getMaxVitality() - vitalityLoss;
-
-	if (newMaxVitality < 1) {
-		newMaxVitality = 1;
+	if (vitalityLoss >= controlDevice->getMaxVitality()) {
+		vitalityLoss = controlDevice->getMaxVitality() - 1;
 	}
 
 	// Reduce max vitality
-	controlDevice->setMaxVitality(newMaxVitality);
+	controlDevice->setMaxVitality(controlDevice->getMaxVitality() - vitalityLoss);
 
 	// Restore vitality to new max
 	controlDevice->setVitality(controlDevice->getMaxVitality());

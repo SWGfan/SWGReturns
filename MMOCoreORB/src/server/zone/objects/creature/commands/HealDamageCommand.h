@@ -5,6 +5,7 @@
 #ifndef HEALDAMAGECOMMAND_H_
 #define HEALDAMAGECOMMAND_H_
 
+#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/tangible/pharmaceutical/StimPack.h"
 #include "server/zone/objects/tangible/pharmaceutical/RangedStimPack.h"
@@ -67,15 +68,17 @@ public:
 	void doAnimationsRange(CreatureObject* creature, CreatureObject* creatureTarget, int oid, float range) const {
 		String crc;
 
-		if (range < 20.0f) {
-			crc = "throw_grenade_near_healing_longrange";
-		} else if (range >= 20.0f && range < 40.0f) {
-			crc = "throw_grenade_medium_healing_longrange";
-		} else {
-			crc = "throw_grenade_far_healing_longrange";
+		if (range < 10.0f) {
+			crc = "throw_grenade_near_healing";
+		}
+		else if (10.0f <= range && range < 20.0f) {
+			crc = "throw_grenade_medium_healing";
+		}
+		else {
+			crc = "throw_grenade_far_healing";
 		}
 
-		CombatAction* action = new CombatAction(creature, creatureTarget, crc.hashCode(), 1, 0L);
+		CombatAction* action = new CombatAction(creature, creatureTarget,  crc.hashCode(), 1, 0L);
 		creature->broadcastMessage(action, true);
 	}
 
@@ -117,15 +120,13 @@ public:
 	}
 
 	bool checkTarget(CreatureObject* creature, CreatureObject* creatureTarget) const {
-		if (!creatureTarget->hasDamage(CreatureAttribute::HEALTH) && !creatureTarget->hasDamage(CreatureAttribute::ACTION)) {
+		if (!creatureTarget->hasDamage(CreatureAttribute::HEALTH) && !creatureTarget->hasDamage(CreatureAttribute::ACTION) && !creatureTarget->hasDamage(CreatureAttribute::MIND)) {
 			return false;
 		}
+
+		PlayerManager* playerManager = server->getPlayerManager();
 
 		if (creature != creatureTarget && !CollisionManager::checkLineOfSight(creature, creatureTarget)) {
-			return false;
-		}
-
-		if (!playerEntryCheck(creature, creatureTarget)) {
 			return false;
 		}
 
@@ -248,7 +249,7 @@ public:
 
 		CreatureObject* player = cast<CreatureObject*>(creature);
 
-		int amount = (int)round((float)power * 0.75f);
+		int amount = (int)round((float)power * 0.25f);
 
 		if (amount <= 0)
 			return;
@@ -321,7 +322,7 @@ public:
 
 			CloseObjectsVector* closeObjectsVector = (CloseObjectsVector*) areaCenter->getCloseObjects();
 
-			SortedVector<TreeEntry*> closeObjects;
+			SortedVector<QuadTreeEntry*> closeObjects;
 			closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
 			for (int i = 0; i < closeObjects.size(); i++) {
@@ -343,6 +344,31 @@ public:
 
 				if (!creatureTarget->isHealableBy(creature))
 					continue;
+
+				if (creature->isPlayerCreature() && object->getParentID() != 0 && creature->getParentID() != object->getParentID()) {
+					Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
+
+					if (targetCell != nullptr) {
+						if (object->isPlayerCreature()) {
+							auto perms = targetCell->getContainerPermissions();
+
+							if (!perms->hasInheritPermissionsFromParent()) {
+								if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN))
+									continue;
+							}
+						}
+
+						ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+						if (parentSceneObject != nullptr) {
+							BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+							if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature))
+								continue;
+						}
+					}
+				}
+
 
 				if (creature != creatureTarget && checkForArenaDuel(creatureTarget))
 					continue;
@@ -423,9 +449,6 @@ public:
 			}
 		}
 
-		if (stimPack == nullptr)
-			return GENERALERROR;
-
 		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
 		if (!canPerformSkill(creature, targetCreature, stimPack, mindCostNew))
@@ -433,12 +456,8 @@ public:
 
 		float rangeToCheck = 7;
 
-		if (stimPack->isRangedStimPack()) {
-			float packRange = (cast<RangedStimPack*>(stimPack.get()))->getRange();
-			float healRange = (float)(creature->getSkillMod("healing_range") / 100.0f) * 14;
-
-			rangeToCheck = packRange + healRange;
-		}
+		if (stimPack->isRangedStimPack())
+			rangeToCheck = (cast<RangedStimPack*>(stimPack.get()))->getRange();
 
 		if(!checkDistance(creature, targetCreature, rangeToCheck))
 			return TOOFAR;
@@ -448,8 +467,32 @@ public:
 			return GENERALERROR;
 		}
 
-		if (!playerEntryCheck(creature, targetCreature)) {
-			return GENERALERROR;
+		if (creature->isPlayerCreature() && targetCreature->getParentID() != 0 && creature->getParentID() != targetCreature->getParentID()) {
+			Reference<CellObject*> targetCell = targetCreature->getParent().get().castTo<CellObject*>();
+
+			if (targetCell != nullptr) {
+				if (!targetCreature->isPlayerCreature()) {
+					auto perms = targetCell->getContainerPermissions();
+
+					if (!perms->hasInheritPermissionsFromParent()) {
+						if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
+							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+							return GENERALERROR;
+						}
+					}
+				}
+
+				ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+				if (parentSceneObject != nullptr) {
+					BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+					if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
+						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+						return GENERALERROR;
+					}
+				}
+			}
 		}
 
 		uint32 stimPower = stimPack->calculatePower(creature, targetCreature);
@@ -493,8 +536,8 @@ public:
 		Locker locker(stimPack);
 		stimPack->decreaseUseCount();
 
-		//if (targetCreature != creature && !targetCreature->isPet())
-		awardXp(creature, "medical", (healthHealed + actionHealed)*5); //No experience for healing yourself.
+		if (targetCreature != creature && !targetCreature->isPet())
+			awardXp(creature, "medical", (healthHealed + actionHealed)); //No experience for healing yourself.
 
 		if (targetCreature != creature)
 			clocker.release();

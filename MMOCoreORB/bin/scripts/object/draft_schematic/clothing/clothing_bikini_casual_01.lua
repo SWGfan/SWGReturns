@@ -50,7 +50,6 @@ object_draft_schematic_clothing_clothing_bikini_casual_01 = object_draft_schemat
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
    complexity = 20, 
    size = 3, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 300, 

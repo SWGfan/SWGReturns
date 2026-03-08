@@ -1,19 +1,15 @@
-/*
- * HolocronMenuComponent.h
- *
- *  Created on: 01/23/2012
- *      Author: xyborn
- */
-
 #ifndef HOLOCRONMENUCOMPONENT_H_
 #define HOLOCRONMENUCOMPONENT_H_
 
-#include "TangibleObjectMenuComponent.h"
+#include "server/zone/objects/tangible/components/TangibleObjectMenuComponent.h"
 
 class HolocronMenuComponent : public TangibleObjectMenuComponent {
 public:
-	int handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const;
-};
+	void fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const override;
+	int handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* creature, byte selectedID) const override;
 
+private:
+	void callLuaHolocronFunction(SceneObject* sceneObject, CreatureObject* creature, const String& functionName) const;
+};
 
 #endif /* HOLOCRONMENUCOMPONENT_H_ */

@@ -53,19 +53,22 @@ object_building_poi_scout_camp_s0 = object_building_poi_shared_scout_camp_s0:new
 		{"private_medical_rating", 60},
 		{"private_med_wound_health", 20},
 		{"private_med_wound_action", 20},
-		{"private_buff_mind", 100}
+		{"private_buff_mind", 100},
+		{"private_spec_samplesize", 20},
+		{"private_spec_samplerate", 10}		
 	},
 
 	aggroMod = 0,
 
-	duration = 3600,
+	duration = 10800,
 	radius = 12,
 	experience = 360,
-	skillRequired = 5,
+	skillRequired = 0,
 
 	childObjects = {
 		{templateFile = "object/tangible/camp/camp_control_panel.iff", x = 2.62, z = 0, y = 1.11, ox = 0, oy = -0.895, oz = 0, ow =  0.446, cellid = -1, containmentType = -1},
 		{templateFile = "object/tangible/camp/camp_chair_s1.iff", x = 1.35, z = 0, y = -1.24, ox = 0, oy = -0.416836, oz = 0, ow = 0.9089816, cellid = -1, containmentType = -1},
+
 	}
 }
 

@@ -34,7 +34,7 @@ void ArmorComponentImplementation::updateCraftingValues(CraftingValues* values, 
 	float specialbase = values->getCurrentValue("armor_special_effectiveness");
 	int specialResists = values->getCurrentValue("armor_special_type");
 
-	if (specialResists != AttributesMap::VALUENOTFOUND) {
+	if (specialResists != ValuesMap::VALUENOTFOUND) {
 		if (specialResists & SharedWeaponObjectTemplate::KINETIC)
 			addProperty("kineticeffectiveness", specialbase + kinetic, 10, expProp);
 		if (specialResists & SharedWeaponObjectTemplate::ENERGY)
@@ -64,7 +64,7 @@ void ArmorComponentImplementation::calculateSpecialProtection(CraftingValues* cr
 		String subtitle = getStringType(type);
 		float value = craftingValues->getCurrentValue(subtitle);
 
-		if (value != AttributesMap::VALUENOTFOUND) {
+		if (value != ValuesMap::VALUENOTFOUND) {
 			setProtectionValue(type, value);
 		}
 	}

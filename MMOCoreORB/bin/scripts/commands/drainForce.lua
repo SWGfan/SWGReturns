@@ -42,8 +42,7 @@
 --true = 1, false = 0
 
 DrainForceCommand = {
-	name = "drainforce",
-	defaultTime = 5,
+  name = "drainforce",
 	maxDamage = 250,
 	forceCost = 50,
 	visMod = 25,

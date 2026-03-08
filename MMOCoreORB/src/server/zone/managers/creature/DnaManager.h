@@ -33,11 +33,9 @@ protected:
 public:
 	DnaManager();
 	virtual ~DnaManager();
-
 	void loadSampleData();
 	int generateXp(int creatureLevel);
 	static int addQualityTemplate(lua_State* L);
-
 	enum {
 		FORTITUDE     = 1,
 		ENDURANCE     = 2,
@@ -50,7 +48,6 @@ public:
 		POWER         = 9,
 		FIERCENESS    = 10
 	};
-
 	enum {
 		HIT_LEVEL = 1,
 		HAM_LEVEL = 2,
@@ -58,20 +55,16 @@ public:
 		ARM_LEVEL = 4,
 		REG_LEVEL = 5
 	};
-
 	void generateSample(Creature* creature, CreatureObject* player, int quality);
 	void generationalSample(PetDeed* deed, CreatureObject* player, int quality);
 	int levelForScore(int type, float value);
 	float valueForLevel(int type, int level);
-
 protected:
 	int reduceByPercent(int source, int percent) {
 		float reduceBy = (100.0 - (float)percent) / 100.0;
-		uint32 newValue = (int)( ((float)source) * reduceBy);
-
+		uint32 newValue = (int)( ((float)source) * reduceBy );
 		if (newValue < 1)
 			newValue = 1;
-
 		return newValue;
 	}
 };

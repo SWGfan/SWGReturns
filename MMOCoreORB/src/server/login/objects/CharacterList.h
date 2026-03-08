@@ -27,7 +27,7 @@ public:
 	void update() {
 		removeAll();
 
-		UniqueReference<ResultSet*> characters;
+		Reference<ResultSet*> characters;
 
 		StringBuffer query;
 		query << "SELECT DISTINCT characters.character_oid, characters.account_id, characters.galaxy_id, characters.firstname, "
@@ -57,9 +57,9 @@ public:
 		if (characters == nullptr)
 			return;
 
-		auto galaxies = GalaxyList(accountid);
+		auto galaxies = GalaxyList(username);
 
-		while (characters->next()) {
+		while(characters->next()) {
 			uint32 galaxyID = characters->getInt(2);
 
 			if (!galaxies.isAllowed(galaxyID))

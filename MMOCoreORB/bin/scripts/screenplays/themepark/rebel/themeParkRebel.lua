@@ -781,7 +781,7 @@ jan_missions =
 			{
 				{ rewardType = "faction", faction = "rebel", amount = 250 },
 				{ rewardType = "loot",  lootGroup = "theme_park_reward_rebel_jan_dodonna" },
-				{ rewardType = "permission", permissionGroup = "@yavin4_region_names:temple_of_exar_kun2" }
+				{ rewardType = "permission", permissionGroup = "temple_of_exar_kun2" }
 			}
 		},
 	}
@@ -824,7 +824,7 @@ luke_missions =
 			planetName = "yavin4",
 			primarySpawns =
 			{
-				{ npcTemplate = "theme_park_rebel_supervisor", npcName = "Expedition Team Member" }
+				{ npcTemplate = "theme_park_rebel_supervisor", npcName = "Expidition Team Member" }
 			},
 			secondarySpawns = {},
 			itemSpawns = {},
@@ -967,7 +967,7 @@ npcMapRebel =
 permissionMapRebel = {
 	{
 		planetName = "corellia",
-		regionName = "corellia_rebel_hideout",
+		regionName = "rebel_hideout",
 		permissions =
 		{
 			{
@@ -981,7 +981,7 @@ permissionMapRebel = {
 	},
 	{
 		planetName = "dantooine",
-		regionName = "@dantooine_region_names:abandoned_rebel_base_1",
+		regionName = "abandoned_rebel_base_1",
 		permissions =
 		{
 			{
@@ -995,7 +995,7 @@ permissionMapRebel = {
 	},
 	{
 		planetName = "yavin4",
-		regionName = "@yavin4_region_names:temple_of_exar_kun",
+		regionName = "temple_of_exar_kun",
 		permissions =
 		{
 			{
@@ -1037,26 +1037,3 @@ theme_park_rebel_mission_giver_conv_handler = mission_giver_conv_handler:new {
 theme_park_rebel_mission_target_conv_handler = mission_target_conv_handler:new {
 	themePark = ThemeParkRebel
 }
-
-
--- =====================================================
--- Hologrind hook: grant Force when the Rebel Theme Park badge is awarded
-RebelThemeParkForceHook = { className = "RebelThemeParkForceHook" }
-
-function RebelThemeParkForceHook:onPlayerLoggedIn(pCreature)
-	if not pCreature then return end
-	createObserver(BADGEAWARDED, "RebelThemeParkForceHook", "onBadgeAwarded", pCreature)
-end
-
-function RebelThemeParkForceHook:onBadgeAwarded(pCreature, _, badgeId)
-	if not pCreature then return 0 end
-	if badgeId == THEME_PARK_REBEL_BADGE then
-		if HologrindJediManager and HologrindJediManager.addForceForDungeon then
-			HologrindJediManager:addForceForDungeon(pCreature, 1200) -- group-scaled in manager
-		end
-	end
-	return 0
-end
-
-registerScreenPlay("RebelThemeParkForceHook", true)
--- =====================================================

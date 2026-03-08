@@ -5,7 +5,6 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
-#include "server/zone/objects/tangible/components/EventPerkDataComponent.h"
 
 namespace server {
 namespace zone {
@@ -14,15 +13,15 @@ namespace tangible {
 namespace tasks {
 
 class RemoveEventPerkDeedTask : public Task {
-	ManagedWeakReference<EventPerkDeed*> weakDeed;
+	ManagedWeakReference<EventPerkDeed*> deed;
 
 public:
-	RemoveEventPerkDeedTask(EventPerkDeed* deed) {
-		weakDeed = deed;
+	RemoveEventPerkDeedTask(EventPerkDeed* de) {
+		deed = de;
 	}
 
 	void run() {
-		auto deed = weakDeed.get();
+		auto deed = this->deed.get();
 
 		if (deed == nullptr) {
 			return;
@@ -30,46 +29,32 @@ public:
 
 		Locker locker(deed);
 
-		ManagedReference<TangibleObject*> generatedObject = deed->getGeneratedObject().get();
+		deed->getRootParent();
+
+		ManagedReference<TangibleObject*> genOb = deed->getGeneratedObject().get();
 		ManagedReference<CreatureObject*> player = deed->getOwner().get();
 
-		if (generatedObject != nullptr) {
-			EventPerkDataComponent* data = cast<EventPerkDataComponent*>(generatedObject->getDataObjectComponent()->get());
+		if (genOb != nullptr) {
+			Locker clocker(genOb, deed);
 
-			if (data != nullptr) {
-				auto npcActor = data->getActor();
-
-				if (npcActor != nullptr) {
-					Locker actorLock(npcActor, deed);
-
-					npcActor->destroyObjectFromWorld(true);
-					npcActor->destroyObjectFromDatabase(true);
-				}
-			}
-
-			Locker clocker(generatedObject, deed);
-
-			// Destroy any child objects
-			generatedObject->destroyChildObjects();
-
-			// Destroy the Perk Object and anything within
-			generatedObject->destroyObjectFromWorld(true);
-			generatedObject->destroyObjectFromDatabase(true);
+			genOb->destroyChildObjects();
+			genOb->destroyObjectFromWorld(true);
+			genOb->destroyObjectFromDatabase();
 		} else if (player != nullptr) {
 			player->sendSystemMessage("@event_perk:deed_expired"); // Your unused Rental Deed expired and has been removed from your inventory.
 		}
 
-		// Destroy the Deed
 		deed->destroyObjectFromWorld(true);
 		deed->destroyObjectFromDatabase();
+
 	}
 };
 
-} // namespace tasks
-} // namespace tangible
-} // namespace objects
-} // namespace zone
-} // namespace server
+}
+}
+}
+}
+}
 
 using namespace server::zone::objects::tangible::tasks;
 

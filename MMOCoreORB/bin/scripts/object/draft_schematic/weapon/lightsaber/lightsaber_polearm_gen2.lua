@@ -50,8 +50,7 @@ object_draft_schematic_weapon_lightsaber_lightsaber_polearm_gen2 = object_draft_
    craftingToolTab = 2048, -- (See DraftSchematicObjectTemplate.h)
    complexity = 17, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
-   
+
    xpType = "jedi_general", 
    xp = 0, 
 

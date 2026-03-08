@@ -35,6 +35,8 @@
 #include "server/zone/Zone.h"
 
 #include "server/zone/objects/creature/commands/JediQueueCommand.h"
+#include "server/zone/objects/creature/commands/ResetVillageCommand.h"
+#include "server/zone/objects/creature/commands/VillageCommand.h"
 
 #include "server/zone/objects/creature/commands/Melee1hBlindHit1Command.h"
 #include "server/zone/objects/creature/commands/Melee1hBlindHit2Command.h"
@@ -334,6 +336,7 @@
 #include "server/zone/objects/creature/commands/StrafeShot2Command.h"
 #include "server/zone/objects/creature/commands/StructurestatusCommand.h"
 #include "server/zone/objects/creature/commands/StunAttackCommand.h"
+#include "server/zone/objects/creature/commands/CheckJediCommand.h"
 
 using namespace server::zone::managers::objectcontroller::command;
 
@@ -481,6 +484,8 @@ void CommandConfigManager::registerCommands3() {
 	commandFactory.registerCommand<RescueCommand>(String("rescue").toLowerCase());
 	commandFactory.registerCommand<ResendLoginMessageToAllCommand>(String("resendLoginMessageToAll").toLowerCase());
 	commandFactory.registerCommand<ResetJediCommand>(String("resetJedi").toLowerCase());
+	commandFactory.registerCommand<ResetVillageCommand>(String("resetVillage").toLowerCase());
+	commandFactory.registerCommand<VillageCommand>(String("village").toLowerCase());
 	commandFactory.registerCommand<ResourceCommand>(String("resource").toLowerCase());
 	commandFactory.registerCommand<ResourceContainerSplitCommand>(String("resourceContainerSplit").toLowerCase());
 	commandFactory.registerCommand<ResourceContainerTransferCommand>(String("resourceContainerTransfer").toLowerCase());
@@ -634,4 +639,5 @@ void CommandConfigManager::registerCommands3() {
 	commandFactory.registerCommand<StrafeShot2Command>(String("strafeShot2").toLowerCase());
 	commandFactory.registerCommand<StructurestatusCommand>(String("structurestatus").toLowerCase());
 	commandFactory.registerCommand<StunAttackCommand>(String("stunAttack").toLowerCase());
+	commandFactory.registerCommand<CheckJediCommand>(String("checkJedi").toLowerCase());
 }

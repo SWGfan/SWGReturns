@@ -58,21 +58,19 @@ public:
 			}
 
 		} else {
-			if (player->getPvpStatusBitmask() & ObjectFlag::PLAYER) {
-				player->setPvpStatusBitmask(ObjectFlag::NONE);
+			if (player->getPvpStatusBitmask() & CreatureFlag::PLAYER) {
+				player->setPvpStatusBitmask(CreatureFlag::NONE);
 				player->sendSystemMessage("You are now invulnerable.");
 
 			} else if (player->getFactionStatus() == FactionStatus::OVERT) {
-				player->setPvpStatusBitmask(ObjectFlag::PLAYER | ObjectFlag::OVERT);
+				player->setPvpStatusBitmask(CreatureFlag::PLAYER | CreatureFlag::OVERT);
 				player->sendSystemMessage("You are no longer invulnerable");
 
 			} else {
-				player->setPvpStatusBitmask(ObjectFlag::PLAYER);
+				player->setPvpStatusBitmask(CreatureFlag::PLAYER);
 				player->sendSystemMessage("You are no longer invulnerable");
 			}
 		}
-
-		player->broadcastPvpStatusBitmask();
 
 		return SUCCESS;
 	}

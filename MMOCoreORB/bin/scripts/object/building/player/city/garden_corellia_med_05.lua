@@ -45,7 +45,7 @@ object_building_player_city_garden_corellia_med_05 = object_building_player_city
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "talus"},
+	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	
 	length = 5,
 	
@@ -53,7 +53,7 @@ object_building_player_city_garden_corellia_med_05 = object_building_player_city
 	cityRankRequired = 2,
 	cityMaintenanceBase = 20000,
 	abilityRequired = "place_medium_garden",
-	groundZoneComponent = "StructureZoneComponent",
+	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",
 	childObjects = {
 		{templateFile = "object/tangible/terminal/terminal_player_structure_nosnap_mini.iff", x = 8.25, z = 1.3, y = -8.25, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1}

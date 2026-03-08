@@ -15,13 +15,11 @@ protected:
 	unsigned int milestone; // days
 	bool oneTime;
 	String description;
-	bool jtlReward;
 
 public:
 	VeteranReward() {
 		milestone = 0;
 		oneTime = false;
-		jtlReward = false;
 	}
 
 	VeteranReward(const VeteranReward& obj) : Object() {
@@ -29,7 +27,6 @@ public:
 		milestone = obj.milestone;
 		oneTime = obj.oneTime;
 		description = obj.description;
-		jtlReward = obj.jtlReward;
 	}
 
 	VeteranReward& operator=(const VeteranReward& obj) {
@@ -40,7 +37,6 @@ public:
 		milestone = obj.milestone;
 		oneTime = obj.oneTime;
 		description = obj.description;
-		jtlReward = obj.jtlReward;
 
 		return *this;
 	}
@@ -50,7 +46,6 @@ public:
 		milestone = luaObject->getIntField("milestone");
 		oneTime = luaObject->getBooleanField("oneTime");
 		description = luaObject->getStringField("description");
-		jtlReward = luaObject->getBooleanField("jtlReward");
 	}
 
 	inline void setTemplateFile(const String& file) {
@@ -69,10 +64,6 @@ public:
 		description = desc;
 	}
 
-	inline void setJtlReward(bool val) {
-		jtlReward = val;
-	}
-
 	inline String& getTemplateFile() {
 		return templateFile;
 	}
@@ -89,9 +80,6 @@ public:
 		return description;
 	}
 
-	inline bool isJtlReward() {
-		return jtlReward;
-	}
 };
 
 #endif /* VETERANREWARD_H_ */

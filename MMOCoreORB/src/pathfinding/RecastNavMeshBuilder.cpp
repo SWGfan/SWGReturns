@@ -84,13 +84,13 @@ RecastNavMeshBuilder::RecastNavMeshBuilder(Zone* zone, const String& name, const
 	}
 	this->name = name;
 	this->zone = zone;
-	m_navMesh = NULL;
+	m_navMesh = nullptr;
 	m_ctx = new rcContext();
 	destroyMesh = true;
 }
 
 RecastNavMeshBuilder::~RecastNavMeshBuilder() {
-	m_geom = NULL;
+	m_geom = nullptr;
 	cleanup();
 	if (destroyMesh) {
 		dtFreeNavMesh(m_navMesh);
@@ -448,9 +448,7 @@ void RecastNavMeshBuilder::buildAllTiles() {
 					dtFree(data);
 				}
 			} else {
-#ifdef NAVMESH_DEBUG
 				info("No data", true);
-#endif
 			}
 		}
 		progress.add(tw);
@@ -500,7 +498,7 @@ RecastNavMeshBuilder::initialize(Vector<Reference<MeshData*> >& meshData, const 
 	for (const Boundary* boundary : water) {
 		const BoundaryPolygon* bPoly = dynamic_cast<const BoundaryPolygon*>(boundary);
 		const BoundaryRectangle* bRect = dynamic_cast<const BoundaryRectangle*>(boundary);
-		if (bPoly != NULL) {
+		if (bPoly != nullptr) {
 			const Vector<Point2D*>& points = bPoly->getVertices();
 
 			Reference < RecastPolygon * > poly = new RecastPolygon(points.size());
@@ -522,7 +520,7 @@ RecastNavMeshBuilder::initialize(Vector<Reference<MeshData*> >& meshData, const 
 			addWater(poly);
 			continue;
 
-		} else if (bRect != NULL) {
+		} else if (bRect != nullptr) {
 			Reference < RecastPolygon * > poly = new RecastPolygon(4);
 			poly->type = SAMPLE_POLYAREA_WATER;
 			float tableHeight = bRect->getLocalWaterTableHeight();

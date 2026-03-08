@@ -14,34 +14,52 @@
 #include "server/zone/objects/player/sui/callbacks/BankTerminalSuiCallback.h"
 #include "server/zone/Zone.h"
 #include "server/zone/objects/region/CityRegion.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void BankTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* creature) const {
-	if (creature == nullptr)
+
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
+	if (ghost == nullptr)
 		return;
 
+	Zone* playerZone = sceneObject->getZone();
+
+	if (playerZone == nullptr)
+		return;
+
+	String location = ghost->getBankLocation();
+
+	//if (location = "") {
+		// Join Bank
+		menuResponse->addRadialMenuItemToRadialID(20, 71, 3, "@sui:bank_join");
+	//} else {
+		// Quit Bank - no checks here since there are error message stfs
+		menuResponse->addRadialMenuItemToRadialID(20, 72, 3, "@sui:bank_quit");
+
+		/*SceneObject* deposit = player->getSlottedObject("bank");
+		if (deposit->getContainerObjectsSize() == 0) {
+			// Quit Bank
+			menuResponse->addRadialMenuItemToRadialID(118, 128, 3, "@player_structure:permission_destroy"); //Destroy Structure
+		}
+		 */
+
+		String currentLocation = playerZone->getZoneName();
+		//if (currentLocation == location) {
+			menuResponse->addRadialMenuItemToRadialID(20, 73, 3, "@sui:bank_items"); //Safety Deposit
+		//}
+	//}
 	menuResponse->addRadialMenuItemToRadialID(20, 68, 3, "@sui:bank_credits"); // Deposit/Withdrawal
-	menuResponse->addRadialMenuItemToRadialID(20, 73, 3, "@sui:bank_items"); //Safety Deposit
-
-	if (creature->getCashCredits() > 0)
-		menuResponse->addRadialMenuItemToRadialID(20, 69, 3, "@sui:bank_depositall"); // Deposit all
-
-	if (creature->getBankCredits() > 0)
-		menuResponse->addRadialMenuItemToRadialID(20, 70, 3, "@sui:bank_withdrawall"); // Withdraw all
-
-	// Join Bank
-	menuResponse->addRadialMenuItemToRadialID(20, 71, 3, "@sui:bank_join");
-	// Quit Bank - no checks here since there are error message stfs
-	menuResponse->addRadialMenuItemToRadialID(20, 72, 3, "@sui:bank_quit");
+	menuResponse->addRadialMenuItemToRadialID(20, 69, 3, "@sui:bank_depositall"); // Deposit all
+	menuResponse->addRadialMenuItemToRadialID(20, 70, 3, "@sui:bank_withdrawall"); // Withdraw all
 
 	TangibleObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, creature);
 }
 
 int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* creature, byte selectedID) const {
-	if (sceneObject == nullptr || creature == nullptr)
+	if (!sceneObject->isTangibleObject())
 		return 0;
 
-	if (!sceneObject->isTangibleObject() || !creature->isPlayerCreature())
+	if (!creature->isPlayerCreature())
 		return 0;
 
 	Zone* playerZone = creature->getZone();
@@ -51,19 +69,19 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 
 	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
-	if (ghost == nullptr)
-		return 0;
-
 	String planet = ghost->getBankLocation();
 
-	ManagedReference<CityRegion*> region = sceneObject->getCityRegion().get();
+	ManagedReference<CityRegion* > region = sceneObject->getCityRegion().get();
 
-	if (region != nullptr && region->isBanned(creature->getObjectID())) {
-		creature->sendSystemMessage("@city/city:youre_city_banned"); // you are banned from this city and may not use any of its public services and structures
-		return 0;
+	if (region != nullptr) {
+		if (region->isBanned(creature->getObjectID())) {
+				creature->sendSystemMessage("@city/city:youre_city_banned"); // you are banned from this city and may not use any of its public services and structures
+				return 0;
+		}
 	}
 
-	if (selectedID == WITHDRAW || selectedID == 20) {
+	if(selectedID == WITHDRAW || selectedID == 20) {
+
 		ManagedReference<SuiBankTransferBox*> sui = new SuiBankTransferBox(sceneObject, creature, SuiWindowType::BANK_TRANSFER);
 
 		sui->addCash(creature->getCashCredits());
@@ -75,17 +93,14 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 
 		return 0;
 	} else if (selectedID == JOIN) {
+
 		if (planet == "") {
 			// JOIN BANK
 			ghost->setBankLocation(playerZone->getZoneName());
-
+			//creature->transferObject(bank, 4);
 			SceneObject* bank = creature->getSlottedObject("bank");
-
-			if (bank != nullptr) {
-				bank->sendTo(creature, true);
-
-				creature->sendSystemMessage("@system_msg:succesfully_joined_bank");
-			}
+			bank->sendTo(creature, true);
+			creature->sendSystemMessage("@system_msg:succesfully_joined_bank");
 		} else if (planet == playerZone->getZoneName()) {
 			// Already joined this bank
 			creature->sendSystemMessage("@system_msg:already_member_of_bank");
@@ -96,6 +111,7 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 
 		return 0;
 	} else if (selectedID == QUIT) {
+
 		SceneObject* bank = creature->getSlottedObject("bank");
 
 		ZoneServer* server = creature->getZoneServer();
@@ -105,6 +121,8 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 		 * If anyone remembers you had to go to the correct planet for it we can change it */
 
 		if (bank->getContainerObjectsSize() == 0) {
+
+			//creature->removeObject(bank, nullptr, true);
 			bank->sendDestroyTo(creature);
 
 			// QUIT BANK
@@ -119,7 +137,9 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 		return 0;
 
 	} else if (selectedID == DEPOSIT) {
+
 		if (planet == playerZone->getZoneName() || GLOBALSAFETYDEPOSIT) {
+
 			ManagedReference<SceneObject*> bank = creature->getSlottedObject("bank");
 			bank->openContainerTo(creature);
 		} else {
@@ -128,6 +148,7 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 
 		return 0;
 	} else if (selectedID == DEPOSITALL) {
+
 		uint32 cash = creature->getCashCredits();
 
 		StringIdChatParameter params;
@@ -135,12 +156,12 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 		params.setDI(cash);
 		creature->sendSystemMessage(params);
 
-		TransactionLog trx(creature, creature, TrxCode::BANK, cash, true);
 		creature->subtractCashCredits(cash);
 		creature->addBankCredits(cash);
 
 		return 0;
 	} else if (selectedID == WITHDRAWALL) {
+
 		uint32 cash = creature->getBankCredits();
 
 		StringIdChatParameter params;
@@ -148,7 +169,6 @@ int BankTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 		params.setDI(cash);
 		creature->sendSystemMessage(params);
 
-		TransactionLog trx(creature, creature, TrxCode::BANK, cash, false);
 		creature->subtractBankCredits(cash);
 		creature->addCashCredits(cash);
 

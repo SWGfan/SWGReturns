@@ -1,14 +1,13 @@
 region_area = SharedObjectTemplate:new {
-	gameObjectType = 33554433,
-
 	clientTemplateFileName = "",
 	planetMapCategory = "",
 	planetMapSubCategory = "",
 	autoRegisterWithPlanetMap = 1,
 
-	groundZoneComponent = "GroundZoneComponent",
+	zoneComponent = "ZoneComponent",
 	objectMenuComponent = "ObjectMenuComponent",
-	containerComponent = "ContainerComponent"
+	containerComponent = "ContainerComponent",
+	gameObjectType = 33554433
 }
-
+	
 ObjectTemplates:addTemplate(region_area, "object/region_area.iff")

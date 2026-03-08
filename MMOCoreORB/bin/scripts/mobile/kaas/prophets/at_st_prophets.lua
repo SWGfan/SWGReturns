@@ -2,7 +2,6 @@ at_st_prophets = Creature:new {
 	objectName = "@mob/creature_names:at_st",
 	socialGroup = "thug",
 	faction = "prophets",
-	mobType = MOB_VEHICLE,
 	level = 125,
 	chanceHit = 4.75,
 	damageMin = 770,

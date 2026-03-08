@@ -46,14 +46,8 @@ object_installation_faction_perk_turret_tower_lg = object_installation_faction_p
 	pvpStatusBitmask = ATTACKABLE,
 	optionsBitmask = 0,
 	maxCondition = 300000,
-
-	gameObjectType = 4105,
-
-	groundZoneComponent = "TurretZoneComponent",
+	zoneComponent = "TurretZoneComponent",
 	dataObjectComponent = "TurretDataComponent",
-	containerComponent = "TurretContainerComponent",
-	objectMenuComponent = "TurretMenuComponent",
-
 	-- Damagetypes in WeaponObject
 	vulnerability = BLAST + LIGHTSABER,
 	-- LIGHT, MEDIUM, HEAVY
@@ -70,6 +64,7 @@ object_installation_faction_perk_turret_tower_lg = object_installation_faction_p
 	lightSaber = -1,
 	chanceHit = 4,
 	weapon = "object/weapon/ranged/turret/turret_tower_large.iff",
+
 }
 
 ObjectTemplates:addTemplate(object_installation_faction_perk_turret_tower_lg, "object/installation/faction_perk/turret/tower_lg.iff")

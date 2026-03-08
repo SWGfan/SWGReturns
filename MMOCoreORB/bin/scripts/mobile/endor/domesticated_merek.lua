@@ -2,7 +2,6 @@ domesticated_merek = Creature:new {
 	objectName = "@mob/creature_names:domesticated_merek",
 	socialGroup = "self",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 49,
 	chanceHit = 0.5,
 	damageMin = 395,
@@ -19,7 +18,7 @@ domesticated_merek = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -29,17 +28,12 @@ domesticated_merek = Creature:new {
 	templates = {"object/mobile/merek_hue.iff"},
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_small_red.iff",
-	secondaryWeapon = "unarmed",
+	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"posturedownattack",""}, {"stunattack",""} },
-	secondaryAttacks = { {"posturedownattack",""}, {"stunattack",""} }
+	attacks = {
+		{"posturedownattack",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(domesticated_merek, "domesticated_merek")

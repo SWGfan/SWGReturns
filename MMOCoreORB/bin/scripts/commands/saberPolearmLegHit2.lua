@@ -42,10 +42,9 @@
 --true = 1, false = 0
 
 SaberPolearmLegHit2Command = {
-	name = "saberpolearmleghit2",
+        name = "saberpolearmleghit2",
 
 	damageMultiplier = 1.5,
-	accuracyBonus = 50,
 	speedMultiplier = 1.25,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
@@ -53,14 +52,14 @@ SaberPolearmLegHit2Command = {
 	forceCostMultiplier = 1.25,
 	visMod = 25,
 
-	animation = "combo_3b",
+	animation = "combo_3b", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "saberpolearmleghit2",
 
 	poolsToDamage = ACTION_ATTRIBUTE,
 
-	weaponType = POLEARMJEDIWEAPON,
+	weaponType = JEDIWEAPON,
 
 	range = -1
 }

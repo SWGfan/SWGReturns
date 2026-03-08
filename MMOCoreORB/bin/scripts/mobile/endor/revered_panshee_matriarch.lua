@@ -2,7 +2,6 @@ revered_panshee_matriarch = Creature:new {
 	objectName = "@mob/creature_names:revered_panshee_matriarch",
 	socialGroup = "panshee_tribe",
 	faction = "panshee_tribe",
-	mobType = MOB_NPC,
 	level = 39,
 	chanceHit = 0.43,
 	damageMin = 335,
@@ -19,7 +18,7 @@ revered_panshee_matriarch = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -31,22 +30,14 @@ revered_panshee_matriarch = Creature:new {
 	lootGroups = {
 		 {
 	        groups = {
-				{group = "panshee_tribe_tier_1", chance = 10000000}
+				{group = "ewok", chance = 10000000}
 			},
 			lootChance = 1780000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ewok_ranged",
-	secondaryWeapon = "ewok_melee",
+	weapons = {"ewok_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,marksmanmaster),
-	secondaryAttacks = merge(pikemanmaster,brawlermaster)
+	attacks = merge(riflemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(revered_panshee_matriarch, "revered_panshee_matriarch")

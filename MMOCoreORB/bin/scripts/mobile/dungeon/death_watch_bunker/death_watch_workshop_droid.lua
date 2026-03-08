@@ -1,7 +1,6 @@
 death_watch_workshop_droid = Creature:new {
 	objectName = "@droid_name:wed_treadwell_base",
 	customName = "WED15-I643 (a workshop droid)",
-	mobType = MOB_DROID,
 	socialGroup = "",
 	faction = "",
 	level = 30,
@@ -27,17 +26,46 @@ death_watch_workshop_droid = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/wed_treadwell.iff"},
-	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { },
+	lootGroups = {
+		{
+			groups = {
+				{group = "wearables_uncommon", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "wearables_common", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "jetpack_base", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "death_watch_bunker_commoners", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 10000000}
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "black_suns", chance = 10000000}
+			},
+			lootChance = 100000
+		},
+	},
+	weapons = {},
+	attacks = {},
 	conversationTemplate = "deathWatchWorkshopDroidConvoTemplate",
 	optionsBitmask = INVULNERABLE + CONVERSABLE
 }

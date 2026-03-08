@@ -121,7 +121,7 @@ int DestroyStructureSessionImplementation::destroyStructure() {
 		gcwMan->doBaseDestruction(structureObject);
 		return cancelSession();
 
-	} else if(structureObject->isTurret() || structureObject->isMinefield() || structureObject->isScanner()){
+	} else if(structureObject->isTurret() || structureObject->isMinefield()){
 
 		Reference<DestroyFactionInstallationTask*> destroyTask = new DestroyFactionInstallationTask(cast<InstallationObject*>(structureObject.get()));
 		destroyTask->execute();

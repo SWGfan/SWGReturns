@@ -42,6 +42,7 @@
 
 
 object_tangible_scout_trap_trap_tranq_dart = object_tangible_scout_trap_shared_trap_tranq_dart:new {
+
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
@@ -51,18 +52,17 @@ object_tangible_scout_trap_trap_tranq_dart = object_tangible_scout_trap_shared_t
 	skillMods = {},
 
 	healthCost = 17,
-	actionCost = 30,
+	actionCost = 30, 
 	mindCost = 17,
 
 	maxRange = 32,
-	areaOfEffect = false,
 
 	poolToDamage = HEALTH,
 	minDamage = 150,
 	maxDamage = 200,
 
-	duration = 10,
-	state = IMMOBILIZED,
+	duration = 15,
+	state = DIZZY,
 	defenseMod = "",
 
 	successMessage = "trap_tranq_dart_effect",

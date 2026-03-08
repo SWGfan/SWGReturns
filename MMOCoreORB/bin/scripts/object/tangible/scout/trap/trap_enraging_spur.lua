@@ -42,6 +42,7 @@
 
 
 object_tangible_scout_trap_trap_enraging_spur = object_tangible_scout_trap_shared_trap_enraging_spur:new {
+
 	templateType = TRAP,
 	objectMenuComponent = "TrapMenuComponent",
 
@@ -51,17 +52,16 @@ object_tangible_scout_trap_trap_enraging_spur = object_tangible_scout_trap_share
 	skillMods = {},
 
 	healthCost = 17,
-	actionCost = 30,
+	actionCost = 30, 
 	mindCost = 17,
 
 	maxRange = 32,
-	areaOfEffect = false,
 
 	poolToDamage = MIND,
-	minDamage = 40,
-	maxDamage = 60,
+	minDamage = 75,
+	maxDamage = 125,
 
-	duration = 10,
+	duration = 15,
 	state = BLINDED,
 	defenseMod = "blind_defense",
 

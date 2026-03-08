@@ -1,10 +1,10 @@
 ysalamiri = Creature:new {
 	objectName = "@mob/creature_names:ysalamiri",
 	customName = "a Ysalamiri",	
-	socialGroup = "voritor",
+	socialGroup = "snake",
+	pvpFaction = "",
 	faction = "",
-	mobType = MOB_CARNIVORE,
-	level = 25,
+	level = 50,
 	chanceHit = 0.36,
 	damageMin = 250, --940
 	damageMax = 400, --1050
@@ -12,7 +12,7 @@ ysalamiri = Creature:new {
 	baseHAM = 5500,
 	baseHAMmax = 10000,
 	armor = 1,
-	resists = {20,20,0,25,25,25,25,25,90},
+	resists = {20,20,0,25,25,25,25,25,100},
 	meatType = "meat_carnivore",
 	meatAmount = 123,
 	hideType = "hide_scaley",
@@ -20,7 +20,7 @@ ysalamiri = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 123,
 	milk = 0,
-	tamingChance = 0.2,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK,
@@ -31,14 +31,12 @@ ysalamiri = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/ysalamiri_hue.iff",
 	scale = 1.5,	
 	lootGroups = {},
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_small_green.iff",
-  secondaryWeapon = "object/weapon/ranged/creature/creature_spit_small_green.iff",
-  
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
 	attacks = {
 		--{"knockdownattack","knockdownChance=95"},
 		--{"stunattack","stunChance=50"},
-		{"creaturedrainforce","intimidationattack", ""}
+		{"creaturedrainforce",""}
 	}
 }
 

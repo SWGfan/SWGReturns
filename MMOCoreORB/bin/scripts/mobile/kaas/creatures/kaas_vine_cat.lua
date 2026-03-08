@@ -4,7 +4,6 @@ vine_cat = Creature:new {
 	socialGroup = "death_watch",
 	pvpFaction = "death_watch",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 138,
 	chanceHit = 0.95,
 	damageMin = 620,

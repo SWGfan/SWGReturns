@@ -3,15 +3,14 @@ stormtrooper_prophets = Creature:new {
 	customName = "a Prophet Trooper",
 	socialGroup = "thug",
 	faction = "prophets",
-	mobType = MOB_NPC,
 	level = 25,
 	chanceHit = 0.36,
 	damageMin = 240,
-	damageMax = 850,
+	damageMax = 250,
 	baseXp = 2637,
 	baseHAM = 7200,
 	baseHAMmax = 8800,
-	armor = 1,
+	armor = 0,
 	resists = {15,15,40,15,15,15,15,-1,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -45,20 +44,11 @@ stormtrooper_prophets = Creature:new {
 			}
 		}
 	},
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-  -- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-  primaryWeapon = "stormtrooper_carbine",
-  secondaryWeapon = "none",
-  thrownWeapon = "thrown_weapons",
-
-  conversationTemplate = "",
-  reactionStf = "@npc_reaction/stormtrooper",
-  personalityStf = "@hireling/hireling_stormtrooper",
-
-  -- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-  -- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-  primaryAttacks = carbineermaster,
-  secondaryAttacks = {}
+	weapons = {"stormtrooper_weapons"},
+	conversationTemplate = "",
+	reactionStf = "@npc_reaction/stormtrooper",
+	personalityStf = "@hireling/hireling_stormtrooper",		
+	attacks = merge(riflemanmaster,carbineermaster,brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(stormtrooper_prophets, "stormtrooper_prophets")

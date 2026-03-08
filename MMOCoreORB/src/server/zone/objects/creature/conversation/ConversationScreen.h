@@ -12,7 +12,6 @@
 #include "server/zone/packets/object/StopNpcConversation.h"
 #include "server/zone/packets/object/StringList.h"
 #include "server/zone/objects/player/sessions/ConversationSession.h"
-#include "server/zone/managers/ship/tasks/SpaceCommTimerTask.h"
 
 namespace server {
 namespace zone {
@@ -82,11 +81,6 @@ public:
 	ConversationScreen() {
 		stopConversation = false;
 		readOnly = false;
-	}
-
-	ConversationScreen(StringIdChatParameter dialogue, bool stopConv) {
-		dialogText = dialogue;
-		stopConversation = stopConv;
 	}
 
 	/**
@@ -173,7 +167,7 @@ public:
 	 * @param player The player receiving the message.
 	 * @param npc The npc the player is talking to.
 	 */
-	void sendTo(CreatureObject* player, SceneObject* npc) {
+	void sendTo(CreatureObject* player, CreatureObject* npc) {
 		NpcConversationMessage* message;
 
 		if (customText.isEmpty())
@@ -196,31 +190,19 @@ public:
 		player->sendMessage(message);
 		player->sendMessage(optionsList);
 
-		CreatureObject* creo = npc->asCreatureObject();
-
-		if (!animation.isEmpty() && creo != nullptr)
-			creo->doAnimation(animation);
+		if (!animation.isEmpty())
+			npc->doAnimation(animation);
 
 		ConversationScreen* screenToSave = this;
 
 		//Check if the conversation should be stopped.
 		if (stopConversation) {
-			if (npc->isShipAiAgent()) {
-				auto task = new SpaceCommTimerTask(player, npc->getObjectID());
-
-				if (task != nullptr) {
-					player->addPendingTask("SpaceCommTimer", task, 3000);
-				}
-			} else {
-				player->sendMessage(new StopNpcConversation(player, npc->getObjectID()));
-				npc->notifyObservers(ObserverEventType::STOPCONVERSATION, player);
-			}
-
+			player->sendMessage(new StopNpcConversation(player, npc->getObjectID()));
+			npc->notifyObservers(ObserverEventType::STOPCONVERSATION, player);
 			screenToSave = nullptr;
 		}
 
 		Reference<ConversationSession*> session = player->getActiveSession(SessionFacadeType::CONVERSATION).castTo<ConversationSession* >();
-
 		if (session != nullptr) {
 			session->setLastConversationScreen(screenToSave);
 		}

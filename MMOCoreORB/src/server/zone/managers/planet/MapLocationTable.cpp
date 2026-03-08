@@ -6,26 +6,20 @@
  */
 
 #include "MapLocationTable.h"
-#include "MapLocationType.h"
 #include "templates/manager/PlanetMapCategory.h"
-#include "templates/manager/PlanetMapSubCategory.h"
 #include "server/zone/objects/scene/SceneObject.h"
 
 void MapLocationTable::transferObject(SceneObject* object) {
-	if (object == nullptr)
-		return;
+	const PlanetMapCategory* pmc = object->getPlanetMapSubCategory();
 
-	// Get the objects Primary map category
-	const PlanetMapCategory* pmc = object->getPlanetMapCategory();
+	if (pmc == nullptr)
+		pmc = object->getPlanetMapCategory();
 
 	if (pmc == nullptr)
 		return;
 
-	// Get the primary category name
-	String pmcName = pmc->getName();
-	int index = locations.find(pmcName);
+	int index = locations.find(pmc->getName());
 
-	// Primary Map Category is not on the list, add the new category
 	if (index == -1) {
 		SortedVector<MapLocationEntry> sorted;
 		sorted.setNoDuplicateInsertPlan();
@@ -33,55 +27,57 @@ void MapLocationTable::transferObject(SceneObject* object) {
 		MapLocationEntry entry(object);
 		sorted.put(entry);
 
-		locations.put(pmcName, sorted);
+		locations.put(pmc->getName(), sorted);
+	} else {
+		SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
 
-		return;
+		MapLocationEntry entry(object);
+		vector.put(entry);
 	}
-
-	SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
-	MapLocationEntry entry(object);
-
-	vector.put(entry);
 }
 
 void MapLocationTable::dropObject(SceneObject* object) {
-	const PlanetMapCategory* pmc = object->getPlanetMapCategory();
+	const PlanetMapCategory* pmc = object->getPlanetMapSubCategory();
+
+	if (pmc == nullptr)
+		pmc = object->getPlanetMapCategory();
 
 	if (pmc == nullptr)
 		return;
 
 	int index = locations.find(pmc->getName());
 
-	if (index == -1)
-		return;
+	if (index != -1) {
+		SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
 
-	SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
+		MapLocationEntry entry(object);
+		vector.drop(entry);
 
-	MapLocationEntry entry(object);
-	vector.drop(entry);
-
-	if (vector.isEmpty())
-		locations.remove(index);
+		if (vector.isEmpty())
+			locations.remove(index);
+	}
 }
 
 bool MapLocationTable::containsObject(SceneObject* object) const {
-	const PlanetMapCategory* pmc = object->getPlanetMapCategory();
+	const PlanetMapCategory* pmc = object->getPlanetMapSubCategory();
+
+	if (pmc == nullptr)
+		pmc = object->getPlanetMapCategory();
 
 	if (pmc == nullptr)
 		return false;
 
 	int index = locations.find(pmc->getName());
 
-	if (index == -1)
-		return false;
+	if (index != -1) {
+		const SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
 
-	const SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
+		for (int i = 0; i < vector.size(); i++) {
+			const auto& entry = vector.get(i);
 
-	for (int i = 0; i < vector.size(); i++) {
-		const auto& entry = vector.get(i);
-
-		if (entry.getObjectID() == object->getObjectID()) {
-			return true;
+			if (entry.getObjectID() == object->getObjectID()) {
+				return true;
+			}
 		}
 	}
 
@@ -89,45 +85,34 @@ bool MapLocationTable::containsObject(SceneObject* object) const {
 }
 
 void MapLocationTable::updateObjectsIcon(SceneObject* object, byte icon) {
-	const PlanetMapCategory* pmc = object->getPlanetMapCategory();
+	const PlanetMapCategory* pmc = object->getPlanetMapSubCategory();
+
+	if (pmc == nullptr)
+		pmc = object->getPlanetMapCategory();
 
 	if (pmc == nullptr)
 		return;
 
 	int index = locations.find(pmc->getName());
 
-	if (index == -1)
-		return;
+	if (index != -1) {
+		SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
 
-	SortedVector<MapLocationEntry>& vector = locations.elementAt(index).getValue();
+		for (int i = 0; i < vector.size(); i++) {
+			MapLocationEntry entry = vector.get(i);
 
-	for (int i = 0; i < vector.size(); i++) {
-		MapLocationEntry entry = vector.get(i);
-
-		if (entry.getObjectID() == object->getObjectID()) {
-			vector.drop(entry);
-			entry.setIcon(icon);
-			vector.put(entry);
-			return;
+			if (entry.getObjectID() == object->getObjectID()) {
+				vector.drop(entry);
+				entry.setIcon(icon);
+				vector.put(entry);
+				return;
+			}
 		}
 	}
 }
 
-const SortedVector<MapLocationEntry> MapLocationTable::getLocation(const String& name) const {
-	SortedVector<MapLocationEntry> mapTable;
-
-	for (int i = 0; i < locations.size(); ++i) {
-		String locName = locations.elementAt(i).getKey();
-
-		if (!locName.contains(name))
-			continue;
-
-		mapTable = locations.elementAt(i).getValue();
-
-		break;
-	}
-
-	return mapTable;
+const SortedVector<MapLocationEntry>& MapLocationTable::getLocation(const String& name) const {
+	return locations.get(name);
 }
 
 int MapLocationTable::findLocation(const String& name) const {

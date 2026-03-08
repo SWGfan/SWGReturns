@@ -2,7 +2,6 @@ boba_fett = Creature:new {
 	objectName = "@mob/creature_names:boba_fett",
 	socialGroup = "jabba",
 	faction = "jabba",
-	mobType = MOB_NPC,
 	level = 99,
 	chanceHit = 0.99,
 	damageMin = 640,
@@ -19,7 +18,7 @@ boba_fett = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = PACK,
@@ -28,17 +27,10 @@ boba_fett = Creature:new {
 
 	templates = {"object/mobile/boba_fett.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "boba_fett_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"boba_fett_weapons"},
 	conversationTemplate = "bobaFettConvoTemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(boba_fett, "boba_fett")

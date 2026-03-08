@@ -2,7 +2,6 @@ beldonnas_league_soldier = Creature:new {
 	objectName = "@mob/creature_names:beldonnas_soldier",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "beldonnas_league",
 	faction = "beldonnas_league",
 	level = 16,
@@ -21,7 +20,7 @@ beldonnas_league_soldier = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -46,22 +45,18 @@ beldonnas_league_soldier = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "beldonnas_league_tier_1", chance = 10000000}
+				{group = "junk", chance = 3000000},
+				{group = "wearables_common", chance = 2000000},
+				{group = "loot_kit_parts", chance = 2000000},
+				{group = "tailor_components", chance = 1000000},
+				{group = "beldonnas_common", chance = 2000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_pistol",
-	secondaryWeapon = "pirate_pistol",
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = marksmanmaster,
-	secondaryAttacks = marksmanmaster
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(beldonnas_league_soldier, "beldonnas_league_soldier")

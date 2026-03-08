@@ -16,189 +16,345 @@
 class DestructibleBuildingDataComponent : public BuildingDataComponent, public Logger {
 
 private:
-    Vector<String> dnaStrand;
-    Vector<int> dnaLocks;
-    String currentDnaChain;
+	Vector<String> dnaStrand;
+	Vector<int> dnaLocks;
+	String currentDnaChain;
 
-    Vector<int> powerSwitchRules;
-    Vector<bool> powerSwitchStates;
+	Vector<int> powerSwitchRules;
+	Vector<bool> powerSwitchStates;
 
-    int  intCurrentState; // serialized
-    bool terminalDamaged; // serialized
-    bool inRepair; // serialized
+	int  intCurrentState; // serialized
+	bool terminalDamaged; //serialized
+	bool inRepair; // serialized
 
-    Vector<uint64> turretSlots;
-    Vector<uint64> minefieldSlots;
-    Vector<uint64> scannerSlots;
+	Vector<uint64> turretSlots;
+	Vector<uint64> minefieldSlots;
+	Vector<uint64> scannerSlots;
 
-    Time lastVulnerableTime; // serialized
-    Time nextVulnerableTime; // serialized
-    Time vulnerabilityEndTime; // serialized
-    Time placementTime; // serialized
-    Time lastResetTime; // serialized
-    int uplinkBand; // secret code used to jam the uplink
-    bool activeDefenses;
-    bool defenseAddedThisVuln;
-    bool terminalsSpawned;
-    Vector<ManagedReference<SceneObject*> > baseTerminals;
-    Vector<uint64> hackBaseAlarms;
-    Vector<uint64> destructBaseAlarms;
+	Time lastVulnerableTime; // serialized
+	Time nextVulnerableTime; // serialized
+	Time vulnerabilityEndTime; //serialized
+	Time placementTime; // serialized
+	Time lastResetTime; // serialized
+	int uplinkBand; // secret code used to jam the uplink
+	bool activeDefenses;
+	bool defenseAddedThisVuln;
+	bool terminalsSpawned;
+	Vector<ManagedReference<SceneObject*> > baseTerminals;
 
 public:
-    const static int INVULNERABLE = 0;
-    const static int VULNERABLE = 1;
-    const static int BAND = 2;
-    const static int JAMMED = 3;
-    const static int SLICED = 4;
-    const static int DNA = 5;
-    const static int OVERLOADED = 6;
-    const static int SHUTDOWNSEQUENCE = 7;
-    const static int REBOOTSEQUENCE = 8;
+	const static int INVULNERABLE = 0;
+	const static int VULNERABLE = 1;
+	const static int BAND = 2;
+	const static int JAMMED = 3;
+	const static int SLICED = 4;
+	const static int DNA = 5;
+	const static int OVERLOADED = 6;
+	const static int SHUTDOWNSEQUENCE = 7;
+	const static int REBOOTSEQUENCE = 8;
 
-    DestructibleBuildingDataComponent() 
-        : dnaStrand()
-        , dnaLocks()
-        , currentDnaChain("")            // initialize as empty string
-        , powerSwitchRules()
-        , powerSwitchStates()
-        , intCurrentState(INVULNERABLE)
-        , terminalDamaged(false)
-        , inRepair(false)
-        , turretSlots()
-        , minefieldSlots()
-        , scannerSlots()
-        , lastVulnerableTime()
-        , nextVulnerableTime()
-        , vulnerabilityEndTime()
-        , placementTime()
-        , lastResetTime()
-        , uplinkBand(0)
-        , activeDefenses(true)
-        , defenseAddedThisVuln(false)
-        , terminalsSpawned(false)
-        , baseTerminals()
-        , hackBaseAlarms()
-        , destructBaseAlarms()
-    {
-        setLoggingName("DESTOBJ");
-    }
+	DestructibleBuildingDataComponent() {
+		this->setLoggingName("DESTOBJ");
+		intCurrentState = INVULNERABLE;
 
-    virtual ~DestructibleBuildingDataComponent() {}
+		currentDnaChain = "";
 
-    void writeJSON(nlohmann::json& j) const;
+		activeDefenses = true;
+		terminalDamaged = false;
+		terminalsSpawned = false;
 
-    bool toBinaryStream(ObjectOutputStream* stream);
-    bool parseFromBinaryStream(ObjectInputStream* stream);
+		uplinkBand = 0;
+		inRepair = false;
+		defenseAddedThisVuln = false;
+	}
 
-    bool isVulnerable() { return intCurrentState >= VULNERABLE; }
-    bool isDestructibleBuildingData() { return true; }
-    int getState() { return intCurrentState; }
+	virtual ~DestructibleBuildingDataComponent() {
 
-    Time getLastVulnerableTime() { return lastVulnerableTime; }
-    Time getNextVulnerableTime() { return nextVulnerableTime; }
-    Time getVulnerabilityEndTime() { return vulnerabilityEndTime; }
-    Time getPlacementTime() { return placementTime; }
-    Time getLastResetTime() { return lastResetTime; }
+	}
 
-    int getUplinkBand() { return uplinkBand; }
-    int isTerminalBeingRepaired() { return inRepair; }
-    bool isTerminalDamaged() { return terminalDamaged; }
+	void writeJSON(nlohmann::json& j) const;
 
-    void setState(int state);
+	bool toBinaryStream(ObjectOutputStream* stream);
 
-    void setLastVulnerableTime(const Time& time) { lastVulnerableTime = time; }
-    void setNextVulnerableTime(const Time& time) { nextVulnerableTime = time; }
-    void setVulnerabilityEndTime(const Time& time) { vulnerabilityEndTime = time; }
-    void setPlacementTime(Time time) { placementTime = time; }
-    void setLastResetTime(Time time) { lastResetTime = time; }
-    void setUplinkBand(int band) { uplinkBand = band; }
-    void setTerminalBeingRepaired(bool val) { inRepair = val; }
-    void setTerminalDamaged(bool val) { terminalDamaged = val; }
+	bool parseFromBinaryStream(ObjectInputStream* stream);
 
-    void setActiveTurret(int indx, uint64 turretOID) { turretSlots.get(indx) = turretOID; }
-    void setActiveMinefield(int indx, uint64 minefieldOID) { minefieldSlots.get(indx) = minefieldOID; }
+	bool isVulnerable() {
+		return (intCurrentState >= VULNERABLE);
+	}
 
-    void initializeTransientMembers();
+	bool isDestructibleBuildingData() {
+		return true;
+	}
 
-    int getTotalTurretCount() { return turretSlots.size(); }
-    int getTotalMinefieldCount() { return minefieldSlots.size(); }
-    int getTotalScannerCount() { return scannerSlots.size(); }
+	int getState() {
+		return intCurrentState;
+	}
 
-    bool isTurretSlotOccupied(int indx) { return turretSlots.get(indx) > 0; }
-    bool isMinefieldSlotOccupied(int indx) { return minefieldSlots.get(indx) > 0; }
-    bool isScannerSlotOccupied(int idx) { return scannerSlots.get(idx) > 0; }
+	Time getLastVulnerableTime() {
+		return lastVulnerableTime;
+	}
 
-    uint64 getTurretID(int indx) { return turretSlots.elementAt(indx); }
-    uint64 getMinefieldID(int indx) { return minefieldSlots.elementAt(indx); }
-    uint64 getScannerID(int indx) { return scannerSlots.elementAt(indx); }
+	Time getNextVulnerableTime() {
+		return nextVulnerableTime;
+	}
 
-    bool hasTurret(uint64 turretID) { return turretSlots.contains(turretID); }
-    bool hasMinefield(uint64 minefieldOID) { return minefieldSlots.contains(minefieldOID); }
-    bool hasScanner(uint64 scannerOID) { return scannerSlots.contains(scannerOID); }
-    bool hasDefense(uint64 defenseOID) { return hasTurret(defenseOID) || hasMinefield(defenseOID) || hasScanner(defenseOID); }
+	Time getVulnerabilityEndTime() {
+		return vulnerabilityEndTime;
+	}
 
-    int getIndexOfTurret(uint64 turretID) {
-        for (int i = 0; i < turretSlots.size(); i++) if (turretSlots.elementAt(i) == turretID) return i;
-        return -1;
-    }
-    int getIndexOfMinefield(uint64 minefieldOID) {
-        for (int i = 0; i < minefieldSlots.size(); i++) if (minefieldSlots.elementAt(i) == minefieldOID) return i;
-        return -1;
-    }
-    int getIndexOfScanner(uint64 scannerOID) {
-        for (int i = 0; i < scannerSlots.size(); i++) if (scannerSlots.elementAt(i) == scannerOID) return i;
-        return -1;
-    }
+	Time getPlacementTime() {
+		return placementTime;
+	}
 
-    void setTurretID(int indx, uint64 turretOID) { turretSlots.elementAt(indx) = turretOID; }
-    void setScannerID(int indx, uint64 scannerOID) { scannerSlots.elementAt(indx) = scannerOID; }
-    void setMinefieldID(int indx, uint64 minefieldOID) { minefieldSlots.elementAt(indx) = minefieldOID; }
+	Time getLastResetTime() {
+		return lastResetTime;
+	}
 
-    void addScanner(int indx, uint64 scannerOID) { scannerSlots.add(indx, scannerOID); }
-    void addTurret(int indx, uint64 turretOID) { turretSlots.add(indx, turretOID); }
-    void addMinefield(int indx, uint64 minefieldOID) { minefieldSlots.add(indx, minefieldOID); }
+	int getUplinkBand() {
+		return uplinkBand;
+	}
 
-    bool isGCWBaseData() { return true; }
-    bool hasDefense() { return activeDefenses; }
-    void setDefense(bool value) { activeDefenses = value; }
-    bool wasDefenseAddedThisVuln() { return defenseAddedThisVuln; }
-    void setDefenseAddedThisVuln(bool added) { defenseAddedThisVuln = added; }
+	int isTerminalBeingRepaired() {
+		return inRepair;
+	}
 
-    void clearDnaStrand() { dnaStrand.removeAll(); }
-    void setDnaStrand(const Vector<String>& strand) { dnaStrand = strand; }
-    const Vector<String>& getDnaStrand() { return dnaStrand; }
+	bool isTerminalDamaged() {
+		return terminalDamaged;
+	}
 
-    void clearDnaLocks() { dnaLocks.removeAll(); }
-    void setDnaLocks(const Vector<int>& locks) { dnaLocks = locks; }
-    const Vector<int>& getDnaLocks() const { return dnaLocks; }
-    Vector<int>& getDnaLocks() { return dnaLocks; }
+	void setState(int state);
 
-    const String& getCurrentDnaChain() { return currentDnaChain; }
-    void setCurrentDnaChain(const String& chain) { currentDnaChain = chain; }
+	void setLastVulnerableTime(const Time& time) {
+		lastVulnerableTime = time;
+	}
 
-    const Vector<int>& getPowerSwitchRules() { return powerSwitchRules; }
-    void setPowerSwitchRules(const Vector<int>& rules) { powerSwitchRules = rules; }
-    const Vector<bool>& getPowerSwitchStates() { return powerSwitchStates; }
-    void setPowerSwitchStates(const Vector<bool>& states) { powerSwitchStates = states; }
+	void setNextVulnerableTime(const Time& time) {
+		nextVulnerableTime = time;
+	}
 
-    bool getPowerPosition(int indx) { return powerSwitchStates.get(indx); }
+	void setVulnerabilityEndTime(const Time& time) {
+		vulnerabilityEndTime = time;
+	}
 
-    int getBaseTerminalCount() { return baseTerminals.size(); }
-    SceneObject* getBaseTerminal(int idx) { return baseTerminals.get(idx); }
-    void addBaseTerminal(SceneObject* term) { baseTerminals.add(term); }
-    void clearBaseTerminals() { baseTerminals.removeAll(); }
+	void setPlacementTime(Time time) {
+		placementTime = time;
+	}
 
-    bool areTerminalsSpawned() { return terminalsSpawned; }
-    void setTerminalsSpawned(bool val) { terminalsSpawned = val; }
+	void setLastResetTime(Time time) {
+		lastResetTime = time;
+	}
 
-    Vector<uint64> getHackAlarms() { return hackBaseAlarms; }
-    Vector<uint64> getDestructAlarms() { return destructBaseAlarms; }
-    void addHackBaseAlarm(uint64 alarmID) { hackBaseAlarms.add(alarmID); }
-    void addDestructBaseAlarm(uint64 alarmID) { destructBaseAlarms.add(alarmID); }
+	void setUplinkBand(int band) {
+		uplinkBand = band;
+	}
+
+	void setTerminalBeingRepaired(bool val) {
+		inRepair = val;
+	}
+
+	void setTerminalDamaged(bool val) {
+		terminalDamaged = val;
+	}
+
+	void setActiveTurret(int indx, uint64 turretOID) {
+		turretSlots.get(indx) = turretOID;
+	}
+
+	void setActiveMinefield(int indx, uint64 minefieldOID) {
+		minefieldSlots.get(indx) == minefieldOID;
+	}
+
+	void initializeTransientMembers();
+
+	int getTotalTurretCount() {
+		return turretSlots.size();
+	}
+
+	int getTotalMinefieldCount() {
+		return minefieldSlots.size();
+	}
+
+	int getTotalScannerCount() {
+		return scannerSlots.size();
+	}
+
+	bool isTurretSlotOccupied(int indx) {
+		return (turretSlots.get(indx) > 0);
+	}
+
+	bool isMinefieldSlotOccupied(int indx) {
+		return (minefieldSlots.get(indx) > 0);
+	}
+
+	uint64 getTurretID(int indx) {
+		return turretSlots.elementAt(indx);
+	}
+
+	uint64 getMinefieldOID(int indx) {
+		return minefieldSlots.elementAt(indx);
+	}
+
+	bool hasTurret(uint64 turretID) {
+		return turretSlots.contains(turretID);
+	}
+
+	bool hasMinefield(uint64 minefieldOID) {
+		return minefieldSlots.contains(minefieldOID);
+	}
+
+	bool hasDefense(uint64 defenseOID) {
+		return hasTurret(defenseOID) || hasMinefield(defenseOID);
+	}
+
+	int getIndexOfTurret(uint64 turretID) {
+		for (int i = 0; i < turretSlots.size(); i++) {
+			if (turretSlots.elementAt(i) == turretID)
+				return i;
+		}
+
+		return -1;
+	}
+
+	int getIndexOfMinefield(uint64 minefieldOID) {
+		for (int i = 0; i < minefieldSlots.size(); i++) {
+			if (minefieldSlots.elementAt(i) == minefieldOID)
+				return i;
+		}
+
+		return -1;
+	}
+
+	void setTurretID(int indx, uint64 turretOID) {
+		turretSlots.elementAt(indx) = turretOID;
+	}
+
+	void addScanner(int indx, uint64 scannerOID) {
+		scannerSlots.add(indx,scannerOID);
+	}
+
+	void addTurret(int indx, uint64 turretOID) {
+		turretSlots.add(indx, turretOID);
+	}
+
+	void setScannerID(int indx, uint64 scannerOID) {
+		scannerSlots.elementAt(indx) = scannerOID;
+	}
+
+	void setMinefieldID(int indx, uint64 minefieldOID) {
+		minefieldSlots.elementAt(indx) = minefieldOID;
+	}
+
+	void addMinefield(int indx, uint64 minefieldOID) {
+		minefieldSlots.add(indx, minefieldOID);
+	}
+
+	bool isGCWBaseData() {
+		return true;
+	}
+
+	bool hasDefense() {
+		return activeDefenses;
+	}
+
+	void setDefense(bool value) {
+		activeDefenses = value;
+	}
+
+	bool wasDefenseAddedThisVuln() {
+		return defenseAddedThisVuln;
+	}
+
+	void setDefenseAddedThisVuln(bool added) {
+		defenseAddedThisVuln = added;
+	}
+
+	void clearDnaStrand() {
+		dnaStrand.removeAll();
+	}
+
+	void setDnaStrand(const Vector<String>& strand) {
+		dnaStrand = strand;
+	}
+
+	const Vector<String>& getDnaStrand() {
+		return dnaStrand;
+	}
+
+	void clearDnaLocks() {
+		dnaLocks.removeAll();
+	}
+
+	void setDnaLocks(const Vector<int>& locks) {
+		dnaLocks = locks;
+	}
+
+	const Vector<int>& getDnaLocks() const {
+		return dnaLocks;
+	}
+
+	Vector<int>& getDnaLocks() {
+		return dnaLocks;
+	}
+
+	const String& getCurrentDnaChain() {
+		return currentDnaChain;
+	}
+
+	void setCurrentDnaChain(const String& chain) {
+		currentDnaChain = chain;
+	}
+
+	const Vector<int>& getPowerSwitchRules() {
+		return powerSwitchRules;
+	}
+
+	void setPowerSwitchRules(const Vector<int>& rules) {
+		powerSwitchRules = rules;
+	}
+
+	const Vector<bool>& getPowerSwitchStates() {
+		return powerSwitchStates;
+	}
+
+	void setPowerSwitchStates(const Vector<bool>& states) {
+		powerSwitchStates = states;
+	}
+
+	bool getPowerPosition(int indx) {
+		return powerSwitchStates.get(indx);
+	}
+
+	int getBaseTerminalCount() {
+		return baseTerminals.size();
+	}
+
+	SceneObject* getBaseTerminal(int idx) {
+		return baseTerminals.get(idx);
+	}
+
+	void addBaseTerminal(SceneObject* term) {
+		baseTerminals.add(term);
+	}
+
+	void clearBaseTerminals() {
+		baseTerminals.removeAll();
+	}
+
+	bool areTerminalsSpawned() {
+		return terminalsSpawned;
+	}
+
+	void setTerminalsSpawned(bool val) {
+		terminalsSpawned = val;
+	}
 
 private:
-    int writeObjectMembers(ObjectOutputStream* stream);
-    bool readObjectMember(ObjectInputStream* stream, const String& name);
+
+	int writeObjectMembers(ObjectOutputStream* stream);
+	bool readObjectMember(ObjectInputStream* stream, const String& name);
 };
+
+
+
 
 #endif /* DESTRUCTIBLEBUILDINGDATACOMPONENT_H_ */

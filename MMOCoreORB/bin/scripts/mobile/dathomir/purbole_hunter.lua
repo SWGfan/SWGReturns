@@ -2,7 +2,6 @@ purbole_hunter = Creature:new {
 	objectName = "@mob/creature_names:purbole_hunter",
 	socialGroup = "purbole",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 21,
 	chanceHit = 0.32,
 	damageMin = 170,
@@ -31,17 +30,12 @@ purbole_hunter = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/purbole_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""}, {"intimidationattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"stunattack",""},
+		{"intimidationattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(purbole_hunter, "purbole_hunter")

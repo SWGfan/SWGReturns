@@ -8,15 +8,13 @@
 
 package server.zone.objects.region;
 
+import server.zone.objects.creature.CreatureObject;
+import server.zone.objects.region.Region;
 import server.zone.objects.scene.SceneObject;
 import server.zone.objects.tangible.TangibleObject;
+import server.zone.objects.structure.StructureObject;
 import server.zone.Zone;
-import system.thread.Mutex;
-import engine.util.u3d.AABB;
-import server.zone.objects.pathfinding.NavArea;
-
 include server.zone.ZoneReference;
-include server.zone.objects.region.Region;
 include server.zone.objects.scene.variables.StringId;
 include system.lang.Time;
 include server.zone.objects.region.CitizenList;
@@ -24,13 +22,14 @@ include server.zone.objects.region.events.CityUpdateEvent;
 include server.zone.objects.region.events.CitizenAssessmentEvent;
 include system.thread.atomic.AtomicInteger;
 include pathfinding.RecastNavMesh;
-include server.zone.objects.structure.StructureObject;
+import system.thread.Mutex;
+import engine.util.u3d.AABB;
+import server.zone.objects.pathfinding.NavArea;
 include engine.core.ManagedObject;
 include system.util.Vector;
 include system.util.SortedVector;
 include system.util.VectorMap;
 include engine.log.Logger;
-include server.zone.objects.creature.CreatureObject;
 
 @json
 class CityRegion extends ManagedObject implements Logger {
@@ -180,12 +179,7 @@ class CityRegion extends ManagedObject implements Logger {
 	public native void notifyExit(SceneObject object);
 
 	@preLocked
-	public native Region createNewRegion(float x, float y, float radius, boolean persistent);
-
-	@preLocked
-	public void addRegion(Region region) {
-		regions.put(region);
-	}
+	public native Region addRegion(float x, float y, float radius, boolean persistent);
 
 	@preLocked
 	public native void rescheduleUpdateEvent(unsigned int seconds);
@@ -222,7 +216,7 @@ class CityRegion extends ManagedObject implements Logger {
 	@dirty
 	public native boolean hasZoningRights(unsigned long objectid);
 
-	@read
+	@dirty
 	public boolean containsPoint(float x, float y) {
 		for (int i = 0; i < regions.size(); ++i) {
 			Region aa = regions.get(i);
@@ -333,7 +327,7 @@ class CityRegion extends ManagedObject implements Logger {
 	}
 
 	@dirty
-	public native string getCityRegionName();
+	public native string getRegionName();
 
 	@dirty
 	public native string getRegionDisplayedName();
@@ -347,7 +341,7 @@ class CityRegion extends ManagedObject implements Logger {
 	public float getPositionX() {
 		Region aa = regions.get(0);
 
-		if (!aa)
+		if (aa == null)
 			return 0.0;
 
 		return aa.getPositionX();
@@ -357,7 +351,7 @@ class CityRegion extends ManagedObject implements Logger {
 	public float getPositionY() {
 		Region aa = regions.get(0);
 
-		if (!aa)
+		if (aa == null)
 			return 0.0;
 
 		return aa.getPositionY();
@@ -373,7 +367,7 @@ class CityRegion extends ManagedObject implements Logger {
 
 		Region aa = regions.get(0);
 
-		if (!aa)
+		if (aa == null)
 			return 0.0;
 
 		return aa.getRadius();
@@ -449,7 +443,9 @@ class CityRegion extends ManagedObject implements Logger {
 	public native void setZone(Zone zne);
 
 	@preLocked
-	public native void setCustomRegionName(final string name);
+	public void setCustomRegionName(final string name) {
+		customRegionName = name;
+	}
 
 	@preLocked
 	public void setCitySpecialization(final string spec) {
@@ -457,7 +453,9 @@ class CityRegion extends ManagedObject implements Logger {
 	}
 
 	@preLocked
-	public native void setRegionName(final string fullPath);
+	public void setRegionName(final string fullPath) {
+		regionName.setStringId(fullPath);
+	}
 
 	@local
 	@preLocked

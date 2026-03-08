@@ -2,7 +2,6 @@ great_plains_stalker = Creature:new {
 	objectName = "@mob/creature_names:great_plains_stalker",
 	socialGroup = "panther",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 51,
 	chanceHit = 0.5,
 	damageMin = 395,
@@ -19,7 +18,7 @@ great_plains_stalker = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 30,
 	milk = 0,
-	tamingChance = 0.05,
+	tamingChance = 0.25,
 	ferocity = 15,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER + STALKER,
@@ -31,17 +30,12 @@ great_plains_stalker = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/corellian_sand_panther_hue.iff",
 	scale = 1.25,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"blindattack",""}, {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"blindattack",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(great_plains_stalker, "great_plains_stalker")

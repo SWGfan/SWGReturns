@@ -1,6 +1,6 @@
 local ObjectManager = require("managers.object.object_manager")
 
-LifeDay = ScreenPlay:new {
+lifeDayScreenplay = ScreenPlay:new {
 	numberOfActs = 1,
 
 	mobiles = {
@@ -34,38 +34,58 @@ LifeDay = ScreenPlay:new {
 		"object/tangible/painting/painting_wookiee_m.iff",
 		"object/tangible/painting/painting_wookiee_f.iff",
 		"object/tangible/painting/painting_trees_s01.iff"},
+		"object/tangible/furniture/decorative/event_lifeday07_orb.iff",
+		"object/tangible/holiday/life_day/rewards_09/lifeday_fireplace_02.iff",
+		"object/tangible/furniture/lifeday/lifeday_banner_s01.iff",
+		"object/tangible/furniture/lifeday/lifeday_banner_s02.iff",
+		"object/tangible/furniture/lifeday/lifeday_banner_s03.iff",
+		"object/tangible/furniture/lifeday/lifeday_bunting.iff",
+		"object/tangible/storyteller/prop/pr_lifeday_decorated_tree.iff",
+		"object/tangible/furniture/lifeday/lifeday_incense_burner.iff",
+		"object/tangible/furniture/decorative/event_lifeday07_lamp.iff",
+		"object/tangible/holiday/life_day/rewards_09/lifeday_lamp_01.iff",
+		"object/tangible/holiday/life_day/rewards_09/lifeday_lamp_02.iff",
+		"object/tangible/furniture/lifeday/lifeday_mini_tree.iff",
+		"object/tangible/furniture/lifeday/lifeday_ornament_2010.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_2010_s01.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_2010_s02.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_2010_s03.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_2010_s04.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_s01.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_s02.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_s03.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_s04.iff",
+		"object/tangible/furniture/lifeday/lifeday_painting_s05.iff",
+		"object/tangible/furniture/decorative/event_lifeday05_painting_01.iff",
+		"object/tangible/furniture/decorative/event_lifeday05_painting_02.iff",
+		"object/tangible/furniture/decorative/event_lifeday05_painting_03.iff",
+		"object/tangible/furniture/decorative/event_lifeday07_painting_01.iff",
+		"object/tangible/event_perk/lifeday_painting.iff",
+		"object/tangible/storyteller/prop/pr_lifeday_wroshyr_tree.iff",
+		"object/tangible/holiday/life_day/rewards_09/lifeday_fireplace_01.iff",	
 
 	robe = "object/tangible/wearables/wookiee/wke_lifeday_robe.iff"
 }
 
-registerScreenPlay("LifeDay", true)
+registerScreenPlay("lifeDayScreenplay", true)
 
-function LifeDay:start(force_start)
-	if force_start or os.date("%m%d%H%M") >= "12010600" and os.date("%m%d%H") < "12312359" then
-		writeStringSharedMemory("LifeDayName", "lifeDay" .. tostring(os.date('%Y')))
+function lifeDayScreenplay:start()
+	if getFormattedTime():find("Dec") ~= nil then
+		writeStringSharedMemory("lifeDayScreenplayName", "lifeDay" .. tostring(os.date('%Y')))
 		self:spawnMobiles()
-
-		print(os.date() .. " : Life Day Event - Starting")
-
-		createEvent(24 * 60 * 60 * 1000, "LifeDay", "despawnEvent", nil, "")
 	end
 end
 
-function LifeDay:spawnMobiles()
+function lifeDayScreenplay:spawnMobiles()
 	local mobs = self.mobiles
 	for i = 1, #mobs, 1 do
 		if isZoneEnabled(mobs[i].planet) then
-			local pMobile = spawnMobile(mobs[i].planet, mobs[i].mobile, 1, mobs[i].x, mobs[i].z, mobs[i].y, mobs[i].angle, 0)
-
-			if (pMobile ~= nil) then
-				local pOID = SceneObject(pMobile):getObjectID()
-				writeData(i .. ":LifeDayMobile", pOID)
-			end
+			spawnMobile(mobs[i].planet, mobs[i].mobile, 1, mobs[i].x, mobs[i].z, mobs[i].y, mobs[i].angle, 0)
 		end
 	end
 end
 
-function LifeDay:getRandomEnabledPlanet()
+function lifeDayScreenplay:getRandomEnabledPlanet()
 	local enabledPlanets = {}
 	for i = 1, #self.waypoints, 1 do
 		if isZoneEnabled(self.waypoints[i].planet) then
@@ -77,7 +97,7 @@ function LifeDay:getRandomEnabledPlanet()
 	return enabledPlanets[rand]
 end
 
-function LifeDay:removeWaypoint(pPlayer)
+function lifeDayScreenplay:removeWaypoint(pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 	local oldWaypointID = readData(playerID .. "lifeDayWaypointID")
 
@@ -92,7 +112,7 @@ function LifeDay:removeWaypoint(pPlayer)
 	end
 end
 
-function LifeDay:giveWaypoint(pPlayer)
+function lifeDayScreenplay:giveWaypoint(pPlayer)
 	self:removeWaypoint(pPlayer)
 
 	local num = self:getRandomEnabledPlanet()
@@ -106,17 +126,17 @@ function LifeDay:giveWaypoint(pPlayer)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 	if (pGhost ~= nil) then
-		local newWaypointID = PlayerObject(pGhost):addWaypoint(self.waypoints[num].planet, "@quest/lifeday/lifeday:waypoint_name", "", self.waypoints[num].x, 0, self.waypoints[num].y, 2, true, true, 0, 0) -- Life Day Celebration
+		local newWaypointID = PlayerObject(pGhost):addWaypoint(self.waypoints[num].planet, "@quest/lifeday/lifeday:waypoint_name", "", self.waypoints[num].x, self.waypoints[num].y, 2, true, true, 0, 0) -- Life Day Celebration
 		writeData(playerID .. "lifeDayWaypointID", newWaypointID)
 		writeData(playerID .. ":lifeDayState", 1)
 
 		CreatureObject(pPlayer):sendSystemMessage("@quest/lifeday/lifeday:waypoint_updated") -- A waypoint to a planet holding a Life Day celebration was added to your datapad.
 
-		createEvent(3600000, "LifeDay", "removeWaypoint", pPlayer, "")
+		createEvent(3600000, "lifeDayScreenplay", "removeWaypoint", pPlayer, "")
 	end
 end
 
-function LifeDay:giveRandomGift(pPlayer)
+function lifeDayScreenplay:giveRandomGift(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
@@ -136,12 +156,12 @@ function LifeDay:giveRandomGift(pPlayer)
 	local itemTemplate = self.randomGifts[rand]
 	local pItem = giveItem(pInventory, itemTemplate, -1)
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 
 	self:removeWaypoint(pPlayer)
 end
 
-function LifeDay:giveRobe(pPlayer)
+function lifeDayScreenplay:giveRobe(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
@@ -159,44 +179,16 @@ function LifeDay:giveRobe(pPlayer)
 
 	local pItem = giveItem(pInventory, self.robe, -1)
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 
 	self:removeWaypoint(pPlayer)
 end
 
-function LifeDay:noGift(pPlayer)
+function lifeDayScreenplay:noGift(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 	self:removeWaypoint(pPlayer)
-end
-
-function LifeDay:despawnEvent(pMobile, args)
-	if pMobile == nil and os.date("%m%d%H%M") < "12312359" then
-		print(os.date() .. ": Life Day - Rescheduling Despawn")
-
-		createEvent(24 * 60 * 60 * 1000, "LifeDay", "despawnEvent", nil, "")
-		return
-	end
-
-	print(os.date() .. ": Life Day Event - Despawning...")
-
-	local mobs = self.mobiles
-
-	for i = 1, #mobs, 1 do
-		local pOID = readData(i .. ":LifeDayMobile")
-		local despawnMob = getSceneObject(pOID)
-
-		if despawnMob ~= nil then
-
-			SceneObject(despawnMob):destroyObjectFromWorld()
-			deleteData(i .. ":LifeDayMobile")
-		end
-	end
-
-	deleteStringSharedMemory("LifeDayName")
-
-	print(os.date() .. " : Life Day Event - Despawn Complete")
 end

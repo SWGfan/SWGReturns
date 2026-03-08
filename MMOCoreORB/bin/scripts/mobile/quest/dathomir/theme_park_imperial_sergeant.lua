@@ -2,7 +2,6 @@ theme_park_imperial_sergeant = Creature:new {
   objectName = "@mob/creature_names:imperial_sergeant",
   randomNameType = NAME_GENERIC,
   randomNameTag = true,
-	mobType = MOB_NPC,
   socialGroup = "imperial",
   faction = "imperial",
   level = 16,
@@ -28,18 +27,20 @@ theme_park_imperial_sergeant = Creature:new {
   optionsBitmask = AIENABLED + CONVERSABLE,
   diet = HERBIVORE,
 
-  templates = {"imperial_officer"},
+  templates = {
+    "object/mobile/dressed_imperial_officer_f.iff",
+    "object/mobile/dressed_imperial_officer_m.iff",
+    "object/mobile/dressed_imperial_officer_m_2.iff",
+    "object/mobile/dressed_imperial_officer_m_3.iff",
+    "object/mobile/dressed_imperial_officer_m_4.iff",
+    "object/mobile/dressed_imperial_officer_m_5.iff",
+    "object/mobile/dressed_imperial_officer_m_6.iff"},
   lootGroups = {},
-  primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+  weapons = {},
   conversationTemplate = "theme_park_nightsister_mission_target_convotemplate",
   reactionStf = "@npc_reaction/military",
   personalityStf = "@hireling/hireling_military",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+  attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(theme_park_imperial_sergeant, "theme_park_imperial_sergeant")

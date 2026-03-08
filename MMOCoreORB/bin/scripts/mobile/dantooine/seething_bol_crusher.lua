@@ -2,7 +2,6 @@ seething_bol_crusher = Creature:new {
 	objectName = "@mob/creature_names:seething_bol_crusher",
 	socialGroup = "bol",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 44,
 	chanceHit = 0.44,
 	damageMin = 325,
@@ -19,7 +18,7 @@ seething_bol_crusher = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 180,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -30,17 +29,12 @@ seething_bol_crusher = Creature:new {
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	scale = 1.25,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"mediumdisease",""}, {"dizzyattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"mediumdisease",""},
+		{"dizzyattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(seething_bol_crusher, "seething_bol_crusher")

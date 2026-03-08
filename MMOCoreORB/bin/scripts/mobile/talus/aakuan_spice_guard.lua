@@ -2,7 +2,6 @@ aakuan_spice_guard = Creature:new {
 	objectName = "",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	customName = "an Aa'kuan Spice Guard",
 	socialGroup = "aakuans",
 	faction = "aakuans",
@@ -22,7 +21,7 @@ aakuan_spice_guard = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + KILLER,
@@ -35,22 +34,19 @@ aakuan_spice_guard = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "aakuans_tier_1", chance = 10000000}
+				{group = "junk", chance = 4000000},
+				{group = "wearables_all", chance = 1000000},
+				{group = "data_storage_unit_parts", chance = 1600000},
+				{group = "aakuan_common", chance = 2300000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 600000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "melee_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"melee_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/fancy",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,swordsmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,swordsmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(aakuan_spice_guard, "aakuan_spice_guard")

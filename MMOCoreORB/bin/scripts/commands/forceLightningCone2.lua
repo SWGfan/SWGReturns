@@ -44,10 +44,10 @@
 ForceLightningCone2Command = {
 	name = "forcelightningcone2",
 
-	minDamage = 600,
-	maxDamage = 1200,
-	speed = 4.0,
-	forceCost = 250,
+        minDamage = 1300,
+        maxDamage = 2000,
+	speed = 2.0,
+	forceCost = 150,
 	accuracySkillMod = "forcelightning_accuracy",
 	coneAngle = 60,
 	coneAction = true,
@@ -55,30 +55,86 @@ ForceLightningCone2Command = {
 
 	stateEffects = {
 		StateEffect(
-			DIZZY_EFFECT,
-			{},
-			{},
-			{ "jedi_state_defense" },
-			30,
-			0,
-			10
+		BLIND_EFFECT, 
+
+		{}, 
+
+		{ "blind_defense" }, 
+
+		{ "jedi_state_defense", "resistance_states" },
+
+		85, 
+
+		0, 
+
+		60 
+
+	  ),
+
+	  StateEffect( 
+
+		DIZZY_EFFECT, 
+
+		{}, 
+
+		{ "dizzy_defense" }, 
+
+		{ "jedi_state_defense", "resistance_states" }, 
+
+		85, 
+
+		0, 
+
+		30 
+
+	  ),
+
+	  StateEffect( 
+
+		STUN_EFFECT, 
+
+		{}, 
+
+		{ "stun_defense" }, 
+
+		{ "jedi_state_defense", "resistance_states" }, 
+
+		85, 
+
+		0, 
+
+		60
 		)
 	},
 
 	animation = "force_lightning_1_arc_particle_level_3",
 	animType = GENERATE_INTENSITY,
-
 	combatSpam = "forcelightningcone2",
 
+		dotEffects = {
+	  DotEffect( 
+		ONFIRE, 
+		{"resistance_fire", "fire_resist"},
+		HEALTH,
+		true,
+		0,
+		125,
+		200, 
+		60,
+		10,
+		2
+	  )
+	},
+	
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	forceAttack = true,
-	damageType = ELECTRICITY_DAMAGE,
+	damageType = LIGHTSABER_DAMAGE,
 
 	frsLightMinDamageModifier = 4,
 	frsLightMaxDamageModifier = 8,
-	frsDarkMinDamageModifier = 4,
-	frsDarkMaxDamageModifier = 8,
+	frsDarkMinDamageModifier = 8,
+	frsDarkMaxDamageModifier = 16,
 
 	range = 32
 }

@@ -17,6 +17,7 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -41,13 +42,10 @@ public:
 
 		ManagedReference<SceneObject*> objectsParent = resourceContainer->getParent().get();
 
-		if (objectsParent == nullptr || objectsParent->isCellObject()) {
-			creature->sendSystemMessage("@container_error_message:container03");
-			return GENERALERROR;
-		}
+		if (objectsParent == nullptr ||
+				objectsParent->isCellObject()) {
 
-		if (objectsParent->isContainerFullRecursive()) {
-			creature->sendSystemMessage("@error_message:inv_full"); //Your inventory is full.
+			creature->sendSystemMessage("@container_error_message:container03");
 			return GENERALERROR;
 		}
 

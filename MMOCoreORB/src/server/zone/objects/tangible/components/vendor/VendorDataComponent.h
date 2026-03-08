@@ -61,7 +61,8 @@ public:
 		DELETEWARNING       = 60 * 60 * 24 * 100, // 100 days
 
 		BARKRANGE           = 15, // 15 Meters
-		BARKINTERVAL        = 60 * 2 // 2 Minutes
+		BARKINTERVAL        = 60 * 2, // 2 Minutes
+		LOWWARNING			= 360 // Credits, 1 day worth at the default rate
 	};
 
 public:
@@ -222,14 +223,14 @@ public:
 		return barkAnimation;
 	}
 
-	bool hasBarkTarget(uint64 targetID) {
+	bool hasBarkTarget(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		return vendorBarks.contains(targetID);
+		return vendorBarks.contains(target->getObjectID());
 	}
 
-	void addBarkTarget(uint64 targetID) {
+	void addBarkTarget(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		vendorBarks.add(targetID);
+		vendorBarks.add(target->getObjectID());
 	}
 
 	bool canBark() {
@@ -242,9 +243,9 @@ public:
 		lastBark = time(0);
 	}
 
-	void removeBarkTarget(uint64 targetID) {
+	void clearVendorBark(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		vendorBarks.removeElement(targetID);
+		vendorBarks.removeElement(target->getObjectID());
 	}
 
 	void removeAllVendorBarks() {
@@ -271,6 +272,10 @@ public:
 	void scheduleVendorCheckTask(int delay); // In minutes
 
 	void cancelVendorCheckTask();
+
+	void skimMaintanence(int value){
+		maintAmount += value;
+	}
 
 private:
 	void addSerializableVariables();

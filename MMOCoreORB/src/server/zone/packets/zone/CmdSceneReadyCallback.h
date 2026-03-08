@@ -15,26 +15,27 @@
 
 class CmdSceneReadyCallback : public MessageCallback {
 public:
-	CmdSceneReadyCallback(ZoneClientSession* client, ZoneProcessServer* server):MessageCallback(client, server) {
+	CmdSceneReadyCallback(ZoneClientSession* client, ZoneProcessServer* server) :
+		MessageCallback(client, server) {
+
 	}
 
 	void parse(Message* message) {
+
 	}
 
 	void run() {
-		ManagedReference<CreatureObject*> player = client->getPlayer();
+		ManagedReference<CreatureObject*> object = client->getPlayer();
 
-		if (player == nullptr) {
+		if (object == nullptr)
 			return;
-		}
 
-		Locker _locker(player);
+		Locker _locker(object);
 
-		auto ghost = player->getPlayerObject();
+		PlayerObject* ghost = object->getPlayerObject();
 
-		if (ghost != nullptr) {
+		if (ghost != nullptr)
 			ghost->notifySceneReady();
-		}
 	}
 };
 

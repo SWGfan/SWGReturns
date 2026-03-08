@@ -4,12 +4,13 @@ ubese_armor_bandolier = {
 	customObjectName = "Ubese Armor Bandolier",
 	directObjectTemplate = "object/tangible/wearables/armor/ubese/armor_ubese_bandolier.iff",
 	craftingValues = {
+
 		{"armor_integrity",18750, 31250,0},
-	},
 
+	},
 	skillMods = {
-	},
 
+	},
 	--no color pallets for customizing for ubese armor bandolier
 	customizationStringNames = {},
 	customizationValues = {},

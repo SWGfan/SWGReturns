@@ -9,7 +9,6 @@
 #include "server/zone/objects/mission/BountyMissionObjective.h"
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
-#include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/Zone.h"
 
 namespace server {
@@ -30,7 +29,7 @@ class FindTargetTask : public Task, public Logger {
 	int trackingsLeft;
 	String zoneName;
 
-	enum states { Init, DroidSent, Searching, Tracking, Completed };
+	enum states { Init, DroidSent, Searching, Tracking, Completed};
 
 	states state;
 
@@ -117,10 +116,6 @@ class FindTargetTask : public Task, public Logger {
 	}
 
 	bool findAndTrackSuccess(CreatureObject* player, BountyMissionObjective* objective) {
-		if (player == nullptr || objective == nullptr) {
-			return false;
-		}
-
 		Locker locker(player);
 
 		if (objective->getPlayerOwner() == nullptr) {
@@ -133,25 +128,6 @@ class FindTargetTask : public Task, public Logger {
 			player->sendSystemMessage("@mission/mission_generic:target_located_" + objective->getTargetZoneName());
 		} else {
 			if (objective->getTargetZoneName() == zoneName) {
-				if (ConfigManager::instance()->getBool("Core3.MissionManager.AnonymousBountyTerminals", false)) {
-					ManagedReference<MissionObject*> mission = objective->getMissionObject().get();
-
-					ZoneServer* zoneServer = player->getZoneServer();
-
-					if (zoneServer != nullptr) {
-						MissionManager* missionManager = zoneServer->getMissionManager();
-						uint64 targetId = mission->getTargetObjectId();
-
-						if (missionManager != nullptr && missionManager->hasPlayerBountyTargetInList(targetId)) {
-							ManagedReference<CreatureObject*> target = zoneServer->getObject(targetId).castTo<CreatureObject*>();
-
-							if (target != nullptr) {
-								String sysMsg = "Analyzing biological signature... Target: " + target->getFirstName() + " " + target->getLastName();
-								player->sendSystemMessage(sysMsg);
-							}
-						}
-					}
-				}
 				StringIdChatParameter message("@mission/mission_generic:assassin_target_location");
 				message.setDI(getDistanceToTarget(player, objective));
 				message.setTO("mission/mission_generic", getDirectionToTarget(player, objective));
@@ -181,7 +157,8 @@ class FindTargetTask : public Task, public Logger {
 			successChance = maximumSkillMod;
 		}
 
-		successChance -= ((getTargetLevel(player, objective)) / 3);
+		// Modified to take into consideration new CL level of BH targets
+		successChance -= ((getTargetLevel(player, objective)) / 7);
 
 		if (successChance < 5) {
 			successChance = 5;
@@ -196,24 +173,25 @@ class FindTargetTask : public Task, public Logger {
 
 	int calculateTime(CreatureObject* player) {
 		String skillToUse = "droid_find_speed";
-		int maximumSkillMod = 115;
+		int maximumSkillMod = 130; // from 115 -> 130
 		if (track) {
 			skillToUse = "droid_track_speed";
-			maximumSkillMod = 105;
+			maximumSkillMod = 130; // from 105 -> 130
 		}
 
 		long long skillMod = player->getSkillMod(skillToUse) + player->getSkillModFromBuffs(skillToUse);
 
-		int checkedSkillMod = skillMod;
+		// Passive +25 buff to tracking speed of droids
+		int checkedSkillMod = skillMod + 25;
 		if (checkedSkillMod < 0) {
 			checkedSkillMod = 0;
 		} else if (checkedSkillMod > maximumSkillMod) {
 			checkedSkillMod = maximumSkillMod;
 		}
 
-		int time = 150 - checkedSkillMod;
-
-		return time + System::random(time / 2);
+		int time = 140 - checkedSkillMod; // with +25 tapes this turns into 10 seconds
+		time += System::random(time / 2); // with +25 tapes this is [10 seconds + RNG(10/2)] ...so a MAX of 15 seconds down from 50 something
+		return time;
 	}
 
 	int getTargetLevel(CreatureObject* player, BountyMissionObjective* objective) {
@@ -311,7 +289,7 @@ public:
 
 		trackingsLeft = 0;
 		if (track) {
-			trackingsLeft = player->getSkillMod("droid_tracks");
+			trackingsLeft = (player->getSkillMod("droid_tracks") * 2); // double total tracks per droid
 		}
 	}
 

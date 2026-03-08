@@ -13,7 +13,6 @@
 #include "templates/tangible/EventPerkDeedTemplate.h"
 #include "server/zone/objects/tangible/tasks/RemoveEventPerkItemTask.h"
 #include "server/zone/managers/player/JukeboxSong.h"
-#include "server/zone/objects/area/space/SpaceActiveArea.h"
 
 void JukeboxImplementation::initializeTransientMembers() {
 	TangibleObjectImplementation::initializeTransientMembers();
@@ -123,26 +122,18 @@ void JukeboxImplementation::notifyInsertToZone(Zone* zone) {
 
 	Locker _lock(jbox);
 
-	// Spawn active area only while in ground zones
-	if (!zone->isSpaceZone()) {
-		createChildObjects();
-	}
+	createChildObjects();
 
 	ManagedReference<JukeboxObserver*> observer = new JukeboxObserver(jbox);
-
-	if (observer == nullptr) {
-		return;
-	}
 
 	jbox->registerObserver(ObserverEventType::PARENTCHANGED, observer);
 
 	ManagedReference<SceneObject*> obj = jbox->getRootParent();
 
-	if (obj == nullptr || (!obj->isStructureObject() && !obj->isPobShip())) {
-		setRadius(OUTDOOR_RADIUS);
-	} else {
-		setRadius(INDOOR_RADIUS);
-	}
+	if (obj == nullptr || !obj->isStructureObject())
+		setRadius(100);
+	else
+		setRadius(30);
 
 	SortedVector<ManagedReference<SceneObject*> >* children = jbox->getChildObjects();
 
@@ -151,51 +142,10 @@ void JukeboxImplementation::notifyInsertToZone(Zone* zone) {
 
 		if (child != nullptr && child->isActiveArea()) {
 			ManagedReference<ActiveArea*> area = cast<ActiveArea*>(child.get());
-
-			if (area != nullptr) {
-				area->registerObserver(ObserverEventType::ENTEREDAREA, observer);
-				area->registerObserver(ObserverEventType::EXITEDAREA, observer);
-			}
+			area->registerObserver(ObserverEventType::ENTEREDAREA, observer);
+			area->registerObserver(ObserverEventType::EXITEDAREA, observer);
 		}
 	}
-}
-
-void JukeboxImplementation::notifyInsert(TreeEntry* entry) {
-	// info(true) << "JukeboxImplementation::notifyInsert -- called";
-
-	auto sceneO = static_cast<SceneObject*>(entry);
-
-	if (sceneO == nullptr || !sceneO->isPlayerCreature()) {
-		return;
-	}
-
-	auto zone = getZone();
-
-	if (zone == nullptr || !zone->isSpaceZone()) {
-		return;
-	}
-
-	if (sceneO->getRootParent() != getRootParent()) {
-		return;
-	}
-
-	// info(true) << "JukeboxImplementation::notifyInsert -- called for player: " << sceneO->getDisplayedName();
-
-	playMusicToPlayer(sceneO->asCreatureObject(), curSong);
-}
-
-void JukeboxImplementation::notifyDissapear(TreeEntry* entry) {
-	// info(true) << "JukeboxImplementation::notifyDissapear -- called";
-
-	auto sceneO = static_cast<SceneObject*>(entry);
-
-	if (sceneO == nullptr || !sceneO->isPlayerCreature()) {
-		return;
-	}
-
-	// info(true) << "JukeboxImplementation::notifyDissapear -- called for player: " << sceneO->getDisplayedName();
-
-	playMusicToPlayer(sceneO->asCreatureObject(), "sound/music_silence.snd");
 }
 
 void JukeboxImplementation::setRadius(float newRadius) {
@@ -259,9 +209,8 @@ void JukeboxImplementation::doMusicSelection(CreatureObject* player) {
 }
 
 void JukeboxImplementation::playMusicToPlayer(CreatureObject* player, const String& song) {
-	if (player == nullptr || !player->isPlayerCreature()) {
+	if (player == nullptr || !player->isPlayerCreature())
 		return;
-	}
 
 	PlayMusicMessage* pmm = new PlayMusicMessage(song);
 
@@ -271,27 +220,13 @@ void JukeboxImplementation::playMusicToPlayer(CreatureObject* player, const Stri
 void JukeboxImplementation::changeMusic(const String& song) {
 	Zone* zone = getZone();
 
-	if (zone == nullptr) {
+	if (zone == nullptr)
 		return;
-	}
 
 	curSong = song;
 
-	SortedVector<ManagedReference<TreeEntry*>> closeObjectsCopy(200, 50);
-
-	if (zone->isSpaceZone()) {
-		auto rootParent = getRootParent();
-
-		if (rootParent != nullptr) {
-			auto closeObjectsVector = rootParent->getCloseObjects();
-
-			if (closeObjectsVector != nullptr) {
-				closeObjectsVector->safeCopyReceiversTo(closeObjectsCopy, CloseObjectsVector::PLAYERTYPE);
-			}
-		}
-	} else {
-		zone->getInRangeObjects(getWorldPositionX(), getWorldPositionZ(), getWorldPositionY(), radius, &closeObjectsCopy, true);
-	}
+	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
+	zone->getInRangeObjects(getWorldPositionX(), getWorldPositionY(), radius, &closeObjects, true);
 
 	PlayMusicMessage* pmm = new PlayMusicMessage(song);
 
@@ -299,20 +234,15 @@ void JukeboxImplementation::changeMusic(const String& song) {
 	Reference<BasePacket*> pack = pmm;
 #endif
 
-	for (int i = 0; i < closeObjectsCopy.size(); i++) {
-		SceneObject* targetObject = static_cast<SceneObject*>(closeObjectsCopy.getUnsafe(i).get());
-
-		if (targetObject == nullptr || !targetObject->isPlayerCreature()) {
-			continue;
-		}
-
-		// info(true) << "sending music message to: " << targetObject->getDisplayedName();
-
+	for (int i = 0; i < closeObjects.size(); i++) {
+		SceneObject* targetObject = static_cast<SceneObject*>(closeObjects.getUnsafe(i).get());
+		if (targetObject->isPlayerCreature()) {
 #ifdef LOCKFREE_BCLIENT_BUFFERS
-		targetObject->sendMessage(pack);
+			targetObject->sendMessage(pack);
 #else
-		targetObject->sendMessage(pmm->clone());
+			targetObject->sendMessage(pmm->clone());
 #endif
+		}
 	}
 
 #ifndef LOCKFREE_BCLIENT_BUFFERS

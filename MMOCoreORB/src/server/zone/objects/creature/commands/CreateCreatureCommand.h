@@ -9,15 +9,13 @@
 #include "server/zone/Zone.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/managers/creature/AiMap.h"
-#include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
-#include "server/zone/managers/space/SpaceAiMap.h"
-#include "server/zone/objects/ship/ai/ShipAiAgent.h"
-#include "server/zone/managers/ship/ShipManager.h"
 
 class CreateCreatureCommand : public QueueCommand {
 public:
 
-	CreateCreatureCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	CreateCreatureCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
@@ -37,6 +35,7 @@ public:
 
 		String objName = "", tempName = "object/mobile/boba_fett.iff";
 		bool baby = false;
+		String aiTemplate = "";
 		bool event = false;
 		int level = -1;
 		float scale = -1.0;
@@ -48,35 +47,15 @@ public:
 			if (tokenizer.hasMoreTokens())
 				tokenizer.getStringToken(tempName);
 
-			if (!tempName.isEmpty() && tempName.toLowerCase() == "checkthreads") {
-				ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, SuiWindowType::NONE);
-
-				if (box != nullptr) {
-					box->setPromptTitle("CreateCreature - Check Threads");
-
-					StringBuffer msg;
-
-					msg << "Ground Zone AI:\n\n";
-					msg << "Active AiBehaviorEvents: " << AiMap::instance()->activeBehaviorEvents.get() << "\n";
-					msg << "AiAgent Exceptions: " << AiMap::instance()->countExceptions.get() << "\n";
-					msg << "Scheduled AiBehaviorEvents: " << AiMap::instance()->scheduledBehaviorEvents.get() << "\n";
-					msg << "AiBehaviorEvents with followObject: " << AiMap::instance()->behaviorsWithFollowObject.get() << "\n";
-					msg << "AiBehaviorEvents retreating: " << AiMap::instance()->behaviorsRetreating.get() << "\n";
-					msg << "AiRecoveryEvents: " << AiMap::instance()->activeRecoveryEvents.get() << "\n\n\n";
-
-					msg << "Space Zone AI:\n\n";
-					msg << "Active AiBehaviorEvents: " << SpaceAiMap::instance()->activeBehaviorEvents.get() << "\n";
-					msg << "AiAgent Exceptions: " << SpaceAiMap::instance()->countExceptions.get() << "\n";
-					msg << "Scheduled AiBehaviorEvents: " << SpaceAiMap::instance()->scheduledBehaviorEvents.get() << "\n";
-					msg << "AiBehaviorEvents with followObject: " << SpaceAiMap::instance()->behaviorsWithFollowObject.get() << "\n";
-					msg << "AiBehaviorEvents retreating: " << SpaceAiMap::instance()->behaviorsRetreating.get() << "\n";
-					msg << "AiRecoveryEvents: " << SpaceAiMap::instance()->activeRecoveryEvents.get() << "\n";
-
-					box->setPromptText(msg.toString());
-
-					creature->sendMessage(box->generateMessage());
-				}
-
+			if (!tempName.isEmpty() && tempName == "checkThreads") {
+				creature->sendSystemMessage("Current number of AiMoveEvents: " + String::valueOf(AiMap::instance()->activeMoveEvents.get()));
+				creature->sendSystemMessage("Current number of scheduled AiMoveEvents: " + String::valueOf(AiMap::instance()->scheduledMoveEvents.get()));
+				creature->sendSystemMessage("Current number of scheduled AiMoveEvents with followObject: " + String::valueOf(AiMap::instance()->moveEventsWithFollowObject.get()));
+				creature->sendSystemMessage("Current number of scheduled AiMoveEvents retreating: " + String::valueOf(AiMap::instance()->moveEventsRetreating.get()));
+				creature->sendSystemMessage("Current number of AiAwarenessEvents: " + String::valueOf(AiMap::instance()->activeAwarenessEvents.get()));
+				creature->sendSystemMessage("Current number of scheduled AiAwarenessEvents: " + String::valueOf(AiMap::instance()->scheduledAwarenessEvents.get()));
+				creature->sendSystemMessage("Current number of AiRecoveryEvents: " + String::valueOf(AiMap::instance()->activeRecoveryEvents.get()));
+				creature->sendSystemMessage("Current number of AiWaitEvents: " + String::valueOf(AiMap::instance()->activeWaitEvents.get()));
 
 				ZoneServer* server = creature->getZoneServer();
 
@@ -90,25 +69,13 @@ public:
 
 					int num = zone->getSpawnedAiAgents();
 
+					if (num == 0)
+						continue;
+
 					totalSpawned += num;
 
 					StringBuffer message;
 					message << "Current number of AiAgents in " << zone->getZoneName() << ": " << num;
-					creature->sendSystemMessage(message.toString());
-				}
-
-				for (int j = 0; j < server->getSpaceZoneCount(); ++j) {
-					SpaceZone* zone = server->getSpaceZone(j);
-
-					if (zone == nullptr)
-						continue;
-
-					int num = zone->getSpawnedAiAgents();
-
-					totalSpawned += num;
-
-					StringBuffer message;
-					message << "Current number of ShipAiAgents in " << zone->getZoneName() << ": " << num;
 					creature->sendSystemMessage(message.toString());
 				}
 
@@ -117,10 +84,6 @@ public:
 				creature->sendSystemMessage(msg2.toString());
 
 				return SUCCESS;
-			}
-
-			if (!tempName.isEmpty() && zone->isSpaceZone()) {
-				return createShip(creature, target, arguments);
 			}
 
 			if (tokenizer.hasMoreTokens())
@@ -160,6 +123,8 @@ public:
 			if (!objName.isEmpty() && objName.indexOf("object") == -1 && !baby && !event) {
 				if (objName.length() < 6)
 					posX = Float::valueOf(objName);
+				else
+					aiTemplate = objName;
 
 				objName = "";
 			} else if (tokenizer.hasMoreTokens()) {
@@ -180,15 +145,7 @@ public:
 			if (tokenizer.hasMoreTokens())
 				parID = tokenizer.getLongToken();
 		} else {
-			StringBuffer usage;
-
-			if (zone != nullptr && zone->isSpaceZone()) {
-				usage << "CreateCreatureCommand syntax: /createCreature <template> <faction>";
-			} else {
-				usage << "Usage: /createCreature <template> [object template | ai template | baby | event [level] [scale] ] [X] [Z] [Y] [planet] [cellID]" << endl << "/createCreature checkthreads";
-			}
-
-			creature->sendSystemMessage(usage.toString());
+			creature->sendSystemMessage("Usage: /createCreature <template> [object template | ai template | baby | event [level] [scale] ] [X] [Z] [Y] [planet] [cellID]");
 			return GENERALERROR;
 		}
 
@@ -206,12 +163,8 @@ public:
 			npc = cast<AiAgent*>(creatureManager->spawnCreatureWithAi(templ, posX, posZ, posY, parID));
 		else {
 			npc = cast<AiAgent*>(creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID));
-			if (npc != nullptr) {
-				npc->setAITemplate();
-
-				//Locker _nlocker(npc);
-				//npc->setAIDebug(true);
-			}
+			if (npc != nullptr)
+				npc->activateLoad("");
 		}
 
 		if (baby && npc == nullptr) {
@@ -222,83 +175,20 @@ public:
 			return GENERALERROR;
 		}
 
+		Locker clocker(npc, creature);
+
+		if (!aiTemplate.isEmpty()) {
+			npc->activateLoad(aiTemplate);
+		}
+
 		npc->updateDirection(Math::deg2rad(creature->getDirectionAngle()));
 
-		if (scale > 0 && scale != 1.0) {
-			Locker nlocker(npc);
+		if (scale > 0 && scale != 1.0)
 			npc->setHeight(scale);
-		}
-
-		info(true) << "CreateCreatureCommand " << creature->getDisplayedName() << " created: " << npc->getObjectID() << " [" << npc->getDisplayedName() << "] at " << npc->getWorldPosition() << " on " << npc->getZone()->getZoneName();
 
 		return SUCCESS;
 	}
 
-	int createShip(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-		if (creature == nullptr || arguments == "") {
-			return INVALIDPARAMETERS;
-		}
-
-		auto spaceZone = creature->getZone();
-
-		if (spaceZone == nullptr || !spaceZone->isSpaceZone()) {
-			return GENERALERROR;
-		}
-
-		UnicodeTokenizer tokens(arguments);
-
-		String shipName = "";
-		String faction = "";
-
-		if (tokens.hasMoreTokens()) {
-			tokens.getStringToken(shipName);
-		}
-
-		if (tokens.hasMoreTokens()) {
-			tokens.getStringToken(faction);
-		}
-
-		ManagedReference<ShipAiAgent*> shipAgent = ShipManager::instance()->createAiShip(shipName);
-
-		if (shipAgent == nullptr) {
-			creature->sendSystemMessage("CreateCreatureCommand error: invalid ship agent template " + shipName);
-			return GENERALERROR;
-		}
-
-		Locker sLock(shipAgent, creature);
-
-		if (!faction.isEmpty() && faction != shipAgent->getShipFactionString()) {
-			shipAgent->setShipFactionString(faction, false);
-		}
-
-		shipAgent->setFactionStatus(FactionStatus::OVERT);
-
-		Vector3 position = creature->getWorldPosition();
-
-		position.setX(Math::clamp(-7999.f, (System::random(128) - 64.f) + position.getX(), 7999.f));
-		position.setY(Math::clamp(-7999.f, (System::random(128) - 64.f) + position.getY(), 7999.f));
-		position.setZ(Math::clamp(-7999.f, (System::random(128) - 64.f) + position.getZ(), 7999.f));
-
-		shipAgent->initializePosition(position.getX(), position.getZ(), position.getY());
-
-		shipAgent->setHomeLocation(position.getX(), position.getZ(), position.getY(), Quaternion::IDENTITY);
-		shipAgent->initializeTransform(position, Quaternion::IDENTITY);
-
-		shipAgent->setHyperspacing(true);
-
-		if (!spaceZone->transferObject(shipAgent, -1, true)) {
-			shipAgent->destroyObjectFromWorld(true);
-			shipAgent->destroyObjectFromDatabase(true);
-
-			return GENERALERROR;
-		}
-
-		shipAgent->setHyperspacing(false);
-
-		info(true) << "CreateCreatureCommand " << creature->getDisplayedName() << " Created Ship: " << shipAgent->getObjectID() << " [" << shipAgent->getDisplayedName() << "] at " << shipAgent->getWorldPosition() << " in Space Zone: " << spaceZone->getZoneName();
-
-		return SUCCESS;
-	}
 };
 
 #endif //CREATECREATURECOMMAND_H_

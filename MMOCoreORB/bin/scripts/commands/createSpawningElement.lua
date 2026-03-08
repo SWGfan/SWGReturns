@@ -43,7 +43,6 @@
 
 CreateSpawningElementCommand = {
         name = "createspawningelement",
-		cooldown = 2000,
 }
 
 AddCommand(CreateSpawningElementCommand)

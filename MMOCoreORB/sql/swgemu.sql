@@ -31,7 +31,7 @@ CREATE TABLE  `swgemu`.`account_bans` (
   `account_id` int(10) unsigned NOT NULL,
   `issuer_id` int(10) unsigned NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expires` int(10) unsigned NOT NULL DEFAULT '0',
+  `expires` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `reason` tinytext NOT NULL,
   PRIMARY KEY (`ban_id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `swgemu`.`account_log`;
 CREATE TABLE  `swgemu`.`account_log` (
   `acclog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `account_id` int(10) unsigned NOT NULL,
-  `timestamp` datetime NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` varchar(15) NOT NULL,
   PRIMARY KEY (`acclog_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -2101,7 +2101,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `swgemu`.`sessions`;
 CREATE TABLE  `swgemu`.`sessions` (
   `account_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `session_id` varchar(64) NOT NULL,
+  `session_id` int(10) unsigned NOT NULL,
   `ip` varchar(15) NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY (`account_id`) USING BTREE
@@ -13553,11 +13553,6 @@ CREATE TABLE  `swgemu`.`account_ips` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1099 DEFAULT CHARSET=latin1;
 
 ALTER TABLE `swgemu`.`deleted_characters` ADD COLUMN `db_deleted` BOOLEAN  NOT NULL DEFAULT 0 AFTER `creation_date`;
-
--- Newer versions require these to have defaults
-ALTER TABLE `characters` MODIFY COLUMN `creation_date` timestamp DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE `characters_dirty` MODIFY COLUMN `creation_date` timestamp DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE `deleted_characters` MODIFY COLUMN `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

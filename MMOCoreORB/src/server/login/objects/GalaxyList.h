@@ -11,17 +11,24 @@
 // #define USE_RANDOM_EXTRA_PORTS
 
 class Galaxy {
-	uint32 id = 0;
+	uint32 id;
 	String name;
 	String address;
-	uint32 port = 0;
-	uint32 pingPort = 0;
-	uint32 population = 0;
+	uint32 port;
+	uint32 pingPort;
+	uint32 population;
 #ifdef USE_RANDOM_EXTRA_PORTS
 	Vector<uint32> extraPorts;
 #endif // USE_RANDOM_EXTRA_PORTS
 public:
-	Galaxy() = default;
+	Galaxy() {
+		id = 0;
+		name = "";
+		address = "";
+		port = 0;
+		pingPort = 0;
+		population = 0;
+	}
 
 	Galaxy(ResultSet *result) {
 		id = result->getUnsignedInt(0);
@@ -83,15 +90,7 @@ public:
 
 	uint16 getRandomPort() const {
 #ifdef USE_RANDOM_EXTRA_PORTS
-		const static auto type = ConfigManager::instance()->getInt("Core3.ZonePortsBalancer", 1);
-
-		if (type == 1) {
-			static AtomicInteger roundRobin;
-
-			return (uint16)extraPorts.get(roundRobin.increment() % extraPorts.size());
-		} else {
-			return (uint16)extraPorts.get(System::random(extraPorts.size() - 1));
-		}
+		return (uint16) extraPorts.get(System::random(extraPorts.size() - 1));
 #else // USE_RANDOM_EXTRA_PORTS
 		return port;
 #endif // USE_RANDOM_EXTRA_PORTS
@@ -135,22 +134,33 @@ class GalaxyList {
 	int curIdx = 0;
 
 public:
-	GalaxyList(uint32 accountid) {
+	GalaxyList(String username) {
 		StringBuffer query;
-		query << "SELECT g.* FROM `galaxy` g"
-			<< " LEFT OUTER JOIN `galaxy_access` ga ON ga.`galaxy_id` = g.`galaxy_id` AND (ga.`account_id` = 0 OR ga.`account_id` = " << accountid << ")"
-			<< " WHERE (ga.`account_id` != 0 AND (ga.`expires` IS NULL OR ga.`expires` > NOW()))"
-			<< " OR NOT EXISTS (SELECT * FROM `galaxy_access` gb WHERE gb.`galaxy_id` = g.`galaxy_id`)"
-			<< " ORDER BY g.`galaxy_id`"
-			;
+		query << "SELECT * FROM galaxy";
 
-		UniqueReference<ResultSet*> results(ServerDatabase::instance()->executeQuery(query));
+		Reference<ResultSet*> results = ServerDatabase::instance()->executeQuery(query);
 
 		if (results == nullptr)
 			return;
 
-		while (results->next()) {
-			galaxies.add(Galaxy(results));
+		while(results->next()) {
+			auto galaxy = Galaxy(results);
+
+			Vector<String> galaxyAccessList;
+
+			try {
+				galaxyAccessList = ConfigManager::instance()->getStringVector("Core3.GalaxyAccess." + galaxy.getName());
+			} catch (Exception& e) {
+				// Do nothing on error (key miss)
+			}
+
+			if (galaxyAccessList.size() > 0) {
+				for (auto& access_username : galaxyAccessList) {
+					if (access_username == username)
+						galaxies.add(galaxy);
+				}
+			} else
+				galaxies.add(galaxy);
 		}
 
 		curIdx = 0;

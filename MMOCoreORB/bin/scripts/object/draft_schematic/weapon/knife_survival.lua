@@ -50,8 +50,7 @@ object_draft_schematic_weapon_knife_survival = object_draft_schematic_weapon_sha
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 3, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
-   
+
    xpType = "crafting_general", 
    xp = 28, 
 

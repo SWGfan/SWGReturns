@@ -34,7 +34,7 @@ class RangedStimPack extends StimPack {
 
 		range = values.getCurrentValue("range");
 
-		if (values.hasExperimentalAttribute("area")) {
+		if (values.hasProperty("area")) {
 			area = values.getCurrentValue("area");
 		}
 	}

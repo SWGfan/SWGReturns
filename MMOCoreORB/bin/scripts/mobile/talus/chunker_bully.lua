@@ -2,7 +2,6 @@ chunker_bully = Creature:new {
 	objectName = "@mob/creature_names:chunker_bully",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "chunker",
 	faction = "thug",
 	level = 10,
@@ -21,7 +20,7 @@ chunker_bully = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + STALKER,
@@ -43,21 +42,18 @@ chunker_bully = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "chunker_tier_1", chance = 10000000}
+				{group = "junk", chance = 1200000},
+				{group = "rifles", chance = 700000},
+				{group = "melee_knife", chance = 700000},
+				{group = "pistols", chance = 700000},
+				{group = "carbines", chance = 700000},
+				{group = "chunker_common", chance = 6000000},
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ranged_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"ranged_weapons"},
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmannovice,brawlernovice),
-	secondaryAttacks = { }
+	attacks = merge(marksmannovice,brawlernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(chunker_bully, "chunker_bully")

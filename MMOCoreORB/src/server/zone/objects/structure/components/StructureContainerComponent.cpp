@@ -14,7 +14,7 @@ bool StructureContainerComponent::checkContainerPermission(SceneObject* sceneObj
 
 	if (building != nullptr) {
 		if (permission == ContainerPermissions::MOVEVENDOR) {
-			if (building->isPublicStructure() && (building->isOnPermissionList("VENDOR", creature) || building->isOnAdminList(creature)))
+			if (building->isOnPermissionList("VENDOR", creature) || building->isOnAdminList(creature))
 				return true;
 			else {
 				if (building->isPrivateStructure())
@@ -26,13 +26,11 @@ bool StructureContainerComponent::checkContainerPermission(SceneObject* sceneObj
 			}
 		}
 
-		if (building->isOwnerOf(creature) || building->isOnAdminList(creature)) {
+		if (building->isOwnerOf(creature) || building->isOnAdminList(creature))
 			return true;
-		}
 
-		if ((permission == ContainerPermissions::OPEN)  && building->isClientObject()) {
+		if ((permission == ContainerPermissions::OPEN)  && building->isClientObject())
 			return true;
-		}
 
 		if (building->isBuildingObject()) {
 			BuildingObject* buio = cast<BuildingObject*>(building);

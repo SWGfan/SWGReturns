@@ -43,7 +43,6 @@
 
 CreateCreatureCommand = {
         name = "createcreature",
-		cooldown = 3000,
 }
 
 AddCommand(CreateCreatureCommand)

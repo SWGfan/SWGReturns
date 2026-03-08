@@ -15,7 +15,6 @@
 #include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 #include "server/zone/packets/scene/PlayClientEffectLocMessage.h"
 #include "server/zone/Zone.h"
-#include "server/zone/objects/intangible/PetControlDevice.h"
 
 namespace server {
 namespace zone {
@@ -24,11 +23,11 @@ namespace creature {
 namespace events {
 
 class DroidDetonationTask : public Task, public Logger {
+
 private:
 	Reference<DroidDetonationModuleDataComponent*> module;
 	ManagedReference<CreatureObject*> player;
 	int detonationStep;
-
 public:
 	DroidDetonationTask(DroidDetonationModuleDataComponent* module, CreatureObject* player) : Task() {
 		this->module = module;
@@ -50,66 +49,54 @@ public:
 		Locker locker(droid);
 		Locker crossLocker(player, droid);
 
-		auto zone = droid->getLocalZone();
-
 		// Check if droid is spawned
-		if (zone == nullptr) {
+		if (droid->getLocalZone() == nullptr) {  // Not outdoors
 			ManagedReference<SceneObject*> parent = droid->getParent().get();
-
-			// Not indoors either
-			if (parent == nullptr || !parent->isCellObject()) {
+			if (parent == nullptr || !parent->isCellObject()) { // Not indoors either
 				droid->removePendingTask("droid_detonation");
 				return;
 			}
-
-			// Get the zone using recursion
-			zone = droid->getZone();
-		}
-
-		// If zone is still null, cancel the task and return
-		if (zone == nullptr) {
-			droid->removePendingTask("droid_detonation");
-			return;
 		}
 
 		if (droid->isDead() || droid->isIncapacitated()) {
 			module->stopCountDown();
-			droid->showFlyText("pet/droid_modules", "detonation_disabled", 204, 0, 0);
+			droid->showFlyText("pet/droid_modules","detonation_disabled", 204, 0, 0);
 			module->deactivate();
 			droid->removePendingTask("droid_detonation");
 			return;
 		}
 
 		// if droid gets incapped while started it will disable but be able to be restarted
-		switch (detonationStep) {
-			case 0: {
+		switch(detonationStep) {
+			case 0:{
 				// 3
-				droid->showFlyText("pet/droid_modules", "countdown_3", 204, 0, 0);
+				droid->showFlyText("pet/droid_modules","countdown_3", 204, 0, 0);
 				detonationStep = 1;
 				reschedule(1000);
 				break;
 			}
 			case 1: {
 				// 2
-				droid->showFlyText("pet/droid_modules", "countdown_2", 204, 0, 0);
+				droid->showFlyText("pet/droid_modules","countdown_2", 204, 0, 0);
 				detonationStep = 2;
 				reschedule(1000);
 				break;
 			}
-			case 2: {
+			case 2:{
 				// 1
-				droid->showFlyText("pet/droid_modules", "countdown_1", 204, 0, 0);
+				droid->showFlyText("pet/droid_modules","countdown_1", 204, 0, 0);
 				detonationStep = 3;
 				reschedule(1000);
 				break;
 			}
 			case 3: {
-				// Detonate Droid
-				bool shouldGcwCrackdownTef = false, shouldGcwTef = false, shouldBhTef = false;
+				// BOOM
+				int areaDamage = module->calculateDamage(droid);
+				bool shouldGcwTef = false, shouldBhTef = false, shouldJediTef = false;
 
 				// find all valid targets in 17 m range and hit them with the damage
-				CloseObjectsVector* vec = (CloseObjectsVector*)droid->getCloseObjects();
-				SortedVector<ManagedReference<TreeEntry*>> closeObjects;
+				CloseObjectsVector* vec = (CloseObjectsVector*) droid->getCloseObjects();
+				SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
 				if (vec != nullptr) {
 					closeObjects.removeAll(vec->size(), 10);
@@ -118,10 +105,10 @@ public:
 #ifdef COV_DEBUG
 					droid->info("Null closeobjects vector in DroudDetonationTask::run", true);
 #endif
-					zone->getInRangeObjects(droid->getWorldPositionX(), droid->getWorldPositionZ(), droid->getWorldPositionY(), 40, &closeObjects, true);
+					droid->getZone()->getInRangeObjects(droid->getWorldPositionX(), droid->getWorldPositionY(), 40, &closeObjects, true);
 				}
 
-				PlayClientEffectLoc* explodeLoc = new PlayClientEffectLoc("clienteffect/combat_explosion_lair_large.cef", zone->getZoneName(), droid->getPositionX(), droid->getPositionZ(), droid->getPositionY());
+				PlayClientEffectLoc* explodeLoc = new PlayClientEffectLoc("clienteffect/combat_explosion_lair_large.cef", droid->getZone()->getZoneName(), droid->getPositionX(), droid->getPositionZ(), droid->getPositionY());
 				droid->broadcastMessage(explodeLoc, false);
 
 				crossLocker.release();
@@ -143,29 +130,26 @@ public:
 						continue;
 					}
 
-					uint64 tarParentID = object->getParentID();
-
-					if (player->isPlayerCreature() && tarParentID != 0 && player->getParentID() != tarParentID) {
+					if (player->isPlayerCreature() && object->getParentID() != 0 && player->getParentID() != object->getParentID()) {
 						Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
 
 						if (targetCell != nullptr) {
-							ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+							if (!object->isPlayerCreature()) {
+								auto perms = targetCell->getContainerPermissions();
 
-							if (parentSceneObject != nullptr) {
-								BuildingObject* building = parentSceneObject->asBuildingObject();
-
-								if (building != nullptr && !building->isAllowedEntry(player)) {
-									continue;
+								if (!perms->hasInheritPermissionsFromParent()) {
+									if (targetCell->checkContainerPermission(player, ContainerPermissions::WALKIN))
+										continue;
 								}
 							}
 
-							const ContainerPermissions* perms = targetCell->getContainerPermissions();
+							ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
 
-							// This portion of the check is specific for locked dungeons doors since they do not inherit perms from parent
-							if (!perms->hasInheritPermissionsFromParent() && (player->getRootParent() == object->getRootParent())) {
-								if (!targetCell->checkContainerPermission(player, ContainerPermissions::WALKIN)) {
+							if (parentSceneObject != nullptr) {
+								BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+								if (buildingObject != nullptr && !buildingObject->isAllowedEntry(player))
 									continue;
-								}
 							}
 						}
 					}
@@ -176,7 +160,7 @@ public:
 						// apply the damage to the target and send themessage
 						if (CollisionManager::checkLineOfSight(object, droid)) {
 							// apply the damage
-							float amount = CombatManager::instance()->doObjectDetonation(droid, creo, module->calculateDamage(droid));
+							float amount = CombatManager::instance()->doDroidDetonation(droid, creo, areaDamage);
 
 							if (amount > 0) {
 								if (creo->isPlayerCreature()) {
@@ -192,8 +176,9 @@ public:
 								tomaster.setDI((int)amount);
 								player->sendSystemMessage(tomaster);
 
-								CombatManager::instance()->checkForTefs(player, creo, &shouldGcwCrackdownTef, &shouldGcwTef, &shouldBhTef);
+								CombatManager::instance()->checkForTefs(player, creo, &shouldGcwTef, &shouldBhTef, &shouldJediTef);
 							}
+
 						}
 					} catch (Exception& e) {
 						error(e.getMessage());
@@ -218,11 +203,11 @@ public:
 				}
 
 				// Update PvP TEF Duration
-				if (shouldGcwCrackdownTef || shouldGcwTef || shouldBhTef) {
+				if (shouldGcwTef || shouldBhTef || shouldJediTef) {
 					PlayerObject* ghost = player->getPlayerObject();
 
 					if (ghost != nullptr) {
-						ghost->updateLastCombatActionTimestamp(shouldGcwCrackdownTef, shouldGcwTef, shouldBhTef);
+						ghost->updateLastPvpCombatActionTimestamp(shouldGcwTef, shouldBhTef, shouldJediTef);
 					}
 				}
 
@@ -230,13 +215,14 @@ public:
 			}
 		}
 	}
+
 };
 
-} // namespace events
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
+} // events
+} // creature
+} // objects
+} // zone
+} // server
 
 using namespace server::zone::objects::creature::events;
 

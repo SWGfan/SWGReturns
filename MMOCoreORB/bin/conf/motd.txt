@@ -1,14 +1,8 @@
-Welcome to SWG Returns!
-Daily restart at 4am UTC, join Discord for announcements.
-
-[EULA-BEGIN]
-Effective Date: October 21, 2025
-
-• Non-commercial, fan-made emulator. Not affiliated with Lucasfilm/Disney/SOE.
-• You must be 13+ (under 18 requires parental consent).
-• No harassment, hate speech, cheating, exploiting, or RMT.
-• Accounts are a revocable license; gameplay data may reset.
-• Service is provided “AS IS”; no warranty.
-
-By connecting you acknowledge this EULA.
-[EULA-END]
+Please dont forget to hard restart your clients if the server crashed/restarted.
+********************************************
+Main Server Website - www.swgreturns.github.com
++-+-+-+-+-+-+ +-+-+-+-+-+-+ +-+-+-+-+-+-+
+   |S|W|G| |R|E|T|U|R|N|S| |S|E|R|V|E|R|
++-+-+-+-+-+-+ +-+-+-+-+-+-+ +-+-+-+-+-+-+
+ Main Discord - https://discord.gg/xY5WuwfcFD
+********************************************

@@ -11,23 +11,26 @@
 class DrainForceCommand : public CombatQueueCommand {
 public:
 
-	DrainForceCommand(const String& name, ZoneProcessServer* server) : CombatQueueCommand(name, server) {
+	DrainForceCommand(const String& name, ZoneProcessServer* server)
+		: CombatQueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (isWearingArmor(creature)) {
-			return NOJEDIARMOR;
-		}
+		if (creature->hasAttackDelay() || !creature->checkPostureChangeDelay())
+			return GENERALERROR;
+
+		// Fail if target is not a player...
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
-		// Fail if target is not a player...
 		if (object == nullptr || !object->isPlayerCreature())
 			return INVALIDTARGET;
 
@@ -36,15 +39,11 @@ public:
 		if (targetCreature == nullptr || targetCreature->isDead() || (targetCreature->isIncapacitated() && !targetCreature->isFeigningDeath()) || !targetCreature->isAttackableBy(creature))
 			return INVALIDTARGET;
 
-		if (!checkDistance(creature, targetCreature, range))
+		if(!checkDistance(creature, targetCreature, range))
 			return TOOFAR;
 
 		if (!CollisionManager::checkLineOfSight(creature, targetCreature)) {
 			creature->sendSystemMessage("@combat_effects:cansee_fail");//You cannot see your target.
-			return GENERALERROR;
-		}
-
-		if (!playerEntryCheck(creature, targetCreature)) {
 			return GENERALERROR;
 		}
 
@@ -58,12 +57,8 @@ public:
 
 		CombatManager* manager = CombatManager::instance();
 
-		if (manager == nullptr)
-			return GENERALERROR;
-
 		if (manager->startCombat(creature, targetCreature, false)) { //lockDefender = false because already locked above.
 			int forceSpace = playerGhost->getForcePowerMax() - playerGhost->getForcePower();
-
 			if (forceSpace <= 0) //Cannot Force Drain if attacker can't hold any more Force.
 				return GENERALERROR;
 
@@ -81,10 +76,8 @@ public:
 			}
 
 			int forceDrain = targetForce >= drain ? drain : targetForce; //Drain whatever Force the target has, up to max.
-
-			if (forceDrain > forceSpace) {
+			if (forceDrain > forceSpace)
 				forceDrain = forceSpace; //Drain only what attacker can hold in their own Force pool.
-			}
 
 			playerGhost->setForcePower(playerGhost->getForcePower() + (forceDrain - forceCost));
 			targetGhost->setForcePower(targetGhost->getForcePower() - forceDrain);
@@ -93,22 +86,10 @@ public:
 			creature->doCombatAnimation(targetCreature, animCRC, 0x1, 0xFF);
 			manager->broadcastCombatSpam(creature, targetCreature, nullptr, forceDrain, "cbt_spam", combatSpam, 1);
 
-			if (targetCreature->getSkillMod("force_absorb") > 0) {
-				float drainAbsorb = forceDrain * 0.4f;
-				targetCreature->notifyObservers(ObserverEventType::FORCEABSORB, targetCreature, drainAbsorb);
-				manager->sendMitigationCombatSpam(targetCreature, nullptr, drainAbsorb, 0x04); // FORCEABSORB
-			}
-
 			VisibilityManager::instance()->increaseVisibility(creature, visMod);
 
-			bool shouldGcwCrackdownTef = false, shouldGcwTef = false, shouldBhTef = false;
-
-			manager->checkForTefs(creature, targetCreature, &shouldGcwCrackdownTef, &shouldGcwTef, &shouldBhTef);
-			if (shouldGcwCrackdownTef || shouldGcwTef || shouldBhTef) {
-				playerGhost->updateLastCombatActionTimestamp(shouldGcwCrackdownTef, shouldGcwTef, shouldBhTef);
-			}
-
 			return SUCCESS;
+
 		}
 
 		return GENERALERROR;
@@ -116,12 +97,13 @@ public:
 	}
 
 	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+		float baseDuration = defaultTime * 3.0;
 		float combatHaste = object->getSkillMod("combat_haste");
 
 		if (combatHaste > 0) {
-			return defaultTime * (1.f - (combatHaste / 100.f));
+			return baseDuration * (1.f - (combatHaste / 100.f));
 		} else {
-			return defaultTime;
+			return baseDuration;
 		}
 	}
 

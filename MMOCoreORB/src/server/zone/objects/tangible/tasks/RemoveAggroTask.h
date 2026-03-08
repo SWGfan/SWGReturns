@@ -12,10 +12,10 @@
 
 class RemoveAggroTask : public Task {
 	ManagedReference<TangibleObject*> self;
-	ManagedReference<TangibleObject*> target;
+	ManagedReference<CreatureObject*> target;
 	int value;
 public:
-	RemoveAggroTask(TangibleObject* me, TangibleObject* cr, int va) {
+	RemoveAggroTask(TangibleObject* me, CreatureObject* cr, int va) {
 		self = me;
 		target = cr;
 		value = va;

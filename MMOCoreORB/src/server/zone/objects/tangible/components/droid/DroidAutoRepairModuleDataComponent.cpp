@@ -15,7 +15,7 @@ DroidAutoRepairModuleDataComponent::DroidAutoRepairModuleDataComponent() {
 DroidAutoRepairModuleDataComponent::~DroidAutoRepairModuleDataComponent() {
 
 }
-String DroidAutoRepairModuleDataComponent::getModuleName() const {
+String DroidAutoRepairModuleDataComponent::getModuleName() {
 	return String("auto_repair_module");
 }
 void DroidAutoRepairModuleDataComponent::initializeTransientMembers() {
@@ -40,7 +40,7 @@ void DroidAutoRepairModuleDataComponent::updateCraftingValues(CraftingValues* va
 }
 
 void DroidAutoRepairModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
-	alm->insertAttribute( "auto_repair_power", (int)autoRepairPower);
+	alm->insertAttribute( "auto_repair_power", autoRepairPower );
 }
 
 void DroidAutoRepairModuleDataComponent::fillObjectMenuResponse(SceneObject* droidObject, ObjectMenuResponse* menuResponse, CreatureObject* player) {
@@ -123,7 +123,7 @@ void DroidAutoRepairModuleDataComponent::deactivate() {
 
 }
 
-String DroidAutoRepairModuleDataComponent::toString() const {
+String DroidAutoRepairModuleDataComponent::toString(){
 	return BaseDroidModuleComponent::toString();
 }
 

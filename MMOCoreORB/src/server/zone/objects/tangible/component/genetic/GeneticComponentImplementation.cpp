@@ -4,9 +4,6 @@
 
 #include "server/zone/objects/tangible/component/genetic/GeneticComponent.h"
 #include "templates/tangible/SharedWeaponObjectTemplate.h"
-#include "server/zone/objects/player/PlayerObject.h"
-
-// #define DEBUG_GENETIC_LAB
 
 void GeneticComponentImplementation::initializeTransientMembers() {
 	ComponentImplementation::initializeTransientMembers();
@@ -23,11 +20,11 @@ void GeneticComponentImplementation::resetResists(CraftingValues* values) {
 		values->setCurrentValue("dna_comp_armor_kinetic", 0);
 		values->setCurrentPercentage("dna_comp_armor_kinetic",0);
 	}
-	/*if (saberResist > 0 && !isSpecialResist(SharedWeaponObjectTemplate::LIGHTSABER)) {
+	if (saberResist > 0 && !isSpecialResist(SharedWeaponObjectTemplate::LIGHTSABER)) {
 		saberResist = 0;
 		values->setCurrentValue("dna_comp_armor_saber", 0);
 		values->setCurrentPercentage("dna_comp_armor_saber",0);
-	}*/
+	}
 	if (elecResist > 0 && !isSpecialResist(SharedWeaponObjectTemplate::ELECTRICITY)){
 		elecResist = 0;
 		values->setCurrentValue("dna_comp_armor_electric", 0);
@@ -62,22 +59,16 @@ void GeneticComponentImplementation::resetResists(CraftingValues* values) {
 
 void GeneticComponentImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ComponentImplementation::updateCraftingValues(values, firstUpdate);
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "---------- GeneticComponentImplementation::updateCraftingValues ----------";
-#endif
-
 	fortitude = values->getCurrentValue("fortitude");
 	endurance = values->getCurrentValue("endurance");
 	cleverness = values->getCurrentValue("cleverness");
 	courage = values->getCurrentValue("courage");
 	dexterity = values->getCurrentValue("dexterity");
-	dependability = values->getCurrentValue("dependability");
+	dependency = values->getCurrentValue("dependability");
 	fierceness = values->getCurrentValue("fierceness");
-	intellect = values->getCurrentValue("intellect");
+	intelligence = values->getCurrentValue("intellect");
 	power = values->getCurrentValue("power");
 	hardiness = values->getCurrentValue("hardiness");
-
 	kinResist = values->getCurrentValue("dna_comp_armor_kinetic");
 	energyResist = values->getCurrentValue("dna_comp_armor_energy");
 	blastResist = values->getCurrentValue("dna_comp_armor_blast");
@@ -86,101 +77,102 @@ void GeneticComponentImplementation::updateCraftingValues(CraftingValues* values
 	elecResist = values->getCurrentValue("dna_comp_armor_electric");
 	acidResist = values->getCurrentValue("dna_comp_armor_acid");
 	stunResist = values->getCurrentValue("dna_comp_armor_stun");
-	//saberResist = values->getCurrentValue("dna_comp_armor_saber");
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "Kinetic = " << kinResist << " Enery = " << energyResist << " Blast = " << blastResist << " Heat = " << heatResist << " Cold = " << coldResist;
-	info(true) << " Electricity = " << elecResist << " Acid = " << acidResist << " Stun = " << stunResist;
-#endif
-
-	if (values->getMinValue("kineticeffectiveness") > 0)
+	saberResist = values->getCurrentValue("dna_comp_armor_saber");
+	if (values->getCurrentValue("kineticeffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::KINETIC);
-	if (values->getMinValue("blasteffectiveness") > 0)
+	if (values->getCurrentValue("blasteffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::BLAST);
-	if (values->getMinValue("energyeffectiveness") > 0)
+	if (values->getCurrentValue("energyeffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::ENERGY);
-	if (values->getMinValue("heateffectiveness") > 0)
+	if (values->getCurrentValue("heateffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::HEAT);
-	if (values->getMinValue("coldeffectiveness") > 0)
+	if (values->getCurrentValue("coldeffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::COLD);
-	if (values->getMinValue("electricityeffectiveness") > 0)
+	if (values->getCurrentValue("electricityeffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::ELECTRICITY);
-	if (values->getMinValue("acideffectiveness") > 0)
+	if (values->getCurrentValue("acideffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::ACID);
-	if (values->getMinValue("stuneffectiveness") > 0)
+	if (values->getCurrentValue("stuneffectiveness") > 0)
 		setSpecialResist(SharedWeaponObjectTemplate::STUN);
-	/*if (values->getMinValue("lightsabereffectiveness") > 0)
-		setSpecialResist(SharedWeaponObjectTemplate::LIGHTSABER);*/
+	if (values->getCurrentValue("lightsabereffectiveness") > 0)
+		setSpecialResist(SharedWeaponObjectTemplate::LIGHTSABER);
 
-	if (fortitude > 500) {
+	if (fortitude < 250) {
 		armorRating = 1;
+	}
+
+	if (fortitude >= 250) {
+		armorRating = 2;
+	}
+
+	if (fortitude >= 500) {
+		armorRating = 3;
+	}
 
 	// min - max values
-	} else if (fortitude > 1000) {
+	if (fortitude > 1000) {
 		fortitude = 1000;
-	} else if (fortitude < 0) {
+	}
+
+	if (fortitude < 0)
 		fortitude = 1;
-	}
 
-	if (endurance > 1000) {
+	if (endurance > 1000){
 		endurance = 1000;
-	} else if (endurance < 0) {
+	}
+	if (endurance < 0)
 		endurance = 1;
-	}
 
-	if (cleverness > 1000) {
+	if (cleverness > 1000){
 		cleverness = 1000;
-	} else if (cleverness < 0) {
+	}
+	if (cleverness < 0)
 		cleverness = 1;
-	}
 
-	if (courage > 1000) {
+	if (courage > 1000){
 		courage = 1000;
-	} else if (courage < 0) {
+	}
+	if (courage < 0)
 		courage = 1;
-	}
 
-	if (dependability > 1000) {
-		dependability = 1000;
-	} else if (dependability < 0) {
-		dependability = 1;
+	if (dependency > 1000){
+		dependency = 1000;
 	}
+	if (dependency < 0)
+		dependency = 1;
 
 	if (dexterity > 1000) {
 		dexterity = 1000;
-	} else if (dexterity < 0) {
-		dexterity = 1;
 	}
+	if (dexterity < 0)
+		dexterity = 1;
 
 	if (fierceness > 1000){
 		fierceness = 1000;
-	} else if (fierceness < 0) {
-		fierceness = 1;
 	}
-
+	if (fierceness < 0)
+		fierceness = 1;
 	if (hardiness > 1000) {
 		hardiness = 1000;
-	} else if (hardiness < 0) {
+	}
+	if (hardiness < 0)
 		hardiness = 1;
+	if (intelligence > 1000){
+		intelligence = 1000;
 	}
-
-	if (intellect > 1000){
-		intellect = 1000;
-	} else if (intellect < 0) {
-		intellect = 1;
-	}
+	if (intelligence < 0)
+		intelligence = 1;
 
 	if (power > 1000) {
 		power = 1000;
-	} else if (power < 0) {
-		power = 1;
 	}
-
+	if (power < 0)
+		power = 1;
 	// max on resists
-	if (kinResist > 60)
-		kinResist = 60;
-	if (energyResist > 60)
-		energyResist = 60;
+	if (kinResist > 80)
+		kinResist = 80;
+	if (energyResist > 80)
+		energyResist = 80;
 	if (blastResist > 100)
 		blastResist = 100;
 	if (heatResist > 100)
@@ -193,9 +185,8 @@ void GeneticComponentImplementation::updateCraftingValues(CraftingValues* values
 		acidResist = 100;
 	if (stunResist > 100)
 		stunResist = 100;
-	//if (saberResist > 100)
-		//saberResist = 10;
-
+	if (saberResist > 70)
+		saberResist = 70;
 	// Determine other factors
 	// HAM, attack speed, min/max damage toHit
 	// Health: har,dex
@@ -208,58 +199,33 @@ void GeneticComponentImplementation::updateCraftingValues(CraftingValues* values
 	// Strength: har,dep
 	// Quickness: dex,dep
 
-	health = (hardiness * 15) + (dexterity * 3);
-	action = (dexterity * 15) + (intellect * 3);
-	mind = (intellect * 15) + (hardiness * 3);
-
-	stamina = (dexterity * 15) + (endurance * 3);
-	willPower = (intellect * 15) + (cleverness * 3);
-	constitution = (hardiness * 15) + (fortitude * 3);
-	focus = (intellect * 15) + (dependability * 3);
-	strength = (hardiness * 15) + (dependability * 3);
-	quickness = (dexterity * 15) + (dependability * 3);
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "Health: " << health << " Action: " << action << " Mind: " << mind;
-	info(true) << "Stamina: " << stamina << " Willpower: " << willPower << " Constitution: " << constitution << " Focus: " << focus << " Strength: " << strength << " Quickness: " << quickness;
-#endif
-
-	// toHit Calculation
-	hit = 0.19 + (cleverness / 1500.0f);
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "ToHit: " << hit;
-#endif
-
-	speed = 2.5f - (ceil(courage / 10.0f) * 10.0f) / 1000;
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "Speed: " << speed;
-#endif
-
-	// Calculate damage
-	float damage = (power * 0.8f) / 10.0f;
-
-	// Calculate damage variable
-	float damageVar = ((power / 10000.0f) * 2.0f);
-
-	maxDam = ceil((damage * (1.0f + damageVar)) + 1.0f) * 10.0f;
-	minDam = damage * (1.0f - damageVar) * 10.0f;
-
-	minDam += (5 - (minDam % 5));
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "Damage: " << damage << " Damage Variable: " << damageVar;
-	info(true) << "Min Damage: " << minDam;
-	info(true) << "Max Damage: " << maxDam;
-
-		// DPS calculation
-	int dps = ((maxDam + minDam) / 2.0f) / speed;
-
-	info(true) << "DPS: " << dps;
-
-	info(true) << "---------- END GeneticComponentImplementation::updateCraftingValues ----------";
-#endif
+	health = (hardiness * 125)    + (dexterity * 3);
+	action = (dexterity * 125)    + (intelligence * 3);
+	mind   = (intelligence * 125) + (hardiness * 3);
+	stamina = (dexterity*15)     + (endurance * 3);
+	willPower = (intelligence * 15) + (cleverness * 3);
+	constitution = (hardiness * 15)    + (fortitude * 3);
+	focus = (intelligence * 15) + (dependency * 3);
+	strength = (hardiness * 15)    + (dependency * 3);
+	quickness = (dexterity * 15)    + (dependency * 3);
+	hit = 0.19 + (0.55 * ((float)cleverness/1000.0));
+	// dps of pet use to determien min and max value.
+	int dps = ceil((ceil(15.0 + (775.0 * ( ((float)power)/1000.0))))/3.5);
+	speed = 2.0-((ceil(((float)courage)/10)*10)/1000);
+	float damMod;
+	if (power < 3) {
+		damMod = 5;
+	} else if (power >= 3 && power < 25) {
+		damMod = round(pow(power,(1.0f/0.61f)));
+	} else {
+		damMod = round(((pow(power,((1.0f/0.57f)*-1.0f)))*1000.0f)*power);
+	}
+	maxDam = round(((float)dps * 10.0) * 6.0)+damMod;
+	//minDam = round(((float)dps * speed) * 0.5);
+  	// round maxDam down to the closest multiple of 5
+	maxDam = maxDam - (maxDam % 5);
+  	// subtract either 5 or 10 from maxDam to get the minDam
+	minDam = maxDam - 5;
 }
 
 String GeneticComponentImplementation::convertSpecialAttack(String &attackName) {
@@ -281,20 +247,8 @@ String GeneticComponentImplementation::resistValue(float input){
 	}
 }
 
-void GeneticComponentImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* creature) {
-	bool godMode = false;
-
-	if (creature != nullptr && creature->isPlayerCreature()) {
-		auto ghost = creature->getPlayerObject();
-
-		if (ghost != nullptr && ghost->isPrivileged())
-			godMode = true;
-	}
-
-	alm->insertAttribute("volume", 1);
-	alm->insertAttribute("crafter", craftersName);
-	alm->insertAttribute("serial_number", objectSerial);
-
+void GeneticComponentImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
+	TangibleObjectImplementation::fillAttributeList(alm, object);
 	switch (quality){
 		case 1:
 			alm->insertAttribute("dna_comp_quality","@obj_attr_n:dna_comp_very_high");
@@ -324,12 +278,12 @@ void GeneticComponentImplementation::fillAttributeList(AttributeListMessage* alm
 
 	alm->insertAttribute("dna_comp_hardiness",(int)hardiness);
 	alm->insertAttribute("dna_comp_fortitude",(int)fortitude);
-	alm->insertAttribute("dna_comp_dexterity",(int)dexterity);
 	alm->insertAttribute("dna_comp_endurance",(int)endurance);
-	alm->insertAttribute("dna_comp_intellect",(int)intellect);
+	alm->insertAttribute("dna_comp_intellect",(int)intelligence);
 	alm->insertAttribute("dna_comp_cleverness",(int)cleverness);
-	alm->insertAttribute("dna_comp_dependability",(int)dependability);
+	alm->insertAttribute("dna_comp_dependability",(int)dependency);
 	alm->insertAttribute("dna_comp_courage",(int)courage);
+	alm->insertAttribute("dna_comp_dexterity",(int)dexterity);
 	alm->insertAttribute("dna_comp_fierceness",(int)fierceness);
 	alm->insertAttribute("dna_comp_power",(int)power);
 
@@ -351,41 +305,26 @@ void GeneticComponentImplementation::fillAttributeList(AttributeListMessage* alm
 	alm->insertAttribute("dna_comp_armor_electric",resistValue(elecResist));
 	alm->insertAttribute("dna_comp_armor_acid",resistValue(acidResist));
 	alm->insertAttribute("dna_comp_armor_stun",resistValue(stunResist));
-	//alm->insertAttribute("dna_comp_armor_saber",resistValue(saberResist));
-
-	if (godMode) {
-		alm->insertAttribute("dna_comp_armor_kinetic", kinResist);
-		alm->insertAttribute("dna_comp_armor_energy", energyResist);
-		alm->insertAttribute("dna_comp_armor_blast", blastResist);
-		alm->insertAttribute("dna_comp_armor_heat", heatResist);
-		alm->insertAttribute("dna_comp_armor_cold", coldResist);
-		alm->insertAttribute("dna_comp_armor_electric", elecResist);
-		alm->insertAttribute("dna_comp_armor_acid", acidResist);
-		alm->insertAttribute("dna_comp_armor_stun", stunResist);
-		// alm->insertAttribute("dna_comp_armor_saber", saberResist);
-	}
-
+	alm->insertAttribute("dna_comp_armor_saber",resistValue(saberResist));
 	alm->insertAttribute("spec_atk_1",convertSpecialAttack(special1));
 	alm->insertAttribute("spec_atk_2",convertSpecialAttack(special2));
-
-	alm->insertAttribute("dna_comp_ranged_attack", ranged ? "Yes" : "No");
+	alm->insertAttribute("dna_comp_ranged_attack",ranged ? "Yes" : "No");
 }
 
-bool GeneticComponentImplementation::isSpecialResist(unsigned int type) {
+bool GeneticComponentImplementation::isSpecialResist(int type) {
 	return specialResists & type;
 }
 
-void GeneticComponentImplementation::setSpecialResist(unsigned int type) {
-	if (!(specialResists & type))
-		specialResists |= type;
+void GeneticComponentImplementation::setSpecialResist(int type) {
+	specialResists |= type;
 }
 
-float GeneticComponentImplementation::getEffectiveArmor() {
-	float effectiveCalc = (kinResist + energyResist + blastResist + heatResist + coldResist + elecResist + acidResist + stunResist) * 2.0f;
-
-#ifdef DEBUG_GENETIC_LAB
-	info(true) << "--- GeneticComponentImplementation::getEffectiveArmor -- Returning: " << effectiveCalc;
-#endif
-
-	return effectiveCalc;
+int GeneticComponentImplementation::getEffectiveArmor() {
+	if (fortitude < 500)
+		return fortitude/50;
+	if (fortitude > 500)
+		return (fortitude-500)/50;
+	if (fortitude == 1000)
+		return 0;
+	return fortitude/50;
 }

@@ -50,8 +50,7 @@ object_draft_schematic_food_dessert_pkneb = object_draft_schematic_food_shared_d
    craftingToolTab = 4, -- (See DraftSchematicObjectTemplate.h)
    complexity = 4, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_food.iff",
-   
+
    xpType = "crafting_general", 
    xp = 80, 
 

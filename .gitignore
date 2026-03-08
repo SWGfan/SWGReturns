@@ -1,0 +1,7 @@
+MMOEngine
+luacov.report.out
+luacov.stats.out
+.vscode/c_cpp_properties.json
+.vscode/
+MMOCoreORB/utils/engine3/
+MMOCoreORB/src/core3

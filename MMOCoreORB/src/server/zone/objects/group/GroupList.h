@@ -12,6 +12,8 @@
 #include "GroupMember.h"
 
 class GroupList : public DeltaVector<GroupMember> {
+
 };
+
 
 #endif /* GROUPLIST_H_ */

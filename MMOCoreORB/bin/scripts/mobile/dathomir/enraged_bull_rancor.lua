@@ -2,10 +2,9 @@ enraged_bull_rancor = Creature:new {
 	objectName = "@mob/creature_names:enraged_bull_rancor",
 	socialGroup = "rancor",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 89,
 	chanceHit = 0.85,
-	damageMin = 570,
+	damageMin = 600,
 	damageMax = 850,
 	baseXp = 8500,
 	baseHAM = 13000,
@@ -19,7 +18,7 @@ enraged_bull_rancor = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 670,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 15,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -32,25 +31,20 @@ enraged_bull_rancor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rancor_common", chance = 4000000},
-				{group = "armor_all", chance = 2000000},
-				{group = "weapons_all", chance = 2500000},
+				{group = "rancor_common", chance = 5000000},
+				{group = "armor_all", chance = 3000000},
+				{group = "trash_common", chance = 500000},
 				{group = "wearables_all", chance = 1500000}
 			},
 			lootChance = 2780000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"knockdownattack",""}, {"creatureareaknockdown",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"knockdownattack",""},
+		{"creatureareaknockdown",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(enraged_bull_rancor, "enraged_bull_rancor")

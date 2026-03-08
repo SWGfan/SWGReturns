@@ -100,6 +100,18 @@
 -----------------------------------------------------------
 
 -----------------
+--    Chandrila
+-----------------
+chandrila = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
 --   Corellia
 -----------------
 corellia = {
@@ -108,7 +120,19 @@ corellia = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 90, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Coruscant
+-----------------
+coruscant = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -120,11 +144,11 @@ tatooine = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 70, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 
 	hasDamagingSandstorms = 0,
 
-	sandstormDamage = 70, -- 40 = Annoying, 100 = deadly
+	sandstormDamage = 0, -- 40 = Annoying, 100 = deadly
 }
 
 
@@ -137,7 +161,7 @@ dantooine = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 85, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -149,7 +173,7 @@ dathomir = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 50, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -161,7 +185,99 @@ endor = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 90, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Geonosis
+-----------------
+geonosis = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+
+	hasDamagingSandstorms = 0,
+
+	sandstormDamage = 0, -- 30 = Annoying, 50 = deadly
+}
+
+-----------------
+--    Hoth
+-----------------
+hoth = {
+
+	defaultWeather = 5, -- Random
+
+	averageWeatherDuration = 2400, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+
+	hasDamagingSandstorms = 1,
+
+	sandstormDamage = 0, -- 30 = Annoying, 50 = deadly
+}
+
+-----------------
+--    Hutta
+-----------------
+hutta = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Jakku
+-----------------
+jakku = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Kaas
+-----------------
+kaas = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Kashyyyk
+-----------------
+kashyyyk = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Korriban
+-----------------
+korriban = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -173,11 +289,35 @@ lok = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 60, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 
 	hasDamagingSandstorms = 0,
 
-	sandstormDamage = 50, -- 30 = Annoying, 50 = deadly
+	sandstormDamage = 0, -- 30 = Annoying, 50 = deadly
+}
+
+-----------------
+--    Mandalore
+-----------------
+mandalore = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Mustafar
+-----------------
+mustafar = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -189,7 +329,7 @@ naboo = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 90, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -201,7 +341,19 @@ rori = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 80, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
+--    Taanab
+-----------------
+taanab = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -213,7 +365,7 @@ talus = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 80, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -225,11 +377,5 @@ yavin4 = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 70, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
-
-
-
-
-
-

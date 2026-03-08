@@ -30,7 +30,7 @@ public:
 		int species = CreatureObject::HUMAN;
 
 		if (raceFile.indexOf("wookiee") != -1)
-			species = CreatureObject::WOOKIEE;
+			species = CreatureObject::WOOKIE;
 		else if (raceFile.indexOf("bothan") != -1)
 			species = CreatureObject::BOTHAN;
 		else if (raceFile.indexOf("ithorian") != -1)

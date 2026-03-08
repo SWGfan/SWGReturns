@@ -2,7 +2,6 @@ jinderliss_prason = Creature:new {
 	objectName = "",
 	customName = "Jinderliss Prason",
 	socialGroup = "",
-	mobType = MOB_NPC,
 	faction = "",
 	level = 7,
 	chanceHit = 0.26,
@@ -31,17 +30,9 @@ jinderliss_prason = Creature:new {
 			"object/mobile/dressed_noble_old_twk_male_02.iff"},
 	lootGroups = {				
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "ajuva_vanasterin_mission_target_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlernovice,marksmannovice),
-	secondaryAttacks = { }
+	attacks = merge(brawlernovice,marksmannovice)
 }
 
 CreatureTemplates:addCreatureTemplate(jinderliss_prason, "jinderliss_prason")

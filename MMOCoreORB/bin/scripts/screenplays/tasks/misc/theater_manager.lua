@@ -373,19 +373,19 @@ function TheaterManagerScreenPlay:spawnJudges(pTheater)
 
 	local pJudge = spawnMobile(planetName, "judge", 0, -0.95, 2.13, 51.85, 0, cellID)
 	if (pJudge ~= nil) then
-		CreatureObject(pJudge):setState(SITTINGONCHAIR)
+		CreatureObject(pJudge):setState(STATESITTINGONCHAIR)
 		writeData(controlID .. ":theater_manager:judge1ID", CreatureObject(pJudge):getObjectID())
 	end
 
 	pJudge = spawnMobile(planetName, "judge", 0, 0.56, 2.13, 51.85, 0, cellID)
 	if (pJudge ~= nil) then
-		CreatureObject(pJudge):setState(SITTINGONCHAIR)
+		CreatureObject(pJudge):setState(STATESITTINGONCHAIR)
 		writeData(controlID .. ":theater_manager:judge2ID", CreatureObject(pJudge):getObjectID())
 	end
 
 	pJudge = spawnMobile(planetName, "judge", 0, 2.07, 2.13, 51.85, 0, cellID)
 	if (pJudge ~= nil) then
-		CreatureObject(pJudge):setState(SITTINGONCHAIR)
+		CreatureObject(pJudge):setState(STATESITTINGONCHAIR)
 		writeData(controlID .. ":theater_manager:judge3ID", CreatureObject(pJudge):getObjectID())
 	end
 end
@@ -1143,7 +1143,7 @@ function TheaterManagerScreenPlay:spawnAudienceWave(pControl)
 		local pMember = spawnMobile(planetName, "audience_member", 0, data[1], data[2], data[3], data[4], cellID)
 
 		if (pMember ~= nil) then
-			CreatureObject(pMember):setState(SITTINGONCHAIR)
+			CreatureObject(pMember):setState(STATESITTINGONCHAIR)
 			writeData(controlID .. ":theater_manager:seat_" .. randomSeat, SceneObject(pMember):getObjectID())
 			self:setupAudienceMember(pMember, pPlayer, pTheater)
 		end
@@ -1596,7 +1596,7 @@ function TheaterManagerScreenPlay:doFinalAudienceReaction(pControl)
 		reactEffect = "clienteffect/perform_boo.cef"
 	end
 
-	playClientEffectLoc(pPlayer, reactEffect, SceneObject(pPlayer):getZoneName(), 0.16, 1.2, 36.74, SceneObject(pPlayer):getParentID())
+	playClientEffectLoc(playerID, reactEffect, SceneObject(pPlayer):getZoneName(), 0.16, 1.2, 36.74, SceneObject(pPlayer):getParentID())
 
 end
 

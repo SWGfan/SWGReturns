@@ -11,9 +11,6 @@
 class ObserverEventType {
 public:
 	enum {
-		// Adding Observers above the crafting checks will cause the stored eventType on already crafted foods to be improper
-		// Add new Observers to the bottom of the list
-
 		POSITIONCHANGED,			// ManagedObject arg1 = null, long arg2 = 0
 		CLOSECONTAINER,				// ManagedObject arg1 = player that closes the container, long arg2 = 0
 		POSTURECHANGED,				// ManagedObject arg1 = nullptr, long arg2 = new posture
@@ -55,7 +52,7 @@ public:
 		PLAYERCLONED,				// ManagedObject arg1 = player, long arg2 = 0
 		CRAFTINGASSEMBLY,			// ManagedObject arg1 = player, long arg2 = 0
 		CRAFTINGEXPERIMENTATION,	// ManagedObject arg1 = player, long arg2 = 0
-		PROTOTYPECREATED,			// ManagedObject arg1 = prototype, long arg2 = 0 bool for practice mode
+		PROTOTYPECREATED,			// ManagedObject arg1 = prototype, long arg2 = 0
 		ENHANCINGPERFORMED,			// ManagedObject arg1 = player, long arg2 = enhance amount
 		WOUNDHEALINGRECEIVED,		// ManagedObject arg1 = player, long arg2 = wound heal amount
 		XPAWARDED,					// ManagedObject arg1 = player, long arg2 = xp amount
@@ -88,27 +85,13 @@ public:
 		LOGGEDIN,					// ManagedObject arg1 = player, long arg2 = 0
 		LOGGEDOUT,					// ManagedObject arg1 = player, long arg2 = 0
 		CREATUREREVIVED,			// ManagedObject arg1 = healer (optional), long arg2 = 0
-		ZONESWITCHED,				// ManagedObject arg1 = null, long arg2 = hashcode of new zone name
+		ZONESWITCHED,				// ManagedObject arg1 = null, long arg2 = 0
 		TUNEDCRYSTAL,				// ManagedObject arg1 = crystal, long arg2 = 0
 		BHTEFCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		FACTIONCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		SLICED,						// ManagedObject arg1 = player doing slicing, long arg2 = result (1/0)
-		SQUAD,						// ManagedObject arg1 = AiAgent, long arg2 = 0
-		QUESTKILL,					// ManagedObject arg1 = destructedObject, long arg2 = 0 Credit for quest/screenplay kills
-		DAMAGECHECKPOINT,
-		SAMPLETAKEN,				// ManagedObject arg1 = ResourceSpawn, long arg2 = amount harvested
-		ABILITYUSED,				// ManagedObject arg1 = null, long arg2 = command CRC
-		HARVESTEDCREATURE,			// ManagedObject arg1 = resource spawn, long arg2 = Total creature resources harvested
-		DEPLOYEDCAMP,				// ManagedObject arg1 = camp area, long arg2 = 0
-		IMAGEDESIGNHAIR,			// ManagedObject arg1 = null, long arg2 = 0
-		COMBATCOMMANDENQUEUED,		// ManagedObject arg1 = player, long arg2 = 0
-		FACTIONCHAT,				// ManagedObject arg1 = AiAgent, long arg2 = playerID
-		NOPLAYERSINRANGE,			// ManagedObject arg1 = null, long arg2 = 0
-		SPATIALCHAT,				// ManagedObject arg1 = ChatMessage containing string text, long arg2 = playerID
-		SHIPAGENTDESPAWNED,			// ManagedObject arg1 = ShipAiAgent that despawned, long arg2 = 0
-		SQUADRON,					// ManagedObject arg1 = ShipAiAgent, long arg2 = 0
-		ENTEREDPOBSHIP,				// ManagedObject arg1 = player who entered the ship, long arg2 = 0
-		DESTROYEDSHIP,				// ManagedObject arg1 = destructedShip long arg2 = 0 used when a player destroys any ship
+		MOUNTED,
+		DISMOUNTED,
 	};
 };
 

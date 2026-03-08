@@ -9,9 +9,6 @@
 #define TIPBANKSUICALLBACK_H_
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
-#include "server/zone/objects/player/PlayerObject.h"
-#include "server/chat/ChatManager.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class TipCommandSuiCallback: public SuiCallback {
 private:
@@ -35,20 +32,6 @@ public:
 		// Player must have sufficient funds including surcharge
 		int cash = player->getBankCredits();
 		int surcharge = amount < 21 ? 1 : round(amount * 0.05); // minimum surcharge is 1c as per Live.
-
-		TransactionLog trxFee(player, TrxCode::TIPSURCHARGE, surcharge, false);
-
-		if (ConfigManager::instance()->getBool("Core3.SameAccountTipsAreFree", false)) {
-			auto ghost = player->getPlayerObject();
-			auto dstGhost = targetPlayer->getPlayerObject();
-
-			if (ghost != nullptr && dstGhost != nullptr && ghost->getAccountID() == dstGhost->getAccountID()) {
-				trxFee.addState("WaivedFeeAmount", surcharge);
-				surcharge = 0;
-				trxFee.setAmount(0, false);
-			}
-		}
-
 		if ((amount + surcharge) > cash) {
 			StringIdChatParameter ptnsfw("base_player", "prose_tip_nsf_wire"); // You do not have %DI credits (surcharge included) to tip the desired amount to %TT.
 			ptnsfw.setDI(amount + surcharge);
@@ -59,12 +42,8 @@ public:
 
 		// Perform the bank tip
 		Locker clocker(targetPlayer, player);
-
-		TransactionLog trx(player, targetPlayer, TrxCode::PLAYERTIP, amount, false);
-		trxFee.groupWith(trx);
-
 		player->subtractBankCredits(amount + surcharge);
-		targetPlayer->addBankCredits(amount, true);
+		targetPlayer->addBankCredits(amount, true); // FIXME: param notifyClient does nothing atm. in CreatureObject.idl:637
 
 		// Duly notify parties involved
 		if (targetPlayer->isOnline()) {

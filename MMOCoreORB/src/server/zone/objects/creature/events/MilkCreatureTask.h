@@ -6,8 +6,8 @@
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 #include "engine/engine.h"
+#include "server/zone/managers/player/PlayerManager.h"
 
 class MilkCreatureTask : public Task {
 
@@ -28,7 +28,7 @@ public:
 
 		Locker _clocker(player, creature);
 
-		if (!creature->isInRange(player, 7.f) || creature->isDead()) {
+		if (!creature->isInRange(player, 5.f) || creature->isDead()) {
 			updateMilkState(CreatureManager::NOTMILKED);
 			player->sendSystemMessage("@skl_use:milk_too_far"); // The creature has moved too far away to continue milking it.
 			return;
@@ -82,7 +82,6 @@ public:
 				this->reschedule(10000);
 			} else {
 				updateMilkState(CreatureManager::NOTMILKED);
-				clearStationary();
 				_clocker.release();
 				CombatManager::instance()->startCombat(creature, player, true);
 			}
@@ -93,7 +92,6 @@ public:
 				giveMilkToPlayer();
 			} else {
 				updateMilkState(CreatureManager::NOTMILKED);
-				clearStationary();
 				_clocker.release();
 				CombatManager::instance()->startCombat(creature, player, true);
 			}
@@ -109,7 +107,7 @@ public:
 		String restype = creature->getMilkType();
 		int quantity = creature->getMilk();
 
-		int quantityExtracted = Math::max(quantity, 3);
+		int quantityExtracted = Math::max(quantity, 1250)*2;
 
 		ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, player->getZone()->getZoneName());
 
@@ -120,31 +118,41 @@ public:
 
 		float density = resourceSpawn->getDensityAt(player->getZone()->getZoneName(), player->getPositionX(), player->getPositionY());
 
+		String milkZone = "";
+
 		if (density > 0.80f) {
 			quantityExtracted = int(quantityExtracted * 1.25f);
+			milkZone = "creature_quality_fat";
 		} else if (density > 0.60f) {
 			quantityExtracted = int(quantityExtracted * 1.00f);
+			milkZone = "creature_quality_medium";
 		} else if (density > 0.40f) {
 			quantityExtracted = int(quantityExtracted * 0.75f);
+			milkZone = "creature_quality_skinny";
 		} else {
 			quantityExtracted = int(quantityExtracted * 0.50f);
+			milkZone = "creature_quality_scrawny";
 		}
 
-		TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
-		resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
+		// 25% milk harvesting for having Master Ranger
+		if (player->hasSkill("outdoors_ranger_master")) {
+			quantityExtracted =  quantityExtracted * 1.25;
+		}
+
+		StringIdChatParameter harvestMessage("skl_use", milkZone);
+		harvestMessage.setDI(quantityExtracted);
+		harvestMessage.setTU(resourceSpawn->getFinalClass());
+
+		resourceManager->harvestResourceToPlayer(player, resourceSpawn, quantityExtracted);
+		player->sendSystemMessage(harvestMessage);
 
 		updateMilkState(CreatureManager::ALREADYMILKED);
-	}
-
-	void clearStationary() {
-		creature->removeObjectFlag(ObjectFlag::STATIONARY);
-		creature->setAITemplate();
+		
 	}
 
 	void updateMilkState(const short milkState) {
 		Locker clocker(creature);
 		creature->setMilkState(milkState);
-		clearStationary();
 	}
 };
 

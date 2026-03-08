@@ -34,13 +34,10 @@ public:
 				|| !toContainer->isResourceContainer() || !creature->isPlayerCreature() || !fromContainer->isASubChildOf(creature) || !toContainer->isASubChildOf(creature)))
 			return INVALIDTARGET;
 
-		ManagedReference<SceneObject*> parent = toContainer->getParent().get();
+		ManagedReference<SceneObject*> par = toContainer->getParent().get();
 
-		if (parent == nullptr)
-			return GENERALERROR;
-
-		if (parent->getContainerObjectsSize() >= parent->getContainerVolumeLimit()) {
-			creature->sendSystemMessage("@error_message:inv_full"); //Your inventory is full.
+		if (par != nullptr && par->isContainerFull()) {
+			creature->sendSystemMessage("@container_error_message:container03");
 			return GENERALERROR;
 		}
 

@@ -2,7 +2,6 @@ informant_npc = Creature:new {
 	objectName = "@mob/creature_names:spynet_operative",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "",
 	faction = "",
 	level = 100,
@@ -30,17 +29,10 @@ informant_npc = Creature:new {
 
 	templates = {"object/mobile/dressed_hutt_informant_quest.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "imperial_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"imperial_weapons_light"},
 	conversationTemplate = "informant_npc",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(informant_npc, "informant_npc")

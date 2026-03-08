@@ -50,8 +50,7 @@ object_draft_schematic_munition_grenade_cryoban_ww_41 = object_draft_schematic_m
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 25, 
    size = 4, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
-   
+
    xpType = "crafting_weapons_general", 
    xp = 90, 
 
@@ -74,7 +73,16 @@ object_draft_schematic_munition_grenade_cryoban_ww_41 = object_draft_schematic_m
    targetTemplate = "object/weapon/ranged/grenade/grenade_cryoban.iff",
 
    additionalTemplates = {
-             }
-
+          },
+ 	weaponDots = {
+		{
+			{"type", 1}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
+			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
+			{"strength", 150},
+			{"duration", 240},
+			{"potency", 150},
+			{"uses", 5}
+		}
+	},          
 }
 ObjectTemplates:addTemplate(object_draft_schematic_munition_grenade_cryoban_ww_41, "object/draft_schematic/munition/grenade_cryoban_ww_41.iff")

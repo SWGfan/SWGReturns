@@ -2,7 +2,6 @@ sharnaff = Creature:new {
 	objectName = "@mob/creature_names:sharnaff",
 	socialGroup = "sharnaff",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 31,
 	chanceHit = 0.38,
 	damageMin = 300,
@@ -20,7 +19,7 @@ sharnaff = Creature:new {
 	boneAmount = 180,
 	milkType = "milk_wild",
 	milk = 220,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 2,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = NONE,
@@ -37,17 +36,12 @@ sharnaff = Creature:new {
 			lootChance = 1620000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"dizzyattack",""}, {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"dizzyattack",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(sharnaff, "sharnaff")

@@ -2,7 +2,6 @@ bordok_mare = Creature:new {
 	objectName = "@mob/creature_names:bordok_mare",
 	socialGroup = "bordok",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 34,
 	chanceHit = 0.41,
 	damageMin = 340,
@@ -19,8 +18,8 @@ bordok_mare = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 125,
 	milkType = "milk_wild",
-	milk = 135,
-	tamingChance = 0,
+	milk = 400,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -30,17 +29,12 @@ bordok_mare = Creature:new {
 	templates = {"object/mobile/bordok_hue.iff"},
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""}, {"creatureareaknockdown",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"stunattack",""},
+		{"creatureareaknockdown",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(bordok_mare, "bordok_mare")

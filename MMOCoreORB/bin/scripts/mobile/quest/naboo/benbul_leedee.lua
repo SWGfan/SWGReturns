@@ -3,7 +3,6 @@ benbul_leedee = Creature:new {
 	customName = "Benbul Leedee",
 	socialGroup = "gungan",
 	faction = "gungan",
-	mobType = MOB_NPC,
 	level = 20,
 	chanceHit = 0.31,
 	damageMin = 160,
@@ -27,7 +26,7 @@ benbul_leedee = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/gungan_male.iff"},
+	templates = {"object/mobile/gungan_s02_male.iff"},
 	lootGroups = {
 		{
 			groups = {
@@ -38,17 +37,9 @@ benbul_leedee = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermid,marksmanmid),
-	secondaryAttacks = { }
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(benbul_leedee, "benbul_leedee")

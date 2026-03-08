@@ -3,7 +3,6 @@ probot_crafted_advanced = Creature:new {
 	socialGroup = "",
 	faction = "",
 	level = 4,
-	mobType = MOB_DROID,
 	chanceHit = 0.24,
 	damageMin = 182,
 	damageMax = 191,
@@ -31,11 +30,7 @@ probot_crafted_advanced = Creature:new {
 	},
 	lootGroups = {},
 	defaultAttack = "attack",
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "droid_probot_ranged",
-	secondaryWeapon = "unarmed",
+	weapons = {"droid_probot_ranged"},
 	conversationTemplate = "",
 }
 

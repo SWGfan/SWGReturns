@@ -44,43 +44,100 @@
 ForceChokeCommand = {
 	name = "forcechoke",
 
-	minDamage = 175,
-	maxDamage = 375,
-	speed = 4.0,
-	forceCost = 400,
+	minDamage = 1500,
+	maxDamage = 2500,
+	speed = 2.0,
+	forceCost = 200,
 	visMod = 25,
 	forceAttack = true,
-	accuracyBonus = 95,
+	accuracyBonus = 100,
+
+
 
 	animation = "force_choke_1_particle_level_1",
 	animType = GENERATE_INTENSITY,
-
 	combatSpam = "forcechoke",
-
 	poolsToDamage = HEALTH_ATTRIBUTE,
 	damageType = LIGHTSABER_DAMAGE,
-
 	range = 32,
 
-	dotEffects = {
-		DotEffect(
-			FORCECHOKE,
-			{ "", "" },
-			HEALTH,
-			true,
-			-1,
-			100,
-			350,
-			30,
-			100,
-			1
-		)
+  dotEffects = {
+    DotEffect(
+    FORCECHOKE,
+    { "", "" },
+    HEALTH,
+    true,
+    -1,
+    250,
+    400,
+    35,
+    33.0,
+    0.33
+    ),
+
+    DotEffect(
+    FORCECHOKE,
+    { "", "" },
+    ACTION,
+    true,
+    -1,
+    250,
+    400,
+    35,
+    33.0,
+    0.33
+    ),
+
+    DotEffect(
+    FORCECHOKE,
+    { "", "" },
+    MIND,
+    true,
+    -1,
+    250,
+    400,
+    35,
+    33.0,
+    0.33
+    )
+  },
+  
+  	stateEffects = {
+	  StateEffect(
+		POSTUREDOWN_EFFECT,
+		{ "postureDownRecovery" },
+		{ "posture_change_down_defense" },
+		{},
+		100,
+		0,
+		0
+	  ),
+	  StateEffect( 
+		DIZZY_EFFECT, 
+		{}, 
+		{ "dizzy_defense" }, 
+		{ "jedi_state_defense", "resistance_states" }, 
+		85, 
+		0, 
+		30 
+	  ),
+	  StateEffect( 
+		STUN_EFFECT, 
+		{}, 
+		{ "stun_defense" }, 
+		{ "jedi_state_defense", "resistance_states" }, 
+		85, 
+		0, 
+		60
+	  )
 	},
+
+
 
 	frsLightMinDamageModifier = 1,
 	frsLightMaxDamageModifier = 4,
-	frsDarkMinDamageModifier = 1,
-	frsDarkMaxDamageModifier = 4,
+	frsDarkMinDamageModifier = 3,
+	frsDarkMaxDamageModifier = 6,
 }
 
 AddCommand(ForceChokeCommand)

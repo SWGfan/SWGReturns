@@ -2,7 +2,6 @@ hrodius_goragg = Creature:new {
 	objectName = "@mob/creature_names:trandoshan_slavemaster",
 	customName = "Hrodius Goragg",
 	socialGroup = "imperial",
-	mobType = MOB_NPC,
 	faction = "imperial",
 	level = 24,
 	chanceHit = 0.36,
@@ -39,18 +38,10 @@ hrodius_goragg = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmannovice,brawlernovice),
-	secondaryAttacks = { }
+	attacks = merge(marksmannovice,brawlernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(hrodius_goragg, "hrodius_goragg")

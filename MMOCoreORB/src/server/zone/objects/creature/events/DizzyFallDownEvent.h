@@ -38,10 +38,8 @@ public:
 				creature->dismount();
 			}
 
-			if (!creature->isKnockedDown()) {
-				creature->setPosture(CreaturePosture::KNOCKEDDOWN, true, true);
-				creature->doAnimation("change_posture");
-			}
+			if (!creature->isKnockedDown())
+				creature->setPosture(CreaturePosture::KNOCKEDDOWN);
 
 			creature->sendSystemMessage("@cbt_spam:dizzy_fall_down_single");
 			creature->sendStateCombatSpam("cbt_spam", "dizzy_fall_down", 11);

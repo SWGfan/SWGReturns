@@ -52,16 +52,6 @@ class FactoryObject extends InstallationObject {
 	@dirty
 	public native void fillAttributeList(AttributeListMessage msg, CreatureObject object);
 
-	/**
-	 * Sends the necessary messages to player in order to create this object
-	 * @pre { this object is locked }
-	 * @post { this object is locked, player received this object }
-	 * @param player SceneObject that will receive the messages
-	 * @param doClose if true a SceneObjectCloseMessage is sent to finish the object
-	 */
-	@dirty
-	public native abstract void sendTo(SceneObject player, boolean doClose, boolean forceLoadContainer = true);
-
 	@dirty
 	public boolean isFactory() {
 		return true;
@@ -107,13 +97,13 @@ class FactoryObject extends InstallationObject {
 	 * factory
 	 */
 	@preLocked
-	public native boolean handleRemoveFactorySchem(CreatureObject player);
+	public native void handleRemoveFactorySchem(CreatureObject player);
 
 	@preLocked
 	public native void handleOperateToggle(CreatureObject player);
 
 	@preLocked
-	public native boolean startFactory();
+	private native boolean startFactory();
 
 	private native void stopFactory(final string message, final string tt, final string to, final int di);
 
@@ -126,7 +116,7 @@ class FactoryObject extends InstallationObject {
 	private native FactoryCrate locateCrateInOutputHopper(TangibleObject prototype);
 
 	@preLocked
-	private native FactoryCrate createNewFactoryCrate(TangibleObject prototype, int maxSize, string crateType);
+	private native FactoryCrate createNewFactoryCrate(TangibleObject prototype, int maxSize);
 
 	@preLocked
 	private native TangibleObject createNewUncratedItem(TangibleObject prototype);
@@ -137,7 +127,4 @@ class FactoryObject extends InstallationObject {
 
 	@dirty
 	public native string getRedeedMessage();
-
-	@dirty
-	public native void sendRemoveFailureMessage(CreatureObject player, ManufactureSchematic schematic);
 }

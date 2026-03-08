@@ -13,10 +13,12 @@
 
 class PetThrowCommand : public QueueCommand {
 public:
-	PetThrowCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+	PetThrowCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& targetID, const UnicodeString& arguments) const {
+
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().get().castTo<PetControlDevice*>();
 
 		if (controlDevice == nullptr)
@@ -47,40 +49,40 @@ public:
 		// trap must be a trap
 		ManagedReference<TangibleObject*> trap = module->getTrap();
 		if (trap == nullptr || !trap->isTrapObject()) {
-			droid->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
+			droid->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
 			return GENERALERROR;
 		}
 
 		// trap must have charges
 		if (trap->getUseCount() <= 0) {
-			droid->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
+			droid->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
 			return GENERALERROR;
 		}
 
 		// target must be a creature
 		Reference<CreatureObject*> target = server->getZoneServer()->getObject(targetID, true).castTo<CreatureObject*>();
 		if (target == nullptr || !target->isCreature()) {
-			droid->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0);  // "?!!?!?!"
+			droid->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
 			owner->sendSystemMessage("@pet/droid_modules:invalid_trap_target"); // "That is not a valid target."
 			return INVALIDTARGET;
 		}
 
 		// target must be attackable
-		if (!(target->getPvpStatusBitmask() & ObjectFlag::ATTACKABLE)) {
-			droid->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0);  // "?!!?!?!"
+		if (!(target->getPvpStatusBitmask() & CreatureFlag::ATTACKABLE)) {
+			droid->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
 			owner->sendSystemMessage("@pet/droid_modules:invalid_trap_target"); // "That is not a valid target."
 			return INVALIDTARGET;
 		}
 
 		// Check range to target
-		if (!checkDistance(droid, target, 64.0f)) {							   // traps via launcher get their own range
-			droid->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
-			owner->sendSystemMessage("@pet/droid_modules:target_too_far");	 // "That target is out of range."
+		if (!checkDistance(droid, target, 64.0f)) { // traps via launcher get their own range
+			droid->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
+			owner->sendSystemMessage("@pet/droid_modules:target_too_far"); // "That target is out of range."
 			return TOOFAR;
 		}
 
 		// check droid state
-		if (droid->getLocalZone() == nullptr) { // Not outdoors
+		if (droid->getLocalZone() == nullptr) {  // Not outdoors
 			ManagedReference<SceneObject*> parent = droid->getParent().get();
 			if (parent == nullptr || !parent->isCellObject()) { // Not indoors either
 				return GENERALERROR;
@@ -94,7 +96,7 @@ public:
 
 		// Check if droid has power
 		if (!droid->hasPower()) {
-			droid->showFlyText("npc_reaction/flytext", "low_power", 204, 0, 0); // "*Low Power*"
+			droid->showFlyText("npc_reaction/flytext","low_power", 204, 0, 0);  // "*Low Power*"
 			return GENERALERROR;
 		}
 
@@ -106,7 +108,7 @@ public:
 		}
 
 		// get trap template
-		TrapTemplate* trapData = cast<TrapTemplate*>(templateData);
+		TrapTemplate* trapData = cast<TrapTemplate*> (templateData);
 		if (trapData == nullptr) {
 			error("No TrapTemplate for: " + String::valueOf(trap->getServerObjectCRC()));
 			return GENERALERROR;
@@ -130,7 +132,7 @@ public:
 
 			int trapBonus = module->getTrapBonus();
 			// trapping skill gets modified by the droid's trap bonus
-			int bonus = DroidMechanics::determineDroidSkillBonus(trappingSkill, trapBonus, trappingSkill);
+			int bonus = DroidMechanics::determineDroidSkillBonus(trappingSkill,trapBonus,trappingSkill);
 
 			if (trapBonus > trappingSkill)
 				trappingSkill += bonus;
@@ -141,7 +143,7 @@ public:
 			}
 
 			int targetDefense = target->getSkillMod(trapData->getDefenseMod());
-			const Time* cooldown = droid->getCooldownTime("throwtrap");
+			Time* cooldown = droid->getCooldownTime("throwtrap");
 
 			if (cooldown != nullptr && !cooldown->isPast()) {
 				StringIdChatParameter msg;
@@ -157,10 +159,7 @@ public:
 			if (!CombatManager::instance()->startCombat(droid, target))
 				return GENERALERROR;
 
-			int attackRoll = System::random(199) + 1;
-			int defendRoll = System::random(199) + 1;
-
-			float hitChance = CombatManager::instance()->hitChanceEquation(trappingSkill + attackRoll, targetDefense + defendRoll);
+			float hitChance = CombatManager::instance()->hitChanceEquation(trappingSkill, System::random(199) + 1, targetDefense, System::random(199) + 1);
 
 			if (hitChance > 100)
 				hitChance = 100.0;
@@ -187,7 +186,7 @@ public:
 			int damage = 0;
 
 			if (hit) {
-				message.setStringId("trap/trap", trapData->getSuccessMessage());
+				message.setStringId("trap/trap" , trapData->getSuccessMessage());
 
 				buff = new Buff(target, crc, trapData->getDuration(), BuffType::STATE);
 
@@ -203,17 +202,17 @@ public:
 
 				String startSpam = trapData->getStartSpam();
 				if (!startSpam.isEmpty())
-					buff->setStartFlyText("trap/trap", startSpam, 0, 0xFF, 0);
+					buff->setStartFlyText("trap/trap", startSpam,  0, 0xFF, 0);
 
 				String stopSpam = trapData->getStopSpam();
 				if (!stopSpam.isEmpty())
-					buff->setEndFlyText("trap/trap", stopSpam, 0xFF, 0, 0);
+					buff->setEndFlyText("trap/trap", stopSpam,  0xFF, 0, 0);
 
 				damage = System::random(trapData->getMaxDamage() - trapData->getMinDamage()) + trapData->getMinDamage();
 
 			} else {
 				if (!trapData->getFailMessage().isEmpty()) {
-					message.setStringId("trap/trap", trapData->getFailMessage());
+					message.setStringId("trap/trap" , trapData->getFailMessage());
 				}
 			}
 

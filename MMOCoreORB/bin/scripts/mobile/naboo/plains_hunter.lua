@@ -2,7 +2,6 @@ plains_hunter = Creature:new {
 	objectName = "@mob/creature_names:plains_hunter",
 	socialGroup = "tusk_cat",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 31,
 	chanceHit = 0.39,
 	damageMin = 310,
@@ -19,7 +18,7 @@ plains_hunter = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 35,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 9,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -30,17 +29,12 @@ plains_hunter = Creature:new {
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.3,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"intimidationattack",""}, {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"intimidationattack",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(plains_hunter, "plains_hunter")

@@ -2,7 +2,6 @@ crackdown_rebel_guard_captain = Creature:new {
 	objectName = "@mob/creature_names:crackdown_rebel_guard_captain",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 1,
@@ -27,7 +26,6 @@ crackdown_rebel_guard_captain = Creature:new {
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED + CONVERSABLE,
 	diet = HERBIVORE,
-	customAiMap = "crackdown",
 
 	templates = {
 		"object/mobile/dressed_rebel_specforce_captain_moncal_female_01.iff",
@@ -50,19 +48,9 @@ crackdown_rebel_guard_captain = Creature:new {
 			lootChance = 3000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_carbine",
-	secondaryWeapon = "rebel_pistol",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"rebel_weapons_heavy"},
 	conversationTemplate = "rebelRecruiterConvoTemplate",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(carbineermaster,marksmanmaster),
-	secondaryAttacks = merge(pistoleermaster,marksmanmaster)
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(crackdown_rebel_guard_captain, "crackdown_rebel_guard_captain")

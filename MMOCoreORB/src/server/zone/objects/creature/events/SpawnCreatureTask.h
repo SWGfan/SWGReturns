@@ -51,8 +51,7 @@ public:
 			if (randomRespawn)
 				ai->setRandomRespawn(true);
 
-			ai->addObjectFlag(ObjectFlag::STATIC);
-			ai->setAITemplate();
+			ai->activateLoad("stationary");
 		}
 	}
 };

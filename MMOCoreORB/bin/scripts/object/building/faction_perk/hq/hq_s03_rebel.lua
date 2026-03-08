@@ -44,17 +44,16 @@
 object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_shared_hq_s03_rebel:new {
 	lotSize = 0,
 	containerComponent = "GCWBaseContainerComponent",
-	groundZoneComponent = "StructureZoneComponent",
+	zoneComponent = "StructureZoneComponent",
 	maintenanceCost = 0,
 	baseMaintenanceRate = 0,
 	faction = "rebel",
 	pvpFaction = "rebel",
 	dataObjectComponent = "DestructibleBuildingDataComponent",
-	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus"},
+  allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
 	constructionMarker = "object/building/player/construction/construction_player_house_generic_medium_style_01.iff",
 	length = 7,
 	width = 6,
-	planetMapCategory = "rebel",
 	alwaysPublic = 1,
 	factionBaseType = 1,
 
@@ -70,14 +69,11 @@ object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_s
 		{ templateFile = "object/static/structure/general/tankfarm_s01.iff", x = -9.27, z = 0, y = -11.87, ox = 0, oy = 0.565, oz = 0, ow = 0.825, cellid = -1, containmentType = -1 },
 
 		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = 14, z = 0, y = 25, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
-		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = -14, z = 0, y = 25, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
+		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = 14, z = 0, y = 25, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
 		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = -25, z = 0, y = -9, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1 },
-		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = 25, z = 0, y = -9, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1 },
+		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = -25, z = 0, y = -9, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1 },
 
-		{ templateFile = "object/installation/faction_perk/covert_detector/detector_32m.iff", x = 0, z = 0, y = 31.94, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
-		{ templateFile = "object/installation/faction_perk/minefield/field_1x1.iff", x = 0, z = 0, y = 20.44, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
-		{ templateFile = "object/installation/faction_perk/minefield/field_1x1.iff", x = 5.35, z = 0, y = 36, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
-		{ templateFile = "object/installation/faction_perk/minefield/field_1x1.iff", x = -5.35, z = 0, y = 36, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
+		{ templateFile = "object/installation/faction_perk/minefield/field_1x1.iff", x = 0, z = 0, y = 31.7, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
 
 		{ templateFile = "object/tangible/terminal/terminal_hq_rebel.iff", x = 0, z = 0.25, y = 1.86, ox = 0, oy = 0, oz = 0, ow = 1, cellid = 2, containmentType = -1 },
 
@@ -86,26 +82,9 @@ object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_s
 
 		{ templateFile = "object/tangible/terminal/terminal_bank.iff", x = 4.75, z = -20.7, y = 2.13, ox = 0, oy = 0, oz = 0, ow = 1, cellid = 9, containmentType = -1 },
 		{ templateFile = "object/tangible/terminal/terminal_bank.iff", x = -1.57, z = -20.7, y = 2.13, ox = 0, oy = 0, oz = 0, ow = 1, cellid = 9, containmentType = -1 },
-
-		-- Base Alarms
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack.iff", x = 1.4, z = 2.97, y = 3.21, ow = 0.008, ox = -0.699, oy = 0.714, oz = -0.008, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = 5.48, z = -16.32, y = 9.03, ow = 0.508, ox = 0.509, oy = -0.491, oz = 0.490, cellid = 9, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = -5.25, z = 3.4, y = -0.8, ow = 0.005, ox = 0.707, oy = 0.707, oz = 0.005, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = 0.07, z = 3.40, y = -5.50, ow = 0, ox = 0, oy = 0.724, oz = 0.689, cellid = 3, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = 2.1, z = -10.2, y = 0.7, ow = 0.005, ox = 0.707, oy = 0.707, oz = 0.005, cellid = 6, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = -1.446, z = -10.43, y = 10.489, ow = 0, ox = 0, oy = -0.689, oz = 0.724, cellid = 7, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = 1.5, z = -15.65, y = 3.6, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 9, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = -3.69, z = 3.75, y = 3.19, ow = -0.011, ox = 0.99, oy = 0.017, oz = 0.002550, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = 3.5, z = 4.25, y = -5.3, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 3, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = 3.2, z = -9, y = 8.9, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 7, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct_no_sound.iff", x = 1.5, z = -15.65, y = 10.5, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 9, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct_no_sound.iff", x = -3.7, z = 3.75, y = -4.7, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct_no_sound.iff", x = 3.4, z = -9.8, y = -0.7, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 6, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct_no_sound.iff", x = -8.5, z = -9, y = 9, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 7, containmentType = -1 },
 	},
 
 	childCreatureObjects = {
-		-- Exterior Spawns
 		{ mobile = "fbase_rebel_master_sergeant_hard", x = 10, z = 0, y = 4, cellid = -1, respawn = 360, containmentType = -1, heading = 0},
 		{ mobile = "fbase_rebel_command_security_guard_hard", x = 10, z = 0, y = 10, cellid = -1, respawn = 360, containmentType = -1, heading = 0},
 
@@ -145,41 +124,26 @@ object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_s
 		{ mobile = "fbase_rebel_comm_operator_hard", x = 22, z = 0, y = 37, cellid = -1, respawn = 360, containmentType = -1, heading = 0},
 		{ mobile = "fbase_rebel_medic_hard", x = 27, z = 0, y = 37, cellid = -1, respawn = 360, containmentType = -1, heading = 0},
 
-		-- Interior Spawns
-		-- 1 entry
-		-- 2 hall1
-		{ mobile = "fbase_rebel_recruit_hard", x = -4.7, z = 0.3, y = 3.9, cellid = 2, containmentType = -1, respawn = 60, heading = 1.5708},
-		{ mobile = "fbase_rebel_cadet", x = -4.6, z = 0.3, y = -3.9, cellid = 2, containmentType = -1, respawn = 60, heading = 1.5708},
-		-- 3 hall2
-		{ mobile = "fbase_rebel_heavy_trooper", x = 3.2, z = 0.3, y = -4.9, cellid = 3, containmentType = -1, respawn = 60, heading = 0},
-		-- 4 ramp1
-		{ mobile = "fbase_rebel_medic_hard", x = -3.9, z = -6.8, y = 5.9, cellid = 4, containmentType = -1, respawn = 60, heading = 4.71239},
-		-- 5 ramp2
-		{ mobile = "fbase_rebel_heavy_trooper", x = 3.6, z = -13.8, y = -6.9, cellid = 5, containmentType = -1, respawn = 60, heading = 1.0472},
-		-- 7 room3
-		{ mobile = "fbase_rebel_sharpshooter_hard", x = -8.9, z = -13.8, y = 6.2, cellid = 7, containmentType = -1, respawn = 60, heading = 3.07178},
-		{ mobile = "fbase_rebel_sergeant_hard", x = 4.4, z = -13.8, y = 6.1, cellid = 7, containmentType = -1, respawn = 60, heading = 2.28638},
-		-- 8 ramp3
-		-- 9 foyer
-		{ mobile = "fbase_rebel_warrant_officer_ii_hard", x = 4.4, z = -20.7, y = 6.7, cellid = 9, containmentType = -1, respawn = 60, heading = 2.11185},
-		{ mobile = "fbase_rebel_elite_sand_rat", x = 4.7, z = -20.7, y = 4.4, cellid = 9, containmentType = -1, respawn = 60, heading = 0.296706},
-		-- 10 bunker
-		{ mobile = "rebel_recruiter", x = 1.3, z = -20.8, y = 25.55, cellid = 10, containmentType = -1, respawn = 60, heading = 0.0698132},
-		{ mobile = "fbase_rebel_master_sergeant_hard", x = 3.9, z = -20.8, y = 30.2, cellid = 10, containmentType = -1, respawn = 60, heading = 4.08407},
-		{ mobile = "fbase_rebel_corporal_hard", x = 0.4, z = -20.8, y = 30, cellid = 10, containmentType = -1, respawn = 60, heading = 2.33874},
-		{ mobile = "fbase_rebel_comm_operator_hard", x = -3.4, z = -20.8, y = 34.5, cellid = 10, containmentType = -1, respawn = 60, heading = 0.383972},
-		{ mobile = "fbase_rebel_first_lieutenant_hard", x = -3.6, z = -20.8, y = 29.1, cellid = 10, containmentType = -1, respawn = 60, heading = 4.7473},
-	},
+		{ mobile = "fbase_rebel_recruit_hard", x = -4.5, z = 0, y = -2, cellid = 2, respawn = 300, containmentType = -1, heading = 4.71 },
+		{ mobile = "fbase_rebel_recruit_hard", x = -4.5, z = 0, y = 0.9, cellid = 2, respawn = 300, containmentType = -1, heading = 4.71 },
 
-	securityPatrols = {
-		{patrol = "rebel_small_3", x = -8.8, z = 0, y = 3.9, heading = 0},
-		{patrol = "rebel_small_3", x = 8.7, z = 0, y = 3.9, heading = 0},
-		{patrol = "rebel_small_3", x = 0, z = 0, y = -11, heading = 0},
-		{patrol = "rebel_small_3", x = 0, z = 0, y = 38, heading = 0},
+		{ mobile = "fbase_rebel_sharpshooter_hard", x = 4, z = -3.25, y = 5, cellid = 4, respawn = 300, containmentType = -1, heading = 3.14},
+		{ mobile = "fbase_rebel_sharpshooter_hard", x = -5, z = -10.25, y = -6, cellid = 5, respawn = 300, containmentType = -1, heading = 0},
 
-		{patrol = "rebel_large_3", x = 0, z = 0, y = 18.1, heading = 0},
-		{patrol = "rebel_large_3", x = -31, z = 0, y = 6.8, heading = 0},
-		{patrol = "rebel_large_3", x = 31, z = 0, y = 6.8, heading = 0},
+		{ mobile = "fbase_rebel_command_security_guard_hard", x = -2.7, z = -13.75, y = 7, cellid = 7, respawn = 300, containmentType = -1, heading = 1.57},
+		{ mobile = "fbase_rebel_command_security_guard_hard", x = -5, z = -13.75, y = 7, cellid = 7, respawn = 300, containmentType = -1, heading = 1.57},
+
+		{ mobile = "fbase_rebel_sergeant_hard", x = -1.85, z = -20.75, y = 5.1, cellid = 9, respawn = 300, containmentType = -1, heading = 4.71 },
+		{ mobile = "fbase_rebel_corporal_hard", x = 4.6, z = -20.75, y = 5.1, cellid = 9, respawn = 300, containmentType = -1, heading = 1.57},
+
+		{ mobile = "fbase_rebel_comm_operator_hard", x = -1, z = -20.75, y = 16, cellid = 10, containmentType = -1, respawn = 300, heading = 1.57},
+		{ mobile = "fbase_rebel_recruit_hard", x = -3.5, z = -20.75, y = 23, cellid = 10, containmentType = -1, respawn = 300, heading = 1.57},
+		{ mobile = "fbase_rebel_corporal_hard", x = 5, z = -20.75, y = 16, cellid = 10, containmentType = -1, respawn = 300, heading = 4.71 },
+		{ mobile = "fbase_rebel_sharpshooter_hard", x = 6.5, z = -20.75, y = 23, cellid = 10, containmentType = -1, respawn = 300, heading = 4.71 },
+		{ mobile = "fbase_rebel_warrant_officer_ii_hard", x = 2.6, z = -20.75, y = 29.9, cellid = 10, containmentType = -1, respawn = 300, heading = 3.14},
+		{ mobile = "fbase_rebel_master_sergeant_hard", x = 5.8, z = -20.75, y = 29.9, cellid = 10, containmentType = -1, respawn = 300, heading = 4.71 },
+		{ mobile = "fbase_rebel_first_lieutenant_hard", x = 5.5, z = -20.75, y = 35, cellid = 10, containmentType = -1, respawn = 600, heading = 3.14},
+		{ mobile = "rebel_recruiter", x = -2, z = -20.75, y = 34, cellid = 10, containmentType = -1, respawn = 60, heading = 3.14},
 	},
 }
 

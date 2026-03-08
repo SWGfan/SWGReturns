@@ -306,7 +306,7 @@ bool ShuttleBeaconImplementation::canSpawnShuttle(CreatureObject* player) {
 	if (vec == nullptr)
 		return false;
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	vec->safeCopyTo(closeObjects);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -335,12 +335,12 @@ bool ShuttleBeaconImplementation::canSpawnShuttle(CreatureObject* player) {
 	}
 
 	SortedVector<ManagedReference<ActiveArea* > > activeAreas;
-	zone->getInRangeActiveAreas(x, 0, y, &activeAreas, true);
+	zone->getInRangeActiveAreas(x, y, &activeAreas, true);
 
 	for (int i = 0; i < activeAreas.size(); ++i) {
 		ActiveArea* area = activeAreas.get(i);
 
-		if (area->isNoBuildZone())
+		if (area->isNoBuildArea())
 			return false;
 	}
 

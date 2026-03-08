@@ -2,16 +2,15 @@ droideka = Creature:new {
 	objectName = "@mob/creature_names:droideka",
 	socialGroup = "droideka",
 	faction = "",
-	mobType = MOB_DROID,
-	level = 39,
-	chanceHit = 0.44,
-	damageMin = 370,
-	damageMax = 450,
+	level = 175,
+	chanceHit = 15.0,
+	damageMin = 900,
+	damageMax = 1400,
 	baseXp = 3824,
-	baseHAM = 9300,
-	baseHAMmax = 11300,
-	armor = 0,
-	resists = {30,30,30,-1,30,-1,30,-1,-1},
+	baseHAM = 40000,
+	baseHAMmax = 50000,
+	armor = 1,
+	resists = {30,30,30,20,30,30,30,30,10},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,7 +29,11 @@ droideka = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "lok_droid_tier_1", chance = 10000000}
+				{group = "junk", chance = 6500000},
+				{group = "nyms_common", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "tailor_components", chance = 500000}
 			}
 		}
 	},

@@ -51,13 +51,12 @@ object_draft_schematic_space_weapon_wpn_light_ioncannon = object_draft_schematic
 	complexity = 21,
 	size = 1,
 	factoryCrateSize = 0,
-	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
-   
+
 	xpType = "shipwright",
 	xp = 50,
 
 	assemblySkill = "weapon_systems",
-	experimentingSkill = "weapon_systems_experimentation",
+	experimentingSkill = "weapons_systems_experimentation",
 	customizationSkill = "medicine_customization",
 
 	customizationOptions = {},
@@ -66,7 +65,7 @@ object_draft_schematic_space_weapon_wpn_light_ioncannon = object_draft_schematic
 
 	ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n", "craft_item_ingredients_n"},
 	ingredientTitleNames = {"casing", "ship_blaster_core", "weapon_upgrade", "blaster_cooling_mechanism", "energy_shielding"},
-	ingredientSlotType = {0, 0, 3, 0, 0},
+	ingredientSlotType = {0, 0, 1, 0, 0},
 	resourceTypes = {"steel", "radioactive", "object/tangible/ship/crafted/weapon/shared_base_weapon_subcomponent_mk1.iff", "gas_inert", "ore_carbonate"},
 	resourceQuantities = {50, 50, 1, 50, 50},
 	contribution = {100, 100, 100, 100, 100},

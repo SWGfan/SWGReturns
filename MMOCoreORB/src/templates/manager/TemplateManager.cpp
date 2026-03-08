@@ -52,7 +52,7 @@
 #include "templates/manager/PortalLayoutMap.h"
 
 #include "templates/params/creature/CreatureState.h"
-#include "templates/params/creature/ObjectFlag.h"
+#include "templates/params/creature/CreatureFlag.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "templates/params/OptionBitmask.h"
 #include "templates/params/ObserverEventType.h"
@@ -97,15 +97,14 @@
 #include "templates/tangible/LootkitObjectTemplate.h"
 #include "templates/tangible/LootSchematicTemplate.h"
 #include "templates/tangible/MissionTerminalTemplate.h"
-#include "templates/tangible/NavicomputerDeedTemplate.h"
 #include "templates/tangible/PetDeedTemplate.h"
 #include "templates/tangible/PowerupTemplate.h"
 #include "templates/tangible/RangedStimPackTemplate.h"
-#include "templates/tangible/SchematicFragmentTemplate.h"
 #include "templates/tangible/SharedBattlefieldMarkerObjectTemplate.h"
 #include "templates/tangible/SharedCountingObjectTemplate.h"
 #include "templates/tangible/SharedFactoryObjectTemplate.h"
 #include "templates/tangible/SharedResourceContainerObjectTemplate.h"
+#include "templates/tangible/SharedShipObjectTemplate.h"
 #include "templates/tangible/SharedWeaponObjectTemplate.h"
 #include "templates/tangible/SkillBuffTemplate.h"
 #include "templates/tangible/StatePackTemplate.h"
@@ -116,11 +115,6 @@
 #include "templates/tangible/VehicleDeedTemplate.h"
 #include "templates/tangible/WoundPackTemplate.h"
 #include "templates/tangible/XpPurchaseTemplate.h"
-
-#include "templates/tangible/ship/SharedShipObjectTemplate.h"
-#include "templates/tangible/ship/ShipChassisTemplate.h"
-#include "templates/tangible/ship/ShipComponentTemplate.h"
-#include "templates/tangible/ship/ShipDeedTemplate.h"
 
 #include "templates/universe/SharedGroupObjectTemplate.h"
 #include "templates/universe/SharedGuildObjectTemplate.h"
@@ -133,12 +127,8 @@
 #include "templates/SharedTangibleObjectTemplate.h"
 #include "templates/SharedUniverseObjectTemplate.h"
 
-
 #include "conf/ConfigManager.h"
 #include "tre3/TreeArchive.h"
-
-// Include needed for the INVULNERABLE constant used for Lua globals registration (fixed)
-#include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
 
 Lua* TemplateManager::luaTemplatesInstance = nullptr;
@@ -328,8 +318,9 @@ PaletteTemplate* TemplateManager::getPaletteTemplate(const String& fileName) {
 
 	try {
 		palette->readObject(stream);
-	} catch (const Exception& e) {
-		error() << "could not parse palette template: " << fileName << e.getMessage();
+	} catch (Exception& e) {
+		error("could not parse palette template: " + String(fileName));
+		error(e.getMessage());
 
 		delete palette;
 		palette = nullptr;
@@ -376,24 +367,13 @@ void TemplateManager::loadPlanetMapCategories() {
 	for (int i = 0; i < dtiff.getTotalRows(); ++i) {
 		DataTableRow* row = dtiff.getRow(i);
 
-		bool isMainCategory = false;
-		row->getValue(2, isMainCategory);
+		Reference<PlanetMapCategory*> planetMapCategory = new PlanetMapCategory();
+		planetMapCategory->parseFromDataTableRow(row);
 
-		if (isMainCategory) {
-			Reference<PlanetMapCategory*> planetMapCategory = new PlanetMapCategory();
-			planetMapCategory->parseFromDataTableRow(row);
-
-			planetMapCategoryList.put(planetMapCategory->getName(), planetMapCategory);
-		} else {
-			Reference<PlanetMapSubCategory*> planetMapSubCat = new PlanetMapSubCategory();
-			planetMapSubCat->parseFromDataTableRow(row);
-
-			planetMapSubCategoryList.put(planetMapSubCat->getName(), planetMapSubCat);
-		}
+		planetMapCategoryList.put(planetMapCategory->getName(), planetMapCategory);
 	}
 
-	info(true) << "Loaded " << planetMapCategoryList.size() << " planet map primary categories.";
-	info(true) << "Loaded " << planetMapSubCategoryList.size() << " planet map sub categories.";
+	info("Loaded " + String::valueOf(planetMapCategoryList.size()) + " planet map categories.");
 }
 
 void TemplateManager::loadLuaTemplates() {
@@ -409,33 +389,33 @@ void TemplateManager::loadLuaTemplates() {
 
 		if (!val)
 			ERROR_CODE = LOAD_LUA_TEMPLATE_ERROR;
-	} catch (const Exception& e) {
+	} catch (Exception& e) {
 		error(e.getMessage());
 		e.printStackTrace();
 
 		ERROR_CODE = LOAD_LUA_TEMPLATE_ERROR;
 	}
 
-	System::out << endl;
+	printf("\n");
 	info("Finished loading object templates", true);
 
-	info() << portalLayoutMap->size() << " portal layouts loaded";
-	info() << floorMeshMap->size() << " floor meshes loaded";
-	info() << structureFootprints.size() << " structure footprints.";
+	info(String::valueOf(portalLayoutMap->size()) + " portal layouts loaded");
+	info(String::valueOf(floorMeshMap->size()) + " floor meshes loaded");
+	info(String::valueOf(structureFootprints.size()) + " structure footprints.");
 
 	delete luaTemplatesInstance;
 	luaTemplatesInstance = nullptr;
 }
 
 void TemplateManager::loadTreArchive() {
-	const auto& path = ConfigManager::instance()->getTrePath();
+	String path = ConfigManager::instance()->getTrePath();
 
 	if (path.length() <= 1) {
 		ERROR_CODE = NO_TRE_PATH;
 		return;
 	}
 
-	const auto& treFilesToLoad = ConfigManager::instance()->getTreFiles();
+	Vector<String> treFilesToLoad = ConfigManager::instance()->getTreFiles();
 
 	if (treFilesToLoad.size() == 0) {
 		ERROR_CODE = NO_TRE_FILES;
@@ -447,6 +427,26 @@ void TemplateManager::loadTreArchive() {
 	if (res != 0) {
 		ERROR_CODE = LOAD_TRES_ERROR;
 	}
+
+/*	info("Loading TRE archives...", true);
+
+
+
+	treeDirectory = new TreeArchive();
+
+	int j = 0;
+
+	for (int i = 0; i < treFilesToLoad.size(); ++i) {
+		String file = treFilesToLoad.get(i);
+
+		String fullPath = path + "/";
+		fullPath += file;
+
+		treeDirectory->unpackFile(fullPath);
+	}
+
+
+	info("Finished loading TRE archives.", true);*/
 }
 
 void TemplateManager::addTemplate(uint32 key, const String& fullName, LuaObject* templateData) {
@@ -461,7 +461,7 @@ void TemplateManager::addTemplate(uint32 key, const String& fullName, LuaObject*
 		return;
 	}
 
-	debug() << "loading " << fullName;
+	//info("loading " + fullName, true);
 
 	String fileName = fullName.subString(fullName.lastIndexOf('/') + 1, fullName.lastIndexOf('.'));
 
@@ -483,7 +483,7 @@ void TemplateManager::addTemplate(uint32 key, const String& fullName, LuaObject*
 	if (!clientTemplateFile.isEmpty())
 		templateObject->addDerivedFile(clientTemplateFile);
 
-	debug() << "loaded " << fullName;
+	debug("loaded " + fullName);
 
 	if (templateCRCMap->put(key, templateObject) != nullptr) {
 		//error("duplicate template for " + fullName);
@@ -535,8 +535,6 @@ void TemplateManager::registerTemplateObjects() {
 	templateFactory.registerObject<VehicleDeedTemplate>(SharedObjectTemplate::VEHICLEDEED);
 	templateFactory.registerObject<DroidDeedTemplate>(SharedObjectTemplate::DROIDDEED);
 	templateFactory.registerObject<EventPerkDeedTemplate>(SharedObjectTemplate::EVENTPERKDEED);
-	templateFactory.registerObject<ShipDeedTemplate>(SharedObjectTemplate::SHIPDEED);
-	templateFactory.registerObject<NavicomputerDeedTemplate>(SharedObjectTemplate::NAVICOMPUTERDEED);
 	templateFactory.registerObject<MissionTerminalTemplate>(SharedObjectTemplate::MISSIONTERMINAL);
 	templateFactory.registerObject<CloningBuildingObjectTemplate>(SharedObjectTemplate::CLONINGBUILDING);
 	templateFactory.registerObject<HospitalBuildingObjectTemplate>(SharedObjectTemplate::HOSPITALBUILDING);
@@ -577,9 +575,6 @@ void TemplateManager::registerTemplateObjects() {
 	templateFactory.registerObject<DroidPersonalityModuleTemplate>(SharedObjectTemplate::DROIDMODULEPERSONALITY);
 	templateFactory.registerObject<VehicleObjectTemplate>(SharedObjectTemplate::VEHICLE);
 	templateFactory.registerObject<XpPurchaseTemplate>(SharedObjectTemplate::XPPURCHASE);
-	templateFactory.registerObject<ShipComponentTemplate>(SharedObjectTemplate::SHIPCOMPONENT);
-	templateFactory.registerObject<ShipChassisTemplate>(SharedObjectTemplate::SHIPCHASSIS);
-	templateFactory.registerObject<SchematicFragmentTemplate>(SharedObjectTemplate::SCHEMATICFRAGMENT);
 }
 
 void TemplateManager::registerFunctions() {
@@ -620,19 +615,18 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("MEDIUM", SharedWeaponObjectTemplate::MEDIUM);
 	luaTemplatesInstance->setGlobalInt("HEAVY", SharedWeaponObjectTemplate::HEAVY);
 
-	luaTemplatesInstance->setGlobalInt("ATTACKABLE", ObjectFlag::ATTACKABLE);
-	luaTemplatesInstance->setGlobalInt("AGGRESSIVE", ObjectFlag::AGGRESSIVE);
-	luaTemplatesInstance->setGlobalInt("OVERT", ObjectFlag::OVERT);
-	luaTemplatesInstance->setGlobalInt("TEF", ObjectFlag::TEF);
-	luaTemplatesInstance->setGlobalInt("PLAYER", ObjectFlag::PLAYER);
-	luaTemplatesInstance->setGlobalInt("ENEMY", ObjectFlag::ENEMY);
-	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", ObjectFlag::WILLBEDECLARED);
-	luaTemplatesInstance->setGlobalInt("WASDECLARED", ObjectFlag::WASDECLARED);
+	luaTemplatesInstance->setGlobalInt("ATTACKABLE", CreatureFlag::ATTACKABLE);
+	luaTemplatesInstance->setGlobalInt("AGGRESSIVE", CreatureFlag::AGGRESSIVE);
+	luaTemplatesInstance->setGlobalInt("OVERT", CreatureFlag::OVERT);
+	luaTemplatesInstance->setGlobalInt("TEF", CreatureFlag::TEF);
+	luaTemplatesInstance->setGlobalInt("PLAYER", CreatureFlag::PLAYER);
+	luaTemplatesInstance->setGlobalInt("ENEMY", CreatureFlag::ENEMY);
+	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", CreatureFlag::WILLBEDECLARED);
+	luaTemplatesInstance->setGlobalInt("WASDECLARED", CreatureFlag::WASDECLARED);
 
 	luaTemplatesInstance->setGlobalInt("CONVERSABLE", OptionBitmask::CONVERSE);
 	luaTemplatesInstance->setGlobalInt("AIENABLED", OptionBitmask::AIENABLED);
-// Core3 compatibility: INVULNERABLE constant comes from DestructibleBuildingDataComponent
-	luaTemplatesInstance->setGlobalInt("INVULNERABLE", DestructibleBuildingDataComponent::INVULNERABLE);
+	luaTemplatesInstance->setGlobalInt("INVULNERABLE", OptionBitmask::INVULNERABLE);
 	luaTemplatesInstance->setGlobalInt("FACTIONAGGRO", OptionBitmask::FACTIONAGGRO);
 	luaTemplatesInstance->setGlobalInt("INTERESTING", OptionBitmask::INTERESTING);
 	luaTemplatesInstance->setGlobalInt("JTLINTERESTING", OptionBitmask::JTLINTERESTING);
@@ -725,8 +719,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("VEHICLEDEED", SharedObjectTemplate::VEHICLEDEED);
 	luaTemplatesInstance->setGlobalInt("PETDEED", SharedObjectTemplate::PETDEED);
 	luaTemplatesInstance->setGlobalInt("DROIDDEED", SharedObjectTemplate::DROIDDEED);
-	luaTemplatesInstance->setGlobalInt("SHIPDEED", SharedObjectTemplate::SHIPDEED);
-	luaTemplatesInstance->setGlobalInt("NAVICOMPUTERDEED", SharedObjectTemplate::NAVICOMPUTERDEED);
 	luaTemplatesInstance->setGlobalInt("EVENTPERKDEED", SharedObjectTemplate::EVENTPERKDEED);
 	luaTemplatesInstance->setGlobalInt("MISSIONTERMINAL", SharedObjectTemplate::MISSIONTERMINAL);
 	luaTemplatesInstance->setGlobalInt("CLONINGBUILDING", SharedObjectTemplate::CLONINGBUILDING);
@@ -769,7 +761,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("DROIDPERSONALITYCHIP", SharedObjectTemplate::DROIDMODULEPERSONALITY);
 	luaTemplatesInstance->setGlobalInt("VEHICLE", SharedObjectTemplate::VEHICLE);
 	luaTemplatesInstance->setGlobalInt("XPPURCHASE", SharedObjectTemplate::XPPURCHASE);
-	luaTemplatesInstance->setGlobalInt("SCHEMATICFRAGMENT", SharedObjectTemplate::SCHEMATICFRAGMENT);
 
 	luaTemplatesInstance->setGlobalInt("NO_HITLOCATION", ArmorObjectTemplate::NOLOCATION);
 	luaTemplatesInstance->setGlobalInt("CHEST_HITLOCATION", ArmorObjectTemplate::CHEST);
@@ -785,7 +776,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("RECRUITER", EventPerkDeedTemplate::RECRUITER);
 	luaTemplatesInstance->setGlobalInt("GAME", EventPerkDeedTemplate::GAME);
 	luaTemplatesInstance->setGlobalInt("HONORGUARD", EventPerkDeedTemplate::HONORGUARD);
-	luaTemplatesInstance->setGlobalInt("NPCACTOR", EventPerkDeedTemplate::NPCACTOR);
 
 	luaTemplatesInstance->setGlobalInt("STIM_A", StimPackTemplate::STIM_A);
 	luaTemplatesInstance->setGlobalInt("STIM_B", StimPackTemplate::STIM_B);
@@ -800,16 +790,13 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("CLONER_DARK_JEDI_ONLY", CloningBuildingObjectTemplate::DARK_JEDI_ONLY);
 	luaTemplatesInstance->setGlobalInt("CLONER_FACTION_REBEL", CloningBuildingObjectTemplate::FACTION_REBEL);
 	luaTemplatesInstance->setGlobalInt("CLONER_FACTION_IMPERIAL", CloningBuildingObjectTemplate::FACTION_IMPERIAL);
-
-	luaTemplatesInstance->setGlobalInt("SHIPCOMPONENT", SharedObjectTemplate::SHIPCOMPONENT);
-	luaTemplatesInstance->setGlobalInt("SHIPCHASSIS", SharedObjectTemplate::SHIPCHASSIS);
 }
 
-const String& TemplateManager::getTemplateFile(uint32 key) const {
+String TemplateManager::getTemplateFile(uint32 key) const {
 	SharedObjectTemplate* templateData = templateCRCMap->get(key);
 
 	if (templateData == nullptr) {
-		const String& ascii = clientTemplateCRCMap->get(key);
+		String ascii = clientTemplateCRCMap->get(key);
 
 		if (ascii.isEmpty())
 			throw Exception("TemplateManager::getTemplateFile exception unknown template key 0x" + String::hexvalueOf((int)key));
@@ -859,9 +846,9 @@ FloorMesh* TemplateManager::getFloorMesh(const String& fileName) {
 
 				floorMesh->readObject(iffStream);
 
-				debug() << "parsed " << fileName;
+				debug("parsed " + fileName);
 			} catch (Exception& e) {
-				warning() << "could not parse " << fileName;
+				warning("could not parse " + fileName);
 
 				delete floorMesh;
 				floorMesh = nullptr;
@@ -924,8 +911,6 @@ AppearanceTemplate* TemplateManager::instantiateAppearanceTemplate(IffStream* if
 			break;
 		case 'PEFT':
 			break;
-		case 'LSAT':
-			break;
 		case 'APT ': {
 			AppearanceRedirect redirect;
 			redirect.readObject(iffStream);
@@ -934,7 +919,7 @@ AppearanceTemplate* TemplateManager::instantiateAppearanceTemplate(IffStream* if
 			break;
 		}
 		default:
-			error() << "unknown appearance type " << (char)((formType >> 24) & 0xFF) << (char)((formType >> 16) & 0xFF) << (char)((formType >> 8) & 0xFF) << (char)(formType & 0xFF);
+			error("unknown appearance type " + String::hexvalueOf((int)formType));
 			break;
 		}
 
@@ -963,9 +948,9 @@ PortalLayout* TemplateManager::getPortalLayout(const String& fileName) {
 
 				portalLayout->readObject(iffStream);
 
-				debug() << "parsed " << fileName;
+				debug("parsed " + fileName);
 			} catch (Exception& e) {
-				warning() << "could not parse " << fileName;
+				warning("could not parse " + fileName);
 
 				delete portalLayout;
 				portalLayout = nullptr;
@@ -1034,19 +1019,17 @@ LuaObject* TemplateManager::getLuaObject(const String& iffTemplate) {
 		luaTemplatesInstance->runFile("scripts/" + luaFileName);
 	}
 
-	auto hashCode = iffTemplate.hashCode();
-
-	if (templateCRCMap->get(hashCode) == nullptr)
+	if (templateCRCMap->get(iffTemplate.hashCode()) == nullptr)
 		return nullptr;
 
 	LuaFunction getObject(luaTemplatesInstance->getLuaState(), "getTemplate", 1);
-	getObject << hashCode; // push first argument
+	getObject << iffTemplate.hashCode(); // push first argument
 	getObject.callFunction();
 
 	LuaObject* result = new LuaObject(luaTemplatesInstance->getLuaState());
 
 	if (!result->isValidTable()) {
-		System::err << "Unknown lua object template " << iffTemplate << endl;
+		System::out << "Unknown lua object template " << iffTemplate << endl;
 
 		delete result;
 

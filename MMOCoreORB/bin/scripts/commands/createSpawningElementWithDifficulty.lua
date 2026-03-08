@@ -43,7 +43,6 @@
 
 CreateSpawningElementWithDifficultyCommand = {
         name = "createspawningelementwithdifficulty",
-		cooldown = 2000,
 }
 
 AddCommand(CreateSpawningElementWithDifficultyCommand)

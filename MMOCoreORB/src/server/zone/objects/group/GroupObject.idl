@@ -6,25 +6,19 @@ package server.zone.objects.group;
 
 import server.zone.objects.scene.SceneObject;
 import server.zone.objects.creature.CreatureObject;
-import server.zone.objects.ship.ShipObject;
 import server.chat.room.ChatRoom;
 import engine.service.proto.BaseMessage;
 include server.zone.objects.group.GroupList;
 include server.zone.managers.group.GroupManager;
-include server.zone.objects.group.tasks.UpdateNearestMissionForGroupTask;
+import server.zone.objects.group.tasks.UpdateNearestMissionForGroupTask;
 include server.chat.StringIdChatParameter;
 include system.lang.ref.Reference;
 include system.util.VectorMap;
-include server.zone.objects.scene.variables.DeltaVectorMap;
 
 @json
 class GroupObject extends SceneObject {
 	@dereferenced
 	GroupList groupMembers;
-
-	// memberID, shipID
-	@dereferenced
-	protected DeltaVectorMap<unsigned long, unsigned long> groupMemberShips;
 
 	@dereferenced
 	transient VectorMap<unsigned int, Reference<UpdateNearestMissionForGroupTask> > updateNearestMissionForGroupTasks;
@@ -32,7 +26,8 @@ class GroupObject extends SceneObject {
 	ChatRoom chatRoom;
 
 	int groupLevel;
-	int factionPetLevel;
+
+	protected string bandSong;
 
 	int lootRule;
 
@@ -40,11 +35,12 @@ class GroupObject extends SceneObject {
 
 	public GroupObject() {
 		groupLevel = 0;
-		factionPetLevel = 0;
 
 		Logger.setLoggingName("GroupObject");
 
 		chatRoom = null;
+
+		bandSong = "";
 
 		lootRule = GroupManager.FREEFORALL;
 		masterLooterID = 0;
@@ -77,24 +73,16 @@ class GroupObject extends SceneObject {
 	@dirty
 	public native void sendSystemMessage(@dereferenced StringIdChatParameter param, CreatureObject excluded);
 
-	@preLocked
-	public native void addMember(CreatureObject newMember, boolean notify = true);
-
+	public native void addMember(CreatureObject newMember);
 	@preLocked
 	public native void removeMember(CreatureObject member);
 
 	@preLocked
-	public native void updateMemberShip(CreatureObject member, ShipObject ship);
-
-	@preLocked
 	public native void disband();
-
-	@preLocked
 	public native void makeLeader(CreatureObject player);
 
 	@dirty
 	public native boolean hasMember(CreatureObject member);
-
 	@dirty
 	public native boolean hasMember(unsigned long member);
 
@@ -109,19 +97,11 @@ class GroupObject extends SceneObject {
 
 	@dirty
 	@preLocked
-	public native void calculateGroupLevel();
+	public native void calcGroupLevel();
 
 	@read
-	public int getGroupLevel(boolean includeFactionPets = true) {
-		if (includeFactionPets)
-			return groupLevel;
-		else
-			return groupLevel - factionPetLevel;
-	}
-
-	@read
-	public int getFactionPetLevel() {
-		return factionPetLevel;
+	public int getGroupLevel() {
+		return groupLevel;
 	}
 
 	@read
@@ -143,6 +123,10 @@ class GroupObject extends SceneObject {
 		return groupMembers.getSafe(index);
 	}
 
+	public void initializeLeader(CreatureObject player) {
+		groupMembers.add(player);
+	}
+
 	@reference
 	@dirty
 	public CreatureObject getLeader() {
@@ -153,23 +137,10 @@ class GroupObject extends SceneObject {
 		}
 	}
 
-	@preLocked
-	public native boolean initializeLeader(CreatureObject leader, CreatureObject member);
-
-	@local
-	@dirty
-	public native unsigned long getLeaderID();
-
 	@local
 	@dirty
 	public GroupList getGroupList() {
 		return groupMembers;
-	}
-
-	@local
-	@dirty
-	public final DeltaVectorMap<unsigned long, unsigned long> getGroupShips() {
-		return groupMemberShips;
 	}
 
 	@dirty
@@ -190,16 +161,20 @@ class GroupObject extends SceneObject {
 	private native void addGroupModifiers(CreatureObject player);
 
 	@preLocked
-	private native void removeGroupModifiers(CreatureObject player, boolean isLeader);
+	private native void removeGroupModifiers(CreatureObject player);
 
 	@dirty
 	public native boolean isOtherMemberPlayingMusic(CreatureObject player);
 
-	@preLocked
-	public native void addSpaceMissionObject(unsigned long missionOwnerID, unsigned long objectID, boolean notifyClient);
+	@read
+	public string getBandSong() {
+		return bandSong;
+	}
 
 	@preLocked
-	public native void removeSpaceMissionObject(unsigned long missionOwnerID, unsigned long objectID, boolean notifyClient);
+	public void setBandSong(final string song) {
+		bandSong = song;
+	}
 
 	@read
 	public int getLootRule() {

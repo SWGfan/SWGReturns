@@ -14,7 +14,6 @@ include server.zone.objects.manufactureschematic.craftingvalues.CraftingValues;
 include templates.tangible.DotPackTemplate;
 include templates.SharedObjectTemplate;
 include system.lang.String;
-include server.zone.objects.creature.BuffAttribute;
 
 @json
 class DotPack extends PharmaceuticalObject {
@@ -145,7 +144,7 @@ class DotPack extends PharmaceuticalObject {
 
 			return 0;
 		} else {
-			player.sendCommand(commandToExecute, BuffAttribute.getName(pool) + "|" + String.valueOf(super.getObjectID()), player.getTargetID());
+			player.sendCommand(commandToExecute, String.valueOf(super.getObjectID()), player.getTargetID());
 
 			return 0;
 		}
@@ -163,11 +162,6 @@ class DotPack extends PharmaceuticalObject {
 	public int calculatePower(CreatureObject creature) {
 		float modSkill = (float) creature.getSkillMod("combat_medic_effectiveness");
 		return ((100 + modSkill) / 100 * effectiveness);
-	}
-
-	@dirty
-	public boolean isDotPackObject () {
-		return true;
 	}
 
 	@dirty

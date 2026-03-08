@@ -48,7 +48,6 @@ object_draft_schematic_community_crafting_component_connections = object_draft_s
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
-	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -65,7 +64,7 @@ object_draft_schematic_community_crafting_component_connections = object_draft_s
 	ingredientTitleNames = {"raw_materials"},
 	ingredientSlotType = {2},
 	resourceTypes = {"object/tangible/loot/quest/shared_ostrine.iff"},
-	resourceQuantities = {10},
+	resourceQuantities = {2},
 	contribution = {100},
 
 

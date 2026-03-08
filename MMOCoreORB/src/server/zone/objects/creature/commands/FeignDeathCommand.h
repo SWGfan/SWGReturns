@@ -9,17 +9,21 @@
 
 class FeignDeathCommand : public QueueCommand {
 public:
-	FeignDeathCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	FeignDeathCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const override {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (!creature->isInCombat()) {
+		if(creature->isInCombat() == false) {
 			creature->sendSystemMessage("@combat_effects:feign_no_combat");
 			return GENERALERROR;
 		}
@@ -30,40 +34,35 @@ public:
 		ManagedReference<SingleUseBuff*> buff = new SingleUseBuff(creature, STRING_HASHCODE("private_feign_buff"), std::numeric_limits<float>::max(), BuffType::OTHER, getNameCRC());
 
 		Locker locker(buff, creature); // buff->init requires buff to be locked
-
 		buff->init(&observerTypes);
 		buff->setSkillModifier("private_defense", -99999999);
 
 		creature->addBuff(buff);
+
 
 		creature->sendSystemMessage("@cbt_spam:feign_get_hit_single");
 
 		return SUCCESS;
 	}
 
-	void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) const override {
-		if (creature == nullptr || !creature->isCreatureObject())
-			return;
-
+	void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) {
 		ManagedReference<CreatureObject*> creo = creature->asCreatureObject();
 
-		if (creo == nullptr)
+		if(creo == nullptr)
 			return;
 
 		Locker lock(creo);
 
-		if (creo->hasState(CreatureState::FEIGNDEATH)) {
-			creo->removeFeignedDeath();
+		if(creo->canFeignDeath()) {
+			creo->feignDeath();
 		} else {
-			if (creo->canFeignDeath()) {
-				creo->feignDeath();
-			} else {
-				creo->sendSystemMessage("@cbt_spam:feign_fail_single");
-			}
+			creo->sendSystemMessage("@cbt_spam:feign_fail_single");
 		}
 
 		creo->removeBuff(STRING_HASHCODE("private_feign_buff"));
+
 	}
+
 };
 
-#endif // FEIGNDEATHCOMMAND_H_
+#endif //FEIGNDEATHCOMMAND_H_

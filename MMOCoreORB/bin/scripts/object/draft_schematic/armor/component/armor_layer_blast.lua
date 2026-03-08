@@ -50,8 +50,7 @@ object_draft_schematic_armor_component_armor_layer_blast = object_draft_schemati
 	craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 25,
 	size = 2,
-	factoryCrateSize = 100,
-	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
+	factoryCrateSize = 1000,
 
 	xpType = "crafting_clothing_armor",
 	xp = 100,

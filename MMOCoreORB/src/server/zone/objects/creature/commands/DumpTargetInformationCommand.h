@@ -41,14 +41,11 @@ public:
 
 		int cellid = 0;
 		uint32 buildingTemplate = 0;
-		uint64 rootParentID = 0;
 
 		if (cell != nullptr) {
 			cellid = cell->getCellNumber();
-
 			ManagedReference<SceneObject*> building = cell->getParent().get();
 			buildingTemplate = building->getServerObjectCRC();
-			rootParentID = building->getObjectID();
 		}
 
 		StringBuffer msg;
@@ -58,12 +55,10 @@ public:
 
 		msg << "x = " << posX << ", z = " << posZ << ", y = " << posY << ", ow = " << direction->getW()
 				<< ", ox = " << direction->getX() << ", oz = " << direction->getZ() << ", oy = " << direction->getY()
-				<< ", cellid = " << cellid << endl;
-
-		msg << "Root Parent:" << endl << "ID: " << rootParentID << endl;
+				<< ", cellid = " << cellid;
 
 		if (buildingTemplate != 0)
-			msg << "Template: " << TemplateManager::instance()->getTemplateFile(buildingTemplate);
+			msg << endl << TemplateManager::instance()->getTemplateFile(buildingTemplate);
 
 		if (obj->isAiAgent()) {
 			AiAgent* objCreo = obj.castTo<AiAgent*>();
@@ -102,35 +97,7 @@ public:
 					msg << endl << TemplateManager::instance()->getTemplateFile(buildingTemplate);
 			}
 
-			msg << endl << "numberOfPlayersInRange = " << objCreo->getNumberOfPlayersInRange() << endl;
-
-			WeaponObject* defaultWeapon = objCreo->getDefaultWeapon();
-			if (defaultWeapon != nullptr) {
-				msg << "Default Weapon ID = " << defaultWeapon->getObjectID() << endl;
-			} else {
-				msg << "Default Weapon is nullptr" << endl;
-			}
-
-			WeaponObject* primaryWeapon = objCreo->getPrimaryWeapon();
-			if (primaryWeapon != nullptr) {
-				msg << "Primary Weapon ID = " << primaryWeapon->getObjectID() << endl;
-			} else {
-				msg << "Primary Weapon is nullptr" << endl;
-			}
-
-			WeaponObject* secondaryWeapon = objCreo->getSecondaryWeapon();
-			if (secondaryWeapon != nullptr) {
-				msg << "Secondary Weapon ID = " << secondaryWeapon->getObjectID() << endl;
-			} else {
-				msg << "Secondary Weapon is nullptr" << endl;
-			}
-
-			WeaponObject* thrownWeapon = objCreo->getThrownWeapon();
-			if (thrownWeapon != nullptr) {
-				msg << "Thrown Weapon ID = " << thrownWeapon->getObjectID() << " with use count of = " << thrownWeapon->getUseCount() << endl;
-			} else {
-				msg << "Thrown Weapon is nullptr" << endl;
-			}
+			msg << endl << "numberOfPlayersInRange = " << objCreo->getNumberOfPlayersInRange();
 		}
 
 		player->sendSystemMessage(msg.toString());

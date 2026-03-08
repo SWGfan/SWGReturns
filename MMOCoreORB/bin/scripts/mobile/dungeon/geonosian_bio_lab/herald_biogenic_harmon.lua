@@ -2,7 +2,6 @@ herald_biogenic_harmon = Creature:new {
 	objectName = "",
 	customName = "Lt. Harmon Vintollo",
 	socialGroup = "imperial",
-	mobType = MOB_NPC,
 	faction = "imperial",
 	level = 100,
 	chanceHit = 1,
@@ -29,17 +28,9 @@ herald_biogenic_harmon = Creature:new {
 
 	templates = {"object/mobile/dressed_herald_biogenic_02.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "biogenicHerald2ConvoTemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(herald_biogenic_harmon, "herald_biogenic_harmon")

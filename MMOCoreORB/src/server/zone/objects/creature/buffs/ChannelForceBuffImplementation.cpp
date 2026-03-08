@@ -33,9 +33,8 @@ void ChannelForceBuffImplementation::activateRegenTick() {
 }
 
 void ChannelForceBuffImplementation::doHamTick() {
-	ManagedReference<CreatureObject*> player = creature.get();
-
-	if (player == nullptr)
+  	ManagedReference<CreatureObject*> creo = creature.get();
+	if (creo == nullptr)
 		return;
 
 	float timeLeft = getTimeLeft();
@@ -48,8 +47,7 @@ void ChannelForceBuffImplementation::doHamTick() {
 	// tick length to time left to calculate how much of the remaining modifer should be healed
 	float healMod = FORCE_CHANNEL_TICK_SECONDS / timeLeft;
 
-	Locker crossLock(player, _this.getReferenceUnsafeStaticCast());
-
+	Locker crossLock(creo, _this.getReferenceUnsafeStaticCast());
 	for (int i = 0; i < attributeModifiers.size(); ++i) {
 		byte attribute = attributeModifiers.elementAt(i).getKey();
 		int modifier = attributeModifiers.elementAt(i).getValue();
@@ -62,22 +60,15 @@ void ChannelForceBuffImplementation::doHamTick() {
 		// "undo" the effects of channel by taking the negative to calculate how much to modify
 		// our attribute by this tick.
 		int healAmount = -modifier * healMod; // this will round off, but it won't matter.
-
-		// info(true) << "Attribute = " << attribute << " Modified = " << modifier << " healMod = " << healMod << " healAmount = " << healAmount;
-
 		if (abs(healAmount) > abs(modifier)) // ensure we don't go into positive modifer territory
 			healAmount = -modifier;
 
-		int newMod = modifier + healAmount;
-
-		// info(true) << "Updated healAmount = " << healAmount << " new Modifier = " << newMod << "\n\n\n";
-
 		// we now add the healAmount to the modifier, which is necessarily the opposite sign of
 		// modifier due to the definition.
-		setAttributeModifier(attribute, newMod);
+		setAttributeModifier(attribute, modifier + healAmount);
 
-		// and finally apply that exact same amount to the HAM of the player
-		player->addMaxHAM(attribute, healAmount, true);
+		// and finally apply that exact same amount to the HAM of the creo
+		creo->addMaxHAM(attribute, healAmount, true);
 	}
 
 	// don't reschedule if tick length >= timeLeft (not mandatory, but useful)

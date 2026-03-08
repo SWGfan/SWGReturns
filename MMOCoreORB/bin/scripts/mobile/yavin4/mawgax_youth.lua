@@ -2,7 +2,6 @@ mawgax_youth = Creature:new {
 	objectName = "@mob/creature_names:mawgax_youth",
 	socialGroup = "mawgax",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 21,
 	chanceHit = 0.34,
 	damageMin = 200,
@@ -13,13 +12,13 @@ mawgax_youth = Creature:new {
 	armor = 0,
 	resists = {10,10,10,10,10,10,10,-1,-1},
 	meatType = "meat_domesticated",
-	meatAmount = 90,
+	meatAmount = 650,
 	hideType = "hide_leathery",
 	hideAmount = 60,
 	boneType = "bone_avian",
 	boneAmount = 45,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -30,17 +29,10 @@ mawgax_youth = Creature:new {
 	hues = { 16, 17, 18, 19, 20, 21, 22, 23 },
 	scale = 0.75,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(mawgax_youth, "mawgax_youth")

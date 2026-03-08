@@ -5,7 +5,6 @@
 #include "templates/params/creature/CreatureAttribute.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
-#include "server/zone/objects/intangible/tasks/PetControlDeviceStoreTask.h"
 
 namespace server {
 namespace zone {
@@ -24,6 +23,7 @@ public:
 	}
 
 	~PetIncapacitationRecoverTask() {
+
 	}
 
 	void run() {
@@ -52,51 +52,36 @@ public:
 
 			pet->setPosture(CreaturePosture::UPRIGHT);
 
-			PetControlDevice* device = pet->getControlDevice().get().castTo<PetControlDevice*>();
+			CreatureObject* owner = pet->getLinkedCreature().get();
 
-			if (device == nullptr)
-				return;
-
-			pet->setAITemplate();
-
-			Locker locker(device, pet);
-
-			device->setLastCommand(PetManager::FOLLOW);
-
-			ManagedReference<SceneObject*> lastCommander = device->getLastCommander();
-
-			if (lastCommander != nullptr) {
-				Locker clocker(lastCommander, pet);
-
-				device->setLastCommandTarget(lastCommander);
-
-				pet->setFollowObject(lastCommander);
-				pet->storeFollowObject();
-
-				pet->setMovementState(AiAgent::FOLLOWING);
+			if (owner != nullptr) {
+				pet->setFollowObject(owner);
+				pet->activateMovementEvent();
 			}
 
 			if (autostore) {
-				CreatureObject* owner = pet->getLinkedCreature().get();
+				PetControlDevice* device = pet->getControlDevice().get().castTo<PetControlDevice*>();
 
-				if (owner != nullptr) {
-					PetControlDeviceStoreTask* storeTask = new PetControlDeviceStoreTask(device, owner, true);
+				if (device != nullptr && owner != nullptr) {
+					Locker clocker(owner, pet);
+					Locker locker(device);
 
-					if (storeTask != nullptr)
-						storeTask->execute();
+					device->storeObject(owner, true);
 				}
 			}
 
 		} catch (Exception& e) {
+
 		}
 	}
+
 };
 
-} // namespace events
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
+}
+}
+}
+}
+}
 
 using namespace server::zone::objects::creature::events;
 

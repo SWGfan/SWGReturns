@@ -50,7 +50,6 @@ object_draft_schematic_weapon_lightsaber_lightsaber_refined_crystal_pack = objec
    craftingToolTab = 2048, -- (See DraftSchematicObjectTemplate.h)
    complexity = 18, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
 
    xpType = "jedi_general", 
    xp = 0, 
@@ -58,7 +57,7 @@ object_draft_schematic_weapon_lightsaber_lightsaber_refined_crystal_pack = objec
    assemblySkill = "jedi_saber_assembly", 
    experimentingSkill = "jedi_saber_experimentation", 
    customizationSkill = "jedi_customization", 
-   factoryCrateSize = 0,   
+   factoryCrateSize = 1000,   
 
    customizationOptions = {},
    customizationStringNames = {},

@@ -50,8 +50,7 @@ object_draft_schematic_munition_grenade_fragmentation_c_22 = object_draft_schema
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 36, 
    size = 2, 
-   factoryCrateType = "object/factory/factory_crate_weapon.iff",
-   
+
    xpType = "crafting_weapons_general", 
    xp = 35, 
 
@@ -74,7 +73,16 @@ object_draft_schematic_munition_grenade_fragmentation_c_22 = object_draft_schema
    targetTemplate = "object/weapon/ranged/grenade/grenade_fragmentation.iff",
 
    additionalTemplates = {
-             }
-
-}
+           },
+ 	weaponDots = {
+		{
+			{"type", 4}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
+			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
+			{"strength", 150},
+			{"duration", 240},
+			{"potency", 150},
+			{"uses", 5}
+		}
+	},          
+}           
 ObjectTemplates:addTemplate(object_draft_schematic_munition_grenade_fragmentation_c_22, "object/draft_schematic/munition/grenade_fragmentation_c_22.iff")

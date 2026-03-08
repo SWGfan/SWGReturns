@@ -24,6 +24,11 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
+		ManagedReference<AiAgent*> targetObj = server->getZoneServer()->getObject(creature->getTargetID()).castTo<AiAgent*>();
+		if (targetObj == nullptr)
+			return GENERALERROR;
+
+		targetObj->outputLuaTimes(creature);
 
 		return SUCCESS;
 	}

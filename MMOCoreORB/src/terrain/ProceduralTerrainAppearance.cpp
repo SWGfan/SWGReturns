@@ -90,8 +90,8 @@ void ProceduralTerrainAppearance::getWaterBoundariesInAABB(const AABB& bounds, V
 		Vector3 boundaryExtents = boundsBox.extents();
 		Vector3 extents = bounds.extents();
 
-		if (fabs(center.getX()) > (boundaryExtents.getX() + extents.getX())) continue;
-	   	if (fabs(center.getY()) > (boundaryExtents.getY() + extents.getY())) continue;
+		if(fabs(center.getX()) > (boundaryExtents.getX() + extents.getX())) continue;
+	   	if(fabs(center.getY()) > (boundaryExtents.getY() + extents.getY())) continue;
 
 		boundaries->add(boundary);
 	}
@@ -121,7 +121,7 @@ void ProceduralTerrainAppearance::parseFromIffStream(engine::util::IffStream* if
 
 	iffStream->getString(terrainFile);
 
-	debug() << "parsing " << terrainFile;
+	//info(terrainFile);
 
 	size = iffStream->getFloat();
 	chunkSize = iffStream->getFloat();
@@ -296,8 +296,6 @@ float ProceduralTerrainAppearance::processTerrain(const Layer* layer, float x, f
 	FilterRectangle rect;
 	rect.minX = FLT_MAX, rect.maxX = -FLT_MAX, rect.minY = FLT_MAX, rect.maxY = -FLT_MAX;
 
-	// Logger::console.info(true) << "ProceduralTerrainAppearance::processTerrain -- called";
-
 	for (int i = 0; i < boundaries->size(); ++i) {
 		const Boundary* boundary = boundaries->get(i);
 
@@ -370,17 +368,11 @@ float ProceduralTerrainAppearance::processTerrain(const Layer* layer, float x, f
 			for (int i = 0; i < affectors->size(); ++i) {
 				AffectorProceduralRule* affector = affectors->get(i);
 
-				if (!affector->isEnabled()) // filtered in height affectors vector
-					continue;
+				/*if (!affector->isEnabled()) filtered in height affectors vector
+					continue;*/
 
-				if (affector->getAffectorType() & affectorType) {
-					// Logger::console.info(true) << "Processing affectorType: " << affector->getAffectorType();
-
-					/*
-						baseValue needs to be updated for the correct height by the affector. It is passed by reference
-					*/
+				if (affector->isEnabled() && (affector->getAffectorType() & affectorType))
 					affector->process(x, y, transformValue * affectorTransformValue, baseValue, terrainGenerator);
-				}
 			}
 
 			const Vector<Layer*>* children = layer->getChildren();
@@ -392,7 +384,9 @@ float ProceduralTerrainAppearance::processTerrain(const Layer* layer, float x, f
 					processTerrain(layer, x, y, baseValue, affectorTransformValue * transformValue, affectorType);
 				}
 			}
+
 		}
+
 	}
 
 	return transformValue;
@@ -422,7 +416,7 @@ int ProceduralTerrainAppearance::getEnvironmentID(float x, float y) const {
 		}
 	} while (count < customTerrain.size() && (terrain = customTerrain.get(count++)));
 
-	debug() << "full traverse environment id for (" << x << "," << y << ") is " << fullTraverse;
+	//info("full traverse height ... is " + String::valueOf(fullTraverse) + " in mili:" + String::valueOf(start.miliDifference()), true);
 
 	return fullTraverse;
 }
@@ -451,7 +445,7 @@ float ProceduralTerrainAppearance::getHeight(float x, float y) const {
 		}
 	} while (count < customTerrain.size() && (terrain = customTerrain.get(count++)));
 
-	debug() << "full traverse height for (" << x << "," << y << ") is " << fullTraverse;
+	//info("full traverse height ... is " + String::valueOf(fullTraverse) + " in mili:" + String::valueOf(start.miliDifference()), true);
 
 	return fullTraverse;
 }

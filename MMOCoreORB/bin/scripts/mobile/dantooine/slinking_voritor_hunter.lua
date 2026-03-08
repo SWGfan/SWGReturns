@@ -2,7 +2,6 @@ slinking_voritor_hunter = Creature:new {
 	objectName = "@mob/creature_names:slinking_voritor_hunter",
 	socialGroup = "voritor",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 57,
 	chanceHit = 0.55,
 	damageMin = 420,
@@ -19,7 +18,7 @@ slinking_voritor_hunter = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 50,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -37,17 +36,12 @@ slinking_voritor_hunter = Creature:new {
 			lootChance = 2140000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"posturedownattack",""}, {"dizzyattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"posturedownattack",""},
+		{"dizzyattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(slinking_voritor_hunter, "slinking_voritor_hunter")

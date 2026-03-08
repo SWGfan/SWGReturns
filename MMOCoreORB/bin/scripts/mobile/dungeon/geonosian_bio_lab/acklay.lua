@@ -2,17 +2,16 @@ acklay = Creature:new {
 	objectName = "@mob/creature_names:geonosian_acklay_bunker_boss",
 	customName = "Acklay",
 	socialGroup = "geonosian_creature",
-	mobType = MOB_CARNIVORE,
 	faction = "",
-	level = 157,
-	chanceHit = 92.5,
-	damageMin = 935,
-	damageMax = 1580,
-	baseXp = 14884,
-	baseHAM = 96000,
-	baseHAMmax = 118000,
+	level = 200,
+	chanceHit = 25.0,
+	damageMin = 1400,
+	damageMax = 1800,
+	baseXp = 148840,
+	baseHAM = 70000,
+	baseHAMmax = 80000,
 	armor = 2,
-	resists = {130,145,155,155,145,30,30,30,-1},
+	resists = {50,55,55,55,55,50,20,50,15},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,34 +19,115 @@ acklay = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 25,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
-	tauntable = false,
 
 	templates = {"object/mobile/acklay_hue.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "acklay", chance = 10000000}
+				{group = "acklay", chance = 10000000},
 			},
-			lootChance = 10000000
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "acklay", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "acklay", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "acklay", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "geonosian_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 2500000},
+				{group = "tierthree", chance = 2500000},
+				{group = "tierdiamond", chance = 2500000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 2500000},
+				{group = "tierthree", chance = 2500000},
+				{group = "tierdiamond", chance = 2500000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 2500000},
+				{group = "tierthree", chance = 2500000},
+				{group = "tierdiamond", chance = 2500000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "boss_common", chance = 10000000},
+			},
+			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "acklay", chance = 10000000},
+			},
+			lootChance = 5000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"posturedownattack","stateAccuracyBonus=50"}, {"creatureareacombo","stateAccuracyBonus=50"} },
-	secondaryAttacks = { }
+	attacks = {
+		{"posturedownattack","stateAccuracyBonus=50"},
+		{"creatureareacombo","stateAccuracyBonus=50"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(acklay, "acklay")

@@ -18,17 +18,10 @@ uint32 WoundPackImplementation::calculatePower(CreatureObject* healer, CreatureO
 		return power;
 	}
 
-	int mod = healer->getSkillModOfType("private_medical_rating", SkillModManager::CITY);
-
-	int droidBuff = healer->getSkillModOfType("private_medical_rating", SkillModManager::DROID);
+	int droidBuff = healer->getSkillModOfType("private_medical_rating",SkillModManager::DROID);
 	int bldBuff = healer->getSkillModOfType("private_medical_rating", SkillModManager::STRUCTURE);
-
-	// Mantis #8884 - Building buff ratings should override a droid buff rating
-	if (bldBuff > 0) {
-		mod += bldBuff;
-	} else {
-		mod += droidBuff;
-	}
+	int mod = healer->getSkillModOfType("private_medical_rating", SkillModManager::CITY);
+	mod +=  droidBuff > bldBuff ? droidBuff : bldBuff;
 
 	int factionPerk = healer->getSkillMod("private_faction_medical_rating");
 

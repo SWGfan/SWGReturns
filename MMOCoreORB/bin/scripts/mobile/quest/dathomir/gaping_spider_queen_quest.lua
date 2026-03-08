@@ -2,7 +2,6 @@ gaping_spider_queen_quest = Creature:new {
 	objectName = "@mob/creature_names:gaping_spider_queen",
 	socialGroup = "spider",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 47,
 	chanceHit = 0.44,
 	damageMin = 345,
@@ -37,17 +36,12 @@ gaping_spider_queen_quest = Creature:new {
 		lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
-	secondaryWeapon = "unarmed",
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"knockdownattack",""}, {"mediumpoison",""} },
-	secondaryAttacks = { {"knockdownattack",""}, {"mediumpoison",""} }
+	attacks = {
+		{"knockdownattack",""},
+		{"mediumpoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(gaping_spider_queen_quest, "gaping_spider_queen_quest")

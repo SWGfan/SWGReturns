@@ -4,7 +4,8 @@
 
 package server.zone;
 
-import server.zone.TreeEntry;
+import server.zone.QuadTree;
+import server.zone.QuadTreeEntry;
 include server.chat.room.ChatRoom;
 
 import system.lang.Time;
@@ -16,269 +17,152 @@ import server.zone.objects.scene.SceneObject;
 import server.zone.objects.area.ActiveArea;
 import server.zone.objects.creature.CreatureObject;
 import server.zone.managers.planet.PlanetManager;
-import server.zone.managers.space.SpaceManager;
 import server.zone.managers.creature.CreatureManager;
 import server.zone.managers.gcw.GCWManager;
 import system.util.SortedVector;
 import system.util.SynchronizedSortedVector;
-import system.thread.Mutex;
-
 include server.zone.managers.object.ObjectMap;
 include server.zone.managers.planet.MapLocationTable;
 include engine.util.u3d.Vector3;
 include server.zone.QuadTreeReference;
 
 import server.zone.objects.tangible.TangibleObject;
+import server.zone.objects.region.CityRegion;
 import server.zone.objects.pathfinding.NavArea;
 import system.thread.atomic.AtomicInteger;
 include system.thread.atomic.AtomicBoolean;
-include server.zone.objects.region.CityRegion;
-
-import server.zone.ActiveAreaQuadTree;
-import server.zone.ActiveAreaOctree;
 
 @mock
 class Zone extends SceneObject {
+	private string zoneName;
+
+	private unsigned int zoneCRC;
+
+	private transient ZoneProcessServer processor;
+
+	private transient ObjectMap objectMap;
+
+	private transient PlanetManager planetManager;
+
+	private transient CreatureManager creatureManager;
+
 	private transient ChatRoom planetChatRoom;
 
 	@dereferenced
-	protected transient Time galacticTime;
+	private transient SynchronizedSortedVector<CityRegion> cityRegionUpdateVector;
+
+	private transient ZoneServer server;
+
+	@dereferenced
+	private QuadTreeReference regionTree;
+
+	@dereferenced
+	private QuadTreeReference quadTree;
+
+	@dereferenced
+	private transient Time galacticTime;
 
 	@transactional
-	protected transient MapLocationTable mapLocations;
+	private transient MapLocationTable mapLocations;
 
 	@dereferenced
 	protected AtomicInteger spawnedAiAgents;
 
 	@dereferenced
-	protected transient Mutex spawnCountMutex;
+	private transient AtomicBoolean managersStarted;
+	private transient boolean zoneCleared;
 
-	@dereferenced
-	protected transient AtomicBoolean managersStarted;
-	protected transient boolean zoneCleared;
-
-	protected transient ObjectMap objectMap;
-
-	protected transient ZoneServer server;
-
-	protected string zoneName;
-
-	protected unsigned int zoneCRC;
-
-	protected transient ZoneProcessServer processor;
-
-	// Zone Default Constructor
 	public native Zone(ZoneProcessServer processor, final string zoneName);
-
-	/*
-
-		Zone Management
-
-	*/
-
-	public native abstract void createContainerComponent();
-
-	public native abstract void initializePrivateData();
-
-	public native abstract void initializeTransientMembers();
-
-	public native abstract void finalize();
-
-	public native abstract void startManagers();
-
-	public native abstract void stopManagers();
-
-	public native abstract void clearZone();
-
-	/*
-
-		Object Management in Zone
-
-	*/
-
-	@local
-	public native abstract void insert(TreeEntry entry);
-
-	@local
-	public native abstract void remove(TreeEntry entry);
-
-	@local
-	public native abstract void update(TreeEntry entry);
-
-	@local
-	public native abstract void inRange(TreeEntry entry, float range);
-
-	public native abstract void updateActiveAreas(TangibleObject tano);
-
-	@arg1preLocked
-	@preLocked
-	public native abstract void addSceneObject(SceneObject object);
-
-	@arg1preLocked
-	@preLocked
-	public native abstract void dropSceneObject(SceneObject object);
-
-	/*
-
-		Object Tracking
-
-	*/
-
-	@local
-	public native abstract int getInRangeSolidObjects(float x, float z, float y, float range, SortedVector<TreeEntry> objects, boolean readLockZone);
-
-	@local
-	public native abstract int getInRangeObjects(float x, float z, float y, float range, SortedVector<TreeEntry> objects, boolean readLockZone, boolean includeBuildingObjects = true);
-
-	@local
-	public native abstract int getInRangeObjects(float x, float z, float y, float range, InRangeObjectsVector objects, boolean readLockZone, boolean includeBuildingObjects = true);
-
-	@local
-	public native abstract int getInRangePlayers(float x, float z, float y, float range, SortedVector<TreeEntry> objects);
-
-	@local
-	public native abstract int getInRangeActiveAreas(float x, float z, float y, SortedVector<ActiveArea> objects, boolean readLockZone);
-
-	@local
-	public native abstract int getInRangeActiveAreas(float x, float z, float y, ActiveAreasVector objects, boolean readLockZone);
-
-	/*
-
-		Quadtree
-
-	*/
-
-	@dirty
-	public native abstract float getHeight(float x, float y);
-
-	@dirty
-	public native abstract float getHeightNoCache(float x, float y);
+	public native void initializeTransientMembers();
+	public native void finalize();
 
 	@reference
-	public native abstract SceneObject getNearestPlanetaryObject(SceneObject object, final string mapCategory, final string mapSubCategory);
+	public native SceneObject getNearestPlanetaryObject(SceneObject object, final string mapObjectLocationType);
+
+	public native void initializePrivateData();
 
 	@local
-	public native abstract int getInRangeNavMeshes(float x, float y, SortedVector<NavArea> objects, boolean readLockZone);
+	public QuadTree getRegionTree() {
+		return regionTree.get();
+	}
+
+	@local
+	public native int getInRangeSolidObjects(float x, float y, float range, SortedVector<QuadTreeEntry> objects, boolean readLockZone);
+
+	@local
+	public native int getInRangeObjects(float x, float y, float range, SortedVector<QuadTreeEntry> objects, boolean readLockZone, boolean includeBuildingObjects = true);
+
+	@local
+	public native int getInRangeObjects(float x, float y, float range, InRangeObjectsVector objects, boolean readLockZone, boolean includeBuildingObjects = true);
+
+	public native void createContainerComponent();
+
+	@local
+	public native int getInRangeActiveAreas(float x, float y, SortedVector<ActiveArea> objects, boolean readLockZone);
+	@local
+	public native int getInRangeActiveAreas(float x, float y, ActiveAreasVector objects, boolean readLockZone);
+	@local
+	public native int getInRangeNavMeshes(float x, float y, SortedVector<NavArea> objects, boolean readLockZone);
+
+	/* gets active areas whose center is within the given range */
+	@local
+	public native int getInRangeActiveAreas(float x, float y, float range, SortedVector<ActiveArea> objects, boolean readLockZone);
+	@local
+	public native int getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector objects, boolean readLockZone);
 
 	@local
 	@dereferenced
-	public native abstract SortedVector<SceneObject> getPlanetaryObjectList(final string mapObjectLocationType);
-
-	/**
-	 * Registers the object to the planetary map. This also makes the object visible to the find command.
-	 * @param object The object to register to the planetary map.
-	 */
-	public native abstract void registerObjectWithPlanetaryMap(SceneObject object);
-
-	/**
-	 * Unregisters the object from the planetary map.
-	 * @param object The object to unregister from the planetary map.
-	 */
-	public native abstract void unregisterObjectWithPlanetaryMap(SceneObject object);
-
-	public native abstract boolean objectIsValidPlanetaryMapPerformanceLocation(SceneObject object);
-	public native abstract boolean isObjectRegisteredWithPlanetaryMap(SceneObject object);
-	public native abstract void updatePlanetaryMapIcon(SceneObject object, byte icon);
-
-	@dirty
-	public native abstract void sendMapLocationsTo(CreatureObject player);
-
-	/**
-	 * These functions return the size of the terrain file for this zone.
-	 */
-	@dirty
-	public native abstract float getMinX();
-
-	@dirty
-	public native abstract float getMaxX();
-
-	@dirty
-	public native abstract float getMinY();
-
-	@dirty
-	public native abstract float getMaxY();
-
-	public native abstract void updateCityRegions();
-
-	@dirty
-	public abstract CreatureManager getCreatureManager() {
-		return null;
-	}
-
-	@dirty
-	public abstract PlanetManager getPlanetManager() {
-		return null;
-	}
-
-	@dirty
-	public abstract SpaceManager getSpaceManager() {
-		return null;
-	}
+	public native SortedVector<SceneObject> getPlanetaryObjectList(final string mapObjectLocationType);
 
 	@local
-	public abstract ActiveAreaQuadTree getActiveAreaTree() {
-		return null;
-	}
-
-	public abstract void addCityRegionToUpdate(CityRegion city) {
-	}
-
-	/*
-
-		Octree
-
-	*/
+	public native void insert(QuadTreeEntry entry);
 
 	@local
-	public abstract ActiveAreaOctree getActiveAreaOctree() {
-		return null;
-	}
+	public native void remove(QuadTreeEntry entry);
 
-	/*
-
-		Shared Functions
-
-	*/
-
-	@dirty
 	@local
-	public native abstract boolean isWithinBoundaries(@dereferenced final Vector3 position);
+	public native void update(QuadTreeEntry entry);
 
-	public native abstract float getBoundingRadius();
+	@local
+	public native void inRange(QuadTreeEntry entry, float range);
 
-	public native abstract float getZoneObjectRange();
+	public native void updateActiveAreas(TangibleObject tano);
 
-	// Mutators
+	public native void startManagers();
 
-	public native void incrementSpawnedAgents();
+	public native void stopManagers();
 
-	public native void decrementSpawnedAgents();
-
-	private void setZoneName(final string n) {
-		zoneName = n;
-	}
-
-	private void setZoneCRC(unsigned int zoneCrc) {
-		zoneCRC = zoneCrc;
-	}
-
-	private void setZoneProcessServer(ZoneProcessServer procServer) {
-		processor = procServer;
-	}
-
-	private void setZoneServer(ZoneServer zoneServ) {
-		server = zoneServ;
-	}
-
-	// Accessors
-	@dirty
-	public string getZoneName() {
-		return zoneName;
-	}
+	public native void clearZone();
 
 	@dirty
-	public unsigned int getZoneCRC() {
-		return zoneCRC;
+	@mock
+	public native float getHeight(float x, float y);
+
+	@dirty
+	@mock
+	public native float getHeightNoCache(float x, float y);
+
+
+	@arg1preLocked
+	@preLocked
+	public native void addSceneObject(SceneObject object);
+
+	public void addCityRegionToUpdate(CityRegion city) {
+		cityRegionUpdateVector.put(city);
+	}
+
+	public native void updateCityRegions();
+
+	@dirty
+	public native void sendMapLocationsTo(CreatureObject player);
+
+	@arg1preLocked
+	@preLocked
+	public native void dropSceneObject(SceneObject object);
+
+	@dirty
+	public PlanetManager getPlanetManager() {
+		return planetManager;
 	}
 
 	@dirty
@@ -286,10 +170,14 @@ class Zone extends SceneObject {
 		return server;
 	}
 
+	@dirty
+	public CreatureManager getCreatureManager() {
+		return creatureManager;
+	}
 
 	@dirty
-	public abstract GCWManager getGCWManager() {
-		return null;
+	public GCWManager getGCWManager() {
+		return planetManager.getGCWManager();
 	}
 
 	@read
@@ -312,6 +200,53 @@ class Zone extends SceneObject {
 		return spawnedAiAgents.get();
 	}
 
+	/**
+	 * These functions return the size of the terrain file for this zone.
+	 */
+	@dirty
+	public native float getMinX();
+
+	@dirty
+	public native float getMaxX();
+
+	@dirty
+	public native float getMinY();
+
+	@dirty
+	public native float getMaxY();
+
+	@dirty
+	@local
+	public native boolean isWithinBoundaries(@dereferenced final Vector3 position);
+
+	public native float getBoundingRadius();
+
+	/**
+	 * Registers the object to the planetary map. This also makes the object visible to the find command.
+	 * @param object The object to register to the planetary map.
+	 */
+	public native void registerObjectWithPlanetaryMap(SceneObject object);
+	/**
+	 * Unregisters the object from the planetary map.
+	 * @param object The object to unregister from the planetary map.
+	 */
+	public native void unregisterObjectWithPlanetaryMap(SceneObject object);
+
+	public native boolean objectIsValidPlanetaryMapPerformanceLocation(SceneObject object);
+
+	public native boolean isObjectRegisteredWithPlanetaryMap(SceneObject object);
+	public native void updatePlanetaryMapIcon(SceneObject object, byte icon);
+
+	@dirty
+	public string getZoneName() {
+		return zoneName;
+	}
+
+	@dirty
+	public unsigned int getZoneCRC() {
+		return zoneCRC;
+	}
+
 	public void setPlanetChatRoom(ChatRoom room) {
 		planetChatRoom = room;
 	}
@@ -320,11 +255,5 @@ class Zone extends SceneObject {
 		return planetChatRoom;
 	}
 
-	public abstract boolean isGroundZone() {
-		return false;
-	}
-
-	public abstract boolean isSpaceZone() {
-		return false;
-	}
 }
+

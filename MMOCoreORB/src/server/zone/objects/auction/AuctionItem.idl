@@ -6,16 +6,10 @@ package server.zone.objects.auction;
 
 import engine.core.ManagedObject;
 import server.zone.objects.scene.SceneObject;
-import engine.log.Logger;
-import system.lang.Time;
-include engine.log.LoggerHelperStream;
 include server.zone.objects.scene.variables.StringId;
 
 @json
 class AuctionItem extends ManagedObject {
-	@dereferenced
-	protected Time lastUpdateTime;
-
 	protected unsigned long vendorID;
 
 	protected unsigned long auctionedItemObjectID;
@@ -40,7 +34,7 @@ class AuctionItem extends ManagedObject {
 	protected int status;
 
 	protected boolean onBazaar;
-
+	
 	protected boolean isCrate;
 	protected int cratedItemType;
 
@@ -60,7 +54,6 @@ class AuctionItem extends ManagedObject {
 	public final static int EXPIRED = 4;
 	public final static int OFFERED = 5;
 	public final static int RETRIEVED = 6;
-	public final static int DELETED = 99;
 
 	public AuctionItem(unsigned long objectid) {
 		auctionedItemObjectID = objectid;
@@ -77,7 +70,7 @@ class AuctionItem extends ManagedObject {
 		auction = true;
 
 		onBazaar = false;
-
+		
 		isCrate = false;
 		cratedItemType = 0;
 
@@ -87,10 +80,9 @@ class AuctionItem extends ManagedObject {
 		updated = false;
 
 		auctionOptions = 0;
-		lastUpdateTime.updateToCurrentTime();
-	}
 
-	public native void initializeTransientMembers();
+		//Logger.setLoggingName("AuctionItem");
+	}
 
 	/**
 	 * Compares object ids of this object with obj
@@ -111,84 +103,69 @@ class AuctionItem extends ManagedObject {
 
 	public native void notifyLoadFromDatabase();
 
-	public native boolean destroyAuctionItemFromDatabase(boolean checkAuctionMap = true, boolean deleteAuctionedObject = false);
-
 	@preLocked
 	public void setVendorID(unsigned long val) {
 		vendorID = val;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setItemName(final string name) {
 		itemName = name;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setItemDescription(final string descr) {
 		itemDescription = descr;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setPrice(int newPrice) {
 		price = newPrice;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setProxy(int newProxy) {
 		proxyBid = newProxy;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setAuctionedItemObjectID(unsigned long objectID) {
 		auctionedItemObjectID = objectID;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setItemType(int type) {
 		itemType = type;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setOwnerID(unsigned long ownerObjectID) {
 		ownerID = ownerObjectID;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setOfferToID(unsigned long vendorOwnerID) {
 		offerToID = vendorOwnerID;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setBidderName(final string name) {
 		bidderName = name;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setOwnerName(final string name) {
 		ownerName = name;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setAuction(boolean isAuction) {
 		auction = isAuction;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setAuctionPremium() {
 		auctionOptions = auctionOptions | OPTION_PREMIUM;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
@@ -197,25 +174,21 @@ class AuctionItem extends ManagedObject {
 	@preLocked
 	public void setOnBazaar(boolean val) {
 		onBazaar = val;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setExpireTime(int time) {
 		expireTime = time;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setBuyerID(unsigned long id) {
 		buyerID = id;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@preLocked
 	public void setStatus(int value) {
 		status = value;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@read
@@ -232,9 +205,6 @@ class AuctionItem extends ManagedObject {
 	public int getStatus() {
 		return status;
 	}
-
-	@read
-	public native string getStatusString();
 
 	@read
 	public unsigned long getVendorID() {
@@ -259,7 +229,6 @@ class AuctionItem extends ManagedObject {
 	@preLocked
 	public void setVendorUID(final string uid) {
 		vuid = uid;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@read
@@ -318,10 +287,6 @@ class AuctionItem extends ManagedObject {
 	}
 
 	@read
-	@local
-	private native Logger getLogger();
-
-	@read
 	public boolean isPremiumAuction() {
 		return auctionOptions & OPTION_PREMIUM;
 	}
@@ -339,68 +304,40 @@ class AuctionItem extends ManagedObject {
 	@preLocked
 	public void setSize(int s) {
 		size = s;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@read
 	public int getSize() {
 		return size;
 	}
-
+	
 	@read
 	public int getCratedItemType() {
 		return cratedItemType;
 	}
-
+	
 	@preLocked
 	public void setCratedItemType(int type) {
 		cratedItemType = type;
-		lastUpdateTime.updateToCurrentTime();
 	}
-
+	
 	@read
 	public boolean isFactoryCrate() {
 		return isCrate;
 	}
-
+	
 	@preLocked
 	public void setFactoryCrate(boolean crate) {
 		isCrate = crate;
-		lastUpdateTime.updateToCurrentTime();
 	}
-
+	
 	@preLocked
 	public void setUpdated(boolean val) {
 		updated = val;
-		lastUpdateTime.updateToCurrentTime();
 	}
 
 	@read
 	public boolean isUpdated() {
 		return updated;
-	}
-
-	@read
-	public native unsigned long getObjectID();
-
-	@read
-	@dereferenced
-	@local
-	public native LoggerHelperStream error();
-
-	@read
-	@dereferenced
-	@local
-	public native LoggerHelperStream info(int forced = false); /*int instead of bool because of const char* implicit cast to bool*/
-
-	@read
-	@dereferenced
-	@local
-	public native LoggerHelperStream debug();
-
-	@local
-	@preLocked
-	public Time getLastUpdateTime() {
-		return lastUpdateTime;
 	}
 }

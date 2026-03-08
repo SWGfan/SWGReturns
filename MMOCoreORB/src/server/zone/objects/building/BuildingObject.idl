@@ -5,7 +5,7 @@
 package server.zone.objects.building;
 
 import server.zone.objects.structure.StructureObject;
-include server.zone.TreeEntry;
+include server.zone.QuadTreeEntry;
 import system.util.SortedVector;
 import system.util.SynchronizedSortedVector;
 import system.util.Vector;
@@ -25,8 +25,6 @@ include templates.appearance.MeshData;
 include templates.collision.BaseBoundingVolume;
 include system.lang.ref.Reference;
 include system.util.VectorMap;
-include server.zone.objects.creature.variables.CooldownTimerMap;
-import system.lang.Time;
 
 @json
 class BuildingObject extends StructureObject {
@@ -55,12 +53,9 @@ class BuildingObject extends StructureObject {
 	@dereferenced
 	protected transient SynchronizedSortedVector<unsigned long> registeredPlayerIdList;
 
-	@transactional
-	protected transient CooldownTimerMap cooldownTimerMap;
-
 	public boolean publicStructure;
 
-	public static final int MAXPLAYERITEMS = 400;
+	public static final int MAXPLAYERITEMS = 1500;
 
 	protected unicode signName;
 
@@ -196,30 +191,30 @@ class BuildingObject extends StructureObject {
 	public native void notifyRemoveFromZone();
 
 	@local
-	public native void notifyInsert(TreeEntry obj);
+	public native void notifyInsert(QuadTreeEntry obj);
 
 	public native void notifyInsertToZone(Zone zone);
 
 	@local
-	public abstract native void notifyDissapear(TreeEntry obj);
+	public native void notifyDissapear(QuadTreeEntry obj);
 
 	@dirty
 	@local
-	public native void notifyPositionUpdate(TreeEntry entry);
+	public native void notifyPositionUpdate(QuadTreeEntry entry);
 
 	public native void notifyObjectInsertedToZone(SceneObject object);
 
 	@local
-	public native void insert(TreeEntry obj);
+	public native void insert(QuadTreeEntry obj);
 
 	@local
-	public native void remove(TreeEntry obj);
+	public native void remove(QuadTreeEntry obj);
 
 	@local
-	public native void update(TreeEntry obj);
+	public native void update(QuadTreeEntry obj);
 
 	@local
-	public native void inRange(TreeEntry obj, float range);
+	public native void inRange(QuadTreeEntry obj, float range);
 
 	@dirty
 	public native void sendTo(SceneObject player, boolean doClose, boolean forceLoadContainer = true);
@@ -264,6 +259,9 @@ class BuildingObject extends StructureObject {
 
 	@dirty
 	public native int getCurrentNumberOfPlayerItems();
+
+	@dirty
+	public native int getCurrentNumberOfPlayerVendors();
 
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
@@ -348,11 +346,14 @@ class BuildingObject extends StructureObject {
 
 	@dirty
 	public string getRedeedMessage() {
-		if(getCurrentNumberOfPlayerItems() > 0)
+		if (getCurrentNumberOfPlayerItems() > 0)
 			return "clear_building_for_delete";
 
 		return "";
 	}
+
+	@dirty
+	public native string getPackupMessage();
 
 	@read
 	public boolean hasAccessFee() {
@@ -461,31 +462,9 @@ class BuildingObject extends StructureObject {
 	@local
 	public abstract native final BaseBoundingVolume getBoundingVolume();
 
-	@dirty
-	public native abstract float getOutOfRangeDistance(unsigned long specialRangeObjectID = 0);
+	@read
+	public native abstract float getOutOfRangeDistance();
 
 	@read
 	public native string getCellName(unsigned long cellID);
-
-	@preLocked
-	public void addChildCreatureObject(CreatureObject creature) {
-		if (creature != null) {
-			childCreatureObjects.put(creature);
-		}
-	}
-
-	@read
-	public boolean checkCooldownRecovery(final string cooldown) {
-		return cooldownTimerMap.isPast(cooldown);
-	}
-
-	@read
-	@local
-	public final Time getCooldownTime(final string cooldown) {
-		return cooldownTimerMap.getTime(cooldown);
-	}
-
-	public void addCooldown(final string name, unsigned long miliseconds) {
-		cooldownTimerMap.updateToCurrentAndAddMili(name, miliseconds);
-	}
 }

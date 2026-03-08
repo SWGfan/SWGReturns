@@ -2,7 +2,6 @@ thermal_det = Creature:new {
 	objectName = "",
 	customName = "Thermal Det",
 	socialGroup = "",
-	mobType = MOB_NPC,
 	faction = "",
 	level = 13,
 	chanceHit = 0.3,
@@ -29,17 +28,9 @@ thermal_det = Creature:new {
 
 	templates = {"object/mobile/kitonak_male.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "kitster_banai_mission_target_convotemplate",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = brawlermid,
-	secondaryAttacks = { }
+	attacks = brawlermid
 }
 
 CreatureTemplates:addCreatureTemplate(thermal_det, "thermal_det")

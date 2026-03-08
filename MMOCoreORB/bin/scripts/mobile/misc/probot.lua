@@ -2,7 +2,6 @@ probot = Creature:new {
 	objectName = "@droid_name:imperial_probot_base",
 	socialGroup = "",
 	faction = "",
-	mobType = MOB_DROID,
 	level = 9,
 	chanceHit = 0.27,
 	damageMin = 80,
@@ -29,11 +28,7 @@ probot = Creature:new {
 	templates = {"object/mobile/probot.iff"},
 	lootGroups = {},
 	conversationTemplate = "",
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "droid_probot_ranged",
-	secondaryWeapon = "unarmed",
+	weapons = {"droid_probot_ranged"},
 	defaultAttack = "attack"
 }
 

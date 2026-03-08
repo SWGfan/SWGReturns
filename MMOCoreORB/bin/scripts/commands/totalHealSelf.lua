@@ -53,14 +53,14 @@ TotalHealSelfCommand = {
 	healFireCost = 25,
 	fireHealIterations = 2,
 	healStateCost = 25,
-	forceCost = 200,
+	forceCost = 100,
 	healAmount = -1,
 	attributesToHeal = HEALTH_ATTRIBUTE + MIND_ATTRIBUTE + ACTION_ATTRIBUTE,
 	woundAttributesToHeal = HEALTH_ATTRIBUTE + MIND_ATTRIBUTE + ACTION_ATTRIBUTE,
 	healBattleFatigue = -1,
 	healWoundAmount = -1,
 	forceCostMultiplier = 0.05,
-	defaultTime = 3,
+	defaultTime = 1,
 }
 
 AddCommand(TotalHealSelfCommand)

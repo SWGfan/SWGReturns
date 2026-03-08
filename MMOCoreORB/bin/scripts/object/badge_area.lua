@@ -4,7 +4,7 @@ badge_area = SharedObjectTemplate:new {
 	planetMapSubCategory = "",
 	autoRegisterWithPlanetMap = 1,
 
-	groundZoneComponent = "GroundZoneComponent",
+	zoneComponent = "ZoneComponent",
 	objectMenuComponent = "ObjectMenuComponent",
 	containerComponent = "ContainerComponent",
 	gameObjectType = 33554432

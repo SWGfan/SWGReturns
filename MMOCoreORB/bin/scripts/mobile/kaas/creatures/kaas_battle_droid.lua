@@ -3,7 +3,6 @@ kaas_battle_droid = Creature:new {
 	customName = "a Malfunctioning Battle Droid",
 	socialGroup = "dark_jedi",
 	faction = "",
-	mobType = MOB_ANDROID,
 	level = 134,
 	chanceHit = 2.5,
 	damageMin = 295,
@@ -39,7 +38,7 @@ kaas_battle_droid = Creature:new {
         {group = "clone_trooper_neutral", chance = 4000000},
         {group = "clone_trooper_rebel", chance = 3000000}     -- 25% * 35% = 8.75%
       },
-      lootChance = 1000000    -- 25% chance of this group
+      lootChance = 2500000    -- 25% chance of this group
     },
     {
       groups = {

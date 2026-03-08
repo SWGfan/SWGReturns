@@ -38,6 +38,8 @@ public:
 		insertFloat(sceno->getWorldPositionY()); //y
 	}
 
+
+
 	void UpdateMember(SceneObject* cr, const String& planet) {
 		//Updates player info on other planets.
 		insertAscii(planet); //Planet name

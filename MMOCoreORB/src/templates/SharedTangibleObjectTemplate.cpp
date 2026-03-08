@@ -14,8 +14,8 @@ SharedTangibleObjectTemplate::SharedTangibleObjectTemplate() {
 	numberExperimentalProperties = new Vector<short>();
 	experimentalProperties = new Vector<String>();
 	experimentalWeights = new Vector<short>();
-	experimentalAttributes = new Vector<String>();
-	experimentalGroups = new Vector<String>();
+	experimentalGroupTitles = new Vector<String>();
+	experimentalSubGroupTitles = new Vector<String>();
 	experimentalMin = new Vector<float>();
 	experimentalMax = new Vector<float>();
 	experimentalPrecision = new Vector<short>();
@@ -37,9 +37,6 @@ SharedTangibleObjectTemplate::SharedTangibleObjectTemplate() {
 
 	sliceable = false;
 
-	insurable = true;
-	jediRobe = false;
-
 	faction = 0;
 
 	junkDealerNeeded = 0;
@@ -55,8 +52,8 @@ SharedTangibleObjectTemplate::~SharedTangibleObjectTemplate() {
 	delete numberExperimentalProperties;
 	delete experimentalProperties;
 	delete experimentalWeights;
-	delete experimentalAttributes;
-	delete experimentalGroups;
+	delete experimentalGroupTitles;
+	delete experimentalSubGroupTitles;
 	delete experimentalMin;
 	delete experimentalMax;
 	delete experimentalPrecision;
@@ -121,10 +118,6 @@ void SharedTangibleObjectTemplate::parseVariableData(const String& varName, LuaO
 		pvpStatusBitmask = Lua::getIntParameter(state);
 	} else if (varName == "sliceable") {
 		sliceable = Lua::getIntParameter(state);
-	} else if (varName == "insurable") {
-		insurable = Lua::getBooleanParameter(state);
-	} else if (varName == "jediRobe") {
-		jediRobe = Lua::getBooleanParameter(state);
 	} else if (varName == "faction") {
 		String factionString = Lua::getStringParameter(state);
 		faction = factionString.toLowerCase().hashCode();
@@ -195,20 +188,20 @@ void SharedTangibleObjectTemplate::parseVariableData(const String& varName, LuaO
 		experimentalWeightsList.pop();
 	} else if (varName == "experimentalGroupTitles") {
 		LuaObject experimentalGroupTitlesList(state);
-		experimentalGroups->removeAll();
+		experimentalGroupTitles->removeAll();
 		for (int i = 1; i <= experimentalGroupTitlesList.getTableSize(); ++i) {
-			experimentalGroups->add(experimentalGroupTitlesList.getStringAt(i));
+			experimentalGroupTitles->add(experimentalGroupTitlesList.getStringAt(i));
 		}
 
 		experimentalGroupTitlesList.pop();
 	} else if (varName == "experimentalSubGroupTitles") {
-		LuaObject experimentalTitlesList(state);
-		experimentalAttributes->removeAll();
-		for (int i = 1; i <= experimentalTitlesList.getTableSize(); ++i) {
-			experimentalAttributes->add(experimentalTitlesList.getStringAt(i));
+		LuaObject experimentalSubGroupTitlesList(state);
+		experimentalSubGroupTitles->removeAll();
+		for (int i = 1; i <= experimentalSubGroupTitlesList.getTableSize(); ++i) {
+			experimentalSubGroupTitles->add(experimentalSubGroupTitlesList.getStringAt(i));
 		}
 
-		experimentalTitlesList.pop();
+		experimentalSubGroupTitlesList.pop();
 	} else if (varName == "experimentalMin") {
 		LuaObject experimentalMinList(state);
 		experimentalMin->removeAll();
@@ -442,14 +435,18 @@ void SharedTangibleObjectTemplate::readObject(LuaObject* templateData) {
 	uint32 weightIterator = 0;
 	String subtitle = "";
 	resourceWeights->removeAll();
-
 	for (uint32 i = 0; i < numberExperimentalProperties->size(); i++) {
+
 		ResourceWeight* newWeight = new ResourceWeight();
 
-		newWeight->addProperties(experimentalGroups->get(i), experimentalAttributes->get(i), experimentalMin->get(i), experimentalMax->get(i), experimentalPrecision->get(i), experimentalCombineType->get(i));
+		newWeight->addProperties(experimentalGroupTitles->get(i),
+				experimentalSubGroupTitles->get(i), experimentalMin->get(i),
+				experimentalMax->get(i), experimentalPrecision->get(i), experimentalCombineType->get(i));
 
 		for (uint32 j = 0; j < numberExperimentalProperties->get(i); j++) {
-			newWeight->addWeight(experimentalProperties->get(weightIterator), experimentalWeights->get(weightIterator));
+
+			newWeight->addWeight(experimentalProperties->get(weightIterator),
+					experimentalWeights->get(weightIterator));
 
 			weightIterator++;
 		}

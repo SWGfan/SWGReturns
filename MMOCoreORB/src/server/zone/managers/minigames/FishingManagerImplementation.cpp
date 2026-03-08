@@ -1,9 +1,8 @@
 /*
- *	FishingManagerImplementation.cpp
+ * FishingManagerImplementation.cpp
  *
- *	Created on: Apr 11, 2010
- *	Refactor on: Aug. 3, 2021 - By: Hakry
- *	Author: swgemu
+ *  Created on: Apr 11, 2010
+ *      Author: swgemu
  */
 
 #include "server/zone/managers/minigames/FishingManager.h"
@@ -24,705 +23,481 @@
 #include "server/zone/managers/minigames/events/FishingEvent.h"
 #include "server/zone/managers/minigames/events/FishingSplashEvent.h"
 #include "server/zone/managers/minigames/FishingSession.h"
-#include "server/zone/managers/loot/LootManager.h"
 #include "system/util/VectorMap.h"
 
-// #define DEBUG_FISHING
+int FishingManagerImplementation::checkLocation(CreatureObject* player, int quality, float& x, float& y, float& z) {
+	if (player == nullptr)
+		return 1;
 
-void FishingManagerImplementation::initialize() {
-	info("Loading configuration.");
+	float angle = player->getDirectionAngle();
 
-	if (!loadConfigData() && fishingEnabled) {
-		info("Failed to load configuration lua.");
-	}
+	if (angle > 360)
+		angle = angle - 360;
+
+	float randVal = (float)System::random(3);
+	float distance = Math::min((Math::max(10.0 - (quality / 12.f), 2.1) + randVal), 10.0); // Calculates the Distance, using the Pole's Quality
+
+	angle = 2 * M_PI * angle / 360;
+
+	x = player->getPositionX() + sin(angle) * (distance);
+	y = player->getPositionY() + cos(angle) * (distance);
+
+	if (!player->getZone()->getPlanetManager()->getTerrainManager()->getWaterHeight(x, y, z))
+		return 3;
+
+	if (z < (player->getZone()->getHeight(x, y)))
+		return 4;
+
+	return 0;
 }
 
-bool FishingManagerImplementation::loadConfigData() {
-	Lua* lua = new Lua();
-	lua->init();
-
-	if (!lua->runFile("scripts/managers/fishing_manager.lua")) {
-		delete lua;
-		return false;
-	}
-
-	fishingEnabled = lua->getGlobalBoolean("fishingEnabled");
-
-	if (!fishingEnabled) {
-		info("Fishing is disabled.");
-		return false;
-	}
-
-	LuaObject fishTypes = lua->getGlobalObject("fishTypes");
-
-	if (fishTypes.isValidTable()) {
-		for (int i = 1; i <= fishTypes.getTableSize(); ++i) {
-			String fishName = fishTypes.getStringAt(i);
-
-			fishType.add(fishName);
-		}
-	}
-	fishTypes.pop();
-
-	info("Loaded a total of " + String::valueOf(fishType.size()) + " Fish Species.");
-
-	LuaObject colors = lua->getGlobalObject("fishColors");
-
-	if (colors.isValidTable()) {
-		for (int i = 1; i <= colors.getTableSize(); ++i) {
-			LuaObject colorsByPlanet = colors.getObjectAt(i);
-
-			if (colorsByPlanet.isValidTable()) {
-				String planet = colorsByPlanet.getStringAt(1);
-				int colorInt = colorsByPlanet.getIntAt(2);
-
-				fishColors.put(planet, colorInt);
-			}
-			colorsByPlanet.pop();
-		}
-	}
-	colors.pop();
-
-	info("Loaded Fish Colors for " + String::valueOf(fishColors.size()) + " Planets.");
-
-	LuaObject lengths = lua->getGlobalObject("fishLengths");
-
-	if (lengths.isValidTable()) {
-		for (int i = 1; i <= lengths.getTableSize(); ++i) {
-			LuaObject lengthsByFish = lengths.getObjectAt(i);
-
-			if (lengthsByFish.isValidTable()) {
-				String fishSpecies = lengthsByFish.getStringAt(1);
-				float length = lengthsByFish.getFloatAt(2);
-
-				fishLengths.put(fishSpecies, length);
-			}
-			lengthsByFish.pop();
-		}
-	}
-	lengths.pop();
-
-	info("Loaded " + String::valueOf(fishLengths.size()) + " fish lengths.");
-
-	LuaObject actions = lua->getGlobalObject("fishingActions");
-
-	if (actions.isValidTable()) {
-		for (int i = 1; i <= actions.getTableSize(); ++i) {
-			String action = actions.getStringAt(i);
-
-			fishingActions.add(action);
-		}
-	}
-	actions.pop();
-
-	info("Loaded " + String::valueOf(fishingActions.size()) + " Fishing Actions.");
-
-	LuaObject states = lua->getGlobalObject("fishingStates");
-
-	if (states.isValidTable()) {
-		for (int i = 1; i <= states.getTableSize(); ++i) {
-			String state = states.getStringAt(i);
-
-			fishingStates.add(state);
-		}
-	}
-	states.pop();
-
-	info("Loaded " + String::valueOf(fishingStates.size()) + " Fishing States.");
-
-	LuaObject baitStat = lua->getGlobalObject("baitStatus");
-
-	if (baitStat.isValidTable()) {
-		for (int i = 1; i <= baitStat.getTableSize(); ++i) {
-			String status = baitStat.getStringAt(i);
-
-			baitStatus.add(status);
-		}
-	}
-	baitStat.pop();
-
-	info("Loaded " + String::valueOf(baitStatus.size()) + " Bait Status Types.");
-
-	delete lua;
-	lua = nullptr;
-
-	return true;
-}
 
 int FishingManagerImplementation::startFishing(CreatureObject* player) {
-	if (!fishingEnabled || player == nullptr) {
-		return NOFISHING;
-	}
+	if (player == nullptr)
+		return 6;
 
 	ManagedReference<FishingPoleObject*> pole = getPole(player);
 
 	if (pole == nullptr) {
 		player->sendSystemMessage("@fishing:must_have_pole");
-		return NOFISHING;
+		return 1;
 	}
 
 	ManagedReference<FishingBaitObject*> bait = getBait(player);
 
 	if (bait == nullptr) {
 		player->sendSystemMessage("@fishing:bait_your_pole");
-		return NOFISHING;
+		return 2; // NOBAIT
 	}
 
-	auto zone = player->getZone();
+	float x, y, z;
 
-	if (zone == nullptr) {
-		return NOFISHING;
+	int locationCheck = checkLocation(player,pole->getQuality(), x, y, z);
+
+	if (locationCheck == 1)
+		return 6; // Something went wrong and player was nullptr
+
+	if (locationCheck == 3) {
+		player->sendSystemMessage("@fishing:too_far"); // Your cast goes astray and lands at a non-fishable spot.
+		return locationCheck; // NOWATER
+
+	} else if (locationCheck == 4) {
+		player->sendSystemMessage("@fishing:invalid_location");
+		return locationCheck; // TERRAINABOVEWATER
 	}
 
 	if (player->isSwimming()) {
 		player->sendSystemMessage("@fishing:bad_cast");
-		return NOFISHING;
+		return 5; // SWIMMING
 	}
 
-	Vector3 location;
-	int locationCheck = checkLocation(player, pole->getQuality(), location);
+	ManagedReference<Zone*> zone = player->getZone();
+	if (zone == nullptr)
+		return 6;
 
-	switch(locationCheck) {
-		case NOFISHING:
-			return locationCheck; // Player was nullptr
-		case BADCAST:
-			player->sendSystemMessage("@fishing:too_far"); // Your cast goes astray and lands at a non-fishable spot.
-			return locationCheck;
-		case NOWATER:
-			player->sendSystemMessage("@fishing:invalid_location");
-			return locationCheck;
-		default:
-			break;
-	}
+	ManagedReference<SceneObject*> markerObject = createMarker(x, y, z, zone);
+	if (markerObject == nullptr)
+		return 6;
 
-	ManagedReference<SceneObject*> markerObject = createMarker(location, zone);
-
-	if (markerObject == nullptr) {
-		return NOFISHING;
-	}
-
+	createSplash(x, y, z, zone, player);
 	String moodString = player->getMoodString();
-
 	createFishingSession(player, createFishingEvent(player, WAITING), markerObject, DONOTHING, 0, 0, WAITING, moodString);
-
-	Reference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
-
-	if (fishingSession == nullptr) {
-		return NOFISHING;
-	}
-
 	uint32 boxID = createWindow(player, 0);
 
-	fishingSession->setFishBoxID(boxID);
+	Reference<FishingSession*> session = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
+	session->setFishBoxID(boxID);
 
 	player->doAnimation("fishing_cast");
 	player->setMoodString("fishing");
+
 	player->sendSystemMessage("@fishing:start_fishing");
 
 	player->registerObserver(ObserverEventType::POSITIONCHANGED, _this.getReferenceUnsafeStaticCast());
-	player->registerObserver(ObserverEventType::PLAYERKILLED, _this.getReferenceUnsafeStaticCast());
-	player->registerObserver(ObserverEventType::STARTCOMBAT, _this.getReferenceUnsafeStaticCast());
 
-	createSplash(location.getX(), location.getY(), location.getZ(), zone, player);
-
-	return STARTFISHING;
+	return 0;
 }
 
-int FishingManagerImplementation::checkLocation(CreatureObject* player, int quality, Vector3& location) {
-	if (player == nullptr) {
-		return NOFISHING;
-	}
-
-	auto zone = player->getZone();
-
-	if (zone == nullptr || !zone->isGroundZone()) {
-		return NOFISHING;
-	}
-
-	auto planetManager = zone->getPlanetManager();
-
-	if (planetManager == nullptr) {
-		return NOFISHING;
-	}
-
-	auto terrainManager = planetManager->getTerrainManager();
-
-	if (terrainManager == nullptr) {
-		return NOFISHING;
-	}
-
-	float angle = player->getDirectionAngle();
-
-	if (angle > 360) {
-		angle = angle - 360;
-	}
-
-	float randVal = (float)System::random(2);
-	float distance = Math::min((Math::max(fabs(1.0 - (quality / 10.f)), 2.1) + randVal), 10.0); // Calculates the Distance, using the Pole's Quality
-
-	angle = 2 * M_PI * angle / 360;
-
-	location = player->getWorldPosition();
-
-	float x = location.getX() + sin(angle) * (distance);
-	float y = location.getY() + cos(angle) * (distance);
-	float z = location.getZ();
-
-	location.setX(x);
-	location.setY(y);
-
-	if (!terrainManager->getWaterHeight(x, y, z)) {
-		return BADCAST;
-	}
-
-	location.setZ(z);
-
-	if (z < zone->getHeight(x, y)) {
-		return NOWATER;
-	}
-
-	return STARTFISHING;
-}
-
-void FishingManagerImplementation::createFishingSession(CreatureObject* player, FishingEvent* event, SceneObject* marker, int nextAction, int fish, uint32 boxID, int fishingState, String& mood) {
-	if (player == nullptr || event == nullptr || marker == nullptr) {
+void FishingManagerImplementation::stopFishing(CreatureObject* player, uint32 boxID, bool rem) {
+	if (player == nullptr) // should never occur
 		return;
+
+	String moodString;
+	FishingEvent* fishingEvent = getFishingEvent(player);
+
+	player->doAnimation("fishing_reel");
+
+	Reference<FishingSession*> session = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
+
+	if (fishingEvent != nullptr) {
+		moodString = session->getMoodString();
+		player->setMoodString(moodString);
 	}
 
-	// Fishing Session is created and dropped in stopFishing or notifyCloseContainer
-	player->addActiveSession(SessionFacadeType::FISHING, new FishingSession(event, marker, nextAction, fish, boxID, fishingState, mood));
-}
+	setFishingState(player, NOTFISHING);
 
-void FishingManagerImplementation::stopFishing(CreatureObject* player, uint32 boxID, bool destroyMarker) {
-	if (player == nullptr) {
-		return;
-	}
+	ManagedReference<SceneObject*> marker = getFishMarker(player);
 
-#ifdef DEBUG_FISHING
-	player->info(true) << "FishingManagerImplementation::stopFishing -- called for " << player->getDisplayedName();
-#endif
-
-	// Remove the observers from the player
-	player->dropObserver(ObserverEventType::POSITIONCHANGED, _this.getReferenceUnsafeStaticCast());
-	player->dropObserver(ObserverEventType::PLAYERKILLED, _this.getReferenceUnsafeStaticCast());
-	player->dropObserver(ObserverEventType::STARTCOMBAT, _this.getReferenceUnsafeStaticCast());
-
-	// Stop the fishing Event
-	stopFishingEvent(player);
-
-	// Get the session
-	Reference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
-	ManagedReference<SceneObject*> marker = nullptr;
-
-	String moodString = "none";
-
-	if (fishingSession != nullptr) {
-		// Get the store mood string
-		moodString = fishingSession->getMoodString();
-
-		// Clear the session fishing state
-		fishingSession->setFishingState(NOTFISHING);
-
-		fishingSession->setEvent(nullptr);
-
-		marker = fishingSession->getMarker();
-	}
-
-	// Clear the fishing mood off of the player
-	player->setMoodString(moodString);
-
-	player->sendSystemMessage("@fishing:stop_fishing");
-
-	if (!player->isInCombat() && !player->isIncapacitated() && !player->isDead()) {
-		player->doAnimation("fishing_reel");
-	}
+	if (marker != nullptr)
+		createSplash(marker->getPositionX(), marker->getPositionY(), marker->getPositionZ(), player->getZone(), player);
 
 	uint32 id = boxID;
 
-	if (boxID == 0) {
+	if (boxID == 0)
 		id = getFishBoxID(player);
-	}
 
-	// We can now drop the session off the player
-	player->dropActiveSession(SessionFacadeType::FISHING);
-
-	// Fishing Window
+	// close windows
 	closeMenu(player, id);
 
-	// The only instance when the marker is not automatically destroyed is when there is loot in it the player must retrieve
-	if (destroyMarker && marker != nullptr) {
-		Locker locker(marker, player);
+	// stop events
+	if (rem) {
+		Locker locker(marker);
 		removeMarker(player, marker);
+		stopFishingEvent(player);
+
+		player->dropActiveSession(SessionFacadeType::FISHING);
 	}
+
+	player->sendSystemMessage("@fishing:stop_fishing");
+
+	player->dropObserver(ObserverEventType::POSITIONCHANGED, _this.getReferenceUnsafeStaticCast());
 }
 
-// Player is pre-locked upon function call
-void FishingManagerImplementation::continueFishing(CreatureObject* player) {
-	if (player == nullptr) {
-		return;
-	}
 
-#ifdef DEBUG_FISHING
-	player->info(true) << "FishingManagerImplementation::continueFishing -- called for " << player->getDisplayedName();
-#endif
+void FishingManagerImplementation::fishingStep(CreatureObject* player) {
+	if (player == nullptr)
+		return;
 
 	ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
 
-	if (fishingSession == nullptr) {
+	if (fishingSession == nullptr)
 		return;
-	}
-
-	uint32 boxID = fishingSession->getFishBoxID();
-
-	// Player needs a pole to continue fishing
-	ManagedReference<FishingPoleObject*> pole = getPole(player);
-
-	if (pole == nullptr) {
-		stopFishing(player, boxID, true);
-		return;
-	}
-
-	// Make sure the player is alive and notincapacitated or in combat
-	if (player->isInCombat() || player->isDead() || player->isIncapacitated()) {
-		stopFishing(player, boxID, true);
-		return;
-	}
-
-	// Get the fishing marker
-	ManagedReference<SceneObject*> marker = fishingSession->getMarker();
 
 	int nextAction = fishingSession->getNextAction();
+	ManagedReference<SceneObject*> marker = fishingSession->getMarker();
 	int fish = fishingSession->getFish();
-	int state = fishingSession->getFishingState();
-
+	uint32 boxID = fishingSession->getFishBoxID();
 	String moodString = fishingSession->getMoodString();
 
-	// Close Current Window
-	if (state != REELGAME) {
+	int state = fishingSession->getFishingState();
+
+	// close windows
+	if (state != REELGAME)
 		closeMenu(player, boxID);
-	}
 
 	// Random Event & Mishap
-	int chance = System::random(30);
-	int vegStat = vegetation(marker);
-	int fishDensity = density(marker);
-	int poleMod = 0;
+	ManagedReference<FishingPoleObject*> pole = getPole(player);
 
-	if (pole->getQuality() != 0) {
-		poleMod = (int)ceil((float)pole->getQuality() / 10);
+	int event = System::random(50);
+	int poleMod = 0;
+	if (pole != nullptr) {
+		if (pole->getQuality() != 0)
+			poleMod = (int)ceil((float)pole->getQuality() / 20);
 	}
+
+
+	int mishap = System::random(1);
+
+	// Luck might have it a mishap turns into something else!
+	/*if (event == MISHAP) {
+		chance = System::random(luck/10);
+		if (chance >= (int)((luck / 10) * (3 / 4))) event--;
+	}*/
 
 	// Accounting for bad Bait
 	ManagedReference<FishingBaitObject*> bait = getBait(player);
 
 	if (bait != nullptr) {
-		int baitState = bait->getFreshness();
+		if ((state < CATCH) && (bait->getFreshness() > SOGGY)) {
+			if (System::random(15) < bait->getFreshness()) {
 
-		if (state < CATCH && baitState > SOGGY && System::random(15) < baitState) {
-			mishapEvent("@fishing:toss_bait", player, marker, boxID, true, moodString);
-			return; // NO BAIT
+				mishapEvent("@fishing:toss_bait", player, boxID, true, moodString);
+				return; // NOBAIT
+			}
 		}
 	}
 
-#ifdef DEBUG_FISHING
-	player->info(true) << "State: " << state << " Chance: " << chance << " Mishap: " << String::valueOf(MISHAP) << " Next Action: " << nextAction << " Pole Mod: " << poleMod << " Vegetation: " << vegStat;
-#endif
+	//debug player->sendSystemMessage("Event: " + String::valueOf(event) + " Mishap: " + String::valueOf(mishap) + " Next Action: " + String::valueOf(nextAction));
 
-	// Play Fishing Animation
+	// animate character
 	animate(player, nextAction);
 
 	switch (state) {
-		case WAITING: {
-			int newFish = getFish(player, marker);
 
-			if (chance + poleMod <= MISHAP + vegStat) { // Pole decreases chance of Snag
-				fishingProceed(player, nextAction, marker, newFish, boxID, SNAGGED, false, moodString);
+	case WAITING:
+	{
+		// CALCULATING FISH
+		int newFish = getFish(player);
+
+		if (event - poleMod >= MISHAP) { // Pole decreases chance of MISHAP
+			fishingProceed(player, nextAction, marker, newFish, boxID, SNAGGED, true, moodString);
+		} else {
+			if (nextAction == REEL) {
+				ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, false);
+
+				if (newMarker != nullptr)
+					fishingProceed(player, nextAction, newMarker, newFish, boxID, WAITING, false, moodString);
+
+			} else if (event + poleMod >=  (vegetation(marker) * 5)) { // Pole increases chance of NIBBLE
+				fishingProceed(player, nextAction, marker, newFish, boxID, NIBBLE, true, moodString);
 			} else {
-				if (chance - poleMod <= fishDensity * 1.5) { // Nibble
-					if (nextAction >= TUGUP && nextAction <= REEL) {
-						ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, false);
-
-						if (newMarker != nullptr) {
-							fishingProceed(player, nextAction, newMarker, newFish, boxID, NIBBLE, true, moodString);
-						}
-					} else {
-						fishingProceed(player, nextAction, marker, newFish, boxID, NIBBLE, true, moodString);
-					}
-				} else { // Waiting
-					if (nextAction >= TUGUP && nextAction <= REEL) {
-						ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, false);
-
-						if (newMarker != nullptr) {
-							fishingProceed(player, nextAction, newMarker, newFish, boxID, WAITING, false, moodString);
-						}
-					} else {
-						fishingProceed(player, nextAction, marker, newFish, boxID, WAITING, false, moodString);
-					}
-				}
+				fishingProceed(player, nextAction, marker, newFish, boxID, WAITING, false, moodString);
 			}
-			break;
 		}
-		case SNAGGED: {
-			if (nextAction >= TUGUP && nextAction <= REEL && chance + poleMod - (vegStat / 2) >= PROCEED) { // Pole Mod increase chance to not snag and vegetation increase chance to snag
-				fishingProceed(player, nextAction, marker, fish, boxID, WAITING, false, moodString);
-			} else {
-				fishingProceed(player, nextAction, marker, fish, boxID, SNAGGED, false, moodString);
-			}
-			break;
-		}
-		case NIBBLE: {
-			if (chance + poleMod <= MISHAP) { // Pole decreases chance of mishap
-				mishapEvent("@fishing:line_snap", player, marker, boxID, true, moodString);
-				break;
-			} else if ((chance + poleMod >= (PROCEED + 10 - (fishDensity * 2))) && (nextAction >= TUGUP && nextAction <= REEL)) { // BITE
-				ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, false);
+		break;
+	}
+	case SNAGGED:
+	{
+		if (event + poleMod >= PROCEED) { // Pole increases chance to leave SNAGGED
+			fishingProceed(player, nextAction, marker, fish, boxID, NIBBLE, true, moodString);
 
-				if (newMarker != nullptr) {
-					fishingProceed(player, nextAction, newMarker, fish, boxID, BITE, true, moodString);
-				} else {
-					fishingProceed(player, nextAction, marker, fish, boxID, BITE, true, moodString);
-				}
-				break;
-			} else if (nextAction >= TUGUP && nextAction <= REEL) { // Action entered & BITE calculation failed
-				ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, false);
+		} else {
+			fishingProceed(player, nextAction, marker, fish, boxID, SNAGGED, false, moodString);
 
-				if (newMarker != nullptr) {
-					fishingProceed(player, nextAction, newMarker, fish, boxID, NIBBLE, true, moodString);
-				} else {
-					fishingProceed(player, nextAction, newMarker, fish, boxID, WAITING, true, moodString);
-				}
-			} else {
-				if (chance <= 10) {
-					fishingProceed(player, nextAction, marker, fish, boxID, WAITING, true, moodString);
-				} else {
-					fishingProceed(player, nextAction, marker, fish, boxID, NIBBLE, true, moodString);
-				}
-			}
-			break;
 		}
-		case BITE: {
-			if (chance + poleMod <= MISHAP) { // Pole decreases chance of MISHAP
-				if (chance < 3) { // Lost Bait
-					mishapEvent("@fishing:lost_bait", player, marker, boxID, true, moodString);
-					break;
-				} else { // Fish pulled out the line, but the player has no penalty
-					mishapEvent("@fishing:line_spooled", player, marker, boxID, false, moodString);
-					break;
-				}
-			} else if (chance + poleMod >= PROCEED && nextAction >= TUGUP && nextAction <= REEL) {
-				ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, false);
+		break;
+	}
+	case NIBBLE:
+	{
+		if (event - poleMod >= MISHAP) { // Pole decreases chance of MISHAP
 
-				if (newMarker != nullptr) {
-					fishingProceed(player, nextAction, newMarker, fish, boxID, CATCH, true, moodString);
-				} else {
-					fishingProceed(player, nextAction, marker, fish, boxID, BITE, true, moodString);
-				}
-			} else {
-				fishingProceed(player, nextAction, marker, fish, boxID, NIBBLE, false, moodString);
+			if (mishap == 0) { // Line snapped, losing bait
+				mishapEvent("@fishing:line_snap", player, boxID, true, moodString);
+
+			} else { // Lost catch
+				mishapEvent("@fishing:lost_catch", player, boxID, false, moodString);
+
 			}
-			break;
-		}
-		case CATCH: {
-			if (chance + poleMod <= MISHAP) {
-				mishapEvent("@fishing:lost_catch", player, marker, boxID, false, moodString);
-				break;
-			} else if (nextAction == DONOTHING || nextAction == REEL) {
-				fishingProceed(player, nextAction, marker, fish, boxID, REELING, true, moodString);
-			} else {
-				fishingProceed(player, nextAction, marker, fish, boxID, CATCH, true, moodString);
-			}
-			break;
-		}
-		case REELING: {
-			ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, true);
+
+		} else if ((event + poleMod >= (PROCEED + 10 - (density(marker) * 2))) && (nextAction >= TUGUP && nextAction <= TUGLEFT)) { // Pole increases chance to BITE
+			fishingProceed(player, nextAction, marker, fish, boxID, BITE, true, moodString);
+
+		} else if (nextAction == REEL) {
+			ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, false);
 
 			if (newMarker != nullptr)
-				fishingProceed(player, nextAction, newMarker, fish, boxID, REELING, true, moodString);
-			break;
-		}
-		case REELGAME: {
-			if (chance + poleMod <= MISHAP - 5) { // Pole decreases chance of mishap
-					mishapEvent("@fishing:tore_bait", player, marker, boxID, true, moodString);
-			} else {
-				if (player->isInRange(marker, 2.0)) {
-					success(player, fish, marker, boxID);
-				} else {
-					ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, boxID, true);
+				fishingProceed(player, nextAction, newMarker, fish, boxID, NIBBLE, false, moodString);
+		} else {
+			fishingProceed(player, nextAction, marker, fish, boxID, NIBBLE, false, moodString);
 
-					if (newMarker != nullptr) {
-						fishingProceed(player, nextAction, newMarker, fish, boxID, REELGAME, true, moodString);
-					} else {
-						fishingProceed(player, nextAction, newMarker, fish, boxID, REELGAME, true, moodString);
-					}
-				}
-			}
-			break;
 		}
+		break;
+	}
+	case BITE:
+	{
+		if (event - poleMod >= MISHAP) { // Pole decreases chance of MISHAP
+
+			if (mishap == 0) { // Lost Bait
+				mishapEvent("@fishing:lost_bait", player, boxID, true, moodString);
+
+			} else { // Fish pulled out the line, but the player has no penalty - appearently every fisherman can fix his line :)
+				mishapEvent("@fishing:line_spooled", player, boxID, false, moodString);
+
+			}
+		} else if ((event + poleMod >= PROCEED) && (nextAction >= TUGUP && nextAction <= TUGLEFT)) { // Pole increases chance of CATCH
+			fishingProceed(player, nextAction, marker, fish, boxID, CATCH, true, moodString);
+
+		} else if (nextAction == REEL) {
+			ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, false);
+
+			if (newMarker != nullptr)
+				fishingProceed(player, nextAction, newMarker, fish, boxID, BITE, false, moodString);
+		} else {
+			fishingProceed(player, nextAction, marker, fish, boxID, BITE, false, moodString);
+
+		}
+		break;
+	}
+	case CATCH:
+	{
+		/*if (player->isInRange(marker, 2.0)) { // in case reeling closer gets it into catching range but neither did the position change nor did he do nothing or reel
+			success(player, fish, marker, boxID);
+
+		} else {
+
+			if (event == MISHAP) { // Fish is trying to get away
+				fishingProceed(player, nextAction, marker, fish, boxID, CATCH, true, moodString);
+
+			}  else*/
+		if ((nextAction == DONOTHING) || (nextAction == REEL)) {
+
+			/*SceneObject* newMarker = updateMarker(player, marker, false);
+
+			if (newMarker != nullptr)*/
+				fishingProceed(player, nextAction, marker, fish, boxID, REELING, true, moodString);
+
+		} else {
+			fishingProceed(player, nextAction, marker, fish, boxID, CATCH, true, moodString);
+		}
+
+		//}
+		break;
+	}
+	case REELING:
+	{
+		ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, false);
+
+		if (newMarker != nullptr)
+			fishingProceed(player, nextAction, newMarker, fish, boxID, REELING, true, moodString);
+
+		break;
+	}
+	case REELGAME:
+	{
+		if (player->isInRange(marker, 2.0)) {
+			success(player, fish, marker, boxID);
+
+		} else {
+			if (event - poleMod >= MISHAP) { // Pole decreases chance of MISHAP
+				mishapEvent("@fishing:tore_bait", player, boxID, true, moodString);
+			} else {
+
+				ManagedReference<SceneObject*> newMarker = updateMarker(player, marker, true);
+
+				if (newMarker != nullptr) {
+					fishingProceed(player, nextAction, newMarker, fish, boxID, REELGAME, true, moodString);
+				} else {
+					success(player, fish, marker, boxID);
+				}
+
+			}
+		}
+		break;
+	}
 	}
 }
 
+String FishingManagerImplementation::getTime() {
+	time_t seconds;
+	time(&seconds);
+	String result = ctime(&seconds);
+	result = result + " PDT";
+	return result;
+}
+
 void FishingManagerImplementation::success(CreatureObject* player, int fish, SceneObject* marker, uint32 boxID) {
-	if (player == nullptr) {
+	if (player == nullptr)
 		return;
-	}
 
-#ifdef DEBUG_FISHING
-	player->info(true) << "FishingManagerImplementation::success -- called for " << player->getDisplayedName();
-#endif
+	Zone* zone = player->getZone();
 
-	auto zone = player->getZone();
+	if (fish > 93){ // NON-FISH ITEM WAS CAUGHT!
+		int chance = System::random(99)/*+(luck/10)*/;
 
-	if (zone == nullptr) {
-		return;
-	}
+		if (chance > 94) { // RARE ITEM WAS CAUGHT!
+			int i = rareLoot.size();
 
-	auto zoneServer = player->getZoneServer();
-
-	if (zoneServer == nullptr) {
-		return;
-	}
-
-	ManagedReference<LootManager*> lootManager = zoneServer->getLootManager();
-
-	if (lootManager == nullptr) {
-		return;
-	}
-
-	TransactionLog trx(TrxCode::FISHING, player);
-
-	if (fish > 80) { // Non-fish Item Caught
-		int chance = System::random(200) + player->getSkillMod("luck");
-		uint64 lootID = 0;
-
-		if (chance > 190) { // Rare Loot
-			if (System::random(4) > 1) {
-				lootID = lootManager->createLoot(trx, marker, "weapons_all", 40);
-			} else {
-				lootID = lootManager->createLoot(trx, marker, "armor_all", 40);
+			String loot = rareLoot.get(System::random(i - 1));
+			ManagedReference<SceneObject*> lootObject = player->getZoneServer()->createObject(loot.hashCode(), 2);
+			if (lootObject != nullptr) {
+				Locker lootLocker(lootObject);
+				sendReward(player, marker, lootObject);
 			}
-		} else { // Junk Loot Drop
-			lootID = lootManager->createLoot(trx, marker, "junk", 40);
-		}
+		} else { // MISC ITEM WAS CAUGHT!
+			int i = miscLoot.size();
 
-		if (lootID > 0) {
-			trx.commit();
-			sendReward(player, marker, nullptr);
-		} else {
-			trx.abort() << "FishingManagerImplementation -- Loot Object ID == 0";
+			String loot = miscLoot.get(System::random(i - 1));
+			ManagedReference<SceneObject*> lootObject = player->getZoneServer()->createObject(loot.hashCode(), 2);
+			if (lootObject != nullptr) {
+				Locker lootLocker(lootObject);
+				sendReward(player, marker, lootObject);
+			}
 		}
 	} else {
-		// Chance to toss fish away
+		// 5% chance to toss fish away
 		int badLuck = System::random(20);
 
-		if (badLuck <= 1) {
+		if (badLuck == 0) {
 			player->sendSystemMessage("@fishing:size_matters");
 			stopFishing(player, boxID, true);
 
-			trx.abort() << "@fishing:size_matters";
 			return;
 		} else {
-			String fishName = fishType.get(fish);
-			String lootFish = "object/tangible/fishing/fish/" + fishName + ".iff";
-			ManagedReference<FishObject*> lootFishObject = zoneServer->createObject(lootFish.hashCode(), 2).castTo<FishObject*>();
+			String lootFish = "object/tangible/fishing/fish/" + fishType.get(fish) + ".iff";
+			ManagedReference<FishObject*> lootFishObject = player->getZoneServer()->createObject(lootFish.hashCode(), 2).castTo<FishObject*>();
 
 			if (lootFishObject != nullptr) {
-				Locker lootLocker(lootFishObject, player);
+				Locker lootLocker(lootFishObject);
 
 				String time = getTime();
 				String name = player->getFirstName() + " " + player->getLastName();
 
-				// Determine fish length
-				float length = fishLengths.get(fishName);
-				float totalLength = length;
-				float harvestingMod = player->getSkillMod("creature_harvesting") + 5.f;
-				float randBonus = System::frandom(length * 0.5f) - System::frandom(length * 0.5f);
+				int quality = 1;
 
-				totalLength += randBonus;
+				ManagedReference<FishingPoleObject*> pole = getPole(player);
 
-				// Bonus for creature harvesting mod
-				if (harvestingMod > 0) {
-					harvestingMod = (System::frandom(harvestingMod) / 100.0f) + 1.f;
-					totalLength *= harvestingMod;
+				if (pole != nullptr) {
+					if (pole->getQuality() != 0)
+						quality += (int)ceil((float)pole->getQuality() / 25);
 				}
+				int factor = 1;
 
-				String zoneName = zone->getZoneName();
+				if (player->hasSkill("outdoors_ranger_tracking_04"))
+					factor = 8;
+				else if (player->hasSkill("outdoors_ranger_tracking_03"))
+					factor = 7;
+				else if (player->hasSkill("outdoors_ranger_tracking_02"))
+					factor = 6;
+				else if (player->hasSkill("outdoors_ranger_tracking_01"))
+					factor = 5;
+				else if (player->hasSkill("outdoors_scout_camp_04"))
+					factor = 4;
+				else if (player->hasSkill("outdoors_scout_camp_03"))
+					factor = 3;
+				else if (player->hasSkill("outdoors_scout_camp_02"))
+					factor = 2;
 
-				lootFishObject->setAttributes(name, zoneName, time, (totalLength / 100.f));
+				float length = fishLength.get(fish)*factor;
 
-				int xp = (totalLength / length) * 90;
+				length = System::random(length)+quality;
 
-				ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
+				lootFishObject->setAttributes(name, zone->getZoneName(), time, length / 100);
 
-				if (playerManager != nullptr) {
-					playerManager->awardExperience(player, "camp", xp, true);
-				}
+				//if (player->hasSkill("outdoors_ranger_novice") || player->hasSkill("outdoors_scout_novice")) {
+				int xp;
 
-				int color = 1;
+				if (fish == 1)
+					xp = length * 5;
+				else
+					xp = length * 2;
 
-				for (int j = 1; j < fishColors.size(); ++j) {
-					String fishingPlanet = fishColors.elementAt(j).getKey();
+				ManagedReference<PlayerManager*> playerManager = zone->getZoneServer()->getPlayerManager();
 
-					if (fishingPlanet == zoneName) {
-						color = fishColors.elementAt(j).getValue();
-					}
-				}
+				Locker playerLocker(player);
+				playerManager->awardExperience(player, "camp", xp, true);
 
-				lootFishObject->setCustomizationVariable("/private/index_color_1", color);
+				lootFishObject->setCustomizationVariable("/private/index_color_1", color.get(zone->getZoneName()));
 
 				String baitString = "object/tangible/fishing/bait/bait_chum.iff";
-				ManagedReference<TangibleObject*> baitObject = zoneServer->createObject(baitString.hashCode(), 2).castTo<TangibleObject*>();
+				ManagedReference<TangibleObject*> baitObject = zone->getZoneServer()->createObject(baitString.hashCode(), 2).castTo<TangibleObject*>();
 
 				if (baitObject != nullptr) {
-					Locker baitLocker(baitObject, player);
-
-					TransactionLog trxBait(TrxCode::FISHING, player);
-
-					int useCount = System::random(5) + 1;
-
-					if (useCount >= 1)
-						baitObject->setUseCount(useCount, true);
-
+					Locker baitLocker(baitObject);
+					int useCount = System::random(5);
+					if (useCount > 1)
+						baitObject->setUseCount(useCount,true);
 					if (lootFishObject->transferObject(baitObject, -1, true)) {
-						trxBait.setSubject(baitObject);
-						trxBait.addState("subjectObjectID", baitObject->getObjectID());
-						trxBait.addState("subjectUseCount", useCount);
-						trxBait.groupWith(trx);
-
-						lootFishObject->broadcastObject(baitObject, true);
+						baitObject->sendTo(player, true);
 					} else {
 						baitObject->destroyObjectFromDatabase(true);
 					}
 				}
 
-				String resourceString = "seafood_fish_" + zoneName;
-				int amount = harvestingMod * 50;
-
-				ManagedReference<ResourceManager*> resourceManager = zoneServer->getResourceManager();
+				String resourceString = zone->getZoneName();
+				resourceString = "seafood_fish_" + resourceString;
+				int amount = 250+factor;
+				ManagedReference<ResourceManager*> resourceManager = zone->getZoneServer()->getResourceManager();
 				ManagedReference<SceneObject*> resource = cast<SceneObject*>(resourceManager->harvestResource(player, resourceString, amount));
 
 				if (resource != nullptr) {
-					Locker resourceLocker(resource, player);
-
+					Locker resourceLocker(resource);
 					if (lootFishObject->transferObject(resource, -1, true)) {
-						TransactionLog trxResource(TrxCode::FISHING, player);
-						trxResource.setSubject(resource);
-						trxResource.addState("subjectResourceType", resourceString);
-						trxResource.addState("subjectResourceQuantity", amount);
-						trxResource.groupWith(trx);
-
-						lootFishObject->broadcastObject(resource, true);
+						resource->sendTo(player, true);
 					} else {
 						resource->destroyObjectFromDatabase(true);
 					}
 				}
 
 				sendReward(player, marker, cast<SceneObject*>(lootFishObject.get()));
-
-				trx.setSubject(lootFishObject);
-				trx.addState("subjectFishType", fishName);
-				trx.addState("subjectFishLength", length);
-				trx.addState("experienceAwarded", xp);
-				trx.commit();
 			}
 		}
 	}
@@ -730,31 +505,32 @@ void FishingManagerImplementation::success(CreatureObject* player, int fish, Sce
 	stopFishing(player, boxID, false);
 }
 
+
 void FishingManagerImplementation::sendReward(CreatureObject* player, SceneObject* marker, SceneObject* loot) {
-	if (player != nullptr && marker != nullptr) {
+	if ((player != nullptr) && (marker != nullptr) && (loot != nullptr)) {
+		StringIdChatParameter body("fishing","prose_notify_catch");
+		String itemName;
+		loot->sendTo(player, true);
+
 		Locker markerLocker(marker);
 
 		ContainerPermissions* permissions = marker->getContainerPermissionsForUpdate();
 		permissions->setOwner(player->getObjectID());
 
-		if (loot != nullptr) {
-			if (marker->transferObject(loot, -1, true)) {
-				String itemName = "";
-				loot->getObjectName()->getFullPath(itemName);
+		if (marker->transferObject(loot, -1, true)) {
+			marker->openContainerTo(player);
 
-				StringIdChatParameter body("fishing", "prose_notify_catch");
-				body.setTT(itemName);
-				player->sendSystemMessage(body);
-			} else {
-				loot->destroyObjectFromDatabase(true);
-			}
+			loot->getObjectName()->getFullPath(itemName);
+			body.setTT(itemName);
+			player->sendSystemMessage(body);
 		} else {
-			player->sendSystemMessage("@fishing:reel_loot");
+			loot->destroyObjectFromDatabase(true);
 		}
-
-		marker->openContainerTo(player);
+	} else if (loot != nullptr) {
+		loot->destroyObjectFromDatabase(true);
 	}
 }
+
 
 uint32 FishingManagerImplementation::createWindow(CreatureObject* player, uint32 boxID) {
 	if (player == nullptr)
@@ -788,15 +564,16 @@ uint32 FishingManagerImplementation::createWindow(CreatureObject* player, uint32
 
 	int nextAct = getNextAction(player);
 
-	if (nextAct >= fishingActions.size())
+	if (nextAct >= action.size())
 		nextAct = 0;
 
-	String prompt = "STATUS : " + fishingStates.get(getFishingState(player) % 7)
-		+ "\nBAIT STATUS : " + baitStatus.get(freshness % 3)
-		+ "\nLINE RANGE : " + String::valueOf(ceil(player->getDistanceTo(marker) * 100) / 100)
-		+ "\nFISH DENSITY : " + getPropertyString(den % 6)
-		+ "\nVEGETATION : " + getPropertyString(veg % 6)
-		+ "\nNEXT ACTION : " + fishingActions.get(nextAct);
+	String prompt = "STATUS : " + state.get(getFishingState(player) % 7) + "\nBAIT STATUS : "
+			+ baitStatus.get(freshness % 3) + "\nLINE RANGE : "
+			+ String::valueOf( ceil( player->getDistanceTo(marker) * 100 ) / 100)
+			+ "\nFISH DENSITY : "+ property.get(den % 6)
+			+ "\nVEGETATION : " + property.get(veg % 6)
+			+ "\nNEXT ACTION : "
+			+ action.get( nextAct );
 
 	// create new window
 	ManagedReference<SuiListBox*> box = new SuiListBox(player, SuiWindowType::FISHING, 0);
@@ -816,10 +593,11 @@ uint32 FishingManagerImplementation::createWindow(CreatureObject* player, uint32
 	return box->getBoxID();
 }
 
+
 void FishingManagerImplementation::closeMenu(CreatureObject* player, uint32 boxID) {
 	PlayerObject* ghost = player->getPlayerObject();
 
-	if (ghost != nullptr) {
+	if(ghost != nullptr) {
 		ghost->removeSuiBoxType(SuiWindowType::FISHING);
 	}
 }
@@ -828,39 +606,24 @@ int FishingManagerImplementation::vegetation(SceneObject* marker) {
 	if (marker == nullptr)
 		return 0;
 
-	return (int)ceil(fabs(marker->getPositionX() / 100)) % 6;
+	return (int)ceil( fabs( marker->getPositionX() / 100 ) ) % 6;
 }
 
 int FishingManagerImplementation::density(SceneObject* marker) {
 	if (marker == nullptr)
 		return 0;
 
-	return (int)ceil(fabs(marker->getPositionY() / 100)) % 6;
+	return (int)ceil( fabs( marker->getPositionY() / 100 ) ) % 6;
 }
 
-int FishingManagerImplementation::getFish(CreatureObject* player, SceneObject* marker) {
-	int chance = System::random(99);
 
-#ifdef DEBUG_FISHING
-	StringBuffer msg;
-	msg << " Starting getFish chance = " << chance << "  ";
-#endif
+int FishingManagerImplementation::getFish(CreatureObject* player) {
+	int chance = System::random(99)/*+(luck/10)*/;
 
-	if (player == nullptr || marker == nullptr) {
+	if (player == nullptr)
 		return chance;
-	}
 
-	int vegStat = vegetation(marker);
-
-	if (vegStat > 0 && chance < 85) {
-		chance += vegStat * 5;
-	}
-
-#ifdef DEBUG_FISHING
-	msg << " chance after vegeation bonus = " << chance << "  ";
-#endif
-
-	if (chance < 85) {
+	if (chance < 94) {
 		ManagedReference<FishingPoleObject*> pole = getPole(player);
 		if (pole == nullptr)
 			return chance;
@@ -869,22 +632,18 @@ int FishingManagerImplementation::getFish(CreatureObject* player, SceneObject* m
 		if (bait == nullptr)
 			return chance;
 
-		chance = (int)((pole->getQuality() * 0.06)			// ACCOUNT FOR POLE QUALITY - quality is 50 at init
-					   + (vegStat * -0.75)		// Vegetation Decrease chance to catch a fish
-					   + (density(player) * 0.75)			// ACCOUNT FOR FISH DENSITY - is 0 if density method fails
-					   + ((3 - bait->getFreshness()) * 3.0) // ACCOUNT FOR BAIT STATUS - freshness is 0 at init
-					   + player->getSkillMod("luck") // ACCOUNT FOR LUCK
-					   + (System::random(20))) // RANDOM BIAS
-				 % 7;						   // MUX NUMBER TO FISH 0-6
+		chance = (int)((pole->getQuality() * 0.06) // ACCOUNT FOR POLE QUALITY - quality is 50 at init
+						+ (vegetation(player) * -0.75) // ACCOUNT FOR VEGETATION PENALTY - is 0 if vegetation method fails
+						+ (density(player) * 0.75) // ACCOUNT FOR FISH DENSITY - is 0 if density method fails
+						+ ((3 - bait->getFreshness()) * 3.0) // ACCOUNT FOR BAIT STATUS - freshness is 0 at init
+						//+ (luck / 100) // ACCOUNT FOR LUCK - no luck stat yet!?
+						+ (System::random(20))) // RANDOM BIAS
+						% 7; // MUX NUMBER TO FISH 0-6
 	}
-
-#ifdef DEBUG_FISHING
-	msg << " Final Chance: " << chance;
-	player->info(true) << msg.toString();
-#endif
 
 	return chance;
 }
+
 
 int FishingManagerImplementation::getNextAction(CreatureObject* player) {
 	if (player == nullptr)
@@ -912,25 +671,24 @@ void FishingManagerImplementation::setNextAction(CreatureObject* player, int nex
 	}
 }
 
+
 FishingPoleObject* FishingManagerImplementation::getPole(CreatureObject* player) {
-	if (player == nullptr) {
+	if (player == nullptr)
 		return nullptr;
+
+	SceneObject* pole = player->getSlottedObject("hold_r");
+
+	if (pole != nullptr) {
+		if (pole->isFishingPoleObject()) {
+			ManagedReference<FishingPoleObject*> poleObject = cast<FishingPoleObject*>(pole);
+
+			return poleObject;
+		}
 	}
 
-	SceneObject* poleSceneO = player->getSlottedObject("hold_r");
-
-	if (poleSceneO == nullptr || !poleSceneO->isFishingPoleObject()) {
-		return nullptr;
-	}
-
-	ManagedReference<FishingPoleObject*> fishingPole = cast<FishingPoleObject*>(poleSceneO);
-
-	if (fishingPole == nullptr) {
-		return nullptr;
-	}
-
-	return fishingPole;
+	return nullptr;
 }
+
 
 FishingBaitObject* FishingManagerImplementation::getBait(CreatureObject* player) {
 	if (player == nullptr)
@@ -954,6 +712,7 @@ FishingBaitObject* FishingManagerImplementation::getBait(CreatureObject* player)
 
 	return nullptr;
 }
+
 
 uint32 FishingManagerImplementation::getFishBoxID(CreatureObject* player) {
 	if (player == nullptr)
@@ -985,12 +744,16 @@ int FishingManagerImplementation::getFishingState(CreatureObject* player) {
 
 	ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
 
-	if (fishingSession == nullptr) {
-		return NOTFISHING;
+	if (fishingSession != nullptr) {
+		int state = fishingSession->getFishingState();
+
+		if ((state >= NOTFISHING) && (state <= REELGAME))
+			return state;
 	}
 
-	return fishingSession->getFishingState();
+	return NOTFISHING;
 }
+
 
 void FishingManagerImplementation::setFishingState(CreatureObject* player, int state) {
 	if (player == nullptr)
@@ -1018,69 +781,96 @@ SceneObject* FishingManagerImplementation::getFishMarker(CreatureObject* player)
 		return player;
 }
 
+
 void FishingManagerImplementation::setFishMarker(CreatureObject* player, SceneObject* marker) {
-	if (player == nullptr)
-		return;
+	if (player != nullptr) {
+		ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
+		if (fishingSession == nullptr)
+			return;
 
-	ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
-
-	if (fishingSession == nullptr)
-		return;
-
-	fishingSession->setMarker(marker);
+		fishingSession->setMarker(marker);
+	}
 }
 
-void FishingManagerImplementation::fishingProceed(CreatureObject* player, int nextAction, SceneObject* marker, int fish, uint32 boxID, int newstate, bool sendPlayerMessage, String& moodString) {
-	if (player == nullptr || marker == nullptr) {
+void FishingManagerImplementation::freeBait(CreatureObject* player) {
+	if (player != nullptr) {
+		String bait = "object/tangible/fishing/bait/bait_worm.iff";
+		ManagedReference<SceneObject*> baitObject = player->getZoneServer()->createObject(bait.hashCode(), 0);
+		Locker locker(baitObject);
+
+		baitObject->sendTo(player, true);
+
+		ManagedReference<FishingPoleObject*> pole = getPole(player);
+
+		if ((pole != nullptr) && (!pole->isContainerFull())) {
+			pole->transferObject(baitObject, -1, true);
+		}
+	}
+}
+
+void FishingManagerImplementation::fishingProceed(CreatureObject* player, int nextAction, SceneObject* marker, int fish, uint32 boxID, int newstate, bool notifyClient, String& moodString) {
+	if ((player == nullptr) || (marker == nullptr)) {
 		return;
 	}
 
 	int oldstate = getFishingState(player);
 
+	if ((newstate == CATCH) && (!notifyClient)) { // updated the marker!
+		player->sendSystemMessage("@fishing:fish_fight_closer");
+	}
+
 	ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
 
-	if (sendPlayerMessage) {
+	if (notifyClient) {
+
 		switch (newstate) {
-		case WAITING:
-			if (oldstate == SNAGGED)
-				player->sendSystemMessage("@fishing:line_free");
-			break;
+
 		case SNAGGED: {
 			player->sendSystemMessage("@fishing:fs_snag");
+
 			break;
 		}
 		case NIBBLE: {
-			if (oldstate == SNAGGED) {
+			if (oldstate == SNAGGED) { // line just got unsnagged
 				player->sendSystemMessage("@fishing:line_free");
 			} else {
 				player->sendSystemMessage("@fishing:fs_nibble");
 			}
 
-			marker->showFlyText("fishing", "fly_nibble", 50, 200, 50);
+			player->showFlyText("fishing","fly_nibble", 50, 200, 50);
+
+			createSplash(marker->getPositionX(), marker->getPositionY(), marker->getPositionZ(), player->getZone(), player);
+
 			break;
 		}
 		case BITE: {
-			marker->showFlyText("fishing", "fly_bite", 230, 150, 30);
+			player->showFlyText("fishing","fly_bite", 230, 150, 30);
 			player->sendSystemMessage("@fishing:fs_bite");
 
 			createSplash(marker->getPositionX(), marker->getPositionY(), marker->getPositionZ(), player->getZone(), player);
+
 			break;
 		}
 		case CATCH: {
-			marker->showFlyText("fishing", "fly_catch", 240, 240, 65);
-			player->sendSystemMessage("@fishing:fs_caught");
+			if (oldstate == BITE) {
+				player->showFlyText("fishing","fly_catch", 240, 240, 65);
+				player->sendSystemMessage("@fishing:fs_caught");
 
-			createSplash(marker->getPositionX(), marker->getPositionY(), marker->getPositionZ(), player->getZone(), player);
+				createSplash(marker->getPositionX(), marker->getPositionY(), marker->getPositionZ(), player->getZone(), player);
+			}
+
 			break;
 		}
 		case REELING: {
-			if (fishingSession) {
-				player->sendSystemMessage("@fishing:reel_in");
-				FishingEvent* fishingEvent = createFishingEvent(player, REELGAME);
+			if (oldstate == CATCH) {
+				if (fishingSession) {
+					player->sendSystemMessage("@fishing:reel_in");
+					FishingEvent* fishingEvent = createFishingEvent(player, REELGAME);
 
-				if (fishingEvent != nullptr) {
-					fishingSession->setEvent(fishingEvent);
-					fishingSession->update(REEL, marker, fish, 0, REELGAME);
+					if (fishingEvent != nullptr) {
+						fishingSession->setEvent(fishingEvent);
+						fishingSession->update(REEL, marker, fish, 0, REELGAME);
+					}
 				}
 			}
 			break;
@@ -1094,6 +884,7 @@ void FishingManagerImplementation::fishingProceed(CreatureObject* player, int ne
 					fishingSession->update(REEL, marker, fish, 0, newstate);
 				}
 			}
+
 			break;
 		}
 		default:
@@ -1101,16 +892,11 @@ void FishingManagerImplementation::fishingProceed(CreatureObject* player, int ne
 		}
 	}
 
-	if (nextAction >= DONOTHING && nextAction < REELING) {
+	if ((nextAction >= DONOTHING) && (nextAction < REEL)) {
 		ManagedReference<FishingBaitObject*> bait = getBait(player);
 
-		if (bait != nullptr && System::random(100) < 5) {
+		if (bait != nullptr)
 			bait->lessFresh();
-		}
-
-		if (player->isInRange(marker, 2.f)) {
-			stopFishing(player, boxID, true);
-		}
 	}
 
 	if ((newstate != REELING) && (newstate != REELGAME)) {
@@ -1121,14 +907,16 @@ void FishingManagerImplementation::fishingProceed(CreatureObject* player, int ne
 				fishingSession->update(DONOTHING, marker, fish, boxID, newstate);
 				fishingSession->setFishBoxID(createWindow(player, boxID));
 				fishingSession->setEvent(fishingEvent);
+
 			}
 		}
 	}
 }
 
-void FishingManagerImplementation::mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, uint32 boxID, bool losebait, String& moodString) {
+void FishingManagerImplementation::mishapEvent(const String& text, CreatureObject* player, uint32 boxID, bool losebait, String& moodString) {
 	if ((player != nullptr) && (!text.isEmpty())) {
 		player->sendSystemMessage(text);
+
 
 		if (losebait) {
 			stopFishing(player, boxID, true);
@@ -1140,7 +928,7 @@ void FishingManagerImplementation::mishapEvent(const String& text, CreatureObjec
 				FishingEvent* fishingEvent = createFishingEvent(player, WAITING);
 
 				if (fishingEvent != nullptr) {
-					fishingSession->update(DONOTHING, getFishMarker(player), getFish(player, marker), boxID, WAITING);
+					fishingSession->update(DONOTHING, getFishMarker(player), getFish(player), boxID, WAITING);
 					fishingSession->setFishBoxID(createWindow(player, boxID));
 					fishingSession->setEvent(fishingEvent);
 				}
@@ -1163,14 +951,15 @@ bool FishingManagerImplementation::loseBait(CreatureObject* player) {
 				if (!bait->isFishingBait())
 					return false;
 
-				ManagedReference<FishingBaitObject*> fishBait = cast<FishingBaitObject*>(bait.get());
+				ManagedReference<FishingBaitObject*> fishBait = cast<FishingBaitObject*>( bait.get());
 
 				Locker fishBaitLocker(fishBait);
 
-				if (fishBait->getUseCount() > 1) {
+				if (fishBait->getUseCount() > 1){
 					fishBait->decreaseUseCount();
 					fishBait->setFreshness(FRESH);
-				} else {
+				}
+				else {
 					bait->destroyObjectFromWorld(true);
 
 					if (bait->isPersistent())
@@ -1185,277 +974,297 @@ bool FishingManagerImplementation::loseBait(CreatureObject* player) {
 	return false;
 }
 
+
 void FishingManagerImplementation::animate(CreatureObject* player, int nextAction) {
 	if (player == nullptr)
 		return;
 
 	switch (nextAction) {
-	case TUGUP:
-		player->doAnimation("fishing_tug_back");
-		break;
-	case TUGRIGHT:
-		player->doAnimation("fishing_tug_right");
-		break;
-	case TUGLEFT:
-		player->doAnimation("fishing_tug_left");
-		break;
-	case REEL:
-		player->doAnimation("fishing_reel");
-		break;
+		case TUGUP:
+			player->doAnimation("fishing_tug_back");
+			break;
+
+		case TUGRIGHT:
+			player->doAnimation("fishing_tug_right");
+			break;
+
+		case TUGLEFT:
+			player->doAnimation("fishing_tug_left");
+			break;
+
+		case REEL:
+			player->doAnimation("fishing_reel");
+			break;
 	}
 }
 
-SceneObject* FishingManagerImplementation::createMarker(Vector3& location, Zone* zone) {
-	if (zone == nullptr) {
+SceneObject* FishingManagerImplementation::createMarker(float x, float y, float z, Zone* zone) {
+	if (zone == nullptr)
 		return nullptr;
-	}
 
 	String marker = "object/tangible/fishing/marker.iff";
 	ManagedReference<SceneObject*> markerObject = zone->getZoneServer()->createObject(marker.hashCode(), 0);
 
-	if (markerObject == nullptr) {
+	if (markerObject == nullptr)
 		return nullptr;
-	}
 
 	Locker locker(markerObject);
 
-	markerObject->initializePosition(location.getX(), location.getZ(), location.getY());
-
-	if (!zone->transferObject(markerObject, -1, true)) {
-		return nullptr;
-	}
+	markerObject->initializePosition(x, z, y);
+	//markerObject->insertToZone(zone);
+	zone->transferObject(markerObject, -1, true);
 
 	markerObject->registerObserver(ObserverEventType::CLOSECONTAINER, _this.getReferenceUnsafeStaticCast());
 
 	return markerObject;
 }
 
+
 void FishingManagerImplementation::createSplash(float x, float y, float z, Zone* zone, CreatureObject* player) {
-	if (player == nullptr || zone == nullptr)
-		return;
+	if ((player != nullptr) && (zone != nullptr)) {
+		String splash = "object/tangible/fishing/splash.iff";
+		ManagedReference<SceneObject*> splashObject = player->getZoneServer()->createObject(splash.hashCode(), 0);
 
-	auto zoneServer = player->getZoneServer();
+		if (splashObject != nullptr) {
+			Locker locker(splashObject);
+			splashObject->initializePosition(x, z + 0.5, y);
+			//splashObject->insertToZone(zone);
+			zone->transferObject(splashObject, -1, true);
 
-	if (zoneServer == nullptr)
-		return;
-
-	String splash = "object/tangible/fishing/splash.iff";
-	ManagedReference<SceneObject*> splashObject = zoneServer->createObject(splash.hashCode(), 0);
-
-	if (splashObject == nullptr)
-		return;
-
-	Locker locker(splashObject);
-
-	splashObject->initializePosition(x, z + 0.5, y);
-	zone->transferObject(splashObject, -1, true);
-
-	createFishingSplashEvent(splashObject);
+			createFishingSplashEvent(player, splashObject);
+		}
+	}
 }
 
-bool FishingManagerImplementation::checkUpdateMarker(CreatureObject* player, Vector3& location) {
+bool FishingManagerImplementation::checkUpdateMarker(CreatureObject* player, float& x, float& y, float& z) {
 	bool beached = false;
 
-	float newZ = location.getZ();
+	float newZ = z;
 
-	if (!player->getZone()->getPlanetManager()->getTerrainManager()->getWaterHeight(location.getX(), location.getY(), newZ)) {
+	if (!player->getZone()->getPlanetManager()->getTerrainManager()->getWaterHeight(x, y, newZ))
 		beached = true;
-	}
 
-	newZ = player->getZone()->getHeight(location.getX(), location.getY());
+	newZ = player->getZone()->getHeight(x, y);
 
-	if (location.getZ() < newZ) {
-		location.setZ(newZ);
+	if (z < newZ) {
+		z = newZ;
 		beached = true;
 	}
 
 	return beached;
 }
 
-SceneObject* FishingManagerImplementation::updateMarker(CreatureObject* player, SceneObject* marker, uint32 boxID, bool reelGame) {
-	if (player == nullptr || marker == nullptr) {
+SceneObject* FishingManagerImplementation::updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer) {
+	if ((player == nullptr) || (marker == nullptr))
 		return nullptr;
-	}
-
-	auto zone = player->getZone();
-
-	if (zone == nullptr) {
-		return nullptr;
-	}
 
 	Locker markerLocker(marker);
 
-	// Calculate new bobber position
-	Vector3 newMarkerLoc;
-	Vector3 markerLoc;
-	float playerX = player->getPositionX();
-	float playerY = player->getPositionY();
+	// CALCULATING BOBBER POS
+	Zone* zone = player->getZone();
 
-	markerLoc.setX(marker->getPositionX());
-	markerLoc.setY(marker->getPositionY());
+	float x = player->getPositionX() + ((marker->getPositionX() - player->getPositionX()) * 0.75);// (player->getPositionX() + marker->getPositionX()) / 2;
+	float y = player->getPositionY() + ((marker->getPositionY() - player->getPositionY()) * 0.75);
+	float z = marker->getPositionZ();
 
-	newMarkerLoc.setX(playerX + ((markerLoc.getX() - playerX) * 0.9));
-	newMarkerLoc.setY(playerY + ((markerLoc.getY() - playerY) * 0.9));
-	newMarkerLoc.setZ(marker->getPositionZ());
+	//info("Y from Marker: "+String::valueOf(marker->getPositionY())+" Y from Player: "+String::valueOf(player->getPositionY()),true);
+	//info("X: "+String::valueOf(x)+" Y: "+String::valueOf(y) + " Z: "+String::valueOf(z), true);
 
-	if (reelGame) {
-		int event = System::random(12);
-		switch (event) {
-			case 1:
-				// Fish Charge
-				newMarkerLoc.setX(playerX + ((markerLoc.getX() - playerX) * 0.7));
-				newMarkerLoc.setY(playerY + ((markerLoc.getY() - playerY) * 0.7));
+	bool succeed = false;
 
-				player->sendSystemMessage("@fishing:fish_charge");
-				break;
-			case 2:
-				// Fight Easy
-				player->sendSystemMessage("@fishing:fish_fight_easy");
-				break;
-			case 3:
-				// Fight Hard
-				newMarkerLoc.setX(markerLoc.getX() + System::random(2));
-				newMarkerLoc.setY(markerLoc.getY() + System::random(2));
-
-				player->sendSystemMessage("@fishing:fish_fight_hard");
-				break;
-			case 4:
-				// Fight Away
-				newMarkerLoc.setX(markerLoc.getX() + System::random(2));
-				newMarkerLoc.setY(markerLoc.getY() + System::random(2));
-
-				player->sendSystemMessage("@fishing:fish_fight_hard");
-				break;
-			case 5: {
-				// Fish Run
-				float angle = player->getDirectionAngle();
-
-				if (angle > 360) {
-					angle = angle - 360;
-				}
-
-				angle = 2 * M_PI * angle / 360;
-
-				newMarkerLoc.setX(markerLoc.getX() + sin(angle) * System::random(5));
-				newMarkerLoc.setY(markerLoc.getY() + cos(angle) * System::random(5));
-
-				player->sendSystemMessage("@fishing:fish_run");
-				break;
-			}
-			default:
-				// succeed in drawing your catch closer
+	if (notifyPlayer) {
+		int event = System::random(6);
+		if (event < 2) {
+			// SUCCEED IN DRAWING CLOSER
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
 				player->sendSystemMessage("@fishing:fish_fight_closer");
-				break;
+			}
+		} else if (event == 2) {
+			// FIGHT EASY
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
+				player->sendSystemMessage("@fishing:fish_fight_easy");
+			}
+		} else if (event == 3) {
+			// FIGHT HARD
+			x += System::random(1);
+			y += System::random(1);
+			//info("X: "+String::valueOf(x)+" Y: "+String::valueOf(y) + " Z: "+String::valueOf(z), true);
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
+				player->sendSystemMessage("@fishing:fish_fight_hard");
+			}
+		} else if (event == 4) {
+			// FIGHT AWAY
+			x += System::random(1);
+			y += System::random(1);
+			//info("X: "+String::valueOf(x)+" Y: "+String::valueOf(y) + " Z: "+String::valueOf(z), true);
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
+				player->sendSystemMessage("@fishing:fish_fight_hard");
+			}
+		} else if (event == 5) {
+			// FISH RUN
+			x += System::random(1);
+			y += System::random(1);
+			//info("X: "+String::valueOf(x)+" Y: "+String::valueOf(y) + " Z: "+String::valueOf(z), true);
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
+				player->sendSystemMessage("@fishing:fish_run");
+			}
+		} else {
+			// FISH CHARGE
+			x -= System::random(1);
+			y -= System::random(1);
+			//info("X: "+String::valueOf(x)+" Y: "+String::valueOf(y) + " Z: "+String::valueOf(z), true);
+			if (checkUpdateMarker(player, x, y, z)) {
+				player->sendSystemMessage("@fishing:loot_beached");// BEACHED!
+				succeed = true;
+			} else {
+				player->sendSystemMessage("@fishing:fish_charge");
+			}
 		}
+
 	}
 
-	if (checkUpdateMarker(player, newMarkerLoc)) { // Beached
-		if (reelGame) {
-			player->sendSystemMessage("@fishing:loot_beached");
-			newMarkerLoc = markerLoc;
-		} else {
+	if (!succeed) {
+
+		if (checkUpdateMarker(player, x, y, z)) {
 			player->sendSystemMessage("@fishing:loc_unfishable");
-			stopFishing(player, boxID, true);
+			stopFishing(player, 0, true);
 			return nullptr;
 		}
-	}
 
-	removeMarker(player, marker);
+		removeMarker(player, marker);
 
-	ManagedReference<SceneObject*> newMarker = createMarker(newMarkerLoc, zone);
+		ManagedReference<SceneObject*> newMarker = createMarker(x, y, z, zone);
 
-	if (newMarker == nullptr)
-		return nullptr;
+		if (newMarker == nullptr)
+			return nullptr;
 
-	Locker lock(player, marker);
+		setFishMarker(player, newMarker);
 
-	setFishMarker(player, newMarker);
-
-	return newMarker;
-}
-
-// Marker and player are prelocked
-void FishingManagerImplementation::removeMarker(CreatureObject* player, SceneObject* marker) {
-	if (player == nullptr || marker == nullptr || marker->isPlayerCreature())
-		return;
-
-	// Clear fish marker for player fishing session
-	setFishMarker(player, nullptr);
-
-	for (int i = marker->getContainerObjectsSize() - 1; i >= 0; --i) {
-		ManagedReference<SceneObject*> object = marker->getContainerObject(i);
-
-		if (object == nullptr)
-			continue;
-
-		Locker clock(object, player);
-
-		if (object->isPersistent()) {
-			object->destroyObjectFromDatabase(true);
+		if ((player->isInRange(newMarker, 2.0)) && (getFishingState(player) < REELING)) {
+			stopFishing(player, 0, true);
+			return nullptr;
 		}
 
-		object->destroyObjectFromWorld(true);
+		return newMarker;
 	}
 
-	// Destroy the marker
-	marker->destroyObjectFromWorld(true);
+	return nullptr;
+}
 
-	if (marker->isPersistent()) {
-		marker->destroyObjectFromDatabase(true);
+void FishingManagerImplementation::removeMarker(CreatureObject* player, SceneObject* container) {
+	if (player != nullptr) {
+		ManagedReference<SceneObject*> marker;
+
+		if (container == nullptr) {
+			marker = getFishMarker(player);
+		} else {
+			marker = container;
+		}
+
+		if (marker != nullptr) {
+			if (!marker->isPlayerCreature()) {
+
+				setFishMarker(player, nullptr);
+
+				marker->destroyObjectFromWorld(true);
+
+				if (marker->isPersistent()) {
+					marker->destroyObjectFromDatabase(true);
+				}
+
+				while (marker->getContainerObjectsSize() > 0) {
+					ManagedReference<SceneObject*> object = marker->getContainerObject(0);
+
+					if (object->isPersistent()) {
+						object->destroyObjectFromDatabase(true);
+					}
+
+					object->destroyObjectFromWorld(true);
+				}
+			}
+		}
 	}
 }
 
 void FishingManagerImplementation::removeSplash(SceneObject* splash) {
-	if (splash == nullptr)
-		return;
+	if (splash != nullptr) {
+		if (!splash->isPlayerCreature()) {
+			splash->destroyObjectFromWorld(true);
 
-	splash->destroyObjectFromWorld(true);
-
-	if (splash->isPersistent()) {
-		splash->destroyObjectFromDatabase(true);
+			if (splash->isPersistent()) {
+				splash->destroyObjectFromDatabase(true);
+			}
+		}
 	}
 }
 
-void FishingManagerImplementation::createFishingSplashEvent(SceneObject* splash) {
-	if (splash == nullptr)
-		return;
+void FishingManagerImplementation::createFishingSplashEvent(CreatureObject* player,  SceneObject* splash) {
+	if ((player != nullptr) && (splash != nullptr)) {
+		Reference<FishingSplashEvent*> fishingSplashEvent = new FishingSplashEvent(player, splash);
 
-	Reference<FishingSplashEvent*> splashEvent = new FishingSplashEvent(splash);
+		fishingSplashEvent->schedule(1000);
+	}
+}
 
-	if (splashEvent != nullptr)
-		splashEvent->schedule(1000);
+void FishingManagerImplementation::createFishingSession(CreatureObject* player, FishingEvent* event, SceneObject* marker, int nextAction, int fish, uint32 boxID, int fishingState, String& mood) {
+	if ((player != nullptr) && (event != nullptr) && (marker != nullptr))	{
+
+		player->addActiveSession(SessionFacadeType::FISHING, new FishingSession(event, marker, nextAction, fish, boxID, fishingState, mood));
+	}
 }
 
 FishingEvent* FishingManagerImplementation::createFishingEvent(CreatureObject* player, int state) {
 	if (player == nullptr)
 		return nullptr;
 
+	Reference<FishingEvent*> fishingEvent = new FishingEvent(player, state);
 	player->removePendingTask("fishing");
 
-	Reference<FishingEvent*> fishingEvent = new FishingEvent(player, state);
+	int timer = System::random(1000);
 
-	player->addPendingTask("fishing", fishingEvent, 7000);
+	if (state >= CATCH)
+		player->addPendingTask("fishing", fishingEvent, timer + 4000);
+	else
+		player->addPendingTask("fishing", fishingEvent, timer + 6000);
 
 	return fishingEvent;
 }
 
-void FishingManagerImplementation::stopFishingEvent(CreatureObject* player) {
-	if (player == nullptr) {
-		return;
-	}
 
-	player->removePendingTask("fishing");
+void FishingManagerImplementation::stopFishingEvent(CreatureObject* player) {
+	if (player == nullptr)
+		return;
 
 	FishingEvent* fishingEvent = getFishingEvent(player);
 
-	if (fishingEvent == nullptr) {
-		return;
+	if (fishingEvent != nullptr) {
+		fishingEvent->cancel();
+		player->removePendingTask("fishing");
+
+		ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
+
+		if (fishingSession)
+			fishingSession->setEvent(nullptr);
+
+		fishingEvent = nullptr;
 	}
-
-	fishingEvent->cancel();
-
-	fishingEvent = nullptr;
 }
+
 
 FishingEvent* FishingManagerImplementation::getFishingEvent(CreatureObject* player) {
 	if (player == nullptr)
@@ -1471,91 +1280,44 @@ FishingEvent* FishingManagerImplementation::getFishingEvent(CreatureObject* play
 	return fishingEvent;
 }
 
-bool FishingManagerImplementation::hasFishingSession(CreatureObject* player) {
+bool FishingManagerImplementation::isPlaying(CreatureObject* player) {
 	return ((player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>()) != nullptr);
 }
 
 int FishingManagerImplementation::notifyCloseContainer(CreatureObject* player, SceneObject* container) {
-	if (player == nullptr || container == nullptr)
-		return 1;
+	removeMarker(player, container);
 
-	player->dropActiveSession(SessionFacadeType::FISHING);
-
-	Reference<FishingManager*> managerRef = _this.getReferenceUnsafeStaticCast();
-	Reference<SceneObject*> markerRef = container;
-	Reference<CreatureObject*> playerRef = player;
-
-	Core::getTaskManager()->scheduleTask([managerRef, markerRef, playerRef] () {
-		if (managerRef == nullptr || markerRef == nullptr || playerRef == nullptr)
-			return;
-
-		Locker lock(playerRef);
-
-		Locker clock(markerRef, playerRef);
-
-		managerRef->removeMarker(playerRef, markerRef);
-	}, "RemoveMarkerLambda", 100);
+	if (player != nullptr)
+		player->dropActiveSession(SessionFacadeType::FISHING);
 
 	return 1;
 }
 
-// Function is triggered by player movement
 void FishingManagerImplementation::checkFishingOnPositionUpdate(CreatureObject* player) {
-	if (player == nullptr) {
-		return;
+	//Locker _locker(player); player is already locked
+
+	int fishingState = getFishingState(player);
+
+	if (fishingState != FishingManager::NOTFISHING) {
+		ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
+
+		if (fishingSession == nullptr)
+			return;
+
+		ManagedReference<SceneObject*> marker = fishingSession->getMarker();
+
+		if (marker != nullptr) {
+			if ((player->isSwimming()) || (!player->isInRange(marker, 10.0))) {
+				stopFishing(player, 0, true);
+			}
+
+			if (player->isInRange(marker, 2.0)) {
+				if (fishingState >= FishingManager::REELING) {
+					success(player, fishingSession->getFish(), marker, 0);
+				} else {
+					stopFishing(player, 0, true);
+				}
+			}
+		}
 	}
-
-	Locker lock(player);
-
-	ManagedReference<FishingSession*> fishingSession = player->getActiveSession(SessionFacadeType::FISHING).castTo<FishingSession*>();
-
-	if (fishingSession == nullptr || player->isSwimming()) {
-		stopFishing(player, 0, true);
-		return;
-	}
-
-	int fishingState = fishingSession->getFishingState();
-
-	if (fishingState == FishingManager::NOTFISHING) {
-		stopFishing(player, 0, true);
-		return;
-	}
-
-	ManagedReference<SceneObject*> marker = fishingSession->getMarker();
-
-	if (marker == nullptr) {
-		stopFishing(player, 0, true);
-		return;
-	}
-
-	float distance = player->getDistanceTo(marker);
-
-	// Player has moved and bobber is either too far or player got too close and scared the fish
-	if ((distance < 2.f && fishingState < REELING) || distance > 20.f) {
-		stopFishing(player, 0, true);
-		return;
-	// Player has moved but is still in valid range but not close enough to catch the fish
-	} else if (fishingState < REELING || distance > 2.f) {
-		return;
-	}
-
-	success(player, fishingSession->getFish(), marker, 0);
-}
-
-String FishingManagerImplementation::getTime() {
-	time_t seconds;
-	time(&seconds);
-	String result = ctime(&seconds);
-	result = result + " PDT";
-	return result;
-}
-
-String FishingManagerImplementation::getPropertyString(int amount) {
-	String msg = "";
-
-	for (int i = 1; i < amount; ++i) {
-		msg += "*";
-	}
-
-	return msg;
 }

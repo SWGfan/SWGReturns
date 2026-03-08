@@ -2,7 +2,6 @@ bh_canyon_corsair_cutthroat = Creature:new {
 	objectName = "@mob/creature_names:canyon_corsair_cutthroat",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "canyon_corsair",
 	faction = "canyon_corsair",
 	level = 35,
@@ -38,8 +37,8 @@ bh_canyon_corsair_cutthroat = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
@@ -53,8 +52,8 @@ bh_canyon_corsair_cutthroat = Creature:new {
 		},
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
-				{group = "tailor_components", chance = 500000},
+				{group = "tierone", chance = 2500000},
+				{group = "tiertwo", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
@@ -67,18 +66,10 @@ bh_canyon_corsair_cutthroat = Creature:new {
 			lootChance = 3700000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "canyon_corsair_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"canyon_corsair_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(swordsmanmaster,carbineermaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(swordsmanmaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_canyon_corsair_cutthroat, "bh_canyon_corsair_cutthroat")

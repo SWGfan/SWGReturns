@@ -157,6 +157,7 @@ void ChatRoomImplementation::broadcastMessages(Vector<BaseMessage*>* messages) {
 
 void ChatRoomImplementation::broadcastMessageCheckIgnore(BaseMessage* msg, const String& senderName) {
 	PlayerManager* playerManager = server->getPlayerManager();
+	String lowerName = senderName.toLowerCase();
 
 	ManagedReference<CreatureObject*> sender = nullptr;
 	ManagedReference<PlayerObject*> senderPlayer = nullptr;
@@ -168,7 +169,7 @@ void ChatRoomImplementation::broadcastMessageCheckIgnore(BaseMessage* msg, const
 		return;
 	}
 
-	sender = playerManager->getPlayer(senderName);
+	sender = playerManager->getPlayer(lowerName);
 
 	if (sender == nullptr) {
 		delete msg;
@@ -199,7 +200,7 @@ void ChatRoomImplementation::broadcastMessageCheckIgnore(BaseMessage* msg, const
 			if (ghost == nullptr)
 				continue;
 
-			if (!ghost->isIgnoring(senderName) || godMode) {
+			if (!ghost->isIgnoring(lowerName) || godMode) {
 #ifdef LOCKFREE_BCLIENT_BUFFERS
 				player->sendMessage(msg);
 #else

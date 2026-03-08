@@ -38,8 +38,6 @@ public:
 	 */
 	void awardFactionStanding(CreatureObject* player, const String& factionName, int level);
 
-	void awardSpaceFactionPoints(CreatureObject* player,  uint32 typeHash, const String& factionName, uint32 shipLevel, int totalShipmates, int imperialReward, int rebelReward);
-
 	void awardPvpFactionPoints(TangibleObject* killer, CreatureObject* destructedObject);
 
 	/**
@@ -63,18 +61,16 @@ public:
 	int getFactionPointsCap(int rank);
 
 	bool isHighestRank(int rank) {
-		return rank >= factionRanks.getCount() - 1 || rank >= 15;
+		return rank >= factionRanks.getCount() - 1 || rank >= 21;
 	}
 
 	bool isFaction(const String& faction);
 	bool isEnemy(const String& faction1, const String& faction2);
 	bool isAlly(const String& faction1, const String& faction2);
 
-	uint32 getSpaceFactionBySquadron(int spaceSquadron, int tier);
-
 protected:
 	void loadFactionRanks();
-	void loadLuaConfig(String file);
+	void loadLuaConfig();
 };
 
 #endif /* FACTIONMANAGER_H_ */

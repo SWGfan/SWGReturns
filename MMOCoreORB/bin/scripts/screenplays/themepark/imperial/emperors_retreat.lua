@@ -109,6 +109,7 @@ function EmperorsRetreatScreenPlay:droidPatrol(pMobile)
 	end
 
 	AiAgent(pMobile):stopWaiting()
+	AiAgent(pMobile):setWait(0)
 	AiAgent(pMobile):setNextPosition(nextLoc[1], nextLoc[2], nextLoc[3], nextLoc[4])
 	AiAgent(pMobile):executeBehavior()
 
@@ -127,12 +128,6 @@ function EmperorsRetreatScreenPlay:spawnMobiles()
 	self:setMoodString(pNpc, "npc_imperial")
 
 	pNpc = spawnMobile("naboo", "royal_imperial_guard", 120, 15.3, 20, -27.2, 180, 1418886)
-	self:setMoodString(pNpc, "npc_imperial")
-
-	pNpc = spawnMobile("naboo", "vrke", 120, 24.2, 0.2, -39.5, -25, 1418875)
-	self:setMoodString(pNpc, "npc_imperial")
-
-	pNpc = spawnMobile("naboo", "jace_yiaso", 120, -44.4, 0.2, -32.1, 14, 1418884)
 	self:setMoodString(pNpc, "npc_imperial")
 
 	spawnMobile("naboo", "ra7_bug_droid", 120, 4.0, 0.2, -45.7, 4, 1418876)
@@ -201,8 +196,6 @@ function EmperorsRetreatScreenPlay:spawnMobiles()
 	spawnMobile("naboo", "dark_trooper", 450, 2437.01, 292, -3947.8, 147, 0)
 	spawnMobile("naboo", "dark_trooper", 450, 2411.91, 292, -3986.99, -115, 0)
 	spawnMobile("naboo", "imperial_pilot", 450, 2432.33, 292, -3887.25, -131, 0)
-	pNpc = spawnMobile("naboo", "fa_zoll", 60, 2444.4, 292, -3894.8, -127, 0)
-	self:setMoodString(pNpc, "neutral")
 
 	pNpc = spawnMobile("naboo", "noble", 60, 2443.42, 292, -3893.91, 18, 0)
 	self:setMoodString(pNpc, "conversation")
@@ -211,5 +204,6 @@ end
 function EmperorsRetreatScreenPlay:setupDroidPatrol(pDroid)
 	createEvent(getRandomNumber(350,450) * 100, "EmperorsRetreatScreenPlay", "droidPatrol", pDroid, "")
 	createObserver(DESTINATIONREACHED, "EmperorsRetreatScreenPlay", "retreatPatrolDestReached", pDroid)
-	AiAgent(pDroid):setMovementState(AI_PATROLLING)
+	AiAgent(pDroid):setAiTemplate("manualescortwalk")
+	AiAgent(pDroid):setFollowState(4)
 end

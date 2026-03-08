@@ -2,7 +2,6 @@ imperial_courier_quest_yith = Creature:new {
 	objectName = "@mob/creature_names:assassin_mission_recruiter_imperial",
 	socialGroup = "imperial",
 	faction = "imperial",
-	mobType = MOB_NPC,
 	level = 13,
 	chanceHit = 0.3,
 	damageMin = 140,
@@ -35,18 +34,10 @@ imperial_courier_quest_yith = Creature:new {
 			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ranged_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"ranged_weapons"},
 	reactionStf = "@npc_reaction/military",
 	personalityStf = "@hireling/hireling_military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(imperial_courier_quest_yith, "imperial_courier_quest_yith")

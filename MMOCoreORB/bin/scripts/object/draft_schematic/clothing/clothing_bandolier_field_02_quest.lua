@@ -49,7 +49,6 @@ object_draft_schematic_clothing_clothing_bandolier_field_02_quest = object_draft
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 120, 
@@ -73,9 +72,9 @@ object_draft_schematic_clothing_clothing_bandolier_field_02_quest = object_draft
    targetTemplate = "object/tangible/wearables/bandolier/bandolier_s02_quest.iff",
 				
 	skillMods = {
-	    {"droid_assembly", 5},
-	    {"droid_customization", 5},
-	    {"droid_experimentation", 3}
+	    {"droid_assembly", 25},
+	    {"droid_customization", 25},
+	    {"droid_experimentation", 25}
 	},
 
    additionalTemplates = {

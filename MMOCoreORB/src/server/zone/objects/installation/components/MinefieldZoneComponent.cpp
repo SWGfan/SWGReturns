@@ -1,8 +1,8 @@
 /*
  * MinefieldZoneComponent.cpp
  *
- * Created on: Dec 17, 2012
- * Author: root
+ *  Created on: Dec 17, 2012
+ *      Author: root
  */
 
 #include "MinefieldZoneComponent.h"
@@ -15,92 +15,98 @@
 #include "MinefieldAttackTask.h"
 #include "server/zone/objects/installation/components/TurretObserver.h"
 
-void MinefieldZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, TreeEntry* entry) const {
-	if (sceneObject == nullptr || !sceneObject->isMinefield()) {
+void MinefieldZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, QuadTreeEntry* entry) const {
+
+	if(sceneObject->getContainerObjectsSize() == 0 )
 		return;
-	}
 
 	ManagedReference<SceneObject*> target = cast<SceneObject*>(entry);
 
-	if (target == nullptr || !target->isCreatureObject()) {
+	if(!sceneObject->isMinefield() || target == nullptr){
 		return;
 	}
 
-	DataObjectComponentReference* dataComponent = sceneObject->getDataObjectComponent();
-
-	if (dataComponent == nullptr) {
+	DataObjectComponentReference* ref = sceneObject->getDataObjectComponent();
+	if(ref == nullptr){
+		info("dataobjectcomponent is null",true);
 		return;
 	}
 
-	MinefieldDataComponent* mineData = cast<MinefieldDataComponent*>(dataComponent->get());
+	MinefieldDataComponent* mineData = cast<MinefieldDataComponent*>(ref->get());
 
-	if (mineData == nullptr) {
+	if (mineData == nullptr)
 		return;
-	}
 
 	try {
-		auto creatureTarget = target->asCreatureObject();
+		if (target->isPlayerCreature()) {
 
-		if (creatureTarget == nullptr) {
-			return;
-		}
+			ManagedReference<CreatureObject*> player = cast<CreatureObject*>(entry);
 
-		uint64 targetId = creatureTarget->getObjectID();
+			if(player == nullptr)
+				return;
 
-		ManagedReference<TangibleObject*> minefield = sceneObject->asTangibleObject();
+			uint64 playerObjID = player->getObjectID();
 
-		if (minefield == nullptr) {
-			return;
-		}
+			ManagedReference<TangibleObject*> tano = cast<TangibleObject*>(sceneObject);
 
-		// Check if the creature is attackable by the minefield (factional enemies)
-		if (!creatureTarget->isAttackableBy(minefield)) {
-			return;
-		}
+			if(tano == nullptr)
+				return;
 
-		// Check if they creature is in range
-		if (sceneObject->isInRange(target, mineData->getMaxRange())) {
-			// Add players to the notified list
-			if (creatureTarget->isPlayerCreature() && !mineData->hasNotifiedPlayer(targetId)) {
-				mineData->addNotifiedPlayer(targetId);
+			if(!player->isAttackableBy(tano) && !mineData->hasNotifiedPlayer(playerObjID))
+				return;
 
-				creatureTarget->sendSystemMessage("@faction_perk:minefield_near"); // You have breached the perimeter of an enemy minefield.
-			}
+			if (sceneObject->isInRange(target, mineData->getMaxRange())) {
 
-			if ((creatureTarget->getPosture() != CreaturePosture::PRONE) && mineData->canExplode() && sceneObject->getContainerObjectsSize() > 0) {
-				Reference<MinefieldAttackTask*> task = new MinefieldAttackTask(minefield, creatureTarget);
+				if (mineData->canExplode() && sceneObject->getContainerObjectsSize() > 0) {
+					Reference<MinefieldAttackTask*> task = new MinefieldAttackTask(sceneObject, player);
+					task->execute();
+				}
 
-				if (task != nullptr) {
-					task->schedule(250);
+				if (!mineData->hasNotifiedPlayer(playerObjID)) {
+					mineData->addNotifiedPlayer(playerObjID);
+					player->sendSystemMessage("@faction_perk:minefield_near"); //You have breached the perimeter of an enemy minefield.
 				}
 			}
-		} else if (creatureTarget->isPlayerCreature() && mineData->hasNotifiedPlayer(targetId)) {
-			creatureTarget->sendSystemMessage("@faction_perk:minefield_exit"); // You have left the perimeter of an enemy minefield.
+			else if (mineData->hasNotifiedPlayer(playerObjID)) {
+				player->sendSystemMessage("@faction_perk:minefield_exit"); //You have left the perimeter of an enemy minefield.
+				mineData->removeNotifiedPlayer(playerObjID);
+			}
 
-			mineData->removeNotifiedPlayer(targetId);
 		}
 	} catch (Exception& e) {
+
 	}
 
 	return;
 }
 
 void MinefieldZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zne) const {
-	if (zne == nullptr)
+	if(zne == nullptr)
 		return;
 
 	ManagedReference<InstallationObject*> installation = cast<InstallationObject*>(sceneObject);
-
-	if (installation == nullptr)
+	if(installation == nullptr)
 		return;
 
 	ManagedReference<TurretObserver*> observer = new TurretObserver();
+	installation->registerObserver(ObserverEventType::OBJECTDESTRUCTION,observer);
 
-	if (observer != nullptr)
-		installation->registerObserver(ObserverEventType::OBJECTDESTRUCTION, observer);
+	// TODO: remove.  this is to get the pvpstatus bitmask correct for existing minefields
+	uint64 oid = installation->getOwnerObjectID();
+	if(oid != 0) {
+		ManagedReference<SceneObject*> sceno = zne->getZoneServer()->getObject(oid);
+		if(sceno != nullptr && sceno->isGCWBase()) {
+			ManagedReference<BuildingObject*> building = cast<BuildingObject*>(sceno.get());
+			if(building != nullptr){
+
+				installation->setPvpStatusBitmask(building->getPvpStatusBitmask() | 1);
+			}
+		}
+	}
 }
 
-void MinefieldZoneComponent::notifyDissapear(SceneObject* sceneObject, TreeEntry* entry) const {
+void MinefieldZoneComponent::notifyDissapear(SceneObject* sceneObject, QuadTreeEntry* entry) const {
+
 	ManagedReference<CreatureObject*> player = cast<CreatureObject*>(entry);
 
 	if (player == nullptr || !player->isPlayerCreature())
@@ -113,6 +119,6 @@ void MinefieldZoneComponent::notifyDissapear(SceneObject* sceneObject, TreeEntry
 
 	if (data->hasNotifiedPlayer(player->getObjectID())) {
 		data->removeNotifiedPlayer(player->getObjectID());
-		player->sendSystemMessage("@faction_perk:minefield_exit"); // You have left the perimeter of an enemy minefield.
+		player->sendSystemMessage("@faction_perk:minefield_exit"); //You have left the perimeter of an enemy minefield.
 	}
 }

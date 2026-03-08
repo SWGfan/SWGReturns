@@ -9,13 +9,9 @@
 #define LOOTITEMTEMPLATE_H_
 
 #include "templates/LuaTemplate.h"
-#include "templates/crafting/AttributesMap.h"
-#include "templates/manager/TemplateManager.h"
-#include "templates/SharedTangibleObjectTemplate.h"
-#include "server/zone/objects/scene/SceneObjectType.h"
-#include "server/zone/managers/loot/LootAttributeType.h"
+#include "templates/crafting/ValuesMap.h"
 
-class LootItemTemplate: public LuaTemplate, public Logger {
+class LootItemTemplate: public LuaTemplate {
 protected:
 	String templateName;
 	String customObjectName;
@@ -25,7 +21,11 @@ protected:
 	int junkMinValue;
 	int junkMaxValue;
 
-	AttributesMap attributesMap;
+	int minimumLevel;
+	int maximumLevel;
+
+
+	ValuesMap craftingValues;
 	bool suppressSerialNumber;
 
 	Vector<String> customizationStringNames;
@@ -34,20 +34,12 @@ protected:
 	float randomDotChance;
 	float staticDotChance;
 	int staticDotType;
-
-	int levelMax;
-	int levelMin;
-
-	uint32 objectType;
-
-	bool isRandomResource;
-
 	VectorMap<String, SortedVector<int> > staticDotValues;
 
 	VectorMap<String, int> skillMods;
 
 public:
-	LootItemTemplate(const String& name) : attributesMap() {
+	LootItemTemplate(const String& name) : craftingValues() {
 		templateName = name;
 		randomDotChance = -1;
 		staticDotChance = -1;
@@ -56,16 +48,10 @@ public:
 		junkDealerTypeNeeded = 0;
 		junkMinValue = 0;
 		junkMaxValue = 0;
+		// Added by Tyclo
+		minimumLevel = 0;
+		maximumLevel = -1; 
 		suppressSerialNumber = false;
-
-		levelMax = 0;
-		levelMin = 0;
-
-		objectType = 0;
-
-		isRandomResource = false;
-
-		setLoggingName("LootItemTemplate");
 	}
 
 	void readObject(LuaObject* templateData) {
@@ -76,104 +62,50 @@ public:
 		junkDealerTypeNeeded = templateData->getIntField("junkDealerTypeNeeded");
 		junkMinValue = templateData->getIntField("junkMinValue");
 		junkMaxValue = templateData->getIntField("junkMaxValue");
+    
+    		// Added by Tyclo
+		minimumLevel = templateData->getIntField("minimumLevel");
+		maximumLevel = templateData->getIntField("maximumLevel");
 
-		levelMin = templateData->getFloatField("minimumLevel", 0);
-		levelMax = templateData->getFloatField("maximumLevel", -1);
-
-		isRandomResource = directObjectTemplate == "object/resource_container/simple.iff";
-
-		auto tanoTemplate = dynamic_cast<SharedTangibleObjectTemplate*>(TemplateManager::instance()->getTemplate(directObjectTemplate.hashCode()));
-
-		if (tanoTemplate != nullptr) {
-			objectType = tanoTemplate->getGameObjectType();
-
-			const auto groups = tanoTemplate->getExperimentalGroups();
-			const auto attributes = tanoTemplate->getExperimentalAttributes();
-			const auto minValues = tanoTemplate->getExperimentalMin();
-			const auto maxValues = tanoTemplate->getExperimentalMax();
-			const auto precisionValues = tanoTemplate->getExperimentalPrecision();
-			const auto combines = tanoTemplate->getExperimentalWeights();
-
-			bool isComponent = (tanoTemplate->getGameObjectType() & SceneObjectType::COMPONENT);
-
-			for (int i = 0; i < attributes->size(); ++i) {
-				const String& attribute = attributes->get(i);
-				const String& group = groups->get(i);
-
-				if (attribute == "sockets") {
-					continue;
-				}
-
-				float min = minValues->get(i);
-				float max = maxValues->get(i);
-
-				int precision = precisionValues->get(i);
-				bool hidden = group == "" || group == "null";
-				int combine = LootAttributeType::getAttributeType(objectType, attribute);
-
-				if (isComponent) {
-					min = 0.f;
-					max = 0.f;
-				}
-
-				if (min == max && max == 0.f) {
-					combine = LootAttributeType::STATIC;
-					hidden = true;
-				}
-
-				attributesMap.addExperimentalAttribute(attribute, group, min, max, precision, hidden, combine);
-				attributesMap.setCurrentPercentage(attribute, 0.f, 1.f);
-			}
-		}
+		//TODO: At this point, we should go ahead and pull in the tangible objects stats
 
 		LuaObject craftvals = templateData->getObjectField("craftingValues");
 
+		lua_State* L = craftvals.getLuaState();
+
 		if (craftvals.isValidTable()) {
 			for (int i = 1; i <= craftvals.getTableSize(); ++i) {
-				LuaObject row = craftvals.getObjectAt(i);
+				lua_rawgeti(L, -1, i);
 
-				if (row.isValidTable() && row.getTableSize() >= 3) {
-					String attribute = row.getStringAt(1);
-					String group = attribute;
+				LuaObject row(L);
 
+				if (row.isValidTable()) {
+					String property = row.getStringAt(1);
 					float min = row.getFloatAt(2);
 					float max = row.getFloatAt(3);
-
-					int precision = 0;
+					float prec = 0;
 					bool hidden = false;
-					int combine = LootAttributeType::getAttributeType(objectType, attribute);
+					short combineType = ValuesMap::LINEARCOMBINE;
 
-					if (attributesMap.hasExperimentalAttribute(attribute)) {
-						group = attributesMap.getAttributeGroup(attribute);
-						precision = attributesMap.getPrecision(attribute);
-					}
+					if (row.getTableSize() > 3)
+						prec = row.getFloatAt(4);
 
-					if (row.getTableSize() >= 4) {
-						precision = row.getIntAt(4);
-					}
-
-					if (row.getTableSize() >= 5) {
+					if (row.getTableSize() > 4)
 						hidden = row.getBooleanAt(5);
-					}
 
-					if (row.getTableSize() >= 6) {
-						combine = row.getIntAt(6);
-					}
+					if (row.getTableSize() > 5)
+						combineType = row.getIntAt(6);
 
-					if (min == max && max == 0.f) {
-						combine = LootAttributeType::STATIC;
-						hidden = true;
-					}
-
-					attributesMap.addExperimentalAttribute(attribute, group, min, max, precision, hidden, combine);
-					attributesMap.setCurrentPercentage(attribute, 0.f, 1.f);
-
-					row.pop();
+					craftingValues.addExperimentalProperty(property, property,
+							min, max, prec, hidden, combineType);
+					craftingValues.setMaxPercentage(property, 1.0f);
 				}
-			}
 
-			craftvals.pop();
+				row.pop();
+			}
 		}
+
+		craftvals.pop();
 
 		LuaObject customizationStringNamesList = templateData->getObjectField("customizationStringNames");
 
@@ -218,9 +150,27 @@ public:
 		skillModsLuaObject.pop();
 
 		// Initializations.
-		randomDotChance = templateData->getFloatField("randomDotChance", -1);
-		staticDotChance = templateData->getFloatField("staticDotChance", -1);
-		staticDotType = templateData->getFloatField("staticDotType", -1);
+		float randomDot = -1;
+
+		randomDot = templateData->getFloatField("randomDotChance");
+
+		if (randomDot >= 0) {
+			randomDotChance = randomDot;
+		}
+
+		float staticDot = -1;
+
+		staticDot = templateData->getFloatField("staticDotChance");
+
+		if (staticDot >= 0) {
+			staticDotChance = staticDot;
+		}
+
+		int type = -1;
+		type = templateData->getIntField("staticDotType");
+
+		if (type >= 0)
+			staticDotType = type;
 
 		LuaObject dotValuesTable = templateData->getObjectField("staticDotValues");
 
@@ -245,7 +195,6 @@ public:
 			dotValuesTable.pop();
 		}
 
-		// info(true) << "---------- FINISHED Loading data for " << directObjectTemplate << " ----------";
 	}
 
 	const String& getTemplateName() const {
@@ -272,8 +221,8 @@ public:
 		return suppressSerialNumber;
 	}
 
-	AttributesMap getAttributesMapCopy() const {
-		return attributesMap;
+	ValuesMap getValuesMapCopy() const {
+		return craftingValues;
 	}
 
 	const VectorMap<String, int>* getSkillMods() const {
@@ -303,27 +252,13 @@ public:
 	int getJunkMaxValue() const {
 		return junkMaxValue;
 	}
-
-	int getLevelMax() const {
-		return levelMax;
+	// Added by Tyclo
+	int getMinimumLevel() const {
+		return minimumLevel;
 	}
-
-	int getLevelMin() const {
-		return levelMin;
+	int getMaximumLevel() const {
+		return maximumLevel;
 	}
-
-	bool isRandomResourceContainer() const {
-		return isRandomResource;
-	}
-
-	bool isShipComponent() const {
-		return objectType & SceneObjectType::SHIPATTACHMENT;
-	}
-
-	uint32 getObjectType() const {
-		return objectType;
-	}
-
 	const VectorMap<String, SortedVector<int> >* getStaticDotValues() const {
 		return &staticDotValues;
 	}

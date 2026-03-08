@@ -46,15 +46,13 @@ object_building_military_event_imperial_cloning_facility = object_building_milit
 	faction = "imperial",
 	customName = "Imperial Cloning Facility",
 	containerComponent = "GCWBaseContainerComponent",
-	groundZoneComponent = "StructureZoneComponent",
+	zoneComponent = "StructureZoneComponent",
 	templateType = CLONINGBUILDING,
 	facilityType = CLONER_FACTION_IMPERIAL,
 	alwaysPublic = 1,
 
 	skillMods = {
-		{"private_medical_rating", 100},
-		{"private_buff_mind", 100},
-		{"private_med_battle_fatigue", 5}
+		{"private_medical_rating", 100}
 	},
 
 	spawningPoints = {

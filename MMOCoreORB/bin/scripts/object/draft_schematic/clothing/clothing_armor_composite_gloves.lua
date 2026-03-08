@@ -50,7 +50,6 @@ object_draft_schematic_clothing_clothing_armor_composite_gloves = object_draft_s
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
    complexity = 45, 
    size = 4, 
-   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_armor", 
    xp = 250, 
@@ -74,7 +73,7 @@ object_draft_schematic_clothing_clothing_armor_composite_gloves = object_draft_s
    targetTemplate = "object/tangible/wearables/armor/composite/armor_composite_gloves.iff",
 
    additionalTemplates = {
-             }
+              }
 
 }
 ObjectTemplates:addTemplate(object_draft_schematic_clothing_clothing_armor_composite_gloves, "object/draft_schematic/clothing/clothing_armor_composite_gloves.iff")

@@ -25,64 +25,67 @@ int FishObjectImplementation::handleObjectMenuSelect(CreatureObject* player, byt
 
 void FishObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	TangibleObjectImplementation::fillObjectMenuResponse(menuResponse, player);
+	if (getContainerObjectsSize() > 0) {
+		String text = "@fishing:mnu_filet";
 
-	if (getContainerObjectsSize() < 1) {
-		return;
-	}
+          	SceneObject* parent = getRootParent();
 
-	auto thisParent = getParent().get();
+		if (parent == nullptr)
+			return;
 
-	if (thisParent == nullptr) {
-		return;
-	}
+		if (parent->isStructureObject())
+		{
+			StructureObject* house = cast<StructureObject*>(parent);
 
-	auto rootParent = getRootParent();
-
-	if (rootParent != nullptr && rootParent->isStructureObject()) {
-		StructureObject* structure = cast<StructureObject*>(rootParent);
-
-		if (structure != nullptr && structure->isOnAdminList(player)) {
-			menuResponse->addRadialMenuItem(245, 3, "@fishing:mnu_filet");
+			if (house != nullptr && house->isOnAdminList(player))
+			{
+				menuResponse->addRadialMenuItem(245, 3, text);
+			}
 		}
-	} else {
-		auto inventory = player->getInventory();
 
-		if (inventory != nullptr && thisParent == inventory) {
-			menuResponse->addRadialMenuItem(245, 3, "@fishing:mnu_filet");
+		menuResponse->addRadialMenuItem(245, 3, text);
+		SceneObject* inventory = player->getSlottedObject("inventory");
+		SceneObject* thisParent = getParent().get();
+
+		if (inventory != nullptr && thisParent != nullptr && thisParent == inventory)
+		{
+			menuResponse->addRadialMenuItem(245, 3, text);
 		}
 	}
 }
 
 void FishObjectImplementation::filet(CreatureObject* player) {
-	if (getContainerObjectsSize() < 1) {
-		return;
-	}
+	if (getContainerObjectsSize() > 0) {
+		ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
 
-	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
+		if ((inventory->isContainerFullRecursive()) || ((inventory->getCountableObjectsRecursive() + getContainerObjectsSize()) > 80)) {
+			StringIdChatParameter body("fishing","units_inventory");
+			body.setDI(getContainerObjectsSize());
+			player->sendSystemMessage(body);
 
-	if ((inventory->isContainerFullRecursive()) || ((inventory->getCountableObjectsRecursive() + getContainerObjectsSize()) > 80)) {
-		StringIdChatParameter body("fishing","units_inventory");
-		body.setDI(getContainerObjectsSize());
-		player->sendSystemMessage(body);
-	} else {
-		ManagedReference<SceneObject*> item = nullptr;
+		} else {
+			ManagedReference<SceneObject*> item;
 
-		while (getContainerObjectsSize() > 0) {
-			item = getContainerObject(0);
+			while (getContainerObjectsSize() > 0) {
+				item = getContainerObject((int)0);
 
-			if (item != nullptr) {
+				//removeObject(item, false);
+
 				inventory->transferObject(item, -1, true);
 			}
-		}
 
-		player->sendSystemMessage("@fishing:good_filet");
+			player->sendSystemMessage("@fishing:good_filet");
+		}
 	}
 }
 
 void FishObjectImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	TangibleObjectImplementation::fillAttributeList(alm,object);
 
-	alm->insertAttribute("type", String("@fish_n:") + objectName.getStringID());
-	alm->insertAttribute("length", String::format("%fm", length));
-	alm->insertAttribute("planet", String("@planet_n:") + zoneName);
+	String lengthText = String::valueOf(length) + "m";
+	alm->insertAttribute("length", lengthText);
+
+	//TODO: Reenable with new zone system.
+	//String planetText = Planet::getPlanetName(planet);
+	//alm->insertAttribute("planet", planetText);
 }

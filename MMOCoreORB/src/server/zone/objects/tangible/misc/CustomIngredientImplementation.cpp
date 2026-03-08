@@ -125,8 +125,8 @@ void CustomIngredientImplementation::updateCraftingValues(CraftingValues* values
 
 	objectAttributes.removeAll();
 
-	for (int i = 0; i < values->getTotalExperimentalAttributes(); ++i) {
-		attribute = values->getAttribute(i);
+	for (int i = 0; i < values->getExperimentalPropertySubtitleSize(); ++i) {
+		attribute = values->getExperimentalPropertySubtitle(i);
 
 		value = values->getCurrentValue(attribute);
 		hidden = values->isHidden(attribute);

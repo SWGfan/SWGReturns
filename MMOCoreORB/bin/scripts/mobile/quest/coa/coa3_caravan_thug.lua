@@ -1,9 +1,7 @@
 coa3_caravan_thug = Creature:new {
-	randomNameType = NAME_GENERIC,
-	randomNameTag = true,
+	objectName = "",
 	customName = "Caravan Thug",
 	socialGroup = "caravan",
-	mobType = MOB_NPC,
 	faction = "jabba",
 	level = 15,
 	chanceHit = 0.31,
@@ -28,7 +26,24 @@ coa3_caravan_thug = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {"thug"},
+	templates = {
+		"object/mobile/dressed_criminal_thug_aqualish_male_01.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_male_02.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_female_01.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_female_02.iff",
+		"object/mobile/dressed_criminal_thug_bothan_male_01.iff",
+		"object/mobile/dressed_criminal_thug_bothan_female_01.iff",
+		"object/mobile/dressed_criminal_thug_human_male_01.iff",
+		"object/mobile/dressed_criminal_thug_human_male_02.iff",
+		"object/mobile/dressed_criminal_thug_human_female_01.iff",
+		"object/mobile/dressed_criminal_thug_human_female_02.iff",
+		"object/mobile/dressed_criminal_thug_rodian_male_01.iff",
+		"object/mobile/dressed_criminal_thug_rodian_female_01.iff",
+		"object/mobile/dressed_criminal_thug_trandoshan_male_01.iff",
+		"object/mobile/dressed_criminal_thug_trandoshan_female_01.iff",
+		"object/mobile/dressed_criminal_thug_zabrak_male_01.iff",
+		"object/mobile/dressed_criminal_thug_zabrak_female_01.iff"
+	},
 	lootGroups = {
 		{
 			groups = {
@@ -41,17 +56,9 @@ coa3_caravan_thug = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "none",
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermid,marksmanmid),
-	secondaryAttacks = { }
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(coa3_caravan_thug, "coa3_caravan_thug")

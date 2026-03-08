@@ -58,7 +58,7 @@ public:
 		String region = "@planet_n:" + strongParent->getZone()->getZoneName();
 		ManagedReference<CityRegion*> cityRegion = strongParent->getCityRegion().get();
 		if(cityRegion != nullptr)
-			region = cityRegion->getCityRegionName();
+			region = cityRegion->getRegionName();
 
 		uid += region + "." + strongParent->getDisplayedName() + ".";
 		uid += String::valueOf(strongParent->getObjectID()) + "#";

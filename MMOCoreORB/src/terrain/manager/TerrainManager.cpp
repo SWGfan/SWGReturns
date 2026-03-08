@@ -52,9 +52,9 @@ bool TerrainManager::initialize(const String& terrainFile) {
 }
 
 /**
- *	|----------------| x1,y1
- *	|----------------| <- stepping
- *	|----------------|
+ *  	|----------------| x1,y1
+ *  	|----------------| <- stepping
+ *	    |----------------|
  *  	|----------------|
  *x0,y0 |----------------|
  */
@@ -155,25 +155,20 @@ ProceduralTerrainAppearance* TerrainManager::getProceduralTerrainAppearance() {
 }
 
 float TerrainManager::getUnCachedHeight(float x, float y) const {
-	if (terrainData == nullptr) {
-		return 0.f;
-	}
-
 	return terrainData->getHeight(x, y);
 }
 
 float TerrainManager::getCachedHeight(float x, float y) {
-	if (heightCache == nullptr) {
-		return 0.f;
-	}
-
 	return heightCache->getHeight(x, y);
 }
 
 float TerrainManager::getHeight(float x, float y) {
 	if (x <= min || x >= max || y <= min || y >= max) {
-		warning() << "position  (" << x << ", " << y << ") out of planet/cache bounds: ["
+		StringBuffer message;
+		message << "position  (" << x << ", " << y << ") out of planet/cache bounds: ["
 				<< min << ", " << max << "]";
+
+		warning(message.toString());
 
 		StackTrace::printStackTrace();
 

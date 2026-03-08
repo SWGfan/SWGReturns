@@ -5,6 +5,7 @@
 #ifndef HEALWOUNDCOMMAND_H_
 #define HEALWOUNDCOMMAND_H_
 
+#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/tangible/pharmaceutical/WoundPack.h"
 #include "server/zone/ZoneServer.h"
@@ -116,13 +117,16 @@ public:
 			creature->sendSystemMessage("@healing_response:must_be_near_droid"); //You must be in a hospital, at a campsite, or near a surgical droid to do that.
 			return false;
 		} else {
-			// Building private medical rating always takes precedence, If it a client object structure, no medical rating will prevent buffs/wound healing.
+			// are we in a cantina? we have a private medical rating so either thats form a droid or camp or hospital
 			ManagedReference<SceneObject*> root = creature->getRootParent();
-
 			if (root != nullptr && root->isClientObject()) {
-				if (creature->getSkillModOfType("private_medical_rating", SkillModManager::STRUCTURE) == 0) {
-					creature->sendSystemMessage("@healing_response:must_be_in_hospital"); // You must be in a hospital or at a campsite to do that.
-					return false;
+				uint32 gameObjectType = root->getGameObjectType();
+				switch (gameObjectType) {
+						case SceneObjectType::RECREATIONBUILDING:
+						case SceneObjectType::HOTELBUILDING:
+						case SceneObjectType::THEATERBUILDING:
+							creature->sendSystemMessage("@healing_response:must_be_in_hospital"); // You must be in a hospital or at a campsite to do that.
+							return false;
 				}
 			}
 		}
@@ -155,10 +159,6 @@ public:
 		if (creature != creatureTarget && !CollisionManager::checkLineOfSight(creature, creatureTarget)) {
 			creature->sendSystemMessage("@healing:no_line_of_sight"); // You cannot see your target.
 			return false;
-		}
-
-		if (!playerEntryCheck(creature, creatureTarget)) {
-			return GENERALERROR;
 		}
 
 		return true;
@@ -254,6 +254,34 @@ public:
 
 		if(!checkDistance(creature, creatureTarget, range))
 			return TOOFAR;
+
+		if (creature->isPlayerCreature() && creatureTarget->getParentID() != 0 && creature->getParentID() != creatureTarget->getParentID()) {
+			Reference<CellObject*> targetCell = creatureTarget->getParent().get().castTo<CellObject*>();
+
+				if (targetCell != nullptr) {
+					if (!creatureTarget->isPlayerCreature()) {
+						auto perms = targetCell->getContainerPermissions();
+
+						if (!perms->hasInheritPermissionsFromParent()) {
+							if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
+								creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+								return GENERALERROR;
+							}
+						}
+					}
+
+					ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+					if (parentSceneObject != nullptr) {
+						BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+						if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
+							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+							return GENERALERROR;
+						}
+					}
+				}
+		}
 
 		uint8 attribute = CreatureAttribute::UNKNOWN;
 		uint64 objectId = 0;

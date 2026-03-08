@@ -17,14 +17,14 @@ namespace droid {
 class DroidCombatModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
-	float rating;
+	int rating;
 
 public:
 	DroidCombatModuleDataComponent();
 
 	~DroidCombatModuleDataComponent();
 
-	String getModuleName() const;
+	String getModuleName();
 
 	void initializeTransientMembers();
 
@@ -32,7 +32,7 @@ public:
 
 	int getBatteryDrain() { return 0;}
 
-	String toString() const;
+	String toString();
 
 	bool isStackable() { return true; }
 

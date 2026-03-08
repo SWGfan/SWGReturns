@@ -1,17 +1,15 @@
 /*
-                Copyright <SWGEmu>
-        See file COPYING for copying conditions.
-*/
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.*/
 
 #include "PingServer.h"
-#include "PingClient.h"
 
 PingServer::PingServer() : DatagramServiceThread("PingServer") {
-    //setLockName("PingServerLock");
+	//setLockName("PingServerLock");
 
-    setHandler(this);
+	setHandler(this);
 
-    setLogging(false);
+	setLogging(false);
 }
 
 PingServer::~PingServer() {
@@ -21,68 +19,67 @@ void PingServer::initialize() {
 }
 
 void PingServer::run() {
-    // receive messages
-    receiveMessages();
+	// recieve messages
+	receiveMessages();
 
-    shutdown();
+	shutdown();
 }
 
 void PingServer::shutdown() {
 }
 
 PingClient* PingServer::createConnection(Socket* sock, SocketAddress& addr) {
-    // Create client
-    PingClient* client = new PingClient(this, sock, addr);
+	PingClient* client = new PingClient(this, sock, addr);
 
-    // Log using getIPAddress() (or ip:port if you prefer)
-    info("client connected from '" + client->getIPAddress() + "'");
+	info("client connected");
 
-    return client;
+	return client;
 }
 
 void PingServer::handleMessage(ServiceClient* client, Packet* message) {
-    PingClient* lclient = cast<PingClient*>(client);
+	PingClient* lclient = cast<PingClient*>(client);
 
-    try {
-        if (lclient != nullptr && lclient->isAvailable() && message->size() == 4) {
-            lclient->resetNetStatusTimeout();
+	try {
 
-            Packet* mess = message->clone();
+		if (lclient->isAvailable() && (message->size() == 4)) {
+	// lclient->updateNetStatus(); (disabled - method not present)
 
-            lclient->send(mess);
-        }
+			Packet* mess = message->clone();
 
-    } catch (PacketIndexOutOfBoundsException& e) {
-        System::out << e.getMessage();
+			lclient->send(mess);
+		}
 
-        error("incorrect packet - " + message->toStringData());
-    } catch (Exception& e) {
-        error(e.getMessage());
-    }
+	} catch (PacketIndexOutOfBoundsException& e) {
+		System::out << e.getMessage();
+
+		error("incorrect packet - " + message->toStringData());
+	} catch (Exception& e) {
+		error(e.getMessage());
+	}
 }
 
 bool PingServer::handleError(ServiceClient* client, Exception& e) {
-    PingClient* lclient = cast<PingClient*>(client);
+	PingClient* lclient = cast<PingClient*>(client);
 
-    if (lclient != nullptr) {
-        lclient->setError();
+	if (lclient != nullptr) {
+		lclient->setError();
 
-        lclient->disconnect();
-    }
+		lclient->disconnect();
+	}
 
-    return true;
+	return true;
 }
 
 void PingServer::processMessage(Message* message) {
-    // No-op
+
 }
 
 void PingServer::printInfo() {
-    lock();
+	lock();
 
-    StringBuffer msg;
-    msg << "MessageQueue - size = " << messageQueue.size();
-    info(msg, true);
+	StringBuffer msg;
+	msg << "MessageQueue - size = " << messageQueue.size();
+	info(msg, true);
 
-    unlock();
+	unlock();
 }

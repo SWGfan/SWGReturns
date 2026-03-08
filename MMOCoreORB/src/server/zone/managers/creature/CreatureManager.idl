@@ -8,7 +8,7 @@ import server.zone.objects.creature.ai.Creature;
 import server.zone.managers.ZoneManager;
 import server.zone.managers.creature.CreatureTemplateManager;
 import server.zone.managers.creature.DnaManager;
-import server.zone.objects.region.SpawnArea;
+import server.zone.objects.area.SpawnArea;
 import system.util.Vector;
 import system.util.SynchronizedVector;
 include server.zone.managers.creature.SpawnAreaMap;
@@ -38,9 +38,6 @@ class CreatureManager extends ZoneManager {
 	public static final short DNASAMPLED = 0x01;
 	public static final short DNADEATH = 0x03;
 
-	public static final unsigned int CREATURE_LAIR_MIN = 1000;
-	public static final unsigned int CREATURE_LAIR_MAX = 64000;
-
 	public CreatureManager(Zone planet) {
 		super("CreatureManager " + planet.getZoneName());
 
@@ -50,13 +47,14 @@ class CreatureManager extends ZoneManager {
 	}
 
 	public void initialize() {
+		loadSpawnAreas();
 	}
 
 	public native void stop();
 
-	public native SceneObject spawn(unsigned int lairTemplate, int difficultyLevel, int lairBuildingLevel, float x, float z, float y, float size);
+	public native SceneObject spawn(unsigned int lairTemplate, int difficultyLevel, int difficulty, float x, float z, float y, float size);
 
-	public native SceneObject spawnLair(unsigned int lairTemplate, int difficultyLevel, int lairBuildingLevel, float x, float z, float y, float size = 20);
+	public native SceneObject spawnLair(unsigned int lairTemplate, int difficultyLevel, int difficulty, float x, float z, float y, float size = 20);
 
 	public native SceneObject spawnTheater(unsigned int lairTemplate, int difficulty, float x, float z, float y, float size = 10);
 
@@ -70,18 +68,16 @@ class CreatureManager extends ZoneManager {
 	 * @param x position x
 	 * @param y position y
 	 * @param parentID cell object id (optional)
-	 * @return returns creature object that has been spawned, NULL on error
+	 * @return returns creature object that has been spawned, nullptr on error
 	 */
 	public native CreatureObject spawnCreatureWithAi(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false);
 	public native CreatureObject spawnCreatureWithLevel(unsigned int mobileTemplateCRC, int level, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreatureAsBaby(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreatureAsEventMob(unsigned int templateCRC, int level, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreature(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0);
-	public native CreatureObject spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false, float direction = 0);
+	public native CreatureObject spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false);
 	public native CreatureObject createCreature(unsigned int templateCRC, boolean persistent = false, unsigned int mobileTemplate = 0);
-
-	@preLocked
-	public native void placeCreature(CreatureObject creature, float x, float z, float y, unsigned long parentID, float direction = 0);
+	public native void placeCreature(CreatureObject creature, float x, float z, float y, unsigned long parentID);
 
 	@dereferenced
 	public native string getTemplateToSpawn(unsigned int templateCRC);
@@ -96,6 +92,8 @@ class CreatureManager extends ZoneManager {
 	@arg1preLocked
 	@arg2preLocked
 	public native int notifyDestruction(TangibleObject destructor, AiAgent destructedObject, int condition, boolean isCombatAction);
+
+	public native void loadSpawnAreas();
 
 	public native void unloadSpawnAreas();
 
@@ -115,14 +113,8 @@ class CreatureManager extends ZoneManager {
 	public native void sample(Creature creature, CreatureObject player);
 
 	@local
-	public native SpawnArea getWorldSpawnArea();
-
-	public void addSpawnAreaToMap(unsigned int nameHash, SpawnArea area) {
-		spawnAreaMap.put(nameHash, area);
-	}
-
-	public void addNoSpawnArea(SpawnArea area) {
-		spawnAreaMap.addNoSpawnArea(area);
+	public SynchronizedVector<SpawnArea> getWorldSpawnAreas() {
+		return spawnAreaMap.getWorldSpawnAreas();
 	}
 
 	@local
@@ -132,6 +124,6 @@ class CreatureManager extends ZoneManager {
 
 	public native SpawnArea getSpawnArea(final string areaname);
 
-	public native boolean addWearableItem(CreatureObject creature, TangibleObject clothing, boolean isVendor);
+	public native boolean addWearableItem(CreatureObject creature, TangibleObject clothing);
 }
 

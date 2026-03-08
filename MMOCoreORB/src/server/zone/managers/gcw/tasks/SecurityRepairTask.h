@@ -11,6 +11,7 @@ class SecurityRepairTask : public Task {
 	int count;
 
 public:
+
 	SecurityRepairTask(GCWManager* gcwMan, TangibleObject* term, CreatureObject* player, int cnt) {
 		gcwManager = gcwMan;
 		terminal = term;
@@ -19,36 +20,14 @@ public:
 	}
 
 	void run() {
-		if (terminal == nullptr || gcwManager == nullptr || creature == nullptr) {
+
+		if (terminal == nullptr || gcwManager == nullptr || creature == nullptr)
 			return;
-		}
 
-		ManagedReference<BuildingObject*> building = nullptr;
-		uint64 terminalID = terminal->getObjectID();
-		ZoneServer* zoneServer = terminal->getZoneServer();
+		ManagedReference<BuildingObject*> building = terminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-		if (zoneServer == nullptr) {
+		if (building == nullptr)
 			return;
-		}
-
-		switch (terminalID) {
-			case 367428: // Corellia - Stronghold
-				building = cast<BuildingObject*>(zoneServer->getObject(2715899).get());
-				break;
-			case 923854: // Rori - Imperial Encampment
-				building = cast<BuildingObject*>(zoneServer->getObject(2935404).get());
-				break;
-			case 923864: // Rori - Rebel Military Base
-				building = cast<BuildingObject*>(zoneServer->getObject(7555646).get());
-				break;
-			default:
-				building = terminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
-				break;
-		}
-
-		if (building == nullptr) {
-			return;
-		}
 
 		DataObjectComponentReference* data = building->getDataObjectComponent();
 

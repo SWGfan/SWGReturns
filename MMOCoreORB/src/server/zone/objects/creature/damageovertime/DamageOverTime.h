@@ -13,23 +13,23 @@
 #include "engine/util/json_utils.h"
 
 namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-class CreatureObject;
+ namespace zone {
+  namespace objects {
+   namespace creature {
+    class CreatureObject;
+   }
+  }
+ }
 }
-} // namespace objects
-} // namespace zone
-} // namespace server
 
 using namespace server::zone::objects::creature;
 
-class DamageOverTime : public Serializable, public Logger {
+class DamageOverTime : public Serializable {
 protected:
 	uint64 attackerID;
 	uint64 type;
 	uint8 attribute;
-	int strength;
+	uint32 strength;
 	uint32 duration;
 
 	SerializableTime applied;
@@ -57,12 +57,8 @@ public:
 	uint32 applyDot(CreatureObject* victim);
 	uint32 initDot(CreatureObject* victim, CreatureObject* attacker);
 	float reduceTick(float reduction);
-
-	void expireTick() {
-		expires.updateToCurrentTime();
-	}
-
-	void multiplyDuration(float multiplier);
+	void expireTick() { expires.updateToCurrentTime(); }
+	void multiplyDuration (float multiplier);
 
 	// damage methods
 	inline uint32 doBleedingTick(CreatureObject* victim, CreatureObject* attacker);
@@ -100,11 +96,10 @@ public:
 		nextTick = tick;
 	}
 
-	inline void setSecondaryStrength(int str) {
+	inline void setSecondaryStrength(int str){
 		secondaryStrength = str;
 	}
-
-	// Getters
+	//Getters
 	inline uint64 getAttackerID() {
 		return attackerID;
 	}
@@ -160,6 +155,9 @@ public:
 	inline int getSecondaryStrength() {
 		return secondaryStrength;
 	}
+
+
 };
+
 
 #endif /* DAMAGEOVERTIME_H_ */

@@ -51,13 +51,12 @@ object_draft_schematic_space_weapon_missile_wpn_launcher_spacebomb_mk1 = object_
 	complexity = 19,
 	size = 1,
 	factoryCrateSize = 0,
-	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
-   
+
 	xpType = "shipwright",
 	xp = 625,
 
 	assemblySkill = "weapon_systems",
-	experimentingSkill = "weapon_systems_experimentation",
+	experimentingSkill = "weapons_systems_experimentation",
 	customizationSkill = "medicine_customization",
 
 	customizationOptions = {},

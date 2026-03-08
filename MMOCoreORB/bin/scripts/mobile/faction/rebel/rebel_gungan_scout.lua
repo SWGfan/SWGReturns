@@ -2,7 +2,6 @@ rebel_gungan_scout = Creature:new {
 	objectName = "@mob/creature_names:gungan_scout",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 14,
@@ -32,23 +31,16 @@ rebel_gungan_scout = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "gungan_tier_1", chance = 10000000}
+				{group = "junk", chance = 4000000},
+				{group = "gungan_common", chance = 2000000},
+				{group = "tailor_components", chance = 2000000},
+				{group = "loot_kit_parts", chance = 2000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_rifle",
-	secondaryWeapon = "rebel_pistol",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = marksmanmid,
-	secondaryAttacks = marksmanmid
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_gungan_scout, "rebel_gungan_scout")

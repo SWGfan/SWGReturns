@@ -138,13 +138,10 @@ function Encounter:setSpawnedObjectsToFollow(spawnedObjects, objectToFollow)
 
 			if self.spawnObjectList[i]["followPlayer"] then
 				if self.spawnObjectList[i]["setNotAttackable"] then
-					AiAgent(spawnedObjects[i]):addObjectFlag(AI_NOAIAGGRO)
+					AiAgent(spawnedObjects[i]):setAiTemplate("follow")
+				else
+					AiAgent(spawnedObjects[i]):setAiTemplate("stationarynoleash")
 				end
-
-				AiAgent(spawnedObjects[i]):addObjectFlag(AI_ESCORT)
-				AiAgent(spawnedObjects[i]):addObjectFlag(AI_FOLLOW)
-
-				AiAgent(spawnedObjects[i]):setAITemplate()
 				AiAgent(spawnedObjects[i]):setFollowObject(objectToFollow)
 			end
 		end
@@ -202,6 +199,7 @@ function Encounter:handleDespawnEvent(pPlayer)
 	for i = 1, #spawnedObjects, 1 do
 		if SpawnMobiles.isValidMobile(spawnedObjects[i]) and self.spawnObjectList[i]["runOnDespawn"] then
 			CreatureObject(spawnedObjects[i]):setPvpStatusBitmask(0)
+			AiAgent(spawnedObjects[i]):setAiTemplate("follow")
 			runAway = true
 			mobX = SceneObject(spawnedObjects[i]):getPositionX()
 			mobY = SceneObject(spawnedObjects[i]):getPositionY()
@@ -213,7 +211,6 @@ function Encounter:handleDespawnEvent(pPlayer)
 		return
 	end
 
-	--[[
 	local playerX = SceneObject(pPlayer):getPositionX()
 	local playerY = SceneObject(pPlayer):getPositionY()
 	local newX, newY
@@ -231,35 +228,22 @@ function Encounter:handleDespawnEvent(pPlayer)
 	end
 
 	local newZ = getTerrainHeight(pPlayer, newX, newY)
-	]]
 
 	for i = 1, #spawnedObjects, 1 do
 		if (SpawnMobiles.isValidMobile(spawnedObjects[i])) then
-			--[[
 			local objectID = SceneObject(spawnedObjects[i]):getObjectID()
-
 			writeData(objectID .. ":encounterNewX", newX)
 			writeData(objectID .. ":encounterNewY", newY)
 			writeData(objectID .. ":encounterNewZ", newZ)
-
 			createEvent(1000, self.taskName, "doRunAway", spawnedObjects[i], "")
-			]]
-
-			AiAgent(spawnedObjects[i]):removeObjectFlag(AI_ESCORT)
-			AiAgent(spawnedObjects[i]):removeObjectFlag(AI_FOLLOW)
-
-			AiAgent(spawnedObjects[i]):setAITemplate()
-
-			AiAgent(spawnedObjects[i]):runAway(pPlayer, 100)
 		end
 	end
 
-	createEvent(18000, self.taskName, "doDespawn", pPlayer, "")
+	createEvent(9000, self.taskName, "doDespawn", pPlayer, "")
 end
 
--- Unused, replaced with runAway function in cpp
 function Encounter:doRunAway(pAiAgent)
-	if pAiAgent == nil then
+	if pAiAgent == nil or not SceneObject(pAiAgent):isAiAgent() then
 		return
 	end
 
@@ -269,9 +253,12 @@ function Encounter:doRunAway(pAiAgent)
 	local newZ = readData(objectID .. ":encounterNewZ")
 
 	AiAgent(pAiAgent):setFollowObject(nil)
-	AiAgent(pAiAgent):setMovementState(AI_PATROLLING)
+	AiAgent(pAiAgent):setAiTemplate("manualescort")
 
+	AiAgent(pAiAgent):stopWaiting()
+	AiAgent(pAiAgent):setWait(0)
 	AiAgent(pAiAgent):setNextPosition(newX, newZ, newY, 0)
+	AiAgent(pAiAgent):executeBehavior()
 
 	deleteData(objectID .. ":encounterNewX")
 	deleteData(objectID .. ":encounterNewY")

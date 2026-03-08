@@ -9,8 +9,6 @@
 #define PLAYERMANAGERCOMMAND_H_
 
 #include "engine/engine.h"
-#include "server/zone/ZoneServer.h"
-#include "server/chat/ChatManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
 
 #include "server/zone/managers/collision/PathFinderManager.h"
@@ -65,61 +63,28 @@ public:
 					oid = Long::valueOf(arg);
 			}
 
-			if (tokenizer.hasMoreTokens()) {
+			if (tokenizer.hasMoreTokens())
 				showAll = true;
-			}
 
 			auto resp = dumpCOV(player->getZoneServer(), oid, showAll);
-
 			ChatManager* chatManager = player->getZoneServer()->getChatManager();
-
-			if (chatManager != nullptr) {
-				chatManager->sendMail("System", "Dump COV" , resp, player->getFirstName());
-			}
-
+			chatManager->sendMail("System", "Dump COV" , resp, player->getFirstName());
 			player->sendSystemMessage(resp);
-
-			ManagedReference<SuiMessageBox*> suiBox1 = new SuiMessageBox(player, SuiWindowType::NONE);
-
-			if (suiBox1 != nullptr) {
-				suiBox1->setPromptTitle("System - Dump COV");
-				suiBox1->setPromptText(resp);
-				suiBox1->setForceCloseDistance(0);
-
-				player->sendMessage(suiBox1->generateMessage());
-			}
-
-			auto resp2 = debugTree(player);
-
-			ManagedReference<SuiMessageBox*> suiBox2 = new SuiMessageBox(player, SuiWindowType::NONE);
-
-			if (suiBox2 != nullptr) {
-				suiBox2->setPromptTitle("System - Debug inRange");
-				suiBox2->setPromptText(resp2);
-				suiBox2->setForceCloseDistance(0);
-
-				player->sendMessage(suiBox2->generateMessage());
-			}
-#ifdef NDEBUG
-			Logger::console.info(true) << "\033[32;40m" << __FILE__ << ":" << __LINE__ << " dumpcov results:\n" << resp << "\033[0m";
-#endif
 			return 0;
 		} else if (command == "bench") {
 			Reference<CreatureObject*> creo = player;
-			int iterations = 40;
-
+			int iterations = 100;
 			if (tokenizer.hasMoreTokens())
 				iterations = tokenizer.getIntToken();
 
-			for (int i = 0; i < iterations; i++) {
-				Core::getTaskManager()->scheduleTask([creo] {
+			for (int i=0; i<iterations; i++) {
+				Core::getTaskManager()->scheduleTask([creo]{
 					Locker locker(creo);
-
 					creo->executeObjectControllerAction(STRING_HASHCODE("createcreature"), 0, "gorax");
 					creo->executeObjectControllerAction(STRING_HASHCODE("createcreature"), 0, "nightsister_elder");
 					creo->executeObjectControllerAction(STRING_HASHCODE("createcreature"), 0, "death_watch_wraith");
-					creo->executeObjectControllerAction(STRING_HASHCODE("createcreature"), 0, "dark_jedi_knight");
-				}, "spawnCreatureBenchmark", i * 200);
+
+				}, "spawnCreatureBenchmark", i*100);
 			}
 		} else if (command == "listjedi") {
 			player->sendSystemMessage("Please wait. This may take a while.");
@@ -163,6 +128,48 @@ public:
 
 			player->sendSystemMessage(message.toString());
 
+		} else if (command == "setscale") {
+			if (!tokenizer.hasMoreTokens()) {
+				sendSyntax(player);
+				return 1;
+			}
+			ManagedReference<SceneObject* > object = creature->getZoneServer()->getObject(target);
+			ManagedReference<CreatureObject*> scaleTarget = nullptr;
+			
+			if(object == nullptr || !object->isPlayerCreature()) {
+				String firstName;
+				if(tokenizer.hasMoreTokens()) {
+					tokenizer.getStringToken(firstName);
+					scaleTarget = playerManager->getPlayer(firstName);
+				}
+			}else {
+				scaleTarget = cast<CreatureObject*>( object.get());
+			}
+			
+			if (!tokenizer.hasMoreTokens()) {
+				sendSyntax(player);
+				return 1;
+			}
+			
+			float height = tokenizer.getFloatToken();
+ 			String playerName = creature->getFirstName();
+
+			if (tokenizer.hasMoreTokens())
+			height = tokenizer.getFloatToken();
+
+			if (height < 0.f)
+				height = 1.f;
+
+
+			if (height > 50.f)
+				height = 50.f;
+
+
+			if (height > 0.f)
+			scaleTarget->setHeight(height, true);
+
+			player->sendSystemMessage("Scale set to " + String::valueOf(height) + " for " + playerName);
+
 		} else {
 			sendSyntax(player);
 			return 1;
@@ -178,6 +185,7 @@ public:
 			player->sendSystemMessage("Syntax: /server playermanager [listjedi]");
 			player->sendSystemMessage("Syntax: /server playermanager [list_frsjedi]");
 			player->sendSystemMessage("Syntax: /server playermanager [listadmins]");
+			player->sendSystemMessage("Syntax: /server playermanager [setscale] [player first name] [value 0.1-50.0]");
 		}
 	}
 
@@ -205,7 +213,7 @@ public:
 			return resp.toString();
 		}
 
-		SortedVector<TreeEntry*> closeObjects;
+		SortedVector<QuadTreeEntry*> closeObjects;
 		vec->safeCopyTo(closeObjects);
 		vec = nullptr;
 		locker.release();
@@ -216,17 +224,8 @@ public:
 
 		auto ourPosition = targetObject->getWorldPosition();
 
-		VectorMap<float, SceneObject*> sortedObjects;
-		sortedObjects.setAllowDuplicateInsertPlan();
-
 		for (int i = 0; i < closeObjects.size(); ++i) {
 			auto obj = static_cast<SceneObject*>(closeObjects.getUnsafe(i));
-			auto distance = ourPosition.distanceTo(obj->getWorldPosition());
-			sortedObjects.put(distance, obj);
-		}
-
-		for (int i = 0; i < sortedObjects.size(); ++i) {
-			auto obj = sortedObjects.get(i);
 
 			if (obj == nullptr) {
 				resp << i << ": " << "nullptr Object" << endl;
@@ -270,7 +269,7 @@ public:
 			auto vec = (CloseObjectsVector*)parent->getCloseObjects();
 
 			if (vec != nullptr) {
-				SortedVector<TreeEntry*> parentCloseObjects;
+				SortedVector<QuadTreeEntry*> parentCloseObjects;
 				vec->safeCopyTo(parentCloseObjects);
 				vec = nullptr;
 				locker.release();
@@ -341,71 +340,6 @@ public:
 		}
 
 		return resp.toString();
-	}
-
-	static String debugTree(CreatureObject* player) {
-		float range = 2048.f;
-
-		auto root = player->getRootParent();
-
-		if (root == nullptr) {
-			return "!root";
-		}
-
-		auto zone = root->getZone();
-
-		if (zone == nullptr) {
-			return "!zone";
-		}
-
-		auto ship = root->asShipObject();
-
-		if (ship == nullptr) {
-			return "!ship";
-		}
-
-		Locker pLock(player);
-		Locker sLock(ship, player);
-
-		float x = ship->getPositionX();
-		float y = ship->getPositionY();
-		float z = ship->getPositionZ();
-
-		auto inRange = SortedVector<ManagedReference<TreeEntry*>>();
-		inRange.setAllowDuplicateInsertPlan();
-		zone->getInRangeObjects(x, z, y, range, &inRange, false, false);
-
-		StringBuffer msg;
-
-		auto playerCov = player->getCloseObjects();
-
-		auto playerCopy = SortedVector<ManagedReference<TreeEntry*>>();
-		playerCov->safeCopyTo(playerCopy);
-
-		msg << endl;
-		msg << "playerCov: " << playerCopy.size() << endl;
-
-		for (int i = 0; i < playerCopy.size(); ++i) {
-			auto entry = static_cast<SceneObject*>(playerCopy.get(i).get());
-
-			if (entry->getZone() == nullptr) {
-				msg << i << " cov error: !zone: " << entry->getDisplayedName() << endl;
-			}
-
-			if (entry->getNode() == nullptr) {
-				msg << i << " tree error: !node: " << entry->getDisplayedName() << " Position: " << entry->getWorldPosition().toString() << endl;
-			}
-		}
-
-		msg << endl << "inRangeCov: " << inRange.size() << endl;
-
-		for (int i = 0; i < inRange.size(); ++i) {
-			auto entry = static_cast<SceneObject*>(inRange.get(i).get());
-
-			msg << i << "  " << entry->getDisplayedName() << "  " << entry->getPosition().distanceTo(ship->getPosition()) << endl;
-		}
-
-		return msg.toString();
 	}
 };
 

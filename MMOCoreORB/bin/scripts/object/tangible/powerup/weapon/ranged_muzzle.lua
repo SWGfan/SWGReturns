@@ -50,17 +50,17 @@ object_tangible_powerup_weapon_ranged_muzzle = object_tangible_powerup_weapon_sh
 	baseName = "Muzzle",
 
 	primary = {
-		{"mindAttackCost", "Muffled", "cat_pup.pup_wpn_attack_cost_mind"},
-		{"woundsRatio", "Polished", "cat_pup.pup_wpn_wound_chance"},
-		{"maxRangeAccuracy", "Scattered", "cat_pup.pup_wpn_range_attack_mod_max"},
+		{"idealAccuracy", "Scattered", "cat_pup.pup_wpn_range_attack_mod_mid"}, 
+		{"mindAttackCost", "Muffled", "cat_pup.pup_wpn_attack_cost_mind"}, 
+  		{"woundsRatio", "Polished", "cat_pup.pup_wpn_wound_chance"},
 		{"maxDamage", "Tuned", "cat_pup.pup_wpn_damage_max"}
 	},
 
 	secondary = {
-		{"pointBlankAccuracy", "Flaring", "cat_pup.pup_wpn_range_attack_mod_zero"},
-		{"maxRangeAccuracy", "Focusing", "cat_pup.pup_wpn_range_attack_mod_max"},
-		{"healthAttackCost", "Braking", "cat_pup.pup_wpn_attack_cost_health"},
-		{"minDamage", "Sighting", "cat_pup.pup_wpn_damage_min"}
+		{"healthAttackCost", "Braking", "cat_pup.pup_wpn_attack_cost_health"}, 
+		{"maxRangeAccuracy", "Focusing", "cat_pup.pup_wpn_range_attack_mod_max"}, 
+		{"minDamage", "Sighting", "cat_pup.pup_wpn_damage_min"}, 
+		{"pointBlankAccuracy", "Flaring", "cat_pup.pup_wpn_range_attack_mod_zero"}
 	},
 
 	numberExperimentalProperties = {1, 1, 1, 1},

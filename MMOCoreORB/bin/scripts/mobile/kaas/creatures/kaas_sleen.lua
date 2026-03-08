@@ -3,7 +3,6 @@ sleen = Creature:new {
 	customName = "a Sleen",
 	socialGroup = "voritor",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 53,
 	chanceHit = 0.5,
 	damageMin = 695,

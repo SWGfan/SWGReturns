@@ -10,37 +10,31 @@
 #include "server/zone/objects/creature/commands/effect/CommandEffect.h"
 #include "templates/params/creature/CreatureAttribute.h"
 
-// #define DEBUG_DOTS
-
 uint64 DamageOverTimeList::activateDots(CreatureObject* victim) {
 	uint64 states = 0;
 	uint64 statesBefore = 0;
 
-#ifdef DEBUG_DOTS
-	info(true) << "Activate DOTs called for " << victim->getFirstName() << " ID: " << victim->getObjectID();
-#endif
-
 	Locker guardLocker(&guard);
 
-	for (int i = size() - 1; i >= 0; --i) {
+	for (int i = size() - 1; i >= 0 ; --i) {
 		Vector<DamageOverTime>* vector = &elementAt(i).getValue();
 
-		for (int j = vector->size() - 1; j >= 0; --j) {
+		for (int j = vector->size() - 1; j >= 0 ; --j) {
 			DamageOverTime* dot = &vector->elementAt(j);
 			statesBefore |= dot->getType();
 
 			if (dot->nextTickPast()) {
-				// guard.unlock();
+				//guard.unlock();
 
 				try {
 					dot->applyDot(victim);
 				} catch (...) {
-					// guard.wlock();
+					//guard.wlock();
 
 					throw;
 				}
 
-				// guard.wlock();
+				//guard.wlock();
 			}
 
 			Time nTime = dot->getNextTick();
@@ -63,19 +57,21 @@ uint64 DamageOverTimeList::activateDots(CreatureObject* victim) {
 
 	int statesRemoved = states ^ statesBefore;
 
-	if (statesRemoved & CreatureState::BLEEDING)
+	if( statesRemoved & CreatureState::BLEEDING )
 		victim->clearState(CreatureState::BLEEDING);
 
-	if (statesRemoved & CreatureState::POISONED)
+	if( statesRemoved & CreatureState::POISONED )
 		victim->clearState(CreatureState::POISONED);
 
-	if (statesRemoved & CreatureState::DISEASED)
+	if( statesRemoved & CreatureState::DISEASED )
 		victim->clearState(CreatureState::DISEASED);
 
-	if (statesRemoved & CreatureState::ONFIRE)
+	if( statesRemoved & CreatureState::ONFIRE )
 		victim->clearState(CreatureState::ONFIRE);
 
+
 	if (nextTick.isPast()) {
+		dot = false;
 		removeAll();
 
 		states = 0;
@@ -90,33 +86,34 @@ int DamageOverTimeList::getStrength(uint8 pool, uint64 dotType) {
 	Vector<DamageOverTime>* vector;
 	int strength = 0;
 
-	for (int i = 0; i < size(); i++) {
+	for(int i = 0; i < size(); i++)
+	{
 		vector = &elementAt(i).getValue();
-
-		for (int j = 0; j < vector->size(); j++) {
+		for(int j = 0; j < vector->size(); j++)
+		{
 			DamageOverTime* currentDot = &vector->elementAt(j);
-
-			if (currentDot->getType() == dotType && (currentDot->getAttribute() == pool || pool == 0xFF)) {
+			if(currentDot->getType() == dotType && (currentDot->getAttribute() == pool || pool == 0xFF))
+			{
 				if (!currentDot->isPast()) {
-					strength += currentDot->getStrength();
+					strength+=currentDot->getStrength();
 				}
 			}
 		}
 	}
-
-#ifdef DEBUG_DOTS
-	info(true) << "getStrength - Pool: " << pool << " DoT Type: " << dotType;
-#endif
-
 	return strength;
 }
 
-uint32 DamageOverTimeList::addDot(CreatureObject* victim, CreatureObject* attacker, uint64 objectID, uint32 duration, uint64 dotType, uint8 pool, uint32 strength, float potency, uint32 defense, int secondaryStrength) {
+uint32 DamageOverTimeList::addDot(CreatureObject* victim,
+								  CreatureObject* attacker,
+								  uint64 objectID,
+								  uint32 duration,
+								  uint64 dotType,
+								  uint8 pool,
+								  uint32 strength,
+								  float potency,
+								  uint32 defense,
+								  int secondaryStrength) {
 	Locker locker(&guard);
-
-#ifdef DEBUG_DOTS
-	info(true) << "addDot - DoT Type: " << dotType << " Duration: " << duration << " Strength: " << strength;
-#endif
 
 	if (strength == 0 || duration == 0)
 		return 0;
@@ -124,10 +121,6 @@ uint32 DamageOverTimeList::addDot(CreatureObject* victim, CreatureObject* attack
 	// determine chance to hit, if no hit, just return 0. potency of less than 0 can't be resisted
 	if (potency > 0 && System::random(100) >= Math::max(5.f, Math::min(potency * (80.f / (100.f + defense)), 95.f)))
 		return 0;
-
-	if (dotType == CreatureState::ONFIRE && victim->hasState(CreatureState::SWIMMING)) {
-		return 0;
-	}
 
 	if (pool == CreatureAttribute::UNKNOWN) {
 		pool = getRandomPool(dotType);
@@ -155,14 +148,12 @@ uint32 DamageOverTimeList::addDot(CreatureObject* victim, CreatureObject* attack
 	}
 
 	if (durationMod > 0) {
-		if (durationMod > 90)
-			durationMod = 90;
-
+		if (durationMod > 90) durationMod = 90;
 		duration = Math::max(1, (int)(duration * (1.f - (durationMod / 100.f))));
 	}
 
-	// only 1 disease per bar allowed
-	if (dotType == CreatureState::DISEASED) {
+	//only 1 disease per bar allowed
+	if(dotType == CreatureState::DISEASED) {
 		objectID = Long::hashCode(CreatureState::DISEASED);
 	} else if (dotType == CommandEffect::FORCECHOKE) {
 		objectID = 0;
@@ -209,10 +200,12 @@ uint32 DamageOverTimeList::addDot(CreatureObject* victim, CreatureObject* attack
 	if (isEmpty() || nTime.compareTo(nextTick) > 0)
 		nextTick = nTime;
 
-	if (oldStrength == 0)
+	if(oldStrength == 0)
 		sendStartMessage(victim, dotType);
 	else
 		sendIncreaseMessage(victim, dotType);
+
+	dot = true;
 
 	locker.release();
 
@@ -238,18 +231,10 @@ uint8 DamageOverTimeList::getRandomPool(uint64 dotType) {
 		break;
 	}
 
-#ifdef DEBUG_DOTS
-	info(true) << "getRandomPool -- Pool: " << pool;
-#endif
-
 	return pool;
 }
 
 bool DamageOverTimeList::healState(CreatureObject* victim, uint64 dotType, float reduction, bool sendMsg) {
-#ifdef DEBUG_DOTS
-	info(true) << "healState - Victim Name: " << victim->getFirstName() << " DoT Type: " << dotType << " Reduction: " << reduction;
-#endif
-
 	Locker locker(&guard);
 
 	if (!hasDot())
@@ -270,31 +255,26 @@ bool DamageOverTimeList::healState(CreatureObject* victim, uint64 dotType, float
 
 	bool expired = true;
 
-	float reductionRemaining = reduction;
+	float reductionLeft = reduction;
 
 	for (int i = 0; i < timeVec.size(); i++) {
 		DamageOverTime* dot = timeVec.elementAt(i);
 
-		if (dot->isPast())
-			continue;
-
-		reductionRemaining = dot->reduceTick(reductionRemaining);
-
-		// reduceTick() *should* be guaranteed to return a non-negative value,
-		// but since this is a float, we want to make sure
-		if (reductionRemaining < 0.f) {
-			// we ran out of juice in our cure, so don't expire the dotType,
-			// ie, maintain the state with a reduced damage per tick
-			expired = false;
-			break;
+		if (!dot->isPast()) {
+			reductionLeft = dot->reduceTick(reductionLeft);
+			// reduceTick() *should* be guaranteed to return a non-negative value,
+			// but since this is a float, we want to make sure
+			if (reductionLeft <= 0.f)
+			{
+				// we ran out of juice in our cure, so don't expire the dotType,
+				// ie, maintain the state with a reduced damage per tick
+				expired = false;
+				break;
+			}
 		}
 	}
 
 	if (expired) {
-#ifdef DEBUG_DOTS
-		info(true) << "healState - DoT Expired: " << dotType;
-#endif
-
 		locker.release();
 		victim->clearState(dotType);
 		return true;
@@ -330,9 +310,7 @@ bool DamageOverTimeList::hasDot(uint64 dotType) {
 void DamageOverTimeList::clear(CreatureObject* creature) {
 	Locker locker(&guard);
 
-#ifdef DEBUG_DOTS
-	info(true) << "clear - clearing all DoTs";
-#endif
+	dot = false;
 
 	for (int i = 0; i < size(); ++i) {
 		uint64 type = elementAt(i).getKey();
@@ -349,26 +327,10 @@ void DamageOverTimeList::clear(CreatureObject* creature) {
 	removeAll();
 }
 
-void DamageOverTimeList::validateDots(CreatureObject* creature) {
-	Locker lock(&guard);
-
-	for (int i = 0; i < size(); ++i) {
-		Vector<DamageOverTime>* vector = &elementAt(i).getValue();
-
-		for (int j = 0; j < vector->size(); ++j) {
-			DamageOverTime* dot = &vector->elementAt(j);
-
-			if (dot != nullptr && !dot->isActivated()) {
-				creature->clearState(dot->getType());
-			}
-		}
-	}
-}
-
 void DamageOverTimeList::multiplyAllDOTDurations(float multiplier) {
 	Locker locker(&guard);
 
-	if (!hasDot())
+	if(!hasDot())
 		return;
 
 	for (int i = 0; i < size(); i++) {
@@ -388,11 +350,7 @@ void DamageOverTimeList::sendStartMessage(CreatureObject* victim, uint64 type) {
 	if (!victim->isPlayerCreature())
 		return;
 
-#ifdef DEBUG_DOTS
-	info(true) << "sendStartMessage";
-#endif
-
-	switch (type) {
+	switch(type) {
 	case CreatureState::BLEEDING:
 		victim->sendSystemMessage("@dot_message:start_bleeding");
 		break;
@@ -415,11 +373,7 @@ void DamageOverTimeList::sendStopMessage(CreatureObject* victim, uint64 type) {
 	if (!victim->isPlayerCreature())
 		return;
 
-#ifdef DEBUG_DOTS
-	info(true) << "sendStartMessage";
-#endif
-
-	switch (type) {
+	switch(type) {
 	case CreatureState::BLEEDING:
 		victim->sendSystemMessage("@dot_message:stop_bleeding");
 		break;
@@ -439,7 +393,7 @@ void DamageOverTimeList::sendIncreaseMessage(CreatureObject* victim, uint64 type
 	if (!victim->isPlayerCreature())
 		return;
 
-	switch (type) {
+	switch(type) {
 	case CreatureState::BLEEDING:
 		victim->sendSystemMessage("@dot_message:increase_bleeding");
 		break;
@@ -459,7 +413,7 @@ void DamageOverTimeList::sendDecreaseMessage(CreatureObject* victim, uint64 type
 	if (!victim->isPlayerCreature())
 		return;
 
-	switch (type) {
+	switch(type) {
 	case CreatureState::BLEEDING:
 		victim->sendSystemMessage("@dot_message:decrease_bleeding");
 		break;
@@ -474,3 +428,4 @@ void DamageOverTimeList::sendDecreaseMessage(CreatureObject* victim, uint64 type
 		break;
 	}
 }
+

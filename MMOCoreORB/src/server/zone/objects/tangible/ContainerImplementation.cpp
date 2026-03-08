@@ -9,7 +9,6 @@
 #include "server/zone/objects/installation/factory/FactoryObject.h"
 #include "server/zone/objects/player/sui/inputbox/SuiInputBox.h"
 #include "server/zone/objects/player/sessions/SlicingSession.h"
-#include "server/zone/objects/tangible/tool/CraftingStation.h"
 #include "server/zone/objects/tangible/wearables/WearableContainerObject.h"
 #include "templates/tangible/ContainerTemplate.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
@@ -19,12 +18,15 @@ void ContainerImplementation::initializeTransientMembers() {
 	TangibleObjectImplementation::initializeTransientMembers();
 	relocking = false;
 	setLoggingName("Container");
+
 }
 
-void ContainerImplementation::notifyLoadFromDatabase() {
-	TangibleObjectImplementation::notifyLoadFromDatabase();
-	if (getGameObjectType() == SceneObjectType::STATICLOOTCONTAINER) {
-		if (System::random(100) < getLockChance()) {
+void ContainerImplementation::notifyLoadFromDatabase()
+{
+    TangibleObjectImplementation::notifyLoadFromDatabase();
+	if(getGameObjectType() == SceneObjectType::STATICLOOTCONTAINER) {
+
+		if(System::random(100) < getLockChance()) {
 			setLockedStatus(true);
 			setSliceable(true);
 			setSliced(false);
@@ -46,14 +48,16 @@ void ContainerImplementation::loadTemplateData(SharedObjectTemplate* templateDat
 		return;
 
 	locked = containerTemplate->getLocked();
+
 }
 
 void ContainerImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	TangibleObjectImplementation::fillObjectMenuResponse(menuResponse, player);
 
-	if (checkContainerPermission(player, ContainerPermissions::MOVECONTAINER && getParent().get() != nullptr && getParent().get()->checkContainerPermission(player, ContainerPermissions::MOVEOUT) && !(_this.getReferenceUnsafeStaticCast()->isRecycleToolObject()) && !(_this.getReferenceUnsafeStaticCast()->isAntiDecayKitObject())))
+	if (checkContainerPermission(player, ContainerPermissions::MOVECONTAINER && getParent().get() != nullptr &&
+			getParent().get()->checkContainerPermission(player, ContainerPermissions::MOVEOUT) && !(_this.getReferenceUnsafeStaticCast()->isRecycleToolObject()) && !(_this.getReferenceUnsafeStaticCast()->isAntiDecayKitObject())))
 
-		menuResponse->addRadialMenuItem(50, 3, "@base_player:set_name"); // Set Name
+		menuResponse->addRadialMenuItem(50, 3, "@base_player:set_name"); //Set Name
 
 	if (isSliceable() && isContainerLocked() && player->hasSkill("combat_smuggler_novice"))
 		menuResponse->addRadialMenuItem(69, 3, "@slicing/slicing:slice"); // Slice
@@ -61,7 +65,9 @@ void ContainerImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuRes
 
 int ContainerImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	if (selectedID == 50) {
-		if (checkContainerPermission(player, ContainerPermissions::MOVECONTAINER && getParent().get() != nullptr && getParent().get()->checkContainerPermission(player, ContainerPermissions::MOVEOUT))) {
+		if (checkContainerPermission(player, ContainerPermissions::MOVECONTAINER && getParent().get() != nullptr &&
+				getParent().get()->checkContainerPermission(player, ContainerPermissions::MOVEOUT))) {
+
 			ManagedReference<SuiInputBox*> inputBox = new SuiInputBox(player, SuiWindowType::OBJECT_NAME, 0x00);
 
 			inputBox->setPromptTitle("@sui:set_name_title");
@@ -86,11 +92,12 @@ int ContainerImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 			return 0;
 		}
 
-		// Create Session
+		//Create Session
 		session = new SlicingSession(player);
 		session->initalizeSlicingMenu(player, _this.getReferenceUnsafeStaticCast());
 
 		return 0;
+
 	}
 
 	return TangibleObjectImplementation::handleObjectMenuSelect(player, selectedID);
@@ -100,7 +107,8 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 	//	if (locked)
 	//	return TransferErrorCode::CONTAINERLOCKED;
 
-	if ((object->isIntangibleObject() && getContainerType() != 3) || (getContainerType() == 3 && !object->isIntangibleObject())) {
+	if ((object->isIntangibleObject() && getContainerType() != 3)
+			|| (getContainerType() == 3 && !object->isIntangibleObject())) {
 		errorDescription = "@container_error_message:container07"; // You cannot put that kind of item in that kind of container.
 
 		return TransferErrorCode::INVALIDTYPE;
@@ -117,16 +125,6 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 			errorDescription = "@container_error_message:container12"; // This item is too bulky to fit inside this container.
 
 			return TransferErrorCode::CANTNESTOBJECT;
-		}
-
-		if (object->isCraftingStation()) {
-			ManagedReference<SceneObject*> hopper = object->getSlottedObject("ingredient_hopper");
-
-			if (hopper != nullptr && hopper->getCountableObjectsRecursive() > 0) {
-				errorDescription = "@container_error_message:container21"; // You cannot pick up a crafting station unless it is empty.
-
-				return TransferErrorCode::CANTNESTOBJECT;
-			}
 		}
 
 		// Find out how much room we need
@@ -157,7 +155,6 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 			// It has room. Check if it's not equipped and on a player.
 			ManagedReference<WearableContainerObject*> wearable = cast<WearableContainerObject*>(wearableParent.get());
-
 			if (!wearable->isEquipped() && playerParent != nullptr) {
 				SceneObject* inventory = playerParent->getSlottedObject("inventory");
 				SceneObject* bank = playerParent->getSlottedObject("bank");
@@ -170,16 +167,13 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 						return TransferErrorCode::CONTAINERFULL;
 					}
-					// Return if it's in a player bank that doesn't have room
+				// Return if it's in a player bank that doesn't have room
 				} else if (parentOfWearableParent == bank) {
 					if (bank->getContainerVolumeLimit() < bank->getCountableObjectsRecursive() + objectSize) {
 						errorDescription = "@container_error_message:container03"; // This container is full.
 
 						return TransferErrorCode::CONTAINERFULL;
 					}
-
-					if (!playerParent->isNearBank())
-						return TransferErrorCode::NOTNEARBANK;
 				}
 			}
 		} else {
@@ -188,8 +182,8 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 				WearableContainerObject* pack = cast<WearableContainerObject*>(_this.getReferenceUnsafeStaticCast());
 
 				if (pack != nullptr && !pack->isEquipped()) {
-					// This is a wearable container, and it's not equipped.
-					if (playerParent != nullptr) {
+				// This is a wearable container, and it's not equipped.
+					if (playerParent != nullptr ) {
 						SceneObject* inventory = playerParent->getSlottedObject("inventory");
 						SceneObject* bank = playerParent->getSlottedObject("bank");
 						SceneObject* thisParent = getParent().get();
@@ -208,15 +202,12 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 								return TransferErrorCode::CONTAINERFULL;
 							}
-
-							if (!playerParent->isNearBank())
-								return TransferErrorCode::NOTNEARBANK;
 						}
 					}
 				}
 			} else {
 				// This is a non-wearable container.
-				if (playerParent != nullptr) {
+				if (playerParent != nullptr ) {
 					SceneObject* inventory = playerParent->getSlottedObject("inventory");
 					SceneObject* bank = playerParent->getSlottedObject("bank");
 					SceneObject* thisParent = getParent().get();
@@ -228,11 +219,11 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 							return TransferErrorCode::CONTAINERFULL;
 						}
-						// Return if it's in a player bank that doesn't have room
+					// Return if it's in a player bank that doesn't have room
 					} else if (thisParent == bank) {
 						if (bank->getContainerVolumeLimit() < bank->getCountableObjectsRecursive() + objectSize) {
 							errorDescription = "@container_error_message:container03"; // This container is full.
-							return TransferErrorCode::CONTAINERFULL;
+								return TransferErrorCode::CONTAINERFULL;
 						}
 					}
 				}
@@ -264,12 +255,8 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 					if (hopper == nullptr || hopper->getContainerVolumeLimit() < hopper->getCountableObjectsRecursive() + objectSize) {
 						errorDescription = "@container_error_message:container03"; // This container is full.
-						return TransferErrorCode::CONTAINERFULL;
+							return TransferErrorCode::CONTAINERFULL;
 					}
-				} else if (rootParent->isPobShip() && ((rootParent->getCurrentNumberOfPlayerItems() + objectSize) > rootParent->getMaximumNumberOfPlayerItems())) {
-					errorDescription = "@container_error_message:container13"; // This house has too many items in it
-
-					return TransferErrorCode::TOOMANYITEMSINHOUSE;
 				}
 			}
 		}
@@ -292,9 +279,11 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 							return TransferErrorCode::NOLOOTPERMISSION;
 						}
 					}
+
 				}
 			}
 		}
+
 	}
 
 	return TangibleObjectImplementation::canAddObject(object, containmentType, errorDescription);

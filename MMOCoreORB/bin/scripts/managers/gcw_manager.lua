@@ -13,7 +13,7 @@ powerSwitchCount = 7
 resetTimer = 1209600
 
 -- amount of time in seconds to wait when a slice fails
-sliceCooldown = 120
+sliceCooldown = 5
 
 dnaNucleotides = { "A", "G", "C", "T" }
 dnaPairs = { "AT", "TA", "GC", "CG" }
@@ -26,29 +26,7 @@ dnaStrandLength = 23
 destructionTimer = 600
 
 -- maximum bases per planet
-maxBasesPerPlanet = 25
-
--- Maximum bases placeable per player. Reducing this number will automatically remove extra bases from players upon login
-maxBasesPerPlayer = 3
-
--- The construction delay when placing a GCW base in seconds
-basePlacementDelay = 10
-
--- Allow placement of GCW bases while player is in comabt
-placeInCombat = true
-
--- allow the placement of PvE Faction bases. Setting this false will begin the destruction task for PvE bases when the GCW runs its sanity checks after server loading
-allowPveBases = true
-
--- Allow bases to be placed together
-allowBaseComplex = true
-baseComplexSize = 3
-
--- Range at which bases can be placed near one another. If base complexes are enabled they will adhere to this distance
-nearbyBaseDistance = 600
-
--- Cooldown on dotations to GCW bases in seconds
-donationCooldown = 1
+maxBases = 25
 
 -- time in seconds that a player must be overt before aborting a facility shutdown
 overtCooldown = 300
@@ -63,28 +41,13 @@ reactivationTimer = 300
 -- X seconds after the last manual activity the turret will be able to auto fire
 turretAutoFireTimeout = 20
 
--- Enable Alarms on player GCW bases
-spawnBaseAlarms = false
+maxBasesPerPlayer = 3
 
 -- xp bonus for faction controlling a planet
-bonusXP = 15
-
--- Crackdown settings
-crackdownScansEnabled = true
+bonusXP = 50
 
 -- thresholds for scaling crackdown npc's difficulty, first threshold should always be 0.
 difficutlyScalingThresholds = {0, 64}
-
--- PRODUCTION SERVER VALUES
-crackdownScanPrivilegedPlayers = false
-wildScanInterval = 15 * 60 -- In seconds, 15 minutes + System::random(600000) 10 minuutes
-wildScanLoginDelay = 4 * 60 -- In Seconds, 4 minutes
-wildScanChance = 5 -- % chance for a valid scan target to be scanned
-crackdownPlayerScanCooldown = 48 * 60 * 60  -- In seconds, 48 hour cooldown
-crackdownScannerCooldown = 3 * 60 * 60 -- In seconds, 3 hour cooldown
-crackdownContrabandFineCredits = 2000
-crackdownContrabandFineFactionPoints = 100
-crackdownPlanetsWithWildScans = { "corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4"}
 
 -- discount percentage for side losing&winning the gcw.  negative value of increase in price (penality).  positive for a decrease (Bonus)
 
@@ -97,7 +60,7 @@ spawnDefenses = 1
 -- Amount of time to delay vulnerability in seconds afer placing base
 initialVulnerabilityDelay = 0
 
-racialPenaltyEnabled = 1
+racialPenaltyEnabled = 0
 
 -- assign points to each type of base
 -- s01=Forward Outpost, s02 = Field Hospital , s03 = Tactical Center, s04 = Detach HQ
@@ -122,15 +85,12 @@ HQValues = {
 	{"object/building/general/bunker_imperial_weapons_research_facility_01.iff", 2},
 	{"object/building/general/bunker_imperial_detainment_center_01.iff", 2},
 	{"object/building/general/bunker_rebel_weapons_depot.iff", 2},
-	{"object/building/military/military_base_police_station_imperial_style_01.iff", 2},
-	{"object/building/military/military_base_shed_imperial_style_officer_s01.iff", 2},
-	{"object/building/military/military_outpost_guard_house_rebel.iff", 2},
 
 }
 
 -- race (raceid, penalty_multiplier)
 -- raceid found in creatureobject
---HUMAN = 0; RODIAN = 1; TRANDOSHAN = 2; MONCAL = 3; WOOKIEE = 4; BOTHAN = 5; TWILEK = 6; ZABRAK = 7; ITHORIAN = 0x21; SULLUSTAN = 0x31;
+--HUMAN = 0; RODIAN = 1; TRANDOSHAN = 2; MONCAL = 3; WOOKIE = 4; BOTHAN = 5; TWILEK = 6; ZABRAK = 7; ITHORIAN = 0x21; SULLUSTAN = 0x31;
 imperial_racial_penalty = {
 	{0, 1},
 	{1, 3}, --rodian
@@ -205,9 +165,9 @@ terminalSpawns = {
 		{
 			{ -5.15, 0.3, 3.25, 0, 0.707, 0, 0.707, 2 },
 			{ -2.79, -6.8, -10.35, 0, 0, 0, 1, 5 },
-			{ -9.29, -6.8, -4.9, 0, 0.707, 0, 0.707, 5 },
-			{ -6.71, -6.8, -12, 0, 1, 0, 0, 6 },
-			{ 7.4, -6.8, -12, 0, 1, 0, 0, 6 },
+			{ -9.29, -6.8, -4.9, 0, 0, 0, 1, 5 },
+			{ -6.71, -6.8, -12, 0, 0, 0, 1, 6 },
+			{ 7.4, -6.8, -12, 0, 0, 0, 1, 6 },
 			{ 1.67, -6.8, -8.98, 0, 0.707, 0, 0.707, 7 },
 			{ 5.16, -13.8, -13.13, 0, -0.707, 0, 0.707, 9 },
 			{ -10.16, -13.8, -13.13, 0, 0.707, 0, 0.707, 9 },
@@ -272,71 +232,3 @@ terminalSpawns = {
 	}
 }
 
-squadFormations = {
-	-- Rebel
-	{"rebel_small_1",
-		{"fbase_rebel_corporal", "fbase_rebel_sergeant", "fbase_rebel_sharpshooter", "fbase_rebel_sharpshooter", "fbase_rebel_recruit"},
-	},
-	{"rebel_large_1",
-		{"fbase_rebel_colonel", "fbase_rebel_army_captain", "fbase_rebel_first_lieutenant", "fbase_rebel_master_sergeant", "fbase_rebel_comm_operator", "fbase_rebel_medic", "fbase_rebel_medic", "fbase_rebel_command_security_guard", "fbase_rebel_recruit"},
-	},
-	{"rebel_small_2",
-		{"fbase_rebel_squad_leader", "fbase_rebel_liberator", "fbase_rebel_grenadier", "fbase_rebel_guardsman", "fbase_rebel_rifleman"},
-	},
-	{"rebel_large_2",
-		{"fbase_rebel_army_captain", "fbase_rebel_guardsman", "fbase_rebel_guardsman", "fbase_rebel_commando", "fbase_rebel_commando", "fbase_rebel_rifleman", "fbase_rebel_rifleman", "fbase_rebel_grenadier", "fbase_rebel_liberator"},
-	},
-	{"rebel_small_3",
-		{"fbase_rebel_corporal_hard", "fbase_rebel_warrant_officer_ii_hard", "fbase_rebel_medic_hard", "fbase_rebel_elite_sand_rat", "fbase_rebel_elite_sand_rat"},
-	},
-	{"rebel_large_3",
-		{"fbase_rebel_first_lieutenant_hard", "fbase_rebel_master_sergeant_hard", "fbase_rebel_medic_hard", "fbase_rebel_comm_operator_hard", "fbase_rebel_commando_hard", "fbase_rebel_commando_hard", "fbase_rebel_heavy_trooper", "fbase_rebel_heavy_trooper", "fbase_rebel_heavy_trooper"},
-	},
-	{"rebel_small_4",
-		{"fbase_rebel_squad_leader_hard", "fbase_rebel_elite_sand_rat_hard", "fbase_rebel_elite_heavy_trooper", "fbase_rebel_elite_heavy_trooper", "fbase_rebel_rifleman_hard"},
-	},
-	{"rebel_large_4",
-		{"fbase_rebel_colonel_hard", "fbase_rebel_guard_captain_hard", "fbase_rebel_elite_heavy_trooper_hard", "fbase_rebel_elite_heavy_trooper_hard", "fbase_rebel_elite_heavy_trooper_hard", "fbase_rebel_elite_heavy_trooper_hard", "fbase_rebel_grenadier_hard", "fbase_rebel_guardsman_hard", "fbase_rebel_guardsman_hard"},
-	},
-
-	-- Imperial
-	{"imperial_small_1",
-		{"fbase_imperial_sergeant", "fbase_scout_trooper", "fbase_specialist_noncom", "fbase_imperial_noncom", "fbase_imperial_medic"},
-	},
-	{"imperial_large_1",
-		{"fbase_imperial_army_captain", "fbase_imperial_sergeant", "fbase_imperial_sharpshooter", "fbase_imperial_noncom", "fbase_imperial_noncom", "fbase_imperial_warrant_officer_ii", "fbase_imperial_medic", "fbase_comm_operator", "fbase_imperial_noncom"},
-	},
-	{"imperial_small_2",
-		{"fbase_stormtrooper_squad_leader", "fbase_stormtrooper", "fbase_stormtrooper", "fbase_imperial_exterminator", "fbase_imperial_exterminator"},
-	},
-	{"imperial_large_2",
-		{"fbase_stormtrooper_squad_leader", "fbase_stormtrooper", "fbase_stormtrooper", "fbase_command_security_guard_hard", "fbase_command_security_guard_hard", "fbase_stormtrooper_rifleman", "fbase_stormtrooper_rifleman", "fbase_stormtrooper_medic", "fbase_stormtrooper_bombardier"},
-	},
-	{"imperial_small_3",
-		{"fbase_imperial_corporal_hard", "fbase_comm_operator_hard", "fbase_imperial_sharpshooter_hard", "fbase_dark_trooper", "fbase_dark_trooper"},
-	},
-	{"imperial_large_3",
-		{"fbase_stormtrooper_captain", "fbase_imperial_first_lieutenant_hard", "fbase_imperial_sergeant_hard", "fbase_imperial_medic_hard", "fbase_comm_operator_hard", "fbase_dark_trooper", "fbase_dark_trooper", "fbase_imperial_noncom_hard", "fbase_imperial_noncom"},
-	},
-	{"imperial_small_4",
-		{"fbase_imperial_colonel_hard", "fbase_imperial_army_captain_hard", "fbase_elite_dark_trooper", "fbase_stormtrooper_sniper_hard", "fbase_stormtrooper_medic_hard"},
-	},
-	{"imperial_large_4",
-		{"fbase_stormtrooper_captain_extreme", "fbase_storm_commando_hard", "fbase_storm_commando_hard", "fbase_stormtrooper_rifleman_hard", "fbase_stormtrooper_rifleman_hard", "fbase_stormtrooper_medic_extreme", "fbase_stormtrooper_medic_extreme", "fbase_elite_dark_trooper_hard", "fbase_elite_dark_trooper_hard"},
-	},
-	{"stormtrooper_easy",
-		{"stormtrooper_squad_leader", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper"},
-	},
-	{"stormtrooper_easy_atst",
-		{"stormtrooper_squad_leader", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "stormtrooper", "at_st"},
-	},
-	{"stormtrooper_extreme",
-		{"fbase_stormtrooper_squad_leader_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme"},
-	},
-	{"stormtrooper_extreme_atst",
-		{"fbase_stormtrooper_squad_leader_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "fbase_stormtrooper_extreme", "at_st"},
-	},
-	{"novatrooper",
-		{"novatrooper_squad_leader", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "elite_novatrooper", "dark_trooper_novatrooper", "dark_trooper_novatrooper", "novatrooper_medic", "novatrooper_ensign"},
-	},
-}

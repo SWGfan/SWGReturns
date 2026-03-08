@@ -70,7 +70,7 @@ void ZoneProcessServerImplementation::initialize() {
 	zonePacketHandler->setLogging(false);
 
 	nameManager = new NameManager(_this.getReferenceUnsafeStaticCast());
-
+	//nameManager->test();
 	holocronManager = new HolocronManager(_this.getReferenceUnsafeStaticCast());
 	suiManager = SuiManager::instance();
 	suiManager->setZoneProcessServer(_this.getReferenceUnsafeStaticCast());
@@ -78,11 +78,14 @@ void ZoneProcessServerImplementation::initialize() {
 	objectController = new ObjectController(_this.getReferenceUnsafeStaticCast());
 
 	fishingManager = new FishingManager();
-	fishingManager->initialize();
+	fishingManager->deploy();
 
 	gamblingManager = new GamblingManager();
 	gamblingManager->deploy();
 
 	forageManager = new ForageManager();
 	forageManager->deploy();
+
+	ShipManager::instance();
+
 }

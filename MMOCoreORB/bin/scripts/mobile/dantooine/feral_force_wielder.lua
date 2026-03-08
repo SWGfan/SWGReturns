@@ -2,7 +2,6 @@ feral_force_wielder = Creature:new {
 	objectName = "@mob/creature_names:feral_force_wilder",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "force",
 	faction = "",
 	level = 115,
@@ -21,7 +20,7 @@ feral_force_wielder = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + KILLER,
@@ -32,21 +31,19 @@ feral_force_wielder = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "force_tier_4", chance = 10000000}
+				{group = "junk", chance = 4000000},
+				{group = "power_crystals", chance = 500000},
+				{group = "color_crystals", chance = 1500000},
+				{group = "melee_weapons", chance = 1500000},
+				{group = "armor_attachments", chance = 750000},
+				{group = "clothing_attachments", chance = 750000},
+				{group = "wearables_all", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "force_sword_ranged",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(pikemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(feral_force_wielder, "feral_force_wielder")

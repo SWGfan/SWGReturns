@@ -42,11 +42,12 @@
 
 
 object_tangible_ship_components_chassis_firespray_chassis_token = object_tangible_ship_components_chassis_shared_firespray_chassis_token:new {
-	templateType = SHIPCHASSIS,
+
+
+    templateType = SHIPCHASSIS,
 	chassisDeed = "object/tangible/ship/crafted/chassis/firespray_deed.iff",
-	dealerFee = 100000,
-	certificationRequired = "cert_starships_firespray",
-	skillRequired = {"pilot_rebel_navy_master", "pilot_imperial_navy_master", "pilot_neutral_master"},
+	dealerFee = 15000,
+	certRequired = "",
 	POB = 0,
 }
 

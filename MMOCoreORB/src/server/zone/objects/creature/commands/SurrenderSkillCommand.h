@@ -9,10 +9,14 @@
 
 class SurrenderSkillCommand : public QueueCommand {
 public:
-	SurrenderSkillCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	SurrenderSkillCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -20,15 +24,12 @@ public:
 			return INVALIDLOCOMOTION;
 
 		SkillManager* skillManager = SkillManager::instance();
-
-		if (skillManager == nullptr) {
-			return GENERALERROR;
-		}
-
 		skillManager->surrenderSkill(arguments.toString(), creature, true);
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // SURRENDERSKILLCOMMAND_H_
+#endif //SURRENDERSKILLCOMMAND_H_
+

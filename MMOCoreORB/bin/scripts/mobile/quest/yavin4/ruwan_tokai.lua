@@ -2,7 +2,6 @@ ruwan_tokai = Creature:new {
   objectName = "@mob/creature_names:sergeant_ruwan_tokai",
   socialGroup = "imperial",
   faction = "imperial",
-	mobType = MOB_NPC,
   level = 100,
   chanceHit = 1.000000,
   damageMin = 645,
@@ -28,14 +27,9 @@ ruwan_tokai = Creature:new {
 
   templates = {"object/mobile/dressed_ruwan_tokai.iff"},
   lootGroups = {},
-  primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+  weapons = {},
   conversationTemplate = "ruwan_tokai_mission_giver_convotemplate",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+  attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(ruwan_tokai, "ruwan_tokai")

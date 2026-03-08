@@ -2,7 +2,6 @@ sif_mercenary = Creature:new {
 	objectName = "@mob/creature_names:trandoshan_sif",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "sif",
 	faction = "sif",
 	level = 36,
@@ -21,7 +20,7 @@ sif_mercenary = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -32,22 +31,20 @@ sif_mercenary = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "sif_tier_1", chance = 10000000}
+				{group = "junk", chance = 4500000},
+				{group = "rifles", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "melee_weapons", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "nyms_rare", chance = 500000},
+				{group = "wearables_common", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "sif_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"sif_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,fencermaster,swordsmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,fencermaster,swordsmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(sif_mercenary, "sif_mercenary")

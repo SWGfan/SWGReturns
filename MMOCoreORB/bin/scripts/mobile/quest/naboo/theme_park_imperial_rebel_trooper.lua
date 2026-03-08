@@ -2,7 +2,6 @@ theme_park_imperial_rebel_trooper = Creature:new {
 	objectName = "@mob/creature_names:rebel_trooper",
 	socialGroup = "rebel",
 	faction = "rebel",
-	mobType = MOB_NPC,
 	level = 15,
 	chanceHit = 0.31,
 	damageMin = 160,
@@ -34,26 +33,18 @@ theme_park_imperial_rebel_trooper = Creature:new {
 		"object/mobile/dressed_rebel_trooper_twk_female_01.iff",
 		"object/mobile/dressed_rebel_trooper_twk_male_01.iff"
 	},
-
+	
 	lootGroups = {
 		{
-			groups = {
+	        groups = {
 				{group = "theme_park_loot_information", chance = 10000000},
 			},
 			lootChance = 10000000
-		}
+		}	
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_light"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermid,marksmanmid),
-	secondaryAttacks = { }
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(theme_park_imperial_rebel_trooper, "theme_park_imperial_rebel_trooper")

@@ -8,10 +8,6 @@
 #ifndef BOUNDARYPOLYGON_H_
 #define BOUNDARYPOLYGON_H_
 
-#if defined (__clang__) && (__clang_major__ >= 18)
-	#pragma clang diagnostic push
-	#pragma clang diagnostic ignored "-Wnan-infinity-disabled"
-#endif
 
 #include "../ProceduralRule.h"
 #include "../affectors/AffectorRiver.h"
@@ -243,7 +239,7 @@ public:
 
 			/* First check if the ray is possible to cross the line */
 			if ( px > x1 && px <= x2 && ( py < vertices.get(i)->getY() || py <= vertices.get((i+1) % vertices.size())->getY() ) ) {
-				static const float eps = 0.000001f;
+				static const float eps = 0.000001;
 
 				/* Calculate the equation of the line */
 				float dx = vertices.get((i+1) % vertices.size())->getX() - vertices.get(i)->getX();
@@ -338,8 +334,6 @@ public:
 	}
 };
 
-#if defined (__clang__) && (__clang_major__ >= 18)
-	#pragma clang diagnostic pop
-#endif
+
 
 #endif /* BOUNDARYPOLYGON_H_ */

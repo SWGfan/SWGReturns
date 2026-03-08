@@ -2,7 +2,6 @@ marauder = Creature:new {
 	objectName = "@mob/creature_names:marauder",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "endor_marauder",
 	faction = "endor_marauder",
 	level = 44,
@@ -21,7 +20,7 @@ marauder = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -34,21 +33,25 @@ marauder = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "endor_marauder_tier_2", chance = 10000000}
+				{group = "pistols", chance = 750000},
+				{group = "carbines", chance = 750000},
+				{group = "rifles", chance = 750000},
+				{group = "melee_baton", chance = 1000000},
+				{group = "loot_kit_parts", chance = 1000000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 500000},
+				{group = "bone_armor", chance = 800000},
+				{group = "chitin_armor", chance = 800000},
+				{group = "mabari_armor", chance = 800000},
+				{group = "tantel_armor", chance = 800000},
+				{group = "ubese_armor", chance = 800000},
+				{group = "color_crystals", chance = 750000},
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_rifle",
-	secondaryWeapon = "marauder_melee",
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,marksmanmaster),
-	secondaryAttacks = brawlermaster
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(marauder, "marauder")

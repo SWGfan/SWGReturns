@@ -38,7 +38,7 @@ void NavAreaImplementation::notifyLoadFromDatabase() {
 	ActiveAreaImplementation::notifyLoadFromDatabase();
 }
 
-AABB NavAreaImplementation::getBoundingBox() const {
+AABB NavAreaImplementation::getBoundingBox() {
 	float f = radius;
 	float x = getPositionX();
 	float y = getPositionY();
@@ -98,37 +98,37 @@ void NavAreaImplementation::initialize() {
     setLoggingName("NavArea " + meshName);
 }
 
-bool NavAreaImplementation::objectInMesh(SceneObject* obj) const {
+bool NavAreaImplementation::objectInMesh(SceneObject* obj) {
 	ReadLocker rlocker(&containedLock);
 
 	return containedObjects.contains(obj->getObjectID());
 }
 
 void NavAreaImplementation::notifyEnter(SceneObject* object) {
-	if (disableUpdates || NavMeshManager::instance()->isStopped())
-		return;
+    if (disableUpdates || NavMeshManager::instance()->isStopped())
+        return;
 
-	if (object->getParentID() != 0)
-		return;
+    if (object->getParentID() != 0)
+        return;
 
-	if (object->isCreatureObject() || object->isLairObject())
-		return;
+    if (object->isCreatureObject() || object->isLairObject())
+        return;
 
-	if (object->getGameObjectType() == SceneObjectType::LIGHTOBJECT)
-		return;
+    if (object->getGameObjectType() == SceneObjectType::FURNITURE)
+        return;
 
-	SharedObjectTemplate *shot = object->getObjectTemplate();
+    SharedObjectTemplate *shot = object->getObjectTemplate();
 
-	if (shot == nullptr)
-		return;
+    if (shot == nullptr)
+        return;
 
-	if (shot->getCollisionMaterialFlags() == 0 || shot->getCollisionMaterialBlockFlags() == 0) // soft object
-		return;
+    if (shot->getCollisionMaterialFlags() == 0 || shot->getCollisionMaterialBlockFlags() == 0) // soft object
+        return;
 
-	if (shot->getTemplateFileName().contains("construction_"))
-		return;
+    if (shot->getTemplateFileName().contains("construction_"))
+    	return;
 
-	updateNavMesh(object, false);
+    updateNavMesh(object, false);
 }
 
 void NavAreaImplementation::notifyExit(SceneObject* object) {
@@ -186,7 +186,7 @@ NavArea* NavAreaImplementation::asNavArea() {
     return _this.getReferenceUnsafeStaticCast();
 }
 
-bool NavAreaImplementation::containsPoint(float px, float py) const {
+bool NavAreaImplementation::containsPoint(float px, float py) {
     float dx = px - getPositionX();
     float dy = py - getPositionY();
 

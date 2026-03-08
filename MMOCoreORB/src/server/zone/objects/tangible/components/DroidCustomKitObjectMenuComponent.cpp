@@ -42,51 +42,41 @@ int DroidCustomKitObjectMenuComponent::handleObjectMenuSelect(SceneObject* scene
 		return 0;
 
 	ManagedReference<TangibleObject*> kitTano = cast<TangibleObject*>(sceneObject);
-
-	if (kitTano == nullptr)
+	if(kitTano == nullptr)
 		return 0;
 
 	uint64 targetID = player->getTargetID();
 	ZoneServer* server = player->getZoneServer();
-
 	if (server == nullptr)
 		return 0;
 
 	ManagedReference<TangibleObject*> target = server->getObject(targetID, true).castTo<TangibleObject*>();
-
 	if (target == nullptr || !target->isDroidObject()) {
-		player->sendSystemMessage("@tool/customizer:droid_pet_only"); // You may only use this tool to customize droid pets.
+		player->sendSystemMessage("You can only use this tool to customize droids");
 		return 0;
 	}
-
 	//permission check
 	CreatureObject* droid = cast<CreatureObject*>(target.get());
 	uint64 ownerID = droid->getCreatureLinkID();
-
-	if (ownerID != player->getObjectID()){
+	if ( ownerID != player->getObjectID()){
 		bool hasConsent = false;
 
 		ManagedReference<CreatureObject*> targetOwner = server->getObject(ownerID, true).castTo<CreatureObject*>();
-
-		if (targetOwner != nullptr) {
+		if (targetOwner != nullptr)
+		{
 			Locker crossLock(targetOwner, player);
 			ManagedReference<PlayerObject*> ghostOwner = targetOwner->getPlayerObject();
-
-			if (ghostOwner != nullptr) {
-				for (int i = 0; i < ghostOwner->getConsentListSize(); ++i) {
-					String entryName = ghostOwner->getConsentName(i);
-
-					if (!entryName.isEmpty()){
-						if (entryName == player->getFirstName().toLowerCase()){
-							hasConsent = true;
-						}
+			for (int i = 0; i < ghostOwner->getConsentListSize(); ++i) {
+				String entryName = ghostOwner->getConsentName(i);
+				if (!entryName.isEmpty()){
+					if (entryName == player->getFirstName().toLowerCase()){
+						hasConsent = true;
 					}
 				}
 			}
 		}
-
 		if (!hasConsent){
-			player->sendSystemMessage("@tool/customizer:need_consent"); // You require consent to customize another player's droid.
+			player->sendSystemMessage("You require consent to customize another player's droid");
 			return 0;
 		}
 	}
@@ -96,47 +86,49 @@ int DroidCustomKitObjectMenuComponent::handleObjectMenuSelect(SceneObject* scene
 
 	String appearanceFilename = target->getObjectTemplate()->getAppearanceFilename();
 	VectorMap<String, Reference<CustomizationVariable*> > variables;
-	AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, true);
-	int totalPalettes = 0;
-
-	for (int i = 0; i< variables.size(); ++i) {
+	AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
+	int numPalette = 0;
+	for(int i = 0; i< variables.size(); ++i)
+	{
 		String varkey = variables.elementAt(i).getKey();
-
-		if (varkey.contains("color")) {
-			++totalPalettes;
+		if (varkey.contains("color"))
+		{
+			++numPalette;
 		}
 	}
 
-	if (totalPalettes == 0) {
-		StringIdChatParameter noCustom("tool/customizer", "prose_no_customization"); // %TT does not have any customization options available.
-		noCustom.setTT(droid->getCustomObjectName());
-
-		player->sendSystemMessage(noCustom.toString());
+	if (numPalette == 0) {
+		player->sendSystemMessage("No customization options available on this droid"); // protocol droids
 		return 0;
 	}
 
+	DroidObject* painted = cast<DroidObject*>(droid);
+	if (painted != nullptr){
+		painted->refreshPaint();
+	}
+
 	ManagedReference<SuiListBox*> frameTrimSelector = new SuiListBox(player, SuiWindowType::CUSTOMIZE_KIT);
-
 	frameTrimSelector->setUsingObject(player);
-	frameTrimSelector->setCallback(new CustomDroidSuiCallback(server, totalPalettes, kitTano));
+	frameTrimSelector->setCallback(new CustomDroidSuiCallback(server, numPalette, kitTano));
 	frameTrimSelector->setUsingObject(target);
-	frameTrimSelector->setPromptTitle("@tool/customizer:mnu_customize");
-	frameTrimSelector->setPromptText("@tool/customizer:var_select_prompt");
+	frameTrimSelector->setPromptTitle("Customize");
+	frameTrimSelector->setPromptText("Please select the customization action you would like to take");
 
-	frameTrimSelector->addMenuItem("@tool/customizer:opt_color_frame");
+	frameTrimSelector->addMenuItem("Color Frame");
 
-	if (totalPalettes > 1 ) {
-		frameTrimSelector->addMenuItem("@tool/customizer:opt_color_trim");
+	if (numPalette > 1 ) {
+		frameTrimSelector->addMenuItem("Color Trim");
+	}
+
+	if (numPalette > 2 ) {
+		frameTrimSelector->addMenuItem("Color Extra Trim");
 	}
 
 	frameTrimSelector->setCancelButton(true, "");
 	frameTrimSelector->setOkButton(true, "@ok");
 
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-
-	if (ghost != nullptr)
-		ghost->addSuiBox(frameTrimSelector);
-
+	ghost->addSuiBox(frameTrimSelector);
 	player->sendMessage(frameTrimSelector->generateMessage());
 
 	return 0;

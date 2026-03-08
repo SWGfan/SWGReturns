@@ -42,33 +42,38 @@
 
 
 object_draft_schematic_space_repair_plasma_conduit_repair_kit = object_draft_schematic_space_repair_shared_plasma_conduit_repair_kit:new {
-	templateType = DRAFTSCHEMATIC,
 
-	craftingToolTab = 262144, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 11,
-	size = 1,
-	factoryCrateType = "object/factory/factory_crate_electronics.iff",
+   templateType = DRAFTSCHEMATIC,
 
-	xpType = "shipwright",
-	xp = 32,
+   customObjectName = "Conduit Repair Kit",
 
-	assemblySkill = "general_assembly",
-	experimentingSkill = "general_experimentation",
-	customizationSkill = "medicine_customization",
+   craftingToolTab = 262144, -- (See DraftSchematicObjectTemplate.h)
+   complexity = 11, 
+   size = 1, 
 
-	customizationOptions = {},
-	customizationStringNames = {},
-	customizationDefaults = {},
+   xpType = "shipwright", 
+   xp = 32, 
 
-	ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n"},
-	ingredientTitleNames = {"repair_parts", "fiberplast_patches"},
-	ingredientSlotType = {0, 0},
-	resourceTypes = {"steel", "fiberplast"},
-	resourceQuantities = {60, 50},
-	contribution = {100, 100},
+   assemblySkill = "general_assembly", 
+   experimentingSkill = "general_experimentation", 
+   customizationSkill = "medicine_customization", 
 
-	targetTemplate = "object/tangible/ship/crafted/repair/repair_kit_plasma_conduit.iff",
+   customizationOptions = {},
+   customizationStringNames = {},
+   customizationDefaults = {},
 
-	additionalTemplates = {}
+   ingredientTemplateNames = {"craft_item_ingredients_n", "craft_item_ingredients_n"},
+   ingredientTitleNames = {"repair_parts", "fiberplast_patches"},
+   ingredientSlotType = {0, 0},
+   resourceTypes = {"steel", "fiberplast"},
+   resourceQuantities = {60, 50},
+   contribution = {100, 100},
+
+
+   targetTemplate = "object/tangible/ship/crafted/repair/repair_kit_plasma_conduit.iff",
+
+   additionalTemplates = {
+             }
+
 }
 ObjectTemplates:addTemplate(object_draft_schematic_space_repair_plasma_conduit_repair_kit, "object/draft_schematic/space/repair/plasma_conduit_repair_kit.iff")

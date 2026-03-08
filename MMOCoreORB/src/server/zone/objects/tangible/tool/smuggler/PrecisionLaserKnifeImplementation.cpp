@@ -103,10 +103,11 @@ int PrecisionLaserKnifeImplementation::handleObjectMenuSelect(CreatureObject* pl
 	return 0;
 }
 
-void PrecisionLaserKnifeImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
-	SlicingToolImplementation::fillAttributeList(alm, object);
+void PrecisionLaserKnifeImplementation::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
+	SlicingToolImplementation::fillAttributeList(msg, object);
 
-	alm->insertAttribute("charges", charges);
+	msg->insertAttribute("charges", charges);
+
 }
 
 void PrecisionLaserKnifeImplementation::updateCharges(int val) {

@@ -16,36 +16,13 @@
 #include "server/zone/objects/player/sessions/SlicingSession.h"
 
 void SecurityTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
-	if (sceneObject == nullptr || !sceneObject->isTangibleObject()) {
+	if (!sceneObject->isTangibleObject())
 		return;
-	}
 
-	ManagedReference<BuildingObject*> building = nullptr;
-	uint64 terminalID = sceneObject->getObjectID();
-	ZoneServer* zoneServer = sceneObject->getZoneServer();
+	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (zoneServer == nullptr) {
-		return;
-	}
-
-	switch (terminalID) {
-		case 367428: // Corellia - Stronghold
-			building = cast<BuildingObject*>(zoneServer->getObject(2715899).get());
-			break;
-		case 923854: // Rori - Imperial Encampment
-			building = cast<BuildingObject*>(zoneServer->getObject(2935404).get());
-			break;
-		case 923864: // Rori - Rebel Military Base
-			building = cast<BuildingObject*>(zoneServer->getObject(7555646).get());
-			break;
-		default:
-			building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
-			break;
-	}
-
-	if (building == nullptr || player == nullptr || player->isDead() || player->isIncapacitated()) {
-		return;
-	}
+	if (building == nullptr || player->isDead() || player->isIncapacitated())
+			return;
 
 	Zone* zone = building->getZone();
 
@@ -67,42 +44,14 @@ void SecurityTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObj
 }
 
 int SecurityTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const {
-	if (sceneObject == nullptr || player == nullptr) {
+	if (!sceneObject->isTangibleObject() || player->isDead() || player->isIncapacitated() || selectedID != 20)
 		return 1;
-	}
 
-	if (!sceneObject->isTangibleObject() || player->isDead() || player->isIncapacitated() || selectedID != 20) {
-		return 1;
-	}
-
-	ManagedReference<BuildingObject*> building = nullptr;
-	uint64 terminalID = sceneObject->getObjectID();
-	ZoneServer* zoneServer = sceneObject->getZoneServer();
-
-	if (zoneServer == nullptr) {
-		return 1;
-	}
-
-	switch (terminalID) {
-		case 367428: // Corellia - Stronghold
-			building = cast<BuildingObject*>(zoneServer->getObject(2715899).get());
-			break;
-		case 923848: // Rori - Imperial Encampment
-			building = cast<BuildingObject*>(zoneServer->getObject(2935404).get());
-			break;
-		case 923864: // Rori - Rebel Military Base
-			building = cast<BuildingObject*>(zoneServer->getObject(7555646).get());
-			break;
-		default:
-			building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
-			break;
-	}
-
-	if (building == nullptr) {
-		return 1;
-	}
-
+	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 	ManagedReference<TangibleObject*> securityTerminal = cast<TangibleObject*>(sceneObject);
+
+	if (building == nullptr)
+		return 1;
 
 	Zone* zone = building->getZone();
 
@@ -118,15 +67,8 @@ int SecurityTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObje
 		return 1;
 
 
-	if (!gcwMan->canStartSlice(player, securityTerminal)) {
+	if (!gcwMan->canStartSlice(player, securityTerminal))
 		return 1;
-	} else if (!gcwMan->isProperFactionStatus(player)) {
-		StringIdChatParameter message("@faction_perk:prose_not_neutral"); // You cannot use %TT if you are neutral or on leave.
-		message.setTT(securityTerminal->getDisplayedName());
-		player->sendSystemMessage(message);
-
-		return 1;
-	}
 
 	if (gcwMan->isTerminalDamaged(securityTerminal)) {
 		Reference<CreatureObject*> playerRef = player;

@@ -2,7 +2,6 @@ cx_425 = Creature:new {
 	objectName = "",
 	customName = "CX-425",
 	socialGroup = "imperial",
-	mobType = MOB_NPC,
 	faction = "imperial",
 	level = 100,
 	chanceHit = 1,
@@ -29,17 +28,9 @@ cx_425 = Creature:new {
 
 	templates = {"object/mobile/dressed_cx_425.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "imperial_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"imperial_weapons_medium"},
 	conversationTemplate = "cx_425_trooper_mission_giver_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(cx_425, "cx_425")

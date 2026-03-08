@@ -734,12 +734,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s10_g
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s10_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s10_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s10_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s10_gen5.iff"
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s10_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s10_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s11 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s11.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -1054,13 +1048,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s11_g
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s11_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s11_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s11_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s11_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s11_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s11_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s12 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s12.iff"
@@ -1377,13 +1364,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s12_g
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s12_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s12_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s12_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s12_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s12_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s12_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s13 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s13.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -1699,13 +1679,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s13_g
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s13_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s13_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s13_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s13_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s13_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s13_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s1_gen1 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s1_gen1.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -1957,13 +1930,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s1_ge
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s1_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s1_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s1_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s1_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s1_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s1_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s2 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s2.iff"
@@ -2280,13 +2246,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s2_ge
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s2_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s2_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s2_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s2_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s2_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s2_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s3 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s3.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -2601,13 +2560,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s3_ge
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s3_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s3_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s3_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s3_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s3_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s3_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s4 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s4.iff"
@@ -2924,13 +2876,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s4_ge
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s4_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s4_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s4_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s4_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s4_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s4_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s5 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s5.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -3245,13 +3190,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s5_ge
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s5_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s5_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s5_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s5_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s5_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s5_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s6 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s6.iff"
@@ -3568,13 +3506,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s6_ge
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s6_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s6_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s6_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s6_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s6_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s6_gen5.iff")
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s7 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s7.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -3889,13 +3820,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s7_ge
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s7_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s7_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s7_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s7_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s7_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s7_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s8 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s8.iff"
@@ -4212,14 +4136,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s8_ge
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s8_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s8_gen4.iff")
 
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s8_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s8_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s8_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s8_gen5.iff")
-
-
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s9 = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s9.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -4534,13 +4450,6 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s9_ge
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s9_gen4, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s9_gen4.iff")
-
-object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s9_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s9_gen5.iff"
-	
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_one_handed_s9_gen5, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_one_handed_s9_gen5.iff")
 
 object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_s10_training = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_s10_training.iff"
@@ -5297,3 +5206,16 @@ object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_training = Share
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_training, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_training.iff")
+
+object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_onehanded_gen5_exar_kun = SharedWeaponObjectTemplate:new {
+clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_onehanded_gen5_exar_kun.iff"
+}
+
+ObjectTemplates: addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_onehanded_gen5_exar_kun, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_onehanded_gen5_exar_kun.iff")
+
+object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_onehanded_gen5_jinzu = SharedWeaponObjectTemplate:new {
+clientTemplateFileName = "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_onehanded_gen5_jinzu.iff"
+}
+
+ObjectTemplates: addClientTemplate(object_weapon_melee_sword_crafted_saber_shared_sword_lightsaber_onehanded_gen5_jinzu, "object/weapon/melee/sword/crafted_saber/shared_sword_lightsaber_onehanded_gen5_jinzu.iff")
+

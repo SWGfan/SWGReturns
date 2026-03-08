@@ -9,53 +9,37 @@
 
 class SetNameCommand : public QueueCommand {
 public:
-	SetNameCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	SetNameCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		auto zoneServer = server->getZoneServer();
+		ZoneServer* zoneServer = server->getZoneServer();
 
-		if (zoneServer == nullptr) {
-			return GENERALERROR;
-		}
+		Reference<SceneObject*> targetObj = zoneServer->getObject(target);
 
-		StringTokenizer args(arguments.toString());
-
-		if (!args.hasMoreTokens()) {
-			return INVALIDPARAMETERS;
-		}
-
-		uint64 targetID = target;
-
-		if (targetID == 0) {
-			targetID = args.getLongToken();
-		}
-
-		Reference<SceneObject*> targetObj = zoneServer->getObject(targetID);
-
-		if (targetObj == nullptr) {
-			creature->sendSystemMessage("Invalid Target. Syntax: \"/setName objectID New Name String here\" or Target the intended object \"/setName New Name String Here\".");
+		if(targetObj == nullptr) {
+			creature->sendSystemMessage("Invalid Target.");
 			return INVALIDTARGET;
 		}
 
 		if (targetObj->isPlayerCreature()) {
-			creature->sendSystemMessage("Player Names cannot be changed with this command. Use \"/setFirstName\" and \"/setLastName\" commands.");
+			creature->sendSystemMessage("Player Names cannot be changed with this command. Use setFirstName and/or setLastName");
 			return INVALIDTARGET;
 		}
 
-		auto ghost = creature->getPlayerObject();
-
-		bool bypassFilter = (ghost != nullptr && ghost->isPrivileged());
-
 		Locker clocker(targetObj, creature);
 
-		String newName = args.getRemainingString();
+		String newName = arguments.toString();
 
 		if (newName.isEmpty()) {
 			creature->sendSystemMessage("You must specify a new name.");
@@ -64,7 +48,7 @@ public:
 
 		NameManager* nameManager = server->getNameManager();
 
-		if (!bypassFilter && nameManager != nullptr && nameManager->validateName(newName, -1) != NameManagerResult::ACCEPTED) {
+		if (nameManager->validateName(newName, -1) != NameManagerResult::ACCEPTED) {
 			creature->sendSystemMessage("That name was rejected by the name filter.");
 			return GENERALERROR;
 		}
@@ -77,6 +61,7 @@ public:
 
 		return SUCCESS;
 	}
+
 };
 
-#endif // SETNAMECOMMAND_H_
+#endif //SETNAMECOMMAND_H_

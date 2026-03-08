@@ -2,7 +2,6 @@ fbase_elite_sand_trooper_extreme = Creature:new {
 	objectName = "@mob/creature_names:fbase_elite_sand_trooper_extreme",
 	randomNameType = NAME_STORMTROOPER,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 210,
@@ -24,7 +23,7 @@ fbase_elite_sand_trooper_extreme = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
-	creatureBitmask = PACK + KILLER + NOINTIMIDATE,
+	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 	scale = 1.05,
@@ -33,24 +32,21 @@ fbase_elite_sand_trooper_extreme = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "imperial_stormtrooper_tier_4", chance = 10000000}
+				{group = "color_crystals", chance = 100000},
+				{group = "junk", chance = 6000000},
+				{group = "rebpoints", chance = 1200000},
+				{group = "armor_all", chance = 1200000},
+				{group = "clothing_attachments", chance = 150000},
+				{group = "armor_attachments", chance = 150000},
+				{group = "stormtrooper_common", chance = 200000},
+				{group = "wearables_all", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "imperial_carbine",
-	secondaryWeapon = "imperial_pistol",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"sandtrooper_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,carbineermaster),
-	secondaryAttacks = merge(marksmanmaster,pistoleermaster)
+	attacks = merge(marksmanmaster,riflemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_elite_sand_trooper_extreme, "fbase_elite_sand_trooper_extreme")

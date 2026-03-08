@@ -17,11 +17,7 @@ include system.util.Vector;
 class Consumable extends TangibleObject {
 	protected int duration;
 	protected int filling;
-
 	protected int nutrition;
-	protected float newNutrition;
-	protected float nutritionMin;
-	protected float nutritionMax;
 
 	protected int effectType;
 
@@ -32,6 +28,8 @@ class Consumable extends TangibleObject {
 	protected int fillingMax;
 	protected int flavorMin;
 	protected int flavorMax;
+	protected int nutritionMin;
+	protected int nutritionMax;
 	protected int quantityMin;
 	protected int quantityMax;
 
@@ -53,7 +51,6 @@ class Consumable extends TangibleObject {
 	public static final int EFFECT_SKILL = 0x04;
 	public static final int EFFECT_SPICE = 0x05;
 	public static final int EFFECT_HEALING = 0x06;
-	public static final int EFFECT_BARTENDER_DRINK = 0x07;
 
 	public static final int FOOD = 0x01;
 	public static final int DRINK = 0x10;
@@ -66,17 +63,14 @@ class Consumable extends TangibleObject {
 
 		duration = 30;
 		filling = 0;
-
-		nutrition = 0;
-		nutritionMin = 1.f;
-		nutritionMax = 1.f;
-
 		effectType = EFFECT_ATTRIBUTE;
 
 		fillingMin = 1;
 		fillingMax = 1;
 		flavorMin = 1;
 		flavorMax = 1;
+		nutritionMin = 1;
+		nutritionMax = 1;
 		quantityMin = 1;
 		quantityMax = 1;
 
@@ -132,22 +126,22 @@ class Consumable extends TangibleObject {
 		return (effectType == EFFECT_ATTRIBUTE);
 	}
 
-	@read
+	@dirty
 	public boolean isDrink() {
 		return (consumableType == DRINK);
 	}
 
-	@read
+	@dirty
 	public boolean isFood() {
 		return (consumableType == FOOD);
 	}
 
-	@read
+	@dirty
 	public boolean isForagedFood() {
 		return (foragedFood == 1);
 	}
 
-	@read
+	@dirty
 	public boolean isSpice() {
 		return (isSpiceEffect() && isFood());
 	}
@@ -157,13 +151,14 @@ class Consumable extends TangibleObject {
 		return true;
 	}
 
-	@read
-	public int getDuration() {
+	@dirty
+	public int getDuration(){
 		return duration;
 	}
 
-	@read
-	public string getSpeciesRestriction() {
+	@dirty
+	public string getSpeciesRestriction(){
 		return speciesRestriction;
 	}
+
 }

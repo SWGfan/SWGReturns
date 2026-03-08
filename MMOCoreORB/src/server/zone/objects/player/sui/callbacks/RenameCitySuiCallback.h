@@ -31,8 +31,8 @@ public:
 		if(cancelPressed || server == nullptr)
 			return;
 
-		ManagedReference<CityRegion*> cityRegion = city.get();
-		if(cityRegion == nullptr)
+		ManagedReference<CityRegion*> cityObject = city.get();
+		if(cityObject == nullptr)
 			return;
 
 		ManagedReference<Zone*> zone = this->zne.get();
@@ -77,27 +77,27 @@ public:
 			return;
 		}
 
-		if(cityRegion->getMayorID() != creature->getObjectID() && !ghost->isStaff())
+		if(cityObject->getMayorID() != creature->getObjectID() && !ghost->isStaff())
 			return;
 
 		Locker mlock(cityManager, creature);
 
-		if(!cityManager->renameCity(cityRegion, cityName))
+		if(!cityManager->renameCity(cityObject, cityName))
 			return;
 
 		mlock.release();
 
-		Locker clock(cityRegion, creature);
+		Locker clock(cityObject, creature);
 
-		String oldName = cityRegion->getCityRegionName();
-		bool isRegistered = cityRegion->isRegistered();
+		String oldName = cityObject->getRegionName();
+		bool isRegistered = cityObject->isRegistered();
 
 		if(isRegistered)
-			cityManager->unregisterCity(cityRegion, creature);
+			cityManager->unregisterCity(cityObject, creature);
 
-		cityRegion->setCustomRegionName(cityName);
+		cityObject->setCustomRegionName(cityName);
 
-		if(cityRegion->hasShuttleInstallation()) {
+		if(cityObject->hasShuttleInstallation()) {
 			Reference<PlanetTravelPoint*> tp = planetManager->getPlanetTravelPoint(oldName);
 
 			if(tp != nullptr) {
@@ -109,7 +109,7 @@ public:
 		}
 
 		if(isRegistered)
-			cityManager->registerCity(cityRegion, creature);
+			cityManager->registerCity(cityObject, creature);
 
 		creature->addCooldown("rename_city_cooldown", 604800 * 4); // 4 week cooldown.  need to investigate
 		creature->sendSystemMessage("@city/city:name_changed"); // The city name has been successfully changed.");

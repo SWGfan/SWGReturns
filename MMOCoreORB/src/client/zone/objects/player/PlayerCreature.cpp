@@ -1,7 +1,5 @@
 #include "PlayerCreature.h"
 #include "client/zone/Zone.h"
-//#include "server/zone/SpaceZone.h"
-//#include "client/zone/SpaceZone.h" //// << need to make this
 #include "server/zone/packets/object/ObjectControllerMessage.h"
 
 PlayerCreature::PlayerCreature(LuaObject* templateData) : CreatureObject(templateData) {
@@ -35,15 +33,9 @@ void PlayerCreature::updatePosition(float x, float z, float y) {
 
 void PlayerCreature::insertToZone(Zone* zone) {
 	PlayerCreature::zone = zone;
-	PlayerCreature::spaceZone = nullptr;
 
 	/*Event * positionUpdateEvent = new PositionUpdateEvent ( this );
 	zone->addEvent ( positionUpdateEvent, 250 );*/
-}
-
-void PlayerCreature::insertToZone(SpaceZone* zone) {
-	PlayerCreature::spaceZone = zone;
-	PlayerCreature::zone = nullptr;
 }
 
 void PlayerCreature::activatePositionUpdate() {

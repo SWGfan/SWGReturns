@@ -77,11 +77,6 @@ function BestineMuseumScreenPlay:doPhaseInit()
 	if (not hasServerEvent("MuseumPhaseChange")) then
 		BestineMuseumScreenPlay:createEvent()
 	end
-
-	local phaseChangeTimeLeft = self.getPhaseTimeLeft()
-	if (phaseChangeTimeLeft > PHASE_CHANGE_TIME or phaseChangeTimeLeft < 0) then
-		rescheduleServerEvent("MuseumPhaseChange", PHASE_CHANGE_TIME)
-	end
 end
 
 function BestineMuseumScreenPlay:createEvent()
@@ -94,7 +89,7 @@ function BestineMuseumScreenPlay:spawnMobiles()
 		local npcData = artistMobiles[i]
 		local pNpc = spawnMobile("tatooine", npcData.template, 1, npcData.x, npcData.z, npcData.y, npcData.direction, npcData.cellID)
 		if pNpc ~= nil and npcData.position == SIT then
-			CreatureObject(pNpc):setState(SITTINGONCHAIR)
+			CreatureObject(pNpc):setState(STATESITTINGONCHAIR)
 		end
 	end
 end
@@ -121,8 +116,6 @@ function BestineMuseumScreenPlay:doPhaseChange()
 
 	if (not hasServerEvent("MuseumPhaseChange")) then
 		BestineMuseumScreenPlay:createEvent()
-	else
-		rescheduleServerEvent("MuseumPhaseChange", PHASE_CHANGE_TIME)
 	end
 end
 
@@ -470,7 +463,7 @@ function BestineMuseumScreenPlay:createArtistWaypoint(pPlayer, id)
 
 	if (pGhost ~= nil) then
 		local pWaypoint = PlayerObject(pGhost):getWaypointAt(artistData.x, artistData.y, "tatooine")
-
+		
 		if pWaypoint ~= nil then
 			local waypoint = LuaWaypointObject(pWaypoint)
 
@@ -479,7 +472,7 @@ function BestineMuseumScreenPlay:createArtistWaypoint(pPlayer, id)
 				PlayerObject(pGhost):updateWaypoint(SceneObject(pWaypoint):getObjectID())
 			end
 		else
-			PlayerObject(pGhost):addWaypoint("tatooine", artistName, "", artistData.x, 0, artistData.y, WAYPOINT_PURPLE, true, true, 0, 0)
+			PlayerObject(pGhost):addWaypoint("tatooine", artistName, "", artistData.x, artistData.y, WAYPOINTPURPLE, true, true, 0, 0)
 		end
 	end
 end
