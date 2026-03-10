@@ -177,25 +177,23 @@ int HolocronMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Crea
 
 void HolocronMenuComponent::callLuaHolocronFunction(SceneObject* sceneObject, CreatureObject* creature, const String& functionName) const {
 
-	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
-	if (ghost == nullptr)
+	if (creature == nullptr || sceneObject == nullptr)
 		return;
 
 	Lua* lua = DirectorManager::instance()->getLuaInstance();
 	if (lua == nullptr)
 		return;
 
-	// Use LuaFunction with << operator so objects are SWIG-wrapped correctly.
-	// lua_pushlightuserdata pushes raw pointers that Lua cannot cast with SceneObject()/CreatureObject().
+	// Use LuaFunction with << operator for proper SWIG wrapping.
+	// Only push creature and sceneObject  Lua retrieves ghost via getPlayerObject().
 	Reference<LuaFunction*> luaFunc = lua->createFunction(functionName, 0);
 	if (luaFunc == nullptr) {
 		error("HolocronMenuComponent: Lua function not found: " + functionName);
 		return;
 	}
 
-	*luaFunc << creature;    // pCreature
-	*luaFunc << sceneObject; // pTarget (the holocron)
-	*luaFunc << ghost.get(); // pGhost
+	*luaFunc << creature;    // pCreature (player)
+	*luaFunc << sceneObject; // pTarget  (the holocron item)
 
 	luaFunc->callFunction();
 }

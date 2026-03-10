@@ -36,7 +36,6 @@
 
 #include "server/zone/objects/creature/commands/JediQueueCommand.h"
 #include "server/zone/objects/creature/commands/ResetVillageCommand.h"
-#include "server/zone/objects/creature/commands/VillageCommand.h"
 
 #include "server/zone/objects/creature/commands/Melee1hBlindHit1Command.h"
 #include "server/zone/objects/creature/commands/Melee1hBlindHit2Command.h"
