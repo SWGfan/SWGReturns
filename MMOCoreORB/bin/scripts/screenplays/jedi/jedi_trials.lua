@@ -74,6 +74,9 @@ function JediTrials:onPlayerLoggedIn(pPlayer)
 	end
 
 	KnightTrials:onPlayerLoggedIn(pPlayer)
+
+	-- Resume Gatekeeper trial if player was mid-trial at logout
+	GatekeeperConversation:onPlayerLoggedIn(pPlayer)
 end
 
 function JediTrials:droppedSkillDuringTrials(pPlayer, pSkill)

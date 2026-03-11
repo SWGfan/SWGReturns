@@ -44,20 +44,20 @@
 object_tangible_food_crafted_drink_vasarian_brandy = object_tangible_food_crafted_shared_drink_vasarian_brandy:new {
 	templateType = CONSUMABLE,
 
-	duration = 10,
-	filling = 10,
-	nutrition = 10,
-
+	duration = 1800,
+	filling = 50,
+	nutrition = 300,
+	useCount = 10,
 	effectType = 1,
 
 	fillingMin = 55,
-	fillingMax = 33,
+	fillingMax = 15,
 	flavorMin = 1800,
-	flavorMax = 3600,
-	nutritionMin = 200,
-	nutritionMax = 300,
+	flavorMax = 7200,
+	nutritionMin = 150,
+	nutritionMax = 880,
 	quantityMin = 6,
-	quantityMax = 10,
+	quantityMax = 75,
 
 	modifiers = { "mind", 0 , "focus", 0 , "willpower", 0 },
 
@@ -70,8 +70,8 @@ object_tangible_food_crafted_drink_vasarian_brandy = object_tangible_food_crafte
 	experimentalWeights = {1, 1, 1, 1, 1, 2, 2, 1, 1, 3, 3, 1, 1},
 	experimentalGroupTitles = {"null", "null", "null", "null", "exp_nutrition", "exp_flavor", "exp_quantity", "exp_filling", "null"},
 	experimentalSubGroupTitles = {"null", "null", "hitpoints", "quantity_bonus", "nutrition", "flavor", "quantity", "filling", "stomach"},
-	experimentalMin = {0, 0, 1000, 0, 90, 60, 60, 80, 1},
-	experimentalMax = {0, 0, 1000, 0, 135, 120, 100, 120, 1},
+	experimentalMin = {0, 0, 1000, 0, 75, 60, 60, 80, 1},
+	experimentalMax = {0, 0, 1000, 0, 120, 120, 100, 120, 1},
 	experimentalPrecision = {0, 0, 0, 0, 0, 10, 0, 0, 0},
 	experimentalCombineType = {0, 0, 4, 1, 1, 1, 1, 1, 1},
 }
