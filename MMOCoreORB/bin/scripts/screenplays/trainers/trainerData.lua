@@ -1,18 +1,4 @@
-[ 27%] Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o
-[ 27%] Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o
-[ 27%] Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o
-In file included from /home/swg/Returns-EMU/MMOCoreORB/src/autogen/server/zone/objects/structure/StructureObject.cpp:9:
-/home/swg/Returns-EMU/MMOCoreORB/src/server/zone/objects/structure/events/StructureMaintenanceTask.h: In member function ‘const sys::lang::AtomicTime& server::zone::objects::structure::events::StructureMaintenanceTask::getNextExecutionTime() const’:
-/home/swg/Returns-EMU/MMOCoreORB/src/server/zone/objects/structure/events/StructureMaintenanceTask.h:41:50: error: returning reference to temporary [-Werror=return-local-addr]
-   41 |                 return Task::getNextExecutionTime();
-      |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
-cc1plus: all warnings being treated as errors
-make[2]: *** [src/CMakeFiles/idlobjects.dir/build.make:3839: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-cc1plus: all warnings being treated as errors
-make[2]: *** [src/CMakeFiles/idlobjects.dir/build.make:3909: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o] Error 1
-make[1]: *** [CMakeFiles/Makefile2:906: src/CMakeFiles/idlobjects.dir/all] Error 2
-make: *** [Makefile:136: all] Error 2trainerSkills = {
+trainerSkills = {
 	-- Starter Professions
 	trainer_artisan = {
 		"crafting_artisan_novice",
