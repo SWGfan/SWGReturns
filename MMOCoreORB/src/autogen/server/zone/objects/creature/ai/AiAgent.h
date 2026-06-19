@@ -472,9 +472,9 @@ public:
 
 	void fillAttributeList(AttributeListMessage* msg, CreatureObject* object);
 
-	void setNextPosition(float x, float z, float y, CellObject* cell = nullptr);
+	void setNextPosition(float x, float z, float y, CellObject* cell = NULL);
 
-	void setNextStepPosition(float x, float z, float y, CellObject* cell = nullptr);
+	void setNextStepPosition(float x, float z, float y, CellObject* cell = NULL);
 
 	void notifyPositionUpdate(QuadTreeEntry* entry);
 
@@ -626,7 +626,7 @@ public:
 
 	void addPatrolPoint(PatrolPoint& point);
 
-	void setHomeLocation(float x, float z, float y, CellObject* cell = nullptr);
+	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL);
 
 	void setRespawnTimer(float resp);
 
@@ -1228,9 +1228,9 @@ public:
 
 	void fillAttributeList(AttributeListMessage* msg, CreatureObject* object);
 
-	void setNextPosition(float x, float z, float y, CellObject* cell = nullptr);
+	void setNextPosition(float x, float z, float y, CellObject* cell = NULL);
 
-	void setNextStepPosition(float x, float z, float y, CellObject* cell = nullptr);
+	void setNextStepPosition(float x, float z, float y, CellObject* cell = NULL);
 
 	void notifyPositionUpdate(QuadTreeEntry* entry);
 
@@ -1382,7 +1382,7 @@ public:
 
 	void addPatrolPoint(PatrolPoint& point);
 
-	void setHomeLocation(float x, float z, float y, CellObject* cell = nullptr);
+	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL);
 
 	void setRespawnTimer(float resp);
 

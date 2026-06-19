@@ -54,7 +54,7 @@ PlayerObject::~PlayerObject() {
 
 void PlayerObject::showInstallationInfo(CreatureObject* player) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -69,7 +69,7 @@ void PlayerObject::showInstallationInfo(CreatureObject* player) {
 
 PlayerObject* PlayerObject::__asPlayerObject() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -79,7 +79,7 @@ PlayerObject* PlayerObject::__asPlayerObject() {
 
 void PlayerObject::setLogLevel(int newLevel) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void PlayerObject::setLogLevel(int newLevel) {
 
 int PlayerObject::getLogLevel() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ int PlayerObject::getLogLevel() {
 
 int PlayerObject::getCountMaxCov() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ int PlayerObject::getCountMaxCov() {
 
 void PlayerObject::setCountMaxCov(int newMaxCov) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ void PlayerObject::setCountMaxCov(int newMaxCov) {
 
 void PlayerObject::setClientPathWaypoint(SceneObject* obj) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void PlayerObject::setClientPathWaypoint(SceneObject* obj) {
 
 void PlayerObject::initializeAccount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ void PlayerObject::initializeAccount() {
 
 void PlayerObject::notifyLoadFromDatabase() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -180,7 +180,7 @@ void PlayerObject::notifyLoadFromDatabase() {
 
 void PlayerObject::unload() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +194,7 @@ void PlayerObject::unload() {
 
 int PlayerObject::calculateBhReward() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +208,7 @@ int PlayerObject::calculateBhReward() {
 
 void PlayerObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -218,7 +218,7 @@ void PlayerObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void PlayerObject::initializeTransientMembers() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -232,7 +232,7 @@ void PlayerObject::initializeTransientMembers() {
 
 void PlayerObject::sendBaselinesTo(SceneObject* player) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -247,7 +247,7 @@ void PlayerObject::sendBaselinesTo(SceneObject* player) {
 
 void PlayerObject::sendMessage(BasePacket* msg) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -257,7 +257,7 @@ void PlayerObject::sendMessage(BasePacket* msg) {
 
 void PlayerObject::addOwnedStructure(StructureObject* obj) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -272,7 +272,7 @@ void PlayerObject::addOwnedStructure(StructureObject* obj) {
 
 void PlayerObject::removeOwnedStructure(StructureObject* obj) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -287,7 +287,7 @@ void PlayerObject::removeOwnedStructure(StructureObject* obj) {
 
 int PlayerObject::getAcceptedTOSVersion() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -301,7 +301,7 @@ int PlayerObject::getAcceptedTOSVersion() {
 
 void PlayerObject::setAcceptedTOSVersion(int version) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -316,7 +316,7 @@ void PlayerObject::setAcceptedTOSVersion(int version) {
 
 void PlayerObject::checkAndShowTOS() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -330,7 +330,7 @@ void PlayerObject::checkAndShowTOS() {
 
 int PlayerObject::getTotalOwnedStructureCount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -344,7 +344,7 @@ int PlayerObject::getTotalOwnedStructureCount() {
 
 bool PlayerObject::isOwnedStructure(StructureObject* obj) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -359,7 +359,7 @@ bool PlayerObject::isOwnedStructure(StructureObject* obj) {
 
 unsigned long long PlayerObject::getOwnedStructure(int i) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -374,7 +374,7 @@ unsigned long long PlayerObject::getOwnedStructure(int i) {
 
 int PlayerObject::getLotsRemaining() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -388,7 +388,7 @@ int PlayerObject::getLotsRemaining() {
 
 bool PlayerObject::hasLotsRemaining(int lots) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -403,7 +403,7 @@ bool PlayerObject::hasLotsRemaining(int lots) {
 
 void PlayerObject::notifySceneReady() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -417,7 +417,7 @@ void PlayerObject::notifySceneReady() {
 
 void PlayerObject::checkPendingMessages() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -431,7 +431,7 @@ void PlayerObject::checkPendingMessages() {
 
 int PlayerObject::addExperience(const String& xpType, int xp, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -448,7 +448,7 @@ int PlayerObject::addExperience(const String& xpType, int xp, bool notifyClient)
 
 void PlayerObject::removeExperience(const String& xpType, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -464,7 +464,7 @@ void PlayerObject::removeExperience(const String& xpType, bool notifyClient) {
 
 bool PlayerObject::hasCappedExperience(const String& xpType) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -479,7 +479,7 @@ bool PlayerObject::hasCappedExperience(const String& xpType) {
 
 void PlayerObject::addWaypoint(WaypointObject* waypoint, bool checkName, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -496,7 +496,7 @@ void PlayerObject::addWaypoint(WaypointObject* waypoint, bool checkName, bool no
 
 void PlayerObject::setWaypoint(WaypointObject* waypoint, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -512,7 +512,7 @@ void PlayerObject::setWaypoint(WaypointObject* waypoint, bool notifyClient) {
 
 WaypointObject* PlayerObject::addWaypoint(const String& planet, float positionX, float positionY, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -522,7 +522,7 @@ WaypointObject* PlayerObject::addWaypoint(const String& planet, float positionX,
 
 void PlayerObject::removeWaypoint(unsigned long long waypointID, bool notifyClient, bool destroy) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -539,7 +539,7 @@ void PlayerObject::removeWaypoint(unsigned long long waypointID, bool notifyClie
 
 void PlayerObject::updateWaypoint(unsigned long long waypointID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -554,7 +554,7 @@ void PlayerObject::updateWaypoint(unsigned long long waypointID) {
 
 void PlayerObject::removeWaypointBySpecialType(int specialTypeID, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -570,7 +570,7 @@ void PlayerObject::removeWaypointBySpecialType(int specialTypeID, bool notifyCli
 
 WaypointObject* PlayerObject::getWaypointBySpecialType(int specialTypeID) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -585,7 +585,7 @@ WaypointObject* PlayerObject::getWaypointBySpecialType(int specialTypeID) const 
 
 WaypointObject* PlayerObject::getSurveyWaypoint() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -599,7 +599,7 @@ WaypointObject* PlayerObject::getSurveyWaypoint() const {
 
 bool PlayerObject::hasWaypoint(unsigned long long objectID) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -614,7 +614,7 @@ bool PlayerObject::hasWaypoint(unsigned long long objectID) const {
 
 WaypointObject* PlayerObject::getWaypointAt(float x, float y, String& planet) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -631,7 +631,7 @@ WaypointObject* PlayerObject::getWaypointAt(float x, float y, String& planet) co
 
 void PlayerObject::insertWaypointListToMessage(BaseMessage* msg) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -641,7 +641,7 @@ void PlayerObject::insertWaypointListToMessage(BaseMessage* msg) const {
 
 int PlayerObject::getWaypointListSize() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -655,7 +655,7 @@ int PlayerObject::getWaypointListSize() {
 
 WaypointObject* PlayerObject::getWaypoint(int index) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -670,7 +670,7 @@ WaypointObject* PlayerObject::getWaypoint(int index) {
 
 void PlayerObject::addAbilities(Vector<Ability*>& abilities, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -680,7 +680,7 @@ void PlayerObject::addAbilities(Vector<Ability*>& abilities, bool notifyClient) 
 
 void PlayerObject::addAbility(Ability* ability, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -690,7 +690,7 @@ void PlayerObject::addAbility(Ability* ability, bool notifyClient) {
 
 void PlayerObject::removeAbilities(Vector<Ability*>& abilities, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -700,7 +700,7 @@ void PlayerObject::removeAbilities(Vector<Ability*>& abilities, bool notifyClien
 
 void PlayerObject::removeAbility(Ability* ability, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -710,7 +710,7 @@ void PlayerObject::removeAbility(Ability* ability, bool notifyClient) {
 
 bool PlayerObject::addSchematics(Vector<ManagedReference<DraftSchematic* > >& schematics, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -720,7 +720,7 @@ bool PlayerObject::addSchematics(Vector<ManagedReference<DraftSchematic* > >& sc
 
 void PlayerObject::removeSchematics(Vector<ManagedReference<DraftSchematic* > >& schematics, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -730,7 +730,7 @@ void PlayerObject::removeSchematics(Vector<ManagedReference<DraftSchematic* > >&
 
 bool PlayerObject::addRewardedSchematic(DraftSchematic* schematic, short type, int quantity, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -740,7 +740,7 @@ bool PlayerObject::addRewardedSchematic(DraftSchematic* schematic, short type, i
 
 void PlayerObject::removeRewardedSchematic(DraftSchematic* schematic, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -750,7 +750,7 @@ void PlayerObject::removeRewardedSchematic(DraftSchematic* schematic, bool notif
 
 void PlayerObject::decreaseSchematicUseCount(DraftSchematic* schematic) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -760,7 +760,7 @@ void PlayerObject::decreaseSchematicUseCount(DraftSchematic* schematic) {
 
 void PlayerObject::setLanguageID(byte language, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -776,7 +776,7 @@ void PlayerObject::setLanguageID(byte language, bool notifyClient) {
 
 void PlayerObject::addFriend(const String& name, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -792,7 +792,7 @@ void PlayerObject::addFriend(const String& name, bool notifyClient) {
 
 void PlayerObject::removeFriend(const String& name, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -808,7 +808,7 @@ void PlayerObject::removeFriend(const String& name, bool notifyClient) {
 
 void PlayerObject::removeAllReverseFriends(const String& oldName) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -823,7 +823,7 @@ void PlayerObject::removeAllReverseFriends(const String& oldName) {
 
 void PlayerObject::addIgnore(const String& name, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -839,7 +839,7 @@ void PlayerObject::addIgnore(const String& name, bool notifyClient) {
 
 void PlayerObject::removeIgnore(const String& name, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -855,7 +855,7 @@ void PlayerObject::removeIgnore(const String& name, bool notifyClient) {
 
 void PlayerObject::setTitle(const String& characterTitle, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -871,7 +871,7 @@ void PlayerObject::setTitle(const String& characterTitle, bool notifyClient) {
 
 void PlayerObject::setFoodFilling(int newValue, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -887,7 +887,7 @@ void PlayerObject::setFoodFilling(int newValue, bool notifyClient) {
 
 void PlayerObject::setDrinkFilling(int newValue, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -903,7 +903,7 @@ void PlayerObject::setDrinkFilling(int newValue, bool notifyClient) {
 
 void PlayerObject::increaseFactionStanding(const String& factionName, float amount) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -919,7 +919,7 @@ void PlayerObject::increaseFactionStanding(const String& factionName, float amou
 
 void PlayerObject::decreaseFactionStanding(const String& factionName, float amount) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -935,7 +935,7 @@ void PlayerObject::decreaseFactionStanding(const String& factionName, float amou
 
 void PlayerObject::setFactionStanding(const String& factionName, float amount) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -951,7 +951,7 @@ void PlayerObject::setFactionStanding(const String& factionName, float amount) {
 
 float PlayerObject::getFactionStanding(const String& factionName) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -966,7 +966,7 @@ float PlayerObject::getFactionStanding(const String& factionName) {
 
 void PlayerObject::setScreenPlayData(const String& screenPlay, const String& variable, const String& data) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -983,7 +983,7 @@ void PlayerObject::setScreenPlayData(const String& screenPlay, const String& var
 
 void PlayerObject::deleteScreenPlayData(const String& screenPlay, const String& variable) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -999,7 +999,7 @@ void PlayerObject::deleteScreenPlayData(const String& screenPlay, const String& 
 
 String PlayerObject::getScreenPlayData(const String& screenPlay, const String& variable) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1017,7 +1017,7 @@ String PlayerObject::getScreenPlayData(const String& screenPlay, const String& v
 
 void PlayerObject::clearScreenPlayData(const String& screenPlay) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1032,7 +1032,7 @@ void PlayerObject::clearScreenPlayData(const String& screenPlay) {
 
 void PlayerObject::activateRecovery() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1046,7 +1046,7 @@ void PlayerObject::activateRecovery() {
 
 void PlayerObject::activateForcePowerRegen() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1060,7 +1060,7 @@ void PlayerObject::activateForcePowerRegen() {
 
 void PlayerObject::doRecovery(int latency) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1075,7 +1075,7 @@ void PlayerObject::doRecovery(int latency) {
 
 void PlayerObject::disconnect(bool closeClient, bool doLock) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1091,7 +1091,7 @@ void PlayerObject::disconnect(bool closeClient, bool doLock) {
 
 void PlayerObject::reload(ZoneClientSession* client) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1106,7 +1106,7 @@ void PlayerObject::reload(ZoneClientSession* client) {
 
 void PlayerObject::setOffline() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1120,7 +1120,7 @@ void PlayerObject::setOffline() {
 
 void PlayerObject::setLinkDead(bool isSafeLogout) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1135,7 +1135,7 @@ void PlayerObject::setLinkDead(bool isSafeLogout) {
 
 void PlayerObject::setOnline() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1149,7 +1149,7 @@ void PlayerObject::setOnline() {
 
 void PlayerObject::setLoggingOut() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1163,7 +1163,7 @@ void PlayerObject::setLoggingOut() {
 
 void PlayerObject::sendBadgesResponseTo(CreatureObject* player) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1178,7 +1178,7 @@ void PlayerObject::sendBadgesResponseTo(CreatureObject* player) {
 
 void PlayerObject::logout(bool doLock) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1193,7 +1193,7 @@ void PlayerObject::logout(bool doLock) {
 
 void PlayerObject::setJediState(int state, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1209,7 +1209,7 @@ void PlayerObject::setJediState(int state, bool notifyClient) {
 
 void PlayerObject::setActiveQuestsBit(int bitIndex, byte value, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1226,7 +1226,7 @@ void PlayerObject::setActiveQuestsBit(int bitIndex, byte value, bool notifyClien
 
 void PlayerObject::clearActiveQuestsBit(int bitIndex, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1242,7 +1242,7 @@ void PlayerObject::clearActiveQuestsBit(int bitIndex, bool notifyClient) {
 
 bool PlayerObject::canActivateQuest(int questID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1257,7 +1257,7 @@ bool PlayerObject::canActivateQuest(int questID) {
 
 void PlayerObject::activateQuest(int questID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1272,7 +1272,7 @@ void PlayerObject::activateQuest(int questID) {
 
 bool PlayerObject::hasActiveQuestBitSet(int bitIndex) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1287,7 +1287,7 @@ bool PlayerObject::hasActiveQuestBitSet(int bitIndex) {
 
 bool PlayerObject::hasCompletedQuestsBitSet(int bitIndex) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1302,7 +1302,7 @@ bool PlayerObject::hasCompletedQuestsBitSet(int bitIndex) {
 
 void PlayerObject::setCompletedQuestsBit(int bitIndex, byte value, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1319,7 +1319,7 @@ void PlayerObject::setCompletedQuestsBit(int bitIndex, byte value, bool notifyCl
 
 void PlayerObject::clearCompletedQuestsBit(int bitIndex, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1335,7 +1335,7 @@ void PlayerObject::clearCompletedQuestsBit(int bitIndex, bool notifyClient) {
 
 void PlayerObject::completeQuest(int questID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1350,7 +1350,7 @@ void PlayerObject::completeQuest(int questID) {
 
 PlayerQuestData PlayerObject::getQuestData(unsigned int questHashCode) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1360,7 +1360,7 @@ PlayerQuestData PlayerObject::getQuestData(unsigned int questHashCode) {
 
 bool PlayerObject::hasQuestData(unsigned int questHashCode) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1375,7 +1375,7 @@ bool PlayerObject::hasQuestData(unsigned int questHashCode) const {
 
 void PlayerObject::setPlayerQuestData(unsigned int questHashCode, PlayerQuestData& data, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1385,7 +1385,7 @@ void PlayerObject::setPlayerQuestData(unsigned int questHashCode, PlayerQuestDat
 
 FactionStandingList* PlayerObject::getFactionStandingList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1395,7 +1395,7 @@ FactionStandingList* PlayerObject::getFactionStandingList() {
 
 void PlayerObject::setLastNpcConvStr(const String& conv) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1410,7 +1410,7 @@ void PlayerObject::setLastNpcConvStr(const String& conv) {
 
 void PlayerObject::setLastNpcConvMessStr(const String& mess) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1425,7 +1425,7 @@ void PlayerObject::setLastNpcConvMessStr(const String& mess) {
 
 String PlayerObject::getLastNpcConvStr() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1441,7 +1441,7 @@ String PlayerObject::getLastNpcConvStr() const {
 
 String PlayerObject::getLastNpcConvMessStr() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1457,7 +1457,7 @@ String PlayerObject::getLastNpcConvMessStr() const {
 
 String PlayerObject::getLastNpcConvOption(int idx) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1474,7 +1474,7 @@ String PlayerObject::getLastNpcConvOption(int idx) const {
 
 void PlayerObject::addLastNpcConvOptions(const String& option) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1489,7 +1489,7 @@ void PlayerObject::addLastNpcConvOptions(const String& option) {
 
 int PlayerObject::countLastNpcConvOptions() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1503,7 +1503,7 @@ int PlayerObject::countLastNpcConvOptions() const {
 
 void PlayerObject::clearLastNpcConvOptions() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1517,7 +1517,7 @@ void PlayerObject::clearLastNpcConvOptions() {
 
 void PlayerObject::setConversatingCreature(CreatureObject* creature) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1532,7 +1532,7 @@ void PlayerObject::setConversatingCreature(CreatureObject* creature) {
 
 unsigned long long PlayerObject::getConversatingCreature() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1546,7 +1546,7 @@ unsigned long long PlayerObject::getConversatingCreature() const {
 
 void PlayerObject::setTrainerCoordinates(const Vector3& trainer) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1556,7 +1556,7 @@ void PlayerObject::setTrainerCoordinates(const Vector3& trainer) {
 
 Vector3 PlayerObject::getTrainerCoordinates() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1566,7 +1566,7 @@ Vector3 PlayerObject::getTrainerCoordinates() {
 
 void PlayerObject::setTrainerZoneName(String& zoneName) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1581,7 +1581,7 @@ void PlayerObject::setTrainerZoneName(String& zoneName) {
 
 String PlayerObject::getTrainerZoneName() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1597,7 +1597,7 @@ String PlayerObject::getTrainerZoneName() const {
 
 SortedVector<unsigned long long>* PlayerObject::getPersistentMessages() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1607,7 +1607,7 @@ SortedVector<unsigned long long>* PlayerObject::getPersistentMessages() {
 
 void PlayerObject::addPersistentMessage(unsigned long long id) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1622,7 +1622,7 @@ void PlayerObject::addPersistentMessage(unsigned long long id) {
 
 void PlayerObject::dropPersistentMessage(unsigned long long id) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1637,7 +1637,7 @@ void PlayerObject::dropPersistentMessage(unsigned long long id) {
 
 void PlayerObject::unloadSpawnedChildren() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1651,7 +1651,7 @@ void PlayerObject::unloadSpawnedChildren() {
 
 void PlayerObject::addToConsentList(const String& name) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1666,7 +1666,7 @@ void PlayerObject::addToConsentList(const String& name) {
 
 bool PlayerObject::hasInConsentList(const String& name) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1681,7 +1681,7 @@ bool PlayerObject::hasInConsentList(const String& name) const {
 
 void PlayerObject::removeFromConsentList(const String& name) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1696,7 +1696,7 @@ void PlayerObject::removeFromConsentList(const String& name) {
 
 String PlayerObject::getConsentName(int i) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1713,7 +1713,7 @@ String PlayerObject::getConsentName(int i) const {
 
 int PlayerObject::getConsentListSize() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1727,7 +1727,7 @@ int PlayerObject::getConsentListSize() const {
 
 int PlayerObject::getReactionFines() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1741,7 +1741,7 @@ int PlayerObject::getReactionFines() const {
 
 String PlayerObject::getFactionRank() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1757,7 +1757,7 @@ String PlayerObject::getFactionRank() const {
 
 void PlayerObject::setFactionRank(const String& rank) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1767,7 +1767,7 @@ void PlayerObject::setFactionRank(const String& rank) {
 
 void PlayerObject::setCommandMessageString(unsigned int actionCRC, String& message) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1783,7 +1783,7 @@ void PlayerObject::setCommandMessageString(unsigned int actionCRC, String& messa
 
 void PlayerObject::removeCommandMessageString(unsigned int actionCRC) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1798,7 +1798,7 @@ void PlayerObject::removeCommandMessageString(unsigned int actionCRC) {
 
 unsigned long long PlayerObject::getDeclaredResidence() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1812,7 +1812,7 @@ unsigned long long PlayerObject::getDeclaredResidence() const {
 
 void PlayerObject::setDeclaredResidence(BuildingObject* residence) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1827,7 +1827,7 @@ void PlayerObject::setDeclaredResidence(BuildingObject* residence) {
 
 void PlayerObject::setCloningFacility(BuildingObject* cloningfac) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1842,7 +1842,7 @@ void PlayerObject::setCloningFacility(BuildingObject* cloningfac) {
 
 unsigned long long PlayerObject::getCloningFacility() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1856,7 +1856,7 @@ unsigned long long PlayerObject::getCloningFacility() const {
 
 void PlayerObject::notifyOnline() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1870,7 +1870,7 @@ void PlayerObject::notifyOnline() {
 
 int PlayerObject::numSpecificSkills(CreatureObject* creature, const String& reqSkillName) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1886,7 +1886,7 @@ int PlayerObject::numSpecificSkills(CreatureObject* creature, const String& reqS
 
 void PlayerObject::doDigest(int fillingReduction) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1901,7 +1901,7 @@ void PlayerObject::doDigest(int fillingReduction) {
 
 bool PlayerObject::isDigesting() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1915,7 +1915,7 @@ bool PlayerObject::isDigesting() {
 
 String PlayerObject::getSavedTerrainName() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1931,7 +1931,7 @@ String PlayerObject::getSavedTerrainName() const {
 
 void PlayerObject::setSavedParentID(unsigned long long id) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1946,7 +1946,7 @@ void PlayerObject::setSavedParentID(unsigned long long id) {
 
 void PlayerObject::setSavedTerrainName(const String& name) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1961,7 +1961,7 @@ void PlayerObject::setSavedTerrainName(const String& name) {
 
 void PlayerObject::setForcePower(int fp, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1977,7 +1977,7 @@ void PlayerObject::setForcePower(int fp, bool notifyClient) {
 
 void PlayerObject::setForcePowerMax(int newValue, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1993,7 +1993,7 @@ void PlayerObject::setForcePowerMax(int newValue, bool notifyClient) {
 
 void PlayerObject::doForceRegen() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2007,7 +2007,7 @@ void PlayerObject::doForceRegen() {
 
 void PlayerObject::recalculateForcePower() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2021,7 +2021,7 @@ void PlayerObject::recalculateForcePower() {
 
 int PlayerObject::getForcePowerRegen() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2035,7 +2035,7 @@ int PlayerObject::getForcePowerRegen() {
 
 unsigned long long PlayerObject::getSavedParentID() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2049,7 +2049,7 @@ unsigned long long PlayerObject::getSavedParentID() const {
 
 unsigned int PlayerObject::getNewSuiBoxID(unsigned int type) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2064,7 +2064,7 @@ unsigned int PlayerObject::getNewSuiBoxID(unsigned int type) {
 
 bool PlayerObject::hasSuiBox(unsigned int boxID) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2079,7 +2079,7 @@ bool PlayerObject::hasSuiBox(unsigned int boxID) const {
 
 Reference<SuiBox* > PlayerObject::getSuiBox(unsigned int boxID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2094,7 +2094,7 @@ Reference<SuiBox* > PlayerObject::getSuiBox(unsigned int boxID) {
 
 void PlayerObject::removeSuiBox(unsigned int boxID, bool closeWindowToClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2110,7 +2110,7 @@ void PlayerObject::removeSuiBox(unsigned int boxID, bool closeWindowToClient) {
 
 void PlayerObject::removeSuiBoxType(unsigned int windowType) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2125,7 +2125,7 @@ void PlayerObject::removeSuiBoxType(unsigned int windowType) {
 
 bool PlayerObject::hasSuiBoxWindowType(unsigned int windowType) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2140,7 +2140,7 @@ bool PlayerObject::hasSuiBoxWindowType(unsigned int windowType) {
 
 void PlayerObject::closeSuiWindowType(unsigned int windowType) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2155,7 +2155,7 @@ void PlayerObject::closeSuiWindowType(unsigned int windowType) {
 
 Reference<SuiBox* > PlayerObject::getSuiBoxFromWindowType(unsigned int windowType) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2170,7 +2170,7 @@ Reference<SuiBox* > PlayerObject::getSuiBoxFromWindowType(unsigned int windowTyp
 
 void PlayerObject::addSuiBox(SuiBox* sui) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2185,7 +2185,7 @@ void PlayerObject::addSuiBox(SuiBox* sui) {
 
 void PlayerObject::addPermissionGroup(const String& group, bool updatePermissions) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2201,7 +2201,7 @@ void PlayerObject::addPermissionGroup(const String& group, bool updatePermission
 
 void PlayerObject::removePermissionGroup(const String& group, bool updatePermissions) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2217,7 +2217,7 @@ void PlayerObject::removePermissionGroup(const String& group, bool updatePermiss
 
 void PlayerObject::updateInRangeBuildingPermissions() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2231,7 +2231,7 @@ void PlayerObject::updateInRangeBuildingPermissions() {
 
 bool PlayerObject::hasPermissionGroup(const String& group) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2246,7 +2246,7 @@ bool PlayerObject::hasPermissionGroup(const String& group) {
 
 SortedVector<String>* PlayerObject::getPermissionGroups() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2256,7 +2256,7 @@ SortedVector<String>* PlayerObject::getPermissionGroups() {
 
 void PlayerObject::addIncapacitationTime() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2270,7 +2270,7 @@ void PlayerObject::addIncapacitationTime() {
 
 byte PlayerObject::getIncapacitationCounter() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2284,7 +2284,7 @@ byte PlayerObject::getIncapacitationCounter() const {
 
 void PlayerObject::resetIncapacitationTimes() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2298,7 +2298,7 @@ void PlayerObject::resetIncapacitationTimes() {
 
 void PlayerObject::addToDuelList(CreatureObject* targetPlayer) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2313,7 +2313,7 @@ void PlayerObject::addToDuelList(CreatureObject* targetPlayer) {
 
 void PlayerObject::removeFromDuelList(CreatureObject* targetPlayer) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2328,7 +2328,7 @@ void PlayerObject::removeFromDuelList(CreatureObject* targetPlayer) {
 
 Reference<CreatureObject* > PlayerObject::getDuelListObject(int index) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2343,7 +2343,7 @@ Reference<CreatureObject* > PlayerObject::getDuelListObject(int index) {
 
 bool PlayerObject::requestedDuelTo(CreatureObject* targetPlayer) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2358,7 +2358,7 @@ bool PlayerObject::requestedDuelTo(CreatureObject* targetPlayer) {
 
 bool PlayerObject::isDuelListEmpty() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2372,7 +2372,7 @@ bool PlayerObject::isDuelListEmpty() const {
 
 int PlayerObject::getDuelListSize() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2386,7 +2386,7 @@ int PlayerObject::getDuelListSize() const {
 
 void PlayerObject::addToActivePets(AiAgent* pet) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2401,7 +2401,7 @@ void PlayerObject::addToActivePets(AiAgent* pet) {
 
 void PlayerObject::removeFromActivePets(AiAgent* pet) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2416,7 +2416,7 @@ void PlayerObject::removeFromActivePets(AiAgent* pet) {
 
 AiAgent* PlayerObject::getActivePet(int index) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2431,7 +2431,7 @@ AiAgent* PlayerObject::getActivePet(int index) {
 
 bool PlayerObject::hasActivePet(AiAgent* pet) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2446,7 +2446,7 @@ bool PlayerObject::hasActivePet(AiAgent* pet) const {
 
 int PlayerObject::getActivePetsSize() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2460,7 +2460,7 @@ int PlayerObject::getActivePetsSize() const {
 
 UnicodeString PlayerObject::getBiography() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2476,7 +2476,7 @@ UnicodeString PlayerObject::getBiography() const {
 
 void PlayerObject::notifyOffline() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2490,7 +2490,7 @@ void PlayerObject::notifyOffline() {
 
 void PlayerObject::resetSessionStats(bool isSessionStart) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2505,7 +2505,7 @@ void PlayerObject::resetSessionStats(bool isSessionStart) {
 
 void PlayerObject::incrementSessionMovement(float moveDelta) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2520,7 +2520,7 @@ void PlayerObject::incrementSessionMovement(float moveDelta) {
 
 void PlayerObject::logSessionStats(bool isSessionEnd) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2535,7 +2535,7 @@ void PlayerObject::logSessionStats(bool isSessionEnd) {
 
 void PlayerObject::setBadge(unsigned int badge) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2550,7 +2550,7 @@ void PlayerObject::setBadge(unsigned int badge) {
 
 void PlayerObject::awardBadge(unsigned int badge) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2565,7 +2565,7 @@ void PlayerObject::awardBadge(unsigned int badge) {
 
 void PlayerObject::setTeleporting(bool val) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2580,7 +2580,7 @@ void PlayerObject::setTeleporting(bool val) {
 
 void PlayerObject::setOnLoadScreen(bool val) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2595,7 +2595,7 @@ void PlayerObject::setOnLoadScreen(bool val) {
 
 int PlayerObject::getNumBadges() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2609,7 +2609,7 @@ int PlayerObject::getNumBadges() {
 
 int PlayerObject::getBadgeTypeCount(unsigned int type) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2624,7 +2624,7 @@ int PlayerObject::getBadgeTypeCount(unsigned int type) {
 
 bool PlayerObject::hasFriend(const String& name) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2639,7 +2639,7 @@ bool PlayerObject::hasFriend(const String& name) const {
 
 int PlayerObject::getFriendListSize() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2653,7 +2653,7 @@ int PlayerObject::getFriendListSize() const {
 
 bool PlayerObject::isIgnoring(const String& name) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2668,7 +2668,7 @@ bool PlayerObject::isIgnoring(const String& name) const {
 
 void PlayerObject::addReverseFriend(const String& name) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2683,7 +2683,7 @@ void PlayerObject::addReverseFriend(const String& name) {
 
 void PlayerObject::removeReverseFriend(const String& name) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2698,7 +2698,7 @@ void PlayerObject::removeReverseFriend(const String& name) {
 
 void PlayerObject::sendFriendLists() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2712,7 +2712,7 @@ void PlayerObject::sendFriendLists() {
 
 bool PlayerObject::hasAbility(const String& ability) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2722,7 +2722,7 @@ bool PlayerObject::hasAbility(const String& ability) const {
 
 bool PlayerObject::hasCommandMessageString(unsigned int actionCRC) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2737,7 +2737,7 @@ bool PlayerObject::hasCommandMessageString(unsigned int actionCRC) const {
 
 unsigned int PlayerObject::getCharacterBitmask() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2751,7 +2751,7 @@ unsigned int PlayerObject::getCharacterBitmask() const {
 
 String PlayerObject::getTitle() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2767,7 +2767,7 @@ String PlayerObject::getTitle() const {
 
 unsigned int PlayerObject::getAdminLevel() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2781,7 +2781,7 @@ unsigned int PlayerObject::getAdminLevel() const {
 
 void PlayerObject::setAdminLevel(unsigned int adminlvl) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2796,7 +2796,7 @@ void PlayerObject::setAdminLevel(unsigned int adminlvl) {
 
 int PlayerObject::getPriviledgeFlag() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2810,7 +2810,7 @@ int PlayerObject::getPriviledgeFlag() const {
 
 void PlayerObject::setPriviledgeFlag(int flag) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2825,7 +2825,7 @@ void PlayerObject::setPriviledgeFlag(int flag) {
 
 void PlayerObject::setBiography(const UnicodeString& bio) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2840,7 +2840,7 @@ void PlayerObject::setBiography(const UnicodeString& bio) {
 
 bool PlayerObject::hasGodMode() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2854,7 +2854,7 @@ bool PlayerObject::hasGodMode() const {
 
 bool PlayerObject::isPrivileged() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2868,7 +2868,7 @@ bool PlayerObject::isPrivileged() const {
 
 bool PlayerObject::isStaff() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2882,7 +2882,7 @@ bool PlayerObject::isStaff() const {
 
 bool PlayerObject::isAdmin() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2896,7 +2896,7 @@ bool PlayerObject::isAdmin() const {
 
 void PlayerObject::setCharacterBitmask(unsigned int bitmask) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2911,7 +2911,7 @@ void PlayerObject::setCharacterBitmask(unsigned int bitmask) {
 
 bool PlayerObject::setCharacterBit(unsigned int bit, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2927,7 +2927,7 @@ bool PlayerObject::setCharacterBit(unsigned int bit, bool notifyClient) {
 
 bool PlayerObject::clearCharacterBit(unsigned int bit, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2943,7 +2943,7 @@ bool PlayerObject::clearCharacterBit(unsigned int bit, bool notifyClient) {
 
 void PlayerObject::toggleCharacterBit(unsigned int bit) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2958,7 +2958,7 @@ void PlayerObject::toggleCharacterBit(unsigned int bit) {
 
 bool PlayerObject::isLFG() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2972,7 +2972,7 @@ bool PlayerObject::isLFG() const {
 
 bool PlayerObject::isAFK() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2986,7 +2986,7 @@ bool PlayerObject::isAFK() const {
 
 bool PlayerObject::isAnonymous() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3000,7 +3000,7 @@ bool PlayerObject::isAnonymous() const {
 
 bool PlayerObject::isRoleplayer() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3014,7 +3014,7 @@ bool PlayerObject::isRoleplayer() const {
 
 bool PlayerObject::isNewbieHelper() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3028,7 +3028,7 @@ bool PlayerObject::isNewbieHelper() const {
 
 VectorMap<String, int>* PlayerObject::getXpTypeCapList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3038,7 +3038,7 @@ VectorMap<String, int>* PlayerObject::getXpTypeCapList() {
 
 DeltaVectorMap<String, int>* PlayerObject::getExperienceList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3048,7 +3048,7 @@ DeltaVectorMap<String, int>* PlayerObject::getExperienceList() {
 
 DeltaVectorMap<uint32, PlayerQuestData >* PlayerObject::getPlayerQuestsData() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3058,7 +3058,7 @@ DeltaVectorMap<uint32, PlayerQuestData >* PlayerObject::getPlayerQuestsData() {
 
 DeltaBitArray* PlayerObject::getActiveQuests() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3068,7 +3068,7 @@ DeltaBitArray* PlayerObject::getActiveQuests() {
 
 DeltaBitArray* PlayerObject::getCompletedQuests() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3078,7 +3078,7 @@ DeltaBitArray* PlayerObject::getCompletedQuests() {
 
 int PlayerObject::getForcePower() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3092,7 +3092,7 @@ int PlayerObject::getForcePower() const {
 
 int PlayerObject::getForcePowerMax() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3106,7 +3106,7 @@ int PlayerObject::getForcePowerMax() const {
 
 AbilityList* PlayerObject::getAbilityList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3116,7 +3116,7 @@ AbilityList* PlayerObject::getAbilityList() {
 
 FrsData* PlayerObject::getFrsData() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3126,7 +3126,7 @@ FrsData* PlayerObject::getFrsData() {
 
 SchematicList* PlayerObject::getSchematics() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3136,7 +3136,7 @@ SchematicList* PlayerObject::getSchematics() {
 
 DraftSchematic* PlayerObject::getSchematic(int i) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3151,7 +3151,7 @@ DraftSchematic* PlayerObject::getSchematic(int i) const {
 
 Vector<ManagedReference<DraftSchematic* > > PlayerObject::filterSchematicList(CreatureObject* player, Vector<unsigned int>* enabledTabs, int complexityLevel) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3161,7 +3161,7 @@ Vector<ManagedReference<DraftSchematic* > > PlayerObject::filterSchematicList(Cr
 
 int PlayerObject::getFoodFilling() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3175,7 +3175,7 @@ int PlayerObject::getFoodFilling() const {
 
 int PlayerObject::getFoodFillingMax() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3189,7 +3189,7 @@ int PlayerObject::getFoodFillingMax() const {
 
 int PlayerObject::getDrinkFilling() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3203,7 +3203,7 @@ int PlayerObject::getDrinkFilling() const {
 
 int PlayerObject::getDrinkFillingMax() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3217,7 +3217,7 @@ int PlayerObject::getDrinkFillingMax() const {
 
 int PlayerObject::getJediState() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3231,7 +3231,7 @@ int PlayerObject::getJediState() const {
 
 byte PlayerObject::getLanguageID() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3245,7 +3245,7 @@ byte PlayerObject::getLanguageID() const {
 
 DeltaVector<String>* PlayerObject::getFriendList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3255,7 +3255,7 @@ DeltaVector<String>* PlayerObject::getFriendList() {
 
 bool PlayerObject::isTeleporting() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3269,7 +3269,7 @@ bool PlayerObject::isTeleporting() const {
 
 bool PlayerObject::isOnLoadScreen() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3283,7 +3283,7 @@ bool PlayerObject::isOnLoadScreen() const {
 
 void PlayerObject::addChatRoom(unsigned int roomID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3298,7 +3298,7 @@ void PlayerObject::addChatRoom(unsigned int roomID) {
 
 void PlayerObject::removeChatRoom(unsigned int roomID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3313,7 +3313,7 @@ void PlayerObject::removeChatRoom(unsigned int roomID) {
 
 void PlayerObject::addOwnedChatRoom(unsigned int roomID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3328,7 +3328,7 @@ void PlayerObject::addOwnedChatRoom(unsigned int roomID) {
 
 void PlayerObject::removeOwnedChatRoom(unsigned int roomID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3343,7 +3343,7 @@ void PlayerObject::removeOwnedChatRoom(unsigned int roomID) {
 
 int PlayerObject::getOwnedChatRoomCount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3357,7 +3357,7 @@ int PlayerObject::getOwnedChatRoomCount() {
 
 void PlayerObject::setBankLocation(const String& location) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3372,7 +3372,7 @@ void PlayerObject::setBankLocation(const String& location) {
 
 String PlayerObject::getBankLocation() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3388,7 +3388,7 @@ String PlayerObject::getBankLocation() const {
 
 DeltaVector<String>* PlayerObject::getIgnoreList() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3398,7 +3398,7 @@ DeltaVector<String>* PlayerObject::getIgnoreList() {
 
 int PlayerObject::getExperience(const String& xp) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3413,7 +3413,7 @@ int PlayerObject::getExperience(const String& xp) const {
 
 void PlayerObject::maximizeExperience() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3427,7 +3427,7 @@ void PlayerObject::maximizeExperience() {
 
 void PlayerObject::activateMissions() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3441,7 +3441,7 @@ void PlayerObject::activateMissions() {
 
 void PlayerObject::regrantSkills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3455,7 +3455,7 @@ void PlayerObject::regrantSkills() {
 
 String PlayerObject::getCommandMessageString(unsigned int actionCRC) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3472,7 +3472,7 @@ String PlayerObject::getCommandMessageString(unsigned int actionCRC) {
 
 bool PlayerObject::hasBadge(unsigned int badge) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3487,7 +3487,7 @@ bool PlayerObject::hasBadge(unsigned int badge) {
 
 void PlayerObject::clearDisconnectEvent() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3501,7 +3501,7 @@ void PlayerObject::clearDisconnectEvent() {
 
 bool PlayerObject::isOnline() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3515,7 +3515,7 @@ bool PlayerObject::isOnline() const {
 
 bool PlayerObject::isOffline() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3529,7 +3529,7 @@ bool PlayerObject::isOffline() const {
 
 bool PlayerObject::isLoading() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3543,7 +3543,7 @@ bool PlayerObject::isLoading() const {
 
 bool PlayerObject::isLinkDead() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3557,7 +3557,7 @@ bool PlayerObject::isLinkDead() const {
 
 bool PlayerObject::isLoggingIn() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3571,7 +3571,7 @@ bool PlayerObject::isLoggingIn() const {
 
 bool PlayerObject::isLoggingOut() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3585,7 +3585,7 @@ bool PlayerObject::isLoggingOut() const {
 
 Time* PlayerObject::getLastLogout() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3595,7 +3595,7 @@ Time* PlayerObject::getLastLogout() {
 
 int PlayerObject::getDaysSinceLastLogout() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3605,7 +3605,7 @@ int PlayerObject::getDaysSinceLastLogout() const {
 
 void PlayerObject::setSkillPoints(int points) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3620,7 +3620,7 @@ void PlayerObject::setSkillPoints(int points) {
 
 void PlayerObject::addSkillPoints(int points) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3635,7 +3635,7 @@ void PlayerObject::addSkillPoints(int points) {
 
 int PlayerObject::getSkillPoints() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3649,7 +3649,7 @@ int PlayerObject::getSkillPoints() const {
 
 ValidatedPosition* PlayerObject::getLastValidatedPosition() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3659,7 +3659,7 @@ ValidatedPosition* PlayerObject::getLastValidatedPosition() {
 
 void PlayerObject::updateLastValidatedPosition() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3673,7 +3673,7 @@ void PlayerObject::updateLastValidatedPosition() {
 
 unsigned int PlayerObject::getAccountID() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3687,7 +3687,7 @@ unsigned int PlayerObject::getAccountID() const {
 
 GalaxyAccountInfo* PlayerObject::getGalaxyAccountInfo() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3697,7 +3697,7 @@ GalaxyAccountInfo* PlayerObject::getGalaxyAccountInfo() const {
 
 unsigned long long PlayerObject::getServerMovementTimeDelta() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3711,7 +3711,7 @@ unsigned long long PlayerObject::getServerMovementTimeDelta() {
 
 Time* PlayerObject::getServerMovementTimeStamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3721,7 +3721,7 @@ Time* PlayerObject::getServerMovementTimeStamp() {
 
 void PlayerObject::setClientLastMovementStamp(unsigned int stamp) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3736,7 +3736,7 @@ void PlayerObject::setClientLastMovementStamp(unsigned int stamp) {
 
 void PlayerObject::updateServerLastMovementStamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3750,7 +3750,7 @@ void PlayerObject::updateServerLastMovementStamp() {
 
 void PlayerObject::setAccountID(unsigned int id) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3765,7 +3765,7 @@ void PlayerObject::setAccountID(unsigned int id) {
 
 unsigned int PlayerObject::getClientLastMovementStamp() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3779,7 +3779,7 @@ unsigned int PlayerObject::getClientLastMovementStamp() const {
 
 void PlayerObject::addHologrindProfession(byte prof) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3794,7 +3794,7 @@ void PlayerObject::addHologrindProfession(byte prof) {
 
 Vector<byte>* PlayerObject::getHologrindProfessions() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3804,7 +3804,7 @@ Vector<byte>* PlayerObject::getHologrindProfessions() {
 
 void PlayerObject::setMaximumLots(byte lots) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3819,7 +3819,7 @@ void PlayerObject::setMaximumLots(byte lots) {
 
 byte PlayerObject::getMaximumLots() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3833,7 +3833,7 @@ byte PlayerObject::getMaximumLots() const {
 
 String PlayerObject::getStarterProfession() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3849,7 +3849,7 @@ String PlayerObject::getStarterProfession() const {
 
 void PlayerObject::setStarterProfession(String& profession) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3864,7 +3864,7 @@ void PlayerObject::setStarterProfession(String& profession) {
 
 unsigned long long PlayerObject::getPerformanceBuffTarget() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3878,7 +3878,7 @@ unsigned long long PlayerObject::getPerformanceBuffTarget() const {
 
 void PlayerObject::setPerformanceBuffTarget(unsigned long long target) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3893,7 +3893,7 @@ void PlayerObject::setPerformanceBuffTarget(unsigned long long target) {
 
 void PlayerObject::setDebug(bool value) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3908,7 +3908,7 @@ void PlayerObject::setDebug(bool value) {
 
 bool PlayerObject::getDebug() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3922,7 +3922,7 @@ bool PlayerObject::getDebug() const {
 
 float PlayerObject::getVisibility() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3936,7 +3936,7 @@ float PlayerObject::getVisibility() const {
 
 void PlayerObject::setVisibility(float value) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -3951,7 +3951,7 @@ void PlayerObject::setVisibility(float value) {
 
 Time PlayerObject::getLastVisibilityUpdateTimestamp() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3961,7 +3961,7 @@ Time PlayerObject::getLastVisibilityUpdateTimestamp() const {
 
 Time PlayerObject::getLastBhPvpCombatActionTimestamp() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3971,7 +3971,7 @@ Time PlayerObject::getLastBhPvpCombatActionTimestamp() const {
 
 Time PlayerObject::getLastGcwPvpCombatActionTimestamp() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3981,7 +3981,7 @@ Time PlayerObject::getLastGcwPvpCombatActionTimestamp() const {
 
 Time PlayerObject::getLastJediPvpCombatActionTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -3991,7 +3991,7 @@ Time PlayerObject::getLastJediPvpCombatActionTimestamp() {
 
 Time PlayerObject::getLastJediAttackableTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -4001,7 +4001,7 @@ Time PlayerObject::getLastJediAttackableTimestamp() {
 
 void PlayerObject::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4018,7 +4018,7 @@ void PlayerObject::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool
 
 void PlayerObject::updateLastBhPvpCombatActionTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4032,7 +4032,7 @@ void PlayerObject::updateLastBhPvpCombatActionTimestamp() {
 
 void PlayerObject::updateLastGcwPvpCombatActionTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4046,7 +4046,7 @@ void PlayerObject::updateLastGcwPvpCombatActionTimestamp() {
 
 void PlayerObject::updateLastJediPvpCombatActionTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4060,7 +4060,7 @@ void PlayerObject::updateLastJediPvpCombatActionTimestamp() {
 
 void PlayerObject::updateLastJediAttackableTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4074,7 +4074,7 @@ void PlayerObject::updateLastJediAttackableTimestamp() {
 
 bool PlayerObject::hasPvpTef() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4088,7 +4088,7 @@ bool PlayerObject::hasPvpTef() const {
 
 bool PlayerObject::hasBhTef() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4102,7 +4102,7 @@ bool PlayerObject::hasBhTef() const {
 
 bool PlayerObject::hasJediTef() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4116,7 +4116,7 @@ bool PlayerObject::hasJediTef() const {
 
 bool PlayerObject::isJediAttackable() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4130,7 +4130,7 @@ bool PlayerObject::isJediAttackable() const {
 
 void PlayerObject::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4147,7 +4147,7 @@ void PlayerObject::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBh
 
 void PlayerObject::schedulePvpTefRemovalTask(bool removeNow) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4162,7 +4162,7 @@ void PlayerObject::schedulePvpTefRemovalTask(bool removeNow) {
 
 void PlayerObject::addVendor(SceneObject* vendor) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4177,7 +4177,7 @@ void PlayerObject::addVendor(SceneObject* vendor) {
 
 void PlayerObject::removeVendor(SceneObject* vendor) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4192,7 +4192,7 @@ void PlayerObject::removeVendor(SceneObject* vendor) {
 
 int PlayerObject::getVendorCount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4206,7 +4206,7 @@ int PlayerObject::getVendorCount() {
 
 SortedVector<unsigned long long>* PlayerObject::getOwnedVendors() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -4216,7 +4216,7 @@ SortedVector<unsigned long long>* PlayerObject::getOwnedVendors() {
 
 void PlayerObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4231,7 +4231,7 @@ void PlayerObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void PlayerObject::deleteAllPersistentMessages() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4245,7 +4245,7 @@ void PlayerObject::deleteAllPersistentMessages() {
 
 bool PlayerObject::isJedi() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4259,7 +4259,7 @@ bool PlayerObject::isJedi() const {
 
 bool PlayerObject::isJediLight() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4273,7 +4273,7 @@ bool PlayerObject::isJediLight() const {
 
 bool PlayerObject::isJediDark() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4287,7 +4287,7 @@ bool PlayerObject::isJediDark() const {
 
 bool PlayerObject::isMuted() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4301,7 +4301,7 @@ bool PlayerObject::isMuted() const {
 
 void PlayerObject::setMutedState(bool mute) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4316,7 +4316,7 @@ void PlayerObject::setMutedState(bool mute) {
 
 String PlayerObject::getMutedReason() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4332,7 +4332,7 @@ String PlayerObject::getMutedReason() const {
 
 void PlayerObject::setMutedReason(String& reason) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4347,7 +4347,7 @@ void PlayerObject::setMutedReason(String& reason) {
 
 String PlayerObject::getInstalledHoloEmote() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4363,7 +4363,7 @@ String PlayerObject::getInstalledHoloEmote() const {
 
 void PlayerObject::setInstalledHoloEmote(String& holoEmote) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4378,7 +4378,7 @@ void PlayerObject::setInstalledHoloEmote(String& holoEmote) {
 
 void PlayerObject::removeInstalledHoloEmote() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4392,7 +4392,7 @@ void PlayerObject::removeInstalledHoloEmote() {
 
 int PlayerObject::getHoloEmoteUseCount() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4406,7 +4406,7 @@ int PlayerObject::getHoloEmoteUseCount() const {
 
 void PlayerObject::decreaseHoloEmoteUseCount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4420,7 +4420,7 @@ void PlayerObject::decreaseHoloEmoteUseCount() {
 
 bool PlayerObject::isMarried() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4434,7 +4434,7 @@ bool PlayerObject::isMarried() const {
 
 String PlayerObject::getSpouseName() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4450,7 +4450,7 @@ String PlayerObject::getSpouseName() const {
 
 void PlayerObject::setSpouseName(String& firstName) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4465,7 +4465,7 @@ void PlayerObject::setSpouseName(String& firstName) {
 
 void PlayerObject::removeSpouse() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4479,7 +4479,7 @@ void PlayerObject::removeSpouse() {
 
 Account* PlayerObject::getAccount() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4493,7 +4493,7 @@ Account* PlayerObject::getAccount() {
 
 String PlayerObject::getChosenVeteranReward(unsigned int milestone) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4510,7 +4510,7 @@ String PlayerObject::getChosenVeteranReward(unsigned int milestone) {
 
 bool PlayerObject::hasChosenVeteranReward(const String& rewardTemplate) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4525,7 +4525,7 @@ bool PlayerObject::hasChosenVeteranReward(const String& rewardTemplate) {
 
 void PlayerObject::clearVeteranReward(unsigned int milestone) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4540,7 +4540,7 @@ void PlayerObject::clearVeteranReward(unsigned int milestone) {
 
 void PlayerObject::addEventPerk(SceneObject* deed) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4555,7 +4555,7 @@ void PlayerObject::addEventPerk(SceneObject* deed) {
 
 void PlayerObject::removeEventPerk(SceneObject* deed) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4570,7 +4570,7 @@ void PlayerObject::removeEventPerk(SceneObject* deed) {
 
 int PlayerObject::getEventPerkCount() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4584,7 +4584,7 @@ int PlayerObject::getEventPerkCount() const {
 
 int PlayerObject::getCharacterAgeInDays() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4598,7 +4598,7 @@ int PlayerObject::getCharacterAgeInDays() {
 
 void PlayerObject::addToReactionFines(int fine) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4613,7 +4613,7 @@ void PlayerObject::addToReactionFines(int fine) {
 
 void PlayerObject::setReactionFines(int amount) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4628,7 +4628,7 @@ void PlayerObject::setReactionFines(int amount) {
 
 void PlayerObject::subtractFromReactionFines(int amount) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4643,7 +4643,7 @@ void PlayerObject::subtractFromReactionFines(int amount) {
 
 void PlayerObject::updateReactionFineTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4657,7 +4657,7 @@ void PlayerObject::updateReactionFineTimestamp() {
 
 void PlayerObject::updateReactionFineMailTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4671,7 +4671,7 @@ void PlayerObject::updateReactionFineMailTimestamp() {
 
 Time* PlayerObject::getReactionFineTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -4681,7 +4681,7 @@ Time* PlayerObject::getReactionFineTimestamp() {
 
 Time* PlayerObject::getReactionFineMailTimestamp() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -4691,7 +4691,7 @@ Time* PlayerObject::getReactionFineMailTimestamp() {
 
 int PlayerObject::getXpCap(const String& type) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4706,7 +4706,7 @@ int PlayerObject::getXpCap(const String& type) const {
 
 int PlayerObject::getSpentJediSkillPoints() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4720,7 +4720,7 @@ int PlayerObject::getSpentJediSkillPoints() {
 
 bool PlayerObject::hasSchematic(DraftSchematic* schematic) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4735,7 +4735,7 @@ bool PlayerObject::hasSchematic(DraftSchematic* schematic) const {
 
 bool PlayerObject::hasEventPerk(const String& templatePath) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4750,7 +4750,7 @@ bool PlayerObject::hasEventPerk(const String& templatePath) const {
 
 void PlayerObject::doFieldFactionChange(int newStatus) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4765,7 +4765,7 @@ void PlayerObject::doFieldFactionChange(int newStatus) {
 
 void PlayerObject::addToVictimList(unsigned int playerID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4780,7 +4780,7 @@ void PlayerObject::addToVictimList(unsigned int playerID) {
 
 bool PlayerObject::hasOnVictimList(unsigned int playerID) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4795,7 +4795,7 @@ bool PlayerObject::hasOnVictimList(unsigned int playerID) {
 
 int PlayerObject::getPvpRating() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4809,7 +4809,7 @@ int PlayerObject::getPvpRating() const {
 
 void PlayerObject::setPvpRating(int rating) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4824,7 +4824,7 @@ void PlayerObject::setPvpRating(int rating) {
 
 void PlayerObject::setIpAddress(String& address) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4839,7 +4839,7 @@ void PlayerObject::setIpAddress(String& address) {
 
 String PlayerObject::getIpAddress() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4855,7 +4855,7 @@ String PlayerObject::getIpAddress() {
 
 void PlayerObject::updatePvpKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4869,7 +4869,7 @@ void PlayerObject::updatePvpKills() {
 
 unsigned long long PlayerObject::getPvpKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4883,7 +4883,7 @@ unsigned long long PlayerObject::getPvpKills() {
 
 void PlayerObject::updateworldbossKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4897,7 +4897,7 @@ void PlayerObject::updateworldbossKills() {
 
 unsigned long long PlayerObject::getworldbossKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4911,7 +4911,7 @@ unsigned long long PlayerObject::getworldbossKills() {
 
 void PlayerObject::updateeventplayerCrate() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4925,7 +4925,7 @@ void PlayerObject::updateeventplayerCrate() {
 
 unsigned long long PlayerObject::geteventplayerCrate() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4939,7 +4939,7 @@ unsigned long long PlayerObject::geteventplayerCrate() {
 
 void PlayerObject::updatePvpDeaths() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4953,7 +4953,7 @@ void PlayerObject::updatePvpDeaths() {
 
 unsigned long long PlayerObject::getPvpDeaths() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4967,7 +4967,7 @@ unsigned long long PlayerObject::getPvpDeaths() {
 
 void PlayerObject::updateBountyKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4981,7 +4981,7 @@ void PlayerObject::updateBountyKills() {
 
 unsigned long long PlayerObject::getBountyKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -4995,7 +4995,7 @@ unsigned long long PlayerObject::getBountyKills() {
 
 void PlayerObject::updatePveKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5009,7 +5009,7 @@ void PlayerObject::updatePveKills() {
 
 unsigned long long PlayerObject::getPveKills() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5023,7 +5023,7 @@ unsigned long long PlayerObject::getPveKills() {
 
 void PlayerObject::updatePveDeaths() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5037,7 +5037,7 @@ void PlayerObject::updatePveDeaths() {
 
 unsigned long long PlayerObject::getPveDeaths() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5051,7 +5051,7 @@ unsigned long long PlayerObject::getPveDeaths() {
 
 void PlayerObject::updateMissionsCompleted() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5065,7 +5065,7 @@ void PlayerObject::updateMissionsCompleted() {
 
 unsigned long long PlayerObject::getMissionsCompleted() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5079,7 +5079,7 @@ unsigned long long PlayerObject::getMissionsCompleted() {
 
 void PlayerObject::updateWebStats(const String& stat, int newValue) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5095,7 +5095,7 @@ void PlayerObject::updateWebStats(const String& stat, int newValue) {
 
 void PlayerObject::updatePlayerBountyTimestamp(int duration) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5110,7 +5110,7 @@ void PlayerObject::updatePlayerBountyTimestamp(int duration) {
 
 void PlayerObject::setBountyReward(int reward) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5125,7 +5125,7 @@ void PlayerObject::setBountyReward(int reward) {
 
 unsigned long long PlayerObject::getBountyReward() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5139,7 +5139,7 @@ unsigned long long PlayerObject::getBountyReward() {
 
 void PlayerObject::setBountyPlacerId(unsigned long long placerId) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5154,7 +5154,7 @@ void PlayerObject::setBountyPlacerId(unsigned long long placerId) {
 
 unsigned long long PlayerObject::getBountyPlacerId() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5168,7 +5168,7 @@ unsigned long long PlayerObject::getBountyPlacerId() {
 
 bool PlayerObject::hasPlayerBounty() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5182,7 +5182,7 @@ bool PlayerObject::hasPlayerBounty() {
 
 void PlayerObject::refundPlayerBountyCredits() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5196,7 +5196,7 @@ void PlayerObject::refundPlayerBountyCredits() {
 
 bool PlayerObject::isCloning() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5210,7 +5210,7 @@ bool PlayerObject::isCloning() const {
 
 void PlayerObject::setCloning(bool val) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5225,7 +5225,7 @@ void PlayerObject::setCloning(bool val) {
 
 unsigned long long PlayerObject::getPlayedMiliSecs() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5239,7 +5239,7 @@ unsigned long long PlayerObject::getPlayedMiliSecs() const {
 
 unsigned long long PlayerObject::getSessionMiliSecs() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5253,7 +5253,7 @@ unsigned long long PlayerObject::getSessionMiliSecs() const {
 
 unsigned long long PlayerObject::getSessionTotalMovement() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5267,7 +5267,7 @@ unsigned long long PlayerObject::getSessionTotalMovement() const {
 
 String PlayerObject::getMiliSecsTimeString(unsigned long long miliSecs, bool verbose) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5285,7 +5285,7 @@ String PlayerObject::getMiliSecsTimeString(unsigned long long miliSecs, bool ver
 
 String PlayerObject::getPlayedTimeString(bool verbose) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -5333,7 +5333,7 @@ PlayerObjectImplementation::~PlayerObjectImplementation() {
 void PlayerObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PlayerObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -7136,7 +7136,7 @@ void PlayerObjectImplementation::setClientPathWaypoint(SceneObject* obj) {
 void PlayerObjectImplementation::addOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.
-	if (obj == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			return;
+	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return;
 	return;
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.put(obj.getObjectID());
 	(&ownedStructures)->put(obj->getObjectID());
@@ -7145,13 +7145,13 @@ void PlayerObjectImplementation::addOwnedStructure(StructureObject* obj) {
 void PlayerObjectImplementation::removeOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.
-	if (obj == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			return;
+	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return;
 	return;
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.drop(obj.getObjectID());
 	(&ownedStructures)->drop(obj->getObjectID());
 	// server/zone/objects/player/PlayerObject.idl():  	}
 	if (obj->getObjectID() == getDeclaredResidence())	// server/zone/objects/player/PlayerObject.idl():  			setDeclaredResidence(null);
-	setDeclaredResidence(nullptr);
+	setDeclaredResidence(NULL);
 }
 
 int PlayerObjectImplementation::getAcceptedTOSVersion() {
@@ -7173,7 +7173,7 @@ int PlayerObjectImplementation::getTotalOwnedStructureCount() {
 bool PlayerObjectImplementation::isOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		return 
-	if (obj == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			return false;
+	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return false;
 	return false;
 	// server/zone/objects/player/PlayerObject.idl():  		return ownedStructures.contains(obj.getObjectID());
 	return (&ownedStructures)->contains(obj->getObjectID());
@@ -7316,7 +7316,7 @@ void PlayerObjectImplementation::clearLastNpcConvOptions() {
 
 void PlayerObjectImplementation::setConversatingCreature(CreatureObject* creature) {
 	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = creature.getObjectID();
-	if (creature == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = 0;
+	if (creature == NULL)	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = 0;
 	conversatingCreature = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = creature.getObjectID();
@@ -7410,7 +7410,7 @@ unsigned long long PlayerObjectImplementation::getDeclaredResidence() const{
 
 void PlayerObjectImplementation::setDeclaredResidence(BuildingObject* residence) {
 	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = residence.getObjectID();
-	if (residence == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = 0;
+	if (residence == NULL)	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = 0;
 	declaredResidence = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = residence.getObjectID();
@@ -7419,7 +7419,7 @@ void PlayerObjectImplementation::setDeclaredResidence(BuildingObject* residence)
 
 void PlayerObjectImplementation::setCloningFacility(BuildingObject* cloningfac) {
 	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = cloningfac.getObjectID();
-	if (cloningfac == nullptr)	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = 0;
+	if (cloningfac == NULL)	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = 0;
 	cloningFacility = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = cloningfac.getObjectID();
@@ -7524,7 +7524,7 @@ Reference<SuiBox* > PlayerObjectImplementation::getSuiBoxFromWindowType(unsigned
 	return sui;
 }
 	// server/zone/objects/player/PlayerObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 void PlayerObjectImplementation::addSuiBox(SuiBox* sui) {
@@ -8719,14 +8719,14 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int specialTypeID = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getWaypointBySpecialType(specialTypeID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETSURVEYWAYPOINT__:
 		{
 			
 			DistributedObject* _m_res = getSurveyWaypoint();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_HASWAYPOINT__LONG_:
@@ -8744,7 +8744,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			String planet; inv->getAsciiParameter(planet);
 			
 			DistributedObject* _m_res = getWaypointAt(x, y, planet);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETWAYPOINTLISTSIZE__:
@@ -8759,7 +8759,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getWaypoint(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETLANGUAGEID__BYTE_BOOL_:
@@ -9426,7 +9426,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			unsigned int boxID = inv->getUnsignedIntParameter();
 			
 			DistributedObject* _m_res = getSuiBox(boxID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_REMOVESUIBOX__INT_BOOL_:
@@ -9467,7 +9467,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			unsigned int windowType = inv->getUnsignedIntParameter();
 			
 			DistributedObject* _m_res = getSuiBoxFromWindowType(windowType);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ADDSUIBOX__SUIBOX_:
@@ -9553,7 +9553,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getDuelListObject(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_REQUESTEDDUELTO__CREATUREOBJECT_:
@@ -9599,7 +9599,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getActivePet(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_HASACTIVEPET__AIAGENT_:
@@ -9924,7 +9924,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int i = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getSchematic(i);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETFOODFILLING__:
@@ -10530,7 +10530,7 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getAccount();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCHOSENVETERANREWARD__INT_:

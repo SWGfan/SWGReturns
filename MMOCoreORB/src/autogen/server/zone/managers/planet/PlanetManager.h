@@ -211,7 +211,7 @@ public:
 	 * Returns the closest PlanetTravelPoint within the given range.
 	 * @param object The object to use as reference.
 	 * @param range The maximum range to search within.
-	 * @return Returns a PlanetTravelPoint or nullptr if not found in range
+	 * @return Returns a PlanetTravelPoint or NULL if not found in range
 	 */
 	PlanetTravelPoint* getNearestPlanetTravelPoint(SceneObject* object, float range = 16000.0);
 
@@ -221,13 +221,13 @@ public:
 	 * Returns the closest PlanetTravelPoint within the given range.
 	 * @param position The position to use as reference.
 	 * @param range The maximum range to search within.
-	 * @return Returns a PlanetTravelPoint or nullptr if not found in range
+	 * @return Returns a PlanetTravelPoint or NULL if not found in range
 	 */
 	PlanetTravelPoint* getNearestPlanetTravelPoint(const Vector3& position, float range = 16000.0);
 
 	bool isSpawningPermittedAt(float x, float y, float margin = 0);
 
-	bool isBuildingPermittedAt(float x, float y, SceneObject* objectTryingToBuild = nullptr, float margin = 0, bool checkFootprint = true);
+	bool isBuildingPermittedAt(float x, float y, SceneObject* objectTryingToBuild = NULL, float margin = 0, bool checkFootprint = true);
 
 	bool isCampingPermittedAt(float x, float y, float margin);
 
@@ -252,7 +252,7 @@ public:
 	 * @param departurePoint The point on this planet from which the ticket is set to depart.
 	 * @param arrivalPlanet The planet to which the ticket is set to arrive.
 	 * @param departurePoint The point on the arrival planet to which the ticket is set to arrive.
-	 * @return Returns a travel ticket for the route specified, or nullptr if it could not be created.
+	 * @return Returns a travel ticket for the route specified, or NULL if it could not be created.
 	 */
 	Reference<SceneObject* > createTicket(const String& departurePoint, const String& arrivalPlanet, const String& arrivalPoint);
 
@@ -313,7 +313,7 @@ public:
 
 	/**
 	 * Gets the PlanetTravelPoint that corresponds to the point name. If the point doesn't exist
-	 * then it will return nullptr.
+	 * then it will return NULL.
 	 * @param pointName The planet travel point's name.
 	 * @return PlanetTravelPoint for the given point name.
 	 */
@@ -336,7 +336,7 @@ public:
 
 	bool isInWater(float x, float y);
 
-	float findClosestWorldFloor(float x, float y, float z, float swimHeight, IntersectionResults* intersections = nullptr, CloseObjectsVector* closeObjects = nullptr);
+	float findClosestWorldFloor(float x, float y, float z, float swimHeight, IntersectionResults* intersections = NULL, CloseObjectsVector* closeObjects = NULL);
 
 	void addPlayerCityTravelPoint(PlanetTravelPoint* ptp);
 
@@ -472,7 +472,7 @@ public:
 	 * Returns the closest PlanetTravelPoint within the given range.
 	 * @param object The object to use as reference.
 	 * @param range The maximum range to search within.
-	 * @return Returns a PlanetTravelPoint or nullptr if not found in range
+	 * @return Returns a PlanetTravelPoint or NULL if not found in range
 	 */
 	PlanetTravelPoint* getNearestPlanetTravelPoint(SceneObject* object, float range = 16000.0);
 
@@ -482,13 +482,13 @@ public:
 	 * Returns the closest PlanetTravelPoint within the given range.
 	 * @param position The position to use as reference.
 	 * @param range The maximum range to search within.
-	 * @return Returns a PlanetTravelPoint or nullptr if not found in range
+	 * @return Returns a PlanetTravelPoint or NULL if not found in range
 	 */
 	PlanetTravelPoint* getNearestPlanetTravelPoint(const Vector3& position, float range = 16000.0);
 
 	bool isSpawningPermittedAt(float x, float y, float margin = 0);
 
-	bool isBuildingPermittedAt(float x, float y, SceneObject* objectTryingToBuild = nullptr, float margin = 0, bool checkFootprint = true);
+	bool isBuildingPermittedAt(float x, float y, SceneObject* objectTryingToBuild = NULL, float margin = 0, bool checkFootprint = true);
 
 	bool isCampingPermittedAt(float x, float y, float margin);
 
@@ -513,7 +513,7 @@ public:
 	 * @param departurePoint The point on this planet from which the ticket is set to depart.
 	 * @param arrivalPlanet The planet to which the ticket is set to arrive.
 	 * @param departurePoint The point on the arrival planet to which the ticket is set to arrive.
-	 * @return Returns a travel ticket for the route specified, or nullptr if it could not be created.
+	 * @return Returns a travel ticket for the route specified, or NULL if it could not be created.
 	 */
 	Reference<SceneObject* > createTicket(const String& departurePoint, const String& arrivalPlanet, const String& arrivalPoint);
 
@@ -574,7 +574,7 @@ public:
 
 	/**
 	 * Gets the PlanetTravelPoint that corresponds to the point name. If the point doesn't exist
-	 * then it will return nullptr.
+	 * then it will return NULL.
 	 * @param pointName The planet travel point's name.
 	 * @return PlanetTravelPoint for the given point name.
 	 */
@@ -597,7 +597,7 @@ public:
 
 	bool isInWater(float x, float y);
 
-	float findClosestWorldFloor(float x, float y, float z, float swimHeight, IntersectionResults* intersections = nullptr, CloseObjectsVector* closeObjects = nullptr);
+	float findClosestWorldFloor(float x, float y, float z, float swimHeight, IntersectionResults* intersections = NULL, CloseObjectsVector* closeObjects = NULL);
 
 	void addPlayerCityTravelPoint(PlanetTravelPoint* ptp);
 

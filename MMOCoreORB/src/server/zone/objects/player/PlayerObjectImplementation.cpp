@@ -2751,14 +2751,6 @@ bool PlayerObjectImplementation::hasPermissionGroup(const String& group) {
 }
 
 void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContainedObjects) {
-	// EMERGENCY FIX: Log and block player character deletion
-	info("!!! destroyObjectFromDatabase called on PlayerObject !!!", true);
-	ManagedReference<CreatureObject*> creature = getParent().get().castTo<CreatureObject*>();
-	if (creature != nullptr && creature->isPlayerCreature()) {
-		error("BLOCKED: Attempt to delete player character from database!");
-		return;
-	}
-
 	IntangibleObjectImplementation::destroyObjectFromDatabase(destroyContainedObjects);
 
 	removeAllFriends();
@@ -3391,7 +3383,7 @@ void PlayerObjectImplementation::updateWebStats(const String& stat, int newValue
 		Reference<ResultSet*> result = ServerDatabase::instance()->executeQuery(statQuery);
 
 		if (result == nullptr) {
-			error("ERROR WHILE TRYING TO UPDATE PLAYER STATS. RESULT IS nullptr.");
+			error("ERROR WHILE TRYING TO UPDATE PLAYER STATS. RESULT IS NULL.");
 		} else if (result.get()->getRowsAffected() > 1) {
 			error("More than one character with oid = " + String::valueOf(playerID));
 		} else if (result.get()->getRowsAffected() == 0) {

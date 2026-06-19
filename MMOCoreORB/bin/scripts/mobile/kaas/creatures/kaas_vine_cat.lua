@@ -27,7 +27,7 @@ vine_cat = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/greater_sludge_panther.iff"},
+	templates = {"object/mobile/graul.iff"},
 	lootGroups = {
 		{
 			groups = {

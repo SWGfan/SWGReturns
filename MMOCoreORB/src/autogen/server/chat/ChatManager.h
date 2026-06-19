@@ -275,9 +275,9 @@ public:
 
 	void disableRoom(ChatRoom* room);
 
-	Reference<ChatRoom* > createRoom(const String& roomName, ChatRoom* parent = nullptr);
+	Reference<ChatRoom* > createRoom(const String& roomName, ChatRoom* parent = NULL);
 
-	Reference<ChatRoom* > createPersistentRoom(const String& roomName, ChatRoom* parent = nullptr);
+	Reference<ChatRoom* > createPersistentRoom(const String& roomName, ChatRoom* parent = NULL);
 
 	void destroyRoom(ChatRoom* room);
 
@@ -443,7 +443,7 @@ public:
 
 	UnicodeString formatMessage(const UnicodeString& message);
 
-	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = nullptr);
+	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = NULL);
 
 	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters);
 
@@ -632,9 +632,9 @@ private:
 	void enableRoom(CreatureObject* player, ChatRoom* room, int requestID);
 
 public:
-	Reference<ChatRoom* > createRoom(const String& roomName, ChatRoom* parent = nullptr);
+	Reference<ChatRoom* > createRoom(const String& roomName, ChatRoom* parent = NULL);
 
-	Reference<ChatRoom* > createPersistentRoom(const String& roomName, ChatRoom* parent = nullptr);
+	Reference<ChatRoom* > createPersistentRoom(const String& roomName, ChatRoom* parent = NULL);
 
 	void destroyRoom(ChatRoom* room);
 
@@ -876,7 +876,7 @@ public:
 
 	UnicodeString formatMessage(const UnicodeString& message);
 
-	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = nullptr);
+	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = NULL);
 
 	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters);
 

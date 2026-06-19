@@ -84,7 +84,7 @@ namespace sessions {
 
 class CityTreasuryWithdrawalSession : public Facade {
 public:
-	CityTreasuryWithdrawalSession(CreatureObject* creature, CityRegion* city, SceneObject* terminal = nullptr);
+	CityTreasuryWithdrawalSession(CreatureObject* creature, CityRegion* city, SceneObject* terminal = NULL);
 
 	void setReason(const String& r);
 
@@ -136,7 +136,7 @@ protected:
 	String reason;
 
 public:
-	CityTreasuryWithdrawalSessionImplementation(CreatureObject* creature, CityRegion* city, SceneObject* terminal = nullptr);
+	CityTreasuryWithdrawalSessionImplementation(CreatureObject* creature, CityRegion* city, SceneObject* terminal = NULL);
 
 	CityTreasuryWithdrawalSessionImplementation(DummyConstructorParameter* param);
 

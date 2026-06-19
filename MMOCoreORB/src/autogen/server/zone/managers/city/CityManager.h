@@ -222,55 +222,55 @@ public:
 
 	void destroyCity(CityRegion* city);
 
-	void sendStatusReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendStatusReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptCitySpecialization(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptCitySpecialization(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
 	void changeCitySpecialization(CityRegion* city, CreatureObject* mayor, const String& spec);
 
-	void promptWithdrawCityTreasury(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptWithdrawCityTreasury(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
-	void promptDepositCityTreasury(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptDepositCityTreasury(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void withdrawFromCityTreasury(CityRegion* city, CreatureObject* mayor, int value, const String& reason, SceneObject* terminal = nullptr);
+	void withdrawFromCityTreasury(CityRegion* city, CreatureObject* mayor, int value, const String& reason, SceneObject* terminal = NULL);
 
 	void depositToCityTreasury(CityRegion* city, CreatureObject* creature, int value);
 
-	void sendTreasuryReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendTreasuryReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void sendCitizenshipReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendCitizenshipReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void registerCitizen(CityRegion* city, CreatureObject* creature);
 
 	void unregisterCitizen(CityRegion* city, CreatureObject* creature);
 
-	void sendManageMilitia(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendManageMilitia(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptAddMilitiaMember(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptAddMilitiaMember(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void addMilitiaMember(CityRegion* city, CreatureObject* mayor, const String& playerName);
 
 	void removeMilitiaMember(CityRegion* city, CreatureObject* mayor, unsigned long long militiaid);
 
-	void sendCityAdvancement(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendCityAdvancement(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	String getNextUpdateTimeString(CityRegion* city);
 
-	void promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptUnregisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptUnregisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void registerCity(CityRegion* city, CreatureObject* mayor);
 
 	void unregisterCity(CityRegion* city, CreatureObject* mayor);
 
-	void promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
-	void promptSetTax(CityRegion* city, CreatureObject* mayor, int selectedTax, SceneObject* terminal = nullptr);
+	void promptSetTax(CityRegion* city, CreatureObject* mayor, int selectedTax, SceneObject* terminal = NULL);
 
 	void setTax(CityRegion* city, CreatureObject* mayor, int selectedTax, int value);
 
-	void sendMaintenanceReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendMaintenanceReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void sendMail(CityRegion* city, const String& sender, const UnicodeString& subject, StringIdChatParameter& params, WaypointObject* waypoint);
 
@@ -294,13 +294,13 @@ public:
 	 * @pre city locked, creature locked, sceneObject locked
 	 * @post city locked, creature locked, sceneObject locked
 	 */
-	void sendMayoralStandings(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendMayoralStandings(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	/**
 	 * @pre city locked, creature locked, sceneObject locked
 	 * @post city locked, creature locked, sceneObject locked
 	 */
-	void promptMayoralVote(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptMayoralVote(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	/**
 	 * @pre city locked, creature locked
@@ -312,7 +312,7 @@ public:
 
 	void castMayoralVote(CityRegion* city, CreatureObject* creature, unsigned long long oid);
 
-	void sendStructureReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendStructureReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	bool canSupportMoreDecorations(CityRegion* city);
 
@@ -472,55 +472,55 @@ public:
 
 	void destroyCity(CityRegion* city);
 
-	void sendStatusReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendStatusReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptCitySpecialization(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptCitySpecialization(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
 	void changeCitySpecialization(CityRegion* city, CreatureObject* mayor, const String& spec);
 
-	void promptWithdrawCityTreasury(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptWithdrawCityTreasury(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
-	void promptDepositCityTreasury(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptDepositCityTreasury(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void withdrawFromCityTreasury(CityRegion* city, CreatureObject* mayor, int value, const String& reason, SceneObject* terminal = nullptr);
+	void withdrawFromCityTreasury(CityRegion* city, CreatureObject* mayor, int value, const String& reason, SceneObject* terminal = NULL);
 
 	void depositToCityTreasury(CityRegion* city, CreatureObject* creature, int value);
 
-	void sendTreasuryReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendTreasuryReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void sendCitizenshipReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendCitizenshipReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void registerCitizen(CityRegion* city, CreatureObject* creature);
 
 	void unregisterCitizen(CityRegion* city, CreatureObject* creature);
 
-	void sendManageMilitia(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendManageMilitia(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptAddMilitiaMember(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptAddMilitiaMember(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void addMilitiaMember(CityRegion* city, CreatureObject* mayor, const String& playerName);
 
 	void removeMilitiaMember(CityRegion* city, CreatureObject* mayor, unsigned long long militiaid);
 
-	void sendCityAdvancement(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendCityAdvancement(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	String getNextUpdateTimeString(CityRegion* city);
 
-	void promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
-	void promptUnregisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptUnregisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void registerCity(CityRegion* city, CreatureObject* mayor);
 
 	void unregisterCity(CityRegion* city, CreatureObject* mayor);
 
-	void promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = nullptr);
+	void promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, SceneObject* terminal = NULL);
 
-	void promptSetTax(CityRegion* city, CreatureObject* mayor, int selectedTax, SceneObject* terminal = nullptr);
+	void promptSetTax(CityRegion* city, CreatureObject* mayor, int selectedTax, SceneObject* terminal = NULL);
 
 	void setTax(CityRegion* city, CreatureObject* mayor, int selectedTax, int value);
 
-	void sendMaintenanceReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendMaintenanceReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	void sendMail(CityRegion* city, const String& sender, const UnicodeString& subject, StringIdChatParameter& params, WaypointObject* waypoint);
 
@@ -544,13 +544,13 @@ public:
 	 * @pre city locked, creature locked, sceneObject locked
 	 * @post city locked, creature locked, sceneObject locked
 	 */
-	void sendMayoralStandings(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendMayoralStandings(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	/**
 	 * @pre city locked, creature locked, sceneObject locked
 	 * @post city locked, creature locked, sceneObject locked
 	 */
-	void promptMayoralVote(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void promptMayoralVote(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	/**
 	 * @pre city locked, creature locked
@@ -562,7 +562,7 @@ public:
 
 	void castMayoralVote(CityRegion* city, CreatureObject* creature, unsigned long long oid);
 
-	void sendStructureReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = nullptr);
+	void sendStructureReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal = NULL);
 
 	bool canSupportMoreDecorations(CityRegion* city);
 

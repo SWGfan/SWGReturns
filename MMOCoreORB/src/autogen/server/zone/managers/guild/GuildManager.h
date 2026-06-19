@@ -233,9 +233,9 @@ public:
 
 	void sendMemberPermissionsTo(CreatureObject* player, unsigned long long targetID, GuildTerminal* guildTerminal);
 
-	bool validateGuildName(CreatureObject* player, const String& guildName, GuildObject* guild = nullptr);
+	bool validateGuildName(CreatureObject* player, const String& guildName, GuildObject* guild = NULL);
 
-	bool validateGuildAbbrev(CreatureObject* player, const String& guildAbbrev, GuildObject* guild = nullptr);
+	bool validateGuildAbbrev(CreatureObject* player, const String& guildAbbrev, GuildObject* guild = NULL);
 
 	bool guildNameExists(const String& guildName);
 
@@ -428,9 +428,9 @@ public:
 
 	void sendMemberPermissionsTo(CreatureObject* player, unsigned long long targetID, GuildTerminal* guildTerminal);
 
-	bool validateGuildName(CreatureObject* player, const String& guildName, GuildObject* guild = nullptr);
+	bool validateGuildName(CreatureObject* player, const String& guildName, GuildObject* guild = NULL);
 
-	bool validateGuildAbbrev(CreatureObject* player, const String& guildAbbrev, GuildObject* guild = nullptr);
+	bool validateGuildAbbrev(CreatureObject* player, const String& guildAbbrev, GuildObject* guild = NULL);
 
 	bool guildNameExists(const String& guildName);
 

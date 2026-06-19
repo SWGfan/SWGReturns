@@ -1,7 +1,7 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o: \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/pathfinding/ChunkyTriMesh.cpp \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/ChunkyTriMesh.cpp \
  /usr/include/stdc-predef.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/pathfinding/ChunkyTriMesh.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/ChunkyTriMesh.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -11,8 +11,8 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
@@ -26,11 +26,11 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h /usr/include/c++/12/stdlib.h \
- /usr/include/c++/12/cstdlib \
- /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/cpu_defines.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h /usr/include/c++/15/stdlib.h \
+ /usr/include/c++/15/cstdlib \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
@@ -59,14 +59,16 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/c++/12/bits/std_abs.h /usr/include/c++/12/math.h \
- /usr/include/c++/12/cmath /usr/include/c++/12/bits/cpp_type_traits.h \
- /usr/include/c++/12/ext/type_traits.h /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/c++/15/bits/std_abs.h /usr/include/c++/15/math.h \
+ /usr/include/c++/15/cmath /usr/include/c++/15/bits/requires_hosted.h \
+ /usr/include/c++/15/bits/cpp_type_traits.h \
+ /usr/include/c++/15/bits/version.h /usr/include/c++/15/ext/type_traits.h \
+ /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \

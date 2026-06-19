@@ -26,7 +26,7 @@ mailoc = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/mynock.iff"},
+	templates = {"object/mobile/graul.iff"},
 	controlDeviceTemplate = "object/intangible/pet/mynock_hue.iff",
 	lootGroups = {},
 	weapons = {},

@@ -954,7 +954,7 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
 	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-4866, 0, 4153);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1000,7 +1000,7 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
 	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-4866, 0, 4153);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1738,7 +1738,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 
 	// Jedi experience loss.
-	if (ghost->getJediState() >= 2) {
+	/*if (ghost->getJediState() >= 2) {
 		int jediXpCap = ghost->getXpCap("jedi_general");
 		int xpLoss = (int)(jediXpCap * -0.05);
 		int curExp = ghost->getExperience("jedi_general");
@@ -1753,7 +1753,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		message.setDI(xpLoss * -1);
 		message.setTO("exp_n", "jedi_general");
 		player->sendSystemMessage(message);
-	}
+	}*/
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1908,6 +1908,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			ManagedReference<GroupObject*> group = attacker->getGroup();
 
 			uint32 combatXp = 0;
+			bool usedLightsaberXp = false;
 
 			Locker crossLocker(attacker, destructedObject);
 
@@ -1915,6 +1916,12 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				uint32 damage = entry->elementAt(j).getValue();
 				String xpType = entry->elementAt(j).getKey();
 				float xpAmount = baseXp;
+
+				if (xpType == "combat_meleespecialize_onehandlightsaber" ||
+						xpType == "combat_meleespecialize_twohandlightsaber" ||
+						xpType == "combat_meleespecialize_polearmlightsaber") {
+					usedLightsaberXp = true;
+				}
 
 				xpAmount /= (float) entry->size() / 1;
 
@@ -1943,15 +1950,36 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
 				else
-					combatXp += xpAmount;
+					xpAmount *= 1.0f;
 
 				//Award individual expType
 				awardExperience(attacker, xpType, xpAmount);
+
+					if ((attacker->hasSkill("jedi_padawan_novice") ||
+					     attacker->hasSkill("combat_jedi_novice")) &&
+					    xpAmount > 0 &&
+					    xpType != "jedi_general") {
+
+						int jediXp = (int)(xpAmount * 1.0f);
+
+						if (jediXp < 1)
+							jediXp = 1;
+
+						awardExperience(attacker, "jedi_general", jediXp);
+					}
 			}
 
 			combatXp /= 10.f;
 
-			awardExperience(attacker, "combat_general", combatXp);
+			String genericCombatXpType = "combat_general";
+			PlayerObject* attackerGhost = attacker->getPlayerObject();
+
+			if (usedLightsaberXp && ((attackerGhost != nullptr && attackerGhost->getJediState() >= 2) ||
+					attacker->hasSkill("force_title_jedi_rank_02"))) {
+				genericCombatXpType = "jedi_general";
+			}
+
+			awardExperience(attacker, genericCombatXpType, combatXp);
 
 			//Check if the group leader is a squad leader
 			if (group == nullptr)

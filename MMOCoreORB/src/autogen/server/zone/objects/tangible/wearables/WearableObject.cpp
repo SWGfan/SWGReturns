@@ -32,7 +32,7 @@ WearableObject::~WearableObject() {
 
 void WearableObject::initializeTransientMembers() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void WearableObject::initializeTransientMembers() {
 
 void WearableObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void WearableObject::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 void WearableObject::updateCraftingValues(CraftingValues* values, bool initialUpdate) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void WearableObject::updateCraftingValues(CraftingValues* values, bool initialUp
 
 void WearableObject::applyAttachment(CreatureObject* player, Attachment* attachment) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ void WearableObject::applyAttachment(CreatureObject* player, Attachment* attachm
 
 void WearableObject::applySkillModsTo(CreatureObject* creature) const {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void WearableObject::applySkillModsTo(CreatureObject* creature) const {
 
 void WearableObject::removeSkillModsFrom(CreatureObject* creature) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void WearableObject::removeSkillModsFrom(CreatureObject* creature) {
 
 bool WearableObject::isWearableObject() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ bool WearableObject::isWearableObject() {
 
 bool WearableObject::isEquipped() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ bool WearableObject::isEquipped() {
 
 int WearableObject::getMaxSockets() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ int WearableObject::getMaxSockets() {
 
 int WearableObject::socketsUsed() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ int WearableObject::socketsUsed() {
 
 int WearableObject::socketsLeft() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ int WearableObject::socketsLeft() {
 
 String WearableObject::repairAttempt(int repairChance) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -199,7 +199,7 @@ String WearableObject::repairAttempt(int repairChance) {
 
 VectorMap<String, int>* WearableObject::getWearableSkillMods() {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -209,7 +209,7 @@ VectorMap<String, int>* WearableObject::getWearableSkillMods() {
 
 const VectorMap<String, int>* WearableObject::getWearableSkillMods() const {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -219,7 +219,7 @@ const VectorMap<String, int>* WearableObject::getWearableSkillMods() const {
 
 void WearableObject::addSkillMod(const int skillType, const String& skillMod, int value, bool notifyClient) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -237,7 +237,7 @@ void WearableObject::addSkillMod(const int skillType, const String& skillMod, in
 
 void WearableObject::setMaxSockets(int maxSockets) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -252,7 +252,7 @@ void WearableObject::setMaxSockets(int maxSockets) {
 
 void WearableObject::setSockets(int count) {
 	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -298,7 +298,7 @@ void WearableObjectImplementation::finalize() {
 void WearableObjectImplementation::_initializeImplementation() {
 	_setClassHelper(WearableObjectHelper::instance());
 
-	_this = NULL;
+	_this = nullptr;
 
 	_serializationHelperMethod();
 }

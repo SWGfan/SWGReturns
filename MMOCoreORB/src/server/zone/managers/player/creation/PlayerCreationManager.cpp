@@ -435,8 +435,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	addHair(playerCreature, hairTemplate, hairCustomization);
 	
 	// Get references to starting skills and items
-	const Vector<String>& startingSkills = playerTemplate->getStartingSkills();
-	const Vector<String>& startingItems = playerTemplate->getStartingItems();
+	const Vector<String>& startingSkills = *playerTemplate->getStartingSkills();
+	const Vector<String>& startingItems = *playerTemplate->getStartingItems();
 	
 	if (!doTutorial) {
 		addProfessionStartingItems(playerCreature, profession, clientTemplate,
@@ -616,8 +616,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	JediManager::instance()->onPlayerCreated(playerCreature);
 
-	chatManager->sendMail("system", "@newbie_tutorial/newbie_mail:welcome_subject", "@newbie_tutorial/newbie_mail:welcome_body", playerCreature->getFirstName());
-	chatManager->sendMail("Admin", "Welcome", "The SWG Returns Community welcomes you to the server!\n\nJoin our community voice chat today.\n\nhttps://discord.gg/xY5WuwfcFD", playerCreature->getFirstName());
+	chatManager->sendMail("System", "Welcome", "The SWG Returns Community welcomes you to the server!\n\nJoin our community voice chat today.\n\nhttps://discord.gg/xY5WuwfcFD", playerCreature->getFirstName());
 
 	//Join auction chat room
 	ghost->addChatRoom(chatManager->getAuctionRoom()->getRoomID());
@@ -1025,7 +1024,7 @@ void PlayerCreationManager::addStartingItemsInto(CreatureObject* creature,
 	}
 
 	//Add race specific items.
-	const Vector<String>& startingItems = playerTemplate->getStartingItems();
+	const Vector<String>& startingItems = *playerTemplate->getStartingItems();
 
 	for (int i = 0; i < startingItems.size(); ++i) {
 		ManagedReference<SceneObject*> item = zoneServer->createObject(
@@ -1109,7 +1108,7 @@ void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 
 
 	//Add race specific items.
-	const Vector<String>& startingItems = playerTemplate->getStartingItems();
+	const Vector<String>& startingItems = *playerTemplate->getStartingItems();
 
 	for (int i = 0; i < startingItems.size(); ++i) {
 		ManagedReference<SceneObject*> item = zoneServer->createObject(

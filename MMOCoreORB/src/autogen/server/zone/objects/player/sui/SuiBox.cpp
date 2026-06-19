@@ -1075,7 +1075,7 @@ void SuiBoxImplementation::initializeTransientMembers() {
 
 BaseMessage* SuiBoxImplementation::generateMessage() {
 	// server/zone/objects/player/sui/SuiBox.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 void SuiBoxImplementation::clearOptions() {

@@ -1,29 +1,28 @@
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o: \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp \
  /usr/include/stdc-predef.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/GallopBuff.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Core.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/platform.h \
- /usr/include/boost/lockfree/queue.hpp /usr/include/boost/assert.hpp \
- /usr/include/assert.h /usr/include/features.h \
- /usr/include/features-time64.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/GallopBuff.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Core.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/platform.h \
+ /usr/include/boost/lockfree/queue.hpp /usr/include/boost/config.hpp \
+ /usr/include/boost/config/user.hpp \
+ /usr/include/boost/config/detail/select_compiler_config.hpp \
+ /usr/include/boost/config/compiler/gcc.hpp /usr/include/c++/15/cstddef \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
+ /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/boost/static_assert.hpp /usr/include/boost/config.hpp \
- /usr/include/boost/config/user.hpp \
- /usr/include/boost/config/detail/select_compiler_config.hpp \
- /usr/include/boost/config/compiler/gcc.hpp /usr/include/c++/12/cstddef \
- /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/cpu_defines.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
+ /usr/include/c++/15/bits/version.h \
  /usr/include/boost/config/detail/select_stdlib_config.hpp \
- /usr/include/c++/12/version \
+ /usr/include/c++/15/version \
  /usr/include/boost/config/stdlib/libstdcpp3.hpp /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -36,7 +35,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
  /usr/include/boost/config/detail/select_platform_config.hpp \
- /usr/include/boost/config/platform/linux.hpp /usr/include/c++/12/cstdlib \
+ /usr/include/boost/config/platform/linux.hpp /usr/include/c++/15/cstdlib \
  /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
@@ -69,140 +68,93 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/c++/12/bits/std_abs.h \
+ /usr/include/c++/15/bits/std_abs.h \
  /usr/include/boost/config/detail/posix_features.hpp \
  /usr/include/boost/config/detail/suffix.hpp \
  /usr/include/boost/config/helper_macros.hpp \
- /usr/include/boost/detail/workaround.hpp \
- /usr/include/boost/config/workaround.hpp \
+ /usr/include/boost/config/detail/cxx_composite.hpp \
+ /usr/include/boost/assert.hpp /usr/include/assert.h \
  /usr/include/boost/core/allocator_access.hpp \
- /usr/include/boost/core/pointer_traits.hpp /usr/include/c++/12/memory \
- /usr/include/c++/12/bits/stl_algobase.h \
- /usr/include/c++/12/bits/functexcept.h \
- /usr/include/c++/12/bits/exception_defines.h \
- /usr/include/c++/12/bits/cpp_type_traits.h \
- /usr/include/c++/12/ext/type_traits.h \
- /usr/include/c++/12/ext/numeric_traits.h \
- /usr/include/c++/12/bits/stl_pair.h /usr/include/c++/12/type_traits \
- /usr/include/c++/12/bits/move.h /usr/include/c++/12/bits/utility.h \
- /usr/include/c++/12/bits/stl_iterator_base_types.h \
- /usr/include/c++/12/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/12/bits/concept_check.h \
- /usr/include/c++/12/debug/assertions.h \
- /usr/include/c++/12/bits/stl_iterator.h \
- /usr/include/c++/12/bits/ptr_traits.h /usr/include/c++/12/debug/debug.h \
- /usr/include/c++/12/bits/predefined_ops.h \
- /usr/include/c++/12/bits/allocator.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/c++allocator.h \
- /usr/include/c++/12/bits/new_allocator.h /usr/include/c++/12/new \
- /usr/include/c++/12/bits/exception.h \
- /usr/include/c++/12/bits/memoryfwd.h \
- /usr/include/c++/12/bits/stl_construct.h \
- /usr/include/c++/12/bits/stl_uninitialized.h \
- /usr/include/c++/12/ext/alloc_traits.h \
- /usr/include/c++/12/bits/alloc_traits.h \
- /usr/include/c++/12/bits/stl_tempbuf.h \
- /usr/include/c++/12/bits/stl_raw_storage_iter.h \
- /usr/include/c++/12/bits/align.h /usr/include/c++/12/bit \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/c++/12/bits/uses_allocator.h \
- /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/tuple \
- /usr/include/c++/12/bits/invoke.h \
- /usr/include/c++/12/bits/stl_function.h \
- /usr/include/c++/12/backward/binders.h \
- /usr/include/c++/12/bits/functional_hash.h \
- /usr/include/c++/12/bits/hash_bytes.h \
- /usr/include/c++/12/bits/shared_ptr.h /usr/include/c++/12/iosfwd \
- /usr/include/c++/12/bits/stringfwd.h /usr/include/c++/12/bits/postypes.h \
- /usr/include/c++/12/cwchar /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
- /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
- /usr/include/c++/12/bits/shared_ptr_base.h /usr/include/c++/12/typeinfo \
- /usr/include/c++/12/bits/allocated_ptr.h \
- /usr/include/c++/12/bits/refwrap.h \
- /usr/include/c++/12/ext/aligned_buffer.h \
- /usr/include/c++/12/ext/atomicity.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/gthr.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/gthr-default.h \
- /usr/include/pthread.h /usr/include/sched.h \
- /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
- /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/timex.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /usr/include/x86_64-linux-gnu/bits/setjmp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/atomic_word.h \
- /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
- /usr/include/c++/12/ext/concurrence.h /usr/include/c++/12/exception \
- /usr/include/c++/12/bits/exception_ptr.h \
- /usr/include/c++/12/bits/cxxabi_init_exception.h \
- /usr/include/c++/12/bits/nested_exception.h \
- /usr/include/c++/12/bits/shared_ptr_atomic.h \
- /usr/include/c++/12/bits/atomic_base.h \
- /usr/include/c++/12/bits/atomic_lockfree_defines.h \
- /usr/include/c++/12/backward/auto_ptr.h /usr/include/c++/12/limits \
- /usr/include/c++/12/utility /usr/include/c++/12/bits/stl_relops.h \
- /usr/include/c++/12/initializer_list \
- /usr/include/boost/type_traits/has_trivial_assign.hpp \
+ /usr/include/boost/core/pointer_traits.hpp \
+ /usr/include/boost/core/addressof.hpp /usr/include/c++/15/limits \
+ /usr/include/c++/15/new /usr/include/c++/15/bits/exception.h \
+ /usr/include/c++/15/type_traits /usr/include/c++/15/utility \
+ /usr/include/c++/15/bits/stl_relops.h \
+ /usr/include/c++/15/bits/stl_pair.h /usr/include/c++/15/bits/move.h \
+ /usr/include/c++/15/bits/utility.h /usr/include/c++/15/initializer_list \
+ /usr/include/boost/parameter/optional.hpp \
+ /usr/include/boost/parameter/aux_/use_default.hpp \
+ /usr/include/boost/parameter/config.hpp \
+ /usr/include/boost/config/workaround.hpp \
+ /usr/include/boost/mpl/limits/vector.hpp \
+ /usr/include/boost/mp11/integral.hpp /usr/include/boost/mp11/version.hpp \
+ /usr/include/boost/mp11/detail/mp_value.hpp \
+ /usr/include/boost/mp11/detail/config.hpp \
+ /usr/include/boost/parameter/parameters.hpp \
+ /usr/include/boost/parameter/aux_/arg_list.hpp \
+ /usr/include/boost/parameter/aux_/void.hpp \
+ /usr/include/boost/parameter/aux_/yesno.hpp \
+ /usr/include/boost/mpl/bool.hpp /usr/include/boost/mpl/bool_fwd.hpp \
+ /usr/include/boost/mpl/aux_/adl_barrier.hpp \
+ /usr/include/boost/mpl/aux_/config/adl.hpp \
+ /usr/include/boost/mpl/aux_/config/msvc.hpp \
+ /usr/include/boost/mpl/aux_/config/intel.hpp \
+ /usr/include/boost/mpl/aux_/config/gcc.hpp \
+ /usr/include/boost/mpl/aux_/config/workaround.hpp \
+ /usr/include/boost/detail/workaround.hpp \
+ /usr/include/boost/mpl/integral_c_tag.hpp \
+ /usr/include/boost/mpl/aux_/config/static_constant.hpp \
+ /usr/include/boost/parameter/aux_/result_of0.hpp \
+ /usr/include/boost/parameter/aux_/use_default_tag.hpp \
+ /usr/include/boost/utility/result_of.hpp \
+ /usr/include/boost/type_traits/is_class.hpp \
  /usr/include/boost/type_traits/detail/config.hpp \
  /usr/include/boost/version.hpp \
  /usr/include/boost/type_traits/intrinsics.hpp \
  /usr/include/boost/type_traits/integral_constant.hpp \
- /usr/include/boost/type_traits/is_pod.hpp \
- /usr/include/boost/type_traits/is_void.hpp \
- /usr/include/boost/type_traits/is_scalar.hpp \
- /usr/include/boost/type_traits/is_arithmetic.hpp \
- /usr/include/boost/type_traits/is_integral.hpp \
- /usr/include/boost/type_traits/is_floating_point.hpp \
- /usr/include/boost/type_traits/is_enum.hpp \
  /usr/include/boost/type_traits/is_pointer.hpp \
- /usr/include/boost/type_traits/is_member_pointer.hpp \
  /usr/include/boost/type_traits/is_member_function_pointer.hpp \
  /usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp \
- /usr/include/boost/type_traits/is_const.hpp \
- /usr/include/boost/type_traits/is_volatile.hpp \
- /usr/include/boost/type_traits/is_assignable.hpp \
- /usr/include/boost/type_traits/is_complete.hpp \
+ /usr/include/boost/type_traits/remove_cv.hpp \
+ /usr/include/boost/type_traits/remove_reference.hpp \
  /usr/include/boost/type_traits/declval.hpp \
  /usr/include/boost/type_traits/add_rvalue_reference.hpp \
+ /usr/include/boost/type_traits/is_void.hpp \
  /usr/include/boost/type_traits/is_reference.hpp \
  /usr/include/boost/type_traits/is_lvalue_reference.hpp \
  /usr/include/boost/type_traits/is_rvalue_reference.hpp \
- /usr/include/boost/type_traits/remove_reference.hpp \
- /usr/include/boost/type_traits/is_function.hpp \
- /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp \
- /usr/include/boost/type_traits/detail/yes_no_type.hpp \
- /usr/include/boost/type_traits/has_trivial_destructor.hpp \
- /usr/include/boost/type_traits/is_destructible.hpp \
- /usr/include/boost/lockfree/detail/atomic.hpp /usr/include/c++/12/atomic \
- /usr/include/boost/lockfree/detail/copy_payload.hpp \
+ /usr/include/boost/type_traits/conditional.hpp \
+ /usr/include/boost/type_traits/type_identity.hpp \
+ /usr/include/boost/core/enable_if.hpp \
+ /usr/include/boost/utility/detail/result_of_variadic.hpp \
+ /usr/include/boost/mp11/utility.hpp \
+ /usr/include/boost/mp11/detail/mp_list.hpp \
+ /usr/include/boost/mp11/detail/mp_fold.hpp \
+ /usr/include/boost/mp11/detail/mp_defer.hpp \
+ /usr/include/boost/mp11/detail/mp_rename.hpp \
+ /usr/include/boost/mp11/detail/mp_front.hpp \
+ /usr/include/boost/parameter/aux_/default.hpp \
+ /usr/include/boost/mp11/list.hpp \
+ /usr/include/boost/mp11/detail/mp_list_v.hpp \
+ /usr/include/boost/mp11/detail/mp_is_list.hpp \
+ /usr/include/boost/mp11/detail/mp_is_value_list.hpp \
+ /usr/include/boost/mp11/detail/mp_append.hpp \
+ /usr/include/boost/mp11/detail/mp_count.hpp \
+ /usr/include/boost/mp11/detail/mp_plus.hpp \
+ /usr/include/boost/parameter/aux_/preprocessor/nullptr.hpp \
+ /usr/include/boost/parameter/aux_/is_maybe.hpp \
+ /usr/include/boost/parameter/aux_/tagged_argument_fwd.hpp \
+ /usr/include/boost/parameter/aux_/parameter_requirements.hpp \
+ /usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp \
+ /usr/include/boost/parameter/aux_/augment_predicate.hpp \
+ /usr/include/boost/parameter/keyword_fwd.hpp \
  /usr/include/boost/mpl/if.hpp /usr/include/boost/mpl/aux_/value_wknd.hpp \
  /usr/include/boost/mpl/aux_/static_cast.hpp \
- /usr/include/boost/mpl/aux_/config/workaround.hpp \
  /usr/include/boost/mpl/aux_/config/integral.hpp \
- /usr/include/boost/mpl/aux_/config/msvc.hpp \
  /usr/include/boost/mpl/aux_/config/eti.hpp \
  /usr/include/boost/mpl/aux_/na_spec.hpp \
  /usr/include/boost/mpl/lambda_fwd.hpp \
- /usr/include/boost/mpl/void_fwd.hpp \
- /usr/include/boost/mpl/aux_/adl_barrier.hpp \
- /usr/include/boost/mpl/aux_/config/adl.hpp \
- /usr/include/boost/mpl/aux_/config/intel.hpp \
- /usr/include/boost/mpl/aux_/config/gcc.hpp \
- /usr/include/boost/mpl/aux_/na.hpp /usr/include/boost/mpl/bool.hpp \
- /usr/include/boost/mpl/bool_fwd.hpp \
- /usr/include/boost/mpl/integral_c_tag.hpp \
- /usr/include/boost/mpl/aux_/config/static_constant.hpp \
+ /usr/include/boost/mpl/void_fwd.hpp /usr/include/boost/mpl/aux_/na.hpp \
  /usr/include/boost/mpl/aux_/na_fwd.hpp \
  /usr/include/boost/mpl/aux_/config/ctps.hpp \
  /usr/include/boost/mpl/aux_/config/lambda.hpp \
@@ -224,15 +176,20 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/preprocessor/control/if.hpp \
  /usr/include/boost/preprocessor/control/iif.hpp \
  /usr/include/boost/preprocessor/logical/bool.hpp \
+ /usr/include/boost/preprocessor/config/limits.hpp \
+ /usr/include/boost/preprocessor/logical/limits/bool_256.hpp \
  /usr/include/boost/preprocessor/facilities/empty.hpp \
  /usr/include/boost/preprocessor/punctuation/comma.hpp \
  /usr/include/boost/preprocessor/repeat.hpp \
  /usr/include/boost/preprocessor/repetition/repeat.hpp \
  /usr/include/boost/preprocessor/debug/error.hpp \
  /usr/include/boost/preprocessor/detail/auto_rec.hpp \
+ /usr/include/boost/preprocessor/detail/limits/auto_rec_256.hpp \
  /usr/include/boost/preprocessor/tuple/eat.hpp \
+ /usr/include/boost/preprocessor/repetition/limits/repeat_256.hpp \
  /usr/include/boost/preprocessor/inc.hpp \
  /usr/include/boost/preprocessor/arithmetic/inc.hpp \
+ /usr/include/boost/preprocessor/arithmetic/limits/inc_256.hpp \
  /usr/include/boost/mpl/aux_/preprocessor/enum.hpp \
  /usr/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp \
  /usr/include/boost/mpl/limits/arity.hpp \
@@ -243,6 +200,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/preprocessor/empty.hpp \
  /usr/include/boost/preprocessor/arithmetic/add.hpp \
  /usr/include/boost/preprocessor/arithmetic/dec.hpp \
+ /usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp \
  /usr/include/boost/preprocessor/control/while.hpp \
  /usr/include/boost/preprocessor/list/fold_left.hpp \
  /usr/include/boost/preprocessor/list/detail/fold_left.hpp \
@@ -251,138 +209,46 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/preprocessor/detail/is_binary.hpp \
  /usr/include/boost/preprocessor/detail/check.hpp \
  /usr/include/boost/preprocessor/logical/compl.hpp \
+ /usr/include/boost/preprocessor/list/detail/limits/fold_left_256.hpp \
+ /usr/include/boost/preprocessor/list/limits/fold_left_256.hpp \
  /usr/include/boost/preprocessor/list/fold_right.hpp \
  /usr/include/boost/preprocessor/list/detail/fold_right.hpp \
  /usr/include/boost/preprocessor/list/reverse.hpp \
+ /usr/include/boost/preprocessor/list/detail/limits/fold_right_256.hpp \
  /usr/include/boost/preprocessor/control/detail/while.hpp \
+ /usr/include/boost/preprocessor/control/detail/limits/while_256.hpp \
+ /usr/include/boost/preprocessor/control/limits/while_256.hpp \
+ /usr/include/boost/preprocessor/logical/bitor.hpp \
  /usr/include/boost/preprocessor/tuple/elem.hpp \
  /usr/include/boost/preprocessor/facilities/expand.hpp \
  /usr/include/boost/preprocessor/facilities/overload.hpp \
  /usr/include/boost/preprocessor/variadic/size.hpp \
+ /usr/include/boost/preprocessor/facilities/check_empty.hpp \
+ /usr/include/boost/preprocessor/variadic/has_opt.hpp \
+ /usr/include/boost/preprocessor/variadic/limits/size_64.hpp \
  /usr/include/boost/preprocessor/tuple/rem.hpp \
  /usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp \
  /usr/include/boost/preprocessor/variadic/elem.hpp \
+ /usr/include/boost/preprocessor/variadic/limits/elem_64.hpp \
+ /usr/include/boost/preprocessor/arithmetic/detail/is_maximum_number.hpp \
+ /usr/include/boost/preprocessor/comparison/equal.hpp \
+ /usr/include/boost/preprocessor/comparison/not_equal.hpp \
+ /usr/include/boost/preprocessor/comparison/limits/not_equal_256.hpp \
+ /usr/include/boost/preprocessor/arithmetic/detail/maximum_number.hpp \
+ /usr/include/boost/preprocessor/arithmetic/detail/is_minimum_number.hpp \
+ /usr/include/boost/preprocessor/logical/not.hpp \
  /usr/include/boost/preprocessor/arithmetic/sub.hpp \
  /usr/include/boost/mpl/aux_/config/overload_resolution.hpp \
  /usr/include/boost/mpl/aux_/lambda_support.hpp \
- /usr/include/boost/type_traits/is_convertible.hpp \
- /usr/include/boost/type_traits/is_array.hpp \
- /usr/include/boost/type_traits/is_abstract.hpp \
- /usr/include/boost/type_traits/add_lvalue_reference.hpp \
- /usr/include/boost/type_traits/add_reference.hpp \
- /usr/include/boost/lockfree/detail/freelist.hpp \
- /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
- /usr/include/boost/array.hpp /usr/include/c++/12/iterator \
- /usr/include/c++/12/bits/stream_iterator.h \
- /usr/include/c++/12/bits/streambuf_iterator.h \
- /usr/include/c++/12/streambuf /usr/include/c++/12/bits/localefwd.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/c++locale.h \
- /usr/include/c++/12/clocale /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/12/cctype \
- /usr/include/ctype.h /usr/include/c++/12/bits/ios_base.h \
- /usr/include/c++/12/bits/locale_classes.h /usr/include/c++/12/string \
- /usr/include/c++/12/bits/char_traits.h /usr/include/c++/12/cstdint \
- /usr/include/c++/12/bits/ostream_insert.h \
- /usr/include/c++/12/bits/cxxabi_forced.h \
- /usr/include/c++/12/bits/range_access.h \
- /usr/include/c++/12/bits/basic_string.h \
- /usr/include/c++/12/ext/string_conversions.h /usr/include/c++/12/cstdio \
- /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h /usr/include/c++/12/cerrno \
- /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
- /usr/include/c++/12/bits/charconv.h \
- /usr/include/c++/12/bits/basic_string.tcc \
- /usr/include/c++/12/bits/locale_classes.tcc \
- /usr/include/c++/12/system_error \
- /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
- /usr/include/c++/12/stdexcept /usr/include/c++/12/bits/streambuf.tcc \
- /usr/include/boost/swap.hpp /usr/include/boost/core/swap.hpp \
- /usr/include/boost/core/enable_if.hpp \
- /usr/include/boost/throw_exception.hpp \
- /usr/include/boost/assert/source_location.hpp \
- /usr/include/boost/current_function.hpp /usr/include/boost/cstdint.hpp \
- /usr/include/boost/exception/exception.hpp /usr/include/c++/12/algorithm \
- /usr/include/c++/12/bits/stl_algo.h \
- /usr/include/c++/12/bits/algorithmfwd.h \
- /usr/include/c++/12/bits/stl_heap.h \
- /usr/include/c++/12/bits/uniform_int_dist.h \
- /usr/include/boost/noncopyable.hpp \
- /usr/include/boost/core/noncopyable.hpp \
- /usr/include/boost/align/align_up.hpp \
- /usr/include/boost/align/detail/align_up.hpp \
- /usr/include/boost/align/detail/is_alignment.hpp \
- /usr/include/boost/align/detail/not_pointer.hpp \
- /usr/include/boost/align/aligned_allocator_adaptor.hpp \
- /usr/include/boost/align/detail/is_alignment_constant.hpp \
- /usr/include/boost/align/detail/integral_constant.hpp \
- /usr/include/boost/align/detail/max_align.hpp \
- /usr/include/boost/align/detail/max_size.hpp \
- /usr/include/boost/align/alignment_of.hpp \
- /usr/include/boost/align/detail/element_type.hpp \
- /usr/include/boost/align/alignment_of_forward.hpp \
- /usr/include/boost/align/detail/alignment_of_cxx11.hpp \
- /usr/include/boost/align/align.hpp \
- /usr/include/boost/align/detail/align_cxx11.hpp \
- /usr/include/boost/align/aligned_allocator_adaptor_forward.hpp \
- /usr/include/boost/lockfree/detail/parameter.hpp \
- /usr/include/boost/lockfree/policies.hpp \
- /usr/include/boost/parameter/template_keyword.hpp \
- /usr/include/boost/parameter/aux_/template_keyword.hpp \
- /usr/include/boost/parameter/config.hpp \
- /usr/include/boost/mpl/limits/vector.hpp \
- /usr/include/boost/mp11/integral.hpp /usr/include/boost/mp11/version.hpp \
- /usr/include/boost/mp11/utility.hpp \
- /usr/include/boost/mp11/detail/mp_list.hpp \
- /usr/include/boost/mp11/detail/mp_fold.hpp \
- /usr/include/boost/mp11/detail/config.hpp \
- /usr/include/boost/mpl/size_t.hpp /usr/include/boost/mpl/size_t_fwd.hpp \
- /usr/include/boost/parameter/parameters.hpp \
- /usr/include/boost/parameter/aux_/arg_list.hpp \
- /usr/include/boost/parameter/aux_/void.hpp \
- /usr/include/boost/parameter/aux_/yesno.hpp \
- /usr/include/boost/parameter/aux_/result_of0.hpp \
- /usr/include/boost/parameter/aux_/use_default_tag.hpp \
- /usr/include/boost/utility/result_of.hpp \
- /usr/include/boost/preprocessor/iteration/iterate.hpp \
- /usr/include/boost/preprocessor/array/elem.hpp \
- /usr/include/boost/preprocessor/array/data.hpp \
- /usr/include/boost/preprocessor/array/size.hpp \
- /usr/include/boost/preprocessor/slot/slot.hpp \
- /usr/include/boost/preprocessor/slot/detail/def.hpp \
- /usr/include/boost/preprocessor/repetition/enum_params.hpp \
- /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp \
- /usr/include/boost/preprocessor/repetition/enum_binary_params.hpp \
- /usr/include/boost/preprocessor/repetition/enum_shifted_params.hpp \
- /usr/include/boost/preprocessor/facilities/intercept.hpp \
- /usr/include/boost/type_traits/is_class.hpp \
- /usr/include/boost/type_traits/remove_cv.hpp \
- /usr/include/boost/type_traits/conditional.hpp \
- /usr/include/boost/type_traits/type_identity.hpp \
- /usr/include/boost/preprocessor/iteration/detail/iter/forward1.hpp \
- /usr/include/boost/preprocessor/iteration/detail/bounds/lower1.hpp \
- /usr/include/boost/preprocessor/slot/detail/shared.hpp \
- /usr/include/boost/preprocessor/iteration/detail/bounds/upper1.hpp \
- /usr/include/boost/utility/detail/result_of_iterate.hpp \
- /usr/include/boost/parameter/aux_/default.hpp \
- /usr/include/boost/mp11/list.hpp \
- /usr/include/boost/mp11/detail/mp_is_list.hpp \
- /usr/include/boost/mp11/detail/mp_append.hpp \
- /usr/include/boost/parameter/aux_/preprocessor/nullptr.hpp \
- /usr/include/boost/parameter/aux_/is_maybe.hpp \
- /usr/include/boost/parameter/aux_/tagged_argument_fwd.hpp \
- /usr/include/boost/parameter/aux_/parameter_requirements.hpp \
- /usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp \
- /usr/include/boost/parameter/aux_/augment_predicate.hpp \
- /usr/include/boost/parameter/keyword_fwd.hpp \
  /usr/include/boost/mpl/eval_if.hpp \
+ /usr/include/boost/type_traits/is_scalar.hpp \
+ /usr/include/boost/type_traits/is_arithmetic.hpp \
+ /usr/include/boost/type_traits/is_integral.hpp \
+ /usr/include/boost/type_traits/is_floating_point.hpp \
+ /usr/include/boost/type_traits/is_enum.hpp \
+ /usr/include/boost/type_traits/is_member_pointer.hpp \
  /usr/include/boost/type_traits/is_same.hpp \
+ /usr/include/boost/type_traits/is_const.hpp \
  /usr/include/boost/parameter/aux_/lambda_tag.hpp \
  /usr/include/boost/mpl/apply_wrap.hpp \
  /usr/include/boost/mpl/aux_/has_apply.hpp \
@@ -392,6 +258,11 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/mpl/aux_/config/arrays.hpp \
  /usr/include/boost/mpl/aux_/config/has_xxx.hpp \
  /usr/include/boost/mpl/aux_/config/msvc_typename.hpp \
+ /usr/include/boost/preprocessor/array/elem.hpp \
+ /usr/include/boost/preprocessor/array/data.hpp \
+ /usr/include/boost/preprocessor/array/size.hpp \
+ /usr/include/boost/preprocessor/repetition/enum_params.hpp \
+ /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp \
  /usr/include/boost/mpl/aux_/config/has_apply.hpp \
  /usr/include/boost/mpl/aux_/msvc_never_true.hpp \
  /usr/include/boost/mpl/aux_/config/use_preprocessed.hpp \
@@ -433,15 +304,13 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/parameter/aux_/is_placeholder.hpp \
  /usr/include/boost/mp11/bind.hpp /usr/include/boost/mp11/algorithm.hpp \
  /usr/include/boost/mp11/set.hpp /usr/include/boost/mp11/function.hpp \
- /usr/include/boost/mp11/detail/mp_count.hpp \
- /usr/include/boost/mp11/detail/mp_plus.hpp \
  /usr/include/boost/mp11/detail/mp_min_element.hpp \
  /usr/include/boost/mp11/detail/mp_void.hpp \
  /usr/include/boost/mp11/detail/mp_copy_if.hpp \
  /usr/include/boost/mp11/detail/mp_remove_if.hpp \
  /usr/include/boost/mp11/detail/mp_map_find.hpp \
  /usr/include/boost/mp11/detail/mp_with_index.hpp \
- /usr/include/c++/12/cassert /usr/include/boost/mp11/integer_sequence.hpp \
+ /usr/include/c++/15/cassert /usr/include/boost/mp11/integer_sequence.hpp \
  /usr/include/boost/mpl/has_key_fwd.hpp \
  /usr/include/boost/mpl/count_fwd.hpp \
  /usr/include/boost/mpl/key_type_fwd.hpp \
@@ -492,10 +361,9 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/parameter/aux_/pack/unmatched_argument.hpp \
  /usr/include/boost/parameter/aux_/pack/tag_type.hpp \
  /usr/include/boost/parameter/deduced.hpp \
- /usr/include/boost/parameter/aux_/use_default.hpp \
  /usr/include/boost/parameter/required.hpp \
- /usr/include/boost/parameter/optional.hpp \
  /usr/include/boost/parameter/aux_/pack/is_named_argument.hpp \
+ /usr/include/boost/parameter/aux_/template_keyword.hpp \
  /usr/include/boost/parameter/aux_/is_tagged_argument.hpp \
  /usr/include/boost/type_traits/is_base_of.hpp \
  /usr/include/boost/type_traits/is_base_and_derived.hpp \
@@ -516,11 +384,150 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp \
  /usr/include/boost/parameter/aux_/tag.hpp \
  /usr/include/boost/parameter/aux_/unwrap_cv_reference.hpp \
- /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
+ /usr/include/c++/15/functional /usr/include/c++/15/bits/stl_function.h \
+ /usr/include/c++/15/backward/binders.h /usr/include/c++/15/tuple \
+ /usr/include/c++/15/bits/uses_allocator.h \
+ /usr/include/c++/15/bits/invoke.h \
+ /usr/include/c++/15/bits/functional_hash.h \
+ /usr/include/c++/15/bits/hash_bytes.h /usr/include/c++/15/bits/refwrap.h \
+ /usr/include/c++/15/bits/std_function.h /usr/include/c++/15/typeinfo \
+ /usr/include/c++/15/bits/functexcept.h \
+ /usr/include/c++/15/bits/exception_defines.h \
  /usr/include/boost/parameter/aux_/tagged_argument.hpp \
+ /usr/include/boost/type_traits/is_function.hpp \
+ /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp \
  /usr/include/boost/parameter/aux_/pack/tag_template_keyword_arg.hpp \
- /usr/include/boost/parameter/binding.hpp \
- /usr/include/boost/lockfree/detail/tagged_ptr.hpp \
+ /usr/include/boost/parameter/template_keyword.hpp \
+ /usr/include/boost/static_assert.hpp \
+ /usr/include/boost/lockfree/detail/atomic.hpp /usr/include/c++/15/atomic \
+ /usr/include/c++/15/bits/atomic_base.h \
+ /usr/include/c++/15/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/15/cstdint \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /usr/include/boost/lockfree/detail/copy_payload.hpp \
+ /usr/include/boost/lockfree/detail/freelist.hpp \
+ /usr/include/c++/15/array /usr/include/c++/15/compare \
+ /usr/include/c++/15/bits/stl_algobase.h \
+ /usr/include/c++/15/bits/cpp_type_traits.h \
+ /usr/include/c++/15/ext/type_traits.h \
+ /usr/include/c++/15/ext/numeric_traits.h \
+ /usr/include/c++/15/bits/stl_iterator_base_types.h \
+ /usr/include/c++/15/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/15/bits/concept_check.h \
+ /usr/include/c++/15/debug/assertions.h \
+ /usr/include/c++/15/bits/stl_iterator.h \
+ /usr/include/c++/15/bits/ptr_traits.h /usr/include/c++/15/debug/debug.h \
+ /usr/include/c++/15/bits/predefined_ops.h /usr/include/c++/15/bit \
+ /usr/include/c++/15/concepts /usr/include/c++/15/bits/range_access.h \
+ /usr/include/c++/15/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/15/memory /usr/include/c++/15/bits/memoryfwd.h \
+ /usr/include/c++/15/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/c++allocator.h \
+ /usr/include/c++/15/bits/new_allocator.h \
+ /usr/include/c++/15/bits/stl_tempbuf.h \
+ /usr/include/c++/15/bits/stl_construct.h \
+ /usr/include/c++/15/bits/stl_uninitialized.h \
+ /usr/include/c++/15/ext/alloc_traits.h \
+ /usr/include/c++/15/bits/alloc_traits.h \
+ /usr/include/c++/15/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/15/bits/align.h /usr/include/c++/15/bits/unique_ptr.h \
+ /usr/include/c++/15/bits/shared_ptr.h /usr/include/c++/15/iosfwd \
+ /usr/include/c++/15/bits/requires_hosted.h \
+ /usr/include/c++/15/bits/stringfwd.h /usr/include/c++/15/bits/postypes.h \
+ /usr/include/c++/15/cwchar /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/c++/15/bits/shared_ptr_base.h \
+ /usr/include/c++/15/bits/allocated_ptr.h \
+ /usr/include/c++/15/ext/aligned_buffer.h \
+ /usr/include/c++/15/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/gthr-default.h \
+ /usr/include/pthread.h /usr/include/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/linux/sched/types.h /usr/include/linux/types.h \
+ /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+ /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/timex.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
+ /usr/include/c++/15/ext/concurrence.h /usr/include/c++/15/exception \
+ /usr/include/c++/15/bits/exception_ptr.h \
+ /usr/include/c++/15/bits/cxxabi_init_exception.h \
+ /usr/include/c++/15/bits/nested_exception.h \
+ /usr/include/c++/15/bits/shared_ptr_atomic.h \
+ /usr/include/c++/15/backward/auto_ptr.h /usr/include/c++/15/stdexcept \
+ /usr/include/c++/15/string /usr/include/c++/15/bits/char_traits.h \
+ /usr/include/c++/15/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/c++locale.h \
+ /usr/include/c++/15/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/15/cctype \
+ /usr/include/ctype.h /usr/include/c++/15/bits/ostream_insert.h \
+ /usr/include/c++/15/bits/cxxabi_forced.h \
+ /usr/include/c++/15/bits/basic_string.h \
+ /usr/include/c++/15/ext/string_conversions.h /usr/include/c++/15/cstdio \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h /usr/include/c++/15/cerrno \
+ /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
+ /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
+ /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
+ /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
+ /usr/include/c++/15/bits/charconv.h \
+ /usr/include/c++/15/bits/basic_string.tcc \
+ /usr/include/boost/align/align_up.hpp \
+ /usr/include/boost/align/detail/align_up.hpp \
+ /usr/include/boost/align/detail/is_alignment.hpp \
+ /usr/include/boost/align/detail/not_pointer.hpp \
+ /usr/include/boost/align/aligned_allocator_adaptor.hpp \
+ /usr/include/boost/align/detail/is_alignment_constant.hpp \
+ /usr/include/boost/align/detail/integral_constant.hpp \
+ /usr/include/boost/align/detail/max_align.hpp \
+ /usr/include/boost/align/detail/max_size.hpp \
+ /usr/include/boost/align/alignment_of.hpp \
+ /usr/include/boost/align/detail/element_type.hpp \
+ /usr/include/boost/align/alignment_of_forward.hpp \
+ /usr/include/boost/align/detail/alignment_of_cxx11.hpp \
+ /usr/include/boost/align/align.hpp \
+ /usr/include/boost/align/detail/align.hpp \
+ /usr/include/boost/align/aligned_allocator_adaptor_forward.hpp \
+ /usr/include/boost/throw_exception.hpp \
+ /usr/include/boost/exception/exception.hpp \
+ /usr/include/boost/assert/source_location.hpp \
+ /usr/include/boost/cstdint.hpp \
+ /usr/include/boost/lockfree/detail/parameter.hpp \
+ /usr/include/boost/align/aligned_allocator.hpp \
+ /usr/include/boost/align/detail/add_reference.hpp \
+ /usr/include/boost/align/detail/max_objects.hpp \
+ /usr/include/boost/align/detail/throw_exception.hpp \
+ /usr/include/boost/align/aligned_alloc.hpp \
+ /usr/include/boost/align/detail/aligned_alloc_posix.hpp \
+ /usr/include/c++/15/stdlib.h \
+ /usr/include/boost/align/aligned_allocator_forward.hpp \
  /usr/include/boost/lockfree/detail/prefix.hpp \
  /usr/include/boost/predef.h /usr/include/boost/predef/language.h \
  /usr/include/boost/predef/language/stdc.h \
@@ -534,7 +541,9 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/predef/architecture/arm.h \
  /usr/include/boost/predef/architecture/blackfin.h \
  /usr/include/boost/predef/architecture/convex.h \
+ /usr/include/boost/predef/architecture/e2k.h \
  /usr/include/boost/predef/architecture/ia64.h \
+ /usr/include/boost/predef/architecture/loongarch.h \
  /usr/include/boost/predef/architecture/m68k.h \
  /usr/include/boost/predef/architecture/mips.h \
  /usr/include/boost/predef/architecture/parisc.h \
@@ -600,6 +609,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/predef/library/std/libcomo.h \
  /usr/include/boost/predef/library/std/modena.h \
  /usr/include/boost/predef/library/std/msl.h \
+ /usr/include/boost/predef/library/std/msvc.h \
  /usr/include/boost/predef/library/std/roguewave.h \
  /usr/include/boost/predef/library/std/sgi.h \
  /usr/include/boost/predef/library/std/stdcpp3.h \
@@ -625,6 +635,8 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/predef/os/windows.h /usr/include/boost/predef/other.h \
  /usr/include/boost/predef/other/endian.h \
  /usr/include/boost/predef/platform/android.h \
+ /usr/include/boost/predef/other/wordsize.h \
+ /usr/include/boost/predef/other/workaround.h \
  /usr/include/boost/predef/platform.h \
  /usr/include/boost/predef/platform/cloudabi.h \
  /usr/include/boost/predef/platform/mingw.h \
@@ -649,30 +661,35 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/boost/predef/hardware/simd/ppc.h \
  /usr/include/boost/predef/hardware/simd/ppc/versions.h \
  /usr/include/boost/predef/version.h \
+ /usr/include/boost/lockfree/policies.hpp \
+ /usr/include/boost/parameter/binding.hpp \
+ /usr/include/boost/lockfree/detail/tagged_ptr.hpp \
  /usr/include/boost/lockfree/detail/tagged_ptr_ptrcompression.hpp \
+ /usr/include/boost/lockfree/detail/uses_optional.hpp \
  /usr/include/boost/lockfree/lockfree_forward.hpp \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/12/ctime \
- /usr/include/c++/12/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/15/ctime \
+ /usr/include/c++/15/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/12/cfloat \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/float.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/types.h \
- /usr/include/c++/12/cxxabi.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/cxxabi_tweaks.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/String.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Variable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ConstString.h \
- /usr/include/c++/12/cstdarg \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Object.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
+ /usr/include/c++/15/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/types.h \
+ /usr/include/c++/15/cxxabi.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/cxxabi_tweaks.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/String.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Variable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ConstString.h \
+ /usr/include/c++/15/cstdarg \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Object.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
  /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
@@ -695,67 +712,79 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/System.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
- /usr/include/c++/12/math.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/System.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
+ /usr/include/c++/15/math.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/TextStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
- /usr/include/c++/12/iostream /usr/include/c++/12/ostream \
- /usr/include/c++/12/ios /usr/include/c++/12/bits/basic_ios.h \
- /usr/include/c++/12/bits/locale_facets.h /usr/include/c++/12/cwctype \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/TextStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
+ /usr/include/c++/15/iostream /usr/include/c++/15/ostream \
+ /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/ios \
+ /usr/include/c++/15/bits/ios_base.h \
+ /usr/include/c++/15/bits/locale_classes.h \
+ /usr/include/c++/15/bits/locale_classes.tcc \
+ /usr/include/c++/15/system_error \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/error_constants.h \
+ /usr/include/c++/15/streambuf /usr/include/c++/15/bits/streambuf.tcc \
+ /usr/include/c++/15/bits/basic_ios.h \
+ /usr/include/c++/15/bits/locale_facets.h /usr/include/c++/15/cwctype \
  /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_base.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/ctype_inline.h \
- /usr/include/c++/12/bits/locale_facets.tcc \
- /usr/include/c++/12/bits/basic_ios.tcc \
- /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
- /usr/include/c++/12/bits/istream.tcc \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
- /usr/include/c++/12/locale \
- /usr/include/c++/12/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/12/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/12/bits/codecvt.h \
- /usr/include/c++/12/bits/locale_facets_nonio.tcc \
- /usr/include/c++/12/bits/locale_conv.h /usr/include/c++/12/codecvt \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Math.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/ctype_base.h \
+ /usr/include/c++/15/bits/streambuf_iterator.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/ctype_inline.h \
+ /usr/include/c++/15/bits/locale_facets.tcc \
+ /usr/include/c++/15/bits/basic_ios.tcc \
+ /usr/include/c++/15/bits/ostream.tcc /usr/include/c++/15/istream \
+ /usr/include/c++/15/bits/istream.tcc \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
+ /usr/include/c++/15/locale \
+ /usr/include/c++/15/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/15/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
+ /usr/include/c++/15/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/15/bits/locale_conv.h /usr/include/c++/15/codecvt \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Math.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
  /usr/include/execinfo.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Integer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Function.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Optional.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/optional.hpp \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
- /usr/include/c++/12/thread /usr/include/c++/12/bits/std_thread.h \
- /usr/include/c++/12/bits/this_thread_sleep.h \
- /usr/include/c++/12/bits/chrono.h /usr/include/c++/12/ratio \
- /usr/include/c++/12/bits/parse_numbers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Mutex.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Time.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Long.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Stream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Integer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Function.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Optional.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/optional.hpp \
+ /usr/include/c++/15/algorithm /usr/include/c++/15/bits/stl_algo.h \
+ /usr/include/c++/15/bits/algorithmfwd.h \
+ /usr/include/c++/15/bits/stl_heap.h \
+ /usr/include/c++/15/bits/uniform_int_dist.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
+ /usr/include/c++/15/thread /usr/include/c++/15/bits/std_thread.h \
+ /usr/include/c++/15/bits/this_thread_sleep.h \
+ /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/ratio \
+ /usr/include/c++/15/bits/parse_numbers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Mutex.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Time.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Long.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Stream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
@@ -763,514 +792,505 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
  /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
- /usr/include/asm-generic/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/asm-generic/socket.h \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/12/chrono \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Runnable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
- /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_vector.h \
- /usr/include/c++/12/bits/stl_bvector.h \
- /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/array \
- /usr/include/c++/12/compare \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Character.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Byte.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Short.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Float.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Double.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Bool.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Vector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/File.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/InputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/IOException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/OutputStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileReader.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Reader.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Writer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
- /usr/include/c++/12/mutex /usr/include/c++/12/bits/std_mutex.h \
- /usr/include/c++/12/bits/unique_lock.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/LinkedList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorSet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Condition.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/15/chrono \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Runnable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
+ /usr/include/c++/15/iterator /usr/include/c++/15/bits/stream_iterator.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
+ /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_vector.h \
+ /usr/include/c++/15/bits/stl_bvector.h \
+ /usr/include/c++/15/bits/vector.tcc \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Character.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Byte.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Short.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Float.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Double.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Bool.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Vector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/File.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/InputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/IOException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/OutputStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileReader.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Reader.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Writer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
+ /usr/include/c++/15/mutex /usr/include/c++/15/bits/std_mutex.h \
+ /usr/include/c++/15/bits/unique_lock.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/LinkedList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorSet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Condition.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
  /usr/include/netdb.h /usr/include/rpc/netdb.h \
  /usr/include/x86_64-linux-gnu/bits/netdb.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Packet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/security/Crypto.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Singleton.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
- /usr/include/c++/12/ciso646 /usr/include/c++/12/numeric \
- /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/forward_list \
- /usr/include/c++/12/bits/forward_list.h \
- /usr/include/c++/12/bits/forward_list.tcc /usr/include/c++/12/map \
- /usr/include/c++/12/bits/stl_tree.h /usr/include/c++/12/bits/stl_map.h \
- /usr/include/c++/12/bits/stl_multimap.h \
- /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/unordered_map \
- /usr/include/c++/12/bits/hashtable.h \
- /usr/include/c++/12/bits/hashtable_policy.h \
- /usr/include/c++/12/bits/enable_special_members.h \
- /usr/include/c++/12/bits/unordered_map.h /usr/include/c++/12/valarray \
- /usr/include/c++/12/bits/valarray_array.h \
- /usr/include/c++/12/bits/valarray_array.tcc \
- /usr/include/c++/12/bits/valarray_before.h \
- /usr/include/c++/12/bits/slice_array.h \
- /usr/include/c++/12/bits/valarray_after.h \
- /usr/include/c++/12/bits/gslice.h \
- /usr/include/c++/12/bits/gslice_array.h \
- /usr/include/c++/12/bits/mask_array.h \
- /usr/include/c++/12/bits/indirect_array.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Command.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Pair.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Task.h \
- /usr/include/c++/12/csignal \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Timer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Packet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/security/Crypto.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Singleton.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
+ /usr/include/c++/15/ciso646 /usr/include/c++/15/numeric \
+ /usr/include/c++/15/bits/stl_numeric.h /usr/include/c++/15/forward_list \
+ /usr/include/c++/15/bits/forward_list.h \
+ /usr/include/c++/15/bits/forward_list.tcc /usr/include/c++/15/map \
+ /usr/include/c++/15/bits/stl_tree.h /usr/include/c++/15/bits/stl_map.h \
+ /usr/include/c++/15/bits/stl_multimap.h \
+ /usr/include/c++/15/bits/erase_if.h /usr/include/c++/15/unordered_map \
+ /usr/include/c++/15/bits/unordered_map.h \
+ /usr/include/c++/15/bits/hashtable.h \
+ /usr/include/c++/15/bits/hashtable_policy.h \
+ /usr/include/c++/15/bits/enable_special_members.h \
+ /usr/include/c++/15/valarray /usr/include/c++/15/bits/valarray_array.h \
+ /usr/include/c++/15/bits/valarray_array.tcc \
+ /usr/include/c++/15/bits/valarray_before.h \
+ /usr/include/c++/15/bits/slice_array.h \
+ /usr/include/c++/15/bits/valarray_after.h \
+ /usr/include/c++/15/bits/gslice.h \
+ /usr/include/c++/15/bits/gslice_array.h \
+ /usr/include/c++/15/bits/mask_array.h \
+ /usr/include/c++/15/bits/indirect_array.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Command.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Pair.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Task.h \
+ /usr/include/c++/15/csignal \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Timer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
  /usr/include/db.h /usr/include/inttypes.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/Database.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json_utils.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/buffs/../BuffAttribute.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/engine.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Lua.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/Database.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json_utils.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/buffs/../BuffAttribute.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/engine.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Lua.h \
  /usr/include/lua5.3/lua.hpp /usr/include/lua5.3/lua.h \
  /usr/include/lua5.3/luaconf.h \
  /usr/include/x86_64-linux-gnu/lua5.3-deb-multiarch.h \
  /usr/include/lua5.3/lualib.h /usr/include/lua5.3/lauxlib.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
  /usr/include/lua5.3/lua.h /usr/include/lua5.3/lualib.h \
  /usr/include/lua5.3/lauxlib.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffCRC.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/Buff.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/chat/StringIdChatParameter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/chat/ChatParameter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/StringIdParameter.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
- /usr/include/c++/12/stdlib.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffCRC.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/Buff.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/chat/StringIdChatParameter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/chat/ChatParameter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/StringIdParameter.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h \
  /usr/include/x86_64-linux-gnu/sys/stat.h \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
  /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
- /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
  /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/c++/12/sstream /usr/include/c++/12/bits/sstream.tcc \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
+ /usr/include/c++/15/sstream /usr/include/c++/15/bits/sstream.tcc \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h \
  /usr/include/regex.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h \
  /usr/include/x86_64-linux-gnu/sys/wait.h \
  /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /usr/include/c++/12/iomanip /usr/include/c++/12/bits/quoted_string.h \
- /usr/include/c++/12/set /usr/include/c++/12/bits/stl_set.h \
- /usr/include/c++/12/bits/stl_multiset.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/intangible/ControlDevice.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/intangible/IntangibleObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/SharedObjectTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/LuaTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/TemplateData.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/IffTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/ChildObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/manager/PlanetMapCategory.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/datatables/DataTableRow.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/datatables/DataTableCell.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/slots/SlotDescriptor.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/slots/ArrangementDescriptor.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/primitives/IntegerParam.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/TemplateBase.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/Param.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/StringIdParam.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/primitives/StringParam.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/primitives/BoolParam.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/primitives/FloatParam.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/QuadTreeEntry.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/CloseObjectsVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observable.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observer.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Facade.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/ObserverEventType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/ZoneReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/TransferErrorCode.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/PendingTasksMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/SessionFacadeType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/ObserverType.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/manager/TemplateManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/footprint/StructureFootprint.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/slots/SlotId.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/manager/PlanetMapCategoryList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/manager/PortalLayoutMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/PortalLayout.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/CellProperty.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/collision/BaseBoundingVolume.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/FloorMesh.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/PathNode.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/PathEdge.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/PathGraph.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/AppearanceTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/collision/BoundingVolumeFactory.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/collision/BaseBoundingVolume.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/appearance/MeshData.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/building/InteriorLayoutTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/ZoneComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/DataObjectComponentReference.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/components/DataObjectComponent.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/StdFunction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/metrics/Metrics.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/conf/ConfigManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/CooldownTimerMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTimeList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTime.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/packets/DeltaMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueActionVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueAction.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/SkillList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModList.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModEntry.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVectorMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/managers/skill/SkillModManager.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/creature/CreaturePosture.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/datatables/DataTableIff.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/creature/CreatureLocomotion.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/creature/CreatureState.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/SpeedMultiplierModChanges.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/Skill.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/packets/scene/AttributeListMessage.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/params/OptionBitmask.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/CustomizationVariables.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/crafting/ValuesMap.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/crafting/ValuesClasses.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/WearableObject.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/autogen/server/zone/objects/tangible/attachment/Attachment.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/tangible/ArmorObjectTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/SharedTangibleObjectTemplate.h \
- /home/swgadmin/Desktop/SWGFlurry/MMOCoreORB/src/templates/crafting/resourceweight/ResourceWeight.h
+ /usr/include/c++/15/iomanip /usr/include/c++/15/bits/quoted_string.h \
+ /usr/include/c++/15/set /usr/include/c++/15/bits/stl_set.h \
+ /usr/include/c++/15/bits/stl_multiset.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/intangible/ControlDevice.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/intangible/IntangibleObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/LuaTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/TemplateData.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/IffTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/ChildObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PlanetMapCategory.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableRow.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableCell.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/SlotDescriptor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/ArrangementDescriptor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/IntegerParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/TemplateBase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/Param.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/StringIdParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/StringParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/BoolParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/FloatParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/QuadTreeEntry.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/CloseObjectsVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Facade.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/ObserverEventType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/ZoneReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/TransferErrorCode.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/PendingTasksMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/SessionFacadeType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/ObserverType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/TemplateManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/footprint/StructureFootprint.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/SlotId.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PlanetMapCategoryList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PortalLayoutMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/PortalLayout.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/CellProperty.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/collision/BaseBoundingVolume.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/FloorMesh.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/PathNode.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/PathEdge.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/PathGraph.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/AppearanceTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/collision/BoundingVolumeFactory.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/collision/BaseBoundingVolume.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/appearance/MeshData.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/building/InteriorLayoutTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/ZoneComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/DataObjectComponentReference.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/components/DataObjectComponent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/StdFunction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/metrics/Metrics.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/conf/ConfigManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/CooldownTimerMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTimeList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTime.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/DeltaMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueActionVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueAction.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/SkillList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModEntry.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVectorMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/SkillModManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/creature/CreaturePosture.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableIff.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/creature/CreatureLocomotion.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/creature/CreatureState.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/SpeedMultiplierModChanges.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/Skill.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/scene/AttributeListMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/OptionBitmask.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/CustomizationVariables.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesClasses.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/WearableObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/attachment/Attachment.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/tangible/ArmorObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedTangibleObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/resourceweight/ResourceWeight.h

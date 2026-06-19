@@ -21,12 +21,8 @@ public:
 		if (weapon == nullptr)
 			return GENERALERROR;
 
-		String type = weapon->getWeaponType();
-		
-		if (type != "pistol" && type != "carbine"){
-			creature->sendSystemMessage("You must be using a pistol or carbine to use this ability");
-			return GENERALERROR;
-		}
+		if (!weapon->isRangedWeapon())
+			return INVALIDWEAPON;
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;

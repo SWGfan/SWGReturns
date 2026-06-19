@@ -105,7 +105,7 @@ public:
 
 	unsigned int calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue = true);
 
-	float getRange(CreatureObject* creature = nullptr);
+	float getRange(CreatureObject* creature = NULL);
 
 	float getEffectiveness();
 
@@ -188,7 +188,7 @@ public:
 
 	unsigned int calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue = true);
 
-	float getRange(CreatureObject* creature = nullptr);
+	float getRange(CreatureObject* creature = NULL);
 
 	float getEffectiveness();
 

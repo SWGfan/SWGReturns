@@ -484,7 +484,6 @@ void CommandConfigManager::registerCommands3() {
 	commandFactory.registerCommand<ResendLoginMessageToAllCommand>(String("resendLoginMessageToAll").toLowerCase());
 	commandFactory.registerCommand<ResetJediCommand>(String("resetJedi").toLowerCase());
 	commandFactory.registerCommand<ResetVillageCommand>(String("resetVillage").toLowerCase());
-	commandFactory.registerCommand<VillageCommand>(String("village").toLowerCase());
 	commandFactory.registerCommand<ResourceCommand>(String("resource").toLowerCase());
 	commandFactory.registerCommand<ResourceContainerSplitCommand>(String("resourceContainerSplit").toLowerCase());
 	commandFactory.registerCommand<ResourceContainerTransferCommand>(String("resourceContainerTransfer").toLowerCase());

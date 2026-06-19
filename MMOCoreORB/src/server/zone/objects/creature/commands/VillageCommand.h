@@ -7,6 +7,7 @@
 
 #include "server/zone/managers/director/DirectorManager.h"
 #include "server/zone/managers/jedi/JediManager.h"
+#include "server/zone/objects/creature/commands/QueueCommand.h"
 
 class VillageCommand : public QueueCommand {
 public:

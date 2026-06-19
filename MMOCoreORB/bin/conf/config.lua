@@ -35,7 +35,7 @@ Core3 = {
 	MetricsPort = 8125,
 	MetricsPrefix = "",
 
-	AutoReg = 0,
+	AutoReg = 1,
 
 	ProgressMonitors = "true",
 
@@ -74,11 +74,12 @@ Core3 = {
 		"yavin4"
 	},
 
-	TrePath = "/home/swgadmin/tre",
+	TrePath = "/home/ubuntu/SWGEmu/",
 
 	TreFiles = {
 	"top_house_assets.tre",
-	"patch_zzz_02.tre",
+	--"og_jedi.tre",
+	"returns_custom2.tre",
 	"patch_zzz_01.tre",
 	"returns11.tre",	
 	"returns10.tre",
@@ -113,7 +114,7 @@ Core3 = {
 	"mtg_patch_003_appearance_03.tre",
 	"mtg_patch_002_appearance_02.tre",
 	"mtg_patch_001_appearance_01.tre",
-	"bottom_house_assets.tre",
+	"bottom_house_assets.tre"
 	},
 
 	StatusPort = 44455,

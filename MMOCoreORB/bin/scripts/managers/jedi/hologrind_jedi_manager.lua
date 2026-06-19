@@ -5,6 +5,7 @@ jediManagerName = "HologrindJediManager"
 
 NUMBEROFPROFESSIONSTOMASTER = 6
 MAXIMUMNUMBEROFPROFESSIONSTOSHOWWITHHOLOCRON = NUMBEROFPROFESSIONSTOMASTER - 2
+HOLOGRIND_JEDI_UNLOCK_PENDING = "JediUnlockPending"
 
 HologrindJediManager = JediManager:new {
 	screenplayName = jediManagerName,
@@ -118,6 +119,44 @@ function HologrindJediManager:isJedi(pCreatureObject)
 	return PlayerObject(pGhost):isJedi()
 end
 
+function HologrindJediManager:hasCompletedHologrind(pCreatureObject)
+	return self:getNumberOfMasteredProfessions(pCreatureObject) >= NUMBEROFPROFESSIONSTOMASTER
+end
+
+function HologrindJediManager:hasCompletedJediUnlock(pCreatureObject)
+	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
+
+	if (pGhost == nil) then
+		return false
+	end
+
+	return CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice") and CreatureObject(pCreatureObject):hasSkill("force_title_jedi_rank_01") and CreatureObject(pCreatureObject):hasSkill("force_title_jedi_rank_02") and PlayerObject(pGhost):getJediState() >= 2
+end
+
+function HologrindJediManager:isAwaitingShrineMeditation(pCreatureObject)
+	if (pCreatureObject == nil or self:hasCompletedJediUnlock(pCreatureObject)) then
+		return false
+	end
+
+	if (readScreenPlayData(pCreatureObject, self.screenplayName, HOLOGRIND_JEDI_UNLOCK_PENDING) == "1") then
+		return true
+	end
+
+	return self:hasCompletedHologrind(pCreatureObject)
+end
+
+function HologrindJediManager:markAwaitingShrineMeditation(pCreatureObject)
+	if (pCreatureObject == nil or self:hasCompletedJediUnlock(pCreatureObject)) then
+		return
+	end
+
+	writeScreenPlayData(pCreatureObject, self.screenplayName, HOLOGRIND_JEDI_UNLOCK_PENDING, 1)
+end
+
+function HologrindJediManager:clearAwaitingShrineMeditation(pCreatureObject)
+	deleteScreenPlayData(pCreatureObject, self.screenplayName, HOLOGRIND_JEDI_UNLOCK_PENDING)
+end
+
 -- Sui window ok pressed callback function.
 function HologrindJediManager:notifyOkPressed()
 -- Do nothing.
@@ -139,16 +178,33 @@ function HologrindJediManager:awardJediStatusAndSkill(pCreatureObject)
 		return
 	end
 
-	awardSkill(pCreatureObject, "force_title_jedi_novice")
-	PlayerObject(pGhost):setJediState(1)
+	if (not CreatureObject(pCreatureObject):hasSkill("force_title_jedi_novice")) then
+		awardSkill(pCreatureObject, "force_title_jedi_novice")
+	end
+
+	if (not CreatureObject(pCreatureObject):hasSkill("force_title_jedi_rank_01")) then
+		awardSkill(pCreatureObject, "force_title_jedi_rank_01")
+	end
+	
+	if (not CreatureObject(pCreatureObject):hasSkill("force_title_jedi_rank_02")) then
+		awardSkill(pCreatureObject, "force_title_jedi_rank_02")
+	end
+
+	if (PlayerObject(pGhost):getJediState() < 2) then
+		PlayerObject(pGhost):setJediState(2)
+	end
+
+	self:clearAwaitingShrineMeditation(pCreatureObject)
 end
 
--- Check if the player has mastered all hologrind professions and send sui window and award skills.
+-- Check if the player has mastered all hologrind professions and send sui window.
 -- @param pCreatureObject pointer to the creature object of the player to check the jedi progression on.
 function HologrindJediManager:checkIfProgressedToJedi(pCreatureObject)
-	if self:getNumberOfMasteredProfessions(pCreatureObject) >= NUMBEROFPROFESSIONSTOMASTER and not self:isJedi(pCreatureObject) then
-		self:sendSuiWindow(pCreatureObject)
-		self:awardJediStatusAndSkill(pCreatureObject)
+	if self:hasCompletedHologrind(pCreatureObject) and not self:hasCompletedJediUnlock(pCreatureObject) then
+		if (readScreenPlayData(pCreatureObject, self.screenplayName, HOLOGRIND_JEDI_UNLOCK_PENDING) ~= "1") then
+			self:sendSuiWindow(pCreatureObject)
+			self:markAwaitingShrineMeditation(pCreatureObject)
+		end
 	end
 end
 

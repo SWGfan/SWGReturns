@@ -534,7 +534,7 @@ public:
 	* @param repairTool the repairTool with which to perform the repair. If
 	* null, players inventory will be searched for a valid tool
 	*/
-	void repair(CreatureObject* player, RepairTool* repairTool = nullptr);
+	void repair(CreatureObject* player, RepairTool* repairTool = NULL);
 
 	String repairAttempt(int repairChance);
 
@@ -1065,7 +1065,7 @@ public:
 	* @param repairTool the repairTool with which to perform the repair. If
 	* null, players inventory will be searched for a valid tool
 	*/
-	void repair(CreatureObject* player, RepairTool* repairTool = nullptr);
+	void repair(CreatureObject* player, RepairTool* repairTool = NULL);
 
 	virtual String repairAttempt(int repairChance);
 

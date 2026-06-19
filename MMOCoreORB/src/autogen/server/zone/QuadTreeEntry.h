@@ -55,7 +55,7 @@ namespace zone {
 
 class QuadTreeEntry : public Observable {
 public:
-	QuadTreeEntry(QuadTreeNode* n = nullptr);
+	QuadTreeEntry(QuadTreeNode* n = NULL);
 
 	void addInRangeObject(QuadTreeEntry* obj, bool doNotifyUpdate = true);
 
@@ -193,7 +193,7 @@ protected:
 	int receiverFlags;
 
 public:
-	QuadTreeEntryImplementation(QuadTreeNode* n = nullptr);
+	QuadTreeEntryImplementation(QuadTreeNode* n = NULL);
 
 	QuadTreeEntryImplementation(DummyConstructorParameter* param);
 

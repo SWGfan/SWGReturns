@@ -918,3 +918,35 @@ void WeaponObjectImplementation::clearDots() {
 		removeDot(0);
 	}
 }
+
+/*
+ * DOT Crystal Socketing  LightsaberCrystalComponentImplementation::updateWeapon()
+ *
+ * When applying DOT crafting values from a color crystal to this weapon,
+ * map the Lua dotAttribute value (0/1/2) to the full HAM pool index as follows:
+ *
+ *   Lua dotAttribute 0  ->  addDotAttribute(0)   // Health
+ *   Lua dotAttribute 1  ->  addDotAttribute(3)   // Action
+ *   Lua dotAttribute 2  ->  addDotAttribute(6)   // Mind
+ *
+ * Example implementation in LightsaberCrystalComponentImplementation::updateWeapon():
+ *
+ *   weapon->clearDots();
+ *
+ *   float dotTypeVal = craftingValues.getCurrentValue("dotType");
+ *   if (dotTypeVal != ValuesMap::VALUENOTFOUND && (int)dotTypeVal > 0) {
+ *       int hamMap[3] = {0, 3, 6}; // Health, Action, Mind
+ *       int attrIndex = (int)craftingValues.getCurrentValue("dotAttribute");
+ *       if (attrIndex < 0 || attrIndex > 2) attrIndex = 0;
+ *
+ *       weapon->addDotType((int)dotTypeVal);
+ *       weapon->addDotAttribute(hamMap[attrIndex]);
+ *       weapon->addDotStrength((int)craftingValues.getCurrentValue("dotStrength"));
+ *       weapon->addDotDuration((int)craftingValues.getCurrentValue("dotDuration"));
+ *       weapon->addDotPotency((int)craftingValues.getCurrentValue("dotPotency"));
+ *       weapon->addDotUses((int)craftingValues.getCurrentValue("dotUses"));
+ *   }
+ *
+ * dotType values: 1=Poison, 2=Disease, 3=Fire, 4=Bleeding
+ * Plain crystals (no dotType value) pass through the guard harmlessly.
+ */

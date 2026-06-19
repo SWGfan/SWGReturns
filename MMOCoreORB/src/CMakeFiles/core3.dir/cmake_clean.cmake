@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/core3.dir/link.d"
   "CMakeFiles/core3.dir/main.cpp.o"
   "CMakeFiles/core3.dir/main.cpp.o.d"
   "CMakeFiles/core3.dir/server/ServerCore.cpp.o"
@@ -323,6 +324,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/core3.dir/server/zone/objects/creature/commands/ForceHealQueueCommand.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/creature/commands/QueueCommand.cpp.o"
   "CMakeFiles/core3.dir/server/zone/objects/creature/commands/QueueCommand.cpp.o.d"
+  "CMakeFiles/core3.dir/server/zone/objects/creature/commands/VillageCommand.cpp.o"
+  "CMakeFiles/core3.dir/server/zone/objects/creature/commands/VillageCommand.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/creature/components/FactionRecruiterContainerComponent.cpp.o"
   "CMakeFiles/core3.dir/server/zone/objects/creature/components/FactionRecruiterContainerComponent.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/creature/components/PetMenuComponent.cpp.o"

@@ -32,6 +32,7 @@ includeFile("items/fireworks_packager.lua")
 includeFile("items/flurry_coals.lua")
 includeFile("items/flurry_presents.lua")
 includeFile("items/force_color_crystal.lua")
+includeFile("items/force_color_crystal_dot.lua")
 includeFile("items/force_crystal_baass_wisdom.lua")
 includeFile("items/force_crystal_banes_heart.lua")
 includeFile("items/force_crystal_bnars_sacrifice.lua")
@@ -1550,78 +1551,6 @@ includeFile("items/tokens/imperial_credit.lua")
 includeFile("items/tokens/rebel_credit.lua")
 
 -- ============================================
--- VEHICLE
--- ============================================
-includeFile("items/vehicle/rarevehicle1.lua")
-includeFile("items/vehicle/rarevehicle10.lua")
-includeFile("items/vehicle/rarevehicle11.lua")
-includeFile("items/vehicle/rarevehicle12.lua")
-includeFile("items/vehicle/rarevehicle13.lua")
-includeFile("items/vehicle/rarevehicle14.lua")
-includeFile("items/vehicle/rarevehicle15.lua")
-includeFile("items/vehicle/rarevehicle16.lua")
-includeFile("items/vehicle/rarevehicle2.lua")
-includeFile("items/vehicle/rarevehicle3.lua")
-includeFile("items/vehicle/rarevehicle4.lua")
-includeFile("items/vehicle/rarevehicle5.lua")
-includeFile("items/vehicle/rarevehicle6.lua")
-includeFile("items/vehicle/rarevehicle7.lua")
-includeFile("items/vehicle/rarevehicle8.lua")
-includeFile("items/vehicle/rarevehicle9.lua")
-includeFile("items/vehicle/vehicle1.lua")
-includeFile("items/vehicle/vehicle10.lua")
-includeFile("items/vehicle/vehicle11.lua")
-includeFile("items/vehicle/vehicle12.lua")
-includeFile("items/vehicle/vehicle13.lua")
-includeFile("items/vehicle/vehicle14.lua")
-includeFile("items/vehicle/vehicle15.lua")
-includeFile("items/vehicle/vehicle16.lua")
-includeFile("items/vehicle/vehicle17.lua")
-includeFile("items/vehicle/vehicle18.lua")
-includeFile("items/vehicle/vehicle19.lua")
-includeFile("items/vehicle/vehicle2.lua")
-includeFile("items/vehicle/vehicle20.lua")
-includeFile("items/vehicle/vehicle3.lua")
-includeFile("items/vehicle/vehicle4.lua")
-includeFile("items/vehicle/vehicle5.lua")
-includeFile("items/vehicle/vehicle6.lua")
-includeFile("items/vehicle/vehicle7.lua")
-includeFile("items/vehicle/vehicle8.lua")
-includeFile("items/vehicle/vehicle9.lua")
-
--- ============================================
--- VEHICLE_COMPS
--- ============================================
-includeFile("items/vehicle_comps/custom_veh_chassis_brace.lua")
-includeFile("items/vehicle_comps/custom_veh_grav_motor.lua")
-includeFile("items/vehicle_comps/custom_veh_steering_mech.lua")
-includeFile("items/vehicle_comps/custom_veh_turbine.lua")
-
--- ============================================
--- VEHICLE_LOOT_DEEDS
--- ============================================
-includeFile("items/vehicle_loot_deeds/desert_skiff_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/geonosian_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/koro2_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/lava_skiff_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/organa_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/pod_racer_one_loot_deed.lua")
-includeFile("items/vehicle_loot_deeds/pod_racer_two_loot_deed.lua")
-includeFile("items/vehicle_loot_deeds/sith_speeder_loot_deed.lua")
-includeFile("items/vehicle_loot_deeds/sith_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/stap_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/swamp_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/tantive4_speeder_loot_schem.lua")
-includeFile("items/vehicle_loot_deeds/xj6_speeder_loot_schem.lua")
-
--- ============================================
--- VEHICLE_SCHEMATICS
--- ============================================
-includeFile("items/vehicle_schematics/ab_1_vehicle_schematic.lua")
-includeFile("items/vehicle_schematics/barc_vehicle_schematic.lua")
-includeFile("items/vehicle_schematics/flare_s_vehicle_schematic.lua")
-
--- ============================================
 -- WEAPON
 -- ============================================
 includeFile("items/weapon/axe_heavy_duty.lua")
@@ -2511,3 +2440,6 @@ includeFile("items/wearables/wookiee/wke_skirt_s01.lua")
 includeFile("items/wearables/wookiee/wke_skirt_s02.lua")
 includeFile("items/wearables/wookiee/wke_skirt_s03.lua")
 includeFile("items/wearables/wookiee/wke_skirt_s04.lua")
+
+--kaas
+includeFile("items/task_reward/ancient_holocron_fragment.lua")

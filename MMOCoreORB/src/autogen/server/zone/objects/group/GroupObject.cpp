@@ -862,7 +862,7 @@ Reference<CreatureObject* > GroupObjectImplementation::getLeader() {
 	// server/zone/objects/group/GroupObject.idl():  		}
 	if ((&groupMembers)->size() == 0){
 	// server/zone/objects/group/GroupObject.idl():  			return null;
-	return nullptr;
+	return NULL;
 }
 
 	else {

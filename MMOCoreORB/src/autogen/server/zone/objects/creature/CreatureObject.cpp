@@ -6316,7 +6316,7 @@ Buff* CreatureObjectImplementation::getBuff(unsigned int buffcrc) {
 	if ((&creatureBuffs)->hasBuff(buffcrc))	// server/zone/objects/creature/CreatureObject.idl():  			return creatureBuffs.getBuffByCRC(buffcrc);
 	return (&creatureBuffs)->getBuffByCRC(buffcrc);
 	// server/zone/objects/creature/CreatureObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 long long CreatureObjectImplementation::getSkillModFromBuffs(const String& skillMod) {

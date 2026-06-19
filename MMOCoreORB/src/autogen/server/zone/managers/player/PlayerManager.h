@@ -538,7 +538,7 @@ public:
 	 */
 	int healEnhance(CreatureObject* enhancer, CreatureObject* patient, byte attribute, int buffvalue, float duration, int absorption = 0);
 
-	void disseminateExperience(TangibleObject* destructedObject, ThreatMap* threatMap, SynchronizedVector<ManagedReference<CreatureObject* > >* lairSpawnedCreatures = nullptr, Zone* lairZone = nullptr);
+	void disseminateExperience(TangibleObject* destructedObject, ThreatMap* threatMap, SynchronizedVector<ManagedReference<CreatureObject* > >* lairSpawnedCreatures = NULL, Zone* lairZone = NULL);
 
 	int calculatePlayerLevel(CreatureObject* player);
 
@@ -562,11 +562,11 @@ public:
 
 	void createSkippedTutorialBuilding(CreatureObject* player);
 
-	void updateSwimmingState(CreatureObject* player, float newZ, IntersectionResults* intersections = nullptr, CloseObjectsVector* closeObjects = nullptr);
+	void updateSwimmingState(CreatureObject* player, float newZ, IntersectionResults* intersections = NULL, CloseObjectsVector* closeObjects = NULL);
 
 	int checkSpeedHackFirstTest(CreatureObject* player, float parsedSpeed, ValidatedPosition& teleportPosition, float errorMultiplier = 1);
 
-	int checkSpeedHackSecondTest(CreatureObject* player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject* newParent = nullptr);
+	int checkSpeedHackSecondTest(CreatureObject* player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject* newParent = NULL);
 
 	bool existsName(const String& name);
 
@@ -1088,7 +1088,7 @@ public:
 	 */
 	int healEnhance(CreatureObject* enhancer, CreatureObject* patient, byte attribute, int buffvalue, float duration, int absorption = 0);
 
-	void disseminateExperience(TangibleObject* destructedObject, ThreatMap* threatMap, SynchronizedVector<ManagedReference<CreatureObject* > >* lairSpawnedCreatures = nullptr, Zone* lairZone = nullptr);
+	void disseminateExperience(TangibleObject* destructedObject, ThreatMap* threatMap, SynchronizedVector<ManagedReference<CreatureObject* > >* lairSpawnedCreatures = NULL, Zone* lairZone = NULL);
 
 	int calculatePlayerLevel(CreatureObject* player);
 
@@ -1112,11 +1112,11 @@ public:
 
 	void createSkippedTutorialBuilding(CreatureObject* player);
 
-	void updateSwimmingState(CreatureObject* player, float newZ, IntersectionResults* intersections = nullptr, CloseObjectsVector* closeObjects = nullptr);
+	void updateSwimmingState(CreatureObject* player, float newZ, IntersectionResults* intersections = NULL, CloseObjectsVector* closeObjects = NULL);
 
 	int checkSpeedHackFirstTest(CreatureObject* player, float parsedSpeed, ValidatedPosition& teleportPosition, float errorMultiplier = 1);
 
-	int checkSpeedHackSecondTest(CreatureObject* player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject* newParent = nullptr);
+	int checkSpeedHackSecondTest(CreatureObject* player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject* newParent = NULL);
 
 	bool existsName(const String& name);
 

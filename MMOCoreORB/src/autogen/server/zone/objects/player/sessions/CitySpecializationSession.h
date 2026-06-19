@@ -84,7 +84,7 @@ namespace sessions {
 
 class CitySpecializationSession : public Facade {
 public:
-	CitySpecializationSession(CreatureObject* creature, CityRegion* city, SceneObject* terminal = nullptr);
+	CitySpecializationSession(CreatureObject* creature, CityRegion* city, SceneObject* terminal = NULL);
 
 	int initializeSession();
 
@@ -134,7 +134,7 @@ protected:
 	String specialization;
 
 public:
-	CitySpecializationSessionImplementation(CreatureObject* creature, CityRegion* city, SceneObject* terminal = nullptr);
+	CitySpecializationSessionImplementation(CreatureObject* creature, CityRegion* city, SceneObject* terminal = NULL);
 
 	CitySpecializationSessionImplementation(DummyConstructorParameter* param);
 

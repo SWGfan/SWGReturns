@@ -133,7 +133,7 @@ public:
 	 */
 	void sendResourceWeightsTo(CreatureObject* player);
 
-	Reference<SceneObject* > createManufactureSchematic(SceneObject* craftingTool = nullptr);
+	Reference<SceneObject* > createManufactureSchematic(SceneObject* craftingTool = NULL);
 
 	void setGroupName(const String& name);
 
@@ -296,7 +296,7 @@ public:
 	 */
 	void sendResourceWeightsTo(CreatureObject* player);
 
-	Reference<SceneObject* > createManufactureSchematic(SceneObject* craftingTool = nullptr);
+	Reference<SceneObject* > createManufactureSchematic(SceneObject* craftingTool = NULL);
 
 	void setGroupName(const String& name);
 

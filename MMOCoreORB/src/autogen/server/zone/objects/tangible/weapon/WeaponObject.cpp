@@ -36,7 +36,7 @@ WeaponObject::~WeaponObject() {
 
 void WeaponObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -46,7 +46,7 @@ void WeaponObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void WeaponObject::initializeTransientMembers() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ void WeaponObject::initializeTransientMembers() {
 
 void WeaponObject::sendBaselinesTo(SceneObject* player) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ void WeaponObject::sendBaselinesTo(SceneObject* player) {
 
 void WeaponObject::sendContainerTo(CreatureObject* player) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void WeaponObject::sendContainerTo(CreatureObject* player) {
 
 void WeaponObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -100,7 +100,7 @@ void WeaponObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 void WeaponObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -110,7 +110,7 @@ void WeaponObject::updateCraftingValues(CraftingValues* values, bool firstUpdate
 
 void WeaponObject::notifyLoadFromDatabase() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void WeaponObject::notifyLoadFromDatabase() {
 
 void WeaponObject::createChildObjects() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ void WeaponObject::createChildObjects() {
 
 bool WeaponObject::isCertifiedFor(CreatureObject* object) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ bool WeaponObject::isCertifiedFor(CreatureObject* object) const {
 
 const Vector<String>* WeaponObject::getDamageModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -164,7 +164,7 @@ const Vector<String>* WeaponObject::getDamageModifiers() const {
 
 const Vector<String>* WeaponObject::getSpeedModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -174,7 +174,7 @@ const Vector<String>* WeaponObject::getSpeedModifiers() const {
 
 const Vector<String>* WeaponObject::getCreatureAccuracyModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -184,7 +184,7 @@ const Vector<String>* WeaponObject::getCreatureAccuracyModifiers() const {
 
 const Vector<String>* WeaponObject::getCreatureAimModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -194,7 +194,7 @@ const Vector<String>* WeaponObject::getCreatureAimModifiers() const {
 
 const Vector<String>* WeaponObject::getDefenderDefenseModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -204,7 +204,7 @@ const Vector<String>* WeaponObject::getDefenderDefenseModifiers() const {
 
 const Vector<String>* WeaponObject::getDefenderSecondaryDefenseModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -214,7 +214,7 @@ const Vector<String>* WeaponObject::getDefenderSecondaryDefenseModifiers() const
 
 const Vector<String>* WeaponObject::getDefenderToughnessModifiers() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -224,7 +224,7 @@ const Vector<String>* WeaponObject::getDefenderToughnessModifiers() const {
 
 void WeaponObject::setCertified(bool cert) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -239,7 +239,7 @@ void WeaponObject::setCertified(bool cert) {
 
 int WeaponObject::getAttackType() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -253,7 +253,7 @@ int WeaponObject::getAttackType() const {
 
 void WeaponObject::setAttackType(int a) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +268,7 @@ void WeaponObject::setAttackType(int a) {
 
 bool WeaponObject::isCertified() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -282,7 +282,7 @@ bool WeaponObject::isCertified() const {
 
 bool WeaponObject::isEquipped() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -296,7 +296,7 @@ bool WeaponObject::isEquipped() {
 
 int WeaponObject::getPointBlankAccuracy(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -311,7 +311,7 @@ int WeaponObject::getPointBlankAccuracy(bool withPup) const {
 
 void WeaponObject::setPointBlankAccuracy(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -326,7 +326,7 @@ void WeaponObject::setPointBlankAccuracy(int value) {
 
 int WeaponObject::getPointBlankRange(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -341,7 +341,7 @@ int WeaponObject::getPointBlankRange(bool withPup) const {
 
 int WeaponObject::getIdealRange(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -356,7 +356,7 @@ int WeaponObject::getIdealRange(bool withPup) const {
 
 void WeaponObject::setIdealRange(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -371,7 +371,7 @@ void WeaponObject::setIdealRange(int value) {
 
 int WeaponObject::getMaxRange(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -386,7 +386,7 @@ int WeaponObject::getMaxRange(bool withPup) const {
 
 void WeaponObject::setMaxRange(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -401,7 +401,7 @@ void WeaponObject::setMaxRange(int value) {
 
 int WeaponObject::getIdealAccuracy(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -416,7 +416,7 @@ int WeaponObject::getIdealAccuracy(bool withPup) const {
 
 void WeaponObject::setIdealAccuracy(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -431,7 +431,7 @@ void WeaponObject::setIdealAccuracy(int value) {
 
 void WeaponObject::setArmorPiercing(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -446,7 +446,7 @@ void WeaponObject::setArmorPiercing(int value) {
 
 int WeaponObject::getArmorPiercing() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -460,7 +460,7 @@ int WeaponObject::getArmorPiercing() const {
 
 int WeaponObject::getMaxRangeAccuracy(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -475,7 +475,7 @@ int WeaponObject::getMaxRangeAccuracy(bool withPup) const {
 
 void WeaponObject::setMaxRangeAccuracy(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -490,7 +490,7 @@ void WeaponObject::setMaxRangeAccuracy(int value) {
 
 float WeaponObject::getAttackSpeed(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -505,7 +505,7 @@ float WeaponObject::getAttackSpeed(bool withPup) const {
 
 void WeaponObject::setAttackSpeed(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -520,7 +520,7 @@ void WeaponObject::setAttackSpeed(float value) {
 
 float WeaponObject::getMaxDamage(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -535,7 +535,7 @@ float WeaponObject::getMaxDamage(bool withPup) const {
 
 void WeaponObject::setMaxDamage(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -550,7 +550,7 @@ void WeaponObject::setMaxDamage(float value) {
 
 float WeaponObject::getMinDamage(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -565,7 +565,7 @@ float WeaponObject::getMinDamage(bool withPup) const {
 
 void WeaponObject::setMinDamage(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -580,7 +580,7 @@ void WeaponObject::setMinDamage(float value) {
 
 float WeaponObject::getWoundsRatio(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -595,7 +595,7 @@ float WeaponObject::getWoundsRatio(bool withPup) const {
 
 void WeaponObject::setWoundsRatio(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -610,7 +610,7 @@ void WeaponObject::setWoundsRatio(float value) {
 
 float WeaponObject::getDamageRadius(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -625,7 +625,7 @@ float WeaponObject::getDamageRadius(bool withPup) const {
 
 void WeaponObject::setDamageRadius(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -640,7 +640,7 @@ void WeaponObject::setDamageRadius(float value) {
 
 int WeaponObject::getHealthAttackCost(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -655,7 +655,7 @@ int WeaponObject::getHealthAttackCost(bool withPup) const {
 
 void WeaponObject::setHealthAttackCost(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -670,7 +670,7 @@ void WeaponObject::setHealthAttackCost(int value) {
 
 int WeaponObject::getActionAttackCost(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -685,7 +685,7 @@ int WeaponObject::getActionAttackCost(bool withPup) const {
 
 void WeaponObject::setActionAttackCost(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -700,7 +700,7 @@ void WeaponObject::setActionAttackCost(int value) {
 
 int WeaponObject::getMindAttackCost(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -715,7 +715,7 @@ int WeaponObject::getMindAttackCost(bool withPup) const {
 
 void WeaponObject::setMindAttackCost(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -730,7 +730,7 @@ void WeaponObject::setMindAttackCost(int value) {
 
 float WeaponObject::getForceCost() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -744,7 +744,7 @@ float WeaponObject::getForceCost() const {
 
 void WeaponObject::setForceCost(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -759,7 +759,7 @@ void WeaponObject::setForceCost(float value) {
 
 int WeaponObject::getBladeColor() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -773,7 +773,7 @@ int WeaponObject::getBladeColor() const {
 
 void WeaponObject::setBladeColor(int value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -788,7 +788,7 @@ void WeaponObject::setBladeColor(int value) {
 
 int WeaponObject::getDamageType() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -802,7 +802,7 @@ int WeaponObject::getDamageType() const {
 
 String WeaponObject::getXpType() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -818,7 +818,7 @@ String WeaponObject::getXpType() const {
 
 String WeaponObject::getDeconstructionTemplate() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -834,7 +834,7 @@ String WeaponObject::getDeconstructionTemplate() const {
 
 int WeaponObject::getNumberOfDots() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -848,7 +848,7 @@ int WeaponObject::getNumberOfDots() const {
 
 int WeaponObject::getDotType(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -863,7 +863,7 @@ int WeaponObject::getDotType(int index) const {
 
 int WeaponObject::getDotAttribute(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -878,7 +878,7 @@ int WeaponObject::getDotAttribute(int index) const {
 
 int WeaponObject::getDotStrength(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -893,7 +893,7 @@ int WeaponObject::getDotStrength(int index) const {
 
 int WeaponObject::getDotDuration(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -908,7 +908,7 @@ int WeaponObject::getDotDuration(int index) const {
 
 int WeaponObject::getDotPotency(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -923,7 +923,7 @@ int WeaponObject::getDotPotency(int index) const {
 
 int WeaponObject::getDotUses(int index) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -938,7 +938,7 @@ int WeaponObject::getDotUses(int index) const {
 
 void WeaponObject::addDotType(int t) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -953,7 +953,7 @@ void WeaponObject::addDotType(int t) {
 
 void WeaponObject::addDotAttribute(int a) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -968,7 +968,7 @@ void WeaponObject::addDotAttribute(int a) {
 
 void WeaponObject::addDotStrength(int s) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -983,7 +983,7 @@ void WeaponObject::addDotStrength(int s) {
 
 void WeaponObject::addDotDuration(int du) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -998,7 +998,7 @@ void WeaponObject::addDotDuration(int du) {
 
 void WeaponObject::addDotPotency(int po) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1013,7 +1013,7 @@ void WeaponObject::addDotPotency(int po) {
 
 void WeaponObject::addDotUses(int u) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1028,7 +1028,7 @@ void WeaponObject::addDotUses(int u) {
 
 void WeaponObject::setDotUses(int u, int index) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1044,7 +1044,7 @@ void WeaponObject::setDotUses(int u, int index) {
 
 void WeaponObject::removeDot(int index) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1059,7 +1059,7 @@ void WeaponObject::removeDot(int index) {
 
 void WeaponObject::clearDots() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1073,7 +1073,7 @@ void WeaponObject::clearDots() {
 
 String WeaponObject::getWeaponType() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1089,7 +1089,7 @@ String WeaponObject::getWeaponType() {
 
 bool WeaponObject::isUnarmedWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1103,7 +1103,7 @@ bool WeaponObject::isUnarmedWeapon() const {
 
 bool WeaponObject::isMeleeWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1117,7 +1117,7 @@ bool WeaponObject::isMeleeWeapon() const {
 
 bool WeaponObject::isRangedWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1131,7 +1131,7 @@ bool WeaponObject::isRangedWeapon() const {
 
 bool WeaponObject::isRifleWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1145,7 +1145,7 @@ bool WeaponObject::isRifleWeapon() const {
 
 bool WeaponObject::isThrownWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1159,7 +1159,7 @@ bool WeaponObject::isThrownWeapon() const {
 
 bool WeaponObject::isHeavyWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1173,7 +1173,7 @@ bool WeaponObject::isHeavyWeapon() const {
 
 bool WeaponObject::isSpecialHeavyWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1187,7 +1187,7 @@ bool WeaponObject::isSpecialHeavyWeapon() const {
 
 bool WeaponObject::isLightningRifle() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1201,7 +1201,7 @@ bool WeaponObject::isLightningRifle() const {
 
 bool WeaponObject::isFlameThrower() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1215,7 +1215,7 @@ bool WeaponObject::isFlameThrower() const {
 
 bool WeaponObject::isHeavyAcidRifle() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1229,7 +1229,7 @@ bool WeaponObject::isHeavyAcidRifle() const {
 
 bool WeaponObject::isCarbineWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1243,7 +1243,7 @@ bool WeaponObject::isCarbineWeapon() const {
 
 bool WeaponObject::isPistolWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1257,7 +1257,7 @@ bool WeaponObject::isPistolWeapon() const {
 
 bool WeaponObject::isOneHandMeleeWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1271,7 +1271,7 @@ bool WeaponObject::isOneHandMeleeWeapon() const {
 
 bool WeaponObject::isPolearmWeaponObject() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1285,7 +1285,7 @@ bool WeaponObject::isPolearmWeaponObject() const {
 
 bool WeaponObject::isTwoHandMeleeWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1299,7 +1299,7 @@ bool WeaponObject::isTwoHandMeleeWeapon() const {
 
 bool WeaponObject::isMineWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1313,7 +1313,7 @@ bool WeaponObject::isMineWeapon() const {
 
 bool WeaponObject::isJediWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1327,7 +1327,7 @@ bool WeaponObject::isJediWeapon() const {
 
 bool WeaponObject::isJediOneHandedWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1341,7 +1341,7 @@ bool WeaponObject::isJediOneHandedWeapon() const {
 
 bool WeaponObject::isJediTwoHandedWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1355,7 +1355,7 @@ bool WeaponObject::isJediTwoHandedWeapon() const {
 
 bool WeaponObject::isJediPolearmWeapon() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1369,7 +1369,7 @@ bool WeaponObject::isJediPolearmWeapon() const {
 
 unsigned int WeaponObject::getWeaponBitmask() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1383,7 +1383,7 @@ unsigned int WeaponObject::getWeaponBitmask() const {
 
 bool WeaponObject::isWeaponObject() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1397,7 +1397,7 @@ bool WeaponObject::isWeaponObject() {
 
 bool WeaponObject::hasPowerup() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1411,7 +1411,7 @@ bool WeaponObject::hasPowerup() const {
 
 bool WeaponObject::applyPowerup(CreatureObject* player, PowerupObject* pup) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1427,7 +1427,7 @@ bool WeaponObject::applyPowerup(CreatureObject* player, PowerupObject* pup) {
 
 PowerupObject* WeaponObject::removePowerup() {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1441,7 +1441,7 @@ PowerupObject* WeaponObject::removePowerup() {
 
 void WeaponObject::decreasePowerupUses(CreatureObject* player) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1456,7 +1456,7 @@ void WeaponObject::decreasePowerupUses(CreatureObject* player) {
 
 String WeaponObject::repairAttempt(int repairChance) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1473,7 +1473,7 @@ String WeaponObject::repairAttempt(int repairChance) {
 
 void WeaponObject::decay(CreatureObject* user) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1488,7 +1488,7 @@ void WeaponObject::decay(CreatureObject* user) {
 
 void WeaponObject::setDamageSlice(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1503,7 +1503,7 @@ void WeaponObject::setDamageSlice(float value) {
 
 void WeaponObject::setSpeedSlice(float value) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1518,7 +1518,7 @@ void WeaponObject::setSpeedSlice(float value) {
 
 void WeaponObject::applySkillModsTo(CreatureObject* creature) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1533,7 +1533,7 @@ void WeaponObject::applySkillModsTo(CreatureObject* creature) const {
 
 void WeaponObject::removeSkillModsFrom(CreatureObject* creature) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1548,7 +1548,7 @@ void WeaponObject::removeSkillModsFrom(CreatureObject* creature) {
 
 void WeaponObject::addSkillMod(const int skillType, const String& skillMod, int value, bool notifyClient) {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1566,7 +1566,7 @@ void WeaponObject::addSkillMod(const int skillType, const String& skillMod, int 
 
 const VectorMap<String, int>* WeaponObject::getWearableSkillMods() const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1607,7 +1607,7 @@ void WeaponObjectImplementation::finalize() {
 void WeaponObjectImplementation::_initializeImplementation() {
 	_setClassHelper(WeaponObjectHelper::instance());
 
-	_this = NULL;
+	_this = nullptr;
 
 	_serializationHelperMethod();
 }
@@ -2249,7 +2249,7 @@ WeaponObjectImplementation::WeaponObjectImplementation() {
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		attackSpeed = 1;
 	attackSpeed = 1;
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		weaponTemplate = null;
-	weaponTemplate = NULL;
+	weaponTemplate = nullptr;
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		Logger.setLoggingName("WeaponObject");
 	Logger::setLoggingName("WeaponObject");
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		damageSlice = 1;
@@ -2622,7 +2622,7 @@ bool WeaponObjectImplementation::isWeaponObject() {
 
 bool WeaponObjectImplementation::hasPowerup() const{
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		return powerupObject != null;
-	return powerupObject.get() != nullptr;
+	return powerupObject != nullptr;
 }
 
 void WeaponObjectImplementation::setDamageSlice(float value) {
@@ -3338,7 +3338,7 @@ void WeaponObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = removePowerup();
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_DECREASEPOWERUPUSES__CREATUREOBJECT_:

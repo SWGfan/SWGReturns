@@ -765,7 +765,7 @@ bool ActiveAreaImplementation::isNavArea() {
 
 NavArea* ActiveAreaImplementation::asNavArea() {
 	// server/zone/objects/area/ActiveArea.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool ActiveAreaImplementation::isNoBuildArea() const{

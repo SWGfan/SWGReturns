@@ -4013,7 +4013,7 @@ const CreatureAttackMap* AiAgentImplementation::getAttackMap() {
 const LootGroupCollection* AiAgentImplementation::getLootGroups() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
 	if ((&npcTemplate)->get() == nullptr || isEventMob())	// server/zone/objects/creature/ai/AiAgent.idl():  			return null;
-	return nullptr;
+	return NULL;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getLootGroups();
 	return (&npcTemplate)->get()->getLootGroups();
 }

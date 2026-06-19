@@ -235,12 +235,12 @@ object_weapon_melee_2h_sword_crafted_saber_sword_lightsaber_two_handed_s4_gen3 =
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
 	-- jedi_general, combat_meleespecialize_polearmlightsaber, combat_meleespecialize_onehandlightsaber
-	xpType = "jedi_general",
+	xpType = "combat_meleespecialize_twohandlightsaber",
 	
 	-- See http://www.ocdsoft.com/files/certifications.xls
 	certificationsRequired = { "cert_twohandlightsaber_gen3" },
@@ -275,9 +275,8 @@ object_weapon_melee_2h_sword_crafted_saber_sword_lightsaber_two_handed_s4_gen3 =
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 175,
-	maxDamage = 255,
-
+	minDamage = 185,
+	maxDamage = 310,
 	attackSpeed = 4.8,
 
 	woundsRatio = 25,

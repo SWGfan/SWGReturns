@@ -1293,11 +1293,13 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 		return;
 	}
 
-	int maxUnitsExtracted = (int) (density * (25 + System::random(3)));
+	int maxUnitsExtracted = (int) (density * (150 + System::random(20)));
 
 	float cityMultiplier = 1.f + player->getSkillMod("private_spec_samplesize") / 100.f;
 
-	int unitsExtracted = maxUnitsExtracted * (float(surveySkill) / 100.0f) * samplingMultiplier * cityMultiplier;
+	float skillScalar = 0.20f + (float(surveySkill) / 100.0f) * 0.80f;
+        int unitsExtracted = (int)(maxUnitsExtracted * skillScalar * samplingMultiplier * cityMultiplier);
+        if (unitsExtracted < 30) unitsExtracted = 30;
 	int xpcap = 40;
 
 	if (session->tryGamble()) {

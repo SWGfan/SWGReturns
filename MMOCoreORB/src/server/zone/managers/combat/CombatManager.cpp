@@ -466,10 +466,11 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 			defender->executeObjectControllerAction(STRING_HASHCODE("attack"), attacker->getObjectID(), "");
 		damageMultiplier = 0.0f;
 		break;}
-	case RICOCHET:
-		doLightsaberBlock(attacker, weapon, defender, damage);
-		damageMultiplier = 0.0f;
-		return 0;
+		case RICOCHET:
+			doLightsaberBlock(attacker, weapon, defender, damage);
+			damageMultiplier = 0.0f;
+			checkForTefs(attacker, defender, shouldGcwTef, shouldBhTef, shouldJediTef);
+			return 0;
 	default:
 		break;
 	}
@@ -1217,15 +1218,30 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 	if (lightningAttack == true && !defender->isPlayerCreature())
 		damageType = SharedWeaponObjectTemplate::LIGHTSABER;
 
-	if (defender->isAiAgent()) {
-		float armorReduction = getArmorNpcReduction(cast<AiAgent*>(defender), damageType);
+		if (defender->isAiAgent()) {
+			float armorReduction = getArmorNpcReduction(cast<AiAgent*>(defender), damageType);
 
-		if (armorReduction >= 0)
-			damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
+			bool physicalLightsaberAttack =
+					!data.isForceAttack() &&
+					weapon != nullptr &&
+					weapon->isJediWeapon() &&
+					damageType == SharedWeaponObjectTemplate::LIGHTSABER;
 
-		if (armorReduction > 0) damage *= (1.f - (armorReduction / 100.f));
+			if (physicalLightsaberAttack) {
+				if (armorPiercing < 3)
+					armorPiercing = 3;
 
-		return damage;
+				if (armorReduction > 20.0f)
+					armorReduction = 20.0f;
+			}
+
+			if (armorReduction >= 0)
+				damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
+
+			if (armorReduction > 0)
+				damage *= (1.f - (armorReduction / 100.f));
+
+			return damage;
 	} else if (defender->isVehicleObject()) {
 		float armorReduction = getArmorVehicleReduction(cast<VehicleObject*>(defender), damageType);
 
@@ -1680,8 +1696,17 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 		}
 	}
 	// PvP Damage Reduction.
-	if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack())
+if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack()) {
+	bool physicalLightsaberAttack =
+			weapon != nullptr &&
+			weapon->isJediWeapon() &&
+			weapon->getDamageType() == SharedWeaponObjectTemplate::LIGHTSABER;
+
+	if (physicalLightsaberAttack)
+		damage *= 0.75;
+	else
 		damage *= 0.25;
+}
 
 	if (damage < 1) damage = 1;
 
@@ -1807,9 +1832,45 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* target
 		// saber block is special because it's just a % chance to block based on the skillmod
 		if (def == "saber_block") {
 			int saberDef = targetCreature->getSkillMod(def);
+
 			if (targetCreature->isIntimidated())
-				saberDef = saberDef/2;
-			if (!(attacker->isTurret() || weapon->isThrownWeapon()) && ((weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() || (weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK)) && ((System::random(100)) < targetCreature->getSkillMod(def))))
+				saberDef = saberDef / 2;
+
+			CreatureObject* creatureAttacker = nullptr;
+
+			if (attacker->isCreatureObject())
+				creatureAttacker = attacker->asCreatureObject();
+
+		if (def == "saber_block") {
+			int saberDef = targetCreature->getSkillMod(def);
+
+			if (targetCreature->isIntimidated())
+				saberDef = saberDef / 2;
+
+			CreatureObject* creatureAttacker = nullptr;
+
+			if (attacker->isCreatureObject())
+				creatureAttacker = attacker->asCreatureObject();
+
+			if (creatureAttacker != nullptr &&
+					creatureAttacker->isPlayerCreature() &&
+					creatureAttacker->hasSkill("combat_bountyhunter_master") &&
+					creatureAttacker->hasBountyMissionFor(targetCreature)) {
+				saberDef = saberDef / 2;
+			}
+
+			if (!(attacker->isTurret() || weapon->isThrownWeapon()) &&
+					(weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() ||
+					weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) &&
+					System::random(100) < saberDef)
+				return RICOCHET;
+			else
+				return HIT;
+		}
+			if (!(attacker->isTurret() || weapon->isThrownWeapon()) &&
+					(weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() ||
+					weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) &&
+					System::random(100) < saberDef)
 				return RICOCHET;
 			else
 				return HIT;

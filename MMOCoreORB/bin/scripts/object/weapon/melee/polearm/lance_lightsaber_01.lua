@@ -233,7 +233,7 @@ object_weapon_melee_polearm_lance_lightsaber_01 = object_weapon_melee_polearm_sh
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -275,9 +275,8 @@ object_weapon_melee_polearm_lance_lightsaber_01 = object_weapon_melee_polearm_sh
 	maxRange = 7,
 	maxRangeAccuracy = 5,
 
-	minDamage = 105,
-	maxDamage = 195,
-
+	minDamage = 120,
+	maxDamage = 210,
 	attackSpeed = 5.1,
 
 	woundsRatio = 15,

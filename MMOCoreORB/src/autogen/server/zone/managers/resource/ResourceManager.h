@@ -125,7 +125,7 @@ namespace resource {
  */
 class ResourceManager : public Observer {
 public:
-	static const int RESOURCE_DEED_QUANTITY = 5000;
+	static const int RESOURCE_DEED_QUANTITY = 100000;
 
 	ResourceManager(ZoneServer* server, ZoneProcessServer* impl);
 
@@ -228,7 +228,7 @@ class ResourceManagerImplementation : public ObserverImplementation, public Logg
 	int shiftInterval;
 
 public:
-	static const int RESOURCE_DEED_QUANTITY = 5000;
+	static const int RESOURCE_DEED_QUANTITY = 100000;
 
 	ResourceManagerImplementation(ZoneServer* server, ZoneProcessServer* impl);
 

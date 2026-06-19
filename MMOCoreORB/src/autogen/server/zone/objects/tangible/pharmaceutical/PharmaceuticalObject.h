@@ -58,7 +58,7 @@ public:
 
 	int getMedicineUseRequired();
 
-	float getRange(CreatureObject* creature = nullptr);
+	float getRange(CreatureObject* creature = NULL);
 
 	bool isArea();
 
@@ -126,7 +126,7 @@ public:
 
 	int getMedicineUseRequired();
 
-	virtual float getRange(CreatureObject* creature = nullptr);
+	virtual float getRange(CreatureObject* creature = NULL);
 
 	virtual bool isArea();
 

@@ -51,7 +51,7 @@ void CharacterBuilderTerminalImplementation::sendInitialChoices(CreatureObject* 
 		return;
 	}
 
-	ManagedReference<SuiCharacterBuilderBox*> sui = new SuiCharacterBuilderBox(player, rootNode);
+	ManagedReference<SuiCharacterBuilderBox*> sui = new SuiCharacterBuilderBox(player, const_cast<CharacterBuilderMenuNode*>(rootNode.get()));
 	sui->setUsingObject(_this.getReferenceUnsafeStaticCast());
 
 	player->sendMessage(sui->generateMessage());

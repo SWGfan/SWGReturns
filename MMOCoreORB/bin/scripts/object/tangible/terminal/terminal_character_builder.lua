@@ -1520,9 +1520,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			"Jedi",
 			{
 				"Unlock Jedi Initiate", "unlock_jedi_initiate",
-				"Unlock Jedi Master", "unlock_jedi_master",
-				"Unlock FRS Light Side", "frs_light_side",
-				"Unlock FRS Dark Side", "frs_dark_side"
+				"Unlock Light Jedi Master", "unlock_light_jedi_master",
+				"Unlock Dark Jedi Master", "unlock_dark_jedi_master"
 			},
 			"Fill Force Bar", "fill_force_bar",
 			"Reset Buffs", "reset_buffs",
@@ -1535,7 +1534,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			"Apply Fire DOT", "apply_fire_dot",
 			"Clear DOTs", "clear_dots",
 			"Max XP", "max_xp",
-			"Become Glowy", "become_glowy",
+			--"Become Glowy", "become_glowy",
 			"Faction Points",
 			{
 				"Imperial", "faction_imperial",
@@ -1821,16 +1820,16 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			--},
 			"Deeds",
 			{
-				"Resource Deed", "object/tangible/veteran_reward/resource.iff",
+				--"Resource Deed", "object/tangible/veteran_reward/resource.iff",
 				"Vehicle Deeds",
 				{
 					"Swoop", "object/tangible/deed/vehicle_deed/speederbike_swoop_deed.iff",
-					--"Jetpack", "object/tangible/deed/vehicle_deed/jetpack_deed.iff",
+					"Jetpack", "object/tangible/deed/vehicle_deed/jetpack_deed.iff",
 					"Speederbike", "object/tangible/deed/vehicle_deed/speederbike_deed.iff",
-				--"Speederbike Flash", "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff",
-				--"Landspeeder av21", "object/tangible/deed/vehicle_deed/landspeeder_av21_deed.iff",
-				--"Landspeeder x31", "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff",
-				--"Landspeeder x34", "object/tangible/deed/vehicle_deed/landspeeder_x34_deed.iff"
+					"Speederbike Flash", "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff",
+					"Landspeeder av21", "object/tangible/deed/vehicle_deed/landspeeder_av21_deed.iff",
+					"Landspeeder x31", "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff",
+					"Landspeeder x34", "object/tangible/deed/vehicle_deed/landspeeder_x34_deed.iff"
 				},
 				"Structure Deeds",
 				{
@@ -2867,13 +2866,13 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 				--		"A Blacksun Razor Knuckler", "object/weapon/melee/special/blacksun_razor.iff"
 				}
 			},
-			--"Holocrons",
-			--{
-			--	"Dark Jedi Holocron", "object/tangible/jedi/jedi_holocron_dark.iff",
-			--	"Light Jedi Holocron", "object/tangible/jedi/jedi_holocron_light.iff",
+			"Holocrons",
+			{
+				"Dark Jedi Holocron", "object/tangible/jedi/jedi_holocron_dark.iff",
+				"Light Jedi Holocron", "object/tangible/jedi/jedi_holocron_light.iff",
 			--	"Dark Jedi Holocron (gift)", "object/tangible/jedi/no_drop_jedi_holocron_dark.iff",
 			--	"Light Jedi Holocron (gift)", "object/tangible/jedi/no_drop_jedi_holocron_light.iff"
-			--}
+			},
 			"Village Testing (Temporary)",
 			{
 				"Resources",

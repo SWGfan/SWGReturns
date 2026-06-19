@@ -71,7 +71,22 @@ int SurveyToolImplementation::handleObjectMenuSelect(CreatureObject* player, byt
 				error("null resource manager");
 				return 0;
 			}
-			resourceManager->sendResourceListForSurvey(player, getToolType(), getSurveyType());
+			String templateName = getObjectTemplate()->getTemplateFileName();
+			bool isAllTool = templateName.contains("survey_tool_all");
+
+			if (isAllTool) {
+				resourceManager->sendResourceListForSurvey(player, 0, "organic");
+				resourceManager->sendResourceListForSurvey(player, 1, "energy_renewable_unlimited_solar");
+				resourceManager->sendResourceListForSurvey(player, 2, "chemical");
+				resourceManager->sendResourceListForSurvey(player, 3, "flora_resources");
+				resourceManager->sendResourceListForSurvey(player, 4, "gas");
+				resourceManager->sendResourceListForSurvey(player, 6, "mineral");
+				resourceManager->sendResourceListForSurvey(player, 7, "water");
+				resourceManager->sendResourceListForSurvey(player, 8, "energy_renewable_unlimited_wind");
+				resourceManager->sendResourceListForSurvey(player, 10, "inorganic");
+			} else {
+				resourceManager->sendResourceListForSurvey(player, getToolType(), getSurveyType());
+			}
 
 			return 0;
 		}

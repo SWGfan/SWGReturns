@@ -26,7 +26,7 @@ sleen = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/voritor_lizard_hue.iff"},
+	templates = {"object/mobile/graul.iff"},
 	scale = 1.2,
 	lootGroups = {
 		{

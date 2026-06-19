@@ -1,3 +1,4 @@
+// Coded by BoosterSteel 19-03-2026
 #include "EnclaveTerminalMenuComponent.h"
 #include "server/zone/Zone.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
@@ -8,6 +9,7 @@
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/zone/objects/tangible/TangibleObject.h"
 #include "server/zone/objects/player/variables/FrsData.h"
+#include "server/zone/managers/director/DirectorManager.h"
 
 void EnclaveTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::BUILDING).castTo<BuildingObject*>();
@@ -40,11 +42,22 @@ void EnclaveTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObje
 	if (ghost == nullptr)
 		return;
 
+	// ---- GHOSTS JEDI UNLOCK TRIAL OPTIONS ----
+	// Show to any Force Sensitive — eligibility checked fully in Lua
+	if (ghost->getJediState() >= 1) {
+		if (terminalType == LIGHT_CHALLENGE) {
+			menuResponse->addRadialMenuItem(81, 3, "Begin Jedi Master Trial");
+		} else if (terminalType == DARK_CHALLENGE) {
+			menuResponse->addRadialMenuItem(81, 3, "Begin Dark Jedi Master Trial");
+		}
+	}
+	// ---- END GHOSTS JEDI UNLOCK TRIAL OPTIONS ----
+
 	FrsData* frsData = ghost->getFrsData();
 	int playerRank = frsData->getRank();
 
 	if (playerRank < 0 && !ghost->isPrivileged()) {
-		player->sendSystemMessage("@force_rank:insufficient_rank_vote"); // You have insufficient rank in order to vote.
+		player->sendSystemMessage("@force_rank:insufficient_rank_vote");
 		return;
 	}
 
@@ -54,43 +67,24 @@ void EnclaveTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObje
 	if (frsManager->isPlayerFightingInArena(player->getObjectID()))
 		return;
 
-	if (terminalType == VOTING) {
-		menuResponse->addRadialMenuItem(69, 3, "@force_rank:vote_status"); // Voting Status
-		menuResponse->addRadialMenuItemToRadialID(69, 70, 3,"@force_rank:record_vote"); // Record Vote
-		menuResponse->addRadialMenuItemToRadialID(69, 71, 3,"@force_rank:accept_promotion"); // Accept Promotion
-		menuResponse->addRadialMenuItemToRadialID(69, 73, 3,"@force_rank:petition"); // Petition
-
-		if (playerRank > 7 && enclaveType == FrsManager::COUNCIL_LIGHT)
-			menuResponse->addRadialMenuItem(75, 3, "@force_rank:demote_member"); // Demote Lower Tier Member
-
-		menuResponse->addRadialMenuItem(74, 3, "@force_rank:recover_jedi_items"); // Recover Jedi Items
-#if FRS_TESTING
-		if (ghost->isPrivileged())
-			menuResponse->addRadialMenuItem(76, 3, "Force Phase Change");
-#endif
-	} else if (terminalType == LIGHT_CHALLENGE) {
-		menuResponse->addRadialMenuItem(69, 3, "@force_rank:challenge_vote_status"); // No-Confidence Vote Status
-
-		if (playerRank > 0) {
-			menuResponse->addRadialMenuItemToRadialID(69, 70, 3,"@force_rank:record_challenge_vote"); // Record No-Confidence Vote
-			menuResponse->addRadialMenuItemToRadialID(69, 71, 3,"@force_rank:issue_challenge_vote"); // Issue No-Confidence Vote
+	if (terminalType == VOTING || terminalType == LIGHT_CHALLENGE || terminalType == DARK_CHALLENGE) {
+		// ---- GHOSTS DISCIPLINE TRAINING OPTIONS ----
+		if (terminalType == LIGHT_CHALLENGE) {
+			menuResponse->addRadialMenuItem(83, 3, "Train Lightsaber Mastery");
+			menuResponse->addRadialMenuItem(84, 3, "Train Force Powers");
+			menuResponse->addRadialMenuItem(85, 3, "Train Defence");
+			menuResponse->addRadialMenuItem(86, 3, "Train Guardian Arts");
+		} else if (terminalType == DARK_CHALLENGE) {
+			menuResponse->addRadialMenuItem(83, 3, "Train Lightsaber Mastery");
+			menuResponse->addRadialMenuItem(84, 3, "Train Force Powers");
+			menuResponse->addRadialMenuItem(85, 3, "Train Defence");
+			menuResponse->addRadialMenuItem(86, 3, "Train Tyrant Arts");
 		}
-	} else if (terminalType == DARK_CHALLENGE) {
-		menuResponse->addRadialMenuItem(69, 3, "@pvp_rating:ch_terminal_view_scores"); // View Challenge Scores
-		menuResponse->addRadialMenuItem(70, 3, "@pvp_rating:ch_terminal_arena_status"); // Arena Status
+		// ---- END GHOSTS DISCIPLINE TRAINING OPTIONS ----
 
-		if (frsManager->rankHasOpenChallenges(-1))
-			menuResponse->addRadialMenuItem(71, 3, "@pvp_rating:ch_terminal_view_challenges"); // View Issued Challenges
-
-		if (frsManager->canPlayerIssueArenaChallenge(player))
-			menuResponse->addRadialMenuItem(73, 3,"@pvp_rating:ch_terminal_issue_challenge"); // Issue Challenge
-
-		if (frsManager->canPlayerAcceptArenaChallenge(player))
-			menuResponse->addRadialMenuItem(72, 3, "@pvp_rating:ch_terminal_accept_challenge"); // Accept a Challenge
-#if FRS_TESTING
-		if (ghost->isPrivileged() && !frsManager->isArenaOpen())
-			menuResponse->addRadialMenuItem(76, 3, "(TESTING) Open Arena");
-#endif
+		// Ghosts custom promotion system
+		menuResponse->addRadialMenuItem(82, 3, "Request Promotion");
+		menuResponse->addRadialMenuItem(74, 3, "@force_rank:recover_jedi_items");
 	}
 }
 
@@ -99,7 +93,7 @@ int EnclaveTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObjec
 		return 0;
 
 	if (player->getDistanceTo(sceneObject) > 15) {
-		player->sendSystemMessage("@pvp_rating:ch_terminal_too_far"); // You are too far away from the terminal to use it.
+		player->sendSystemMessage("@pvp_rating:ch_terminal_too_far");
 		return 1;
 	}
 
@@ -133,11 +127,86 @@ int EnclaveTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObjec
 	if (ghost == nullptr)
 		return 1;
 
+	// ---- GHOSTS JEDI UNLOCK TRIAL HANDLER (selectedID 81) ----
+	if (selectedID == 81) {
+		Lua* lua = DirectorManager::instance()->getLuaInstance();
+		if (lua == nullptr)
+			return 1;
+
+		String funcName = "";
+		if (terminalType == LIGHT_CHALLENGE)
+			funcName = "enclave_terminal_master_light";
+		else if (terminalType == DARK_CHALLENGE)
+			funcName = "enclave_terminal_master_dark";
+
+		if (funcName.isEmpty())
+			return 1;
+
+		Reference<LuaFunction*> luaFunc = lua->createFunction(funcName, 0);
+		if (luaFunc == nullptr)
+			return 1;
+
+		*luaFunc << player;
+		*luaFunc << sceneObject;
+		*luaFunc << ghost;
+		luaFunc->callFunction();
+		return 0;
+	}
+
+	// ---- GHOSTS DISCIPLINE TRAINING HANDLERS (selectedID 83-86) ----
+	if (selectedID >= 83 && selectedID <= 86) {
+		Lua* lua = DirectorManager::instance()->getLuaInstance();
+		if (lua == nullptr)
+			return 1;
+
+		// Map selectedID to branch index (1=Lightsaber, 2=Force, 3=Defence, 4=Guardian/Tyrant)
+		int branchIndex = selectedID - 82; // 83->1, 84->2, 85->3, 86->4
+
+		String funcName = "";
+		if (terminalType == LIGHT_CHALLENGE)
+			funcName = "enclave_terminal_train_light_branch";
+		else if (terminalType == DARK_CHALLENGE)
+			funcName = "enclave_terminal_train_dark_branch";
+
+		if (funcName.isEmpty())
+			return 1;
+
+		Reference<LuaFunction*> luaFunc = lua->createFunction(funcName, 0);
+		if (luaFunc == nullptr)
+			return 1;
+
+		*luaFunc << player;
+		*luaFunc << sceneObject;
+		*luaFunc << ghost;
+		*luaFunc << branchIndex;
+		luaFunc->callFunction();
+		return 0;
+	}
+
+	// ---- FRS PROMOTION HANDLER (selectedID 82) ----
+	if (selectedID == 82) {
+		Lua* lua = DirectorManager::instance()->getLuaInstance();
+		if (lua == nullptr)
+			return 1;
+
+		Reference<LuaFunction*> luaFunc = lua->createFunction("frs_request_promotion", 0);
+		if (luaFunc == nullptr)
+			return 1;
+
+		*luaFunc << player;
+		*luaFunc << sceneObject;
+		*luaFunc << ghost;
+		luaFunc->callFunction();
+		return 0;
+	}
+
+	// ---- END GHOSTS HANDLERS ----
+
 	FrsData* frsData = ghost->getFrsData();
 	int playerRank = frsData->getRank();
 
 	if (playerRank < 0 && !ghost->isPrivileged()) {
-		player->sendSystemMessage("@force_rank:insufficient_rank_vote"); // You have insufficient rank in order to vote.
+		player->sendSystemMessage("@force_rank:insufficient_rank_vote");
 		return 1;
 	}
 

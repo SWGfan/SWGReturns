@@ -5415,7 +5415,7 @@ Reference<Task* > SceneObjectImplementation::getPendingTask(const String& name) 
 	Locker _locker((&containerLock));
 	// server/zone/objects/scene/SceneObject.idl():  			return 
 	if (pendingTasks == nullptr)	// server/zone/objects/scene/SceneObject.idl():  				return null;
-	return nullptr;
+	return NULL;
 	// server/zone/objects/scene/SceneObject.idl():  			return pendingTasks.get(name);
 	return pendingTasks->get(name);
 }
@@ -5692,7 +5692,7 @@ unsigned int SceneObjectImplementation::getContainerType() const{
 
 Reference<ZoneClientSession* > SceneObjectImplementation::getClient() {
 	// server/zone/objects/scene/SceneObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 unsigned int SceneObjectImplementation::getGameObjectType() const{
@@ -5731,7 +5731,7 @@ ZoneServer* SceneObjectImplementation::getZoneServer() const{
 	return server->getZoneServer();
 
 	else 	// server/zone/objects/scene/SceneObject.idl():  			return null;
-	return nullptr;
+	return NULL;
 }
 
 ReadWriteLock* SceneObjectImplementation::getContainerLock() {
@@ -5851,7 +5851,7 @@ bool SceneObjectImplementation::isDroidObject() {
 
 BuildingObject* SceneObjectImplementation::asBuildingObject() {
 	// server/zone/objects/scene/SceneObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool SceneObjectImplementation::isCloningBuildingObject() {
@@ -5916,7 +5916,7 @@ bool SceneObjectImplementation::isTangibleObject() {
 
 TangibleObject* SceneObjectImplementation::asTangibleObject() {
 	// server/zone/objects/scene/SceneObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool SceneObjectImplementation::isResourceContainer() {
@@ -6236,7 +6236,7 @@ bool SceneObjectImplementation::isStaticObjectClass() {
 
 StaticObject* SceneObjectImplementation::asStaticObject() {
 	// server/zone/objects/scene/SceneObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool SceneObjectImplementation::isContainerObject() {

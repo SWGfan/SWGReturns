@@ -549,7 +549,6 @@
 #include "ResendLoginMessageToAllCommand.h"
 #include "ResetJediCommand.h"
 #include "ResetVillageCommand.h"
-#include "ResetVillageCommand.h"
 #include "ResourceCommand.h"
 #include "ResourceContainerSplitCommand.h"
 #include "ResourceContainerTransferCommand.h"

@@ -30,7 +30,7 @@ CharacterBuilderTerminal::~CharacterBuilderTerminal() {
 
 void CharacterBuilderTerminal::loadTemplateData(SharedObjectTemplate* templateData) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ void CharacterBuilderTerminal::loadTemplateData(SharedObjectTemplate* templateDa
 
 void CharacterBuilderTerminal::initializeTransientMembers() {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -54,7 +54,7 @@ void CharacterBuilderTerminal::initializeTransientMembers() {
 
 int CharacterBuilderTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ int CharacterBuilderTerminal::handleObjectMenuSelect(CreatureObject* player, byt
 
 void CharacterBuilderTerminal::sendInitialChoices(CreatureObject* player) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ void CharacterBuilderTerminal::sendInitialChoices(CreatureObject* player) {
 
 void CharacterBuilderTerminal::giveLanguages(CreatureObject* player) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ void CharacterBuilderTerminal::giveLanguages(CreatureObject* player) {
 
 void CharacterBuilderTerminal::enhanceCharacter(CreatureObject* player, int type) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,7 +116,7 @@ void CharacterBuilderTerminal::enhanceCharacter(CreatureObject* player, int type
 
 void CharacterBuilderTerminal::grantGlowyBadges(CreatureObject* player) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +131,7 @@ void CharacterBuilderTerminal::grantGlowyBadges(CreatureObject* player) {
 
 void CharacterBuilderTerminal::grantJediInitiate(CreatureObject* player) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
+	if (unlikely(_implementation == nullptr)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -177,7 +177,7 @@ void CharacterBuilderTerminalImplementation::finalize() {
 void CharacterBuilderTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(CharacterBuilderTerminalHelper::instance());
 
-	_this = NULL;
+	_this = nullptr;
 
 	_serializationHelperMethod();
 }

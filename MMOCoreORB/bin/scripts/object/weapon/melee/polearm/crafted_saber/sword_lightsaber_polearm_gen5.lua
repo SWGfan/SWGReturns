@@ -233,12 +233,12 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_gen5 = object
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
 	-- combat_meleespecialize_twohandlightsaber, jedi_general, combat_meleespecialize_onehandlightsaber
-	xpType = "jedi_general",
+	xpType = "combat_meleespecialize_polearmlightsaber",
 	
 	-- See http://www.ocdsoft.com/files/certifications.xls
 	certificationsRequired = { "cert_polearmlightsaber_gen4" },
@@ -276,11 +276,9 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_gen5 = object
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 225,
-	maxDamage = 305,
-
-	attackSpeed = 0,
-
+	minDamage = 315,
+	maxDamage = 475,
+	attackSpeed = 5.1,
 	woundsRatio = 45,
 
 	defenderToughnessModifiers = { "lightsaber_toughness" },

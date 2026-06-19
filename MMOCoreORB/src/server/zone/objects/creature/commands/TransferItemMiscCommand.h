@@ -8,6 +8,8 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/managers/player/PlayerManager.h"
+#include "server/zone/objects/tangible/weapon/WeaponObject.h"
+#include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/player/sessions/TradeSession.h"
 
 class TransferItemMiscCommand : public QueueCommand {
@@ -193,6 +195,7 @@ public:
 
 		if (clearWeapon) {
 			creature->setWeapon(nullptr, true);
+			updateJediWeaponTef(creature, objectToTransfer.get());
 
 			if (creature->hasBuff(STRING_HASHCODE("centerofbeing")))
 				creature->removeBuff(STRING_HASHCODE("centerofbeing"));
@@ -211,6 +214,21 @@ public:
 			objectsParent->notifyObservers(ObserverEventType::CONTAINERCONTENTSCHANGED, creature, 0);
 
 		return SUCCESS;
+	}
+
+	static void updateJediWeaponTef(CreatureObject* creature, SceneObject* object) {
+		if (creature == nullptr || object == nullptr || !creature->isPlayerCreature() || !object->isWeaponObject())
+			return;
+
+		WeaponObject* weaponObject = cast<WeaponObject*>(object);
+
+		if (weaponObject == nullptr || !weaponObject->isJediWeapon())
+			return;
+
+		PlayerObject* ghost = creature->getPlayerObject();
+
+		if (ghost != nullptr && ghost->isJedi())
+			ghost->updateLastPvpCombatActionTimestamp(false, false, true);
 	}
 
 };

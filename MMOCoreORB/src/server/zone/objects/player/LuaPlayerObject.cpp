@@ -647,7 +647,7 @@ int LuaPlayerObject::isJediTrainer(lua_State* L) {
 	Vector3 playerCoord = realObject->getTrainerCoordinates();
 	Vector3 player(playerCoord.getX(), playerCoord.getY(), 0);
 
-	bool result = (npc.distanceTo(player) < 50.0f) && (realObject->getTrainerZoneName() == trainer->getZone()->getZoneName());
+	bool result = (npc == player) && (realObject->getTrainerZoneName() == trainer->getZone()->getZoneName());
 
 	lua_pushboolean(L, result);
 

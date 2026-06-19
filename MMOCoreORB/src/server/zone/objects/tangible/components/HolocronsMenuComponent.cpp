@@ -3,7 +3,7 @@
 *
 *  Created on: 12/09/2021
 *	 Author: TOXIC  
-*/
+ */
 
 #include "HolocronsMenuComponent.h"
 #include "server/zone/objects/creature/CreatureObject.h"
@@ -137,13 +137,10 @@ int HolocronsMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 		//box->setPromptText(promptText.toString());
 		//ghost->addSuiBox(box);
 		//creature->sendMessage(box->generateMessage());
-	//}
-	if (selectedID == 218 && (ghost->getJediState() >= 1)) {
-		SkillManager::instance()->awardSkill("force_title_jedi_novice", creature, true, true, true);
-		SkillManager::instance()->awardSkill("force_title_jedi_rank_01", creature, true, true, true);
-		SkillManager::instance()->awardSkill("force_title_jedi_rank_02", creature, true, true, true);
-		creature->sendSystemMessage("You Have Become A Jedi");
-	}
+	
+	if (selectedID == 218) {
+			creature->sendSystemMessage("Legacy Jedi unlock disabled.");
+		}
 	if (selectedID == 220 && (ghost->getJediState() >= 1) && (ghost->getSkillPoints() == 250)) {
 		        ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, SuiWindowType::CITY_ADMIN_CONFIRM_UPDATE_TYPE);
 				creature->sendSystemMessage("You Have Unlocked Gray Jedi");

@@ -199,6 +199,7 @@
 #include "server/zone/objects/creature/commands/BhShieldCommand.h"
 #include "server/zone/objects/creature/commands/CloakCommand.h"
 #include "server/zone/objects/creature/commands/ForceCloakCommand.h"
+//#include "server/zone/objects/creature/commands/EventZombiesCommand.h"
 using namespace server::zone::managers::objectcontroller::command;
 
 
@@ -361,4 +362,5 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<ForceCloakCommand>(String("forceCloak").toLowerCase());
 	commandFactory.registerCommand<CloakCommand>(String("cloak").toLowerCase());
 	commandFactory.registerCommand<BhShieldCommand>(String("bhshield").toLowerCase());
+	//commandFactory.registerCommand<EventZombiesCommand>(String("eventzombies").toLowerCase());
 }

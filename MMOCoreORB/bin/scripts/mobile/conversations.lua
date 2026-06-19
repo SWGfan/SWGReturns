@@ -326,3 +326,6 @@ includeFile("conversations/events/event_exchange_dealer.lua")
 
 includeFile("conversations/merchants/vendor_conv.lua") 
 includeFile("conversations/tasks/myswg_vendor_conv.lua")
+
+includeFile("conversations/jedi/darth_zivon_conv.lua")
+includeFile("conversations/jedi/darth_zivon_conv_handler.lua")

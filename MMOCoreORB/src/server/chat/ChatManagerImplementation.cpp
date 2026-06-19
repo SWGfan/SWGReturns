@@ -96,7 +96,7 @@ void ChatManagerImplementation::loadMailDatabase() {
 
 		uint64 objectID;
 		uint32 timeStamp, currentTime = System::getTime();
-		ObjectInputStream objectData(2000);
+		ObjectInputStream objectData(1048576);
 
 		const auto limit = ConfigManager::instance()->getCleanupMailCount();
 

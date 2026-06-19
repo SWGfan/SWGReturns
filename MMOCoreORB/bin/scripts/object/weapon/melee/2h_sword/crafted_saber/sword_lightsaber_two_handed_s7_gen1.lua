@@ -233,12 +233,12 @@ playerRaces = { "object/creature/player/abyssin_male.iff",
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = MEDIUM,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
 	-- jedi_general, combat_meleespecialize_polearmlightsaber, combat_meleespecialize_onehandlightsaber
-	xpType = "jedi_general",
+	xpType = "combat_meleespecialize_twohandlightsaber",
 	
 	-- See http://www.ocdsoft.com/files/certifications.xls
 	certificationsRequired = { "cert_twohandlightsaber_gen1" },
@@ -273,9 +273,8 @@ playerRaces = { "object/creature/player/abyssin_male.iff",
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	minDamage = 90,
-	maxDamage = 180,
-
+	minDamage = 105,
+	maxDamage = 195,
 	attackSpeed = 4.8,
 
 	woundsRatio = 15,

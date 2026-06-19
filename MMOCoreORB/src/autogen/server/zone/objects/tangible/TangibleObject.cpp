@@ -2871,7 +2871,7 @@ SceneObject* TangibleObjectImplementation::getMainDefender() const{
 	if ((&defenderList)->size() > 0)	// server/zone/objects/tangible/TangibleObject.idl():  			return defenderList.get(0);
 	return (&defenderList)->get(0);
 	// server/zone/objects/tangible/TangibleObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool TangibleObjectImplementation::isDestroyed() const{
@@ -3092,7 +3092,7 @@ i ++) {
 }
 }
 	// server/zone/objects/tangible/TangibleObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool TangibleObjectImplementation::hasAntiDecayKit() const{
@@ -3124,7 +3124,7 @@ SceneObject* TangibleObjectImplementation::removeAntiDecayKit() {
 	return adk;
 }
 	// server/zone/objects/tangible/TangibleObject.idl():  		return null;
-	return nullptr;
+	return NULL;
 }
 
 bool TangibleObjectImplementation::isInvisible() const{

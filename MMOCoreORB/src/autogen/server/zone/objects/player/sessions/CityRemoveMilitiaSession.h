@@ -84,7 +84,7 @@ namespace sessions {
 
 class CityRemoveMilitiaSession : public Facade {
 public:
-	CityRemoveMilitiaSession(CreatureObject* creature, CityRegion* city, unsigned long long militiaid, SceneObject* terminal = nullptr);
+	CityRemoveMilitiaSession(CreatureObject* creature, CityRegion* city, unsigned long long militiaid, SceneObject* terminal = NULL);
 
 	unsigned long long getMilitiaID();
 
@@ -132,7 +132,7 @@ protected:
 	unsigned long long militiaID;
 
 public:
-	CityRemoveMilitiaSessionImplementation(CreatureObject* creature, CityRegion* city, unsigned long long militiaid, SceneObject* terminal = nullptr);
+	CityRemoveMilitiaSessionImplementation(CreatureObject* creature, CityRegion* city, unsigned long long militiaid, SceneObject* terminal = NULL);
 
 	CityRemoveMilitiaSessionImplementation(DummyConstructorParameter* param);
 

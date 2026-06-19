@@ -113,7 +113,7 @@ void MySqlDatabase::connect(const String& dbname, const String& user, const Stri
 
 	mysql_options(&mysql, MYSQL_OPT_READ_TIMEOUT, (char*)&queryTimeout);
 	mysql_options(&mysql, MYSQL_OPT_WRITE_TIMEOUT, (char*)&writeQueryTimeout);
-	my_bool reconnect = 1;
+	bool reconnect = 1;
 	mysql_options(&mysql, MYSQL_OPT_RECONNECT, &reconnect);
 
 	if (!mysql_real_connect(&mysql, host.toCharArray(), user.toCharArray(), passw.toCharArray(), dbname.toCharArray(), port, nullptr, 0)) {

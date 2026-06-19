@@ -10,10 +10,11 @@ myswg_vendor_first_screen = ConvoScreen:new {
     customDialogText = "What can I help you with?",
     stopConversation = "false",
     options = { 
-        {"DOC/ENT BUFFS", "newbuff1"},
+   --     {"DOC/ENT BUFFS", "newbuff1"},
         {"Weapons", "weaps1"},
         {"Armor", "armor1"},
         {"Loot", "loot1"},
+	{"Jedi Items", "jedi"},
         {"Artisan", "art1"},
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
@@ -90,17 +91,17 @@ art1 = ConvoScreen:new {
         {"Chemical survey tool - 500", "option25"},
         {"Generic Crafting Tool - 1k", "option26"},
         {"Backpack - 5k", "option27"},
-        {"Weapon Repair Tool - 10k", "option66"},
-        {"Armor Repair Tool - 10k", "option67"},
+        --{"Weapon Repair Tool - 10k", "option66"},
+        --{"Armor Repair Tool - 10k", "option67"},
         {"Weapon Upgrade Kit - 10k", "option68"},
         {"Armor Upgrade Kit - 10k", "option69"},  
         {"Speederbike (regular, not swoop) - 15k", "option28"},     
         
-        {"Medium Mineral Harvester Deed - 50k", "option29"}, --needs work
-	      {"Medium Flora Harvester Deed - 50k", "option30"},
-        {"Medium Gas Harvester Deed - 50k", "option31"},
-        {"Medium Chemical Harvester Deed - 50k", "option32"},
-        {"Medium Moisture Harvester Deed - 50k", "option33"},
+  --      {"Medium Mineral Harvester Deed - 50k", "option29"}, --needs work
+	--      {"Medium Flora Harvester Deed - 50k", "option30"},
+ --       {"Medium Gas Harvester Deed - 50k", "option31"},
+ --       {"Medium Chemical Harvester Deed - 50k", "option32"},
+--        {"Medium Moisture Harvester Deed - 50k", "option33"},
         {"Main menu.", "first_screen"},
     }
 }
@@ -117,7 +118,7 @@ arch1 = ConvoScreen:new {
       	{"25 effectiveness Clothing Crafting Station - 50k", "option72"},
         {"25 effectiveness Food Crafting Station - 50k", "option73"},
       	{"Small Generic House - 100k", "option34"},
-        {"Medium Generic House - 100k", "option35"},
+--        {"Medium Generic House - 100k", "option35"},
         {"Clothing Factory Deed - 100k", "option36"},
         {"Food Factory Deed - 100k", "option37"},
         {"item Factory Deed - 100k", "option38"},
@@ -150,24 +151,37 @@ loot1 = ConvoScreen:new {
     customDialogText = "Would you like to buy some loot drops?",
     stopConversation = "false",
     options = { 
-        {"free Resource Deed - 200k", "option46"},
-        {"Random lvl 50 Pistol Loot - 15k", "option56"},
-        {"Random lvl 50 Carbine Loot - 15k", "option57"},
-        {"Random lvl 50 Rifle Loot - 15k", "option58"},
-        {"Random lvl 50 1h sword Loot - 15k", "option59"},
-        {"Random lvl 50 2h sword Loot - 15k", "option60"},
-        {"Random lvl 50 Polearm Loot - 15k", "option61"},
-				{"Random lvl 50 Unarmed Loot - 15k", "option62"},        
-				{"Random lvl 50 Hvy Weapons (flame/acid/LLC) - 15k", "option63"},  
+        {"free Resource Deed - 100k", "option46"},
+--        {"Random lvl 50 Pistol Loot - 15k", "option56"},
+--        {"Random lvl 50 Carbine Loot - 15k", "option57"},
+--        {"Random lvl 50 Rifle Loot - 15k", "option58"},
+--        {"Random lvl 50 1h sword Loot - 15k", "option59"},
+--        {"Random lvl 50 2h sword Loot - 15k", "option60"},
+--        {"Random lvl 50 Polearm Loot - 15k", "option61"},
+--				{"Random lvl 50 Unarmed Loot - 15k", "option62"},        
+--				{"Random lvl 50 Hvy Weapons (flame/acid/LLC) - 15k", "option63"},  
 				              
   --      {"Random lvl 300 Clothing Loot - 100k", "option47"},
         {"Random max lvl Armor Loot - 100k", "option48"},
         {"Random max lvl Weapon Loot - 100k", "option49"},
-       	--{"Jedi Holocron - 10mil", "option5"},--was never added?
         {"Main menu.", "first_screen"},
     }
 }
 myswg_vendor_conv:addScreen(loot1);
+
+-- UPDATED Jedi Items screen with Unlock Jedi Knight option
+jedi = ConvoScreen:new {
+    id = "jedi",
+    leftDialog = "",
+    customDialogText = "Selling rare Jedi Loot and offering special services.",
+    stopConversation = "false",
+    options = {
+	{"Sith Holocron (25,000 cr)", "option78"},
+	{"Jedi Holocron (25,000 cr)", "option79"},
+        {"Main menu.", "first_screen"},
+    }
+}
+myswg_vendor_conv:addScreen(jedi);
 
 doc1 = ConvoScreen:new {
     id = "doc1",
@@ -195,6 +209,7 @@ droid1 = ConvoScreen:new {
 
         {"Seeker Droid - 5k", "option64"},
         {"Probe Droid - 10k", "option65"},
+	{"ISD - 35k", "option77"},
       	{"Main menu.", "first_screen"},
     }
 }
@@ -215,76 +230,7 @@ tailor1 = ConvoScreen:new {
 }
 myswg_vendor_conv:addScreen(tailor1);
 
-newbuff1 = ConvoScreen:new {
-    id = "newbuff1",
-    leftDialog = "",
-    customDialogText = "I sell buffs!",
-    stopConversation = "false",
-    options = { 
-      -- 	{"Remove all buffs - FREE", "buff7"},--not working yet
-        {"Heal all wounds - 5k", "buff6"},
 
-        {"1500 doctor buffs 8hr - FREE", "buff1"},
-        {"2500 Doctor Buffs 8hr - 25k", "buff2"},
-        {"3500 Doctor Buffs 8hr - 50k", "buff3"},
-        
-        {"125% Entertainer Buffs 8hr - FREE", "buff4"},
-        {"250% Entertainer Buffs 8hr - 20k", "buff5"},
- 
-      	{"Main menu.", "first_screen"},
-    }
-}
-myswg_vendor_conv:addScreen(newbuff1);
-
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff1",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff2",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff3",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff4",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff5",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff6",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
-myswg_vendor_accept_quest = ConvoScreen:new {    
-    id = "buff7",
-    leftDialog = "",
-    customDialogText = "Enjoy!",
-    stopConversation = "true",
-    options = { }
-}
 myswg_vendor_accept_quest = ConvoScreen:new {    
     id = "option1",
     leftDialog = "",

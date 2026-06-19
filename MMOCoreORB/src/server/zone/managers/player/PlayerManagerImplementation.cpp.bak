@@ -1908,6 +1908,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			ManagedReference<GroupObject*> group = attacker->getGroup();
 
 			uint32 combatXp = 0;
+			bool usedLightsaberXp = false;
 
 			Locker crossLocker(attacker, destructedObject);
 
@@ -1915,6 +1916,12 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				uint32 damage = entry->elementAt(j).getValue();
 				String xpType = entry->elementAt(j).getKey();
 				float xpAmount = baseXp;
+
+				if (xpType == "combat_meleespecialize_onehandlightsaber" ||
+						xpType == "combat_meleespecialize_twohandlightsaber" ||
+						xpType == "combat_meleespecialize_polearmlightsaber") {
+					usedLightsaberXp = true;
+				}
 
 				xpAmount /= (float) entry->size() / 1;
 
@@ -1943,7 +1950,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
 				else
-					combatXp += xpAmount;
+					xpAmount *= 0.2f;
 
 				//Award individual expType
 				awardExperience(attacker, xpType, xpAmount);
@@ -1951,7 +1958,15 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 			combatXp /= 10.f;
 
-			awardExperience(attacker, "combat_general", combatXp);
+			String genericCombatXpType = "combat_general";
+			PlayerObject* attackerGhost = attacker->getPlayerObject();
+
+			if (usedLightsaberXp && ((attackerGhost != nullptr && attackerGhost->getJediState() >= 2) ||
+					attacker->hasSkill("force_title_jedi_rank_02"))) {
+				genericCombatXpType = "jedi_general";
+			}
+
+			awardExperience(attacker, genericCombatXpType, combatXp);
 
 			//Check if the group leader is a squad leader
 			if (group == nullptr)

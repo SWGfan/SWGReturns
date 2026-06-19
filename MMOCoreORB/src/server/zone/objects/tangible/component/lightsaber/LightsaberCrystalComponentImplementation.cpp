@@ -499,6 +499,29 @@ void LightsaberCrystalComponentImplementation::updateCraftingValues(CraftingValu
 
 	generateCrystalStats();
 
+	// --- DOT Crystal Support ---
+	// Check if this crystal has DOT crafting values and apply them to the parent weapon.
+	// dotAttribute rolls 0/1/2 from Lua, mapped to HAM pools: 0=Health(0), 1=Action(3), 2=Mind(6)
+	float dotTypeVal = values->getCurrentValue("dotType");
+	if (dotTypeVal != ValuesMap::VALUENOTFOUND && (int)dotTypeVal > 0) {
+		ManagedReference<WeaponObject*> weapon = cast<WeaponObject*>(getParent().get()->getParent().get().get());
+
+		if (weapon != nullptr) {
+			weapon->clearDots();
+
+			int hamMap[3] = {0, 3, 6}; // Health, Action, Mind
+			int attrIndex = (int)values->getCurrentValue("dotAttribute");
+			if (attrIndex < 0 || attrIndex > 2) attrIndex = 0;
+
+			weapon->addDotType((int)dotTypeVal);
+			weapon->addDotAttribute(hamMap[attrIndex]);
+			weapon->addDotStrength((int)values->getCurrentValue("dotStrength"));
+			weapon->addDotDuration((int)values->getCurrentValue("dotDuration"));
+			weapon->addDotPotency((int)values->getCurrentValue("dotPotency"));
+			weapon->addDotUses((int)values->getCurrentValue("dotUses"));
+		}
+	}
+
 	ComponentImplementation::updateCraftingValues(values, firstUpdate);
 }
 
@@ -527,6 +550,9 @@ int LightsaberCrystalComponentImplementation::inflictDamage(TangibleObject* atta
 			if (getColor() != 31) {
 				weapon->setBladeColor(31);
 				weapon->setCustomizationVariable("/private/index_color_blade", 31, true);
+
+				// Clear any DOTs this color crystal was contributing
+				weapon->clearDots();
 
 				if (weapon->isEquipped()) {
 					ManagedReference<CreatureObject*> parent = cast<CreatureObject*>(weapon->getParent().get().get());
