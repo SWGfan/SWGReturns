@@ -238,6 +238,9 @@ void PlayerManagerImplementation::loadLuaConfig() {
 	groupExpMultiplier = lua->getGlobalFloat("groupExpMultiplier");
 
 	globalExpMultiplier = lua->getGlobalFloat("globalExpMultiplier");
+	craftingExpMultiplier = lua->getGlobalFloat("craftingExpMultiplier");
+	entertainingExpMultiplier = lua->getGlobalFloat("entertainingExpMultiplier");
+	scoutExpMultiplier = lua->getGlobalFloat("scoutExpMultiplier");
 
 	baseStoredCreaturePets = lua->getGlobalInt("baseStoredCreaturePets");
 	baseStoredFactionPets = lua->getGlobalInt("baseStoredFactionPets");
@@ -1738,7 +1741,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 
 	// Jedi experience loss.
-	/*if (ghost->getJediState() >= 2) {
+	if (ghost->getJediState() >= 2) {
 		int jediXpCap = ghost->getXpCap("jedi_general");
 		int xpLoss = (int)(jediXpCap * -0.05);
 		int curExp = ghost->getExperience("jedi_general");
@@ -1753,7 +1756,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		message.setDI(xpLoss * -1);
 		message.setTO("exp_n", "jedi_general");
 		player->sendSystemMessage(message);
-	}*/
+	}
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1950,23 +1953,10 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
 				else
-					xpAmount *= 1.0f;
+					xpAmount *= 0.2f;
 
 				//Award individual expType
 				awardExperience(attacker, xpType, xpAmount);
-
-					if ((attacker->hasSkill("jedi_padawan_novice") ||
-					     attacker->hasSkill("combat_jedi_novice")) &&
-					    xpAmount > 0 &&
-					    xpType != "jedi_general") {
-
-						int jediXp = (int)(xpAmount * 1.0f);
-
-						if (jediXp < 1)
-							jediXp = 1;
-
-						awardExperience(attacker, "jedi_general", jediXp);
-					}
 			}
 
 			combatXp /= 10.f;
@@ -1980,6 +1970,9 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			}
 
 			awardExperience(attacker, genericCombatXpType, combatXp);
+
+			// Notify kill observers (e.g. knight trials hunt targets)
+			attacker->notifyObservers(ObserverEventType::KILLEDCREATURE, destructedObject);
 
 			//Check if the group leader is a squad leader
 			if (group == nullptr)
@@ -2318,10 +2311,20 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		xpType == "squadleader" ||  
 		xpType == "trapping" || 
 		xpType == "shipwright") {
-		xp = playerObject->addExperience(xpType, (amount * 1.1));
+		// Per-category XP multiplier (crafting/entertainer/scout are configurable; others default to 1.1)
+		float typeMultiplier = 1.1f;
+		if (xpType == "dance" || xpType == "music" || xpType == "entertainer_healing")
+			typeMultiplier = entertainingExpMultiplier;
+		else if (xpType.indexOf("crafting_") == 0 || xpType == "reverse_engineering" || xpType == "shipwright")
+			typeMultiplier = craftingExpMultiplier;
+		else if (xpType == "scout" || xpType == "ranger" || xpType == "trapping" ||
+		         xpType == "camp" || xpType == "resource_harvesting_inorganic" ||
+		         xpType == "resource_harvesting_organic")
+			typeMultiplier = scoutExpMultiplier;
 		float speciesModifier = 1.f;
 		if (amount > 0)
 			speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
+		xp = playerObject->addExperience(xpType, (int)(amount * speciesModifier * typeMultiplier));
 		} else {
 			float speciesModifier = 1.f;
 			if (amount > 0)

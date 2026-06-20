@@ -57,10 +57,11 @@ medicalDuration = 10800 -- in seconds
 groupExpMultiplier = 4.0
 
 --Sets a global experience multiplier
-globalExpMultiplier = 10
+globalExpMultiplier = 5.0
 
-craftExpMultiplier = 8.0
-entExpMultiplier = 8.0
+craftingExpMultiplier     = 10
+entertainingExpMultiplier = 10
+scoutExpMultiplier        = 10
 
 --Sets the base number of control devices of each type that a player can have in their datapad at once
 --For creature pets, A Creature Handler will have the base number + their stored pets skill mod as limit

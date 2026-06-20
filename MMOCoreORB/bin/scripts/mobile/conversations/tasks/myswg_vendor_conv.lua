@@ -14,7 +14,7 @@ myswg_vendor_first_screen = ConvoScreen:new {
         {"Weapons", "weaps1"},
         {"Armor", "armor1"},
         {"Loot", "loot1"},
-	{"Jedi Items", "jedi"},
+	--{"Jedi Items", "jedi"},
         {"Artisan", "art1"},
         {"Architect", "arch1"},
         {"Chef", "chef1"},        
@@ -168,20 +168,6 @@ loot1 = ConvoScreen:new {
     }
 }
 myswg_vendor_conv:addScreen(loot1);
-
--- UPDATED Jedi Items screen with Unlock Jedi Knight option
-jedi = ConvoScreen:new {
-    id = "jedi",
-    leftDialog = "",
-    customDialogText = "Selling rare Jedi Loot and offering special services.",
-    stopConversation = "false",
-    options = {
-	{"Sith Holocron (25,000 cr)", "option78"},
-	{"Jedi Holocron (25,000 cr)", "option79"},
-        {"Main menu.", "first_screen"},
-    }
-}
-myswg_vendor_conv:addScreen(jedi);
 
 doc1 = ConvoScreen:new {
     id = "doc1",

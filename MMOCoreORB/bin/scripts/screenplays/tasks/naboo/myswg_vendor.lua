@@ -770,24 +770,6 @@ function myswg_vendor_convo_handler:getNextConversationScreen(conversationTempla
                     local pItem = 
                     giveItem(pInventory, "object/tangible/component/droid/droid_interplanetary_survey.iff", -1)
 
-
---JEDI
-                elseif (optionLink == "option78" and credits < 25000) then
-                      nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      creature:sendSystemMessage("You have insufficient funds")
-                elseif (optionLink == "option78" and credits >= 25000) then
-                    creature:subtractCashCredits(25000)
-                    giveItem(pInventory, "object/tangible/jedi/jedi_holocron_dark.iff", -1)
-                    creature:sendSystemMessage("Thank you! You have purchased a Sith Holocron.")
-
-                elseif (optionLink == "option79" and credits < 25000) then
-                      nextConversationScreen = conversation:getScreen("insufficient_funds")
-                      creature:sendSystemMessage("You have insufficient funds")
-                elseif (optionLink == "option79" and credits >= 25000) then
-                    creature:subtractCashCredits(25000)
-                    giveItem(pInventory, "object/tangible/jedi/jedi_holocron_light.iff", -1)
-                    creature:sendSystemMessage("Thank you! You have purchased a Jedi Holocron.")
-
                 end
             end
         end

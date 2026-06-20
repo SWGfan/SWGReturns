@@ -59,7 +59,7 @@ PlayerManager::~PlayerManager() {
 
 void PlayerManager::loadNameMap() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void PlayerManager::loadNameMap() {
 
 void PlayerManager::sendStartingLocationsTo(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -83,7 +83,7 @@ void PlayerManager::sendStartingLocationsTo(CreatureObject* player) {
 
 StartingLocation* PlayerManager::getStartingLocation(const String& city) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -93,7 +93,7 @@ StartingLocation* PlayerManager::getStartingLocation(const String& city) {
 
 bool PlayerManager::kickUser(const String& name, const String& admin, String& reason, bool doBan) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ bool PlayerManager::kickUser(const String& name, const String& admin, String& re
 
 bool PlayerManager::createPlayer(ClientCreateCharacterCallback* callback) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -121,7 +121,7 @@ bool PlayerManager::createPlayer(ClientCreateCharacterCallback* callback) {
 
 bool PlayerManager::checkPlayerName(ClientCreateCharacterCallback* callback) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -131,7 +131,7 @@ bool PlayerManager::checkPlayerName(ClientCreateCharacterCallback* callback) {
 
 String PlayerManager::setFirstName(CreatureObject* creature, const String& newFirstName) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ String PlayerManager::setFirstName(CreatureObject* creature, const String& newFi
 
 String PlayerManager::setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ String PlayerManager::setLastName(CreatureObject* creature, const String& newLas
 
 int PlayerManager::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -186,7 +186,7 @@ int PlayerManager::notifyObserverEvent(unsigned int eventType, Observable* obser
 
 int PlayerManager::notifyDestruction(TangibleObject* destructor, TangibleObject* destructedObject, int condition, bool isCombatAction) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,15 +198,15 @@ int PlayerManager::notifyDestruction(TangibleObject* destructor, TangibleObject*
 
 		return method.executeWithSignedIntReturn();
 	} else {
-		assert((destructor == nullptr) || destructor->isLockedByCurrentThread());
-		assert((destructedObject == nullptr) || destructedObject->isLockedByCurrentThread());
+		assert((destructor == NULL) || destructor->isLockedByCurrentThread());
+		assert((destructedObject == NULL) || destructedObject->isLockedByCurrentThread());
 		return _implementation->notifyDestruction(destructor, destructedObject, condition, isCombatAction);
 	}
 }
 
 bool PlayerManager::shouldRescheduleCorpseDestruction(CreatureObject* player, CreatureObject* ai) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,7 +222,7 @@ bool PlayerManager::shouldRescheduleCorpseDestruction(CreatureObject* player, Cr
 
 void PlayerManager::rescheduleCorpseDestruction(CreatureObject* player, CreatureObject* ai) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -238,7 +238,7 @@ void PlayerManager::rescheduleCorpseDestruction(CreatureObject* player, Creature
 
 bool PlayerManager::canGroupMemberHarvestCorpse(CreatureObject* player, Creature* creature) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +254,7 @@ bool PlayerManager::canGroupMemberHarvestCorpse(CreatureObject* player, Creature
 
 void PlayerManager::killPlayer(TangibleObject* attacker, CreatureObject* player, int typeofdeath, bool isCombatAction) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -272,7 +272,7 @@ void PlayerManager::killPlayer(TangibleObject* attacker, CreatureObject* player,
 
 byte PlayerManager::calculateIncapacitationTimer(CreatureObject* player, int condition) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -288,7 +288,7 @@ byte PlayerManager::calculateIncapacitationTimer(CreatureObject* player, int con
 
 bool PlayerManager::checkEncumbrancies(CreatureObject* player, ArmorObject* armor) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -304,7 +304,7 @@ bool PlayerManager::checkEncumbrancies(CreatureObject* player, ArmorObject* armo
 
 void PlayerManager::applyEncumbrancies(CreatureObject* player, ArmorObject* armor) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -320,7 +320,7 @@ void PlayerManager::applyEncumbrancies(CreatureObject* player, ArmorObject* armo
 
 void PlayerManager::removeEncumbrancies(CreatureObject* player, ArmorObject* armor) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -336,7 +336,7 @@ void PlayerManager::removeEncumbrancies(CreatureObject* player, ArmorObject* arm
 
 void PlayerManager::awardBadge(PlayerObject* ghost, unsigned int badge) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -352,7 +352,7 @@ void PlayerManager::awardBadge(PlayerObject* ghost, unsigned int badge) {
 
 void PlayerManager::awardBadge(PlayerObject* ghost, const Badge* badge) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -362,7 +362,7 @@ void PlayerManager::awardBadge(PlayerObject* ghost, const Badge* badge) {
 
 void PlayerManager::setExperienceMultiplier(float globalMultiplier) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -377,7 +377,7 @@ void PlayerManager::setExperienceMultiplier(float globalMultiplier) {
 
 int PlayerManager::awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage, float localMultiplier, bool applyModifiers) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -397,7 +397,7 @@ int PlayerManager::awardExperience(CreatureObject* player, const String& xpType,
 
 void PlayerManager::frsSkillCheck(CreatureObject* player, const String& skill, const String& skillParent) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -414,7 +414,7 @@ void PlayerManager::frsSkillCheck(CreatureObject* player, const String& skill, c
 
 void PlayerManager::gcwSkillCheck(CreatureObject* player, const String& skill, const String& skillParent) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -431,7 +431,7 @@ void PlayerManager::gcwSkillCheck(CreatureObject* player, const String& skill, c
 
 void PlayerManager::bhgSkillCheck(CreatureObject* player, const String& skill, const String& skillParent) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -448,7 +448,7 @@ void PlayerManager::bhgSkillCheck(CreatureObject* player, const String& skill, c
 
 SortedVector<ManagedReference<SceneObject* > > PlayerManager::getInsurableItems(CreatureObject* player, bool onlyInsurable) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -458,7 +458,7 @@ SortedVector<ManagedReference<SceneObject* > > PlayerManager::getInsurableItems(
 
 SortedVector<ManagedReference<SceneObject* > > PlayerManager::getInventoryItemsOfType(CreatureObject* player, int mask) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -468,7 +468,7 @@ SortedVector<ManagedReference<SceneObject* > > PlayerManager::getInventoryItemsO
 
 void PlayerManager::addInsurableItemsRecursive(SceneObject* obj, SortedVector<ManagedReference<SceneObject* > >* items, bool onlyInsurable) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -478,7 +478,7 @@ void PlayerManager::addInsurableItemsRecursive(SceneObject* obj, SortedVector<Ma
 
 void PlayerManager::handleAbortTradeMessage(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -493,7 +493,7 @@ void PlayerManager::handleAbortTradeMessage(CreatureObject* player) {
 
 void PlayerManager::handleAddItemToTradeWindow(CreatureObject* player, unsigned long long itemID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -509,7 +509,7 @@ void PlayerManager::handleAddItemToTradeWindow(CreatureObject* player, unsigned 
 
 void PlayerManager::handleGiveMoneyMessage(CreatureObject* player, unsigned int value) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -525,7 +525,7 @@ void PlayerManager::handleGiveMoneyMessage(CreatureObject* player, unsigned int 
 
 void PlayerManager::handleAcceptTransactionMessage(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -540,7 +540,7 @@ void PlayerManager::handleAcceptTransactionMessage(CreatureObject* player) {
 
 void PlayerManager::handleUnAcceptTransactionMessage(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -555,7 +555,7 @@ void PlayerManager::handleUnAcceptTransactionMessage(CreatureObject* player) {
 
 void PlayerManager::handleVerifyTradeMessage(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -570,7 +570,7 @@ void PlayerManager::handleVerifyTradeMessage(CreatureObject* player) {
 
 bool PlayerManager::checkTradeItems(CreatureObject* player, CreatureObject* receiver) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -586,7 +586,7 @@ bool PlayerManager::checkTradeItems(CreatureObject* player, CreatureObject* rece
 
 SceneObject* PlayerManager::getInRangeStructureWithAdminRights(CreatureObject* creature, unsigned long long targetID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -602,7 +602,7 @@ SceneObject* PlayerManager::getInRangeStructureWithAdminRights(CreatureObject* c
 
 StructureObject* PlayerManager::getInRangeOwnedStructure(CreatureObject* creature, float range) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -618,7 +618,7 @@ StructureObject* PlayerManager::getInRangeOwnedStructure(CreatureObject* creatur
 
 void PlayerManager::sendBattleFatigueMessage(CreatureObject* player, CreatureObject* target) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -634,7 +634,7 @@ void PlayerManager::sendBattleFatigueMessage(CreatureObject* player, CreatureObj
 
 void PlayerManager::stopWatch(CreatureObject* creature, unsigned long long entid, bool doSendPackets, bool forced, bool doLock, bool outOfRange) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -654,7 +654,7 @@ void PlayerManager::stopWatch(CreatureObject* creature, unsigned long long entid
 
 void PlayerManager::stopListen(CreatureObject* creature, unsigned long long entid, bool doSendPackets, bool forced, bool doLock, bool outOfRange) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -674,7 +674,7 @@ void PlayerManager::stopListen(CreatureObject* creature, unsigned long long enti
 
 void PlayerManager::startWatch(CreatureObject* creature, unsigned long long entid) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -690,7 +690,7 @@ void PlayerManager::startWatch(CreatureObject* creature, unsigned long long enti
 
 void PlayerManager::startListen(CreatureObject* creature, unsigned long long entid) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -706,7 +706,7 @@ void PlayerManager::startListen(CreatureObject* creature, unsigned long long ent
 
 void PlayerManager::lootAll(CreatureObject* player, CreatureObject* creature) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -722,7 +722,7 @@ void PlayerManager::lootAll(CreatureObject* player, CreatureObject* creature) {
 
 void PlayerManager::proposeUnity(CreatureObject* askingPlayer, CreatureObject* respondingPlayer, SceneObject* askingPlayerRing) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -739,7 +739,7 @@ void PlayerManager::proposeUnity(CreatureObject* askingPlayer, CreatureObject* r
 
 void PlayerManager::denyUnity(CreatureObject* respondingPlayer) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -754,7 +754,7 @@ void PlayerManager::denyUnity(CreatureObject* respondingPlayer) {
 
 void PlayerManager::acceptUnity(CreatureObject* respondingPlayer) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -769,7 +769,7 @@ void PlayerManager::acceptUnity(CreatureObject* respondingPlayer) {
 
 void PlayerManager::completeUnity(CreatureObject* respondingPlayer, unsigned long long respondingPlayerRing) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -785,7 +785,7 @@ void PlayerManager::completeUnity(CreatureObject* respondingPlayer, unsigned lon
 
 void PlayerManager::promptDivorce(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -800,7 +800,7 @@ void PlayerManager::promptDivorce(CreatureObject* player) {
 
 void PlayerManager::grantDivorce(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -809,14 +809,14 @@ void PlayerManager::grantDivorce(CreatureObject* player) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->grantDivorce(player);
 	}
 }
 
 void PlayerManager::claimVeteranRewards(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -831,7 +831,7 @@ void PlayerManager::claimVeteranRewards(CreatureObject* player) {
 
 int PlayerManager::getEligibleMilestone(PlayerObject* playerGhost, Account* account) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -847,7 +847,7 @@ int PlayerManager::getEligibleMilestone(PlayerObject* playerGhost, Account* acco
 
 int PlayerManager::getFirstIneligibleMilestone(PlayerObject* playerGhost, Account* account) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -863,7 +863,7 @@ int PlayerManager::getFirstIneligibleMilestone(PlayerObject* playerGhost, Accoun
 
 void PlayerManager::cancelVeteranRewardSession(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -878,7 +878,7 @@ void PlayerManager::cancelVeteranRewardSession(CreatureObject* player) {
 
 void PlayerManager::confirmVeteranReward(CreatureObject* player, int itemIndex) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -894,7 +894,7 @@ void PlayerManager::confirmVeteranReward(CreatureObject* player, int itemIndex) 
 
 void PlayerManager::generateVeteranReward(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -909,7 +909,7 @@ void PlayerManager::generateVeteranReward(CreatureObject* player) {
 
 int PlayerManager::healEnhance(CreatureObject* enhancer, CreatureObject* patient, byte attribute, int buffvalue, float duration, int absorption) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -929,7 +929,7 @@ int PlayerManager::healEnhance(CreatureObject* enhancer, CreatureObject* patient
 
 void PlayerManager::disseminateExperience(TangibleObject* destructedObject, ThreatMap* threatMap, SynchronizedVector<ManagedReference<CreatureObject* > >* lairSpawnedCreatures, Zone* lairZone) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -939,7 +939,7 @@ void PlayerManager::disseminateExperience(TangibleObject* destructedObject, Thre
 
 int PlayerManager::calculatePlayerLevel(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -954,7 +954,7 @@ int PlayerManager::calculatePlayerLevel(CreatureObject* player) {
 
 int PlayerManager::calculatePlayerLevel(CreatureObject* player, String& xpType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -970,7 +970,7 @@ int PlayerManager::calculatePlayerLevel(CreatureObject* player, String& xpType) 
 
 void PlayerManager::sendLoginMessage(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -985,7 +985,7 @@ void PlayerManager::sendLoginMessage(CreatureObject* player) {
 
 void PlayerManager::resendLoginMessageToAll() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -999,7 +999,7 @@ void PlayerManager::resendLoginMessageToAll() {
 
 void PlayerManager::sendActivateCloneRequest(CreatureObject* player, int typeofdeath) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1015,7 +1015,7 @@ void PlayerManager::sendActivateCloneRequest(CreatureObject* player, int typeofd
 
 bool PlayerManager::isValidClosestCloner(CreatureObject* player, SceneObject* cloner) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1031,7 +1031,7 @@ bool PlayerManager::isValidClosestCloner(CreatureObject* player, SceneObject* cl
 
 void PlayerManager::sendPlayerToCloner(CreatureObject* player, unsigned long long clonerID, int typeofdeath) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1048,7 +1048,7 @@ void PlayerManager::sendPlayerToCloner(CreatureObject* player, unsigned long lon
 
 void PlayerManager::ejectPlayerFromBuilding(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1063,7 +1063,7 @@ void PlayerManager::ejectPlayerFromBuilding(CreatureObject* player) {
 
 bool PlayerManager::checkExistentNameInDatabase(const String& firstName) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1078,7 +1078,7 @@ bool PlayerManager::checkExistentNameInDatabase(const String& firstName) {
 
 void PlayerManager::createTutorialBuilding(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1093,7 +1093,7 @@ void PlayerManager::createTutorialBuilding(CreatureObject* player) {
 
 void PlayerManager::createSkippedTutorialBuilding(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1108,7 +1108,7 @@ void PlayerManager::createSkippedTutorialBuilding(CreatureObject* player) {
 
 void PlayerManager::updateSwimmingState(CreatureObject* player, float newZ, IntersectionResults* intersections, CloseObjectsVector* closeObjects) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1118,7 +1118,7 @@ void PlayerManager::updateSwimmingState(CreatureObject* player, float newZ, Inte
 
 int PlayerManager::checkSpeedHackFirstTest(CreatureObject* player, float parsedSpeed, ValidatedPosition& teleportPosition, float errorMultiplier) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1128,7 +1128,7 @@ int PlayerManager::checkSpeedHackFirstTest(CreatureObject* player, float parsedS
 
 int PlayerManager::checkSpeedHackSecondTest(CreatureObject* player, float newX, float newZ, float newY, unsigned int newStamp, SceneObject* newParent) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1148,7 +1148,7 @@ int PlayerManager::checkSpeedHackSecondTest(CreatureObject* player, float newX, 
 
 bool PlayerManager::existsName(const String& name) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1163,7 +1163,7 @@ bool PlayerManager::existsName(const String& name) {
 
 bool PlayerManager::existsPlayerCreatureOID(unsigned long long oid) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1178,7 +1178,7 @@ bool PlayerManager::existsPlayerCreatureOID(unsigned long long oid) {
 
 unsigned long long PlayerManager::getObjectID(const String& name) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1193,7 +1193,7 @@ unsigned long long PlayerManager::getObjectID(const String& name) {
 
 String PlayerManager::getPlayerName(unsigned long long oid) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1210,7 +1210,7 @@ String PlayerManager::getPlayerName(unsigned long long oid) {
 
 Reference<CreatureObject* > PlayerManager::getPlayer(const String& name) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1225,7 +1225,7 @@ Reference<CreatureObject* > PlayerManager::getPlayer(const String& name) {
 
 void PlayerManager::updatePermissionLevel(CreatureObject* player, int adminLevel) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1241,7 +1241,7 @@ void PlayerManager::updatePermissionLevel(CreatureObject* player, int adminLevel
 
 void PlayerManager::updatePermissionName(CreatureObject* player, int adminLevel) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1257,7 +1257,7 @@ void PlayerManager::updatePermissionName(CreatureObject* player, int adminLevel)
 
 void PlayerManager::addPlayer(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1272,7 +1272,7 @@ void PlayerManager::addPlayer(CreatureObject* player) {
 
 void PlayerManager::removePlayer(const String& playerName) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1287,7 +1287,7 @@ void PlayerManager::removePlayer(const String& playerName) {
 
 void PlayerManager::removePlayer(unsigned long long playerID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1302,7 +1302,7 @@ void PlayerManager::removePlayer(unsigned long long playerID) {
 
 bool PlayerManager::containsPlayer(const String& playerName) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1317,7 +1317,7 @@ bool PlayerManager::containsPlayer(const String& playerName) {
 
 void PlayerManager::sendAdminJediList(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1332,7 +1332,7 @@ void PlayerManager::sendAdminJediList(CreatureObject* player) {
 
 void PlayerManager::sendAdminFRSList(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1347,7 +1347,7 @@ void PlayerManager::sendAdminFRSList(CreatureObject* player) {
 
 void PlayerManager::sendAdminList(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1362,7 +1362,7 @@ void PlayerManager::sendAdminList(CreatureObject* player) {
 
 VectorMap<String, int> PlayerManager::generateAdminList() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1372,7 +1372,7 @@ VectorMap<String, int> PlayerManager::generateAdminList() {
 
 CraftingStation* PlayerManager::getNearbyCraftingStation(CreatureObject* player, int type) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1388,7 +1388,7 @@ CraftingStation* PlayerManager::getNearbyCraftingStation(CreatureObject* player,
 
 void PlayerManager::finishHologrind(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1403,7 +1403,7 @@ void PlayerManager::finishHologrind(CreatureObject* player) {
 
 String PlayerManager::banAccount(PlayerObject* admin, Account* account, unsigned int seconds, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1423,7 +1423,7 @@ String PlayerManager::banAccount(PlayerObject* admin, Account* account, unsigned
 
 String PlayerManager::unbanAccount(PlayerObject* admin, Account* account, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1442,7 +1442,7 @@ String PlayerManager::unbanAccount(PlayerObject* admin, Account* account, const 
 
 String PlayerManager::banFromGalaxy(PlayerObject* admin, Account* account, unsigned const int galaxy, unsigned int seconds, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1463,7 +1463,7 @@ String PlayerManager::banFromGalaxy(PlayerObject* admin, Account* account, unsig
 
 String PlayerManager::unbanFromGalaxy(PlayerObject* admin, Account* account, unsigned const int galaxy, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1483,7 +1483,7 @@ String PlayerManager::unbanFromGalaxy(PlayerObject* admin, Account* account, uns
 
 String PlayerManager::banCharacter(PlayerObject* admin, Account* account, const String& name, unsigned int galaxyID, unsigned int seconds, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1505,7 +1505,7 @@ String PlayerManager::banCharacter(PlayerObject* admin, Account* account, const 
 
 String PlayerManager::unbanCharacter(PlayerObject* admin, Account* account, const String& name, unsigned int galaxyID, const String& reason) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1526,7 +1526,7 @@ String PlayerManager::unbanCharacter(PlayerObject* admin, Account* account, cons
 
 void PlayerManager::clearOwnedStructuresPermissions(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1541,7 +1541,7 @@ void PlayerManager::clearOwnedStructuresPermissions(CreatureObject* player) {
 
 bool PlayerManager::promptTeachableSkills(CreatureObject* teacher, SceneObject* target) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1557,7 +1557,7 @@ bool PlayerManager::promptTeachableSkills(CreatureObject* teacher, SceneObject* 
 
 void PlayerManager::decreaseOnlineCharCount(ZoneClientSession* client) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1572,7 +1572,7 @@ void PlayerManager::decreaseOnlineCharCount(ZoneClientSession* client) {
 
 bool PlayerManager::increaseOnlineCharCountIfPossible(ZoneClientSession* client) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1587,7 +1587,7 @@ bool PlayerManager::increaseOnlineCharCountIfPossible(ZoneClientSession* client)
 
 void PlayerManager::disconnectAllPlayers() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1601,7 +1601,7 @@ void PlayerManager::disconnectAllPlayers() {
 
 void PlayerManager::fixHAM(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1616,7 +1616,7 @@ void PlayerManager::fixHAM(CreatureObject* player) {
 
 void PlayerManager::fixBuffSkillMods(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1631,7 +1631,7 @@ void PlayerManager::fixBuffSkillMods(CreatureObject* player) {
 
 JSONSerializationType PlayerManager::basePlayerLogEntry(CreatureObject* creature, PlayerObject* ghost) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1641,7 +1641,7 @@ JSONSerializationType PlayerManager::basePlayerLogEntry(CreatureObject* creature
 
 void PlayerManager::writePlayerLogEntry(JSONSerializationType& logEntry) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1651,7 +1651,7 @@ void PlayerManager::writePlayerLogEntry(JSONSerializationType& logEntry) {
 
 void PlayerManager::writePlayerLog(CreatureObject* creature, PlayerObject* ghost, const String& msg, int logLevelType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1661,7 +1661,7 @@ void PlayerManager::writePlayerLog(CreatureObject* creature, PlayerObject* ghost
 
 void PlayerManager::writePlayerLog(PlayerObject* ghost, const String& msg, int logLevelType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1671,7 +1671,7 @@ void PlayerManager::writePlayerLog(PlayerObject* ghost, const String& msg, int l
 
 void PlayerManager::writePlayerLog(CreatureObject* creature, const String& msg, int logLevelType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1681,7 +1681,7 @@ void PlayerManager::writePlayerLog(CreatureObject* creature, const String& msg, 
 
 int PlayerManager::getPlayerQuestID(const String& name) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1696,7 +1696,7 @@ int PlayerManager::getPlayerQuestID(const String& name) {
 
 String PlayerManager::getPlayerQuestParent(int questID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1713,7 +1713,7 @@ String PlayerManager::getPlayerQuestParent(int questID) {
 
 int PlayerManager::getTotalPlayerQuests() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1727,7 +1727,7 @@ int PlayerManager::getTotalPlayerQuests() {
 
 QuestInfo* PlayerManager::getQuestInfo(int questID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1737,7 +1737,7 @@ QuestInfo* PlayerManager::getQuestInfo(int questID) {
 
 bool PlayerManager::offerTeaching(CreatureObject* teacher, CreatureObject* student, Skill* skill) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1747,7 +1747,7 @@ bool PlayerManager::offerTeaching(CreatureObject* teacher, CreatureObject* stude
 
 bool PlayerManager::acceptTeachingOffer(CreatureObject* teacher, CreatureObject* student, Skill* skill) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1757,7 +1757,7 @@ bool PlayerManager::acceptTeachingOffer(CreatureObject* teacher, CreatureObject*
 
 SortedVector<String> PlayerManager::getTeachableSkills(CreatureObject* teacher, CreatureObject* student) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1767,7 +1767,7 @@ SortedVector<String> PlayerManager::getTeachableSkills(CreatureObject* teacher, 
 
 OnlineZoneClientMap* PlayerManager::getOnlineZoneClientMap() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1777,7 +1777,7 @@ OnlineZoneClientMap* PlayerManager::getOnlineZoneClientMap() {
 
 void PlayerManager::getCleanupCharacterCount() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1791,7 +1791,7 @@ void PlayerManager::getCleanupCharacterCount() {
 
 void PlayerManager::cleanupCharacters() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1805,7 +1805,7 @@ void PlayerManager::cleanupCharacters() {
 
 bool PlayerManager::shouldDeleteCharacter(unsigned long long characterID, int galaxyID) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1821,7 +1821,7 @@ bool PlayerManager::shouldDeleteCharacter(unsigned long long characterID, int ga
 
 bool PlayerManager::doBurstRun(CreatureObject* player, float hamModifier, float cooldownModifier) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1838,7 +1838,7 @@ bool PlayerManager::doBurstRun(CreatureObject* player, float hamModifier, float 
 
 void PlayerManager::enhanceCharacter(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1853,7 +1853,7 @@ void PlayerManager::enhanceCharacter(CreatureObject* player) {
 
 bool PlayerManager::doEnhanceCharacter(unsigned int crc, CreatureObject* player, int amount, int duration, int buffType, byte attribute) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1873,7 +1873,7 @@ bool PlayerManager::doEnhanceCharacter(unsigned int crc, CreatureObject* player,
 
 int PlayerManager::getBaseStoredCreaturePets() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1887,7 +1887,7 @@ int PlayerManager::getBaseStoredCreaturePets() {
 
 int PlayerManager::getBaseStoredFactionPets() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1901,7 +1901,7 @@ int PlayerManager::getBaseStoredFactionPets() {
 
 int PlayerManager::getBaseStoredDroids() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1915,7 +1915,7 @@ int PlayerManager::getBaseStoredDroids() {
 
 int PlayerManager::getBaseStoredVehicles() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1929,7 +1929,7 @@ int PlayerManager::getBaseStoredVehicles() {
 
 int PlayerManager::getBaseStoredShips() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1943,7 +1943,7 @@ int PlayerManager::getBaseStoredShips() {
 
 int PlayerManager::getNumVeteranRewardMilestones() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1957,7 +1957,7 @@ int PlayerManager::getNumVeteranRewardMilestones() {
 
 int PlayerManager::getVeteranRewardMilestone(int index) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1972,7 +1972,7 @@ int PlayerManager::getVeteranRewardMilestone(int index) {
 
 JukeboxSong* PlayerManager::getJukeboxSong(int index) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1982,7 +1982,7 @@ JukeboxSong* PlayerManager::getJukeboxSong(int index) {
 
 int PlayerManager::getNumJukeboxSongs() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1996,7 +1996,7 @@ int PlayerManager::getNumJukeboxSongs() {
 
 void PlayerManager::setOnlineCharactersPerAccount(int count) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2011,18 +2011,18 @@ void PlayerManager::setOnlineCharactersPerAccount(int count) {
 
 void PlayerManager::doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->doPvpDeathRatingUpdate(player, threatMap);
 	}
 }
 
 void PlayerManager::updatePvPKillCount(CreatureObject* player) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2037,7 +2037,7 @@ void PlayerManager::updatePvPKillCount(CreatureObject* player) {
 
 void PlayerManager::offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2053,7 +2053,7 @@ void PlayerManager::offerPlayerBounty(CreatureObject* attacker, CreatureObject* 
 
 float PlayerManager::getSpeciesXpModifier(const String& species, const String& xpType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2069,7 +2069,7 @@ float PlayerManager::getSpeciesXpModifier(const String& species, const String& x
 
 void PlayerManager::unlockFRSForTesting(CreatureObject* player, int councilType) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2085,7 +2085,7 @@ void PlayerManager::unlockFRSForTesting(CreatureObject* player, int councilType)
 
 Vector<unsigned long long> PlayerManager::getOnlinePlayerList() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2095,7 +2095,7 @@ Vector<unsigned long long> PlayerManager::getOnlinePlayerList() {
 
 void PlayerManager::logOnlinePlayers(bool onlyWho) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2105,7 +2105,7 @@ void PlayerManager::logOnlinePlayers(bool onlyWho) {
 
 bool PlayerManager::rescheduleOnlinePlayerLogTask(int logSeconds) {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2115,7 +2115,7 @@ bool PlayerManager::rescheduleOnlinePlayerLogTask(int logSeconds) {
 
 void PlayerManager::updateOnlinePlayers() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2129,7 +2129,7 @@ void PlayerManager::updateOnlinePlayers() {
 
 void PlayerManager::stopOnlinePlayerLogTask() {
 	PlayerManagerImplementation* _implementation = static_cast<PlayerManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2172,7 +2172,7 @@ PlayerManagerImplementation::~PlayerManagerImplementation() {
 void PlayerManagerImplementation::_initializeImplementation() {
 	_setClassHelper(PlayerManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -2319,6 +2319,18 @@ bool PlayerManagerImplementation::readObjectMember(ObjectInputStream* stream, co
 
 	case 0xdccf1a2f: //PlayerManager.groupExpMultiplier
 		TypeInfo<float >::parseFromBinaryStream(&groupExpMultiplier, stream);
+		return true;
+
+	case 0x78479edd: //PlayerManager.craftingExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&craftingExpMultiplier, stream);
+		return true;
+
+	case 0x1230701f: //PlayerManager.entertainingExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&entertainingExpMultiplier, stream);
+		return true;
+
+	case 0x9598edf4: //PlayerManager.scoutExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&scoutExpMultiplier, stream);
 		return true;
 
 	}
@@ -2497,6 +2509,33 @@ int PlayerManagerImplementation::writeObjectMembers(ObjectOutputStream* stream) 
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<float >::toBinaryStream(&groupExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x78479edd; //PlayerManager.craftingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&craftingExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x1230701f; //PlayerManager.entertainingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&entertainingExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x9598edf4; //PlayerManager.scoutExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -2875,7 +2914,7 @@ void PlayerManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			unsigned long long targetID = inv->getUnsignedLongParameter();
 			
 			DistributedObject* _m_res = getInRangeStructureWithAdminRights(creature, targetID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETINRANGEOWNEDSTRUCTURE__CREATUREOBJECT_FLOAT_:
@@ -2884,7 +2923,7 @@ void PlayerManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			float range = inv->getFloatParameter();
 			
 			DistributedObject* _m_res = getInRangeOwnedStructure(creature, range);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SENDBATTLEFATIGUEMESSAGE__CREATUREOBJECT_CREATUREOBJECT_:
@@ -3206,7 +3245,7 @@ void PlayerManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			 String name; inv->getAsciiParameter(name);
 			
 			DistributedObject* _m_res = getPlayer(name);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_UPDATEPERMISSIONLEVEL__CREATUREOBJECT_INT_:
@@ -3289,7 +3328,7 @@ void PlayerManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int type = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getNearbyCraftingStation(player, type);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_FINISHHOLOGRIND__CREATUREOBJECT_:
@@ -4340,6 +4379,39 @@ int PlayerManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (craftingExpMultiplier) {
+	_nameHashCode = 0x78479edd; //PlayerManager.craftingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&craftingExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (entertainingExpMultiplier) {
+	_nameHashCode = 0x1230701f; //PlayerManager.entertainingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&entertainingExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (scoutExpMultiplier) {
+	_nameHashCode = 0x9598edf4; //PlayerManager.scoutExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -4493,6 +4565,30 @@ bool PlayerManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32&
 		}
 		return true;
 
+	case 0x78479edd: //PlayerManager.craftingExpMultiplier
+		{
+			float _mncraftingExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mncraftingExpMultiplier, stream);
+			craftingExpMultiplier = std::move(_mncraftingExpMultiplier);
+		}
+		return true;
+
+	case 0x1230701f: //PlayerManager.entertainingExpMultiplier
+		{
+			float _mnentertainingExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnentertainingExpMultiplier, stream);
+			entertainingExpMultiplier = std::move(_mnentertainingExpMultiplier);
+		}
+		return true;
+
+	case 0x9598edf4: //PlayerManager.scoutExpMultiplier
+		{
+			float _mnscoutExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnscoutExpMultiplier, stream);
+			scoutExpMultiplier = std::move(_mnscoutExpMultiplier);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -4554,6 +4650,12 @@ void PlayerManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<float >::toBinaryStream(&globalExpMultiplier.value(), stream);
 
 	TypeInfo<float >::toBinaryStream(&groupExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&craftingExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&entertainingExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier.value(), stream);
 
 
 }
