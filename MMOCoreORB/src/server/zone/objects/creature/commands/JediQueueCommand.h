@@ -42,6 +42,70 @@ protected:
 	Vector<unsigned int> singleUseEventTypes;
 
 
+	bool isHuntersMarkJediTarget(CreatureObject* creature) const {
+		return creature != nullptr &&
+				creature->isPlayerCreature() &&
+				(creature->hasSkill("force_title_jedi_rank_02") ||
+				creature->hasSkill("combat_jedi") ||
+				creature->hasSkill("combat_jedi_novice") ||
+				creature->hasSkill("returns_jedi_elder") ||
+				creature->hasSkill("returns_jedi_elder_light") ||
+				creature->hasSkill("returns_jedi_elder_light_novice") ||
+				creature->hasSkill("returns_jedi_elder_dark") ||
+				creature->hasSkill("returns_jedi_elder_dark_novice"));
+	}
+
+	bool isForceRunBuff() const {
+		return buffCRC == BuffCRC::JEDI_FORCE_RUN_1 ||
+				buffCRC == BuffCRC::JEDI_FORCE_RUN_2 ||
+				buffCRC == BuffCRC::JEDI_FORCE_RUN_3;
+	}
+
+	int getHighestHuntersMarkPressure(CreatureObject* creature) const {
+		if (!isHuntersMarkJediTarget(creature))
+			return 0;
+
+		int highestHuntersMark = 0;
+		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = creature->getDefenderList();
+
+		for (int i = 0; i < defenderList->size(); ++i) {
+			ManagedReference<SceneObject*> defenderObject = defenderList->get(i);
+
+			if (defenderObject == nullptr || !defenderObject->isCreatureObject())
+				continue;
+
+			CreatureObject* defender = defenderObject->asCreatureObject();
+
+			if (defender == nullptr || !defender->isPlayerCreature())
+				continue;
+
+			int huntersMark = defender->getSkillMod("hunters_mark");
+
+			if (huntersMark <= 0 || !defender->hasBountyMissionFor(creature))
+				continue;
+
+			if (huntersMark > highestHuntersMark)
+				highestHuntersMark = huntersMark;
+		}
+
+		return highestHuntersMark;
+	}
+
+	float getEffectiveForceRunSpeedMod(CreatureObject* creature) const {
+		if (!isForceRunBuff())
+			return speedMod;
+
+		int huntersMarkReduction = getHighestHuntersMarkPressure(creature);
+
+		if (huntersMarkReduction > 50)
+			huntersMarkReduction = 50;
+
+		if (huntersMarkReduction <= 0)
+			return speedMod;
+
+		return 1.f + ((speedMod - 1.f) * (100 - huntersMarkReduction) / 100.f);
+	}
+
 public:
 	enum { BASE_BUFF, SINGLE_USE_BUFF };
     
@@ -172,8 +236,10 @@ public:
 		Locker locker(buff);
 
 		if (speedMod > 0) {
-			buff->setSpeedMultiplierMod(speedMod);
-			buff->setAccelerationMultiplierMod(speedMod);
+			float effectiveSpeedMod = getEffectiveForceRunSpeedMod(creature);
+
+			buff->setSpeedMultiplierMod(effectiveSpeedMod);
+			buff->setAccelerationMultiplierMod(effectiveSpeedMod);
 		}
 
 		StringIdChatParameter start("jedi_spam", "apply_" + name);
