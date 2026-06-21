@@ -1708,6 +1708,16 @@ if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForc
 		damage *= 0.25;
 }
 
+	if (attacker->isPlayerCreature()) {
+		int huntersCull = attacker->getSkillMod("hunters_cull");
+		int maxHealth = defender->getMaxHAM(CreatureAttribute::HEALTH);
+
+		if (huntersCull > 0 && maxHealth > 0 &&
+				defender->getHAM(CreatureAttribute::HEALTH) * 5 <= maxHealth) {
+			damage *= 1.f + (Math::min(huntersCull, 50) / 200.f);
+		}
+	}
+
 	if (damage < 1) damage = 1;
 
 	//info("damage to be dealt is " + String::valueOf(damage), true);
@@ -1841,32 +1851,28 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* target
 			if (attacker->isCreatureObject())
 				creatureAttacker = attacker->asCreatureObject();
 
-		if (def == "saber_block") {
-			int saberDef = targetCreature->getSkillMod(def);
-
-			if (targetCreature->isIntimidated())
-				saberDef = saberDef / 2;
-
-			CreatureObject* creatureAttacker = nullptr;
-
-			if (attacker->isCreatureObject())
-				creatureAttacker = attacker->asCreatureObject();
-
 			if (creatureAttacker != nullptr &&
 					creatureAttacker->isPlayerCreature() &&
-					creatureAttacker->hasSkill("combat_bountyhunter_master") &&
 					creatureAttacker->hasBountyMissionFor(targetCreature)) {
-				saberDef = saberDef / 2;
+				int saberReduction = 0;
+				int huntersMark = creatureAttacker->getSkillMod("hunters_mark");
+
+				if (huntersMark >= 76)
+					saberReduction += 20;
+				else if (huntersMark >= 26)
+					saberReduction += 10;
+				else if (huntersMark >= 1)
+					saberReduction += 5;
+
+				if (creatureAttacker->hasSkill("combat_bountyhunter_master"))
+					saberReduction += 50;
+
+				saberReduction = Math::min(saberReduction, 70);
+
+				if (saberReduction > 0)
+					saberDef = Math::max(0, saberDef * (100 - saberReduction) / 100);
 			}
 
-			if (!(attacker->isTurret() || weapon->isThrownWeapon()) &&
-					(weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() ||
-					weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) &&
-					System::random(100) < saberDef)
-				return RICOCHET;
-			else
-				return HIT;
-		}
 			if (!(attacker->isTurret() || weapon->isThrownWeapon()) &&
 					(weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() ||
 					weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) &&

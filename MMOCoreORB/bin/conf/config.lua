@@ -16,7 +16,7 @@ Core3 = {
 	DBName = "swgemu",
 	DBUser = "swgemu",
 	DBPass = "123456",
-	DBInstances = 2,
+	DBInstances = 3,
 	DBSecret = "swgemus3cr37!", -- Change this! This value should be unique and of reasonable length.
 
 	LoginPort = 44453,
@@ -35,7 +35,7 @@ Core3 = {
 	MetricsPort = 8125,
 	MetricsPrefix = "",
 
-	AutoReg = 1,
+	AutoReg = 0,
 
 	ProgressMonitors = "true",
 
@@ -78,7 +78,7 @@ Core3 = {
 
 	TreFiles = {
 	"top_house_assets.tre",
-	--"og_jedi.tre",
+	"new_bh_test.tre",
 	"returns_custom2.tre",
 	"patch_zzz_01.tre",
 	"returns11.tre",	
@@ -127,14 +127,14 @@ Core3 = {
 	WebSessionTimeout = 600,
 
 	DeleteCharacters = 10,
-	MaxNavMeshJobs = 6,
-	MaxAuctionSearchJobs = 1,
+	MaxNavMeshJobs = 4,
+	MaxAuctionSearchJobs = 2,
 	DumpObjFiles = 1,
 
 	UnloadContainers = 1,
 
 	LogFile = "log/core3.log",
-	LogFileLevel = 4,
+	LogFileLevel = 2,
 	LogJSON = 0,
 	LogSync = 0,
 
@@ -153,8 +153,8 @@ Core3 = {
 
 	CharacterBuilderEnabled = "true",
 
-	PlayerLogLevel = 4,
-	MaxLogLines = 1000000,
+	PlayerLogLevel = 2,
+	MaxLogLines = 100000,
 
 	structurePackupEnabled = "true",
 

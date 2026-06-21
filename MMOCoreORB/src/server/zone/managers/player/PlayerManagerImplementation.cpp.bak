@@ -1962,7 +1962,14 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			PlayerObject* attackerGhost = attacker->getPlayerObject();
 
 			if (usedLightsaberXp && ((attackerGhost != nullptr && attackerGhost->getJediState() >= 2) ||
-					attacker->hasSkill("force_title_jedi_rank_02"))) {
+					attacker->hasSkill("force_title_jedi_rank_02") ||
+					attacker->hasSkill("combat_jedi") ||
+					attacker->hasSkill("combat_jedi_novice") ||
+					attacker->hasSkill("returns_jedi_elder") ||
+					attacker->hasSkill("returns_jedi_elder_light") ||
+					attacker->hasSkill("returns_jedi_elder_light_novice") ||
+					attacker->hasSkill("returns_jedi_elder_dark") ||
+					attacker->hasSkill("returns_jedi_elder_dark_novice"))) {
 				genericCombatXpType = "jedi_general";
 			}
 

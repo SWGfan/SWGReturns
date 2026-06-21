@@ -57,7 +57,7 @@ medicalDuration = 10800 -- in seconds
 groupExpMultiplier = 4.0
 
 --Sets a global experience multiplier
-globalExpMultiplier = 5.0
+globalExpMultiplier = 10
 
 craftingExpMultiplier     = 10
 entertainingExpMultiplier = 10
@@ -529,3 +529,5 @@ jukeboxSongs = {
 	{ "@event_perk_jukebox_songs:eerie_ambiance", "sound/music_underwater_loop.snd" },
 	{ "@event_perk_jukebox_songs:lok_theme", "sound/music_gloom_a_loop.snd" }
 }
+
+shipwrightExpMultiplier = 10

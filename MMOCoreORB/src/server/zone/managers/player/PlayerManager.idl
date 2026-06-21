@@ -105,6 +105,7 @@ class PlayerManager extends Observer implements Logger {
 	private float craftingExpMultiplier;
 	private float entertainingExpMultiplier;
 	private float scoutExpMultiplier;
+	private float shipwrightExpMultiplier;
 
 	@dereferenced
 	private transient ReadWriteLock onlineMapMutex;

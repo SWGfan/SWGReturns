@@ -334,6 +334,11 @@ int PlayerObjectImplementation::calculateBhReward() {
 			if (player->hasSkill("force_title_jedi_rank_03"))
 				reward += getFrsData()->getRank() * 100000;
 		}
+
+		int difficultyReward = player->getSkillMod("private_jedi_difficulty") * 2222;
+
+		if (reward < difficultyReward)
+			reward = difficultyReward;
 	}
 
 	if (reward < minReward)

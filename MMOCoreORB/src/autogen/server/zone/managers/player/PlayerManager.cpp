@@ -2333,6 +2333,10 @@ bool PlayerManagerImplementation::readObjectMember(ObjectInputStream* stream, co
 		TypeInfo<float >::parseFromBinaryStream(&scoutExpMultiplier, stream);
 		return true;
 
+	case 0xfcbfe774: //PlayerManager.shipwrightExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&shipwrightExpMultiplier, stream);
+		return true;
+
 	}
 
 	return false;
@@ -2536,6 +2540,15 @@ int PlayerManagerImplementation::writeObjectMembers(ObjectOutputStream* stream) 
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xfcbfe774; //PlayerManager.shipwrightExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&shipwrightExpMultiplier, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -4412,6 +4425,17 @@ int PlayerManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (shipwrightExpMultiplier) {
+	_nameHashCode = 0xfcbfe774; //PlayerManager.shipwrightExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&shipwrightExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -4589,6 +4613,14 @@ bool PlayerManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32&
 		}
 		return true;
 
+	case 0xfcbfe774: //PlayerManager.shipwrightExpMultiplier
+		{
+			float _mnshipwrightExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnshipwrightExpMultiplier, stream);
+			shipwrightExpMultiplier = std::move(_mnshipwrightExpMultiplier);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -4656,6 +4688,8 @@ void PlayerManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<float >::toBinaryStream(&entertainingExpMultiplier.value(), stream);
 
 	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&shipwrightExpMultiplier.value(), stream);
 
 
 }

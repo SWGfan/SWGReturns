@@ -825,6 +825,8 @@ private:
 
 	float scoutExpMultiplier;
 
+	float shipwrightExpMultiplier;
+
 	ReadWriteLock onlineMapMutex;
 
 protected:
@@ -1638,6 +1640,8 @@ public:
 	Optional<float> entertainingExpMultiplier;
 
 	Optional<float> scoutExpMultiplier;
+
+	Optional<float> shipwrightExpMultiplier;
 
 	String _className;
 	PlayerManagerPOD();

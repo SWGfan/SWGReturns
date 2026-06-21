@@ -26,7 +26,7 @@
 
 unsigned const int MissionManager::UNKNOWN_TARGET = 0xB911DA26;
 
-enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
+enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
 
 MissionManager::MissionManager(ZoneServer* srv, ZoneProcessServer* impl) : Observer(DummyConstructorParameter::instance()) {
 	MissionManagerImplementation* _implementation = new MissionManagerImplementation(srv, impl);
@@ -46,7 +46,7 @@ MissionManager::~MissionManager() {
 
 void MissionManager::handleMissionListRequest(MissionTerminal* missionTerminal, CreatureObject* player, int counter) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void MissionManager::handleMissionListRequest(MissionTerminal* missionTerminal, 
 
 void MissionManager::handleMissionAccept(MissionTerminal* missionTerminal, MissionObject* mission, CreatureObject* player) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ void MissionManager::handleMissionAccept(MissionTerminal* missionTerminal, Missi
 
 void MissionManager::handleMissionAbort(MissionObject* mission, CreatureObject* player) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ void MissionManager::handleMissionAbort(MissionObject* mission, CreatureObject* 
 
 void MissionManager::removeMission(MissionObject* mission, CreatureObject* player) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void MissionManager::removeMission(MissionObject* mission, CreatureObject* playe
 
 NpcSpawnPoint* MissionManager::getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -122,7 +122,7 @@ NpcSpawnPoint* MissionManager::getFreeNpcSpawnPoint(unsigned const int planetCRC
 
 void MissionManager::createSpawnPoint(CreatureObject* player, const String& spawnTypes) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ void MissionManager::createSpawnPoint(CreatureObject* player, const String& spaw
 
 Vector3 MissionManager::getRandomBountyTargetPosition(CreatureObject* player, const String& planet) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -148,7 +148,7 @@ Vector3 MissionManager::getRandomBountyTargetPosition(CreatureObject* player, co
 
 Reference<MissionObject* > MissionManager::getBountyHunterMission(CreatureObject* player) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ Reference<MissionObject* > MissionManager::getBountyHunterMission(CreatureObject
 
 int MissionManager::getRealBountyReward(CreatureObject* creo, PlayerBounty* bounty) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,7 +179,7 @@ int MissionManager::getRealBountyReward(CreatureObject* creo, PlayerBounty* boun
 
 void MissionManager::addPlayerToBountyList(unsigned long long targetId, int reward) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -195,7 +195,7 @@ void MissionManager::addPlayerToBountyList(unsigned long long targetId, int rewa
 
 void MissionManager::removePlayerFromBountyList(unsigned long long targetId) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ void MissionManager::removePlayerFromBountyList(unsigned long long targetId) {
 
 void MissionManager::updatePlayerBountyReward(unsigned long long targetId, int reward) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -224,9 +224,25 @@ void MissionManager::updatePlayerBountyReward(unsigned long long targetId, int r
 	}
 }
 
+void MissionManager::increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease) {
+	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_);
+		method.addUnsignedLongParameter(targetId);
+		method.addSignedIntParameter(rewardIncrease);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->increasePlayerBountyReward(targetId, rewardIncrease);
+	}
+}
+
 void MissionManager::updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -242,7 +258,7 @@ void MissionManager::updatePlayerBountyOnlineStatus(unsigned long long targetId,
 
 void MissionManager::completePlayerBounty(unsigned long long targetId, unsigned long long bountyHunter) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -258,7 +274,7 @@ void MissionManager::completePlayerBounty(unsigned long long targetId, unsigned 
 
 void MissionManager::failPlayerBountyMission(unsigned long long bountyHunter) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -273,7 +289,7 @@ void MissionManager::failPlayerBountyMission(unsigned long long bountyHunter) {
 
 bool MissionManager::hasPlayerBountyTargetInList(unsigned long long targetId) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -288,7 +304,7 @@ bool MissionManager::hasPlayerBountyTargetInList(unsigned long long targetId) {
 
 bool MissionManager::hasBountyHunterInPlayerBounty(unsigned long long targetId, unsigned long long bhId) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -304,7 +320,7 @@ bool MissionManager::hasBountyHunterInPlayerBounty(unsigned long long targetId, 
 
 Vector<unsigned long long>* MissionManager::getHuntersHuntingTarget(unsigned long long targetId) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -314,7 +330,7 @@ Vector<unsigned long long>* MissionManager::getHuntersHuntingTarget(unsigned lon
 
 void MissionManager::allocateMissionNpcs(NpcSpawnPoint* target, NpcSpawnPoint* destination, TerrainManager* terrainManager, CreatureManager* creatureManager) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -324,7 +340,7 @@ void MissionManager::allocateMissionNpcs(NpcSpawnPoint* target, NpcSpawnPoint* d
 
 void MissionManager::freeMissionNpc(AiAgent* npc) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -334,7 +350,7 @@ void MissionManager::freeMissionNpc(AiAgent* npc) {
 
 void MissionManager::despawnMissionNpc(NpcSpawnPoint* npc) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -344,7 +360,7 @@ void MissionManager::despawnMissionNpc(NpcSpawnPoint* npc) {
 
 void MissionManager::deactivateMissions(CreatureObject* player) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -359,7 +375,7 @@ void MissionManager::deactivateMissions(CreatureObject* player) {
 
 String MissionManager::getRandomBountyPlanet() {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -375,7 +391,7 @@ String MissionManager::getRandomBountyPlanet() {
 
 bool MissionManager::sendPlayerBountyDebug(CreatureObject* player, CreatureObject* target) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -385,7 +401,7 @@ bool MissionManager::sendPlayerBountyDebug(CreatureObject* player, CreatureObjec
 
 		return method.executeWithBooleanReturn();
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->sendPlayerBountyDebug(player, target);
 	}
 }
@@ -425,7 +441,7 @@ void MissionManagerImplementation::finalize() {
 void MissionManagerImplementation::_initializeImplementation() {
 	_setClassHelper(MissionManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -785,7 +801,7 @@ void MissionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
 			
 			DistributedObject* _m_res = getBountyHunterMission(player);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_:
@@ -820,6 +836,15 @@ void MissionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			int reward = inv->getSignedIntParameter();
 			
 			updatePlayerBountyReward(targetId, reward);
+			
+		}
+		break;
+	case RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_:
+		{
+			unsigned long long targetId = inv->getUnsignedLongParameter();
+			int rewardIncrease = inv->getSignedIntParameter();
+			
+			increasePlayerBountyReward(targetId, rewardIncrease);
 			
 		}
 		break;
@@ -933,6 +958,10 @@ void MissionManagerAdapter::removePlayerFromBountyList(unsigned long long target
 
 void MissionManagerAdapter::updatePlayerBountyReward(unsigned long long targetId, int reward) {
 	(static_cast<MissionManager*>(stub))->updatePlayerBountyReward(targetId, reward);
+}
+
+void MissionManagerAdapter::increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease) {
+	(static_cast<MissionManager*>(stub))->increasePlayerBountyReward(targetId, rewardIncrease);
 }
 
 void MissionManagerAdapter::updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status) {

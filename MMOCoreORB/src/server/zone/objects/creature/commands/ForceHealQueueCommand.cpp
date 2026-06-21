@@ -10,6 +10,51 @@
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/zone/objects/building/BuildingObject.h"
 
+namespace {
+	bool isHuntersMarkJediTarget(CreatureObject* creature) {
+		return creature != nullptr &&
+				creature->isPlayerCreature() &&
+				(creature->hasSkill("force_title_jedi_rank_02") ||
+				creature->hasSkill("combat_jedi") ||
+				creature->hasSkill("combat_jedi_novice") ||
+				creature->hasSkill("returns_jedi_elder") ||
+				creature->hasSkill("returns_jedi_elder_light") ||
+				creature->hasSkill("returns_jedi_elder_light_novice") ||
+				creature->hasSkill("returns_jedi_elder_dark") ||
+				creature->hasSkill("returns_jedi_elder_dark_novice"));
+	}
+
+	int getHighestHuntersMarkPressure(CreatureObject* targetCreature) {
+		if (!isHuntersMarkJediTarget(targetCreature))
+			return 0;
+
+		int highestHuntersMark = 0;
+		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = targetCreature->getDefenderList();
+
+		for (int i = 0; i < defenderList->size(); ++i) {
+			ManagedReference<SceneObject*> defenderObject = defenderList->get(i);
+
+			if (defenderObject == nullptr || !defenderObject->isCreatureObject())
+				continue;
+
+			CreatureObject* defender = defenderObject->asCreatureObject();
+
+			if (defender == nullptr || !defender->isPlayerCreature())
+				continue;
+
+			int huntersMark = defender->getSkillMod("hunters_mark");
+
+			if (huntersMark <= 0 || !defender->hasBountyMissionFor(targetCreature))
+				continue;
+
+			if (huntersMark > highestHuntersMark)
+				highestHuntersMark = huntersMark;
+		}
+
+		return highestHuntersMark;
+	}
+}
+
 ForceHealQueueCommand::ForceHealQueueCommand(const String& name, ZoneProcessServer* server) : JediQueueCommand(name, server) {
 	speed = 0;
 	allowedTarget = TARGET_AUTO;
@@ -128,6 +173,14 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 				}
 
 				if (amtToHeal > 0) {
+					int huntersMarkReduction = getHighestHuntersMarkPressure(targetCreature);
+
+					if (huntersMarkReduction > 50)
+						huntersMarkReduction = 50;
+
+					if (huntersMarkReduction > 0)
+						amtToHeal = amtToHeal * (100 - huntersMarkReduction) / 100;
+
 					targetCreature->healDamage(creature, attrib, amtToHeal, true);
 					healPerformed = true;
 					sendHealMessage(creature, targetCreature, HEAL_DAMAGE, attrib, amtToHeal);

@@ -1,13 +1,13 @@
 --Should all created players start with God Mode? 1 = yes, 0 = no
 freeGodMode = 0;
 --How many cash credits new characters start with after creating a character (changed during test phase, normal value is 100)
-startingCash = 10000
+startingCash = 5000000
 --startingCash = 100000
 --How many bank credits new characters start with after creating a character (changed during test phase, normal value is 1000)
-startingBank = 25000
+startingBank = 5000000
 --startingBank = 250000
 --How many skill points a new characters start with
-skillPoints = 500
+skillPoints = 250
 
 professions = {
 	"combat_brawler",
@@ -39,7 +39,7 @@ foodTool = "object/tangible/crafting/station/food_tool.iff"
 
 mineralTool = "object/tangible/survey_tool/survey_tool_inorganic.iff"
 
---chemicalTool = "object/tangible/survey_tool/survey_tool_liquid.iff"
+chemicalTool = "object/tangible/survey_tool/survey_tool_liquid.iff"
 
 slitherhorn = "object/tangible/instrument/slitherhorn.iff"
 
@@ -51,7 +51,7 @@ stim = "object/tangible/medicine/crafted/crafted_stimpack_sm_s1_a.iff"
 
 robe = "object/tangible/wearables/robe/robe_jedi_padawan.iff"
 
-saber = "object/weapon/melee/sword/crafted_saber/sword_lightsaber_s9_training.iff"
+saber = "object/weapon/melee/sword/crafted_saber/sword_lightsaber_training.iff"
 
 jediTool = "object/tangible/crafting/station/jedi_tool.iff"
 

@@ -322,6 +322,10 @@ public:
 		return pointsRequired;
 	}
 
+	inline int getApprenticeshipsRequired() const {
+		return apprenticeshipsRequired;
+	}
+
 	/**
 	 * Returns the species required for the skill.
 	 * @return the species required for the skill.

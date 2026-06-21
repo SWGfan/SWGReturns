@@ -238,9 +238,9 @@ void PlayerManagerImplementation::loadLuaConfig() {
 	groupExpMultiplier = lua->getGlobalFloat("groupExpMultiplier");
 
 	globalExpMultiplier = lua->getGlobalFloat("globalExpMultiplier");
-	craftingExpMultiplier = lua->getGlobalFloat("craftingExpMultiplier");
+	craftingExpMultiplier     = lua->getGlobalFloat("craftingExpMultiplier");
 	entertainingExpMultiplier = lua->getGlobalFloat("entertainingExpMultiplier");
-	scoutExpMultiplier = lua->getGlobalFloat("scoutExpMultiplier");
+	scoutExpMultiplier        = lua->getGlobalFloat("scoutExpMultiplier");
 
 	baseStoredCreaturePets = lua->getGlobalInt("baseStoredCreaturePets");
 	baseStoredFactionPets = lua->getGlobalInt("baseStoredFactionPets");
@@ -955,9 +955,9 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 }
 
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("naboo");
+	Zone* zone = server->getZone("corellia");
 
-	player->initializePosition(1995, -197, 6198);
+	player->initializePosition(-137, 28, -4739);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1001,9 +1001,9 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 }
 
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("naboo");
+	Zone* zone = server->getZone("corellia");
 
-	player->initializePosition(1995, -197, 6198);
+	player->initializePosition(-137, 28, -4739);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1965,14 +1965,18 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			PlayerObject* attackerGhost = attacker->getPlayerObject();
 
 			if (usedLightsaberXp && ((attackerGhost != nullptr && attackerGhost->getJediState() >= 2) ||
-					attacker->hasSkill("force_title_jedi_rank_02"))) {
+					attacker->hasSkill("force_title_jedi_rank_02") ||
+					attacker->hasSkill("combat_jedi") ||
+					attacker->hasSkill("combat_jedi_novice") ||
+					attacker->hasSkill("returns_jedi_elder") ||
+					attacker->hasSkill("returns_jedi_elder_light") ||
+					attacker->hasSkill("returns_jedi_elder_light_novice") ||
+					attacker->hasSkill("returns_jedi_elder_dark") ||
+					attacker->hasSkill("returns_jedi_elder_dark_novice"))) {
 				genericCombatXpType = "jedi_general";
 			}
 
 			awardExperience(attacker, genericCombatXpType, combatXp);
-
-			// Notify kill observers (e.g. knight trials hunt targets)
-			attacker->notifyObservers(ObserverEventType::KILLEDCREATURE, destructedObject);
 
 			//Check if the group leader is a squad leader
 			if (group == nullptr)
@@ -2311,11 +2315,12 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		xpType == "squadleader" ||  
 		xpType == "trapping" || 
 		xpType == "shipwright") {
-		// Per-category XP multiplier (crafting/entertainer/scout are configurable; others default to 1.1)
+		// Per-category XP multiplier (crafting/shipwright/entertainer/scout configurable)
 		float typeMultiplier = 1.1f;
 		if (xpType == "dance" || xpType == "music" || xpType == "entertainer_healing")
 			typeMultiplier = entertainingExpMultiplier;
-		else if (xpType.indexOf("crafting_") == 0 || xpType == "reverse_engineering" || xpType == "shipwright")
+		else if (xpType.indexOf("crafting_") == 0 || xpType == "reverse_engineering" ||
+		         xpType == "shipwright")
 			typeMultiplier = craftingExpMultiplier;
 		else if (xpType == "scout" || xpType == "ranger" || xpType == "trapping" ||
 		         xpType == "camp" || xpType == "resource_harvesting_inorganic" ||

@@ -1127,6 +1127,10 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 			reward = creoLevel * (300 + System::random(300));
 		}
 
+		int scaledReward = creoLevel * 2000;
+		if (reward < scaledReward)
+			reward = scaledReward;
+
 		mission->setRewardCredits(reward);
 
 		String diffString = "easy";
@@ -1958,6 +1962,15 @@ void MissionManagerImplementation::updatePlayerBountyReward(uint64 targetId, int
 
 	if (playerBountyList.contains(targetId)) {
 		playerBountyList.get(targetId)->setReward(reward);
+	}
+}
+
+void MissionManagerImplementation::increasePlayerBountyReward(uint64 targetId, int rewardIncrease) {
+	Locker listLocker(&playerBountyListMutex);
+
+	if (playerBountyList.contains(targetId)) {
+		PlayerBounty* bounty = playerBountyList.get(targetId);
+		bounty->setReward(bounty->getReward() + rewardIncrease);
 	}
 }
 
