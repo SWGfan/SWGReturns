@@ -26,7 +26,7 @@ nightsister_elder = Creature:new {
 	diet = NONE,
 
 	templates = {"object/mobile/dressed_dathomir_nightsister_elder.iff"},
-	lootGroups = {		
+	lootGroups = {
 		{
 			groups = {
 				{group = "power_crystals", chance = 10000000},
@@ -44,6 +44,13 @@ nightsister_elder = Creature:new {
 				{group = "color_crystals", chance = 10000000},
 			},
 			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "jedi_dark_robes", chance = 5000000},
+				{group = "jedi_gray_robes", chance = 5000000},
+			},
+			lootChance = 2500000
 		},
 		{
 			groups = {
@@ -68,7 +75,7 @@ nightsister_elder = Creature:new {
 				{group = "wearables_scarce", chance = 10000000},
 			},
 			lootChance = 5000000
-		},	
+		},
 		{
 			groups = {
 				{group = "jedi_comp_group", chance = 10000000},

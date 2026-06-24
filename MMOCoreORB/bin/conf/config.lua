@@ -78,9 +78,8 @@ Core3 = {
 
 	TreFiles = {
 	"top_house_assets.tre",
-	"new_bh_test.tre",
+	"returns_patch12.tre",
 	"returns_custom2.tre",
-	"patch_zzz_01.tre",
 	"returns11.tre",	
 	"returns10.tre",
 	"returns9.tre",
@@ -151,7 +150,7 @@ Core3 = {
 	InactiveAccountTitle = "Account Disabled",
 	InactiveAccountText = "The server administrators have disabled your account.",
 
-	CharacterBuilderEnabled = "true",
+	CharacterBuilderEnabled = "false",
 
 	PlayerLogLevel = 2,
 	MaxLogLines = 100000,

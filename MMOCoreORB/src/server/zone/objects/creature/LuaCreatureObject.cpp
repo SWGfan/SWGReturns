@@ -958,7 +958,7 @@ int LuaCreatureObject::awardExperience(lua_State* L) {
 	bool sendSysMessage = lua_toboolean(L, -1);
 
 	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
-	playerManager->awardExperience(realObject, experienceType, experienceAmount, sendSysMessage, 1.0f, false);
+	playerManager->awardExperience(realObject, experienceType, experienceAmount, sendSysMessage, 1.0f, true);
 
 	return 0;
 }

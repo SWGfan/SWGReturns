@@ -278,6 +278,7 @@ includeFile("village/convos/phase4/sarguillo_phase4_conv_handler.lua")
 includeFile("village/convos/phase4/sivarra_phase4_conv_handler.lua")
 
 -- Jedi Trials
+includeFile("jedi/kaas_villan_quests.lua")
 includeFile("jedi/trialData.lua")
 includeFile("jedi/frs.lua")
 includeFile("jedi/jedi_trials.lua")

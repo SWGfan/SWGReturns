@@ -38,7 +38,7 @@ DestroyMissionObjective::~DestroyMissionObjective() {
 
 void DestroyMissionObjective::initializeTransientMembers() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void DestroyMissionObjective::initializeTransientMembers() {
 
 void DestroyMissionObjective::activate() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -67,7 +67,7 @@ void DestroyMissionObjective::activate() {
 
 void DestroyMissionObjective::abort() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void DestroyMissionObjective::abort() {
 
 void DestroyMissionObjective::complete() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ void DestroyMissionObjective::complete() {
 
 void DestroyMissionObjective::spawnLair() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void DestroyMissionObjective::spawnLair() {
 
 void DestroyMissionObjective::destroyObjectFromDatabase() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void DestroyMissionObjective::destroyObjectFromDatabase() {
 
 Vector3 DestroyMissionObjective::findValidSpawnPosition(Zone* zone) {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -134,7 +134,7 @@ Vector3 DestroyMissionObjective::findValidSpawnPosition(Zone* zone) {
 
 int DestroyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -153,7 +153,7 @@ int DestroyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsi
 
 void DestroyMissionObjective::setLairTemplateToSpawn(const String& sp) {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -164,7 +164,7 @@ void DestroyMissionObjective::setLairTemplateToSpawn(const String& sp) {
 
 void DestroyMissionObjective::setDifficultyLevel(int diff) {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -180,7 +180,7 @@ void DestroyMissionObjective::setDifficultyLevel(int diff) {
 
 void DestroyMissionObjective::setDifficulty(int diff) {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ void DestroyMissionObjective::setDifficulty(int diff) {
 
 Vector3 DestroyMissionObjective::getEndPosition() {
 	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -235,7 +235,7 @@ DestroyMissionObjectiveImplementation::~DestroyMissionObjectiveImplementation() 
 void DestroyMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(DestroyMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

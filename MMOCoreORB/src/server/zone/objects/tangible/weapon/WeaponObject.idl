@@ -427,17 +427,6 @@ class WeaponObject extends TangibleObject {
 		dotUses.elementAt(index) = u;
 	}
 
-	public void removeDot(int index) {
-		dotType.remove(index);
-		dotAttribute.remove(index);
-		dotStrength.remove(index);
-		dotDuration.remove(index);
-		dotPotency.remove(index);
-		dotUses.remove(index);
-	}
-
-	public native void clearDots();
-
 	@dirty
 	public native string getWeaponType();
 

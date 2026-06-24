@@ -5,8 +5,6 @@
  *      Author: victor
  */
 
-#include "server/zone/managers/player/PlayerManager.h"
-
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
 #include "server/zone/packets/tangible/WeaponObjectMessage3.h"
 #include "server/zone/packets/tangible/WeaponObjectMessage6.h"
@@ -20,8 +18,6 @@
 #include "server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.h"
 #include "server/zone/packets/object/WeaponRanges.h"
 #include "server/zone/ZoneProcessServer.h"
-#include "server/zone/managers/visibility/VisibilityManager.h"
-#include "server/zone/objects/tangible/weapon/WeaponObject.h"
 
 
 void WeaponObjectImplementation::initializeTransientMembers() {
@@ -93,7 +89,7 @@ void WeaponObjectImplementation::loadTemplateData(SharedObjectTemplate* template
 
 	if (templateAttackSpeed > 1)
 		attackSpeed = templateAttackSpeed;
-//saber slice
+
 	if (!isJediWeapon()) {
 		setSliceable(true);
 	} else if (isJediWeapon()) {
@@ -122,7 +118,7 @@ void WeaponObjectImplementation::createChildObjects() {
 	ZoneServer* zoneServer = server->getZoneServer();
 
 	for (int i = 0; i < templateObject->getChildObjectsSize(); ++i) {
-		const ChildObject* child = templateObject->getChildObject(i);
+		ChildObject* child = templateObject->getChildObject(i);
 
 		if (child == nullptr)
 			continue;
@@ -215,17 +211,9 @@ String WeaponObjectImplementation::getWeaponType() {
 }
 
 void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
-//	Reference<PlayerObject*> ghostdef = object->getPlayerObject();
-//
-//	if (object->getWeapon()->isJediWeapon() || ghostdef->hasBhTef()) {
-//		VisibilityManager::instance()->increaseVisibility(object, 25);
-//	}
-
 	TangibleObjectImplementation::fillAttributeList(alm, object);
 
 	bool res = isCertifiedFor(object);
-
-//	alm->insertAttribute("junk value", getJunkValue());
 
 	if (res) {
 		alm->insertAttribute("weapon_cert_status", "Yes");
@@ -245,27 +233,25 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 			alm->insertAttribute(statname, value);
 	}
 
-//	String ap;
-//
-//	switch (armorPiercing) {
-//	case SharedWeaponObjectTemplate::NONE:
-//		ap = "None";
-//		break;
-//	case SharedWeaponObjectTemplate::LIGHT:
-//		ap = "Light";
-//		break;
-//	case SharedWeaponObjectTemplate::MEDIUM:
-//		ap = "Medium";
-//		break;
-//	case SharedWeaponObjectTemplate::HEAVY:
-//		ap = "Heavy";
-//		break;
-//	default:
-//		ap = "Unknown";
-//		break;
-//	}
-//
-//	alm->insertAttribute("wpn_armor_pierce_rating", ap);
+	String ap;
+
+	switch (armorPiercing) {
+	case SharedWeaponObjectTemplate::NONE:
+		ap = "None";
+		break;
+	case SharedWeaponObjectTemplate::LIGHT:
+		ap = "Light";
+		break;
+	case SharedWeaponObjectTemplate::MEDIUM:
+		ap = "Medium";
+		break;
+	case SharedWeaponObjectTemplate::HEAVY:
+		ap = "Heavy";
+		break;
+	default:
+		ap = "Unknown";
+		break;
+	}
 
 	alm->insertAttribute("wpn_attack_speed", Math::getPrecision(getAttackSpeed(), 1));
 
@@ -308,15 +294,14 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 		break;
 	}
 
-	alm->insertAttribute("damage.wpn_damage_type", dmgtxt);
+	dmgtxt << " / Armor Pen: " << ap;
 
-	//change weapon type not working
-//	alm->insertAttribute("damage.wpn_damage_type", damageType);
+	alm->insertAttribute("damage.wpn_damage_type", dmgtxt);
 
 	float minDmg = round(getMinDamage());
 	float maxDmg = round(getMaxDamage());
 
-//	alm->insertAttribute("damage.wpn_damage_min", minDmg);
+	alm->insertAttribute("damage.wpn_damage_min", minDmg);
 
 	alm->insertAttribute("damage.wpn_damage_max", maxDmg);
 
@@ -324,42 +309,50 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	float wnd = round(10 * getWoundsRatio()) / 10.0f;
 
-	if (wnd > 50) wnd = 50;
-
 	woundsratio << wnd << "%";
 
 	alm->insertAttribute("damage.wpn_wound_chance", woundsratio);
 
+	if (speedSlice < 1.00f) {
+		StringBuffer sliceBuffer;
+		float spdSlice = ((1.00f - speedSlice) * 100);
+		sliceBuffer << spdSlice << "%";
+		alm->insertAttribute("damage.wpn_speed_slice", sliceBuffer);
+	} else if (damageSlice > 1.00f) {
+		StringBuffer sliceBuffer;
+		float dmgSlice = ((damageSlice-1) * 100);
+		sliceBuffer << dmgSlice << "%";
+		alm->insertAttribute("damage.wpn_damage_slice", sliceBuffer);
+	}
+
 	//Accuracy Modifiers
-//	StringBuffer pblank;
-//	if (getPointBlankAccuracy() >= 0)
-//		pblank << "+";
-//
-//	pblank << getPointBlankAccuracy() << " @ " << getPointBlankRange() << "m";
-//	alm->insertAttribute("cat_wpn_rangemods.wpn_range_zero", pblank);
-//
-//	StringBuffer ideal;
-//	if (getIdealAccuracy() >= 0)
-//		ideal << "+";
-//
-//	ideal << getIdealAccuracy() << " @ " << getIdealRange() << "m";
-//	alm->insertAttribute("cat_wpn_rangemods.wpn_range_mid", ideal);
+	StringBuffer pblank;
+	if (getPointBlankAccuracy() >= 0)
+		pblank << "+";
+
+	pblank << getPointBlankAccuracy() << " @ " << getPointBlankRange() << "m";
+	alm->insertAttribute("cat_wpn_rangemods.wpn_range_zero", pblank);
+
+	StringBuffer ideal;
+	if (getIdealAccuracy() >= 0)
+		ideal << "+";
+
+	ideal << getIdealAccuracy() << " @ " << getIdealRange() << "m";
+	alm->insertAttribute("cat_wpn_rangemods.wpn_range_mid", ideal);
 
 	StringBuffer maxrange;
-//	if (getMaxRangeAccuracy() >= 0)
-//		maxrange << "+";
+	if (getMaxRangeAccuracy() >= 0)
+		maxrange << "+";
 
-	maxrange << getMaxRange() << "m";
+	maxrange << getMaxRangeAccuracy() << " @ " << getMaxRange() << "m";
 	alm->insertAttribute("cat_wpn_rangemods.wpn_range_max", maxrange);
 
 	//Special Attack Costs
-//	if (!isJediWeapon()) {
-//	alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
-//
-//	alm->insertAttribute("cat_wpn_attack_cost.action", getActionAttackCost());
-//
-//	alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
-//	}
+	alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
+
+	alm->insertAttribute("cat_wpn_attack_cost.action", getActionAttackCost());
+
+	alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
 
 	//Anti Decay Kit
 	if(hasAntiDecayKit()){
@@ -367,23 +360,8 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	}
 
 	// Force Cost
-//	if (getForceCost() > 0)
-//		alm->insertAttribute("forcecost", (int)getForceCost());
-
-	if (isJediWeapon()) {
-//		setForceCost(Math::getPrecision(values->getCurrentValue("forcecost"), 1));
-//		//setBladeColor(31);
-//		setBladeColor(values->getCurrentValue("color"));
-
-		StringBuffer str3;
-		str3 << "@jedi_spam:saber_color_" << getBladeColor();
-
-		alm->insertAttribute("color", str3);
-		setCustomizationVariable("/private/index_color_blade", getBladeColor(), true);
-
-//		setBladeColor(4);
-//		setBladeColor(values->getCurrentValue("color"));
-	}
+	if (getForceCost() > 0)
+		alm->insertAttribute("forcecost", (int)getForceCost());
 
 	for (int i = 0; i < getNumberOfDots(); i++) {
 
@@ -471,7 +449,7 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 			alm->insertAttribute(use.toString(), getDotUses(i));
 		}
 
-	if (hasPowerup())
+	if(hasPowerup())
 		powerupObject->fillWeaponAttributeList(alm, _this.getReferenceUnsafeStaticCast());
 
 	if (sliced == 1)
@@ -480,104 +458,61 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 }
 
 int WeaponObjectImplementation::getPointBlankAccuracy(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return pointBlankAccuracy + (abs(pointBlankAccuracy) * powerupObject->getPowerupStat("pointBlankAccuracy"));
+	if(powerupObject != nullptr && withPup)
+		return pointBlankAccuracy + (abs(pointBlankAccuracy) * powerupObject->getPowerupStat("pointBlankAccuracy"));
 
-	return 0; //pointBlankAccuracy;//1000
+	return pointBlankAccuracy;
 }
 
 int WeaponObjectImplementation::getPointBlankRange(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return pointBlankRange + (abs(pointBlankRange) * powerupObject->getPowerupStat("pointBlankRange"));
+	if(powerupObject != nullptr && withPup)
+		return pointBlankRange + (abs(pointBlankRange) * powerupObject->getPowerupStat("pointBlankRange"));
 
 	return pointBlankRange;
 }
 
 int WeaponObjectImplementation::getIdealRange(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return idealRange + (abs(idealRange) * powerupObject->getPowerupStat("idealRange"));
+	if(powerupObject != nullptr && withPup)
+		return idealRange + (abs(idealRange) * powerupObject->getPowerupStat("idealRange"));
 
 	return idealRange;
 }
 
 int WeaponObjectImplementation::getMaxRange(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return maxRange + (abs(maxRange) * powerupObject->getPowerupStat("maxRange"));
+	if(powerupObject != nullptr && withPup)
+		return maxRange + (abs(maxRange) * powerupObject->getPowerupStat("maxRange"));
 
-	int newmaxrange = maxRange;
-
-	if (isPistolWeapon())//also in combatq
-		newmaxrange = 64;
-	if (isCarbineWeapon())
-		newmaxrange = 64;
-	if (isRifleWeapon())
-		newmaxrange = 64;
-//			if (isRangedWeapon())
-//			newmaxrange = 1.03f;
-//			if (isMeleeWeapon())
-//			newmaxrange = 1.25;
-	if (isUnarmedWeapon())
-		newmaxrange = 7;
-	if (isOneHandMeleeWeapon() && !isJediWeapon())
-		newmaxrange = 7;
-	if (isTwoHandMeleeWeapon() && !isJediWeapon())
-		newmaxrange = 7;
-	if (isPolearmWeaponObject() && !isJediWeapon())
-		newmaxrange = 7;
-	if (isLightningRifle())
-		newmaxrange = 32;
-	if (isFlameThrower())
-		newmaxrange = 32;
-	if (isHeavyAcidRifle())
-		newmaxrange = 32;
-	if (isHeavyWeapon() &! (isHeavyAcidRifle() || isFlameThrower() || isLightningRifle() || isThrownWeapon()))
-		newmaxrange = 32;
-	if (isThrownWeapon())// 4sec
-		newmaxrange = 32;
-	if (isSpecialHeavyWeapon() &! isHeavyAcidRifle() &! isFlameThrower() &! isLightningRifle())// 4 sec rocket launcher
-		newmaxrange = 32;
-	if (isMineWeapon())
-		newmaxrange = 32;
-	if (isJediOneHandedWeapon())
-		newmaxrange = 7;
-	if (isJediTwoHandedWeapon())
-		newmaxrange = 7;
-	if (isJediPolearmWeapon())
-		newmaxrange = 7;
-//			if (isJediWeapon())
-//			newmaxrange = .3;//
-
-	return newmaxrange;//maxRange;
+	return maxRange;
 }
 
 int WeaponObjectImplementation::getIdealAccuracy(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return idealAccuracy + (abs(idealAccuracy) * powerupObject->getPowerupStat("idealAccuracy"));
+	if(powerupObject != nullptr && withPup)
+		return idealAccuracy + (abs(idealAccuracy) * powerupObject->getPowerupStat("idealAccuracy"));
 
-	return 0; //idealAccuracy;
+	return idealAccuracy;
 }
 
 
 int WeaponObjectImplementation::getMaxRangeAccuracy(bool withPup) const {
-//	if (powerupObject != nullptr && withPup)
-//		return maxRangeAccuracy + (abs(maxRangeAccuracy) * powerupObject->getPowerupStat("maxRangeAccuracy"));
+	if(powerupObject != nullptr && withPup)
+		return maxRangeAccuracy + (abs(maxRangeAccuracy) * powerupObject->getPowerupStat("maxRangeAccuracy"));
 
-	return 0; //maxRangeAccuracy;
+	return maxRangeAccuracy;
 }
 
 float WeaponObjectImplementation::getAttackSpeed(bool withPup) const {
 	float speed = attackSpeed;
 
-	if (sliced)
+	if(sliced)
 		speed *= speedSlice;
 
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		speed -= (speed * powerupObject->getPowerupStat("attackSpeed"));
 
 	float calcSpeed = speed + getConditionReduction(speed);
 
-	if (calcSpeed < 1.0f)
-		calcSpeed = 1.0f;
+	if(calcSpeed < 0.1)
+		calcSpeed = 0.1;
 
 	return calcSpeed;
 }
@@ -586,10 +521,10 @@ float WeaponObjectImplementation::getAttackSpeed(bool withPup) const {
 float WeaponObjectImplementation::getMaxDamage(bool withPup) const {
 	float damage = maxDamage;
 
-	if (sliced)
+	if(sliced)
 		damage *= damageSlice;
 
-	if (powerupObject != nullptr && withPup) {
+	if(powerupObject != nullptr && withPup) {
 		damage += (damage * powerupObject->getPowerupStat("maxDamage"));
 		return damage - getConditionReduction(damage);
 	}
@@ -600,10 +535,10 @@ float WeaponObjectImplementation::getMaxDamage(bool withPup) const {
 float WeaponObjectImplementation::getMinDamage(bool withPup) const {
 	float damage = minDamage;
 
-	if (sliced)
+	if(sliced)
 		damage *= damageSlice;
 
-	if (powerupObject != nullptr && withPup) {
+	if(powerupObject != nullptr && withPup) {
 		damage += (damage * powerupObject->getPowerupStat("minDamage"));
 		return damage - getConditionReduction(damage);
 	}
@@ -612,14 +547,14 @@ float WeaponObjectImplementation::getMinDamage(bool withPup) const {
 }
 
 float WeaponObjectImplementation::getWoundsRatio(bool withPup) const {
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		return woundsRatio + (woundsRatio * powerupObject->getPowerupStat("woundsRatio"));
 
 	return woundsRatio;
 }
 
 float WeaponObjectImplementation::getDamageRadius(bool withPup) const {
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		return damageRadius + (damageRadius * powerupObject->getPowerupStat("damageRadius"));
 
 	return damageRadius;
@@ -627,21 +562,21 @@ float WeaponObjectImplementation::getDamageRadius(bool withPup) const {
 
 
 int WeaponObjectImplementation::getHealthAttackCost(bool withPup) const {
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		return healthAttackCost - (abs(healthAttackCost) * powerupObject->getPowerupStat("healthAttackCost"));
 
 	return healthAttackCost;
 }
 
 int WeaponObjectImplementation::getActionAttackCost(bool withPup) const {
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		return actionAttackCost - (abs(actionAttackCost) * powerupObject->getPowerupStat("actionAttackCost"));
 
 	return actionAttackCost;
 }
 
 int WeaponObjectImplementation::getMindAttackCost(bool withPup) const {
-	if (powerupObject != nullptr && withPup)
+	if(powerupObject != nullptr && withPup)
 		return mindAttackCost - (abs(mindAttackCost) * powerupObject->getPowerupStat("mindAttackCost"));
 
 	return mindAttackCost;
@@ -677,9 +612,7 @@ void WeaponObjectImplementation::updateCraftingValues(CraftingValues* values, bo
 
 	if (isJediWeapon()) {
 		setForceCost(Math::getPrecision(values->getCurrentValue("forcecost"), 1));
-		//setBladeColor(31);//vanilla
-		setBladeColor(values->getCurrentValue("color"));
-		//setCustomizationVariable("/private/index_color_blade", values->getCurrentValue("color"), true);//didnt work here? cant remember
+		setBladeColor(31);
 	}
 
 	value = values->getCurrentValue("woundchance");
@@ -743,7 +676,6 @@ bool WeaponObjectImplementation::isCertifiedFor(CreatureObject* object) const {
 void WeaponObjectImplementation::decreasePowerupUses(CreatureObject* player) {
 	if (hasPowerup()) {
 		powerupObject->decreaseUses();
-
 		if (powerupObject->getUses() < 1) {
 			Locker locker(_this.getReferenceUnsafeStaticCast());
 			StringIdChatParameter message("powerup", "prose_pup_expire"); //The powerup on your %TT has expired.
@@ -752,15 +684,13 @@ void WeaponObjectImplementation::decreasePowerupUses(CreatureObject* player) {
 			player->sendSystemMessage(message);
 
 			ManagedReference<PowerupObject*> pup = removePowerup();
-
-			if (pup != nullptr) {
+			if(pup != nullptr) {
 				Locker plocker(pup);
 
 				pup->destroyObjectFromWorld( true );
 				pup->destroyObjectFromDatabase( true );
 			}
 		}
-
 		sendAttributeListTo(player);
 	}
 }
@@ -768,22 +698,20 @@ void WeaponObjectImplementation::decreasePowerupUses(CreatureObject* player) {
 String WeaponObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
-	repairChance = System::random(100);
-
-	if(repairChance <= 25) {
+	if(repairChance < 25) {
 		message += "sys_repair_failed";
-		setMaxCondition(getMaxCondition() * .5f, true);
+		setMaxCondition(1, true);
 		setConditionDamage(0, true);
 	} else if(repairChance < 50) {
 		message += "sys_repair_imperfect";
-		setMaxCondition(getMaxCondition() * .75f, true);
+		setMaxCondition(getMaxCondition() * .65f, true);
 		setConditionDamage(0, true);
 	} else if(repairChance < 75) {
-		setMaxCondition(getMaxCondition() * .90f, true);
+		setMaxCondition(getMaxCondition() * .80f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_slight";
 	} else {
-		//setMaxCondition(getMaxCondition() * 1.0f, true);
+		setMaxCondition(getMaxCondition() * .95f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_perfect";
 	}
@@ -806,30 +734,20 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 		Locker locker(_this.getReferenceUnsafeStaticCast());
 
 		if (isJediWeapon()) {
-//			ManagedReference<SceneObject*> saberInv = getSlottedObject("saber_inv");
-//
-//			if (saberInv == nullptr)
-//				return;
-//
-//			// TODO: is this supposed to be every crystal, or random crystal(s)?
-//			for (int i = 0; i < saberInv->getContainerObjectsSize(); i++) {
-//				ManagedReference<LightsaberCrystalComponent*> crystal = saberInv->getContainerObject(i).castTo<LightsaberCrystalComponent*>();
-//
-//				if (crystal != nullptr && crystal->getColor() == 31) {//only
-//					crystal->inflictDamage(crystal, 0, 1, true, true);
-//				}
-//			}
+			ManagedReference<SceneObject*> saberInv = getSlottedObject("saber_inv");
 
-			if (roll * 5 < chance) {//saber hilt decays but 5x less likely
-				inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, 1, true, true);
+			if (saberInv == nullptr)
+				return;
 
-				if (((float)conditionDamage - 1 / (float)maxCondition < 0.75) && ((float)conditionDamage / (float)maxCondition > 0.75))
-					user->sendSystemMessage("@combat_effects:weapon_quarter");
-				if (((float)conditionDamage - 1 / (float)maxCondition < 0.50) && ((float)conditionDamage / (float)maxCondition > 0.50))
-					user->sendSystemMessage("@combat_effects:weapon_half");
+			// TODO: is this supposed to be every crystal, or random crystal(s)?
+			for (int i = 0; i < saberInv->getContainerObjectsSize(); i++) {
+				ManagedReference<LightsaberCrystalComponent*> crystal = saberInv->getContainerObject(i).castTo<LightsaberCrystalComponent*>();
+
+				if (crystal != nullptr) {
+					crystal->inflictDamage(crystal, 0, 1, true, true);
+				}
 			}
-
-		} else {//remove else so saber hilts take damage also
+		} else {
 			inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, 1, true, true);
 
 			if (((float)conditionDamage - 1 / (float)maxCondition < 0.75) && ((float)conditionDamage / (float)maxCondition > 0.75))
@@ -857,7 +775,8 @@ void WeaponObjectImplementation::applySkillModsTo(CreatureObject* creature) cons
 		const String& name = wearableSkillMods.elementAt(i).getKey();
 		int value = wearableSkillMods.get(name);
 
-		if (!SkillModManager::instance()->isWearableModDisabled(name)) {
+		if (!SkillModManager::instance()->isWearableModDisabled(name))
+		{
 			creature->addSkillMod(SkillModManager::WEARABLE, name, value, true);
 			creature->updateTerrainNegotiation();
 		}
@@ -875,7 +794,8 @@ void WeaponObjectImplementation::removeSkillModsFrom(CreatureObject* creature) {
 		const String& name = wearableSkillMods.elementAt(i).getKey();
 		int value = wearableSkillMods.get(name);
 
-		if (!SkillModManager::instance()->isWearableModDisabled(name)) {
+		if (!SkillModManager::instance()->isWearableModDisabled(name))
+		{
 			creature->removeSkillMod(SkillModManager::WEARABLE, name, value, true);
 			creature->updateTerrainNegotiation();
 		}
@@ -885,14 +805,14 @@ void WeaponObjectImplementation::removeSkillModsFrom(CreatureObject* creature) {
 }
 
 bool WeaponObjectImplementation::applyPowerup(CreatureObject* player, PowerupObject* pup) {
-	if (hasPowerup())
+	if(hasPowerup())
 		return false;
 
 	addMagicBit(true);
 
 	powerupObject = pup;
 
-	if (pup->getParent() != nullptr) {
+	if(pup->getParent() != nullptr) {
 		Locker clocker(pup, player);
 		pup->destroyObjectFromWorld(true);
 	}
@@ -903,50 +823,13 @@ bool WeaponObjectImplementation::applyPowerup(CreatureObject* player, PowerupObj
 }
 
 PowerupObject* WeaponObjectImplementation::removePowerup() {
-	if (!hasPowerup())
+	if(!hasPowerup())
 		return nullptr;
 
-	auto pup = powerupObject;
+	PowerupObject* pup = powerupObject;
 	powerupObject = nullptr;
 
 	removeMagicBit(true);
 
 	return pup;
 }
-void WeaponObjectImplementation::clearDots() {
-	while (dotType.size() > 0) {
-		removeDot(0);
-	}
-}
-
-/*
- * DOT Crystal Socketing  LightsaberCrystalComponentImplementation::updateWeapon()
- *
- * When applying DOT crafting values from a color crystal to this weapon,
- * map the Lua dotAttribute value (0/1/2) to the full HAM pool index as follows:
- *
- *   Lua dotAttribute 0  ->  addDotAttribute(0)   // Health
- *   Lua dotAttribute 1  ->  addDotAttribute(3)   // Action
- *   Lua dotAttribute 2  ->  addDotAttribute(6)   // Mind
- *
- * Example implementation in LightsaberCrystalComponentImplementation::updateWeapon():
- *
- *   weapon->clearDots();
- *
- *   float dotTypeVal = craftingValues.getCurrentValue("dotType");
- *   if (dotTypeVal != ValuesMap::VALUENOTFOUND && (int)dotTypeVal > 0) {
- *       int hamMap[3] = {0, 3, 6}; // Health, Action, Mind
- *       int attrIndex = (int)craftingValues.getCurrentValue("dotAttribute");
- *       if (attrIndex < 0 || attrIndex > 2) attrIndex = 0;
- *
- *       weapon->addDotType((int)dotTypeVal);
- *       weapon->addDotAttribute(hamMap[attrIndex]);
- *       weapon->addDotStrength((int)craftingValues.getCurrentValue("dotStrength"));
- *       weapon->addDotDuration((int)craftingValues.getCurrentValue("dotDuration"));
- *       weapon->addDotPotency((int)craftingValues.getCurrentValue("dotPotency"));
- *       weapon->addDotUses((int)craftingValues.getCurrentValue("dotUses"));
- *   }
- *
- * dotType values: 1=Poison, 2=Disease, 3=Fire, 4=Bleeding
- * Plain crystals (no dotType value) pass through the guard harmlessly.
- */

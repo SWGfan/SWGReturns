@@ -487,35 +487,82 @@ void SkillManager::awardForceFromSkills(CreatureObject* creature) {
 
 void SkillManager::awardResetSkills(CreatureObject* creature) {
 
-		if (creature == nullptr)
-			return;
+	if (creature == nullptr)
+		return;
 
-		Locker locker(creature);
+	Locker locker(creature);
 
-		SkillManager* skillManager = SkillManager::instance();
-		const SkillList* skillList = creature->getSkillList();
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
-		if (skillList == nullptr) 
-			return;
+	if (ghost == nullptr)
+		return;
 
-		String skillName = "";
-		Vector<String> listOfNames;
-		skillList->getStringList(listOfNames);
-		SkillList copyOfList;
-		copyOfList.loadFromNames(listOfNames);
+	const SkillList* skillList = creature->getSkillList();
 
+	if (skillList == nullptr)
+		return;
 
-		for (int i = 0; i < copyOfList.size(); i++) {
-			Skill* skill = copyOfList.get(i);
-			String skillName = skill->getSkillName();
+	Vector<String> listOfNames;
+	skillList->getStringList(listOfNames);
 
-			if (!skillName.beginsWith("admin")) {
-				skillManager->surrenderSkill(skillName, creature, true);
-				bool skillGranted = skillManager->awardSkill(skillName, creature, true, true, true);
-				creature->sendSystemMessage("Regranting SKill: " + skillName);
-				ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
-			}
-		}
+	SkillList copyOfList;
+	copyOfList.loadFromNames(listOfNames);
+
+	for (int i = 0; i < copyOfList.size(); i++) {
+		Skill* skill = copyOfList.get(i);
+
+		if (skill == nullptr)
+			continue;
+
+		String skillName = skill->getSkillName();
+
+		if (skillName.beginsWith("admin"))
+			continue;
+
+		// Refresh abilities / commands from the current skill definition.
+		auto abilityNames = skill->getAbilities();
+		addAbilities(ghost, *abilityNames, true);
+
+		// Refresh draft schematic grants from the current skill definition.
+		awardDraftSchematics(skill, ghost, true);
+	}
+
+	// Reconcile skillbox skill mods from the current skill definitions.
+	// Do not manually add skill mods above, or existing mods may double-stack.
+	SkillModManager::instance()->verifySkillBoxSkillMods(creature);
+
+	// Refresh XP caps and force pool after skill data changes.
+	updateXpLimits(ghost);
+	ghost->recalculateForcePower();
+
+	ManagedReference<PlayerManager*> playerManager = creature->getZoneServer()->getPlayerManager();
+
+	if (playerManager != nullptr)
+		creature->setLevel(playerManager->calculatePlayerLevel(creature));
+
+	/// Update client with new values for things like Terrain Negotiation
+	CreatureObjectDeltaMessage4* msg4 = new CreatureObjectDeltaMessage4(creature);
+	msg4->updateAccelerationMultiplierBase();
+	msg4->updateAccelerationMultiplierMod();
+	msg4->updateSpeedMultiplierBase();
+	msg4->updateSpeedMultiplierMod();
+	msg4->updateRunSpeed();
+	msg4->updateTerrainNegotiation();
+	msg4->close();
+	creature->sendMessage(msg4);
+
+	Reference<GroupObject*> group = creature->getGroup();
+
+	if (group != nullptr && group->getLeader() == creature) {
+		Core::getTaskManager()->executeTask([group] () {
+			Locker locker(group);
+
+			group->removeGroupModifiers();
+			group->addGroupModifiers();
+		}, "UpdateGroupModsSkillRefresh");
+	}
+
+	info("Skill grants refreshed from current skill data for objectID " + String::valueOf(creature->getObjectID()), false);
 
 	return;
 }
@@ -955,6 +1002,15 @@ bool SkillManager::fulfillsSkillPrerequisites(const String& skillName, CreatureO
 		if (!foundSpecies) {
 			return false;
 		}
+	}
+
+	// Custom fallback for broken/missing requiredSkills data.
+	// Master Bounty Hunter must require all four mastery branch tips.
+	if (skillName == "combat_bountyhunter_master") {
+		return creature->hasSkill("combat_bountyhunter_mastery_weapons_04") &&
+				creature->hasSkill("combat_bountyhunter_mastery_survival_04") &&
+				creature->hasSkill("combat_bountyhunter_mastery_tracking_04") &&
+				creature->hasSkill("combat_bountyhunter_mastery_mark_04");
 	}
 
 	//Check for required skills.

@@ -14,6 +14,7 @@
 #include "server/zone/managers/collision/CollisionManager.h"
 #include "server/zone/managers/collision/IntersectionResults.h"
 #include "server/zone/Zone.h"
+#include "templates/SharedObjectTemplate.h"
 
 class DataTransform : public ObjectControllerMessage {
 public:
@@ -45,6 +46,41 @@ class DataTransformCallback : public MessageCallback {
 	float parsedSpeed;
 
 	ObjectControllerMessageCallback* objectControllerMain;
+
+	float getMountedVehicleZOffset(CreatureObject* object) {
+		if (object == nullptr || !object->isRidingMount())
+			return 0.f;
+
+		ManagedReference<SceneObject*> parentObject = object->getParent().get();
+
+		if (parentObject == nullptr || !parentObject->isVehicleObject())
+			return 0.f;
+
+		CreatureObject* vehicle = cast<CreatureObject*>(parentObject.get());
+
+		if (vehicle == nullptr)
+			return 0.f;
+
+		// Stock jetpack server object CRC, already hardcoded elsewhere in DismountCommand.h.
+		if (vehicle->getServerObjectCRC() == 0x32F87A54)
+			return 6.0f;
+
+		SharedObjectTemplate* templateData = vehicle->getObjectTemplate();
+
+		if (templateData == nullptr)
+			return 0.f;
+
+		String templateName = templateData->getFullTemplateString();
+
+		if (templateName == "object/mobile/vehicle/jetpack.iff" ||
+				templateName == "object/mobile/vehicle/shared_jetpack.iff" ||
+				templateName == "object/mobile/vehicle/tcg_merr_sonn_jt12_jetpack.iff" ||
+				templateName == "object/mobile/vehicle/shared_tcg_merr_sonn_jt12_jetpack.iff")
+			return 6.0f;
+
+		return 0.f;
+	}
+
 public:
 	DataTransformCallback(ObjectControllerMessageCallback* objectControllerCallback) :
 		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
@@ -185,6 +221,8 @@ public:
 		CollisionManager::getWorldFloorCollisions(positionX, positionY, object->getZone(), &intersections, (CloseObjectsVector*) object->getCloseObjects());
 
 		float z = planetManager->findClosestWorldFloor(positionX, positionY, positionZ, object->getSwimHeight(), &intersections, (CloseObjectsVector*) object->getCloseObjects());
+
+		z += getMountedVehicleZOffset(object);
 
 		if (z != positionZ) {
 			positionZ = z;

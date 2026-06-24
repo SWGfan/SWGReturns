@@ -39,8 +39,11 @@ forsaken_force_drifter = Creature:new {
 				{group = "melee_weapons", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
-				{group = "wearables_common", chance = 700000},
-				{group = "wearables_uncommon", chance = 700000},
+				{group = "wearables_common", chance = 600000},
+				{group = "wearables_uncommon", chance = 600000},
+				{group = "jedi_light_robes", chance = 75000},
+				{group = "jedi_dark_robes", chance = 75000},
+				{group = "jedi_gray_robes", chance = 50000},
 				{group = "force_hunter_rare", chance = 100000}
 			}
 		}

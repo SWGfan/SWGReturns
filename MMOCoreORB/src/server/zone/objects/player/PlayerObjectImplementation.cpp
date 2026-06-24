@@ -1473,10 +1473,11 @@ void PlayerObjectImplementation::notifyOnline() {
         info(playerCreature->getFirstName() + " Jedi State Adjusted To " + " 1 " + " Grey Jedi ", true);
 	}
 
-	//Login to jedi manager
-	JediManager::instance()->onPlayerLoggedIn(playerCreature);
-	//Reset Players Skill Mods
-	SkillModManager::instance()->verifySkillBoxSkillMods(playerCreature);
+//Login to jedi manager
+JediManager::instance()->onPlayerLoggedIn(playerCreature);
+
+// Refresh existing skill grants from current skill data.
+SkillManager::instance()->awardResetSkills(playerCreature);
 
 	if (getFrsData()->getRank() >= 0) {
 		FrsManager* frsManager = zoneServer->getFrsManager();
@@ -3263,23 +3264,12 @@ void PlayerObjectImplementation::checkAndShowTOS() {
 }
 
 void PlayerObjectImplementation::regrantSkills(){
-		ZoneServer* zoneServer = server->getZoneServer();
-		SkillManager* skillManager = SkillManager::instance();
-		ManagedReference<CreatureObject*> player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
-		const SkillList* skillList = player->getSkillList();
-		String skillName = "";
-		Vector<String> listOfNames;
-		skillList->getStringList(listOfNames);
-		SkillList copyOfList;
-		copyOfList.loadFromNames(listOfNames);
-		for (int i = 0; i < copyOfList.size(); i++) {
-			Skill* skill = copyOfList.get(i);
-			String skillName = skill->getSkillName();
-			if (!skillName.beginsWith("admin") ) {
-			skillManager->surrenderSkill(skillName, player, true);
-			bool skillGranted = skillManager->awardSkill(skillName, player, true, true, true);
-		}
-	}
+	ManagedReference<CreatureObject*> player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
+
+	if (player == nullptr)
+		return;
+
+	SkillManager::instance()->awardResetSkills(player);
 }
 
 void PlayerObjectImplementation::recalculateForcePower() {

@@ -43,13 +43,14 @@ int Rarelootcrate3MenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 	if (selectedID != 20)
 		return 0;
 
- 	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
- 	ManagedReference<LootManager*> lootManager = creature->getZoneServer()->getLootManager();
+	ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
+	ManagedReference<LootManager*> lootManager = creature->getZoneServer()->getLootManager();
 	lootManager->createLoot(inventory, "jedi_belt_group", 300);
 	lootManager->createLoot(inventory, "resource_deed_loot", 300);
 	lootManager->createLoot(inventory, "resource_crate_loot", 300);
 	lootManager->createLoot(inventory, "jedi_comp_group", 300);
 	lootManager->createLoot(inventory, "legendary_comp_group", 300);
+	lootManager->createLoot(inventory, "legendary_weapons", 300);
 	lootManager->createLoot(inventory, "lootcollectiontierdiamond", 300);
 	lootManager->createLoot(inventory, "lootcollectiontierdiamond", 300);
 	lootManager->createLoot(inventory, "lootcollectiontierdiamond", 300);

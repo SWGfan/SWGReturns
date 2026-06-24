@@ -1,4 +1,3 @@
-#include "server/zone/managers/director/DirectorManager.h"
 /*
  * EntertainingSessionImplementation.cpp
  *
@@ -645,8 +644,8 @@ void EntertainingSessionImplementation::addEntertainerBuffDuration(CreatureObjec
 
 	buffDuration += duration;
 
-	if (buffDuration > (120.0f + (10.0f / 60.0f)) ) // 2 hrs 10 seconds
-		buffDuration = (210.0f); // 3 hours, 30 minutes
+	if (buffDuration > 2880.0f) // 2 days
+		buffDuration = 2880.0f;
 
 	setEntertainerBuffDuration(creature, performanceType, buffDuration);
 }
@@ -669,9 +668,9 @@ void EntertainingSessionImplementation::addEntertainerBuffStrength(CreatureObjec
 
 	if(maxBuffStrength > 125.0f)
 		maxBuffStrength = 125.0f;	//cap at 125% power
-	
-	float citySpecStrength = entertainer->getSkillMod("private_spec_buff_mind");	
-	
+
+	float citySpecStrength = entertainer->getSkillMod("private_spec_buff_mind");
+
 	maxBuffStrength += citySpecStrength;
 
 	float factionPerkStrength = entertainer->getSkillMod("private_faction_buff_mind");
@@ -906,6 +905,10 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 		// Returns the Number of Minutes for the Buff Duration
 		float buffDuration = getEntertainerBuffDuration(creature, performanceType);
 
+			// Force activated entertainer buffs to last 2 days.
+			// EntertainingSession stores duration in minutes; PerformanceBuff converts with * 60.
+			buffDuration = 2880.0f;
+
 		if (buffDuration * 60 < 10.0f) { //10 sec minimum buff duration
 			return;
 		}
@@ -933,26 +936,26 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 		uint32 willBuffCRC = STRING_HASHCODE("performance_enhance_music_willpower");
 		uint32 rangedCRC = 0x33329A7B;
 		uint32 meleeCRC = 0x548DE45B;
-	
+
 		oldBuff = cast<PerformanceBuff*>(creature->getBuff(mindBuffCRC));
 
 
 		if (oldBuff != nullptr && oldBuff->getBuffStrength() > buffStrength)
 			return;
-				
+
 		if (oldBuff != nullptr && (oldBuff->getBuffDuration() > buffDuration * 60) && (oldBuff->getBuffStrength() <= buffStrength))
 			return;
-			
-		ManagedReference<PerformanceBuff*> mindBuff = new PerformanceBuff(creature, mindBuffCRC, buffStrength, buffDuration * 60, PerformanceBuffType::DANCE_MIND);							
+
+		ManagedReference<PerformanceBuff*> mindBuff = new PerformanceBuff(creature, mindBuffCRC, buffStrength, buffDuration * 60, PerformanceBuffType::DANCE_MIND);
 		ManagedReference<PerformanceBuff*> focusBuff = new PerformanceBuff(creature, focusBuffCRC, buffStrength, buffDuration * 60, PerformanceBuffType::MUSIC_FOCUS);
 		ManagedReference<PerformanceBuff*> willBuff = new PerformanceBuff(creature, willBuffCRC, buffStrength, buffDuration * 60, PerformanceBuffType::MUSIC_WILLPOWER);
 		ManagedReference<PerformanceBuff*> meleeAccBuff = new PerformanceBuff(creature, meleeCRC, buffStrength, buffDuration * 60, PerformanceBuffType::STAT_MELEE_ACC);
 		ManagedReference<PerformanceBuff*> rangedAccBuff = new PerformanceBuff(creature, rangedCRC, buffStrength, buffDuration * 60, PerformanceBuffType::STAT_RANGED_ACC);
-	
+
 		Locker locker(mindBuff);
 		creature->addBuff(mindBuff);
 		locker.release();
-	
+
 		Locker locker2(focusBuff);
 		creature->addBuff(focusBuff);
 		locker.release();
@@ -966,7 +969,7 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 
 		Locker locker5(rangedAccBuff);
 		creature->addBuff(rangedAccBuff);
-		
+
 	} catch(Exception& e) {
 
 	}
@@ -1121,16 +1124,6 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 
 			if (playerManager != nullptr)
 				playerManager->awardExperience(player, xptype, xpAmount, true);
-			// Jedi Point System Hook
-			Lua* lua = DirectorManager::instance()->getLuaInstance();
-			if (lua != nullptr && player != nullptr) {
-				lua_State* L = lua->getLuaState();
-				lua_getglobal(L, "jedi_on_entertain");
-				if (lua_isfunction(L, -1)) {
-					lua_pushlightuserdata(L, player);
-					if (lua_pcall(L, 1, 0, 0) != 0) { String err = lua_tostring(L, -1); lua_pop(L, 1); error("jedi_on_entertain hook error: " + err); }
-				} else { lua_pop(L, 1); }
-			}
 
 			oldFlourishXp = flourishXp;
 			flourishXp = 0;

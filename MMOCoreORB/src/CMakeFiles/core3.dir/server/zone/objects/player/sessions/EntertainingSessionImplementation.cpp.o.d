@@ -1,9 +1,8 @@
 src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSessionImplementation.cpp.o: \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/sessions/EntertainingSessionImplementation.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/director/DirectorManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/director/DirectorSharedMemory.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/engine.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/EntertainingSession.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Core.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/platform.h \
  /usr/include/boost/lockfree/queue.hpp /usr/include/boost/config.hpp \
@@ -905,7 +904,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/security/Crypto.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Core.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
@@ -941,14 +939,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Task.h \
- /usr/include/c++/15/csignal \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Timer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Pair.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
@@ -956,6 +946,13 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Command.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Pair.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Task.h \
+ /usr/include/c++/15/csignal \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Timer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
@@ -1002,7 +999,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
@@ -1042,6 +1038,10 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/EntertainingDataMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/engine.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
@@ -1123,10 +1123,67 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/managers/director/QuestStatus.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/EntertainingData.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Facade.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/director/ScreenPlayTask.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/managers/director/PersistentEvent.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/SkillManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/variables/Ability.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/Performance.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableRow.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableCell.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/PerformanceManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/Performance.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/managers/player/PlayerManager.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/charcreation/ClientCreateCharacterCallback.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/MessageCallback.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneClientSession.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneProcessServer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedService.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocationList.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocation.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableIff.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/IffTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/TemplateData.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocation.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/ValidatedPosition.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/tangible/threat/ThreatMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/tangible/threat/ThreatMatrix.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observable.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/CooldownTimerMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/weapon/WeaponObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesMap.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesClasses.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/LuaTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/ChildObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PlanetMapCategory.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/SlotDescriptor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/ArrangementDescriptor.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/IntegerParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/TemplateBase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/Param.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/StringIdParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/StringParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/BoolParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/FloatParam.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/tangible/SharedWeaponObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedTangibleObjectTemplate.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/resourceweight/ResourceWeight.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/scene/AttributeListMessage.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
@@ -1181,44 +1238,18 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/QuadTreeEntry.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/CloseObjectsVector.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Observer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Facade.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/ObserverEventType.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/ZoneReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/TransferErrorCode.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/PendingTasksMap.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/SessionFacadeType.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/ObserverType.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PlanetMapCategory.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableRow.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableCell.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/TemplateManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedObjectTemplate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/LuaTemplate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/TemplateData.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/IffTemplate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/ChildObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/SlotDescriptor.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/ArrangementDescriptor.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/IntegerParam.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/TemplateBase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/Param.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/StringIdParam.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/StringParam.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/BoolParam.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/primitives/FloatParam.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/footprint/StructureFootprint.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/slots/SlotId.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/manager/PlanetMapCategoryList.h \
@@ -1249,60 +1280,13 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/conf/ConfigManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ServerCore.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/features/Features.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/login/LoginServer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedService.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Packet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ping/PingServer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ping/PingClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneServer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/managers/director/QuestVectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/EntertainingSession.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/EntertainingDataMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/EntertainingData.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/SkillManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/variables/Ability.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/Performance.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/PerformanceManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/skill/Performance.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/managers/player/PlayerManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/charcreation/ClientCreateCharacterCallback.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/MessageCallback.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneClientSession.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneProcessServer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocationList.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocation.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/datatables/DataTableIff.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/StartingLocation.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/ValidatedPosition.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/tangible/threat/ThreatMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/tangible/threat/ThreatMatrix.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/creature/variables/CooldownTimerMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/weapon/WeaponObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/ValuesClasses.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/tangible/SharedWeaponObjectTemplate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/SharedTangibleObjectTemplate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/crafting/resourceweight/ResourceWeight.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/scene/AttributeListMessage.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/params/OptionBitmask.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/CustomizationVariables.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/packets/DeltaMessage.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/intangible/ControlDevice.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/intangible/IntangibleObject.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/CharacterNameMap.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.h \
@@ -1337,6 +1321,15 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/PermissionLevelList.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/OnlineZoneClientMap.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/db/ServerDatabase.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ServerCore.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/features/Features.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/login/LoginServer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Packet.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ping/PingServer.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ping/PingClient.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/collision/IntersectionResults.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/VeteranRewardList.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/player/VeteranReward.h \
@@ -1368,6 +1361,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/player/sessions/EntertainingSession
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/sui/SuiCommand.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/sui/SuiWindowType.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/sui/SuiCallback.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/ZoneServer.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/variables/AbilityList.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/variables/FactionStandingList.h \

@@ -39,7 +39,10 @@ force_crystal_hunter = Creature:new {
 				{group = "melee_weapons", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
-				{group = "wearables_all", chance = 1400000},
+				{group = "wearables_all", chance = 1200000},
+				{group = "jedi_dark_robes", chance = 100000},
+				{group = "jedi_gray_robes", chance = 50000},
+				{group = "jedi_iconic_robes", chance = 50000},
 				{group = "force_hunter_rare", chance = 100000}
 			}
 		}

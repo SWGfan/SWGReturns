@@ -238,6 +238,14 @@ void PlayerManagerImplementation::loadLuaConfig() {
 	groupExpMultiplier = lua->getGlobalFloat("groupExpMultiplier");
 
 	globalExpMultiplier = lua->getGlobalFloat("globalExpMultiplier");
+	imagedesignExpMultiplier  = lua->getGlobalFloat("imagedesignExpMultiplier");
+	bioEngineerExpMultiplier  = lua->getGlobalFloat("bioEngineerExpMultiplier");
+	jediExpMultiplier         = lua->getGlobalFloat("jediExpMultiplier");
+	slicingExpMultiplier      = lua->getGlobalFloat("slicingExpMultiplier");
+	medicExpMultiplier        = lua->getGlobalFloat("medicExpMultiplier");
+	craftingExpMultiplier     = lua->getGlobalFloat("craftingExpMultiplier");
+	entertainingExpMultiplier = lua->getGlobalFloat("entertainingExpMultiplier");
+	scoutExpMultiplier        = lua->getGlobalFloat("scoutExpMultiplier");
 
 	baseStoredCreaturePets = lua->getGlobalInt("baseStoredCreaturePets");
 	baseStoredFactionPets = lua->getGlobalInt("baseStoredFactionPets");
@@ -952,9 +960,9 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 }
 
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("naboo");
+	Zone* zone = server->getZone("corellia");
 
-	player->initializePosition(1995, -197, 6198);
+	player->initializePosition(-137, 28, -4739);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -998,9 +1006,9 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 }
 
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("naboo");
+	Zone* zone = server->getZone("corellia");
 
-	player->initializePosition(1995, -197, 6198);
+	player->initializePosition(-137, 28, -4739);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -2250,8 +2258,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	int xp;
 	if (amount <= 0){
 		xp = playerObject->addExperience(xpType, amount);
-	} else if (xpType == "imagedesigner" ||
-		xpType == "bio_engineer" ||
+	} else if (		xpType == "bio_engineer" ||
 		xpType == "bio_engineer_dna_harvesting" ||
 		xpType == "bountyhunter" ||
 		xpType == "business_general" ||
@@ -2267,7 +2274,6 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		xpType == "combat_rangedspecialize_pistol" ||
 		xpType == "combat_rangedspecialize_rifle" ||
 		xpType == "combat_rangespecialize_bactarifle" ||
-		xpType == "combatmedic" ||
 		xpType == "crafting_bio_engineer_creature" ||
 		xpType == "crafting_bio_engineer_tissue" ||
 		xpType == "crafting_clothing_armor" ||
@@ -2288,12 +2294,7 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		xpType == "crafting_weapons_ranged" ||
 		xpType == "creaturehandler" ||
 		xpType == "dance" ||
-		xpType == "entertainer_healing" ||
-		xpType == "jedi_general" ||
-		xpType == "combat_jedi_novice" ||
-		xpType == "medical" ||
 		xpType == "merchant" ||
-		xpType == "music" ||
 		xpType == "pilot_general" ||
 		xpType == "pilot_imperial" ||
 		xpType == "pilot_neutral" ||
@@ -2306,16 +2307,32 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 		xpType == "resource_harvesting_organic" ||
 		xpType == "reverse_engineering" ||
 		xpType == "scout" ||
-		xpType == "slicing" ||
 		xpType == "smuggler" || 
 		xpType == "space_combat_general" ||  
 		xpType == "squadleader" ||  
 		xpType == "trapping" || 
 		xpType == "shipwright") {
-		xp = playerObject->addExperience(xpType, (amount * 1.1));
+		// Per-category XP multiplier (crafting/shipwright/entertainer/scout configurable)
+		// Clamp: if a multiplier was never set (0.0f), fall back to 1.1
+		auto safeRate = [](float r) { return r > 0.f ? r : 1.1f; };
+		float typeMultiplier = 1.1f;
+		if (xpType == "dance" || xpType == "music" || xpType == "entertainer_healing")
+			typeMultiplier = safeRate(entertainingExpMultiplier);
+		else if (xpType == "imagedesigner")
+			typeMultiplier = safeRate(imagedesignExpMultiplier);
+		else if (xpType == "jedi_general" || xpType == "combat_jedi_novice")
+			typeMultiplier = safeRate(jediExpMultiplier);
+		else if (xpType.indexOf("crafting_") == 0 || xpType == "reverse_engineering" ||
+		         xpType == "shipwright")
+			typeMultiplier = safeRate(craftingExpMultiplier);
+		else if (xpType == "scout" || xpType == "ranger" || xpType == "trapping" ||
+		         xpType == "camp" || xpType == "resource_harvesting_inorganic" ||
+		         xpType == "resource_harvesting_organic")
+			typeMultiplier = safeRate(scoutExpMultiplier);
 		float speciesModifier = 1.f;
 		if (amount > 0)
 			speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
+		xp = playerObject->addExperience(xpType, (int)(amount * speciesModifier * typeMultiplier));
 		} else {
 			float speciesModifier = 1.f;
 			if (amount > 0)

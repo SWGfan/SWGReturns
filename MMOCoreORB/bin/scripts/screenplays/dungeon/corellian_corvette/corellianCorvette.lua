@@ -2,9 +2,9 @@ local ObjectManager = require("managers.object.object_manager")
 
 CorellianCorvette = ScreenPlay:new {
 	buildings = {
-		{ faction = "neutral", buildingIds = { 1945494, 1945561, 1945628, 1945695, 1945762, 1945829, 1945896, 1945963, 1946030, 1946097, 1946164, 4335861, 4335928, 4335995, 4336062, 4336129 } },
-		{ faction = "imperial", buildingIds = { 1946231, 1946298, 1946365, 1946432, 1946499, 1946566, 1946633, 1946700, 1946767, 1946834, 1946901, 4336196, 4336263, 4336330, 4336397, 4336464 } },
-		{ faction = "rebel", buildingIds = { 1946968, 1947035, 1947102, 1947169, 1947236, 1947303, 1947370, 1947437, 1947504, 1947571, 1947638, 4336531, 4336598, 4336665, 4336732, 4336799 } }
+		{ faction = "neutral",  buildingIds = { 1945494, 1945561, 1945628, 1945695, 1945762, 1945829, 1945896, 1945963, 1946030, 1946097, 1946164 } },
+		{ faction = "imperial", buildingIds = { 1946231, 1946298, 1946365, 1946432, 1946499, 1946566, 1946633, 1946700, 1946767, 1946834, 1946901 } },
+		{ faction = "rebel",    buildingIds = { 1946968, 1947035, 1947102, 1947169, 1947236, 1947303, 1947370, 1947437, 1947504, 1947571, 1947638 } }
 	},
 
 	escapePoints = {
@@ -51,7 +51,7 @@ function CorellianCorvette:initialize()
 		for j = 1, #building.buildingIds, 1 do
 			local pCorvette = getSceneObject(building.buildingIds[j])
 			if pCorvette == nil or not SceneObject(pCorvette):isBuildingObject() then
-				printLuaError("CorellianCorvette:initialize tried using a corvette id that was nil or not a building: " .. building.buildingIds[j])
+				-- building not in snapshot, skip
 			else
 				local corvetteID = SceneObject(pCorvette):getObjectID()
 				deleteData("corvetteActive:" .. corvetteID)

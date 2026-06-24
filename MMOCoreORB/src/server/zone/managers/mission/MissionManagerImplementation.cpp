@@ -865,7 +865,7 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 	mission->setFaction(faction);
 
 	int factionPointsReward = randomLairSpawn->getMinDifficulty();
-		factionPointsReward *=10.0;
+	factionPointsReward *= 20.0;
 
 	String messageDifficulty;
 	String missionType;
@@ -1158,7 +1158,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		}
 
 		mission->setMissionNumber(randTexts);
-		mission->setMissionDifficulty(3 * creoLevel + 7);
+		mission->setMissionDifficulty(creoLevel);
 
 		UnicodeString possibleCreatorName = StringIdManager::instance()->getStringId(String::hashCode("@" + stfFile + diffString + ":" + "m" + String::valueOf(randTexts) + "o"));
 		String creatorName = "";
@@ -1297,12 +1297,12 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 
 	switch (faction) {
 	case Factions::FACTIONIMPERIAL:
-		mission->setRewardFactionPointsImperial(5);
+		mission->setRewardFactionPointsImperial(25);
 		mission->setRewardFactionPointsRebel(0);
 		break;
 	case Factions::FACTIONREBEL:
 		mission->setRewardFactionPointsImperial(0);
-		mission->setRewardFactionPointsRebel(5);
+		mission->setRewardFactionPointsRebel(25);
 		break;
 	default:
 		mission->setRewardFactionPointsImperial(0);
@@ -1443,14 +1443,14 @@ void MissionManagerImplementation::randomizeGenericEntertainerMission(CreatureOb
 
 	switch (faction) {
 	case Factions::FACTIONIMPERIAL:
-		mission->setRewardFactionPointsImperial(5);
+		mission->setRewardFactionPointsImperial(25);
 		mission->setRewardFactionPointsRebel(0);
 		mission->setMissionTitle("mission/mission_npc_" + missionString + "_imperial_easy", "m" + String::valueOf(randTexts) + "t");
 		mission->setMissionDescription("mission/mission_npc_" + missionString + "_imperial_easy", "m" + String::valueOf(randTexts) + "o");
 		break;
 	case Factions::FACTIONREBEL:
 		mission->setRewardFactionPointsImperial(0);
-		mission->setRewardFactionPointsRebel(5);
+		mission->setRewardFactionPointsRebel(25);
 		mission->setMissionTitle("mission/mission_npc_" + missionString + "_rebel_easy", "m" + String::valueOf(randTexts) + "t");
 		mission->setMissionDescription("mission/mission_npc_" + missionString + "_rebel_easy", "m" + String::valueOf(randTexts) + "o");
 		break;
@@ -1607,7 +1607,7 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 
 		mission->setMissionNumber(randTexts);
 
-		mission->setRewardFactionPointsImperial(10);
+		mission->setRewardFactionPointsImperial(50);
 		mission->setRewardFactionPointsRebel(0);
 		mission->setMissionTitle("mission/mission_npc_recon_imperial_easy", "m" + String::valueOf(randTexts) + "t");
 		mission->setMissionDescription("mission/mission_npc_recon_imperial_easy", "m" + String::valueOf(randTexts) + "o");
@@ -1619,7 +1619,7 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 		mission->setMissionNumber(randTexts);
 
 		mission->setRewardFactionPointsImperial(0);
-		mission->setRewardFactionPointsRebel(10);
+		mission->setRewardFactionPointsRebel(50);
 		mission->setMissionTitle("mission/mission_npc_recon_rebel_easy", "m" + String::valueOf(randTexts) + "t");
 		mission->setMissionDescription("mission/mission_npc_recon_rebel_easy", "m" + String::valueOf(randTexts) + "o");
 		break;
@@ -1785,23 +1785,43 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 
 	bool foundLair = false;
 	int counter = availableLairList->size();
+
 	int playerLevel = server->getPlayerManager()->calculatePlayerLevel(player);
+	int effectiveLevel = playerLevel;
+	bool manualMissionLevel = false;
+
 	PlayerObject* targetGhost = player->getPlayerObject();
 
-	String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
+	if (targetGhost != nullptr) {
+		String level = targetGhost->getScreenPlayData("mission_level_choice", "levelChoice");
+		int levelChoice = Integer::valueOf(level);
 
-  	int levelChoice = Integer::valueOf(level);
+		if (levelChoice > 0) {
+			effectiveLevel = levelChoice;
+			manualMissionLevel = true;
+		}
+	}
 
-	if (levelChoice > 0) 
-		playerLevel = levelChoice;
+	if (!manualMissionLevel && player->isGrouped() && player->getGroup() != nullptr) {
+		effectiveLevel = Math::max(effectiveLevel, player->getGroup()->getGroupLevel());
+	}
 
-	else if(player->isGrouped())
-		playerLevel = player->getGroup()->getGroupLevel();
+	playerLevel = effectiveLevel;
 
 	LairSpawn* lairSpawn = nullptr;
 
-	//Cap the minLevel to prevent a group from being too high to get missions on a planet
-	int minLevel = Math::min(playerLevel - 5, minLevelCeiling);
+	// Prevent automatic mission selection below player/group level.
+	// Manual mission level selection keeps the old loose behavior.
+	int minLevel = 1;
+
+	if (manualMissionLevel) {
+		minLevel = Math::min(playerLevel - 5, minLevelCeiling);
+	} else {
+		minLevel = playerLevel;
+	}
+
+	if (minLevel < 1)
+		minLevel = 1;
 
 	//Try to pick random lair within playerLevel +-5;
 	while (counter > 0 && !foundLair) {
@@ -1847,8 +1867,8 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		}
 	}
 
-	if (!foundLair) {
-		//There are no lairs within playerLevel +-5, pick the first lair below playerLevel +5
+	if (!foundLair && manualMissionLevel) {
+		// Manual mission level selection may fall back to lower available lairs.
 		for (int i = 0; i < availableLairList->size(); i++) {
 			LairSpawn* randomLairSpawn = availableLairList->get(i);
 			if (randomLairSpawn->getMinDifficulty() <= (playerLevel + 5)) {

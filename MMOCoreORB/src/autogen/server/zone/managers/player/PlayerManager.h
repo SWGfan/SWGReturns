@@ -827,6 +827,16 @@ private:
 
 	float shipwrightExpMultiplier;
 
+	float bioEngineerExpMultiplier;
+
+	float jediExpMultiplier;
+
+	float imagedesignExpMultiplier;
+
+	float slicingExpMultiplier;
+
+	float medicExpMultiplier;
+
 	ReadWriteLock onlineMapMutex;
 
 protected:
@@ -1642,6 +1652,16 @@ public:
 	Optional<float> scoutExpMultiplier;
 
 	Optional<float> shipwrightExpMultiplier;
+
+	Optional<float> bioEngineerExpMultiplier;
+
+	Optional<float> jediExpMultiplier;
+
+	Optional<float> imagedesignExpMultiplier;
+
+	Optional<float> slicingExpMultiplier;
+
+	Optional<float> medicExpMultiplier;
 
 	String _className;
 	PlayerManagerPOD();

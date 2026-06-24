@@ -44,22 +44,34 @@
 FastBlastCommand = {
         name = "fastblast",
 
-	damageMultiplier = 6,
-	speedMultiplier = 3.05,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1,
-	accuracyBonus = 95,
+        damageMultiplier = 6,
+        speedMultiplier = 3.05,
+        healthCostMultiplier = 1.5,
+        actionCostMultiplier = 1.5,
+        mindCostMultiplier = 1,
+        accuracyBonus = 95,
 
-	poolsToDamage = HEALTH_ATTRIBUTE + ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
+        poolsToDamage = HEALTH_ATTRIBUTE + ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
 
-	animation = "fire_5_special_single", 
-	animType = GENERATE_RANGED,
+        stateEffects = {
+                StateEffect(
+                        INTIMIDATE_EFFECT,
+                        {},
+                        { "intimidate_defense" },
+                        { "jedi_state_defense", "resistance_states" },
+                        85,
+                        0,
+                        30
+                )
+        },
 
-	combatSpam = "fastblast",
-	weaponType = RANGEDWEAPON,
+        animation = "fire_5_special_single",
+        animType = GENERATE_RANGED,
 
-	range = -1
+        combatSpam = "fastblast",
+        weaponType = RANGEDWEAPON,
+
+        range = -1
 }
 
 AddCommand(FastBlastCommand)

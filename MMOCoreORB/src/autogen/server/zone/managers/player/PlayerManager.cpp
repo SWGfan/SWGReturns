@@ -2337,6 +2337,26 @@ bool PlayerManagerImplementation::readObjectMember(ObjectInputStream* stream, co
 		TypeInfo<float >::parseFromBinaryStream(&shipwrightExpMultiplier, stream);
 		return true;
 
+	case 0x21ec47bd: //PlayerManager.bioEngineerExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&bioEngineerExpMultiplier, stream);
+		return true;
+
+	case 0xfe2a427: //PlayerManager.jediExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&jediExpMultiplier, stream);
+		return true;
+
+	case 0xca94605e: //PlayerManager.imagedesignExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&imagedesignExpMultiplier, stream);
+		return true;
+
+	case 0x55ca5542: //PlayerManager.slicingExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&slicingExpMultiplier, stream);
+		return true;
+
+	case 0x1b426894: //PlayerManager.medicExpMultiplier
+		TypeInfo<float >::parseFromBinaryStream(&medicExpMultiplier, stream);
+		return true;
+
 	}
 
 	return false;
@@ -2549,6 +2569,51 @@ int PlayerManagerImplementation::writeObjectMembers(ObjectOutputStream* stream) 
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<float >::toBinaryStream(&shipwrightExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x21ec47bd; //PlayerManager.bioEngineerExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&bioEngineerExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xfe2a427; //PlayerManager.jediExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&jediExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xca94605e; //PlayerManager.imagedesignExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&imagedesignExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x55ca5542; //PlayerManager.slicingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&slicingExpMultiplier, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x1b426894; //PlayerManager.medicExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&medicExpMultiplier, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -4436,6 +4501,61 @@ int PlayerManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (bioEngineerExpMultiplier) {
+	_nameHashCode = 0x21ec47bd; //PlayerManager.bioEngineerExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&bioEngineerExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (jediExpMultiplier) {
+	_nameHashCode = 0xfe2a427; //PlayerManager.jediExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&jediExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (imagedesignExpMultiplier) {
+	_nameHashCode = 0xca94605e; //PlayerManager.imagedesignExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&imagedesignExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (slicingExpMultiplier) {
+	_nameHashCode = 0x55ca5542; //PlayerManager.slicingExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&slicingExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (medicExpMultiplier) {
+	_nameHashCode = 0x1b426894; //PlayerManager.medicExpMultiplier
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&medicExpMultiplier.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -4621,6 +4741,46 @@ bool PlayerManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32&
 		}
 		return true;
 
+	case 0x21ec47bd: //PlayerManager.bioEngineerExpMultiplier
+		{
+			float _mnbioEngineerExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnbioEngineerExpMultiplier, stream);
+			bioEngineerExpMultiplier = std::move(_mnbioEngineerExpMultiplier);
+		}
+		return true;
+
+	case 0xfe2a427: //PlayerManager.jediExpMultiplier
+		{
+			float _mnjediExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnjediExpMultiplier, stream);
+			jediExpMultiplier = std::move(_mnjediExpMultiplier);
+		}
+		return true;
+
+	case 0xca94605e: //PlayerManager.imagedesignExpMultiplier
+		{
+			float _mnimagedesignExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnimagedesignExpMultiplier, stream);
+			imagedesignExpMultiplier = std::move(_mnimagedesignExpMultiplier);
+		}
+		return true;
+
+	case 0x55ca5542: //PlayerManager.slicingExpMultiplier
+		{
+			float _mnslicingExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnslicingExpMultiplier, stream);
+			slicingExpMultiplier = std::move(_mnslicingExpMultiplier);
+		}
+		return true;
+
+	case 0x1b426894: //PlayerManager.medicExpMultiplier
+		{
+			float _mnmedicExpMultiplier;
+			TypeInfo<float >::parseFromBinaryStream(&_mnmedicExpMultiplier, stream);
+			medicExpMultiplier = std::move(_mnmedicExpMultiplier);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -4690,6 +4850,16 @@ void PlayerManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<float >::toBinaryStream(&scoutExpMultiplier.value(), stream);
 
 	TypeInfo<float >::toBinaryStream(&shipwrightExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&bioEngineerExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&jediExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&imagedesignExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&slicingExpMultiplier.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&medicExpMultiplier.value(), stream);
 
 
 }

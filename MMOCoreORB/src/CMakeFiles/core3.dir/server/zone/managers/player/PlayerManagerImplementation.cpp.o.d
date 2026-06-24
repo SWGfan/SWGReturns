@@ -1578,4 +1578,5 @@ src/CMakeFiles/core3.dir/server/zone/managers/player/PlayerManagerImplementation
  /usr/include/c++/15/bits/fstream.tcc \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/managers/mission/spawnmaps/NpcSpawnPoint.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/mission/PlayerBounty.h \
+ /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/zone/objects/player/sui/callbacks/BountyHuntSuiCallback.h \
  /home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.h

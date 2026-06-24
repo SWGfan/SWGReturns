@@ -48,7 +48,7 @@ public:
 		insertInt(0x00000CB2);
 		insertInt(0x00000008);
 		insertInt(0xFFFF8F80);
-		insertInt((gid == 2 || gid == 3) ? 2 : 0); //status
+		insertInt(2); //status
 		insertByte(0);
 	}
 

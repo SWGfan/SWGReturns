@@ -34,7 +34,13 @@ dark_jedi_master = Creature:new {
 				{group = "jedi_comp_group", chance = 10000000},
 			},
 			lootChance = 500000
-		},	
+		},
+		{
+			groups = {
+				{group = "jedi_iconic_robes", chance = 10000000},
+			},
+			lootChance = 500000
+		},
 		{
 			groups = {
 				{group = "holocron_dark", chance = 2000000},

@@ -272,10 +272,6 @@ public:
 
 	void setDotUses(int u, int index);
 
-	void removeDot(int index);
-
-	void clearDots();
-
 	String getWeaponType();
 
 	bool isUnarmedWeapon() const;
@@ -606,10 +602,6 @@ public:
 
 	void setDotUses(int u, int index);
 
-	void removeDot(int index);
-
-	void clearDots();
-
 	String getWeaponType();
 
 	bool isUnarmedWeapon() const;
@@ -845,10 +837,6 @@ public:
 	void addDotUses(int u);
 
 	void setDotUses(int u, int index);
-
-	void removeDot(int index);
-
-	void clearDots();
 
 	String getWeaponType();
 

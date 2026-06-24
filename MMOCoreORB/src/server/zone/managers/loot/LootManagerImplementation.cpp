@@ -17,6 +17,90 @@
 #include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.h"
 
+namespace {
+	const char* jediRobeSkillMods[] = {
+		"force_power_light",
+		"force_power_dark",
+		"force_healing_light",
+		"force_healing_dark",
+		"force_defense",
+		"jedi_force_power_max",
+		"jedi_force_power_regen",
+		"onehandlightsaber_accuracy",
+		"twohandlightsaber_accuracy",
+		"polearmlightsaber_accuracy",
+		"onehandlightsaber_speed",
+		"twohandlightsaber_speed",
+		"polearmlightsaber_speed",
+		"saber_block",
+		"lightsaber_toughness",
+		"jedi_toughness"
+	};
+
+	enum {
+		jediRobeSkillModCount = sizeof(jediRobeSkillMods) / sizeof(jediRobeSkillMods[0])
+	};
+
+	int clampJediRobeValue(int value, int minValue, int maxValue) {
+		return Math::max(minValue, Math::min(maxValue, value));
+	}
+
+	int randomJediRobeValue(int minValue, int maxValue) {
+		if (maxValue <= minValue)
+			return minValue;
+
+		return minValue + System::random(maxValue - minValue);
+	}
+
+	void applyRandomJediRobeMods(TangibleObject* object, const LootItemTemplate* templateObject) {
+		if (!templateObject->usesRandomJediRobeMods() || !object->isWearableObject())
+			return;
+
+		ManagedReference<WearableObject*> wearableObject = cast<WearableObject*>(object);
+
+		if (wearableObject == nullptr)
+			return;
+
+		const int maxAvailableJediRobeMods = Math::min(7, static_cast<int>(jediRobeSkillModCount));
+
+		int minMods = clampJediRobeValue(templateObject->getMinJediRobeMods(), 3, maxAvailableJediRobeMods);
+		int maxMods = clampJediRobeValue(templateObject->getMaxJediRobeMods(), minMods, maxAvailableJediRobeMods);
+		int modCount = randomJediRobeValue(minMods, maxMods);
+
+		int minValue = templateObject->getMinJediRobeModValue();
+		int maxValue = templateObject->getMaxJediRobeModValue();
+
+		if (minValue > maxValue) {
+			int oldMinValue = minValue;
+			minValue = maxValue;
+			maxValue = oldMinValue;
+		}
+
+		minValue = clampJediRobeValue(minValue, 1, 25);
+		maxValue = clampJediRobeValue(maxValue, minValue, 25);
+
+		bool usedMods[jediRobeSkillModCount];
+
+		for (int i = 0; i < jediRobeSkillModCount; ++i)
+			usedMods[i] = false;
+
+		for (int i = 0; i < modCount; ++i) {
+			int modIndex = System::random(jediRobeSkillModCount - 1);
+
+			while (usedMods[modIndex])
+				modIndex = System::random(jediRobeSkillModCount - 1);
+
+			usedMods[modIndex] = true;
+
+			int modValue = randomJediRobeValue(minValue, maxValue);
+			wearableObject->addSkillMod(SkillModManager::WEARABLE, jediRobeSkillMods[modIndex], modValue);
+		}
+
+		wearableObject->setMaxSockets(Math::max(0, 7 - modCount));
+		object->addMagicBit(false);
+	}
+}
+
 void LootManagerImplementation::initialize() {
 	info("Loading configuration.");
 
@@ -373,7 +457,7 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 		// range mods, etc), we need to base the percentage on a random roll
 		// of possible values (min -> max), otherwise only an exact roll of
 		// 10000 will result in the top of the range being chosen.
-		int precision = craftingValues->getPrecision(subtitle);		
+		int precision = craftingValues->getPrecision(subtitle);
 		if( precision == (int)ValuesMap::VALUENOTFOUND ) {
 		        error ("No precision found for " + subtitle);
 		}
@@ -501,6 +585,8 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 
 	setSockets(prototype, craftingValues);
 
+	applyRandomJediRobeMods(prototype, templateObject);
+
 	// Update the Tano with new values
 	prototype->updateCraftingValues(craftingValues, true);
 
@@ -523,11 +609,11 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 
 		for(int i = 0; i < mods->size(); ++i) {
 			iterator.getNextKeyAndValue(key, value);
-		
+
 			if(value > last){
 				last = value;
 				String statName = "@stat_n:" + key;
-				
+
 				prototype->setCustomObjectName(stringIdManager->getStringId(statName.hashCode()),false);
 
 				if(attachment->isClothingAttachment()){
@@ -543,11 +629,11 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 }
 
 TangibleObject* LootManagerImplementation::createLootAttachment(LootItemTemplate* templateObject, const String& modName, int value) {
-	
+
 	const String& directTemplateObject = templateObject->getDirectObjectTemplate();
-	
+
 	ManagedReference<TangibleObject*> prototype = zoneServer->createObject(directTemplateObject.hashCode(), 2).castTo<TangibleObject*>();
-	
+
 	if (prototype == nullptr) {
 		error("could not create loot object: " + directTemplateObject);
 		return nullptr;
@@ -585,7 +671,7 @@ TangibleObject* LootManagerImplementation::createLootAttachment(LootItemTemplate
 		Attachment* attachment = cast<Attachment*>( prototype.get());
 		attachment->updateAttachmentValues(modName, value);
 		delete craftingValues;
-	
+
 		HashTable<String, int>* mods = attachment->getSkillMods();
 		HashTableIterator<String, int> iterator = mods->iterator();
 		StringId attachmentName;
@@ -642,7 +728,7 @@ void LootManagerImplementation::setSkillMods(TangibleObject* object, const LootI
 	bool yellow = false;
 	float modSqr = excMod * excMod;
 
-	if (System::random(skillModChance / modSqr) == 0) {
+	if (!templateObject->usesRandomJediRobeMods() && System::random(skillModChance / modSqr) == 0) {
 		// if it has a skillmod the name will be yellow
 		yellow = true;
 		int modCount = 1;
@@ -760,8 +846,8 @@ bool LootManagerImplementation::createLoot(SceneObject* container, AiAgent* crea
 	//Creature Loot System based on creature level
 	int creatureLevel = Math::min(300, creature->getLevel());
 	//Rare Loot System
-	if (creatureLevel >= 200){
-		if (System::random(100) < 2) { //2% Rare Loot System
+	if (creatureLevel >= 75){
+		if (System::random(1000) < 195) { //19.5% Rare Loot System
 			createLoot(container, "rarelootsystem", creatureLevel, false);
 			creature->playEffect("clienteffect/rare_loot.cef", "");
 			creature->showFlyText("Rare", "Loot", 0, 255, 0);
@@ -800,7 +886,7 @@ bool LootManagerImplementation::createLoot(SceneObject* container, AiAgent* crea
 			creature->showFlyText("1,000 bonus", "Credits", 0, 255, 0);
 		}
 	}
-	
+
 	//Bonus Credit System Level 300
 	if (creatureLevel == 300){
 		if (System::random(100) < 20) {
@@ -843,10 +929,11 @@ bool LootManagerImplementation::createNamedLoot(SceneObject* container, const St
 	}
 
 	TangibleObject* obj = createLootObject(itemTemplate, level, maxCondition);
-	obj->setCustomObjectName(name,false);
 
 	if (obj == nullptr)
 		return false;
+
+	obj->setCustomObjectName(name, false);
 
 	if (container->transferObject(obj, -1, false, true)) {
 		container->broadcastObject(obj, true);
