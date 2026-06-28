@@ -272,7 +272,7 @@ object_weapon_melee_sword_sword_curved_nyax = object_weapon_melee_sword_shared_s
 	idealRange = 3,
 	idealAccuracy = 3,
 
-	maxRange = 3,
+	maxRange = 5,
 	maxRangeAccuracy = 4,
 
 	minDamage = 17,

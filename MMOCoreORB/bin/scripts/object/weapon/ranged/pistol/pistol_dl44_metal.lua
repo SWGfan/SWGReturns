@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_dl44_metal = object_weapon_ranged_pistol_shar
 	idealRange = 5,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -80,
 
 	minDamage = 20,

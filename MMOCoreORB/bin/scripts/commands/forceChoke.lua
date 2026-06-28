@@ -59,7 +59,7 @@ ForceChokeCommand = {
 	combatSpam = "forcechoke",
 	poolsToDamage = HEALTH_ATTRIBUTE,
 	damageType = LIGHTSABER_DAMAGE,
-	range = 32,
+	range = 12,
 
   dotEffects = {
     DotEffect(

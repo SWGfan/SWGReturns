@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_dh17 = object_weapon_ranged_carbine_shared_
 	idealRange = 35,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -60,
 
 	minDamage = 40,

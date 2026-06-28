@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_laser_noob = object_weapon_ranged_rifle_shared_
 	idealRange = 52,
 	idealAccuracy = 10,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -60,
 
 	minDamage = 65,

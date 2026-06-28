@@ -30,6 +30,15 @@ public:
 		population = 0;
 	}
 
+	Galaxy(uint32 galaxyID, const String& galaxyName, const String& galaxyAddress, uint32 galaxyPort, uint32 galaxyPingPort, uint32 galaxyPopulation) {
+		id = galaxyID;
+		name = galaxyName;
+		address = galaxyAddress;
+		port = galaxyPort;
+		pingPort = galaxyPingPort;
+		population = galaxyPopulation;
+	}
+
 	Galaxy(ResultSet *result) {
 		id = result->getUnsignedInt(0);
 		name = result->getString(1);
@@ -135,6 +144,12 @@ class GalaxyList {
 
 public:
 	GalaxyList(String username) {
+		galaxies.add(Galaxy(2, "SWG Returns", "51.81.81.116", 44463, 44462, 0));
+		galaxies.add(Galaxy(3, "SWG Returns Test Centre", "212.227.73.161", 44463, 44462, 0));
+		galaxies.add(Galaxy(4, "Core3 Backup Server", "82.165.250.176", 44463, 44462, 0));
+		curIdx = 0;
+		return;
+
 		StringBuffer query;
 		query << "SELECT * FROM galaxy";
 

@@ -272,7 +272,7 @@ object_weapon_melee_polearm_lance_staff_metal = object_weapon_melee_polearm_shar
 	idealRange = 3,
 	idealAccuracy = 0,
 
-	maxRange = 5,
+	maxRange = 7,
 	maxRangeAccuracy = 0,
 
 	minDamage = 80,

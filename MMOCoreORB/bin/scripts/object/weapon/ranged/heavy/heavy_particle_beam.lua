@@ -274,7 +274,7 @@ object_weapon_ranged_heavy_heavy_particle_beam = object_weapon_ranged_heavy_shar
 	idealRange = 35,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 55,
 	maxRangeAccuracy = -20,
 
 	minDamage = 200,

@@ -274,7 +274,7 @@ object_weapon_ranged_rifle_rifle_ewok_crossbow = object_weapon_ranged_rifle_shar
 	minDamage = 77,
 	maxDamage = 131,
 
-	maxRange = 65,
+	maxRange = 70,
 	maxRangeAccuracy = -60,
 		
 	attackSpeed = 8,

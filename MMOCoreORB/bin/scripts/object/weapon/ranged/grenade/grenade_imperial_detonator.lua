@@ -272,7 +272,7 @@ object_weapon_ranged_grenade_grenade_imperial_detonator = object_weapon_ranged_g
 	idealRange = 20,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 12,
 	maxRangeAccuracy = -30,
 
 	minDamage = 100,

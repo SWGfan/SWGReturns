@@ -50,6 +50,27 @@ FireLightningSingle1Command = {
 	actionCostMultiplier = 1,
 	mindCostMultiplier = 1,
 
+	stateEffects = {
+	  StateEffect( 
+		DIZZY_EFFECT, 
+		{}, 
+		{ "dizzy_defense" }, 
+		{ "jedi_state_defense", "resistance_states" }, 
+		85, 
+		0, 
+		30 
+	  ),
+	  StateEffect( 
+		STUN_EFFECT, 
+	{}, 
+		{ "stun_defense" }, 
+		{ "jedi_state_defense", "resistance_states" }, 
+		85, 
+		0, 
+		60
+	)
+	},
+
 	animation = "fire_lightning_rifle_single_1",
 	animType = GENERATE_INTENSITY,
 

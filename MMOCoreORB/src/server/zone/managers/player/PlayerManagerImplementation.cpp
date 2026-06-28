@@ -953,9 +953,9 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 }
 
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("corellia");
+	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-66.760902f, 28, -4711.3281f);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -999,9 +999,9 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 }
 
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("corellia");
+	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-66.760902f, 28, -4711.3281f);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1746,10 +1746,12 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 	player->notifyObservers(ObserverEventType::PLAYERCLONED, player, 0);
 
 
+	// Jedi experience loss disabled. Skill revocation will replace XP loss.
+#if 0
 	// Jedi experience loss.
 	if (ghost->getJediState() >= 2) {
 		int jediXpCap = ghost->getXpCap("jedi_general");
-		int xpLoss = (int)(jediXpCap * -0.25);
+		int xpLoss = (int)(jediXpCap * -0.05);
 		int curExp = ghost->getExperience("jedi_general");
 
 		int negXpCap = -10000000; // Cap on negative jedi experience
@@ -1763,6 +1765,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		message.setTO("exp_n", "jedi_general");
 		player->sendSystemMessage(message);
 	}
+#endif
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1974,13 +1977,10 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				if (winningFaction == attacker->getFaction())
 					xpAmount *= gcwBonus;
 
-				//Jedi experience doesn't count towards combat experience, and is earned at 20% the rate of normal experience
-				if (xpType != "jedi_general")
-					combatXp += xpAmount;
-				else
-					xpAmount *= 0.2f;
+				// Count all earned combat XP types normally.
+				combatXp += xpAmount;
 
-				//Award individual expType
+				// Award individual expType
 				awardExperience(attacker, xpType, xpAmount);
 			}
 
@@ -4130,7 +4130,14 @@ int PlayerManagerImplementation::calculatePlayerLevel(CreatureObject* player, St
 		return calculatePlayerLevel(player);
 
 	String weaponType;
-	if (xpType.contains("onehand"))
+
+	if (xpType.contains("onehandlightsaber"))
+		weaponType = "onehandlightsaber";
+	else if (xpType.contains("twohandlightsaber"))
+		weaponType = "twohandlightsaber";
+	else if (xpType.contains("polearmlightsaber"))
+		weaponType = "polearmlightsaber";
+	else if (xpType.contains("onehand"))
 		weaponType = "onehandmelee";
 	else if (xpType.contains("polearm"))
 		weaponType = "polearm";

@@ -270,7 +270,7 @@ object_weapon_ranged_rifle_rifle_bowcaster = object_weapon_ranged_rifle_shared_r
 	idealRange = 45,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -80,
 
 	minDamage = 110,

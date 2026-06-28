@@ -47,11 +47,23 @@ UnarmedSpinAttack2Command = {
 	damageMultiplier = 3.0,
 	speedMultiplier = 3.0,
 	areaAction = true,
-	areaRange = 16,
+	areaRange = 7,
 	healthCostMultiplier = 2,
 	actionCostMultiplier = 2,
 	mindCostMultiplier = 2,
         accuracyBonus = 15,
+
+	stateEffects = {
+	  StateEffect( 
+		KNOCKDOWN_EFFECT, 
+		{ "knockdownRecovery", "lastKnockdown" }, 
+		{ "knockdown_defense" }, 
+		{},
+		100, 
+		0, 
+		0 
+	  )
+	},
 
 	animation = "combo_3d", 
 	animType = GENERATE_INTENSITY,

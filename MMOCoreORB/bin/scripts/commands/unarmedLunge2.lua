@@ -56,7 +56,7 @@ UnarmedLunge2Command = {
 
 	combatSpam = "lungeshiak",
 
-	range = 20,
+	range = 7,
 	
 	weaponType = UNARMEDWEAPON,
 

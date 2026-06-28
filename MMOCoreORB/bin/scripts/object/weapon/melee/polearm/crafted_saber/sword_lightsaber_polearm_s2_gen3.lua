@@ -269,7 +269,7 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_s2_gen3 = obj
 	idealRange = 3,
 	idealAccuracy = 15,
 
-	maxRange = 5,
+	maxRange = 7,
 	maxRangeAccuracy = 5,
 
 	minDamage = 210,

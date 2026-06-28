@@ -271,7 +271,7 @@ object_weapon_melee_knife_knife_dagger = object_weapon_melee_knife_shared_knife_
 	idealRange = 3,
 	idealAccuracy = 25,
 
-	maxRange = 4,
+	maxRange = 5,
 	maxRangeAccuracy = 25,
 
 	minDamage = 20,

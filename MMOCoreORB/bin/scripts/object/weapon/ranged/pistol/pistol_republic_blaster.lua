@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_republic_blaster = object_weapon_ranged_pisto
 	idealRange = 10,
 	idealAccuracy = -40,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -70,
 
 	minDamage = 45,

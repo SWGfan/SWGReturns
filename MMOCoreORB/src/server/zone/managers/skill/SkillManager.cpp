@@ -428,7 +428,7 @@ void SkillManager::awardForceFromSkills(CreatureObject* creature) {
 	int forceMax = 0;
 	int forceRegen = 0;
 
-	if (creature == nullptr)
+	if (creature == NULL)
 		return;
 
 	Locker locker(creature);
@@ -487,7 +487,7 @@ void SkillManager::awardForceFromSkills(CreatureObject* creature) {
 
 void SkillManager::awardResetSkills(CreatureObject* creature) {
 
-	if (creature == nullptr)
+	if (creature == NULL)
 		return;
 
 	Locker locker(creature);
@@ -499,7 +499,7 @@ void SkillManager::awardResetSkills(CreatureObject* creature) {
 
 	const SkillList* skillList = creature->getSkillList();
 
-	if (skillList == nullptr)
+	if (skillList == NULL)
 		return;
 
 	Vector<String> listOfNames;
@@ -511,7 +511,7 @@ void SkillManager::awardResetSkills(CreatureObject* creature) {
 	for (int i = 0; i < copyOfList.size(); i++) {
 		Skill* skill = copyOfList.get(i);
 
-		if (skill == nullptr)
+		if (skill == NULL)
 			continue;
 
 		String skillName = skill->getSkillName();
@@ -1004,14 +1004,6 @@ bool SkillManager::fulfillsSkillPrerequisites(const String& skillName, CreatureO
 		}
 	}
 
-	// Custom fallback for broken/missing requiredSkills data.
-	// Master Bounty Hunter must require all four mastery branch tips.
-	if (skillName == "combat_bountyhunter_master") {
-		return creature->hasSkill("combat_bountyhunter_mastery_weapons_04") &&
-				creature->hasSkill("combat_bountyhunter_mastery_survival_04") &&
-				creature->hasSkill("combat_bountyhunter_mastery_tracking_04") &&
-				creature->hasSkill("combat_bountyhunter_mastery_mark_04");
-	}
 
 	//Check for required skills.
 	auto requiredSkills = skill->getSkillsRequired();

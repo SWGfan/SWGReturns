@@ -272,7 +272,7 @@ object_weapon_melee_knife_knife_stone_noob = object_weapon_melee_knife_shared_kn
 	idealRange = 1,
 	idealAccuracy = -10,
 
-	maxRange = 4,
+	maxRange = 5,
 	maxRangeAccuracy = -10,
 
 	minDamage = 7,

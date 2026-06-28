@@ -649,6 +649,30 @@ void BountyMissionObjectiveImplementation::handlePlayerKilled(ManagedObject* arg
 		} else if (mission->getTargetObjectId() == killer->getObjectID() ||
 				(npcTarget != nullptr && npcTarget->getObjectID() == killer->getObjectID())) {
 
+			MissionManager* missionManager = owner->getZoneServer()->getMissionManager();
+            if (missionManager != nullptr && mission->getTargetObjectId() == killer->getObjectID()) {
+                PlayerObject* ownerGhost = owner->getPlayerObject();
+
+                if (ownerGhost != nullptr) {
+                    ManagedReference<SuiInputBox*> input = new SuiInputBox(owner, SuiWindowType::PLAYER_BOUNTY_OFFER);
+
+                    input->setPromptTitle("Bounty Hunters Guild");
+                    input->setCallback(new BountyHuntSuiCallback(owner->getZoneServer()));
+                    input->setCancelButton(true, "@cancel");
+                    input->setUsingObject(killer);
+
+                    StringBuffer prompt;
+
+                    prompt << "You were defeated by your bounty target, " << killer->getFirstName() << ".\n\n"
+                        << "You may place an additional bounty between 20,000 and 1,000,000 credits.";
+
+                    input->setPromptText(prompt.toString());
+
+                    ownerGhost->addSuiBox(input);
+                    owner->sendMessage(input->generateMessage());
+                }
+            }
+
 			owner->sendSystemMessage("@mission/mission_generic:failed"); // Mission failed
 			killer->sendSystemMessage("You have defeated a bounty hunter, ruining his mission against you!");
 			fail();

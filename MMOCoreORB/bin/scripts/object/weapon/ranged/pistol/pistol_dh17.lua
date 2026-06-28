@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_dh17 = object_weapon_ranged_pistol_shared_pis
 	idealRange = 20,
 	idealAccuracy = 10,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -60,
 
 	minDamage = 50,

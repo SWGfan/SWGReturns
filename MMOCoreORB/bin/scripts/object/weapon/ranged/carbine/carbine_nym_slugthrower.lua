@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_nym_slugthrower = object_weapon_ranged_carb
 	idealRange = 28,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -60,
 
 	minDamage = 103,

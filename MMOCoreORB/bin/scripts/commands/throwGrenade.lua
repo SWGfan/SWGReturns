@@ -50,7 +50,7 @@ ThrowGrenadeCommand = {
 	actionCostMultiplier = 1.0,
 	mindCostMultiplier = 1.0,
 
-	range = 64,
+	range = 12,
 	areaAction = true,
 	areaRange = 10,
 

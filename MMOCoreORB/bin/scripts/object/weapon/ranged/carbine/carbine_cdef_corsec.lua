@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_cdef_corsec = object_weapon_ranged_carbine_
 	idealRange = 45,
 	idealAccuracy = 0,
 
-	maxRange = 65,
+	maxRange = 35,
 	maxRangeAccuracy = 0,
 
 	minDamage = 17,

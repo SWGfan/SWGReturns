@@ -271,7 +271,7 @@ object_weapon_ranged_rifle_rifle_lightning = object_weapon_ranged_rifle_shared_r
 	idealRange = 30,
 	idealAccuracy = -25,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -80,
 
 	minDamage = 415,

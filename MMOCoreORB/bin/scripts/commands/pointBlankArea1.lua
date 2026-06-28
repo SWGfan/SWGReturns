@@ -51,7 +51,7 @@ PointBlankArea1Command = {
 	mindCostMultiplier = 0.5,
 	accuracyBonus = 15,
 
-	areaRange = 15,
+	areaRange = 10,
 	areaAction = true,
 
 	animation = "fire_area_no_trails", 

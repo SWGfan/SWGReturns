@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_e11_quest = object_weapon_ranged_carbine_sh
 	idealRange = 35,
 	idealAccuracy = 0,
 
-	maxRange = 65,
+	maxRange = 35,
 	maxRangeAccuracy = 0,
 
 	minDamage = 42,

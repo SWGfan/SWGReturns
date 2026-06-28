@@ -272,7 +272,7 @@ object_weapon_melee_polearm_lance_controllerfp_nightsister = object_weapon_melee
 	idealRange = 5,
 	idealAccuracy = 3,
 
-	maxRange = 5,
+	maxRange = 7,
 	maxRangeAccuracy = 5,
 
 	minDamage = 10,

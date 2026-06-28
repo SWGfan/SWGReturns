@@ -56,21 +56,6 @@ bool CombatManager::startCombat(CreatureObject* attacker, TangibleObject* defend
 	if (!defender->isAttackableBy(attacker))
 		return false;
 
-	CreatureObject* defenderCreature = defender->asCreatureObject();
-
-	if (defenderCreature != nullptr && attacker->isPlayerCreature() && defenderCreature->isPlayerCreature() && !areInDuel(attacker, defenderCreature)) {
-		PlayerObject* defenderGhost = defenderCreature->getPlayerObject();
-
-		if (defenderGhost != nullptr) {
-			bool sameFaction = attacker->getFaction() != 0 && attacker->getFaction() == defenderCreature->getFaction();
-			bool isBountyPair = attacker->hasBountyMissionFor(defenderCreature) || defenderCreature->hasBountyMissionFor(attacker);
-			bool defenderHasJediExposure = defenderGhost->isJediAttackable() || defenderGhost->hasJediTef();
-
-			if (sameFaction && defenderHasJediExposure && !isBountyPair)
-				return false;
-		}
-	}
-
 	if (attacker->isPlayerCreature() && attacker->getPlayerObject()->isAFK())
 		return false;
 
@@ -274,52 +259,11 @@ int CombatManager::doCombatAction(CreatureObject* attacker, WeaponObject* weapon
 	if (damage > 0) {
 		attacker->updateLastSuccessfulCombatAction();
 
-		if (attacker->isPlayerCreature() && weapon != nullptr && !data.isForceAttack()) {
-			bool specialAttack = data.getCommandCRC() != STRING_HASHCODE("attack");
+		if (attacker->isPlayerCreature() && data.getCommandCRC() != STRING_HASHCODE("attack"))
+			weapon->decay(attacker);
 
-			if (specialAttack) {
-				int weaponDecayRolls = 1;
-
-				float damageMultiplier = data.getDamageMultiplier();
-
-				if (damageMultiplier < 1.0f)
-					damageMultiplier = 1.0f;
-
-				// Higher damage specials stress the attacker's weapon more.
-				// This keeps light specials affordable while making heavy specials meaningfully expensive.
-				if (damageMultiplier >= 1.50f)
-					weaponDecayRolls++;
-
-				if (damageMultiplier >= 2.25f)
-					weaponDecayRolls++;
-
-				// Area and cone specials stress the weapon more, but only once per command execution.
-				if (data.getCommand()->isAreaAction() || data.getCommand()->isConeAction())
-					weaponDecayRolls++;
-
-				// Heavy weapons should feel powerful, but costly to operate.
-				int weaponType = weapon->getGameObjectType();
-
-				if (weaponType == SceneObjectType::HEAVYWEAPON ||
-						weaponType == SceneObjectType::SPECIALHEAVYWEAPON)
-					weaponDecayRolls++;
-
-				// Jedi weapons already have separate balance pressure in your custom systems.
-				// Keep saber special decay from scaling too aggressively for now.
-				if (weapon->isJediWeapon() && weaponDecayRolls > 2)
-					weaponDecayRolls = 2;
-
-				// Hard cap so one successful special cannot trash the weapon.
-				if (weaponDecayRolls > 5)
-					weaponDecayRolls = 5;
-
-				for (int i = 0; i < weaponDecayRolls; ++i)
-					weapon->decay(attacker);
-			}
-		}
-
-		// This method can be called multiple times for area attacks. Let the calling method decrease the powerup once.
-		if (!data.isForceAttack() && weapon != nullptr)
+		// This method can be called multiple times for area attacks. Let the calling method decrease the powerup once
+		if (!data.isForceAttack())
 			weapon->decreasePowerupUses(attacker);
 	}
 
@@ -431,13 +375,7 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 }
 
 int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* weapon, CreatureObject* defender, const CreatureAttackData& data, bool* shouldGcwTef, bool* shouldBhTef, bool* shouldJediTef) {
-		//max range checks
-	if (attacker->isPlayerCreature() && weapon != nullptr && weapon->isRangedWeapon() && weapon->getMaxRange() >= 65) {
-  		Locker locker(weapon);
- 		weapon->setMaxRange(64);
-	}
-
-	if (attacker->isPlayerCreature() && weapon != nullptr && weapon->isFlameThrower()) {
+	if (attacker->isPlayerCreature() && weapon->isFlameThrower()) {
   		Locker locker(weapon);
 		ManagedReference<PowerupObject*> pup = weapon->removePowerup();
 		if (pup != nullptr) {
@@ -489,42 +427,8 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 	// need to calculate damage here to get proper client spam
 	int damage = 0;
 
-        if (damageMultiplier != 0) {
-                damage = calculateDamage(attacker, weapon, defender, data) * damageMultiplier;
-        }
-
-        if (damage > 0 && attacker->isCreatureObject() && weapon != nullptr && !weapon->isMeleeWeapon()) {
-                CreatureObject* creoAttacker = cast<CreatureObject*>(attacker);
-
-                int lethality = creoAttacker->getSkillMod("bountyhunter_lethality");
-
-                if (lethality > 0) {
-                        bool validLethalityWeapon = false;
-
-                        const auto creatureAccMods = weapon->getCreatureAccuracyModifiers();
-
-                        for (int i = 0; i < creatureAccMods->size(); ++i) {
-                                const String& mod = creatureAccMods->get(i);
-
-                                if (mod == "rifle_accuracy" ||
-                                                mod == "carbine_accuracy" ||
-                                                mod == "pistol_accuracy" ||
-                                                mod == "heavy_rifle_lightning_accuracy") {
-                                        validLethalityWeapon = true;
-                                        break;
-                                }
-                        }
-
-                        if (validLethalityWeapon) {
-                                int lethalityBonus = (damage * lethality) / 100;
-
-                                if (lethalityBonus < 1)
-                                        lethalityBonus = 1;
-
-                                damage += lethalityBonus;
-                        }
-                }
-        }
+	if (damageMultiplier != 0)
+		damage = calculateDamage(attacker, weapon, defender, data) * damageMultiplier;
 
 	damageMultiplier = 1.0f;
 
@@ -556,72 +460,12 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 			defender->executeObjectControllerAction(STRING_HASHCODE("attack"), attacker->getObjectID(), "");
 		damageMultiplier = 0.0f;
 		break;}
-		case RICOCHET:
-			doLightsaberBlock(attacker, weapon, defender, damage);
-			damageMultiplier = 0.0f;
-			checkForTefs(attacker, defender, shouldGcwTef, shouldBhTef, shouldJediTef);
-			return 0;
+	case RICOCHET:
+		doLightsaberBlock(attacker, weapon, defender, damage);
+		damageMultiplier = 0.0f;
+		return 0;
 	default:
 		break;
-	}
-
-	// Disarming Shot weapon disruption.
-	// This makes Disarming Shot actually damage the defender's weapon when the attack connects.
-	// The cooldown throttles only weapon condition damage, not the attack, state application, or normal damage.
-	// Forced unequip / true weapon lockout should be handled later after reviewing command queue behavior.
-	if (!data.isStateOnlyAttack() && damageMultiplier > 0.0f) {
-		uint32 commandCRC = data.getCommandCRC();
-
-		bool disarmingShotOne =
-				commandCRC == STRING_HASHCODE("disarmingshot1") ||
-				commandCRC == STRING_HASHCODE("disarmingShot1");
-
-		bool disarmingShotTwo =
-				commandCRC == STRING_HASHCODE("disarmingshot2") ||
-				commandCRC == STRING_HASHCODE("disarmingShot2");
-
-		if (disarmingShotOne || disarmingShotTwo) {
-			String disarmingShotCooldown;
-
-			if (disarmingShotTwo) {
-				disarmingShotCooldown = "disarming_shot_2_weapon_damage";
-			} else {
-				disarmingShotCooldown = "disarming_shot_1_weapon_damage";
-			}
-
-			int disarmingShotCooldownTime = disarmingShotTwo ? 3500 : 2500;
-
-			if (defender->checkCooldownRecovery(disarmingShotCooldown)) {
-				ManagedReference<WeaponObject*> defenderWeapon = defender->getWeapon();
-
-				if (defenderWeapon != nullptr && !defenderWeapon->isBroken()) {
-					float defenderWeaponConditionDamage = disarmingShotTwo ? 12.0f : 7.0f;
-
-					// Scale slightly from the attack's pre-mitigation damage so better weapons matter,
-					// but cap it hard so Disarming Shot cannot delete a weapon in one hit.
-					defenderWeaponConditionDamage += damage * 0.003f;
-
-					if (hitVal == BLOCK)
-						defenderWeaponConditionDamage *= 0.50f;
-
-					if (attacker->isPlayerCreature() && defender->isPlayerCreature())
-						defenderWeaponConditionDamage *= 0.50f;
-
-					float defenderWeaponConditionCap = disarmingShotTwo ? 22.0f : 14.0f;
-
-					if (defenderWeaponConditionDamage > defenderWeaponConditionCap)
-						defenderWeaponConditionDamage = defenderWeaponConditionCap;
-
-					if (defenderWeaponConditionDamage > 0.0f) {
-						Locker wlocker(defenderWeapon);
-
-						defenderWeapon->inflictDamage(defenderWeapon, 0, defenderWeaponConditionDamage, true, true);
-
-						defender->updateCooldownTimer(disarmingShotCooldown, disarmingShotCooldownTime);
-					}
-				}
-			}
-		}
 	}
 
 	// Apply states first
@@ -894,6 +738,15 @@ float CombatManager::getWeaponRangeModifier(float currentRange, WeaponObject* we
 	idealRange = (float) weapon->getIdealRange();
 	maxRange = (float) weapon->getMaxRange();
 
+	if (minRange < 0.f)
+		minRange = 0.f;
+
+	if (idealRange < minRange)
+		idealRange = minRange;
+
+	if (maxRange < idealRange)
+		maxRange = idealRange;
+
 	smallMod = (float) weapon->getPointBlankAccuracy();
 	bigMod = (float) weapon->getIdealAccuracy();
 
@@ -1073,40 +926,13 @@ int CombatManager::getDefenderSecondaryDefenseModifier(CreatureObject* defender)
 float CombatManager::getDefenderToughnessModifier(CreatureObject* defender, int attackType, int damType, float damage) {
 	ManagedReference<WeaponObject*> weapon = defender->getWeapon();
 
-	if (weapon == nullptr)
-		return damage < 0 ? 0 : damage;
-
 	const auto defenseToughMods = weapon->getDefenderToughnessModifiers();
 
-	bool defenderIsUsingBountyHunterWeapon = false;
-
-	for (int i = 0; i < defenseToughMods->size(); ++i) {
-		String toughModName = defenseToughMods->get(i);
-
-		if (toughModName == "pistol_toughness" ||
-				toughModName == "carbine_toughness" ||
-				toughModName == "rifle_toughness" ||
-				toughModName == "heavy_rifle_lightning_toughness" ||
-				toughModName == "light_lightning_cannon_toughness") {
-			defenderIsUsingBountyHunterWeapon = true;
+	if (attackType == weapon->getAttackType()) {
+		for (int i = 0; i < defenseToughMods->size(); ++i) {
+			int toughMod = defender->getSkillMod(defenseToughMods->get(i));
+			if (toughMod > 0) damage *= 1.f - (toughMod / 100.f);
 		}
-
-		if (attackType == weapon->getAttackType()) {
-			int toughMod = defender->getSkillMod(toughModName);
-
-			if (toughMod > 0)
-				damage *= 1.f - (toughMod / 100.f);
-		}
-	}
-
-	if (defenderIsUsingBountyHunterWeapon && defender->hasSkill("combat_bountyhunter_novice")) {
-		int bountyHunterToughness = defender->getSkillMod("bountyhunter_toughness");
-
-		if (bountyHunterToughness > 60)
-			bountyHunterToughness = 60;
-
-		if (bountyHunterToughness > 0)
-			damage *= 1.f - (bountyHunterToughness / 100.f);
 	}
 
 	int jediToughness = defender->getSkillMod("jedi_toughness");
@@ -1394,30 +1220,15 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 	if (lightningAttack == true && !defender->isPlayerCreature())
 		damageType = SharedWeaponObjectTemplate::LIGHTSABER;
 
-		if (defender->isAiAgent()) {
-			float armorReduction = getArmorNpcReduction(cast<AiAgent*>(defender), damageType);
+	if (defender->isAiAgent()) {
+		float armorReduction = getArmorNpcReduction(cast<AiAgent*>(defender), damageType);
 
-			bool physicalLightsaberAttack =
-					!data.isForceAttack() &&
-					weapon != nullptr &&
-					weapon->isJediWeapon() &&
-					damageType == SharedWeaponObjectTemplate::LIGHTSABER;
+		if (armorReduction >= 0)
+			damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
 
-			if (physicalLightsaberAttack) {
-				if (armorPiercing < 3)
-					armorPiercing = 3;
+		if (armorReduction > 0) damage *= (1.f - (armorReduction / 100.f));
 
-				if (armorReduction > 20.0f)
-					armorReduction = 20.0f;
-			}
-
-			if (armorReduction >= 0)
-				damage *= getArmorPiercing(cast<AiAgent*>(defender), armorPiercing);
-
-			if (armorReduction > 0)
-				damage *= (1.f - (armorReduction / 100.f));
-
-			return damage;
+		return damage;
 	} else if (defender->isVehicleObject()) {
 		float armorReduction = getArmorVehicleReduction(cast<VehicleObject*>(defender), damageType);
 
@@ -1490,85 +1301,13 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		}
 	}
 
-	// Condition decay tuning block.
-	// Auto-attacks should matter, so basic attacks apply normal gear stress.
-	// Specials apply higher gear stress, but are capped so gear does not explode from one normal fight.
-	bool specialAttack = data.getCommandCRC() != STRING_HASHCODE("attack");
-
-	float commandConditionMultiplier = 1.0f;
-
-	if (specialAttack) {
-		float damageMultiplier = data.getDamageMultiplier();
-
-		if (damageMultiplier < 1.0f)
-			damageMultiplier = 1.0f;
-
-		// Specials stress gear more than basic attacks, but not wildly more.
-		// A 1.0x special = 1.25x condition stress.
-		// Higher damage multiplier specials scale upward, capped at 2.0x.
-		commandConditionMultiplier = 1.25f + ((damageMultiplier - 1.0f) * 0.35f);
-
-		if (commandConditionMultiplier > 2.0f)
-			commandConditionMultiplier = 2.0f;
-	}
-
-	float pvpConditionScalar = 1.0f;
-
-	if (attacker != nullptr && defender != nullptr && attacker->isPlayerCreature() && defender->isPlayerCreature())
-		pvpConditionScalar = 0.50f;
-
-	float armorConditionRate = 0.0015f;
-	float psgConditionRate = 0.0010f;
-
-	switch (damageType) {
-	case SharedWeaponObjectTemplate::KINETIC:
-		armorConditionRate = 0.0015f;
-		psgConditionRate = 0.0010f;
-		break;
-	case SharedWeaponObjectTemplate::ENERGY:
-		armorConditionRate = 0.0015f;
-		psgConditionRate = 0.0010f;
-		break;
-	case SharedWeaponObjectTemplate::ELECTRICITY:
-		armorConditionRate = 0.0015f;
-		psgConditionRate = 0.0040f;
-		break;
-	case SharedWeaponObjectTemplate::STUN:
-		armorConditionRate = 0.0008f;
-		psgConditionRate = 0.0010f;
-		break;
-	case SharedWeaponObjectTemplate::BLAST:
-		armorConditionRate = 0.0030f;
-		psgConditionRate = 0.0030f;
-		break;
-	case SharedWeaponObjectTemplate::HEAT:
-		armorConditionRate = 0.0025f;
-		psgConditionRate = 0.0015f;
-		break;
-	case SharedWeaponObjectTemplate::COLD:
-		armorConditionRate = 0.0012f;
-		psgConditionRate = 0.0012f;
-		break;
-	case SharedWeaponObjectTemplate::ACID:
-		armorConditionRate = 0.0040f;
-		psgConditionRate = 0.0025f;
-		break;
-	case SharedWeaponObjectTemplate::LIGHTSABER:
-		armorConditionRate = 0.0060f;
-		psgConditionRate = 0.0020f;
-		break;
-	default:
-		armorConditionRate = 0.0015f;
-		psgConditionRate = 0.0010f;
-		break;
-	}
-
 	// PSG
 	ManagedReference<ArmorObject*> psg = getPSGArmor(defender);
 
 	if (psg != nullptr && !psg->isVulnerable(damageType)) {
 		float armorReduction =  getArmorObjectReduction(psg, damageType);
-		float prePsgDamage = damage;
+		float dmgAbsorbed = damage;
+		float preArmorDamage = damage;
 
 		if (lightningAttack == true && attacker->isPlayerCreature())
 			armorPiercing = 3;
@@ -1576,48 +1315,18 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		if (defender->isPlayerCreature())
 			armorPiercing++;
 
-		int psgRating = 0;
-
-		if (!psg->isBroken())
-			psgRating = psg->getRating();
-
 		damage *= getArmorPiercing(psg, armorPiercing);
 
-		if (armorReduction > 0)
-			damage *= 1.f - (armorReduction / 100.f);
+        if (armorReduction > 0) damage *= 1.f - (armorReduction / 100.f);
 
-		float psgAbsorbedDamage = prePsgDamage - damage;
+		dmgAbsorbed -= damage;
+		if (dmgAbsorbed > 0)
+			sendMitigationCombatSpam(defender, psg, (int)dmgAbsorbed, PSG);
 
-		if (psgAbsorbedDamage > 0)
-			sendMitigationCombatSpam(defender, psg, (int)psgAbsorbedDamage, PSG);
+		Locker plocker(psg);
 
-		float psgPiercingStress = 1.0f;
+		psg->inflictDamage(psg, 0, damage * 0.01, true, true);
 
-		if (armorPiercing > psgRating)
-			psgPiercingStress += (armorPiercing - psgRating) * 0.15f;
-		else if (psgRating > armorPiercing)
-			psgPiercingStress += (psgRating - armorPiercing) * 0.05f;
-
-		float psgConditionDamage = psgAbsorbedDamage * psgConditionRate * commandConditionMultiplier * pvpConditionScalar * psgPiercingStress;
-
-		if (psgConditionDamage < 0.0f)
-			psgConditionDamage = 0.0f;
-
-		float psgConditionCap = specialAttack ? 45.0f : 25.0f;
-
-		if (damageType == SharedWeaponObjectTemplate::ELECTRICITY ||
-				damageType == SharedWeaponObjectTemplate::BLAST ||
-				damageType == SharedWeaponObjectTemplate::ACID)
-			psgConditionCap *= 1.5f;
-
-		if (psgConditionDamage > psgConditionCap)
-			psgConditionDamage = psgConditionCap;
-
-		if (psgConditionDamage > 0.0f) {
-			Locker plocker(psg);
-
-			psg->inflictDamage(psg, 0, psgConditionDamage, true, true);
-		}
 	}
 
 	// Standard Armor
@@ -1627,70 +1336,44 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 
 	if (armor != nullptr && !armor->isVulnerable(damageType)) {
 		float armorReduction = getArmorObjectReduction(armor, damageType);
-		float preArmorDamage = damage;
+		float dmgAbsorbed = damage;
 
 		if (lightningAttack == true && attacker->isPlayerCreature()) //Ap2
 			armorPiercing = 3;
 
-		int armorRating = 0;
-
-		if (!armor->isBroken())
-			armorRating = armor->getRating();
-
 		// use only the damage applied to the armor for piercing (after the PSG takes some off)
 		damage *= getArmorPiercing(armor, armorPiercing);
 
-		if (armorReduction > 0)
+		if (armorReduction > 0) {
 			damage *= (1.f - (armorReduction / 100.f));
-
-		float armorAbsorbedDamage = preArmorDamage - damage;
-
-		if (armorAbsorbedDamage > 0)
-			sendMitigationCombatSpam(defender, armor, (int)armorAbsorbedDamage, ARMOR);
-
-		float armorPiercingStress = 1.0f;
-
-		if (armorPiercing > armorRating)
-			armorPiercingStress += (armorPiercing - armorRating) * 0.15f;
-		else if (armorRating > armorPiercing)
-			armorPiercingStress += (armorRating - armorPiercing) * 0.05f;
-
-		float armorConditionDamage = armorAbsorbedDamage * armorConditionRate * commandConditionMultiplier * pvpConditionScalar * armorPiercingStress;
-
-		if (armorConditionDamage < 0.0f)
-			armorConditionDamage = 0.0f;
-
-		float armorConditionCap = specialAttack ? 60.0f : 35.0f;
-
-		if (damageType == SharedWeaponObjectTemplate::ACID ||
-				damageType == SharedWeaponObjectTemplate::BLAST ||
-				damageType == SharedWeaponObjectTemplate::LIGHTSABER)
-			armorConditionCap *= 1.5f;
-
-		if (armorConditionDamage > armorConditionCap)
-			armorConditionDamage = armorConditionCap;
-
-		if (armorConditionDamage > 0.0f) {
-			Locker alocker(armor);
-
-			armor->inflictDamage(armor, 0, armorConditionDamage, true, true);
+			dmgAbsorbed -= damage;
+			sendMitigationCombatSpam(defender, armor, (int)dmgAbsorbed, ARMOR);
 		}
-	}
+
+		// inflict condition damage
+		Locker alocker(armor);
+
+		if (getArmorObjectReduction(armor, 16) > 0 && damageType == 16) {
+			armor->inflictDamage(armor, 0, damage * 0.02, true, true);
+		} else {
+			armor->inflictDamage(armor, 0, damage * 0.01, true, true);
+			}
+		}
 
 	if (psg != nullptr && !psg->isVulnerable(damageType)) {
 		Locker plocker(psg);
 
-		if (defender->checkCooldownRecovery("psg_damaged")) {
-	defender->updateCooldownTimer("psg_damaged", 1000);
-
-	if (attacker->isPlayerCreature())
-		psg->inflictDamage(psg, 0, damage * 0.002, true, true);
-	else
-		psg->inflictDamage(psg, 0, damage * 0.001, true, true);
+		if (defender->checkCooldownRecovery("psg_damaged")){
+			if (attacker->isPlayerCreature())
+				psg->inflictDamage(psg, 0, damage * 0.002, true, true);
+			  else
+				psg->inflictDamage(psg, 0, damage * 0.001, true, true);
+			} else {
+				defender->updateCooldownTimer("psg_damaged", 1000);
+			}
 		}
-	}
 
-	return (int)damage;
+	return damage;
 }
 
 float CombatManager::getArmorPiercing(TangibleObject* defender, int armorPiercing) {
@@ -2000,47 +1683,8 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 		}
 	}
 	// PvP Damage Reduction.
-	if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack()) {
-		bool physicalLightsaberAttack =
-				weapon != nullptr &&
-				weapon->isJediWeapon() &&
-				weapon->getDamageType() == SharedWeaponObjectTemplate::LIGHTSABER;
-
-		bool basicAttack = data.getCommandCRC() == STRING_HASHCODE("attack");
-
-		if (physicalLightsaberAttack) {
-			// Preserve current saber PvP pressure for now.
-			damage *= 0.75;
-		} else if (basicAttack) {
-			// Auto-attacks should be the sustainable backbone of weapon combat.
-			// This makes weapon stats, damage type, AP, and speed matter more in PvP.
-			damage *= 0.40;
-		} else {
-			// Specials still hit harder through their command multipliers and effects,
-			// but remain more controlled in PvP and now carry higher weapon condition cost.
-			damage *= 0.25;
-		}
-	}
-
-	if (attacker->isPlayerCreature() &&
-			defender != nullptr &&
-			attacker->hasBountyMissionFor(defender) &&
-			(defender->hasSkill("force_title_jedi_rank_02") ||
-			defender->hasSkill("combat_jedi") ||
-			defender->hasSkill("combat_jedi_novice") ||
-			defender->hasSkill("returns_jedi_elder") ||
-			defender->hasSkill("returns_jedi_elder_light") ||
-			defender->hasSkill("returns_jedi_elder_light_novice") ||
-			defender->hasSkill("returns_jedi_elder_dark") ||
-			defender->hasSkill("returns_jedi_elder_dark_novice"))) {
-		int huntersCull = attacker->getSkillMod("hunters_cull");
-		int maxHealth = defender->getMaxHAM(CreatureAttribute::HEALTH);
-
-		if (huntersCull > 0 && maxHealth > 0 &&
-				defender->getHAM(CreatureAttribute::HEALTH) * 100 <= maxHealth * 35) {
-			damage *= 1.f + (Math::min(huntersCull, 50) / 100.f);
-		}
-	}
+	if (attacker->isPlayerCreature() && defender->isPlayerCreature() && !data.isForceAttack())
+		damage *= 0.25;
 
 	if (damage < 1) damage = 1;
 
@@ -2170,32 +1814,11 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* target
 			if (targetCreature->isIntimidated())
 				saberDef = saberDef / 2;
 
-			CreatureObject* creatureAttacker = nullptr;
+			if (saberDef < 0)
+				saberDef = 0;
 
-			if (attacker->isCreatureObject())
-				creatureAttacker = attacker->asCreatureObject();
-
-			if (creatureAttacker != nullptr &&
-					creatureAttacker->isPlayerCreature() &&
-					creatureAttacker->hasBountyMissionFor(targetCreature)) {
-				int saberReduction = 0;
-				int huntersMark = creatureAttacker->getSkillMod("hunters_mark");
-
-				if (huntersMark >= 76)
-					saberReduction += 20;
-				else if (huntersMark >= 26)
-					saberReduction += 10;
-				else if (huntersMark >= 1)
-					saberReduction += 5;
-
-				if (creatureAttacker->hasSkill("combat_bountyhunter_master"))
-					saberReduction += 50;
-
-				saberReduction = Math::min(saberReduction, 70);
-
-				if (saberReduction > 0)
-					saberDef = Math::max(0, saberDef * (100 - saberReduction) / 100);
-			}
+			if (saberDef > 100)
+				saberDef = 100;
 
 			if (!(attacker->isTurret() || weapon->isThrownWeapon()) &&
 					(weapon->isHeavyWeapon() || weapon->isSpecialHeavyWeapon() ||
@@ -3480,12 +3103,6 @@ void CombatManager::checkForTefs(CreatureObject* attacker, CreatureObject* defen
 	ManagedReference<CreatureObject*> targetCreature = defender->isPet() || defender->isVehicleObject() ? defender->getLinkedCreature() : defender;
 
 	if (attackingCreature != nullptr && targetCreature != nullptr && attackingCreature->isPlayerCreature() && targetCreature->isPlayerCreature() && !areInDuel(attackingCreature, targetCreature)) {
-		bool isBountyPair = attackingCreature->hasBountyMissionFor(targetCreature) || targetCreature->hasBountyMissionFor(attackingCreature);
-
-		if (isBountyPair) {
-			*shouldBhTef = true;
-			return;
-		}
 
 		if (!(*shouldJediTef) && (targetCreature->getPlayerObject()->isJedi() && targetCreature->getWeapon()->isJediWeapon()))
 			*shouldJediTef = true;
@@ -3499,7 +3116,9 @@ void CombatManager::checkForTefs(CreatureObject* attacker, CreatureObject* defen
 		if (!(*shouldGcwTef) && (attackingCreature->getFaction() != targetCreature->getFaction()) && attackingCreature->getFaction() != 0 && targetCreature->getFaction() != 0)
 			*shouldGcwTef = true;
 
-	} else if (attackingCreature != nullptr && targetCreature != nullptr && attackingCreature->isPlayerCreature() && targetCreature->getFaction() != 0 && targetCreature->getFaction() != attackingCreature->getFaction()){
-		*shouldGcwTef = true;
+		if (!(*shouldBhTef) && (attackingCreature->hasBountyMissionFor(targetCreature) || targetCreature->hasBountyMissionFor(attackingCreature)))
+			*shouldBhTef = true;
+		} else if (attackingCreature != nullptr && targetCreature != nullptr && attackingCreature->isPlayerCreature() && targetCreature->getFaction() != 0 && targetCreature->getFaction() != attackingCreature->getFaction()){
+			*shouldGcwTef = true;
 	}
 }

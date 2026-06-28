@@ -119,7 +119,7 @@ ForceLightningSingle2Command = {
 	frsDarkMinDamageModifier = 10,
 	frsDarkMaxDamageModifier = 20,
 
-	range = 32
+	range = 12
 }
 
 AddCommand(ForceLightningSingle2Command)

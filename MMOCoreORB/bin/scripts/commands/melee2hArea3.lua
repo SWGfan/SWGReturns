@@ -72,7 +72,7 @@ Melee2hArea3Command = {
 	  )
 	},
 
-	areaRange = 16,
+	areaRange = 9,
 	areaAction = true,
 
 	animation = "lower_posture_2hmelee_5",

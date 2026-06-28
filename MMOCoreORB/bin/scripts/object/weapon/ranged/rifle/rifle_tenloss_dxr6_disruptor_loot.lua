@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_tenloss_dxr6_disruptor_loot = object_weapon_ran
 	idealRange = 54,
 	idealAccuracy = 90,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = 15,
 
 	minDamage = 70,

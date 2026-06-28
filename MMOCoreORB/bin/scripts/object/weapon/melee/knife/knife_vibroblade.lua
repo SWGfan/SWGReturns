@@ -272,7 +272,7 @@ object_weapon_melee_knife_knife_vibroblade = object_weapon_melee_knife_shared_kn
 	idealRange = 3,
 	idealAccuracy = 5,
 
-	maxRange = 4,
+	maxRange = 3,
 	maxRangeAccuracy = 5,
 
 	minDamage = 15,

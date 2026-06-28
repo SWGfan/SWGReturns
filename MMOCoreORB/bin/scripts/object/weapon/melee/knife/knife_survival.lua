@@ -272,7 +272,7 @@ object_weapon_melee_knife_knife_survival = object_weapon_melee_knife_shared_knif
 	idealRange = 3,
 	idealAccuracy = 30,
 
-	maxRange = 4,
+	maxRange = 5,
 	maxRangeAccuracy = 30,
 
 	minDamage = 20,

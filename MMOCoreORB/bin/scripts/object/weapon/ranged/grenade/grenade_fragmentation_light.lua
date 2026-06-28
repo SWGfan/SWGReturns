@@ -271,7 +271,7 @@ object_weapon_ranged_grenade_grenade_fragmentation_light = object_weapon_ranged_
 	idealRange = 20,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 12,
 	maxRangeAccuracy = -30,
 
 	minDamage = 50,

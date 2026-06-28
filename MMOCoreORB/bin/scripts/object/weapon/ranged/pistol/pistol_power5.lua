@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_power5 = object_weapon_ranged_pistol_shared_p
 	idealRange = 10,
 	idealAccuracy = 5,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -70,
 
 	minDamage = 25,

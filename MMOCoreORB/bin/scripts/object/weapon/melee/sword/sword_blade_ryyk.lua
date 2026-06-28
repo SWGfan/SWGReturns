@@ -272,7 +272,7 @@ object_weapon_melee_sword_sword_blade_ryyk = object_weapon_melee_sword_shared_sw
 	idealRange = 3,
 	idealAccuracy = -15,
 
-	maxRange = 4,
+	maxRange = 5,
 	maxRangeAccuracy = -15,
 
 	minDamage = 25,

@@ -63,7 +63,7 @@ FanShotCommand = {
 	
 	weaponType = PISTOLWEAPON,
 
-	range = -1
+	range = 12
 }
 
 AddCommand(FanShotCommand)

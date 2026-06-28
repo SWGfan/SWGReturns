@@ -109,6 +109,7 @@
 #include <sys/stat.h>
 #include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/objects/player/sui/callbacks/PlaceBountySuiCallback.h"
+#include "server/zone/objects/player/sui/callbacks/BountyHuntSuiCallback.h"
 #include "server/zone/objects/player/sui/inputbox/SuiInputBox.h"
 #include "server/zone/managers/object/ObjectManager.h"
 
@@ -238,14 +239,6 @@ void PlayerManagerImplementation::loadLuaConfig() {
 	groupExpMultiplier = lua->getGlobalFloat("groupExpMultiplier");
 
 	globalExpMultiplier = lua->getGlobalFloat("globalExpMultiplier");
-	imagedesignExpMultiplier  = lua->getGlobalFloat("imagedesignExpMultiplier");
-	bioEngineerExpMultiplier  = lua->getGlobalFloat("bioEngineerExpMultiplier");
-	jediExpMultiplier         = lua->getGlobalFloat("jediExpMultiplier");
-	slicingExpMultiplier      = lua->getGlobalFloat("slicingExpMultiplier");
-	medicExpMultiplier        = lua->getGlobalFloat("medicExpMultiplier");
-	craftingExpMultiplier     = lua->getGlobalFloat("craftingExpMultiplier");
-	entertainingExpMultiplier = lua->getGlobalFloat("entertainingExpMultiplier");
-	scoutExpMultiplier        = lua->getGlobalFloat("scoutExpMultiplier");
 
 	baseStoredCreaturePets = lua->getGlobalInt("baseStoredCreaturePets");
 	baseStoredFactionPets = lua->getGlobalInt("baseStoredFactionPets");
@@ -960,9 +953,9 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 }
 
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("corellia");
+	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-137, 28, -4739);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1006,9 +999,9 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 }
 
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
-	Zone* zone = server->getZone("corellia");
+	Zone* zone = server->getZone("naboo");
 
-	player->initializePosition(-137, 28, -4739);
+	player->initializePosition(1995, -197, 6198);
 	zone->transferObject(player, -1, true);
 
 	PlayerObject* ghost = player->getPlayerObject();
@@ -1307,12 +1300,20 @@ void PlayerManagerImplementation::killPlayer(TangibleObject* attacker, CreatureO
 		}
 	}
 
-		//CUSTOM BH SYSTEM
-	CreatureObject* attackerCreature = attacker->asCreatureObject();
-	if (attacker->isPlayerCreature() && attacker != player){
-		offerPlayerBounty(attackerCreature, player);
-		}
+        //CUSTOM BH SYSTEM
+    CreatureObject* bountyAttacker = attacker->asCreatureObject();
 
+    if (bountyAttacker != nullptr && bountyAttacker->isPet()) {
+        CreatureObject* owner = bountyAttacker->getLinkedCreature().get();
+
+        if (owner != nullptr && owner->isPlayerCreature()) {
+            bountyAttacker = owner;
+        }
+    }
+
+    if (bountyAttacker != nullptr && bountyAttacker->isPlayerCreature() && bountyAttacker != player) {
+        offerPlayerBounty(bountyAttacker, player);
+    }
 	if (!attacker->isPlayerCreature()) {
 		ghost->updatePveDeaths();
 	}
@@ -1452,6 +1453,7 @@ void PlayerManagerImplementation::killPlayer(TangibleObject* attacker, CreatureO
 	player->notifyObjectKillObservers(attacker);
 		}
 	}
+}
 
 void PlayerManagerImplementation::sendActivateCloneRequest(CreatureObject* player, int typeofdeath) {
 	Zone* zone = player->getZone();
@@ -1745,6 +1747,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 	player->notifyObservers(ObserverEventType::PLAYERCLONED, player, 0);
 
 
+	// Jedi experience loss disabled. Skill revocation will replace XP loss.
+#if 0
 	// Jedi experience loss.
 	if (ghost->getJediState() >= 2) {
 		int jediXpCap = ghost->getXpCap("jedi_general");
@@ -1762,6 +1766,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		message.setTO("exp_n", "jedi_general");
 		player->sendSystemMessage(message);
 	}
+#endif
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1810,6 +1815,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 	float gcwBonus = 1.0f;
 	uint32 winningFaction = -1;
 	int baseXp = 0;
+	int targetLevel = 0;
 	Zone* zone = lairZone;
 	if (zone==nullptr) {
 		zone = destructedObject->getZone();
@@ -1839,14 +1845,18 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 			}
 		}
 
-		if (ai != nullptr)
+		if (ai != nullptr) {
 			baseXp = ai->getBaseXp();
+			targetLevel = ai->getLevel();
+		}
 
 	} else {
 		ManagedReference<AiAgent*> ai = cast<AiAgent*>(destructedObject);
 
-		if (ai != nullptr)
+		if (ai != nullptr) {
 			baseXp = ai->getBaseXp();
+			targetLevel = ai->getLevel();
+		}
 	}
 
 	for (int i = 0; i < threatMap->size(); ++i) {
@@ -1934,35 +1944,46 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				xpAmount /= (float) entry->size() / 1;
 
 				//Cap xp based on level
-				xpAmount = Math::min(xpAmount, calculatePlayerLevel(attacker, xpType) * 300.f);
+				int attackerLevel = calculatePlayerLevel(attacker, xpType);
+				xpAmount = Math::min(xpAmount, attackerLevel * 300.f);
 
-				//Apply group bonus if in group
-				//Adjust Range default 100m
+			// Reduce XP heavily when killing targets below the player's own combat level.
+			// Grouping should not raise the penalty level; nearby group members already grant the group XP bonus below.
+			if (targetLevel > 0 && targetLevel < attackerLevel - 2) {
+				xpAmount *= 0.05f;
+			}
+
+				// Apply one group XP bonus when another player group member is nearby.
 				if (group != nullptr) {
-				ManagedReference<GroupObject*> group = attacker->getGroup();
-				int groupSize = group->getGroupSize();
-				for (int i = 0; i < groupSize; i++) {
-					ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
-					if (groupMember->isInRange(attacker, 20000.0)) {	
-						if (groupMember->isPlayerCreature()) {			
-							xpAmount *= groupExpMultiplier;
-							} 			
-						}	
+					bool hasNearbyGroupMember = false;
+					int groupSize = group->getGroupSize();
+
+					for (int i = 0; i < groupSize; i++) {
+						ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
+
+						if (groupMember == nullptr || groupMember == attacker)
+							continue;
+
+						if (groupMember->isPlayerCreature() && groupMember->isInRange(attacker, 100.0f)) {
+							hasNearbyGroupMember = true;
+							break;
+						}
+					}
+
+					if (hasNearbyGroupMember) {
+						xpAmount *= groupExpMultiplier;
 					}
 				}
 					
 				if (winningFaction == attacker->getFaction())
 					xpAmount *= gcwBonus;
 
-				//Jedi experience doesn't count towards combat experience, and is earned at 20% the rate of normal experience
+				// Jedi experience doesn't count towards combat experience.
 				if (xpType != "jedi_general")
 					combatXp += xpAmount;
-				else
-					xpAmount *= 0.2f;
 
-				//Award individual expType
+				// Award individual expType
 				awardExperience(attacker, xpType, xpAmount);
-			}
 
 			combatXp /= 10.f;
 
@@ -2016,7 +2037,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 		Locker clock(leader, destructedObject);
 
-		awardExperience(leader, "squadleader", entry->getValue() * 2.f);
+		awardExperience(leader, "squadleader", entry->getValue() * 9.f);
 	}
 
 	threatMap->removeAll();
@@ -2255,92 +2276,19 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	if (playerObject == nullptr)
 		return 0;
 
-	int xp;
-	if (amount <= 0){
+	int xp = 0;
+
+	if (amount <= 0) {
 		xp = playerObject->addExperience(xpType, amount);
-	} else if (		xpType == "bio_engineer" ||
-		xpType == "bio_engineer_dna_harvesting" ||
-		xpType == "bountyhunter" ||
-		xpType == "business_general" ||
-		xpType == "camp" ||
-		xpType == "combat" ||
-		xpType == "combat_general" ||
-		xpType == "combat_meleespecialize_onehand" ||
-		xpType == "combat_meleespecialize_polearm" ||
-		xpType == "combat_meleespecialize_twohand" ||
-		xpType == "combat_meleespecialize_unarmed" ||
-		xpType == "combat_rangedspecialize_carbine" ||
-		xpType == "combat_rangedspecialize_heavy" ||
-		xpType == "combat_rangedspecialize_pistol" ||
-		xpType == "combat_rangedspecialize_rifle" ||
-		xpType == "combat_rangespecialize_bactarifle" ||
-		xpType == "crafting_bio_engineer_creature" ||
-		xpType == "crafting_bio_engineer_tissue" ||
-		xpType == "crafting_clothing_armor" ||
-		xpType == "crafting_clothing_general" ||
-		xpType == "crafting_droid_general" ||
-		xpType == "crafting_food_general" ||
-		xpType == "crafting_general" ||
-		xpType == "crafting_medicine_general" ||
-		xpType == "crafting_scout" ||
-		xpType == "crafting_scout_camp" ||
-		xpType == "rafting_scout_trap" ||
-		xpType == "crafting_spice" ||
-		xpType == "crafting_structure_general" ||
-		xpType == "crafting_weapons_general" ||
-		xpType == "crafting_weapons_melee" ||
-		xpType == "crafting_weapons_munition" ||
-		xpType == "crafting_weapons_munitions" ||
-		xpType == "crafting_weapons_ranged" ||
-		xpType == "creaturehandler" ||
-		xpType == "dance" ||
-		xpType == "merchant" ||
-		xpType == "pilot_general" ||
-		xpType == "pilot_imperial" ||
-		xpType == "pilot_neutral" ||
-		xpType == "political" ||
-		xpType == "prestige_imperial" ||
-		xpType == "prestige_pilot" ||
-		xpType == "prestige_rebel" ||
-		xpType == "ranger" ||
-		xpType == "resource_harvesting_inorganic" ||
-		xpType == "resource_harvesting_organic" ||
-		xpType == "reverse_engineering" ||
-		xpType == "scout" ||
-		xpType == "smuggler" || 
-		xpType == "space_combat_general" ||  
-		xpType == "squadleader" ||  
-		xpType == "trapping" || 
-		xpType == "shipwright") {
-		// Per-category XP multiplier (crafting/shipwright/entertainer/scout configurable)
-		// Clamp: if a multiplier was never set (0.0f), fall back to 1.1
-		auto safeRate = [](float r) { return r > 0.f ? r : 1.1f; };
-		float typeMultiplier = 1.1f;
-		if (xpType == "dance" ||			typeMultiplier = safeRate(entertainingExpMultiplier);
-		else if (xpType == "imagedesigner")
-			typeMultiplier = safeRate(imagedesignExpMultiplier);
-		else if (xpType == "jedi_general" || xpType == "combat_jedi_novice")
-			typeMultiplier = safeRate(jediExpMultiplier);
-		else if (xpType.indexOf("crafting_") == 0 || xpType == "reverse_engineering" ||
-		         xpType == "shipwright")
-			typeMultiplier = safeRate(craftingExpMultiplier);
-		else if (xpType == "scout" || xpType == "ranger" || xpType == "trapping" ||
-		         xpType == "camp" || xpType == "resource_harvesting_inorganic" ||
-		         xpType == "resource_harvesting_organic")
-			typeMultiplier = safeRate(scoutExpMultiplier);
-		float speciesModifier = 1.f;
-		if (amount > 0)
-			speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
-		xp = playerObject->addExperience(xpType, (int)(amount * speciesModifier * typeMultiplier));
+	} else {
+		float speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
+
+		if (applyModifiers) {
+			xp = playerObject->addExperience(xpType, (int)(amount * speciesModifier * localMultiplier * globalExpMultiplier));
 		} else {
-			float speciesModifier = 1.f;
-			if (amount > 0)
-				speciesModifier = getSpeciesXpModifier(player->getSpeciesName(), xpType);
-			if (applyModifiers)
-				xp = playerObject->addExperience(xpType, (int) (amount * speciesModifier * localMultiplier * globalExpMultiplier));
-			else
-				xp = playerObject->addExperience(xpType, (int)amount);
+			xp = playerObject->addExperience(xpType, amount);
 		}
+	}
 
 	player->notifyObservers(ObserverEventType::XPAWARDED, player, xp);
 
@@ -6471,41 +6419,57 @@ void PlayerManagerImplementation::updatePvPKillCount(CreatureObject* player) {
 }
 
 void PlayerManagerImplementation::offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender) {
-	PlayerObject* attackerGhost = attacker->getPlayerObject();
-	PlayerObject* defenderGhost = defender->getPlayerObject();
+    if (attacker == nullptr || defender == nullptr || attacker == defender)
+        return;
 
-	if (attackerGhost == nullptr || defenderGhost == nullptr)
-		return;
+    PlayerObject* attackerGhost = attacker->getPlayerObject();
+    PlayerObject* defenderGhost = defender->getPlayerObject();
 
-	//Check if they already have the bounty offer window open.
-	if (defenderGhost->hasSuiBoxWindowType(SuiWindowType::PLAYER_BOUNTY_OFFER))
-		return;
+    if (attackerGhost == nullptr || defenderGhost == nullptr)
+        return;
 
-	//Player already has a bounty on their head or they are a jedi
-	if (attackerGhost->hasPlayerBounty())
-		return;
+    MissionManager* missionManager = server->getMissionManager();
 
-	int reward = attackerGhost->calculateBhReward();
+    if (missionManager != nullptr) {
+        uint64 attackerId = attacker->getObjectID();
+        bool existingBounty = missionManager->hasPlayerBountyTargetInList(attackerId);
 
-	ManagedReference<SuiMessageBox*> suibox = new SuiMessageBox(defender, SuiWindowType::PLAYER_BOUNTY_OFFER);
+        if (existingBounty) {
+            missionManager->increasePlayerBountyReward(attackerId, 1000);
+        } else {
+            missionManager->addPlayerToBountyList(attackerId, 1000);
+            attackerGhost->setBountyReward(1000);
+        }
 
-	suibox->setPromptTitle("Bounty Hunters Guild");
-	suibox->setCallback(new PlaceBountySuiCallback(server, attacker, reward));
-	suibox->setOkButton(true, "@yes");
-	suibox->setCancelButton(true, "@no");
+        attackerGhost->updatePlayerBountyTimestamp(172800000); // 48 hours
+        attackerGhost->setBountyPlacerId(defender->getObjectID());
 
-	StringBuffer prompt;
+        if (attackerGhost->isOnline())
+            missionManager->updatePlayerBountyOnlineStatus(attackerId, true);
+    }
 
-	prompt << "You have been killed in combat by " + attacker->getFirstName() + ".\n\n"
-           << "The Bounty Hunters Guild has taken notice and you can place a bounty on their head for " + String::valueOf(reward) + " credits.\n\n"
-           << "Do you want to place a bounty on " + attacker->getFirstName() + " for " + String::valueOf(reward) + " credits?";
+    // Check if they already have the bounty offer window open.
+    if (defenderGhost->hasSuiBoxWindowType(SuiWindowType::PLAYER_BOUNTY_OFFER))
+        return;
 
-	suibox->setPromptText(prompt.toString());
+    ManagedReference<SuiInputBox*> suibox = new SuiInputBox(defender, SuiWindowType::PLAYER_BOUNTY_OFFER);
 
-	defenderGhost->addSuiBox(suibox);
-	defender->sendMessage(suibox->generateMessage());
+    suibox->setPromptTitle("Bounty Hunters Guild");
+    suibox->setCallback(new BountyHuntSuiCallback(server));
+    suibox->setCancelButton(true, "@cancel");
+    suibox->setUsingObject(attacker);
+
+    StringBuffer prompt;
+
+    prompt << "You have been killed in combat by " << attacker->getFirstName() << ".\n\n"
+        << "A 1,000 credit bounty has automatically been added to their name.\n\n"
+        << "You may add an additional bounty between 20,000 and 1,000,000 credits.";
+
+    suibox->setPromptText(prompt.toString());
+
+    defenderGhost->addSuiBox(suibox);
+    defender->sendMessage(suibox->generateMessage());
 }
-
 void PlayerManagerImplementation::unlockFRSForTesting(CreatureObject* player, int councilType) {
 	PlayerObject* ghost = player->getPlayerObject();
 
@@ -6818,3 +6782,4 @@ Vector<uint64> PlayerManagerImplementation::getOnlinePlayerList() {
 
 	return playerList;
 }
+

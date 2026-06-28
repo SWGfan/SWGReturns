@@ -88,7 +88,7 @@ ForceThrow1Command = {
 	frsDarkMinDamageModifier = 1,
 	frsDarkMaxDamageModifier = 3,
 
-	range = 32
+	range = 12
 }
 
 AddCommand(ForceThrow1Command)

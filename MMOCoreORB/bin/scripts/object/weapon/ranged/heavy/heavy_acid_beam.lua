@@ -276,7 +276,7 @@ object_weapon_ranged_heavy_heavy_acid_beam = object_weapon_ranged_heavy_shared_h
 	idealRange = 8,
 	idealAccuracy = -60,
 
-	maxRange = 48,
+	maxRange = 55,
 	maxRangeAccuracy = -120,
 
 	minDamage = 120,

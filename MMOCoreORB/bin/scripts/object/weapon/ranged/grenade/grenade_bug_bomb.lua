@@ -271,7 +271,7 @@ object_weapon_ranged_grenade_grenade_bug_bomb = object_weapon_ranged_grenade_sha
 	idealRange = 20,
 	idealAccuracy = 10,
 
-	maxRange = 32,
+	maxRange = 12,
 	maxRangeAccuracy = -30,
 	animationType = "bug_bomb",
 

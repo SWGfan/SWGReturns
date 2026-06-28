@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_scout_blaster_ammo_test_2 = object_weapon_ran
 	idealRange = 15,
 	idealAccuracy = 15,
 
-	maxRange = 45,
+	maxRange = 18,
 	maxRangeAccuracy = 5,
 
 	minDamage = 25,

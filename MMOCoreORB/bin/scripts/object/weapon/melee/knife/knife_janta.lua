@@ -271,7 +271,7 @@ object_weapon_melee_knife_knife_janta = object_weapon_melee_knife_shared_knife_j
 	idealRange = 3,
 	idealAccuracy = 3,
 	
-	maxRange = 3,
+	maxRange = 5,
 	maxRangeAccuracy = 4,
 
 	minDamage = 11,

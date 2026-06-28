@@ -98,7 +98,7 @@ MindBlast1Command = {
 	frsDarkMinDamageModifier = 1,
 	frsDarkMaxDamageModifier = 2,
 
-	range = 32
+	range = 12
 }
 
 AddCommand(MindBlast1Command)

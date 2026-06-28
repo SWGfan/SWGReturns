@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_jawa_ion = object_weapon_ranged_rifle_shared_ri
 	idealRange = 40,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -80,
 
 	minDamage = 110,

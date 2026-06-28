@@ -72,7 +72,7 @@ ForceIntimidate2Command = {
 
 	poolsToDamage = NO_ATTRIBUTE,
 
-	range = 32
+	range = 12
 }
 
 AddCommand(ForceIntimidate2Command)

@@ -31,20 +31,26 @@ forsaken_force_drifter = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
-				{group = "power_crystals", chance = 800000},
-				{group = "color_crystals", chance = 700000},
-				{group = "holocron_dark", chance = 500000},
-				{group = "holocron_light", chance = 500000},
+				{group = "cl55_backpack_loot", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 1500000},
+				{group = "power_crystals", chance = 1000000},
+				{group = "color_crystals", chance = 800000},
+				{group = "holocron_dark", chance = 600000},
+				{group = "holocron_light", chance = 600000},
 				{group = "melee_weapons", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "wearables_common", chance = 600000},
-				{group = "wearables_uncommon", chance = 600000},
-				{group = "jedi_light_robes", chance = 75000},
-				{group = "jedi_dark_robes", chance = 75000},
-				{group = "jedi_gray_robes", chance = 50000},
-				{group = "force_hunter_rare", chance = 100000}
+				{group = "armor_attachments", chance = 1100000},
+				{group = "clothing_attachments", chance = 1100000},
+				{group = "wearables_common", chance = 400000},
+				{group = "wearables_uncommon", chance = 800000},
+				{group = "jedi_light_robes", chance = 200000},
+				{group = "jedi_dark_robes", chance = 200000},
+				{group = "jedi_gray_robes", chance = 100000},
+				{group = "rare_chest_rewards", chance = 600000}
 			}
 		}
 	},

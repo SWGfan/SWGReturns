@@ -270,7 +270,7 @@ object_weapon_melee_2h_sword_2h_sword_battleaxe_quest = object_weapon_melee_2h_s
 	idealRange = 7,
 	idealAccuracy = 3,
 
-	maxRange = 7,
+	maxRange = 5,
 	maxRangeAccuracy = 4,
 
 	minDamage = 86,

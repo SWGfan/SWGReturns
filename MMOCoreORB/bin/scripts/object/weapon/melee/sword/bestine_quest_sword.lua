@@ -272,7 +272,7 @@ object_weapon_melee_sword_bestine_quest_sword = object_weapon_melee_sword_shared
 	idealRange = 0,
 	idealAccuracy = 0,
 
-	maxRange = 0,
+	maxRange = 5,
 	maxRangeAccuracy = 0,
 
 	minDamage = 20,

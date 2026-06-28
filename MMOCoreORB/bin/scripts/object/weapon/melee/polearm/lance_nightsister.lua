@@ -272,7 +272,7 @@ object_weapon_melee_polearm_lance_nightsister = object_weapon_melee_polearm_shar
 	idealRange = 5,
 	idealAccuracy = 7,
 
-	maxRange = 6,
+	maxRange = 7,
 	maxRangeAccuracy = 7,
 
 	minDamage = 11,

@@ -68,7 +68,7 @@ ForceLightningCone1Command = {
 	frsDarkMinDamageModifier = 2,
 	frsDarkMaxDamageModifier = 4,
 
-	range = 32
+	range = 12
 }
 
 AddCommand(ForceLightningCone1Command)

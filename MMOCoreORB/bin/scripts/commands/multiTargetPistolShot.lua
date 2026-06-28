@@ -52,7 +52,7 @@ MultiTargetPistolShotCommand = {
 	accuracyBonus = 50,
 
 	areaAction = true,
-        areaRange = 32,
+        areaRange = 10,
         
 	poolsToDamage = RANDOM_ATTRIBUTE,
 

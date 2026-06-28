@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_fwg5 = object_weapon_ranged_pistol_shared_pis
 	idealRange = 20,
 	idealAccuracy = 20,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -70,
 
 	minDamage = 30,

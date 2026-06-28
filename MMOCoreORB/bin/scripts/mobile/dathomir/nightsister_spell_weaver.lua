@@ -31,6 +31,12 @@ nightsister_spell_weaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
+				{group = "cl55_backpack_loot", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
 				{group = "power_crystals", chance = 10000000},
 			},
 			lootChance = 5000000
@@ -83,6 +89,12 @@ nightsister_spell_weaver = Creature:new {
 				{group = "tailor_components", chance = 10000000},
 			},
 			lootChance = 5000000
+		},
+		{
+			groups = {
+				{group = "exceptional_chest_rewards", chance = 10000000},
+			},
+			lootChance = 350000
 		},
 	},
 	weapons = {"mixed_force_weapons"},

@@ -178,14 +178,6 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 		return
 	end
 
-	-- Temporary BH migration glue for Phase 1 master skill rename.
-	local player = CreatureObject(pPlayer)
-
-	if (readScreenPlayData(pPlayer, "BountyHunterMigration", "phase1MasterMigrated") ~= "1" and player:hasSkill("combat_bountyhunter_master") and not player:hasSkill("combat_bountyhunter_novice_master")) then
-		awardSkill(pPlayer, "combat_bountyhunter_novice_master")
-		surrenderSkill(pPlayer, "combat_bountyhunter_master")
-		writeScreenPlayData(pPlayer, "BountyHunterMigration", "phase1MasterMigrated", 1)
-	end
 
 	self:cleanupJediLightDarkPreclusions(pPlayer)
 

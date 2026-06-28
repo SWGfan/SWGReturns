@@ -31,6 +31,12 @@ dark_jedi_knight = Creature:new {
 	lootGroups = {
 		{
 			groups = {
+				{group = "cl55_backpack_loot", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
 				{group = "jedi_comp_group", chance = 10000000},
 			},
 			lootChance = 400000
@@ -72,7 +78,15 @@ dark_jedi_knight = Creature:new {
 				{group = "nge_all", chance = 10000000},
 			},
 			lootChance = 10000000
-		}
+		},
+		{
+			groups = {
+				{group = "exceptional_chest_rewards", chance = 4500000},
+				{group = "diamond_chest_rewards", chance = 4500000},
+				{group = "legendary_chest_rewards", chance = 1000000},
+			},
+			lootChance = 700000
+		},
 	},
 	weapons = {"dark_jedi_weapons_gen3"},
 	conversationTemplate = "",

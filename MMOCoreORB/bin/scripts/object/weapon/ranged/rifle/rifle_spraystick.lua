@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_spraystick = object_weapon_ranged_rifle_shared_
 	idealRange = 30,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -60,
 
 	minDamage = 10,

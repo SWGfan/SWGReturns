@@ -275,7 +275,7 @@ object_weapon_melee_baton_victor_baton_gaderiffi = object_weapon_melee_baton_sha
 	idealRange = -13,
 	idealAccuracy = 3,
 	
-	maxRange = -13,
+	maxRange = 5,
 	maxRangeAccuracy = 5,
 
 	minDamage = 48,

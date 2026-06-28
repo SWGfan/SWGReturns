@@ -272,7 +272,7 @@ object_weapon_melee_polearm_lance_controllerfp = object_weapon_melee_polearm_sha
 	idealRange = 3,
 	idealAccuracy = 10,
 
-	maxRange = 5,
+	maxRange = 7,
 	maxRangeAccuracy = 10,
 
 	minDamage = 10,

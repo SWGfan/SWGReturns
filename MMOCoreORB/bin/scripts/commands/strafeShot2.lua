@@ -75,7 +75,7 @@ StrafeShot2Command = {
 	
 	weaponType = RIFLEWEAPON,
 
-	range = -1
+	range = 25
 }
 
 AddCommand(StrafeShot2Command)

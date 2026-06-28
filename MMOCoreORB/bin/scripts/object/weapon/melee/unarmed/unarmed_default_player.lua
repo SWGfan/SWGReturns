@@ -275,7 +275,7 @@ object_weapon_melee_unarmed_unarmed_default_player = object_weapon_melee_unarmed
 	idealRange = 5,
 	idealAccuracy = 3,
 	
-	maxRange = 5,
+	maxRange = 3,
 	maxRangeAccuracy = 5,
 
 	minDamage = 10,

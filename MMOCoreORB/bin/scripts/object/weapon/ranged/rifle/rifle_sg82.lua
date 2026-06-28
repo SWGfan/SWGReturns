@@ -271,7 +271,7 @@ object_weapon_ranged_rifle_rifle_sg82 = object_weapon_ranged_rifle_shared_rifle_
 	idealRange = 35,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -50,
 
 	minDamage = 100,

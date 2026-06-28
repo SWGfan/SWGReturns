@@ -272,7 +272,7 @@ object_weapon_melee_polearm_lance_staff_wood_s1 = object_weapon_melee_polearm_sh
 	idealRange = 3,
 	idealAccuracy = 20,
 
-	maxRange = 5,
+	maxRange = 7,
 	maxRangeAccuracy = 20,
 
 	minDamage = 35,

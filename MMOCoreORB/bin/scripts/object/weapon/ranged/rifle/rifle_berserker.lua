@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_berserker = object_weapon_ranged_rifle_shared_r
 	idealRange = 60,
 	idealAccuracy = -25,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -10,
 
 	minDamage = 125,

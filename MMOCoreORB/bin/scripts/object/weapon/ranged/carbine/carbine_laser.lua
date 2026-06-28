@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_laser = object_weapon_ranged_carbine_shared
 	idealRange = 50,
 	idealAccuracy = 5,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -40,
 
 	minDamage = 20,

@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_dh17_black = object_weapon_ranged_carbine_s
 	idealRange = 35,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -60,
 
 	minDamage = 40,

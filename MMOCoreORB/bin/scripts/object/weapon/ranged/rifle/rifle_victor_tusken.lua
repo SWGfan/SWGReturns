@@ -271,7 +271,7 @@ object_weapon_ranged_rifle_rifle_victor_tusken = object_weapon_ranged_rifle_shar
 	idealRange = 60,
 	idealAccuracy = 20,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -50,
 
 	minDamage = 100,

@@ -271,7 +271,7 @@ object_weapon_ranged_rifle_rifle_cdef = object_weapon_ranged_rifle_shared_rifle_
 	idealRange = 15,
 	idealAccuracy = 50,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -80,
 
 	minDamage = 25,

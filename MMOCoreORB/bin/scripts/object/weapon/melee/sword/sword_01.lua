@@ -272,7 +272,7 @@ object_weapon_melee_sword_sword_01 = object_weapon_melee_sword_shared_sword_01:n
 	idealRange = 3,
 	idealAccuracy = 10,
 
-	maxRange = 4,
+	maxRange = 5,
 	maxRangeAccuracy = 10,
 
 	minDamage = 20,

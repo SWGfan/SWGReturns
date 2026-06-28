@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_scatter = object_weapon_ranged_pistol_shared_
 	idealRange = 7,
 	idealAccuracy = 25,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -70,
 
 	minDamage = 95,

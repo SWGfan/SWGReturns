@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_e11 = object_weapon_ranged_carbine_shared_c
 	idealRange = 30,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -80,
 
 	minDamage = 40,

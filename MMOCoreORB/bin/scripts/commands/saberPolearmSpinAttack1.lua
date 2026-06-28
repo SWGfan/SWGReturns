@@ -51,7 +51,7 @@ SaberPolearmSpinAttack1Command = {
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 1.25,
 	areaAction = true,
-	areaRange = 16,
+	areaRange = 11,
 	visMod = 25,
 
 	animation = "counter_low_left", 

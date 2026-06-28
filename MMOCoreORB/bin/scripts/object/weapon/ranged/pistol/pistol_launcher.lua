@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_launcher = object_weapon_ranged_pistol_shared
 	idealRange = 15,
 	idealAccuracy = -10,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -70,
 
 	minDamage = 35,

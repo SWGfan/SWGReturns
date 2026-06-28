@@ -80,7 +80,7 @@ ForceKnockdown3Command = {
 	frsDarkMaxDamageModifier = 4,
 
 
-	range = 32
+	range = 12
 }
 
 AddCommand(ForceKnockdown3Command)

@@ -50,7 +50,7 @@ FireHeavyWeaponCommand = {
 	actionCostMultiplier = 1.0,
 	mindCostMultiplier = 1.0,
 
-	range = 64,
+	range = 55,
 	areaAction = true,
 	areaRange = 10,
 

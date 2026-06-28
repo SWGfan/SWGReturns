@@ -272,7 +272,7 @@ object_weapon_ranged_grenade_grenade_proton = object_weapon_ranged_grenade_share
 	idealRange = 20,
 	idealAccuracy = 15,
 
-	maxRange = 64,
+	maxRange = 12,
 	maxRangeAccuracy = -30,
 
 	minDamage = 100,

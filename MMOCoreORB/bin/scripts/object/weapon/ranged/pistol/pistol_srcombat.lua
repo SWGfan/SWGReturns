@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_srcombat = object_weapon_ranged_pistol_shared
 	idealRange = 12,
 	idealAccuracy = -20,
 
-	maxRange = 48,
+	maxRange = 18,
 	maxRangeAccuracy = -80,
 
 	minDamage = 45,

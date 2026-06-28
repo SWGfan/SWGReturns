@@ -271,7 +271,7 @@ object_weapon_ranged_rifle_rifle_acid_beam = object_weapon_ranged_rifle_shared_r
 	idealRange = 50,
 	idealAccuracy = -50,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = 0,
 
 	minDamage = 480,

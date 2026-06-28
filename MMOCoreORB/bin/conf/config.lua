@@ -80,6 +80,7 @@ Core3 = {
 	"top_house_assets.tre",
 	"returns_patch12.tre",
 	"returns_custom2.tre",
+	"patch_zzz_01.tre",
 	"returns11.tre",	
 	"returns10.tre",
 	"returns9.tre",

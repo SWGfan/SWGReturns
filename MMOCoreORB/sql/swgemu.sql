@@ -307,7 +307,9 @@ CREATE TABLE  `swgemu`.`galaxy` (
 
 /*!40000 ALTER TABLE `galaxy` DISABLE KEYS */;
 LOCK TABLES `galaxy` WRITE;
-INSERT INTO `swgemu`.`galaxy` VALUES  (2,'Core3','127.0.0.1',44463,44462,0);
+INSERT INTO `swgemu`.`galaxy` VALUES  (2,'SWG Returns','51.81.81.116',44463,44462,0),
+(3,'SWG Returns Test Centre','212.227.73.161',44463,44462,0),
+(4,'Core3 Backup Server','82.165.250.176',44463,44462,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `galaxy` ENABLE KEYS */;
 

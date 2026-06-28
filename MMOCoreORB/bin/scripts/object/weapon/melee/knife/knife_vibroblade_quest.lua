@@ -271,7 +271,7 @@ object_weapon_melee_knife_knife_vibroblade_quest = object_weapon_melee_knife_sha
 	idealRange = 3,
 	idealAccuracy = 5,
 	
-	maxRange = 4,
+	maxRange = 3,
 	maxRangeAccuracy = 5,
 
 	minDamage = 15,

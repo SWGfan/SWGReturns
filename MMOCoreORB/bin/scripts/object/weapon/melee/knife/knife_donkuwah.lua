@@ -272,7 +272,7 @@ object_weapon_melee_knife_knife_donkuwah = object_weapon_melee_knife_shared_knif
 	idealRange = 3,
 	idealAccuracy = 3,
 	
-	maxRange = 3,
+	maxRange = 5,
 	maxRangeAccuracy = 4,
 
 	minDamage = 24,

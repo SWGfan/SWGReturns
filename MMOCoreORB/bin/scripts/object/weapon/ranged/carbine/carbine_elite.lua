@@ -272,7 +272,7 @@ object_weapon_ranged_carbine_carbine_elite = object_weapon_ranged_carbine_shared
 	idealRange = 40,
 	idealAccuracy = 10,
 
-	maxRange = 64,
+	maxRange = 35,
 	maxRangeAccuracy = -50,
 
 	minDamage = 80,

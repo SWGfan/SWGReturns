@@ -272,7 +272,7 @@ object_weapon_ranged_pistol_pistol_scout_blaster = object_weapon_ranged_pistol_s
 	idealRange = 19,
 	idealAccuracy = 0,
 
-	maxRange = 64,
+	maxRange = 18,
 	maxRangeAccuracy = -90,
 
 	minDamage = 35,

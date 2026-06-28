@@ -31,6 +31,12 @@ nightsister_initiate = Creature:new {
 	lootGroups = {
 		{
 			groups = {
+				{group = "cl55_backpack_loot", chance = 10000000},
+			},
+			lootChance = 250000
+		},
+		{
+			groups = {
 				{group = "power_crystals", chance = 10000000},
 			},
 			lootChance = 5000000

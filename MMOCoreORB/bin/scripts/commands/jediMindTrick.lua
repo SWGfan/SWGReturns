@@ -9,6 +9,6 @@ JediMindTrickCommand = {
         forceAttack = true,
         combatSpam = "mindblast1",
         poolsToDamage = NO_ATTRIBUTE,
-        range = 32
+        range = 12
 }
 AddCommand(JediMindTrickCommand)

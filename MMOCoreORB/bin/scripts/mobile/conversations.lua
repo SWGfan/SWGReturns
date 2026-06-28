@@ -328,5 +328,5 @@ includeFile("conversations/merchants/vendor_conv.lua")
 includeFile("conversations/tasks/myswg_vendor_conv.lua")
 
 includeFile("conversations/jedi/darth_zivon_conv.lua")
-includeFile("conversations/jedi/kaas_villains_conv.lua")
+includeFile("conversations/jedi/kaas_villans_conv.lua")
 

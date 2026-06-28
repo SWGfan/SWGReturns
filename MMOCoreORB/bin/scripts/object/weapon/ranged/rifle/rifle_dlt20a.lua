@@ -272,7 +272,7 @@ object_weapon_ranged_rifle_rifle_dlt20a = object_weapon_ranged_rifle_shared_rifl
 	idealRange = 45,
 	idealAccuracy = 20,
 
-	maxRange = 64,
+	maxRange = 70,
 	maxRangeAccuracy = -50,
 
 	minDamage = 95,
