@@ -729,6 +729,11 @@ int ResourceSpawner::randomizeValue(int min, int max) {
 	if (min < lowerGateOverride)
 		min = Math::min(lowerGateOverride, max);
 
+	// High quality floor: always roll in top 15% of stat range
+	int qualityFloor = min + (int)((max - min) * 0.85f);
+	if (qualityFloor < max)
+		min = qualityFloor;
+
 	int randomStat = System::random(max - min) + min;
 
 	if (spawnThrottling < 90) {

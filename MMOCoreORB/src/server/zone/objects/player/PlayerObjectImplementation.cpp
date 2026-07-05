@@ -1754,11 +1754,11 @@ void PlayerObjectImplementation::increaseFactionStanding(const String& factionNa
 	float newAmount = currentAmount + amount;
 
 	if (!factionStandingList.isPvpFaction(factionName))
-		newAmount = Math::min(5000.f, newAmount);
+		newAmount = newAmount;
 	else if (player->getFaction() == factionName.hashCode())
-		newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+		newAmount = newAmount; // Faction cap removed - limitless points
 	else
-		newAmount = Math::min(1000.f, newAmount);
+		newAmount = newAmount;
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -1814,13 +1814,13 @@ void PlayerObjectImplementation::decreaseFactionStanding(const String& factionNa
 		return;
 
 	//Ensure that the new amount is not less than -5000.
-	float newAmount = Math::max(-5000.f, currentAmount - amount);
+	float newAmount = currentAmount - amount;
 
 	if (factionStandingList.isPvpFaction(factionName)) {
 		if (player->getFaction() == factionName.hashCode())
-			newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+			newAmount = newAmount; // Faction cap removed - limitless points
 		else
-			newAmount = Math::min(1000.f, newAmount);
+			newAmount = newAmount;
 	}
 
 	factionStandingList.put(factionName, newAmount);
@@ -1846,13 +1846,13 @@ void PlayerObjectImplementation::setFactionStanding(const String& factionName, f
 	if (player == nullptr)
 		return;
 
-	newAmount = Math::max(-5000.f, newAmount);
+	newAmount = newAmount;
 
 	if (factionStandingList.isPvpFaction(factionName)) {
 		if (player->getFaction() == factionName.hashCode())
-			newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+			newAmount = newAmount; // Faction cap removed - limitless points
 		else
-			newAmount = Math::min(1000.f, newAmount);
+			newAmount = newAmount;
 	}
 
 	factionStandingList.put(factionName, newAmount);

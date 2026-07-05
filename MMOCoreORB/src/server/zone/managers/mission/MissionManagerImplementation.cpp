@@ -1078,7 +1078,7 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 				ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
 				int rewardCreds = 0;
-				if (ghost->getJediState() >= 4)
+				if (ghost->getJediState() >= 2) // Allow Padawan and above on BH terminal
 					rewardCreds = 50000;
 				else
 					rewardCreds = 25000;
@@ -2129,7 +2129,7 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 		return false;
 
 	ManagedReference<BuildingObject*> building = cast<BuildingObject*>(creature->getRootParent());
-	if (!ConfigManager::instance()->getBool("Core3.MissionManager.PrivateStructureJediMissions", false)) {
+	if (!ConfigManager::instance()->getBool("Core3.MissionManager.PrivateStructureJediMissions", true)) {
 		if (building != nullptr && building->isPrivateStructure())
 			return false;
 	}

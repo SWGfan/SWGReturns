@@ -227,10 +227,8 @@ int FactionManager::getRankDelegateRatioTo(int rank) {
 }
 
 int FactionManager::getFactionPointsCap(int rank) {
-	if (rank >= factionRanks.getCount())
-		return -1;
-
-	return Math::max(1000, getRankCost(rank) * 20);
+	// No cap - limitless faction points
+	return 2147483647; // INT_MAX
 }
 
 bool FactionManager::isFaction(const String& faction) {
