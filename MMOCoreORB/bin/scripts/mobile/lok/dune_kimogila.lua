@@ -2,15 +2,16 @@ dune_kimogila = Creature:new {
 	objectName = "@mob/creature_names:dune_kimogila",
 	socialGroup = "kimogila",
 	faction = "",
-	level = 300,
-	chanceHit = 0.95,
-	damageMin = 1900,
-	damageMax = 3800,
-	baseXp = 10500,
-	baseHAM = 50000,
-	baseHAMmax = 100000,
-	armor = 2,
-	resists = {140,165,120,200,120,120,200,120,115},
+	mobType = MOB_CARNIVORE,
+	level = 123,
+	chanceHit = 4,
+	damageMin = 785,
+	damageMax = 1280,
+	baseXp = 11671,
+	baseHAM = 53000,
+	baseHAMmax = 65000,
+	armor = 1,
+	resists = {140,165,15,200,-1,15,200,-1,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
@@ -18,8 +19,8 @@ dune_kimogila = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.25,
-	ferocity = 30,
+	tamingChance = 0,
+	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
@@ -28,21 +29,24 @@ dune_kimogila = Creature:new {
 	templates = {"object/mobile/kimogila_hue.iff"},
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	lootGroups = {
-		{
-	        	groups = {
-				{group = "krayt_dragon_common", chance = 2000000},
-				{group = "kimogila_common", chance = 5000000},
+	 {
+	        groups = {
+				{group = "kimogila_common", chance = 10000000}
 			},
-			lootChance = 10000000
+			lootChance = 9000000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"intimidationattack",""},
-		{"creatureareapoison",""},
-		{"creatureareacombo",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"intimidationattack",""}, {"creatureareacombo",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(dune_kimogila, "dune_kimogila")

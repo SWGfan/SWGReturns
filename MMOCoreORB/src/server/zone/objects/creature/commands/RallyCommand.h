@@ -7,8 +7,6 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 #include "SquadLeaderCommand.h"
-#include "CombatQueueCommand.h"
-#include "server/zone/managers/combat/CombatManager.h"
 
 class RallyCommand : public SquadLeaderCommand {
 public:
@@ -64,7 +62,6 @@ public:
 
 		leader->sendSystemMessage("@cbt_spam:rally_success_single"); //"You rally the group!"
 		sendRallyCombatSpam(leader, group, true);
-		leader->playEffect("clienteffect/off_scatter.cef", "");
 
 		for (int i = 0; i < group->getGroupSize(); i++) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
@@ -149,7 +146,7 @@ public:
 			vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::PLAYERTYPE);
 		} else {
 #ifdef COV_DEBUG
-			info("nullptr closeobjects vector in RallyCommand::sendRallyCombatSpam", true);
+			info("Null closeobjects vector in RallyCommand::sendRallyCombatSpam", true);
 #endif
 			zone->getInRangeObjects(leader->getWorldPositionX(), leader->getWorldPositionY(), 70, &closeObjects, true);
 		}

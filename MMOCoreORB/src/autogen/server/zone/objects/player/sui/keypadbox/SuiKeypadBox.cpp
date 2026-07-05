@@ -30,7 +30,7 @@ SuiKeypadBox::~SuiKeypadBox() {
 
 BaseMessage* SuiKeypadBox::generateMessage() {
 	SuiKeypadBoxImplementation* _implementation = static_cast<SuiKeypadBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiKeypadBox::generateMessage() {
 
 bool SuiKeypadBox::isKeypadBox() {
 	SuiKeypadBoxImplementation* _implementation = static_cast<SuiKeypadBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ void SuiKeypadBoxImplementation::finalize() {
 void SuiKeypadBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiKeypadBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

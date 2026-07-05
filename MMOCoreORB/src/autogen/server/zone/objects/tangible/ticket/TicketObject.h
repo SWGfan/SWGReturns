@@ -111,15 +111,15 @@ public:
 
 	void setOwnerID(unsigned long long id);
 
-	String getDeparturePlanet();
+	String getDeparturePlanet() const;
 
-	String getDeparturePoint();
+	String getDeparturePoint() const;
 
-	String getArrivalPlanet();
+	String getArrivalPlanet() const;
 
-	String getArrivalPoint();
+	String getArrivalPoint() const;
 
-	unsigned long long getOwnerID();
+	unsigned long long getOwnerID() const;
 
 	bool isTicketObject();
 
@@ -196,15 +196,15 @@ public:
 
 	void setOwnerID(unsigned long long id);
 
-	String getDeparturePlanet();
+	String getDeparturePlanet() const;
 
-	String getDeparturePoint();
+	String getDeparturePoint() const;
 
-	String getArrivalPlanet();
+	String getArrivalPlanet() const;
 
-	String getArrivalPoint();
+	String getArrivalPoint() const;
 
-	unsigned long long getOwnerID();
+	unsigned long long getOwnerID() const;
 
 	bool isTicketObject();
 
@@ -266,15 +266,15 @@ public:
 
 	void setOwnerID(unsigned long long id);
 
-	String getDeparturePlanet();
+	String getDeparturePlanet() const;
 
-	String getDeparturePoint();
+	String getDeparturePoint() const;
 
-	String getArrivalPlanet();
+	String getArrivalPlanet() const;
 
-	String getArrivalPoint();
+	String getArrivalPoint() const;
 
-	unsigned long long getOwnerID();
+	unsigned long long getOwnerID() const;
 
 	bool isTicketObject();
 

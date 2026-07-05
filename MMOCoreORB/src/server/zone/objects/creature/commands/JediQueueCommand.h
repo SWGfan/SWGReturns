@@ -42,73 +42,9 @@ protected:
 	Vector<unsigned int> singleUseEventTypes;
 
 
-	bool isHuntersMarkJediTarget(CreatureObject* creature) const {
-		return creature != nullptr &&
-				creature->isPlayerCreature() &&
-				(creature->hasSkill("force_title_jedi_rank_02") ||
-				creature->hasSkill("combat_jedi") ||
-				creature->hasSkill("combat_jedi_novice") ||
-				creature->hasSkill("returns_jedi_elder") ||
-				creature->hasSkill("returns_jedi_elder_light") ||
-				creature->hasSkill("returns_jedi_elder_light_novice") ||
-				creature->hasSkill("returns_jedi_elder_dark") ||
-				creature->hasSkill("returns_jedi_elder_dark_novice"));
-	}
-
-	bool isForceRunBuff() const {
-		return buffCRC == BuffCRC::JEDI_FORCE_RUN_1 ||
-				buffCRC == BuffCRC::JEDI_FORCE_RUN_2 ||
-				buffCRC == BuffCRC::JEDI_FORCE_RUN_3;
-	}
-
-	int getHighestHuntersMarkPressure(CreatureObject* creature) const {
-		if (!isHuntersMarkJediTarget(creature))
-			return 0;
-
-		int highestHuntersMark = 0;
-		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = creature->getDefenderList();
-
-		for (int i = 0; i < defenderList->size(); ++i) {
-			ManagedReference<SceneObject*> defenderObject = defenderList->get(i);
-
-			if (defenderObject == nullptr || !defenderObject->isCreatureObject())
-				continue;
-
-			CreatureObject* defender = defenderObject->asCreatureObject();
-
-			if (defender == nullptr || !defender->isPlayerCreature())
-				continue;
-
-			int huntersMark = defender->getSkillMod("hunters_mark");
-
-			if (huntersMark <= 0 || !defender->hasBountyMissionFor(creature))
-				continue;
-
-			if (huntersMark > highestHuntersMark)
-				highestHuntersMark = huntersMark;
-		}
-
-		return highestHuntersMark;
-	}
-
-	float getEffectiveForceRunSpeedMod(CreatureObject* creature) const {
-		if (!isForceRunBuff())
-			return speedMod;
-
-		int huntersMarkReduction = getHighestHuntersMarkPressure(creature);
-
-		if (huntersMarkReduction > 50)
-			huntersMarkReduction = 50;
-
-		if (huntersMarkReduction <= 0)
-			return speedMod;
-
-		return 1.f + ((speedMod - 1.f) * (100 - huntersMarkReduction) / 100.f);
-	}
-
 public:
 	enum { BASE_BUFF, SINGLE_USE_BUFF };
-    
+
 	JediQueueCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
 		forceCost = 0;
 		duration = 0;
@@ -132,10 +68,10 @@ public:
 		return SUCCESS;
 	}
 
-	bool isJediQueueCommand() {
+	bool isJediQueueCommand() const {
 		return true;
 	}
-    
+
 	int doJediSelfBuffCommand(CreatureObject* creature) const {
 		// first and foremost, we need to toggle this buff off if we already have it
 		if (creature->hasBuff(buffCRC)) {
@@ -151,19 +87,19 @@ public:
 
         return doBuff(creature);
 	}
-    
+
 	int doBuff(CreatureObject* creature) const {
 		ManagedReference<Buff*> buff = createJediSelfBuff(creature);
-        
+
 		// Return if buff is NOT valid.
 		if (buff == nullptr)
 			return GENERALERROR;
-        
+
 		Locker locker(buff);
-        
+
 		// Add buff.
 		creature->addBuff(buff);
-        
+
 		// Force Cost.
 		doForceCost(creature);
 
@@ -171,7 +107,7 @@ public:
 		if (!clientEffect.isEmpty()) {
 			creature->playEffect(clientEffect, "");
 		}
-        
+
 		// Return.
 		return SUCCESS;
 	}
@@ -194,6 +130,9 @@ public:
 		if (res != SUCCESS)
 			return res;
 
+		if (isWearingArmor(creature))
+			return NOJEDIARMOR;
+
 		for (int i=0; i < blockingCRCs.size(); ++i) {
 			if (creature->hasBuff(blockingCRCs.get(i))) {
 				return NOSTACKJEDIBUFF;
@@ -214,7 +153,7 @@ public:
 
 		// Create buff object.
 		ManagedReference<Buff*> buff = nullptr;
-        
+
 		if(buffClass == BASE_BUFF || singleUseEventTypes.size() == 0) {
 			buff = new Buff(creature, buffCRC, duration, BuffType::JEDI);
 		} else if(buffClass == SINGLE_USE_BUFF) {;
@@ -236,10 +175,8 @@ public:
 		Locker locker(buff);
 
 		if (speedMod > 0) {
-			float effectiveSpeedMod = getEffectiveForceRunSpeedMod(creature);
-
-			buff->setSpeedMultiplierMod(effectiveSpeedMod);
-			buff->setAccelerationMultiplierMod(effectiveSpeedMod);
+			buff->setSpeedMultiplierMod(speedMod);
+			buff->setAccelerationMultiplierMod(speedMod);
 		}
 
 		StringIdChatParameter start("jedi_spam", "apply_" + name);
@@ -353,7 +290,6 @@ public:
 		ManagedReference<PlayerObject*> playerObject = creature->getPlayerObject();
 		playerObject->setForcePower(playerObject->getForcePower() - getFrsModifiedForceCost(creature));
 		VisibilityManager::instance()->increaseVisibility(creature, visMod);
-		playerObject->updateLastJediAttackableTimestamp();
 	}
 
 	void setForceCost(int fc) {
@@ -375,7 +311,7 @@ public:
 	void setSpeedMod(float sm) {
 		speedMod = sm;
 	}
-    
+
 	void setBuffClass(int bt) {
 		buffClass = bt;
 	}

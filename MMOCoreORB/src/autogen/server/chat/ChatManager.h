@@ -37,32 +37,6 @@ class ZoneServerPOD;
 using namespace server::zone;
 
 namespace server {
-namespace chat {
-namespace room {
-
-class ChatRoom;
-
-class ChatRoomPOD;
-
-} // namespace room
-} // namespace chat
-} // namespace server
-
-using namespace server::chat::room;
-
-namespace server {
-namespace chat {
-namespace room {
-
-class ChatRoomMap;
-
-} // namespace room
-} // namespace chat
-} // namespace server
-
-using namespace server::chat::room;
-
-namespace server {
 namespace zone {
 namespace objects {
 namespace creature {
@@ -93,20 +67,6 @@ class SceneObjectPOD;
 } // namespace server
 
 using namespace server::zone::objects::scene;
-
-namespace server {
-namespace zone {
-namespace managers {
-namespace player {
-
-class PlayerMap;
-
-} // namespace player
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::player;
 
 namespace server {
 namespace zone {
@@ -182,17 +142,37 @@ class PendingMessageListPOD;
 
 using namespace server::chat;
 
+namespace server {
+namespace chat {
+
+class PersistentMessage;
+
+class PersistentMessagePOD;
+
+} // namespace chat
+} // namespace server
+
+using namespace server::chat;
+
+#include "server/zone/managers/player/PlayerMap.h"
+
 #include "server/chat/StringIdChatParameter.h"
 
 #include "server/chat/StringIdChatParameterVector.h"
 
 #include "server/chat/WaypointChatParameterVector.h"
 
+#include "server/chat/room/ChatRoom.h"
+
+#include "server/chat/room/ChatRoomMap.h"
+
+#include "system/util/VectorMap.h"
+
+#include "system/lang/ref/Reference.h"
+
 #include "engine/core/ManagedService.h"
 
 #include "engine/service/proto/BaseMessage.h"
-
-#include "system/util/VectorMap.h"
 
 #include "engine/log/Logger.h"
 
@@ -399,18 +379,6 @@ public:
 
 	void handleAuctionChat(CreatureObject* player, const UnicodeString& message);
 
-	void handleGeneralChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralResourceChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordUnlock(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordGcw(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordShutdownChat(CreatureObject* player, const UnicodeString& message);
-
 	void handleChatRoomMessage(CreatureObject* sender, const UnicodeString& message, unsigned int roomID, unsigned int counter);
 
 	void handleSocialInternalMessage(CreatureObject* sender, const UnicodeString& arguments);
@@ -423,7 +391,9 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType);
+	unsigned int getSpatialChatType(const String& spatialChatType) const;
+
+	const String getSpatialChatType(unsigned int chatType) const;
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -445,7 +415,7 @@ public:
 
 	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = NULL);
 
-	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters);
+	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters, Reference<PersistentMessage* >* sentMail = NULL);
 
 	void setPlayerManager(PlayerManager* manager);
 
@@ -465,9 +435,9 @@ public:
 
 	ChatRoom* getAuctionRoom();
 
-	ChatRoom* getGeneralRoom();
-
 	ChatRoom* getSystemRoom();
+
+	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 
@@ -529,11 +499,15 @@ private:
 
 	VectorMap<String, unsigned int> spatialChatTypes;
 
+	VectorMap<unsigned int, String> spatialChatTypeNames;
+
 	VectorMap<unsigned int, String> spatialChatTypeSkillNeeded;
 
 	VectorMap<unsigned int, short> spatialChatDistances;
 
 	short defaultSpatialChatDistance;
+
+	short defaultSpatialChatType;
 
 public:
 	unsigned static const int MAXCHATROOMNAMELENGTH;
@@ -832,18 +806,6 @@ public:
 
 	void handleAuctionChat(CreatureObject* player, const UnicodeString& message);
 
-	void handleGeneralChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralResourceChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordUnlock(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordGcw(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordShutdownChat(CreatureObject* player, const UnicodeString& message);
-
 	void handleChatRoomMessage(CreatureObject* sender, const UnicodeString& message, unsigned int roomID, unsigned int counter);
 
 	void handleSocialInternalMessage(CreatureObject* sender, const UnicodeString& arguments);
@@ -856,7 +818,9 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType);
+	unsigned int getSpatialChatType(const String& spatialChatType) const;
+
+	const String getSpatialChatType(unsigned int chatType) const;
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -878,7 +842,7 @@ public:
 
 	int sendMail(const String& sendername, const UnicodeString& subject, StringIdChatParameter& body, const String& recipientName, WaypointObject* waypoint = NULL);
 
-	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters);
+	int sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters, Reference<PersistentMessage* >* sentMail = NULL);
 
 	void setPlayerManager(PlayerManager* manager);
 
@@ -898,9 +862,9 @@ public:
 
 	ChatRoom* getAuctionRoom();
 
-	ChatRoom* getGeneralRoom();
-
 	ChatRoom* getSystemRoom();
+
+	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 
@@ -1031,18 +995,6 @@ public:
 
 	void handleAuctionChat(CreatureObject* player, const UnicodeString& message);
 
-	void handleGeneralChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralResourceChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordChat(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordUnlock(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordGcw(CreatureObject* player, const UnicodeString& message);
-
-	void handleGeneralDiscordShutdownChat(CreatureObject* player, const UnicodeString& message);
-
 	void handleChatRoomMessage(CreatureObject* sender, const UnicodeString& message, unsigned int roomID, unsigned int counter);
 
 	void handleSocialInternalMessage(CreatureObject* sender, const UnicodeString& arguments);
@@ -1053,7 +1005,9 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType);
+	unsigned int getSpatialChatType(const String& spatialChatType) const;
+
+	const String getSpatialChatType(unsigned int chatType) const;
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -1089,9 +1043,9 @@ public:
 
 	ChatRoom* getAuctionRoom();
 
-	ChatRoom* getGeneralRoom();
-
 	ChatRoom* getSystemRoom();
+
+	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 

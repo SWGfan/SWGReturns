@@ -213,6 +213,8 @@ public:
 
 	void handleOperateToggle(CreatureObject* player);
 
+	bool startFactory();
+
 	void createNewObject();
 
 	String getRedeedMessage();
@@ -316,9 +318,9 @@ public:
 
 	void handleOperateToggle(CreatureObject* player);
 
-private:
 	bool startFactory();
 
+private:
 	void stopFactory(const String& message, const String& tt, const String& to, const int di);
 
 	void stopFactory(String& type, String& displayedName);
@@ -329,7 +331,7 @@ public:
 private:
 	FactoryCrate* locateCrateInOutputHopper(TangibleObject* prototype);
 
-	FactoryCrate* createNewFactoryCrate(TangibleObject* prototype, int maxSize);
+	FactoryCrate* createNewFactoryCrate(TangibleObject* prototype, int maxSize, String& crateType);
 
 	TangibleObject* createNewUncratedItem(TangibleObject* prototype);
 
@@ -407,6 +409,8 @@ public:
 	void handleRemoveFactorySchem(CreatureObject* player);
 
 	void handleOperateToggle(CreatureObject* player);
+
+	bool startFactory();
 
 	void createNewObject();
 

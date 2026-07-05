@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_refined_ardanium_ii = object
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_refined_ardanium_ii = object
 	ingredientTitleNames = {"raw_materials"},
 	ingredientSlotType = {2},
 	resourceTypes = {"object/tangible/loot/quest/shared_ardanium_ii.iff"},
-	resourceQuantities = {2},
+	resourceQuantities = {20},
 	contribution = {100},
 
 

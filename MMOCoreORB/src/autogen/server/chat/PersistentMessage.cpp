@@ -36,7 +36,7 @@ PersistentMessage::~PersistentMessage() {
 
 void PersistentMessage::sendTo(CreatureObject* player, bool sendBody) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void PersistentMessage::sendTo(CreatureObject* player, bool sendBody) {
 
 StringIdChatParameterVector* PersistentMessage::getStringIdParameters() {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ StringIdChatParameterVector* PersistentMessage::getStringIdParameters() {
 
 WaypointChatParameterVector* PersistentMessage::getWaypointParameters() {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ WaypointChatParameterVector* PersistentMessage::getWaypointParameters() {
 
 int PersistentMessage::getMailID() {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ int PersistentMessage::getMailID() {
 
 unsigned long long PersistentMessage::getObjectID() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ unsigned long long PersistentMessage::getObjectID() const {
 
 String PersistentMessage::getSenderName() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,7 +116,7 @@ String PersistentMessage::getSenderName() const {
 
 unsigned long long PersistentMessage::getReceiverObjectID() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,7 +130,7 @@ unsigned long long PersistentMessage::getReceiverObjectID() const {
 
 byte PersistentMessage::getStatus() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +144,7 @@ byte PersistentMessage::getStatus() const {
 
 int PersistentMessage::getTimeStamp() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ int PersistentMessage::getTimeStamp() const {
 
 UnicodeString PersistentMessage::getBody() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -174,7 +174,7 @@ UnicodeString PersistentMessage::getBody() const {
 
 UnicodeString PersistentMessage::getSubject() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,7 +190,7 @@ UnicodeString PersistentMessage::getSubject() const {
 
 void PersistentMessage::setSenderName(const String& name) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -205,7 +205,7 @@ void PersistentMessage::setSenderName(const String& name) {
 
 void PersistentMessage::setReceiverObjectID(unsigned long long oid) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -220,7 +220,7 @@ void PersistentMessage::setReceiverObjectID(unsigned long long oid) {
 
 void PersistentMessage::setStatus(byte stat) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -235,7 +235,7 @@ void PersistentMessage::setStatus(byte stat) {
 
 void PersistentMessage::setTimeStamp(int stamp) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ void PersistentMessage::setTimeStamp(int stamp) {
 
 void PersistentMessage::setBody(const UnicodeString& message) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +265,7 @@ void PersistentMessage::setBody(const UnicodeString& message) {
 
 void PersistentMessage::setSubject(const UnicodeString& subj) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -280,7 +280,7 @@ void PersistentMessage::setSubject(const UnicodeString& subj) {
 
 bool PersistentMessage::isNew() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -294,7 +294,7 @@ bool PersistentMessage::isNew() const {
 
 bool PersistentMessage::isRead() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -308,7 +308,7 @@ bool PersistentMessage::isRead() const {
 
 bool PersistentMessage::isUnread() const {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -322,7 +322,7 @@ bool PersistentMessage::isUnread() const {
 
 void PersistentMessage::addStringIdParameter(StringIdChatParameter& param) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -332,7 +332,7 @@ void PersistentMessage::addStringIdParameter(StringIdChatParameter& param) {
 
 void PersistentMessage::addWaypointParameter(WaypointChatParameter& param) {
 	PersistentMessageImplementation* _implementation = static_cast<PersistentMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -379,7 +379,7 @@ void PersistentMessageImplementation::finalize() {
 void PersistentMessageImplementation::_initializeImplementation() {
 	_setClassHelper(PersistentMessageHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

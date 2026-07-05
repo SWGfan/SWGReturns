@@ -14,7 +14,7 @@
  *	AntiDecayKitStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2429789154,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_DOAPPLYANTIDECAY__CREATUREOBJECT_,RPC_DORETRIEVEITEM__CREATUREOBJECT_,RPC_ISUSED__,RPC_SETUSED__BOOL_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2429789154,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_DOAPPLYANTIDECAY__CREATUREOBJECT_,RPC_DORETRIEVEITEM__CREATUREOBJECT_,RPC_ISUSED__,RPC_SETUSED__BOOL_};
 
 AntiDecayKit::AntiDecayKit() : Container(DummyConstructorParameter::instance()) {
 	AntiDecayKitImplementation* _implementation = new AntiDecayKitImplementation();
@@ -34,7 +34,7 @@ AntiDecayKit::~AntiDecayKit() {
 
 void AntiDecayKit::initializeTransientMembers() {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,9 +46,23 @@ void AntiDecayKit::initializeTransientMembers() {
 	}
 }
 
+void AntiDecayKit::notifyLoadFromDatabase() {
+	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_NOTIFYLOADFROMDATABASE__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->notifyLoadFromDatabase();
+	}
+}
+
 void AntiDecayKit::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +72,7 @@ void AntiDecayKit::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Crea
 
 int AntiDecayKit::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -69,14 +83,14 @@ int AntiDecayKit::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 int AntiDecayKit::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +107,7 @@ int AntiDecayKit::canAddObject(SceneObject* object, int containmentType, String&
 
 void AntiDecayKit::doApplyAntiDecay(CreatureObject* player) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -103,14 +117,14 @@ void AntiDecayKit::doApplyAntiDecay(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->doApplyAntiDecay(player);
 	}
 }
 
 void AntiDecayKit::doRetrieveItem(CreatureObject* player) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -120,14 +134,14 @@ void AntiDecayKit::doRetrieveItem(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->doRetrieveItem(player);
 	}
 }
 
 bool AntiDecayKit::isUsed() const {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -141,7 +155,7 @@ bool AntiDecayKit::isUsed() const {
 
 void AntiDecayKit::setUsed(bool use) {
 	AntiDecayKitImplementation* _implementation = static_cast<AntiDecayKitImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -188,7 +202,7 @@ void AntiDecayKitImplementation::finalize() {
 void AntiDecayKitImplementation::_initializeImplementation() {
 	_setClassHelper(AntiDecayKitHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -349,6 +363,13 @@ void AntiDecayKitAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_NOTIFYLOADFROMDATABASE__:
+		{
+			
+			notifyLoadFromDatabase();
+			
+		}
+		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -406,6 +427,10 @@ void AntiDecayKitAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 
 void AntiDecayKitAdapter::initializeTransientMembers() {
 	(static_cast<AntiDecayKit*>(stub))->initializeTransientMembers();
+}
+
+void AntiDecayKitAdapter::notifyLoadFromDatabase() {
+	(static_cast<AntiDecayKit*>(stub))->notifyLoadFromDatabase();
 }
 
 int AntiDecayKitAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

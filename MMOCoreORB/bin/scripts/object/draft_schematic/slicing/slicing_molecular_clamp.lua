@@ -50,8 +50,9 @@ object_draft_schematic_slicing_slicing_molecular_clamp = object_draft_schematic_
    craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
    complexity = 7, 
    size = 1, 
+   factoryCrateType = "object/factory/factory_crate_electronics.iff",
    factoryCrateSize = 1000,
-
+   
    xpType = "crafting_general", 
    xp = 180, 
 
@@ -67,7 +68,7 @@ object_draft_schematic_slicing_slicing_molecular_clamp = object_draft_schematic_
    ingredientTitleNames = {"clamp_body", "controller", "molecular_fuser"},
    ingredientSlotType = {0, 0, 0},
    resourceTypes = {"metal", "metal", "metal_nonferrous"},
-   resourceQuantities = {10, 10, 10},
+   resourceQuantities = {25, 25, 40},
    contribution = {100, 100, 100},
 
 

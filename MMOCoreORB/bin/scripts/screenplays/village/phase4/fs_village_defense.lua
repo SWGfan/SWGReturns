@@ -8,12 +8,12 @@ FsVillageDefense = ScreenPlay:new {
 			outlaw = {
 				questNum = QuestManager.quests.FS_DEFEND_01,
 				questName = "fs_defend_01",
-				killReq = 15
+				killReq = 50
 			},
 			pirate = {
 				questNum = QuestManager.quests.FS_DEFEND_02,
 				questName = "fs_defend_02",
-				killReq = 10
+				killReq = 25
 			}
 		},
 		melee = {
@@ -22,12 +22,12 @@ FsVillageDefense = ScreenPlay:new {
 			outlaw = {
 				questNum = QuestManager.quests.FS_DEFEND_03,
 				questName = "fs_defend_03",
-				killReq = 15
+				killReq = 50
 			},
 			pirate = {
 				questNum = QuestManager.quests.FS_DEFEND_04,
 				questName = "fs_defend_04",
-				killReq = 10
+				killReq = 25
 			}
 		}
 	}
@@ -71,10 +71,10 @@ function FsVillageDefense:checkHealerList(pCreature)
 			local pQuest
 
 			if (QuestManager.hasActiveQuest(pPlayer, QuestManager.quests.FS_COMBAT_HEALING_2)) then
-				healReq = 10
+				healReq = 100
 				pQuest = getQuestInfo("fs_combat_healing_2")
 			else
-				healReq = 5
+				healReq = 50
 				pQuest = getQuestInfo("fs_combat_healing_1")
 			end
 

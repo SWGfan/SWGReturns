@@ -41,6 +41,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/core3templates.dir/collision/SphereVolume.cpp.o.d"
   "CMakeFiles/core3templates.dir/crafting/ValuesMap.cpp.o"
   "CMakeFiles/core3templates.dir/crafting/ValuesMap.cpp.o.d"
+  "CMakeFiles/core3templates.dir/crcstringtable/CrcStringTable.cpp.o"
+  "CMakeFiles/core3templates.dir/crcstringtable/CrcStringTable.cpp.o.d"
   "CMakeFiles/core3templates.dir/creature/PlayerCreatureTemplate.cpp.o"
   "CMakeFiles/core3templates.dir/creature/PlayerCreatureTemplate.cpp.o.d"
   "CMakeFiles/core3templates.dir/creature/SharedCreatureObjectTemplate.cpp.o"

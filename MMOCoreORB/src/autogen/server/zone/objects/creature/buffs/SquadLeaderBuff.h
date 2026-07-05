@@ -106,7 +106,7 @@ public:
 
 	bool qualifiesForActivation();
 
-	bool checkRenew();
+	bool checkRenew() const;
 
 	void addObservers();
 
@@ -166,7 +166,7 @@ public:
 
 	bool qualifiesForActivation();
 
-	bool checkRenew();
+	bool checkRenew() const;
 
 	void addObservers();
 
@@ -226,7 +226,7 @@ public:
 
 	bool qualifiesForActivation();
 
-	bool checkRenew();
+	bool checkRenew() const;
 
 	void addObservers();
 

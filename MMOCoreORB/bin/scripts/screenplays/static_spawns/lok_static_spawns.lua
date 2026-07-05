@@ -20,15 +20,9 @@ function LokStaticSpawnsScreenPlay:spawnMobiles()
 
 	--Cave (4772 946)
 	spawnMobile("lok", "young_spined_snake",720,-26.3,-118.8,-370.0,66,7475374)
-	spawnMobile("lok", "kimogila_hatchling",450,-28.2,-78.7,-353.3,13,7475370)
-	spawnMobile("lok", "kimogila_hatchling",450,-100.0,-82.8,-345.1,-54,7475371)
-	spawnMobile("lok", "enraged_dune_kimogila",450,-29.9,-53.5,-190.9,59,7475359)
-	spawnMobile("lok", "dune_kimogila",450,5,-52,-181,0,7475359)
-	spawnMobile("lok", "kimogila",450,112,-91,-332,0,7475369)
-	spawnMobile("lok", "kimogila",450,25,-119,-378,0,7475374)
-	spawnMobile("lok", "dune_kimogila",450,-11,-12,-367,0,7475374)
-	spawnMobile("lok", "aged_kimogila",450,-9,-78,-360,0,7475370)
-	spawnMobile("lok", "enraged_dune_kimogila",450,-113,-84,-329,0,7475371)
+	spawnMobile("lok", "kimogila_hatchling",3600,-28.2,-78.7,-353.3,13,7475370)
+	spawnMobile("lok", "kimogila_hatchling",3600,-100.0,-82.8,-345.1,-54,7475371)
+	spawnMobile("lok", "enraged_dune_kimogila",7200,-29.9,-53.5,-190.9,59,7475359)
 	spawnMobile("lok", "ig_assassin_droid",360,-27.1,-38.2,-64.2,0,7475357)
 
 	--Rebel House (-4743 3531) Leia Story part 3 needs to be populated
@@ -40,7 +34,7 @@ function LokStaticSpawnsScreenPlay:spawnMobiles()
 	spawnMobile("lok", "gurk",900,708,12,-3397,131,0)
 	spawnMobile("lok", "gurk",900,699,12,-3384,-97,0)
 	spawnMobile("lok", "gurk",900,704.1,12.1,-3359,16,0)
-	spawnMobile("lok", "reclusive_gurk_king",10800,720.3,11.9,-3396.6,130,0)
+	spawnMobile("lok", "reclusive_gurk_king",1200,720.3,11.9,-3396.6,130,0)
 
 	--Gurk camp -3763 -3477
 	spawnMobile("lok", "gurk",900,-3754.7,63.2,-3477.6,150,0)
@@ -56,6 +50,9 @@ function LokStaticSpawnsScreenPlay:spawnMobiles()
 
 	--Abandoned Settlers Camp (-130, -350)
 	spawnMobile("lok", "aged_kimogila", 4200, -252.0, 11.1, -455.0, -6, 0)
+	
+	--Asylum Spynet
+	spawnMobile("lok", "informant_npc_lvl_3", 1, -2963.8, 66.9, 557.1, -89, 0)
 
 	--Abandoned Settlers Camp Ruins (5000, -4100)
 	spawnMobile("lok", "aged_kimogila", 4200, 5086.8, 12.1, -4114.6, 139, 0)
@@ -69,6 +66,5 @@ function LokStaticSpawnsScreenPlay:spawnMobiles()
 	spawnMobile("lok", "langlatch_giant", 900, getRandomNumber(10) + -4448.2, 11.9, getRandomNumber(10) + -5769.9, getRandomNumber(360), 0)
 	spawnMobile("lok", "langlatch_giant", 900, getRandomNumber(10) + -4448.2, 11.9, getRandomNumber(10) + -5769.9, getRandomNumber(360), 0)
 	spawnMobile("lok", "langlatch_giant", 900, getRandomNumber(10) + -4448.2, 11.9, getRandomNumber(10) + -5769.9, getRandomNumber(360), 0)
-  --spawnMobile("lok", "lg", getRandomNumber(10) * 60000, getRandomNumber(16400) + -8200, 0, getRandomNumber(16400) + -8200, getRandomNumber(360), 0)
 
 end

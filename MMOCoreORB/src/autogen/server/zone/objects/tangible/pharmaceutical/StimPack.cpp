@@ -32,7 +32,7 @@ StimPack::~StimPack() {
 
 void StimPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void StimPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void StimPack::loadTemplateData(SharedObjectTemplate* templateData) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void StimPack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 unsigned int StimPack::calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -69,7 +69,7 @@ unsigned int StimPack::calculatePower(CreatureObject* healer, CreatureObject* pa
 
 int StimPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ int StimPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 void StimPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -95,7 +95,7 @@ void StimPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* obje
 
 float StimPack::getEffectiveness() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ float StimPack::getEffectiveness() {
 
 StimPack* StimPack::split(int charges) {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ StimPack* StimPack::split(int charges) {
 
 bool StimPack::isStimPack() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ bool StimPack::isStimPack() {
 
 bool StimPack::isPetStimPack() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ bool StimPack::isPetStimPack() {
 
 bool StimPack::isDroidRepairKit() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ bool StimPack::isDroidRepairKit() {
 
 int StimPack::getMedicineClass() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -180,7 +180,7 @@ int StimPack::getMedicineClass() {
 
 bool StimPack::isClassA() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +194,7 @@ bool StimPack::isClassA() {
 
 bool StimPack::isClassB() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +208,7 @@ bool StimPack::isClassB() {
 
 bool StimPack::isClassC() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,7 +222,7 @@ bool StimPack::isClassC() {
 
 bool StimPack::isClassD() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -236,7 +236,7 @@ bool StimPack::isClassD() {
 
 bool StimPack::isClassE() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ bool StimPack::isClassE() {
 
 Vector<byte> StimPack::getAttributes() {
 	StimPackImplementation* _implementation = static_cast<StimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -291,7 +291,7 @@ void StimPackImplementation::finalize() {
 void StimPackImplementation::_initializeImplementation() {
 	_setClassHelper(StimPackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -598,7 +598,7 @@ void StimPackAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int charges = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = split(charges);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISSTIMPACK__:

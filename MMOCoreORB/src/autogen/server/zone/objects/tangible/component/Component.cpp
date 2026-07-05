@@ -32,7 +32,7 @@ Component::~Component() {
 
 void Component::initializeTransientMembers() {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void Component::initializeTransientMembers() {
 
 void Component::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void Component::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatur
 
 void Component::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void Component::fillAttributeList(AttributeListMessage* msg, CreatureObject* obj
 
 bool Component::isComponent() {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ bool Component::isComponent() {
 
 void Component::generateLootStats(const String& lootstring, int level) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ void Component::generateLootStats(const String& lootstring, int level) {
 
 bool Component::compare(Component* inCmpo) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ bool Component::compare(Component* inCmpo) {
 
 bool Component::hasKey(const String& key) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ bool Component::hasKey(const String& key) {
 
 void Component::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -136,7 +136,7 @@ void Component::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void Component::addProperty(const String& attributeName, const float value, const int precision, const String& craftingTitle, const bool hidden) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +155,7 @@ void Component::addProperty(const String& attributeName, const float value, cons
 
 float Component::getAttributeValue(const String& attributeName) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ float Component::getAttributeValue(const String& attributeName) {
 
 int Component::getAttributePrecision(const String& attributeName) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -185,7 +185,7 @@ int Component::getAttributePrecision(const String& attributeName) {
 
 String Component::getAttributeTitle(const String& attributeName) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +202,7 @@ String Component::getAttributeTitle(const String& attributeName) {
 
 bool Component::getAttributeHidden(const String& attributeName) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ bool Component::getAttributeHidden(const String& attributeName) {
 
 void Component::setPropertyToHidden(const String& property) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -232,7 +232,7 @@ void Component::setPropertyToHidden(const String& property) {
 
 void Component::addProperty(const String& attribute, const float value, const int precision, const String& title) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ void Component::addProperty(const String& attribute, const float value, const in
 
 int Component::getPropertyCount() {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -264,7 +264,7 @@ int Component::getPropertyCount() {
 
 String Component::getProperty(const int j) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -281,7 +281,7 @@ String Component::getProperty(const int j) {
 
 bool Component::changeAttributeValue(const String& property, float value) {
 	ComponentImplementation* _implementation = static_cast<ComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -328,7 +328,7 @@ void ComponentImplementation::finalize() {
 void ComponentImplementation::_initializeImplementation() {
 	_setClassHelper(ComponentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -3,6 +3,7 @@ sleen = Creature:new {
 	customName = "a Sleen",
 	socialGroup = "voritor",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 53,
 	chanceHit = 0.5,
 	damageMin = 695,
@@ -26,7 +27,7 @@ sleen = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/graul.iff"},
+	templates = {"object/mobile/voritor_lizard_hue.iff"},
 	scale = 1.2,
 	lootGroups = {
 		{

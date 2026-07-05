@@ -65,7 +65,7 @@ int LairObserverImplementation::notifyObserverEvent(unsigned int eventType, Obse
 			if (agent == nullptr)
 				continue;
 
-			agent->activateInterrupt(sourceObject, arg2);
+			agent->notifyObservers(arg2, sourceObject);
 		}
 
 		break;
@@ -133,8 +133,8 @@ void LairObserverImplementation::doAggro(TangibleObject* lair, TangibleObject* a
 				// TODO: only set defender if needed
 				AiAgent* ai = cast<AiAgent*>( creo);
 				Locker clocker(creo, lair);
-				if (lair->hasDefender(attacker))
-					creo->setDefender(attacker);
+				creo->setDefender(attacker);
+
 			}
 	}
 }
@@ -177,15 +177,21 @@ void LairObserverImplementation::healLair(TangibleObject* lair, TangibleObject* 
 
 		//  TODO: Range check
 		damageToHeal += lairMaxCondition / 100;
+
 	}
+
 	if (damageToHeal == 0)
 		return;
+
 	if (lair->getZone() == nullptr)
 		return;
+
 	lair->healDamage(lair, 0, damageToHeal, true);
+
 	PlayClientEffectObjectMessage* heal =
 			new PlayClientEffectObjectMessage(lair, "clienteffect/healing_healdamage.cef", "");
 	lair->broadcastMessage(heal, false);
+
 	PlayClientEffectLoc* healLoc = new PlayClientEffectLoc("clienteffect/healing_healdamage.cef",
 			lair->getZone()->getZoneName(), lair->getPositionX(),
 			lair->getPositionZ(), lair->getPositionY());
@@ -243,7 +249,7 @@ bool LairObserverImplementation::checkForNewSpawns(TangibleObject* lair, Tangibl
 	VectorMap<String, int> objectsToSpawn; // String mobileTemplate, int number to spawn
 
 	if (spawnNumber == 4) {
-		if (System::random(100) > 35)
+		if (System::random(100) > 9)
 			return false;
 
 		const VectorMap<String, int>* mobs = lairTemplate->getBossMobiles();

@@ -28,7 +28,7 @@ GarageInstallation::~GarageInstallation() {
 
 void GarageInstallation::createChildObjects() {
 	GarageInstallationImplementation* _implementation = static_cast<GarageInstallationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ void GarageInstallationImplementation::finalize() {
 void GarageInstallationImplementation::_initializeImplementation() {
 	_setClassHelper(GarageInstallationHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

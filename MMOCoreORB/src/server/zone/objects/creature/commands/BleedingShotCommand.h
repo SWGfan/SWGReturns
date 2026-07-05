@@ -16,15 +16,6 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
-		ManagedReference<WeaponObject*> weapon = creature->getWeapon();
-		
-		if (weapon == nullptr)
-			return GENERALERROR;
-
-		if (!weapon->isRangedWeapon())
-			return INVALIDWEAPON;
-
-
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 

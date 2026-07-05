@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_medpack_cure_poison_b = object_draft_schematic_
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 55,
+	xp = 255,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",

@@ -30,7 +30,7 @@ MigrateStatsSession::~MigrateStatsSession() {
 
 int MigrateStatsSession::initializeSession() {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ int MigrateStatsSession::initializeSession() {
 
 int MigrateStatsSession::cancelSession() {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ int MigrateStatsSession::cancelSession() {
 
 int MigrateStatsSession::clearSession() {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int MigrateStatsSession::clearSession() {
 
 int MigrateStatsSession::getAttributeToModifyCount() {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ int MigrateStatsSession::getAttributeToModifyCount() {
 
 void MigrateStatsSession::setAttributeToModify(int attribute, int value) {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,7 +102,7 @@ void MigrateStatsSession::setAttributeToModify(int attribute, int value) {
 
 int MigrateStatsSession::getAttribtueToModify(int attribute) {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +117,7 @@ int MigrateStatsSession::getAttribtueToModify(int attribute) {
 
 void MigrateStatsSession::migrateStats() {
 	MigrateStatsSessionImplementation* _implementation = static_cast<MigrateStatsSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -162,7 +162,7 @@ void MigrateStatsSessionImplementation::finalize() {
 void MigrateStatsSessionImplementation::_initializeImplementation() {
 	_setClassHelper(MigrateStatsSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -314,7 +314,7 @@ int MigrateStatsSessionImplementation::cancelSession() {
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  		CreatureObject creo = creature;
 	ManagedReference<CreatureObject* > creo = creature;
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  		return 
-	if (creo != nullptr){
+	if (creo){
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  			creo.dropActiveSession(SessionFacadeType.MIGRATESTATS);
 	creo->dropActiveSession(SessionFacadeType::MIGRATESTATS);
 }
@@ -348,7 +348,7 @@ void MigrateStatsSessionImplementation::migrateStats() {
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  		CreatureObject creo = creature;
 	ManagedReference<CreatureObject* > creo = creature;
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  		for 
-	if (creo == nullptr){
+	if (!creo){
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  			cancelSession();
 	cancelSession();
 	// server/zone/objects/player/sessions/MigrateStatsSession.idl():  			return;

@@ -2,6 +2,7 @@ peko_peko_albatross = Creature:new {
 	objectName = "@mob/creature_names:peko_peko_albatross",
 	socialGroup = "peko",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 155,
 	chanceHit = 7.75,
 	damageMin = 945,
@@ -9,8 +10,8 @@ peko_peko_albatross = Creature:new {
 	baseXp = 14694,
 	baseHAM = 74000,
 	baseHAMmax = 91000,
-	armor = 2,
-	resists = {200,180,130,180,180,190,25,25,-1},
+	armor = 1,
+	resists = {20,80,30,80,80,90,25,25,-1},
 	meatType = "meat_avian",
 	meatAmount = 400,
 	hideType = "hide_wooly",
@@ -18,7 +19,7 @@ peko_peko_albatross = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 100,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 8,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -36,12 +37,17 @@ peko_peko_albatross = Creature:new {
 			lootChance = 4100000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"creatureareacombo",""},
-		{"creatureareaknockdown",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"creatureareacombo",""}, {"creatureareaknockdown",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(peko_peko_albatross, "peko_peko_albatross")

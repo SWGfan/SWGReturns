@@ -3,6 +3,7 @@ chiss_hunter_herald_cave = Creature:new {
 	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "townsperson",
 	faction = "",
+	mobType = MOB_NPC,
 	level = 45,
 	chanceHit = 0.45,
 	damageMin = 400,

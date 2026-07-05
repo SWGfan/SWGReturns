@@ -32,7 +32,7 @@ Region::~Region() {
 
 void Region::setCityRegion(CityRegion* city) {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void Region::setCityRegion(CityRegion* city) {
 
 ManagedWeakReference<CityRegion* > Region::getCityRegion() const {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ ManagedWeakReference<CityRegion* > Region::getCityRegion() const {
 
 void Region::notifyLoadFromDatabase() {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void Region::notifyLoadFromDatabase() {
 
 void Region::enqueueEnterEvent(SceneObject* obj) {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void Region::enqueueEnterEvent(SceneObject* obj) {
 
 void Region::enqueueExitEvent(SceneObject* obj) {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ void Region::enqueueExitEvent(SceneObject* obj) {
 
 void Region::notifyEnter(SceneObject* object) {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ void Region::notifyEnter(SceneObject* object) {
 
 void Region::notifyExit(SceneObject* object) {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ void Region::notifyExit(SceneObject* object) {
 
 bool Region::isRegion() {
 	RegionImplementation* _implementation = static_cast<RegionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void RegionImplementation::finalize() {
 void RegionImplementation::_initializeImplementation() {
 	_setClassHelper(RegionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -332,7 +332,7 @@ void RegionImplementation::notifyEnter(SceneObject* object) {
 	// server/zone/objects/region/Region.idl():  		CityRegion strongReference = cityRegion;
 	ManagedReference<CityRegion* > strongReference = cityRegion;
 	// server/zone/objects/region/Region.idl():  		synchronized 
-	if (strongReference == nullptr)	// server/zone/objects/region/Region.idl():  			return;
+	if (!strongReference)	// server/zone/objects/region/Region.idl():  			return;
 	return;
 	// server/zone/objects/region/Region.idl():  		}
 {
@@ -348,7 +348,7 @@ void RegionImplementation::notifyExit(SceneObject* object) {
 	// server/zone/objects/region/Region.idl():  		CityRegion strongReference = cityRegion;
 	ManagedReference<CityRegion* > strongReference = cityRegion;
 	// server/zone/objects/region/Region.idl():  		synchronized 
-	if (strongReference == nullptr)	// server/zone/objects/region/Region.idl():  			return;
+	if (!strongReference)	// server/zone/objects/region/Region.idl():  			return;
 	return;
 	// server/zone/objects/region/Region.idl():  		}
 {
@@ -390,7 +390,7 @@ void RegionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getCityRegion().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_NOTIFYLOADFROMDATABASE__:

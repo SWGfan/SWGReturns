@@ -6,22 +6,25 @@ package server.chat;
 
 import engine.core.ManagedService;
 import server.zone.ZoneServer;
-import server.chat.room.ChatRoom;
-import server.chat.room.ChatRoomMap;
 import server.zone.objects.creature.CreatureObject;
 import server.zone.objects.scene.SceneObject;
 import engine.service.proto.BaseMessage;
-import server.zone.managers.player.PlayerMap;
 import server.zone.managers.player.PlayerManager;
-import system.util.VectorMap;
 import server.zone.objects.player.PlayerObject;
 import server.zone.packets.chat.ChatInstantMessageToCharacter;
 import engine.log.Logger;
 import server.zone.objects.waypoint.WaypointObject;
 import server.chat.PendingMessageList;
+import server.chat.PersistentMessage;
+
+include server.zone.managers.player.PlayerMap;
 include server.chat.StringIdChatParameter;
 include server.chat.StringIdChatParameterVector;
 include server.chat.WaypointChatParameterVector;
+include server.chat.room.ChatRoom;
+include server.chat.room.ChatRoomMap;
+include system.util.VectorMap;
+include system.lang.ref.Reference;
 
 @dirty
 class ChatManager extends ManagedService implements Logger {
@@ -56,12 +59,16 @@ class ChatManager extends ManagedService implements Logger {
 	private transient VectorMap<string, unsigned int> spatialChatTypes;
 
 	@dereferenced
+	private transient VectorMap<unsigned int, string> spatialChatTypeNames;
+
+	@dereferenced
 	private transient VectorMap<unsigned int, string> spatialChatTypeSkillNeeded;
 
 	@dereferenced
 	private transient VectorMap<unsigned int, short> spatialChatDistances;
 
 	private transient short defaultSpatialChatDistance;
+	private transient short defaultSpatialChatType;
 
 	//Determines how many characters long a room name can be.
 	public static final unsigned int MAXCHATROOMNAMELENGTH = 25;
@@ -358,12 +365,6 @@ class ChatManager extends ManagedService implements Logger {
 	public native void handleGuildChat(CreatureObject player, final unicode message);
 	public native void handlePlanetChat(CreatureObject player, final unicode message);
 	public native void handleAuctionChat(CreatureObject player, final unicode message);
-	public native void handleGeneralChat(CreatureObject player, final unicode message);
-	public native void handleGeneralResourceChat(CreatureObject player, final unicode message);
-	public native void handleGeneralDiscordChat(CreatureObject player, final unicode message);
-	public native void handleGeneralDiscordUnlock(CreatureObject player, final unicode message);
-	public native void handleGeneralDiscordGcw(CreatureObject player, final unicode message);
-	public native void handleGeneralDiscordShutdownChat(CreatureObject player, final unicode message);
 	public native void handleChatRoomMessage(CreatureObject sender, final unicode message, unsigned int roomID, unsigned int counter);
 	public native void handleSocialInternalMessage(CreatureObject sender, final unicode arguments);
 	@local
@@ -374,7 +375,11 @@ class ChatManager extends ManagedService implements Logger {
 	public native void broadcastGalaxy(CreatureObject player, final string message);
 	public native void broadcastGalaxy(final string message, final string faction);
 
+	@read
 	public native unsigned int getSpatialChatType(final string spatialChatType);
+
+	@read
+	public native final string getSpatialChatType(unsigned int chatType);
 	public native unsigned int getMoodID(final string moodType);
 	public native final string getMoodType(unsigned int id);
 	public native final string getMoodAnimation(final string moodType);
@@ -395,7 +400,7 @@ class ChatManager extends ManagedService implements Logger {
 	public native int sendMail(final string sendername, final unicode subject, @dereferenced StringIdChatParameter body, final string recipientName, WaypointObject waypoint = null);
 
 	@local
-	public native int sendMail(final string sendername, final unicode subject, final unicode body, final string recipientName, StringIdChatParameterVector stringIdParameters, WaypointChatParameterVector waypointParameters);
+	public native int sendMail(final string sendername, final unicode subject, final unicode body, final string recipientName, StringIdChatParameterVector stringIdParameters, WaypointChatParameterVector waypointParameters, @rawTemplate(value = "PersistentMessage*") Reference sentMail = null);
 
 	//////////////////////////////////////////////////////
 
@@ -450,18 +455,15 @@ class ChatManager extends ManagedService implements Logger {
 		return auctionRoom;
 	}
 
- 	/*
- 	 * Returns the general chat room
- 	 */
- 	public ChatRoom getGeneralRoom() {
- 		return generalRoom;
- 	}
-
 	/*
 	 * Returns the system chat room
 	 */
 	public ChatRoom getSystemRoom() {
 		return systemRoom;
+	}
+	
+	public ChatRoom getGeneralRoom() {
+		return generalRoom;
 	}
 
 	@read
@@ -473,3 +475,4 @@ class ChatManager extends ManagedService implements Logger {
 	@reference
 	public native PendingMessageList getPendingMessages(unsigned long oid);
 }
+

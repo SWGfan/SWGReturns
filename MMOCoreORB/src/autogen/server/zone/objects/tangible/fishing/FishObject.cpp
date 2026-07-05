@@ -34,7 +34,7 @@ FishObject::~FishObject() {
 
 void FishObject::initializeTransientMembers() {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void FishObject::initializeTransientMembers() {
 
 void FishObject::setAttributes(const String& playerName, const String& terrainN, String& timestamp, float fishLength) {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +66,7 @@ void FishObject::setAttributes(const String& playerName, const String& terrainN,
 
 void FishObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -76,7 +76,7 @@ void FishObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatu
 
 int FishObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ int FishObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 void FishObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -102,7 +102,7 @@ void FishObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* ob
 
 void FishObject::filet(CreatureObject* player) {
 	FishObjectImplementation* _implementation = static_cast<FishObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -148,7 +148,7 @@ void FishObjectImplementation::finalize() {
 void FishObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FishObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

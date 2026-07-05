@@ -5,6 +5,8 @@
  *      Author: theanswer
  */
 
+#include "server/zone/objects/creature/CreatureObject.h"
+
 #include "server/zone/objects/mission/MissionObject.h"
 #include "server/zone/objects/mission/MissionObjective.h"
 #include "server/zone/packets/mission/MissionObjectMessage6.h"
@@ -12,7 +14,6 @@
 #include "server/zone/packets/mission/MissionObjectDeltaMessage3.h"
 #include "server/zone/ZoneServer.h"
 #include "server/zone/objects/group/GroupObject.h"
-
 
 void MissionObjectImplementation::initializeTransientMembers() {
 	SceneObjectImplementation::initializeTransientMembers();
@@ -333,4 +334,27 @@ void MissionObjectImplementation::setCreatorName(const String& name, bool notify
 
 		player->sendMessage(delta);
 	}
+}
+
+String MissionObjectImplementation::getTypeAsString() const {
+	// clang-format off
+	switch (typeCRC) {
+	case MissionTypes::BOUNTY:          return "bounty";
+	case MissionTypes::CRAFTING:        return "crafting";
+	case MissionTypes::DANCER:          return "dancer";
+	case MissionTypes::DELIVER:         return "deliver";
+	case MissionTypes::DESTROY:         return "destroy";
+	case MissionTypes::ESCORT2ME:       return "escort2me";
+	case MissionTypes::ESCORT:          return "escort";
+	case MissionTypes::ESCORTTOCREATOR: return "escorttocreator";
+	case MissionTypes::HUNTING:         return "hunting";
+	case MissionTypes::MUSICIAN:        return "musician";
+	case MissionTypes::RECON:           return "recon";
+	case MissionTypes::SURVEY:          return "survey";
+	}
+	// clang-format on
+
+	StringBuffer asString;
+	asString << "MissionTypeCRC(" << hex << typeCRC << ")";
+	return asString.toString();
 }

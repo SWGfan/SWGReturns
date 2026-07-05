@@ -126,8 +126,6 @@ public:
 
 	void setIsEnergy(bool val);
 
-	void setIsPerfectSpawn(bool val);
-
 	String getName() const;
 
 	String getType() const;
@@ -157,8 +155,6 @@ public:
 	String getPoolSlot() const;
 
 	bool isEnergy() const;
-
-	bool isPerfectSpawn() const;
 
 	String getZoneRestriction() const;
 
@@ -191,8 +187,6 @@ public:
 	int getValueOf(const String& attribute) const;
 
 	void addStatsToDeedListBox(SuiListBox* suil);
-
-	void addStatsToDeedListBoxCR(SuiListBox* suil);
 
 	void print() const;
 
@@ -259,8 +253,6 @@ protected:
 
 	bool energy;
 
-	bool perfect;
-
 public:
 	ResourceSpawnImplementation();
 
@@ -313,8 +305,6 @@ public:
 
 	void setIsEnergy(bool val);
 
-	void setIsPerfectSpawn(bool val);
-
 	String getName() const;
 
 	String getType() const;
@@ -345,8 +335,6 @@ public:
 
 	bool isEnergy() const;
 
-	bool isPerfectSpawn() const;
-
 	String getZoneRestriction() const;
 
 	int getSurveyToolType() const;
@@ -370,7 +358,7 @@ public:
 	unsigned int getPlanetCRC() const;
 
 private:
-	Vector<String> getSpawnZones(int minpool, int maxpool, const String& zonerestriction, Vector<String>& activeZones);
+	Vector<String> getSpawnZones(int minpool, int maxpool, const String& zonerestriction, Vector<String>& activeZones) const;
 
 public:
 	float getDensityAt(const String& zoneName, float x, float y) const;
@@ -386,8 +374,6 @@ public:
 	int getValueOf(const String& attribute) const;
 
 	void addStatsToDeedListBox(SuiListBox* suil);
-
-	void addStatsToDeedListBoxCR(SuiListBox* suil);
 
 	void print() const;
 
@@ -459,8 +445,6 @@ public:
 
 	void setIsEnergy(bool val);
 
-	void setIsPerfectSpawn(bool val);
-
 	String getName() const;
 
 	String getType() const;
@@ -491,8 +475,6 @@ public:
 
 	bool isEnergy() const;
 
-	bool isPerfectSpawn() const;
-
 	String getZoneRestriction() const;
 
 	int getSurveyToolType() const;
@@ -522,8 +504,6 @@ public:
 	int getValueOf(const String& attribute) const;
 
 	void addStatsToDeedListBox(SuiListBox* suil);
-
-	void addStatsToDeedListBoxCR(SuiListBox* suil);
 
 	void print() const;
 
@@ -571,7 +551,6 @@ public:
 	int isType(lua_State *L);
 	int setSurveyToolType(lua_State *L);
 	int setIsEnergy(lua_State *L);
-	int setIsPerfectSpawn(lua_State *L);
 	int getName(lua_State *L);
 	int getType(lua_State *L);
 	int getClass(lua_State *L);
@@ -587,7 +566,6 @@ public:
 	int getSpawnPool(lua_State *L);
 	int getPoolSlot(lua_State *L);
 	int isEnergy(lua_State *L);
-	int isPerfectSpawn(lua_State *L);
 	int getZoneRestriction(lua_State *L);
 	int getSurveyToolType(lua_State *L);
 	int getSpawnMapSize(lua_State *L);
@@ -603,7 +581,6 @@ public:
 	int getAttributeValue(lua_State *L);
 	int getValueOf(lua_State *L);
 	int addStatsToDeedListBox(lua_State *L);
-	int addStatsToDeedListBoxCR(lua_State *L);
 	int print(lua_State *L);
 
 	Reference<ResourceSpawn*> realObject;
@@ -658,8 +635,6 @@ public:
 	Optional<bool> dbDestroyed;
 
 	Optional<bool> energy;
-
-	Optional<bool> perfect;
 
 	String _className;
 	ResourceSpawnPOD();

@@ -32,7 +32,7 @@ HuntingMissionObjective::~HuntingMissionObjective() {
 
 void HuntingMissionObjective::initializeTransientMembers() {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void HuntingMissionObjective::initializeTransientMembers() {
 
 void HuntingMissionObjective::activate() {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ void HuntingMissionObjective::activate() {
 
 void HuntingMissionObjective::abort() {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void HuntingMissionObjective::abort() {
 
 void HuntingMissionObjective::complete() {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void HuntingMissionObjective::complete() {
 
 int HuntingMissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ int HuntingMissionObjective::notifyObserverEvent(MissionObserver* observer, unsi
 
 Vector3 HuntingMissionObjective::getEndPosition() {
 	HuntingMissionObjectiveImplementation* _implementation = static_cast<HuntingMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -148,7 +148,7 @@ HuntingMissionObjectiveImplementation::~HuntingMissionObjectiveImplementation() 
 void HuntingMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(HuntingMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

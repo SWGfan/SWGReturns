@@ -32,7 +32,7 @@ SlicingTool::~SlicingTool() {
 
 int SlicingTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int SlicingTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 
 void SlicingTool::loadTemplateData(SharedObjectTemplate* templateData) {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +58,7 @@ void SlicingTool::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void SlicingTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -68,7 +68,7 @@ void SlicingTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* o
 
 void SlicingTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void SlicingTool::updateCraftingValues(CraftingValues* values, bool firstUpdate)
 
 bool SlicingTool::calculateSuccessRate() {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ bool SlicingTool::calculateSuccessRate() {
 
 float SlicingTool::getEffectiveness() {
 	SlicingToolImplementation* _implementation = static_cast<SlicingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ void SlicingToolImplementation::finalize() {
 void SlicingToolImplementation::_initializeImplementation() {
 	_setClassHelper(SlicingToolHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

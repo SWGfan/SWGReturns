@@ -50,7 +50,8 @@ object_draft_schematic_droid_component_power_supply_redundant_advanced = object_
 	craftingToolTab = 32, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 15,
 	size = 1,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_electronics.iff",
 
 	xpType = "crafting_droid_general",
 	xp = 100,

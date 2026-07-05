@@ -53,4 +53,3 @@ includeFile("intangible/theater/serverobjects.lua")
 includeFile("intangible/vehicle/serverobjects.lua")
 
 -- Server Objects
-includeFile("intangible/house/serverobjects.lua")

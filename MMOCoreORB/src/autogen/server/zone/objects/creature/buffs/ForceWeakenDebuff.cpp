@@ -32,7 +32,7 @@ ForceWeakenDebuff::~ForceWeakenDebuff() {
 
 void ForceWeakenDebuff::initializeTransientMembers() {
 	ForceWeakenDebuffImplementation* _implementation = static_cast<ForceWeakenDebuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void ForceWeakenDebuff::initializeTransientMembers() {
 
 void ForceWeakenDebuff::activate(bool applyModifiers) {
 	ForceWeakenDebuffImplementation* _implementation = static_cast<ForceWeakenDebuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ void ForceWeakenDebuff::activate(bool applyModifiers) {
 
 void ForceWeakenDebuff::deactivate(bool removeModifiers) {
 	ForceWeakenDebuffImplementation* _implementation = static_cast<ForceWeakenDebuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void ForceWeakenDebuff::deactivate(bool removeModifiers) {
 
 void ForceWeakenDebuff::doHealthActionMindTick(bool weaken) {
 	ForceWeakenDebuffImplementation* _implementation = static_cast<ForceWeakenDebuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void ForceWeakenDebuff::doHealthActionMindTick(bool weaken) {
 
 void ForceWeakenDebuff::clearBuffEvent() {
 	ForceWeakenDebuffImplementation* _implementation = static_cast<ForceWeakenDebuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ void ForceWeakenDebuffImplementation::finalize() {
 void ForceWeakenDebuffImplementation::_initializeImplementation() {
 	_setClassHelper(ForceWeakenDebuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

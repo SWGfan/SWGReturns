@@ -2,23 +2,24 @@ deadly_hooded_rawl = Creature:new {
 	objectName = "@mob/creature_names:rawl_deadly_hooded",
 	socialGroup = "rawl",
 	faction = "",
-	level = 60,
-	chanceHit = 0.55,
-	damageMin = 470,
-	damageMax = 650,
-	baseXp = 5830,
-	baseHAM = 11000,
-	baseHAMmax = 14000,
-  armor = 3,
-	resists = {165,160,120,120,135,120,170,130,140},
+	mobType = MOB_CARNIVORE,
+	level = 12,
+	chanceHit = 0.29,
+	damageMin = 130,
+	damageMax = 140,
+	baseXp = 609,
+	baseHAM = 1200,
+	baseHAMmax = 1400,
+	armor = 0,
+	resists = {0,0,0,120,-1,0,0,0,-1},
 	meatType = "meat_reptilian",
-	meatAmount = 50,
+	meatAmount = 25,
 	hideType = "hide_scaley",
-	hideAmount = 30,
+	hideAmount = 15,
 	boneType = "bone_mammal",
-	boneAmount = 14,
+	boneAmount = 7,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -29,12 +30,17 @@ deadly_hooded_rawl = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/fanned_rawl_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"posturedownattack","stateAccuracyBonus=100"},
-		{"mildpoison","stateAccuracyBonus=100"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"posturedownattack",""}, {"mildpoison",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(deadly_hooded_rawl, "deadly_hooded_rawl")

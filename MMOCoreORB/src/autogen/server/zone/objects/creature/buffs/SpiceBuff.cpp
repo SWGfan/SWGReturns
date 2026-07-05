@@ -30,7 +30,7 @@ SpiceBuff::~SpiceBuff() {
 
 void SpiceBuff::activate(bool applyModifiers) {
 	SpiceBuffImplementation* _implementation = static_cast<SpiceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void SpiceBuff::activate(bool applyModifiers) {
 
 void SpiceBuff::deactivate(bool removeModifiers) {
 	SpiceBuffImplementation* _implementation = static_cast<SpiceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void SpiceBuff::deactivate(bool removeModifiers) {
 
 void SpiceBuff::setDownerAttributes(CreatureObject* creature, Buff* buff) {
 	SpiceBuffImplementation* _implementation = static_cast<SpiceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void SpiceBuffImplementation::finalize() {
 void SpiceBuffImplementation::_initializeImplementation() {
 	_setClassHelper(SpiceBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

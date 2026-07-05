@@ -2,6 +2,7 @@ elite_novatrooper_commander = Creature:new {
 	objectName = "@mob/creature_names:stormtrooper_novatrooper_elite_commander",
 	randomNameType = NAME_STORMTROOPER,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 201,
@@ -11,7 +12,7 @@ elite_novatrooper_commander = Creature:new {
 	baseXp = 19104,
 	baseHAM = 160000,
 	baseHAMmax = 195000,
-	armor = 3,
+	armor = 1,
 	resists = {60,75,80,30,5,5,30,45,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -35,7 +36,7 @@ elite_novatrooper_commander = Creature:new {
 				{group = "junk", chance = 6200000},
 				{group = "rifles", chance = 550000},
 				{group = "pistols", chance = 550000},
-				{group = "melee_weapons", chance = 550000},
+				{group = "elite_weapons", chance = 550000},
 				{group = "carbines", chance = 550000},
 				{group = "clothing_attachments", chance = 25000},
 				{group = "armor_attachments", chance = 25000},
@@ -44,10 +45,18 @@ elite_novatrooper_commander = Creature:new {
 			}
 		}
 	},
-	weapons = {"stormtrooper_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "stormtrooper_weapons",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
-	attacks = merge(riflemanmaster,carbineermaster,marksmanmaster,brawlermaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(riflemanmaster,carbineermaster,marksmanmaster,brawlermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(elite_novatrooper_commander, "elite_novatrooper_commander")

@@ -81,7 +81,7 @@ public:
 
 	QuadTreeEntry* getRootParentUnsafe();
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	QuadTreeEntry* getRootParent();
 
@@ -123,7 +123,7 @@ public:
 
 	int registerToCloseObjectsReceivers();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	bool isInQuadTree() const;
 
@@ -221,7 +221,7 @@ public:
 
 	QuadTreeEntry* getRootParentUnsafe();
 
-	virtual bool containsPoint(float x, float y);
+	virtual bool containsPoint(float x, float y) const;
 
 	QuadTreeEntry* getRootParent();
 
@@ -263,7 +263,7 @@ public:
 
 	virtual int registerToCloseObjectsReceivers();
 
-	virtual int getReceiverFlags();
+	virtual int getReceiverFlags() const;
 
 	bool isInQuadTree() const;
 
@@ -275,7 +275,7 @@ public:
 
 	virtual unsigned long long getObjectID();
 
-	float getRadius() const;
+	virtual float getRadius() const;
 
 	bool isBounding() const;
 
@@ -355,7 +355,7 @@ public:
 
 	QuadTreeEntry* getRootParentUnsafe();
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	QuadTreeEntry* getRootParent();
 
@@ -385,7 +385,7 @@ public:
 
 	int registerToCloseObjectsReceivers();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	bool isInQuadTree() const;
 

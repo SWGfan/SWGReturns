@@ -26,20 +26,6 @@
 
 namespace server {
 namespace zone {
-namespace managers {
-namespace creature {
-
-class LairSpawn;
-
-} // namespace creature
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::creature;
-
-namespace server {
-namespace zone {
 namespace objects {
 namespace area {
 
@@ -69,6 +55,8 @@ class SceneObjectPOD;
 } // namespace server
 
 using namespace server::zone::objects::scene;
+
+#include "server/zone/managers/creature/LairSpawn.h"
 
 #include "system/util/Vector.h"
 
@@ -101,7 +89,7 @@ public:
 
 	void buildSpawnList(Vector<unsigned int>* groupCRCs);
 
-	Vector<Reference<LairSpawn*> >* getSpawnList();
+	const Vector<Reference<LairSpawn*> >* getSpawnList() const;
 
 	void setTier(int n);
 
@@ -114,6 +102,10 @@ public:
 	void addNoSpawnArea(SpawnArea* area);
 
 	void tryToSpawn(SceneObject* object);
+
+	bool isWorldSpawnArea() const;
+
+	void setWorldSpawnArea(bool val);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -160,6 +152,8 @@ protected:
 
 	Vector<ManagedWeakReference<SpawnArea*> > noSpawnAreas;
 
+	bool worldSpawnArea;
+
 	int tier;
 
 public:
@@ -175,7 +169,7 @@ public:
 
 	void buildSpawnList(Vector<unsigned int>* groupCRCs);
 
-	Vector<Reference<LairSpawn*> >* getSpawnList();
+	const Vector<Reference<LairSpawn*> >* getSpawnList() const;
 
 	void setTier(int n);
 
@@ -188,6 +182,10 @@ public:
 	void addNoSpawnArea(SpawnArea* area);
 
 	void tryToSpawn(SceneObject* object);
+
+	bool isWorldSpawnArea() const;
+
+	void setWorldSpawnArea(bool val);
 
 	WeakReference<SpawnArea*> _this;
 
@@ -247,6 +245,10 @@ public:
 
 	void tryToSpawn(SceneObject* object);
 
+	bool isWorldSpawnArea() const;
+
+	void setWorldSpawnArea(bool val);
+
 };
 
 class SpawnAreaHelper : public DistributedObjectClassHelper, public Singleton<SpawnAreaHelper> {
@@ -297,6 +299,8 @@ public:
 	Optional<ManagedReference<SpawnAreaObserverPOD* >> exitObserver;
 
 	Optional<Vector<ManagedWeakReference<SpawnArea*> >> noSpawnAreas;
+
+	Optional<bool> worldSpawnArea;
 
 	Optional<int> tier;
 

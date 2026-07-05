@@ -31,7 +31,7 @@ void PingServer::shutdown() {
 PingClient* PingServer::createConnection(Socket* sock, SocketAddress& addr) {
 	PingClient* client = new PingClient(this, sock, addr);
 
-	info("client connected");
+	info("client connected from \'" + client->getAddress() + "\'");
 
 	return client;
 }
@@ -42,7 +42,7 @@ void PingServer::handleMessage(ServiceClient* client, Packet* message) {
 	try {
 
 		if (lclient->isAvailable() && (message->size() == 4)) {
-	// lclient->updateNetStatus(); (disabled - method not present)
+			lclient->resetNetStatusTimeout();
 
 			Packet* mess = message->clone();
 

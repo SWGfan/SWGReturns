@@ -1,4 +1,4 @@
- /*
+/*
  * CreatureManagerImplementation.cpp
  *
  *  Created on: 24/02/2010
@@ -37,6 +37,7 @@
 #include "server/zone/objects/tangible/LairObject.h"
 #include "server/zone/objects/building/PoiBuilding.h"
 #include "server/zone/objects/intangible/TheaterObject.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 Mutex CreatureManagerImplementation::loadMutex;
 
@@ -95,7 +96,7 @@ SceneObject* CreatureManagerImplementation::spawnLair(unsigned int lairTemplate,
  		return nullptr;
  	}
 
- 	ManagedReference<LairObject*> building = zoneServer->createObject(buildingToSpawn.hashCode(), 0).castTo<LairObject*>();
+ 	Reference<LairObject*> building = zoneServer->createObject(buildingToSpawn.hashCode(), 0).castTo<LairObject*>();
 
  	if (building == nullptr) {
  		error("error spawning " + buildingToSpawn);
@@ -149,7 +150,7 @@ SceneObject* CreatureManagerImplementation::spawnTheater(unsigned int lairTempla
  		return nullptr;
  	}
 
- 	ManagedReference<PoiBuilding*> building = zoneServer->createObject(buildingToSpawn.hashCode(), 0).castTo<PoiBuilding*>();
+ 	Reference<PoiBuilding*> building = zoneServer->createObject(buildingToSpawn.hashCode(), 0).castTo<PoiBuilding*>();
 
  	if (building == nullptr) {
  		error("error spawning " + buildingToSpawn);
@@ -190,7 +191,7 @@ SceneObject* CreatureManagerImplementation::spawnDynamicSpawn(unsigned int lairT
 	if (mobiles->size() == 0)
 		return nullptr;
 
-	ManagedReference<TheaterObject*> theater = zoneServer->createObject(STRING_HASHCODE("object/intangible/theater/base_theater.iff"), 0).castTo<TheaterObject*>();
+	Reference<TheaterObject*> theater = zoneServer->createObject(STRING_HASHCODE("object/intangible/theater/base_theater.iff"), 0).castTo<TheaterObject*>();
 
 	if (theater == nullptr) {
 		error("error creating intangible theater");
@@ -233,7 +234,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureWithAi(uint32 templa
 	CreatureObject* creature = spawnCreature(templateCRC, 0, x, z, y, parentID, persistent);
 
 	if (creature != nullptr && creature->isAiAgent())
-		cast<AiAgent*>(creature)->activateLoad("");
+		creature->asAiAgent()->setAITemplate();
 	else {
 		error("could not spawn template " + String::valueOf(templateCRC) + " with AI.");
 		creature = nullptr;
@@ -253,10 +254,7 @@ String CreatureManagerImplementation::getTemplateToSpawn(uint32 templateCRC) {
 		uint32 randomTemp = System::random(objTemps.size() - 1);
 		templateToSpawn = objTemps.get(randomTemp);
 	} else {
-		StringBuffer errMsg;
-		errMsg << "could not spawn creature... no object templates in script " << creoTempl->getTemplateName();
-
-		//error(errMsg.toString());
+		warning() << "could not spawn creature... no object templates in script " << creoTempl->getTemplateName();
 	}
 
 	return templateToSpawn;
@@ -300,7 +298,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureAsBaby(uint32 templa
 	placeCreature(creo, x, z, y, parentID);
 
 	if (creo != nullptr && creo->isAiAgent())
-		cast<AiAgent*>(creo)->activateLoad("");
+		creo->asAiAgent()->setAITemplate();
 	else {
 		error("could not spawn template " + templateToSpawn + " as baby with AI.");
 		creo = nullptr;
@@ -343,12 +341,12 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureAsEventMob(uint32 te
 	placeCreature(creo, x, z, y, parentID);
 
 	if (creo != nullptr && creo->isAiAgent())
-		cast<AiAgent*>(creo)->activateLoad("");
+		creo->asAiAgent()->setAITemplate();
 
 	return creo;
 }
 
-CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC, uint32 objectCRC, float x, float z, float y, uint64 parentID, bool persistent) {
+CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC, uint32 objectCRC, float x, float z, float y, uint64 parentID, bool persistent, float direction) {
 	CreatureTemplate* creoTempl = creatureTemplateManager->getTemplate(templateCRC);
 
 	if (creoTempl == nullptr)
@@ -372,7 +370,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC,
 		error("could not spawn template " + templateToSpawn);
 	}
 
-	placeCreature(creature, x, z, y, parentID);
+	placeCreature(creature, x, z, y, parentID, direction);
 
 	return creature;
 }
@@ -381,10 +379,7 @@ CreatureObject* CreatureManagerImplementation::createCreature(uint32 templateCRC
 	ManagedReference<SceneObject*> object = zoneServer->createObject(templateCRC, persistent);
 
 	if (object == nullptr) {
-		StringBuffer errMsg;
-		errMsg << "could not spawn creature... wrong template? 0x" << hex << templateCRC;
-
-		error(errMsg.toString());
+		error() << "could not spawn creature... wrong template? 0x" << hex << templateCRC;
 
 		return nullptr;
 	}
@@ -392,10 +387,7 @@ CreatureObject* CreatureManagerImplementation::createCreature(uint32 templateCRC
 	Locker locker(object);
 
 	if (!object->isCreatureObject()) {
-		StringBuffer errMsg;
-		errMsg << "server did not create a creature object wrong template? 0x" << hex << templateCRC;
-
-		error(errMsg.toString());
+		error() << "server did not create a creature object wrong template? 0x" << hex << templateCRC;
 
 		if (object->isPersistent()) {
 			object->destroyObjectFromDatabase(true);
@@ -407,9 +399,7 @@ CreatureObject* CreatureManagerImplementation::createCreature(uint32 templateCRC
 	CreatureObject* creature = cast<CreatureObject*>( object.get());
 
 	if (!createCreatureChildrenObjects(creature, templateCRC, creature->isPersistent(), mobileTemplateCRC)) {
-		StringBuffer errMsg;
-		errMsg << "could not create children objects for creature... 0x" << templateCRC;
-		error(errMsg.toString());
+		error() << "could not create children objects for creature... 0x" << templateCRC;
 
 		if (object->isPersistent()) {
 			object->destroyObjectFromDatabase(true);
@@ -421,7 +411,7 @@ CreatureObject* CreatureManagerImplementation::createCreature(uint32 templateCRC
 	return creature;
 }
 
-void CreatureManagerImplementation::placeCreature(CreatureObject* creature, float x, float z, float y, uint64 parentID) {
+void CreatureManagerImplementation::placeCreature(CreatureObject* creature, float x, float z, float y, uint64 parentID, float direction) {
 	if (creature == nullptr)
 		return;
 
@@ -435,10 +425,12 @@ void CreatureManagerImplementation::placeCreature(CreatureObject* creature, floa
 
 	if (creature->isAiAgent()) {
 		AiAgent* aio = cast<AiAgent*>(creature);
-		aio->setHomeLocation(x, z, y, cellParent);
+		aio->setHomeLocation(x, z, y, cellParent, direction);
+		aio->setNextStepPosition(x, z, y, cellParent);
 	}
 
 	creature->initializePosition(x, z, y);
+	creature->setDirection(Quaternion(Vector3(0, 1, 0), direction));
 
 	if (cellParent != nullptr) {
 		cellParent->transferObject(creature, -1);
@@ -480,6 +472,13 @@ bool CreatureManagerImplementation::createCreatureChildrenObjects(CreatureObject
 		Locker clocker(defaultWeapon, creature);
 
 		creature->transferObject(defaultWeapon, 4);
+
+		if (creature->isAiAgent()) {
+			WeaponObject* weap = defaultWeapon.castTo<WeaponObject*>();
+			AiAgent* agent = creature->asAiAgent();
+			agent->setDefaultWeapon(weap);
+			agent->setCurrentWeapon(weap);
+		}
 	}
 
 	if (creature->hasSlotDescriptor("inventory")) {
@@ -515,12 +514,14 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	if (destructedObject->isDead())
 		return 1;
 
+	destructedObject->cancelMovementEvent();
 	destructedObject->clearOptionBit(OptionBitmask::INTERESTING);
 	destructedObject->clearOptionBit(OptionBitmask::JTLINTERESTING);
 
 	destructedObject->setPosture(CreaturePosture::DEAD, !isCombatAction, !isCombatAction);
 
 	destructedObject->updateTimeOfDeath();
+	destructedObject->wipeBlackboard();
 
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
@@ -531,6 +532,8 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	ThreatMap copyThreatMap(*threatMap);
 
 	threatMap->removeObservers();
+
+	auto destructorObjectID = destructor->getObjectID();
 
 	if (destructedObject != destructor)
 		destructor->unlock();
@@ -544,37 +547,30 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 		if (player != nullptr) {
 
-			if(player->isGrouped()) {
+			if (player->isGrouped()) {
 				ownerID = player->getGroupID();
 			} else {
 				ownerID = player->getObjectID();
 			}
 
 			if (player->isPlayerCreature()) {
-				if (player->isGrouped()) {
-					ManagedReference<GroupObject*> group = player->getGroup();
+				if (!destructedObject->isEventMob()) {
+					if (player->isGrouped()) {
+						ManagedReference<GroupObject*> group = player->getGroup();
 
-					if (group != nullptr) {
-						for (int i = 0; i < group->getGroupSize(); i++) {
-							ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
+						if (group != nullptr) {
+							for (int i = 0; i < group->getGroupSize(); i++) {
+								ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
 
-							if (groupMember->isPlayerCreature()) {
-								if (groupMember->getWorldPosition().distanceTo(destructedObject->getWorldPosition()) < ZoneServer::CLOSEOBJECTRANGE) {
+								if (groupMember->isPlayerCreature()) {
 									Locker locker(groupMember, destructedObject);
 									groupMember->notifyObservers(ObserverEventType::KILLEDCREATURE, destructedObject);
-									PlayerObject* groupGhost = groupMember->getPlayerObject();
-									if (groupGhost != nullptr)
-										groupGhost->updatePveKills();
 								}
 							}
 						}
-					}
-				} else {
-					Locker locker(player, destructedObject);
-					player->notifyObservers(ObserverEventType::KILLEDCREATURE, destructedObject);
-					PlayerObject* ghost = player->getPlayerObject();
-					if (ghost != nullptr) {
-						ghost->updatePveKills();
+					} else {
+						Locker locker(player, destructedObject);
+						player->notifyObservers(ObserverEventType::KILLEDCREATURE, destructedObject);
 					}
 				}
 
@@ -582,6 +578,7 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 				if (!destructedObject->getFactionString().isEmpty() && !destructedObject->isEventMob()) {
 					int level = destructedObject->getLevel();
+
 					if(!player->isGrouped())
 						factionManager->awardFactionStanding(player, destructedObject->getFactionString(), level);
 					else
@@ -596,17 +593,53 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 		SceneObject* creatureInventory = destructedObject->getSlottedObject("inventory");
 
+		// Make sure mob weapons are destroyed when the ai dies so they can't be looted
+		destructedObject->unequipWeapons();
+
+		WeaponObject* primaryWeap = destructedObject->getPrimaryWeapon();
+
+		if (primaryWeap != nullptr && primaryWeap != destructedObject->getDefaultWeapon()) {
+			Locker locker(primaryWeap);
+			primaryWeap->destroyObjectFromWorld(true);
+		}
+
+		WeaponObject* secondaryWeap = destructedObject->getSecondaryWeapon();
+
+		if (secondaryWeap != nullptr) {
+			Locker locker(secondaryWeap);
+			secondaryWeap->destroyObjectFromWorld(true);
+		}
+
+		WeaponObject* thrownWeap = destructedObject->getThrownWeapon();
+
+		if (thrownWeap != nullptr) {
+			Locker locker(thrownWeap);
+			thrownWeap->destroyObjectFromWorld(true);
+		}
+
+		destructedObject->nullifyWeapons();
+
 		if (creatureInventory != nullptr && player != nullptr && player->isPlayerCreature()) {
 			LootManager* lootManager = zoneServer->getLootManager();
 
-			if (destructedObject->isNonPlayerCreatureObject() && !destructedObject->isEventMob())
-				destructedObject->setCashCredits(lootManager->calculateLootCredits(destructedObject->getLevel()));
+			if (destructedObject->isNonPlayerCreatureObject() && !destructedObject->isEventMob()) {
+				destructedObject->clearCashCredits();
+				int credits = lootManager->calculateLootCredits(destructedObject->getLevel());
+				TransactionLog trx(TrxCode::NPCLOOT, destructedObject, credits, true);
+				trx.addState("destructor", destructorObjectID);
+				destructedObject->addCashCredits(credits);
+			}
 
 			Locker locker(creatureInventory);
 
+			TransactionLog trx(TrxCode::NPCLOOT, destructedObject);
 			creatureInventory->setContainerOwnerID(ownerID);
 
-			lootManager->createLoot(creatureInventory, destructedObject);
+			if (lootManager->createLoot(trx, creatureInventory, destructedObject)) {
+				trx.commit(true);
+			} else {
+				trx.abort() << "createLoot failed for ai object.";
+			}
 		}
 
 		Reference<AiAgent*> strongReferenceDestructedObject = destructedObject;
@@ -620,7 +653,6 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 		// Check to see if we can expedite the despawn of this corpse
 		// We can expedite the despawn when corpse has no loot, no credits, player cannot harvest, and no group members in range can harvest
 		shouldRescheduleCorpseDestruction = playerManager->shouldRescheduleCorpseDestruction(player, destructedObject);
-
 	} catch (...) {
 		destructedObject->scheduleDespawn();
 
@@ -634,7 +666,6 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	destructedObject->scheduleDespawn();
 
 	if (shouldRescheduleCorpseDestruction) {
-
 		Reference<DespawnCreatureTask*> despawn = destructedObject->getPendingTask("despawn").castTo<DespawnCreatureTask*>();
 
 		if (despawn != nullptr) {
@@ -644,8 +675,31 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	}
 
 	// now we can safely lock destructor again
-	if (destructedObject != destructor)
+	if (destructedObject != destructor) {
 		destructor->wlock(destructedObject);
+
+		ThreatMap* destructorThreatMap = destructor->getThreatMap();
+
+		if (destructorThreatMap != nullptr) {
+			for (int i = 0; i < destructorThreatMap->size(); i++) {
+				TangibleObject* destructedTano = destructorThreatMap->elementAt(i).getKey();
+
+				if (destructedTano == destructedObject) {
+					destructorThreatMap->remove(i);
+				}
+			}
+		}
+
+		if (destructor->hasDefender(destructedObject)) {
+			destructor->removeDefender(destructedObject);
+		}
+
+		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = destructor->getDefenderList();
+
+		if (defenderList->size() == 0) {
+			destructor->clearCombatState(false);
+		}
+	}
 
 	return 1;
 }
@@ -661,8 +715,9 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	Locker pLock(owner, droid);
 
 	Zone* zone = creature->getZone();
+	Zone* droidZone = droid->getZone();
 
-	if (zone == nullptr || !creature->isCreature()) {
+	if (zone == nullptr || !creature->isCreature() || droidZone == nullptr) {
 		return;
 	}
 
@@ -691,17 +746,17 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		return;
 	}
 	int ownerSkill = owner->getSkillMod("creature_harvesting");
-	int quantityExtracted = int(quantity * 4 * float(ownerSkill / 100.0f));
+	int quantityExtracted = int(quantity * float(ownerSkill / 100.0f));
 	// add in droid bonus
 	quantityExtracted = Math::max(quantityExtracted, 3);
-	ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, droid->getZone()->getZoneName());
+	ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, droidZone->getZoneName());
 
 	if (resourceSpawn == nullptr) {
 		owner->sendSystemMessage("Error: Server cannot locate a current spawn of " + restype);
 		return;
 	}
 
-	float density = resourceSpawn->getDensityAt(droid->getZone()->getZoneName(), droid->getPositionX(), droid->getPositionY());
+	float density = resourceSpawn->getDensityAt(droidZone->getZoneName(), droid->getPositionX(), droid->getPositionY());
 
 	String creatureHealth = "";
 
@@ -727,15 +782,10 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		quantityExtracted = (int)(quantityExtracted * modifier);
 	}
 
-	/*
- 	if (creature->getParent().get() != nullptr)
- 		quantityExtracted = 1;
-	*/
+	if (creature->getParent().get() != nullptr)
+		quantityExtracted = 1;
 
-	int luckBonus = owner->getSkillMod("luck")*5; //0-20% harvest bonus for luck
-	int fsluckBonus = owner->getSkillMod("force_luck")*5; //0-20% harvest bonus for fsluck
-
-	int droidBonus = DroidMechanics::determineDroidSkillBonus(ownerSkill,harvestBonus + luckBonus + fsluckBonus,quantityExtracted);
+	int droidBonus = DroidMechanics::determineDroidSkillBonus(ownerSkill,harvestBonus,quantityExtracted);
 
 	quantityExtracted += droidBonus;
 	// add to droid inventory if there is space available, otherwise to player
@@ -746,14 +796,19 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		return;
 	}
 
+	TransactionLog trx(TrxCode::HARVESTED, owner, resourceSpawn);
+
 	if (pet->hasStorage()) {
-		bool didit = resourceManager->harvestResourceToPlayer(droid, resourceSpawn, quantityExtracted);
+		bool didit = resourceManager->harvestResourceToPlayer(trx, droid, resourceSpawn, quantityExtracted);
 		if (!didit) {
-			resourceManager->harvestResourceToPlayer(owner, resourceSpawn, quantityExtracted);
+			trx.addState("droidOverflow", true);
+			resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
 		}
 	} else {
-		resourceManager->harvestResourceToPlayer(owner, resourceSpawn, quantityExtracted);
+		resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
 	}
+
+	trx.commit();
 
 	/// Send System Messages
 	StringIdChatParameter harvestMessage("skl_use", creatureHealth);
@@ -770,7 +825,7 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		owner->sendSystemMessage("@skl_use:group_harvest_bonus_ranger");
 	else if (modifier == 1.4f)
 		owner->sendSystemMessage("@skl_use:group_harvest_bonus_masterranger");
-/*
+
 	/// Send group spam
 	if (owner->isGrouped()) {
 		StringIdChatParameter bonusMessage("group", "notify_harvest_corpse");
@@ -783,7 +838,7 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		ChatSystemMessage* sysMessage = new ChatSystemMessage(bonusMessage);
 		owner->getGroup()->broadcastMessage(owner, sysMessage, false);
 	}
-*/
+
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
 	int xp = creature->getLevel() * 5 + 19;
@@ -813,7 +868,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 	if (!creature->canHarvestMe(player))
 		return;
 
-	if (!player->isInRange(creature, 50))
+	if (!player->isInRange(creature, 7))
 		return;
 
 	ManagedReference<ResourceManager*> resourceManager = zone->getZoneServer()->getResourceManager();
@@ -861,8 +916,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 		player->sendSystemMessage("Tried to harvest something this creature didn't have, please report this error");
 		return;
 	}
-
-	int quantityExtracted = int(quantity * 4 * float(player->getSkillMod("creature_harvesting") / 100.0f));
+	int quantityExtracted = int(quantity * float(player->getSkillMod("creature_harvesting") / 100.0f));
 	quantityExtracted = Math::max(quantityExtracted, 3);
 
 	ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, player->getZone()->getZoneName());
@@ -892,33 +946,19 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 
 	float modifier = 1;
 	int baseAmount = quantityExtracted;
-	String skillNovice = "outdoors_ranger_novice";
-	String skillMaster = "outdoors_ranger_master";
 
 	if (player->isGrouped()) {
-		// Apply group bonus and see if anyone else in the group is a Ranger
 		modifier = player->getGroup()->getGroupHarvestModifier(player);
-		// See if I am a Ranger novice or Ranger Master.
-		if(modifier < 1.3f && player->hasSkill(skillNovice)) {
-			modifier = 1.3f; // Novice, only if there isn't a master in the group
-		}
-		if(player->hasSkill(skillMaster)){
-			modifier = 1.4f; // Master
-		}
-		// Apply bonus. 
-		// 1.2 for generally being grouped, always generated in getGroupHarvestModifier(player);
-		// 1.3 for personally being or being with a Novice Ranger
-		// 1.4 for personally being or being with a Master Ranger
 
 		quantityExtracted = (int)(quantityExtracted * modifier);
 	}
 
-	/*
- 	if (creature->getParent().get() != nullptr)
- 		quantityExtracted = 1;
-	*/
+	if (creature->getParent().get() != nullptr)
+		quantityExtracted = 1;
 
-	resourceManager->harvestResourceToPlayer(player, resourceSpawn, quantityExtracted);
+	TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
+	resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
+	trx.commit();
 
 	/// Send System Messages
 	StringIdChatParameter harvestMessage("skl_use", creatureHealth);
@@ -935,7 +975,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 		player->sendSystemMessage("@skl_use:group_harvest_bonus_ranger");
 	else if (modifier == 1.4f)
 		player->sendSystemMessage("@skl_use:group_harvest_bonus_masterranger");
-/*
+
 	/// Send group spam
 	if (player->isGrouped()) {
 		StringIdChatParameter bonusMessage("group", "notify_harvest_corpse");
@@ -948,10 +988,10 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 		ChatSystemMessage* sysMessage = new ChatSystemMessage(bonusMessage);
 		player->getGroup()->broadcastMessage(player, sysMessage, false);
 	}
-*/
+
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
-	int xp = creature->getLevel() * 5 + 19;
+	int xp = creature->getLevel() * 20 + 19;
 
 	if(playerManager != nullptr)
 		playerManager->awardExperience(player, "scout", xp, true);
@@ -1083,8 +1123,14 @@ void CreatureManagerImplementation::tame(Creature* creature, CreatureObject* pla
 	creature->setPvpStatusBitmask(0, true);
 
 	if (creature->isAiAgent()) {
-		AiAgent* agent = cast<AiAgent*>(creature);
-		agent->activateLoad("wait");
+		AiAgent* agent = creature->asAiAgent();
+
+		if (agent == nullptr)
+			return;
+
+		agent->clearPatrolPoints();
+		agent->addCreatureFlag(CreatureFlag::STATIONARY);
+		agent->setAITemplate();
 	}
 
 	Reference<TameCreatureTask*> task = new TameCreatureTask(creature, player, mask, force, adult);

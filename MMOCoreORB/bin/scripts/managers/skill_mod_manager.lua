@@ -54,18 +54,18 @@ skillModLimits = {
 	--{258, x, x}, -- SKILLBOX
 	
 	-- Bonus Mods Wearables / Structure
-	{4097, -25, 500},  --WEARABLE
-	{4098, -125, 1000}, -- STRUCTUREMOD
+	{4097, -25, 25},  --WEARABLE
+	{4098, -125, 125}, -- STRUCTUREMOD
 	
 	-- Temp mods, not displayed (on timers or ability bonus)
-	{2711, -125, 1000}, -- BUFFMOD
-	{2712, -125, 1000}, -- ABILITYBONUSMOD
+	{2711, -125, 125}, -- BUFFMOD
+	{2712, -125, 125}, -- ABILITYBONUSMOD
 }
 
 disabledWearableSkillMods = {
 	"combat_healing_ability",
 	"healing_ability",
-	"keep_creature",
-	"stored_pets",
+	--"keep_creature",
+	--"stored_pets",
 	"combat_medic_effectiveness",
 }

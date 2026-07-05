@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ubuntu/SWGGhosts/MMOCoreORB/src/conf/ConfigManager.cpp" "src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o" "gcc" "src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o.d"
+  "/home/ubuntu/StarDust-2/MMOCoreORB/src/conf/ConfigManager.cpp" "src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o" "gcc" "src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

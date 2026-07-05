@@ -8,7 +8,7 @@
  *	PlayerBountyStub
  */
 
-enum {RPC_SETREWARD__INT_ = 2906054437,RPC_SETONLINE__BOOL_,RPC_GETTARGETPLAYERID__,RPC_GETREWARD__,RPC_ISONLINE__,RPC_NUMBEROFACTIVEMISSIONS__,RPC_ADDBOUNTYHUNTER__LONG_,RPC_REMOVEBOUNTYHUNTER__LONG_,RPC_HASBOUNTYHUNTER__LONG_,RPC_GETLASTBOUNTYKILL__,RPC_SETLASTBOUNTYKILL__LONG_,RPC_GETLASTBOUNTYDEBUFF__,RPC_SETLASTBOUNTYDEBUFF__LONG_};
+enum {RPC_SETREWARD__INT_ = 2906054437,RPC_SETONLINE__BOOL_,RPC_GETTARGETPLAYERID__,RPC_GETREWARD__,RPC_ISONLINE__,RPC_NUMBEROFACTIVEMISSIONS__,RPC_ADDBOUNTYHUNTER__LONG_,RPC_REMOVEBOUNTYHUNTER__LONG_,RPC_HASBOUNTYHUNTER__LONG_,RPC_GETLASTBOUNTYKILL__,RPC_SETLASTBOUNTYKILL__LONG_,RPC_GETLASTBOUNTYDEBUFF__,RPC_SETLASTBOUNTYDEBUFF__LONG_,RPC_CANTAKEMISSION__LONG_LONG_,RPC_ADDMISSIONCOOLDOWN__LONG_LONG_};
 
 PlayerBounty::PlayerBounty(unsigned long long targetID, int payout) : ManagedObject(DummyConstructorParameter::instance()) {
 	PlayerBountyImplementation* _implementation = new PlayerBountyImplementation(targetID, payout);
@@ -28,7 +28,7 @@ PlayerBounty::~PlayerBounty() {
 
 void PlayerBounty::setReward(int amount) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -43,7 +43,7 @@ void PlayerBounty::setReward(int amount) {
 
 void PlayerBounty::setOnline(bool state) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void PlayerBounty::setOnline(bool state) {
 
 unsigned long long PlayerBounty::getTargetPlayerID() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ unsigned long long PlayerBounty::getTargetPlayerID() const {
 
 int PlayerBounty::getReward() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ int PlayerBounty::getReward() const {
 
 bool PlayerBounty::isOnline() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ bool PlayerBounty::isOnline() const {
 
 int PlayerBounty::numberOfActiveMissions() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,7 +114,7 @@ int PlayerBounty::numberOfActiveMissions() const {
 
 void PlayerBounty::addBountyHunter(unsigned long long id) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ void PlayerBounty::addBountyHunter(unsigned long long id) {
 
 void PlayerBounty::removeBountyHunter(unsigned long long id) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,9 +142,9 @@ void PlayerBounty::removeBountyHunter(unsigned long long id) {
 	}
 }
 
-bool PlayerBounty::hasBountyHunter(unsigned long long id) {
+bool PlayerBounty::hasBountyHunter(unsigned long long id) const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,9 +157,9 @@ bool PlayerBounty::hasBountyHunter(unsigned long long id) {
 	}
 }
 
-SortedVector<unsigned long long>* PlayerBounty::getBountyHunters() {
-	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+const SortedVector<unsigned long long>* PlayerBounty::getBountyHunters() const {
+	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -169,7 +169,7 @@ SortedVector<unsigned long long>* PlayerBounty::getBountyHunters() {
 
 unsigned long long PlayerBounty::getLastBountyKill() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ unsigned long long PlayerBounty::getLastBountyKill() const {
 
 void PlayerBounty::setLastBountyKill(unsigned long long newTime) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ void PlayerBounty::setLastBountyKill(unsigned long long newTime) {
 
 unsigned long long PlayerBounty::getLastBountyDebuff() const {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -212,7 +212,7 @@ unsigned long long PlayerBounty::getLastBountyDebuff() const {
 
 void PlayerBounty::setLastBountyDebuff(unsigned long long newTime) {
 	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,6 +222,38 @@ void PlayerBounty::setLastBountyDebuff(unsigned long long newTime) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->setLastBountyDebuff(newTime);
+	}
+}
+
+bool PlayerBounty::canTakeMission(unsigned long long enemyID, unsigned long long cooldownTime) {
+	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CANTAKEMISSION__LONG_LONG_);
+		method.addUnsignedLongParameter(enemyID);
+		method.addUnsignedLongParameter(cooldownTime);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->canTakeMission(enemyID, cooldownTime);
+	}
+}
+
+void PlayerBounty::addMissionCooldown(unsigned long long enemyID, unsigned long long newTime) {
+	PlayerBountyImplementation* _implementation = static_cast<PlayerBountyImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ADDMISSIONCOOLDOWN__LONG_LONG_);
+		method.addUnsignedLongParameter(enemyID);
+		method.addUnsignedLongParameter(newTime);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->addMissionCooldown(enemyID, newTime);
 	}
 }
 
@@ -258,7 +290,7 @@ void PlayerBountyImplementation::finalize() {
 void PlayerBountyImplementation::_initializeImplementation() {
 	_setClassHelper(PlayerBountyHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -359,6 +391,10 @@ bool PlayerBountyImplementation::readObjectMember(ObjectInputStream* stream, con
 		TypeInfo<SortedVector<unsigned long long> >::parseFromBinaryStream(&bountyHunterIDs, stream);
 		return true;
 
+	case 0x78f9a63f: //PlayerBounty.missionCooldownList
+		TypeInfo<VectorMap<unsigned long long, unsigned long long> >::parseFromBinaryStream(&missionCooldownList, stream);
+		return true;
+
 	}
 
 	return false;
@@ -431,6 +467,15 @@ int PlayerBountyImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0x78f9a63f; //PlayerBounty.missionCooldownList
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<VectorMap<unsigned long long, unsigned long long> >::toBinaryStream(&missionCooldownList, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -445,6 +490,8 @@ PlayerBountyImplementation::PlayerBountyImplementation(unsigned long long target
 	online = true;
 	// server/zone/objects/mission/PlayerBounty.idl():  		bountyHunterIDs.setNoDuplicateInsertPlan();
 	(&bountyHunterIDs)->setNoDuplicateInsertPlan();
+	// server/zone/objects/mission/PlayerBounty.idl():  		missionCooldownList.setNoDuplicateInsertPlan();
+	(&missionCooldownList)->setNoDuplicateInsertPlan();
 	// server/zone/objects/mission/PlayerBounty.idl():  		lastBountyKill = 0;
 	lastBountyKill = 0;
 	// server/zone/objects/mission/PlayerBounty.idl():  		lastBountyDebuff = 0;
@@ -491,12 +538,12 @@ void PlayerBountyImplementation::removeBountyHunter(unsigned long long id) {
 	(&bountyHunterIDs)->drop(id);
 }
 
-bool PlayerBountyImplementation::hasBountyHunter(unsigned long long id) {
+bool PlayerBountyImplementation::hasBountyHunter(unsigned long long id) const{
 	// server/zone/objects/mission/PlayerBounty.idl():  		return bountyHunterIDs.contains(id);
 	return (&bountyHunterIDs)->contains(id);
 }
 
-SortedVector<unsigned long long>* PlayerBountyImplementation::getBountyHunters() {
+const SortedVector<unsigned long long>* PlayerBountyImplementation::getBountyHunters() const{
 	// server/zone/objects/mission/PlayerBounty.idl():  		return bountyHunterIDs;
 	return (&bountyHunterIDs);
 }
@@ -519,6 +566,11 @@ unsigned long long PlayerBountyImplementation::getLastBountyDebuff() const{
 void PlayerBountyImplementation::setLastBountyDebuff(unsigned long long newTime) {
 	// server/zone/objects/mission/PlayerBounty.idl():  	 lastBountyDebuff = newTime;
 	lastBountyDebuff = newTime;
+}
+
+void PlayerBountyImplementation::addMissionCooldown(unsigned long long enemyID, unsigned long long newTime) {
+	// server/zone/objects/mission/PlayerBounty.idl():  		missionCooldownList.put(enemyID, newTime);
+	(&missionCooldownList)->put(enemyID, newTime);
 }
 
 /*
@@ -634,6 +686,24 @@ void PlayerBountyAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_CANTAKEMISSION__LONG_LONG_:
+		{
+			unsigned long long enemyID = inv->getUnsignedLongParameter();
+			unsigned long long cooldownTime = inv->getUnsignedLongParameter();
+			
+			bool _m_res = canTakeMission(enemyID, cooldownTime);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ADDMISSIONCOOLDOWN__LONG_LONG_:
+		{
+			unsigned long long enemyID = inv->getUnsignedLongParameter();
+			unsigned long long newTime = inv->getUnsignedLongParameter();
+			
+			addMissionCooldown(enemyID, newTime);
+			
+		}
+		break;
 	default:
 		ManagedObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -671,7 +741,7 @@ void PlayerBountyAdapter::removeBountyHunter(unsigned long long id) {
 	(static_cast<PlayerBounty*>(stub))->removeBountyHunter(id);
 }
 
-bool PlayerBountyAdapter::hasBountyHunter(unsigned long long id) {
+bool PlayerBountyAdapter::hasBountyHunter(unsigned long long id) const {
 	return (static_cast<PlayerBounty*>(stub))->hasBountyHunter(id);
 }
 
@@ -689,6 +759,14 @@ unsigned long long PlayerBountyAdapter::getLastBountyDebuff() const {
 
 void PlayerBountyAdapter::setLastBountyDebuff(unsigned long long newTime) {
 	(static_cast<PlayerBounty*>(stub))->setLastBountyDebuff(newTime);
+}
+
+bool PlayerBountyAdapter::canTakeMission(unsigned long long enemyID, unsigned long long cooldownTime) {
+	return (static_cast<PlayerBounty*>(stub))->canTakeMission(enemyID, cooldownTime);
+}
+
+void PlayerBountyAdapter::addMissionCooldown(unsigned long long enemyID, unsigned long long newTime) {
+	(static_cast<PlayerBounty*>(stub))->addMissionCooldown(enemyID, newTime);
 }
 
 /*
@@ -821,6 +899,17 @@ int PlayerBountyPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (missionCooldownList) {
+	_nameHashCode = 0x78f9a63f; //PlayerBounty.missionCooldownList
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<VectorMap<unsigned long long, unsigned long long> >::toBinaryStream(&missionCooldownList.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -878,6 +967,14 @@ bool PlayerBountyPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 		}
 		return true;
 
+	case 0x78f9a63f: //PlayerBounty.missionCooldownList
+		{
+			VectorMap<unsigned long long, unsigned long long> _mnmissionCooldownList;
+			TypeInfo<VectorMap<unsigned long long, unsigned long long> >::parseFromBinaryStream(&_mnmissionCooldownList, stream);
+			missionCooldownList = std::move(_mnmissionCooldownList);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -915,6 +1012,8 @@ void PlayerBountyPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<unsigned long long >::toBinaryStream(&lastBountyDebuff.value(), stream);
 
 	TypeInfo<SortedVector<unsigned long long> >::toBinaryStream(&bountyHunterIDs.value(), stream);
+
+	TypeInfo<VectorMap<unsigned long long, unsigned long long> >::toBinaryStream(&missionCooldownList.value(), stream);
 
 
 }

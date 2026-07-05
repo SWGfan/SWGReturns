@@ -58,7 +58,7 @@ void DeliverMissionConversationObserverImplementation::finalize() {
 void DeliverMissionConversationObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DeliverMissionConversationObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

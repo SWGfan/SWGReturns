@@ -30,7 +30,7 @@ SpiceDownerBuff::~SpiceDownerBuff() {
 
 void SpiceDownerBuff::activate(bool applyModifiers) {
 	SpiceDownerBuffImplementation* _implementation = static_cast<SpiceDownerBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void SpiceDownerBuff::activate(bool applyModifiers) {
 
 void SpiceDownerBuff::deactivate(bool applyModifiers) {
 	SpiceDownerBuffImplementation* _implementation = static_cast<SpiceDownerBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void SpiceDownerBuffImplementation::finalize() {
 void SpiceDownerBuffImplementation::_initializeImplementation() {
 	_setClassHelper(SpiceDownerBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -212,7 +212,7 @@ void SpiceDownerBuffImplementation::activate(bool applyModifiers) {
 	// server/zone/objects/creature/buffs/SpiceDownerBuff.idl():  			Buff buff = super.creature.getBuff(BuffCRC.FOOD_REDUCE_SPICE_DOWNTIME);
 	ManagedReference<Buff* > buff = BuffImplementation::creature.getForUpdate().get()->getBuff(BuffCRC::FOOD_REDUCE_SPICE_DOWNTIME);
 	// server/zone/objects/creature/buffs/SpiceDownerBuff.idl():  		}
-	if (buff != nullptr){
+	if (buff){
 	// server/zone/objects/creature/buffs/SpiceDownerBuff.idl():  				float reductionMod = buff.getSkillModifierValue("reduce_spice_downtime");
 	float reductionMod = buff->getSkillModifierValue("reduce_spice_downtime");
 	// server/zone/objects/creature/buffs/SpiceDownerBuff.idl():  				float reduction = 1.f - (reductionMod / 100);

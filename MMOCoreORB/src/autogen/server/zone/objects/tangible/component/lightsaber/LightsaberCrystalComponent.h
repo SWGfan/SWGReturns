@@ -128,10 +128,6 @@ public:
 
 	int getDamage() const;
 
-	int getMinimumDamage() const;
-
-	int getMaximumDamage() const;
-
 	float getForceCost() const;
 
 	int getSacHealth() const;
@@ -143,8 +139,6 @@ public:
 	int getSacMind() const;
 
 	int getWoundChance() const;
-
-	int getItemLevel() const;
 
 	unsigned long long getOwnerID() const;
 
@@ -300,10 +294,6 @@ public:
 
 	int getDamage() const;
 
-	int getMinimumDamage() const;
-
-	int getMaximumDamage() const;
-
 	float getForceCost() const;
 
 	int getSacHealth() const;
@@ -315,8 +305,6 @@ public:
 	int getSacMind() const;
 
 	int getWoundChance() const;
-
-	int getItemLevel() const;
 
 	unsigned long long getOwnerID() const;
 
@@ -420,10 +408,6 @@ public:
 
 	int getDamage() const;
 
-	int getMinimumDamage() const;
-
-	int getMaximumDamage() const;
-
 	float getForceCost() const;
 
 	int getSacHealth() const;
@@ -435,8 +419,6 @@ public:
 	int getSacMind() const;
 
 	int getWoundChance() const;
-
-	int getItemLevel() const;
 
 	unsigned long long getOwnerID() const;
 
@@ -516,15 +498,12 @@ public:
 	int getRandomizedStat(lua_State *L);
 	int getCrystalQuality(lua_State *L);
 	int getDamage(lua_State *L);
-	int getMinimumDamage(lua_State *L);
-	int getMaximumDamage(lua_State *L);
 	int getForceCost(lua_State *L);
 	int getSacHealth(lua_State *L);
 	int getAttackSpeed(lua_State *L);
 	int getSacAction(lua_State *L);
 	int getSacMind(lua_State *L);
 	int getWoundChance(lua_State *L);
-	int getItemLevel(lua_State *L);
 	int getOwnerID(lua_State *L);
 	int getQuality(lua_State *L);
 	int setQuality(lua_State *L);

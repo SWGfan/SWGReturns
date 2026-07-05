@@ -45,40 +45,21 @@ FireLightningSingle1Command = {
         name = "firelightningsingle1",
 
 	damageMultiplier = 3.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
+  speedMultiplier = 1.0,
+  healthCostMultiplier = 0,
+  actionCostMultiplier = 3,
+  mindCostMultiplier = 0,
+    visMod = 25,
 
-	stateEffects = {
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		30 
-	  ),
-	  StateEffect( 
-		STUN_EFFECT, 
-	{}, 
-		{ "stun_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		60
-	)
-	},
-
-	animation = "fire_lightning_rifle_single_1",
+  poolsToDamage = HEALTH_ATTRIBUTE,
+	animation = "fire_lightning_rifle_single_2", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "firelightningsingle1",
 	
 	weaponType = SPECIALHEAVYWEAPON,
 
-	range = 16
+	range = 64
 }
 
 AddCommand(FireLightningSingle1Command)

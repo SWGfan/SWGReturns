@@ -30,7 +30,7 @@ RingAreaShape::~RingAreaShape() {
 
 void RingAreaShape::setInnerRadius(float r) {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void RingAreaShape::setInnerRadius(float r) {
 
 void RingAreaShape::setOuterRadius(float r) {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,9 +60,9 @@ void RingAreaShape::setOuterRadius(float r) {
 	}
 }
 
-float RingAreaShape::getInnerRadius() {
+float RingAreaShape::getInnerRadius() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,9 +74,9 @@ float RingAreaShape::getInnerRadius() {
 	}
 }
 
-float RingAreaShape::getInnerRadius2() {
+float RingAreaShape::getInnerRadius2() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,9 +88,9 @@ float RingAreaShape::getInnerRadius2() {
 	}
 }
 
-float RingAreaShape::getOuterRadius() {
+float RingAreaShape::getOuterRadius() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,9 +102,9 @@ float RingAreaShape::getOuterRadius() {
 	}
 }
 
-float RingAreaShape::getOuterRadius2() {
+float RingAreaShape::getOuterRadius2() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,9 +116,9 @@ float RingAreaShape::getOuterRadius2() {
 	}
 }
 
-float RingAreaShape::getRadius() {
+float RingAreaShape::getRadius() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,9 +130,9 @@ float RingAreaShape::getRadius() {
 	}
 }
 
-bool RingAreaShape::containsPoint(float x, float y) {
+bool RingAreaShape::containsPoint(float x, float y) const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -146,9 +146,9 @@ bool RingAreaShape::containsPoint(float x, float y) {
 	}
 }
 
-bool RingAreaShape::containsPoint(const Vector3& point) {
+bool RingAreaShape::containsPoint(const Vector3& point) const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -156,9 +156,9 @@ bool RingAreaShape::containsPoint(const Vector3& point) {
 	}
 }
 
-Vector3 RingAreaShape::getRandomPosition() {
+Vector3 RingAreaShape::getRandomPosition() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -166,9 +166,9 @@ Vector3 RingAreaShape::getRandomPosition() {
 	}
 }
 
-Vector3 RingAreaShape::getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) {
+Vector3 RingAreaShape::getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -176,9 +176,9 @@ Vector3 RingAreaShape::getRandomPosition(const Vector3& origin, float minDistanc
 	}
 }
 
-bool RingAreaShape::isRingAreaShape() {
+bool RingAreaShape::isRingAreaShape() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,9 +190,9 @@ bool RingAreaShape::isRingAreaShape() {
 	}
 }
 
-bool RingAreaShape::intersectsWith(AreaShape* areaShape) {
+bool RingAreaShape::intersectsWith(AreaShape* areaShape) const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -205,9 +205,9 @@ bool RingAreaShape::intersectsWith(AreaShape* areaShape) {
 	}
 }
 
-float RingAreaShape::getArea() {
+float RingAreaShape::getArea() const {
 	RingAreaShapeImplementation* _implementation = static_cast<RingAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -252,7 +252,7 @@ void RingAreaShapeImplementation::finalize() {
 void RingAreaShapeImplementation::_initializeImplementation() {
 	_setClassHelper(RingAreaShapeHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -429,32 +429,32 @@ void RingAreaShapeImplementation::setOuterRadius(float r) {
 	outerRadius2 = r * r;
 }
 
-float RingAreaShapeImplementation::getInnerRadius() {
+float RingAreaShapeImplementation::getInnerRadius() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return innerRadius;
 	return innerRadius;
 }
 
-float RingAreaShapeImplementation::getInnerRadius2() {
+float RingAreaShapeImplementation::getInnerRadius2() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return innerRadius2;
 	return innerRadius2;
 }
 
-float RingAreaShapeImplementation::getOuterRadius() {
+float RingAreaShapeImplementation::getOuterRadius() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return outerRadius;
 	return outerRadius;
 }
 
-float RingAreaShapeImplementation::getOuterRadius2() {
+float RingAreaShapeImplementation::getOuterRadius2() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return outerRadius2;
 	return outerRadius2;
 }
 
-float RingAreaShapeImplementation::getRadius() {
+float RingAreaShapeImplementation::getRadius() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return outerRadius;
 	return outerRadius;
 }
 
-bool RingAreaShapeImplementation::isRingAreaShape() {
+bool RingAreaShapeImplementation::isRingAreaShape() const{
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		return true;
 	return true;
 }
@@ -569,39 +569,39 @@ void RingAreaShapeAdapter::setOuterRadius(float r) {
 	(static_cast<RingAreaShape*>(stub))->setOuterRadius(r);
 }
 
-float RingAreaShapeAdapter::getInnerRadius() {
+float RingAreaShapeAdapter::getInnerRadius() const {
 	return (static_cast<RingAreaShape*>(stub))->getInnerRadius();
 }
 
-float RingAreaShapeAdapter::getInnerRadius2() {
+float RingAreaShapeAdapter::getInnerRadius2() const {
 	return (static_cast<RingAreaShape*>(stub))->getInnerRadius2();
 }
 
-float RingAreaShapeAdapter::getOuterRadius() {
+float RingAreaShapeAdapter::getOuterRadius() const {
 	return (static_cast<RingAreaShape*>(stub))->getOuterRadius();
 }
 
-float RingAreaShapeAdapter::getOuterRadius2() {
+float RingAreaShapeAdapter::getOuterRadius2() const {
 	return (static_cast<RingAreaShape*>(stub))->getOuterRadius2();
 }
 
-float RingAreaShapeAdapter::getRadius() {
+float RingAreaShapeAdapter::getRadius() const {
 	return (static_cast<RingAreaShape*>(stub))->getRadius();
 }
 
-bool RingAreaShapeAdapter::containsPoint(float x, float y) {
+bool RingAreaShapeAdapter::containsPoint(float x, float y) const {
 	return (static_cast<RingAreaShape*>(stub))->containsPoint(x, y);
 }
 
-bool RingAreaShapeAdapter::isRingAreaShape() {
+bool RingAreaShapeAdapter::isRingAreaShape() const {
 	return (static_cast<RingAreaShape*>(stub))->isRingAreaShape();
 }
 
-bool RingAreaShapeAdapter::intersectsWith(AreaShape* areaShape) {
+bool RingAreaShapeAdapter::intersectsWith(AreaShape* areaShape) const {
 	return (static_cast<RingAreaShape*>(stub))->intersectsWith(areaShape);
 }
 
-float RingAreaShapeAdapter::getArea() {
+float RingAreaShapeAdapter::getArea() const {
 	return (static_cast<RingAreaShape*>(stub))->getArea();
 }
 

@@ -36,7 +36,7 @@ PlayerManagementSession::~PlayerManagementSession() {
 
 int PlayerManagementSession::initializeSession() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int PlayerManagementSession::initializeSession() {
 
 int PlayerManagementSession::cancelSession() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ int PlayerManagementSession::cancelSession() {
 
 int PlayerManagementSession::clearSession() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int PlayerManagementSession::clearSession() {
 
 void PlayerManagementSession::addAccountSui(SuiListBox* box) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void PlayerManagementSession::addAccountSui(SuiListBox* box) {
 
 void PlayerManagementSession::ban(const int tablevel, unsigned const int galaxy, const String& gname, const String& name) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ void PlayerManagementSession::ban(const int tablevel, unsigned const int galaxy,
 
 void PlayerManagementSession::getPlayerInfo(const int tablevel, const String& firstName) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ void PlayerManagementSession::getPlayerInfo(const int tablevel, const String& fi
 
 void PlayerManagementSession::sendAccountInfo() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -141,7 +141,7 @@ void PlayerManagementSession::sendAccountInfo() {
 
 void PlayerManagementSession::sendBanDuration() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +155,7 @@ void PlayerManagementSession::sendBanDuration() {
 
 void PlayerManagementSession::parseBanDuration(const String& duration) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ void PlayerManagementSession::parseBanDuration(const String& duration) {
 
 void PlayerManagementSession::sendBanReason(bool unban) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -185,7 +185,7 @@ void PlayerManagementSession::sendBanReason(bool unban) {
 
 void PlayerManagementSession::setBanReason(const String& reason) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -200,7 +200,7 @@ void PlayerManagementSession::setBanReason(const String& reason) {
 
 void PlayerManagementSession::showBanSummary() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -214,7 +214,7 @@ void PlayerManagementSession::showBanSummary() {
 
 void PlayerManagementSession::showUnbanSummary() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -228,7 +228,7 @@ void PlayerManagementSession::showUnbanSummary() {
 
 void PlayerManagementSession::completeBan() {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -242,7 +242,7 @@ void PlayerManagementSession::completeBan() {
 
 String PlayerManagementSession::getBanDuration(unsigned int timestamp) {
 	PlayerManagementSessionImplementation* _implementation = static_cast<PlayerManagementSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -290,7 +290,7 @@ void PlayerManagementSessionImplementation::finalize() {
 void PlayerManagementSessionImplementation::_initializeImplementation() {
 	_setClassHelper(PlayerManagementSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -597,15 +597,15 @@ PlayerManagementSessionImplementation::PlayerManagementSessionImplementation(Acc
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		galaxyName = "";
 	galaxyName = "";
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		accountBox = null;
-	accountBox = nullptr;
+	accountBox = NULL;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		durationBox = null;
-	durationBox = nullptr;
+	durationBox = NULL;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		reasonBox = null;
-	reasonBox = nullptr;
+	reasonBox = NULL;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		summaryBox = null;
-	summaryBox = nullptr;
+	summaryBox = NULL;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		unbanSummaryBox = null;
-	unbanSummaryBox = nullptr;
+	unbanSummaryBox = NULL;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		Logger.setLoggingName("PlayerManagementSession");
 	Logger::setLoggingName("PlayerManagementSession");
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		Logger.setLogging(true);
@@ -618,7 +618,7 @@ int PlayerManagementSessionImplementation::cancelSession() {
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		CreatureObject adm = admin;
 	ManagedReference<CreatureObject* > adm = admin;
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		clearSession(
-	if (adm != nullptr)	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  			adm.dropActiveSession(SessionFacadeType.PLAYERMANAGEMENT);
+	if (adm)	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  			adm.dropActiveSession(SessionFacadeType.PLAYERMANAGEMENT);
 	adm->dropActiveSession(SessionFacadeType::PLAYERMANAGEMENT);
 	// server/zone/objects/player/sessions/admin/PlayerManagementSession.idl():  		clearSession();
 	clearSession();

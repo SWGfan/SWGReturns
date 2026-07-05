@@ -2,6 +2,7 @@ rebel_admiral = Creature:new {
 	objectName = "@mob/creature_names:corvette_rebel_admiral",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 226,
@@ -35,7 +36,7 @@ rebel_admiral = Creature:new {
 				{group = "junk", chance = 4250000},
 				{group = "rifles", chance = 1000000},
 				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
+				{group = "elite_weapons", chance = 1000000},
 				{group = "carbines", chance = 1000000},
 				{group = "clothing_attachments", chance = 100000},
 				{group = "armor_attachments", chance = 100000},
@@ -44,10 +45,18 @@ rebel_admiral = Creature:new {
 			}
 		}
 	},
-	weapons = {"rebel_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "rebel_weapons_heavy",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(commandomaster,marksmanmaster,brawlermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_admiral, "rebel_admiral")

@@ -28,7 +28,7 @@ HospitalBuildingObject::~HospitalBuildingObject() {
 
 bool HospitalBuildingObject::isHospitalBuildingObject() {
 	HospitalBuildingObjectImplementation* _implementation = static_cast<HospitalBuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void HospitalBuildingObjectImplementation::finalize() {
 void HospitalBuildingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(HospitalBuildingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

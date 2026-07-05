@@ -34,7 +34,7 @@ InterplanetarySurveyDroidSession::~InterplanetarySurveyDroidSession() {
 
 void InterplanetarySurveyDroidSession::setPlanet(String& planet) {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ void InterplanetarySurveyDroidSession::setPlanet(String& planet) {
 
 String InterplanetarySurveyDroidSession::getPlanet() {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ String InterplanetarySurveyDroidSession::getPlanet() {
 
 void InterplanetarySurveyDroidSession::setTool(SurveyTool* t) {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ void InterplanetarySurveyDroidSession::setTool(SurveyTool* t) {
 
 int InterplanetarySurveyDroidSession::clearSession() {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ int InterplanetarySurveyDroidSession::clearSession() {
 
 int InterplanetarySurveyDroidSession::cancelSession() {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ int InterplanetarySurveyDroidSession::cancelSession() {
 
 bool InterplanetarySurveyDroidSession::hasSurveyTool() {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ bool InterplanetarySurveyDroidSession::hasSurveyTool() {
 
 void InterplanetarySurveyDroidSession::initalizeDroid(TangibleObject* droid) {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -132,7 +132,7 @@ void InterplanetarySurveyDroidSession::initalizeDroid(TangibleObject* droid) {
 
 void InterplanetarySurveyDroidSession::handleMenuSelect(CreatureObject* pl, unsigned long long menuID, SuiListBox* suiBox) {
 	InterplanetarySurveyDroidSessionImplementation* _implementation = static_cast<InterplanetarySurveyDroidSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -173,7 +173,7 @@ void InterplanetarySurveyDroidSessionImplementation::finalize() {
 void InterplanetarySurveyDroidSessionImplementation::_initializeImplementation() {
 	_setClassHelper(InterplanetarySurveyDroidSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -353,11 +353,11 @@ void InterplanetarySurveyDroidSessionImplementation::setTool(SurveyTool* t) {
 
 int InterplanetarySurveyDroidSessionImplementation::clearSession() {
 	// server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl():  		player = null;
-	player = nullptr;
+	player = NULL;
 	// server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl():  		droidObject = null;
-	droidObject = nullptr;
+	droidObject = NULL;
 	// server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl():  		toolObject = null;
-	toolObject = nullptr;
+	toolObject = NULL;
 	// server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl():  		return 0;
 	return 0;
 }

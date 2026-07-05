@@ -36,7 +36,7 @@ ShuttleBeacon::~ShuttleBeacon() {
 
 void ShuttleBeacon::initializeTransientMembers() {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ void ShuttleBeacon::initializeTransientMembers() {
 
 int ShuttleBeacon::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,14 +61,14 @@ int ShuttleBeacon::handleObjectMenuSelect(CreatureObject* player, byte selectedI
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void ShuttleBeacon::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void ShuttleBeacon::fillAttributeList(AttributeListMessage* alm, CreatureObject*
 
 void ShuttleBeacon::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -88,7 +88,7 @@ void ShuttleBeacon::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Cre
 
 void ShuttleBeacon::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void ShuttleBeacon::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void ShuttleBeacon::activateRemoveEvent(bool immediate) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -120,7 +120,7 @@ void ShuttleBeacon::activateRemoveEvent(bool immediate) {
 
 void ShuttleBeacon::callShuttle(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,14 +130,14 @@ void ShuttleBeacon::callShuttle(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->callShuttle(player);
 	}
 }
 
 void ShuttleBeacon::spawnShuttle(CreatureObject* player, int type) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,14 +147,14 @@ void ShuttleBeacon::spawnShuttle(CreatureObject* player, int type) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->spawnShuttle(player, type);
 	}
 }
 
 void ShuttleBeacon::landShuttle(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ void ShuttleBeacon::landShuttle(CreatureObject* player) {
 
 void ShuttleBeacon::dismissShuttle(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -186,7 +186,7 @@ void ShuttleBeacon::dismissShuttle(CreatureObject* player) {
 
 void ShuttleBeacon::destroyShuttle(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +202,7 @@ void ShuttleBeacon::destroyShuttle(CreatureObject* player) {
 
 bool ShuttleBeacon::canSpawnShuttle(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ bool ShuttleBeacon::canSpawnShuttle(CreatureObject* player) {
 
 String ShuttleBeacon::getDurationString() {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ String ShuttleBeacon::getDurationString() {
 
 void ShuttleBeacon::setOwner(CreatureObject* player) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -249,7 +249,7 @@ void ShuttleBeacon::setOwner(CreatureObject* player) {
 
 Time* ShuttleBeacon::getPurchaseTime() {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -259,7 +259,7 @@ Time* ShuttleBeacon::getPurchaseTime() {
 
 void ShuttleBeacon::setReadyToTakeOff(bool status) {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -275,7 +275,7 @@ void ShuttleBeacon::setReadyToTakeOff(bool status) {
 
 bool ShuttleBeacon::isEventPerkItem() {
 	ShuttleBeaconImplementation* _implementation = static_cast<ShuttleBeaconImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -320,7 +320,7 @@ void ShuttleBeaconImplementation::finalize() {
 void ShuttleBeaconImplementation::_initializeImplementation() {
 	_setClassHelper(ShuttleBeaconHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -525,7 +525,7 @@ ShuttleBeaconImplementation::ShuttleBeaconImplementation() {
 	// server/zone/objects/tangible/eventperk/ShuttleBeacon.idl():  		shuttleType = 0;
 	shuttleType = 0;
 	// server/zone/objects/tangible/eventperk/ShuttleBeacon.idl():  		owner = null;
-	owner = nullptr;
+	owner = NULL;
 	// server/zone/objects/tangible/eventperk/ShuttleBeacon.idl():  		readyToTakeOff = false;
 	readyToTakeOff = false;
 }

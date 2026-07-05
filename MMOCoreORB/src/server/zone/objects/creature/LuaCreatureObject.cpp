@@ -16,19 +16,15 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/managers/skill/SkillManager.h"
-#include "server/zone/managers/skill/SkillModManager.h"
 #include "server/zone/objects/tangible/threat/ThreatMap.h"
-#include "server/chat/ChatManager.h"
-#include "server/zone/objects/creature/VehicleObject.h"
-#include "server/zone/objects/creature/ai/Creature.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
+#include "server/zone/Zone.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
 Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "_setObject", &LuaCreatureObject::_setObject },
 		{ "_getObject", &LuaSceneObject::_getObject },
-		{ "getBankCredits", &LuaCreatureObject::getBankCredits },
-		{ "setBankCredits", &LuaCreatureObject::setBankCredits },
 		{ "sendSystemMessage", &LuaCreatureObject::sendSystemMessage },
 		{ "sendSystemMessageWithDI", &LuaCreatureObject::sendSystemMessageWithDI },
 		{ "sendSystemMessageWithTO", &LuaCreatureObject::sendSystemMessageWithTO },
@@ -75,6 +71,7 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "hasSkill", &LuaCreatureObject::hasSkill},
 		{ "removeSkill", &LuaCreatureObject::removeSkill},
 		{ "surrenderSkill", &LuaCreatureObject::surrenderSkill},
+		{ "addSkillDirect", &LuaCreatureObject::addSkillDirect},
 		{ "getConversationSession", &LuaCreatureObject::getConversationSession},
 		{ "doAnimation", &LuaCreatureObject::doAnimation},
 		{ "engageCombat", &LuaCreatureObject::engageCombat},
@@ -93,16 +90,21 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "setFactionRank", &LuaCreatureObject::setFactionRank},
 		{ "getFactionRank", &LuaCreatureObject::getFactionRank},
 		{ "getCashCredits", &LuaCreatureObject::getCashCredits},
+		{ "getBankCredits", &LuaCreatureObject::getBankCredits },
 		{ "subtractCashCredits", &LuaCreatureObject::subtractCashCredits},
+		{ "subtractBankCredits", &LuaCreatureObject::subtractBankCredits},
 		{ "addCashCredits", &LuaCreatureObject::addCashCredits},
+		{ "addBankCredits", &LuaCreatureObject::addBankCredits},
 		{ "removeScreenPlayState", &LuaCreatureObject::removeScreenPlayState},
 		{ "isGrouped", &LuaCreatureObject::isGrouped},
 		{ "isGroupedWith", &LuaCreatureObject::isGroupedWith},
 		{ "getGroupSize", &LuaCreatureObject::getGroupSize},
 		{ "getGroupMember", &LuaCreatureObject::getGroupMember},
+		{ "getOptionsBitmask", &LuaTangibleObject::getOptionsBitmask},
 		{ "setOptionsBitmask", &LuaCreatureObject::setOptionsBitmask},
 		{ "setOptionBit", &LuaTangibleObject::setOptionBit},
 		{ "clearOptionBit", &LuaTangibleObject::clearOptionBit},
+		{ "getPvpStatusBitmask", &LuaTangibleObject::getPvpStatusBitmask},
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask},
 		{ "setPvpStatusBit", &LuaTangibleObject::setPvpStatusBit},
 		{ "isChangingFactionStatus", &LuaTangibleObject::isChangingFactionStatus },
@@ -133,12 +135,6 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "enhanceCharacter", &LuaCreatureObject::enhanceCharacter },
 		{ "setWounds", &LuaCreatureObject::setWounds },
 		{ "setShockWounds", &LuaCreatureObject::setShockWounds },
-		{ "subtractBankCredits", &LuaCreatureObject::subtractBankCredits },
-		{ "buffSingleStat", &LuaCreatureObject::buffSingleStat },
-		{ "removeBuffs", &LuaCreatureObject::removeBuffs },
-		{ "emptyStomach", &LuaCreatureObject::emptyStomach },
-		{ "getActivePetsSize", &LuaCreatureObject::getActivePetsSize },
-		{ "getActivePet", &LuaCreatureObject::getActivePet },
 		{ "getForceSensitiveSkillCount", &LuaCreatureObject::getForceSensitiveSkillCount },
 		{ "villageKnightPrereqsMet", &LuaCreatureObject::villageKnightPrereqsMet },
 		{ "isOnLeave", &LuaTangibleObject::isOnLeave },
@@ -146,18 +142,12 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "isCovert", &LuaTangibleObject::isCovert },
 		{ "setFactionStatus", &LuaTangibleObject::setFactionStatus },
 		{ "getDamageDealerList", &LuaCreatureObject::getDamageDealerList },
-		{ "getHealingThreatList", &LuaCreatureObject::getHealingThreatList},
 		{ "getHealingThreatList", &LuaCreatureObject::getHealingThreatList },
 		{ "getSkillMod", &LuaCreatureObject::getSkillMod },
 		{ "getGender", &LuaCreatureObject::getGender },
-		{ "getSkillMod", &LuaCreatureObject::getSkillMod},
-		{ "broadcastToServer", &LuaCreatureObject::broadcastToServer },
-		{ "broadcastToDiscord", &LuaCreatureObject::broadcastToDiscord },
-		{ "broadcastToDiscordGcw", &LuaCreatureObject::broadcastToDiscordGcw },
-		{ "broadcastToDiscordUnlock", &LuaCreatureObject::broadcastToDiscordUnlock },
 		{ "isRidingMount", &LuaCreatureObject::isRidingMount },
 		{ "dismount", &LuaCreatureObject::dismount },
-		{ "slotPassenger", &LuaCreatureObject::slotPassenger },
+		{ "setAppearance", &LuaCreatureObject::setAppearance },
 		{ 0, 0 }
 };
 
@@ -165,7 +155,7 @@ LuaCreatureObject::LuaCreatureObject(lua_State *L) : LuaTangibleObject(L) {
 #ifdef DYNAMIC_CAST_LUAOBJECTS
 	realObject = dynamic_cast<CreatureObject*>(_getRealSceneObject());
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	realObject = static_cast<CreatureObject*>(lua_touserdata(L, 1));
 #endif
@@ -183,7 +173,7 @@ int LuaCreatureObject::_setObject(lua_State* L) {
 	if (obj != realObject)
 		realObject = obj;
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	auto obj = static_cast<CreatureObject*>(lua_touserdata(L, -1));
 
@@ -410,14 +400,6 @@ int LuaCreatureObject::playMusicMessage(lua_State *L) {
 	return 0;
 }
 
-int LuaCreatureObject::setBankCredits(lua_State *L) {
-	uint32 credits = (uint32) lua_tonumber(L, -1);
-
-	realObject->setBankCredits(credits);
-
-	return 0;
-}
-
 int LuaCreatureObject::sendNewbieTutorialRequest(lua_State *L) {
 	String value = lua_tostring(L, -1);
 	realObject->sendNewbieTutorialRequest(value);
@@ -473,6 +455,15 @@ int LuaCreatureObject::removeSkill(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->removeSkill(value, true);
+	return 0;
+}
+
+int LuaCreatureObject::addSkillDirect(lua_State* L) {
+	String value = lua_tostring(L, -1);
+
+	Locker locker(realObject);
+
+	realObject->addSkill(value, true);
 	return 0;
 }
 
@@ -578,7 +569,7 @@ int LuaCreatureObject::inflictDamage(lua_State* L) {
 
 	TangibleObject* attacker = cast<TangibleObject*>(scene);
 
-	assert(attacker);
+	E3_ASSERT(attacker);
 
 	Locker locker(realObject);
 
@@ -700,7 +691,21 @@ int LuaCreatureObject::getCashCredits(lua_State* L) {
 int LuaCreatureObject::subtractCashCredits(lua_State* L) {
 	Locker locker(realObject);
 
-	realObject->subtractCashCredits(lua_tointeger(L, -1));
+	int credits = lua_tointeger(L, -1);
+	TransactionLog trx(realObject, TrxCode::LUASCRIPT, credits, true);
+	trx.addContextFromLua(L);
+	realObject->subtractCashCredits(credits);
+
+	return 0;
+}
+
+int LuaCreatureObject::subtractBankCredits(lua_State* L) {
+	Locker locker(realObject);
+
+	int credits = lua_tointeger(L, -1);
+	TransactionLog trx(realObject, TrxCode::LUASCRIPT, credits, false);
+	trx.addContextFromLua(L);
+	realObject->subtractBankCredits(credits);
 
 	return 0;
 }
@@ -711,7 +716,22 @@ int LuaCreatureObject::addCashCredits(lua_State* L) {
 
 	Locker locker(realObject);
 
+	TransactionLog trx(TrxCode::LUASCRIPT, realObject, credits, true);
+	trx.addContextFromLua(L);
 	realObject->addCashCredits(credits, notifyClient);
+
+	return 0;
+}
+
+int LuaCreatureObject::addBankCredits(lua_State* L) {
+	bool notifyClient = lua_toboolean(L, -1);
+	int credits = lua_tonumber(L, -2);
+
+	Locker locker(realObject);
+
+	TransactionLog trx(TrxCode::LUASCRIPT, realObject, credits, false);
+	trx.addContextFromLua(L);
+	realObject->addBankCredits(credits, notifyClient);
 
 	return 0;
 }
@@ -958,7 +978,7 @@ int LuaCreatureObject::awardExperience(lua_State* L) {
 	bool sendSysMessage = lua_toboolean(L, -1);
 
 	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
-	playerManager->awardExperience(realObject, experienceType, experienceAmount, sendSysMessage, 1.0f, true);
+	playerManager->awardExperience(realObject, experienceType, experienceAmount, sendSysMessage, 1.0f, false);
 
 	return 0;
 }
@@ -1060,10 +1080,16 @@ int LuaCreatureObject::getDamageDealerList(lua_State* L) {
 		ThreatMapEntry* entry = &copyThreatMap.elementAt(i).getValue();
 
 		if (entry->getTotalDamage() > 0) {
-			CreatureObject* attacker = copyThreatMap.elementAt(i).getKey();
+			TangibleObject* attacker = copyThreatMap.elementAt(i).getKey();
+
+			if (attacker == nullptr || !attacker->isCreatureObject()) {
+				continue;
+			}
+
+			CreatureObject* creoAttacker = attacker->asCreatureObject();
 
 			count++;
-			lua_pushlightuserdata(L, attacker);
+			lua_pushlightuserdata(L, creoAttacker);
 			lua_rawseti(L, -2, count);
 		}
 	}
@@ -1082,10 +1108,16 @@ int LuaCreatureObject::getHealingThreatList(lua_State* L) {
 		ThreatMapEntry* entry = &copyThreatMap.elementAt(i).getValue();
 
 		if (entry->getHeal() > 0) {
-			CreatureObject* healer = copyThreatMap.elementAt(i).getKey();
+			TangibleObject* healer = copyThreatMap.elementAt(i).getKey();
+
+			if (healer == nullptr || !healer->isCreatureObject()) {
+				continue;
+			}
+
+			CreatureObject* creoHealer = healer->asCreatureObject();
 
 			count++;
-			lua_pushlightuserdata(L, healer);
+			lua_pushlightuserdata(L, creoHealer);
 			lua_rawseti(L, -2, count);
 		}
 	}
@@ -1104,165 +1136,9 @@ int LuaCreatureObject::getSkillMod(lua_State* L) {
 }
 
 int LuaCreatureObject::getGender(lua_State* L) {
+
 	lua_pushnumber(L, realObject->getGender());
-	return 1;
-}
 
-int LuaCreatureObject::subtractBankCredits(lua_State* L) {
-	Locker locker(realObject);
-
-	realObject->subtractBankCredits(lua_tointeger(L, -1));
-
-	return 0;
-}
-
-// Apply custom buff for a single stat
-// buffSingleStat(String stat, int buffPower, int buffDuration)
-int LuaCreatureObject::buffSingleStat(lua_State* L) {
-	String stat = lua_tostring(L, -3);
-	int buffPower = lua_tointeger(L, -2);
-	int buffDuration = lua_tointeger(L, -1);
-	
-	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
-	
-	bool appliedBuff = true; // Because doEnhanceCharacter() is a bool function...
-	
-	if (stat == "health"){
-		appliedBuff = playerManager->doEnhanceCharacter(0x98321369, realObject, buffPower, buffDuration, BuffType::MEDICAL, 0); // medical_enhance_health
-	} else if (stat == "strength") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x815D85C5, realObject, buffPower, buffDuration, BuffType::MEDICAL, 1); // medical_enhance_strength
-	} else if (stat == "constitution") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x7F86D2C6, realObject, buffPower, buffDuration, BuffType::MEDICAL, 2); // medical_enhance_constitution
-	} else if (stat == "action") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x4BF616E2, realObject, buffPower, buffDuration, BuffType::MEDICAL, 3); // medical_enhance_action
-	} else if (stat == "quickness") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x71B5C842, realObject, buffPower, buffDuration, BuffType::MEDICAL, 4); // medical_enhance_quickness
-	} else if (stat == "stamina") {
-		appliedBuff = playerManager->doEnhanceCharacter(0xED0040D9, realObject, buffPower, buffDuration, BuffType::MEDICAL, 5); // medical_enhance_stamina
-	} else if (stat == "mind") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x11C1772E, realObject, buffPower, buffDuration, BuffType::PERFORMANCE, 6); // performance_enhance_dance_mind
-	} else if (stat == "focus") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x2E77F586, realObject, buffPower, buffDuration, BuffType::PERFORMANCE, 7); // performance_enhance_music_focus
-	} else if (stat == "willpower") {
-		appliedBuff = playerManager->doEnhanceCharacter(0x3EC6FCB6, realObject, buffPower, buffDuration, BuffType::PERFORMANCE, 8); // performance_enhance_music_willpower
-	} else {
-		appliedBuff = false;
-	}
-	
-	return 0;
-}
-
-int LuaCreatureObject::slotPassenger(lua_State* L) {
-	CreatureObject* passenger = (CreatureObject*) lua_touserdata(L, -1);
-
-	SceneObject* vehicle = realObject->getParent().get().get();
-	if (!vehicle->isCreatureObject()) {
-		lua_pushboolean(L, false);
-		return 1;
-	}
-
-
-	if (vehicle->isVehicleObject()) {
-		VehicleObject* speeder = static_cast<VehicleObject*>(vehicle);
-		if (!speeder->hasOpenSeat()) {
-			lua_pushboolean(L, false);
-			return 1;
-		} else {
-			speeder->slotPassenger(passenger);
-			lua_pushboolean(L, true);
-			return 1;
-		}
-	} else {
-		Creature* mount = static_cast<Creature*>(vehicle);
-		if (!mount->hasOpenSeat()) {
-			lua_pushboolean(L, false);
-			return 1;
-		} else {
-			mount->slotPassenger(passenger);
-			lua_pushboolean(L, true);
-			return 1;
-		}
-
-	}
-}
-
-int LuaCreatureObject::removeBuffs(lua_State* L) {
-	Reference<PlayerObject*> player = realObject->getPlayerObject();
-	
-	realObject->clearBuffs(true, false);
-	
-	return 0;
-}
-
-int LuaCreatureObject::emptyStomach(lua_State* L) {
-	
-	if (!realObject->isPlayerCreature())
-		return 0;
-	
-	Reference<PlayerObject*> player = realObject->getPlayerObject();
-	
-	player->setFoodFilling(0);
-	player->setDrinkFilling(0);
-	
-	return 0;
-}
-
-// Return the number of pets a player has out
-int LuaCreatureObject::getActivePetsSize(lua_State* L) {
-	ManagedReference<PlayerObject*> player = realObject->getPlayerObject();
-	
-	lua_pushinteger(L, player->getActivePetsSize());
-	
-	return 1;	
-}
-
-// Return a pointer to the specified pet
-// local pBob = CreatureObject(pPlayer):getActivePet(0)
-int LuaCreatureObject::getActivePet(lua_State* L) {
-	int petNumber = lua_tointeger(L, -1);
-	
-	petNumber = (0, petNumber);
-	
-	Logger::console.info("petNumber: " + String::valueOf(petNumber), true);
-	
-	ManagedReference<PlayerObject*> player = realObject->getPlayerObject();
-	ManagedReference<CreatureObject*> pet = player->getActivePet(petNumber);
-	
-	if (pet != nullptr) {
-		String petName = pet->getFirstName();
-		Logger::console.info("Pet Name: " + petName, true);
-	}
-		
-	lua_pushlightuserdata(L, pet);
-
-	return 1;	
-}
-
-int LuaCreatureObject::broadcastToServer(lua_State* L) {
-	String message = lua_tostring(L, -1);
-	ZoneServer* zServ = realObject->getZoneServer();
-	zServ->getChatManager()->broadcastGalaxy(nullptr, message);
-	return 1;
-}
-
-int LuaCreatureObject::broadcastToDiscord(lua_State* L) {
-	String message = lua_tostring(L, -1);
-	ZoneServer* zServ = realObject->getZoneServer();
-	zServ->getChatManager()->handleGeneralDiscordChat(nullptr, message);
-	return 1;
-}
-
-int LuaCreatureObject::broadcastToDiscordGcw(lua_State* L) {
-	String message = lua_tostring(L, -1);
-	ZoneServer* zServ = realObject->getZoneServer();
-	zServ->getChatManager()->handleGeneralDiscordGcw(nullptr, message);
-	return 1;
-}
-
-int LuaCreatureObject::broadcastToDiscordUnlock(lua_State* L) {
-	String message = lua_tostring(L, -1);
-	ZoneServer* zServ = realObject->getZoneServer();
-	zServ->getChatManager()->handleGeneralDiscordUnlock(nullptr, message);
 	return 1;
 }
 
@@ -1276,5 +1152,46 @@ int LuaCreatureObject::isRidingMount(lua_State* L) {
 
 int LuaCreatureObject::dismount(lua_State* L) {
 	realObject->dismount();
+	return 0;
+}
+
+int LuaCreatureObject::setAppearance(lua_State* L){
+	String appearanceString = lua_tostring(L, -1);
+
+	Locker pLocker(realObject);
+
+	// Reset Template - Pass empty string
+	if (appearanceString == "") {
+		Zone* zone = realObject->getZone();
+
+		realObject->setAlternateAppearance(appearanceString , true);
+
+		if (zone != nullptr) {
+			realObject->switchZone(zone->getZoneName(), realObject->getPositionX(), realObject->getPositionZ(), realObject->getPositionY(), realObject->getParentID());
+		}
+		return 0;
+	}
+
+	String templateName = "";
+
+	if (appearanceString.indexOf(".iff") == -1 || appearanceString.indexOf("object/mobile/shared_") == -1) {
+		return 0;
+	} else if (appearanceString != "") {
+		TemplateManager* templateManager = TemplateManager::instance();
+		String templateTest = appearanceString.replaceFirst("shared_", "");
+
+		if (templateManager != nullptr) {
+			SharedObjectTemplate* templateData = templateManager->getTemplate(templateTest.hashCode());
+
+			if (templateData == nullptr) {
+				realObject->sendSystemMessage("Unable to find template.");
+				return 0;
+			}
+			templateName = appearanceString;
+
+			realObject->setAlternateAppearance(templateName, true);
+		}
+	}
+
 	return 0;
 }

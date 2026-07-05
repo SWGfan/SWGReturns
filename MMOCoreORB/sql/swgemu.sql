@@ -31,7 +31,7 @@ CREATE TABLE  `swgemu`.`account_bans` (
   `account_id` int(10) unsigned NOT NULL,
   `issuer_id` int(10) unsigned NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expires` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `expires` int(10) unsigned NOT NULL DEFAULT '0',
   `reason` tinytext NOT NULL,
   PRIMARY KEY (`ban_id`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `swgemu`.`account_log`;
 CREATE TABLE  `swgemu`.`account_log` (
   `acclog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `account_id` int(10) unsigned NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `timestamp` datetime NOT NULL,
   `ip_address` varchar(15) NOT NULL,
   PRIMARY KEY (`acclog_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -307,9 +307,7 @@ CREATE TABLE  `swgemu`.`galaxy` (
 
 /*!40000 ALTER TABLE `galaxy` DISABLE KEYS */;
 LOCK TABLES `galaxy` WRITE;
-INSERT INTO `swgemu`.`galaxy` VALUES  (2,'SWG Returns','51.81.81.116',44463,44462,0),
-(3,'SWG Returns Test Centre','212.227.73.161',44463,44462,0),
-(4,'Core3 Backup Server','82.165.250.176',44463,44462,0);
+INSERT INTO `swgemu`.`galaxy` VALUES  (2,'Core3','127.0.0.1',44463,44462,0);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `galaxy` ENABLE KEYS */;
 

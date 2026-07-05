@@ -42,7 +42,7 @@ BountyMissionObjective::~BountyMissionObjective() {
 
 void BountyMissionObjective::initializeTransientMembers() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ void BountyMissionObjective::initializeTransientMembers() {
 
 void BountyMissionObjective::activate() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ void BountyMissionObjective::activate() {
 
 void BountyMissionObjective::deactivate() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ void BountyMissionObjective::deactivate() {
 
 void BountyMissionObjective::abort() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ void BountyMissionObjective::abort() {
 
 void BountyMissionObjective::complete() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,7 +114,7 @@ void BountyMissionObjective::complete() {
 
 void BountyMissionObjective::spawnTarget(const String& zoneName) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,7 +130,7 @@ void BountyMissionObjective::spawnTarget(const String& zoneName) {
 
 int BountyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ int BountyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsig
 
 void BountyMissionObjective::setNpcTemplateToSpawn(SharedObjectTemplate* sp) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -160,7 +160,7 @@ void BountyMissionObjective::setNpcTemplateToSpawn(SharedObjectTemplate* sp) {
 
 void BountyMissionObjective::updateMissionStatus(int informantLevel) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -175,7 +175,7 @@ void BountyMissionObjective::updateMissionStatus(int informantLevel) {
 
 int BountyMissionObjective::getObjectiveStatus() const {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +189,7 @@ int BountyMissionObjective::getObjectiveStatus() const {
 
 SceneObject* BountyMissionObjective::getArakydDroid() const {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -203,7 +203,7 @@ SceneObject* BountyMissionObjective::getArakydDroid() const {
 
 void BountyMissionObjective::setArakydDroid(SceneObject* droid) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,7 +219,7 @@ void BountyMissionObjective::setArakydDroid(SceneObject* droid) {
 
 void BountyMissionObjective::performDroidAction(int action, SceneObject* sceneObject, CreatureObject* player) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -236,7 +236,7 @@ void BountyMissionObjective::performDroidAction(int action, SceneObject* sceneOb
 
 bool BountyMissionObjective::hasArakydFindTask() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ bool BountyMissionObjective::hasArakydFindTask() {
 
 bool BountyMissionObjective::playerHasMissionOfCorrectLevel(int action) {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +265,7 @@ bool BountyMissionObjective::playerHasMissionOfCorrectLevel(int action) {
 
 void BountyMissionObjective::updateWaypoint() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -279,7 +279,7 @@ void BountyMissionObjective::updateWaypoint() {
 
 Vector3 BountyMissionObjective::getTargetPosition() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -289,7 +289,7 @@ Vector3 BountyMissionObjective::getTargetPosition() {
 
 void BountyMissionObjective::cancelAllTasks() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -303,7 +303,7 @@ void BountyMissionObjective::cancelAllTasks() {
 
 void BountyMissionObjective::cancelCallArakydTask() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -317,7 +317,7 @@ void BountyMissionObjective::cancelCallArakydTask() {
 
 String BountyMissionObjective::getTargetZoneName() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -333,7 +333,7 @@ String BountyMissionObjective::getTargetZoneName() {
 
 bool BountyMissionObjective::isPlayerTarget() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -347,7 +347,7 @@ bool BountyMissionObjective::isPlayerTarget() {
 
 Vector3 BountyMissionObjective::getEndPosition() {
 	BountyMissionObjectiveImplementation* _implementation = static_cast<BountyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -386,7 +386,7 @@ BountyMissionObjectiveImplementation::~BountyMissionObjectiveImplementation() {
 void BountyMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(BountyMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -572,9 +572,9 @@ BountyMissionObjectiveImplementation::BountyMissionObjectiveImplementation(Missi
 	// server/zone/objects/mission/BountyMissionObjective.idl():  		objectiveStatus = INITSTATUS;
 	objectiveStatus = INITSTATUS;
 	// server/zone/objects/mission/BountyMissionObjective.idl():  		activeDroid = null;
-	activeDroid = nullptr;
+	activeDroid = NULL;
 	// server/zone/objects/mission/BountyMissionObjective.idl():  		droid = null;
-	droid = nullptr;
+	droid = NULL;
 	// server/zone/objects/mission/BountyMissionObjective.idl():  		completedMission = false;
 	completedMission = false;
 	// server/zone/objects/mission/BountyMissionObjective.idl():  		Logger.setLoggingName("BountyMissionObjective");
@@ -707,7 +707,7 @@ void BountyMissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMetho
 		{
 			
 			DistributedObject* _m_res = getArakydDroid();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETARAKYDDROID__SCENEOBJECT_:

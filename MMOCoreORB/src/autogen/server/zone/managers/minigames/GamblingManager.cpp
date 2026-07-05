@@ -4,17 +4,11 @@
 
 #include "GamblingManager.h"
 
-#include "server/zone/objects/creature/CreatureObject.h"
-
-#include "server/zone/objects/scene/SceneObject.h"
-
-#include "server/zone/objects/tangible/terminal/gambling/GamblingTerminal.h"
-
 /*
  *	GamblingManagerStub
  */
 
-enum {RPC_INITIALIZESLOTTIMER__,RPC_INITIALIZEROULETTETIMER__,RPC_INITIALIZESLOTS__,RPC_INITIALIZEROULETTERED__,RPC_INITIALIZEROULETTE__,RPC_NOTIFY__SCENEOBJECT_,RPC_ISHIGH__INT_,RPC_ISLOW__INT_,RPC_ISEVEN__INT_,RPC_ISODD__INT_,RPC_ISBLACK__INT_,RPC_ISRED__INT_,RPC_HANDLESLOT__CREATUREOBJECT_BOOL_BOOL_,RPC_BET__CREATUREOBJECT_INT_INT_INT_,RPC_BET__GAMBLINGTERMINAL_CREATUREOBJECT_INT_INT_,RPC_STARTGAME__CREATUREOBJECT_INT_,RPC_STARTGAME__GAMBLINGTERMINAL_,RPC_LEAVETERMINAL__CREATUREOBJECT_INT_,RPC_REGISTERPLAYER__GAMBLINGTERMINAL_CREATUREOBJECT_,RPC_REFRESHROULETTEMENU__CREATUREOBJECT_,RPC_CONTINUEGAME__GAMBLINGTERMINAL_,RPC_STOPGAME__GAMBLINGTERMINAL_BOOL_,RPC_CALCULATEOUTCOME__GAMBLINGTERMINAL_,RPC_CREATEWINDOW__GAMBLINGTERMINAL_CREATUREOBJECT_,RPC_CREATEPAYOUTWINDOW__CREATUREOBJECT_,RPC_CREATESLOTWINDOW__CREATUREOBJECT_INT_,RPC_CREATEROULETTEWINDOW__CREATUREOBJECT_,RPC_CREATEEVENT__GAMBLINGTERMINAL_INT_,RPC_ISPLAYING__CREATUREOBJECT_};
+enum {RPC_INITIALIZESLOTTIMER__,RPC_INITIALIZEROULETTETIMER__,RPC_INITIALIZESLOTSWINNINGS__,RPC_INITIALIZEROULETTERED__,RPC_INITIALIZEROULETTE__,RPC_NOTIFY__SCENEOBJECT_,RPC_ISHIGH__INT_,RPC_ISLOW__INT_,RPC_ISEVEN__INT_,RPC_ISODD__INT_,RPC_ISBLACK__INT_,RPC_ISRED__INT_,RPC_REMOVEOUTOFRANGEPLAYERS__GAMBLINGTERMINAL_,RPC_HANDLESLOT__CREATUREOBJECT_BOOL_BOOL_,RPC_BETTINGALLOWED__CREATUREOBJECT_,RPC_KICKALLPLAYERSOUTOFRANGE__GAMBLINGTERMINAL_,RPC_GETMAXIMUMALLOWEDBET__GAMBLINGTERMINAL_CREATUREOBJECT_INT_,RPC_BET__CREATUREOBJECT_INT_INT_INT_,RPC_BET__GAMBLINGTERMINAL_CREATUREOBJECT_INT_INT_,RPC_STARTGAME__CREATUREOBJECT_INT_,RPC_STARTGAME__GAMBLINGTERMINAL_,RPC_LEAVETERMINAL__CREATUREOBJECT_INT_,RPC_REGISTERPLAYER__GAMBLINGTERMINAL_CREATUREOBJECT_,RPC_REFRESHROULETTEMENU__CREATUREOBJECT_,RPC_CONTINUEGAME__GAMBLINGTERMINAL_,RPC_STOPGAME__GAMBLINGTERMINAL_BOOL_,RPC_CALCULATEOUTCOME__GAMBLINGTERMINAL_,RPC_CREATEWINDOW__GAMBLINGTERMINAL_CREATUREOBJECT_,RPC_CREATEPAYOUTWINDOW__CREATUREOBJECT_,RPC_CREATESLOTWINDOW__CREATUREOBJECT_INT_,RPC_CREATEROULETTEWINDOW__CREATUREOBJECT_,RPC_CREATEEVENT__GAMBLINGTERMINAL_INT_,RPC_ISPLAYING__CREATUREOBJECT_};
 
 GamblingManager::GamblingManager() : Observer(DummyConstructorParameter::instance()) {
 	GamblingManagerImplementation* _implementation = new GamblingManagerImplementation();
@@ -34,7 +28,7 @@ GamblingManager::~GamblingManager() {
 
 Vector<String>* GamblingManager::getRoulette() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -44,7 +38,7 @@ Vector<String>* GamblingManager::getRoulette() {
 
 void GamblingManager::initializeSlotTimer() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +52,7 @@ void GamblingManager::initializeSlotTimer() {
 
 void GamblingManager::initializeRouletteTimer() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,23 +64,23 @@ void GamblingManager::initializeRouletteTimer() {
 	}
 }
 
-void GamblingManager::initializeSlots() {
+void GamblingManager::initializeSlotsWinnings() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_INITIALIZESLOTS__);
+		DistributedMethod method(this, RPC_INITIALIZESLOTSWINNINGS__);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->initializeSlots();
+		_implementation->initializeSlotsWinnings();
 	}
 }
 
 void GamblingManager::initializeRouletteRed() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +94,7 @@ void GamblingManager::initializeRouletteRed() {
 
 void GamblingManager::initializeRoulette() {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,7 +108,7 @@ void GamblingManager::initializeRoulette() {
 
 int GamblingManager::notify(SceneObject* sceneObject) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +123,7 @@ int GamblingManager::notify(SceneObject* sceneObject) {
 
 bool GamblingManager::isHigh(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +138,7 @@ bool GamblingManager::isHigh(int value) {
 
 bool GamblingManager::isLow(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +153,7 @@ bool GamblingManager::isLow(int value) {
 
 bool GamblingManager::isEven(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -174,7 +168,7 @@ bool GamblingManager::isEven(int value) {
 
 bool GamblingManager::isOdd(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +183,7 @@ bool GamblingManager::isOdd(int value) {
 
 bool GamblingManager::isBlack(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,7 +198,7 @@ bool GamblingManager::isBlack(int value) {
 
 bool GamblingManager::isRed(int value) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,9 +211,34 @@ bool GamblingManager::isRed(int value) {
 	}
 }
 
+void GamblingManager::removeOutOfRangePlayers(GamblingTerminal* terminal) {
+	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_REMOVEOUTOFRANGEPLAYERS__GAMBLINGTERMINAL_);
+		method.addObjectParameter(terminal);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->removeOutOfRangePlayers(terminal);
+	}
+}
+
+int GamblingManager::rollSlotDigit() {
+	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->rollSlotDigit();
+	}
+}
+
 void GamblingManager::handleSlot(CreatureObject* player, bool cancel, bool other) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -234,9 +253,56 @@ void GamblingManager::handleSlot(CreatureObject* player, bool cancel, bool other
 	}
 }
 
+bool GamblingManager::bettingAllowed(CreatureObject* player) {
+	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_BETTINGALLOWED__CREATUREOBJECT_);
+		method.addObjectParameter(player);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->bettingAllowed(player);
+	}
+}
+
+void GamblingManager::kickAllPlayersOutOfRange(GamblingTerminal* terminal) {
+	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_KICKALLPLAYERSOUTOFRANGE__GAMBLINGTERMINAL_);
+		method.addObjectParameter(terminal);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->kickAllPlayersOutOfRange(terminal);
+	}
+}
+
+int GamblingManager::getMaximumAllowedBet(GamblingTerminal* terminal, CreatureObject* player, int target) {
+	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETMAXIMUMALLOWEDBET__GAMBLINGTERMINAL_CREATUREOBJECT_INT_);
+		method.addObjectParameter(terminal);
+		method.addObjectParameter(player);
+		method.addSignedIntParameter(target);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getMaximumAllowedBet(terminal, player, target);
+	}
+}
+
 void GamblingManager::bet(CreatureObject* player, int amount, int target, int machineType) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +320,7 @@ void GamblingManager::bet(CreatureObject* player, int amount, int target, int ma
 
 void GamblingManager::bet(GamblingTerminal* terminal, CreatureObject* player, int amount, int target) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -272,7 +338,7 @@ void GamblingManager::bet(GamblingTerminal* terminal, CreatureObject* player, in
 
 void GamblingManager::startGame(CreatureObject* player, int machineType) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -288,7 +354,7 @@ void GamblingManager::startGame(CreatureObject* player, int machineType) {
 
 void GamblingManager::startGame(GamblingTerminal* terminal) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -303,7 +369,7 @@ void GamblingManager::startGame(GamblingTerminal* terminal) {
 
 void GamblingManager::leaveTerminal(CreatureObject* player, int machineType) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -319,7 +385,7 @@ void GamblingManager::leaveTerminal(CreatureObject* player, int machineType) {
 
 void GamblingManager::registerPlayer(GamblingTerminal* terminal, CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -335,7 +401,7 @@ void GamblingManager::registerPlayer(GamblingTerminal* terminal, CreatureObject*
 
 void GamblingManager::refreshRouletteMenu(CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -350,7 +416,7 @@ void GamblingManager::refreshRouletteMenu(CreatureObject* player) {
 
 void GamblingManager::continueGame(GamblingTerminal* terminal) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -365,7 +431,7 @@ void GamblingManager::continueGame(GamblingTerminal* terminal) {
 
 void GamblingManager::stopGame(GamblingTerminal* terminal, bool cancel) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -381,7 +447,7 @@ void GamblingManager::stopGame(GamblingTerminal* terminal, bool cancel) {
 
 void GamblingManager::calculateOutcome(GamblingTerminal* terminal) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -396,7 +462,7 @@ void GamblingManager::calculateOutcome(GamblingTerminal* terminal) {
 
 unsigned int GamblingManager::createWindow(GamblingTerminal* terminal, CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -412,7 +478,7 @@ unsigned int GamblingManager::createWindow(GamblingTerminal* terminal, CreatureO
 
 unsigned int GamblingManager::createPayoutWindow(CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -427,7 +493,7 @@ unsigned int GamblingManager::createPayoutWindow(CreatureObject* player) {
 
 unsigned int GamblingManager::createSlotWindow(CreatureObject* player, unsigned int payoutBoxID) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -443,7 +509,7 @@ unsigned int GamblingManager::createSlotWindow(CreatureObject* player, unsigned 
 
 unsigned int GamblingManager::createRouletteWindow(CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -458,7 +524,7 @@ unsigned int GamblingManager::createRouletteWindow(CreatureObject* player) {
 
 void GamblingManager::createEvent(GamblingTerminal* terminal, int time) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -474,7 +540,7 @@ void GamblingManager::createEvent(GamblingTerminal* terminal, int time) {
 
 bool GamblingManager::isPlaying(CreatureObject* player) {
 	GamblingManagerImplementation* _implementation = static_cast<GamblingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -520,7 +586,7 @@ void GamblingManagerImplementation::finalize() {
 void GamblingManagerImplementation::_initializeImplementation() {
 	_setClassHelper(GamblingManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -625,6 +691,14 @@ bool GamblingManagerImplementation::readObjectMember(ObjectInputStream* stream, 
 		TypeInfo<Vector<int> >::parseFromBinaryStream(&rouletteTimer, stream);
 		return true;
 
+	case 0x572b0031: //GamblingManager.slotWeights
+		TypeInfo<Vector<int> >::parseFromBinaryStream(&slotWeights, stream);
+		return true;
+
+	case 0x51765144: //GamblingManager.slotWeightsTotal
+		TypeInfo<int >::parseFromBinaryStream(&slotWeightsTotal, stream);
+		return true;
+
 	}
 
 	return false;
@@ -706,6 +780,24 @@ int GamblingManagerImplementation::writeObjectMembers(ObjectOutputStream* stream
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0x572b0031; //GamblingManager.slotWeights
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<int> >::toBinaryStream(&slotWeights, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x51765144; //GamblingManager.slotWeightsTotal
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&slotWeightsTotal, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -716,8 +808,10 @@ GamblingManagerImplementation::GamblingManagerImplementation() {
 	initializeRoulette();
 	// server/zone/managers/minigames/GamblingManager.idl():  		initializeRouletteRed();
 	initializeRouletteRed();
-	// server/zone/managers/minigames/GamblingManager.idl():  		initializeSlots();
-	initializeSlots();
+	// server/zone/managers/minigames/GamblingManager.idl():  		initializeSlotsWinnings();
+	initializeSlotsWinnings();
+	// server/zone/managers/minigames/GamblingManager.idl():  		initializeSlotWeights();
+	initializeSlotWeights();
 	// server/zone/managers/minigames/GamblingManager.idl():  		initializeSlotTimer();
 	initializeSlotTimer();
 	// server/zone/managers/minigames/GamblingManager.idl():  		initializeRouletteTimer();
@@ -775,7 +869,7 @@ void GamblingManagerImplementation::initializeRouletteTimer() {
 	(&rouletteTimer)->add(2);
 }
 
-void GamblingManagerImplementation::initializeSlots() {
+void GamblingManagerImplementation::initializeSlotsWinnings() {
 	// server/zone/managers/minigames/GamblingManager.idl():  		slot.add(4);
 	(&slot)->add(4);
 	// server/zone/managers/minigames/GamblingManager.idl():  		slot.add(50);
@@ -1000,6 +1094,25 @@ bool GamblingManagerImplementation::isRed(int value) {
 	return false;
 }
 
+bool GamblingManagerImplementation::bettingAllowed(CreatureObject* player) {
+	// server/zone/managers/minigames/GamblingManager.idl():  		}
+	if ((&rouletteGames)->contains(player)){
+	// server/zone/managers/minigames/GamblingManager.idl():  			return rouletteGames.get(player).bettingAllowed();
+	return (&rouletteGames)->get(player)->bettingAllowed();
+}
+
+	else 	// server/zone/managers/minigames/GamblingManager.idl():  		}
+	if ((&slotGames)->contains(player)){
+	// server/zone/managers/minigames/GamblingManager.idl():  			return slotGames.get(player).bettingAllowed();
+	return (&slotGames)->get(player)->bettingAllowed();
+}
+
+	else {
+	// server/zone/managers/minigames/GamblingManager.idl():  			return false;
+	return false;
+}
+}
+
 bool GamblingManagerImplementation::isPlaying(CreatureObject* player) {
 	// server/zone/managers/minigames/GamblingManager.idl():  		return (slotGames.contains(player) || rouletteGames.contains(player));
 	return ((&slotGames)->contains(player) || (&rouletteGames)->contains(player));
@@ -1034,10 +1147,10 @@ void GamblingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 		}
 		break;
-	case RPC_INITIALIZESLOTS__:
+	case RPC_INITIALIZESLOTSWINNINGS__:
 		{
 			
-			initializeSlots();
+			initializeSlotsWinnings();
 			
 		}
 		break;
@@ -1111,6 +1224,14 @@ void GamblingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_REMOVEOUTOFRANGEPLAYERS__GAMBLINGTERMINAL_:
+		{
+			GamblingTerminal* terminal = static_cast<GamblingTerminal*>(inv->getObjectParameter());
+			
+			removeOutOfRangePlayers(terminal);
+			
+		}
+		break;
 	case RPC_HANDLESLOT__CREATUREOBJECT_BOOL_BOOL_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -1119,6 +1240,32 @@ void GamblingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 			handleSlot(player, cancel, other);
 			
+		}
+		break;
+	case RPC_BETTINGALLOWED__CREATUREOBJECT_:
+		{
+			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			
+			bool _m_res = bettingAllowed(player);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_KICKALLPLAYERSOUTOFRANGE__GAMBLINGTERMINAL_:
+		{
+			GamblingTerminal* terminal = static_cast<GamblingTerminal*>(inv->getObjectParameter());
+			
+			kickAllPlayersOutOfRange(terminal);
+			
+		}
+		break;
+	case RPC_GETMAXIMUMALLOWEDBET__GAMBLINGTERMINAL_CREATUREOBJECT_INT_:
+		{
+			GamblingTerminal* terminal = static_cast<GamblingTerminal*>(inv->getObjectParameter());
+			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			int target = inv->getSignedIntParameter();
+			
+			int _m_res = getMaximumAllowedBet(terminal, player, target);
+			resp->insertSignedInt(_m_res);
 		}
 		break;
 	case RPC_BET__CREATUREOBJECT_INT_INT_INT_:
@@ -1275,8 +1422,8 @@ void GamblingManagerAdapter::initializeRouletteTimer() {
 	(static_cast<GamblingManager*>(stub))->initializeRouletteTimer();
 }
 
-void GamblingManagerAdapter::initializeSlots() {
-	(static_cast<GamblingManager*>(stub))->initializeSlots();
+void GamblingManagerAdapter::initializeSlotsWinnings() {
+	(static_cast<GamblingManager*>(stub))->initializeSlotsWinnings();
 }
 
 void GamblingManagerAdapter::initializeRouletteRed() {
@@ -1315,8 +1462,24 @@ bool GamblingManagerAdapter::isRed(int value) {
 	return (static_cast<GamblingManager*>(stub))->isRed(value);
 }
 
+void GamblingManagerAdapter::removeOutOfRangePlayers(GamblingTerminal* terminal) {
+	(static_cast<GamblingManager*>(stub))->removeOutOfRangePlayers(terminal);
+}
+
 void GamblingManagerAdapter::handleSlot(CreatureObject* player, bool cancel, bool other) {
 	(static_cast<GamblingManager*>(stub))->handleSlot(player, cancel, other);
+}
+
+bool GamblingManagerAdapter::bettingAllowed(CreatureObject* player) {
+	return (static_cast<GamblingManager*>(stub))->bettingAllowed(player);
+}
+
+void GamblingManagerAdapter::kickAllPlayersOutOfRange(GamblingTerminal* terminal) {
+	(static_cast<GamblingManager*>(stub))->kickAllPlayersOutOfRange(terminal);
+}
+
+int GamblingManagerAdapter::getMaximumAllowedBet(GamblingTerminal* terminal, CreatureObject* player, int target) {
+	return (static_cast<GamblingManager*>(stub))->getMaximumAllowedBet(terminal, player, target);
 }
 
 void GamblingManagerAdapter::bet(CreatureObject* player, int amount, int target, int machineType) {
@@ -1524,6 +1687,28 @@ int GamblingManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (slotWeights) {
+	_nameHashCode = 0x572b0031; //GamblingManager.slotWeights
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<int> >::toBinaryStream(&slotWeights.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (slotWeightsTotal) {
+	_nameHashCode = 0x51765144; //GamblingManager.slotWeightsTotal
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&slotWeightsTotal.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -1589,6 +1774,22 @@ bool GamblingManagerPOD::readObjectMember(ObjectInputStream* stream, const uint3
 		}
 		return true;
 
+	case 0x572b0031: //GamblingManager.slotWeights
+		{
+			Vector<int> _mnslotWeights;
+			TypeInfo<Vector<int> >::parseFromBinaryStream(&_mnslotWeights, stream);
+			slotWeights = std::move(_mnslotWeights);
+		}
+		return true;
+
+	case 0x51765144: //GamblingManager.slotWeightsTotal
+		{
+			int _mnslotWeightsTotal;
+			TypeInfo<int >::parseFromBinaryStream(&_mnslotWeightsTotal, stream);
+			slotWeightsTotal = std::move(_mnslotWeightsTotal);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -1628,6 +1829,10 @@ void GamblingManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<Vector<int> >::toBinaryStream(&slotTimer.value(), stream);
 
 	TypeInfo<Vector<int> >::toBinaryStream(&rouletteTimer.value(), stream);
+
+	TypeInfo<Vector<int> >::toBinaryStream(&slotWeights.value(), stream);
+
+	TypeInfo<int >::toBinaryStream(&slotWeightsTotal.value(), stream);
 
 
 }

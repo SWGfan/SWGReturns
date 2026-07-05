@@ -50,11 +50,11 @@ ThrowGrenadeCommand = {
 	actionCostMultiplier = 1.0,
 	mindCostMultiplier = 1.0,
 
-	range = 12,
+	range = 64,
 	areaAction = true,
 	areaRange = 10,
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	animation = "throw_grenade",
 }

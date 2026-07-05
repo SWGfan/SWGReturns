@@ -2,6 +2,7 @@ tusken_commoner = Creature:new {
 	objectName = "@mob/creature_names:tusken_commoner",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
+	mobType = MOB_NPC,
 	level = 16,
 	chanceHit = 0.31,
 	damageMin = 170,
@@ -18,7 +19,7 @@ tusken_commoner = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK,
@@ -41,9 +42,17 @@ tusken_commoner = Creature:new {
 			}
 		}
 	},
-	weapons = {"tusken_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "tusken_ranged",
+	secondaryWeapon = "tusken_melee",
 	conversationTemplate = "",
-	attacks = merge(marksmanmaster,brawlermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = marksmanmaster,
+	secondaryAttacks = brawlermaster
 }
 
 CreatureTemplates:addCreatureTemplate(tusken_commoner, "tusken_commoner")

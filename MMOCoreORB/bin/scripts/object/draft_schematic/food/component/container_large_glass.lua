@@ -51,7 +51,8 @@ object_draft_schematic_food_component_container_large_glass = object_draft_schem
    complexity = 5, 
    size = 1, 
    factoryCrateSize = 1000,
-
+   factoryCrateType = "object/factory/factory_crate_food.iff",
+   
    xpType = "crafting_general", 
    xp = 200, 
 

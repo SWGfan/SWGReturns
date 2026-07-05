@@ -36,7 +36,7 @@ DeliverMissionObjective::~DeliverMissionObjective() {
 
 void DeliverMissionObjective::initializeTransientMembers() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ void DeliverMissionObjective::initializeTransientMembers() {
 
 TangibleObject* DeliverMissionObjective::getItem() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ TangibleObject* DeliverMissionObjective::getItem() {
 
 int DeliverMissionObjective::getObjectiveStatus() const {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int DeliverMissionObjective::getObjectiveStatus() const {
 
 void DeliverMissionObjective::activate() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void DeliverMissionObjective::activate() {
 
 void DeliverMissionObjective::deactivate() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ void DeliverMissionObjective::deactivate() {
 
 bool DeliverMissionObjective::activateWithResult() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ bool DeliverMissionObjective::activateWithResult() {
 
 void DeliverMissionObjective::abort() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ void DeliverMissionObjective::abort() {
 
 void DeliverMissionObjective::complete() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ void DeliverMissionObjective::complete() {
 
 void DeliverMissionObjective::despawnNpcs() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,7 +165,7 @@ void DeliverMissionObjective::despawnNpcs() {
 
 void DeliverMissionObjective::updateMissionStatus(CreatureObject* player) {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void DeliverMissionObjective::updateMissionStatus(CreatureObject* player) {
 
 bool DeliverMissionObjective::updateMissionTarget(CreatureObject* player) {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool DeliverMissionObjective::updateMissionTarget(CreatureObject* player) {
 
 ManagedWeakReference<AiAgent* > DeliverMissionObjective::getTargetSpawn() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ ManagedWeakReference<AiAgent* > DeliverMissionObjective::getTargetSpawn() {
 
 ManagedWeakReference<AiAgent* > DeliverMissionObjective::getDestinationSpawn() {
 	DeliverMissionObjectiveImplementation* _implementation = static_cast<DeliverMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -253,7 +253,7 @@ DeliverMissionObjectiveImplementation::~DeliverMissionObjectiveImplementation() 
 void DeliverMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(DeliverMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -490,7 +490,7 @@ void DeliverMissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMeth
 		{
 			
 			DistributedObject* _m_res = getItem();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETOBJECTIVESTATUS__:
@@ -562,14 +562,14 @@ void DeliverMissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMeth
 		{
 			
 			DistributedObject* _m_res = getTargetSpawn().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETDESTINATIONSPAWN__:
 		{
 			
 			DistributedObject* _m_res = getDestinationSpawn().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

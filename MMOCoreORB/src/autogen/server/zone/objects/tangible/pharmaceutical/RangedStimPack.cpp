@@ -32,7 +32,7 @@ RangedStimPack::~RangedStimPack() {
 
 void RangedStimPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void RangedStimPack::updateCraftingValues(CraftingValues* values, bool firstUpda
 
 void RangedStimPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void RangedStimPack::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 int RangedStimPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ int RangedStimPack::handleObjectMenuSelect(CreatureObject* player, byte selected
 
 void RangedStimPack::loadTemplateData(SharedObjectTemplate* templateData) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void RangedStimPack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 unsigned int RangedStimPack::calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ unsigned int RangedStimPack::calculatePower(CreatureObject* healer, CreatureObje
 
 float RangedStimPack::getRange(CreatureObject* creature) {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ float RangedStimPack::getRange(CreatureObject* creature) {
 
 float RangedStimPack::getEffectiveness() {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ float RangedStimPack::getEffectiveness() {
 
 float RangedStimPack::getArea() {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ float RangedStimPack::getArea() {
 
 bool RangedStimPack::isArea() {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ bool RangedStimPack::isArea() {
 
 float RangedStimPack::getRangeMod() {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ float RangedStimPack::getRangeMod() {
 
 bool RangedStimPack::isRangedStimPack() {
 	RangedStimPackImplementation* _implementation = static_cast<RangedStimPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,7 +211,7 @@ void RangedStimPackImplementation::finalize() {
 void RangedStimPackImplementation::_initializeImplementation() {
 	_setClassHelper(RangedStimPackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -451,7 +451,7 @@ float RangedStimPackImplementation::getRange(CreatureObject* creature) {
 	// server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl():  		float modSkill = 0;
 	float modSkill = 0;
 	// server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl():  		float 
-	if (creature != nullptr){
+	if (creature != NULL){
 	// server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl():  			modSkill = creature.getSkillMod("healing_range");
 	modSkill = creature->getSkillMod("healing_range");
 }

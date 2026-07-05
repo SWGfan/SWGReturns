@@ -247,7 +247,9 @@ public:
 
 	void playerLoggedIn(CreatureObject* player);
 
-	void validatePlayerData(CreatureObject* player);
+	void validatePlayerData(CreatureObject* player, bool verifyBan = false);
+
+	bool isBanned(CreatureObject* player);
 
 	void removeFromFrs(CreatureObject* player);
 
@@ -516,6 +518,8 @@ protected:
 
 	bool frsEnabled;
 
+	bool sameAccountEnclaveRestrictions;
+
 	unsigned long long petitionInterval;
 
 	unsigned long long votingInterval;
@@ -571,7 +575,9 @@ public:
 
 	void playerLoggedIn(CreatureObject* player);
 
-	void validatePlayerData(CreatureObject* player);
+	void validatePlayerData(CreatureObject* player, bool verifyBan = false);
+
+	bool isBanned(CreatureObject* player);
 
 	void removeFromFrs(CreatureObject* player);
 
@@ -794,7 +800,9 @@ public:
 
 	void playerLoggedIn(CreatureObject* player);
 
-	void validatePlayerData(CreatureObject* player);
+	void validatePlayerData(CreatureObject* player, bool verifyBan);
+
+	bool isBanned(CreatureObject* player);
 
 	void removeFromFrs(CreatureObject* player);
 

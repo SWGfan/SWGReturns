@@ -2,9 +2,10 @@ bh_untrained_wielder_of_the_dark_side = Creature:new {
 	objectName = "@mob/creature_names:untrained_wielder_of_the_dark_side",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "kun",
 	faction = "",
-	level = 250,
+	level = 65,
 	chanceHit = 0.6,
 	damageMin = 545,
 	damageMax = 800,
@@ -12,7 +13,7 @@ bh_untrained_wielder_of_the_dark_side = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {80,80,60,60,60,60,60,60,-1},
+	resists = {140,140,25,25,25,25,25,25,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,33 +32,33 @@ bh_untrained_wielder_of_the_dark_side = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 500000},
-				{group = "tierthree", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
+				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 4300000
 		},
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 500000},
-				{group = "tierthree", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
+				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 8000000
+			lootChance = 4300000
 		},
 		{
 			groups = {
@@ -73,12 +74,20 @@ bh_untrained_wielder_of_the_dark_side = Creature:new {
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 5000000
+			lootChance = 4300000
 		}
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(pikemanmaster,brawlermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(bh_untrained_wielder_of_the_dark_side, "bh_untrained_wielder_of_the_dark_side")

@@ -30,7 +30,7 @@ StaticObject::~StaticObject() {
 
 void StaticObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	StaticObjectImplementation* _implementation = static_cast<StaticObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ void StaticObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void StaticObject::sendBaselinesTo(SceneObject* player) {
 	StaticObjectImplementation* _implementation = static_cast<StaticObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -55,7 +55,7 @@ void StaticObject::sendBaselinesTo(SceneObject* player) {
 
 StaticObject* StaticObject::asStaticObject() {
 	StaticObjectImplementation* _implementation = static_cast<StaticObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -65,7 +65,7 @@ StaticObject* StaticObject::asStaticObject() {
 
 bool StaticObject::isStaticObjectClass() {
 	StaticObjectImplementation* _implementation = static_cast<StaticObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ void StaticObjectImplementation::finalize() {
 void StaticObjectImplementation::_initializeImplementation() {
 	_setClassHelper(StaticObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

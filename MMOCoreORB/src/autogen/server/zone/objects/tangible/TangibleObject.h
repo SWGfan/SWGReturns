@@ -43,6 +43,26 @@ using namespace server::zone::objects::creature;
 namespace server {
 namespace zone {
 namespace objects {
+namespace tangible {
+namespace tool {
+namespace repair {
+
+class RepairTool;
+
+class RepairToolPOD;
+
+} // namespace repair
+} // namespace tool
+} // namespace tangible
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::tangible::tool::repair;
+
+namespace server {
+namespace zone {
+namespace objects {
 namespace area {
 
 class ActiveArea;
@@ -88,25 +108,7 @@ class ThreatMap;
 
 using namespace server::zone::objects::tangible::threat;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-namespace tool {
-namespace repair {
-
-class RepairTool;
-
-class RepairToolPOD;
-
-} // namespace repair
-} // namespace tool
-} // namespace tangible
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::tangible::tool::repair;
+#include "gmock/gmock.h"
 
 #include "server/zone/packets/scene/AttributeListMessage.h"
 
@@ -131,8 +133,6 @@ using namespace server::zone::objects::tangible::tool::repair;
 #include "server/zone/objects/scene/variables/StringId.h"
 
 #include "system/thread/atomic/AtomicInteger.h"
-
-#include "server/zone/objects/intangible/ControlDevice.h"
 
 #include "server/zone/objects/scene/SceneObject.h"
 
@@ -177,7 +177,7 @@ public:
 	 * Removes this object's skill mod map from the target object's skill mod map
 	 * @param targetObject the targeted object containing the SkillModMap which will be affected.
 	 */
-	void removeTemplateSkillMods(TangibleObject* tangibleObject);
+	void removeTemplateSkillMods(TangibleObject* tangibleObject) const;
 
 	const VectorMap<String, int>* getTemplateSkillMods() const;
 
@@ -328,7 +328,7 @@ public:
 	 * @post { this object is locked }
 	 * @return returns true if SceneObject defender exists in the defender vector
 	 */
-	bool hasDefender(SceneObject* defender);
+	bool hasDefender(const SceneObject* defender) const;
 
 	/**
 	 * Evaluates if this object can be attacket by the passed creature object
@@ -336,7 +336,7 @@ public:
 	 * @post { }
 	 * @return returns true if the creature object can attack this
 	 */
-	bool isAttackableBy(CreatureObject* object);
+	virtual bool isAttackableBy(CreatureObject* object);
 
 	bool isAttackableBy(TangibleObject* object);
 
@@ -446,7 +446,7 @@ public:
 
 	void removeMagicBit(bool notifyClient = true);
 
-	int getLevel() const;
+	virtual int getLevel() const;
 
 	bool getIsCraftedEnhancedItem() const;
 
@@ -462,7 +462,7 @@ public:
 
 	SceneObject* getMainDefender() const;
 
-	bool isDestroyed() const;
+	virtual bool isDestroyed() const;
 
 	void setFaction(unsigned int crc);
 
@@ -492,6 +492,12 @@ public:
 
 	void setSliced(bool slice);
 
+	bool isJediRobe() const;
+
+	bool isUnionRing() const;
+
+	void setUnionRing(bool val);
+
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -504,7 +510,11 @@ public:
 
 	void setCraftersName(String& name);
 
+	void setCraftersID(unsigned long long crafterOID);
+
 	String getCraftersName();
+
+	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -512,7 +522,7 @@ public:
 
 	void setJunkValue(int jValue);
 
-	int getJunkValue();
+	int getJunkValue() const;
 
 	void setSerialNumber(const String& serial);
 
@@ -520,9 +530,9 @@ public:
 
 	String getSerialNumber();
 
-	ThreatMap* getThreatMap();
+	virtual ThreatMap* getThreatMap();
 
-	Reference<FactoryCrate* > createFactoryCrate(int maxSize, bool insertSelf = false);
+	Reference<FactoryCrate* > createFactoryCrate(int maxSize, String& type, bool insertSelf = false);
 
 	bool canRepair(CreatureObject* player);
 
@@ -558,11 +568,17 @@ public:
 
 	Reference<ActiveArea* > getActiveRegion();
 
+	bool isNoTrade() const;
+
 	bool hasAntiDecayKit() const;
+
+	unsigned long long getAntiDecayKitObjectID() const;
 
 	void applyAntiDecayKit(CreatureObject* player, SceneObject* adk);
 
 	SceneObject* removeAntiDecayKit();
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
 
 	bool isCityStreetLamp() const;
 
@@ -587,10 +603,6 @@ public:
 	bool isDisabled() const;
 
 	bool isInNavMesh();
-
-	void setControlDevice(ControlDevice* device);
-
-	ManagedWeakReference<ControlDevice* > getControlDevice() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -661,6 +673,8 @@ protected:
 
 	String craftersName;
 
+	unsigned long long craftersID;
+
 	int junkDealerNeeded;
 
 	int junkValue;
@@ -679,7 +693,9 @@ protected:
 
 	ManagedReference<SceneObject* > antiDecayKitObject;
 
-	ManagedWeakReference<ControlDevice* > controlDevice;
+	bool jediRobe;
+
+	bool unionRing;
 
 public:
 	TangibleObjectImplementation();
@@ -708,7 +724,7 @@ public:
 	 * Removes this object's skill mod map from the target object's skill mod map
 	 * @param targetObject the targeted object containing the SkillModMap which will be affected.
 	 */
-	virtual void removeTemplateSkillMods(TangibleObject* tangibleObject);
+	virtual void removeTemplateSkillMods(TangibleObject* tangibleObject) const;
 
 	const VectorMap<String, int>* getTemplateSkillMods() const;
 
@@ -859,7 +875,7 @@ public:
 	 * @post { this object is locked }
 	 * @return returns true if SceneObject defender exists in the defender vector
 	 */
-	bool hasDefender(SceneObject* defender);
+	bool hasDefender(const SceneObject* defender) const;
 
 	/**
 	 * Evaluates if this object can be attacket by the passed creature object
@@ -977,7 +993,7 @@ public:
 
 	void removeMagicBit(bool notifyClient = true);
 
-	int getLevel() const;
+	virtual int getLevel() const;
 
 	bool getIsCraftedEnhancedItem() const;
 
@@ -993,7 +1009,7 @@ public:
 
 	SceneObject* getMainDefender() const;
 
-	bool isDestroyed() const;
+	virtual bool isDestroyed() const;
 
 	virtual void setFaction(unsigned int crc);
 
@@ -1023,6 +1039,12 @@ public:
 
 	void setSliced(bool slice);
 
+	bool isJediRobe() const;
+
+	bool isUnionRing() const;
+
+	void setUnionRing(bool val);
+
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -1035,7 +1057,11 @@ public:
 
 	void setCraftersName(String& name);
 
+	void setCraftersID(unsigned long long crafterOID);
+
 	virtual String getCraftersName();
+
+	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -1043,7 +1069,7 @@ public:
 
 	void setJunkValue(int jValue);
 
-	virtual int getJunkValue();
+	virtual int getJunkValue() const;
 
 	void setSerialNumber(const String& serial);
 
@@ -1051,9 +1077,9 @@ public:
 
 	virtual String getSerialNumber();
 
-	ThreatMap* getThreatMap();
+	virtual ThreatMap* getThreatMap();
 
-	Reference<FactoryCrate* > createFactoryCrate(int maxSize, bool insertSelf = false);
+	Reference<FactoryCrate* > createFactoryCrate(int maxSize, String& type, bool insertSelf = false);
 
 	bool canRepair(CreatureObject* player);
 
@@ -1093,11 +1119,17 @@ public:
 
 	Reference<ActiveArea* > getActiveRegion();
 
+	virtual bool isNoTrade() const;
+
 	bool hasAntiDecayKit() const;
+
+	unsigned long long getAntiDecayKitObjectID() const;
 
 	void applyAntiDecayKit(CreatureObject* player, SceneObject* adk);
 
 	SceneObject* removeAntiDecayKit();
+
+	virtual void destroyObjectFromDatabase(bool destroyContainedObjects = false);
 
 	bool isCityStreetLamp() const;
 
@@ -1122,10 +1154,6 @@ public:
 	bool isDisabled() const;
 
 	bool isInNavMesh();
-
-	void setControlDevice(ControlDevice* device);
-
-	ManagedWeakReference<ControlDevice* > getControlDevice() const;
 
 	WeakReference<TangibleObject*> _this;
 
@@ -1216,8 +1244,6 @@ public:
 	void setCountdownTimer(unsigned int newCount, bool notifyClient);
 
 	void clearCombatState(bool clearDefenders);
-
-	bool hasDefender(SceneObject* defender);
 
 	bool isAttackableBy(CreatureObject* object);
 
@@ -1333,6 +1359,12 @@ public:
 
 	void setSliced(bool slice);
 
+	bool isJediRobe() const;
+
+	bool isUnionRing() const;
+
+	void setUnionRing(bool val);
+
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -1345,7 +1377,11 @@ public:
 
 	void setCraftersName(String& name);
 
+	void setCraftersID(unsigned long long crafterOID);
+
 	String getCraftersName();
+
+	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -1353,7 +1389,7 @@ public:
 
 	void setJunkValue(int jValue);
 
-	int getJunkValue();
+	int getJunkValue() const;
 
 	void setSerialNumber(const String& serial);
 
@@ -1361,7 +1397,7 @@ public:
 
 	String getSerialNumber();
 
-	Reference<FactoryCrate* > createFactoryCrate(int maxSize, bool insertSelf);
+	Reference<FactoryCrate* > createFactoryCrate(int maxSize, String& type, bool insertSelf);
 
 	bool canRepair(CreatureObject* player);
 
@@ -1387,11 +1423,17 @@ public:
 
 	Reference<ActiveArea* > getActiveRegion();
 
+	bool isNoTrade() const;
+
 	bool hasAntiDecayKit() const;
+
+	unsigned long long getAntiDecayKitObjectID() const;
 
 	void applyAntiDecayKit(CreatureObject* player, SceneObject* adk);
 
 	SceneObject* removeAntiDecayKit();
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects);
 
 	bool isCityStreetLamp() const;
 
@@ -1417,10 +1459,6 @@ public:
 
 	bool isInNavMesh();
 
-	void setControlDevice(ControlDevice* device);
-
-	ManagedWeakReference<ControlDevice* > getControlDevice() const;
-
 };
 
 class TangibleObjectHelper : public DistributedObjectClassHelper, public Singleton<TangibleObjectHelper> {
@@ -1440,6 +1478,33 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<TangibleObjectHelper>;
+};
+
+class MockTangibleObject : public TangibleObject {
+public:
+
+	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
+	MOCK_METHOD0(getLevel,int());
+	MOCK_METHOD0(isDestroyed,bool());
+	MOCK_METHOD0(getThreatMap,ThreatMap*());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
+
 };
 
 } // namespace tangible
@@ -1496,6 +1561,8 @@ public:
 
 	Optional<String> craftersName;
 
+	Optional<unsigned long long> craftersID;
+
 	Optional<int> junkDealerNeeded;
 
 	Optional<int> junkValue;
@@ -1512,7 +1579,9 @@ public:
 
 	Optional<ManagedReference<SceneObjectPOD* >> antiDecayKitObject;
 
-	Optional<ManagedWeakReference<ControlDevicePOD* >> controlDevice;
+	Optional<bool> jediRobe;
+
+	Optional<bool> unionRing;
 
 	String _className;
 	TangibleObjectPOD();

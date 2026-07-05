@@ -51,17 +51,17 @@ void CharacterBuilderTerminalImplementation::sendInitialChoices(CreatureObject* 
 		return;
 	}
 
-	ManagedReference<SuiCharacterBuilderBox*> sui = new SuiCharacterBuilderBox(player, const_cast<CharacterBuilderMenuNode*>(rootNode.get()));
+	ManagedReference<SuiCharacterBuilderBox*> sui = new SuiCharacterBuilderBox(player, rootNode);
 	sui->setUsingObject(_this.getReferenceUnsafeStaticCast());
 
 	player->sendMessage(sui->generateMessage());
 	player->getPlayerObject()->addSuiBox(sui);
 }
 
-void CharacterBuilderTerminalImplementation::enhanceCharacter(CreatureObject* player, int type) {
+void CharacterBuilderTerminalImplementation::enhanceCharacter(CreatureObject* player) {
 	PlayerManager* pm = player->getZoneServer()->getPlayerManager();
 
-	pm->enhanceCharacter(player);
+	pm->enhanceCharacterFrog(player);
 
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 
@@ -74,7 +74,7 @@ void CharacterBuilderTerminalImplementation::enhanceCharacter(CreatureObject* pl
 		if (pet != nullptr) {
 			Locker crossLocker(pet, player);
 
-			pm->enhanceCharacter(pet);
+			pm->enhanceCharacterFrog(pet);
 		}
 	}
 }
@@ -117,13 +117,10 @@ void CharacterBuilderTerminalImplementation::grantGlowyBadges(CreatureObject* pl
 	if (ghost == nullptr)
 		return;
 
-	int ids[] = { 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 38, 39, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 105, 106, 107, 108, 112, 113, 114, 115, 116, 117, 118, 119, 120, 129, 130, 131, 132, 134, 135, 136, 137, 138, 143, 144, 145, 146 };
-/*
 	const auto& ids = terminalTemplate->getGlowyBadgeIds();
-FIX THIS LATER*/
 
-	for (int i = 0; i < 30; i++) {
-		ghost->awardBadge(ids[i]);
+	for (int i = 0; i < ids.size(); i++) {
+		ghost->awardBadge(ids.get(i));
 	}
 }
 

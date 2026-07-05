@@ -104,6 +104,8 @@ using namespace server::zone::objects::player::sui::listbox;
 
 #include "server/zone/objects/resource/ResourceSpawn.h"
 
+#include "server/zone/objects/transaction/TransactionLog.h"
+
 #include "system/util/Vector.h"
 
 #include "engine/core/ManagedObject.h"
@@ -125,7 +127,7 @@ namespace resource {
  */
 class ResourceManager : public Observer {
 public:
-	static const int RESOURCE_DEED_QUANTITY = 100000;
+	static const int RESOURCE_DEED_QUANTITY = 10000;
 
 	ResourceManager(ZoneServer* server, ZoneProcessServer* impl);
 
@@ -147,7 +149,7 @@ public:
 
 	ResourceContainer* harvestResource(CreatureObject* player, const String& type, const int quantity);
 
-	bool harvestResourceToPlayer(CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity);
+	bool harvestResourceToPlayer(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity);
 
 	unsigned int getAvailablePowerFromPlayer(CreatureObject* player);
 
@@ -167,21 +169,17 @@ public:
 
 	ResourceSpawn* getRecycledVersion(ResourceSpawn* resource);
 
-	ResourceSpawn* getRecycledVersionByType(const String& resourceType);
-
 	void addNodeToListBox(SuiListBox* sui, const String& nodeName);
 
 	String addParentNodeToListBox(SuiListBox* sui, const String& currentNode);
-
-	void addNodeToListBoxCR(SuiListBox* sui, const String& nodeName);
-
-	String addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode);
 
 	void listResourcesForPlanetOnScreen(CreatureObject* creature, const String& planet);
 
 	String healthCheck();
 
 	String dumpResources();
+
+	String ghDump();
 
 	String despawnResource(String& resourceName);
 
@@ -228,7 +226,7 @@ class ResourceManagerImplementation : public ObserverImplementation, public Logg
 	int shiftInterval;
 
 public:
-	static const int RESOURCE_DEED_QUANTITY = 100000;
+	static const int RESOURCE_DEED_QUANTITY = 10000;
 
 	ResourceManagerImplementation(ZoneServer* server, ZoneProcessServer* impl);
 
@@ -252,7 +250,7 @@ public:
 
 	ResourceContainer* harvestResource(CreatureObject* player, const String& type, const int quantity);
 
-	bool harvestResourceToPlayer(CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity);
+	bool harvestResourceToPlayer(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity);
 
 	unsigned int getAvailablePowerFromPlayer(CreatureObject* player);
 
@@ -282,21 +280,17 @@ public:
 
 	ResourceSpawn* getRecycledVersion(ResourceSpawn* resource);
 
-	ResourceSpawn* getRecycledVersionByType(const String& resourceType);
-
 	void addNodeToListBox(SuiListBox* sui, const String& nodeName);
 
 	String addParentNodeToListBox(SuiListBox* sui, const String& currentNode);
-
-	void addNodeToListBoxCR(SuiListBox* sui, const String& nodeName);
-
-	String addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode);
 
 	void listResourcesForPlanetOnScreen(CreatureObject* creature, const String& planet);
 
 	String healthCheck();
 
 	String dumpResources();
+
+	String ghDump();
 
 	String despawnResource(String& resourceName);
 
@@ -369,8 +363,6 @@ public:
 
 	ResourceContainer* harvestResource(CreatureObject* player, const String& type, const int quantity);
 
-	bool harvestResourceToPlayer(CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity);
-
 	unsigned int getAvailablePowerFromPlayer(CreatureObject* player);
 
 	void removePowerFromPlayer(CreatureObject* player, unsigned int power);
@@ -387,21 +379,17 @@ public:
 
 	ResourceSpawn* getRecycledVersion(ResourceSpawn* resource);
 
-	ResourceSpawn* getRecycledVersionByType(const String& resourceType);
-
 	void addNodeToListBox(SuiListBox* sui, const String& nodeName);
 
 	String addParentNodeToListBox(SuiListBox* sui, const String& currentNode);
-
-	void addNodeToListBoxCR(SuiListBox* sui, const String& nodeName);
-
-	String addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode);
 
 	void listResourcesForPlanetOnScreen(CreatureObject* creature, const String& planet);
 
 	String healthCheck();
 
 	String dumpResources();
+
+	String ghDump();
 
 	String despawnResource(String& resourceName);
 

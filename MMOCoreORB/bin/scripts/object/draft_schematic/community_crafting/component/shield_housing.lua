@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_shield_housing = object_draf
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_shield_housing = object_draf
 	ingredientTitleNames = {"shell", "reinforcement"},
 	ingredientSlotType = {2, 2},
 	resourceTypes = {"object/tangible/loot/quest/shared_endrine.iff", "object/tangible/loot/quest/shared_rudic.iff"},
-	resourceQuantities = {1, 1},
+	resourceQuantities = {6, 4},
 	contribution = {100, 100},
 
 

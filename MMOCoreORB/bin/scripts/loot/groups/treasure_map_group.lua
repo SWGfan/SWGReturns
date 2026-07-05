@@ -3,15 +3,13 @@ treasure_map_group = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{groupTemplate = "armor_all", weight = 1500000},
-		{groupTemplate = "armor_attachments", weight = 750000},
-		{groupTemplate = "clothing_attachments", weight = 750000},
-		{groupTemplate = "color_crystals", weight = 500000},
-		{groupTemplate = "power_crystals", weight = 500000},
-		{groupTemplate = "junk", weight = 1000000},
-		{groupTemplate = "tailor_components", weight = 750000},
-		{groupTemplate = "weapons_all", weight = 2250000},
-		{groupTemplate = "wearables_all", weight = 2000000}
+		{itemTemplate = "armor_all", weight = 1200000},
+		{itemTemplate = "armor_attachments", weight = 2000000},
+		{itemTemplate = "clothing_attachments", weight = 2000000},
+		{itemTemplate = "color_crystals", weight = 3000000},
+		{itemTemplate = "power_crystals", weight = 1000000},
+		{itemTemplate = "weapons_all", weight = 400000},
+		{itemTemplate = "wearables_all", weight = 400000}
 	}
 }
 

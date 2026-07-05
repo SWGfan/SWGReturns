@@ -32,7 +32,7 @@ VehicleControlObserver::~VehicleControlObserver() {
 
 int VehicleControlObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	VehicleControlObserverImplementation* _implementation = static_cast<VehicleControlObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void VehicleControlObserverImplementation::finalize() {
 void VehicleControlObserverImplementation::_initializeImplementation() {
 	_setClassHelper(VehicleControlObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -208,7 +208,7 @@ int VehicleControlObserverImplementation::notifyObserverEvent(unsigned int event
 	// server/zone/objects/intangible/VehicleControlObserver.idl():  		VehicleControlDevice dev = vehicleControlDevice;
 	ManagedReference<VehicleControlDevice* > dev = vehicleControlDevice;
 	// server/zone/objects/intangible/VehicleControlObserver.idl():  		return 
-	if (dev != nullptr){
+	if (dev){
 	// server/zone/objects/intangible/VehicleControlObserver.idl():  			CreatureObject creature = (CreatureObject) observable;
 	ManagedReference<CreatureObject* > creature = dynamic_cast<CreatureObject*>(observable);
 	// server/zone/objects/intangible/VehicleControlObserver.idl():  			dev.cancelSpawnObject(creature);

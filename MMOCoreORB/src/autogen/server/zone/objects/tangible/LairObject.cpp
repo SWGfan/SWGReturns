@@ -36,7 +36,7 @@ LairObject::~LairObject() {
 
 int LairObject::getNumberOfPlayersInRange() {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int LairObject::getNumberOfPlayersInRange() {
 
 bool LairObject::getDespawnOnNoPlayersInRange() const {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ bool LairObject::getDespawnOnNoPlayersInRange() const {
 
 void LairObject::setDespawnOnNoPlayersInRange(bool b) {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ void LairObject::setDespawnOnNoPlayersInRange(bool b) {
 
 void LairObject::notifyInsert(QuadTreeEntry* entry) {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ void LairObject::notifyInsert(QuadTreeEntry* entry) {
 
 void LairObject::notifyDissapear(QuadTreeEntry* entry) {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ void LairObject::notifyDissapear(QuadTreeEntry* entry) {
 
 void LairObject::activateDespawnEvent() {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void LairObject::activateDespawnEvent() {
 
 void LairObject::clearDespawnEvent() {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ void LairObject::clearDespawnEvent() {
 
 bool LairObject::isLairObject() {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ void LairObjectImplementation::finalize() {
 void LairObjectImplementation::_initializeImplementation() {
 	_setClassHelper(LairObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -376,7 +376,7 @@ void LairObjectImplementation::notifyDissapear(QuadTreeEntry* entry) {
 void LairObjectImplementation::activateDespawnEvent() {
 	Reference<DespawnLairOnPlayerDisappear*> _ref0;
 	// server/zone/objects/tangible/LairObject.idl():  		despawnEvent 
-	if (despawnEvent != nullptr)	// server/zone/objects/tangible/LairObject.idl():  			return;
+	if (despawnEvent)	// server/zone/objects/tangible/LairObject.idl():  			return;
 	return;
 	// server/zone/objects/tangible/LairObject.idl():  		despawnEvent = new DespawnLairOnPlayerDisappear(this);
 	despawnEvent = _ref0 = new DespawnLairOnPlayerDisappear(_this.getReferenceUnsafeStaticCast());
@@ -386,12 +386,12 @@ void LairObjectImplementation::activateDespawnEvent() {
 
 void LairObjectImplementation::clearDespawnEvent() {
 	// server/zone/objects/tangible/LairObject.idl():  		despawnEvent.
-	if (despawnEvent == nullptr)	// server/zone/objects/tangible/LairObject.idl():  			return;
+	if (!despawnEvent)	// server/zone/objects/tangible/LairObject.idl():  			return;
 	return;
 	// server/zone/objects/tangible/LairObject.idl():  		despawnEvent.cancel();
 	despawnEvent->cancel();
 	// server/zone/objects/tangible/LairObject.idl():  		despawnEvent = null;
-	despawnEvent = nullptr;
+	despawnEvent = NULL;
 }
 
 bool LairObjectImplementation::isLairObject() {

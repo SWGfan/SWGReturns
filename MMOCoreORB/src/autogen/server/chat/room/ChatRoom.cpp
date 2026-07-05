@@ -34,7 +34,7 @@ ChatRoom::~ChatRoom() {
 
 void ChatRoom::init(ZoneServer* serv, ChatRoom* parent, const String& roomName) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -51,7 +51,7 @@ void ChatRoom::init(ZoneServer* serv, ChatRoom* parent, const String& roomName) 
 
 void ChatRoom::sendTo(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +66,7 @@ void ChatRoom::sendTo(CreatureObject* player) {
 
 void ChatRoom::sendDestroyTo(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void ChatRoom::sendDestroyTo(CreatureObject* player) {
 
 void ChatRoom::addSubRoom(const String& name, unsigned int roomID) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void ChatRoom::addSubRoom(const String& name, unsigned int roomID) {
 
 void ChatRoom::removeSubRoom(const String& channel) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void ChatRoom::removeSubRoom(const String& channel) {
 
 unsigned int ChatRoom::getSubRoom(int i) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ unsigned int ChatRoom::getSubRoom(int i) {
 
 unsigned int ChatRoom::getSubRoom(const String& name) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ unsigned int ChatRoom::getSubRoom(const String& name) {
 
 int ChatRoom::getSubRoomsSize() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ int ChatRoom::getSubRoomsSize() {
 
 void ChatRoom::addPlayer(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +171,7 @@ void ChatRoom::addPlayer(CreatureObject* player) {
 
 void ChatRoom::removePlayer(CreatureObject* player, bool disconnecting) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,14 +182,14 @@ void ChatRoom::removePlayer(CreatureObject* player, bool disconnecting) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->removePlayer(player, disconnecting);
 	}
 }
 
 void ChatRoom::removeAllPlayers() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,7 +204,7 @@ void ChatRoom::removeAllPlayers() {
 
 int ChatRoom::getPlayerSize() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -218,7 +218,7 @@ int ChatRoom::getPlayerSize() {
 
 CreatureObject* ChatRoom::getPlayer(int idx) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ CreatureObject* ChatRoom::getPlayer(int idx) {
 
 bool ChatRoom::hasPlayer(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -248,7 +248,7 @@ bool ChatRoom::hasPlayer(CreatureObject* player) {
 
 bool ChatRoom::hasPlayer(const String& name) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -263,7 +263,7 @@ bool ChatRoom::hasPlayer(const String& name) {
 
 void ChatRoom::addModerator(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -278,7 +278,7 @@ void ChatRoom::addModerator(CreatureObject* player) {
 
 void ChatRoom::removeModerator(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -293,7 +293,7 @@ void ChatRoom::removeModerator(CreatureObject* player) {
 
 void ChatRoom::removeAllModerators() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -307,7 +307,7 @@ void ChatRoom::removeAllModerators() {
 
 int ChatRoom::getModeratorSize() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -321,7 +321,7 @@ int ChatRoom::getModeratorSize() {
 
 String ChatRoom::getModeratorName(int idx) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -338,7 +338,7 @@ String ChatRoom::getModeratorName(int idx) {
 
 bool ChatRoom::hasModerator(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -353,7 +353,7 @@ bool ChatRoom::hasModerator(CreatureObject* player) {
 
 void ChatRoom::addInvited(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -368,7 +368,7 @@ void ChatRoom::addInvited(CreatureObject* player) {
 
 void ChatRoom::removeInvited(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -383,7 +383,7 @@ void ChatRoom::removeInvited(CreatureObject* player) {
 
 void ChatRoom::removeAllInvited() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -397,7 +397,7 @@ void ChatRoom::removeAllInvited() {
 
 int ChatRoom::getInvitedSize() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -411,7 +411,7 @@ int ChatRoom::getInvitedSize() {
 
 String ChatRoom::getInvitedName(int idx) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -428,7 +428,7 @@ String ChatRoom::getInvitedName(int idx) {
 
 bool ChatRoom::hasInvited(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -443,7 +443,7 @@ bool ChatRoom::hasInvited(CreatureObject* player) {
 
 void ChatRoom::addBanned(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -458,7 +458,7 @@ void ChatRoom::addBanned(CreatureObject* player) {
 
 void ChatRoom::removeBanned(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -473,7 +473,7 @@ void ChatRoom::removeBanned(CreatureObject* player) {
 
 void ChatRoom::removeAllBanned() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -487,7 +487,7 @@ void ChatRoom::removeAllBanned() {
 
 int ChatRoom::getBannedSize() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -501,7 +501,7 @@ int ChatRoom::getBannedSize() {
 
 String ChatRoom::getBannedName(int idx) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -518,7 +518,7 @@ String ChatRoom::getBannedName(int idx) {
 
 bool ChatRoom::hasBanned(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -533,7 +533,7 @@ bool ChatRoom::hasBanned(CreatureObject* player) {
 
 void ChatRoom::broadcastMessage(BaseMessage* msg) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -543,7 +543,7 @@ void ChatRoom::broadcastMessage(BaseMessage* msg) {
 
 void ChatRoom::broadcastMessageCheckIgnore(BaseMessage* msg, const String& senderName) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -553,7 +553,7 @@ void ChatRoom::broadcastMessageCheckIgnore(BaseMessage* msg, const String& sende
 
 int ChatRoom::checkEnterPermission(CreatureObject* player) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -568,7 +568,7 @@ int ChatRoom::checkEnterPermission(CreatureObject* player) {
 
 void ChatRoom::broadcastMessages(Vector<BaseMessage*>* messages) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -578,7 +578,7 @@ void ChatRoom::broadcastMessages(Vector<BaseMessage*>* messages) {
 
 Reference<ChatRoom* > ChatRoom::getParent() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -592,7 +592,7 @@ Reference<ChatRoom* > ChatRoom::getParent() {
 
 void ChatRoom::setPrivate() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -606,7 +606,7 @@ void ChatRoom::setPrivate() {
 
 void ChatRoom::setPublic() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -618,9 +618,9 @@ void ChatRoom::setPublic() {
 	}
 }
 
-bool ChatRoom::isPublic() {
+bool ChatRoom::isPublic() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -634,7 +634,7 @@ bool ChatRoom::isPublic() {
 
 bool ChatRoom::isPrivate() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -648,7 +648,7 @@ bool ChatRoom::isPrivate() {
 
 bool ChatRoom::canEnter() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -662,7 +662,7 @@ bool ChatRoom::canEnter() const {
 
 void ChatRoom::setCanEnter(bool value) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -677,7 +677,7 @@ void ChatRoom::setCanEnter(bool value) {
 
 bool ChatRoom::subroomsAllowed() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -691,7 +691,7 @@ bool ChatRoom::subroomsAllowed() const {
 
 void ChatRoom::setAllowSubrooms(bool value) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -706,7 +706,7 @@ void ChatRoom::setAllowSubrooms(bool value) {
 
 bool ChatRoom::isModerated() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -720,7 +720,7 @@ bool ChatRoom::isModerated() const {
 
 void ChatRoom::setModerated(bool moderate) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -735,7 +735,7 @@ void ChatRoom::setModerated(bool moderate) {
 
 void ChatRoom::setName(const String& Name) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -750,7 +750,7 @@ void ChatRoom::setName(const String& Name) {
 
 String ChatRoom::getName() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -766,7 +766,7 @@ String ChatRoom::getName() const {
 
 void ChatRoom::setFullPath(const String& newPath) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -781,7 +781,7 @@ void ChatRoom::setFullPath(const String& newPath) {
 
 String ChatRoom::getFullPath() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -797,7 +797,7 @@ String ChatRoom::getFullPath() const {
 
 void ChatRoom::setOwnerID(unsigned long long objectID) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -812,7 +812,7 @@ void ChatRoom::setOwnerID(unsigned long long objectID) {
 
 unsigned long long ChatRoom::getOwnerID() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -826,7 +826,7 @@ unsigned long long ChatRoom::getOwnerID() const {
 
 void ChatRoom::setOwnerName(const String& name) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -841,7 +841,7 @@ void ChatRoom::setOwnerName(const String& name) {
 
 String ChatRoom::getOwnerName() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -857,7 +857,7 @@ String ChatRoom::getOwnerName() const {
 
 void ChatRoom::setCreator(const String& name) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -872,7 +872,7 @@ void ChatRoom::setCreator(const String& name) {
 
 String ChatRoom::getCreator() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -888,7 +888,7 @@ String ChatRoom::getCreator() {
 
 void ChatRoom::setTitle(const UnicodeString& uniTitle) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -903,7 +903,7 @@ void ChatRoom::setTitle(const UnicodeString& uniTitle) {
 
 UnicodeString ChatRoom::getTitle() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -919,7 +919,7 @@ UnicodeString ChatRoom::getTitle() const {
 
 unsigned int ChatRoom::getLastJoinTime() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -933,7 +933,7 @@ unsigned int ChatRoom::getLastJoinTime() {
 
 String ChatRoom::getGalaxyName() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -949,7 +949,7 @@ String ChatRoom::getGalaxyName() {
 
 void ChatRoom::setRoomID(unsigned int id) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -964,7 +964,7 @@ void ChatRoom::setRoomID(unsigned int id) {
 
 unsigned int ChatRoom::getRoomID() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -978,7 +978,7 @@ unsigned int ChatRoom::getRoomID() const {
 
 void ChatRoom::setZoneServer(ZoneServer* srv) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -993,7 +993,7 @@ void ChatRoom::setZoneServer(ZoneServer* srv) {
 
 ZoneServer* ChatRoom::getZoneServer() {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1007,7 +1007,7 @@ ZoneServer* ChatRoom::getZoneServer() {
 
 void ChatRoom::setChatManager(ChatManager* mgr) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1022,7 +1022,7 @@ void ChatRoom::setChatManager(ChatManager* mgr) {
 
 void ChatRoom::setChatRoomType(int type) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1037,7 +1037,7 @@ void ChatRoom::setChatRoomType(int type) {
 
 int ChatRoom::getChatRoomType() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1051,7 +1051,7 @@ int ChatRoom::getChatRoomType() const {
 
 bool ChatRoom::hasPersistentParent() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1065,7 +1065,7 @@ bool ChatRoom::hasPersistentParent() const {
 
 void ChatRoom::setParentIsPersistent(bool value) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1080,7 +1080,7 @@ void ChatRoom::setParentIsPersistent(bool value) {
 
 void ChatRoom::setParentRoomID(unsigned int value) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1095,7 +1095,7 @@ void ChatRoom::setParentRoomID(unsigned int value) {
 
 void ChatRoom::setDisabled(bool value) {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1110,7 +1110,7 @@ void ChatRoom::setDisabled(bool value) {
 
 bool ChatRoom::isDisabled() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1124,7 +1124,7 @@ bool ChatRoom::isDisabled() const {
 
 bool ChatRoom::isPersistent() const {
 	ChatRoomImplementation* _implementation = static_cast<ChatRoomImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1169,7 +1169,7 @@ void ChatRoomImplementation::finalize() {
 void ChatRoomImplementation::_initializeImplementation() {
 	_setClassHelper(ChatRoomHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1578,9 +1578,9 @@ void ChatRoomImplementation::writeJSON(nlohmann::json& j) {
 ChatRoomImplementation::ChatRoomImplementation() {
 	_initializeImplementation();
 	// server/chat/room/ChatRoom.idl():  		server = null;
-	server = nullptr;
+	server = NULL;
 	// server/chat/room/ChatRoom.idl():  		manager = null;
-	manager = nullptr;
+	manager = NULL;
 	// server/chat/room/ChatRoom.idl():  		name = "";
 	name = "";
 	// server/chat/room/ChatRoom.idl():  		roomID = 0;
@@ -1777,7 +1777,7 @@ void ChatRoomImplementation::setPublic() {
 	isPublicRoom = true;
 }
 
-bool ChatRoomImplementation::isPublic() {
+bool ChatRoomImplementation::isPublic() const{
 	// server/chat/room/ChatRoom.idl():  		return isPublicRoom == true;
 	return isPublicRoom == true;
 }
@@ -2064,7 +2064,7 @@ void ChatRoomAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int idx = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getPlayer(idx);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_HASPLAYER__CREATUREOBJECT_:
@@ -2233,7 +2233,7 @@ void ChatRoomAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getParent();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETPRIVATE__:
@@ -2440,7 +2440,7 @@ void ChatRoomAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getZoneServer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETCHATMANAGER__CHATMANAGER_:
@@ -2664,7 +2664,7 @@ void ChatRoomAdapter::setPublic() {
 	(static_cast<ChatRoom*>(stub))->setPublic();
 }
 
-bool ChatRoomAdapter::isPublic() {
+bool ChatRoomAdapter::isPublic() const {
 	return (static_cast<ChatRoom*>(stub))->isPublic();
 }
 

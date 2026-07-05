@@ -4,59 +4,18 @@
 
 #include "ForceHealQueueCommand.h"
 #include "server/zone/managers/combat/CombatManager.h"
+#include "server/zone/managers/player/PlayerManager.h"
+#include "server/zone/objects/player/PlayerObject.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/managers/collision/CollisionManager.h"
 #include "server/zone/managers/frs/FrsManager.h"
-#include "server/zone/objects/building/BuildingObject.h"
-
-namespace {
-	bool isHuntersMarkJediTarget(CreatureObject* creature) {
-		return creature != nullptr &&
-				creature->isPlayerCreature() &&
-				(creature->hasSkill("force_title_jedi_rank_02") ||
-				creature->hasSkill("combat_jedi") ||
-				creature->hasSkill("combat_jedi_novice") ||
-				creature->hasSkill("returns_jedi_elder") ||
-				creature->hasSkill("returns_jedi_elder_light") ||
-				creature->hasSkill("returns_jedi_elder_light_novice") ||
-				creature->hasSkill("returns_jedi_elder_dark") ||
-				creature->hasSkill("returns_jedi_elder_dark_novice"));
-	}
-
-	int getHighestHuntersMarkPressure(CreatureObject* targetCreature) {
-		if (!isHuntersMarkJediTarget(targetCreature))
-			return 0;
-
-		int highestHuntersMark = 0;
-		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = targetCreature->getDefenderList();
-
-		for (int i = 0; i < defenderList->size(); ++i) {
-			ManagedReference<SceneObject*> defenderObject = defenderList->get(i);
-
-			if (defenderObject == nullptr || !defenderObject->isCreatureObject())
-				continue;
-
-			CreatureObject* defender = defenderObject->asCreatureObject();
-
-			if (defender == nullptr || !defender->isPlayerCreature())
-				continue;
-
-			int huntersMark = defender->getSkillMod("hunters_mark");
-
-			if (huntersMark <= 0 || !defender->hasBountyMissionFor(targetCreature))
-				continue;
-
-			if (huntersMark > highestHuntersMark)
-				highestHuntersMark = huntersMark;
-		}
-
-		return highestHuntersMark;
-	}
-}
+#include "templates/params/creature/CreatureState.h"
+#include "ForcePowersQueueCommand.h"
+#include "server/zone/packets/player/PlayMusicMessage.h"
 
 ForceHealQueueCommand::ForceHealQueueCommand(const String& name, ZoneProcessServer* server) : JediQueueCommand(name, server) {
-	speed = 0;
+	speed = 2;
 	allowedTarget = TARGET_AUTO;
 
 	forceCost = 0;
@@ -97,15 +56,9 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		return GENERALERROR;
 
 	int currentForce = playerObject->getForcePower();
+	int currentAction = creature->getHAM(CreatureAttribute::ACTION);
 	int totalCost = forceCost;
 	bool healPerformed = false;
-	int forceHeal = 0;
-	int healAmountFinal = 0;
-	if(playerObject->getJediState() == 4) {
-		forceHeal = creature->getSkillMod("force_healing_light");
-	} else if (playerObject->getJediState() == 8) {
-		forceHeal = creature->getSkillMod("force_healing_dark");
-	}
 
 	// Attribute Wound Healing
 	for (int i = 0; i < 3; i++) {
@@ -120,7 +73,6 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 						woundAmount = healWoundAmount;
 
 					totalCost += woundAmount * forceCostMultiplier;
-					totalCost *= (100 - forceHeal) / 100;
 
 					if (totalCost > currentForce) {
 						int forceDiff = totalCost - currentForce;
@@ -129,9 +81,16 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 					}
 
 					if (woundAmount > 0) {
-						targetCreature->healWound(creature, attrib, woundAmount, true);
-						healPerformed = true;
-						sendHealMessage(creature, targetCreature, HEAL_WOUNDS, attrib, woundAmount);
+
+						if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+							targetCreature->healWound(creature, attrib, woundAmount, true);
+							healPerformed = true;
+							sendHealMessage(creature, targetCreature, HEAL_WOUNDS, attrib, woundAmount);
+						} else {
+							creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+							creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+							return GENERALERROR;
+						}
 					}
 				}
 			}
@@ -147,24 +106,11 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 				int curHam = targetCreature->getHAM(attrib);
 				int maxHam = targetCreature->getMaxHAM(attrib) - targetCreature->getWounds(attrib);
 				int amtToHeal = maxHam - curHam;
-				//info("Amount before FRS: " + String::valueOf(healAmount), true);
-				if (forceHeal > 0){
-					healAmountFinal = healAmount + (healAmount * ((forceHeal * .75) / 100.f));
-					//info("Amount after FRS: " + String::valueOf(healAmountFinal), true);
-				}
-				else{
-					healAmountFinal = healAmount;
-				}
 
-				if (healAmountFinal > 0 && amtToHeal > healAmountFinal){
-					amtToHeal = healAmountFinal;
-				}
+				if (healAmount > 0 && amtToHeal > healAmount)
+					amtToHeal = healAmount;
 
 				totalCost += amtToHeal * forceCostMultiplier;
-				//info("Force cost Prior to frs: " + String::valueOf(totalCost), true);
-				float reduction = (forceHeal * .75) / 100.f;
-				totalCost = totalCost* (1 - reduction);
-				//info("Force cost After to frs: " + String::valueOf(totalCost), true);
 
 				if (totalCost > currentForce) {
 					int forceDiff = totalCost - currentForce;
@@ -173,17 +119,15 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 				}
 
 				if (amtToHeal > 0) {
-					int huntersMarkReduction = getHighestHuntersMarkPressure(targetCreature);
-
-					if (huntersMarkReduction > 50)
-						huntersMarkReduction = 50;
-
-					if (huntersMarkReduction > 0)
-						amtToHeal = amtToHeal * (100 - huntersMarkReduction) / 100;
-
-					targetCreature->healDamage(creature, attrib, amtToHeal, true);
-					healPerformed = true;
-					sendHealMessage(creature, targetCreature, HEAL_DAMAGE, attrib, amtToHeal);
+					if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+						targetCreature->healDamage(creature, attrib, amtToHeal, true);
+						healPerformed = true;
+						sendHealMessage(creature, targetCreature, HEAL_DAMAGE, attrib, amtToHeal);
+					} else {
+						creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+						creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+						return GENERALERROR;
+					}
 				}
 			}
 		}
@@ -192,13 +136,11 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 	// Battle fatigue
 	if (totalCost < currentForce && healBattleFatigue != 0) {
 		int battleFatigue = targetCreature->getShockWounds();
-		
 
 		if (healBattleFatigue > 0 && battleFatigue > healBattleFatigue)
 			battleFatigue = healBattleFatigue;
 
 		totalCost += battleFatigue * forceCostMultiplier;
-		totalCost *= (100 - forceHeal) / 100;
 
 		if (totalCost > currentForce) {
 			int forceDiff = totalCost - currentForce;
@@ -207,9 +149,15 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		}
 
 		if (battleFatigue > 0) {
+			if (creature->getHAM(CreatureAttribute::ACTION) > 400){
 			targetCreature->addShockWounds(-battleFatigue, true, false);
 			sendHealMessage(creature, targetCreature, HEAL_FATIGUE, 0, battleFatigue);
 			healPerformed = true;
+			} else {
+				creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+				creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+				return GENERALERROR;
+			}
 		}
 	}
 
@@ -225,10 +173,16 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 				int newTotal = totalCost + healStateCost;
 
 				if (newTotal < currentForce) {
-					targetCreature->removeStateBuff(state);
-					totalCost = newTotal;
-					healPerformed = true;
-					healedStates++;
+					if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+						targetCreature->removeStateBuff(state);
+						totalCost = newTotal;
+						healPerformed = true;
+						healedStates++;
+					} else {
+						creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+						creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+						return GENERALERROR;
+					}
 				}
 			}
 		}
@@ -245,7 +199,6 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		while (!result && (totalCost + healBleedingCost < currentForce) && (bleedHealIterations == -1 || iteration <= bleedHealIterations)) {
 			result = targetCreature->healDot(CreatureState::BLEEDING, 250, false);
 			totalCost += healBleedingCost;
-			totalCost *= (100 - forceHeal) / 100;
 			iteration++;
 		}
 
@@ -254,8 +207,13 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		} else {
 			sendHealMessage(creature, targetCreature, HEAL_BLEEDING, 0, 0);
 		}
-
-		healPerformed = true;
+		if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+			healPerformed = true;
+		} else {
+			creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+			return GENERALERROR;
+		}
 	}
 
 	// Poison
@@ -266,7 +224,6 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		while (!result && (totalCost + healPoisonCost < currentForce) && (poisonHealIterations == -1 || iteration <= poisonHealIterations)) {
 			result = targetCreature->healDot(CreatureState::POISONED, 250, false);
 			totalCost += healPoisonCost;
-			totalCost *= (100 - forceHeal) / 100;
 			iteration++;
 		}
 
@@ -275,8 +232,13 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		} else {
 			sendHealMessage(creature, targetCreature, HEAL_POISON, 0, 0);
 		}
-
-		healPerformed = true;
+		if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+			healPerformed = true;
+		} else {
+			creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+			return GENERALERROR;
+		}
 	}
 
 	// Disease
@@ -287,7 +249,6 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		while (!result && (totalCost + healDiseaseCost < currentForce) && (diseaseHealIterations == -1 || iteration <= diseaseHealIterations)) {
 			result = targetCreature->healDot(CreatureState::DISEASED, 200, false);
 			totalCost += healDiseaseCost;
-			totalCost *= (100 - forceHeal) / 100;
 			iteration++;
 		}
 
@@ -296,8 +257,13 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		} else {
 			sendHealMessage(creature, targetCreature, HEAL_DISEASE, 0, 0);
 		}
-
-		healPerformed = true;
+		if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+			healPerformed = true;
+		} else {
+			creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+			return GENERALERROR;
+		}
 	}
 
 	// Fire
@@ -308,7 +274,6 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		while (!result && (totalCost + healFireCost < currentForce) && (fireHealIterations == -1 || iteration <= fireHealIterations)) {
 			result = targetCreature->healDot(CreatureState::ONFIRE, 500, false);
 			totalCost += healFireCost;
-			totalCost *= (100 - forceHeal) / 100;
 			iteration++;
 		}
 
@@ -317,8 +282,13 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 		} else {
 			sendHealMessage(creature, targetCreature, HEAL_FIRE, 0, 0);
 		}
-
-		healPerformed = true;
+		if (creature->getHAM(CreatureAttribute::ACTION) > 400){
+			healPerformed = true;
+		} else {
+			creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+			return GENERALERROR;
+		}
 	}
 
 	bool selfHeal = creature->getObjectID() == targetCreature->getObjectID();
@@ -331,9 +301,15 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 
 		if (currentForce < totalCost) {
 			playerObject->setForcePower(0);
+			//creature->setHAM(CreatureAttribute::ACTION, 300);
 			creature->error("Did not have enough force to pay for the healing he did. Total cost of command: " + String::valueOf(totalCost) + ", player's current force: " + String::valueOf(currentForce));
-		} else {
+		} else if(creature->getHAM(CreatureAttribute::ACTION) > 400){
 			playerObject->setForcePower(currentForce - totalCost);
+			creature->inflictDamage(creature, CreatureAttribute::ACTION, 300, true, true, true);
+		} else {
+			//creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
+			//creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
+			return GENERALERROR;
 		}
 
 		VisibilityManager::instance()->increaseVisibility(creature, visMod);
@@ -473,32 +449,8 @@ int ForceHealQueueCommand::runCommandWithTarget(CreatureObject* creature, Creatu
 		return GENERALERROR;
 	}
 
-	if (creature->isPlayerCreature() && targetCreature->getParentID() != 0 && creature->getParentID() != targetCreature->getParentID()) {
-		Reference<CellObject*> targetCell = targetCreature->getParent().get().castTo<CellObject*>();
-
-		if (targetCell != nullptr) {
-			if (!targetCreature->isPlayerCreature()) {
-				auto perms = targetCell->getContainerPermissions();
-
-				if (!perms->hasInheritPermissionsFromParent()) {
-					if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
-						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-						return GENERALERROR;
-					}
-				}
-			}
-
-			ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
-
-			if (parentSceneObject != nullptr) {
-				BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
-
-				if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
-					creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-					return GENERALERROR;
-				}
-			}
-		}
+	if (!playerEntryCheck(creature, targetCreature)) {
+		return GENERALERROR;
 	}
 
 	return runCommand(creature, targetCreature);

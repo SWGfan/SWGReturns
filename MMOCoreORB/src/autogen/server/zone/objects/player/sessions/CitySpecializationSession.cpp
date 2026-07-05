@@ -34,7 +34,7 @@ CitySpecializationSession::~CitySpecializationSession() {
 
 int CitySpecializationSession::initializeSession() {
 	CitySpecializationSessionImplementation* _implementation = static_cast<CitySpecializationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int CitySpecializationSession::initializeSession() {
 
 int CitySpecializationSession::sendConfirmationBox(const String& choice) {
 	CitySpecializationSessionImplementation* _implementation = static_cast<CitySpecializationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ int CitySpecializationSession::sendConfirmationBox(const String& choice) {
 
 int CitySpecializationSession::acceptChoice() {
 	CitySpecializationSessionImplementation* _implementation = static_cast<CitySpecializationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ int CitySpecializationSession::acceptChoice() {
 
 int CitySpecializationSession::cancelSession() {
 	CitySpecializationSessionImplementation* _implementation = static_cast<CitySpecializationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ int CitySpecializationSession::cancelSession() {
 
 int CitySpecializationSession::clearSession() {
 	CitySpecializationSessionImplementation* _implementation = static_cast<CitySpecializationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ void CitySpecializationSessionImplementation::finalize() {
 void CitySpecializationSessionImplementation::_initializeImplementation() {
 	_setClassHelper(CitySpecializationSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -145,19 +145,19 @@ public:
 
 	bool isAttributeEffect() const;
 
-	bool isDrink();
+	bool isDrink() const;
 
-	bool isFood();
+	bool isFood() const;
 
-	bool isForagedFood();
+	bool isForagedFood() const;
 
-	bool isSpice();
+	bool isSpice() const;
 
 	bool isConsumable();
 
-	int getDuration();
+	int getDuration() const;
 
-	String getSpeciesRestriction();
+	String getSpeciesRestriction() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -284,19 +284,19 @@ public:
 
 	bool isAttributeEffect() const;
 
-	bool isDrink();
+	bool isDrink() const;
 
-	bool isFood();
+	bool isFood() const;
 
-	bool isForagedFood();
+	bool isForagedFood() const;
 
-	bool isSpice();
+	bool isSpice() const;
 
 	bool isConsumable();
 
-	int getDuration();
+	int getDuration() const;
 
-	String getSpeciesRestriction();
+	String getSpeciesRestriction() const;
 
 	WeakReference<Consumable*> _this;
 
@@ -350,19 +350,19 @@ public:
 
 	bool isAttributeEffect() const;
 
-	bool isDrink();
+	bool isDrink() const;
 
-	bool isFood();
+	bool isFood() const;
 
-	bool isForagedFood();
+	bool isForagedFood() const;
 
-	bool isSpice();
+	bool isSpice() const;
 
 	bool isConsumable();
 
-	int getDuration();
+	int getDuration() const;
 
-	String getSpeciesRestriction();
+	String getSpeciesRestriction() const;
 
 };
 

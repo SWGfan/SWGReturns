@@ -32,7 +32,7 @@ ReconMissionObjective::~ReconMissionObjective() {
 
 void ReconMissionObjective::initializeTransientMembers() {
 	ReconMissionObjectiveImplementation* _implementation = static_cast<ReconMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void ReconMissionObjective::initializeTransientMembers() {
 
 void ReconMissionObjective::activate() {
 	ReconMissionObjectiveImplementation* _implementation = static_cast<ReconMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ void ReconMissionObjective::activate() {
 
 void ReconMissionObjective::abort() {
 	ReconMissionObjectiveImplementation* _implementation = static_cast<ReconMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ void ReconMissionObjective::abort() {
 
 void ReconMissionObjective::complete() {
 	ReconMissionObjectiveImplementation* _implementation = static_cast<ReconMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void ReconMissionObjective::complete() {
 
 Vector3 ReconMissionObjective::getEndPosition() {
 	ReconMissionObjectiveImplementation* _implementation = static_cast<ReconMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -128,7 +128,7 @@ ReconMissionObjectiveImplementation::~ReconMissionObjectiveImplementation() {
 void ReconMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(ReconMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

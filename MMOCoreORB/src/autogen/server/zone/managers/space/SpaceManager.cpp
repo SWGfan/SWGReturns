@@ -32,7 +32,7 @@ SpaceManager::~SpaceManager() {
 
 void SpaceManager::initialize() {
 	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void SpaceManagerImplementation::finalize() {
 void SpaceManagerImplementation::_initializeImplementation() {
 	_setClassHelper(SpaceManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

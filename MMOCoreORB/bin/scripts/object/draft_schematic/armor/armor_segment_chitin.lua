@@ -48,7 +48,7 @@ object_draft_schematic_armor_armor_segment_chitin = object_draft_schematic_armor
 	customObjectName = "Chitin Armor Segment",
 
 	craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 15,
+	complexity = 1,
 	size = 4,
 	factoryCrateSize = 1000,
 

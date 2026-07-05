@@ -138,7 +138,7 @@ function FsCsBaseControl:notifyKilledDroid(pVictim, pAttacker)
 		return 1
 	end
 
-	playClientEffectLoc(SceneObject(pVictim):getObjectID(), "clienteffect/combat_explosion_lair_large.cef", "dathomir", SceneObject(pVictim):getPositionX(), SceneObject(pVictim):getPositionZ(), SceneObject(pVictim):getPositionY(), 0)
+	playClientEffectLoc(pVictim, "clienteffect/combat_explosion_lair_large.cef", "dathomir", SceneObject(pVictim):getPositionX(), SceneObject(pVictim):getPositionZ(), SceneObject(pVictim):getPositionY(), 0)
 
 	local victimID = SceneObject(pVictim):getObjectID()
 	local theaterID = readData(victimID .. ":theaterID")
@@ -179,7 +179,7 @@ function FsCsBaseControl:notifyDestructibleDisabled(pVictim, pAttacker)
 	end
 
 	if (pAttacker ~= nil) then
-		playClientEffectLoc(SceneObject(pAttacker):getObjectID(), "clienteffect/combat_explosion_lair_large.cef", "dathomir", SceneObject(pVictim):getPositionX(), SceneObject(pVictim):getPositionZ(), SceneObject(pVictim):getPositionY(), 0)
+		playClientEffectLoc(pAttacker, "clienteffect/combat_explosion_lair_large.cef", "dathomir", SceneObject(pVictim):getPositionX(), SceneObject(pVictim):getPositionZ(), SceneObject(pVictim):getPositionY(), 0)
 	end
 
 	createEvent(2000, "FsCsBaseControl", "destroyDestructible", pVictim, "")
@@ -672,8 +672,8 @@ function FsCsBaseControl:setupSpawnedDefender(pMobile)
 
 	createEvent(getRandomNumber(10, 30) * 1000, "FsCsBaseControl", "doMobileSpatial", pMobile, "")
 
-	AiAgent(pMobile):setAiTemplate("villageraider")
-	AiAgent(pMobile):setFollowState(4)
+	AiAgent(pMobile):addCreatureFlag(AI_ESCORT)
+	AiAgent(pMobile):setMovementState(AI_PATROLLING)
 
 	local theaterX = SceneObject(pTheater):getWorldPositionX()
 	local theaterZ = SceneObject(pTheater):getWorldPositionZ()
@@ -705,9 +705,6 @@ function FsCsBaseControl:setupSpawnedDefender(pMobile)
 		door1Destroyed = true
 	end
 
-	AiAgent(pMobile):stopWaiting()
-	AiAgent(pMobile):setWait(0)
-
 	if (distToDoor1 < distToDoor2 or not door1Destroyed) then
 		AiAgent(pMobile):setNextPosition(door1X, door1Z, door1Y, 0)
 		AiAgent(pMobile):setHomeLocation(door1X, door1Z, door1Y, 0)
@@ -715,12 +712,10 @@ function FsCsBaseControl:setupSpawnedDefender(pMobile)
 		AiAgent(pMobile):setNextPosition(door2X, door2Z, door2Y, 0)
 		AiAgent(pMobile):setHomeLocation(door2X, door2Z, door2Y, 0)
 	end
-
-	AiAgent(pMobile):executeBehavior()
 end
 
 function FsCsBaseControl:doMobileSpatial(pMobile)
-	if (pMobile == nil or getRandomNumber(100) <= 75) then
+	if (pMobile == nil or getRandomNumber(100) <= 75 or CreatureObject(pMobile):isDead()) then
 		return
 	end
 

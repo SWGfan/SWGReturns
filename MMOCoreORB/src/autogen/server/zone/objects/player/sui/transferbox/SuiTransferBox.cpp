@@ -30,7 +30,7 @@ SuiTransferBox::~SuiTransferBox() {
 
 BaseMessage* SuiTransferBox::generateMessage() {
 	SuiTransferBoxImplementation* _implementation = static_cast<SuiTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiTransferBox::generateMessage() {
 
 void SuiTransferBox::addFrom(const String& from, const String& startingFrom, const String& inputFrom, const String& rFrom) {
 	SuiTransferBoxImplementation* _implementation = static_cast<SuiTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void SuiTransferBox::addFrom(const String& from, const String& startingFrom, con
 
 void SuiTransferBox::addTo(const String& to, const String& startingTo, const String& inputTo, const String& rTo) {
 	SuiTransferBoxImplementation* _implementation = static_cast<SuiTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void SuiTransferBox::addTo(const String& to, const String& startingTo, const Str
 
 bool SuiTransferBox::isTransferBox() {
 	SuiTransferBoxImplementation* _implementation = static_cast<SuiTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ void SuiTransferBoxImplementation::finalize() {
 void SuiTransferBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiTransferBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

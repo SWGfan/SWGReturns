@@ -51,7 +51,8 @@ object_draft_schematic_food_component_ingredient_ball_of_dough = object_draft_sc
    complexity = 3, 
    size = 2, 
    factoryCrateSize = 1000,
-
+   factoryCrateType = "object/factory/factory_crate_food.iff",
+   
    xpType = "crafting_general", 
    xp = 20, 
 

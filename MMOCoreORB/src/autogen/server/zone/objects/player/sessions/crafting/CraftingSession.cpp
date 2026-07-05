@@ -44,7 +44,7 @@ CraftingSession::~CraftingSession() {
 
 int CraftingSession::initializeSession(CraftingTool* tool, CraftingStation* station) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ int CraftingSession::initializeSession(CraftingTool* tool, CraftingStation* stat
 
 int CraftingSession::cancelSession() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ int CraftingSession::cancelSession() {
 
 int CraftingSession::cancelSessionCommand() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +88,7 @@ int CraftingSession::cancelSessionCommand() {
 
 int CraftingSession::clearSession() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,7 +102,7 @@ int CraftingSession::clearSession() {
 
 ManagedWeakReference<ManufactureSchematic* > CraftingSession::getSchematic() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,7 +116,7 @@ ManagedWeakReference<ManufactureSchematic* > CraftingSession::getSchematic() {
 
 void CraftingSession::selectDraftSchematic(int index) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -132,7 +132,7 @@ void CraftingSession::selectDraftSchematic(int index) {
 
 void CraftingSession::sendIngredientForUIListen() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,7 +147,7 @@ void CraftingSession::sendIngredientForUIListen() {
 
 void CraftingSession::addIngredient(TangibleObject* tano, int slotUpdated, int clientCounter) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,7 +165,7 @@ void CraftingSession::addIngredient(TangibleObject* tano, int slotUpdated, int c
 
 void CraftingSession::removeIngredient(TangibleObject* tano, int slotUpdated, int clientCounter) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ void CraftingSession::removeIngredient(TangibleObject* tano, int slotUpdated, in
 
 void CraftingSession::nextCraftingStage(int clientCounter) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -199,7 +199,7 @@ void CraftingSession::nextCraftingStage(int clientCounter) {
 
 void CraftingSession::experiment(int rowsAttempted, const String& expAttempt, int clientCounter) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ void CraftingSession::experiment(int rowsAttempted, const String& expAttempt, in
 
 void CraftingSession::customization(const String& name, byte templateChoice, int schematicCount, const String& customizationString) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -236,7 +236,7 @@ void CraftingSession::customization(const String& name, byte templateChoice, int
 
 void CraftingSession::createPrototype(int clientCounter, bool practice) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -253,7 +253,7 @@ void CraftingSession::createPrototype(int clientCounter, bool practice) {
 
 void CraftingSession::createManufactureSchematic(int clientCounter) {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -269,7 +269,7 @@ void CraftingSession::createManufactureSchematic(int clientCounter) {
 
 int CraftingSession::getState() {
 	CraftingSessionImplementation* _implementation = static_cast<CraftingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -314,7 +314,7 @@ void CraftingSessionImplementation::finalize() {
 void CraftingSessionImplementation::_initializeImplementation() {
 	_setClassHelper(CraftingSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -422,7 +422,7 @@ CraftingSessionImplementation::CraftingSessionImplementation(CreatureObject* cre
 	// server/zone/objects/player/sessions/crafting/CraftingSession.idl():  		crafter = creature;
 	crafter = creature;
 	// server/zone/objects/player/sessions/crafting/CraftingSession.idl():  		craftingManager = null;
-	craftingManager = nullptr;
+	craftingManager = NULL;
 }
 
 ManagedWeakReference<ManufactureSchematic* > CraftingSessionImplementation::getSchematic() {
@@ -484,7 +484,7 @@ void CraftingSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 		{
 			
 			DistributedObject* _m_res = getSchematic().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SELECTDRAFTSCHEMATIC__INT_:

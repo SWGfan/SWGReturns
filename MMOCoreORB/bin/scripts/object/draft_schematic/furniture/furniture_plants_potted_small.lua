@@ -51,7 +51,8 @@ object_draft_schematic_furniture_furniture_plants_potted_small = object_draft_sc
 	complexity = 15,
 	size = 2,
 	factoryCrateSize = 10,
-
+	factoryCrateType = "object/factory/factory_crate_furniture.iff",
+   
 	xpType = "crafting_structure_general",
 	xp = 110,
 
@@ -72,13 +73,6 @@ object_draft_schematic_furniture_furniture_plants_potted_small = object_draft_sc
 
 	targetTemplate = "object/tangible/furniture/all/frn_all_potted_plants_sml_s01.iff",
 
-	additionalTemplates = {
-	
-	"object/tangible/furniture/all/frn_all_potted_plants_sml_s02.iff",
-	"object/tangible/furniture/all/frn_all_potted_plants_sml_s03.iff",
-	"object/tangible/furniture/all/frn_all_potted_plants_sml_s04.iff",
-	"object/tangible/furniture/all/frn_all_potted_plants_sml_s05.iff"
-	
-	}
+	additionalTemplates = {}
 }
 ObjectTemplates:addTemplate(object_draft_schematic_furniture_furniture_plants_potted_small, "object/draft_schematic/furniture/furniture_plants_potted_small.iff")

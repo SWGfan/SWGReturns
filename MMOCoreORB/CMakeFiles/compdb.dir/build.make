@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Utility rule file for compdb.
 
@@ -67,7 +67,7 @@ include CMakeFiles/compdb.dir/compiler_depend.make
 include CMakeFiles/compdb.dir/progress.make
 
 CMakeFiles/compdb:
-	compdb -p /home/ubuntu/SWGGhosts/MMOCoreORB list > compile_commands.json
+	compdb -p /home/ubuntu/StarDust-2/MMOCoreORB list > compile_commands.json
 
 CMakeFiles/compdb.dir/codegen:
 .PHONY : CMakeFiles/compdb.dir/codegen
@@ -85,6 +85,6 @@ CMakeFiles/compdb.dir/clean:
 .PHONY : CMakeFiles/compdb.dir/clean
 
 CMakeFiles/compdb.dir/depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/compdb.dir/DependInfo.cmake "--color=$(COLOR)" compdb
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/compdb.dir/DependInfo.cmake "--color=$(COLOR)" compdb
 .PHONY : CMakeFiles/compdb.dir/depend
 

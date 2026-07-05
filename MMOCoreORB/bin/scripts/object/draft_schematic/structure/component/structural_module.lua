@@ -51,9 +51,10 @@ object_draft_schematic_structure_component_structural_module = object_draft_sche
 	complexity = 8,
 	size = 3,
 	factoryCrateSize = 1000,
-
+	factoryCrateType = "object/factory/factory_crate_installation.iff",
+   
 	xpType = "crafting_structure_general",
-	xp = 500,
+	xp = 2500,
 
 	assemblySkill = "structure_assembly",
 	experimentingSkill = "structure_experimentation",
@@ -67,7 +68,7 @@ object_draft_schematic_structure_component_structural_module = object_draft_sche
 	ingredientTitleNames = {"reinforcement_rods", "body_material", "insulation"},
 	ingredientSlotType = {0, 0, 0},
 	resourceTypes = {"metal", "ore", "ore"},
-	resourceQuantities = {10, 10, 10},
+	resourceQuantities = {50, 100, 100},
 	contribution = {100, 100, 100},
 
 	targetTemplate = "object/tangible/component/structure/structural_module.iff",

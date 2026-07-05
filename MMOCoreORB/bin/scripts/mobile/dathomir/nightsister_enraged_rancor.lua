@@ -2,15 +2,16 @@ nightsister_enraged_rancor = Creature:new {
 	objectName = "@mob/creature_names:nightsister_enraged_rancor",
 	socialGroup = "nightsister",
 	faction = "nightsister",
+	mobType = MOB_CARNIVORE,
 	level = 80,
 	chanceHit = 0.75,
 	damageMin = 570,
-	damageMax = 850,
+	damageMax = 1850,
 	baseXp = 7668,
 	baseHAM = 13000,
 	baseHAMmax = 16000,
 	armor = 1,
-	resists = {30,160,30,200,200,200,30,30,-1},
+	resists = {30,60,30,20,20,20,30,30,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 950,
 	hideType = "hide_leathery",
@@ -18,7 +19,7 @@ nightsister_enraged_rancor = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 778,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 15,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -31,29 +32,25 @@ nightsister_enraged_rancor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rancor_common", chance = 10000000},
+				{group = "rancor_common", chance = 4000000},
+				{group = "armor_all", chance = 2000000},
+				{group = "weapons_all", chance = 2500000},
+				{group = "wearables_all", chance = 1500000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "armor_all", chance = 10000000},
-			},
-			lootChance = 3000000
-		},
-		{
-			groups = {
-				{group = "wearables_all", chance = 10000000},
-			},
-			lootChance = 1500000
-		},
+			lootChance = 2600000
+		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"knockdownattack",""},
-		{"creatureareaattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"knockdownattack",""}, {"creatureareaattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_enraged_rancor, "nightsister_enraged_rancor")

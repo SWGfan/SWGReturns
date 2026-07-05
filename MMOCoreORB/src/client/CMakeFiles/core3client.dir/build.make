@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Include any dependencies generated for this target.
 include src/client/CMakeFiles/core3client.dir/depend.make
@@ -75,240 +75,240 @@ src/client/CMakeFiles/core3client.dir/codegen:
 src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o: src/client/ClientCore.cpp
 src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o -MF CMakeFiles/core3client.dir/ClientCore.cpp.o.d -o CMakeFiles/core3client.dir/ClientCore.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/ClientCore.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o -MF CMakeFiles/core3client.dir/ClientCore.cpp.o.d -o CMakeFiles/core3client.dir/ClientCore.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/ClientCore.cpp
 
 src/client/CMakeFiles/core3client.dir/ClientCore.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/ClientCore.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/ClientCore.cpp > CMakeFiles/core3client.dir/ClientCore.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/ClientCore.cpp > CMakeFiles/core3client.dir/ClientCore.cpp.i
 
 src/client/CMakeFiles/core3client.dir/ClientCore.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/ClientCore.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/ClientCore.cpp -o CMakeFiles/core3client.dir/ClientCore.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/ClientCore.cpp -o CMakeFiles/core3client.dir/ClientCore.cpp.s
 
 src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o: src/client/login/LoginClient.cpp
 src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o -MF CMakeFiles/core3client.dir/login/LoginClient.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginClient.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o -MF CMakeFiles/core3client.dir/login/LoginClient.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginClient.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginClient.cpp
 
 src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/login/LoginClient.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginClient.cpp > CMakeFiles/core3client.dir/login/LoginClient.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginClient.cpp > CMakeFiles/core3client.dir/login/LoginClient.cpp.i
 
 src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/login/LoginClient.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginClient.cpp -o CMakeFiles/core3client.dir/login/LoginClient.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginClient.cpp -o CMakeFiles/core3client.dir/login/LoginClient.cpp.s
 
 src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o: src/client/login/LoginPacketHandler.cpp
 src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o -MF CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginPacketHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o -MF CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginPacketHandler.cpp
 
 src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginPacketHandler.cpp > CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginPacketHandler.cpp > CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i
 
 src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginPacketHandler.cpp -o CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginPacketHandler.cpp -o CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s
 
 src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o: src/client/login/LoginSession.cpp
 src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o -MF CMakeFiles/core3client.dir/login/LoginSession.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginSession.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginSession.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o -MF CMakeFiles/core3client.dir/login/LoginSession.cpp.o.d -o CMakeFiles/core3client.dir/login/LoginSession.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginSession.cpp
 
 src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/login/LoginSession.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginSession.cpp > CMakeFiles/core3client.dir/login/LoginSession.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginSession.cpp > CMakeFiles/core3client.dir/login/LoginSession.cpp.i
 
 src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/login/LoginSession.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/login/LoginSession.cpp -o CMakeFiles/core3client.dir/login/LoginSession.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/login/LoginSession.cpp -o CMakeFiles/core3client.dir/login/LoginSession.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o: src/client/zone/Zone.cpp
 src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o -MF CMakeFiles/core3client.dir/zone/Zone.cpp.o.d -o CMakeFiles/core3client.dir/zone/Zone.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/Zone.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o -MF CMakeFiles/core3client.dir/zone/Zone.cpp.o.d -o CMakeFiles/core3client.dir/zone/Zone.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/Zone.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/Zone.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/Zone.cpp > CMakeFiles/core3client.dir/zone/Zone.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/Zone.cpp > CMakeFiles/core3client.dir/zone/Zone.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/Zone.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/Zone.cpp -o CMakeFiles/core3client.dir/zone/Zone.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/Zone.cpp -o CMakeFiles/core3client.dir/zone/Zone.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: src/client/zone/ZoneClient.cpp
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o -MF CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o -MF CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClient.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClient.cpp > CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClient.cpp > CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClient.cpp -o CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClient.cpp -o CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o: src/client/zone/ZoneClientThread.cpp
 src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o -MF CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClientThread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o -MF CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClientThread.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClientThread.cpp > CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClientThread.cpp > CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClientThread.cpp -o CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClientThread.cpp -o CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o: src/client/zone/ZonePacketHandler.cpp
 src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o -MF CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o -MF CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o.d -o CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp > CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp > CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp -o CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZonePacketHandler.cpp -o CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o: src/client/zone/managers/object/ObjectManager.cpp
 src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o -MF CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o.d -o CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o -MF CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o.d -o CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp > CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp > CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp -o CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/object/ObjectManager.cpp -o CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o: src/client/zone/managers/objectcontroller/ObjectController.cpp
 src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o -MF CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o.d -o CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o -MF CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o.d -o CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp > CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp > CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp -o CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/managers/objectcontroller/ObjectController.cpp -o CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o: src/client/zone/objects/creature/CreatureObject.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp > CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp > CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp -o CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.cpp -o CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o: src/client/zone/objects/intangible/IntangibleObject.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp > CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp > CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp -o CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/intangible/IntangibleObject.cpp -o CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o: src/client/zone/objects/player/PlayerCreature.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp > CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp > CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp -o CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.cpp -o CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o: src/client/zone/objects/player/PlayerObject.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp > CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp > CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp -o CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerObject.cpp -o CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o: src/client/zone/objects/scene/SceneObject.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp > CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp > CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp -o CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/SceneObject.cpp -o CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o: src/client/zone/objects/scene/variables/StringId.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp > CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp > CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp -o CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.cpp -o CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s
 
 src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o: src/client/CMakeFiles/core3client.dir/flags.make
 src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o: src/client/zone/objects/tangible/TangibleObject.cpp
 src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o -MF CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o.d -o CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp
 
 src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp > CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp > CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i
 
 src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp -o CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.cpp -o CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s
 
 # Object files for target core3client
 core3client_OBJECTS = \
@@ -355,25 +355,31 @@ src/client/core3client: src/client/CMakeFiles/core3client.dir/compiler_depend.ts
 src/client/core3client: utils/engine3/MMOEngine/lib/unix/libengine3.a
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libz.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libatomic.so.1
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libmysqlclient.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/liblua5.3.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libm.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libdb-5.3.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libssl.so
 src/client/core3client: /usr/lib/x86_64-linux-gnu/libcrypto.so
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0
+src/client/core3client: /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0
 src/client/core3client: src/client/CMakeFiles/core3client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable core3client"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core3client.dir/link.txt --verbose=$(VERBOSE)
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && /usr/bin/cmake -E copy /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/core3client /home/ubuntu/SWGGhosts/MMOCoreORB/bin/
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable core3client"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core3client.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && /usr/bin/cmake -E copy /home/ubuntu/StarDust-2/MMOCoreORB/src/client/core3client /home/ubuntu/StarDust-2/MMOCoreORB/bin/
 
 # Rule to build all files generated by this target.
 src/client/CMakeFiles/core3client.dir/build: src/client/core3client
 .PHONY : src/client/CMakeFiles/core3client.dir/build
 
 src/client/CMakeFiles/core3client.dir/clean:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/client && $(CMAKE_COMMAND) -P CMakeFiles/core3client.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/client && $(CMAKE_COMMAND) -P CMakeFiles/core3client.dir/cmake_clean.cmake
 .PHONY : src/client/CMakeFiles/core3client.dir/clean
 
 src/client/CMakeFiles/core3client.dir/depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/client /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/client /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/CMakeFiles/core3client.dir/DependInfo.cmake "--color=$(COLOR)" core3client
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/client /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/client /home/ubuntu/StarDust-2/MMOCoreORB/src/client/CMakeFiles/core3client.dir/DependInfo.cmake "--color=$(COLOR)" core3client
 .PHONY : src/client/CMakeFiles/core3client.dir/depend
 

@@ -32,7 +32,7 @@ VehicleDeed::~VehicleDeed() {
 
 void VehicleDeed::initializeTransientMembers() {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void VehicleDeed::initializeTransientMembers() {
 
 void VehicleDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void VehicleDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void VehicleDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void VehicleDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* o
 
 void VehicleDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -76,7 +76,7 @@ void VehicleDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creat
 
 int VehicleDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,14 +87,14 @@ int VehicleDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void VehicleDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -104,7 +104,7 @@ void VehicleDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate)
 
 bool VehicleDeed::isVehicleDeedObject() {
 	VehicleDeedImplementation* _implementation = static_cast<VehicleDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ void VehicleDeedImplementation::finalize() {
 void VehicleDeedImplementation::_initializeImplementation() {
 	_setClassHelper(VehicleDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -289,8 +289,8 @@ VehicleDeedImplementation::VehicleDeedImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl():  		Logger.setLoggingName("VehicleDeed");
 	Logger::setLoggingName("VehicleDeed");
-	// server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl():  		hitPoints = 25000;
-	hitPoints = 25000;
+	// server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl():  		hitPoints = 1500;
+	hitPoints = 1500;
 }
 
 bool VehicleDeedImplementation::isVehicleDeedObject() {

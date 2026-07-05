@@ -15,6 +15,7 @@
 #include "server/zone/ZoneProcessServer.h"
 #include "server/zone/managers/name/NameManager.h"
 #include "server/zone/managers/object/ObjectManager.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 #include "resourcetree/ResourceTree.h"
 #include "resourcemap/ResourceMap.h"
 
@@ -109,7 +110,6 @@ public:
 	ResourceSpawn* createRecycledResourceSpawn(const ResourceTreeEntry* entry) const;
 
 	ResourceSpawn* getRecycledVersion(const ResourceSpawn* resource) const;
-	ResourceSpawn* getRecycledResourceSpawnByType(const String& resourceType) const;
 
 	bool isRecycledResource(const ResourceSpawn* resource) const;
 
@@ -119,23 +119,19 @@ public:
 
 	void sendSurvey(CreatureObject* player, const String& resname) const;
 	void sendSample(CreatureObject* player, const String& resname, const String& sampleAnimation) const;
-	void sendSampleResults(CreatureObject* player, const float density, const String& resname) const;
+	void sendSampleResults(TransactionLog& trx, CreatureObject* player, const float density, const String& resname) const;
 
 	Reference<ResourceContainer*> harvestResource(CreatureObject* player, const String& type, const int quantity);
-	bool harvestResource(CreatureObject* player, ResourceSpawn* resourceSpawn, int quantity);
-	bool addResourceToPlayerInventory(CreatureObject* player, ResourceSpawn* resourceSpawn, int unitsExtracted) const;
+	bool harvestResource(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, int quantity);
+	bool addResourceToPlayerInventory(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, int unitsExtracted) const;
 
 	ResourceSpawn* getCurrentSpawn(const String& restype, const String& zoneName) const;
 	ResourceSpawn* getFromRandomPool(const String& type);
 
 	void addNodeToListBox(SuiListBox* sui, const String& nodeName) const;
-	void addNodeToListBoxCR(SuiListBox* sui, const String& nodeName) const;
-
 	void addPlanetsToListBox(SuiListBox* sui) const;
 
 	String addParentNodeToListBox(SuiListBox* sui, const String& currentNode) const;
-
-	String addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode) const;
 
 	inline ResourceMap* getResourceMap() {
 		return resourceMap;
@@ -155,11 +151,11 @@ public:
 
 		return "Error Dumping resources";
 	}
-	void dumpToJSON();
+	
 	String ghDump() {
 		if(ghDumpAll())
-			return "Galaxy Harvester Output Dumped!";
-		return "Error Dumping Galaxy Harvesters Output!";
+			return "Galaxy Harvester Output Dumped";
+		return "Error Dumping Galaxy Harvester Output";
 	}
 
 	String getPlanetByIndex(int index) const;

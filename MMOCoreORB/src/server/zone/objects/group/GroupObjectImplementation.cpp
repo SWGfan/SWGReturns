@@ -16,9 +16,12 @@
 #include "server/zone/objects/creature/buffs/SquadLeaderBuff.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/ZoneServer.h"
+#include "server/zone/Zone.h"
 #include "server/zone/objects/group/RemovePetsFromGroupTask.h"
 #include "server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h"
 #include "server/zone/objects/waypoint/WaypointObject.h"
+#include "server/zone/objects/intangible/PetControlDevice.h"
+#include "server/zone/managers/creature/PetManager.h"
 
 void GroupObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	auto client = player->getClient();
@@ -408,17 +411,19 @@ float GroupObjectImplementation::getGroupHarvestModifier(CreatureObject* player)
 void GroupObjectImplementation::calcGroupLevel() {
 	int highestPlayer = 0;
 	groupLevel = 0;
+	factionPetLevel = 0;
 
 	for (int i = 0; i < getGroupSize(); i++) {
 		Reference<CreatureObject*> member = getGroupMember(i);
 
 		if (member->isPet()) {
-			// If there is a level 75+ pet in group, max group combat level
-			if (member->getLevel() >= 75)
-				groupLevel = 300;
-			else
-			groupLevel += member->getLevel() / 5;
+				ManagedReference<PetControlDevice*> pcd = member->getControlDevice().get().castTo<PetControlDevice*>();
 
+				if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET) {
+					factionPetLevel += member->getLevel() / 5;
+				}
+
+				groupLevel += member->getLevel() / 5;
 		} else if (member->isPlayerCreature()) {
 			int memberLevel = member->getLevel();
 
@@ -523,10 +528,10 @@ void GroupObjectImplementation::scheduleUpdateNearestMissionForGroup(unsigned in
 	}
 
 	if (task->isScheduled()) {
-		task->reschedule(30000);
+		task->reschedule(10000);
 	}
 	else {
-		task->schedule(30000);
+		task->schedule(10000);
 	}
 }
 

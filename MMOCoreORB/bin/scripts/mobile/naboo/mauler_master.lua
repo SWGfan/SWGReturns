@@ -2,17 +2,18 @@ mauler_master = Creature:new {
 	objectName = "@mob/creature_names:mauler_master",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "mauler",
 	faction = "",
-	level = 300,
-	chanceHit = 75.00,
-	damageMin = 1750,
-	damageMax = 3750,
-	baseXp = 25000,
-	baseHAM = 100000,
-	baseHAMmax = 120000,
+	level = 54,
+	chanceHit = 0.5,
+	damageMin = 395,
+	damageMax = 500,
+	baseXp = 5190,
+	baseHAM = 10000,
+	baseHAMmax = 12000,
 	armor = 1,
-	resists = {160,160,160,160,160,160,160,160,160},
+	resists = {65,35,90,90,90,-1,-1,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,7 +21,7 @@ mauler_master = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER,
@@ -31,36 +32,27 @@ mauler_master = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "trash_common", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "trash_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "trash_rare", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 3000000
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 1000000},
+				{group = "loot_kit_parts", chance = 2000000},
+				{group = "carbines", chance = 1000000},
+				{group = "mauler_common", chance = 2000000},
+				{group = "wearables_uncommon", chance = 1000000}
+			}
 		}
 	},
-	weapons = {"pirate_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "pirate_weapons_heavy",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/fancy",
-	attacks = merge(brawlermaster,marksmanmaster,bountyhuntermaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(brawlermaster,marksmanmaster,bountyhuntermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(mauler_master, "mauler_master")

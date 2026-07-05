@@ -93,19 +93,19 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	const AABB* getMeshBounds();
+	const AABB* getMeshBounds() const;
 
 	RecastNavMesh* getNavMesh();
 
 	void disableMeshUpdates(bool disable);
 
-	bool isNavArea();
+	bool isNavArea() const;
 
 	NavArea* asNavArea();
 
-	bool objectInMesh(SceneObject* obj);
+	bool objectInMesh(SceneObject* obj) const;
 
-	String getMeshName();
+	String getMeshName() const;
 
 	void setMeshName(const String& name);
 
@@ -117,13 +117,13 @@ public:
 
 	void setRadius(float f);
 
-	AABB getBoundingBox();
+	AABB getBoundingBox() const;
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	bool isNavMeshLoaded() const;
 
-	int getContainedObjectsCount();
+	int getContainedObjectsCount() const;
 
 	float getAreaTerrainHeight() const;
 
@@ -195,19 +195,19 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	const AABB* getMeshBounds();
+	const AABB* getMeshBounds() const;
 
 	RecastNavMesh* getNavMesh();
 
 	void disableMeshUpdates(bool disable);
 
-	bool isNavArea();
+	bool isNavArea() const;
 
 	NavArea* asNavArea();
 
-	bool objectInMesh(SceneObject* obj);
+	bool objectInMesh(SceneObject* obj) const;
 
-	String getMeshName();
+	String getMeshName() const;
 
 	void setMeshName(const String& name);
 
@@ -219,13 +219,13 @@ public:
 
 	void setRadius(float f);
 
-	AABB getBoundingBox();
+	AABB getBoundingBox() const;
 
-	virtual bool containsPoint(float x, float y);
+	virtual bool containsPoint(float x, float y) const;
 
 	bool isNavMeshLoaded() const;
 
-	int getContainedObjectsCount();
+	int getContainedObjectsCount() const;
 
 	float getAreaTerrainHeight() const;
 
@@ -284,13 +284,13 @@ public:
 
 	void notifyLoadFromDatabase();
 
-	bool isNavArea();
+	bool isNavArea() const;
 
 	NavArea* asNavArea();
 
-	bool objectInMesh(SceneObject* obj);
+	bool objectInMesh(SceneObject* obj) const;
 
-	String getMeshName();
+	String getMeshName() const;
 
 	void setMeshName(const String& name);
 
@@ -298,11 +298,11 @@ public:
 
 	void updateNavMesh(SceneObject* object, bool toRemove);
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	bool isNavMeshLoaded() const;
 
-	int getContainedObjectsCount();
+	int getContainedObjectsCount() const;
 
 	float getAreaTerrainHeight() const;
 

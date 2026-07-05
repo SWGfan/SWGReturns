@@ -75,7 +75,6 @@ void ChatManagerImplementation::stop() {
 	groupRoom = nullptr;
 	guildRoom = nullptr;
 	auctionRoom = nullptr;
-	generalRoom = nullptr;
 	gameRooms.removeAll();
 }
 
@@ -96,7 +95,7 @@ void ChatManagerImplementation::loadMailDatabase() {
 
 		uint64 objectID;
 		uint32 timeStamp, currentTime = System::getTime();
-		ObjectInputStream objectData(1048576);
+		ObjectInputStream objectData(2000);
 
 		const auto limit = ConfigManager::instance()->getCleanupMailCount();
 
@@ -173,6 +172,7 @@ void ChatManagerImplementation::loadSpatialChatTypes() {
 		i++;
 
 		spatialChatTypes.put(key, i);
+		spatialChatTypeNames.put(i, key);
 	}
 
 	iffStream->closeChunk('TYPS');
@@ -221,10 +221,12 @@ void ChatManagerImplementation::loadSpatialChatTypes() {
 
 	iffStream->closeForm('0000');
 	iffStream->closeForm('SPCT');
+
+	defaultSpatialChatType = spatialChatTypes.get("say");
 }
 
 void ChatManagerImplementation::loadMoodTypes() {
-	IffStream* iffStream = TemplateManager::instance()->openIffFile("chat/mood_types.iff");
+	UniqueReference<IffStream*> iffStream(TemplateManager::instance()->openIffFile("chat/mood_types.iff"));
 
 	if (iffStream == nullptr) {
 		error("Could not open chat/mood_types.iff");
@@ -251,24 +253,18 @@ void ChatManagerImplementation::loadMoodTypes() {
 	iffStream->closeForm('0000');
 	iffStream->closeForm('MOOD');
 
-	delete iffStream;
-
 	moodTypes.put("meditating", i + 1);
 	moodTypes.put("entertained", i + 2);
 
-	ObjectInputStream* stream = TemplateManager::instance()->openTreFile("string/en/mood_types.stf");
+	UniqueReference<ObjectInputStream*> stream(TemplateManager::instance()->openTreFile("string/en/mood_types.stf"));
 
 	if (stream != nullptr) {
-
 		if (stream->size() > 4) {
-
 			StringFile stringFile;
 
 			if (stringFile.load(stream)) {
-
-				const HashTable<String, UnicodeString>* hashTable = stringFile.getStringMap();
-
-				HashTableIterator<String, UnicodeString> iterator = hashTable->iterator();
+				const auto& hashTable = stringFile.getStringMap();
+				auto iterator = hashTable.iterator();
 
 				while (iterator.hasNext()) {
 					UnicodeString value = iterator.getNextValue();
@@ -286,14 +282,12 @@ void ChatManagerImplementation::loadMoodTypes() {
 				}
 			}
 		}
-
-		delete stream;
 	}
 
 	moodAnimations.put("meditating", "meditating");
 	moodAnimations.put("entertained", "entertained");
 
-	info("Loaded " + String::valueOf(moodTypes.size()) + " mood types.", true);
+	info(true) << "Loaded " << moodTypes.size() << " mood types.";
 }
 
 void ChatManagerImplementation::initiateRooms() {
@@ -315,8 +309,10 @@ void ChatManagerImplementation::initiateRooms() {
 	guildRoom = createRoom("guild", systemRoom);
 	guildRoom->setPrivate();
 
-	generalRoom = createRoom("General", galaxyRoom);
+	generalRoom = createRoom("Galaxy", galaxyRoom);
 	generalRoom->setCanEnter(true);
+	generalRoom->setAllowSubrooms(true);
+	generalRoom->setTitle("Returns Galaxy General Chat");
 
 	auctionRoom = createRoom("Auction", galaxyRoom);
 	auctionRoom->setCanEnter(true);
@@ -501,7 +497,7 @@ int ChatManagerImplementation::checkRoomExpirations() {
 }
 
 Reference<ChatRoom*> ChatManagerImplementation::createRoom(const String& roomName, ChatRoom* parent) {
-	ManagedReference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 0 , ""));
+	Reference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 0 , ""));
 
 	if (parent != nullptr) {
 		room->init(server, parent, roomName);
@@ -522,7 +518,7 @@ Reference<ChatRoom*> ChatManagerImplementation::createPersistentRoom(const Strin
 	if (parent == nullptr)
 		return nullptr;
 
-	ManagedReference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 1 , "chatrooms"));
+	Reference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 1 , "chatrooms"));
 
 	room->init(server, parent, roomName);
 	if (parent->isPersistent())
@@ -741,24 +737,8 @@ void ChatManagerImplementation::handleChatRoomMessage(CreatureObject* sender, co
 
 	BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, roomID);
 
-	// Auction Chat / General chat / Planet Chat should adhere to player ignore list
-	if(auctionRoom != nullptr && auctionRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (planetRoom != nullptr && planetRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (generalRoom != nullptr && generalRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (galaxyRoom != nullptr && galaxyRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (systemRoom != nullptr && systemRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (guildRoom != nullptr && guildRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else if (auctionRoom != nullptr && auctionRoom->getRoomID() == roomID) {
-		channel->broadcastMessageCheckIgnore(msg, name);
-	} else {
-		channel->broadcastMessage(msg);
-	}
+	// All chat should adhere to player ignore list
+	channel->broadcastMessageCheckIgnore(msg, name);
 
 	BaseMessage* amsg = new ChatOnSendRoomMessage(counter);
 	channel->broadcastMessage(amsg);
@@ -969,7 +949,7 @@ void ChatManagerImplementation::broadcastGalaxy(const String& message, const Str
 }
 
 void ChatManagerImplementation::broadcastGalaxy(CreatureObject* player, const String& message) {
-	String firstName = "SKYNET";
+	String firstName = "Returns-ADMIN";
 
 	if (player != nullptr)
 		firstName = player->getFirstName();
@@ -1027,6 +1007,10 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	if (zone == nullptr)
 		return;
+
+	if (spatialChatType == 0) {
+		spatialChatType = defaultSpatialChatType;
+	}
 
 	ManagedReference<CreatureObject*> chatTarget = server->getObject(chatTargetID).castTo<CreatureObject*>();
 
@@ -1188,6 +1172,10 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	if (zone == nullptr)
 		return;
+
+	if (spatialChatType == 0) {
+		spatialChatType = defaultSpatialChatType;
+	}
 
 	String firstName;
 	ManagedReference<CreatureObject*> chatTarget = server->getObject(chatTargetID).castTo<CreatureObject*>();
@@ -1378,8 +1366,6 @@ void ChatManagerImplementation::handleChatInstantMessageToCharacter(ChatInstantM
 		fname = fname.subString(0, spc);
 	}
 
-	ManagedReference<CreatureObject*> receiver = getPlayer(fname);
-
 	uint64 receiverObjectID = server->getPlayerManager()->getObjectID(fname);
 
 	if (receiverObjectID == 0) {
@@ -1392,15 +1378,29 @@ void ChatManagerImplementation::handleChatInstantMessageToCharacter(ChatInstantM
 		sender->sendMessage(amsg);
 
 		return;
+	}
+	
+	Reference<CreatureObject*> receiver = getPlayer(fname);
 
-	} else if (receiver == nullptr || !receiver->isOnline()) {
+	if (receiver == nullptr) {
+		// Can't really tell if other player is ignoring if creo isn't loaded
 		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_OFFLINE);
 		sender->sendMessage(amsg);
 
 		return;
 	}
 
-	if (receiver->getPlayerObject()->isIgnoring(sender->getFirstName()) && !godMode) {
+	auto receiverIgnoring = receiver->getPlayerObject()->isIgnoring(sender->getFirstName()) && !godMode;
+
+	// Avoid telling ignored people about online/offline status
+	if (!receiverIgnoring && !receiver->isOnline()) {
+		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_OFFLINE);
+		sender->sendMessage(amsg);
+
+		return;
+	}
+
+	if (receiverIgnoring) {
 		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_IGNORED);
 		sender->sendMessage(amsg);
 
@@ -1554,7 +1554,7 @@ void ChatManagerImplementation::handleGuildChat(CreatureObject* sender, const Un
 	ManagedReference<ChatRoom*> room = guild->getChatRoom();
 	if (room != nullptr) {
 		BaseMessage* msg = new ChatRoomMessage(name, server->getGalaxyName(), formattedMessage, room->getRoomID());
-		room->broadcastMessage(msg);
+		room->broadcastMessageCheckIgnore(msg, name);
 	}
 
 }
@@ -1644,113 +1644,6 @@ void ChatManagerImplementation::handleAuctionChat(CreatureObject* sender, const 
 
 }
 
-void ChatManagerImplementation::handleGeneralChat(CreatureObject* sender, const UnicodeString& message) {
-	String name = sender->getFirstName();
-	String fullName = "";
-
-	if (sender->isPlayerCreature()) {
-		ManagedReference<PlayerObject*> senderGhost = sender->getPlayerObject();
-
-		if (senderGhost == nullptr)
-			return;
-
-		if (senderGhost->isMuted()) {
-			String reason = senderGhost->getMutedReason();
-
-			if (reason != "")
-				sender->sendSystemMessage("Your chat abilities are currently disabled by Customer Support for '" + reason + "'.");
-			else
-				sender->sendSystemMessage("Your chat abilities are currently disabled by Customer Support.");
-
-			return;
-		}
-
-		fullName = getTaggedName(senderGhost, name);
-	}
-
-	StringTokenizer args(message.toString());
-	if (!args.hasMoreTokens()) {
-		sender->sendSystemMessage("@ui:im_no_message"); // You need to include a message!
-		return;
-	}
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
-
-void ChatManagerImplementation::handleGeneralResourceChat(CreatureObject* sender, const UnicodeString& message) {
-
-	String name = "Resource";
-	String fullName = "Resource";
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
-
-void ChatManagerImplementation::handleGeneralDiscordChat(CreatureObject* sender, const UnicodeString& message) {
-
-	String name = "Worldboss";
-	String fullName = "Worldboss";
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
-
-void ChatManagerImplementation::handleGeneralDiscordGcw(CreatureObject* sender, const UnicodeString& message) {
-
-	String name = "GCW";
-	String fullName = "GCW";
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
-void ChatManagerImplementation::handleGeneralDiscordUnlock(CreatureObject* sender, const UnicodeString& message) {
-
-	String name = "Unlock";
-	String fullName = "Unlock";
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
-
-void ChatManagerImplementation::handleGeneralDiscordShutdownChat(CreatureObject* sender, const UnicodeString& message) {
-
-	String name = "Status";
-	String fullName = "Status";
-
-	UnicodeString formattedMessage(formatMessage(message));
-
-	if (generalRoom != nullptr) {
-		BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, generalRoom->getRoomID());
-		generalRoom->broadcastMessageCheckIgnore(msg, name);
-	}
-
-}
 void ChatManagerImplementation::sendMail(const String& sendername, const UnicodeString& header, const UnicodeString& body, const String& name) {
 	uint64 receiverObjectID = playerManager->getObjectID(name);
 	Time expireTime;
@@ -1790,7 +1683,7 @@ void ChatManagerImplementation::sendMail(const String& sendername, const Unicode
 	}, "SendMailLambda3", "slowQueue");
 }
 
-int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters) {
+int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters, Reference<PersistentMessage* >* sentMail) {
 	if (!playerManager->containsPlayer(recipientName))
 		return IM_OFFLINE;
 
@@ -1840,10 +1733,15 @@ int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeS
 	uint64 receiverObjectID = playerManager->getObjectID(recipientName);
 	mail->setReceiverObjectID(receiverObjectID);
 
+	ObjectManager::instance()->persistObject(mail, 1, "mail");
+
+	if (sentMail != nullptr) {
+		*sentMail = mail;
+	}
+
 	Core::getTaskManager()->executeTask([=] () {
 		Reference<CreatureObject*> receiver = getPlayer(recipientName);
 		if (receiver == nullptr) {
-			ObjectManager::instance()->persistObject(mail, 1, "mail");
 			ManagedReference<PendingMessageList*> list = getPendingMessages(receiverObjectID);
 			Locker locker(list);
 			list->addPendingMessage(mail->getObjectID());
@@ -1851,10 +1749,11 @@ int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeS
 			Locker locker(receiver);
 			PlayerObject* receiverPlayerObject = receiver->getPlayerObject();
 
-			if ((receiverPlayerObject == nullptr) || (receiverPlayerObject->isIgnoring(sendername) && !godMode))
+			if ((receiverPlayerObject == nullptr) || (receiverPlayerObject->isIgnoring(sendername) && !godMode)) {
+				ObjectManager::instance()->destroyObjectFromDatabase(mail->getObjectID());
+				mail->setPersistent(0);
 				return;
-
-			ObjectManager::instance()->persistObject(mail, 1, "mail");
+			}
 
 			PlayerObject* ghost = receiver->getPlayerObject();
 
@@ -2777,13 +2676,25 @@ void ChatManagerImplementation::sendChatOnUnbanResult(CreatureObject* unbanner, 
 	unbanner->sendMessage(notification);
 }
 
-unsigned int ChatManagerImplementation::getSpatialChatType(const String& spatialChatType) {
+unsigned int ChatManagerImplementation::getSpatialChatType(const String& spatialChatType) const {
 	if (spatialChatTypes.contains(spatialChatType)) {
 		return spatialChatTypes.get(spatialChatType);
 	} else {
 		warning("Spatial chat type '" + spatialChatType + "' not found.");
 		return 0;
 	}
+}
+
+const String ChatManagerImplementation::getSpatialChatType(unsigned int chatType) const {
+	String name = spatialChatTypeNames.get(chatType);
+
+	if (!name.isEmpty()) {
+		return name;
+	}
+
+	StringBuffer buf;
+	buf << "unknown#" << chatType;
+	return buf.toString();
 }
 
 unsigned int ChatManagerImplementation::getMoodID(const String& moodType) {

@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_medpack_disease_area_constitution_b = object_dr
 	complexity = 35,
 	size = 3,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 90,
+	xp = 290,
 
 	assemblySkill = "combat_medicine_assembly",
 	experimentingSkill = "combat_medicine_experimentation",

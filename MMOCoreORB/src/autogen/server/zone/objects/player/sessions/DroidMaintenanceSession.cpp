@@ -34,7 +34,7 @@ DroidMaintenanceSession::~DroidMaintenanceSession() {
 
 void DroidMaintenanceSession::initialize() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void DroidMaintenanceSession::initialize() {
 
 void DroidMaintenanceSession::sendMaintanceRunBox() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void DroidMaintenanceSession::sendMaintanceRunBox() {
 
 void DroidMaintenanceSession::setSelectedStructure(StructureObject* structure) {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void DroidMaintenanceSession::setSelectedStructure(StructureObject* structure) {
 
 void DroidMaintenanceSession::sendMaintenanceTransferBox() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void DroidMaintenanceSession::sendMaintenanceTransferBox() {
 
 void DroidMaintenanceSession::performMaintenanceRun() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ void DroidMaintenanceSession::performMaintenanceRun() {
 
 int DroidMaintenanceSession::cancelSession() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ int DroidMaintenanceSession::cancelSession() {
 
 long long DroidMaintenanceSession::getAvailableCredits() {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ long long DroidMaintenanceSession::getAvailableCredits() {
 
 void DroidMaintenanceSession::addCreditsToCurrentStructure(int amount) {
 	DroidMaintenanceSessionImplementation* _implementation = static_cast<DroidMaintenanceSessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,7 +179,7 @@ void DroidMaintenanceSessionImplementation::finalize() {
 void DroidMaintenanceSessionImplementation::_initializeImplementation() {
 	_setClassHelper(DroidMaintenanceSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -389,7 +389,7 @@ DroidMaintenanceSessionImplementation::DroidMaintenanceSessionImplementation(Dro
 	// server/zone/objects/player/sessions/DroidMaintenanceSession.idl():  		player = creature;
 	player = creature;
 	// server/zone/objects/player/sessions/DroidMaintenanceSession.idl():  		selectedStructure = null;
-	selectedStructure = nullptr;
+	selectedStructure = NULL;
 }
 
 void DroidMaintenanceSessionImplementation::setSelectedStructure(StructureObject* structure) {

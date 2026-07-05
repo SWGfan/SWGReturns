@@ -58,7 +58,7 @@ void InformantMissionConversationObserverImplementation::finalize() {
 void InformantMissionConversationObserverImplementation::_initializeImplementation() {
 	_setClassHelper(InformantMissionConversationObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

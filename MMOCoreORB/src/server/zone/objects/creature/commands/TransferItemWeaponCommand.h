@@ -8,7 +8,6 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
-#include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/objects/player/sessions/TradeSession.h"
 
@@ -117,8 +116,6 @@ public:
 						objectController->transferObject(objectToRemove, destinationObject, transferType, true);
 						return GENERALERROR;
 					}
-
-					updateJediWeaponTef(creature, objectToRemove);
 				}
 			} else if (transferPreProcess != 0) {
 				if (errorDescription.length() > 1)
@@ -136,7 +133,6 @@ public:
 					WeaponObject* weaponObject = cast<WeaponObject*>( objectToTransfer.get());
 
 					creature->setWeapon(weaponObject, true);
-					updateJediWeaponTef(creature, objectToTransfer.get());
 
 					if (creature->isPlayerCreature()) {
 						CreatureObject* playerCreature = creature;
@@ -167,21 +163,6 @@ public:
 		}
 
 		return SUCCESS;
-	}
-
-	static void updateJediWeaponTef(CreatureObject* creature, SceneObject* object) {
-		if (creature == nullptr || object == nullptr || !creature->isPlayerCreature() || !object->isWeaponObject())
-			return;
-
-		WeaponObject* weaponObject = cast<WeaponObject*>(object);
-
-		if (weaponObject == nullptr || !weaponObject->isJediWeapon())
-			return;
-
-		PlayerObject* ghost = creature->getPlayerObject();
-
-		if (ghost != nullptr && ghost->isJedi())
-			ghost->updateLastPvpCombatActionTimestamp(false, false, true);
 	}
 
 };

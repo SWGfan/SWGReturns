@@ -50,9 +50,10 @@ object_draft_schematic_instrument_instrument_kloo_horn = object_draft_schematic_
    craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
    complexity = 18, 
    size = 1, 
-
-   xpType = "music", 
-   xp = 110, 
+   factoryCrateType = "object/factory/factory_crate_generic_items.iff",
+   
+   xpType = "dance", 
+   xp = 5000, 
 
    assemblySkill = "instrument_assembly", 
    experimentingSkill = "general_experimentation", 

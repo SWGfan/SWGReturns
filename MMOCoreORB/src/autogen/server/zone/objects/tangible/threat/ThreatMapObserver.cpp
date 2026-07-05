@@ -30,7 +30,7 @@ ThreatMapObserver::~ThreatMapObserver() {
 
 int ThreatMapObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	ThreatMapObserverImplementation* _implementation = static_cast<ThreatMapObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void ThreatMapObserverImplementation::finalize() {
 void ThreatMapObserverImplementation::_initializeImplementation() {
 	_setClassHelper(ThreatMapObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -28,7 +28,7 @@ InterplanetarySurvey::~InterplanetarySurvey() {
 
 int InterplanetarySurvey::getTimeStamp() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ int InterplanetarySurvey::getTimeStamp() const {
 
 void InterplanetarySurvey::setTimeStamp(int stamp) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -57,7 +57,7 @@ void InterplanetarySurvey::setTimeStamp(int stamp) {
 
 int InterplanetarySurvey::getCurTime() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ int InterplanetarySurvey::getCurTime() const {
 
 void InterplanetarySurvey::setCurTime(int time) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ void InterplanetarySurvey::setCurTime(int time) {
 
 const String InterplanetarySurvey::getRequestor() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,7 +102,7 @@ const String InterplanetarySurvey::getRequestor() const {
 
 void InterplanetarySurvey::setRequestor(const String& player) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +117,7 @@ void InterplanetarySurvey::setRequestor(const String& player) {
 
 const String InterplanetarySurvey::getPlanet() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ const String InterplanetarySurvey::getPlanet() const {
 
 void InterplanetarySurvey::setPlanet(const String& en) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -148,7 +148,7 @@ void InterplanetarySurvey::setPlanet(const String& en) {
 
 const String InterplanetarySurvey::getSurveyType() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -164,7 +164,7 @@ const String InterplanetarySurvey::getSurveyType() const {
 
 void InterplanetarySurvey::setSurveyType(const String& en) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,7 +179,7 @@ void InterplanetarySurvey::setSurveyType(const String& en) {
 
 void InterplanetarySurvey::setSurveyToolType(int toolType) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +194,7 @@ void InterplanetarySurvey::setSurveyToolType(int toolType) {
 
 int InterplanetarySurvey::getSurveyToolType() const {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +208,7 @@ int InterplanetarySurvey::getSurveyToolType() const {
 
 void InterplanetarySurvey::setExecuted(bool val) {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -223,7 +223,7 @@ void InterplanetarySurvey::setExecuted(bool val) {
 
 void InterplanetarySurvey::notifyLoadFromDatabase() {
 	InterplanetarySurveyImplementation* _implementation = static_cast<InterplanetarySurveyImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +268,7 @@ void InterplanetarySurveyImplementation::finalize() {
 void InterplanetarySurveyImplementation::_initializeImplementation() {
 	_setClassHelper(InterplanetarySurveyHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

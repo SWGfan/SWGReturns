@@ -30,7 +30,7 @@ DestroyMissionLairObserver::~DestroyMissionLairObserver() {
 
 void DestroyMissionLairObserver::checkForHeal(TangibleObject* lair, TangibleObject* attacker, bool forceNewUpdate) {
 	DestroyMissionLairObserverImplementation* _implementation = static_cast<DestroyMissionLairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void DestroyMissionLairObserver::checkForHeal(TangibleObject* lair, TangibleObje
 
 bool DestroyMissionLairObserver::checkForNewSpawns(TangibleObject* lair, TangibleObject* attacker, bool forceSpawn) {
 	DestroyMissionLairObserverImplementation* _implementation = static_cast<DestroyMissionLairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ bool DestroyMissionLairObserver::checkForNewSpawns(TangibleObject* lair, Tangibl
 
 bool DestroyMissionLairObserver::isDestroyMissionLairObserver() {
 	DestroyMissionLairObserverImplementation* _implementation = static_cast<DestroyMissionLairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void DestroyMissionLairObserverImplementation::finalize() {
 void DestroyMissionLairObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DestroyMissionLairObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

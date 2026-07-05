@@ -32,7 +32,7 @@ ChannelForceBuff::~ChannelForceBuff() {
 
 void ChannelForceBuff::initializeTransientMembers() {
 	ChannelForceBuffImplementation* _implementation = static_cast<ChannelForceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void ChannelForceBuff::initializeTransientMembers() {
 
 void ChannelForceBuff::activate(bool applyModifiers) {
 	ChannelForceBuffImplementation* _implementation = static_cast<ChannelForceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void ChannelForceBuff::activate(bool applyModifiers) {
 
 void ChannelForceBuff::deactivate(bool removeModifiers) {
 	ChannelForceBuffImplementation* _implementation = static_cast<ChannelForceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ void ChannelForceBuff::deactivate(bool removeModifiers) {
 
 void ChannelForceBuff::activateRegenTick() {
 	ChannelForceBuffImplementation* _implementation = static_cast<ChannelForceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void ChannelForceBuff::activateRegenTick() {
 
 void ChannelForceBuff::doHamTick() {
 	ChannelForceBuffImplementation* _implementation = static_cast<ChannelForceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ void ChannelForceBuffImplementation::finalize() {
 void ChannelForceBuffImplementation::_initializeImplementation() {
 	_setClassHelper(ChannelForceBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

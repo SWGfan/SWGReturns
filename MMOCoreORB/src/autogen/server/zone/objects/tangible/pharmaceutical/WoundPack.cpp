@@ -32,7 +32,7 @@ WoundPack::~WoundPack() {
 
 void WoundPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void WoundPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void WoundPack::loadTemplateData(SharedObjectTemplate* templateData) {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void WoundPack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void WoundPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void WoundPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* obj
 
 int WoundPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int WoundPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 unsigned int WoundPack::calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue) {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ unsigned int WoundPack::calculatePower(CreatureObject* healer, CreatureObject* p
 
 float WoundPack::getEffectiveness() {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ float WoundPack::getEffectiveness() {
 
 bool WoundPack::isWoundPack() {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ bool WoundPack::isWoundPack() {
 
 byte WoundPack::getAttribute() {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ byte WoundPack::getAttribute() {
 
 bool WoundPack::isDroidReconstructionKit() {
 	WoundPackImplementation* _implementation = static_cast<WoundPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ void WoundPackImplementation::finalize() {
 void WoundPackImplementation::_initializeImplementation() {
 	_setClassHelper(WoundPackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

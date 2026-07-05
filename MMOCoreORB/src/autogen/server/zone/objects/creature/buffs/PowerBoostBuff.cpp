@@ -32,7 +32,7 @@ PowerBoostBuff::~PowerBoostBuff() {
 
 void PowerBoostBuff::initializeTransientMembers() {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void PowerBoostBuff::initializeTransientMembers() {
 
 void PowerBoostBuff::activate(bool applyModifiers) {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ void PowerBoostBuff::activate(bool applyModifiers) {
 
 void PowerBoostBuff::deactivate(bool removeModifiers) {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void PowerBoostBuff::deactivate(bool removeModifiers) {
 
 void PowerBoostBuff::doHealthAndActionTick(bool up) {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void PowerBoostBuff::doHealthAndActionTick(bool up) {
 
 void PowerBoostBuff::doMindTick(bool up) {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ void PowerBoostBuff::doMindTick(bool up) {
 
 void PowerBoostBuff::clearBuffEvent() {
 	PowerBoostBuffImplementation* _implementation = static_cast<PowerBoostBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ void PowerBoostBuffImplementation::finalize() {
 void PowerBoostBuffImplementation::_initializeImplementation() {
 	_setClassHelper(PowerBoostBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

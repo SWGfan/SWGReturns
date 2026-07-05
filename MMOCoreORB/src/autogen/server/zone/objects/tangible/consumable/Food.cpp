@@ -28,7 +28,7 @@ Food::~Food() {
 
 void Food::initializeTransientMembers() {
 	FoodImplementation* _implementation = static_cast<FoodImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ void Food::initializeTransientMembers() {
 
 void Food::initializePrivateData() {
 	FoodImplementation* _implementation = static_cast<FoodImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ void FoodImplementation::finalize() {
 void FoodImplementation::_initializeImplementation() {
 	_setClassHelper(FoodHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

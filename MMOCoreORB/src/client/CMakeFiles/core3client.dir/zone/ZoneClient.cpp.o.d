@@ -1,14 +1,14 @@
 src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClient.cpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClient.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/SceneObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/engine.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/platform.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/player/PlayerCreature.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/creature/CreatureObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/tangible/TangibleObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/SceneObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/engine.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/platform.h \
  /usr/include/boost/lockfree/queue.hpp /usr/include/boost/config.hpp \
  /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/detail/select_compiler_config.hpp \
@@ -36,6 +36,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
  /usr/include/boost/config/detail/select_platform_config.hpp \
@@ -64,6 +66,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/select-decl.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -72,6 +76,7 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/15/bits/std_abs.h \
  /usr/include/boost/config/detail/posix_features.hpp \
  /usr/include/boost/config/detail/suffix.hpp \
@@ -427,6 +432,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/c++/15/bits/predefined_ops.h /usr/include/c++/15/bit \
  /usr/include/c++/15/concepts /usr/include/c++/15/bits/range_access.h \
  /usr/include/c++/15/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/include/c++/15/memory /usr/include/c++/15/bits/memoryfwd.h \
  /usr/include/c++/15/bits/allocator.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++allocator.h \
@@ -448,6 +455,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/15/bits/shared_ptr_base.h \
  /usr/include/c++/15/bits/allocated_ptr.h \
  /usr/include/c++/15/ext/aligned_buffer.h \
@@ -496,7 +505,9 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
- /usr/include/x86_64-linux-gnu/bits/stdio.h /usr/include/c++/15/cerrno \
+ /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/15/cerrno \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
@@ -685,15 +696,15 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
  /usr/include/c++/15/cfloat \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/types.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/types.h \
  /usr/include/c++/15/cxxabi.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/cxxabi_tweaks.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/String.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Variable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ConstString.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/String.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Variable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ConstString.h \
  /usr/include/c++/15/cstdarg \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Object.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Object.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
  /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
@@ -716,8 +727,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/System.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/System.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
  /usr/include/c++/15/math.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h \
@@ -727,8 +738,8 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/TextStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/TextStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
  /usr/include/c++/15/iostream /usr/include/c++/15/ostream \
  /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/ios \
  /usr/include/c++/15/bits/ios_base.h \
@@ -747,7 +758,7 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/c++/15/bits/basic_ios.tcc \
  /usr/include/c++/15/bits/ostream.tcc /usr/include/c++/15/istream \
  /usr/include/c++/15/bits/istream.tcc \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
  /usr/include/c++/15/locale \
  /usr/include/c++/15/bits/locale_facets_nonio.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/time_members.h \
@@ -755,40 +766,40 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
  /usr/include/c++/15/bits/locale_facets_nonio.tcc \
  /usr/include/c++/15/bits/locale_conv.h /usr/include/c++/15/codecvt \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayList.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Math.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Math.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Exception.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
  /usr/include/execinfo.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Integer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Function.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Optional.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/optional.hpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Integer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Function.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/Optional.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/optional.hpp \
  /usr/include/c++/15/algorithm /usr/include/c++/15/bits/stl_algo.h \
  /usr/include/c++/15/bits/algorithmfwd.h \
  /usr/include/c++/15/bits/stl_heap.h \
  /usr/include/c++/15/bits/uniform_int_dist.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
  /usr/include/c++/15/thread /usr/include/c++/15/bits/std_thread.h \
  /usr/include/c++/15/bits/this_thread_sleep.h \
  /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/ratio \
  /usr/include/c++/15/bits/parse_numbers.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Mutex.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Time.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Long.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Stream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Time.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Long.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/Stream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Exception.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
@@ -800,123 +811,127 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/15/chrono \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Runnable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+ /usr/include/c++/15/chrono \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Thread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
  /usr/include/c++/15/iterator /usr/include/c++/15/bits/stream_iterator.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
  /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_vector.h \
  /usr/include/c++/15/bits/stl_bvector.h \
  /usr/include/c++/15/bits/vector.tcc \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Exception.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Character.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Byte.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Short.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Float.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Double.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Bool.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Vector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/File.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/InputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/IOException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/OutputStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileReader.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Reader.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Writer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileWriter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Locker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Exception.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Character.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Byte.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Short.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Float.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Double.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Bool.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/Serializable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/Vector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/File.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/InputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/IOException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileReader.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/Reader.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/Writer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
  /usr/include/c++/15/mutex /usr/include/c++/15/bits/std_mutex.h \
  /usr/include/c++/15/bits/unique_lock.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/LinkedList.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SortedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorSet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/VectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/Serializable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Thread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Locker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Condition.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/HashTable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/Serializable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/HashSet.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/HashTable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Thread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Locker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Condition.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/InetAddress.h \
  /usr/include/netdb.h /usr/include/rpc/netdb.h \
  /usr/include/x86_64-linux-gnu/bits/netdb.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/InetAddress.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Packet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/Socket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/security/Crypto.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Core.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Singleton.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/Packet.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/SocketException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/Socket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/Socket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/security/Crypto.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/Core.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/log/Logger.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/json.hpp \
  /usr/include/c++/15/ciso646 /usr/include/c++/15/numeric \
  /usr/include/c++/15/bits/stl_numeric.h /usr/include/c++/15/forward_list \
  /usr/include/c++/15/bits/forward_list.h \
@@ -937,196 +952,196 @@ src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o: \
  /usr/include/c++/15/bits/gslice_array.h \
  /usr/include/c++/15/bits/mask_array.h \
  /usr/include/c++/15/bits/indirect_array.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/Task.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/Task.h \
  /usr/include/c++/15/csignal \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/Timer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/Pair.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/Command.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/Timer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Pair.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Command.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/Message.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
  /usr/include/db.h /usr/include/inttypes.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/Database.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json_utils.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/json.hpp \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashTable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/HashSet.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/thread/Lockable.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/log/Logger.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/Message.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Lua.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/Database.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/json.hpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/HashTable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/HashSet.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/log/Logger.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/Message.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/Message.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/Lua.h \
  /usr/include/lua5.3/lua.hpp /usr/include/lua5.3/lua.h \
  /usr/include/lua5.3/luaconf.h \
  /usr/include/x86_64-linux-gnu/lua5.3-deb-multiarch.h \
  /usr/include/lua5.3/lualib.h /usr/include/lua5.3/lauxlib.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/Luna.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/Luna.h \
  /usr/include/lua5.3/lua.h /usr/include/lua5.3/lualib.h \
  /usr/include/lua5.3/lauxlib.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZonePacketHandler.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/client/zone/ZoneMessageProcessorTask.h
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/objects/scene/variables/StringId.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZonePacketHandler.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/client/zone/ZoneMessageProcessorTask.h

@@ -23,42 +23,20 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (creature->isInCombat())
-			return INVALIDSTATE;
-
 		CreatureObject* player = cast<CreatureObject*>(creature);
 		Zone* zone = player->getZone();
 
-		if(zone == nullptr){
+		if(zone == NULL){
 			return GENERALERROR;
 		}
-
-		if (player->isDead() || player->isIncapacitated()){
-			player->sendSystemMessage("You cant unstick now");
-			return GENERALERROR;
-		}
-		
-		if (player->isRidingMount()) {
-			player->sendSystemMessage("You cannot unstick while mounted.");
-			return GENERALERROR;
-		}
-
-		if (player->hasState(CreatureState::PILOTINGSHIP)) {
-			player->sendSystemMessage("You cant unstick while in a ship");
-			return GENERALERROR;
-			}
 
 		if (!player->checkCooldownRecovery("used_unstick")) {
-			StringIdChatParameter stringId;
+			player->sendSystemMessage("You need to wait before using that command again.");
+			return 0;
+		}
 
-			Time* cdTime = player->getCooldownTime("used_unstick");
-
-
-			int timeLeft = floor((float)cdTime->miliDifference() / 1000) *-1;
-
-			stringId.setStringId("You must waiting....");
-			stringId.setDI(timeLeft);
-			player->sendSystemMessage("Unstick is on a 1 minute cooldown.");
+		if (player->isRidingMount()) {
+			player->sendSystemMessage("Dismount before trying this command again.");
 			return 0;
 		}
 
@@ -67,8 +45,8 @@ public:
 		zone->transferObject(player, 1, true);
 
 		player->setPosture(CreaturePosture::UPRIGHT);
-		player->addCooldown("used_unstick", 60000);
-		player->sendSystemMessage("You have been teleported to a safe spot. Wait 15 seconds for recalibration.");
+		player->addCooldown("used_unstick", 600000);
+		player->sendSystemMessage("You have been teleported to a safe spot. Do not move while the server recalibrates your position.");
 
 	return SUCCESS;
 	}

@@ -8,6 +8,7 @@
 #include "templates/tangible/DroidPersonalityModuleTemplate.h"
 #include "server/chat/ChatManager.h"
 #include "server/zone/managers/reaction/ReactionManager.h"
+#include "server/zone/objects/creature/ai/DroidObject.h"
 
 DroidPersonalityModuleDataComponent::DroidPersonalityModuleDataComponent() {
 	setLoggingName("DroidPersonalityModule");
@@ -17,7 +18,7 @@ DroidPersonalityModuleDataComponent::~DroidPersonalityModuleDataComponent() {
 
 }
 
-String DroidPersonalityModuleDataComponent::getModuleName() {
+String DroidPersonalityModuleDataComponent::getModuleName() const {
 	return "personality_chip";
 }
 
@@ -62,7 +63,7 @@ void DroidPersonalityModuleDataComponent::deactivate() {
 	// no op
 }
 
-String DroidPersonalityModuleDataComponent::toString() {
+String DroidPersonalityModuleDataComponent::toString() const {
 	return BaseDroidModuleComponent::toString();
 }
 
@@ -88,7 +89,7 @@ void DroidPersonalityModuleDataComponent::onCall() {
 
 	droid->registerObserver(ObserverEventType::DEFENDERADDED, observer);
 
-	droid->sendReactionChat(ReactionManager::HI, ReactionManager::NICE, true);
+	droid->sendReactionChat(nullptr, ReactionManager::HI, ReactionManager::NICE, true);
 }
 
 void DroidPersonalityModuleDataComponent::onStore() {
@@ -106,7 +107,7 @@ void DroidPersonalityModuleDataComponent::onStore() {
 	Locker dlock(droid);
 
 	droid->dropObserver(ObserverEventType::DEFENDERADDED, observer);
-	droid->sendReactionChat(ReactionManager::BYE, ReactionManager::NICE, true);
+	droid->sendReactionChat(nullptr, ReactionManager::BYE, ReactionManager::NICE, true);
 }
 
 void DroidPersonalityModuleDataComponent::copy(BaseDroidModuleComponent* other) {

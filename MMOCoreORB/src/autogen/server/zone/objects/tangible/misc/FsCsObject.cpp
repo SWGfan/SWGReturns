@@ -32,7 +32,7 @@ FsCsObject::~FsCsObject() {
 
 void FsCsObject::initializeTransientMembers() {
 	FsCsObjectImplementation* _implementation = static_cast<FsCsObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void FsCsObject::initializeTransientMembers() {
 
 void FsCsObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FsCsObjectImplementation* _implementation = static_cast<FsCsObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void FsCsObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* ob
 
 int FsCsObject::getDecayPercent() {
 	FsCsObjectImplementation* _implementation = static_cast<FsCsObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ int FsCsObject::getDecayPercent() {
 
 unsigned long long FsCsObject::getPhaseDuration() {
 	FsCsObjectImplementation* _implementation = static_cast<FsCsObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ unsigned long long FsCsObject::getPhaseDuration() {
 
 void FsCsObject::setPhaseDuration(unsigned long long dur) {
 	FsCsObjectImplementation* _implementation = static_cast<FsCsObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,7 +130,7 @@ void FsCsObjectImplementation::finalize() {
 void FsCsObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FsCsObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

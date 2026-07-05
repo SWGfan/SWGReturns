@@ -429,8 +429,8 @@ function KnightTrials:onPlayerLoggedIn(pPlayer)
 		return
 	end
 
-	if (JediTrials:tryStartKnightTrials(pPlayer)) then
-		return
+	if (JediTrials:isEligibleForKnightTrials(pPlayer) and not JediTrials:isOnKnightTrials(pPlayer)) then
+		KnightTrials:startKnightTrials(pPlayer)
 	elseif (JediTrials:isOnKnightTrials(pPlayer)) then
 		local trialNumber = JediTrials:getCurrentTrial(pPlayer)
 

@@ -8,7 +8,7 @@
  *	RectangularAreaShapeStub
  */
 
-enum {RPC_SETDIMENSIONS__FLOAT_FLOAT_FLOAT_FLOAT_ = 4141362759,RPC_GETHEIGHT__,RPC_GETWIDTH__,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_ISRECTANGULARAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__};
+enum {RPC_SETDIMENSIONS__FLOAT_FLOAT_FLOAT_FLOAT_ = 4141362759,RPC_GETHEIGHT__,RPC_GETWIDTH__,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_ISRECTANGULARAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__,RPC_GETRADIUS__};
 
 RectangularAreaShape::RectangularAreaShape() : AreaShape(DummyConstructorParameter::instance()) {
 	RectangularAreaShapeImplementation* _implementation = new RectangularAreaShapeImplementation();
@@ -28,7 +28,7 @@ RectangularAreaShape::~RectangularAreaShape() {
 
 void RectangularAreaShape::setDimensions(float x1, float y1, float x2, float y2) {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,9 +45,9 @@ void RectangularAreaShape::setDimensions(float x1, float y1, float x2, float y2)
 	}
 }
 
-float RectangularAreaShape::getHeight() {
+float RectangularAreaShape::getHeight() const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,9 +59,9 @@ float RectangularAreaShape::getHeight() {
 	}
 }
 
-float RectangularAreaShape::getWidth() {
+float RectangularAreaShape::getWidth() const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,9 +73,9 @@ float RectangularAreaShape::getWidth() {
 	}
 }
 
-bool RectangularAreaShape::containsPoint(float x, float y) {
+bool RectangularAreaShape::containsPoint(float x, float y) const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,9 +89,9 @@ bool RectangularAreaShape::containsPoint(float x, float y) {
 	}
 }
 
-bool RectangularAreaShape::containsPoint(const Vector3& point) {
+bool RectangularAreaShape::containsPoint(const Vector3& point) const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -99,9 +99,9 @@ bool RectangularAreaShape::containsPoint(const Vector3& point) {
 	}
 }
 
-Vector3 RectangularAreaShape::getRandomPosition() {
+Vector3 RectangularAreaShape::getRandomPosition() const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -109,9 +109,9 @@ Vector3 RectangularAreaShape::getRandomPosition() {
 	}
 }
 
-Vector3 RectangularAreaShape::getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) {
+Vector3 RectangularAreaShape::getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -119,9 +119,9 @@ Vector3 RectangularAreaShape::getRandomPosition(const Vector3& origin, float min
 	}
 }
 
-bool RectangularAreaShape::isRectangularAreaShape() {
+bool RectangularAreaShape::isRectangularAreaShape() const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,9 +133,9 @@ bool RectangularAreaShape::isRectangularAreaShape() {
 	}
 }
 
-bool RectangularAreaShape::intersectsWith(AreaShape* areaShape) {
+bool RectangularAreaShape::intersectsWith(AreaShape* areaShape) const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -148,9 +148,9 @@ bool RectangularAreaShape::intersectsWith(AreaShape* areaShape) {
 	}
 }
 
-float RectangularAreaShape::getArea() {
+float RectangularAreaShape::getArea() const {
 	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,6 +159,20 @@ float RectangularAreaShape::getArea() {
 		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getArea();
+	}
+}
+
+float RectangularAreaShape::getRadius() const {
+	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETRADIUS__);
+
+		return method.executeWithFloatReturn();
+	} else {
+		return _implementation->getRadius();
 	}
 }
 
@@ -195,7 +209,7 @@ void RectangularAreaShapeImplementation::finalize() {
 void RectangularAreaShapeImplementation::_initializeImplementation() {
 	_setClassHelper(RectangularAreaShapeHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -369,22 +383,22 @@ void RectangularAreaShapeImplementation::setDimensions(float x1, float y1, float
 	urY = y2;
 }
 
-float RectangularAreaShapeImplementation::getHeight() {
+float RectangularAreaShapeImplementation::getHeight() const{
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		return urY - blY;
 	return urY - blY;
 }
 
-float RectangularAreaShapeImplementation::getWidth() {
+float RectangularAreaShapeImplementation::getWidth() const{
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		return urX - blX;
 	return urX - blX;
 }
 
-bool RectangularAreaShapeImplementation::isRectangularAreaShape() {
+bool RectangularAreaShapeImplementation::isRectangularAreaShape() const{
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		return true;
 	return true;
 }
 
-float RectangularAreaShapeImplementation::getArea() {
+float RectangularAreaShapeImplementation::getArea() const{
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		return getHeight() * getWidth();
 	return getHeight() * getWidth();
 }
@@ -460,6 +474,13 @@ void RectangularAreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod*
 			resp->insertFloat(_m_res);
 		}
 		break;
+	case RPC_GETRADIUS__:
+		{
+			
+			float _m_res = getRadius();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	default:
 		AreaShapeAdapter::invokeMethod(methid, inv);
 	}
@@ -469,28 +490,32 @@ void RectangularAreaShapeAdapter::setDimensions(float x1, float y1, float x2, fl
 	(static_cast<RectangularAreaShape*>(stub))->setDimensions(x1, y1, x2, y2);
 }
 
-float RectangularAreaShapeAdapter::getHeight() {
+float RectangularAreaShapeAdapter::getHeight() const {
 	return (static_cast<RectangularAreaShape*>(stub))->getHeight();
 }
 
-float RectangularAreaShapeAdapter::getWidth() {
+float RectangularAreaShapeAdapter::getWidth() const {
 	return (static_cast<RectangularAreaShape*>(stub))->getWidth();
 }
 
-bool RectangularAreaShapeAdapter::containsPoint(float x, float y) {
+bool RectangularAreaShapeAdapter::containsPoint(float x, float y) const {
 	return (static_cast<RectangularAreaShape*>(stub))->containsPoint(x, y);
 }
 
-bool RectangularAreaShapeAdapter::isRectangularAreaShape() {
+bool RectangularAreaShapeAdapter::isRectangularAreaShape() const {
 	return (static_cast<RectangularAreaShape*>(stub))->isRectangularAreaShape();
 }
 
-bool RectangularAreaShapeAdapter::intersectsWith(AreaShape* areaShape) {
+bool RectangularAreaShapeAdapter::intersectsWith(AreaShape* areaShape) const {
 	return (static_cast<RectangularAreaShape*>(stub))->intersectsWith(areaShape);
 }
 
-float RectangularAreaShapeAdapter::getArea() {
+float RectangularAreaShapeAdapter::getArea() const {
 	return (static_cast<RectangularAreaShape*>(stub))->getArea();
+}
+
+float RectangularAreaShapeAdapter::getRadius() const {
+	return (static_cast<RectangularAreaShape*>(stub))->getRadius();
 }
 
 /*

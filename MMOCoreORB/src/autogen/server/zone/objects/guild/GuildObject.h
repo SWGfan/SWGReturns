@@ -80,6 +80,8 @@ using namespace server::zone::objects::creature;
 
 #include "system/util/VectorMap.h"
 
+#include "engine/util/JSONSerializationType.h"
+
 #include "engine/service/proto/BaseMessage.h"
 
 #include "server/zone/objects/scene/SceneObject.h"
@@ -87,6 +89,8 @@ using namespace server::zone::objects::creature;
 #include "system/lang/String.h"
 
 #include "system/util/SortedVector.h"
+
+#include "system/util/Vector.h"
 
 namespace server {
 namespace zone {
@@ -280,6 +284,8 @@ public:
 	bool isCandidate(unsigned long long candidateoid);
 
 	unsigned long long getMemberWithHighestPermission();
+
+	int writeRecursiveJSON(JSONSerializationType& j, int maxDepth, Vector<unsigned long long>* oidPath = NULL);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -534,6 +540,8 @@ public:
 	bool isCandidate(unsigned long long candidateoid);
 
 	unsigned long long getMemberWithHighestPermission();
+
+	int writeRecursiveJSON(JSONSerializationType& j, int maxDepth, Vector<unsigned long long>* oidPath = NULL);
 
 	WeakReference<GuildObject*> _this;
 

@@ -32,7 +32,7 @@ ResourceDeed::~ResourceDeed() {
 
 void ResourceDeed::initializeTransientMembers() {
 	ResourceDeedImplementation* _implementation = static_cast<ResourceDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void ResourceDeed::initializeTransientMembers() {
 
 void ResourceDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	ResourceDeedImplementation* _implementation = static_cast<ResourceDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void ResourceDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Crea
 
 int ResourceDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ResourceDeedImplementation* _implementation = static_cast<ResourceDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int ResourceDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 
 int ResourceDeed::useObject(CreatureObject* player) {
 	ResourceDeedImplementation* _implementation = static_cast<ResourceDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ int ResourceDeed::useObject(CreatureObject* player) {
 
 void ResourceDeed::destroyDeed() {
 	ResourceDeedImplementation* _implementation = static_cast<ResourceDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -132,7 +132,7 @@ void ResourceDeedImplementation::finalize() {
 void ResourceDeedImplementation::_initializeImplementation() {
 	_setClassHelper(ResourceDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

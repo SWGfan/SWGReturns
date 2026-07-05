@@ -17,11 +17,6 @@ end
 
 function SkillTrainer:getTeachableSkills(pPlayer, trainerType, qualifiedOnly)
 	local teachableSkills = { }
-
-	if trainerType == nil or trainerType == "" then
-		return teachableSkills
-	end
-
 	local skills = trainerSkills[trainerType]
 
 	if (skills == nil or #skills == 0) then

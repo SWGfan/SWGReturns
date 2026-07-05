@@ -36,7 +36,7 @@ TheaterObject::~TheaterObject() {
 
 int TheaterObject::getNumberOfPlayersInRange() {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int TheaterObject::getNumberOfPlayersInRange() {
 
 bool TheaterObject::getDespawnOnNoPlayersInRange() const {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ bool TheaterObject::getDespawnOnNoPlayersInRange() const {
 
 void TheaterObject::setDespawnOnNoPlayersInRange(bool b) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ void TheaterObject::setDespawnOnNoPlayersInRange(bool b) {
 
 bool TheaterObject::shouldFlattenTheater() const {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ bool TheaterObject::shouldFlattenTheater() const {
 
 void TheaterObject::setShouldFlatten(bool b) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ void TheaterObject::setShouldFlatten(bool b) {
 
 void TheaterObject::notifyInsert(QuadTreeEntry* entry) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -125,7 +125,7 @@ void TheaterObject::notifyInsert(QuadTreeEntry* entry) {
 
 void TheaterObject::notifyDissapear(QuadTreeEntry* entry) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ void TheaterObject::notifyDissapear(QuadTreeEntry* entry) {
 
 void TheaterObject::activateDespawnEvent() {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ void TheaterObject::activateDespawnEvent() {
 
 void TheaterObject::clearDespawnEvent() {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ void TheaterObject::clearDespawnEvent() {
 
 bool TheaterObject::isTheaterObject() {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ void TheaterObjectImplementation::finalize() {
 void TheaterObjectImplementation::_initializeImplementation() {
 	_setClassHelper(TheaterObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -448,7 +448,7 @@ void TheaterObjectImplementation::clearDespawnEvent() {
 	// server/zone/objects/intangible/TheaterObject.idl():  		despawnEvent.cancel();
 	despawnEvent->cancel();
 	// server/zone/objects/intangible/TheaterObject.idl():  		despawnEvent = null;
-	despawnEvent = nullptr;
+	despawnEvent = NULL;
 }
 
 bool TheaterObjectImplementation::isTheaterObject() {

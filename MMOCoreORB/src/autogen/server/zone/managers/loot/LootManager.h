@@ -132,6 +132,8 @@ using namespace server::zone::objects::tangible;
 
 #include "system/util/VectorMap.h"
 
+#include "server/zone/objects/transaction/TransactionLog.h"
+
 #include "system/util/SortedVector.h"
 
 #include "engine/core/ManagedService.h"
@@ -157,19 +159,15 @@ public:
 
 	String getRandomLootableMod(unsigned int sceneObjectType);
 
-	TangibleObject* createLootAttachment(LootItemTemplate* templateObject, const String& modName, int value);
-
 	int calculateLootCredits(int level);
 
-	bool createLoot(SceneObject* container, AiAgent* creature);
+	bool createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature);
 
-	bool createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level = -1, bool maxCondition = false);
+	bool createLootFromCollection(TransactionLog& trx, SceneObject* container, const LootGroupCollection* collection, int level);
 
-	bool createLootFromCollection(SceneObject* container, const LootGroupCollection* collection, int level);
+	bool createLoot(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level = -1, bool maxCondition = false);
 
-	bool createLoot(SceneObject* container, const String& lootGroup, int level = -1, bool maxCondition = false);
-
-	bool createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize);
+	bool createLootSet(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize);
 
 	unsigned int getYellowLooted() const;
 
@@ -226,6 +224,8 @@ class LootManagerImplementation : public ManagedServiceImplementation, public Lo
 	float legendaryChance;
 
 	float legendaryModifier;
+
+	float globalLootChanceMultiplier;
 
 	AtomicInteger yellowLooted;
 
@@ -308,21 +308,23 @@ private:
 public:
 	TangibleObject* createLootObject(const LootItemTemplate* templateObject, int level, bool maxCondition = false);
 
-	String getRandomLootableMod(unsigned int sceneObjectType);
+private:
+	TangibleObject* createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value);
 
-	TangibleObject* createLootAttachment(LootItemTemplate* templateObject, const String& modName, int value);
+	bool createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition);
+
+public:
+	String getRandomLootableMod(unsigned int sceneObjectType);
 
 	int calculateLootCredits(int level);
 
-	bool createLoot(SceneObject* container, AiAgent* creature);
+	bool createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature);
 
-	bool createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level = -1, bool maxCondition = false);
+	bool createLootFromCollection(TransactionLog& trx, SceneObject* container, const LootGroupCollection* collection, int level);
 
-	bool createLootFromCollection(SceneObject* container, const LootGroupCollection* collection, int level);
+	bool createLoot(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level = -1, bool maxCondition = false);
 
-	bool createLoot(SceneObject* container, const String& lootGroup, int level = -1, bool maxCondition = false);
-
-	bool createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize);
+	bool createLootSet(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize);
 
 	unsigned int getYellowLooted() const;
 
@@ -382,14 +384,6 @@ public:
 	void stop();
 
 	int calculateLootCredits(int level);
-
-	bool createLoot(SceneObject* container, AiAgent* creature);
-
-	bool createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition);
-
-	bool createLoot(SceneObject* container, const String& lootGroup, int level, bool maxCondition);
-
-	bool createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize);
 
 	unsigned int getYellowLooted() const;
 

@@ -28,7 +28,7 @@ GCWBaseShutdownObserver::~GCWBaseShutdownObserver() {
 
 int GCWBaseShutdownObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	GCWBaseShutdownObserverImplementation* _implementation = static_cast<GCWBaseShutdownObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void GCWBaseShutdownObserverImplementation::finalize() {
 void GCWBaseShutdownObserverImplementation::_initializeImplementation() {
 	_setClassHelper(GCWBaseShutdownObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

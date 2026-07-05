@@ -30,7 +30,7 @@ PharmaceuticalObject::~PharmaceuticalObject() {
 
 int PharmaceuticalObject::getMedicineUseRequired() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ int PharmaceuticalObject::getMedicineUseRequired() {
 
 float PharmaceuticalObject::getRange(CreatureObject* creature) {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ float PharmaceuticalObject::getRange(CreatureObject* creature) {
 
 bool PharmaceuticalObject::isArea() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ bool PharmaceuticalObject::isArea() {
 
 float PharmaceuticalObject::getArea() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ float PharmaceuticalObject::getArea() {
 
 bool PharmaceuticalObject::isPharmaceuticalObject() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ bool PharmaceuticalObject::isPharmaceuticalObject() {
 
 bool PharmaceuticalObject::isStimPack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ bool PharmaceuticalObject::isStimPack() {
 
 bool PharmaceuticalObject::isPetStimPack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ bool PharmaceuticalObject::isPetStimPack() {
 
 bool PharmaceuticalObject::isDroidRepairKit() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ bool PharmaceuticalObject::isDroidRepairKit() {
 
 bool PharmaceuticalObject::isRangedStimPack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ bool PharmaceuticalObject::isRangedStimPack() {
 
 bool PharmaceuticalObject::isEnhancePack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +171,7 @@ bool PharmaceuticalObject::isEnhancePack() {
 
 bool PharmaceuticalObject::isWoundPack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -185,7 +185,7 @@ bool PharmaceuticalObject::isWoundPack() {
 
 bool PharmaceuticalObject::isDroidReconstructionKit() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -199,7 +199,7 @@ bool PharmaceuticalObject::isDroidReconstructionKit() {
 
 bool PharmaceuticalObject::isCurePack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ bool PharmaceuticalObject::isCurePack() {
 
 bool PharmaceuticalObject::isStatePack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -227,7 +227,7 @@ bool PharmaceuticalObject::isStatePack() {
 
 bool PharmaceuticalObject::isRevivePack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,7 +241,7 @@ bool PharmaceuticalObject::isRevivePack() {
 
 bool PharmaceuticalObject::isVitalityPack() {
 	PharmaceuticalObjectImplementation* _implementation = static_cast<PharmaceuticalObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -286,7 +286,7 @@ void PharmaceuticalObjectImplementation::finalize() {
 void PharmaceuticalObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PharmaceuticalObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

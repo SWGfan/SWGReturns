@@ -34,7 +34,7 @@ SquadLeaderBuff::~SquadLeaderBuff() {
 
 CreatureObject* SquadLeaderBuff::getPlayer() {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ CreatureObject* SquadLeaderBuff::getPlayer() {
 
 CreatureObject* SquadLeaderBuff::getLeader() {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ CreatureObject* SquadLeaderBuff::getLeader() {
 
 void SquadLeaderBuff::activate() {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void SquadLeaderBuff::activate() {
 
 void SquadLeaderBuff::doActivate(bool doCheck) {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void SquadLeaderBuff::doActivate(bool doCheck) {
 
 bool SquadLeaderBuff::qualifiesForActivation() {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,9 +105,9 @@ bool SquadLeaderBuff::qualifiesForActivation() {
 	}
 }
 
-bool SquadLeaderBuff::checkRenew() {
+bool SquadLeaderBuff::checkRenew() const {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ bool SquadLeaderBuff::checkRenew() {
 
 void SquadLeaderBuff::addObservers() {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ void SquadLeaderBuff::addObservers() {
 
 bool SquadLeaderBuff::removeOnClearBuffs() const {
 	SquadLeaderBuffImplementation* _implementation = static_cast<SquadLeaderBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,7 +179,7 @@ SquadLeaderBuffImplementation::~SquadLeaderBuffImplementation() {
 void SquadLeaderBuffImplementation::_initializeImplementation() {
 	_setClassHelper(SquadLeaderBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -382,10 +382,10 @@ CreatureObject* SquadLeaderBuffImplementation::getLeader() {
 
 void SquadLeaderBuffImplementation::activate() {
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  		if 
-	if (player == nullptr)	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return;
+	if (!player)	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return;
 	return;
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  		doActivate(
-	if (leader == nullptr || player->getGroupID() != leader->getGroupID()){
+	if (!leader || player->getGroupID() != leader->getGroupID()){
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			player.removeBuff(super.buffCRC);
 	player->removeBuff(BuffImplementation::buffCRC);
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return;
@@ -405,15 +405,15 @@ void SquadLeaderBuffImplementation::doActivate(bool doCheck) {
 
 bool SquadLeaderBuffImplementation::qualifiesForActivation() {
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  		return 
-	if (player == nullptr || leader == nullptr || leader->isDead() || leader->isIncapacitated())	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return false;
+	if (!player || !leader || leader->isDead() || leader->isIncapacitated())	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return false;
 	return false;
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  		return SquadLeaderCommand.isValidGroupAbilityTarget(leader, player, false);
 	return SquadLeaderCommand::isValidGroupAbilityTarget(leader, player, false);
 }
 
-bool SquadLeaderBuffImplementation::checkRenew() {
+bool SquadLeaderBuffImplementation::checkRenew() const{
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  		return 
-	if (leader == nullptr || player == nullptr || player->getGroupID() != leader->getGroupID()){
+	if (!leader || !player || player->getGroupID() != leader->getGroupID()){
 	// server/zone/objects/creature/buffs/SquadLeaderBuff.idl():  			return false;
 	return false;
 }
@@ -483,14 +483,14 @@ void SquadLeaderBuffAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 		{
 			
 			DistributedObject* _m_res = getPlayer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETLEADER__:
 		{
 			
 			DistributedObject* _m_res = getLeader();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ACTIVATE__:
@@ -565,7 +565,7 @@ bool SquadLeaderBuffAdapter::qualifiesForActivation() {
 	return (static_cast<SquadLeaderBuff*>(stub))->qualifiesForActivation();
 }
 
-bool SquadLeaderBuffAdapter::checkRenew() {
+bool SquadLeaderBuffAdapter::checkRenew() const {
 	return (static_cast<SquadLeaderBuff*>(stub))->checkRenew();
 }
 

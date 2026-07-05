@@ -89,7 +89,7 @@ public:
 	 * @pre { player is locked }
 	 * @post { player is locked }
 	 */
-	void enhanceCharacter(CreatureObject* player, int type);
+	void enhanceCharacter(CreatureObject* player);
 
 	/**
 	 * Grants badges to the player to make them glowy in the village jedi progression system
@@ -170,7 +170,7 @@ public:
 	 * @pre { player is locked }
 	 * @post { player is locked }
 	 */
-	void enhanceCharacter(CreatureObject* player, int type);
+	void enhanceCharacter(CreatureObject* player);
 
 	/**
 	 * Grants badges to the player to make them glowy in the village jedi progression system
@@ -233,7 +233,7 @@ public:
 
 	void giveLanguages(CreatureObject* player);
 
-	void enhanceCharacter(CreatureObject* player, int type);
+	void enhanceCharacter(CreatureObject* player);
 
 	void grantGlowyBadges(CreatureObject* player);
 

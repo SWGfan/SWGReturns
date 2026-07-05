@@ -24,53 +24,11 @@
 #endif
 #include "engine/util/json_utils.h"
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
+#include "server/zone/objects/creature/CreatureObject.h"
 
-class CreatureObject;
+#include "server/zone/objects/region/CityRegion.h"
 
-class CreatureObjectPOD;
-
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace region {
-
-class CityRegion;
-
-class CityRegionPOD;
-
-} // namespace region
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::region;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace scene {
-
-class SceneObject;
-
-class SceneObjectPOD;
-
-} // namespace scene
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::scene;
+#include "server/zone/objects/scene/SceneObject.h"
 
 #include "server/zone/objects/scene/SessionFacadeType.h"
 

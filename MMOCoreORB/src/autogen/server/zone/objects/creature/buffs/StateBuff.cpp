@@ -30,7 +30,7 @@ StateBuff::~StateBuff() {
 
 void StateBuff::activate(bool applyModifiers) {
 	StateBuffImplementation* _implementation = static_cast<StateBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void StateBuff::activate(bool applyModifiers) {
 
 void StateBuff::deactivate(bool removeModifiers) {
 	StateBuffImplementation* _implementation = static_cast<StateBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void StateBuffImplementation::finalize() {
 void StateBuffImplementation::_initializeImplementation() {
 	_setClassHelper(StateBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

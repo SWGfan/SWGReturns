@@ -226,7 +226,7 @@ void SkillModManager::verifyStructureSkillMods(TangibleObject* tano) {
 
 
 	if (!compareMods(mods, creature, STRUCTURE)) {
-		warning("Structure mods don't match for " + creature->getFirstName());
+		creature->info() << "Structure mods don't match.";
 	}
 }
 
@@ -254,7 +254,7 @@ void SkillModManager::verifySkillBoxSkillMods(CreatureObject* creature) {
 	}
 
 	if(!compareMods(mods, creature, SKILLBOX)) {
-		warning("SkillBox mods don't match for " + creature->getFirstName());
+		creature->info() << "SkillBox mods don't match";
 	}
 }
 
@@ -268,10 +268,10 @@ void SkillModManager::verifyBuffSkillMods(CreatureObject* creature) {
 	const BuffList* buffList = creature->getBuffList();
 	for(int i = 0; i < buffList->getBuffListSize(); ++i) {
 		ManagedReference<Buff*> buff = buffList->getBuffByIndex(i);
-		VectorMap<String, int>* skillMods = buff->getSkillModifiers();
+		const VectorMap<String, int>* skillMods = buff->getSkillModifiers();
 		for(int j = 0; j < skillMods->size(); ++j) {
-			String name = skillMods->elementAt(j).getKey();
-			int value = skillMods->get(name);
+			const String& name = skillMods->elementAt(j).getKey();
+			int value = skillMods->elementAt(j).getValue();
 
 			if(mods.contains(name)) {
 				value += mods.get(name);
@@ -342,7 +342,7 @@ bool SkillModManager::compareMods(VectorMap<String, int>& mods, CreatureObject* 
 	}
 
 	if (match == false) {
-		warning(compare.toString());
+		creature->info() << compare;
 
 		if(creature->getPlayerObject() != nullptr) {
 			if(creature->getPlayerObject()->getDebug()) {

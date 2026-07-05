@@ -71,7 +71,7 @@ namespace resource {
 
 class ResourceContainer : public TangibleObject {
 public:
-	static const int MAXSIZE = 10000000;
+	static const int MAXSIZE = 999999;
 
 	ResourceContainer();
 
@@ -102,7 +102,7 @@ public:
 	 */
 	void sendBaselinesTo(SceneObject* player);
 
-	void setQuantity(unsigned int newQuantity, bool notifyClient = true, bool ignoreMax = false);
+	void setQuantity(unsigned int newQuantity, bool notifyClient = true, bool ignoreMax = false, bool destroyEmpty = true);
 
 	bool isResourceContainer();
 
@@ -162,7 +162,7 @@ protected:
 	int stackQuantity;
 
 public:
-	static const int MAXSIZE = 10000000;
+	static const int MAXSIZE = 999999;
 
 	ResourceContainerImplementation();
 
@@ -195,7 +195,7 @@ public:
 	 */
 	void sendBaselinesTo(SceneObject* player);
 
-	void setQuantity(unsigned int newQuantity, bool notifyClient = true, bool ignoreMax = false);
+	void setQuantity(unsigned int newQuantity, bool notifyClient = true, bool ignoreMax = false, bool destroyEmpty = true);
 
 	bool isResourceContainer();
 
@@ -273,7 +273,7 @@ public:
 
 	void sendBaselinesTo(SceneObject* player);
 
-	void setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax);
+	void setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax, bool destroyEmpty);
 
 	bool isResourceContainer();
 

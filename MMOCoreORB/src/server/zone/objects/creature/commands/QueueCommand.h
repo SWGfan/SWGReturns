@@ -81,6 +81,11 @@ public:
 	 */
 	bool checkInvalidLocomotions(CreatureObject* creature) const;
 
+	/*
+	*	Checks cell access for the player creature if the target is in a cell
+	*/
+	bool playerEntryCheck(CreatureObject* creature, TangibleObject* target) const;
+
 	void onStateFail(CreatureObject* creature, uint32 actioncntr) const;
 	void onLocomotionFail(CreatureObject* creature, uint32 actioncntr) const;
 
@@ -238,7 +243,7 @@ public:
 		return nameCRC;
 	}
 
-	inline float getMaxRange() const {
+	inline virtual float getMaxRange() const {
 		return maxRangeToTarget;
 	}
 
@@ -272,23 +277,23 @@ public:
 		return addToQueue;
 	}
 
-	virtual bool isCombatCommand() {
+	virtual bool isCombatCommand() const {
 		return false;
 	}
 
-	virtual bool isForceHealCommand() {
+	virtual bool isForceHealCommand() const {
 		return false;
 	}
 
-	virtual bool isJediQueueCommand() {
+	virtual bool isJediQueueCommand() const {
 		return false;
 	}
 
-	virtual bool isJediCombatCommand() {
+	virtual bool isJediCombatCommand() const {
 		return false;
 	}
 
-	bool isJediCommand() {
+	bool isJediCommand() const {
 		return (isForceHealCommand() || isJediQueueCommand() || isJediCombatCommand());
 	}
 
@@ -296,9 +301,9 @@ public:
 		return skillMods.size();
 	}
 
-	inline int getSkillMod(int index, String& skillMod) {
+	inline int getSkillMod(int index, String& skillMod) const {
 		skillMod = skillMods.elementAt(index).getKey();
-		return skillMods.get(skillMod);
+		return skillMods.elementAt(index).getValue();
 	}
 
 	inline int getCommandGroup() const {
@@ -308,9 +313,9 @@ public:
 	void addSkillMod(const String& skillMod, const int value) {
 		skillMods.put(skillMod, value);
 	}
-	
+
 	bool isWearingArmor(CreatureObject* creo) const {
-		/*for (int i = 0; i < creo->getSlottedObjectsSize(); ++i) {
+	/*	for (int i = 0; i < creo->getSlottedObjectsSize(); ++i) {
 			SceneObject* item = creo->getSlottedObject(i);
 			if (item != nullptr && item->isArmorObject())
 				return true;
@@ -319,13 +324,12 @@ public:
 		return false;
 	}
 
-	virtual void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) {
+	virtual void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) const {
 	}
 
 	int doCommonMedicalCommandChecks(CreatureObject* creature) const;
 
 	void checkForTef(CreatureObject* creature, CreatureObject* target) const;
-	void checkCmTef(CreatureObject* creature, CreatureObject* target) const;
 };
 
 

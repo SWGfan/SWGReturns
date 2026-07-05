@@ -41,34 +41,164 @@ namespace {
 		jediRobeSkillModCount = sizeof(jediRobeSkillMods) / sizeof(jediRobeSkillMods[0])
 	};
 
-	int clampJediRobeValue(int value, int minValue, int maxValue) {
+	const char* backpackCraftingMods[] = {
+		"clothing_assembly",
+		"clothing_experimentation",
+		"general_assembly",
+		"general_experimentation",
+		"weapon_assembly",
+		"weapon_experimentation",
+		"armor_assembly",
+		"armor_experimentation",
+		"structure_assembly",
+		"structure_complexity",
+		"structure_experimentation",
+		"food_assembly",
+		"food_experimentation",
+		"medicine_assembly",
+		"medicine_experimentation",
+		"surveying",
+		"weapon_repair",
+		"clothing_repair",
+		"armor_repair",
+		"grenade_assembly",
+		"grenade_experimentation",
+		"instrument_assembly",
+		"droid_assembly",
+		"droid_experimentation"
+	};
+
+	const char* backpackCombatMods[] = {
+		"melee_defense",
+		"ranged_defense",
+		"onehandmelee_accuracy",
+		"onehandmelee_speed",
+		"onehandmelee_damage",
+		"twohandmelee_accuracy",
+		"twohandmelee_speed",
+		"twohandmelee_damage",
+		"pistol_accuracy",
+		"pistol_speed",
+		"rifle_accuracy",
+		"rifle_speed",
+		"carbine_accuracy",
+		"carbine_speed",
+		"polearm_accuracy",
+		"polearm_speed",
+		"unarmed_accuracy",
+		"unarmed_speed",
+		"stun_defense",
+		"dizzy_defense",
+		"knockdown_defense",
+		"blind_defense",
+		"block",
+		"dodge",
+		"counterattack",
+		"resistance_bleeding",
+		"resistance_disease",
+		"resistance_fire",
+		"resistance_poison",
+		"berserk",
+		"intimidate_defense",
+		"combat_bleeding_defense"
+	};
+
+	const char* backpackSupportMods[] = {
+		"healing_wound_treatment",
+		"healing_injury_treatment",
+		"healing_wound_speed",
+		"healing_injury_speed",
+		"healing_range",
+		"healing_range_speed",
+		"healing_dance_mind",
+		"healing_dance_shock",
+		"healing_dance_wound",
+		"healing_music_mind",
+		"healing_music_shock",
+		"healing_music_wound",
+		"combat_medicine_assembly",
+		"combat_medicine_experimentation",
+		"combat_healing_ability",
+		"healing_ability",
+		"combat_medic_effectiveness",
+		"medical_foraging"
+	};
+
+	const char* backpackUtilityMods[] = {
+		"camouflage",
+		"trapping",
+		"foraging",
+		"surveying",
+		"creature_harvesting",
+		"creature_hit_bonus",
+		"camp",
+		"rescue",
+		"take_cover",
+		"cover",
+		"tame_level",
+		"tame_aggro",
+		"tame_non_aggro",
+		"slope_move",
+		"group_slope_move"
+	};
+
+	enum {
+		backpackCraftingModCount = sizeof(backpackCraftingMods) / sizeof(backpackCraftingMods[0]),
+		backpackCombatModCount = sizeof(backpackCombatMods) / sizeof(backpackCombatMods[0]),
+		backpackSupportModCount = sizeof(backpackSupportMods) / sizeof(backpackSupportMods[0]),
+		backpackUtilityModCount = sizeof(backpackUtilityMods) / sizeof(backpackUtilityMods[0])
+	};
+
+	int clampWearableModValue(int value, int minValue, int maxValue) {
 		return Math::max(minValue, Math::min(maxValue, value));
 	}
 
-	int randomJediRobeValue(int minValue, int maxValue) {
+	int randomWearableModValue(int minValue, int maxValue) {
 		if (maxValue <= minValue)
 			return minValue;
 
 		return minValue + System::random(maxValue - minValue);
 	}
 
-	void applyRandomJediRobeMods(TangibleObject* object, const LootItemTemplate* templateObject) {
-		if (!templateObject->usesRandomJediRobeMods() || !object->isWearableObject())
+	const char** getBackpackModPool(const String& theme, int& modCount) {
+		if (theme == "crafting") {
+			modCount = backpackCraftingModCount;
+			return backpackCraftingMods;
+		}
+
+		if (theme == "combat") {
+			modCount = backpackCombatModCount;
+			return backpackCombatMods;
+		}
+
+		if (theme == "support") {
+			modCount = backpackSupportModCount;
+			return backpackSupportMods;
+		}
+
+		if (theme == "utility") {
+			modCount = backpackUtilityModCount;
+			return backpackUtilityMods;
+		}
+
+		modCount = backpackCombatModCount;
+		return backpackCombatMods;
+	}
+
+	void applyRandomWearableModsFromPool(TangibleObject* object, const char** modPool, int modPoolCount, int minMods, int maxMods, int minValue, int maxValue) {
+		if (!object->isWearableObject())
 			return;
 
 		ManagedReference<WearableObject*> wearableObject = cast<WearableObject*>(object);
 
-		if (wearableObject == nullptr)
+		if (wearableObject == nullptr || modPoolCount <= 0)
 			return;
 
-		const int maxAvailableJediRobeMods = Math::min(7, static_cast<int>(jediRobeSkillModCount));
+		const int maxAvailableMods = Math::min(7, modPoolCount);
 
-		int minMods = clampJediRobeValue(templateObject->getMinJediRobeMods(), 3, maxAvailableJediRobeMods);
-		int maxMods = clampJediRobeValue(templateObject->getMaxJediRobeMods(), minMods, maxAvailableJediRobeMods);
-		int modCount = randomJediRobeValue(minMods, maxMods);
-
-		int minValue = templateObject->getMinJediRobeModValue();
-		int maxValue = templateObject->getMaxJediRobeModValue();
+		int clampedMinMods = clampWearableModValue(minMods, 1, maxAvailableMods);
+		int clampedMaxMods = clampWearableModValue(maxMods, clampedMinMods, maxAvailableMods);
+		int modCount = randomWearableModValue(clampedMinMods, clampedMaxMods);
 
 		if (minValue > maxValue) {
 			int oldMinValue = minValue;
@@ -76,28 +206,54 @@ namespace {
 			maxValue = oldMinValue;
 		}
 
-		minValue = clampJediRobeValue(minValue, 1, 25);
-		maxValue = clampJediRobeValue(maxValue, minValue, 25);
+		minValue = clampWearableModValue(minValue, 1, 25);
+		maxValue = clampWearableModValue(maxValue, minValue, 25);
 
-		bool usedMods[jediRobeSkillModCount];
+		bool usedMods[32];
 
-		for (int i = 0; i < jediRobeSkillModCount; ++i)
+		for (int i = 0; i < modPoolCount && i < 32; ++i)
 			usedMods[i] = false;
 
 		for (int i = 0; i < modCount; ++i) {
-			int modIndex = System::random(jediRobeSkillModCount - 1);
+			int modIndex = System::random(modPoolCount - 1);
 
-			while (usedMods[modIndex])
-				modIndex = System::random(jediRobeSkillModCount - 1);
+			while (modIndex < 32 && usedMods[modIndex])
+				modIndex = System::random(modPoolCount - 1);
+
+			if (modIndex >= 32)
+				break;
 
 			usedMods[modIndex] = true;
 
-			int modValue = randomJediRobeValue(minValue, maxValue);
-			wearableObject->addSkillMod(SkillModManager::WEARABLE, jediRobeSkillMods[modIndex], modValue);
+			int modValue = randomWearableModValue(minValue, maxValue);
+			wearableObject->addSkillMod(SkillModManager::WEARABLE, modPool[modIndex], modValue);
 		}
 
 		wearableObject->setMaxSockets(Math::max(0, 7 - modCount));
 		object->addMagicBit(false);
+	}
+
+	void applyRandomJediRobeMods(TangibleObject* object, const LootItemTemplate* templateObject) {
+		// Flurry feature: jedi robe mods not supported in StarDust LootItemTemplate
+	}
+
+	void applyRandomBackpackMods(TangibleObject* object, const LootItemTemplate* templateObject) {
+		// Flurry feature: backpack mods not supported in StarDust LootItemTemplate
+	}
+
+	static const int LOOT_CHANCE_MAX = 10000000;
+	static constexpr float GLOBAL_ITEM_LOOT_CHANCE_MULTIPLIER = 100.0f;
+
+	int applyGlobalItemLootChanceMultiplier(int originalChance) {
+		if (originalChance <= 0)
+			return originalChance;
+
+		float boostedChance = static_cast<float>(originalChance) * GLOBAL_ITEM_LOOT_CHANCE_MULTIPLIER;
+
+		if (boostedChance >= static_cast<float>(LOOT_CHANCE_MAX))
+			return LOOT_CHANCE_MAX;
+
+		return static_cast<int>(boostedChance);
 	}
 }
 
@@ -128,6 +284,23 @@ void LootManagerImplementation::initialize() {
 	info("Loaded " + String::valueOf(lootableHeavyWeaponMods.size()) + " lootable heavy weapon stat mods.");
 	info("Loaded " + String::valueOf(lootGroupMap->countLootItemTemplates()) + " loot items.");
 	info("Loaded " + String::valueOf(lootGroupMap->countLootGroupTemplates()) + " loot groups.");
+
+	const char* crateGroups[] = {
+		"rare_chest_rewards",
+		"exceptional_chest_rewards",
+		"diamond_chest_rewards",
+		"legendary_chest_rewards",
+		"worldboss_chest_rewards",
+		"legendary_chest_rewards_core",
+		"diamond_chest_rewards_core"
+	};
+
+	for (int i = 0; i < 7; ++i) {
+		if (lootGroupMap->getLootGroupTemplate(crateGroups[i]) == nullptr)
+			warning("Crate loot group missing after load: " + String(crateGroups[i]));
+		else
+			info("Crate loot group registered: " + String(crateGroups[i]));
+	}
 
 	info("Initialized.", true);
 }
@@ -370,8 +543,8 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 	}
 
 	//Min/Max loot item levels - By: Tyclo
-	int minLevel = templateObject->getMinimumLevel();
-	int maxLevel = templateObject->getMaximumLevel();
+	int minLevel = 0; // Flurry: getMinimumLevel() not in StarDust LootItemTemplate
+	int maxLevel = 0; // Flurry: getMaximumLevel() not in StarDust LootItemTemplate
 
 	if(level < 1)
 		level = 1;
@@ -586,6 +759,7 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 	setSockets(prototype, craftingValues);
 
 	applyRandomJediRobeMods(prototype, templateObject);
+	applyRandomBackpackMods(prototype, templateObject);
 
 	// Update the Tano with new values
 	prototype->updateCraftingValues(craftingValues, true);
@@ -628,77 +802,10 @@ TangibleObject* LootManagerImplementation::createLootObject(const LootItemTempla
 	return prototype;
 }
 
-TangibleObject* LootManagerImplementation::createLootAttachment(LootItemTemplate* templateObject, const String& modName, int value) {
-
-	const String& directTemplateObject = templateObject->getDirectObjectTemplate();
-
-	ManagedReference<TangibleObject*> prototype = zoneServer->createObject(directTemplateObject.hashCode(), 2).castTo<TangibleObject*>();
-
-	if (prototype == nullptr) {
-		error("could not create loot object: " + directTemplateObject);
-		return nullptr;
-	}
-
-	Locker objLocker(prototype);
-
-	prototype->createChildObjects();
-
-	String serial = craftingManager->generateSerial();
-	prototype->setSerialNumber(serial);
-
-	ValuesMap valuesMap = templateObject->getValuesMapCopy();
-	CraftingValues* craftingValues = new CraftingValues(valuesMap);
-
-	setInitialObjectStats(templateObject, craftingValues, prototype);
-
-	setCustomObjectName(prototype, templateObject);
-
-	String subtitle;
-
-	for (int i = 0; i < craftingValues->getExperimentalPropertySubtitleSize(); ++i) {
-		subtitle = craftingValues->getExperimentalPropertySubtitle(i);
-
-		if (subtitle == "hitpoints" && !prototype->isComponent()) {
-			continue;
-		}
-
-		float min = craftingValues->getMinValue(subtitle);
-		float max = craftingValues->getMaxValue(subtitle);
-	}
-
-
-	if(prototype->isAttachment()){
-		Attachment* attachment = cast<Attachment*>( prototype.get());
-		attachment->updateAttachmentValues(modName, value);
-		delete craftingValues;
-
-		HashTable<String, int>* mods = attachment->getSkillMods();
-		HashTableIterator<String, int> iterator = mods->iterator();
-		StringId attachmentName;
-		String key = "";
-		int value = 0;
-		int last = 0;
-		String attachmentType = "AA ";
-		String attachmentCustomName = "";
-
-		if(attachment->isClothingAttachment()){
-			attachmentType = "CA ";
-		}
-
-		for(int i = 0; i < mods->size(); ++i) {
-			iterator.getNextKeyAndValue(key, value);
-
-			if(value > last){
-				last = value;
-				attachmentName.setStringId("stat_n", key);
-				prototype->setObjectName(attachmentName,false);
-				attachmentCustomName = attachmentType + prototype->getDisplayedName() + " " + String::valueOf(value);
-			}
-		}
-		prototype->setCustomObjectName(attachmentCustomName,false);
-	}
-	return prototype;
-
+TangibleObject* LootManagerImplementation::createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value) {
+	// createLootAttachment uses Flurry-only updateAttachmentValues API
+	// not present in StarDust LootItemTemplate - stubbed out
+	return nullptr;
 }
 
 void LootManagerImplementation::addConditionDamage(TangibleObject* loot, CraftingValues* craftingValues) {
@@ -728,7 +835,7 @@ void LootManagerImplementation::setSkillMods(TangibleObject* object, const LootI
 	bool yellow = false;
 	float modSqr = excMod * excMod;
 
-	if (!templateObject->usesRandomJediRobeMods() && System::random(skillModChance / modSqr) == 0) {
+	if (System::random(skillModChance / modSqr) == 0) {
 		// if it has a skillmod the name will be yellow
 		yellow = true;
 		int modCount = 1;
@@ -841,14 +948,14 @@ void LootManagerImplementation::setSockets(TangibleObject* object, CraftingValue
 	}
 }
 
-bool LootManagerImplementation::createLoot(SceneObject* container, AiAgent* creature) {
+bool LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature) {
 
 	//Creature Loot System based on creature level
 	int creatureLevel = Math::min(300, creature->getLevel());
 	//Rare Loot System
 	if (creatureLevel >= 75){
 		if (System::random(1000) < 195) { //19.5% Rare Loot System
-			createLoot(container, "rarelootsystem", creatureLevel, false);
+			createLoot(trx, container, "rarelootsystem", creatureLevel, false);
 			creature->playEffect("clienteffect/rare_loot.cef", "");
 			creature->showFlyText("Rare", "Loot", 0, 255, 0);
 		}
@@ -857,7 +964,7 @@ bool LootManagerImplementation::createLoot(SceneObject* container, AiAgent* crea
 	//Diamond Loot System
 	if (creatureLevel >= 75){
 		if (System::random(100) < 2) { //2% Diamond Loot System
-			createLoot(container, "lootcollectiontierdiamonds", creatureLevel, false);
+			createLoot(trx, container, "lootcollectiontierdiamonds", creatureLevel, false);
 			creature->playEffect("clienteffect/level_granted_chronicles.cef", "");
 			creature->showFlyText("Diamond", "Crate", 0, 255, 0);
 		}
@@ -900,10 +1007,11 @@ bool LootManagerImplementation::createLoot(SceneObject* container, AiAgent* crea
 	if (lootCollection == nullptr)
 		return false;
 
-	return createLootFromCollection(container, lootCollection, creature->getLevel());
+	return createLootFromCollection(trx, container, lootCollection, creature->getLevel());
 }
 
 bool LootManagerImplementation::createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition) {
+	TransactionLog trx(TrxCode::NPCLOOT, container);
 	Reference<const LootGroupTemplate*> group = lootGroupMap->getLootGroupTemplate(lootGroup);
 
 	if (group == nullptr) {
@@ -918,7 +1026,7 @@ bool LootManagerImplementation::createNamedLoot(SceneObject* container, const St
 
 	//Check to see if the group entry is another group
 	if (lootGroupMap->lootGroupExists(selection))
-		return createLoot(container, selection, level, maxCondition);
+		return createLoot(trx, container, selection, level, maxCondition);
 
 	//Entry wasn't another group, it should be a loot item
 	Reference<const LootItemTemplate*> itemTemplate = lootGroupMap->getLootItemTemplate(selection);
@@ -946,7 +1054,7 @@ bool LootManagerImplementation::createNamedLoot(SceneObject* container, const St
 	return true;
 }
 
-bool LootManagerImplementation::createLootFromCollection(SceneObject* container, const LootGroupCollection* lootCollection, int level) {
+bool LootManagerImplementation::createLootFromCollection(TransactionLog& trx, SceneObject* container, const LootGroupCollection* lootCollection, int level) {
 	for (int i = 0; i < lootCollection->count(); ++i) {
 		const LootGroupCollectionEntry* entry = lootCollection->get(i);
 		int lootChance = entry->getLootChance();
@@ -954,7 +1062,9 @@ bool LootManagerImplementation::createLootFromCollection(SceneObject* container,
 		if (lootChance <= 0)
 			continue;
 
-		int roll = System::random(10000000);
+		lootChance = applyGlobalItemLootChanceMultiplier(lootChance);
+
+		int roll = System::random(LOOT_CHANCE_MAX);
 
 		if (roll > lootChance)
 			continue;
@@ -976,7 +1086,7 @@ bool LootManagerImplementation::createLootFromCollection(SceneObject* container,
 			if (tempChance < roll)
 				continue;
 
-			createLoot(container, entry->getLootGroupName(), level);
+			createLoot(trx, container, entry->getLootGroupName(), level);
 
 			break;
 		}
@@ -985,7 +1095,7 @@ bool LootManagerImplementation::createLootFromCollection(SceneObject* container,
 	return true;
 }
 
-bool LootManagerImplementation::createLoot(SceneObject* container, const String& lootGroup, int level, bool maxCondition) {
+bool LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition) {
 	Reference<const LootGroupTemplate*> group = lootGroupMap->getLootGroupTemplate(lootGroup);
 
 	if (group == nullptr) {
@@ -1000,7 +1110,7 @@ bool LootManagerImplementation::createLoot(SceneObject* container, const String&
 
 	//Check to see if the group entry is another group
 	if (lootGroupMap->lootGroupExists(selection))
-		return createLoot(container, selection, level, maxCondition);
+		return createLoot(trx, container, selection, level, maxCondition);
 
 	//Entry wasn't another group, it should be a loot item
 	Reference<const LootItemTemplate*> itemTemplate = lootGroupMap->getLootItemTemplate(selection);
@@ -1026,7 +1136,7 @@ bool LootManagerImplementation::createLoot(SceneObject* container, const String&
 	return true;
 }
 
-bool LootManagerImplementation::createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize) {
+bool LootManagerImplementation::createLootSet(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize) {
 	Reference<const LootGroupTemplate*> group = lootGroupMap->getLootGroupTemplate(lootGroup);
 
 	if (group == nullptr) {

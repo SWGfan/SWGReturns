@@ -34,7 +34,7 @@ FlagGame::~FlagGame() {
 
 void FlagGame::initializeTransientMembers() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void FlagGame::initializeTransientMembers() {
 
 void FlagGame::notifyInsertToZone(Zone* zone) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void FlagGame::notifyInsertToZone(Zone* zone) {
 
 unsigned int FlagGame::getFlagTemplate(unsigned int faction) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ unsigned int FlagGame::getFlagTemplate(unsigned int faction) {
 
 void FlagGame::doVictoryEffects(unsigned int faction) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void FlagGame::doVictoryEffects(unsigned int faction) {
 
 void FlagGame::changeFlag(unsigned int faction) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void FlagGame::changeFlag(unsigned int faction) {
 
 void FlagGame::tryFlagChange(CreatureObject* player) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void FlagGame::tryFlagChange(CreatureObject* player) {
 
 void FlagGame::showScores(CreatureObject* player) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ void FlagGame::showScores(CreatureObject* player) {
 
 void FlagGame::removeCurFlag() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -153,7 +153,7 @@ void FlagGame::removeCurFlag() {
 
 bool FlagGame::canUseFlag(CreatureObject* player) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ bool FlagGame::canUseFlag(CreatureObject* player) {
 
 void FlagGame::startGame() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ void FlagGame::startGame() {
 
 void FlagGame::activateGamePulse() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ void FlagGame::activateGamePulse() {
 
 void FlagGame::endGame() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ void FlagGame::endGame() {
 
 void FlagGame::announceToPlayers(const String& message) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -228,7 +228,7 @@ void FlagGame::announceToPlayers(const String& message) {
 
 void FlagGame::destroyObjectFromWorld(bool sendSelfDestroy) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -243,7 +243,7 @@ void FlagGame::destroyObjectFromWorld(bool sendSelfDestroy) {
 
 void FlagGame::setTimeLimit(unsigned long long limit) {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -259,7 +259,7 @@ void FlagGame::setTimeLimit(unsigned long long limit) {
 
 unsigned long long FlagGame::getTimeLimit() const {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -273,7 +273,7 @@ unsigned long long FlagGame::getTimeLimit() const {
 
 bool FlagGame::isGameStarted() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -287,7 +287,7 @@ bool FlagGame::isGameStarted() {
 
 bool FlagGame::isGameEnded() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -301,7 +301,7 @@ bool FlagGame::isGameEnded() {
 
 void FlagGame::increaseRebelScore() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -316,7 +316,7 @@ void FlagGame::increaseRebelScore() {
 
 void FlagGame::increaseImperialScore() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +331,7 @@ void FlagGame::increaseImperialScore() {
 
 unsigned int FlagGame::getFactionControl() const {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -345,7 +345,7 @@ unsigned int FlagGame::getFactionControl() const {
 
 Time* FlagGame::getGameStartTime() {
 	FlagGameImplementation* _implementation = static_cast<FlagGameImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -386,7 +386,7 @@ void FlagGameImplementation::finalize() {
 void FlagGameImplementation::_initializeImplementation() {
 	_setClassHelper(FlagGameHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -642,9 +642,9 @@ FlagGameImplementation::FlagGameImplementation() {
 	// server/zone/objects/tangible/eventperk/FlagGame.idl():  		factionControl = 0;
 	factionControl = 0;
 	// server/zone/objects/tangible/eventperk/FlagGame.idl():  		owner = null;
-	owner = nullptr;
+	owner = NULL;
 	// server/zone/objects/tangible/eventperk/FlagGame.idl():  		curFlag = null;
-	curFlag = nullptr;
+	curFlag = NULL;
 }
 
 void FlagGameImplementation::setTimeLimit(unsigned long long limit) {

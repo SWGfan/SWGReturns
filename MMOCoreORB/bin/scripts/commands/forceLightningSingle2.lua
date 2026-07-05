@@ -43,83 +43,39 @@
 
 ForceLightningSingle2Command = {
 	name = "forcelightningsingle2",
-
-	minDamage = 1200,
-	maxDamage = 1800,
-	speed = 2.0,
-	forceCost = 125,
+  
+  minDamage = 1400,
+  maxDamage = 2250,
+  speed = 1.75,
+  forceCost = 60,
+  actionCostMultiplier = 1,
+  forceCostMultiplier = 1,
 	visMod = 25,
 	accuracySkillMod = "forcelightning_accuracy",
 
 	stateEffects = {
-		StateEffect(
-		BLIND_EFFECT, 
-
-		{}, 
-
-		{ "blind_defense" }, 
-
-		{ "jedi_state_defense", "resistance_states" },
-
-		85, 
-
-		0, 
-
-		60 
-
-	  ),
-
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		30 
-	  ),
-	  StateEffect( 
-		STUN_EFFECT, 
-	{}, 
-		{ "stun_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		60
-	)
-	},
+    StateEffect(
+    STUN_EFFECT,
+    {},
+    {},
+    { "jedi_state_defense" },
+    30,
+    0,
+    10
+    ),   
+  },
 
 	animation = "force_lightning_1_particle_level_3",
 	animType = GENERATE_INTENSITY,
+
 	combatSpam = "forcelightningsingle2",
 
-		dotEffects = {
-	  DotEffect( 
-		ONFIRE, 
-		{"resistance_fire", "fire_resist"},
-		HEALTH,
-		true,
-		0,
-		125,
-		200, 
-		60,
-		10,
-		2
-	  )
-	},
-	
-	
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	forceAttack = true,
-	damageType = LIGHTSABER_DAMAGE,
+	damageType = ELECTRICITY_DAMAGE,
 
-	frsLightMinDamageModifier = 5,
-	frsLightMaxDamageModifier = 10,
-	frsDarkMinDamageModifier = 10,
-	frsDarkMaxDamageModifier = 20,
-
-	range = 12
+	range = 32
 }
 
 AddCommand(ForceLightningSingle2Command)

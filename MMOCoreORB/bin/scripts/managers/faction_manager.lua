@@ -35,7 +35,8 @@ factionList = {
 	{ "fs_villager", true, "sith_shadow,sith_shadow_nonaggro", "", 0.0 },
 	{ "garyn", true, "restuss", "", 1.0 },
 	{ "gondula_tribe", true, "donkuwah_tribe,korga_tribe,pubam,endor_marauder,gorax", "panshee_tribe", 1.0 },
-	{ "gorax", true, "panshee_tribe,gondula_tribe", "", 1.0 },	{ "gungan", true, "borvo,plasma_thief,swamp_rat", "", 1.0 },
+	{ "gorax", true, "panshee_tribe,gondula_tribe", "", 1.0 },
+	{ "gungan", true, "borvo,plasma_thief,swamp_rat", "", 1.0 },
 	{ "hidden_daggers", true, "beldonnas_league,corsec,flail", "rogue_corsec", 1.0 },
 	{ "hutt", true, "naboo_security_force,narmle,nym,corsec,imperial", "jabba,borvo", 1.0 },
 	{ "jabba", true, "borvo,valarian", "hutt", 1.0 },
@@ -78,9 +79,4 @@ factionList = {
 	{ "trade_federation", true, "borvo,naboo_security_force", "", 1.0 },
 	{ "tusken_raider", true, "alkhara,jawa", "", 1.0 },
 	{ "valarian", true, "jabba", "", 1.0 },
-	{ "norulac_raiders", true, "", "", 1.0 },
-	{ "blackscale", true, "", "", 1.0 },
-	{ "halloween", true, "", "", 1.0 },
-	{ "exar", true, "", "", 1.0 },
-
 }

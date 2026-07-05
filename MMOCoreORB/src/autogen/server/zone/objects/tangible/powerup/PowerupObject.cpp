@@ -34,7 +34,7 @@ PowerupObject::~PowerupObject() {
 
 bool PowerupObject::isRanged() const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ bool PowerupObject::isRanged() const {
 
 bool PowerupObject::isMelee() const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ bool PowerupObject::isMelee() const {
 
 bool PowerupObject::isThrown() const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ bool PowerupObject::isThrown() const {
 
 bool PowerupObject::isMine() const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ bool PowerupObject::isMine() const {
 
 void PowerupObject::decreaseUses() {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void PowerupObject::decreaseUses() {
 
 int PowerupObject::getUses() const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -118,7 +118,7 @@ int PowerupObject::getUses() const {
 
 void PowerupObject::setUses(int i) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ void PowerupObject::setUses(int i) {
 
 void PowerupObject::setType(const String& t) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -148,7 +148,7 @@ void PowerupObject::setType(const String& t) {
 
 float PowerupObject::getPowerupStat(const String& stat) const {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ float PowerupObject::getPowerupStat(const String& stat) const {
 
 void PowerupObject::addPowerupStat(const String& attributeToMod, const String& name, const String& pupAttrib, float value) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void PowerupObject::addPowerupStat(const String& attributeToMod, const String& n
 
 void PowerupObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -191,7 +191,7 @@ void PowerupObject::fillAttributeList(AttributeListMessage* msg, CreatureObject*
 
 void PowerupObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -201,7 +201,7 @@ void PowerupObject::updateCraftingValues(CraftingValues* values, bool firstUpdat
 
 void PowerupObject::fillWeaponAttributeList(AttributeListMessage* alm, WeaponObject* weapon) {
 	PowerupObjectImplementation* _implementation = static_cast<PowerupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -242,7 +242,7 @@ void PowerupObjectImplementation::finalize() {
 void PowerupObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PowerupObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

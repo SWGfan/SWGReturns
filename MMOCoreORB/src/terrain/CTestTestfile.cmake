@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/swgadmin/Desktop/SWGGhosts/MMOCoreORB/src/terrain
-# Build directory: /home/swgadmin/Desktop/SWGGhosts/MMOCoreORB/src/terrain
+# Source directory: /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain
+# Build directory: /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

@@ -28,7 +28,7 @@ ChallengeVoteData::~ChallengeVoteData() {
 
 void ChallengeVoteData::addYesVote(unsigned long long playerID) {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -43,7 +43,7 @@ void ChallengeVoteData::addYesVote(unsigned long long playerID) {
 
 void ChallengeVoteData::addNoVote(unsigned long long playerID) {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void ChallengeVoteData::addNoVote(unsigned long long playerID) {
 
 int ChallengeVoteData::getTotalYesVotes() {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int ChallengeVoteData::getTotalYesVotes() {
 
 int ChallengeVoteData::getTotalNoVotes() {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ int ChallengeVoteData::getTotalNoVotes() {
 
 bool ChallengeVoteData::hasVoted(unsigned long long playerID) {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ bool ChallengeVoteData::hasVoted(unsigned long long playerID) {
 
 void ChallengeVoteData::updateChallengeVoteStart() {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ void ChallengeVoteData::updateChallengeVoteStart() {
 
 void ChallengeVoteData::setStatus(int newStatus) {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,7 +130,7 @@ void ChallengeVoteData::setStatus(int newStatus) {
 
 int ChallengeVoteData::getStatus() const {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +144,7 @@ int ChallengeVoteData::getStatus() const {
 
 int ChallengeVoteData::getPlayerRank() const {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ int ChallengeVoteData::getPlayerRank() const {
 
 unsigned long long ChallengeVoteData::getChallengerID() const {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -172,7 +172,7 @@ unsigned long long ChallengeVoteData::getChallengerID() const {
 
 unsigned long long ChallengeVoteData::getChallengeVoteStart() {
 	ChallengeVoteDataImplementation* _implementation = static_cast<ChallengeVoteDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ void ChallengeVoteDataImplementation::finalize() {
 void ChallengeVoteDataImplementation::_initializeImplementation() {
 	_setClassHelper(ChallengeVoteDataHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

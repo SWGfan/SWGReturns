@@ -279,3 +279,5 @@ includeFile("endor/wise_gondula_ritualist.lua")
 includeFile("endor/wise_jinda_ritualist.lua")
 includeFile("endor/wise_panshee_ritualist.lua")
 includeFile("endor/young_hanadak_rock_crusher.lua")
+includeFile("endor/frenzied_gorax.lua")
+

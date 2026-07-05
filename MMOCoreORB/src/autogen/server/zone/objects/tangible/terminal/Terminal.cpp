@@ -30,7 +30,7 @@ Terminal::~Terminal() {
 
 void Terminal::initializeTransientMembers() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void Terminal::initializeTransientMembers() {
 
 bool Terminal::isTerminal() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ bool Terminal::isTerminal() {
 
 bool Terminal::isGuildTerminal() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ bool Terminal::isGuildTerminal() {
 
 void Terminal::setControlledObject(SceneObject* obj) {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ void Terminal::setControlledObject(SceneObject* obj) {
 
 SceneObject* Terminal::getControlledObject() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ SceneObject* Terminal::getControlledObject() {
 
 bool Terminal::isElevatorTerminal() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ bool Terminal::isElevatorTerminal() {
 
 bool Terminal::isVendorTerminal() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ bool Terminal::isVendorTerminal() {
 
 bool Terminal::isBazaarTerminal() {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ bool Terminal::isBazaarTerminal() {
 
 void Terminal::initializeChildObject(SceneObject* controllerObject) {
 	TerminalImplementation* _implementation = static_cast<TerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +189,7 @@ void TerminalImplementation::finalize() {
 void TerminalImplementation::_initializeImplementation() {
 	_setClassHelper(TerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -315,7 +315,7 @@ TerminalImplementation::TerminalImplementation() {
 	// server/zone/objects/tangible/terminal/Terminal.idl():  		Logger.setLoggingName("Terminal");
 	Logger::setLoggingName("Terminal");
 	// server/zone/objects/tangible/terminal/Terminal.idl():  		controlledObject = null;
-	controlledObject = nullptr;
+	controlledObject = NULL;
 }
 
 bool TerminalImplementation::isTerminal() {
@@ -406,7 +406,7 @@ void TerminalAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getControlledObject();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISELEVATORTERMINAL__:

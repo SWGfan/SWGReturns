@@ -57,7 +57,7 @@ void FighterShipObjectImplementation::finalize() {
 void FighterShipObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FighterShipObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

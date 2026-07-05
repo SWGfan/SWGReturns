@@ -47,6 +47,7 @@ import system.thread.Mutex;
 include engine.util.JSONSerializationType;
 import server.zone.objects.player.events.OnlinePlayerLogTask;
 import system.lang.Time;
+include server.zone.managers.player.PlayerNameIterator;
 
 @dirty
 class PlayerManager extends Observer implements Logger {
@@ -66,8 +67,8 @@ class PlayerManager extends Observer implements Logger {
 
 	@weakReference
 	protected transient OnlinePlayerLogTask onlinePlayerLogTask;
-	protected transient int onlinePlayerLogSum;
-	protected transient boolean onlinePlayersLogOnSessionChange;
+	protected transient int onlinePlayerLogSum = 0;
+	protected transient boolean onlinePlayersLogOnSessionChange = false;
 
 	@dereferenced
 	protected transient Time lastOnlinePlayerLogMsg;
@@ -102,15 +103,6 @@ class PlayerManager extends Observer implements Logger {
 	transient CharacterNameMap nameMap;
 	private float globalExpMultiplier;
 	private float groupExpMultiplier;
-	private float craftingExpMultiplier = 1;
-	private float entertainingExpMultiplier = 1;
-	private float scoutExpMultiplier = 1;
-	private float shipwrightExpMultiplier = 1;
-	private float bioEngineerExpMultiplier = 1;
-	private float jediExpMultiplier = 1;
-	private float imagedesignExpMultiplier = 1;
-	private float slicingExpMultiplier = 1;
-	private float medicExpMultiplier = 1;
 
 	@dereferenced
 	private transient ReadWriteLock onlineMapMutex;
@@ -120,6 +112,9 @@ class PlayerManager extends Observer implements Logger {
 
 	@dereferenced
 	protected transient Vector<Reference<QuestInfo> > questInfo;
+	
+	@dereferenced
+	protected transient VectorMap<unsigned int, string> questCrcTable;
 
 	@dereferenced
 	private transient OnlineZoneClientMap onlineZoneClientMap;
@@ -131,6 +126,7 @@ class PlayerManager extends Observer implements Logger {
 	private native void loadStartingLocations();
 	private native void loadPermissionLevels();
 	private native void loadQuestInfo();
+	private native void loadQuestCrcTable();
 
 	public native void finalize();
 
@@ -157,7 +153,7 @@ class PlayerManager extends Observer implements Logger {
 	@local
 	public native boolean checkPlayerName(ClientCreateCharacterCallback callback);
 
-	public native string setFirstName(CreatureObject creature, final string newFirstName);
+	public native string setFirstName(CreatureObject creature, final string newFirstName, boolean skipVerify = false);
 
 	public native string setLastName(CreatureObject creature, final string newLastName, boolean skipVerify = false);
 
@@ -201,9 +197,6 @@ class PlayerManager extends Observer implements Logger {
 
 	public native void setExperienceMultiplier(float globalMultiplier);
 	public native int awardExperience(CreatureObject player, final string xpType, int amount, boolean sendSystemMessage = true, float localMultiplier = 1.0f, boolean applyModifiers = true);
-	public native void frsSkillCheck(CreatureObject player, final string skill, final string skillParent);
-	public native void gcwSkillCheck(CreatureObject player, final string skill, final string skillParent);
-	public native void bhgSkillCheck(CreatureObject player, final string skill, final string skillParent);
 
 	@local @dereferenced
 	public native SortedVector<SceneObject> getInsurableItems(CreatureObject player, boolean onlyInsurable = true);
@@ -532,7 +525,7 @@ class PlayerManager extends Observer implements Logger {
 	 * @post { player is locked }
 	 */
 	public native void enhanceCharacter(CreatureObject player);
-
+	public native void enhanceCharacterFrog(CreatureObject player);	
 	/**
 	 * Creates and adds buff to Player
 	 * @pre { player is locked }
@@ -540,7 +533,7 @@ class PlayerManager extends Observer implements Logger {
 	 * @returns true if it was added
 	 * @param crc CRC of the buff, player target of buff, amount is the attribute modifier for the buff, duration of the buff, buffType specifies whether medical or performance and attribute sets the creature attribute to modify
 	 */
-	public native boolean doEnhanceCharacter(unsigned int crc, CreatureObject player, int amount, int duration, int buffType, byte attribute);
+	private native boolean doEnhanceCharacter(unsigned int crc, CreatureObject player, int amount, int duration, int buffType, byte attribute);
 
 	public int getBaseStoredCreaturePets() {
 		return baseStoredCreaturePets;
@@ -583,11 +576,15 @@ class PlayerManager extends Observer implements Logger {
 		onlineCharactersPerAccount = count;
 	}
 
+	public int getOnlineCharactersPerAccount() {
+	    return onlineCharactersPerAccount;
+	}
+
 	@local
 	@arg1preLocked
 	public native void doPvpDeathRatingUpdate(CreatureObject player, ThreatMap threatMap);
-	public native void updatePvPKillCount(CreatureObject player);
 	public native void offerPlayerBounty(CreatureObject attacker, CreatureObject defender);
+
 	private native void loadXpBonusList();
 	public native float getSpeciesXpModifier(final string species, final string xpType);
 
@@ -609,4 +606,7 @@ class PlayerManager extends Observer implements Logger {
 	}
 
 	public native void stopOnlinePlayerLogTask();
+
+	@local
+	public native void iteratePlayerNames(@dereferenced final PlayerNameIterator iterator);
 }

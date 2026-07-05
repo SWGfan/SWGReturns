@@ -2,6 +2,7 @@ singing_mountain_clan_rancor = Creature:new {
 	objectName = "@mob/creature_names:singing_mountain_clan_rancor",
 	socialGroup = "mtn_clan",
 	faction = "mtn_clan",
+	mobType = MOB_CARNIVORE,
 	level = 55,
 	chanceHit = 0.5,
 	damageMin = 370,
@@ -10,7 +11,7 @@ singing_mountain_clan_rancor = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 13000,
 	armor = 1,
-	resists = {130,160,5,200,200,200,5,5,-1},
+	resists = {30,60,5,20,20,20,5,5,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 620,
 	hideType = "hide_leathery",
@@ -18,7 +19,7 @@ singing_mountain_clan_rancor = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 480,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 10,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + STALKER,
@@ -31,35 +32,25 @@ singing_mountain_clan_rancor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 10000000},
+				{group = "rancor_common", chance = 4000000},
+				{group = "armor_all", chance = 2000000},
+				{group = "weapons_all", chance = 2500000},
+				{group = "wearables_all", chance = 1500000}
 			},
-			lootChance = 4000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "loot_kit_parts", chance = 10000000},
-			},
-			lootChance = 2500000
-		},
-		{
-			groups = {
-				{group = "tailor_components", chance = 10000000},
-			},
-			lootChance = 1500000
-		},
+			lootChance = 2100000
+		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"",""},
-		{"intimidationattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"",""}, {"intimidationattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(singing_mountain_clan_rancor, "singing_mountain_clan_rancor")

@@ -34,7 +34,7 @@ BadgeActiveArea::~BadgeActiveArea() {
 
 void BadgeActiveArea::notifyEnter(SceneObject* player) {
 	BadgeActiveAreaImplementation* _implementation = static_cast<BadgeActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ void BadgeActiveArea::notifyEnter(SceneObject* player) {
 
 void BadgeActiveArea::setBadge(unsigned int a) {
 	BadgeActiveAreaImplementation* _implementation = static_cast<BadgeActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ void BadgeActiveArea::setBadge(unsigned int a) {
 
 unsigned int BadgeActiveArea::getBadge() const {
 	BadgeActiveAreaImplementation* _implementation = static_cast<BadgeActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ void BadgeActiveAreaImplementation::finalize() {
 void BadgeActiveAreaImplementation::_initializeImplementation() {
 	_setClassHelper(BadgeActiveAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

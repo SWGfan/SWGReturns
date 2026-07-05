@@ -57,13 +57,13 @@ namespace characterbuilderbox {
 
 class SuiCharacterBuilderBox : public SuiListBox {
 public:
-	SuiCharacterBuilderBox(CreatureObject* player, CharacterBuilderMenuNode* root);
+	SuiCharacterBuilderBox(CreatureObject* player, const CharacterBuilderMenuNode* root);
 
 	BaseMessage* generateMessage();
 
-	CharacterBuilderMenuNode* getCurrentNode();
+	const CharacterBuilderMenuNode* getCurrentNode();
 
-	void setCurrentNode(CharacterBuilderMenuNode* node);
+	void setCurrentNode(const CharacterBuilderMenuNode* node);
 
 	bool isCharacterBuilderBox();
 
@@ -98,20 +98,20 @@ namespace characterbuilderbox {
 
 class SuiCharacterBuilderBoxImplementation : public SuiListBoxImplementation {
 protected:
-	Reference<CharacterBuilderMenuNode* > rootNode;
+	Reference<const CharacterBuilderMenuNode* > rootNode;
 
-	Reference<CharacterBuilderMenuNode* > currentNode;
+	Reference<const CharacterBuilderMenuNode* > currentNode;
 
 public:
-	SuiCharacterBuilderBoxImplementation(CreatureObject* player, CharacterBuilderMenuNode* root);
+	SuiCharacterBuilderBoxImplementation(CreatureObject* player, const CharacterBuilderMenuNode* root);
 
 	SuiCharacterBuilderBoxImplementation(DummyConstructorParameter* param);
 
 	BaseMessage* generateMessage();
 
-	CharacterBuilderMenuNode* getCurrentNode();
+	const CharacterBuilderMenuNode* getCurrentNode();
 
-	void setCurrentNode(CharacterBuilderMenuNode* node);
+	void setCurrentNode(const CharacterBuilderMenuNode* node);
 
 	bool isCharacterBuilderBox();
 

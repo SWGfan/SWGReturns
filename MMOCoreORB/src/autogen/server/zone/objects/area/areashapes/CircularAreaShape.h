@@ -49,13 +49,13 @@ public:
 	 * Get the radius of the circle.
 	 * @return radius of the circle
 	 */
-	float getRadius();
+	float getRadius() const;
 
 	/**
 	 * Get the squared radius of the circle.
 	 * @return squared radius of the circle
 	 */
-	float getRadius2();
+	float getRadius2() const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
@@ -63,20 +63,20 @@ public:
 	 * @param y the y coordinate.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
 	 * @param point the point to check if it is within the area shape.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	bool containsPoint(const Vector3& point);
+	bool containsPoint(const Vector3& point) const;
 
 	/**
 	 * Generate a random position within the area.
 	 * @return a random position within the area.
 	 */
-	Vector3 getRandomPosition();
+	Vector3 getRandomPosition() const;
 
 	/**
 	 * Generate a random position within the area with the supplied origin and radius as limits.
@@ -85,26 +85,26 @@ public:
 	 * @param maxDistance the maximum distance from the origin.
 	 * @return a random position within the area.
 	 */
-	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance);
+	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const;
 
 	/**
 	 * Check if this is a circular area shape.
 	 * @return true if it is a circular area shape.
 	 */
-	bool isCircularAreaShape();
+	bool isCircularAreaShape() const;
 
 	/**
 	 * Check if this area shape intersects with the supplied area shape.
 	 * @param areaShape the area shape to check for intersections with.s
 	 * @return true if the area shapes intersects each other.
 	 */
-	bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
 	/**
 	 * Get the area of the areaShape.
 	 * @return the area of the area shape.
 	 */
-	float getArea();
+	float getArea() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -156,13 +156,13 @@ public:
 	 * Get the radius of the circle.
 	 * @return radius of the circle
 	 */
-	virtual float getRadius();
+	float getRadius() const;
 
 	/**
 	 * Get the squared radius of the circle.
 	 * @return squared radius of the circle
 	 */
-	float getRadius2();
+	float getRadius2() const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
@@ -170,20 +170,20 @@ public:
 	 * @param y the y coordinate.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	virtual bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
 	 * @param point the point to check if it is within the area shape.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	virtual bool containsPoint(const Vector3& point);
+	bool containsPoint(const Vector3& point) const;
 
 	/**
 	 * Generate a random position within the area.
 	 * @return a random position within the area.
 	 */
-	virtual Vector3 getRandomPosition();
+	Vector3 getRandomPosition() const;
 
 	/**
 	 * Generate a random position within the area with the supplied origin and radius as limits.
@@ -192,20 +192,20 @@ public:
 	 * @param maxDistance the maximum distance from the origin.
 	 * @return a random position within the area.
 	 */
-	virtual Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance);
+	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const;
 
 	/**
 	 * Check if this is a circular area shape.
 	 * @return true if it is a circular area shape.
 	 */
-	virtual bool isCircularAreaShape();
+	bool isCircularAreaShape() const;
 
 	/**
 	 * Check if this area shape intersects with the supplied area shape.
 	 * @param areaShape the area shape to check for intersections with.s
 	 * @return true if the area shapes intersects each other.
 	 */
-	virtual bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
 private:
 	/**
@@ -213,14 +213,14 @@ private:
 	 * @param circle the circular area shape to check for intersections with.
 	 * @return true if the circles intersect with each other.
 	 */
-	bool intersectsWithCircle(CircularAreaShape* circle);
+	bool intersectsWithCircle(CircularAreaShape* circle) const;
 
 public:
 	/**
 	 * Get the area of the areaShape.
 	 * @return the area of the area shape.
 	 */
-	virtual float getArea();
+	float getArea() const;
 
 	WeakReference<CircularAreaShape*> _this;
 
@@ -267,17 +267,17 @@ public:
 
 	void setRadius(float r);
 
-	float getRadius();
+	float getRadius() const;
 
-	float getRadius2();
+	float getRadius2() const;
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
-	bool isCircularAreaShape();
+	bool isCircularAreaShape() const;
 
-	bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
-	float getArea();
+	float getArea() const;
 
 };
 

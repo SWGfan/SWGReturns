@@ -2,6 +2,7 @@ glutted_fynock_queen = Creature:new {
 	objectName = "@mob/creature_names:glutted_fynock_queen",
 	socialGroup = "fynock",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 14,
 	chanceHit = 0.3,
 	damageMin = 150,
@@ -12,14 +13,13 @@ glutted_fynock_queen = Creature:new {
 	armor = 0,
 	resists = {0,0,0,0,0,0,0,-1,-1},
 	meatType = "meat_avian",
-	meatAmount = 30,
+	meatAmount = 150,
 	hideType = "hide_leathery",
-	hideAmount = 25,
+	hideAmount = 150,
 	boneType = "bone_avian",
-	boneAmount = 20,
-	milkType = "milk_wild",
-	milk = 400,
-	tamingChance = 0.25,
+	boneAmount = 150,
+	milk = 0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -30,11 +30,17 @@ glutted_fynock_queen = Creature:new {
 	hues = { 16, 17, 18, 19, 20, 21, 22, 23 },
 	scale = 1.25,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"intimidationattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"intimidationattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(glutted_fynock_queen, "glutted_fynock_queen")

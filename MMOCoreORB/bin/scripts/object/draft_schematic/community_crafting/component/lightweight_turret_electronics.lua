@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_lightweight_turret_electroni
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_lightweight_turret_electroni
 	ingredientTitleNames = {"rudic", "ardanium_ii", "refactor"},
 	ingredientSlotType = {2, 2, 3},
 	resourceTypes = {"object/tangible/loot/quest/shared_rudic.iff", "object/tangible/loot/quest/shared_ardanium_ii.iff", "object/tangible/component/structure/shared_lightweight_turret_electronics.iff"},
-	resourceQuantities = {1, 1, 1},
+	resourceQuantities = {5, 10, 1},
 	contribution = {100, 100, 20},
 
 	targetTemplate = "object/tangible/component/structure/lightweight_turret_electronics.iff",

@@ -44,10 +44,9 @@
 ForceKnockdown3Command = {
 	name = "forceknockdown3",
 
-	minDamage = 1200,
-	maxDamage = 2000,
-	speed = 2.0,
-	forceCost = 200,
+    damageMultiplier = 0,
+	speed = 1.0,
+	forceCost = 75,
 	visMod = 25,
 	accuracySkillMod = "forceknockdown_accuracy",
 	areaAction = true,
@@ -57,9 +56,9 @@ ForceKnockdown3Command = {
 	  StateEffect(
 		KNOCKDOWN_EFFECT,
 		{ "knockdownRecovery", "lastKnockdown" },
+		{ "force_defense" },
 		{},
-		{},
-		95,
+		90,
 		0,
 		0
 	  )
@@ -68,19 +67,12 @@ ForceKnockdown3Command = {
 	animation = "force_knockdown_1_arc_particle_level_1",
 
 	combatSpam = "forceknockdown3",
-  
-  poolsToDamage = RANDOM_ATTRIBUTE,
+
+	poolsToDamage = NO_ATTRIBUTE,
 
 	forceAttack = true,
-	damageType = LIGHTSABER_DAMAGE,
 
-	frsLightMinDamageModifier = 2,
-	frsLightMaxDamageModifier = 4,
-	frsDarkMinDamageModifier = 2,
-	frsDarkMaxDamageModifier = 4,
-
-
-	range = 12
+	range = 32
 }
 
 AddCommand(ForceKnockdown3Command)

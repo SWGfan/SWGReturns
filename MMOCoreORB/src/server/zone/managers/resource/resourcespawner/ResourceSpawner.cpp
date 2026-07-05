@@ -12,7 +12,6 @@
 #include "server/zone/packets/resource/ResourceListForSurveyMessage.h"
 #include "server/zone/packets/resource/SurveyMessage.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
-#include "server/chat/ChatManager.h"
 #include "server/zone/objects/waypoint/WaypointObject.h"
 #include "templates/params/ObserverEventType.h"
 #include "server/zone/packets/scene/PlayClientEffectLocMessage.h"
@@ -20,7 +19,6 @@
 #include "server/zone/objects/player/sui/listbox/SuiListBox.h"
 #include "server/zone/objects/player/sessions/survey/SurveySession.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
-#include "engine/log/Logger.h"
 
 ResourceSpawner::ResourceSpawner(ManagedReference<ZoneServer*> serv,
 		ZoneProcessServer* impl) {
@@ -312,20 +310,9 @@ bool ResourceSpawner::writeAllSpawnsToScript() {
 
 		writer->writeLine("resources = {");
 
-		uint64 currTime = System::getTime();
-		uint64 despawned = 0;
-
 		for(int i = 0; i < resourceMap->size(); ++i) {
 
 			ManagedReference<ResourceSpawn*> spawn = resourceMap->get(i);
-
-			despawned = spawn->getDespawned();
-
-			String inSpawn = "0";
-			if(despawned > currTime)
-			{
-				inSpawn = "1";
-			}
 
 			writer->writeLine("	{");
 
@@ -353,7 +340,6 @@ bool ResourceSpawner::writeAllSpawnsToScript() {
 
 			writer->writeLine("		},");
 
-			writer->writeLine("		inSpawn = \"" + inSpawn + "\",");
 			writer->writeLine("		zoneRestriction = \"" + spawn->getZoneRestriction() + "\",");
 			writer->writeLine("		surveyToolType = " + String::valueOf(spawn->getSurveyToolType()) + ",");
 			writer->writeLine("		containerCRC = " + String::valueOf(spawn->getContainerCRC()) + ",");
@@ -368,7 +354,6 @@ bool ResourceSpawner::writeAllSpawnsToScript() {
 
 		delete file;
 		delete writer;
-		dumpToJSON();
 
 		return true;
 	} catch (Exception& e) {
@@ -379,12 +364,11 @@ bool ResourceSpawner::writeAllSpawnsToScript() {
 	return true;
 }
 
-// CESTAS DUMP CODE
 bool ResourceSpawner::ghDumpAll() {
 	/* This is custom code written to export resources in a way that an additional script can easily push them to Galaxy Harvester -c0pp3r */
 	if(!scriptLoading)
 		return false;
-	planets =  new Vector<String> ();
+	Vector<String> *planets =  new Vector<String> ();
 	planets->add("corellia");
 	planets->add("dantooine");
 	planets->add("dathomir");
@@ -395,6 +379,12 @@ bool ResourceSpawner::ghDumpAll() {
 	planets->add("talus");
 	planets->add("tatooine");
 	planets->add("yavin4");
+	planets->add("chandrila");
+	planets->add("kaas");
+	planets->add("florrum");
+	planets->add("moraband");
+	planets->add("lothal");
+	planets->add("hutta");
 	//String planets = "corellia";
 
 	try {
@@ -425,49 +415,72 @@ bool ResourceSpawner::ghDumpAll() {
 				for(int j = 0; j < planets->size(); ++j){
 					ZoneResourceMap* zoneMap = resourceMap->getZoneResourceList(planets->get(j));
 					ManagedReference<ResourceSpawn*> resourceSpawn;
-
-					for (int b = 0; b< zoneMap->size(); ++b) {
-						resourceSpawn = zoneMap->get(b);
-						if (spawn->getName() == resourceSpawn->getName()){
-							ghwriter->writeLine("<resource>");
-
-							ghwriter->write("<SpawnName>");
-							ghwriter->write(spawn->getName());
-							ghwriter->writeLine("</SpawnName>");
-							ghwriter->write("<resType>");
-							for(int i = 0; i < 8; ++i) {
-								String spawnClass = spawn->getClass(i);
-								if(spawnClass != "") {
-									last = i;
-									String spawnClass2 = spawn->getStfClass(i);
+					if (zoneMap != nullptr) {
+						for (int b = 0; b< zoneMap->size(); ++b) {
+							resourceSpawn = zoneMap->get(b);
+							if (spawn->getName() == resourceSpawn->getName()){
+								ghwriter->writeLine("<resource>");
+								
+								ghwriter->write("<SpawnName>");
+								ghwriter->write(spawn->getName());
+								ghwriter->writeLine("</SpawnName>");
+								ghwriter->write("<resType>");
+								for(int i = 0; i < 8; ++i) {
+									String spawnClass = spawn->getClass(i);
+									if(spawnClass != "") {
+										last = i;
+										String spawnClass2 = spawn->getStfClass(i);
+									}
 								}
-							}
-							ghwriter->write(spawn->getStfClass(last));
-							ghwriter->writeLine("</resType>");
-							//ghwriter->writeLine("<attributes>");
-							for(int i = 0; i < 12; ++i) {
-								String attribute = "";
-								int value = spawn->getAttributeAndValue(attribute, i);
-								if(attribute != "") {
-									ghwriter->writeLine("<attribute name=\"" + attribute + "\">" + String::valueOf(value) + "</attribute>");
+								ghwriter->write(spawn->getStfClass(last));
+								ghwriter->writeLine("</resType>");
+								//ghwriter->writeLine("<attributes>");
+								for(int i = 0; i < 12; ++i) {
+									String attribute = "";
+									int value = spawn->getAttributeAndValue(attribute, i);
+									if(attribute != "") {
+										ghwriter->writeLine("<attribute name=\"" + attribute + "\">" + String::valueOf(value) + "</attribute>");
+									}
 								}
+								//ghwriter->writeLine("</attributes>");
+								ghwriter->write("<planet>");
+								ghwriter->write(planets->get(j));
+								ghwriter->writeLine("</planet>");
+								ghwriter->writeLine("</resource>");
+								ghwriter->writeLine("");
 							}
-							//ghwriter->writeLine("</attributes>");
-							ghwriter->write("<planet>");
-							ghwriter->write(planets->get(j));
-							ghwriter->writeLine("</planet>");
-							ghwriter->writeLine("</resource>");
-							ghwriter->writeLine("");
 						}
 					}
 				}
-
+				/*ZoneResourceMap* zoneMap = resourceMap->getZoneResourceList(planets);
+				ManagedReference<ResourceSpawn*> resourceSpawn;
+				for (int i = 0; i < zoneMap->size(); ++i) {
+					resourceSpawn = zoneMap->get(i);
+					if (spawn->getName() == resourceSpawn->getName())
+						ghwriter->write(planets + ",");
+				}
+				for(int i = 0; i < 8; ++i) {
+				String spawnClass = spawn->getClass(i);
+				if(spawnClass != "") {
+					last = i;
+				}
 			}
-
+				
+				ghwriter->write(spawn->getClass(last));
+				for(int i = 0; i < 12; ++i) {
+					String attribute = "";
+					int value = spawn->getAttributeAndValue(attribute, i);
+					if(attribute != "") {
+						ghwriter->write("," + attribute + ":" + String::valueOf(value));
+					}
+				}*/
+				
+			}
+			
 		}
 		ghwriter->writeLine("</SpawnOutput>");
 		ghwriter->close();
-
+		int runGHScript = system("python3 bin/scripts/managers/gh_push.py &");
 		delete ghwriter;
 
 		return true;
@@ -476,110 +489,7 @@ bool ResourceSpawner::ghDumpAll() {
 		return false;
 	}
 	return true;
-} // END CESTAS DUMP CODE
-
-// TOXIC Original JSON DUMP
-void ResourceSpawner::dumpToJSON(){
-	
-	try {
-		File* file2 = new File("scripts/managers/Current_spawns_Dump.json");
-		//if(!file->exists()) {
-		//	delete file;
-		//	return;
-		//}
-	
-		FileWriter* writer2 = new FileWriter(file2);
-	
-		writer2->writeLine("{");
-		writer2->writeLine("\"resources\":[");
-		bool first = true;
-		for(int i = 0; i < resourceMap->size(); ++i) {
-	
-			ManagedReference<ResourceSpawn*> spawn = resourceMap->get(i);
-	
-			uint64 despawned = spawn->getDespawned();
-			uint64 currTime = System::getTime();
-	
-			int diff = 0;
-			int inPhase = 0;
-			if(despawned > currTime) {
-				diff = despawned - currTime;
-			} else {
-				diff = currTime - despawned;
-			}
-			if(despawned > currTime) {
-				inPhase = 1;
-			}
-			if(i != 0 && !first && inPhase==1){
-				writer2->writeLine(",");
-			}
-			
-			if(inPhase==1 && first){
-				first = false;
-			}
-			if(inPhase==1){
-			writer2->writeLine("	{");
-	
-			writer2->writeLine("\"name\": \"" + spawn->getName() + "\",");
-			writer2->writeLine("\"type\": \"" + spawn->getType() + "\",");
-	
-			writer2->writeLine("\"classes\": {");
-			for(int i = 0; i < 8; ++i) {
-				
-				String spawnClass = spawn->getClass(i);
-				if(spawnClass != "") {
-					if(i != 0){
-						writer2->writeLine(",");
-					}
-					String spawnClass2 = spawn->getStfClass(i);
-					writer2->writeLine("\"" + spawnClass + "\": \"" + spawnClass2 + "\"");
-				}
-			}
-			writer2->writeLine("		},");
-	
-			writer2->writeLine("\"attributes\": {");
-			for(int i = 0; i < 12; ++i) {
-				
-				String attribute = "";
-				int value = spawn->getAttributeAndValue(attribute, i);
-				if(attribute != "") {
-					if(i != 0){
-						writer2->writeLine(",");
-					}
-	
-					writer2->writeLine("\"" + attribute + "\": \"" + String::valueOf(value) + "\"");
-				}
-			}
-			writer2->writeLine("		},");
-			writer2->writeLine("\"deSpawnTime\" : \"" + String::valueOf(spawn->getDespawned()) + "\",");
-			writer2->writeLine("\"planet\" : [" );
-				for(int i = 0; i < 9; ++i) {
-					if(i!=0 && spawn->getSpawnMapZone(i) != ""){
-						writer2->writeLine(",");
-					}
-					if(spawn->getSpawnMapZone(i) != ""){
-						writer2->writeLine("\""+spawn->getSpawnMapZone(i)+"\"");
-					}
-				}
-			writer2->writeLine("],");
-			writer2->writeLine("\"zoneRestriction\": \"" + spawn->getZoneRestriction() + "\"");
-			writer2->writeLine("	}");
-			}
-		}
-	
-		writer2->writeLine("]");
-		writer2->writeLine("}");
-	
-		writer2->close();
-	
-		delete file2;
-		delete writer2;
-	
-	} catch (Exception& e) {
-		error("Error dumping resources to JSON");
-	}
 }
-
 
 void ResourceSpawner::shiftResources() {
 	randomPool->update();
@@ -589,7 +499,6 @@ void ResourceSpawner::shiftResources() {
 	manualPool->update();
 
 	dumpResources();
-	ghDumpAll();
 }
 
 ResourceSpawn* ResourceSpawner::createRecycledResourceSpawn(const ResourceTreeEntry* entry) const {
@@ -738,54 +647,10 @@ ResourceSpawn* ResourceSpawner::createResourceSpawn(const String& type,
 		newSpawn->addStfClass(resClass);
 	}
 
-	int rndSuccess = 9800; // 2% base chance
-	int rndRoll = 10000;
-
-	// Reduce organic chance
-	if (type.contains("bone_") ||
-			type.contains("corn_") ||
-			type.contains("fruit_") ||
-			type.contains("hide_") ||
-			type.contains("meat_") ||
-			type.contains("milk_") ||
-			type.contains("oats_") ||
-			type.contains("rice_") ||
-			type.contains("seafood_") ||
-			type.contains("softwood_") ||
-			type.contains("vegetable_") ||
-			type.contains("water_") ||
-			type.contains("wheat_") ||
-			type.contains("wood_"))
-	{
-		rndSuccess = 9950; // 0.5% chance
-	}
-
-	bool isPerfect = (System::random(rndRoll) >= rndSuccess);
-
-	if (isPerfect)
-	{
-		newSpawn->setIsPerfectSpawn(true);
-	}
-
 	for (int i = 0; i < resourceEntry->getAttributeCount(); ++i) {
 		auto attrib = resourceEntry->getAttribute(i);
-		int randomValue = 0;
-
-		if (isPerfect) // Perfect spawn
-		{
-			randomValue = attrib->getMaximum(); // All stats maximum
-		}
-		else // Normal random spawn
-		{
-			int rMin = (attrib->getMaximum() > 0 ? (attrib->getMaximum() - (attrib->getMaximum() * 0.3)) : (attrib->getMaximum())); // min = 70% of possible max
-			if (rMin < attrib->getMinimum()) // Sometimes 70% of max is lower than min -- Thanks Fizlander :)
-			{
-				rMin = attrib->getMinimum();
-			}
-
-			randomValue = randomizeValue(rMin, attrib->getMaximum());
-		}
-
+		int randomValue = randomizeValue(attrib->getMinimum(),
+				attrib->getMaximum());
 		String attribName = attrib->getName();
 		int index = attrib->getIndex();
 		newSpawn->addAttribute(attribName, randomValue);
@@ -811,33 +676,6 @@ ResourceSpawn* ResourceSpawner::createResourceSpawn(const String& type,
 		newSpawn->setIsEnergy(true);
 
 	resourceMap->add(name, newSpawn);
-	
-	if (isPerfect)
-	{
-		StringBuffer msg;
-		StringBuffer resources;
-
-		if (newSpawn->getZoneRestriction().length() > 1)
-			msg << "\\#ffffffA new \\#00e600PERFECT\\#ffffff Spawn Of " + newSpawn->getFamilyName() + ", " + name + ", Has Spawned On " + newSpawn->getZoneRestriction() + ".";
-		else
-			msg << "\\#ffffffA new \\#00e600PERFECT\\#ffffff  Spawn Of " + newSpawn->getFamilyName() + ", " + name + ", Has Spawned.";
-		ChatManager* chatManager = processor->getZoneServer()->getChatManager();
-		chatManager->broadcastGalaxy(nullptr, msg.toString());
-	}
-
-	if (isPerfect)
-	{
-		StringBuffer resources;
-
-		if (newSpawn->getZoneRestriction().length() > 1)
-
-			resources << "A New Perfect  Spawn Of " + newSpawn->getFamilyName() + ", " + name + ", Has Spawned On " + newSpawn->getZoneRestriction() + ".";
-		else
-			resources << "A New Perfect  Spawn Of " + newSpawn->getFamilyName() + ", " + name + ", Has Spawned.";
-
-		ChatManager* chatManager = processor->getZoneServer()->getChatManager();
-		chatManager->handleGeneralResourceChat(nullptr, resources.toString());
-	}
 
 	//resourceEntry->toString();
 	//newSpawn->print();
@@ -886,10 +724,10 @@ String ResourceSpawner::makeResourceName(const String& randomNameClass) {
 
 int ResourceSpawner::randomizeValue(int min, int max) {
 	if (min == 0 && max == 0)
-		return 0;
+		return 1000;
 
-	if (min > lowerGateOverride)
-		min = lowerGateOverride;
+	if (min < lowerGateOverride)
+		min = Math::min(lowerGateOverride, max);
 
 	int randomStat = System::random(max - min) + min;
 
@@ -943,20 +781,6 @@ bool ResourceSpawner::isRecycledResource(const ResourceSpawn* resource) const {
 		return false;
 
 	return entry->isRecycled();
-}
-
-ResourceSpawn* ResourceSpawner::getRecycledResourceSpawnByType(const String& resourceType) const {
-
-	const ResourceTreeEntry* recycledEntry = nullptr;
-	ManagedReference<ResourceSpawn*> recycledVersion = nullptr;
-	recycledEntry = resourceTree->getEntry(resourceType);
-	if (resourceMap->containsType(recycledEntry->getFinalClass())) {
-		recycledVersion = resourceMap->get(recycledEntry->getFinalClass().toLowerCase());
-	} else {
-		recycledVersion = createRecycledResourceSpawn(recycledEntry);
-	}
-
-	return recycledVersion;
 }
 
 ResourceSpawn* ResourceSpawner::getRecycledVersion(const ResourceSpawn* resource) const {
@@ -1131,10 +955,8 @@ void ResourceSpawner::sendSurvey(CreatureObject* player, const String& resname) 
 	int toolRange = surveyTool->getRange(player);
 	int points = surveyTool->getPoints();
 
-	if (toolRange > 4098)
-		toolRange = 4098;
-	else if (toolRange < 0)
-		toolRange = 64;
+	if (toolRange > 1024 || toolRange < 0)
+		toolRange = 320;
 
 	if (points <= 0 || points > 6)
 		points =  3;
@@ -1239,24 +1061,29 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 	session->rescheduleSample();
 }
 
-void ResourceSpawner::sendSampleResults(CreatureObject* player, const float density, const String& resname) const {
+void ResourceSpawner::sendSampleResults(TransactionLog& trx, CreatureObject* player, const float density, const String& resname) const {
 
 	ManagedReference<SurveySession*> session = player->getActiveSession(SessionFacadeType::SURVEY).castTo<SurveySession*>();
 
 	if(session == nullptr) {
+		trx.abort() << "Missing active survey session";
 		return;
 	}
 
 	ManagedReference<SurveyTool*> surveyTool = session->getActiveSurveyTool().get();
 	PlayerObject* ghost = player->getPlayerObject();
 
-	if (surveyTool == nullptr || player->getZone() == nullptr)
+	if (surveyTool == nullptr) {
+		trx.abort() << "Missing survey tool.";
 		return;
+	}
 
 	Zone* zne = player->getZone();
 
-	if (zne == nullptr)
+	if (zne == nullptr) {
+		trx.abort() << "Player zone nullptr";
 		return;
+	}
 
 	String zoneName = zne->getZoneName();
 
@@ -1266,6 +1093,7 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 		message.setTO(resname);
 		player->sendSystemMessage(message);
 		player->setPosture(CreaturePosture::UPRIGHT, true);
+		trx.abort() << message.toString();
 		return;
 	}
 
@@ -1277,6 +1105,7 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 		message.setTO(resname);
 		player->sendSystemMessage(message);
 		player->setPosture(CreaturePosture::UPRIGHT, true);
+		trx.abort() << message.toString();
 		return;
 	}
 
@@ -1289,54 +1118,48 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 		StringIdChatParameter message("survey", "sample_failed");
 		message.setTO(resname);
 		player->sendSystemMessage(message);
-
+		trx.abort() << message.toString();
 		return;
 	}
 
-	int maxUnitsExtracted = (int) (density * (150 + System::random(20)));
+	int maxUnitsExtracted = (int) (density * (45 + System::random(3)));
 
 	float cityMultiplier = 1.f + player->getSkillMod("private_spec_samplesize") / 100.f;
 
-	float skillScalar = 0.20f + (float(surveySkill) / 100.0f) * 0.80f;
-        int unitsExtracted = (int)(maxUnitsExtracted * skillScalar * samplingMultiplier * cityMultiplier);
-        if (unitsExtracted < 30) unitsExtracted = 30;
-	int xpcap = 40;
+	int unitsExtracted = maxUnitsExtracted * (float(surveySkill) / 100.0f) * samplingMultiplier * cityMultiplier;
+	int xpcap = 400;
 
 	if (session->tryGamble()) {
 		if (System::random(2) == 1) {
 			player->sendSystemMessage("@survey:gamble_success");
-			unitsExtracted *= 5;
+			unitsExtracted *= 7.5;
 		} else {
 			player->sendSystemMessage("@survey:gamble_fail");
 		}
 		session->clearGamble();
-		xpcap = 50;
+		xpcap = 500;
 	}
 
 	if (richSampleLocation != nullptr && richSampleLocation->getPosition() != Vector3(0, 0, 0)) {
-
 		if (player->getDistanceTo(richSampleLocation) < 10) {
-
 			player->sendSystemMessage("@survey:node_recovery");
-			unitsExtracted *= 5;
+			unitsExtracted *= 7.5;
 
 		} else {
-
 			player->sendSystemMessage("@survey:node_not_close");
 		}
 
 		session->clearRichSampleLocation();
-		xpcap = 50;
+		xpcap = 500;
 	}
 
 	if (unitsExtracted < 2) {
-
 		// Send message to player about trace amounts
 		StringIdChatParameter message("survey", "trace_amount");
 		message.setTO(resname);
 		message.setDI(unitsExtracted);
 		player->sendSystemMessage(message);
-
+		trx.abort() << message.toString();
 		return;
 	}
 
@@ -1358,9 +1181,9 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 	ManagedReference<PlayerManager*> playerManager = server->getPlayerManager();
 
 	if (playerManager != nullptr)
-		playerManager->awardExperience(player, "resource_harvesting_inorganic", xp * 10, true);
+		playerManager->awardExperience(player, "resource_harvesting_inorganic", xp, true);
 
-	addResourceToPlayerInventory(player, resourceSpawn, unitsExtracted);
+	addResourceToPlayerInventory(trx, player, resourceSpawn, unitsExtracted);
 	player->notifyObservers(ObserverEventType::SAMPLE, resourceSpawn, density * 100);
 
 	if (resourceSpawn->isType("radioactive")) {
@@ -1374,7 +1197,7 @@ void ResourceSpawner::sendSampleResults(CreatureObject* player, const float dens
 	}
 }
 
-bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, ResourceSpawn* resourceSpawn, int unitsExtracted) const {
+bool ResourceSpawner::addResourceToPlayerInventory(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, int unitsExtracted) const {
 	// Add resource to inventory
 	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
 	Locker locker(inventory);
@@ -1390,6 +1213,12 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 			if (resource->getSpawnName() == resourceSpawn->getName() &&
 					resource->getQuantity() < ResourceContainer::MAXSIZE) {
 				if  ((resource->getQuantity() + unitsExtracted) <= ResourceContainer::MAXSIZE ){
+					trx.addRelatedObject(resource);
+					trx.addState("resourceType", resourceSpawn->getType());
+					trx.addState("resourceID", resourceSpawn->getObjectID());
+					trx.addState("resourceName", resourceSpawn->getName());
+					trx.addState("resourceQuantity", unitsExtracted);
+
 					int newStackSize = resource->getQuantity() + unitsExtracted;
 					resource->setQuantity(newStackSize);
 					return true;
@@ -1406,20 +1235,30 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 		if (!player->isIncapacitated() && !player->isDead()){
 			player->setPosture(CreaturePosture::UPRIGHT, true);
 		}
+		trx.abort() << "No inventory space";
 		return false;
 	}
 	// Create New resource container if one isn't found in inventory
 	Reference<ResourceContainer*> harvestedResource = resourceSpawn->createResource(unitsExtracted);
 
+	trx.addRelatedObject(harvestedResource);
+
 	if (inventory->transferObject(harvestedResource, -1, false)) {
+		trx.addState("resourceType", resourceSpawn->getType());
+		trx.addState("resourceID", resourceSpawn->getObjectID());
+		trx.addState("resourceName", resourceSpawn->getName());
+		trx.addState("resourceQuantity", unitsExtracted);
+
 		inventory->broadcastObject(harvestedResource, true);
-		return true;
 	} else {
-          	Locker resLocker(harvestedResource);
+		Locker resLocker(harvestedResource);
 
 		harvestedResource->destroyObjectFromDatabase(true);
+		trx.abort() << "transferObject failed in " << __FUNCTION__ << " near line " << __LINE__;
 		return false;
 	}
+
+	return true;
 }
 
 Reference<ResourceContainer*> ResourceSpawner::harvestResource(CreatureObject* player,
@@ -1450,12 +1289,12 @@ Reference<ResourceContainer*> ResourceSpawner::harvestResource(CreatureObject* p
 	return nullptr;
 }
 
-bool ResourceSpawner::harvestResource(CreatureObject* player, ResourceSpawn* resourceSpawn, int quantity) {
+bool ResourceSpawner::harvestResource(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, int quantity) {
 	Locker locker(resourceSpawn);
 
 	resourceSpawn->extractResource(player->getZone()->getZoneName(), quantity);
 
-	return addResourceToPlayerInventory(player, resourceSpawn, quantity);
+	return addResourceToPlayerInventory(trx, player, resourceSpawn, quantity);
 }
 
 ResourceSpawn* ResourceSpawner::getCurrentSpawn(const String& restype, const String& zoneName) const {
@@ -1498,25 +1337,6 @@ void ResourceSpawner::addNodeToListBox(SuiListBox* sui, const String& nodeName) 
 	}
 
 	node->addToSuiListBox(sui);
-}
-
-void ResourceSpawner::addNodeToListBoxCR(SuiListBox* sui, const String& nodeName) const {
-	ResourceTreeNode* baseNode = resourceTree->getBaseNode();
-
-	ResourceTreeNode* node = baseNode->findNode(nodeName);
-
-	//If we couldn't find a node
-	if (node == nullptr) {
-
-		if (resourceMap->containsType(nodeName)) {
-			resourceMap->addToSuiListBoxCR(sui, nodeName);
-			return;
-		}
-
-		node = baseNode;
-	}
-
-	node->addToSuiListBoxCR(sui);
 }
 
 void ResourceSpawner::addPlanetsToListBox(SuiListBox* sui) const {
@@ -1570,48 +1390,6 @@ String ResourceSpawner::addParentNodeToListBox(SuiListBox* sui, const String& cu
 		node = parentNode;
 
 	node->addToSuiListBox(sui);
-
-	return node->getName();
-}
-
-String ResourceSpawner::addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode) const {
-	//currentNode can be the resource name itself, the ResourceTreeEntry (finalClass), or a ResourceTreeNode...
-	auto baseNode = resourceTree->getBaseNode();
-
-	//If is resource name
-	if (resourceMap->contains(currentNode.toLowerCase())) {
-		ManagedReference<ResourceSpawn*> spawn = resourceMap->get(currentNode.toLowerCase());
-		auto entry = baseNode->find(spawn->getFinalClass());
-
-		if (entry != nullptr) {
-			resourceMap->addToSuiListBoxCR(sui, entry->getFinalClass());
-			return entry->getFinalClass();
-		}
-	}
-
-	//If is finalClass
-	auto entry = baseNode->find(currentNode);
-
-	if (entry != nullptr) {
-		ResourceTreeNode* node = entry->getMyNode();
-
-		if (node != nullptr) {
-			node->addToSuiListBoxCR(sui);
-			return node->getName();
-		}
-	}
-
-	auto node = baseNode->findNode(currentNode);
-
-	if (node == nullptr)
-		node = baseNode;
-
-	auto parentNode = node->getParentNode();
-
-	if (parentNode != nullptr)
-		node = parentNode;
-
-	node->addToSuiListBoxCR(sui);
 
 	return node->getName();
 }

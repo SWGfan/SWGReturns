@@ -48,10 +48,6 @@ includeFile("mobile/skeleton/serverobjects.lua")
 includeFile("mobile/tatooine_npc/serverobjects.lua")
 includeFile("mobile/vehicle/serverobjects.lua")
 includeFile("mobile/vendor/serverobjects.lua")
---Holograms
-includeFile("mobile/hologram/serverobjects.lua")
---Holograms
-includeFile("mobile/beast_master/serverobjects.lua")
 
 -- Server Objects
 includeFile("mobile/21b_surgical_droid_crafted.lua")
@@ -2661,8 +2657,17 @@ includeFile("mobile/zabrak_female.lua")
 includeFile("mobile/zabrak_male.lua")
 includeFile("mobile/zucca_boar.lua")
 includeFile("mobile/zucca_boar_hue.lua")
+--
+includeFile("mobile/ep3/serverobjects.lua")
+
+--Chiss
+includeFile("mobile/chiss_male.lua")
+includeFile("mobile/chiss_female.lua")
+
+-- New Content NPCs
+includeFile("mobile/atxt.lua")
 includeFile("mobile/bm_mobile.lua")
-includeFile("mobile/ghost_lifeday_bacca.lua")
-includeFile("mobile/ghost_lifeday_freyyr.lua")
-includeFile("mobile/ghost_lifeday_chaldrrl.lua")
-includeFile("mobile/passenger_flash_speeder.lua")
+includeFile("mobile/dressed_jedi_female_togruta_01.lua")
+includeFile("mobile/dressed_sabine_wren.lua")
+includeFile("mobile/dressed_hera_syndulla.lua")
+--includeFile("mobile/albino_rancor.lua")

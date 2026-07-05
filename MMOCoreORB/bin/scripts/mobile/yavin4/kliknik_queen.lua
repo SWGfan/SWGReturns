@@ -2,6 +2,7 @@ kliknik_queen = Creature:new {
 	objectName = "@mob/creature_names:kliknik_queen",
 	socialGroup = "kliknik",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 37,
 	chanceHit = 0.41,
 	damageMin = 320,
@@ -12,13 +13,13 @@ kliknik_queen = Creature:new {
 	armor = 0,
 	resists = {160,135,25,135,135,-1,-1,-1,-1},
 	meatType = "meat_carnivore",
-	meatAmount = 7,
+	meatAmount = 150,
 	hideType = "hide_scaley",
-	hideAmount = 4,
+	hideAmount = 150,
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK,
@@ -36,12 +37,17 @@ kliknik_queen = Creature:new {
 			lootChance = 1740000
 		}
 	},
-	weapons = {"creature_spit_small_yellow"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_yellow.iff",
+	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_yellow.iff",
 	conversationTemplate = "",
-	attacks = {
-		{"dizzyattack",""},
-		{"mildpoison",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"dizzyattack",""}, {"mildpoison",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(kliknik_queen, "kliknik_queen")

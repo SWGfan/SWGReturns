@@ -32,7 +32,7 @@ ConversationSession::~ConversationSession() {
 
 void ConversationSession::setLastConversationScreen(ConversationScreen* screen) {
 	ConversationSessionImplementation* _implementation = static_cast<ConversationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void ConversationSession::setLastConversationScreen(ConversationScreen* screen) 
 
 ConversationScreen* ConversationSession::getLastConversationScreen() {
 	ConversationSessionImplementation* _implementation = static_cast<ConversationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ ConversationScreen* ConversationSession::getLastConversationScreen() {
 
 ManagedWeakReference<CreatureObject* > ConversationSession::getNPC() {
 	ConversationSessionImplementation* _implementation = static_cast<ConversationSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void ConversationSessionImplementation::finalize() {
 void ConversationSessionImplementation::_initializeImplementation() {
 	_setClassHelper(ConversationSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -225,7 +225,7 @@ int ConversationSessionImplementation::writeObjectMembers(ObjectOutputStream* st
 ConversationSessionImplementation::ConversationSessionImplementation(CreatureObject* conversingCreature) {
 	_initializeImplementation();
 	// server/zone/objects/player/sessions/ConversationSession.idl():  		lastConversationScreen = null;
-	lastConversationScreen = nullptr;
+	lastConversationScreen = NULL;
 	// server/zone/objects/player/sessions/ConversationSession.idl():  		npc = conversingCreature;
 	npc = conversingCreature;
 }
@@ -264,7 +264,7 @@ void ConversationSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* 
 		{
 			
 			DistributedObject* _m_res = getNPC().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

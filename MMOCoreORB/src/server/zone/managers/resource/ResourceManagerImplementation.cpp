@@ -9,6 +9,7 @@
 #include "server/zone/objects/resource/ResourceContainer.h"
 #include "server/zone/packets/resource/ResourceContainerObjectDeltaMessage3.h"
 #include "server/zone/objects/player/sui/listbox/SuiListBox.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 void ResourceManagerImplementation::initialize() {
 	if (!loadConfigData()) {
@@ -156,6 +157,12 @@ void ResourceManagerImplementation::loadDefaultConfig() {
 	resourceSpawner->addZone("talus");
 	resourceSpawner->addZone("tatooine");
 	resourceSpawner->addZone("endor");
+	resourceSpawner->addZone("chandrila");
+	resourceSpawner->addZone("kaas");
+	resourceSpawner->addZone("moraband");
+	resourceSpawner->addZone("hutta");
+	resourceSpawner->addZone("florrum");
+	resourceSpawner->addZone("lothal");
 
 	shiftInterval = 7200000;
 	resourceSpawner->setSpawningParameters(1, 86400, 90, 1000, 0);
@@ -208,8 +215,12 @@ void ResourceManagerImplementation::sendResourceListForSurvey(CreatureObject* pl
 ResourceContainer* ResourceManagerImplementation::harvestResource(CreatureObject* player, const String& type, const int quantity) {
 	return resourceSpawner->harvestResource(player, type, quantity);
 }
-bool ResourceManagerImplementation::harvestResourceToPlayer(CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity) {
-	return resourceSpawner->harvestResource(player, resourceSpawn, quantity);
+bool ResourceManagerImplementation::harvestResourceToPlayer(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity) {
+	trx.addState("resourceID", resourceSpawn->getObjectID());
+	trx.addState("resourceType", resourceSpawn->getType());
+	trx.addState("resourceName", resourceSpawn->getName());
+	trx.addState("resourceQuantity", quantity);
+	return resourceSpawner->harvestResource(trx, player, resourceSpawn, quantity);
 }
 
 void ResourceManagerImplementation::sendSurvey(CreatureObject* playerCreature, const String& resname) {
@@ -350,6 +361,11 @@ void ResourceManagerImplementation::removePowerFromPlayer(CreatureObject* player
 
 		if (containerPower > power) {
 			uint32 consumedUnits = (uint64) power / modifier;
+
+			if (consumedUnits < 1) {
+				consumedUnits = 1;
+			}
+
 			rcno->setQuantity(quantity - consumedUnits);
 
 			ResourceContainerObjectDeltaMessage3* drcno3 = new ResourceContainerObjectDeltaMessage3(rcno);
@@ -402,30 +418,24 @@ ResourceSpawn* ResourceManagerImplementation::getRecycledVersion(ResourceSpawn* 
 	return resourceSpawner->getRecycledVersion(resource);
 }
 
-ResourceSpawn* ResourceManagerImplementation::getRecycledVersionByType(const String& resourceType) {
-	return resourceSpawner->getRecycledResourceSpawnByType(resourceType);
-}
-
 /// Resource Deed Methods
 void ResourceManagerImplementation::addNodeToListBox(SuiListBox* sui, const String& nodeName) {
 	resourceSpawner->addNodeToListBox(sui, nodeName);
 }
 
-void ResourceManagerImplementation::addNodeToListBoxCR(SuiListBox* sui, const String& nodeName) {
-	resourceSpawner->addNodeToListBoxCR(sui, nodeName);
-}
-
 void ResourceManagerImplementation::addPlanetsToListBox(SuiListBox* sui) {
 	resourceSpawner->addPlanetsToListBox(sui);
 }
-
-String ResourceManagerImplementation::addParentNodeToListBoxCR(SuiListBox* sui, const String& currentNode) {
-	return resourceSpawner->addParentNodeToListBoxCR(sui, currentNode);
-}
-
 String ResourceManagerImplementation::getPlanetByIndex(int idx) {
 	return resourceSpawner->getPlanetByIndex(idx);
 }
+
+String ResourceManagerImplementation::ghDump() {
+	Locker locker(_this.getReferenceUnsafeStaticCast());
+
+	return resourceSpawner->ghDump();
+}
+
 String ResourceManagerImplementation::addParentNodeToListBox(SuiListBox* sui, const String& currentNode) {
 	return resourceSpawner->addParentNodeToListBox(sui, currentNode);
 }

@@ -32,7 +32,7 @@ EnhancePack::~EnhancePack() {
 
 void EnhancePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void EnhancePack::updateCraftingValues(CraftingValues* values, bool firstUpdate)
 
 void EnhancePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void EnhancePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* o
 
 void EnhancePack::loadTemplateData(SharedObjectTemplate* templateData) {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void EnhancePack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 int EnhancePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int EnhancePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 
 unsigned int EnhancePack::calculatePower(CreatureObject* healer, CreatureObject* patient, bool applyBattleFatigue) {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ unsigned int EnhancePack::calculatePower(CreatureObject* healer, CreatureObject*
 
 float EnhancePack::getEffectiveness() {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ float EnhancePack::getEffectiveness() {
 
 float EnhancePack::getAbsorption() {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ float EnhancePack::getAbsorption() {
 
 byte EnhancePack::getAttribute() {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ byte EnhancePack::getAttribute() {
 
 float EnhancePack::getDuration() {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ float EnhancePack::getDuration() {
 
 bool EnhancePack::isEnhancePack() {
 	EnhancePackImplementation* _implementation = static_cast<EnhancePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ void EnhancePackImplementation::finalize() {
 void EnhancePackImplementation::_initializeImplementation() {
 	_setClassHelper(EnhancePackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

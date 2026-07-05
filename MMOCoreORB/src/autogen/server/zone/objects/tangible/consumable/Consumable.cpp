@@ -34,7 +34,7 @@ Consumable::~Consumable() {
 
 int Consumable::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int Consumable::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 void Consumable::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -60,7 +60,7 @@ void Consumable::updateCraftingValues(CraftingValues* values, bool firstUpdate) 
 
 void Consumable::loadTemplateData(SharedObjectTemplate* templateData) {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -70,7 +70,7 @@ void Consumable::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void Consumable::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -80,7 +80,7 @@ void Consumable::fillAttributeList(AttributeListMessage* msg, CreatureObject* ob
 
 void Consumable::setModifiers(Buff* buff, bool skillModifiers) {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,14 +90,14 @@ void Consumable::setModifiers(Buff* buff, bool skillModifiers) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((buff == nullptr) || buff->isLockedByCurrentThread());
+		assert((buff == NULL) || buff->isLockedByCurrentThread());
 		_implementation->setModifiers(buff, skillModifiers);
 	}
 }
 
 bool Consumable::isSpiceEffect() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ bool Consumable::isSpiceEffect() const {
 
 bool Consumable::isAttributeEffect() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,9 +123,9 @@ bool Consumable::isAttributeEffect() const {
 	}
 }
 
-bool Consumable::isDrink() {
+bool Consumable::isDrink() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,9 +137,9 @@ bool Consumable::isDrink() {
 	}
 }
 
-bool Consumable::isFood() {
+bool Consumable::isFood() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,9 +151,9 @@ bool Consumable::isFood() {
 	}
 }
 
-bool Consumable::isForagedFood() {
+bool Consumable::isForagedFood() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,9 +165,9 @@ bool Consumable::isForagedFood() {
 	}
 }
 
-bool Consumable::isSpice() {
+bool Consumable::isSpice() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ bool Consumable::isSpice() {
 
 bool Consumable::isConsumable() {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,9 +193,9 @@ bool Consumable::isConsumable() {
 	}
 }
 
-int Consumable::getDuration() {
+int Consumable::getDuration() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -207,9 +207,9 @@ int Consumable::getDuration() {
 	}
 }
 
-String Consumable::getSpeciesRestriction() {
+String Consumable::getSpeciesRestriction() const {
 	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -256,7 +256,7 @@ void ConsumableImplementation::finalize() {
 void ConsumableImplementation::_initializeImplementation() {
 	_setClassHelper(ConsumableHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -695,22 +695,22 @@ bool ConsumableImplementation::isAttributeEffect() const{
 	return (effectType == EFFECT_ATTRIBUTE);
 }
 
-bool ConsumableImplementation::isDrink() {
+bool ConsumableImplementation::isDrink() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return (consumableType == DRINK);
 	return (consumableType == DRINK);
 }
 
-bool ConsumableImplementation::isFood() {
+bool ConsumableImplementation::isFood() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return (consumableType == FOOD);
 	return (consumableType == FOOD);
 }
 
-bool ConsumableImplementation::isForagedFood() {
+bool ConsumableImplementation::isForagedFood() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return (foragedFood == 1);
 	return (foragedFood == 1);
 }
 
-bool ConsumableImplementation::isSpice() {
+bool ConsumableImplementation::isSpice() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return (isSpiceEffect() && isFood());
 	return (isSpiceEffect() && isFood());
 }
@@ -720,12 +720,12 @@ bool ConsumableImplementation::isConsumable() {
 	return true;
 }
 
-int ConsumableImplementation::getDuration() {
+int ConsumableImplementation::getDuration() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return duration;
 	return duration;
 }
 
-String ConsumableImplementation::getSpeciesRestriction() {
+String ConsumableImplementation::getSpeciesRestriction() const{
 	// server/zone/objects/tangible/consumable/Consumable.idl():  		return speciesRestriction;
 	return speciesRestriction;
 }
@@ -847,19 +847,19 @@ bool ConsumableAdapter::isAttributeEffect() const {
 	return (static_cast<Consumable*>(stub))->isAttributeEffect();
 }
 
-bool ConsumableAdapter::isDrink() {
+bool ConsumableAdapter::isDrink() const {
 	return (static_cast<Consumable*>(stub))->isDrink();
 }
 
-bool ConsumableAdapter::isFood() {
+bool ConsumableAdapter::isFood() const {
 	return (static_cast<Consumable*>(stub))->isFood();
 }
 
-bool ConsumableAdapter::isForagedFood() {
+bool ConsumableAdapter::isForagedFood() const {
 	return (static_cast<Consumable*>(stub))->isForagedFood();
 }
 
-bool ConsumableAdapter::isSpice() {
+bool ConsumableAdapter::isSpice() const {
 	return (static_cast<Consumable*>(stub))->isSpice();
 }
 
@@ -867,11 +867,11 @@ bool ConsumableAdapter::isConsumable() {
 	return (static_cast<Consumable*>(stub))->isConsumable();
 }
 
-int ConsumableAdapter::getDuration() {
+int ConsumableAdapter::getDuration() const {
 	return (static_cast<Consumable*>(stub))->getDuration();
 }
 
-String ConsumableAdapter::getSpeciesRestriction() {
+String ConsumableAdapter::getSpeciesRestriction() const {
 	return (static_cast<Consumable*>(stub))->getSpeciesRestriction();
 }
 

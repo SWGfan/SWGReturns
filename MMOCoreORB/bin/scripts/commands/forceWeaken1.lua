@@ -45,8 +45,8 @@ ForceWeaken1Command = {
 	name = "forceweaken1",
 
 	damageMultiplier = 0,
-	speed = 2.0,
-	forceCost = 400,
+	speed = 4.0,
+	forceCost = 50,
 	visMod = 25,
 	accuracySkillMod = "forceweaken_accuracy",
 	forceAttack = true,
@@ -58,7 +58,7 @@ ForceWeaken1Command = {
 
 	poolsToDamage = NO_ATTRIBUTE,
 
-	range = 12
+	range = 32
 }
 
 AddCommand(ForceWeaken1Command)

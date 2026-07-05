@@ -123,13 +123,9 @@ Vector3 DestroyMissionObjectiveImplementation::findValidSpawnPosition(Zone* zone
 		}
 	}
 
-	if (tries >= 256) {
-		// Failed to find a valid spawn point for the lair.
-		ManagedReference<CreatureObject*> player = getPlayerOwner();
-
-		if (player != nullptr)
-			player->sendSystemMessage("@mission/mission_generic:failed");
-
+	if (tries == 128) {
+		//Failed to find a spawn point for the lair, fail mission.
+		getPlayerOwner()->sendSystemMessage("@mission/mission_generic:failed");
 		fail();
 	}
 
@@ -163,18 +159,6 @@ void DestroyMissionObjectiveImplementation::spawnLair() {
 	locker.release();
 
 	Vector3 pos = findValidSpawnPosition(zone);
-
-	PlanetManager* planetManager = zone->getPlanetManager();
-	float size = mission->getSize();
-
-	if (planetManager == nullptr ||
-			!zone->isWithinBoundaries(Vector3(pos.getX(), pos.getY(), 0)) ||
-			!planetManager->isSpawningPermittedAt(pos.getX(), pos.getY(), size) ||
-			CollisionManager::checkSphereCollision(pos, size + 25.f, zone)) {
-
-		fail();
-		return;
-	}
 
 	ManagedReference<WaypointObject*> waypoint = mission->getWaypointToMission();
 
@@ -264,6 +248,10 @@ void DestroyMissionObjectiveImplementation::spawnLair() {
 
 		zone->transferObject(lairObject, -1, true);
 	}
+
+	if (lairObject != nullptr) {
+		lairSpawnTime.updateToCurrentTime();
+	}
 }
 
 void DestroyMissionObjectiveImplementation::abort() {
@@ -296,6 +284,10 @@ void DestroyMissionObjectiveImplementation::abort() {
 
 		spawnActiveArea->destroyObjectFromWorld(true);
 	}
+}
+
+void DestroyMissionObjectiveImplementation::addMissionStats(TransactionLog& trx) {
+	trx.addState("missionTimeLairDestroyed", lairSpawnTime.miliDifference() / 1000);
 }
 
 void DestroyMissionObjectiveImplementation::complete() {

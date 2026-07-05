@@ -30,7 +30,7 @@ FsVillageArea::~FsVillageArea() {
 
 void FsVillageArea::notifyEnter(SceneObject* player) {
 	FsVillageAreaImplementation* _implementation = static_cast<FsVillageAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void FsVillageAreaImplementation::finalize() {
 void FsVillageAreaImplementation::_initializeImplementation() {
 	_setClassHelper(FsVillageAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

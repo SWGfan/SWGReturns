@@ -1,14 +1,14 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o: \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourNode.cpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNode.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
  /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
@@ -61,6 +61,8 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/select-decl.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -68,5 +70,8 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h \
- /usr/include/strings.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/string.h \
+ /usr/include/strings.h \
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h

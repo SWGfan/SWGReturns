@@ -34,7 +34,7 @@ CustomIngredient::~CustomIngredient() {
 
 void CustomIngredient::loadTemplateData(SharedObjectTemplate* templateData) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -44,7 +44,7 @@ void CustomIngredient::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void CustomIngredient::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -54,7 +54,7 @@ void CustomIngredient::fillAttributeList(AttributeListMessage* msg, CreatureObje
 
 void CustomIngredient::addAttribute(const String& attribute, int value) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ void CustomIngredient::addAttribute(const String& attribute, int value) {
 
 void CustomIngredient::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -80,7 +80,7 @@ void CustomIngredient::updateCraftingValues(CraftingValues* values, bool firstUp
 
 void CustomIngredient::clearAttributes() {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void CustomIngredient::clearAttributes() {
 
 int CustomIngredient::getAttributeAndValue(String& attribute, int index) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -104,7 +104,7 @@ int CustomIngredient::getAttributeAndValue(String& attribute, int index) {
 
 int CustomIngredient::getAttributeValue(int index) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ int CustomIngredient::getAttributeValue(int index) {
 
 int CustomIngredient::getResourceValue(int average) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -134,7 +134,7 @@ int CustomIngredient::getResourceValue(int average) {
 
 int CustomIngredient::getValueOf(int index) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ int CustomIngredient::getValueOf(int index) {
 
 int CustomIngredient::getValueOf(const String& attribute) {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -164,7 +164,7 @@ int CustomIngredient::getValueOf(const String& attribute) {
 
 bool CustomIngredient::isCustomIngredient() {
 	CustomIngredientImplementation* _implementation = static_cast<CustomIngredientImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -209,7 +209,7 @@ void CustomIngredientImplementation::finalize() {
 void CustomIngredientImplementation::_initializeImplementation() {
 	_setClassHelper(CustomIngredientHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

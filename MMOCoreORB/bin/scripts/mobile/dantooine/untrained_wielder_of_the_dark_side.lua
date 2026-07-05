@@ -2,6 +2,7 @@ untrained_wielder_of_the_dark_side = Creature:new {
 	objectName = "@mob/creature_names:untrained_wielder_of_the_dark_side",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "kun",
 	faction = "",
 	level = 65,
@@ -20,7 +21,7 @@ untrained_wielder_of_the_dark_side = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK,
@@ -44,9 +45,17 @@ untrained_wielder_of_the_dark_side = Creature:new {
 			}
 		}
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(pikemanmaster,brawlermaster,fencermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(untrained_wielder_of_the_dark_side, "untrained_wielder_of_the_dark_side")

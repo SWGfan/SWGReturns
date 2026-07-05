@@ -6,13 +6,11 @@
 
 #include "server/zone/Zone.h"
 
+#include "server/zone/objects/creature/commands/QueueCommand.h"
+
 #include "server/zone/objects/creature/ai/events/AiThinkEvent.h"
 
 #include "server/zone/objects/creature/ai/events/AiMoveEvent.h"
-
-#include "server/zone/objects/creature/ai/events/AiWaitEvent.h"
-
-#include "server/zone/objects/creature/ai/events/AiAwarenessEvent.h"
 
 #include "server/zone/packets/scene/AttributeListMessage.h"
 
@@ -26,19 +24,17 @@
 
 #include "server/zone/objects/creature/events/DespawnCreatureOnPlayerDissappear.h"
 
-#include "server/zone/objects/creature/ai/bt/Behavior.h"
-
-#include "server/zone/objects/creature/ai/bt/CompositeBehavior.h"
-
-#include "server/zone/objects/creature/ai/events/AiTrackingTask.h"
+#include "server/zone/objects/intangible/ControlDevice.h"
 
 #include "server/zone/objects/scene/SceneObject.h"
+
+#include "server/zone/objects/creature/ai/bt/BlackboardData.h"
 
 /*
  *	AiAgentStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 24868240,RPC_NOTIFYLOADFROMDATABASE__,RPC_FINALIZE__,RPC_ACTIVATERECOVERY__,RPC_ACTIVATEMOVEMENTEVENT__,RPC_ACTIVATEWAITEVENT__,RPC_ACTIVATEAWARENESSEVENT__LONG_,RPC_ACTIVATEINTERRUPT__SCENEOBJECT_LONG_,RPC_ACTIVATELOAD__STRING_,RPC_DORECOVERY__INT_,RPC_DOMOVEMENT__,RPC_SETLEVEL__INT_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_CALCULATEATTACKMINDAMAGE__INT_,RPC_CALCULATEATTACKMAXDAMAGE__INT_,RPC_CALCULATEATTACKSPEED__INT_,RPC_GETTARGETFROMMAP__,RPC_GETTARGETFROMDEFENDERS__,RPC_GETTARGETFROMTARGETSDEFENDERS__,RPC_VALIDATETARGET__,RPC_VALIDATETARGET__SCENEOBJECT_,RPC_ISCAMOUFLAGED__CREATUREOBJECT_,RPC_FINDNEXTPOSITION__FLOAT_BOOL_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CHECKNEWANGLE__,RPC_SETNEXTPOSITION__FLOAT_FLOAT_FLOAT_CELLOBJECT_,RPC_SETNEXTSTEPPOSITION__FLOAT_FLOAT_FLOAT_CELLOBJECT_,RPC_NOTIFYPOSITIONUPDATE__QUADTREEENTRY_,RPC_CLEARPATROLPOINTS__,RPC_CLEARSAVEDPATROLPOINTS__,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_ADDDOTSTATE__CREATUREOBJECT_LONG_LONG_INT_BYTE_INT_FLOAT_INT_INT_,RPC_SENDCONVERSATIONSTARTTO__SCENEOBJECT_,RPC_SENDDEFAULTCONVERSATIONTO__SCENEOBJECT_,RPC_SELECTCONVERSATIONOPTION__INT_SCENEOBJECT_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_NOTIFYCONVERSEOBSERVERS__CREATUREOBJECT_,RPC_NOTIFYATTACK__OBSERVABLE_,RPC_NOTIFYCALLFORHELP__OBSERVABLE_MANAGEDOBJECT_,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_ACTIVATEPOSTURERECOVERY__,RPC_ACTIVATEHAMREGENERATION__INT_,RPC_QUEUEDIZZYFALLEVENT__,RPC_CLEARCOMBATSTATE__BOOL_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_SETDESPAWNONNOPLAYERINRANGE__BOOL_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SCHEDULEDESPAWN__,RPC_SCHEDULEDESPAWN__INT_,RPC_RESPAWN__ZONE_INT_,RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_,RPC_SETRESPAWNTIMER__FLOAT_,RPC_SETRANDOMRESPAWN__BOOL_,RPC_RESETRESPAWNCOUNTER__,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_ISATTACKABLEBY__TANGIBLEOBJECT_,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_SETOBLIVIOUS__,RPC_SETWATCHOBJECT__SCENEOBJECT_,RPC_SETSTALKOBJECT__SCENEOBJECT_,RPC_SETFOLLOWOBJECT__SCENEOBJECT_,RPC_SETTARGETOBJECT__SCENEOBJECT_,RPC_RUNAWAY__CREATUREOBJECT_FLOAT_,RPC_LEASH__,RPC_GENERATEPATROL__INT_FLOAT_,RPC_GETFOLLOWOBJECT__,RPC_STOREFOLLOWOBJECT__,RPC_RESTOREFOLLOWOBJECT__,RPC_GETFOLLOWSTATE__,RPC_SETFOLLOWSTATE__INT_,RPC_GETMAXDISTANCE__,RPC_SETDESTINATION__,RPC_COMPLETEMOVE__,RPC_SETWAIT__INT_,RPC_GETWAIT__,RPC_ISWAITING__,RPC_STOPWAITING__,RPC_SELECTWEAPON__,RPC_SELECTDEFAULTWEAPON__,RPC_VALIDATESTATEATTACK__CREATUREOBJECT_INT_,RPC_SELECTSPECIALATTACK__,RPC_SELECTSPECIALATTACK__INT_,RPC_SELECTDEFAULTATTACK__,RPC_VALIDATESTATEATTACK__,RPC_ENQUEUEATTACK__INT_,RPC_ISRETREATING__,RPC_ISFLEEING__,RPC_CLEARDESPAWNEVENT__,RPC_GETKINETIC__,RPC_GETENERGY__,RPC_GETELECTRICITY__,RPC_GETSTUN__,RPC_GETBLAST__,RPC_GETHEAT__,RPC_GETCOLD__,RPC_GETACID__,RPC_GETLIGHTSABER__,RPC_ISSPECIALPROTECTION__INT_,RPC_ISSTALKER__,RPC_ISKILLER__,RPC_GETFEROCITY__,RPC_GETAGGRORADIUS__,RPC_GETARMOR__,RPC_GETDESPAWNONNOPLAYERINRANGE__,RPC_GETNUMBEROFPLAYERSINRANGE__,RPC_GETFACTIONSTRING__,RPC_GETSOCIALGROUP__,RPC_GETCHANCEHIT__,RPC_GETDAMAGEMIN__,RPC_GETDAMAGEMAX__,RPC_GETSPECIALDAMAGEMULT__,RPC_GETBASEXP__,RPC_GETDIET__,RPC_GETTEMPLATELEVEL__,RPC_GETTAME__,RPC_GETREACTIONSTF__,RPC_GETRESPAWNTIMER__,RPC_GETRANDOMRESPAWN__,RPC_GETRESPAWNCOUNTER__,RPC_ISAIAGENT__,RPC_HASLOOT__,RPC_SETSHOWNEXTPOSITION__BOOL_,RPC_ISEVENTMOB__,RPC_ISPET__,RPC_GETCURRENTBEHAVIOR__,RPC_SETHOMEOBJECT__SCENEOBJECT_,RPC_SETCOMBATSTATE__,RPC_GETCREATUREBITMASK__,RPC_SETCREATUREBITMASK__INT_,RPC_SETCREATUREBIT__INT_,RPC_CLEARCREATUREBIT__INT_,RPC_INCREMENTLUACALL__STRING_,RPC_ADDTOLUATIME__STRING_LONG_,RPC_OUTPUTLUATIMES__CREATUREOBJECT_,RPC_RESCHEDULETRACKINGTASK__,RPC_HASRANGEDWEAPON__,RPC_GETUSERANGED__,RPC_HASSPECIALATTACK__INT_,RPC_SETPETDEED__PETDEED_,RPC_HASPETDEED__,RPC_GETPETDEED__,RPC_SENDREACTIONCHAT__INT_INT_BOOL_,RPC_HASREACTIONCHATMESSAGES__,RPC_GETPERSONALITYSTF__,RPC_GETREACTIONRANK__,RPC_SETREACTIONRANK__INT_,RPC_GETHAMMAXIMUM__,RPC_GETHAMBASE__,RPC_SETMAXHAM__INT_INT_BOOL_,RPC_RELOADTEMPLATE__,RPC_GETCONVOTEMPLATECRC__,RPC_SETCONVOTEMPLATE__STRING_,RPC_SETLAIRTEMPLATECRC__INT_,RPC_GETLAIRTEMPLATECRC__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 24868240,RPC_NOTIFYLOADFROMDATABASE__,RPC_FINALIZE__,RPC_GETLOGFILENAME__,RPC_GETLOGLEVEL__,RPC_ACTIVATERECOVERY__,RPC_ACTIVATEMOVEMENTEVENT__,RPC_CANCELMOVEMENTEVENT__,RPC_DORECOVERY__INT_,RPC_DOMOVEMENT__,RPC_ISRUNNINGBEHAVIOR__INT_,RPC_ADDRUNNINGID__INT_,RPC_POPRUNNINGCHAIN__,RPC_PEEKRUNNINGCHAIN__,RPC_CLEARRUNNINGCHAIN__,RPC_SETAITEMPLATE__,RPC_LOADCREATUREBITMASK__,RPC_UNLOADCREATUREBITMASK__,RPC_SETAIDEBUG__BOOL_,RPC_GETAIDEBUG__,RPC_SETLEVEL__INT_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_CALCULATEATTACKMINDAMAGE__INT_,RPC_CALCULATEATTACKMAXDAMAGE__INT_,RPC_CALCULATEATTACKSPEED__INT_,RPC_GETTARGETFROMMAP__,RPC_GETTARGETFROMDEFENDERS__,RPC_GETTARGETFROMTARGETSMAP__TANGIBLEOBJECT_,RPC_GETTARGETFROMTARGETSDEFENDERS__,RPC_VALIDATETARGET__,RPC_VALIDATETARGET__SCENEOBJECT_,RPC_ISCAMOUFLAGED__CREATUREOBJECT_,RPC_FINDNEXTPOSITION__FLOAT_BOOL_,RPC_CHECKLINEOFSIGHT__SCENEOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CHECKNEWANGLE__,RPC_SETNEXTPOSITION__FLOAT_FLOAT_FLOAT_CELLOBJECT_,RPC_SETNEXTSTEPPOSITION__FLOAT_FLOAT_FLOAT_CELLOBJECT_,RPC_NOTIFYPOSITIONUPDATE__QUADTREEENTRY_,RPC_CLEARPATROLPOINTS__,RPC_CLEARSAVEDPATROLPOINTS__,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_NOTIFYPACKMOBS__SCENEOBJECT_,RPC_ADDDOTSTATE__CREATUREOBJECT_LONG_LONG_INT_BYTE_INT_FLOAT_INT_INT_,RPC_SENDCONVERSATIONSTARTTO__SCENEOBJECT_,RPC_SENDDEFAULTCONVERSATIONTO__SCENEOBJECT_,RPC_SELECTCONVERSATIONOPTION__INT_SCENEOBJECT_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_NOTIFYCONVERSEOBSERVERS__CREATUREOBJECT_,RPC_NOTIFYATTACK__OBSERVABLE_,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_ACTIVATEPOSTURERECOVERY__,RPC_ACTIVATEHAMREGENERATION__INT_,RPC_QUEUEDIZZYFALLEVENT__,RPC_CLEARCOMBATSTATE__BOOL_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_KILLPLAYER__SCENEOBJECT_,RPC_STALKPROSPECT__SCENEOBJECT_,RPC_HEALTARGET__CREATUREOBJECT_,RPC_SETDESPAWNONNOPLAYERINRANGE__BOOL_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SCHEDULEDESPAWN__,RPC_SCHEDULEDESPAWN__INT_,RPC_RESPAWN__ZONE_INT_,RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_FLOAT_,RPC_SETRESPAWNTIMER__FLOAT_,RPC_SETRANDOMRESPAWN__BOOL_,RPC_RESETRESPAWNCOUNTER__,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_ISATTACKABLEBY__TANGIBLEOBJECT_,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_SETOBLIVIOUS__,RPC_SETWATCHOBJECT__SCENEOBJECT_,RPC_SETSTALKOBJECT__SCENEOBJECT_,RPC_SETFOLLOWOBJECT__SCENEOBJECT_,RPC_SETTARGETOBJECT__SCENEOBJECT_,RPC_RUNAWAY__CREATUREOBJECT_FLOAT_BOOL_,RPC_LEASH__,RPC_GENERATEPATROL__INT_FLOAT_,RPC_GETFOLLOWOBJECT__,RPC_STOREFOLLOWOBJECT__,RPC_RESTOREFOLLOWOBJECT__,RPC_GETMOVEMENTSTATE__,RPC_SETMOVEMENTSTATE__INT_,RPC_GETMAXDISTANCE__,RPC_SETDESTINATION__,RPC_SETWAIT__INT_,RPC_STOPWAITING__,RPC_ISWAITING__,RPC_VALIDATESTATEATTACK__CREATUREOBJECT_INT_,RPC_SELECTSPECIALATTACK__,RPC_SELECTSPECIALATTACK__INT_,RPC_SELECTDEFAULTATTACK__,RPC_VALIDATESTATEATTACK__,RPC_ENQUEUEATTACK__INT_,RPC_ISRETREATING__,RPC_ISFLEEING__,RPC_CLEARDESPAWNEVENT__,RPC_GETKINETIC__,RPC_GETENERGY__,RPC_GETELECTRICITY__,RPC_GETSTUN__,RPC_GETBLAST__,RPC_GETHEAT__,RPC_GETCOLD__,RPC_GETACID__,RPC_GETLIGHTSABER__,RPC_ISSPECIALPROTECTION__INT_,RPC_ISSTALKER__,RPC_ISKILLER__,RPC_ISHEALER__,RPC_GETFEROCITY__,RPC_GETAGGRORADIUS__,RPC_GETARMOR__,RPC_GETDESPAWNONNOPLAYERINRANGE__,RPC_GETNUMBEROFPLAYERSINRANGE__,RPC_GETFACTIONSTRING__,RPC_GETSOCIALGROUP__,RPC_GETCHANCEHIT__,RPC_GETDAMAGEMIN__,RPC_GETDAMAGEMAX__,RPC_GETSPECIALDAMAGEMULT__,RPC_GETBASEXP__,RPC_GETDIET__,RPC_GETTEMPLATELEVEL__,RPC_GETTAME__,RPC_GETREACTIONSTF__,RPC_GETRESPAWNTIMER__,RPC_GETRANDOMRESPAWN__,RPC_GETRESPAWNCOUNTER__,RPC_ISAIAGENT__,RPC_HASLOOT__,RPC_SETSHOWNEXTPOSITION__BOOL_,RPC_ISEVENTMOB__,RPC_ISPET__,RPC_SETHOMEOBJECT__SCENEOBJECT_,RPC_SETCOMBATSTATE__,RPC_GETCREATUREBITMASK__,RPC_SETCREATUREBITMASK__INT_,RPC_SETCREATUREBIT__INT_,RPC_CLEARCREATUREBIT__INT_,RPC_ADDCREATUREFLAG__INT_,RPC_REMOVECREATUREFLAG__INT_,RPC_HASRANGEDWEAPON__,RPC_GETUSERANGED__,RPC_HASSPECIALATTACK__INT_,RPC_SETPETDEED__PETDEED_,RPC_HASPETDEED__,RPC_GETPETDEED__,RPC_SENDREACTIONCHAT__SCENEOBJECT_INT_INT_BOOL_,RPC_HASREACTIONCHATMESSAGES__,RPC_GETPERSONALITYSTF__,RPC_GETREACTIONRANK__,RPC_SETREACTIONRANK__INT_,RPC_GETHAMMAXIMUM__,RPC_GETHAMBASE__,RPC_SETMAXHAM__INT_INT_BOOL_,RPC_RELOADTEMPLATE__,RPC_GETCONVOTEMPLATECRC__,RPC_SETCONVOTEMPLATE__STRING_,RPC_SETLAIRTEMPLATECRC__INT_,RPC_GETLAIRTEMPLATECRC__,RPC_SETCUSTOMAIMAP__LONG_,RPC_SETCURRENTWEAPON__WEAPONOBJECT_,RPC_SETDEFAULTWEAPON__WEAPONOBJECT_,RPC_GETPRIMARYWEAPON__,RPC_GETSECONDARYWEAPON__,RPC_GETDEFAULTWEAPON__,RPC_GETTHROWNWEAPON__,RPC_CLEARTHROWNWEAPON__,RPC_GETCURRENTWEAPON__,RPC_NULLIFYWEAPONS__,RPC_GETMOBTYPE__,RPC_ISHERBIVORE__,RPC_ISCARNIVORE__,RPC_ISMONSTER__,RPC_ISDROID__,RPC_ISANDROID__,RPC_ISNPC__,RPC_ISHUMANOID__,RPC_ADDTARGETMISSCOUNT__LONG_INT_,RPC_SETTARGETMISSCOUNT__LONG_INT_,RPC_REMOVETARGETMISSCOUNT__LONG_,RPC_GETERRORCONTEXT__};
 
 AiAgent::AiAgent() : CreatureObject(DummyConstructorParameter::instance()) {
 	AiAgentImplementation* _implementation = new AiAgentImplementation();
@@ -58,7 +54,7 @@ AiAgent::~AiAgent() {
 
 void AiAgent::initializeTransientMembers() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +68,7 @@ void AiAgent::initializeTransientMembers() {
 
 void AiAgent::notifyLoadFromDatabase() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,9 +80,39 @@ void AiAgent::notifyLoadFromDatabase() {
 	}
 }
 
+String AiAgent::getLogFileName() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETLOGFILENAME__);
+
+		String _return_getLogFileName;
+		method.executeWithAsciiReturn(_return_getLogFileName);
+		return _return_getLogFileName;
+	} else {
+		return _implementation->getLogFileName();
+	}
+}
+
+int AiAgent::getLogLevel() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETLOGLEVEL__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getLogLevel();
+	}
+}
+
 void AiAgent::activateRecovery() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +127,7 @@ void AiAgent::activateRecovery() {
 
 void AiAgent::activateMovementEvent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,71 +140,24 @@ void AiAgent::activateMovementEvent() {
 	}
 }
 
-void AiAgent::activateWaitEvent() {
+void AiAgent::cancelMovementEvent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ACTIVATEWAITEVENT__);
+		DistributedMethod method(this, RPC_CANCELMOVEMENTEVENT__);
 
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->activateWaitEvent();
-	}
-}
-
-void AiAgent::activateAwarenessEvent(unsigned long long delay) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ACTIVATEAWARENESSEVENT__LONG_);
-		method.addUnsignedLongParameter(delay);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->activateAwarenessEvent(delay);
-	}
-}
-
-void AiAgent::activateInterrupt(SceneObject* source, long long msg) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ACTIVATEINTERRUPT__SCENEOBJECT_LONG_);
-		method.addObjectParameter(source);
-		method.addSignedLongParameter(msg);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->activateInterrupt(source, msg);
-	}
-}
-
-void AiAgent::activateLoad(const String& temp) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ACTIVATELOAD__STRING_);
-		method.addAsciiParameter(temp);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->activateLoad(temp);
+		_implementation->cancelMovementEvent();
 	}
 }
 
 void AiAgent::doRecovery(int latency) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +173,7 @@ void AiAgent::doRecovery(int latency) {
 
 void AiAgent::doMovement() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -207,9 +186,199 @@ void AiAgent::doMovement() {
 	}
 }
 
+void AiAgent::handleException(const Exception& e, const String& context) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->handleException(e, context);
+	}
+}
+
+bool AiAgent::isRunningBehavior(unsigned int id) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISRUNNINGBEHAVIOR__INT_);
+		method.addUnsignedIntParameter(id);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isRunningBehavior(id);
+	}
+}
+
+void AiAgent::addRunningID(unsigned int id) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ADDRUNNINGID__INT_);
+		method.addUnsignedIntParameter(id);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->addRunningID(id);
+	}
+}
+
+void AiAgent::popRunningChain() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_POPRUNNINGCHAIN__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->popRunningChain();
+	}
+}
+
+unsigned int AiAgent::peekRunningChain() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_PEEKRUNNINGCHAIN__);
+
+		return method.executeWithUnsignedIntReturn();
+	} else {
+		return _implementation->peekRunningChain();
+	}
+}
+
+void AiAgent::clearRunningChain() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CLEARRUNNINGCHAIN__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->clearRunningChain();
+	}
+}
+
+void AiAgent::setAITemplate() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETAITEMPLATE__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setAITemplate();
+	}
+}
+
+Behavior* AiAgent::getBehaviorTree(const BehaviorTreeSlot& slot) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->getBehaviorTree(slot);
+	}
+}
+
+void AiAgent::setTree(Behavior* subRoot, const BehaviorTreeSlot& slot) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setTree(subRoot, slot);
+	}
+}
+
+void AiAgent::removeTree(const BehaviorTreeSlot& slot) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->removeTree(slot);
+	}
+}
+
+void AiAgent::loadCreatureBitmask() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_LOADCREATUREBITMASK__);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->loadCreatureBitmask();
+	}
+}
+
+void AiAgent::unloadCreatureBitmask() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_UNLOADCREATUREBITMASK__);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->unloadCreatureBitmask();
+	}
+}
+
+void AiAgent::setAIDebug(bool flag) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETAIDEBUG__BOOL_);
+		method.addBooleanParameter(flag);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setAIDebug(flag);
+	}
+}
+
+bool AiAgent::getAIDebug() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETAIDEBUG__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->getAIDebug();
+	}
+}
+
 void AiAgent::setLevel(int lvl, bool randomHam) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -226,7 +395,7 @@ void AiAgent::setLevel(int lvl, bool randomHam) {
 
 void AiAgent::sendBaselinesTo(SceneObject* player) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,7 +410,7 @@ void AiAgent::sendBaselinesTo(SceneObject* player) {
 
 int AiAgent::calculateAttackMinDamage(int level) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -256,7 +425,7 @@ int AiAgent::calculateAttackMinDamage(int level) {
 
 int AiAgent::calculateAttackMaxDamage(int level) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -271,7 +440,7 @@ int AiAgent::calculateAttackMaxDamage(int level) {
 
 float AiAgent::calculateAttackSpeed(int level) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -286,7 +455,7 @@ float AiAgent::calculateAttackSpeed(int level) {
 
 SceneObject* AiAgent::getTargetFromMap() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -301,7 +470,7 @@ SceneObject* AiAgent::getTargetFromMap() {
 
 SceneObject* AiAgent::getTargetFromDefenders() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -314,9 +483,24 @@ SceneObject* AiAgent::getTargetFromDefenders() {
 	}
 }
 
+SceneObject* AiAgent::getTargetFromTargetsMap(TangibleObject* target) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETTARGETFROMTARGETSMAP__TANGIBLEOBJECT_);
+		method.addObjectParameter(target);
+
+		return static_cast<SceneObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getTargetFromTargetsMap(target);
+	}
+}
+
 SceneObject* AiAgent::getTargetFromTargetsDefenders() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +515,7 @@ SceneObject* AiAgent::getTargetFromTargetsDefenders() {
 
 bool AiAgent::validateTarget() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -346,7 +530,7 @@ bool AiAgent::validateTarget() {
 
 bool AiAgent::validateTarget(SceneObject* target) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -362,7 +546,7 @@ bool AiAgent::validateTarget(SceneObject* target) {
 
 bool AiAgent::isCamouflaged(CreatureObject* target) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -377,7 +561,7 @@ bool AiAgent::isCamouflaged(CreatureObject* target) {
 
 bool AiAgent::findNextPosition(float maxDistance, bool walk) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -392,9 +576,24 @@ bool AiAgent::findNextPosition(float maxDistance, bool walk) {
 	}
 }
 
+bool AiAgent::checkLineOfSight(SceneObject* obj) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CHECKLINEOFSIGHT__SCENEOBJECT_);
+		method.addObjectParameter(obj);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->checkLineOfSight(obj);
+	}
+}
+
 float AiAgent::getWorldZ(const Vector3& position) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -402,50 +601,9 @@ float AiAgent::getWorldZ(const Vector3& position) {
 	}
 }
 
-void AiAgent::doAwarenessCheck() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->doAwarenessCheck();
-	}
-}
-
-bool AiAgent::runAwarenessLogicCheck(SceneObject* pObject) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->runAwarenessLogicCheck(pObject);
-	}
-}
-
-void AiAgent::runStartAwarenessInterrupt(SceneObject* pObject) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->runStartAwarenessInterrupt(pObject);
-	}
-}
-
-int AiAgent::checkForReactionChat(SceneObject* pObject) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->checkForReactionChat(pObject);
-	}
-}
-
 int AiAgent::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -456,14 +614,14 @@ int AiAgent::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void AiAgent::checkNewAngle() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -478,7 +636,7 @@ void AiAgent::checkNewAngle() {
 
 void AiAgent::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -488,7 +646,7 @@ void AiAgent::fillAttributeList(AttributeListMessage* msg, CreatureObject* objec
 
 void AiAgent::setNextPosition(float x, float z, float y, CellObject* cell) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -506,7 +664,7 @@ void AiAgent::setNextPosition(float x, float z, float y, CellObject* cell) {
 
 void AiAgent::setNextStepPosition(float x, float z, float y, CellObject* cell) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -524,7 +682,7 @@ void AiAgent::setNextStepPosition(float x, float z, float y, CellObject* cell) {
 
 void AiAgent::notifyPositionUpdate(QuadTreeEntry* entry) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -539,7 +697,7 @@ void AiAgent::notifyPositionUpdate(QuadTreeEntry* entry) {
 
 void AiAgent::updateCurrentPosition(PatrolPoint* point) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -550,7 +708,7 @@ void AiAgent::updateCurrentPosition(PatrolPoint* point) {
 
 void AiAgent::updatePetSwimmingState() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -560,7 +718,7 @@ void AiAgent::updatePetSwimmingState() {
 
 void AiAgent::broadcastNextPositionUpdate(PatrolPoint* point) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -570,7 +728,7 @@ void AiAgent::broadcastNextPositionUpdate(PatrolPoint* point) {
 
 void AiAgent::clearPatrolPoints() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -584,7 +742,7 @@ void AiAgent::clearPatrolPoints() {
 
 void AiAgent::clearSavedPatrolPoints() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -598,7 +756,7 @@ void AiAgent::clearSavedPatrolPoints() {
 
 void AiAgent::setPatrolPoints(PatrolPointsVector& pVector) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -608,7 +766,7 @@ void AiAgent::setPatrolPoints(PatrolPointsVector& pVector) {
 
 PatrolPoint AiAgent::getNextPosition() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -618,7 +776,7 @@ PatrolPoint AiAgent::getNextPosition() {
 
 int AiAgent::getPatrolPointSize() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -628,7 +786,7 @@ int AiAgent::getPatrolPointSize() {
 
 void AiAgent::notifyInsert(QuadTreeEntry* entry) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -638,7 +796,7 @@ void AiAgent::notifyInsert(QuadTreeEntry* entry) {
 
 void AiAgent::notifyDissapear(QuadTreeEntry* entry) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -648,7 +806,7 @@ void AiAgent::notifyDissapear(QuadTreeEntry* entry) {
 
 void AiAgent::loadTemplateData(SharedObjectTemplate* templateData) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -658,7 +816,7 @@ void AiAgent::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void AiAgent::loadTemplateData(CreatureTemplate* templateData) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -666,9 +824,19 @@ void AiAgent::loadTemplateData(CreatureTemplate* templateData) {
 	}
 }
 
+void AiAgent::loadWeaponTemplateData() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->loadWeaponTemplateData();
+	}
+}
+
 void AiAgent::setupAttackMaps() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -676,9 +844,49 @@ void AiAgent::setupAttackMaps() {
 	}
 }
 
+WeaponObject* AiAgent::createWeapon(unsigned int weaponCRC, bool primaryWeapon) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->createWeapon(weaponCRC, primaryWeapon);
+	}
+}
+
+void AiAgent::unequipWeapons() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->unequipWeapons();
+	}
+}
+
+void AiAgent::equipPrimaryWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->equipPrimaryWeapon();
+	}
+}
+
+void AiAgent::equipSecondaryWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->equipSecondaryWeapon();
+	}
+}
+
 int AiAgent::inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, bool notifyClient, bool isCombatAction) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -693,14 +901,14 @@ int AiAgent::inflictDamage(TangibleObject* attacker, int damageType, float damag
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((attacker == nullptr) || attacker->isLockedByCurrentThread());
+		assert((attacker == NULL) || attacker->isLockedByCurrentThread());
 		return _implementation->inflictDamage(attacker, damageType, damage, destroy, notifyClient, isCombatAction);
 	}
 }
 
 int AiAgent::inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient, bool isCombatAction) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -716,14 +924,31 @@ int AiAgent::inflictDamage(TangibleObject* attacker, int damageType, float damag
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((attacker == nullptr) || attacker->isLockedByCurrentThread());
+		assert((attacker == NULL) || attacker->isLockedByCurrentThread());
 		return _implementation->inflictDamage(attacker, damageType, damage, destroy, xp, notifyClient, isCombatAction);
+	}
+}
+
+void AiAgent::notifyPackMobs(SceneObject* attacker) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_NOTIFYPACKMOBS__SCENEOBJECT_);
+		method.addObjectParameter(attacker);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		assert((attacker == NULL) || attacker->isLockedByCurrentThread());
+		_implementation->notifyPackMobs(attacker);
 	}
 }
 
 int AiAgent::addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -747,7 +972,7 @@ int AiAgent::addDotState(CreatureObject* attacker, unsigned long long dotType, u
 
 bool AiAgent::sendConversationStartTo(SceneObject* player) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -762,7 +987,7 @@ bool AiAgent::sendConversationStartTo(SceneObject* player) {
 
 void AiAgent::sendDefaultConversationTo(SceneObject* player) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -777,7 +1002,7 @@ void AiAgent::sendDefaultConversationTo(SceneObject* player) {
 
 void AiAgent::selectConversationOption(int option, SceneObject* obj) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -793,7 +1018,7 @@ void AiAgent::selectConversationOption(int option, SceneObject* obj) {
 
 int AiAgent::notifyObjectDestructionObservers(TangibleObject* attacker, int condition, bool isCombatAction) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -805,14 +1030,14 @@ int AiAgent::notifyObjectDestructionObservers(TangibleObject* attacker, int cond
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((attacker == nullptr) || attacker->isLockedByCurrentThread());
+		assert((attacker == NULL) || attacker->isLockedByCurrentThread());
 		return _implementation->notifyObjectDestructionObservers(attacker, condition, isCombatAction);
 	}
 }
 
 int AiAgent::notifyConverseObservers(CreatureObject* converser) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -822,14 +1047,14 @@ int AiAgent::notifyConverseObservers(CreatureObject* converser) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((converser == nullptr) || converser->isLockedByCurrentThread());
+		assert((converser == NULL) || converser->isLockedByCurrentThread());
 		return _implementation->notifyConverseObservers(converser);
 	}
 }
 
 int AiAgent::notifyAttack(Observable* observable) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -842,25 +1067,9 @@ int AiAgent::notifyAttack(Observable* observable) {
 	}
 }
 
-int AiAgent::notifyCallForHelp(Observable* observable, ManagedObject* arg1) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_NOTIFYCALLFORHELP__OBSERVABLE_MANAGEDOBJECT_);
-		method.addObjectParameter(observable);
-		method.addObjectParameter(arg1);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->notifyCallForHelp(observable, arg1);
-	}
-}
-
 void AiAgent::destroyObjectFromWorld(bool sendSelfDestroy) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -876,7 +1085,7 @@ void AiAgent::destroyObjectFromWorld(bool sendSelfDestroy) {
 
 void AiAgent::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -892,7 +1101,7 @@ void AiAgent::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void AiAgent::activatePostureRecovery() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -907,7 +1116,7 @@ void AiAgent::activatePostureRecovery() {
 
 void AiAgent::activateHAMRegeneration(int latency) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -923,7 +1132,7 @@ void AiAgent::activateHAMRegeneration(int latency) {
 
 void AiAgent::queueDizzyFallEvent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -938,7 +1147,7 @@ void AiAgent::queueDizzyFallEvent() {
 
 void AiAgent::clearCombatState(bool clearDefenders) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -954,7 +1163,7 @@ void AiAgent::clearCombatState(bool clearDefenders) {
 
 void AiAgent::setDefender(SceneObject* defender) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -970,7 +1179,7 @@ void AiAgent::setDefender(SceneObject* defender) {
 
 void AiAgent::addDefender(SceneObject* defender) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -986,7 +1195,7 @@ void AiAgent::addDefender(SceneObject* defender) {
 
 void AiAgent::removeDefender(SceneObject* defender) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1000,9 +1209,55 @@ void AiAgent::removeDefender(SceneObject* defender) {
 	}
 }
 
+bool AiAgent::killPlayer(SceneObject* player) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_KILLPLAYER__SCENEOBJECT_);
+		method.addObjectParameter(player);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->killPlayer(player);
+	}
+}
+
+bool AiAgent::stalkProspect(SceneObject* prospect) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_STALKPROSPECT__SCENEOBJECT_);
+		method.addObjectParameter(prospect);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->stalkProspect(prospect);
+	}
+}
+
+void AiAgent::healTarget(CreatureObject* target) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_HEALTARGET__CREATUREOBJECT_);
+		method.addObjectParameter(target);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->healTarget(target);
+	}
+}
+
 void AiAgent::setDespawnOnNoPlayerInRange(bool val) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1018,7 +1273,7 @@ void AiAgent::setDespawnOnNoPlayerInRange(bool val) {
 
 void AiAgent::notifyDespawn(Zone* zone) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1034,7 +1289,7 @@ void AiAgent::notifyDespawn(Zone* zone) {
 
 void AiAgent::scheduleDespawn() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1048,7 +1303,7 @@ void AiAgent::scheduleDespawn() {
 
 void AiAgent::scheduleDespawn(int timeToDespawn) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1064,7 +1319,7 @@ void AiAgent::scheduleDespawn(int timeToDespawn) {
 
 void AiAgent::respawn(Zone* zone, int level) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1081,7 +1336,7 @@ void AiAgent::respawn(Zone* zone, int level) {
 
 void AiAgent::addPatrolPoint(PatrolPoint& point) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1089,28 +1344,29 @@ void AiAgent::addPatrolPoint(PatrolPoint& point) {
 	}
 }
 
-void AiAgent::setHomeLocation(float x, float z, float y, CellObject* cell) {
+void AiAgent::setHomeLocation(float x, float z, float y, CellObject* cell, float direction) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_);
+		DistributedMethod method(this, RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_FLOAT_);
 		method.addFloatParameter(x);
 		method.addFloatParameter(z);
 		method.addFloatParameter(y);
 		method.addObjectParameter(cell);
+		method.addFloatParameter(direction);
 
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->setHomeLocation(x, z, y, cell);
+		_implementation->setHomeLocation(x, z, y, cell, direction);
 	}
 }
 
 void AiAgent::setRespawnTimer(float resp) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1126,7 +1382,7 @@ void AiAgent::setRespawnTimer(float resp) {
 
 void AiAgent::setRandomRespawn(bool resp) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1142,7 +1398,7 @@ void AiAgent::setRandomRespawn(bool resp) {
 
 void AiAgent::resetRespawnCounter() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1157,7 +1413,7 @@ void AiAgent::resetRespawnCounter() {
 
 bool AiAgent::isAttackableBy(CreatureObject* object) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1172,7 +1428,7 @@ bool AiAgent::isAttackableBy(CreatureObject* object) {
 
 bool AiAgent::isAttackableBy(TangibleObject* object) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1187,7 +1443,7 @@ bool AiAgent::isAttackableBy(TangibleObject* object) {
 
 bool AiAgent::isAggressiveTo(CreatureObject* object) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1202,7 +1458,7 @@ bool AiAgent::isAggressiveTo(CreatureObject* object) {
 
 void AiAgent::setOblivious() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1216,7 +1472,7 @@ void AiAgent::setOblivious() {
 
 void AiAgent::setWatchObject(SceneObject* obj) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1231,7 +1487,7 @@ void AiAgent::setWatchObject(SceneObject* obj) {
 
 void AiAgent::setStalkObject(SceneObject* obj) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1246,7 +1502,7 @@ void AiAgent::setStalkObject(SceneObject* obj) {
 
 void AiAgent::setFollowObject(SceneObject* obj) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1261,7 +1517,7 @@ void AiAgent::setFollowObject(SceneObject* obj) {
 
 void AiAgent::setTargetObject(SceneObject* obj) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1274,26 +1530,27 @@ void AiAgent::setTargetObject(SceneObject* obj) {
 	}
 }
 
-void AiAgent::runAway(CreatureObject* target, float range) {
+void AiAgent::runAway(CreatureObject* target, float range, bool random) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_RUNAWAY__CREATUREOBJECT_FLOAT_);
+		DistributedMethod method(this, RPC_RUNAWAY__CREATUREOBJECT_FLOAT_BOOL_);
 		method.addObjectParameter(target);
 		method.addFloatParameter(range);
+		method.addBooleanParameter(random);
 
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->runAway(target, range);
+		_implementation->runAway(target, range, random);
 	}
 }
 
 void AiAgent::leash() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1308,7 +1565,7 @@ void AiAgent::leash() {
 
 bool AiAgent::generatePatrol(int num, float dist) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1324,7 +1581,7 @@ bool AiAgent::generatePatrol(int num, float dist) {
 
 ManagedWeakReference<SceneObject* > AiAgent::getFollowObject() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1338,7 +1595,7 @@ ManagedWeakReference<SceneObject* > AiAgent::getFollowObject() {
 
 void AiAgent::storeFollowObject() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1352,7 +1609,7 @@ void AiAgent::storeFollowObject() {
 
 void AiAgent::restoreFollowObject() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1364,38 +1621,38 @@ void AiAgent::restoreFollowObject() {
 	}
 }
 
-unsigned int AiAgent::getFollowState() const {
+unsigned int AiAgent::getMovementState() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_GETFOLLOWSTATE__);
+		DistributedMethod method(this, RPC_GETMOVEMENTSTATE__);
 
 		return method.executeWithUnsignedIntReturn();
 	} else {
-		return _implementation->getFollowState();
+		return _implementation->getMovementState();
 	}
 }
 
-void AiAgent::setFollowState(int state) {
+void AiAgent::setMovementState(int state) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SETFOLLOWSTATE__INT_);
+		DistributedMethod method(this, RPC_SETMOVEMENTSTATE__INT_);
 		method.addSignedIntParameter(state);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->setFollowState(state);
+		_implementation->setMovementState(state);
 	}
 }
 
 float AiAgent::getMaxDistance() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1409,7 +1666,7 @@ float AiAgent::getMaxDistance() {
 
 int AiAgent::setDestination() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1422,24 +1679,9 @@ int AiAgent::setDestination() {
 	}
 }
 
-bool AiAgent::completeMove() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_COMPLETEMOVE__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		return _implementation->completeMove();
-	}
-}
-
 void AiAgent::setWait(int wait) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1453,37 +1695,9 @@ void AiAgent::setWait(int wait) {
 	}
 }
 
-int AiAgent::getWait() const {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETWAIT__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getWait();
-	}
-}
-
-bool AiAgent::isWaiting() const {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISWAITING__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isWaiting();
-	}
-}
-
 void AiAgent::stopWaiting() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1496,39 +1710,23 @@ void AiAgent::stopWaiting() {
 	}
 }
 
-void AiAgent::selectWeapon() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+bool AiAgent::isWaiting() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SELECTWEAPON__);
+		DistributedMethod method(this, RPC_ISWAITING__);
 
-		method.executeWithVoidReturn();
+		return method.executeWithBooleanReturn();
 	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->selectWeapon();
-	}
-}
-
-void AiAgent::selectDefaultWeapon() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SELECTDEFAULTWEAPON__);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->selectDefaultWeapon();
+		return _implementation->isWaiting();
 	}
 }
 
 bool AiAgent::validateStateAttack(CreatureObject* target, unsigned int actionCRC) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1543,54 +1741,66 @@ bool AiAgent::validateStateAttack(CreatureObject* target, unsigned int actionCRC
 	}
 }
 
-void AiAgent::selectSpecialAttack() {
+bool AiAgent::selectSpecialAttack() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_SELECTSPECIALATTACK__);
 
-		method.executeWithVoidReturn();
+		return method.executeWithBooleanReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->selectSpecialAttack();
+		return _implementation->selectSpecialAttack();
 	}
 }
 
-void AiAgent::selectSpecialAttack(int attackNum) {
+bool AiAgent::selectSpecialAttack(int attackNum) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_SELECTSPECIALATTACK__INT_);
 		method.addSignedIntParameter(attackNum);
 
-		method.executeWithVoidReturn();
+		return method.executeWithBooleanReturn();
 	} else {
-		_implementation->selectSpecialAttack(attackNum);
+		assert(this->isLockedByCurrentThread());
+		return _implementation->selectSpecialAttack(attackNum);
 	}
 }
 
-void AiAgent::selectDefaultAttack() {
+bool AiAgent::selectDefaultAttack() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_SELECTDEFAULTATTACK__);
 
-		method.executeWithVoidReturn();
+		return method.executeWithBooleanReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->selectDefaultAttack();
+		return _implementation->selectDefaultAttack();
+	}
+}
+
+const QueueCommand* AiAgent::getNextAction() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->getNextAction();
 	}
 }
 
 bool AiAgent::validateStateAttack() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1602,25 +1812,25 @@ bool AiAgent::validateStateAttack() {
 	}
 }
 
-void AiAgent::enqueueAttack(int priority) {
+int AiAgent::enqueueAttack(int priority) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_ENQUEUEATTACK__INT_);
 		method.addSignedIntParameter(priority);
 
-		method.executeWithVoidReturn();
+		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->enqueueAttack(priority);
+		return _implementation->enqueueAttack(priority);
 	}
 }
 
 bool AiAgent::isRetreating() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1634,7 +1844,7 @@ bool AiAgent::isRetreating() {
 
 bool AiAgent::isFleeing() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1648,7 +1858,7 @@ bool AiAgent::isFleeing() {
 
 void AiAgent::clearDespawnEvent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1663,7 +1873,7 @@ void AiAgent::clearDespawnEvent() {
 
 float AiAgent::getKinetic() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1677,7 +1887,7 @@ float AiAgent::getKinetic() {
 
 float AiAgent::getEnergy() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1691,7 +1901,7 @@ float AiAgent::getEnergy() {
 
 float AiAgent::getElectricity() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1705,7 +1915,7 @@ float AiAgent::getElectricity() {
 
 float AiAgent::getStun() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1719,7 +1929,7 @@ float AiAgent::getStun() {
 
 float AiAgent::getBlast() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1733,7 +1943,7 @@ float AiAgent::getBlast() {
 
 float AiAgent::getHeat() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1747,7 +1957,7 @@ float AiAgent::getHeat() {
 
 float AiAgent::getCold() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1761,7 +1971,7 @@ float AiAgent::getCold() {
 
 float AiAgent::getAcid() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1775,7 +1985,7 @@ float AiAgent::getAcid() {
 
 float AiAgent::getLightSaber() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1789,7 +1999,7 @@ float AiAgent::getLightSaber() {
 
 bool AiAgent::isSpecialProtection(int resistType) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1804,7 +2014,7 @@ bool AiAgent::isSpecialProtection(int resistType) {
 
 bool AiAgent::isStalker() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1818,7 +2028,7 @@ bool AiAgent::isStalker() {
 
 bool AiAgent::isKiller() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1830,9 +2040,23 @@ bool AiAgent::isKiller() {
 	}
 }
 
+bool AiAgent::isHealer() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISHEALER__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isHealer();
+	}
+}
+
 unsigned int AiAgent::getFerocity() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1846,7 +2070,7 @@ unsigned int AiAgent::getFerocity() {
 
 int AiAgent::getAggroRadius() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1860,7 +2084,7 @@ int AiAgent::getAggroRadius() {
 
 unsigned int AiAgent::getArmor() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1874,7 +2098,7 @@ unsigned int AiAgent::getArmor() {
 
 bool AiAgent::getDespawnOnNoPlayerInRange() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1888,7 +2112,7 @@ bool AiAgent::getDespawnOnNoPlayerInRange() const {
 
 int AiAgent::getNumberOfPlayersInRange() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1902,7 +2126,7 @@ int AiAgent::getNumberOfPlayersInRange() {
 
 String AiAgent::getFactionString() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1918,7 +2142,7 @@ String AiAgent::getFactionString() {
 
 String AiAgent::getSocialGroup() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1934,7 +2158,7 @@ String AiAgent::getSocialGroup() {
 
 float AiAgent::getChanceHit() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1948,7 +2172,7 @@ float AiAgent::getChanceHit() {
 
 int AiAgent::getDamageMin() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1962,7 +2186,7 @@ int AiAgent::getDamageMin() {
 
 int AiAgent::getDamageMax() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1976,7 +2200,7 @@ int AiAgent::getDamageMax() {
 
 float AiAgent::getSpecialDamageMult() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1990,7 +2214,7 @@ float AiAgent::getSpecialDamageMult() {
 
 int AiAgent::getBaseXp() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2004,7 +2228,7 @@ int AiAgent::getBaseXp() {
 
 unsigned int AiAgent::getDiet() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2018,7 +2242,7 @@ unsigned int AiAgent::getDiet() {
 
 unsigned int AiAgent::getTemplateLevel() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2032,7 +2256,7 @@ unsigned int AiAgent::getTemplateLevel() const {
 
 float AiAgent::getTame() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2046,7 +2270,7 @@ float AiAgent::getTame() const {
 
 const CreatureAttackMap* AiAgent::getAttackMap() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2054,9 +2278,9 @@ const CreatureAttackMap* AiAgent::getAttackMap() {
 	}
 }
 
-const LootGroupCollection* AiAgent::getLootGroups() {
+const LootGroupCollection* AiAgent::getLootGroups() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2064,9 +2288,9 @@ const LootGroupCollection* AiAgent::getLootGroups() {
 	}
 }
 
-String AiAgent::getReactionStf() {
+String AiAgent::getReactionStf() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2082,7 +2306,7 @@ String AiAgent::getReactionStf() {
 
 float AiAgent::getRespawnTimer() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2096,7 +2320,7 @@ float AiAgent::getRespawnTimer() const {
 
 bool AiAgent::getRandomRespawn() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2110,7 +2334,7 @@ bool AiAgent::getRandomRespawn() const {
 
 int AiAgent::getRespawnCounter() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2124,7 +2348,7 @@ int AiAgent::getRespawnCounter() const {
 
 PatrolPoint* AiAgent::getHomeLocation() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2134,7 +2358,7 @@ PatrolPoint* AiAgent::getHomeLocation() {
 
 bool AiAgent::isAiAgent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2148,7 +2372,7 @@ bool AiAgent::isAiAgent() {
 
 AiAgent* AiAgent::__asAiAgent() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2158,7 +2382,7 @@ AiAgent* AiAgent::__asAiAgent() {
 
 const CreatureTemplate* AiAgent::getCreatureTemplate() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2168,7 +2392,7 @@ const CreatureTemplate* AiAgent::getCreatureTemplate() const {
 
 bool AiAgent::hasLoot() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2182,7 +2406,7 @@ bool AiAgent::hasLoot() {
 
 void AiAgent::setShowNextPosition(bool val) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2196,9 +2420,9 @@ void AiAgent::setShowNextPosition(bool val) {
 	}
 }
 
-bool AiAgent::isEventMob() {
+bool AiAgent::isEventMob() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2212,7 +2436,7 @@ bool AiAgent::isEventMob() {
 
 bool AiAgent::isPet() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2224,132 +2448,9 @@ bool AiAgent::isPet() const {
 	}
 }
 
-void AiAgent::setupBehaviorTree() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setupBehaviorTree();
-	}
-}
-
-void AiAgent::setupBehaviorTree(AiTemplate* aiTemplate) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setupBehaviorTree(aiTemplate);
-	}
-}
-
-void AiAgent::setupBehaviorTree(AiTemplate* getTarget, AiTemplate* selectAttack, AiTemplate* combatMove, AiTemplate* idle) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setupBehaviorTree(getTarget, selectAttack, combatMove, idle);
-	}
-}
-
-void AiAgent::setCurrentBehavior(unsigned int b) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setCurrentBehavior(b);
-	}
-}
-
-unsigned int AiAgent::getCurrentBehavior() const {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCURRENTBEHAVIOR__);
-
-		return method.executeWithUnsignedIntReturn();
-	} else {
-		return _implementation->getCurrentBehavior();
-	}
-}
-
-int AiAgent::getBehaviorStatus() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getBehaviorStatus();
-	}
-}
-
-void AiAgent::setBehaviorStatus(int status) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setBehaviorStatus(status);
-	}
-}
-
-void AiAgent::resetBehaviorList() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->resetBehaviorList();
-	}
-}
-
-void AiAgent::clearBehaviorList() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->clearBehaviorList();
-	}
-}
-
-int AiAgent::interrupt(SceneObject* source, long long msg) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		return _implementation->interrupt(source, msg);
-	}
-}
-
-void AiAgent::broadcastInterrupt(long long msg) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->broadcastInterrupt(msg);
-	}
-}
-
 void AiAgent::setHomeObject(SceneObject* home) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2365,7 +2466,7 @@ void AiAgent::setHomeObject(SceneObject* home) {
 
 ManagedWeakReference<SceneObject* > AiAgent::getHomeObject() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2375,7 +2476,7 @@ ManagedWeakReference<SceneObject* > AiAgent::getHomeObject() const {
 
 void AiAgent::setCombatState() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2388,28 +2489,28 @@ void AiAgent::setCombatState() {
 	}
 }
 
-int AiAgent::getCreatureBitmask() const {
+unsigned int AiAgent::getCreatureBitmask() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_GETCREATUREBITMASK__);
 
-		return method.executeWithSignedIntReturn();
+		return method.executeWithUnsignedIntReturn();
 	} else {
 		return _implementation->getCreatureBitmask();
 	}
 }
 
-void AiAgent::setCreatureBitmask(int mask) {
+void AiAgent::setCreatureBitmask(unsigned int mask) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_SETCREATUREBITMASK__INT_);
-		method.addSignedIntParameter(mask);
+		method.addUnsignedIntParameter(mask);
 
 		method.executeWithVoidReturn();
 	} else {
@@ -2420,7 +2521,7 @@ void AiAgent::setCreatureBitmask(int mask) {
 
 void AiAgent::setCreatureBit(unsigned int option) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2436,7 +2537,7 @@ void AiAgent::setCreatureBit(unsigned int option) {
 
 void AiAgent::clearCreatureBit(unsigned int option) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2450,9 +2551,41 @@ void AiAgent::clearCreatureBit(unsigned int option) {
 	}
 }
 
+void AiAgent::addCreatureFlag(unsigned int flag) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ADDCREATUREFLAG__INT_);
+		method.addUnsignedIntParameter(flag);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->addCreatureFlag(flag);
+	}
+}
+
+void AiAgent::removeCreatureFlag(unsigned int flag) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_REMOVECREATUREFLAG__INT_);
+		method.addUnsignedIntParameter(flag);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->removeCreatureFlag(flag);
+	}
+}
+
 Time* AiAgent::getAlertedTime() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2460,69 +2593,69 @@ Time* AiAgent::getAlertedTime() {
 	}
 }
 
-void AiAgent::incrementLuaCall(const String& key) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+Time* AiAgent::getAggroDelay() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_INCREMENTLUACALL__STRING_);
-		method.addAsciiParameter(key);
-
-		method.executeWithVoidReturn();
 	} else {
-		_implementation->incrementLuaCall(key);
+		return _implementation->getAggroDelay();
 	}
 }
 
-void AiAgent::addToLuaTime(const String& key, unsigned long long val) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+Time* AiAgent::getPostureSet() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_ADDTOLUATIME__STRING_LONG_);
-		method.addAsciiParameter(key);
-		method.addUnsignedLongParameter(val);
-
-		method.executeWithVoidReturn();
 	} else {
-		_implementation->addToLuaTime(key, val);
+		return _implementation->getPostureSet();
 	}
 }
 
-void AiAgent::outputLuaTimes(CreatureObject* caller) {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+Time* AiAgent::getHealDelay() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_OUTPUTLUATIMES__CREATUREOBJECT_);
-		method.addObjectParameter(caller);
-
-		method.executeWithVoidReturn();
 	} else {
-		_implementation->outputLuaTimes(caller);
+		return _implementation->getHealDelay();
 	}
 }
 
-void AiAgent::rescheduleTrackingTask() {
-	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+Time* AiAgent::getFleeDelay() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_RESCHEDULETRACKINGTASK__);
-
-		method.executeWithVoidReturn();
 	} else {
-		_implementation->rescheduleTrackingTask();
+		return _implementation->getFleeDelay();
+	}
+}
+
+Time* AiAgent::getLastPackNotify() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getLastPackNotify();
+	}
+}
+
+Time* AiAgent::getLastCallForHelp() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getLastCallForHelp();
 	}
 }
 
 bool AiAgent::hasRangedWeapon() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2536,7 +2669,7 @@ bool AiAgent::hasRangedWeapon() {
 
 bool AiAgent::getUseRanged() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2550,7 +2683,7 @@ bool AiAgent::getUseRanged() {
 
 bool AiAgent::hasSpecialAttack(int num) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2565,7 +2698,7 @@ bool AiAgent::hasSpecialAttack(int num) {
 
 void AiAgent::setPetDeed(PetDeed* deed) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2581,7 +2714,7 @@ void AiAgent::setPetDeed(PetDeed* deed) {
 
 bool AiAgent::hasPetDeed() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2595,7 +2728,7 @@ bool AiAgent::hasPetDeed() const {
 
 PetDeed* AiAgent::getPetDeed() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2607,13 +2740,14 @@ PetDeed* AiAgent::getPetDeed() const {
 	}
 }
 
-void AiAgent::sendReactionChat(int type, int state, bool force) {
+void AiAgent::sendReactionChat(SceneObject* object, int type, int state, bool force) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SENDREACTIONCHAT__INT_INT_BOOL_);
+		DistributedMethod method(this, RPC_SENDREACTIONCHAT__SCENEOBJECT_INT_INT_BOOL_);
+		method.addObjectParameter(object);
 		method.addSignedIntParameter(type);
 		method.addSignedIntParameter(state);
 		method.addBooleanParameter(force);
@@ -2621,13 +2755,13 @@ void AiAgent::sendReactionChat(int type, int state, bool force) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		_implementation->sendReactionChat(type, state, force);
+		_implementation->sendReactionChat(object, type, state, force);
 	}
 }
 
 bool AiAgent::hasReactionChatMessages() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2641,7 +2775,7 @@ bool AiAgent::hasReactionChatMessages() {
 
 float AiAgent::getEffectiveResist() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -2651,7 +2785,7 @@ float AiAgent::getEffectiveResist() {
 
 String AiAgent::getPersonalityStf() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2667,7 +2801,7 @@ String AiAgent::getPersonalityStf() {
 
 int AiAgent::getReactionRank() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2681,7 +2815,7 @@ int AiAgent::getReactionRank() const {
 
 void AiAgent::setReactionRank(int rank) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2697,7 +2831,7 @@ void AiAgent::setReactionRank(int rank) {
 
 int AiAgent::getHamMaximum() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2711,7 +2845,7 @@ int AiAgent::getHamMaximum() const {
 
 int AiAgent::getHamBase() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2725,7 +2859,7 @@ int AiAgent::getHamBase() const {
 
 void AiAgent::setMaxHAM(int type, int value, bool notifyClient) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2743,7 +2877,7 @@ void AiAgent::setMaxHAM(int type, int value, bool notifyClient) {
 
 void AiAgent::reloadTemplate() {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2758,7 +2892,7 @@ void AiAgent::reloadTemplate() {
 
 unsigned int AiAgent::getConvoTemplateCRC() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2772,7 +2906,7 @@ unsigned int AiAgent::getConvoTemplateCRC() const {
 
 void AiAgent::setConvoTemplate(const String& templateString) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2788,7 +2922,7 @@ void AiAgent::setConvoTemplate(const String& templateString) {
 
 void AiAgent::setLairTemplateCRC(unsigned int crc) {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2804,7 +2938,7 @@ void AiAgent::setLairTemplateCRC(unsigned int crc) {
 
 unsigned int AiAgent::getLairTemplateCRC() const {
 	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -2813,6 +2947,392 @@ unsigned int AiAgent::getLairTemplateCRC() const {
 		return method.executeWithUnsignedIntReturn();
 	} else {
 		return _implementation->getLairTemplateCRC();
+	}
+}
+
+void AiAgent::writeBlackboard(const String& key, const BlackboardData& data) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->writeBlackboard(key, data);
+	}
+}
+
+bool AiAgent::peekBlackboard(const String& key) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->peekBlackboard(key);
+	}
+}
+
+BlackboardData AiAgent::readBlackboard(const String& key) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->readBlackboard(key);
+	}
+}
+
+void AiAgent::eraseBlackboard(const String& key) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->eraseBlackboard(key);
+	}
+}
+
+void AiAgent::wipeBlackboard() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->wipeBlackboard();
+	}
+}
+
+void AiAgent::setCustomAiMap(unsigned long long customMap) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETCUSTOMAIMAP__LONG_);
+		method.addUnsignedLongParameter(customMap);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setCustomAiMap(customMap);
+	}
+}
+
+void AiAgent::setCurrentWeapon(WeaponObject* weap) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETCURRENTWEAPON__WEAPONOBJECT_);
+		method.addObjectParameter(weap);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setCurrentWeapon(weap);
+	}
+}
+
+void AiAgent::setDefaultWeapon(WeaponObject* weap) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETDEFAULTWEAPON__WEAPONOBJECT_);
+		method.addObjectParameter(weap);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setDefaultWeapon(weap);
+	}
+}
+
+WeaponObject* AiAgent::getPrimaryWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETPRIMARYWEAPON__);
+
+		return static_cast<WeaponObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getPrimaryWeapon();
+	}
+}
+
+WeaponObject* AiAgent::getSecondaryWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETSECONDARYWEAPON__);
+
+		return static_cast<WeaponObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getSecondaryWeapon();
+	}
+}
+
+WeaponObject* AiAgent::getDefaultWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETDEFAULTWEAPON__);
+
+		return static_cast<WeaponObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getDefaultWeapon();
+	}
+}
+
+WeaponObject* AiAgent::getThrownWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETTHROWNWEAPON__);
+
+		return static_cast<WeaponObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getThrownWeapon();
+	}
+}
+
+void AiAgent::clearThrownWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CLEARTHROWNWEAPON__);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->clearThrownWeapon();
+	}
+}
+
+WeaponObject* AiAgent::getCurrentWeapon() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETCURRENTWEAPON__);
+
+		return static_cast<WeaponObject*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getCurrentWeapon();
+	}
+}
+
+void AiAgent::nullifyWeapons() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_NULLIFYWEAPONS__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->nullifyWeapons();
+	}
+}
+
+int AiAgent::getMobType() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETMOBTYPE__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getMobType();
+	}
+}
+
+bool AiAgent::isHerbivore() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISHERBIVORE__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isHerbivore();
+	}
+}
+
+bool AiAgent::isCarnivore() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISCARNIVORE__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isCarnivore();
+	}
+}
+
+bool AiAgent::isMonster() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISMONSTER__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isMonster();
+	}
+}
+
+bool AiAgent::isDroid() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISDROID__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isDroid();
+	}
+}
+
+bool AiAgent::isAndroid() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISANDROID__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isAndroid();
+	}
+}
+
+bool AiAgent::isNpc() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISNPC__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isNpc();
+	}
+}
+
+bool AiAgent::isHumanoid() const {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISHUMANOID__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isHumanoid();
+	}
+}
+
+VectorMap<unsigned long long, int>* AiAgent::getTargetMissCount() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getTargetMissCount();
+	}
+}
+
+void AiAgent::addTargetMissCount(unsigned long long target, int misses) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ADDTARGETMISSCOUNT__LONG_INT_);
+		method.addUnsignedLongParameter(target);
+		method.addSignedIntParameter(misses);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->addTargetMissCount(target, misses);
+	}
+}
+
+void AiAgent::setTargetMissCount(unsigned long long target, int misses) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETTARGETMISSCOUNT__LONG_INT_);
+		method.addUnsignedLongParameter(target);
+		method.addSignedIntParameter(misses);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setTargetMissCount(target, misses);
+	}
+}
+
+void AiAgent::removeTargetMissCount(unsigned long long target) {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_REMOVETARGETMISSCOUNT__LONG_);
+		method.addUnsignedLongParameter(target);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->removeTargetMissCount(target);
+	}
+}
+
+String AiAgent::getErrorContext() {
+	AiAgentImplementation* _implementation = static_cast<AiAgentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETERRORCONTEXT__);
+
+		String _return_getErrorContext;
+		method.executeWithAsciiReturn(_return_getErrorContext);
+		return _return_getErrorContext;
+	} else {
+		return _implementation->getErrorContext();
 	}
 }
 
@@ -2847,7 +3367,7 @@ AiAgentImplementation::~AiAgentImplementation() {
 void AiAgentImplementation::_initializeImplementation() {
 	_setClassHelper(AiAgentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -2944,8 +3464,28 @@ bool AiAgentImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		TypeInfo<PatrolPoint >::parseFromBinaryStream(&nextStepPosition, stream);
 		return true;
 
-	case 0xe1f0107d: //AiAgent.readyWeapon
-		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&readyWeapon, stream);
+	case 0xb65d23ee: //AiAgent.endMovementPosition
+		TypeInfo<PatrolPoint >::parseFromBinaryStream(&endMovementPosition, stream);
+		return true;
+
+	case 0xd110fe72: //AiAgent.defaultWeapon
+		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&defaultWeapon, stream);
+		return true;
+
+	case 0xf6a74276: //AiAgent.primaryWeapon
+		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&primaryWeapon, stream);
+		return true;
+
+	case 0x569d4777: //AiAgent.secondaryWeapon
+		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&secondaryWeapon, stream);
+		return true;
+
+	case 0xcb2e56a1: //AiAgent.thrownWeapon
+		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&thrownWeapon, stream);
+		return true;
+
+	case 0x708319c4: //AiAgent.currentWeapon
+		TypeInfo<ManagedReference<WeaponObject* > >::parseFromBinaryStream(&currentWeapon, stream);
 		return true;
 
 	case 0x3ce94741: //AiAgent.npcTemplate
@@ -2980,8 +3520,8 @@ bool AiAgentImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		TypeInfo<ManagedWeakReference<SceneObject* > >::parseFromBinaryStream(&followStore, stream);
 		return true;
 
-	case 0x4454ba1b: //AiAgent.followState
-		TypeInfo<unsigned int >::parseFromBinaryStream(&followState, stream);
+	case 0x1607a4a3: //AiAgent.movementState
+		TypeInfo<unsigned int >::parseFromBinaryStream(&movementState, stream);
 		return true;
 
 	case 0xb446f60c: //AiAgent.nextMovementInterval
@@ -3004,6 +3544,14 @@ bool AiAgentImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		TypeInfo<bool >::parseFromBinaryStream(&randomRespawn, stream);
 		return true;
 
+	case 0xdae0cc7f: //AiAgent.coordinateMin
+		TypeInfo<float >::parseFromBinaryStream(&coordinateMin, stream);
+		return true;
+
+	case 0x63f19ef: //AiAgent.coordinateMax
+		TypeInfo<float >::parseFromBinaryStream(&coordinateMax, stream);
+		return true;
+
 	case 0x8b8554f8: //AiAgent.loadedOutfit
 		TypeInfo<bool >::parseFromBinaryStream(&loadedOutfit, stream);
 		return true;
@@ -3012,8 +3560,8 @@ bool AiAgentImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		TypeInfo<ManagedReference<PetDeed* > >::parseFromBinaryStream(&petDeed, stream);
 		return true;
 
-	case 0xa236004f: //AiAgent.currentBehaviorID
-		TypeInfo<unsigned int >::parseFromBinaryStream(&currentBehaviorID, stream);
+	case 0x44c03b92: //AiAgent.aiTemplate
+		TypeInfo<String >::parseFromBinaryStream(&aiTemplate, stream);
 		return true;
 
 	case 0x2b21755e: //AiAgent.lairTemplateCRC
@@ -3022,14 +3570,6 @@ bool AiAgentImplementation::readObjectMember(ObjectInputStream* stream, const ui
 
 	case 0x1f128f38: //AiAgent.creatureBitmask
 		TypeInfo<unsigned int >::parseFromBinaryStream(&creatureBitmask, stream);
-		return true;
-
-	case 0x6dc86ebe: //AiAgent.waitTime
-		TypeInfo<int >::parseFromBinaryStream(&waitTime, stream);
-		return true;
-
-	case 0xc64b6de1: //AiAgent.waiting
-		TypeInfo<bool >::parseFromBinaryStream(&waiting, stream);
 		return true;
 
 	case 0x5eec736c: //AiAgent.fleeRange
@@ -3107,11 +3647,56 @@ int AiAgentImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0xe1f0107d; //AiAgent.readyWeapon
+	_nameHashCode = 0xb65d23ee; //AiAgent.endMovementPosition
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&readyWeapon, stream);
+	TypeInfo<PatrolPoint >::toBinaryStream(&endMovementPosition, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xd110fe72; //AiAgent.defaultWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&defaultWeapon, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xf6a74276; //AiAgent.primaryWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&primaryWeapon, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x569d4777; //AiAgent.secondaryWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&secondaryWeapon, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xcb2e56a1; //AiAgent.thrownWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&thrownWeapon, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x708319c4; //AiAgent.currentWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObject* > >::toBinaryStream(&currentWeapon, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3188,11 +3773,11 @@ int AiAgentImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x4454ba1b; //AiAgent.followState
+	_nameHashCode = 0x1607a4a3; //AiAgent.movementState
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&followState, stream);
+	TypeInfo<unsigned int >::toBinaryStream(&movementState, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3242,6 +3827,24 @@ int AiAgentImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xdae0cc7f; //AiAgent.coordinateMin
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&coordinateMin, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x63f19ef; //AiAgent.coordinateMax
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&coordinateMax, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0x8b8554f8; //AiAgent.loadedOutfit
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -3260,11 +3863,11 @@ int AiAgentImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0xa236004f; //AiAgent.currentBehaviorID
+	_nameHashCode = 0x44c03b92; //AiAgent.aiTemplate
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&currentBehaviorID, stream);
+	TypeInfo<String >::toBinaryStream(&aiTemplate, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3283,24 +3886,6 @@ int AiAgentImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<unsigned int >::toBinaryStream(&creatureBitmask, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x6dc86ebe; //AiAgent.waitTime
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&waitTime, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xc64b6de1; //AiAgent.waiting
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&waiting, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3350,7 +3935,17 @@ void AiAgentImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["nextStepPosition"] = nextStepPosition;
 
-	thisObject["readyWeapon"] = readyWeapon;
+	thisObject["endMovementPosition"] = endMovementPosition;
+
+	thisObject["defaultWeapon"] = defaultWeapon;
+
+	thisObject["primaryWeapon"] = primaryWeapon;
+
+	thisObject["secondaryWeapon"] = secondaryWeapon;
+
+	thisObject["thrownWeapon"] = thrownWeapon;
+
+	thisObject["currentWeapon"] = currentWeapon;
 
 	thisObject["npcTemplate"] = npcTemplate;
 
@@ -3368,7 +3963,7 @@ void AiAgentImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["followStore"] = followStore;
 
-	thisObject["followState"] = followState;
+	thisObject["movementState"] = movementState;
 
 	thisObject["nextMovementInterval"] = nextMovementInterval;
 
@@ -3380,19 +3975,19 @@ void AiAgentImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["randomRespawn"] = randomRespawn;
 
+	thisObject["coordinateMin"] = coordinateMin;
+
+	thisObject["coordinateMax"] = coordinateMax;
+
 	thisObject["loadedOutfit"] = loadedOutfit;
 
 	thisObject["petDeed"] = petDeed;
 
-	thisObject["currentBehaviorID"] = currentBehaviorID;
+	thisObject["aiTemplate"] = aiTemplate;
 
 	thisObject["lairTemplateCRC"] = lairTemplateCRC;
 
 	thisObject["creatureBitmask"] = creatureBitmask;
-
-	thisObject["waitTime"] = waitTime;
-
-	thisObject["waiting"] = waiting;
 
 	thisObject["fleeRange"] = fleeRange;
 
@@ -3405,8 +4000,8 @@ void AiAgentImplementation::writeJSON(nlohmann::json& j) {
 
 AiAgentImplementation::AiAgentImplementation() {
 	_initializeImplementation();
-	// server/zone/objects/creature/ai/AiAgent.idl():  		followState = OBLIVIOUS;
-	followState = OBLIVIOUS;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		movementState = OBLIVIOUS;
+	movementState = OBLIVIOUS;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		respawnTimer = 0;
 	respawnTimer = 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		respawnCounter = 0;
@@ -3417,6 +4012,8 @@ AiAgentImplementation::AiAgentImplementation() {
 	nextMovementInterval = UPDATEMOVEMENTINTERVAL;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		reactionRank = 0;
 	reactionRank = 0;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		customAiMap = 0;
+	customAiMap = 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		convoTemplateCRC = 0;
 	convoTemplateCRC = 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		showNextMovementPosition = true;
@@ -3425,32 +4022,31 @@ AiAgentImplementation::AiAgentImplementation() {
 	despawnOnNoPlayerInRange = false;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		loadedOutfit = false;
 	loadedOutfit = false;
-	// server/zone/objects/creature/ai/AiAgent.idl():  		Logger.setLoggingName("AiAgent");
-	Logger::setLoggingName("AiAgent");
-	// server/zone/objects/creature/ai/AiAgent.idl():  		Logger.setLogging(false);
-	Logger::setLogging(false);
-	// server/zone/objects/creature/ai/AiAgent.idl():  		Logger.setGlobalLogging(true);
-	Logger::setGlobalLogging(true);
-	// server/zone/objects/creature/ai/AiAgent.idl():  		behaviors.setNoDuplicateInsertPlan();
-	(&behaviors)->setNoDuplicateInsertPlan();
-	// server/zone/objects/creature/ai/AiAgent.idl():  		waitTime = 0;
-	waitTime = 0;
-	// server/zone/objects/creature/ai/AiAgent.idl():  		waiting = false;
-	waiting = false;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		fleeRange = 192;
 	fleeRange = 192;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		lairTemplateCRC = 0;
 	lairTemplateCRC = 0;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		aiTemplate = "";
+	aiTemplate = "";
+	// server/zone/objects/creature/ai/AiAgent.idl():  		customAiMap = 0;
+	customAiMap = 0;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		coordinateMin = -8192;
+	coordinateMin = -8192;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		coordinateMax = 8192;
+	coordinateMax = 8192;
 }
 
 void AiAgentImplementation::finalize() {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		clearBehaviorList();
-	clearBehaviorList();
 }
 
-bool AiAgentImplementation::isCamouflaged(CreatureObject* target) {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return isAggressiveTo(target) && (isScentMasked(target) || isConcealed(target));
-	return isAggressiveTo(target) && (isScentMasked(target) || isConcealed(target));
+String AiAgentImplementation::getLogFileName() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  	 return Logger.getLogFileName();
+	return Logger::getLogFileName();
+}
+
+int AiAgentImplementation::getLogLevel() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  	 return Logger.getLogLevel();
+	return Logger::getLogLevel();
 }
 
 void AiAgentImplementation::clearPatrolPoints() {
@@ -3458,7 +4054,7 @@ void AiAgentImplementation::clearPatrolPoints() {
 {
 	Locker _locker((&targetMutex));
 	// server/zone/objects/creature/ai/AiAgent.idl():  			patrolPoints.
-	if (getFollowState() == PATROLLING){
+	if (movementState == PATROLLING || movementState == WATCHING){
 	// server/zone/objects/creature/ai/AiAgent.idl():  				}
 	for (	// server/zone/objects/creature/ai/AiAgent.idl():  				for (int i = 0;
 	int i = 0;
@@ -3513,17 +4109,17 @@ void AiAgentImplementation::destroyObjectFromWorld(bool sendSelfDestroy) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		numberOfPlayersInRange.set(0);
 	(&numberOfPlayersInRange)->set(0);
 	// server/zone/objects/creature/ai/AiAgent.idl():  	}
-	if (moveEvent != nullptr){
+	if (moveEvent){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			moveEvent.clearCreatureObject();
 	moveEvent->clearCreatureObject();
 	// server/zone/objects/creature/ai/AiAgent.idl():  			moveEvent = null;
-	moveEvent = nullptr;
+	moveEvent = NULL;
 }
 }
 
 void AiAgentImplementation::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		super.
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			petDeed.destroyObjectFromDatabase(true);
 	petDeed->destroyObjectFromDatabase(true);
 }
@@ -3545,13 +4141,15 @@ void AiAgentImplementation::addPatrolPoint(PatrolPoint& point) {
 }
 }
 
-void AiAgentImplementation::setHomeLocation(float x, float z, float y, CellObject* cell) {
+void AiAgentImplementation::setHomeLocation(float x, float z, float y, CellObject* cell, float direction) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		homeLocation.setPosition(x, z, y);
 	(&homeLocation)->setPosition(x, z, y);
 	// server/zone/objects/creature/ai/AiAgent.idl():  		homeLocation.setCell(cell);
 	(&homeLocation)->setCell(cell);
 	// server/zone/objects/creature/ai/AiAgent.idl():  		homeLocation.setReached(true);
 	(&homeLocation)->setReached(true);
+	// server/zone/objects/creature/ai/AiAgent.idl():  		homeLocation.setDirection(direction);
+	(&homeLocation)->setDirection(direction);
 }
 
 void AiAgentImplementation::setRespawnTimer(float resp) {
@@ -3573,10 +4171,10 @@ void AiAgentImplementation::setOblivious() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 {
 	Locker _locker((&targetMutex));
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(OBLIVIOUS);
-	setFollowState(OBLIVIOUS);
+	// server/zone/objects/creature/ai/AiAgent.idl():  			setMovementState(OBLIVIOUS);
+	setMovementState(OBLIVIOUS);
 	// server/zone/objects/creature/ai/AiAgent.idl():  			setTargetObject(null);
-	setTargetObject(nullptr);
+	setTargetObject(NULL);
 	// server/zone/objects/creature/ai/AiAgent.idl():  			clearState(CreatureState.PEACE);
 	clearState(CreatureState::PEACE);
 }
@@ -3586,11 +4184,11 @@ void AiAgentImplementation::setWatchObject(SceneObject* obj) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 {
 	Locker _locker((&targetMutex));
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(
+	// server/zone/objects/creature/ai/AiAgent.idl():  			setMovementState(
 	if (_this.getReferenceUnsafeStaticCast()->isRetreating())	// server/zone/objects/creature/ai/AiAgent.idl():  				return;
 	return;
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(WATCHING);
-	setFollowState(WATCHING);
+	// server/zone/objects/creature/ai/AiAgent.idl():  			setMovementState(WATCHING);
+	setMovementState(WATCHING);
 	// server/zone/objects/creature/ai/AiAgent.idl():  			setTargetObject(obj);
 	setTargetObject(obj);
 }
@@ -3600,11 +4198,11 @@ void AiAgentImplementation::setStalkObject(SceneObject* obj) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 {
 	Locker _locker((&targetMutex));
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(
+	// server/zone/objects/creature/ai/AiAgent.idl():  			setMovementState(
 	if (_this.getReferenceUnsafeStaticCast()->isRetreating())	// server/zone/objects/creature/ai/AiAgent.idl():  				return;
 	return;
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(STALKING);
-	setFollowState(STALKING);
+	// server/zone/objects/creature/ai/AiAgent.idl():  			setMovementState(STALKING);
+	setMovementState(STALKING);
 	// server/zone/objects/creature/ai/AiAgent.idl():  			setTargetObject(obj);
 	setTargetObject(obj);
 }
@@ -3614,13 +4212,16 @@ void AiAgentImplementation::setFollowObject(SceneObject* obj) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 {
 	Locker _locker((&targetMutex));
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(
+	// server/zone/objects/creature/ai/AiAgent.idl():  			if 
 	if (_this.getReferenceUnsafeStaticCast()->isRetreating())	// server/zone/objects/creature/ai/AiAgent.idl():  				return;
 	return;
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setFollowState(FOLLOWING);
-	setFollowState(FOLLOWING);
-	// server/zone/objects/creature/ai/AiAgent.idl():  			setTargetObject(obj);
+	// server/zone/objects/creature/ai/AiAgent.idl():  		}
+	if (followObject != obj){
+	// server/zone/objects/creature/ai/AiAgent.idl():  				setMovementState(FOLLOWING);
+	setMovementState(FOLLOWING);
+	// server/zone/objects/creature/ai/AiAgent.idl():  				setTargetObject(obj);
 	setTargetObject(obj);
+}
 }
 }
 
@@ -3652,48 +4253,26 @@ void AiAgentImplementation::storeFollowObject() {
 }
 }
 
-unsigned int AiAgentImplementation::getFollowState() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return followState;
-	return followState;
+unsigned int AiAgentImplementation::getMovementState() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return movementState;
+	return movementState;
 }
 
-void AiAgentImplementation::setFollowState(int state) {
+void AiAgentImplementation::setMovementState(int state) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 {
 	Locker _locker((&targetMutex));
-	// server/zone/objects/creature/ai/AiAgent.idl():  			int oldState = followState;
-	int oldState = followState;
-	// server/zone/objects/creature/ai/AiAgent.idl():  			clearPatrolPoints();
+	// server/zone/objects/creature/ai/AiAgent.idl():  			int oldState = movementState;
+	int oldState = movementState;
+	// server/zone/objects/creature/ai/AiAgent.idl():  			movementState 
+	if (state != PATROLLING && state != WATCHING)	// server/zone/objects/creature/ai/AiAgent.idl():  				clearPatrolPoints();
 	clearPatrolPoints();
-	// server/zone/objects/creature/ai/AiAgent.idl():  			followState = state;
-	followState = state;
+	// server/zone/objects/creature/ai/AiAgent.idl():  			movementState = state;
+	movementState = state;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
 	if (oldState == LEASHING || state == LEASHING)	// server/zone/objects/creature/ai/AiAgent.idl():  				broadcastPvpStatusBitmask();
 	broadcastPvpStatusBitmask();
 }
-}
-
-void AiAgentImplementation::setWait(int wait) {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		waitTime = wait;
-	waitTime = wait;
-	// server/zone/objects/creature/ai/AiAgent.idl():  	}
-	if (waitTime != 0)	// server/zone/objects/creature/ai/AiAgent.idl():  			waiting = true;
-	waiting = true;
-}
-
-int AiAgentImplementation::getWait() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return waitTime;
-	return waitTime;
-}
-
-bool AiAgentImplementation::isWaiting() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return waiting;
-	return waiting;
-}
-
-void AiAgentImplementation::stopWaiting() {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		waiting = false;
-	waiting = false;
 }
 
 bool AiAgentImplementation::isRetreating() {
@@ -3702,18 +4281,18 @@ bool AiAgentImplementation::isRetreating() {
 }
 
 bool AiAgentImplementation::isFleeing() {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return getFollowState() == FLEEING;
-	return getFollowState() == FLEEING;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMovementState() == FLEEING;
+	return getMovementState() == FLEEING;
 }
 
 float AiAgentImplementation::getKinetic() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getKinetic());
 	return getReducedResist(petDeed->getKinetic());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getKinetic());
 	return getReducedResist((&npcTemplate)->get()->getKinetic());
@@ -3721,12 +4300,12 @@ float AiAgentImplementation::getKinetic() {
 
 float AiAgentImplementation::getEnergy() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getEnergy());
 	return getReducedResist(petDeed->getEnergy());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getEnergy());
 	return getReducedResist((&npcTemplate)->get()->getEnergy());
@@ -3734,12 +4313,12 @@ float AiAgentImplementation::getEnergy() {
 
 float AiAgentImplementation::getElectricity() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getElectric());
 	return getReducedResist(petDeed->getElectric());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getElectricity());
 	return getReducedResist((&npcTemplate)->get()->getElectricity());
@@ -3747,12 +4326,12 @@ float AiAgentImplementation::getElectricity() {
 
 float AiAgentImplementation::getStun() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getStun());
 	return getReducedResist(petDeed->getStun());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getStun());
 	return getReducedResist((&npcTemplate)->get()->getStun());
@@ -3760,12 +4339,12 @@ float AiAgentImplementation::getStun() {
 
 float AiAgentImplementation::getBlast() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getBlast());
 	return getReducedResist(petDeed->getBlast());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getBlast());
 	return getReducedResist((&npcTemplate)->get()->getBlast());
@@ -3773,12 +4352,12 @@ float AiAgentImplementation::getBlast() {
 
 float AiAgentImplementation::getHeat() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getHeat());
 	return getReducedResist(petDeed->getHeat());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if (!(&npcTemplate)->get())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getHeat());
 	return getReducedResist((&npcTemplate)->get()->getHeat());
@@ -3786,12 +4365,12 @@ float AiAgentImplementation::getHeat() {
 
 float AiAgentImplementation::getCold() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getCold());
 	return getReducedResist(petDeed->getCold());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getCold());
 	return getReducedResist((&npcTemplate)->get()->getCold());
@@ -3799,12 +4378,12 @@ float AiAgentImplementation::getCold() {
 
 float AiAgentImplementation::getAcid() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getAcid());
 	return getReducedResist(petDeed->getAcid());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getAcid());
 	return getReducedResist((&npcTemplate)->get()->getAcid());
@@ -3812,12 +4391,12 @@ float AiAgentImplementation::getAcid() {
 
 float AiAgentImplementation::getLightSaber() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return getReducedResist(petDeed.getSaber());
 	return getReducedResist(petDeed->getSaber());
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return getReducedResist(npcTemplate.get().getLightSaber());
 	return getReducedResist((&npcTemplate)->get()->getLightSaber());
@@ -3837,12 +4416,12 @@ float AiAgentImplementation::getReducedResist(float value) {
 
 bool AiAgentImplementation::isSpecialProtection(int resistType) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return petDeed.isSpecialResist(resistType);
 	return petDeed->isSpecialResist(resistType);
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
 	return false;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().isSpecialProtection(resistType);
 	return (&npcTemplate)->get()->isSpecialProtection(resistType);
@@ -3850,7 +4429,7 @@ bool AiAgentImplementation::isSpecialProtection(int resistType) {
 
 bool AiAgentImplementation::isStalker() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
 	return false;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().isStalker();
 	return (&npcTemplate)->get()->isStalker();
@@ -3858,15 +4437,23 @@ bool AiAgentImplementation::isStalker() {
 
 bool AiAgentImplementation::isKiller() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
 	return false;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().isKiller();
 	return (&npcTemplate)->get()->isKiller();
 }
 
+bool AiAgentImplementation::isHealer() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return false;
+	return false;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().isHealer();
+	return (&npcTemplate)->get()->isHealer();
+}
+
 unsigned int AiAgentImplementation::getFerocity() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getFerocity();
 	return (&npcTemplate)->get()->getFerocity();
@@ -3874,7 +4461,7 @@ unsigned int AiAgentImplementation::getFerocity() {
 
 int AiAgentImplementation::getAggroRadius() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getAggroRadius();
 	return (&npcTemplate)->get()->getAggroRadius();
@@ -3882,12 +4469,12 @@ int AiAgentImplementation::getAggroRadius() {
 
 unsigned int AiAgentImplementation::getArmor() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return petDeed.getArmor();
 	return petDeed->getArmor();
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getArmor();
 	return (&npcTemplate)->get()->getArmor();
@@ -3905,7 +4492,7 @@ int AiAgentImplementation::getNumberOfPlayersInRange() {
 
 String AiAgentImplementation::getFactionString() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
 	return "";
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getFaction();
 	return (&npcTemplate)->get()->getFaction();
@@ -3913,7 +4500,7 @@ String AiAgentImplementation::getFactionString() {
 
 String AiAgentImplementation::getSocialGroup() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
 	return "";
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getSocialGroup();
 	return (&npcTemplate)->get()->getSocialGroup();
@@ -3921,12 +4508,12 @@ String AiAgentImplementation::getSocialGroup() {
 
 float AiAgentImplementation::getChanceHit() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return petDeed.getHitChance();
 	return petDeed->getHitChance();
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getChanceHit();
 	return (&npcTemplate)->get()->getChanceHit();
@@ -3944,7 +4531,7 @@ int AiAgentImplementation::getDamageMax() {
 
 float AiAgentImplementation::getSpecialDamageMult() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 1.f;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 1.f;
 	return 1.f;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getSpecialDamageMult();
 	return (&npcTemplate)->get()->getSpecialDamageMult();
@@ -3952,12 +4539,12 @@ float AiAgentImplementation::getSpecialDamageMult() {
 
 int AiAgentImplementation::getBaseXp() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return 100;
 	return 100;
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr || isEventMob())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL || isEventMob())	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getBaseXp();
 	return (&npcTemplate)->get()->getBaseXp();
@@ -3965,7 +4552,7 @@ int AiAgentImplementation::getBaseXp() {
 
 unsigned int AiAgentImplementation::getDiet() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getDiet();
 	return (&npcTemplate)->get()->getDiet();
@@ -3973,12 +4560,12 @@ unsigned int AiAgentImplementation::getDiet() {
 
 unsigned int AiAgentImplementation::getTemplateLevel() const{
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return petDeed.getLevel();
 	return petDeed->getLevel();
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 1;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 1;
 	return 1;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getLevel();
 	return (&npcTemplate)->get()->getLevel();
@@ -3986,12 +4573,12 @@ unsigned int AiAgentImplementation::getTemplateLevel() const{
 
 float AiAgentImplementation::getTame() const{
 	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (petDeed != nullptr){
+	if (petDeed){
 	// server/zone/objects/creature/ai/AiAgent.idl():  			return 1;
 	return 1;
 }
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return 0;
 	return 0;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getTame();
 	return (&npcTemplate)->get()->getTame();
@@ -3999,9 +4586,15 @@ float AiAgentImplementation::getTame() const{
 
 const CreatureAttackMap* AiAgentImplementation::getAttackMap() {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
-	if (getWeapon() == readyWeapon){
-	// server/zone/objects/creature/ai/AiAgent.idl():  			return attackMap;
-	return attackMap;
+	if (currentWeapon == primaryWeapon){
+	// server/zone/objects/creature/ai/AiAgent.idl():  			return primaryAttackMap;
+	return primaryAttackMap;
+}
+
+	else 	// server/zone/objects/creature/ai/AiAgent.idl():  		}
+	if (currentWeapon == secondaryWeapon){
+	// server/zone/objects/creature/ai/AiAgent.idl():  			return secondaryAttackMap;
+	return secondaryAttackMap;
 }
 
 	else {
@@ -4010,17 +4603,17 @@ const CreatureAttackMap* AiAgentImplementation::getAttackMap() {
 }
 }
 
-const LootGroupCollection* AiAgentImplementation::getLootGroups() {
+const LootGroupCollection* AiAgentImplementation::getLootGroups() const{
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr || isEventMob())	// server/zone/objects/creature/ai/AiAgent.idl():  			return null;
+	if ((&npcTemplate)->get() == NULL || isEventMob())	// server/zone/objects/creature/ai/AiAgent.idl():  			return null;
 	return NULL;
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getLootGroups();
 	return (&npcTemplate)->get()->getLootGroups();
 }
 
-String AiAgentImplementation::getReactionStf() {
+String AiAgentImplementation::getReactionStf() const{
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return 
-	if ((&npcTemplate)->get() == nullptr)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
+	if ((&npcTemplate)->get() == NULL)	// server/zone/objects/creature/ai/AiAgent.idl():  			return "";
 	return "";
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getReactionStf();
 	return (&npcTemplate)->get()->getReactionStf();
@@ -4061,16 +4654,6 @@ void AiAgentImplementation::setShowNextPosition(bool val) {
 	showNextMovementPosition = val;
 }
 
-bool AiAgentImplementation::isPet() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return (getControlDevice() != null);
-	return (getControlDevice() != nullptr);
-}
-
-unsigned int AiAgentImplementation::getCurrentBehavior() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return currentBehaviorID;
-	return currentBehaviorID;
-}
-
 void AiAgentImplementation::setHomeObject(SceneObject* home) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		homeObject = home;
 	homeObject = home;
@@ -4081,14 +4664,24 @@ ManagedWeakReference<SceneObject* > AiAgentImplementation::getHomeObject() const
 	return homeObject;
 }
 
-int AiAgentImplementation::getCreatureBitmask() const{
+unsigned int AiAgentImplementation::getCreatureBitmask() const{
 	// server/zone/objects/creature/ai/AiAgent.idl():  		return creatureBitmask;
 	return creatureBitmask;
 }
 
-void AiAgentImplementation::setCreatureBitmask(int mask) {
+void AiAgentImplementation::setCreatureBitmask(unsigned int mask) {
 	// server/zone/objects/creature/ai/AiAgent.idl():  		creatureBitmask = mask;
 	creatureBitmask = mask;
+}
+
+void AiAgentImplementation::addCreatureFlag(unsigned int flag) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		creatureBitmask = creatureBitmask | flag;
+	creatureBitmask = creatureBitmask | flag;
+}
+
+void AiAgentImplementation::removeCreatureFlag(unsigned int flag) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		creatureBitmask = creatureBitmask & ~flag;
+	creatureBitmask = creatureBitmask & flag;
 }
 
 Time* AiAgentImplementation::getAlertedTime() {
@@ -4096,35 +4689,34 @@ Time* AiAgentImplementation::getAlertedTime() {
 	return (&alertedTime);
 }
 
-void AiAgentImplementation::incrementLuaCall(const String& key) {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		trackingTask.incrementCall(key);
-	trackingTask->incrementCall(key);
+Time* AiAgentImplementation::getAggroDelay() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return aggroDelay;
+	return (&aggroDelay);
 }
 
-void AiAgentImplementation::addToLuaTime(const String& key, unsigned long long val) {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		trackingTask.addTime(key, val);
-	trackingTask->addTime(key, val);
+Time* AiAgentImplementation::getPostureSet() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return postureSet;
+	return (&postureSet);
 }
 
-void AiAgentImplementation::outputLuaTimes(CreatureObject* caller) {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		trackingTask.outputTimes(caller);
-	trackingTask->outputTimes(caller);
+Time* AiAgentImplementation::getHealDelay() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return healDelay;
+	return (&healDelay);
 }
 
-void AiAgentImplementation::rescheduleTrackingTask() {
-	// server/zone/objects/creature/ai/AiAgent.idl():  		if 
-	if (trackingTask == nullptr){
-	Reference<AiTrackingTask*> _ref0;
-	// server/zone/objects/creature/ai/AiAgent.idl():  			trackingTask = new AiTrackingTask(this);
-	trackingTask = _ref0 = new AiTrackingTask(_this.getReferenceUnsafeStaticCast());
-	// server/zone/objects/creature/ai/AiAgent.idl():  			trackingTask.schedule(300000);
-	trackingTask->schedule(300000);
+Time* AiAgentImplementation::getFleeDelay() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return fleeDelay;
+	return (&fleeDelay);
 }
-	// server/zone/objects/creature/ai/AiAgent.idl():  	}
-	if (!trackingTask->isScheduled()){
-	// server/zone/objects/creature/ai/AiAgent.idl():  			trackingTask.schedule(300000);
-	trackingTask->schedule(300000);
+
+Time* AiAgentImplementation::getLastPackNotify() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return lastPackNotify;
+	return (&lastPackNotify);
 }
+
+Time* AiAgentImplementation::getLastCallForHelp() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return lastCallForHelp;
+	return (&lastCallForHelp);
 }
 
 void AiAgentImplementation::setPetDeed(PetDeed* deed) {
@@ -4133,8 +4725,8 @@ void AiAgentImplementation::setPetDeed(PetDeed* deed) {
 }
 
 bool AiAgentImplementation::hasPetDeed() const{
-	// server/zone/objects/creature/ai/AiAgent.idl():  		return petDeed != null;
-	return petDeed != nullptr;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return petDeed;
+	return petDeed;
 }
 
 PetDeed* AiAgentImplementation::getPetDeed() const{
@@ -4182,6 +4774,148 @@ unsigned int AiAgentImplementation::getLairTemplateCRC() const{
 	return lairTemplateCRC;
 }
 
+bool AiAgentImplementation::peekBlackboard(const String& key) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return blackboard.contains(key);
+	return (&blackboard)->contains(key);
+}
+
+BlackboardData AiAgentImplementation::readBlackboard(const String& key) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return blackboard.get(key);
+	return (&blackboard)->get(key);
+}
+
+void AiAgentImplementation::eraseBlackboard(const String& key) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		blackboard.drop(key);
+	(&blackboard)->drop(key);
+}
+
+void AiAgentImplementation::wipeBlackboard() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		blackboard.removeAll();
+	(&blackboard)->removeAll();
+}
+
+void AiAgentImplementation::setCustomAiMap(unsigned long long customMap) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		customAiMap = customMap;
+	customAiMap = customMap;
+}
+
+void AiAgentImplementation::setCurrentWeapon(WeaponObject* weap) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		currentWeapon = weap;
+	currentWeapon = weap;
+}
+
+void AiAgentImplementation::setDefaultWeapon(WeaponObject* weap) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		defaultWeapon = weap;
+	defaultWeapon = weap;
+}
+
+WeaponObject* AiAgentImplementation::getPrimaryWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return primaryWeapon;
+	return primaryWeapon;
+}
+
+WeaponObject* AiAgentImplementation::getSecondaryWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return secondaryWeapon;
+	return secondaryWeapon;
+}
+
+WeaponObject* AiAgentImplementation::getDefaultWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return defaultWeapon;
+	return defaultWeapon;
+}
+
+WeaponObject* AiAgentImplementation::getThrownWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return thrownWeapon;
+	return thrownWeapon;
+}
+
+void AiAgentImplementation::clearThrownWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		thrownWeapon = null;
+	thrownWeapon = NULL;
+}
+
+WeaponObject* AiAgentImplementation::getCurrentWeapon() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return defaultWeapon;
+	return defaultWeapon;
+}
+
+void AiAgentImplementation::nullifyWeapons() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		primaryWeapon = null;
+	primaryWeapon = NULL;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		secondaryWeapon = null;
+	secondaryWeapon = NULL;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		thrownWeapon = null;
+	thrownWeapon = NULL;
+	// server/zone/objects/creature/ai/AiAgent.idl():  		currentWeapon = null;
+	currentWeapon = NULL;
+}
+
+int AiAgentImplementation::getMobType() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return npcTemplate.get().getMobType();
+	return (&npcTemplate)->get()->getMobType();
+}
+
+bool AiAgentImplementation::isHerbivore() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMobType() == MOB_HERBIVORE;
+	return getMobType() == MOB_HERBIVORE;
+}
+
+bool AiAgentImplementation::isCarnivore() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMobType() == MOB_CARNIVORE;
+	return getMobType() == MOB_CARNIVORE;
+}
+
+bool AiAgentImplementation::isMonster() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		int type = getMobType();
+	int type = getMobType();
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return type == MOB_HERBIVORE || type == MOB_CARNIVORE;
+	return type == MOB_HERBIVORE || type == MOB_CARNIVORE;
+}
+
+bool AiAgentImplementation::isDroid() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMobType() == MOB_DROID;
+	return getMobType() == MOB_DROID;
+}
+
+bool AiAgentImplementation::isAndroid() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMobType() == MOB_ANDROID;
+	return getMobType() == MOB_ANDROID;
+}
+
+bool AiAgentImplementation::isNpc() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return getMobType() == MOB_NPC;
+	return getMobType() == MOB_NPC;
+}
+
+bool AiAgentImplementation::isHumanoid() const{
+	// server/zone/objects/creature/ai/AiAgent.idl():  		int type = getMobType();
+	int type = getMobType();
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return type == MOB_ANDROID || type == MOB_NPC;
+	return type == MOB_ANDROID || type == MOB_NPC;
+}
+
+VectorMap<unsigned long long, int>* AiAgentImplementation::getTargetMissCount() {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		return targetMissCount;
+	return (&targetMissCount);
+}
+
+void AiAgentImplementation::addTargetMissCount(unsigned long long target, int misses) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		targetMissCount.put(target, misses);
+	(&targetMissCount)->put(target, misses);
+}
+
+void AiAgentImplementation::setTargetMissCount(unsigned long long target, int misses) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		targetMissCount.drop(target);
+	(&targetMissCount)->drop(target);
+	// server/zone/objects/creature/ai/AiAgent.idl():  		targetMissCount.put(target, misses);
+	(&targetMissCount)->put(target, misses);
+}
+
+void AiAgentImplementation::removeTargetMissCount(unsigned long long target) {
+	// server/zone/objects/creature/ai/AiAgent.idl():  		targetMissCount.drop(target);
+	(&targetMissCount)->drop(target);
+}
+
 /*
  *	AiAgentAdapter
  */
@@ -4218,6 +4952,20 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_GETLOGFILENAME__:
+		{
+			
+			String _m_res = getLogFileName();
+			resp->insertAscii(_m_res);
+		}
+		break;
+	case RPC_GETLOGLEVEL__:
+		{
+			
+			int _m_res = getLogLevel();
+			resp->insertSignedInt(_m_res);
+		}
+		break;
 	case RPC_ACTIVATERECOVERY__:
 		{
 			
@@ -4232,35 +4980,10 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_ACTIVATEWAITEVENT__:
+	case RPC_CANCELMOVEMENTEVENT__:
 		{
 			
-			activateWaitEvent();
-			
-		}
-		break;
-	case RPC_ACTIVATEAWARENESSEVENT__LONG_:
-		{
-			unsigned long long delay = inv->getUnsignedLongParameter();
-			
-			activateAwarenessEvent(delay);
-			
-		}
-		break;
-	case RPC_ACTIVATEINTERRUPT__SCENEOBJECT_LONG_:
-		{
-			SceneObject* source = static_cast<SceneObject*>(inv->getObjectParameter());
-			long long msg = inv->getSignedLongParameter();
-			
-			activateInterrupt(source, msg);
-			
-		}
-		break;
-	case RPC_ACTIVATELOAD__STRING_:
-		{
-			 String temp; inv->getAsciiParameter(temp);
-			
-			activateLoad(temp);
+			cancelMovementEvent();
 			
 		}
 		break;
@@ -4277,6 +5000,79 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			doMovement();
 			
+		}
+		break;
+	case RPC_ISRUNNINGBEHAVIOR__INT_:
+		{
+			unsigned int id = inv->getUnsignedIntParameter();
+			
+			bool _m_res = isRunningBehavior(id);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ADDRUNNINGID__INT_:
+		{
+			unsigned int id = inv->getUnsignedIntParameter();
+			
+			addRunningID(id);
+			
+		}
+		break;
+	case RPC_POPRUNNINGCHAIN__:
+		{
+			
+			popRunningChain();
+			
+		}
+		break;
+	case RPC_PEEKRUNNINGCHAIN__:
+		{
+			
+			unsigned int _m_res = peekRunningChain();
+			resp->insertInt(_m_res);
+		}
+		break;
+	case RPC_CLEARRUNNINGCHAIN__:
+		{
+			
+			clearRunningChain();
+			
+		}
+		break;
+	case RPC_SETAITEMPLATE__:
+		{
+			
+			setAITemplate();
+			
+		}
+		break;
+	case RPC_LOADCREATUREBITMASK__:
+		{
+			
+			loadCreatureBitmask();
+			
+		}
+		break;
+	case RPC_UNLOADCREATUREBITMASK__:
+		{
+			
+			unloadCreatureBitmask();
+			
+		}
+		break;
+	case RPC_SETAIDEBUG__BOOL_:
+		{
+			bool flag = inv->getBooleanParameter();
+			
+			setAIDebug(flag);
+			
+		}
+		break;
+	case RPC_GETAIDEBUG__:
+		{
+			
+			bool _m_res = getAIDebug();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_SETLEVEL__INT_BOOL_:
@@ -4324,21 +5120,29 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getTargetFromMap();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETTARGETFROMDEFENDERS__:
 		{
 			
 			DistributedObject* _m_res = getTargetFromDefenders();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_GETTARGETFROMTARGETSMAP__TANGIBLEOBJECT_:
+		{
+			TangibleObject* target = static_cast<TangibleObject*>(inv->getObjectParameter());
+			
+			DistributedObject* _m_res = getTargetFromTargetsMap(target);
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETTARGETFROMTARGETSDEFENDERS__:
 		{
 			
 			DistributedObject* _m_res = getTargetFromTargetsDefenders();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_VALIDATETARGET__:
@@ -4370,6 +5174,14 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			bool walk = inv->getBooleanParameter();
 			
 			bool _m_res = findNextPosition(maxDistance, walk);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_CHECKLINEOFSIGHT__SCENEOBJECT_:
+		{
+			SceneObject* obj = static_cast<SceneObject*>(inv->getObjectParameter());
+			
+			bool _m_res = checkLineOfSight(obj);
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -4460,6 +5272,14 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_NOTIFYPACKMOBS__SCENEOBJECT_:
+		{
+			SceneObject* attacker = static_cast<SceneObject*>(inv->getObjectParameter());
+			
+			notifyPackMobs(attacker);
+			
+		}
+		break;
 	case RPC_ADDDOTSTATE__CREATUREOBJECT_LONG_LONG_INT_BYTE_INT_FLOAT_INT_INT_:
 		{
 			CreatureObject* attacker = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -4524,15 +5344,6 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			Observable* observable = static_cast<Observable*>(inv->getObjectParameter());
 			
 			int _m_res = notifyAttack(observable);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_NOTIFYCALLFORHELP__OBSERVABLE_MANAGEDOBJECT_:
-		{
-			Observable* observable = static_cast<Observable*>(inv->getObjectParameter());
-			ManagedObject* arg1 = static_cast<ManagedObject*>(inv->getObjectParameter());
-			
-			int _m_res = notifyCallForHelp(observable, arg1);
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -4606,6 +5417,30 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_KILLPLAYER__SCENEOBJECT_:
+		{
+			SceneObject* player = static_cast<SceneObject*>(inv->getObjectParameter());
+			
+			bool _m_res = killPlayer(player);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_STALKPROSPECT__SCENEOBJECT_:
+		{
+			SceneObject* prospect = static_cast<SceneObject*>(inv->getObjectParameter());
+			
+			bool _m_res = stalkProspect(prospect);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_HEALTARGET__CREATUREOBJECT_:
+		{
+			CreatureObject* target = static_cast<CreatureObject*>(inv->getObjectParameter());
+			
+			healTarget(target);
+			
+		}
+		break;
 	case RPC_SETDESPAWNONNOPLAYERINRANGE__BOOL_:
 		{
 			bool val = inv->getBooleanParameter();
@@ -4646,14 +5481,15 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_:
+	case RPC_SETHOMELOCATION__FLOAT_FLOAT_FLOAT_CELLOBJECT_FLOAT_:
 		{
 			float x = inv->getFloatParameter();
 			float z = inv->getFloatParameter();
 			float y = inv->getFloatParameter();
 			CellObject* cell = static_cast<CellObject*>(inv->getObjectParameter());
+			float direction = inv->getFloatParameter();
 			
-			setHomeLocation(x, z, y, cell);
+			setHomeLocation(x, z, y, cell, direction);
 			
 		}
 		break;
@@ -4743,12 +5579,13 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_RUNAWAY__CREATUREOBJECT_FLOAT_:
+	case RPC_RUNAWAY__CREATUREOBJECT_FLOAT_BOOL_:
 		{
 			CreatureObject* target = static_cast<CreatureObject*>(inv->getObjectParameter());
 			float range = inv->getFloatParameter();
+			bool random = inv->getBooleanParameter();
 			
-			runAway(target, range);
+			runAway(target, range, random);
 			
 		}
 		break;
@@ -4772,7 +5609,7 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getFollowObject().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_STOREFOLLOWOBJECT__:
@@ -4789,18 +5626,18 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_GETFOLLOWSTATE__:
+	case RPC_GETMOVEMENTSTATE__:
 		{
 			
-			unsigned int _m_res = getFollowState();
+			unsigned int _m_res = getMovementState();
 			resp->insertInt(_m_res);
 		}
 		break;
-	case RPC_SETFOLLOWSTATE__INT_:
+	case RPC_SETMOVEMENTSTATE__INT_:
 		{
 			int state = inv->getSignedIntParameter();
 			
-			setFollowState(state);
+			setMovementState(state);
 			
 		}
 		break;
@@ -4818,33 +5655,12 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_COMPLETEMOVE__:
-		{
-			
-			bool _m_res = completeMove();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_SETWAIT__INT_:
 		{
 			int wait = inv->getSignedIntParameter();
 			
 			setWait(wait);
 			
-		}
-		break;
-	case RPC_GETWAIT__:
-		{
-			
-			int _m_res = getWait();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_ISWAITING__:
-		{
-			
-			bool _m_res = isWaiting();
-			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_STOPWAITING__:
@@ -4854,18 +5670,11 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_SELECTWEAPON__:
+	case RPC_ISWAITING__:
 		{
 			
-			selectWeapon();
-			
-		}
-		break;
-	case RPC_SELECTDEFAULTWEAPON__:
-		{
-			
-			selectDefaultWeapon();
-			
+			bool _m_res = isWaiting();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_VALIDATESTATEATTACK__CREATUREOBJECT_INT_:
@@ -4880,23 +5689,23 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 	case RPC_SELECTSPECIALATTACK__:
 		{
 			
-			selectSpecialAttack();
-			
+			bool _m_res = selectSpecialAttack();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_SELECTSPECIALATTACK__INT_:
 		{
 			int attackNum = inv->getSignedIntParameter();
 			
-			selectSpecialAttack(attackNum);
-			
+			bool _m_res = selectSpecialAttack(attackNum);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_SELECTDEFAULTATTACK__:
 		{
 			
-			selectDefaultAttack();
-			
+			bool _m_res = selectDefaultAttack();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_VALIDATESTATEATTACK__:
@@ -4910,8 +5719,8 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			int priority = inv->getSignedIntParameter();
 			
-			enqueueAttack(priority);
-			
+			int _m_res = enqueueAttack(priority);
+			resp->insertSignedInt(_m_res);
 		}
 		break;
 	case RPC_ISRETREATING__:
@@ -5017,6 +5826,13 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			bool _m_res = isKiller();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISHEALER__:
+		{
+			
+			bool _m_res = isHealer();
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -5189,13 +6005,6 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_GETCURRENTBEHAVIOR__:
-		{
-			
-			unsigned int _m_res = getCurrentBehavior();
-			resp->insertInt(_m_res);
-		}
-		break;
 	case RPC_SETHOMEOBJECT__SCENEOBJECT_:
 		{
 			SceneObject* home = static_cast<SceneObject*>(inv->getObjectParameter());
@@ -5214,13 +6023,13 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 	case RPC_GETCREATUREBITMASK__:
 		{
 			
-			int _m_res = getCreatureBitmask();
-			resp->insertSignedInt(_m_res);
+			unsigned int _m_res = getCreatureBitmask();
+			resp->insertInt(_m_res);
 		}
 		break;
 	case RPC_SETCREATUREBITMASK__INT_:
 		{
-			int mask = inv->getSignedIntParameter();
+			unsigned int mask = inv->getUnsignedIntParameter();
 			
 			setCreatureBitmask(mask);
 			
@@ -5242,35 +6051,19 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_INCREMENTLUACALL__STRING_:
+	case RPC_ADDCREATUREFLAG__INT_:
 		{
-			 String key; inv->getAsciiParameter(key);
+			unsigned int flag = inv->getUnsignedIntParameter();
 			
-			incrementLuaCall(key);
+			addCreatureFlag(flag);
 			
 		}
 		break;
-	case RPC_ADDTOLUATIME__STRING_LONG_:
+	case RPC_REMOVECREATUREFLAG__INT_:
 		{
-			 String key; inv->getAsciiParameter(key);
-			unsigned long long val = inv->getUnsignedLongParameter();
+			unsigned int flag = inv->getUnsignedIntParameter();
 			
-			addToLuaTime(key, val);
-			
-		}
-		break;
-	case RPC_OUTPUTLUATIMES__CREATUREOBJECT_:
-		{
-			CreatureObject* caller = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			outputLuaTimes(caller);
-			
-		}
-		break;
-	case RPC_RESCHEDULETRACKINGTASK__:
-		{
-			
-			rescheduleTrackingTask();
+			removeCreatureFlag(flag);
 			
 		}
 		break;
@@ -5315,16 +6108,17 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPetDeed();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
-	case RPC_SENDREACTIONCHAT__INT_INT_BOOL_:
+	case RPC_SENDREACTIONCHAT__SCENEOBJECT_INT_INT_BOOL_:
 		{
+			SceneObject* object = static_cast<SceneObject*>(inv->getObjectParameter());
 			int type = inv->getSignedIntParameter();
 			int state = inv->getSignedIntParameter();
 			bool force = inv->getBooleanParameter();
 			
-			sendReactionChat(type, state, force);
+			sendReactionChat(object, type, state, force);
 			
 		}
 		break;
@@ -5418,6 +6212,168 @@ void AiAgentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertInt(_m_res);
 		}
 		break;
+	case RPC_SETCUSTOMAIMAP__LONG_:
+		{
+			unsigned long long customMap = inv->getUnsignedLongParameter();
+			
+			setCustomAiMap(customMap);
+			
+		}
+		break;
+	case RPC_SETCURRENTWEAPON__WEAPONOBJECT_:
+		{
+			WeaponObject* weap = static_cast<WeaponObject*>(inv->getObjectParameter());
+			
+			setCurrentWeapon(weap);
+			
+		}
+		break;
+	case RPC_SETDEFAULTWEAPON__WEAPONOBJECT_:
+		{
+			WeaponObject* weap = static_cast<WeaponObject*>(inv->getObjectParameter());
+			
+			setDefaultWeapon(weap);
+			
+		}
+		break;
+	case RPC_GETPRIMARYWEAPON__:
+		{
+			
+			DistributedObject* _m_res = getPrimaryWeapon();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_GETSECONDARYWEAPON__:
+		{
+			
+			DistributedObject* _m_res = getSecondaryWeapon();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_GETDEFAULTWEAPON__:
+		{
+			
+			DistributedObject* _m_res = getDefaultWeapon();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_GETTHROWNWEAPON__:
+		{
+			
+			DistributedObject* _m_res = getThrownWeapon();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_CLEARTHROWNWEAPON__:
+		{
+			
+			clearThrownWeapon();
+			
+		}
+		break;
+	case RPC_GETCURRENTWEAPON__:
+		{
+			
+			DistributedObject* _m_res = getCurrentWeapon();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_NULLIFYWEAPONS__:
+		{
+			
+			nullifyWeapons();
+			
+		}
+		break;
+	case RPC_GETMOBTYPE__:
+		{
+			
+			int _m_res = getMobType();
+			resp->insertSignedInt(_m_res);
+		}
+		break;
+	case RPC_ISHERBIVORE__:
+		{
+			
+			bool _m_res = isHerbivore();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISCARNIVORE__:
+		{
+			
+			bool _m_res = isCarnivore();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISMONSTER__:
+		{
+			
+			bool _m_res = isMonster();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISDROID__:
+		{
+			
+			bool _m_res = isDroid();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISANDROID__:
+		{
+			
+			bool _m_res = isAndroid();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISNPC__:
+		{
+			
+			bool _m_res = isNpc();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ISHUMANOID__:
+		{
+			
+			bool _m_res = isHumanoid();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_ADDTARGETMISSCOUNT__LONG_INT_:
+		{
+			unsigned long long target = inv->getUnsignedLongParameter();
+			int misses = inv->getSignedIntParameter();
+			
+			addTargetMissCount(target, misses);
+			
+		}
+		break;
+	case RPC_SETTARGETMISSCOUNT__LONG_INT_:
+		{
+			unsigned long long target = inv->getUnsignedLongParameter();
+			int misses = inv->getSignedIntParameter();
+			
+			setTargetMissCount(target, misses);
+			
+		}
+		break;
+	case RPC_REMOVETARGETMISSCOUNT__LONG_:
+		{
+			unsigned long long target = inv->getUnsignedLongParameter();
+			
+			removeTargetMissCount(target);
+			
+		}
+		break;
+	case RPC_GETERRORCONTEXT__:
+		{
+			
+			String _m_res = getErrorContext();
+			resp->insertAscii(_m_res);
+		}
+		break;
 	default:
 		CreatureObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -5435,6 +6391,14 @@ void AiAgentAdapter::finalize() {
 	(static_cast<AiAgent*>(stub))->finalize();
 }
 
+String AiAgentAdapter::getLogFileName() const {
+	return (static_cast<AiAgent*>(stub))->getLogFileName();
+}
+
+int AiAgentAdapter::getLogLevel() const {
+	return (static_cast<AiAgent*>(stub))->getLogLevel();
+}
+
 void AiAgentAdapter::activateRecovery() {
 	(static_cast<AiAgent*>(stub))->activateRecovery();
 }
@@ -5443,20 +6407,8 @@ void AiAgentAdapter::activateMovementEvent() {
 	(static_cast<AiAgent*>(stub))->activateMovementEvent();
 }
 
-void AiAgentAdapter::activateWaitEvent() {
-	(static_cast<AiAgent*>(stub))->activateWaitEvent();
-}
-
-void AiAgentAdapter::activateAwarenessEvent(unsigned long long delay) {
-	(static_cast<AiAgent*>(stub))->activateAwarenessEvent(delay);
-}
-
-void AiAgentAdapter::activateInterrupt(SceneObject* source, long long msg) {
-	(static_cast<AiAgent*>(stub))->activateInterrupt(source, msg);
-}
-
-void AiAgentAdapter::activateLoad(const String& temp) {
-	(static_cast<AiAgent*>(stub))->activateLoad(temp);
+void AiAgentAdapter::cancelMovementEvent() {
+	(static_cast<AiAgent*>(stub))->cancelMovementEvent();
 }
 
 void AiAgentAdapter::doRecovery(int latency) {
@@ -5465,6 +6417,46 @@ void AiAgentAdapter::doRecovery(int latency) {
 
 void AiAgentAdapter::doMovement() {
 	(static_cast<AiAgent*>(stub))->doMovement();
+}
+
+bool AiAgentAdapter::isRunningBehavior(unsigned int id) {
+	return (static_cast<AiAgent*>(stub))->isRunningBehavior(id);
+}
+
+void AiAgentAdapter::addRunningID(unsigned int id) {
+	(static_cast<AiAgent*>(stub))->addRunningID(id);
+}
+
+void AiAgentAdapter::popRunningChain() {
+	(static_cast<AiAgent*>(stub))->popRunningChain();
+}
+
+unsigned int AiAgentAdapter::peekRunningChain() {
+	return (static_cast<AiAgent*>(stub))->peekRunningChain();
+}
+
+void AiAgentAdapter::clearRunningChain() {
+	(static_cast<AiAgent*>(stub))->clearRunningChain();
+}
+
+void AiAgentAdapter::setAITemplate() {
+	(static_cast<AiAgent*>(stub))->setAITemplate();
+}
+
+void AiAgentAdapter::loadCreatureBitmask() {
+	(static_cast<AiAgent*>(stub))->loadCreatureBitmask();
+}
+
+void AiAgentAdapter::unloadCreatureBitmask() {
+	(static_cast<AiAgent*>(stub))->unloadCreatureBitmask();
+}
+
+void AiAgentAdapter::setAIDebug(bool flag) {
+	(static_cast<AiAgent*>(stub))->setAIDebug(flag);
+}
+
+bool AiAgentAdapter::getAIDebug() {
+	return (static_cast<AiAgent*>(stub))->getAIDebug();
 }
 
 void AiAgentAdapter::setLevel(int lvl, bool randomHam) {
@@ -5495,6 +6487,10 @@ SceneObject* AiAgentAdapter::getTargetFromDefenders() {
 	return (static_cast<AiAgent*>(stub))->getTargetFromDefenders();
 }
 
+SceneObject* AiAgentAdapter::getTargetFromTargetsMap(TangibleObject* target) {
+	return (static_cast<AiAgent*>(stub))->getTargetFromTargetsMap(target);
+}
+
 SceneObject* AiAgentAdapter::getTargetFromTargetsDefenders() {
 	return (static_cast<AiAgent*>(stub))->getTargetFromTargetsDefenders();
 }
@@ -5513,6 +6509,10 @@ bool AiAgentAdapter::isCamouflaged(CreatureObject* target) {
 
 bool AiAgentAdapter::findNextPosition(float maxDistance, bool walk) {
 	return (static_cast<AiAgent*>(stub))->findNextPosition(maxDistance, walk);
+}
+
+bool AiAgentAdapter::checkLineOfSight(SceneObject* obj) {
+	return (static_cast<AiAgent*>(stub))->checkLineOfSight(obj);
 }
 
 int AiAgentAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
@@ -5551,6 +6551,10 @@ int AiAgentAdapter::inflictDamage(TangibleObject* attacker, int damageType, floa
 	return (static_cast<AiAgent*>(stub))->inflictDamage(attacker, damageType, damage, destroy, xp, notifyClient, isCombatAction);
 }
 
+void AiAgentAdapter::notifyPackMobs(SceneObject* attacker) {
+	(static_cast<AiAgent*>(stub))->notifyPackMobs(attacker);
+}
+
 int AiAgentAdapter::addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength) {
 	return (static_cast<AiAgent*>(stub))->addDotState(attacker, dotType, objectID, strength, type, duration, potency, defense, secondaryStrength);
 }
@@ -5577,10 +6581,6 @@ int AiAgentAdapter::notifyConverseObservers(CreatureObject* converser) {
 
 int AiAgentAdapter::notifyAttack(Observable* observable) {
 	return (static_cast<AiAgent*>(stub))->notifyAttack(observable);
-}
-
-int AiAgentAdapter::notifyCallForHelp(Observable* observable, ManagedObject* arg1) {
-	return (static_cast<AiAgent*>(stub))->notifyCallForHelp(observable, arg1);
 }
 
 void AiAgentAdapter::destroyObjectFromWorld(bool sendSelfDestroy) {
@@ -5619,6 +6619,18 @@ void AiAgentAdapter::removeDefender(SceneObject* defender) {
 	(static_cast<AiAgent*>(stub))->removeDefender(defender);
 }
 
+bool AiAgentAdapter::killPlayer(SceneObject* player) {
+	return (static_cast<AiAgent*>(stub))->killPlayer(player);
+}
+
+bool AiAgentAdapter::stalkProspect(SceneObject* prospect) {
+	return (static_cast<AiAgent*>(stub))->stalkProspect(prospect);
+}
+
+void AiAgentAdapter::healTarget(CreatureObject* target) {
+	(static_cast<AiAgent*>(stub))->healTarget(target);
+}
+
 void AiAgentAdapter::setDespawnOnNoPlayerInRange(bool val) {
 	(static_cast<AiAgent*>(stub))->setDespawnOnNoPlayerInRange(val);
 }
@@ -5639,8 +6651,8 @@ void AiAgentAdapter::respawn(Zone* zone, int level) {
 	(static_cast<AiAgent*>(stub))->respawn(zone, level);
 }
 
-void AiAgentAdapter::setHomeLocation(float x, float z, float y, CellObject* cell) {
-	(static_cast<AiAgent*>(stub))->setHomeLocation(x, z, y, cell);
+void AiAgentAdapter::setHomeLocation(float x, float z, float y, CellObject* cell, float direction) {
+	(static_cast<AiAgent*>(stub))->setHomeLocation(x, z, y, cell, direction);
 }
 
 void AiAgentAdapter::setRespawnTimer(float resp) {
@@ -5687,8 +6699,8 @@ void AiAgentAdapter::setTargetObject(SceneObject* obj) {
 	(static_cast<AiAgent*>(stub))->setTargetObject(obj);
 }
 
-void AiAgentAdapter::runAway(CreatureObject* target, float range) {
-	(static_cast<AiAgent*>(stub))->runAway(target, range);
+void AiAgentAdapter::runAway(CreatureObject* target, float range, bool random) {
+	(static_cast<AiAgent*>(stub))->runAway(target, range, random);
 }
 
 void AiAgentAdapter::leash() {
@@ -5711,12 +6723,12 @@ void AiAgentAdapter::restoreFollowObject() {
 	(static_cast<AiAgent*>(stub))->restoreFollowObject();
 }
 
-unsigned int AiAgentAdapter::getFollowState() const {
-	return (static_cast<AiAgent*>(stub))->getFollowState();
+unsigned int AiAgentAdapter::getMovementState() const {
+	return (static_cast<AiAgent*>(stub))->getMovementState();
 }
 
-void AiAgentAdapter::setFollowState(int state) {
-	(static_cast<AiAgent*>(stub))->setFollowState(state);
+void AiAgentAdapter::setMovementState(int state) {
+	(static_cast<AiAgent*>(stub))->setMovementState(state);
 }
 
 float AiAgentAdapter::getMaxDistance() {
@@ -5727,56 +6739,40 @@ int AiAgentAdapter::setDestination() {
 	return (static_cast<AiAgent*>(stub))->setDestination();
 }
 
-bool AiAgentAdapter::completeMove() {
-	return (static_cast<AiAgent*>(stub))->completeMove();
-}
-
 void AiAgentAdapter::setWait(int wait) {
 	(static_cast<AiAgent*>(stub))->setWait(wait);
-}
-
-int AiAgentAdapter::getWait() const {
-	return (static_cast<AiAgent*>(stub))->getWait();
-}
-
-bool AiAgentAdapter::isWaiting() const {
-	return (static_cast<AiAgent*>(stub))->isWaiting();
 }
 
 void AiAgentAdapter::stopWaiting() {
 	(static_cast<AiAgent*>(stub))->stopWaiting();
 }
 
-void AiAgentAdapter::selectWeapon() {
-	(static_cast<AiAgent*>(stub))->selectWeapon();
-}
-
-void AiAgentAdapter::selectDefaultWeapon() {
-	(static_cast<AiAgent*>(stub))->selectDefaultWeapon();
+bool AiAgentAdapter::isWaiting() const {
+	return (static_cast<AiAgent*>(stub))->isWaiting();
 }
 
 bool AiAgentAdapter::validateStateAttack(CreatureObject* target, unsigned int actionCRC) {
 	return (static_cast<AiAgent*>(stub))->validateStateAttack(target, actionCRC);
 }
 
-void AiAgentAdapter::selectSpecialAttack() {
-	(static_cast<AiAgent*>(stub))->selectSpecialAttack();
+bool AiAgentAdapter::selectSpecialAttack() {
+	return (static_cast<AiAgent*>(stub))->selectSpecialAttack();
 }
 
-void AiAgentAdapter::selectSpecialAttack(int attackNum) {
-	(static_cast<AiAgent*>(stub))->selectSpecialAttack(attackNum);
+bool AiAgentAdapter::selectSpecialAttack(int attackNum) {
+	return (static_cast<AiAgent*>(stub))->selectSpecialAttack(attackNum);
 }
 
-void AiAgentAdapter::selectDefaultAttack() {
-	(static_cast<AiAgent*>(stub))->selectDefaultAttack();
+bool AiAgentAdapter::selectDefaultAttack() {
+	return (static_cast<AiAgent*>(stub))->selectDefaultAttack();
 }
 
 bool AiAgentAdapter::validateStateAttack() {
 	return (static_cast<AiAgent*>(stub))->validateStateAttack();
 }
 
-void AiAgentAdapter::enqueueAttack(int priority) {
-	(static_cast<AiAgent*>(stub))->enqueueAttack(priority);
+int AiAgentAdapter::enqueueAttack(int priority) {
+	return (static_cast<AiAgent*>(stub))->enqueueAttack(priority);
 }
 
 bool AiAgentAdapter::isRetreating() {
@@ -5839,6 +6835,10 @@ bool AiAgentAdapter::isKiller() {
 	return (static_cast<AiAgent*>(stub))->isKiller();
 }
 
+bool AiAgentAdapter::isHealer() {
+	return (static_cast<AiAgent*>(stub))->isHealer();
+}
+
 unsigned int AiAgentAdapter::getFerocity() {
 	return (static_cast<AiAgent*>(stub))->getFerocity();
 }
@@ -5899,7 +6899,7 @@ float AiAgentAdapter::getTame() const {
 	return (static_cast<AiAgent*>(stub))->getTame();
 }
 
-String AiAgentAdapter::getReactionStf() {
+String AiAgentAdapter::getReactionStf() const {
 	return (static_cast<AiAgent*>(stub))->getReactionStf();
 }
 
@@ -5927,16 +6927,12 @@ void AiAgentAdapter::setShowNextPosition(bool val) {
 	(static_cast<AiAgent*>(stub))->setShowNextPosition(val);
 }
 
-bool AiAgentAdapter::isEventMob() {
+bool AiAgentAdapter::isEventMob() const {
 	return (static_cast<AiAgent*>(stub))->isEventMob();
 }
 
 bool AiAgentAdapter::isPet() const {
 	return (static_cast<AiAgent*>(stub))->isPet();
-}
-
-unsigned int AiAgentAdapter::getCurrentBehavior() const {
-	return (static_cast<AiAgent*>(stub))->getCurrentBehavior();
 }
 
 void AiAgentAdapter::setHomeObject(SceneObject* home) {
@@ -5947,11 +6943,11 @@ void AiAgentAdapter::setCombatState() {
 	(static_cast<AiAgent*>(stub))->setCombatState();
 }
 
-int AiAgentAdapter::getCreatureBitmask() const {
+unsigned int AiAgentAdapter::getCreatureBitmask() const {
 	return (static_cast<AiAgent*>(stub))->getCreatureBitmask();
 }
 
-void AiAgentAdapter::setCreatureBitmask(int mask) {
+void AiAgentAdapter::setCreatureBitmask(unsigned int mask) {
 	(static_cast<AiAgent*>(stub))->setCreatureBitmask(mask);
 }
 
@@ -5963,20 +6959,12 @@ void AiAgentAdapter::clearCreatureBit(unsigned int option) {
 	(static_cast<AiAgent*>(stub))->clearCreatureBit(option);
 }
 
-void AiAgentAdapter::incrementLuaCall(const String& key) {
-	(static_cast<AiAgent*>(stub))->incrementLuaCall(key);
+void AiAgentAdapter::addCreatureFlag(unsigned int flag) {
+	(static_cast<AiAgent*>(stub))->addCreatureFlag(flag);
 }
 
-void AiAgentAdapter::addToLuaTime(const String& key, unsigned long long val) {
-	(static_cast<AiAgent*>(stub))->addToLuaTime(key, val);
-}
-
-void AiAgentAdapter::outputLuaTimes(CreatureObject* caller) {
-	(static_cast<AiAgent*>(stub))->outputLuaTimes(caller);
-}
-
-void AiAgentAdapter::rescheduleTrackingTask() {
-	(static_cast<AiAgent*>(stub))->rescheduleTrackingTask();
+void AiAgentAdapter::removeCreatureFlag(unsigned int flag) {
+	(static_cast<AiAgent*>(stub))->removeCreatureFlag(flag);
 }
 
 bool AiAgentAdapter::hasRangedWeapon() {
@@ -6003,8 +6991,8 @@ PetDeed* AiAgentAdapter::getPetDeed() const {
 	return (static_cast<AiAgent*>(stub))->getPetDeed();
 }
 
-void AiAgentAdapter::sendReactionChat(int type, int state, bool force) {
-	(static_cast<AiAgent*>(stub))->sendReactionChat(type, state, force);
+void AiAgentAdapter::sendReactionChat(SceneObject* object, int type, int state, bool force) {
+	(static_cast<AiAgent*>(stub))->sendReactionChat(object, type, state, force);
 }
 
 bool AiAgentAdapter::hasReactionChatMessages() {
@@ -6053,6 +7041,94 @@ void AiAgentAdapter::setLairTemplateCRC(unsigned int crc) {
 
 unsigned int AiAgentAdapter::getLairTemplateCRC() const {
 	return (static_cast<AiAgent*>(stub))->getLairTemplateCRC();
+}
+
+void AiAgentAdapter::setCustomAiMap(unsigned long long customMap) {
+	(static_cast<AiAgent*>(stub))->setCustomAiMap(customMap);
+}
+
+void AiAgentAdapter::setCurrentWeapon(WeaponObject* weap) {
+	(static_cast<AiAgent*>(stub))->setCurrentWeapon(weap);
+}
+
+void AiAgentAdapter::setDefaultWeapon(WeaponObject* weap) {
+	(static_cast<AiAgent*>(stub))->setDefaultWeapon(weap);
+}
+
+WeaponObject* AiAgentAdapter::getPrimaryWeapon() {
+	return (static_cast<AiAgent*>(stub))->getPrimaryWeapon();
+}
+
+WeaponObject* AiAgentAdapter::getSecondaryWeapon() {
+	return (static_cast<AiAgent*>(stub))->getSecondaryWeapon();
+}
+
+WeaponObject* AiAgentAdapter::getDefaultWeapon() {
+	return (static_cast<AiAgent*>(stub))->getDefaultWeapon();
+}
+
+WeaponObject* AiAgentAdapter::getThrownWeapon() {
+	return (static_cast<AiAgent*>(stub))->getThrownWeapon();
+}
+
+void AiAgentAdapter::clearThrownWeapon() {
+	(static_cast<AiAgent*>(stub))->clearThrownWeapon();
+}
+
+WeaponObject* AiAgentAdapter::getCurrentWeapon() {
+	return (static_cast<AiAgent*>(stub))->getCurrentWeapon();
+}
+
+void AiAgentAdapter::nullifyWeapons() {
+	(static_cast<AiAgent*>(stub))->nullifyWeapons();
+}
+
+int AiAgentAdapter::getMobType() const {
+	return (static_cast<AiAgent*>(stub))->getMobType();
+}
+
+bool AiAgentAdapter::isHerbivore() const {
+	return (static_cast<AiAgent*>(stub))->isHerbivore();
+}
+
+bool AiAgentAdapter::isCarnivore() const {
+	return (static_cast<AiAgent*>(stub))->isCarnivore();
+}
+
+bool AiAgentAdapter::isMonster() const {
+	return (static_cast<AiAgent*>(stub))->isMonster();
+}
+
+bool AiAgentAdapter::isDroid() const {
+	return (static_cast<AiAgent*>(stub))->isDroid();
+}
+
+bool AiAgentAdapter::isAndroid() const {
+	return (static_cast<AiAgent*>(stub))->isAndroid();
+}
+
+bool AiAgentAdapter::isNpc() const {
+	return (static_cast<AiAgent*>(stub))->isNpc();
+}
+
+bool AiAgentAdapter::isHumanoid() const {
+	return (static_cast<AiAgent*>(stub))->isHumanoid();
+}
+
+void AiAgentAdapter::addTargetMissCount(unsigned long long target, int misses) {
+	(static_cast<AiAgent*>(stub))->addTargetMissCount(target, misses);
+}
+
+void AiAgentAdapter::setTargetMissCount(unsigned long long target, int misses) {
+	(static_cast<AiAgent*>(stub))->setTargetMissCount(target, misses);
+}
+
+void AiAgentAdapter::removeTargetMissCount(unsigned long long target) {
+	(static_cast<AiAgent*>(stub))->removeTargetMissCount(target);
+}
+
+String AiAgentAdapter::getErrorContext() {
+	return (static_cast<AiAgent*>(stub))->getErrorContext();
 }
 
 /*
@@ -6126,8 +7202,23 @@ void AiAgentPOD::writeJSON(nlohmann::json& j) {
 	if (nextStepPosition)
 		thisObject["nextStepPosition"] = nextStepPosition.value();
 
-	if (readyWeapon)
-		thisObject["readyWeapon"] = readyWeapon.value();
+	if (endMovementPosition)
+		thisObject["endMovementPosition"] = endMovementPosition.value();
+
+	if (defaultWeapon)
+		thisObject["defaultWeapon"] = defaultWeapon.value();
+
+	if (primaryWeapon)
+		thisObject["primaryWeapon"] = primaryWeapon.value();
+
+	if (secondaryWeapon)
+		thisObject["secondaryWeapon"] = secondaryWeapon.value();
+
+	if (thrownWeapon)
+		thisObject["thrownWeapon"] = thrownWeapon.value();
+
+	if (currentWeapon)
+		thisObject["currentWeapon"] = currentWeapon.value();
 
 	if (npcTemplate)
 		thisObject["npcTemplate"] = npcTemplate.value();
@@ -6153,8 +7244,8 @@ void AiAgentPOD::writeJSON(nlohmann::json& j) {
 	if (followStore)
 		thisObject["followStore"] = followStore.value();
 
-	if (followState)
-		thisObject["followState"] = followState.value();
+	if (movementState)
+		thisObject["movementState"] = movementState.value();
 
 	if (nextMovementInterval)
 		thisObject["nextMovementInterval"] = nextMovementInterval.value();
@@ -6171,26 +7262,26 @@ void AiAgentPOD::writeJSON(nlohmann::json& j) {
 	if (randomRespawn)
 		thisObject["randomRespawn"] = randomRespawn.value();
 
+	if (coordinateMin)
+		thisObject["coordinateMin"] = coordinateMin.value();
+
+	if (coordinateMax)
+		thisObject["coordinateMax"] = coordinateMax.value();
+
 	if (loadedOutfit)
 		thisObject["loadedOutfit"] = loadedOutfit.value();
 
 	if (petDeed)
 		thisObject["petDeed"] = petDeed.value();
 
-	if (currentBehaviorID)
-		thisObject["currentBehaviorID"] = currentBehaviorID.value();
+	if (aiTemplate)
+		thisObject["aiTemplate"] = aiTemplate.value();
 
 	if (lairTemplateCRC)
 		thisObject["lairTemplateCRC"] = lairTemplateCRC.value();
 
 	if (creatureBitmask)
 		thisObject["creatureBitmask"] = creatureBitmask.value();
-
-	if (waitTime)
-		thisObject["waitTime"] = waitTime.value();
-
-	if (waiting)
-		thisObject["waiting"] = waiting.value();
 
 	if (fleeRange)
 		thisObject["fleeRange"] = fleeRange.value();
@@ -6273,12 +7364,67 @@ int AiAgentPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (readyWeapon) {
-	_nameHashCode = 0xe1f0107d; //AiAgent.readyWeapon
+	if (endMovementPosition) {
+	_nameHashCode = 0xb65d23ee; //AiAgent.endMovementPosition
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&readyWeapon.value(), stream);
+	TypeInfo<PatrolPoint >::toBinaryStream(&endMovementPosition.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (defaultWeapon) {
+	_nameHashCode = 0xd110fe72; //AiAgent.defaultWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&defaultWeapon.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (primaryWeapon) {
+	_nameHashCode = 0xf6a74276; //AiAgent.primaryWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&primaryWeapon.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (secondaryWeapon) {
+	_nameHashCode = 0x569d4777; //AiAgent.secondaryWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&secondaryWeapon.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (thrownWeapon) {
+	_nameHashCode = 0xcb2e56a1; //AiAgent.thrownWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&thrownWeapon.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (currentWeapon) {
+	_nameHashCode = 0x708319c4; //AiAgent.currentWeapon
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&currentWeapon.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6372,12 +7518,12 @@ int AiAgentPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (followState) {
-	_nameHashCode = 0x4454ba1b; //AiAgent.followState
+	if (movementState) {
+	_nameHashCode = 0x1607a4a3; //AiAgent.movementState
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&followState.value(), stream);
+	TypeInfo<unsigned int >::toBinaryStream(&movementState.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6438,6 +7584,28 @@ int AiAgentPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (coordinateMin) {
+	_nameHashCode = 0xdae0cc7f; //AiAgent.coordinateMin
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&coordinateMin.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (coordinateMax) {
+	_nameHashCode = 0x63f19ef; //AiAgent.coordinateMax
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<float >::toBinaryStream(&coordinateMax.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 	if (loadedOutfit) {
 	_nameHashCode = 0x8b8554f8; //AiAgent.loadedOutfit
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -6460,12 +7628,12 @@ int AiAgentPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (currentBehaviorID) {
-	_nameHashCode = 0xa236004f; //AiAgent.currentBehaviorID
+	if (aiTemplate) {
+	_nameHashCode = 0x44c03b92; //AiAgent.aiTemplate
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&currentBehaviorID.value(), stream);
+	TypeInfo<String >::toBinaryStream(&aiTemplate.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6488,28 +7656,6 @@ int AiAgentPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<unsigned int >::toBinaryStream(&creatureBitmask.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (waitTime) {
-	_nameHashCode = 0x6dc86ebe; //AiAgent.waitTime
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&waitTime.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (waiting) {
-	_nameHashCode = 0xc64b6de1; //AiAgent.waiting
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&waiting.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6597,11 +7743,51 @@ bool AiAgentPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		}
 		return true;
 
-	case 0xe1f0107d: //AiAgent.readyWeapon
+	case 0xb65d23ee: //AiAgent.endMovementPosition
 		{
-			ManagedReference<WeaponObjectPOD* > _mnreadyWeapon;
-			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mnreadyWeapon, stream);
-			readyWeapon = std::move(_mnreadyWeapon);
+			PatrolPoint _mnendMovementPosition;
+			TypeInfo<PatrolPoint >::parseFromBinaryStream(&_mnendMovementPosition, stream);
+			endMovementPosition = std::move(_mnendMovementPosition);
+		}
+		return true;
+
+	case 0xd110fe72: //AiAgent.defaultWeapon
+		{
+			ManagedReference<WeaponObjectPOD* > _mndefaultWeapon;
+			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mndefaultWeapon, stream);
+			defaultWeapon = std::move(_mndefaultWeapon);
+		}
+		return true;
+
+	case 0xf6a74276: //AiAgent.primaryWeapon
+		{
+			ManagedReference<WeaponObjectPOD* > _mnprimaryWeapon;
+			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mnprimaryWeapon, stream);
+			primaryWeapon = std::move(_mnprimaryWeapon);
+		}
+		return true;
+
+	case 0x569d4777: //AiAgent.secondaryWeapon
+		{
+			ManagedReference<WeaponObjectPOD* > _mnsecondaryWeapon;
+			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mnsecondaryWeapon, stream);
+			secondaryWeapon = std::move(_mnsecondaryWeapon);
+		}
+		return true;
+
+	case 0xcb2e56a1: //AiAgent.thrownWeapon
+		{
+			ManagedReference<WeaponObjectPOD* > _mnthrownWeapon;
+			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mnthrownWeapon, stream);
+			thrownWeapon = std::move(_mnthrownWeapon);
+		}
+		return true;
+
+	case 0x708319c4: //AiAgent.currentWeapon
+		{
+			ManagedReference<WeaponObjectPOD* > _mncurrentWeapon;
+			TypeInfo<ManagedReference<WeaponObjectPOD* > >::parseFromBinaryStream(&_mncurrentWeapon, stream);
+			currentWeapon = std::move(_mncurrentWeapon);
 		}
 		return true;
 
@@ -6669,11 +7855,11 @@ bool AiAgentPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		}
 		return true;
 
-	case 0x4454ba1b: //AiAgent.followState
+	case 0x1607a4a3: //AiAgent.movementState
 		{
-			unsigned int _mnfollowState;
-			TypeInfo<unsigned int >::parseFromBinaryStream(&_mnfollowState, stream);
-			followState = std::move(_mnfollowState);
+			unsigned int _mnmovementState;
+			TypeInfo<unsigned int >::parseFromBinaryStream(&_mnmovementState, stream);
+			movementState = std::move(_mnmovementState);
 		}
 		return true;
 
@@ -6717,6 +7903,22 @@ bool AiAgentPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		}
 		return true;
 
+	case 0xdae0cc7f: //AiAgent.coordinateMin
+		{
+			float _mncoordinateMin;
+			TypeInfo<float >::parseFromBinaryStream(&_mncoordinateMin, stream);
+			coordinateMin = std::move(_mncoordinateMin);
+		}
+		return true;
+
+	case 0x63f19ef: //AiAgent.coordinateMax
+		{
+			float _mncoordinateMax;
+			TypeInfo<float >::parseFromBinaryStream(&_mncoordinateMax, stream);
+			coordinateMax = std::move(_mncoordinateMax);
+		}
+		return true;
+
 	case 0x8b8554f8: //AiAgent.loadedOutfit
 		{
 			bool _mnloadedOutfit;
@@ -6733,11 +7935,11 @@ bool AiAgentPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		}
 		return true;
 
-	case 0xa236004f: //AiAgent.currentBehaviorID
+	case 0x44c03b92: //AiAgent.aiTemplate
 		{
-			unsigned int _mncurrentBehaviorID;
-			TypeInfo<unsigned int >::parseFromBinaryStream(&_mncurrentBehaviorID, stream);
-			currentBehaviorID = std::move(_mncurrentBehaviorID);
+			String _mnaiTemplate;
+			TypeInfo<String >::parseFromBinaryStream(&_mnaiTemplate, stream);
+			aiTemplate = std::move(_mnaiTemplate);
 		}
 		return true;
 
@@ -6754,22 +7956,6 @@ bool AiAgentPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 			unsigned int _mncreatureBitmask;
 			TypeInfo<unsigned int >::parseFromBinaryStream(&_mncreatureBitmask, stream);
 			creatureBitmask = std::move(_mncreatureBitmask);
-		}
-		return true;
-
-	case 0x6dc86ebe: //AiAgent.waitTime
-		{
-			int _mnwaitTime;
-			TypeInfo<int >::parseFromBinaryStream(&_mnwaitTime, stream);
-			waitTime = std::move(_mnwaitTime);
-		}
-		return true;
-
-	case 0xc64b6de1: //AiAgent.waiting
-		{
-			bool _mnwaiting;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnwaiting, stream);
-			waiting = std::move(_mnwaiting);
 		}
 		return true;
 
@@ -6833,7 +8019,17 @@ void AiAgentPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<PatrolPoint >::toBinaryStream(&nextStepPosition.value(), stream);
 
-	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&readyWeapon.value(), stream);
+	TypeInfo<PatrolPoint >::toBinaryStream(&endMovementPosition.value(), stream);
+
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&defaultWeapon.value(), stream);
+
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&primaryWeapon.value(), stream);
+
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&secondaryWeapon.value(), stream);
+
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&thrownWeapon.value(), stream);
+
+	TypeInfo<ManagedReference<WeaponObjectPOD* > >::toBinaryStream(&currentWeapon.value(), stream);
 
 	TypeInfo<CreatureTemplateReference >::toBinaryStream(&npcTemplate.value(), stream);
 
@@ -6851,7 +8047,7 @@ void AiAgentPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<ManagedWeakReference<SceneObjectPOD* > >::toBinaryStream(&followStore.value(), stream);
 
-	TypeInfo<unsigned int >::toBinaryStream(&followState.value(), stream);
+	TypeInfo<unsigned int >::toBinaryStream(&movementState.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&nextMovementInterval.value(), stream);
 
@@ -6863,19 +8059,19 @@ void AiAgentPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<bool >::toBinaryStream(&randomRespawn.value(), stream);
 
+	TypeInfo<float >::toBinaryStream(&coordinateMin.value(), stream);
+
+	TypeInfo<float >::toBinaryStream(&coordinateMax.value(), stream);
+
 	TypeInfo<bool >::toBinaryStream(&loadedOutfit.value(), stream);
 
 	TypeInfo<ManagedReference<PetDeedPOD* > >::toBinaryStream(&petDeed.value(), stream);
 
-	TypeInfo<unsigned int >::toBinaryStream(&currentBehaviorID.value(), stream);
+	TypeInfo<String >::toBinaryStream(&aiTemplate.value(), stream);
 
 	TypeInfo<unsigned int >::toBinaryStream(&lairTemplateCRC.value(), stream);
 
 	TypeInfo<unsigned int >::toBinaryStream(&creatureBitmask.value(), stream);
-
-	TypeInfo<int >::toBinaryStream(&waitTime.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&waiting.value(), stream);
 
 	TypeInfo<float >::toBinaryStream(&fleeRange.value(), stream);
 

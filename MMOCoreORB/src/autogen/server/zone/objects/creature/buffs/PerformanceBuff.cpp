@@ -30,7 +30,7 @@ PerformanceBuff::~PerformanceBuff() {
 
 void PerformanceBuff::activate(bool applyModifiers) {
 	PerformanceBuffImplementation* _implementation = static_cast<PerformanceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ void PerformanceBuff::activate(bool applyModifiers) {
 
 float PerformanceBuff::getBuffStrength() const {
 	PerformanceBuffImplementation* _implementation = static_cast<PerformanceBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ float PerformanceBuff::getBuffStrength() const {
 
 void PerformanceBuff::deactivate(bool removeModifiers) {
 	PerformanceBuffImplementation* _implementation = static_cast<PerformanceBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ void PerformanceBuffImplementation::finalize() {
 void PerformanceBuffImplementation::_initializeImplementation() {
 	_setClassHelper(PerformanceBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

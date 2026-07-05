@@ -2,6 +2,7 @@ death_watch_blastromech = Creature:new {
 	objectName = "@mob/creature_names:blastromech",
 	socialGroup = "death_watch",
 	faction = "",
+	mobType = MOB_DROID,
 	level = 80,
 	chanceHit = 0.75,
 	damageMin = 520,
@@ -30,46 +31,10 @@ death_watch_blastromech = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "wearables_uncommon", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
 				{group = "death_watch_bunker_commoners", chance = 10000000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jetpack_base", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "black_suns", chance = 10000000}
-			},
-			lootChance = 100000
-		},
+			lootChance = 500000
+		}
 	},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_astromech_ranged.iff",

@@ -2,15 +2,16 @@ enraged_kimogila = Creature:new {
 	objectName = "@mob/creature_names:enraged_kimogila",
 	socialGroup = "kimogila",
 	faction = "",
-	level = 300,
-	chanceHit = 30.0,
-	damageMin = 2200,
-	damageMax = 4200,
-	baseXp = 25000,
-	baseHAM = 300000,
-	baseHAMmax = 400000,
-	armor = 2,
-	resists = {145,170,145,170,145,140,200,145,125},
+	mobType = MOB_CARNIVORE,
+	level = 135,
+	chanceHit = 4.75,
+	damageMin = 920,
+	damageMax = 1550,
+	baseXp = 12801,
+	baseHAM = 50000,
+	baseHAMmax = 61000,
+	armor = 1,
+	resists = {145,170,145,170,145,140,200,145,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
@@ -18,8 +19,8 @@ enraged_kimogila = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.25,
-	ferocity = 30,
+	tamingChance = 0,
+	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
@@ -29,22 +30,24 @@ enraged_kimogila = Creature:new {
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 0.9,
 	lootGroups = {
-		{
-	        	groups = {
-				{group = "krayt_tissue_rare", chance = 2500000},
-				{group = "krayt_dragon_common", chance = 2000000},
-				{group = "krayt_pearls_flawless", chance = 500000},
-				{group = "kimogila_common", chance = 5000000},
+	 {
+	        groups = {
+				{group = "kimogila_common", chance = 10000000}
 			},
-			lootChance = 10000000
+			lootChance = 9000000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"knockdownattack",""},
-		{"dizzyattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"knockdownattack",""}, {"dizzyattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(enraged_kimogila, "enraged_kimogila")

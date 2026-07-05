@@ -1,16 +1,19 @@
 nightsister_elder = Creature:new {
 	objectName = "@mob/creature_names:nightsister_elder",
-	socialGroup = "",
-	faction = "",
-	level = 300,
-	chanceHit = 35.00,
-	damageMin = 1800,
-	damageMax = 2500,
+	randomNameType = NAME_GENERIC,
+	randomNameTag = true,
+	mobType = MOB_NPC,
+	socialGroup = "nightsister",
+	faction = "nightsister",
+	level = 350,
+	chanceHit = 27.25,
+	damageMin = 1520,
+	damageMax = 1750,
 	baseXp = 26654,
-	baseHAM = 130000,
-	baseHAMmax = 140000,
-	armor = 2,
-	resists = {60,60,60,60,60,60,60,30,20},
+	baseHAM = 321000,
+	baseHAMmax = 392000,
+	armor = 1,
+	resists = {85,85,85,85,85,85,85,85,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,95 +23,64 @@ nightsister_elder = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE + OVERT,
-	creatureBitmask = PACK + KILLER,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + KILLER + HEALER,
 	optionsBitmask = AIENABLED,
-	diet = NONE,
+	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_dathomir_nightsister_elder.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "cl55_backpack_loot", chance = 10000000},
+				{group = "power_crystals", chance = 800000},
+				{group = "nightsister_rare", chance = 2200000},
+				{group = "junk", chance = 1700000},
+				{group = "armor_attachments", chance = 1600000},
+				{group = "clothing_attachments", chance = 1600000},
+				{group = "ranged_weapons", chance = 800000},
+				{group = "melee_weapons", chance = 800000},
+				{group = "wearables_scarce", chance = 500000}
 			},
-			lootChance = 250000
+				lootChance = 10000000,
 		},
 		{
 			groups = {
-				{group = "power_crystals", chance = 10000000},
+				{group = "power_crystals", chance = 800000},
+				{group = "nightsister_rare", chance = 2200000},
+				{group = "junk", chance = 1700000},
+				{group = "armor_attachments", chance = 1600000},
+				{group = "clothing_attachments", chance = 1600000},
+				{group = "ranged_weapons", chance = 800000},
+				{group = "melee_weapons", chance = 800000},
+				{group = "wearables_scarce", chance = 500000}
 			},
-			lootChance = 5000000
+				lootChance = 7500000,
 		},
 		{
 			groups = {
-				{group = "nge_all", chance = 10000000},
+				{group = "power_crystals", chance = 800000},
+				{group = "nightsister_rare", chance = 2200000},
+				{group = "junk", chance = 1700000},
+				{group = "armor_attachments", chance = 1600000},
+				{group = "clothing_attachments", chance = 1600000},
+				{group = "ranged_weapons", chance = 800000},
+				{group = "melee_weapons", chance = 800000},
+				{group = "wearables_scarce", chance = 500000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "color_crystals", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jedi_dark_robes", chance = 5000000},
-				{group = "jedi_gray_robes", chance = 5000000},
-			},
-			lootChance = 2500000
-		},
-		{
-			groups = {
-				{group = "nightsister_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "armor_attachments", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_scarce", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jedi_comp_group", chance = 10000000},
-			},
-			lootChance = 500000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 4000000
-		},
-		{
-			groups = {
-				{group = "exceptional_chest_rewards", chance = 4500000},
-				{group = "diamond_chest_rewards", chance = 4500000},
-				{group = "legendary_chest_rewards", chance = 1000000},
-			},
-			lootChance = 1000000
+				lootChance = 3500000,
 		},
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(tkamaster,swordsmanmaster,fencermaster,pikemanmaster,brawlermaster,forcepowermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(tkamaster,swordsmanmaster,fencermaster,pikemanmaster,brawlermaster,forcepowermaster),
+	secondaryAttacks = forcepowermaster
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_elder, "nightsister_elder")

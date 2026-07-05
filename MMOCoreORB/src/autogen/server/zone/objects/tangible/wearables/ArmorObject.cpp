@@ -14,7 +14,7 @@
  *	ArmorObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4036877556,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_ISSPECIAL__INT_,RPC_ISVULNERABLE__INT_,RPC_ISARMOROBJECT__,RPC_SETRATING__INT_,RPC_GETRATING__,RPC_SETKINETIC__FLOAT_,RPC_SETENERGY__FLOAT_,RPC_SETELECTRICITY__FLOAT_,RPC_SETSTUN__FLOAT_,RPC_SETBLAST__FLOAT_,RPC_SETHEAT__FLOAT_,RPC_SETCOLD__FLOAT_,RPC_SETACID__FLOAT_,RPC_SETLIGHTSABER__FLOAT_,RPC_GETHEALTHENCUMBRANCE__,RPC_SETHEALTHENCUMBRANCE__INT_,RPC_GETACTIONENCUMBRANCE__,RPC_SETACTIONENCUMBRANCE__INT_,RPC_GETMINDENCUMBRANCE__,RPC_SETMINDENCUMBRANCE__INT_,RPC_SETEFFECTIVENESSSLICE__FLOAT_,RPC_SETENCUMBRANCESLICE__FLOAT_,RPC_GETHITLOCATION__,RPC_SETHITLOCATION__BYTE_,RPC_GETRESIST__INT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4036877556,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_ISSPECIAL__INT_,RPC_ISVULNERABLE__INT_,RPC_ISARMOROBJECT__,RPC_SETRATING__INT_,RPC_GETRATING__,RPC_GETKINETIC__,RPC_SETKINETIC__FLOAT_,RPC_GETENERGY__,RPC_SETENERGY__FLOAT_,RPC_GETELECTRICITY__,RPC_SETELECTRICITY__FLOAT_,RPC_GETSTUN__,RPC_SETSTUN__FLOAT_,RPC_GETBLAST__,RPC_SETBLAST__FLOAT_,RPC_GETHEAT__,RPC_SETHEAT__FLOAT_,RPC_GETCOLD__,RPC_SETCOLD__FLOAT_,RPC_GETACID__,RPC_SETACID__FLOAT_,RPC_GETLIGHTSABER__,RPC_SETLIGHTSABER__FLOAT_,RPC_GETHEALTHENCUMBRANCE__,RPC_SETHEALTHENCUMBRANCE__INT_,RPC_GETACTIONENCUMBRANCE__,RPC_SETACTIONENCUMBRANCE__INT_,RPC_GETMINDENCUMBRANCE__,RPC_SETMINDENCUMBRANCE__INT_,RPC_SETEFFECTIVENESSSLICE__FLOAT_,RPC_SETENCUMBRANCESLICE__FLOAT_,RPC_GETHITLOCATION__,RPC_SETHITLOCATION__BYTE_};
 
 ArmorObject::ArmorObject() : WearableObject(DummyConstructorParameter::instance()) {
 	ArmorObjectImplementation* _implementation = new ArmorObjectImplementation();
@@ -34,7 +34,7 @@ ArmorObject::~ArmorObject() {
 
 void ArmorObject::initializeTransientMembers() {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void ArmorObject::initializeTransientMembers() {
 
 void ArmorObject::notifyLoadFromDatabase() {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void ArmorObject::notifyLoadFromDatabase() {
 
 void ArmorObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ void ArmorObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void ArmorObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -82,7 +82,7 @@ void ArmorObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* o
 
 int ArmorObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ int ArmorObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 
 void ArmorObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -106,9 +106,9 @@ void ArmorObject::updateCraftingValues(CraftingValues* values, bool firstUpdate)
 	}
 }
 
-bool ArmorObject::isSpecial(int type) {
+bool ArmorObject::isSpecial(int type) const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,9 +121,9 @@ bool ArmorObject::isSpecial(int type) {
 	}
 }
 
-bool ArmorObject::isVulnerable(int type) {
+bool ArmorObject::isVulnerable(int type) const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ bool ArmorObject::isVulnerable(int type) {
 
 bool ArmorObject::isArmorObject() {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ bool ArmorObject::isArmorObject() {
 
 void ArmorObject::setRating(int rate) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,9 +165,9 @@ void ArmorObject::setRating(int rate) {
 	}
 }
 
-int ArmorObject::getRating() {
+int ArmorObject::getRating() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,11 +179,15 @@ int ArmorObject::getRating() {
 	}
 }
 
-float ArmorObject::getKinetic() {
+float ArmorObject::getKinetic() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETKINETIC__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getKinetic();
 	}
@@ -191,7 +195,7 @@ float ArmorObject::getKinetic() {
 
 void ArmorObject::setKinetic(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,11 +208,15 @@ void ArmorObject::setKinetic(float value) {
 	}
 }
 
-float ArmorObject::getEnergy() {
+float ArmorObject::getEnergy() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETENERGY__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getEnergy();
 	}
@@ -216,7 +224,7 @@ float ArmorObject::getEnergy() {
 
 void ArmorObject::setEnergy(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -229,11 +237,15 @@ void ArmorObject::setEnergy(float value) {
 	}
 }
 
-float ArmorObject::getElectricity() {
+float ArmorObject::getElectricity() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETELECTRICITY__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getElectricity();
 	}
@@ -241,7 +253,7 @@ float ArmorObject::getElectricity() {
 
 void ArmorObject::setElectricity(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,11 +266,15 @@ void ArmorObject::setElectricity(float value) {
 	}
 }
 
-float ArmorObject::getStun() {
+float ArmorObject::getStun() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETSTUN__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getStun();
 	}
@@ -266,7 +282,7 @@ float ArmorObject::getStun() {
 
 void ArmorObject::setStun(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -279,11 +295,15 @@ void ArmorObject::setStun(float value) {
 	}
 }
 
-float ArmorObject::getBlast() {
+float ArmorObject::getBlast() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETBLAST__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getBlast();
 	}
@@ -291,7 +311,7 @@ float ArmorObject::getBlast() {
 
 void ArmorObject::setBlast(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -304,11 +324,15 @@ void ArmorObject::setBlast(float value) {
 	}
 }
 
-float ArmorObject::getHeat() {
+float ArmorObject::getHeat() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETHEAT__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getHeat();
 	}
@@ -316,7 +340,7 @@ float ArmorObject::getHeat() {
 
 void ArmorObject::setHeat(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -329,11 +353,15 @@ void ArmorObject::setHeat(float value) {
 	}
 }
 
-float ArmorObject::getCold() {
+float ArmorObject::getCold() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETCOLD__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getCold();
 	}
@@ -341,7 +369,7 @@ float ArmorObject::getCold() {
 
 void ArmorObject::setCold(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -354,11 +382,15 @@ void ArmorObject::setCold(float value) {
 	}
 }
 
-float ArmorObject::getAcid() {
+float ArmorObject::getAcid() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETACID__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getAcid();
 	}
@@ -366,7 +398,7 @@ float ArmorObject::getAcid() {
 
 void ArmorObject::setAcid(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -379,11 +411,15 @@ void ArmorObject::setAcid(float value) {
 	}
 }
 
-float ArmorObject::getLightSaber() {
+float ArmorObject::getLightSaber() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_GETLIGHTSABER__);
+
+		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getLightSaber();
 	}
@@ -391,7 +427,7 @@ float ArmorObject::getLightSaber() {
 
 void ArmorObject::setLightSaber(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -404,9 +440,9 @@ void ArmorObject::setLightSaber(float value) {
 	}
 }
 
-int ArmorObject::getHealthEncumbrance() {
+int ArmorObject::getHealthEncumbrance() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -420,7 +456,7 @@ int ArmorObject::getHealthEncumbrance() {
 
 void ArmorObject::setHealthEncumbrance(int encumber) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -433,9 +469,9 @@ void ArmorObject::setHealthEncumbrance(int encumber) {
 	}
 }
 
-int ArmorObject::getActionEncumbrance() {
+int ArmorObject::getActionEncumbrance() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -449,7 +485,7 @@ int ArmorObject::getActionEncumbrance() {
 
 void ArmorObject::setActionEncumbrance(int encumber) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -462,9 +498,9 @@ void ArmorObject::setActionEncumbrance(int encumber) {
 	}
 }
 
-int ArmorObject::getMindEncumbrance() {
+int ArmorObject::getMindEncumbrance() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -478,7 +514,7 @@ int ArmorObject::getMindEncumbrance() {
 
 void ArmorObject::setMindEncumbrance(int encumber) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -493,7 +529,7 @@ void ArmorObject::setMindEncumbrance(int encumber) {
 
 void ArmorObject::setEffectivenessSlice(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -508,7 +544,7 @@ void ArmorObject::setEffectivenessSlice(float value) {
 
 void ArmorObject::setEncumbranceSlice(float value) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -521,9 +557,9 @@ void ArmorObject::setEncumbranceSlice(float value) {
 	}
 }
 
-byte ArmorObject::getHitLocation() {
+byte ArmorObject::getHitLocation() const {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -537,7 +573,7 @@ byte ArmorObject::getHitLocation() {
 
 void ArmorObject::setHitLocation(byte h) {
 	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -547,21 +583,6 @@ void ArmorObject::setHitLocation(byte h) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->setHitLocation(h);
-	}
-}
-
-float ArmorObject::getResist(int type) {
-	ArmorObjectImplementation* _implementation = static_cast<ArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETRESIST__INT_);
-		method.addSignedIntParameter(type);
-
-		return method.executeWithFloatReturn();
-	} else {
-		return _implementation->getResist(type);
 	}
 }
 
@@ -598,7 +619,7 @@ void ArmorObjectImplementation::finalize() {
 void ArmorObjectImplementation::_initializeImplementation() {
 	_setClassHelper(ArmorObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1052,7 +1073,7 @@ ArmorObjectImplementation::ArmorObjectImplementation() {
 	Logger::setLoggingName("ArmorObject");
 }
 
-bool ArmorObjectImplementation::isSpecial(int type) {
+bool ArmorObjectImplementation::isSpecial(int type) const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return specialResists & type;
 	return specialResists & type;
 }
@@ -1067,7 +1088,7 @@ void ArmorObjectImplementation::setRating(int rate) {
 	rating = rate;
 }
 
-int ArmorObjectImplementation::getRating() {
+int ArmorObjectImplementation::getRating() const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return rating;
 	return rating;
 }
@@ -1117,7 +1138,7 @@ void ArmorObjectImplementation::setLightSaber(float value) {
 	lightSaber = value;
 }
 
-int ArmorObjectImplementation::getHealthEncumbrance() {
+int ArmorObjectImplementation::getHealthEncumbrance() const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return 
 	if (healthEncumbrance < 0)	// server/zone/objects/tangible/wearables/ArmorObject.idl():  			return healthEncumbrance * (2 - encumbranceSlice);
 	return healthEncumbrance * (2 - encumbranceSlice);
@@ -1130,7 +1151,7 @@ void ArmorObjectImplementation::setHealthEncumbrance(int encumber) {
 	healthEncumbrance = encumber;
 }
 
-int ArmorObjectImplementation::getActionEncumbrance() {
+int ArmorObjectImplementation::getActionEncumbrance() const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return 
 	if (actionEncumbrance < 0)	// server/zone/objects/tangible/wearables/ArmorObject.idl():  			return actionEncumbrance * (2 - encumbranceSlice);
 	return actionEncumbrance * (2 - encumbranceSlice);
@@ -1143,7 +1164,7 @@ void ArmorObjectImplementation::setActionEncumbrance(int encumber) {
 	actionEncumbrance = encumber;
 }
 
-int ArmorObjectImplementation::getMindEncumbrance() {
+int ArmorObjectImplementation::getMindEncumbrance() const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return 
 	if (mindEncumbrance < 0)	// server/zone/objects/tangible/wearables/ArmorObject.idl():  			return mindEncumbrance * (2 - encumbranceSlice);
 	return mindEncumbrance * (2 - encumbranceSlice);
@@ -1172,7 +1193,7 @@ void ArmorObjectImplementation::setEncumbranceSlice(float value) {
 	encumbranceSlice = 1 - value;
 }
 
-byte ArmorObjectImplementation::getHitLocation() {
+byte ArmorObjectImplementation::getHitLocation() const{
 	// server/zone/objects/tangible/wearables/ArmorObject.idl():  		return hitLocation;
 	return hitLocation;
 }
@@ -1258,12 +1279,26 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_GETKINETIC__:
+		{
+			
+			float _m_res = getKinetic();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETKINETIC__FLOAT_:
 		{
 			float value = inv->getFloatParameter();
 			
 			setKinetic(value);
 			
+		}
+		break;
+	case RPC_GETENERGY__:
+		{
+			
+			float _m_res = getEnergy();
+			resp->insertFloat(_m_res);
 		}
 		break;
 	case RPC_SETENERGY__FLOAT_:
@@ -1274,12 +1309,26 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_GETELECTRICITY__:
+		{
+			
+			float _m_res = getElectricity();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETELECTRICITY__FLOAT_:
 		{
 			float value = inv->getFloatParameter();
 			
 			setElectricity(value);
 			
+		}
+		break;
+	case RPC_GETSTUN__:
+		{
+			
+			float _m_res = getStun();
+			resp->insertFloat(_m_res);
 		}
 		break;
 	case RPC_SETSTUN__FLOAT_:
@@ -1290,12 +1339,26 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_GETBLAST__:
+		{
+			
+			float _m_res = getBlast();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETBLAST__FLOAT_:
 		{
 			float value = inv->getFloatParameter();
 			
 			setBlast(value);
 			
+		}
+		break;
+	case RPC_GETHEAT__:
+		{
+			
+			float _m_res = getHeat();
+			resp->insertFloat(_m_res);
 		}
 		break;
 	case RPC_SETHEAT__FLOAT_:
@@ -1306,6 +1369,13 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_GETCOLD__:
+		{
+			
+			float _m_res = getCold();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETCOLD__FLOAT_:
 		{
 			float value = inv->getFloatParameter();
@@ -1314,12 +1384,26 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_GETACID__:
+		{
+			
+			float _m_res = getAcid();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETACID__FLOAT_:
 		{
 			float value = inv->getFloatParameter();
 			
 			setAcid(value);
 			
+		}
+		break;
+	case RPC_GETLIGHTSABER__:
+		{
+			
+			float _m_res = getLightSaber();
+			resp->insertFloat(_m_res);
 		}
 		break;
 	case RPC_SETLIGHTSABER__FLOAT_:
@@ -1406,14 +1490,6 @@ void ArmorObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_GETRESIST__INT_:
-		{
-			int type = inv->getSignedIntParameter();
-			
-			float _m_res = getResist(type);
-			resp->insertFloat(_m_res);
-		}
-		break;
 	default:
 		WearableObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -1431,11 +1507,11 @@ int ArmorObjectAdapter::handleObjectMenuSelect(CreatureObject* player, byte sele
 	return (static_cast<ArmorObject*>(stub))->handleObjectMenuSelect(player, selectedID);
 }
 
-bool ArmorObjectAdapter::isSpecial(int type) {
+bool ArmorObjectAdapter::isSpecial(int type) const {
 	return (static_cast<ArmorObject*>(stub))->isSpecial(type);
 }
 
-bool ArmorObjectAdapter::isVulnerable(int type) {
+bool ArmorObjectAdapter::isVulnerable(int type) const {
 	return (static_cast<ArmorObject*>(stub))->isVulnerable(type);
 }
 
@@ -1447,47 +1523,83 @@ void ArmorObjectAdapter::setRating(int rate) {
 	(static_cast<ArmorObject*>(stub))->setRating(rate);
 }
 
-int ArmorObjectAdapter::getRating() {
+int ArmorObjectAdapter::getRating() const {
 	return (static_cast<ArmorObject*>(stub))->getRating();
+}
+
+float ArmorObjectAdapter::getKinetic() const {
+	return (static_cast<ArmorObject*>(stub))->getKinetic();
 }
 
 void ArmorObjectAdapter::setKinetic(float value) {
 	(static_cast<ArmorObject*>(stub))->setKinetic(value);
 }
 
+float ArmorObjectAdapter::getEnergy() const {
+	return (static_cast<ArmorObject*>(stub))->getEnergy();
+}
+
 void ArmorObjectAdapter::setEnergy(float value) {
 	(static_cast<ArmorObject*>(stub))->setEnergy(value);
+}
+
+float ArmorObjectAdapter::getElectricity() const {
+	return (static_cast<ArmorObject*>(stub))->getElectricity();
 }
 
 void ArmorObjectAdapter::setElectricity(float value) {
 	(static_cast<ArmorObject*>(stub))->setElectricity(value);
 }
 
+float ArmorObjectAdapter::getStun() const {
+	return (static_cast<ArmorObject*>(stub))->getStun();
+}
+
 void ArmorObjectAdapter::setStun(float value) {
 	(static_cast<ArmorObject*>(stub))->setStun(value);
+}
+
+float ArmorObjectAdapter::getBlast() const {
+	return (static_cast<ArmorObject*>(stub))->getBlast();
 }
 
 void ArmorObjectAdapter::setBlast(float value) {
 	(static_cast<ArmorObject*>(stub))->setBlast(value);
 }
 
+float ArmorObjectAdapter::getHeat() const {
+	return (static_cast<ArmorObject*>(stub))->getHeat();
+}
+
 void ArmorObjectAdapter::setHeat(float value) {
 	(static_cast<ArmorObject*>(stub))->setHeat(value);
+}
+
+float ArmorObjectAdapter::getCold() const {
+	return (static_cast<ArmorObject*>(stub))->getCold();
 }
 
 void ArmorObjectAdapter::setCold(float value) {
 	(static_cast<ArmorObject*>(stub))->setCold(value);
 }
 
+float ArmorObjectAdapter::getAcid() const {
+	return (static_cast<ArmorObject*>(stub))->getAcid();
+}
+
 void ArmorObjectAdapter::setAcid(float value) {
 	(static_cast<ArmorObject*>(stub))->setAcid(value);
+}
+
+float ArmorObjectAdapter::getLightSaber() const {
+	return (static_cast<ArmorObject*>(stub))->getLightSaber();
 }
 
 void ArmorObjectAdapter::setLightSaber(float value) {
 	(static_cast<ArmorObject*>(stub))->setLightSaber(value);
 }
 
-int ArmorObjectAdapter::getHealthEncumbrance() {
+int ArmorObjectAdapter::getHealthEncumbrance() const {
 	return (static_cast<ArmorObject*>(stub))->getHealthEncumbrance();
 }
 
@@ -1495,7 +1607,7 @@ void ArmorObjectAdapter::setHealthEncumbrance(int encumber) {
 	(static_cast<ArmorObject*>(stub))->setHealthEncumbrance(encumber);
 }
 
-int ArmorObjectAdapter::getActionEncumbrance() {
+int ArmorObjectAdapter::getActionEncumbrance() const {
 	return (static_cast<ArmorObject*>(stub))->getActionEncumbrance();
 }
 
@@ -1503,7 +1615,7 @@ void ArmorObjectAdapter::setActionEncumbrance(int encumber) {
 	(static_cast<ArmorObject*>(stub))->setActionEncumbrance(encumber);
 }
 
-int ArmorObjectAdapter::getMindEncumbrance() {
+int ArmorObjectAdapter::getMindEncumbrance() const {
 	return (static_cast<ArmorObject*>(stub))->getMindEncumbrance();
 }
 
@@ -1519,16 +1631,12 @@ void ArmorObjectAdapter::setEncumbranceSlice(float value) {
 	(static_cast<ArmorObject*>(stub))->setEncumbranceSlice(value);
 }
 
-byte ArmorObjectAdapter::getHitLocation() {
+byte ArmorObjectAdapter::getHitLocation() const {
 	return (static_cast<ArmorObject*>(stub))->getHitLocation();
 }
 
 void ArmorObjectAdapter::setHitLocation(byte h) {
 	(static_cast<ArmorObject*>(stub))->setHitLocation(h);
-}
-
-float ArmorObjectAdapter::getResist(int type) {
-	return (static_cast<ArmorObject*>(stub))->getResist(type);
 }
 
 /*

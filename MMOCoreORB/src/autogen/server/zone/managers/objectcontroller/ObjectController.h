@@ -142,15 +142,15 @@ public:
 	 * @param arguments arguments of the command
 	 * @returns time in seconds of command execution
 	 */
-	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments);
+	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments) const;
 
 	void addQueueCommand(QueueCommand* command);
 
-	QueueCommand* getQueueCommand(const String& name);
+	const QueueCommand* getQueueCommand(const String& name) const;
 
-	QueueCommand* getQueueCommand(unsigned int crc);
+	const QueueCommand* getQueueCommand(unsigned int crc) const;
 
-	void logAdminCommand(SceneObject* object, const QueueCommand* command, unsigned long long targetID, const UnicodeString& argumets);
+	void logAdminCommand(SceneObject* object, const QueueCommand* command, unsigned long long targetID, const UnicodeString& argumets) const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -206,15 +206,15 @@ public:
 	 * @param arguments arguments of the command
 	 * @returns time in seconds of command execution
 	 */
-	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments);
+	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments) const;
 
 	void addQueueCommand(QueueCommand* command);
 
-	QueueCommand* getQueueCommand(const String& name);
+	const QueueCommand* getQueueCommand(const String& name) const;
 
-	QueueCommand* getQueueCommand(unsigned int crc);
+	const QueueCommand* getQueueCommand(unsigned int crc) const;
 
-	void logAdminCommand(SceneObject* object, const QueueCommand* command, unsigned long long targetID, const UnicodeString& argumets);
+	void logAdminCommand(SceneObject* object, const QueueCommand* command, unsigned long long targetID, const UnicodeString& argumets) const;
 
 	WeakReference<ObjectController*> _this;
 
@@ -263,7 +263,7 @@ public:
 
 	bool transferObject(SceneObject* objectToTransfer, SceneObject* destinationObject, int containmentType, bool notifyClient, bool allowOverflow);
 
-	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments);
+	float activateCommand(CreatureObject* object, unsigned int actionCRC, unsigned int actionCount, unsigned long long targetID, const UnicodeString& arguments) const;
 
 };
 

@@ -159,12 +159,6 @@ protected:
 
 	bool usedClamp;
 
-	byte sliceOption;
-
-	bool selectSlice;
-
-	bool firstRun;
-
 	bool baseSlice;
 
 	bool keypadSlice;
@@ -228,10 +222,6 @@ private:
 	void handleWeaponSlice();
 
 	void handleSliceDamage(byte percent);
-
-	void handleSliceAp();
-
-	void handleSliceArmorAp();
 
 	void handleSliceSpeed(byte percent);
 
@@ -366,12 +356,6 @@ public:
 	Optional<bool> usedNode;
 
 	Optional<bool> usedClamp;
-
-	Optional<byte> sliceOption;
-
-	Optional<bool> selectSlice;
-
-	Optional<bool> firstRun;
 
 	Optional<bool> baseSlice;
 

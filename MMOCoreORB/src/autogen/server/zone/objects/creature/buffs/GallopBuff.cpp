@@ -32,7 +32,7 @@ GallopBuff::~GallopBuff() {
 
 void GallopBuff::activate(bool applyModifiers) {
 	GallopBuffImplementation* _implementation = static_cast<GallopBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void GallopBuff::activate(bool applyModifiers) {
 
 void GallopBuff::deactivate(bool applyModifiers) {
 	GallopBuffImplementation* _implementation = static_cast<GallopBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void GallopBuffImplementation::finalize() {
 void GallopBuffImplementation::_initializeImplementation() {
 	_setClassHelper(GallopBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -208,12 +208,12 @@ void GallopBuffImplementation::activate(bool applyModifiers) {
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		SceneObject rider = super.creature.getSlottedObject("rider");
 	ManagedReference<SceneObject* > rider = PlayerVehicleBuffImplementation::creature.getForUpdate().get()->getSlottedObject("rider");
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		CreatureObject 
-	if (rider == nullptr)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			return;
+	if (!rider)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			return;
 	return;
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		CreatureObject creo = rider.asCreatureObject();
 	ManagedReference<CreatureObject* > creo = rider->asCreatureObject();
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  	}
-	if (creo != nullptr)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			creo.removeMountedCombatSlow();
+	if (creo)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			creo.removeMountedCombatSlow();
 	creo->removeMountedCombatSlow();
 }
 
@@ -223,12 +223,12 @@ void GallopBuffImplementation::deactivate(bool applyModifiers) {
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		SceneObject rider = super.creature.getSlottedObject("rider");
 	ManagedReference<SceneObject* > rider = PlayerVehicleBuffImplementation::creature.getForUpdate().get()->getSlottedObject("rider");
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		CreatureObject 
-	if (rider == nullptr)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			return;
+	if (!rider)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			return;
 	return;
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  		CreatureObject creo = rider.asCreatureObject();
 	ManagedReference<CreatureObject* > creo = rider->asCreatureObject();
 	// server/zone/objects/creature/buffs/GallopBuff.idl():  	}
-	if (creo != nullptr)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			creo.addMountedCombatSlow();
+	if (creo)	// server/zone/objects/creature/buffs/GallopBuff.idl():  			creo.addMountedCombatSlow();
 	creo->addMountedCombatSlow();
 }
 

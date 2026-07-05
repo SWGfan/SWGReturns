@@ -30,7 +30,7 @@ ShuttleInstallation::~ShuttleInstallation() {
 
 bool ShuttleInstallation::checkRequisitesForPlacement(CreatureObject* player) {
 	ShuttleInstallationImplementation* _implementation = static_cast<ShuttleInstallationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ bool ShuttleInstallation::checkRequisitesForPlacement(CreatureObject* player) {
 
 bool ShuttleInstallation::isShuttleInstallation() {
 	ShuttleInstallationImplementation* _implementation = static_cast<ShuttleInstallationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void ShuttleInstallationImplementation::finalize() {
 void ShuttleInstallationImplementation::_initializeImplementation() {
 	_setClassHelper(ShuttleInstallationHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

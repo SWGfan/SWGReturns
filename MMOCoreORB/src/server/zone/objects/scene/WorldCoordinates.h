@@ -28,7 +28,6 @@ using namespace server::zone::objects::scene;
 class WorldCoordinates : public Object {
 protected:
 	Vector3 point;
-
 	ManagedReference<CellObject*> cell;
 
 public:
@@ -118,10 +117,26 @@ public:
 	}
 
 	inline String toString() const {
-		StringBuffer sb;
-		sb << point.toString();
-		sb << " in " << String::valueOf(cell != nullptr ? cell->getCellNumber() : 0) << ".";
-		return sb.toString();
+		StringBuffer buf;
+
+		buf <<"WorldCoordinates(x:" << point.getX()
+			<< ", y:" << point.getY()
+			<< ", z:" << point.getZ()
+			<< ", cell: ";
+
+		if (cell == nullptr) {
+			buf << "nullptr";
+		} else {
+			buf << cell->getCellNumber();
+		}
+
+		buf << ")";
+
+		return buf.toString();
+	}
+
+	String toStringData() const {
+		return toString();
 	}
 };
 

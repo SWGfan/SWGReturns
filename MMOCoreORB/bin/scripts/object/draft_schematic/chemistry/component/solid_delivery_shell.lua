@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_component_solid_delivery_shell = object_draft_s
 	complexity = 18,
 	size = 3,
 	factoryCrateSize = 1000,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 35,
+	xp = 100,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",

@@ -4,13 +4,11 @@
 
 #include "PoiBuilding.h"
 
-#include "server/zone/objects/tangible/DespawnLairOnPlayerDisappear.h"
-
 #include "server/zone/objects/creature/CreatureObject.h"
 
-#include "server/zone/QuadTreeEntry.h"
-
 #include "server/zone/objects/scene/SceneObject.h"
+
+#include "server/zone/QuadTreeEntry.h"
 
 /*
  *	PoiBuildingStub
@@ -36,7 +34,7 @@ PoiBuilding::~PoiBuilding() {
 
 int PoiBuilding::getNumberOfPlayersInRange() {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +48,7 @@ int PoiBuilding::getNumberOfPlayersInRange() {
 
 bool PoiBuilding::getDespawnOnNoPlayersInRange() const {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +62,7 @@ bool PoiBuilding::getDespawnOnNoPlayersInRange() const {
 
 void PoiBuilding::setDespawnOnNoPlayersInRange(bool b) {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +78,7 @@ void PoiBuilding::setDespawnOnNoPlayersInRange(bool b) {
 
 void PoiBuilding::notifyInsert(QuadTreeEntry* entry) {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +93,7 @@ void PoiBuilding::notifyInsert(QuadTreeEntry* entry) {
 
 void PoiBuilding::notifyDissapear(QuadTreeEntry* entry) {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +108,7 @@ void PoiBuilding::notifyDissapear(QuadTreeEntry* entry) {
 
 void PoiBuilding::activateDespawnEvent() {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +122,7 @@ void PoiBuilding::activateDespawnEvent() {
 
 void PoiBuilding::clearDespawnEvent() {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +136,7 @@ void PoiBuilding::clearDespawnEvent() {
 
 bool PoiBuilding::isPoiBuilding() {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +181,7 @@ void PoiBuildingImplementation::finalize() {
 void PoiBuildingImplementation::_initializeImplementation() {
 	_setClassHelper(PoiBuildingHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -367,7 +365,7 @@ void PoiBuildingImplementation::notifyDissapear(QuadTreeEntry* entry) {
 void PoiBuildingImplementation::activateDespawnEvent() {
 	Reference<DespawnLairOnPlayerDisappear*> _ref0;
 	// server/zone/objects/building/PoiBuilding.idl():  		despawnEvent 
-	if (despawnEvent != nullptr)	// server/zone/objects/building/PoiBuilding.idl():  			return;
+	if (despawnEvent)	// server/zone/objects/building/PoiBuilding.idl():  			return;
 	return;
 	// server/zone/objects/building/PoiBuilding.idl():  		despawnEvent = new DespawnLairOnPlayerDisappear(this);
 	despawnEvent = _ref0 = new DespawnLairOnPlayerDisappear(_this.getReferenceUnsafeStaticCast());
@@ -377,12 +375,12 @@ void PoiBuildingImplementation::activateDespawnEvent() {
 
 void PoiBuildingImplementation::clearDespawnEvent() {
 	// server/zone/objects/building/PoiBuilding.idl():  		despawnEvent.
-	if (despawnEvent == nullptr)	// server/zone/objects/building/PoiBuilding.idl():  			return;
+	if (!despawnEvent)	// server/zone/objects/building/PoiBuilding.idl():  			return;
 	return;
 	// server/zone/objects/building/PoiBuilding.idl():  		despawnEvent.cancel();
 	despawnEvent->cancel();
 	// server/zone/objects/building/PoiBuilding.idl():  		despawnEvent = null;
-	despawnEvent = nullptr;
+	despawnEvent = NULL;
 }
 
 bool PoiBuildingImplementation::isPoiBuilding() {

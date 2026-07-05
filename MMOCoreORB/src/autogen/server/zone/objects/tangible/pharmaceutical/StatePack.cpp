@@ -32,7 +32,7 @@ StatePack::~StatePack() {
 
 void StatePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void StatePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void StatePack::loadTemplateData(SharedObjectTemplate* templateData) {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void StatePack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 int StatePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ int StatePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 void StatePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void StatePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* obj
 
 unsigned long long StatePack::getState() {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ unsigned long long StatePack::getState() {
 
 bool StatePack::isStatePack() {
 	StatePackImplementation* _implementation = static_cast<StatePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ void StatePackImplementation::finalize() {
 void StatePackImplementation::_initializeImplementation() {
 	_setClassHelper(StatePackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

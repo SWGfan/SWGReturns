@@ -32,7 +32,7 @@ DroidComponent::~DroidComponent() {
 
 void DroidComponent::initializeTransientMembers() {
 	DroidComponentImplementation* _implementation = static_cast<DroidComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void DroidComponent::initializeTransientMembers() {
 
 void DroidComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	DroidComponentImplementation* _implementation = static_cast<DroidComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void DroidComponent::updateCraftingValues(CraftingValues* values, bool firstUpda
 
 void DroidComponent::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	DroidComponentImplementation* _implementation = static_cast<DroidComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void DroidComponent::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 bool DroidComponent::isSocketCluster() {
 	DroidComponentImplementation* _implementation = static_cast<DroidComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -107,7 +107,7 @@ void DroidComponentImplementation::finalize() {
 void DroidComponentImplementation::_initializeImplementation() {
 	_setClassHelper(DroidComponentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

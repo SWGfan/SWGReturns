@@ -157,22 +157,6 @@ using namespace server::zone::objects::tangible;
 namespace server {
 namespace zone {
 namespace objects {
-namespace region {
-
-class CityRegion;
-
-class CityRegionPOD;
-
-} // namespace region
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::region;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace pathfinding {
 
 class NavArea;
@@ -185,6 +169,16 @@ class NavAreaPOD;
 } // namespace server
 
 using namespace server::zone::objects::pathfinding;
+
+namespace server {
+namespace zone {
+
+class ActiveAreaQuadTree;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
 
 #include "gmock/gmock.h"
 
@@ -205,6 +199,8 @@ using namespace server::zone::objects::pathfinding;
 #include "server/zone/QuadTreeReference.h"
 
 #include "system/thread/atomic/AtomicBoolean.h"
+
+#include "server/zone/objects/region/CityRegion.h"
 
 #include "system/lang/Time.h"
 
@@ -232,13 +228,15 @@ public:
 
 	void initializePrivateData();
 
-	QuadTree* getRegionTree();
+	ActiveAreaQuadTree* getActiveAreaTree();
 
 	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone);
 
 	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
 
 	int getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
+
+	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects);
 
 	void createContainerComponent();
 
@@ -247,10 +245,6 @@ public:
 	int getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone);
 
 	int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
-
-	int getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
-
-	int getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone);
 
 	SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
 
@@ -381,7 +375,7 @@ class ZoneImplementation : public SceneObjectImplementation {
 
 	ManagedReference<ZoneServer* > server;
 
-	QuadTreeReference regionTree;
+	Reference<ActiveAreaQuadTree* > areaTree;
 
 	QuadTreeReference quadTree;
 
@@ -410,13 +404,15 @@ public:
 
 	void initializePrivateData();
 
-	QuadTree* getRegionTree();
+	ActiveAreaQuadTree* getActiveAreaTree();
 
 	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone);
 
 	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
 
 	int getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
+
+	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects);
 
 	void createContainerComponent();
 
@@ -425,10 +421,6 @@ public:
 	int getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone);
 
 	int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
-
-	int getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
-
-	int getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone);
 
 	SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
 
@@ -662,10 +654,23 @@ public:
 
 	MOCK_METHOD2(getHeight,float(float x, float y));
 	MOCK_METHOD2(getHeightNoCache,float(float x, float y));
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
 	MOCK_METHOD0(getWorldPositionX,float());
 	MOCK_METHOD0(getWorldPositionY,float());
 	MOCK_METHOD0(getWorldPositionZ,float());
 	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
 
 };
 
@@ -682,8 +687,6 @@ public:
 	Optional<String> zoneName;
 
 	Optional<unsigned int> zoneCRC;
-
-	Optional<QuadTreeReference> regionTree;
 
 	Optional<QuadTreeReference> quadTree;
 

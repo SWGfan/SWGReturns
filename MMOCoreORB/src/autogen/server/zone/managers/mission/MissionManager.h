@@ -187,9 +187,13 @@ public:
 
 	void removeMission(MissionObject* mission, CreatureObject* player);
 
+	NpcSpawnPoint* getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType, const float maxRange);
+
 	NpcSpawnPoint* getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType);
 
 	void createSpawnPoint(CreatureObject* player, const String& spawnTypes);
+
+	void removeSpawnPoint(CreatureObject* player, const String& spawnTypes);
 
 	Vector3 getRandomBountyTargetPosition(CreatureObject* player, const String& planet);
 
@@ -203,8 +207,6 @@ public:
 
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
 
-	void increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease);
-
 	void updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status);
 
 	void completePlayerBounty(unsigned long long targetId, unsigned long long bountyHunter);
@@ -215,7 +217,7 @@ public:
 
 	bool hasBountyHunterInPlayerBounty(unsigned long long targetId, unsigned long long bhId);
 
-	Vector<unsigned long long>* getHuntersHuntingTarget(unsigned long long targetId);
+	Vector<unsigned long long> getHuntersHuntingTarget(unsigned long long targetId);
 
 	void allocateMissionNpcs(NpcSpawnPoint* target, NpcSpawnPoint* destination, TerrainManager* terrainManager, CreatureManager* creatureManager);
 
@@ -290,6 +292,22 @@ private:
 
 	unsigned long long playerBountyDebuffLength;
 
+	unsigned long long destroyMissionBaseDistance;
+
+	unsigned long long destroyMissionDifficultyDistanceFactor;
+
+	unsigned long long destroyMissionRandomDistance;
+
+	unsigned long long destroyMissionDifficultyRandomDistance;
+
+	unsigned long long destroyMissionBaseReward;
+
+	unsigned long long destroyMissionDifficultyRewardFactor;
+
+	unsigned long long destroyMissionRandomReward;
+
+	unsigned long long destroyMissionDifficultyRandomReward;
+
 public:
 	MissionManagerImplementation(ZoneServer* srv, ZoneProcessServer* impl);
 
@@ -363,9 +381,13 @@ private:
 	void createCraftingMissionObjectives(MissionObject* mission, MissionTerminal* missionTerminal, CreatureObject* player);
 
 public:
+	NpcSpawnPoint* getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType, const float maxRange);
+
 	NpcSpawnPoint* getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType);
 
 	void createSpawnPoint(CreatureObject* player, const String& spawnTypes);
+
+	void removeSpawnPoint(CreatureObject* player, const String& spawnTypes);
 
 private:
 	LairSpawn* getRandomLairSpawn(CreatureObject* player, unsigned const int faction, unsigned int type);
@@ -391,8 +413,6 @@ public:
 
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
 
-	void increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease);
-
 	void updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status);
 
 	void completePlayerBounty(unsigned long long targetId, unsigned long long bountyHunter);
@@ -413,7 +433,7 @@ public:
 
 	bool hasBountyHunterInPlayerBounty(unsigned long long targetId, unsigned long long bhId);
 
-	Vector<unsigned long long>* getHuntersHuntingTarget(unsigned long long targetId);
+	Vector<unsigned long long> getHuntersHuntingTarget(unsigned long long targetId);
 
 	void allocateMissionNpcs(NpcSpawnPoint* target, NpcSpawnPoint* destination, TerrainManager* terrainManager, CreatureManager* creatureManager);
 
@@ -480,6 +500,8 @@ public:
 
 	void createSpawnPoint(CreatureObject* player, const String& spawnTypes);
 
+	void removeSpawnPoint(CreatureObject* player, const String& spawnTypes);
+
 	Reference<MissionObject* > getBountyHunterMission(CreatureObject* player);
 
 	int getRealBountyReward(CreatureObject* creo, PlayerBounty* bounty);
@@ -489,8 +511,6 @@ public:
 	void removePlayerFromBountyList(unsigned long long targetId);
 
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
-
-	void increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease);
 
 	void updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status);
 
@@ -566,6 +586,22 @@ public:
 	Optional<unsigned long long> playerBountyKillBuffer;
 
 	Optional<unsigned long long> playerBountyDebuffLength;
+
+	Optional<unsigned long long> destroyMissionBaseDistance;
+
+	Optional<unsigned long long> destroyMissionDifficultyDistanceFactor;
+
+	Optional<unsigned long long> destroyMissionRandomDistance;
+
+	Optional<unsigned long long> destroyMissionDifficultyRandomDistance;
+
+	Optional<unsigned long long> destroyMissionBaseReward;
+
+	Optional<unsigned long long> destroyMissionDifficultyRewardFactor;
+
+	Optional<unsigned long long> destroyMissionRandomReward;
+
+	Optional<unsigned long long> destroyMissionDifficultyRandomReward;
 
 	String _className;
 	MissionManagerPOD();

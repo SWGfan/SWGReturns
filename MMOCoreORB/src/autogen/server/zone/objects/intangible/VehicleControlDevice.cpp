@@ -36,7 +36,7 @@ VehicleControlDevice::~VehicleControlDevice() {
 
 void VehicleControlDevice::storeObject(CreatureObject* player, bool force) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,14 +47,14 @@ void VehicleControlDevice::storeObject(CreatureObject* player, bool force) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->storeObject(player, force);
 	}
 }
 
 void VehicleControlDevice::generateObject(CreatureObject* player) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,14 +64,14 @@ void VehicleControlDevice::generateObject(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->generateObject(player);
 	}
 }
 
 void VehicleControlDevice::spawnObject(CreatureObject* player) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,14 +81,14 @@ void VehicleControlDevice::spawnObject(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->spawnObject(player);
 	}
 }
 
 void VehicleControlDevice::cancelSpawnObject(CreatureObject* player) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,14 +97,14 @@ void VehicleControlDevice::cancelSpawnObject(CreatureObject* player) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->cancelSpawnObject(player);
 	}
 }
 
 int VehicleControlDevice::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,14 +115,14 @@ int VehicleControlDevice::handleObjectMenuSelect(CreatureObject* player, byte se
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void VehicleControlDevice::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ void VehicleControlDevice::destroyObjectFromDatabase(bool destroyContainedObject
 
 int VehicleControlDevice::canBeDestroyed(CreatureObject* player) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -153,7 +153,7 @@ int VehicleControlDevice::canBeDestroyed(CreatureObject* player) {
 
 bool VehicleControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ bool VehicleControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject*
 
 void VehicleControlDevice::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -180,7 +180,7 @@ void VehicleControlDevice::fillAttributeList(AttributeListMessage* msg, Creature
 
 bool VehicleControlDevice::isVehicleControlDevice() {
 	VehicleControlDeviceImplementation* _implementation = static_cast<VehicleControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,7 +225,7 @@ void VehicleControlDeviceImplementation::finalize() {
 void VehicleControlDeviceImplementation::_initializeImplementation() {
 	_setClassHelper(VehicleControlDeviceHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -364,7 +364,7 @@ int VehicleControlDeviceImplementation::handleObjectMenuSelect(CreatureObject* p
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  		return 
 	if (selectedID == RadialOptions::VEHICLE_GENERATE){
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  			}
-	if (controlledObject == nullptr){
+	if (!controlledObject){
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  				Logger.error("null controlled object in vehicle control device");
 	Logger::error("null controlled object in vehicle control device");
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  				return 1;
@@ -380,7 +380,7 @@ int VehicleControlDeviceImplementation::handleObjectMenuSelect(CreatureObject* p
 	else 	// server/zone/objects/intangible/VehicleControlDevice.idl():  		return 
 	if (selectedID == RadialOptions::VEHICLE_STORE){
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  			}
-	if (controlledObject == nullptr){
+	if (!controlledObject){
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  				Logger.error("null controlled object in vehicle control device");
 	Logger::error("null controlled object in vehicle control device");
 	// server/zone/objects/intangible/VehicleControlDevice.idl():  				return 1;

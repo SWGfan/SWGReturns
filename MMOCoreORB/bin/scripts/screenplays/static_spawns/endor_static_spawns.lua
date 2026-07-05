@@ -18,6 +18,9 @@ function EndorStaticSpawnsScreenPlay:spawnMobiles()
 
 	--Need to add the rest of static spawns (Incomplete).
 
+	--Sundari Spynet
+	spawnMobile("endor", "informant_npc_lvl_3", 1, -3246, 200, 5811, 179, 0)
+
 	--Donkuwah Hut 4031 -7668
 	spawnMobile("endor", "tainted_donkuwah_dark_shaman",300, 4031.5, 0.8, -7668.1, -34, 0)
 

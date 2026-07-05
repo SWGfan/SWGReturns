@@ -32,7 +32,7 @@ FindSession::~FindSession() {
 
 int FindSession::initializeSession() {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ int FindSession::initializeSession() {
 
 int FindSession::cancelSession() {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ int FindSession::cancelSession() {
 
 int FindSession::clearSession() {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ int FindSession::clearSession() {
 
 void FindSession::initalizeFindMenu() {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -84,7 +84,7 @@ void FindSession::initalizeFindMenu() {
 
 WaypointObject* FindSession::addWaypoint(float x, float y, const String& name) {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ WaypointObject* FindSession::addWaypoint(float x, float y, const String& name) {
 
 void FindSession::findPlanetaryObject(String& maplocationtype) {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -111,7 +111,7 @@ void FindSession::findPlanetaryObject(String& maplocationtype) {
 
 void FindSession::clearWaypoint() {
 	FindSessionImplementation* _implementation = static_cast<FindSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ void FindSessionImplementation::finalize() {
 void FindSessionImplementation::_initializeImplementation() {
 	_setClassHelper(FindSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -302,7 +302,7 @@ int FindSessionImplementation::cancelSession() {
 	// server/zone/objects/player/sessions/FindSession.idl():  		CreatureObject play = player;
 	ManagedReference<CreatureObject* > play = player;
 	// server/zone/objects/player/sessions/FindSession.idl():  		clearSession(
-	if (play != nullptr)	// server/zone/objects/player/sessions/FindSession.idl():  			play.dropActiveSession(SessionFacadeType.FIND);
+	if (play)	// server/zone/objects/player/sessions/FindSession.idl():  			play.dropActiveSession(SessionFacadeType.FIND);
 	play->dropActiveSession(SessionFacadeType::FIND);
 	// server/zone/objects/player/sessions/FindSession.idl():  		clearSession();
 	clearSession();
@@ -312,7 +312,7 @@ int FindSessionImplementation::cancelSession() {
 
 int FindSessionImplementation::clearSession() {
 	// server/zone/objects/player/sessions/FindSession.idl():  		player = null;
-	player = nullptr;
+	player = NULL;
 	// server/zone/objects/player/sessions/FindSession.idl():  		return 0;
 	return 0;
 }
@@ -360,7 +360,7 @@ void FindSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			 String name; inv->getAsciiParameter(name);
 			
 			DistributedObject* _m_res = addWaypoint(x, y, name);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_CLEARWAYPOINT__:

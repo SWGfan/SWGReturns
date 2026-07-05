@@ -2,6 +2,7 @@ death_watch_overlord_mines = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_dthwatch_gold",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 221,
@@ -11,7 +12,7 @@ death_watch_overlord_mines = Creature:new {
 	baseXp = 20948,
 	baseHAM = 350000,
 	baseHAMmax = 350000,
-	armor = 3,
+	armor = 1,
 	resists = {80,80,90,80,45,45,100,70,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -32,50 +33,23 @@ death_watch_overlord_mines = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "jedi_comp_group", chance = 10000000}
+				{group = "death_watch_bunker_overlord_shared", chance =  9900000},
+				{group = "dwb_weapons", chance =  100000},
 			},
-			lootChance = 1000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_overlord_shared", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jetpack_base", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "black_suns", chance = 10000000}
-			},
-			lootChance = 100000
-		},
+			lootChance = 10000000
+		}
 	},
-	weapons = {"dark_trooper_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "dark_trooper_weapons",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(riflemanmaster,fencermaster,marksmanmaster,brawlermaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(riflemanmaster,fencermaster,marksmanmaster,brawlermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(death_watch_overlord_mines, "death_watch_overlord_mines")

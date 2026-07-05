@@ -32,7 +32,7 @@ SquadLeaderBuffObserver::~SquadLeaderBuffObserver() {
 
 int SquadLeaderBuffObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SquadLeaderBuffObserverImplementation* _implementation = static_cast<SquadLeaderBuffObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int SquadLeaderBuffObserver::notifyObserverEvent(unsigned int eventType, Observa
 
 void SquadLeaderBuffObserver::handleObserverEvent(CreatureObject* player, SquadLeaderBuff* slBuff) {
 	SquadLeaderBuffObserverImplementation* _implementation = static_cast<SquadLeaderBuffObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void SquadLeaderBuffObserverImplementation::finalize() {
 void SquadLeaderBuffObserverImplementation::_initializeImplementation() {
 	_setClassHelper(SquadLeaderBuffObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

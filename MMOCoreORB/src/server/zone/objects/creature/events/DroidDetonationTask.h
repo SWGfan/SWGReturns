@@ -15,6 +15,7 @@
 #include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 #include "server/zone/packets/scene/PlayClientEffectLocMessage.h"
 #include "server/zone/Zone.h"
+#include "server/zone/objects/intangible/PetControlDevice.h"
 
 namespace server {
 namespace zone {
@@ -92,7 +93,7 @@ public:
 			case 3: {
 				// BOOM
 				int areaDamage = module->calculateDamage(droid);
-				bool shouldGcwTef = false, shouldBhTef = false, shouldJediTef = false;
+				bool shouldGcwCrackdownTef = false, shouldGcwTef = false, shouldBhTef = false;
 
 				// find all valid targets in 17 m range and hit them with the damage
 				CloseObjectsVector* vec = (CloseObjectsVector*) droid->getCloseObjects();
@@ -130,26 +131,29 @@ public:
 						continue;
 					}
 
-					if (player->isPlayerCreature() && object->getParentID() != 0 && player->getParentID() != object->getParentID()) {
+					uint64 tarParentID = object->getParentID();
+
+					if (player->isPlayerCreature() && tarParentID != 0 && player->getParentID() != tarParentID) {
 						Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
 
 						if (targetCell != nullptr) {
-							if (!object->isPlayerCreature()) {
-								auto perms = targetCell->getContainerPermissions();
-
-								if (!perms->hasInheritPermissionsFromParent()) {
-									if (targetCell->checkContainerPermission(player, ContainerPermissions::WALKIN))
-										continue;
-								}
-							}
-
 							ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
 
 							if (parentSceneObject != nullptr) {
-								BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+								BuildingObject* building = parentSceneObject->asBuildingObject();
 
-								if (buildingObject != nullptr && !buildingObject->isAllowedEntry(player))
+								if (building != nullptr && !building->isAllowedEntry(player)) {
 									continue;
+								}
+							}
+
+							const ContainerPermissions* perms = targetCell->getContainerPermissions();
+
+							// This portion of the check is specific for locked dungeons doors since they do not inherit perms from parent
+							if (!perms->hasInheritPermissionsFromParent() && (player->getRootParent() == object->getRootParent())) {
+								if (!targetCell->checkContainerPermission(player, ContainerPermissions::WALKIN)) {
+									continue;
+								}
 							}
 						}
 					}
@@ -176,7 +180,7 @@ public:
 								tomaster.setDI((int)amount);
 								player->sendSystemMessage(tomaster);
 
-								CombatManager::instance()->checkForTefs(player, creo, &shouldGcwTef, &shouldBhTef, &shouldJediTef);
+								CombatManager::instance()->checkForTefs(player, creo, &shouldGcwCrackdownTef, &shouldGcwTef, &shouldBhTef);
 							}
 
 						}
@@ -203,11 +207,11 @@ public:
 				}
 
 				// Update PvP TEF Duration
-				if (shouldGcwTef || shouldBhTef || shouldJediTef) {
+				if (shouldGcwCrackdownTef || shouldGcwTef || shouldBhTef) {
 					PlayerObject* ghost = player->getPlayerObject();
 
 					if (ghost != nullptr) {
-						ghost->updateLastPvpCombatActionTimestamp(shouldGcwTef, shouldBhTef, shouldJediTef);
+						ghost->updateLastCombatActionTimestamp(shouldGcwCrackdownTef, shouldGcwTef, shouldBhTef);
 					}
 				}
 

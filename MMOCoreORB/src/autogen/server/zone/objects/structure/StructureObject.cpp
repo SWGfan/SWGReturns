@@ -20,7 +20,7 @@
  *	StructureObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3783376556,RPC_FINALIZE__,RPC_NOTIFYLOADFROMDATABASE__,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_CREATECHILDOBJECTS__,RPC_GETRECEIVERFLAGS__,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_DESTROYORPHANCIVICSTRUCTURE__,RPC_CHECKREQUISITESFORPLACEMENT__CREATUREOBJECT_,RPC_GETTIMESTRING__INT_,RPC_SCHEDULEMAINTENANCEEXPIRATIONEVENT__,RPC_SCHEDULEMAINTENANCETASK__INT_,RPC_UPDATESTRUCTURESTATUS__,RPC_GETDEBUGSTRUCTURESTATUS__,RPC_ISONADMINLIST__CREATUREOBJECT_,RPC_ISONADMINLIST__LONG_,RPC_ISONENTRYLIST__CREATUREOBJECT_,RPC_ISONBANLIST__CREATUREOBJECT_,RPC_ISONBANLIST__LONG_,RPC_ISONHOPPERLIST__CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_LONG_,RPC_ISOWNEROF__SCENEOBJECT_,RPC_ISOWNEROF__LONG_,RPC_ISONACCESSLIST__SCENEOBJECT_,RPC_ISONACCESSLIST__LONG_,RPC_SENDPERMISSIONLISTTO__CREATUREOBJECT_STRING_,RPC_HASPERMISSIONLIST__STRING_,RPC_ISPERMISSIONLISTFULL__STRING_,RPC_TOGGLEPERMISSION__STRING_LONG_,RPC_GRANTPERMISSION__STRING_LONG_,RPC_REVOKEPERMISSION__STRING_LONG_,RPC_REVOKEALLPERMISSIONS__LONG_,RPC_REVOKEALLPERMISSIONS__,RPC_GETREDEEDCOST__,RPC_GETOWNERCREATUREOBJECT__,RPC_GETOWNEROBJECTID__,RPC_GETDEEDOBJECTID__,RPC_GETLOTSIZE__,RPC_SETMAINTENANCEREDUCED__BOOL_,RPC_GETMAINTENANCERATE__,RPC_GETMAINTENANCEMODS__,RPC_GETBASEMAINTENANCERATE__,RPC_GETBASEPOWERRATE__,RPC_GETDELAYDESTROYHOURS__,RPC_GETSURPLUSMAINTENANCE__,RPC_GETSURPLUSPOWER__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETOWNER__LONG_,RPC_SETWAYPOINTID__LONG_,RPC_GETWAYPOINTID__,RPC_SETDEEDOBJECTID__LONG_,RPC_SETSURPLUSMAINTENANCE__INT_,RPC_ADDMAINTENANCE__FLOAT_,RPC_SUBTRACTMAINTENANCE__FLOAT_,RPC_PAYMAINTENANCE__INT_CREDITOBJECT_BOOL_,RPC_SETSURPLUSPOWER__INT_,RPC_ADDPOWER__FLOAT_,RPC_ISDECAYING__,RPC_ISDECAYED__,RPC_GETDECAYPERCENTAGE__,RPC_ISCONDEMNED__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISSTRUCTUREOBJECT__,RPC_ISCAMPSTRUCTURE__,RPC_ISREDEEDABLE__,RPC_GETREDEEDMESSAGE__,RPC_GETPACKUPMESSAGE__,RPC_ISCIVICSTRUCTURE__,RPC_ISCITYHALL__,RPC_ISCOMMERCIALSTRUCTURE__,RPC_ISGUILDHALL__,RPC_MIGRATEPERMISSIONS__,RPC_GETNAVAREA__,RPC_HASNAVMESH__,RPC_CREATENAVMESH__,RPC_SETCONTROLDEVICE__CONTROLDEVICE_,RPC_GETCONTROLDEVICE__,RPC_ISPACKEDUP__,RPC_UNLOADFROMZONE__BOOL_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3783376556,RPC_FINALIZE__,RPC_NOTIFYLOADFROMDATABASE__,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_CREATECHILDOBJECTS__,RPC_GETRECEIVERFLAGS__,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_DESTROYORPHANCIVICSTRUCTURE__,RPC_CHECKREQUISITESFORPLACEMENT__CREATUREOBJECT_,RPC_GETTIMESTRING__INT_,RPC_SCHEDULEMAINTENANCEEXPIRATIONEVENT__,RPC_SCHEDULEMAINTENANCETASK__INT_,RPC_UPDATESTRUCTURESTATUS__,RPC_GETDEBUGSTRUCTURESTATUS__,RPC_ISONADMINLIST__CREATUREOBJECT_,RPC_ISONADMINLIST__LONG_,RPC_ISONENTRYLIST__CREATUREOBJECT_,RPC_ISONBANLIST__CREATUREOBJECT_,RPC_ISONBANLIST__LONG_,RPC_ISONHOPPERLIST__CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_LONG_,RPC_ISOWNEROF__SCENEOBJECT_,RPC_ISOWNEROF__LONG_,RPC_ISONACCESSLIST__SCENEOBJECT_,RPC_ISONACCESSLIST__LONG_,RPC_SENDPERMISSIONLISTTO__CREATUREOBJECT_STRING_,RPC_HASPERMISSIONLIST__STRING_,RPC_ISPERMISSIONLISTFULL__STRING_,RPC_TOGGLEPERMISSION__STRING_LONG_,RPC_GRANTPERMISSION__STRING_LONG_,RPC_REVOKEPERMISSION__STRING_LONG_,RPC_REVOKEALLPERMISSIONS__LONG_,RPC_REVOKEALLPERMISSIONS__,RPC_GETREDEEDCOST__,RPC_GETOWNERCREATUREOBJECT__,RPC_GETOWNEROBJECTID__,RPC_GETDEEDOBJECTID__,RPC_GETLOTSIZE__,RPC_SETMAINTENANCEREDUCED__BOOL_,RPC_GETMAINTENANCERATE__,RPC_GETMAINTENANCEMODS__,RPC_GETBASEMAINTENANCERATE__,RPC_GETBASEPOWERRATE__,RPC_GETDELAYDESTROYHOURS__,RPC_GETSURPLUSMAINTENANCE__,RPC_GETSURPLUSPOWER__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETOWNER__LONG_,RPC_SETWAYPOINTID__LONG_,RPC_GETWAYPOINTID__,RPC_SETDEEDOBJECTID__LONG_,RPC_SETSURPLUSMAINTENANCE__INT_,RPC_ADDMAINTENANCE__FLOAT_,RPC_SUBTRACTMAINTENANCE__FLOAT_,RPC_PAYMAINTENANCE__INT_CREDITOBJECT_BOOL_,RPC_SETSURPLUSPOWER__INT_,RPC_ADDPOWER__FLOAT_,RPC_ISDECAYING__,RPC_ISDECAYED__,RPC_GETDECAYPERCENTAGE__,RPC_ISCONDEMNED__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISSTRUCTUREOBJECT__,RPC_ISCAMPSTRUCTURE__,RPC_ISREDEEDABLE__,RPC_GETREDEEDMESSAGE__,RPC_ISCIVICSTRUCTURE__,RPC_ISCITYHALL__,RPC_ISCOMMERCIALSTRUCTURE__,RPC_ISGUILDHALL__,RPC_MIGRATEPERMISSIONS__,RPC_GETNAVAREA__,RPC_HASNAVMESH__,RPC_CREATENAVMESH__};
 
 StructureObject::StructureObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	StructureObjectImplementation* _implementation = new StructureObjectImplementation();
@@ -40,7 +40,7 @@ StructureObject::~StructureObject() {
 
 void StructureObject::initializeTransientMembers() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -54,7 +54,7 @@ void StructureObject::initializeTransientMembers() {
 
 void StructureObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -64,7 +64,7 @@ void StructureObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void StructureObject::notifyLoadFromDatabase() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ void StructureObject::notifyLoadFromDatabase() {
 
 void StructureObject::destroyObjectFromWorld(bool sendSelfDestroy) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void StructureObject::destroyObjectFromWorld(bool sendSelfDestroy) {
 
 void StructureObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ void StructureObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void StructureObject::notifyInsertToZone(Zone* zone) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ void StructureObject::notifyInsertToZone(Zone* zone) {
 
 void StructureObject::createChildObjects() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,9 +136,9 @@ void StructureObject::createChildObjects() {
 	}
 }
 
-int StructureObject::getReceiverFlags() {
+int StructureObject::getReceiverFlags() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ int StructureObject::getReceiverFlags() {
 
 int StructureObject::notifyStructurePlaced(CreatureObject* creature) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -167,7 +167,7 @@ int StructureObject::notifyStructurePlaced(CreatureObject* creature) {
 
 void StructureObject::destroyOrphanCivicStructure() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void StructureObject::destroyOrphanCivicStructure() {
 
 bool StructureObject::checkRequisitesForPlacement(CreatureObject* player) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool StructureObject::checkRequisitesForPlacement(CreatureObject* player) {
 
 String StructureObject::getTimeString(unsigned int timestamp) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ String StructureObject::getTimeString(unsigned int timestamp) const {
 
 void StructureObject::scheduleMaintenanceExpirationEvent() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -228,7 +228,7 @@ void StructureObject::scheduleMaintenanceExpirationEvent() {
 
 void StructureObject::scheduleMaintenanceTask(int timeFromNow) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -244,7 +244,7 @@ void StructureObject::scheduleMaintenanceTask(int timeFromNow) {
 
 void StructureObject::updateStructureStatus() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -259,7 +259,7 @@ void StructureObject::updateStructureStatus() {
 
 String StructureObject::getDebugStructureStatus() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -275,7 +275,7 @@ String StructureObject::getDebugStructureStatus() const {
 
 bool StructureObject::isOnAdminList(CreatureObject* player) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -290,7 +290,7 @@ bool StructureObject::isOnAdminList(CreatureObject* player) const {
 
 bool StructureObject::isOnAdminList(unsigned const long long objectID) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -305,7 +305,7 @@ bool StructureObject::isOnAdminList(unsigned const long long objectID) const {
 
 bool StructureObject::isOnEntryList(CreatureObject* player) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -320,7 +320,7 @@ bool StructureObject::isOnEntryList(CreatureObject* player) const {
 
 bool StructureObject::isOnBanList(CreatureObject* player) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -335,7 +335,7 @@ bool StructureObject::isOnBanList(CreatureObject* player) const {
 
 bool StructureObject::isOnBanList(unsigned const long long objectID) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -350,7 +350,7 @@ bool StructureObject::isOnBanList(unsigned const long long objectID) const {
 
 bool StructureObject::isOnHopperList(CreatureObject* player) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -365,7 +365,7 @@ bool StructureObject::isOnHopperList(CreatureObject* player) const {
 
 bool StructureObject::isOnPermissionList(const String& listName, CreatureObject* player) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -381,7 +381,7 @@ bool StructureObject::isOnPermissionList(const String& listName, CreatureObject*
 
 bool StructureObject::isOnPermissionList(const String& listName, unsigned const long long objectID) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -397,7 +397,7 @@ bool StructureObject::isOnPermissionList(const String& listName, unsigned const 
 
 bool StructureObject::isOwnerOf(SceneObject* obj) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -412,7 +412,7 @@ bool StructureObject::isOwnerOf(SceneObject* obj) const {
 
 bool StructureObject::isOwnerOf(unsigned long long oid) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -427,7 +427,7 @@ bool StructureObject::isOwnerOf(unsigned long long oid) const {
 
 bool StructureObject::isOnAccessList(SceneObject* obj) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -442,7 +442,7 @@ bool StructureObject::isOnAccessList(SceneObject* obj) const {
 
 bool StructureObject::isOnAccessList(unsigned long long oid) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -457,7 +457,7 @@ bool StructureObject::isOnAccessList(unsigned long long oid) const {
 
 void StructureObject::sendPermissionListTo(CreatureObject* creature, const String& listName) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -473,7 +473,7 @@ void StructureObject::sendPermissionListTo(CreatureObject* creature, const Strin
 
 bool StructureObject::hasPermissionList(const String& listName) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -488,7 +488,7 @@ bool StructureObject::hasPermissionList(const String& listName) const {
 
 bool StructureObject::isPermissionListFull(const String& listName) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -503,7 +503,7 @@ bool StructureObject::isPermissionListFull(const String& listName) const {
 
 int StructureObject::togglePermission(const String& listName, unsigned const long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -519,7 +519,7 @@ int StructureObject::togglePermission(const String& listName, unsigned const lon
 
 int StructureObject::grantPermission(const String& listName, unsigned const long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -535,7 +535,7 @@ int StructureObject::grantPermission(const String& listName, unsigned const long
 
 int StructureObject::revokePermission(const String& listName, unsigned const long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -551,7 +551,7 @@ int StructureObject::revokePermission(const String& listName, unsigned const lon
 
 int StructureObject::revokeAllPermissions(unsigned const long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -566,7 +566,7 @@ int StructureObject::revokeAllPermissions(unsigned const long long objectID) {
 
 void StructureObject::revokeAllPermissions() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -580,7 +580,7 @@ void StructureObject::revokeAllPermissions() {
 
 int StructureObject::getRedeedCost() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -594,7 +594,7 @@ int StructureObject::getRedeedCost() const {
 
 CreatureObject* StructureObject::getOwnerCreatureObject() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -608,7 +608,7 @@ CreatureObject* StructureObject::getOwnerCreatureObject() const {
 
 unsigned long long StructureObject::getOwnerObjectID() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -622,7 +622,7 @@ unsigned long long StructureObject::getOwnerObjectID() const {
 
 unsigned long long StructureObject::getDeedObjectID() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -636,7 +636,7 @@ unsigned long long StructureObject::getDeedObjectID() const {
 
 int StructureObject::getLotSize() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -650,7 +650,7 @@ int StructureObject::getLotSize() const {
 
 void StructureObject::setMaintenanceReduced(bool value) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -666,7 +666,7 @@ void StructureObject::setMaintenanceReduced(bool value) {
 
 float StructureObject::getMaintenanceRate() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -680,7 +680,7 @@ float StructureObject::getMaintenanceRate() const {
 
 String StructureObject::getMaintenanceMods() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -696,7 +696,7 @@ String StructureObject::getMaintenanceMods() const {
 
 int StructureObject::getBaseMaintenanceRate() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -710,7 +710,7 @@ int StructureObject::getBaseMaintenanceRate() const {
 
 int StructureObject::getBasePowerRate() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -724,7 +724,7 @@ int StructureObject::getBasePowerRate() const {
 
 float StructureObject::getDelayDestroyHours() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -738,7 +738,7 @@ float StructureObject::getDelayDestroyHours() const {
 
 int StructureObject::getSurplusMaintenance() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -752,7 +752,7 @@ int StructureObject::getSurplusMaintenance() const {
 
 int StructureObject::getSurplusPower() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -766,7 +766,7 @@ int StructureObject::getSurplusPower() const {
 
 bool StructureObject::isPublicStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -780,7 +780,7 @@ bool StructureObject::isPublicStructure() const {
 
 bool StructureObject::isPrivateStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -794,7 +794,7 @@ bool StructureObject::isPrivateStructure() const {
 
 void StructureObject::setOwner(unsigned long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -810,7 +810,7 @@ void StructureObject::setOwner(unsigned long long objectID) {
 
 void StructureObject::setWaypointID(unsigned long long objectID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -826,7 +826,7 @@ void StructureObject::setWaypointID(unsigned long long objectID) {
 
 unsigned long long StructureObject::getWaypointID() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -840,7 +840,7 @@ unsigned long long StructureObject::getWaypointID() const {
 
 void StructureObject::setDeedObjectID(unsigned long long deedID) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -856,7 +856,7 @@ void StructureObject::setDeedObjectID(unsigned long long deedID) {
 
 void StructureObject::setSurplusMaintenance(int surplus) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -872,7 +872,7 @@ void StructureObject::setSurplusMaintenance(int surplus) {
 
 void StructureObject::addMaintenance(float add) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -888,7 +888,7 @@ void StructureObject::addMaintenance(float add) {
 
 void StructureObject::subtractMaintenance(float subtract) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -904,7 +904,7 @@ void StructureObject::subtractMaintenance(float subtract) {
 
 void StructureObject::payMaintenance(int maintenance, CreditObject* creditObj, bool cashFirst) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -916,14 +916,14 @@ void StructureObject::payMaintenance(int maintenance, CreditObject* creditObj, b
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((creditObj == nullptr) || creditObj->isLockedByCurrentThread());
+		assert((creditObj == NULL) || creditObj->isLockedByCurrentThread());
 		_implementation->payMaintenance(maintenance, creditObj, cashFirst);
 	}
 }
 
 void StructureObject::setSurplusPower(int surplus) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -939,7 +939,7 @@ void StructureObject::setSurplusPower(int surplus) {
 
 void StructureObject::addPower(float add) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -955,7 +955,7 @@ void StructureObject::addPower(float add) {
 
 bool StructureObject::isDecaying() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -969,7 +969,7 @@ bool StructureObject::isDecaying() const {
 
 bool StructureObject::isDecayed() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -983,7 +983,7 @@ bool StructureObject::isDecayed() {
 
 int StructureObject::getDecayPercentage() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -997,7 +997,7 @@ int StructureObject::getDecayPercentage() {
 
 bool StructureObject::isCondemned() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1011,7 +1011,7 @@ bool StructureObject::isCondemned() {
 
 void StructureObject::setPublicStructure(bool privacy) {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1026,7 +1026,7 @@ void StructureObject::setPublicStructure(bool privacy) {
 
 bool StructureObject::isStructureObject() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1040,7 +1040,7 @@ bool StructureObject::isStructureObject() {
 
 bool StructureObject::isCampStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1054,7 +1054,7 @@ bool StructureObject::isCampStructure() const {
 
 bool StructureObject::isRedeedable() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1068,29 +1068,29 @@ bool StructureObject::isRedeedable() {
 
 void StructureObject::addTemplateSkillMods(TangibleObject* targetObject) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		assert((targetObject == nullptr) || targetObject->isLockedByCurrentThread());
+		assert((targetObject == NULL) || targetObject->isLockedByCurrentThread());
 		_implementation->addTemplateSkillMods(targetObject);
 	}
 }
 
 void StructureObject::removeTemplateSkillMods(TangibleObject* tangibleObject) const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		assert((tangibleObject == nullptr) || tangibleObject->isLockedByCurrentThread());
+		assert((tangibleObject == NULL) || tangibleObject->isLockedByCurrentThread());
 		_implementation->removeTemplateSkillMods(tangibleObject);
 	}
 }
 
 String StructureObject::getRedeedMessage() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1104,25 +1104,9 @@ String StructureObject::getRedeedMessage() {
 	}
 }
 
-String StructureObject::getPackupMessage() {
-	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPACKUPMESSAGE__);
-
-		String _return_getPackupMessage;
-		method.executeWithAsciiReturn(_return_getPackupMessage);
-		return _return_getPackupMessage;
-	} else {
-		return _implementation->getPackupMessage();
-	}
-}
-
 bool StructureObject::isCivicStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1136,7 +1120,7 @@ bool StructureObject::isCivicStructure() const {
 
 bool StructureObject::isCityHall() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1150,7 +1134,7 @@ bool StructureObject::isCityHall() {
 
 bool StructureObject::isCommercialStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1164,7 +1148,7 @@ bool StructureObject::isCommercialStructure() const {
 
 bool StructureObject::isGuildHall() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1178,7 +1162,7 @@ bool StructureObject::isGuildHall() const {
 
 void StructureObject::migratePermissions() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1193,7 +1177,7 @@ void StructureObject::migratePermissions() {
 
 NavArea* StructureObject::getNavArea() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1207,7 +1191,7 @@ NavArea* StructureObject::getNavArea() const {
 
 bool StructureObject::hasNavmesh() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1221,7 +1205,7 @@ bool StructureObject::hasNavmesh() const {
 
 void StructureObject::createNavMesh() {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1231,65 +1215,6 @@ void StructureObject::createNavMesh() {
 	} else {
 		assert(this->isLockedByCurrentThread());
 		_implementation->createNavMesh();
-	}
-}
-
-void StructureObject::setControlDevice(ControlDevice* device) {
-	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETCONTROLDEVICE__CONTROLDEVICE_);
-		method.addObjectParameter(device);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setControlDevice(device);
-	}
-}
-
-ManagedWeakReference<ControlDevice* > StructureObject::getControlDevice() const {
-	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCONTROLDEVICE__);
-
-		return static_cast<ControlDevice*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->getControlDevice();
-	}
-}
-
-bool StructureObject::isPackedUp() {
-	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISPACKEDUP__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isPackedUp();
-	}
-}
-
-bool StructureObject::unloadFromZone(bool sendSelfDestroy) {
-	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UNLOADFROMZONE__BOOL_);
-		method.addBooleanParameter(sendSelfDestroy);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->unloadFromZone(sendSelfDestroy);
 	}
 }
 
@@ -1324,7 +1249,7 @@ StructureObjectImplementation::~StructureObjectImplementation() {
 void StructureObjectImplementation::_initializeImplementation() {
 	_setClassHelper(StructureObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1447,10 +1372,6 @@ bool StructureObjectImplementation::readObjectMember(ObjectInputStream* stream, 
 
 	case 0xfb045dfa: //StructureObject.permissionsFixed
 		TypeInfo<bool >::parseFromBinaryStream(&permissionsFixed, stream);
-		return true;
-
-	case 0xee9da35b: //StructureObject.controlDevice
-		TypeInfo<ManagedWeakReference<ControlDevice* > >::parseFromBinaryStream(&controlDevice, stream);
 		return true;
 
 	}
@@ -1579,15 +1500,6 @@ int StructureObjectImplementation::writeObjectMembers(ObjectOutputStream* stream
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0xee9da35b; //StructureObject.controlDevice
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedWeakReference<ControlDevice* > >::toBinaryStream(&controlDevice, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 
 	return _count;
 }
@@ -1620,8 +1532,6 @@ void StructureObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["permissionsFixed"] = permissionsFixed;
 
-	thisObject["controlDevice"] = controlDevice;
-
 	j["StructureObject"] = thisObject;
 }
 
@@ -1642,15 +1552,13 @@ StructureObjectImplementation::StructureObjectImplementation() {
 	// server/zone/objects/structure/StructureObject.idl():  		surplusPower = 0;
 	surplusPower = 0;
 	// server/zone/objects/structure/StructureObject.idl():  		structureMaintenanceTask = null;
-	structureMaintenanceTask = nullptr;
+	structureMaintenanceTask = NULL;
 	// server/zone/objects/structure/StructureObject.idl():  		maintenanceReduced = false;
 	maintenanceReduced = false;
 	// server/zone/objects/structure/StructureObject.idl():  		permissionsFixed = false;
 	permissionsFixed = false;
 	// server/zone/objects/structure/StructureObject.idl():  		navArea = null;
-	navArea = nullptr;
-	// server/zone/objects/structure/StructureObject.idl():  		controlDevice = null;
-	controlDevice = nullptr;
+	navArea = NULL;
 }
 
 void StructureObjectImplementation::createChildObjects() {
@@ -1658,7 +1566,7 @@ void StructureObjectImplementation::createChildObjects() {
 	TangibleObjectImplementation::createChildObjects();
 }
 
-int StructureObjectImplementation::getReceiverFlags() {
+int StructureObjectImplementation::getReceiverFlags() const{
 	// server/zone/objects/structure/StructureObject.idl():  		return CloseObjectsVector.STRUCTURETYPE | super.getReceiverFlags();
 	return CloseObjectsVector::STRUCTURETYPE | TangibleObjectImplementation::getReceiverFlags();
 }
@@ -1861,11 +1769,6 @@ String StructureObjectImplementation::getRedeedMessage() {
 	return "";
 }
 
-String StructureObjectImplementation::getPackupMessage() {
-	// server/zone/objects/structure/StructureObject.idl():  		return "";
-	return "";
-}
-
 void StructureObjectImplementation::migratePermissions() {
 	// server/zone/objects/structure/StructureObject.idl():  		structurePermissionList.migrateLists(super.getZoneServer(), getOwnerObjectID());
 	(&structurePermissionList)->migrateLists(TangibleObjectImplementation::getZoneServer(), getOwnerObjectID());
@@ -1881,21 +1784,6 @@ NavArea* StructureObjectImplementation::getNavArea() const{
 bool StructureObjectImplementation::hasNavmesh() const{
 	// server/zone/objects/structure/StructureObject.idl():  		return navArea;
 	return navArea;
-}
-
-void StructureObjectImplementation::setControlDevice(ControlDevice* device) {
-	// server/zone/objects/structure/StructureObject.idl():  		controlDevice = device;
-	controlDevice = device;
-}
-
-ManagedWeakReference<ControlDevice* > StructureObjectImplementation::getControlDevice() const{
-	// server/zone/objects/structure/StructureObject.idl():  		return controlDevice;
-	return controlDevice;
-}
-
-bool StructureObjectImplementation::isPackedUp() {
-	// server/zone/objects/structure/StructureObject.idl():  		return controlDevice != null;
-	return controlDevice != nullptr;
 }
 
 /*
@@ -2208,7 +2096,7 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 		{
 			
 			DistributedObject* _m_res = getOwnerCreatureObject();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETOWNEROBJECTID__:
@@ -2448,13 +2336,6 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			resp->insertAscii(_m_res);
 		}
 		break;
-	case RPC_GETPACKUPMESSAGE__:
-		{
-			
-			String _m_res = getPackupMessage();
-			resp->insertAscii(_m_res);
-		}
-		break;
 	case RPC_ISCIVICSTRUCTURE__:
 		{
 			
@@ -2494,7 +2375,7 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 		{
 			
 			DistributedObject* _m_res = getNavArea();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_HASNAVMESH__:
@@ -2509,36 +2390,6 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 			createNavMesh();
 			
-		}
-		break;
-	case RPC_SETCONTROLDEVICE__CONTROLDEVICE_:
-		{
-			ControlDevice* device = static_cast<ControlDevice*>(inv->getObjectParameter());
-			
-			setControlDevice(device);
-			
-		}
-		break;
-	case RPC_GETCONTROLDEVICE__:
-		{
-			
-			DistributedObject* _m_res = getControlDevice().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
-		}
-		break;
-	case RPC_ISPACKEDUP__:
-		{
-			
-			bool _m_res = isPackedUp();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_UNLOADFROMZONE__BOOL_:
-		{
-			bool sendSelfDestroy = inv->getBooleanParameter();
-			
-			bool _m_res = unloadFromZone(sendSelfDestroy);
-			resp->insertBoolean(_m_res);
 		}
 		break;
 	default:
@@ -2574,7 +2425,7 @@ void StructureObjectAdapter::createChildObjects() {
 	(static_cast<StructureObject*>(stub))->createChildObjects();
 }
 
-int StructureObjectAdapter::getReceiverFlags() {
+int StructureObjectAdapter::getReceiverFlags() const {
 	return (static_cast<StructureObject*>(stub))->getReceiverFlags();
 }
 
@@ -2826,10 +2677,6 @@ String StructureObjectAdapter::getRedeedMessage() {
 	return (static_cast<StructureObject*>(stub))->getRedeedMessage();
 }
 
-String StructureObjectAdapter::getPackupMessage() {
-	return (static_cast<StructureObject*>(stub))->getPackupMessage();
-}
-
 bool StructureObjectAdapter::isCivicStructure() const {
 	return (static_cast<StructureObject*>(stub))->isCivicStructure();
 }
@@ -2860,22 +2707,6 @@ bool StructureObjectAdapter::hasNavmesh() const {
 
 void StructureObjectAdapter::createNavMesh() {
 	(static_cast<StructureObject*>(stub))->createNavMesh();
-}
-
-void StructureObjectAdapter::setControlDevice(ControlDevice* device) {
-	(static_cast<StructureObject*>(stub))->setControlDevice(device);
-}
-
-ManagedWeakReference<ControlDevice* > StructureObjectAdapter::getControlDevice() const {
-	return (static_cast<StructureObject*>(stub))->getControlDevice();
-}
-
-bool StructureObjectAdapter::isPackedUp() {
-	return (static_cast<StructureObject*>(stub))->isPackedUp();
-}
-
-bool StructureObjectAdapter::unloadFromZone(bool sendSelfDestroy) {
-	return (static_cast<StructureObject*>(stub))->unloadFromZone(sendSelfDestroy);
 }
 
 /*
@@ -2969,9 +2800,6 @@ void StructureObjectPOD::writeJSON(nlohmann::json& j) {
 
 	if (permissionsFixed)
 		thisObject["permissionsFixed"] = permissionsFixed.value();
-
-	if (controlDevice)
-		thisObject["controlDevice"] = controlDevice.value();
 
 	j["StructureObject"] = thisObject;
 }
@@ -3122,17 +2950,6 @@ int StructureObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (controlDevice) {
-	_nameHashCode = 0xee9da35b; //StructureObject.controlDevice
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 
 	return _count;
 }
@@ -3238,14 +3055,6 @@ bool StructureObjectPOD::readObjectMember(ObjectInputStream* stream, const uint3
 		}
 		return true;
 
-	case 0xee9da35b: //StructureObject.controlDevice
-		{
-			ManagedWeakReference<ControlDevicePOD* > _mncontrolDevice;
-			TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::parseFromBinaryStream(&_mncontrolDevice, stream);
-			controlDevice = std::move(_mncontrolDevice);
-		}
-		return true;
-
 	}
 
 	return false;
@@ -3295,8 +3104,6 @@ void StructureObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<bool >::toBinaryStream(&maintenanceReduced.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&permissionsFixed.value(), stream);
-
-	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
 
 
 }

@@ -2,6 +2,7 @@ rebel_commandant = Creature:new {
 	objectName = "@mob/creature_names:corvette_rebel_commandant",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 151,
@@ -11,7 +12,7 @@ rebel_commandant = Creature:new {
 	baseXp = 14314,
 	baseHAM = 81000,
 	baseHAMmax = 99000,
-	armor = 2,
+	armor = 1,
 	resists = {50,65,30,30,30,30,80,65,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -35,7 +36,7 @@ rebel_commandant = Creature:new {
 				{group = "junk", chance = 4150000},
 				{group = "rifles", chance = 1000000},
 				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
+				{group = "elite_weapons", chance = 1000000},
 				{group = "carbines", chance = 1000000},
 				{group = "clothing_attachments", chance = 300000},
 				{group = "armor_attachments", chance = 300000},
@@ -44,10 +45,18 @@ rebel_commandant = Creature:new {
 			}
 		}
 	},
-	weapons = {"rebel_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "rebel_weapons_heavy",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	attacks = merge(commandomaster,marksmanmaster,brawlermaster,pistoleermaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(commandomaster,marksmanmaster,brawlermaster,pistoleermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_commandant, "rebel_commandant")

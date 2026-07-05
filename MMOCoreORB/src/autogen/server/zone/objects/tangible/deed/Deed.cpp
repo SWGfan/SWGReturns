@@ -32,7 +32,7 @@ Deed::~Deed() {
 
 void Deed::initializeTransientMembers() {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void Deed::initializeTransientMembers() {
 
 void Deed::loadTemplateData(SharedObjectTemplate* templateData) {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void Deed::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void Deed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void Deed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) 
 
 void Deed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -76,7 +76,7 @@ void Deed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void Deed::setGeneratedObjectTemplate(const String& templ) {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void Deed::setGeneratedObjectTemplate(const String& templ) {
 
 String Deed::getGeneratedObjectTemplate() const {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ String Deed::getGeneratedObjectTemplate() const {
 
 void Deed::setGenerated(bool gen) {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ void Deed::setGenerated(bool gen) {
 
 bool Deed::isDeedObject() {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ bool Deed::isDeedObject() {
 
 bool Deed::isGenerated() const {
 	DeedImplementation* _implementation = static_cast<DeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void DeedImplementation::finalize() {
 void DeedImplementation::_initializeImplementation() {
 	_setClassHelper(DeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -30,7 +30,7 @@ StartingLocationTerminal::~StartingLocationTerminal() {
 
 void StartingLocationTerminal::initializeTransientMembers() {
 	StartingLocationTerminalImplementation* _implementation = static_cast<StartingLocationTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void StartingLocationTerminal::initializeTransientMembers() {
 
 int StartingLocationTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	StartingLocationTerminalImplementation* _implementation = static_cast<StartingLocationTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ int StartingLocationTerminal::handleObjectMenuSelect(CreatureObject* player, byt
 
 void StartingLocationTerminal::setAuthorizationState(bool state) {
 	StartingLocationTerminalImplementation* _implementation = static_cast<StartingLocationTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ void StartingLocationTerminalImplementation::finalize() {
 void StartingLocationTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(StartingLocationTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

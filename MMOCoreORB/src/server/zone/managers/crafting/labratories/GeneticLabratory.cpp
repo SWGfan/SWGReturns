@@ -44,6 +44,8 @@ String GeneticLabratory::pickSpecialAttack(String a, String b, String c, String 
 	} else {
 		effectiveSpecial = a;
 	}
+	if (effectiveSpecial.contains("creature"))
+		effectiveSpecial = "defaultattack";
 	int roll = System::random(750);
 	// roll now determined by template quality
 	// we roll 0-800 if that number is < quality * 100 i.e. VHQ 100 VLQ 700 if we get less than the odds we dont stick the special
@@ -52,7 +54,7 @@ String GeneticLabratory::pickSpecialAttack(String a, String b, String c, String 
 		effectiveSpecial = "defaultattack";
 	}
 	if (effectiveSpecial == otherSpecial && effectiveSpecial != "defaultattack")
-		effectiveSpecial = pickSpecialAttack(effectiveSpecial,b,c,d,e,odds+200,otherSpecial);// pick another default mantis #5598 max loop count is 8 (i.e. odds starting at 100, at 8 calls it picks defaultattack
+		effectiveSpecial = pickSpecialAttack(effectiveSpecial,b,c,d,e,odds+100,otherSpecial);// pick another default mantis #5598 max loop count is 8 (i.e. odds starting at 100, at 8 calls it picks defaultattack
 	return effectiveSpecial;
 }
 void GeneticLabratory::recalculateResist(CraftingValues* craftingValues) {
@@ -183,8 +185,8 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	// 1 percent: (1000 - 0) / 100.0f;
 	float blastMax, energyMax, kineticMax,heatMax,coldMax,electricMax,acidMax,stunMax,saberMax;
 	blastMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::BLAST,100.0f);
-	kineticMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::KINETIC,80.0f);
-	energyMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::ENERGY,80.0f);
+	kineticMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::KINETIC,60.0f);
+	energyMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::ENERGY,60.0f);
 	heatMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::HEAT,100.0f);
 	coldMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::COLD,100.0f);
 	electricMax = Genetics::resistanceFormula(phy,pro,men,psy,agr,SharedWeaponObjectTemplate::ELECTRICITY,100.0f);
@@ -195,7 +197,7 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	// lets clear the special bit if it moved to effective range.
 	if (saberMax == 0) {
 		spSaber = false;
-		saberMax = 70;
+		saberMax = 100;
 	}
 	if (blastMax == 0) {
 		spBlast = false;
@@ -203,11 +205,11 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	}
 	if (kineticMax == 0) {
 		spKinetic = false;
-		kineticMax = 80;
+		kineticMax = 60;
 	}
 	if (energyMax == 0) {
 		spEnergy = false;
-		energyMax = 80;
+		energyMax = 60;
 	}
 	if (heatMax == 0) {
 		spHeat = false;
@@ -394,7 +396,6 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 	float currentFort = craftingValues->getCurrentValue("fortitude");
 	int armorValue = currentFort/500;
 	float currentEffective = (int)(((currentFort - (armorValue * 500)) / 50) * 5);
-	title = craftingValues->getExperimentalPropertyTitle("resists");
 
 	for (int i = 0; i < craftingValues->getExperimentalPropertySubtitleSize(); ++i) {
 		subtitlesTitle = craftingValues->getExperimentalPropertySubtitlesTitle(i);

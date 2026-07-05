@@ -50,9 +50,10 @@ object_draft_schematic_instrument_instrument_fizz = object_draft_schematic_instr
    craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
    complexity = 11, 
    size = 1, 
-
-   xpType = "entertainer_healing", 
-   xp = 400, 
+   factoryCrateType = "object/factory/factory_crate_generic_items.iff",
+   
+   xpType = "dance", 
+   xp = 1000, 
 
    assemblySkill = "instrument_assembly", 
    experimentingSkill = "general_experimentation", 

@@ -47,7 +47,7 @@ object_draft_schematic_clothing_clothing_bandolier_field_02_quest = object_draft
    customObjectName = "Droidsmith\'s Tool Set",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 30, 
+   complexity = 1, 
    size = 1, 
 
    xpType = "crafting_clothing_general", 
@@ -72,9 +72,9 @@ object_draft_schematic_clothing_clothing_bandolier_field_02_quest = object_draft
    targetTemplate = "object/tangible/wearables/bandolier/bandolier_s02_quest.iff",
 				
 	skillMods = {
-	    {"droid_assembly", 25},
-	    {"droid_customization", 25},
-	    {"droid_experimentation", 25}
+	    {"droid_assembly", 5},
+	    {"droid_customization", 5},
+	    {"droid_experimentation", 3}
 	},
 
    additionalTemplates = {

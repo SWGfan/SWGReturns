@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Utility rule file for update-engine3.
 
@@ -85,6 +85,6 @@ CMakeFiles/update-engine3.dir/clean:
 .PHONY : CMakeFiles/update-engine3.dir/clean
 
 CMakeFiles/update-engine3.dir/depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/update-engine3.dir/DependInfo.cmake "--color=$(COLOR)" update-engine3
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/update-engine3.dir/DependInfo.cmake "--color=$(COLOR)" update-engine3
 .PHONY : CMakeFiles/update-engine3.dir/depend
 

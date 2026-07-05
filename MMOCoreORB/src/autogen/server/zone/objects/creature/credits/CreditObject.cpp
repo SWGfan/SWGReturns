@@ -10,7 +10,7 @@
  *	CreditObjectStub
  */
 
-enum {RPC_NOTIFYLOADFROMDATABASE__ = 2326470073,RPC_SETBANKCREDITS__INT_BOOL_,RPC_SETCASHCREDITS__INT_BOOL_,RPC_GETBANKCREDITS__,RPC_GETCASHCREDITS__,RPC_SUBTRACTBANKCREDITS__INT_BOOL_,RPC_SUBTRACTCASHCREDITS__INT_BOOL_,RPC_ADDBANKCREDITS__INT_BOOL_,RPC_ADDCASHCREDITS__INT_BOOL_,RPC_VERIFYCASHCREDITS__INT_,RPC_VERIFYBANKCREDITS__INT_,RPC_SETOWNER__CREATUREOBJECT_};
+enum {RPC_NOTIFYLOADFROMDATABASE__ = 2326470073,RPC_SETBANKCREDITS__INT_BOOL_,RPC_SETCASHCREDITS__INT_BOOL_,RPC_GETBANKCREDITS__,RPC_GETCASHCREDITS__,RPC_SUBTRACTBANKCREDITS__INT_BOOL_,RPC_SUBTRACTCASHCREDITS__INT_BOOL_,RPC_SUBTRACTCREDITS__INT_BOOL_BOOL_,RPC_TRANSFERCREDITS__INT_INT_BOOL_,RPC_CLEARBANKCREDITS__BOOL_,RPC_CLEARCASHCREDITS__BOOL_,RPC_ADDBANKCREDITS__INT_BOOL_,RPC_ADDCASHCREDITS__INT_BOOL_,RPC_VERIFYCREDITS__INT_,RPC_VERIFYCASHCREDITS__INT_,RPC_VERIFYBANKCREDITS__INT_,RPC_SETOWNER__CREATUREOBJECT_,};
 
 CreditObject::CreditObject() : ManagedObject(DummyConstructorParameter::instance()) {
 	CreditObjectImplementation* _implementation = new CreditObjectImplementation();
@@ -30,7 +30,7 @@ CreditObject::~CreditObject() {
 
 void CreditObject::notifyLoadFromDatabase() {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ void CreditObject::notifyLoadFromDatabase() {
 
 void CreditObject::setBankCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void CreditObject::setBankCredits(int credits, bool notifyClient) {
 
 void CreditObject::setCashCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void CreditObject::setCashCredits(int credits, bool notifyClient) {
 
 int CreditObject::getBankCredits() const {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ int CreditObject::getBankCredits() const {
 
 int CreditObject::getCashCredits() const {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ int CreditObject::getCashCredits() const {
 
 void CreditObject::subtractBankCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void CreditObject::subtractBankCredits(int credits, bool notifyClient) {
 
 void CreditObject::subtractCashCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,9 +139,77 @@ void CreditObject::subtractCashCredits(int credits, bool notifyClient) {
 	}
 }
 
+bool CreditObject::subtractCredits(int credits, bool notifyClient, bool bankFirst) {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SUBTRACTCREDITS__INT_BOOL_BOOL_);
+		method.addSignedIntParameter(credits);
+		method.addBooleanParameter(notifyClient);
+		method.addBooleanParameter(bankFirst);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		return _implementation->subtractCredits(credits, notifyClient, bankFirst);
+	}
+}
+
+void CreditObject::transferCredits(int cash, int bank, bool notifyClient) {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_TRANSFERCREDITS__INT_INT_BOOL_);
+		method.addSignedIntParameter(cash);
+		method.addSignedIntParameter(bank);
+		method.addBooleanParameter(notifyClient);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->transferCredits(cash, bank, notifyClient);
+	}
+}
+
+void CreditObject::clearBankCredits(bool notifyClient) {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CLEARBANKCREDITS__BOOL_);
+		method.addBooleanParameter(notifyClient);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->clearBankCredits(notifyClient);
+	}
+}
+
+void CreditObject::clearCashCredits(bool notifyClient) {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CLEARCASHCREDITS__BOOL_);
+		method.addBooleanParameter(notifyClient);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->clearCashCredits(notifyClient);
+	}
+}
+
 void CreditObject::addBankCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +226,7 @@ void CreditObject::addBankCredits(int credits, bool notifyClient) {
 
 void CreditObject::addCashCredits(int credits, bool notifyClient) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -173,9 +241,24 @@ void CreditObject::addCashCredits(int credits, bool notifyClient) {
 	}
 }
 
+bool CreditObject::verifyCredits(int credits) {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_VERIFYCREDITS__INT_);
+		method.addSignedIntParameter(credits);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->verifyCredits(credits);
+	}
+}
+
 bool CreditObject::verifyCashCredits(int credits) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,7 +273,7 @@ bool CreditObject::verifyCashCredits(int credits) {
 
 bool CreditObject::verifyBankCredits(int credits) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -205,7 +288,7 @@ bool CreditObject::verifyBankCredits(int credits) {
 
 WeakReference<CreatureObject* > CreditObject::getOwner() {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -213,9 +296,19 @@ WeakReference<CreatureObject* > CreditObject::getOwner() {
 	}
 }
 
+unsigned long long CreditObject::getOwnerObjectID() const {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getOwnerObjectID();
+	}
+}
+
 void CreditObject::setOwner(CreatureObject* obj) {
 	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,6 +318,46 @@ void CreditObject::setOwner(CreatureObject* obj) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->setOwner(obj);
+	}
+}
+
+LoggerHelperStream CreditObject::error() const {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->error();
+	}
+}
+
+LoggerHelperStream CreditObject::info(int forced) const {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->info(forced);
+	}
+}
+
+LoggerHelperStream CreditObject::debug() const {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->debug();
+	}
+}
+
+String CreditObject::toStringData() const {
+	CreditObjectImplementation* _implementation = static_cast<CreditObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->toStringData();
 	}
 }
 
@@ -261,7 +394,7 @@ void CreditObjectImplementation::finalize() {
 void CreditObjectImplementation::_initializeImplementation() {
 	_setClassHelper(CreditObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -346,6 +479,10 @@ bool CreditObjectImplementation::readObjectMember(ObjectInputStream* stream, con
 		TypeInfo<int >::parseFromBinaryStream(&cashCredits, stream);
 		return true;
 
+	case 0x8509d2dd: //CreditObject.ownerObjectID
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&ownerObjectID, stream);
+		return true;
+
 	}
 
 	return false;
@@ -382,6 +519,15 @@ int CreditObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0x8509d2dd; //CreditObject.ownerObjectID
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&ownerObjectID, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -394,6 +540,8 @@ void CreditObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["cashCredits"] = cashCredits;
 
+	thisObject["ownerObjectID"] = ownerObjectID;
+
 	j["CreditObject"] = thisObject;
 }
 
@@ -401,8 +549,10 @@ CreditObjectImplementation::CreditObjectImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/creature/credits/CreditObject.idl():  		bankCredits = 0;
 	bankCredits = 0;
-	// server/zone/objects/creature/credits/CreditObject.idl():   cashCredits = 0;
+	// server/zone/objects/creature/credits/CreditObject.idl():  		cashCredits = 0;
 	cashCredits = 0;
+	// server/zone/objects/creature/credits/CreditObject.idl():  		ownerObjectID = 0;
+	ownerObjectID = 0;
 }
 
 int CreditObjectImplementation::getBankCredits() const{
@@ -415,14 +565,25 @@ int CreditObjectImplementation::getCashCredits() const{
 	return cashCredits;
 }
 
-void CreditObjectImplementation::addBankCredits(int credits, bool notifyClient) {
-	// server/zone/objects/creature/credits/CreditObject.idl():  		setBankCredits(bankCredits+credits, notifyClient);
-	setBankCredits(bankCredits + credits, notifyClient);
+void CreditObjectImplementation::clearBankCredits(bool notifyClient) {
+	// server/zone/objects/creature/credits/CreditObject.idl():  		setBankCredits(0, notifyClient);
+	setBankCredits(0, notifyClient);
 }
 
-void CreditObjectImplementation::addCashCredits(int credits, bool notifyClient) {
-	// server/zone/objects/creature/credits/CreditObject.idl():  		setCashCredits(cashCredits+credits, notifyClient);
-	setCashCredits(cashCredits + credits, notifyClient);
+void CreditObjectImplementation::clearCashCredits(bool notifyClient) {
+	// server/zone/objects/creature/credits/CreditObject.idl():  		setCashCredits(0, notifyClient);
+	setCashCredits(0, notifyClient);
+}
+
+bool CreditObjectImplementation::verifyCredits(int credits) {
+	// server/zone/objects/creature/credits/CreditObject.idl():  		if 
+	if (credits < 0)	// server/zone/objects/creature/credits/CreditObject.idl():  			return false;
+	return false;
+	// server/zone/objects/creature/credits/CreditObject.idl():  		return 
+	if (getCashCredits() + getBankCredits() < credits)	// server/zone/objects/creature/credits/CreditObject.idl():  			return false;
+	return false;
+	// server/zone/objects/creature/credits/CreditObject.idl():  		return true;
+	return true;
 }
 
 bool CreditObjectImplementation::verifyCashCredits(int credits) {
@@ -519,6 +680,42 @@ void CreditObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_SUBTRACTCREDITS__INT_BOOL_BOOL_:
+		{
+			int credits = inv->getSignedIntParameter();
+			bool notifyClient = inv->getBooleanParameter();
+			bool bankFirst = inv->getBooleanParameter();
+			
+			bool _m_res = subtractCredits(credits, notifyClient, bankFirst);
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_TRANSFERCREDITS__INT_INT_BOOL_:
+		{
+			int cash = inv->getSignedIntParameter();
+			int bank = inv->getSignedIntParameter();
+			bool notifyClient = inv->getBooleanParameter();
+			
+			transferCredits(cash, bank, notifyClient);
+			
+		}
+		break;
+	case RPC_CLEARBANKCREDITS__BOOL_:
+		{
+			bool notifyClient = inv->getBooleanParameter();
+			
+			clearBankCredits(notifyClient);
+			
+		}
+		break;
+	case RPC_CLEARCASHCREDITS__BOOL_:
+		{
+			bool notifyClient = inv->getBooleanParameter();
+			
+			clearCashCredits(notifyClient);
+			
+		}
+		break;
 	case RPC_ADDBANKCREDITS__INT_BOOL_:
 		{
 			int credits = inv->getSignedIntParameter();
@@ -535,6 +732,14 @@ void CreditObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			addCashCredits(credits, notifyClient);
 			
+		}
+		break;
+	case RPC_VERIFYCREDITS__INT_:
+		{
+			int credits = inv->getSignedIntParameter();
+			
+			bool _m_res = verifyCredits(credits);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_VERIFYCASHCREDITS__INT_:
@@ -594,12 +799,32 @@ void CreditObjectAdapter::subtractCashCredits(int credits, bool notifyClient) {
 	(static_cast<CreditObject*>(stub))->subtractCashCredits(credits, notifyClient);
 }
 
+bool CreditObjectAdapter::subtractCredits(int credits, bool notifyClient, bool bankFirst) {
+	return (static_cast<CreditObject*>(stub))->subtractCredits(credits, notifyClient, bankFirst);
+}
+
+void CreditObjectAdapter::transferCredits(int cash, int bank, bool notifyClient) {
+	(static_cast<CreditObject*>(stub))->transferCredits(cash, bank, notifyClient);
+}
+
+void CreditObjectAdapter::clearBankCredits(bool notifyClient) {
+	(static_cast<CreditObject*>(stub))->clearBankCredits(notifyClient);
+}
+
+void CreditObjectAdapter::clearCashCredits(bool notifyClient) {
+	(static_cast<CreditObject*>(stub))->clearCashCredits(notifyClient);
+}
+
 void CreditObjectAdapter::addBankCredits(int credits, bool notifyClient) {
 	(static_cast<CreditObject*>(stub))->addBankCredits(credits, notifyClient);
 }
 
 void CreditObjectAdapter::addCashCredits(int credits, bool notifyClient) {
 	(static_cast<CreditObject*>(stub))->addCashCredits(credits, notifyClient);
+}
+
+bool CreditObjectAdapter::verifyCredits(int credits) {
+	return (static_cast<CreditObject*>(stub))->verifyCredits(credits);
 }
 
 bool CreditObjectAdapter::verifyCashCredits(int credits) {
@@ -675,6 +900,9 @@ void CreditObjectPOD::writeJSON(nlohmann::json& j) {
 	if (cashCredits)
 		thisObject["cashCredits"] = cashCredits.value();
 
+	if (ownerObjectID)
+		thisObject["ownerObjectID"] = ownerObjectID.value();
+
 	j["CreditObject"] = thisObject;
 }
 
@@ -714,6 +942,17 @@ int CreditObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (ownerObjectID) {
+	_nameHashCode = 0x8509d2dd; //CreditObject.ownerObjectID
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&ownerObjectID.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -736,6 +975,14 @@ bool CreditObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 			int _mncashCredits;
 			TypeInfo<int >::parseFromBinaryStream(&_mncashCredits, stream);
 			cashCredits = std::move(_mncashCredits);
+		}
+		return true;
+
+	case 0x8509d2dd: //CreditObject.ownerObjectID
+		{
+			unsigned long long _mnownerObjectID;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnownerObjectID, stream);
+			ownerObjectID = std::move(_mnownerObjectID);
 		}
 		return true;
 
@@ -768,6 +1015,8 @@ void CreditObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<int >::toBinaryStream(&bankCredits.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&cashCredits.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&ownerObjectID.value(), stream);
 
 
 }

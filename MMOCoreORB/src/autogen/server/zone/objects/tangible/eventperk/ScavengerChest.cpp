@@ -28,7 +28,7 @@ ScavengerChest::~ScavengerChest() {
 
 bool ScavengerChest::isEventPerkItem() {
 	ScavengerChestImplementation* _implementation = static_cast<ScavengerChestImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ bool ScavengerChest::isEventPerkItem() {
 
 void ScavengerChest::addtoLootedList(unsigned long long playerID) {
 	ScavengerChestImplementation* _implementation = static_cast<ScavengerChestImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void ScavengerChest::addtoLootedList(unsigned long long playerID) {
 
 bool ScavengerChest::isOnLootedList(unsigned long long playerID) {
 	ScavengerChestImplementation* _implementation = static_cast<ScavengerChestImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void ScavengerChestImplementation::finalize() {
 void ScavengerChestImplementation::_initializeImplementation() {
 	_setClassHelper(ScavengerChestHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

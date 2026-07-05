@@ -16,7 +16,9 @@
  *	PlantObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 713415823,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_INITIALIZEPLANT__INT_,RPC_SENDRESOURCESUI__CREATUREOBJECT_INT_,RPC_GETCRITICALATTRIBUTE__INT_,RPC_CHANGESIZE__INT_,RPC_UPDATELASTPULSE__,RPC_GETWATERLEVEL__,RPC_GETIDEALWATERLEVEL__,RPC_GETIDEALNUTRIENTLEVEL__,RPC_GETNUTRIENTLEVEL__,RPC_GETNUTRIENTQUALITY__,RPC_GETWATERQUALITY__,RPC_GETPLANTHEALTH__,RPC_GETGROWTH__,RPC_GETSIZE__,RPC_GETFRUIT__,RPC_GETCRITICALATTRIBUTEONE__,RPC_GETCRITICALATTRIBUTETWO__,RPC_SETNUTRIENTLEVEL__INT_,RPC_SETNUTRIENTQUALITY__INT_,RPC_SETWATERLEVEL__INT_,RPC_SETWATERQUALITY__INT_,RPC_SETPLANTHEALTH__INT_,RPC_SETFRUIT__INT_,RPC_ISPLANTOBJECT__,RPC_SETGROWTHRATE__INT_,RPC_SETGROWTH__INT_,RPC_STARTPULSE__};
+unsigned const long long PlantObject::PULSERATE = 21600000;
+
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 713415823,RPC_FINALIZE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_INITIALIZEPLANT__INT_,RPC_SENDRESOURCESUI__CREATUREOBJECT_INT_,RPC_GETCRITICALATTRIBUTE__INT_,RPC_CHANGESIZE__INT_,RPC_UPDATELASTPULSE__,RPC_GETWATERLEVEL__,RPC_GETIDEALWATERLEVEL__,RPC_GETIDEALNUTRIENTLEVEL__,RPC_GETNUTRIENTLEVEL__,RPC_GETNUTRIENTQUALITY__,RPC_GETWATERQUALITY__,RPC_GETPLANTHEALTH__,RPC_GETGROWTH__,RPC_GETSIZE__,RPC_GETFRUIT__,RPC_GETCRITICALATTRIBUTEONE__,RPC_GETCRITICALATTRIBUTETWO__,RPC_SETNUTRIENTLEVEL__INT_,RPC_SETNUTRIENTQUALITY__INT_,RPC_SETWATERLEVEL__INT_,RPC_SETWATERQUALITY__INT_,RPC_SETPLANTHEALTH__INT_,RPC_SETFRUIT__INT_,RPC_ISPLANTOBJECT__,RPC_SETGROWTHRATE__INT_,RPC_SETGROWTH__INT_,RPC_STARTPULSE__};
 
 PlantObject::PlantObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	PlantObjectImplementation* _implementation = new PlantObjectImplementation();
@@ -36,7 +38,7 @@ PlantObject::~PlantObject() {
 
 void PlantObject::initializeTransientMembers() {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +52,7 @@ void PlantObject::initializeTransientMembers() {
 
 void PlantObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -60,7 +62,7 @@ void PlantObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* o
 
 int PlantObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,14 +73,14 @@ int PlantObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void PlantObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -88,7 +90,7 @@ void PlantObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creat
 
 void PlantObject::initializePlant(int size) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +106,7 @@ void PlantObject::initializePlant(int size) {
 
 void PlantObject::sendResourceSUI(CreatureObject* player, int type) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -120,7 +122,7 @@ void PlantObject::sendResourceSUI(CreatureObject* player, int type) {
 
 int PlantObject::getCriticalAttribute(int index) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +137,7 @@ int PlantObject::getCriticalAttribute(int index) {
 
 void PlantObject::changeSize(int size) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +153,7 @@ void PlantObject::changeSize(int size) {
 
 void PlantObject::updateLastPulse() {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +168,7 @@ void PlantObject::updateLastPulse() {
 
 int PlantObject::getWaterLevel() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -180,7 +182,7 @@ int PlantObject::getWaterLevel() const {
 
 int PlantObject::getIdealWaterLevel() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +196,7 @@ int PlantObject::getIdealWaterLevel() const {
 
 int PlantObject::getIdealNutrientLevel() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +210,7 @@ int PlantObject::getIdealNutrientLevel() const {
 
 int PlantObject::getNutrientLevel() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,7 +224,7 @@ int PlantObject::getNutrientLevel() const {
 
 int PlantObject::getNutrientQuality() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -236,7 +238,7 @@ int PlantObject::getNutrientQuality() const {
 
 int PlantObject::getWaterQuality() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +252,7 @@ int PlantObject::getWaterQuality() const {
 
 int PlantObject::getPlantHealth() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -264,7 +266,7 @@ int PlantObject::getPlantHealth() const {
 
 int PlantObject::getGrowth() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -278,7 +280,7 @@ int PlantObject::getGrowth() const {
 
 int PlantObject::getSize() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -292,7 +294,7 @@ int PlantObject::getSize() const {
 
 int PlantObject::getFruit() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -306,7 +308,7 @@ int PlantObject::getFruit() const {
 
 int PlantObject::getCriticalAttributeOne() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -320,7 +322,7 @@ int PlantObject::getCriticalAttributeOne() const {
 
 int PlantObject::getCriticalAttributeTwo() const {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -334,7 +336,7 @@ int PlantObject::getCriticalAttributeTwo() const {
 
 void PlantObject::setNutrientLevel(int level) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -350,7 +352,7 @@ void PlantObject::setNutrientLevel(int level) {
 
 void PlantObject::setNutrientQuality(int qual) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -366,7 +368,7 @@ void PlantObject::setNutrientQuality(int qual) {
 
 void PlantObject::setWaterLevel(int level) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -382,7 +384,7 @@ void PlantObject::setWaterLevel(int level) {
 
 void PlantObject::setWaterQuality(int qual) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -398,7 +400,7 @@ void PlantObject::setWaterQuality(int qual) {
 
 void PlantObject::setPlantHealth(int hp) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -414,7 +416,7 @@ void PlantObject::setPlantHealth(int hp) {
 
 void PlantObject::setFruit(int count) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -430,7 +432,7 @@ void PlantObject::setFruit(int count) {
 
 bool PlantObject::isPlantObject() {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -444,7 +446,7 @@ bool PlantObject::isPlantObject() {
 
 Time* PlantObject::getLastPulse() {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -454,7 +456,7 @@ Time* PlantObject::getLastPulse() {
 
 void PlantObject::setGrowthRate(int rate) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -470,7 +472,7 @@ void PlantObject::setGrowthRate(int rate) {
 
 void PlantObject::setGrowth(int gr) {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -486,7 +488,7 @@ void PlantObject::setGrowth(int gr) {
 
 void PlantObject::startPulse() {
 	PlantObjectImplementation* _implementation = static_cast<PlantObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -517,22 +519,22 @@ void PlantObject::_setImplementation(DistributedObjectServant* servant) {
  *	PlantObjectImplementation
  */
 
+unsigned const long long PlantObjectImplementation::PULSERATE = 21600000;
+
 PlantObjectImplementation::PlantObjectImplementation(DummyConstructorParameter* param) : TangibleObjectImplementation(param) {
 	_initializeImplementation();
 }
 
 
 PlantObjectImplementation::~PlantObjectImplementation() {
+	PlantObjectImplementation::finalize();
 }
 
-
-void PlantObjectImplementation::finalize() {
-}
 
 void PlantObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PlantObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1026,6 +1028,13 @@ void PlantObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_FINALIZE__:
+		{
+			
+			finalize();
+			
+		}
+		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -1244,6 +1253,10 @@ void PlantObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 
 void PlantObjectAdapter::initializeTransientMembers() {
 	(static_cast<PlantObject*>(stub))->initializeTransientMembers();
+}
+
+void PlantObjectAdapter::finalize() {
+	(static_cast<PlantObject*>(stub))->finalize();
 }
 
 int PlantObjectAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

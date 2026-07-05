@@ -103,7 +103,7 @@ class FactoryObject extends InstallationObject {
 	public native void handleOperateToggle(CreatureObject player);
 
 	@preLocked
-	private native boolean startFactory();
+	public native boolean startFactory();
 
 	private native void stopFactory(final string message, final string tt, final string to, final int di);
 
@@ -116,7 +116,7 @@ class FactoryObject extends InstallationObject {
 	private native FactoryCrate locateCrateInOutputHopper(TangibleObject prototype);
 
 	@preLocked
-	private native FactoryCrate createNewFactoryCrate(TangibleObject prototype, int maxSize);
+	private native FactoryCrate createNewFactoryCrate(TangibleObject prototype, int maxSize, string crateType);
 
 	@preLocked
 	private native TangibleObject createNewUncratedItem(TangibleObject prototype);

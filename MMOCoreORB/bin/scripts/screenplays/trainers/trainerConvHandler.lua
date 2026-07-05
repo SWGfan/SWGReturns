@@ -249,9 +249,9 @@ function trainerConvHandler:handleConfirmLearnScreen(pConvTemplate, pPlayer, pNp
 		if (moneyRequired <= cashCredits) then
 			CreatureObject(pPlayer):subtractCashCredits(moneyRequired)
 		else
-			moneyRequired = moneyRequired - cashCredits
+			bankRequired = moneyRequired - cashCredits
 			CreatureObject(pPlayer):subtractCashCredits(cashCredits)
-			CreatureObject(pPlayer):setBankCredits(bankCredits - moneyRequired)
+			CreatureObject(pPlayer):subtractBankCredits(bankRequired)
 		end
 
 		local messageString = LuaStringIdChatParameter(stringTable .. "prose_skill_learned")
@@ -261,8 +261,8 @@ function trainerConvHandler:handleConfirmLearnScreen(pConvTemplate, pPlayer, pNp
 
 		local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-		if (pGhost ~= nil and PlayerObject(pGhost):isJediTrainer(pNpc) and JediTrials:isKnightTrialsTriggerSkill(skillName)) then
-			JediTrials:tryStartKnightTrials(pPlayer)
+		if (pGhost ~= nil and PlayerObject(pGhost):isJediTrainer(pNpc) and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03") and not JediTrials:isOnKnightTrials(pPlayer) and JediTrials:isEligibleForKnightTrials(pPlayer)) then
+			KnightTrials:startKnightTrials(pPlayer)
 		end
 	else
 		local messageString = LuaStringIdChatParameter(stringTable .. "prose_train_failed")

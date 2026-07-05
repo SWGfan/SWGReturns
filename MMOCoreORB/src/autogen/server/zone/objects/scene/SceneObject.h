@@ -252,6 +252,8 @@ using namespace server::zone::objects::creature::ai;
 
 #include "engine/util/JSONSerializationType.h"
 
+#include "server/zone/objects/scene/variables/OrderedTaskExecutioner.h"
+
 #include "engine/log/Logger.h"
 
 #include "engine/util/u3d/Coordinate.h"
@@ -337,7 +339,7 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	/**
 	 * Logs an info message
@@ -386,7 +388,7 @@ public:
 	 * @param range range to check
 	 * @return returns true if this object is in range with obj
 	 */
-	bool isInRange(SceneObject* obj, float range);
+	virtual bool isInRange(SceneObject* obj, float range);
 
 	/**
 	 * Evaluates if the object is in range without checking zone
@@ -746,7 +748,7 @@ public:
 	 * @post { this object is locked, objects is a vector map with the contained objects and their occupied slots }
 	 * @param objects the vector map that will contain the objects and their occupied slots
 	 */
-	void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
+	virtual void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
 
 	void getContainerObjects(VectorMap<unsigned long long, ManagedReference<SceneObject* > >& objects);
 
@@ -839,9 +841,9 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	float getDistanceTo(SceneObject* object);
+	virtual float getDistanceTo(SceneObject* object);
 
-	float getDistanceTo(Coordinate* coordinate);
+	virtual float getDistanceTo(Coordinate* coordinate);
 
 	void updateVehiclePosition(bool sendPackets);
 
@@ -865,13 +867,13 @@ public:
 
 	void setCityRegion(CityRegion* region);
 
-	Zone* getZone();
+	virtual Zone* getZone();
 
-	Zone* getZoneUnsafe() const;
+	virtual Zone* getZoneUnsafe() const;
 
 	Zone* getLocalZone() const;
 
-	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ);
+	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
 
@@ -905,7 +907,7 @@ public:
 
 	String getObjectNameStringIdName() const;
 
-	String getDetailedDescription();
+	String getDetailedDescription() const;
 
 	void setDetailedDescription(const String& detail);
 
@@ -923,7 +925,7 @@ public:
 
 	const VectorMap<String, ManagedReference<SceneObject* > >* getSlottedObjects() const;
 
-	Reference<SceneObject* > getSlottedObject(const String& slot);
+	virtual Reference<SceneObject* > getSlottedObject(const String& slot);
 
 	int getSlotDescriptorSize() const;
 
@@ -981,6 +983,8 @@ public:
 
 	unsigned int getGameObjectType() const;
 
+	String getGameObjectTypeStringID();
+
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -997,20 +1001,17 @@ public:
 	void rotate(int degrees);
 
 	/**
-	* Rotate on the "Roll" X Axis and "Pitch" Y Axis.
-	*/
-	void rotateXaxis(int degrees);
-
-	void rotateYaxis(int degrees);
-
-	/**
 	 * Sets this objects direction so that the object is facing the specified object.
 	 * @param obj The object to face.
 	 * @param notifyClient if true, updates the client with the new direction
 	 */
 	void faceObject(SceneObject* obj, bool notifyClient = false);
 
-	bool isFacingObject(SceneObject* obj) const;
+	void rotateXaxis(int degrees);
+
+	void rotateYaxis(int degrees);
+
+	virtual bool isFacingObject(SceneObject* obj) const;
 
 	void notifySelfPositionUpdate();
 
@@ -1023,7 +1024,7 @@ public:
 
 	unsigned int getMovementCounter() const;
 
-	ManagedWeakReference<SceneObject* > getParent();
+	virtual ManagedWeakReference<SceneObject* > getParent();
 
 	void setParent(QuadTreeEntry* entry);
 
@@ -1083,11 +1084,11 @@ public:
 
 	bool isEventPerk() const;
 
-	ZoneComponent* getZoneComponent();
+	ZoneComponent* getZoneComponent() const;
 
-	ObjectMenuComponent* getObjectMenuComponent();
+	ObjectMenuComponent* getObjectMenuComponent() const;
 
-	AttributeListComponent* getAttributeListComponent();
+	const AttributeListComponent* getAttributeListComponent() const;
 
 	DataObjectComponentReference* getDataObjectComponent();
 
@@ -1099,7 +1100,11 @@ public:
 
 	void setZoneComponent(const String& name);
 
+	void setForceNoTrade(bool newForceNoTrade);
+
 	bool isNoTrade() const;
+
+	bool isForceNoTrade() const;
 
 	bool isShuttleInstallation() const;
 
@@ -1153,7 +1158,7 @@ public:
 
 	bool isTangibleObject();
 
-	TangibleObject* asTangibleObject();
+	virtual TangibleObject* asTangibleObject();
 
 	SceneObject* asSceneObject();
 
@@ -1186,6 +1191,8 @@ public:
 	bool isFactoryCrate();
 
 	bool isPharmaceuticalObject();
+
+	bool isDotPackObject();
 
 	bool isFishingPoleObject() const;
 
@@ -1309,8 +1316,6 @@ public:
 
 	bool isShipControlDevice();
 
-	bool isStructureControlDevice();
-
 	bool isMissionTerminal();
 
 	bool isMissionObject();
@@ -1361,13 +1366,13 @@ public:
 	 */
 	void initializeChildObject(SceneObject* controllerObject);
 
-	bool isInWater();
+	bool isInWater() const;
 
 	bool containsNoTradeObjectRecursive();
 
-	String getDisplayedName();
+	String getDisplayedName() const;
 
-	bool doSendToClient();
+	bool doSendToClient() const;
 
 	void setSendToClient(bool val);
 
@@ -1385,9 +1390,9 @@ public:
 
 	bool isEventPerkItem();
 
-	bool isDataPad();
+	bool isDataPad() const;
 
-	float getTemplateRadius();
+	virtual float getTemplateRadius();
 
 	Vector<Reference<MeshData*> > getTransformedMeshData(const Matrix4* parentTransform) const;
 
@@ -1395,9 +1400,13 @@ public:
 
 	bool isInNavMesh();
 
-	int writeRecursiveJSON(JSONSerializationType& j, int maxDepth);
+	int writeRecursiveJSON(JSONSerializationType& j, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false, Vector<unsigned long long>* oidPath = NULL);
 
-	String exportJSON(const String& exportNote, int maxDepth = -1);
+	String exportJSON(const String& exportNote, int maxDepth = -1, bool pruneCreo = false, bool pruneCraftedComponents = false);
+
+	void getChildrenRecursive(SortedVector<unsigned long long>& childrenObjectsFound, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false);
+
+	bool canBeTransferred(SceneObject* newContainer);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -1514,6 +1523,10 @@ protected:
 
 	ContainerObjectsMap containerObjects;
 
+	unsigned long long originalObjectID;
+
+	bool forceNoTrade;
+
 public:
 	SceneObjectImplementation();
 
@@ -1561,7 +1574,7 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	virtual int getReceiverFlags();
+	virtual int getReceiverFlags() const;
 
 	/**
 	 * Logs an info message
@@ -1610,7 +1623,7 @@ public:
 	 * @param range range to check
 	 * @return returns true if this object is in range with obj
 	 */
-	bool isInRange(SceneObject* obj, float range);
+	virtual bool isInRange(SceneObject* obj, float range);
 
 	/**
 	 * Evaluates if the object is in range without checking zone
@@ -1989,7 +2002,7 @@ public:
 	 * @post { this object is locked, objects is a vector map with the contained objects and their occupied slots }
 	 * @param objects the vector map that will contain the objects and their occupied slots
 	 */
-	void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
+	virtual void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
 
 	void getContainerObjects(VectorMap<unsigned long long, ManagedReference<SceneObject* > >& objects);
 
@@ -2082,9 +2095,9 @@ public:
 	 */
 	virtual int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	float getDistanceTo(SceneObject* object);
+	virtual float getDistanceTo(SceneObject* object);
 
-	float getDistanceTo(Coordinate* coordinate);
+	virtual float getDistanceTo(Coordinate* coordinate);
 
 	virtual void updateVehiclePosition(bool sendPackets);
 
@@ -2108,13 +2121,13 @@ public:
 
 	void setCityRegion(CityRegion* region);
 
-	Zone* getZone();
+	virtual Zone* getZone();
 
-	Zone* getZoneUnsafe() const;
+	virtual Zone* getZoneUnsafe() const;
 
 	Zone* getLocalZone() const;
 
-	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ);
+	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
 
@@ -2148,7 +2161,7 @@ public:
 
 	String getObjectNameStringIdName() const;
 
-	virtual String getDetailedDescription();
+	virtual String getDetailedDescription() const;
 
 	virtual void setDetailedDescription(const String& detail);
 
@@ -2166,7 +2179,7 @@ public:
 
 	const VectorMap<String, ManagedReference<SceneObject* > >* getSlottedObjects() const;
 
-	Reference<SceneObject* > getSlottedObject(const String& slot);
+	virtual Reference<SceneObject* > getSlottedObject(const String& slot);
 
 	int getSlotDescriptorSize() const;
 
@@ -2224,6 +2237,8 @@ public:
 
 	unsigned int getGameObjectType() const;
 
+	String getGameObjectTypeStringID();
+
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -2240,20 +2255,17 @@ public:
 	void rotate(int degrees);
 
 	/**
-	* Rotate on the "Roll" X Axis and "Pitch" Y Axis.
-	*/
-	void rotateXaxis(int degrees);
-
-	void rotateYaxis(int degrees);
-
-	/**
 	 * Sets this objects direction so that the object is facing the specified object.
 	 * @param obj The object to face.
 	 * @param notifyClient if true, updates the client with the new direction
 	 */
 	void faceObject(SceneObject* obj, bool notifyClient = false);
 
-	bool isFacingObject(SceneObject* obj) const;
+	void rotateXaxis(int degrees);
+
+	void rotateYaxis(int degrees);
+
+	virtual bool isFacingObject(SceneObject* obj) const;
 
 	virtual void notifySelfPositionUpdate();
 
@@ -2266,7 +2278,7 @@ public:
 
 	unsigned int getMovementCounter() const;
 
-	ManagedWeakReference<SceneObject* > getParent();
+	virtual ManagedWeakReference<SceneObject* > getParent();
 
 	void setParent(QuadTreeEntry* entry);
 
@@ -2326,11 +2338,11 @@ public:
 
 	bool isEventPerk() const;
 
-	ZoneComponent* getZoneComponent();
+	ZoneComponent* getZoneComponent() const;
 
-	ObjectMenuComponent* getObjectMenuComponent();
+	ObjectMenuComponent* getObjectMenuComponent() const;
 
-	AttributeListComponent* getAttributeListComponent();
+	const AttributeListComponent* getAttributeListComponent() const;
 
 	DataObjectComponentReference* getDataObjectComponent();
 
@@ -2342,7 +2354,11 @@ public:
 
 	void setZoneComponent(const String& name);
 
-	bool isNoTrade() const;
+	void setForceNoTrade(bool newForceNoTrade);
+
+	virtual bool isNoTrade() const;
+
+	bool isForceNoTrade() const;
 
 	bool isShuttleInstallation() const;
 
@@ -2429,6 +2445,8 @@ public:
 	virtual bool isFactoryCrate();
 
 	virtual bool isPharmaceuticalObject();
+
+	virtual bool isDotPackObject();
 
 	bool isFishingPoleObject() const;
 
@@ -2552,8 +2570,6 @@ public:
 
 	virtual bool isShipControlDevice();
 
-	virtual bool isStructureControlDevice();
-
 	virtual bool isMissionTerminal();
 
 	virtual bool isMissionObject();
@@ -2604,13 +2620,13 @@ public:
 	 */
 	virtual void initializeChildObject(SceneObject* controllerObject);
 
-	bool isInWater();
+	bool isInWater() const;
 
 	bool containsNoTradeObjectRecursive();
 
-	String getDisplayedName();
+	String getDisplayedName() const;
 
-	bool doSendToClient();
+	bool doSendToClient() const;
 
 	void setSendToClient(bool val);
 
@@ -2628,7 +2644,7 @@ public:
 
 	virtual bool isEventPerkItem();
 
-	bool isDataPad();
+	bool isDataPad() const;
 
 	virtual float getTemplateRadius();
 
@@ -2638,9 +2654,13 @@ public:
 
 	virtual bool isInNavMesh();
 
-	int writeRecursiveJSON(JSONSerializationType& j, int maxDepth);
+	virtual int writeRecursiveJSON(JSONSerializationType& j, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false, Vector<unsigned long long>* oidPath = NULL);
 
-	String exportJSON(const String& exportNote, int maxDepth = -1);
+	String exportJSON(const String& exportNote, int maxDepth = -1, bool pruneCreo = false, bool pruneCraftedComponents = false);
+
+	virtual void getChildrenRecursive(SortedVector<unsigned long long>& childrenObjectsFound, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false);
+
+	virtual bool canBeTransferred(SceneObject* newContainer);
 
 	WeakReference<SceneObject*> _this;
 
@@ -2702,7 +2722,7 @@ public:
 
 	void notifyLoadFromDatabase();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	void info(const String& msg, bool forced) const;
 
@@ -2864,6 +2884,8 @@ public:
 
 	String getObjectNameStringIdName() const;
 
+	String getDetailedDescription() const;
+
 	void setDetailedDescription(const String& detail);
 
 	int getArrangementDescriptorSize() const;
@@ -2928,6 +2950,8 @@ public:
 
 	unsigned int getGameObjectType() const;
 
+	String getGameObjectTypeStringID();
+
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -2938,11 +2962,11 @@ public:
 
 	void rotate(int degrees);
 
+	void faceObject(SceneObject* obj, bool notifyClient);
+
 	void rotateXaxis(int degrees);
 
 	void rotateYaxis(int degrees);
-
-	void faceObject(SceneObject* obj, bool notifyClient);
 
 	bool isFacingObject(SceneObject* obj) const;
 
@@ -2980,7 +3004,11 @@ public:
 
 	void setZoneComponent(const String& name);
 
+	void setForceNoTrade(bool newForceNoTrade);
+
 	bool isNoTrade() const;
+
+	bool isForceNoTrade() const;
 
 	bool isShuttleInstallation() const;
 
@@ -3049,6 +3077,8 @@ public:
 	bool isFactoryCrate();
 
 	bool isPharmaceuticalObject();
+
+	bool isDotPackObject();
 
 	bool isFishingPoleObject() const;
 
@@ -3158,8 +3188,6 @@ public:
 
 	bool isShipControlDevice();
 
-	bool isStructureControlDevice();
-
 	bool isMissionTerminal();
 
 	bool isMissionObject();
@@ -3182,13 +3210,13 @@ public:
 
 	void initializeChildObject(SceneObject* controllerObject);
 
-	bool isInWater();
+	bool isInWater() const;
 
 	bool containsNoTradeObjectRecursive();
 
-	String getDisplayedName();
+	String getDisplayedName() const;
 
-	bool doSendToClient();
+	bool doSendToClient() const;
 
 	void setSendToClient(bool val);
 
@@ -3206,13 +3234,15 @@ public:
 
 	bool isEventPerkItem();
 
-	bool isDataPad();
+	bool isDataPad() const;
 
 	float getTemplateRadius();
 
 	bool isInNavMesh();
 
-	String exportJSON(const String& exportNote, int maxDepth);
+	String exportJSON(const String& exportNote, int maxDepth, bool pruneCreo, bool pruneCraftedComponents);
+
+	bool canBeTransferred(SceneObject* newContainer);
 
 };
 
@@ -3238,10 +3268,23 @@ public:
 class MockSceneObject : public SceneObject {
 public:
 
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
 	MOCK_METHOD0(getWorldPositionX,float());
 	MOCK_METHOD0(getWorldPositionY,float());
 	MOCK_METHOD0(getWorldPositionZ,float());
 	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
 
 };
 
@@ -3302,6 +3345,10 @@ public:
 	Optional<VectorMap<String, ManagedReference<SceneObjectPOD* > >> slottedObjects;
 
 	Optional<ContainerObjectsMap> containerObjects;
+
+	Optional<unsigned long long> originalObjectID;
+
+	Optional<bool> forceNoTrade;
 
 	String _className;
 	SceneObjectPOD();

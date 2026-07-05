@@ -48,9 +48,8 @@ object_draft_schematic_weapon_component_stock = object_draft_schematic_weapon_co
    customObjectName = "Rifle Stock",
 
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 3, 
+   complexity = 1, 
    size = 1, 
-   factoryCrateSize = 1000,
 
    xpType = "crafting_weapons_general", 
    xp = 40, 

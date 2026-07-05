@@ -2,23 +2,24 @@ graul_mangler = Creature:new {
 	objectName = "@mob/creature_names:graul_mangler",
 	socialGroup = "graul",
 	faction = "",
-	level = 40,
-	chanceHit = 1.25,
-	damageMin = 400,
-	damageMax = 490,
-	baseXp = 8000,
-	baseHAM = 10000,
-	baseHAMmax = 12500,
-	armor = 1,
-	resists = {160,165,160,160,160,145,150,145,-1},
+	mobType = MOB_CARNIVORE,
+	level = 39,
+	chanceHit = 0.43,
+	damageMin = 340,
+	damageMax = 390,
+	baseXp = 3915,
+	baseHAM = 8800,
+	baseHAMmax = 10800,
+	armor = 0,
+	resists = {140,115,160,160,160,25,-1,25,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 950,
 	hideType = "hide_leathery",
-	hideAmount = 975,
+	hideAmount = 875,
 	boneType = "bone_mammal",
-	boneAmount = 975,
+	boneAmount = 775,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 10,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -30,12 +31,17 @@ graul_mangler = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/graul_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"creatureareableeding","stateAccuracyBonus=75"},
-		{"blindattack","stateAccuracyBonus=100"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"posturedownattack",""}, {"blindattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(graul_mangler, "graul_mangler")

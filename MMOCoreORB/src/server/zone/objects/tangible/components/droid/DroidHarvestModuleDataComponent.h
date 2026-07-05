@@ -26,55 +26,75 @@ protected:
 	Vector<uint64> harvestTargets;
 public:
 	enum {
-		INTREST_RANDOM,
-		INTREST_BONE,
-		INTREST_MEAT,
-		INTREST_HIDE
+		INTEREST_RANDOM,
+		INTEREST_BONE,
+		INTEREST_MEAT,
+		INTEREST_HIDE
 	};
 
 	DroidHarvestModuleDataComponent();
 	~DroidHarvestModuleDataComponent();
-	String getModuleName();
+
+	String getModuleName() const;
 	void initializeTransientMembers();
 	void fillAttributeList(AttributeListMessage* msg, CreatureObject* droid);
 	void fillObjectMenuResponse(SceneObject* droidObject, ObjectMenuResponse* menuResponse, CreatureObject* player);
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID, PetControlDevice* controller);
 	int getBatteryDrain();
-	void deactivate();
-	String toString();
+	void deactivate(bool onStore = false);
+	bool activate();
+	String toString() const;
 	void onCall();
+
 	int getHarvestInterest() {
 		return interest;
 	}
+
 	void onStore();
 	void setHarvestInterest(CreatureObject* player, int option);
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
-	bool isActive(){ return active; }
+	void setActive(bool newActive);
+
+	bool isActive() {
+		return active;
+	}
+
 	int getHarvestPower(){
 		return harvestBonus;
 	}
-	void handlePetCommand(String cmd, CreatureObject* speaker) ;
-	virtual bool isStackable() { return true; }
+
+	virtual bool isStackable() {
+		return true;
+	}
+
 	virtual void addToStack(BaseDroidModuleComponent* other);
 	virtual void copy(BaseDroidModuleComponent* other);
 	void creatureHarvestCheck(CreatureObject* target);
-	void harvestDestinationReached();
+
 	bool hasMoreTargets() {
 		return harvestTargets.size() > 0;
 	}
-	void addHarvestTarget(uint64 target,bool first = false) {
+
+	void addHarvestTarget(uint64 target, bool first = false) {
 		if (first)
 			harvestTargets.add(0,target);
 		else
 			harvestTargets.add(target);
 	}
+
+	void removeHarvestTarget(uint64 target) {
+		harvestTargets.remove(target);
+	}
+
 	uint64 getNextHarvestTarget() {
+		uint64 harvTar = 0;
+
 		if (harvestTargets.size() > 0) {
-			return harvestTargets.remove(0);
+			harvTar = harvestTargets.get(0);
+			harvestTargets.remove(0);
 		}
-		else {
-			return -1;
-		}
+
+		return harvTar;
 	}
 };
 

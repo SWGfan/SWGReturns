@@ -32,7 +32,7 @@ CraftingMissionObjective::~CraftingMissionObjective() {
 
 void CraftingMissionObjective::initializeTransientMembers() {
 	CraftingMissionObjectiveImplementation* _implementation = static_cast<CraftingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void CraftingMissionObjective::initializeTransientMembers() {
 
 void CraftingMissionObjective::updateMissionStatus(CreatureObject* player) {
 	CraftingMissionObjectiveImplementation* _implementation = static_cast<CraftingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void CraftingMissionObjective::updateMissionStatus(CreatureObject* player) {
 
 void CraftingMissionObjective::abort() {
 	CraftingMissionObjectiveImplementation* _implementation = static_cast<CraftingMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ CraftingMissionObjectiveImplementation::~CraftingMissionObjectiveImplementation(
 void CraftingMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(CraftingMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

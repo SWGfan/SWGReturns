@@ -30,7 +30,7 @@ SuiSlotMachineBox::~SuiSlotMachineBox() {
 
 unsigned int SuiSlotMachineBox::getPayoutBoxID() {
 	SuiSlotMachineBoxImplementation* _implementation = static_cast<SuiSlotMachineBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ void SuiSlotMachineBoxImplementation::finalize() {
 void SuiSlotMachineBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiSlotMachineBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

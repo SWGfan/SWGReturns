@@ -38,7 +38,7 @@ ContractCrate::~ContractCrate() {
 
 void ContractCrate::fillAttributeList(AttributeListMessage* msg, CreatureObject* player) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -48,7 +48,7 @@ void ContractCrate::fillAttributeList(AttributeListMessage* msg, CreatureObject*
 
 int ContractCrate::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ int ContractCrate::canAddObject(SceneObject* object, int containmentType, String
 
 int ContractCrate::notifyObjectInserted(SceneObject* object) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ int ContractCrate::notifyObjectInserted(SceneObject* object) {
 
 int ContractCrate::notifyObjectRemoved(SceneObject* object) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ int ContractCrate::notifyObjectRemoved(SceneObject* object) {
 
 byte ContractCrate::checkContainerPermission(CreatureObject* player, unsigned short permission) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ byte ContractCrate::checkContainerPermission(CreatureObject* player, unsigned sh
 
 void ContractCrate::parseDraftSchematic(const String& schematic) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ void ContractCrate::parseDraftSchematic(const String& schematic) {
 
 void ContractCrate::setRequiredItem(const String& item) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ void ContractCrate::setRequiredItem(const String& item) {
 
 void ContractCrate::setAmountNeeded(int amt) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +159,7 @@ void ContractCrate::setAmountNeeded(int amt) {
 
 int ContractCrate::getCrateDifficulty() const {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -173,7 +173,7 @@ int ContractCrate::getCrateDifficulty() const {
 
 int ContractCrate::getAmountNeeded() const {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -187,7 +187,7 @@ int ContractCrate::getAmountNeeded() const {
 
 void ContractCrate::setCrateDifficulty(int diff) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -203,7 +203,7 @@ void ContractCrate::setCrateDifficulty(int diff) {
 
 void ContractCrate::setXpType(const String& type) {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,7 +219,7 @@ void ContractCrate::setXpType(const String& type) {
 
 String ContractCrate::getXpType() const {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -235,7 +235,7 @@ String ContractCrate::getXpType() const {
 
 int ContractCrate::getXpAmount() const {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -249,7 +249,7 @@ int ContractCrate::getXpAmount() const {
 
 bool ContractCrate::isCompleted() {
 	ContractCrateImplementation* _implementation = static_cast<ContractCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -294,7 +294,7 @@ void ContractCrateImplementation::finalize() {
 void ContractCrateImplementation::_initializeImplementation() {
 	_setClassHelper(ContractCrateHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

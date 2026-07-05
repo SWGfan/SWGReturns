@@ -123,7 +123,7 @@ public:
 
 	byte getColor() const;
 
-	String getDetailedDescription();
+	String getDetailedDescription() const;
 
 	void setDetailedDescription(const String& desc);
 
@@ -239,7 +239,7 @@ public:
 
 	byte getColor() const;
 
-	String getDetailedDescription();
+	String getDetailedDescription() const;
 
 	void setDetailedDescription(const String& desc);
 
@@ -311,7 +311,7 @@ public:
 
 	byte getColor() const;
 
-	String getDetailedDescription();
+	String getDetailedDescription() const;
 
 	void setDetailedDescription(const String& desc);
 

@@ -44,17 +44,20 @@
 object_building_player_city_cantina_corellia = object_building_player_city_shared_cantina_corellia:new {
 	lotSize = 5,
 	baseMaintenanceRate = 50,
-	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
+	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir"},
+	length = 7,
 	width = 7,
 	planetMapCategory = "cantina",
 	cityRankRequired = 2,
 	limitToOnePerCity = 0,
 	abilityRequired = "place_cantina",
 	skillMods = {
-		{"private_buff_mind", 125},
-		{"private_medical_rating", 125},
-		{"private_med_battle_fatigue", 125},
-		{"private_safe_logout", 1}
+		{"private_medical_rating", 100},
+    {"private_med_wound_health", 100},
+    {"private_med_wound_action", 100},
+    {"private_buff_mind", 100},
+    {"private_med_battle_fatigue", 5},
+    {"private_safe_logout", 1}
 	},
 	zoneComponent = "StructureZoneComponent",
 	childObjects = {

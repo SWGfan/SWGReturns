@@ -159,8 +159,6 @@ public:
 
 	void initializeTransientMembers();
 
-	String getCurrentSpawnName();
-
 	/**
 	 * Destroys this object from database
 	 * @pre { this is locked }
@@ -218,19 +216,9 @@ public:
 
 	ResourceContainer* getContainerFromHopper(ResourceSpawn* spawn);
 
-	int getResourceContainerCountFromHopper();
-
-	ResourceContainer* getContainerFromHopperByIndex(int index);
-
 	unsigned long long getActiveResourceSpawnID();
 
 	float getActualRate();
-
-	void quickRetrieveAllResources(CreatureObject* player);
-
-	void quickAddMaint(CreatureObject* player, float amount);
-
-	void quickAddPower(CreatureObject* player, float amount);
 
 	void broadcastToOperators(BasePacket* packet);
 
@@ -338,8 +326,6 @@ public:
 
 	void initializeTransientMembers();
 
-	String getCurrentSpawnName();
-
 	/**
 	 * Destroys this object from database
 	 * @pre { this is locked }
@@ -397,19 +383,9 @@ public:
 
 	ResourceContainer* getContainerFromHopper(ResourceSpawn* spawn);
 
-	int getResourceContainerCountFromHopper();
-
-	ResourceContainer* getContainerFromHopperByIndex(int index);
-
 	unsigned long long getActiveResourceSpawnID();
 
 	float getActualRate();
-
-	void quickRetrieveAllResources(CreatureObject* player);
-
-	void quickAddMaint(CreatureObject* player, float amount);
-
-	void quickAddPower(CreatureObject* player, float amount);
 
 	void broadcastToOperators(BasePacket* packet);
 
@@ -503,8 +479,6 @@ public:
 
 	void initializeTransientMembers();
 
-	String getCurrentSpawnName();
-
 	void destroyObjectFromDatabase(bool destroyContainedObjects);
 
 	void updateResourceContainerQuantity(ResourceContainer* container, int newQuantity, bool notifyClient);
@@ -535,19 +509,9 @@ public:
 
 	ResourceContainer* getContainerFromHopper(ResourceSpawn* spawn);
 
-	int getResourceContainerCountFromHopper();
-
-	ResourceContainer* getContainerFromHopperByIndex(int index);
-
 	unsigned long long getActiveResourceSpawnID();
 
 	float getActualRate();
-
-	void quickRetrieveAllResources(CreatureObject* player);
-
-	void quickAddMaint(CreatureObject* player, float amount);
-
-	void quickAddPower(CreatureObject* player, float amount);
 
 	void addOperator(CreatureObject* player);
 

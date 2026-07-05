@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_regulator = object_draft_sch
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_regulator = object_draft_sch
 	ingredientTitleNames = {"electronics", "sensors", "refactor"},
 	ingredientSlotType = {2, 2, 3},
 	resourceTypes = {"object/tangible/loot/quest/shared_ostrine.iff", "object/tangible/loot/quest/shared_rudic.iff", "object/tangible/component/structure/shared_regulator.iff"},
-	resourceQuantities = {1, 1, 1},
+	resourceQuantities = {5, 5, 1},
 	contribution = {100, 100, 20},
 
 

@@ -40,6 +40,22 @@ namespace server {
 namespace zone {
 namespace objects {
 namespace creature {
+namespace commands {
+
+class QueueCommand;
+
+} // namespace commands
+} // namespace creature
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::creature::commands;
+
+namespace server {
+namespace zone {
+namespace objects {
+namespace creature {
 namespace ai {
 namespace events {
 
@@ -62,42 +78,6 @@ namespace ai {
 namespace events {
 
 class AiMoveEvent;
-
-} // namespace events
-} // namespace ai
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature::ai::events;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-namespace ai {
-namespace events {
-
-class AiWaitEvent;
-
-} // namespace events
-} // namespace ai
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature::ai::events;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-namespace ai {
-namespace events {
-
-class AiAwarenessEvent;
 
 } // namespace events
 } // namespace ai
@@ -203,56 +183,18 @@ using namespace server::zone::objects::creature::events;
 namespace server {
 namespace zone {
 namespace objects {
-namespace creature {
-namespace ai {
-namespace bt {
+namespace intangible {
 
-class Behavior;
+class ControlDevice;
 
-} // namespace bt
-} // namespace ai
-} // namespace creature
+class ControlDevicePOD;
+
+} // namespace intangible
 } // namespace objects
 } // namespace zone
 } // namespace server
 
-using namespace server::zone::objects::creature::ai::bt;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-namespace ai {
-namespace bt {
-
-class CompositeBehavior;
-
-} // namespace bt
-} // namespace ai
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature::ai::bt;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-namespace ai {
-namespace events {
-
-class AiTrackingTask;
-
-} // namespace events
-} // namespace ai
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature::ai::events;
+using namespace server::zone::objects::intangible;
 
 namespace server {
 namespace zone {
@@ -269,6 +211,24 @@ class SceneObjectPOD;
 } // namespace server
 
 using namespace server::zone::objects::scene;
+
+namespace server {
+namespace zone {
+namespace objects {
+namespace creature {
+namespace ai {
+namespace bt {
+
+class BlackboardData;
+
+} // namespace bt
+} // namespace ai
+} // namespace creature
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::creature::ai::bt;
 
 #include "gmock/gmock.h"
 
@@ -290,7 +250,9 @@ using namespace server::zone::objects::scene;
 
 #include "server/zone/objects/creature/ai/variables/CurrentFoundPath.h"
 
-#include "templates/AiTemplate.h"
+#include "server/zone/objects/creature/ai/bt/Behavior.h"
+
+#include "server/zone/objects/creature/ai/bt/BehaviorTreeSlot.h"
 
 #include "server/zone/objects/tangible/deed/pet/PetDeed.h"
 
@@ -300,11 +262,19 @@ using namespace server::zone::objects::scene;
 
 #include "engine/util/u3d/Vector3.h"
 
+#include "server/zone/objects/creature/ai/bt/BlackboardDataMap.h"
+
 #include "system/util/Vector.h"
 
 #include "system/lang/Time.h"
 
+#include "system/lang/String.h"
+
+#include "system/lang/Exception.h"
+
 #include "server/zone/objects/creature/CreatureObject.h"
+
+#include "system/lang/ref/Reference.h"
 
 #include "engine/core/ManagedObject.h"
 
@@ -322,7 +292,7 @@ namespace ai {
 
 class AiAgent : public CreatureObject {
 public:
-	static const int UPDATEMOVEMENTINTERVAL = 500;
+	static const int UPDATEMOVEMENTINTERVAL = 400;
 
 	static const int DEFAULTAGGRORADIUS = 24;
 
@@ -340,6 +310,28 @@ public:
 
 	static const int LEASHING = 6;
 
+	static const int EVADING = 7;
+
+	static const int PATHING_HOME = 8;
+
+	static const int FOLLOW_FORMATION = 9;
+
+	static const int MOVING_TO_HEAL = 10;
+
+	static const int NOTIFY_ALLY = 11;
+
+	static const int MOB_HERBIVORE = 1;
+
+	static const int MOB_CARNIVORE = 2;
+
+	static const int MOB_NPC = 3;
+
+	static const int MOB_DROID = 4;
+
+	static const int MOB_ANDROID = 5;
+
+	static const int MOB_VEHICLE = 6;
+
 	AiAgent();
 
 	/**
@@ -356,6 +348,10 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
+	String getLogFileName() const;
+
+	int getLogLevel() const;
+
 	/**
 	 * Schedules the next recovery event
 	 * @pre { at least this is locked }
@@ -371,32 +367,11 @@ public:
 	void activateMovementEvent();
 
 	/**
-	 * Schedules the next wait event
+	 * Stops the movement event task
 	 * @pre { this is locked }
 	 * @post { this is locked }
 	 */
-	void activateWaitEvent();
-
-	/**
-	 * Schedules an event to check awareness
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void activateAwarenessEvent(unsigned long long delay = 1000);
-
-	/**
-	 * Executes an AI interrupt in a separate thread (to shed locks)
-	 * @pre { }
-	 * @post { }
-	 */
-	void activateInterrupt(SceneObject* source, long long msg);
-
-	/**
-	 * Schedules the loading
-	 * @pre { }
-	 * @post { }
-	 */
-	void activateLoad(const String& temp);
+	void cancelMovementEvent();
 
 	/**
 	 * Does a recovery tick
@@ -412,6 +387,34 @@ public:
 	 * @post { this object is locked, this AI will have performed one update tick }
 	 */
 	void doMovement();
+
+	void handleException(const Exception& e, const String& context);
+
+	bool isRunningBehavior(unsigned int id);
+
+	void addRunningID(unsigned int id);
+
+	void popRunningChain();
+
+	unsigned int peekRunningChain();
+
+	void clearRunningChain();
+
+	void setAITemplate();
+
+	Behavior* getBehaviorTree(const BehaviorTreeSlot& slot);
+
+	void setTree(Behavior* subRoot, const BehaviorTreeSlot& slot);
+
+	void removeTree(const BehaviorTreeSlot& slot);
+
+	void loadCreatureBitmask();
+
+	void unloadCreatureBitmask();
+
+	void setAIDebug(bool flag);
+
+	bool getAIDebug();
 
 	void setLevel(int lvl, bool randomHam = true);
 
@@ -433,30 +436,21 @@ public:
 
 	SceneObject* getTargetFromDefenders();
 
+	SceneObject* getTargetFromTargetsMap(TangibleObject* target);
+
 	SceneObject* getTargetFromTargetsDefenders();
 
 	bool validateTarget();
 
 	bool validateTarget(SceneObject* target);
 
-	bool isCamouflaged(CreatureObject* target);
+	virtual bool isCamouflaged(CreatureObject* target);
 
-	bool findNextPosition(float maxDistance, bool walk = false);
+	virtual bool findNextPosition(float maxDistance, bool walk);
+
+	virtual bool checkLineOfSight(SceneObject* obj);
 
 	float getWorldZ(const Vector3& position);
-
-	/**
-	 * Does the AI awareness update tick
-	 * @pre { this is locked }
-	 * @post { this is locked, this AI will have scheduled one awareness check }
-	 */
-	void doAwarenessCheck();
-
-	bool runAwarenessLogicCheck(SceneObject* pObject);
-
-	void runStartAwarenessInterrupt(SceneObject* pObject);
-
-	int checkForReactionChat(SceneObject* pObject);
 
 	/**
 	 * Handles the radial selection sent by the client, must be overriden by inherited objects
@@ -492,7 +486,7 @@ public:
 
 	PatrolPoint getNextPosition();
 
-	int getPatrolPointSize();
+	virtual int getPatrolPointSize();
 
 	void notifyInsert(QuadTreeEntry* entry);
 
@@ -508,7 +502,17 @@ public:
 
 	void loadTemplateData(CreatureTemplate* templateData);
 
+	void loadWeaponTemplateData();
+
 	void setupAttackMaps();
+
+	WeaponObject* createWeapon(unsigned int weaponCRC, bool primaryWeapon);
+
+	void unequipWeapons();
+
+	void equipPrimaryWeapon();
+
+	void equipSecondaryWeapon();
 
 	/**
 	 * Inflicts damage into the object
@@ -519,6 +523,8 @@ public:
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, bool notifyClient = true, bool isCombatAction = false);
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient = true, bool isCombatAction = false);
+
+	void notifyPackMobs(SceneObject* attacker);
 
 	int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength = 0);
 
@@ -560,8 +566,6 @@ public:
 
 	int notifyAttack(Observable* observable);
 
-	int notifyCallForHelp(Observable* observable, ManagedObject* arg1);
-
 	void destroyObjectFromWorld(bool sendSelfDestroy);
 
 	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
@@ -578,7 +582,7 @@ public:
 	 * @post { this object is locked, this object is not in a combat state }
 	 * @param clearDefenders if true the defender vector willl be emptied
 	 */
-	void clearCombatState(bool clearDefenders = true);
+	virtual void clearCombatState(bool clearDefenders);
 
 	/**
 	 * Sets the active defender
@@ -594,7 +598,7 @@ public:
 	 * @post { this object is locked, defender is in the defender vector }
 	 * @param defender SceneObject to add to the defender vector
 	 */
-	void addDefender(SceneObject* defender);
+	virtual void addDefender(SceneObject* defender);
 
 	/**
 	 * Removes the specified defender from the defender vector
@@ -602,7 +606,13 @@ public:
 	 * @post { this object is locked, defender is not in the defender vector }
 	 * @param defender SceneObject to remove from the defender vector
 	 */
-	void removeDefender(SceneObject* defender);
+	virtual void removeDefender(SceneObject* defender);
+
+	bool killPlayer(SceneObject* player);
+
+	bool stalkProspect(SceneObject* prospect);
+
+	void healTarget(CreatureObject* target);
 
 	void setDespawnOnNoPlayerInRange(bool val);
 
@@ -626,7 +636,7 @@ public:
 
 	void addPatrolPoint(PatrolPoint& point);
 
-	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL);
+	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL, float direction = 0);
 
 	void setRespawnTimer(float resp);
 
@@ -650,7 +660,7 @@ public:
 	 * @post { }
 	 * @return returns true if its aggressive
 	 */
-	bool isAggressiveTo(CreatureObject* object);
+	virtual bool isAggressiveTo(CreatureObject* object);
 
 	void setOblivious();
 
@@ -662,11 +672,11 @@ public:
 
 	void setTargetObject(SceneObject* obj);
 
-	void runAway(CreatureObject* target, float range);
+	void runAway(CreatureObject* target, float range, bool random);
 
-	void leash();
+	virtual void leash();
 
-	bool generatePatrol(int num, float dist);
+	virtual bool generatePatrol(int num, float dist);
 
 	ManagedWeakReference<SceneObject* > getFollowObject();
 
@@ -674,46 +684,46 @@ public:
 
 	void restoreFollowObject();
 
-	unsigned int getFollowState() const;
+	unsigned int getMovementState() const;
 
-	void setFollowState(int state);
+	void setMovementState(int state);
 
-	float getMaxDistance();
+	virtual float getMaxDistance();
 
-	int setDestination();
-
-	bool completeMove();
-
-	void setWait(int wait);
-
-	int getWait() const;
-
-	bool isWaiting() const;
+	virtual int setDestination();
 
 	/**
-	 * Sets the waiting variable to false, which determines if an action can be performed
-	 * @pre { the AI is locked }
-	 * @post { the AI is locked, and ready to perform an action }
-	 */
+	 * Set the wait time in milliseconds
+	 * will overwrite the current wait timer
+	 **/
+	void setWait(int wait);
+
+	/**
+	 * Sets the wait timer to current time and removes
+	 * the possible blackboard value
+	 **/
 	void stopWaiting();
 
-	void selectWeapon();
+	/**
+	 * Sees if our wait time is up (won't work for indefinite waits?)
+	 **/
+	bool isWaiting() const;
 
-	void selectDefaultWeapon();
+	virtual bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
 
-	bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
+	virtual bool selectSpecialAttack();
 
-	void selectSpecialAttack();
+	virtual bool selectSpecialAttack(int attackNum);
 
-	void selectSpecialAttack(int attackNum);
+	virtual bool selectDefaultAttack();
 
-	void selectDefaultAttack();
+	virtual const QueueCommand* getNextAction();
 
-	bool validateStateAttack();
+	virtual bool validateStateAttack();
 
-	void enqueueAttack(int priority = -1);
+	int enqueueAttack(int priority = -1);
 
-	bool isRetreating();
+	virtual bool isRetreating();
 
 	bool isFleeing();
 
@@ -743,6 +753,8 @@ public:
 
 	bool isKiller();
 
+	bool isHealer();
+
 	unsigned int getFerocity();
 
 	int getAggroRadius();
@@ -751,7 +763,7 @@ public:
 
 	bool getDespawnOnNoPlayerInRange() const;
 
-	int getNumberOfPlayersInRange();
+	virtual int getNumberOfPlayersInRange();
 
 	String getFactionString();
 
@@ -775,9 +787,9 @@ public:
 
 	const CreatureAttackMap* getAttackMap();
 
-	const LootGroupCollection* getLootGroups();
+	const LootGroupCollection* getLootGroups() const;
 
-	String getReactionStf();
+	String getReactionStf() const;
 
 	float getRespawnTimer() const;
 
@@ -785,7 +797,7 @@ public:
 
 	int getRespawnCounter() const;
 
-	PatrolPoint* getHomeLocation();
+	virtual PatrolPoint* getHomeLocation();
 
 	bool isAiAgent();
 
@@ -797,69 +809,9 @@ public:
 
 	void setShowNextPosition(bool val);
 
-	bool isEventMob();
+	bool isEventMob() const;
 
 	bool isPet() const;
-
-	/**
-	 * Sets up the behavior based on the creature bitmask
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void setupBehaviorTree();
-
-	/**
-	 * Sets up the behavior tree by forcing a template into it
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 * @param aiTemplate the template to load
-	 */
-	void setupBehaviorTree(AiTemplate* aiTemplate);
-
-	/**
-	 * Helper function for setting up the behavior tree from bitmask
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 * @param getTarget Template for target selection
-	 * @param selectAttack Template for attack selection
-	 * @param combatMove Template for movement when in combat
-	 * @param idle Template for idle behavior
-	 */
-	void setupBehaviorTree(AiTemplate* getTarget, AiTemplate* selectAttack, AiTemplate* combatMove, AiTemplate* idle);
-
-	/**
-	 * Sets the behavior in the tree
-	 * @pre { this is locked }
-	 * @post { this is locked, behavior is set }
-	 * @param b the id of the behavior in the tree
-	 */
-	void setCurrentBehavior(unsigned int b);
-
-	unsigned int getCurrentBehavior() const;
-
-	int getBehaviorStatus();
-
-	void setBehaviorStatus(int status);
-
-	/**
-	 * Resets the behavior list to the default position
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void resetBehaviorList();
-
-	void clearBehaviorList();
-
-	/**
-	 * Executes an interrupt called from a new thread
-	 * @pre { this is locked, source is locked }
-	 * @post { this is locked, source is locked }
-	 * @param source The originator of the interrupt call
-	 * @param msg The long id of the message (argument) of the interrupt
-	 */
-	int interrupt(SceneObject* source, long long msg);
-
-	void broadcastInterrupt(long long msg);
 
 	void setHomeObject(SceneObject* home);
 
@@ -872,23 +824,31 @@ public:
 	 */
 	void setCombatState();
 
-	int getCreatureBitmask() const;
+	unsigned int getCreatureBitmask() const;
 
-	void setCreatureBitmask(int mask);
+	void setCreatureBitmask(unsigned int mask);
 
 	void setCreatureBit(unsigned int option);
 
 	void clearCreatureBit(unsigned int option);
 
+	void addCreatureFlag(unsigned int flag);
+
+	void removeCreatureFlag(unsigned int flag);
+
 	Time* getAlertedTime();
 
-	void incrementLuaCall(const String& key);
+	Time* getAggroDelay();
 
-	void addToLuaTime(const String& key, unsigned long long val);
+	Time* getPostureSet();
 
-	void outputLuaTimes(CreatureObject* caller);
+	Time* getHealDelay();
 
-	void rescheduleTrackingTask();
+	Time* getFleeDelay();
+
+	Time* getLastPackNotify();
+
+	Time* getLastCallForHelp();
 
 	bool hasRangedWeapon();
 
@@ -902,7 +862,7 @@ public:
 
 	PetDeed* getPetDeed() const;
 
-	void sendReactionChat(int type, int state = 0, bool force = false);
+	void sendReactionChat(SceneObject* object, int type, int state = 0, bool force = false);
 
 	bool hasReactionChatMessages();
 
@@ -933,6 +893,62 @@ public:
 	void setLairTemplateCRC(unsigned int crc);
 
 	unsigned int getLairTemplateCRC() const;
+
+	void writeBlackboard(const String& key, const BlackboardData& data);
+
+	bool peekBlackboard(const String& key);
+
+	BlackboardData readBlackboard(const String& key);
+
+	void eraseBlackboard(const String& key);
+
+	void wipeBlackboard();
+
+	void setCustomAiMap(unsigned long long customMap);
+
+	void setCurrentWeapon(WeaponObject* weap);
+
+	void setDefaultWeapon(WeaponObject* weap);
+
+	WeaponObject* getPrimaryWeapon();
+
+	WeaponObject* getSecondaryWeapon();
+
+	WeaponObject* getDefaultWeapon();
+
+	WeaponObject* getThrownWeapon();
+
+	void clearThrownWeapon();
+
+	WeaponObject* getCurrentWeapon();
+
+	void nullifyWeapons();
+
+	int getMobType() const;
+
+	bool isHerbivore() const;
+
+	bool isCarnivore() const;
+
+	bool isMonster() const;
+
+	bool isDroid() const;
+
+	bool isAndroid() const;
+
+	bool isNpc() const;
+
+	bool isHumanoid() const;
+
+	VectorMap<unsigned long long, int>* getTargetMissCount();
+
+	void addTargetMissCount(unsigned long long target, int misses);
+
+	void setTargetMissCount(unsigned long long target, int misses);
+
+	void removeTargetMissCount(unsigned long long target);
+
+	String getErrorContext();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -969,10 +985,6 @@ protected:
 
 	Reference<AiMoveEvent* > moveEvent;
 
-	Reference<AiWaitEvent* > waitEvent;
-
-	Reference<AiAwarenessEvent* > awarenessEvent;
-
 	ReadWriteLock despawnMutex;
 
 	Vector<String> skillCommands;
@@ -985,13 +997,25 @@ protected:
 
 	PatrolPoint nextStepPosition;
 
+	PatrolPoint endMovementPosition;
+
 	Reference<CurrentFoundPath* > currentFoundPath;
 
 	ManagedReference<CellObject* > targetCellObject;
 
-	ManagedReference<WeaponObject* > readyWeapon;
+	ManagedReference<WeaponObject* > defaultWeapon;
 
-	Reference<CreatureAttackMap* > attackMap;
+	ManagedReference<WeaponObject* > primaryWeapon;
+
+	ManagedReference<WeaponObject* > secondaryWeapon;
+
+	ManagedReference<WeaponObject* > thrownWeapon;
+
+	ManagedReference<WeaponObject* > currentWeapon;
+
+	Reference<CreatureAttackMap* > primaryAttackMap;
+
+	Reference<CreatureAttackMap* > secondaryAttackMap;
 
 	Reference<CreatureAttackMap* > defaultAttackMap;
 
@@ -1014,11 +1038,9 @@ private:
 
 	ManagedWeakReference<SceneObject* > followStore;
 
-	unsigned int followState;
+	unsigned int movementState;
 
 	Mutex targetMutex;
-
-	Mutex awarenessEventMutex;
 
 	Mutex movementEventMutex;
 
@@ -1026,6 +1048,16 @@ private:
 
 protected:
 	Time lastDamageReceived;
+
+	Time lastPackNotify;
+
+	Time lastCallForHelp;
+
+	Time fleeDelay;
+
+	Time postureSet;
+
+	Time healDelay;
 
 	int reactionRank;
 
@@ -1035,6 +1067,10 @@ protected:
 
 	bool randomRespawn;
 
+	float coordinateMin;
+
+	float coordinateMax;
+
 	AtomicInteger numberOfPlayersInRange;
 
 	bool loadedOutfit;
@@ -1043,32 +1079,36 @@ protected:
 
 	ManagedReference<PetDeed* > petDeed;
 
-	unsigned int currentBehaviorID;
+	VectorMap<unsigned long long, int> targetMissCount;
 
-	VectorMap<unsigned int, Behavior*> behaviors;
+private:
+	VectorMap<BehaviorTreeSlot, Reference<Behavior*> > btreeMap;
 
+	Vector<unsigned int> runningChain;
+
+	String aiTemplate;
+
+	BlackboardDataMap blackboard;
+
+protected:
 	String templateName;
 
 	unsigned int lairTemplateCRC;
 
 	unsigned int creatureBitmask;
 
-	int waitTime;
-
-	bool waiting;
-
 	float fleeRange;
 
 	Time alertedTime;
 
-	Reference<AiTrackingTask* > trackingTask;
+	Time aggroDelay;
 
 	unsigned int nextActionCRC;
 
 	String nextActionArgs;
 
 public:
-	static const int UPDATEMOVEMENTINTERVAL = 500;
+	static const int UPDATEMOVEMENTINTERVAL = 400;
 
 	static const int DEFAULTAGGRORADIUS = 24;
 
@@ -1086,6 +1126,32 @@ public:
 
 	static const int LEASHING = 6;
 
+	static const int EVADING = 7;
+
+	static const int PATHING_HOME = 8;
+
+	static const int FOLLOW_FORMATION = 9;
+
+	static const int MOVING_TO_HEAL = 10;
+
+	static const int NOTIFY_ALLY = 11;
+
+	static const int MOB_HERBIVORE = 1;
+
+	static const int MOB_CARNIVORE = 2;
+
+	static const int MOB_NPC = 3;
+
+	static const int MOB_DROID = 4;
+
+	static const int MOB_ANDROID = 5;
+
+	static const int MOB_VEHICLE = 6;
+
+protected:
+	unsigned long long customAiMap;
+
+public:
 	AiAgentImplementation();
 
 	AiAgentImplementation(DummyConstructorParameter* param);
@@ -1106,6 +1172,10 @@ public:
 
 	void finalize();
 
+	String getLogFileName() const;
+
+	int getLogLevel() const;
+
 	/**
 	 * Schedules the next recovery event
 	 * @pre { at least this is locked }
@@ -1121,32 +1191,11 @@ public:
 	virtual void activateMovementEvent();
 
 	/**
-	 * Schedules the next wait event
+	 * Stops the movement event task
 	 * @pre { this is locked }
 	 * @post { this is locked }
 	 */
-	virtual void activateWaitEvent();
-
-	/**
-	 * Schedules an event to check awareness
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void activateAwarenessEvent(unsigned long long delay = 1000);
-
-	/**
-	 * Executes an AI interrupt in a separate thread (to shed locks)
-	 * @pre { }
-	 * @post { }
-	 */
-	void activateInterrupt(SceneObject* source, long long msg);
-
-	/**
-	 * Schedules the loading
-	 * @pre { }
-	 * @post { }
-	 */
-	void activateLoad(const String& temp);
+	virtual void cancelMovementEvent();
 
 	/**
 	 * Does a recovery tick
@@ -1162,6 +1211,34 @@ public:
 	 * @post { this object is locked, this AI will have performed one update tick }
 	 */
 	void doMovement();
+
+	void handleException(const Exception& e, const String& context);
+
+	bool isRunningBehavior(unsigned int id);
+
+	void addRunningID(unsigned int id);
+
+	void popRunningChain();
+
+	unsigned int peekRunningChain();
+
+	void clearRunningChain();
+
+	void setAITemplate();
+
+	Behavior* getBehaviorTree(const BehaviorTreeSlot& slot);
+
+	void setTree(Behavior* subRoot, const BehaviorTreeSlot& slot);
+
+	void removeTree(const BehaviorTreeSlot& slot);
+
+	void loadCreatureBitmask();
+
+	void unloadCreatureBitmask();
+
+	void setAIDebug(bool flag);
+
+	bool getAIDebug();
 
 	void setLevel(int lvl, bool randomHam = true);
 
@@ -1183,6 +1260,8 @@ public:
 
 	SceneObject* getTargetFromDefenders();
 
+	SceneObject* getTargetFromTargetsMap(TangibleObject* target);
+
 	SceneObject* getTargetFromTargetsDefenders();
 
 	bool validateTarget();
@@ -1191,28 +1270,11 @@ public:
 
 	virtual bool isCamouflaged(CreatureObject* target);
 
-protected:
-	bool isScentMasked(CreatureObject* target);
+	virtual bool findNextPosition(float maxDistance, bool walk);
 
-	bool isConcealed(CreatureObject* target);
-
-public:
-	bool findNextPosition(float maxDistance, bool walk = false);
+	virtual bool checkLineOfSight(SceneObject* obj);
 
 	float getWorldZ(const Vector3& position);
-
-	/**
-	 * Does the AI awareness update tick
-	 * @pre { this is locked }
-	 * @post { this is locked, this AI will have scheduled one awareness check }
-	 */
-	void doAwarenessCheck();
-
-	bool runAwarenessLogicCheck(SceneObject* pObject);
-
-	void runStartAwarenessInterrupt(SceneObject* pObject);
-
-	int checkForReactionChat(SceneObject* pObject);
 
 	/**
 	 * Handles the radial selection sent by the client, must be overriden by inherited objects
@@ -1248,7 +1310,7 @@ public:
 
 	PatrolPoint getNextPosition();
 
-	int getPatrolPointSize();
+	virtual int getPatrolPointSize();
 
 	void notifyInsert(QuadTreeEntry* entry);
 
@@ -1264,7 +1326,17 @@ public:
 
 	void loadTemplateData(CreatureTemplate* templateData);
 
+	void loadWeaponTemplateData();
+
 	void setupAttackMaps();
+
+	WeaponObject* createWeapon(unsigned int weaponCRC, bool primaryWeapon);
+
+	void unequipWeapons();
+
+	void equipPrimaryWeapon();
+
+	void equipSecondaryWeapon();
 
 	/**
 	 * Inflicts damage into the object
@@ -1275,6 +1347,8 @@ public:
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, bool notifyClient = true, bool isCombatAction = false);
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient = true, bool isCombatAction = false);
+
+	void notifyPackMobs(SceneObject* attacker);
 
 	int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength = 0);
 
@@ -1316,8 +1390,6 @@ public:
 
 	int notifyAttack(Observable* observable);
 
-	int notifyCallForHelp(Observable* observable, ManagedObject* arg1);
-
 	void destroyObjectFromWorld(bool sendSelfDestroy);
 
 	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
@@ -1334,7 +1406,7 @@ public:
 	 * @post { this object is locked, this object is not in a combat state }
 	 * @param clearDefenders if true the defender vector willl be emptied
 	 */
-	void clearCombatState(bool clearDefenders = true);
+	virtual void clearCombatState(bool clearDefenders);
 
 	/**
 	 * Sets the active defender
@@ -1350,7 +1422,7 @@ public:
 	 * @post { this object is locked, defender is in the defender vector }
 	 * @param defender SceneObject to add to the defender vector
 	 */
-	void addDefender(SceneObject* defender);
+	virtual void addDefender(SceneObject* defender);
 
 	/**
 	 * Removes the specified defender from the defender vector
@@ -1358,7 +1430,13 @@ public:
 	 * @post { this object is locked, defender is not in the defender vector }
 	 * @param defender SceneObject to remove from the defender vector
 	 */
-	void removeDefender(SceneObject* defender);
+	virtual void removeDefender(SceneObject* defender);
+
+	bool killPlayer(SceneObject* player);
+
+	bool stalkProspect(SceneObject* prospect);
+
+	void healTarget(CreatureObject* target);
 
 	void setDespawnOnNoPlayerInRange(bool val);
 
@@ -1382,7 +1460,7 @@ public:
 
 	void addPatrolPoint(PatrolPoint& point);
 
-	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL);
+	void setHomeLocation(float x, float z, float y, CellObject* cell = NULL, float direction = 0);
 
 	void setRespawnTimer(float resp);
 
@@ -1406,7 +1484,7 @@ public:
 	 * @post { }
 	 * @return returns true if its aggressive
 	 */
-	bool isAggressiveTo(CreatureObject* object);
+	virtual bool isAggressiveTo(CreatureObject* object);
 
 	void setOblivious();
 
@@ -1418,11 +1496,11 @@ public:
 
 	void setTargetObject(SceneObject* obj);
 
-	void runAway(CreatureObject* target, float range);
+	void runAway(CreatureObject* target, float range, bool random);
 
-	void leash();
+	virtual void leash();
 
-	bool generatePatrol(int num, float dist);
+	virtual bool generatePatrol(int num, float dist);
 
 	ManagedWeakReference<SceneObject* > getFollowObject();
 
@@ -1430,46 +1508,46 @@ public:
 
 	void restoreFollowObject();
 
-	unsigned int getFollowState() const;
+	unsigned int getMovementState() const;
 
-	void setFollowState(int state);
+	void setMovementState(int state);
 
-	float getMaxDistance();
+	virtual float getMaxDistance();
 
-	int setDestination();
-
-	bool completeMove();
-
-	void setWait(int wait);
-
-	int getWait() const;
-
-	bool isWaiting() const;
+	virtual int setDestination();
 
 	/**
-	 * Sets the waiting variable to false, which determines if an action can be performed
-	 * @pre { the AI is locked }
-	 * @post { the AI is locked, and ready to perform an action }
-	 */
+	 * Set the wait time in milliseconds
+	 * will overwrite the current wait timer
+	 **/
+	void setWait(int wait);
+
+	/**
+	 * Sets the wait timer to current time and removes
+	 * the possible blackboard value
+	 **/
 	void stopWaiting();
 
-	void selectWeapon();
+	/**
+	 * Sees if our wait time is up (won't work for indefinite waits?)
+	 **/
+	bool isWaiting() const;
 
-	void selectDefaultWeapon();
+	virtual bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
 
-	bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
+	virtual bool selectSpecialAttack();
 
-	void selectSpecialAttack();
+	virtual bool selectSpecialAttack(int attackNum);
 
-	void selectSpecialAttack(int attackNum);
+	virtual bool selectDefaultAttack();
 
-	void selectDefaultAttack();
+	virtual const QueueCommand* getNextAction();
 
-	bool validateStateAttack();
+	virtual bool validateStateAttack();
 
-	void enqueueAttack(int priority = -1);
+	int enqueueAttack(int priority = -1);
 
-	bool isRetreating();
+	virtual bool isRetreating();
 
 	bool isFleeing();
 
@@ -1503,6 +1581,8 @@ public:
 
 	bool isKiller();
 
+	bool isHealer();
+
 	unsigned int getFerocity();
 
 	int getAggroRadius();
@@ -1511,7 +1591,7 @@ public:
 
 	bool getDespawnOnNoPlayerInRange() const;
 
-	int getNumberOfPlayersInRange();
+	virtual int getNumberOfPlayersInRange();
 
 	String getFactionString();
 
@@ -1535,9 +1615,9 @@ public:
 
 	const CreatureAttackMap* getAttackMap();
 
-	const LootGroupCollection* getLootGroups();
+	const LootGroupCollection* getLootGroups() const;
 
-	virtual String getReactionStf();
+	virtual String getReactionStf() const;
 
 	float getRespawnTimer() const;
 
@@ -1545,7 +1625,7 @@ public:
 
 	int getRespawnCounter() const;
 
-	PatrolPoint* getHomeLocation();
+	virtual PatrolPoint* getHomeLocation();
 
 	bool isAiAgent();
 
@@ -1557,75 +1637,9 @@ public:
 
 	void setShowNextPosition(bool val);
 
-	bool isEventMob();
+	bool isEventMob() const;
 
 	bool isPet() const;
-
-	/**
-	 * Sets up the behavior based on the creature bitmask
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void setupBehaviorTree();
-
-	/**
-	 * Sets up the behavior tree by forcing a template into it
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 * @param aiTemplate the template to load
-	 */
-	void setupBehaviorTree(AiTemplate* aiTemplate);
-
-	/**
-	 * Helper function for setting up the behavior tree from bitmask
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 * @param getTarget Template for target selection
-	 * @param selectAttack Template for attack selection
-	 * @param combatMove Template for movement when in combat
-	 * @param idle Template for idle behavior
-	 */
-	void setupBehaviorTree(AiTemplate* getTarget, AiTemplate* selectAttack, AiTemplate* combatMove, AiTemplate* idle);
-
-	/**
-	 * Sets the behavior in the tree
-	 * @pre { this is locked }
-	 * @post { this is locked, behavior is set }
-	 * @param b the id of the behavior in the tree
-	 */
-	void setCurrentBehavior(unsigned int b);
-
-	unsigned int getCurrentBehavior() const;
-
-	int getBehaviorStatus();
-
-	void setBehaviorStatus(int status);
-
-private:
-	void addBehaviorToTree(Behavior* b, CompositeBehavior* parent);
-
-	void addCurrentBehaviorToTree(CompositeBehavior* parent);
-
-public:
-	/**
-	 * Resets the behavior list to the default position
-	 * @pre { this is locked }
-	 * @post { this is locked }
-	 */
-	void resetBehaviorList();
-
-	void clearBehaviorList();
-
-	/**
-	 * Executes an interrupt called from a new thread
-	 * @pre { this is locked, source is locked }
-	 * @post { this is locked, source is locked }
-	 * @param source The originator of the interrupt call
-	 * @param msg The long id of the message (argument) of the interrupt
-	 */
-	int interrupt(SceneObject* source, long long msg);
-
-	void broadcastInterrupt(long long msg);
 
 	void setHomeObject(SceneObject* home);
 
@@ -1638,23 +1652,31 @@ public:
 	 */
 	void setCombatState();
 
-	int getCreatureBitmask() const;
+	unsigned int getCreatureBitmask() const;
 
-	void setCreatureBitmask(int mask);
+	void setCreatureBitmask(unsigned int mask);
 
 	void setCreatureBit(unsigned int option);
 
 	void clearCreatureBit(unsigned int option);
 
+	void addCreatureFlag(unsigned int flag);
+
+	void removeCreatureFlag(unsigned int flag);
+
 	Time* getAlertedTime();
 
-	void incrementLuaCall(const String& key);
+	Time* getAggroDelay();
 
-	void addToLuaTime(const String& key, unsigned long long val);
+	Time* getPostureSet();
 
-	void outputLuaTimes(CreatureObject* caller);
+	Time* getHealDelay();
 
-	void rescheduleTrackingTask();
+	Time* getFleeDelay();
+
+	Time* getLastPackNotify();
+
+	Time* getLastCallForHelp();
 
 	bool hasRangedWeapon();
 
@@ -1668,7 +1690,7 @@ public:
 
 	PetDeed* getPetDeed() const;
 
-	void sendReactionChat(int type, int state = 0, bool force = false);
+	void sendReactionChat(SceneObject* object, int type, int state = 0, bool force = false);
 
 	virtual bool hasReactionChatMessages();
 
@@ -1699,6 +1721,62 @@ public:
 	void setLairTemplateCRC(unsigned int crc);
 
 	unsigned int getLairTemplateCRC() const;
+
+	void writeBlackboard(const String& key, const BlackboardData& data);
+
+	bool peekBlackboard(const String& key);
+
+	BlackboardData readBlackboard(const String& key);
+
+	void eraseBlackboard(const String& key);
+
+	void wipeBlackboard();
+
+	void setCustomAiMap(unsigned long long customMap);
+
+	void setCurrentWeapon(WeaponObject* weap);
+
+	void setDefaultWeapon(WeaponObject* weap);
+
+	virtual WeaponObject* getPrimaryWeapon();
+
+	virtual WeaponObject* getSecondaryWeapon();
+
+	virtual WeaponObject* getDefaultWeapon();
+
+	virtual WeaponObject* getThrownWeapon();
+
+	void clearThrownWeapon();
+
+	virtual WeaponObject* getCurrentWeapon();
+
+	void nullifyWeapons();
+
+	int getMobType() const;
+
+	bool isHerbivore() const;
+
+	bool isCarnivore() const;
+
+	bool isMonster() const;
+
+	bool isDroid() const;
+
+	bool isAndroid() const;
+
+	bool isNpc() const;
+
+	bool isHumanoid() const;
+
+	VectorMap<unsigned long long, int>* getTargetMissCount();
+
+	void addTargetMissCount(unsigned long long target, int misses);
+
+	void setTargetMissCount(unsigned long long target, int misses);
+
+	void removeTargetMissCount(unsigned long long target);
+
+	String getErrorContext();
 
 	WeakReference<AiAgent*> _this;
 
@@ -1748,21 +1826,39 @@ public:
 
 	void finalize();
 
+	String getLogFileName() const;
+
+	int getLogLevel() const;
+
 	void activateRecovery();
 
 	void activateMovementEvent();
 
-	void activateWaitEvent();
-
-	void activateAwarenessEvent(unsigned long long delay);
-
-	void activateInterrupt(SceneObject* source, long long msg);
-
-	void activateLoad(const String& temp);
+	void cancelMovementEvent();
 
 	void doRecovery(int latency);
 
 	void doMovement();
+
+	bool isRunningBehavior(unsigned int id);
+
+	void addRunningID(unsigned int id);
+
+	void popRunningChain();
+
+	unsigned int peekRunningChain();
+
+	void clearRunningChain();
+
+	void setAITemplate();
+
+	void loadCreatureBitmask();
+
+	void unloadCreatureBitmask();
+
+	void setAIDebug(bool flag);
+
+	bool getAIDebug();
 
 	void setLevel(int lvl, bool randomHam);
 
@@ -1778,6 +1874,8 @@ public:
 
 	SceneObject* getTargetFromDefenders();
 
+	SceneObject* getTargetFromTargetsMap(TangibleObject* target);
+
 	SceneObject* getTargetFromTargetsDefenders();
 
 	bool validateTarget();
@@ -1787,6 +1885,8 @@ public:
 	bool isCamouflaged(CreatureObject* target);
 
 	bool findNextPosition(float maxDistance, bool walk);
+
+	bool checkLineOfSight(SceneObject* obj);
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
@@ -1806,6 +1906,8 @@ public:
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient, bool isCombatAction);
 
+	void notifyPackMobs(SceneObject* attacker);
+
 	int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength);
 
 	bool sendConversationStartTo(SceneObject* player);
@@ -1819,8 +1921,6 @@ public:
 	int notifyConverseObservers(CreatureObject* converser);
 
 	int notifyAttack(Observable* observable);
-
-	int notifyCallForHelp(Observable* observable, ManagedObject* arg1);
 
 	void destroyObjectFromWorld(bool sendSelfDestroy);
 
@@ -1840,6 +1940,12 @@ public:
 
 	void removeDefender(SceneObject* defender);
 
+	bool killPlayer(SceneObject* player);
+
+	bool stalkProspect(SceneObject* prospect);
+
+	void healTarget(CreatureObject* target);
+
 	void setDespawnOnNoPlayerInRange(bool val);
 
 	void notifyDespawn(Zone* zone);
@@ -1850,7 +1956,7 @@ public:
 
 	void respawn(Zone* zone, int level);
 
-	void setHomeLocation(float x, float z, float y, CellObject* cell);
+	void setHomeLocation(float x, float z, float y, CellObject* cell, float direction);
 
 	void setRespawnTimer(float resp);
 
@@ -1874,7 +1980,7 @@ public:
 
 	void setTargetObject(SceneObject* obj);
 
-	void runAway(CreatureObject* target, float range);
+	void runAway(CreatureObject* target, float range, bool random);
 
 	void leash();
 
@@ -1886,39 +1992,31 @@ public:
 
 	void restoreFollowObject();
 
-	unsigned int getFollowState() const;
+	unsigned int getMovementState() const;
 
-	void setFollowState(int state);
+	void setMovementState(int state);
 
 	float getMaxDistance();
 
 	int setDestination();
 
-	bool completeMove();
-
 	void setWait(int wait);
-
-	int getWait() const;
-
-	bool isWaiting() const;
 
 	void stopWaiting();
 
-	void selectWeapon();
-
-	void selectDefaultWeapon();
+	bool isWaiting() const;
 
 	bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
 
-	void selectSpecialAttack();
+	bool selectSpecialAttack();
 
-	void selectSpecialAttack(int attackNum);
+	bool selectSpecialAttack(int attackNum);
 
-	void selectDefaultAttack();
+	bool selectDefaultAttack();
 
 	bool validateStateAttack();
 
-	void enqueueAttack(int priority);
+	int enqueueAttack(int priority);
 
 	bool isRetreating();
 
@@ -1950,6 +2048,8 @@ public:
 
 	bool isKiller();
 
+	bool isHealer();
+
 	unsigned int getFerocity();
 
 	int getAggroRadius();
@@ -1980,7 +2080,7 @@ public:
 
 	float getTame() const;
 
-	String getReactionStf();
+	String getReactionStf() const;
 
 	float getRespawnTimer() const;
 
@@ -1994,31 +2094,25 @@ public:
 
 	void setShowNextPosition(bool val);
 
-	bool isEventMob();
+	bool isEventMob() const;
 
 	bool isPet() const;
-
-	unsigned int getCurrentBehavior() const;
 
 	void setHomeObject(SceneObject* home);
 
 	void setCombatState();
 
-	int getCreatureBitmask() const;
+	unsigned int getCreatureBitmask() const;
 
-	void setCreatureBitmask(int mask);
+	void setCreatureBitmask(unsigned int mask);
 
 	void setCreatureBit(unsigned int option);
 
 	void clearCreatureBit(unsigned int option);
 
-	void incrementLuaCall(const String& key);
+	void addCreatureFlag(unsigned int flag);
 
-	void addToLuaTime(const String& key, unsigned long long val);
-
-	void outputLuaTimes(CreatureObject* caller);
-
-	void rescheduleTrackingTask();
+	void removeCreatureFlag(unsigned int flag);
 
 	bool hasRangedWeapon();
 
@@ -2032,7 +2126,7 @@ public:
 
 	PetDeed* getPetDeed() const;
 
-	void sendReactionChat(int type, int state, bool force);
+	void sendReactionChat(SceneObject* object, int type, int state, bool force);
 
 	bool hasReactionChatMessages();
 
@@ -2058,6 +2152,50 @@ public:
 
 	unsigned int getLairTemplateCRC() const;
 
+	void setCustomAiMap(unsigned long long customMap);
+
+	void setCurrentWeapon(WeaponObject* weap);
+
+	void setDefaultWeapon(WeaponObject* weap);
+
+	WeaponObject* getPrimaryWeapon();
+
+	WeaponObject* getSecondaryWeapon();
+
+	WeaponObject* getDefaultWeapon();
+
+	WeaponObject* getThrownWeapon();
+
+	void clearThrownWeapon();
+
+	WeaponObject* getCurrentWeapon();
+
+	void nullifyWeapons();
+
+	int getMobType() const;
+
+	bool isHerbivore() const;
+
+	bool isCarnivore() const;
+
+	bool isMonster() const;
+
+	bool isDroid() const;
+
+	bool isAndroid() const;
+
+	bool isNpc() const;
+
+	bool isHumanoid() const;
+
+	void addTargetMissCount(unsigned long long target, int misses);
+
+	void setTargetMissCount(unsigned long long target, int misses);
+
+	void removeTargetMissCount(unsigned long long target);
+
+	String getErrorContext();
+
 };
 
 class AiAgentHelper : public DistributedObjectClassHelper, public Singleton<AiAgentHelper> {
@@ -2082,10 +2220,56 @@ public:
 class MockAiAgent : public AiAgent {
 public:
 
+	MOCK_METHOD1(isCamouflaged,bool(CreatureObject* target));
+	MOCK_METHOD2(findNextPosition,bool(float maxDistance, bool walk));
+	MOCK_METHOD1(checkLineOfSight,bool(SceneObject* obj));
+	MOCK_METHOD0(getPatrolPointSize,int());
+	MOCK_METHOD1(clearCombatState,void(bool clearDefenders));
+	MOCK_METHOD1(addDefender,void(SceneObject* defender));
+	MOCK_METHOD1(removeDefender,void(SceneObject* defender));
+	MOCK_METHOD1(isAggressiveTo,bool(CreatureObject* object));
+	MOCK_METHOD0(leash,void());
+	MOCK_METHOD2(generatePatrol,bool(int num, float dist));
+	MOCK_METHOD0(getMaxDistance,float());
+	MOCK_METHOD0(setDestination,int());
+	MOCK_METHOD2(validateStateAttack,bool(CreatureObject* target, unsigned int actionCRC));
+	MOCK_METHOD0(selectSpecialAttack,bool());
+	MOCK_METHOD1(selectSpecialAttack,bool(int attackNum));
+	MOCK_METHOD0(selectDefaultAttack,bool());
+	MOCK_METHOD0(getNextAction,const QueueCommand*());
+	MOCK_METHOD0(validateStateAttack,bool());
+	MOCK_METHOD0(isRetreating,bool());
+	MOCK_METHOD0(getNumberOfPlayersInRange,int());
+	MOCK_METHOD0(getHomeLocation,PatrolPoint*());
+	MOCK_METHOD0(getPosture,byte());
+	MOCK_METHOD0(getLocomotion,byte());
+	MOCK_METHOD1(hasState,bool(unsigned long long state));
+	MOCK_METHOD0(getCurrentSpeed,float());
+	MOCK_METHOD0(getDefaultWeapon,WeaponObject*());
+	MOCK_METHOD0(isIncapacitated,bool());
+	MOCK_METHOD0(isDead,bool());
+	MOCK_METHOD0(isInCombat,bool());
+	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
+	MOCK_METHOD0(getLevel,int());
+	MOCK_METHOD0(isDestroyed,bool());
+	MOCK_METHOD0(getThreatMap,ThreatMap*());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
 	MOCK_METHOD0(getWorldPositionX,float());
 	MOCK_METHOD0(getWorldPositionY,float());
 	MOCK_METHOD0(getWorldPositionZ,float());
 	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
 
 };
 
@@ -2115,7 +2299,17 @@ public:
 
 	Optional<PatrolPoint> nextStepPosition;
 
-	Optional<ManagedReference<WeaponObjectPOD* >> readyWeapon;
+	Optional<PatrolPoint> endMovementPosition;
+
+	Optional<ManagedReference<WeaponObjectPOD* >> defaultWeapon;
+
+	Optional<ManagedReference<WeaponObjectPOD* >> primaryWeapon;
+
+	Optional<ManagedReference<WeaponObjectPOD* >> secondaryWeapon;
+
+	Optional<ManagedReference<WeaponObjectPOD* >> thrownWeapon;
+
+	Optional<ManagedReference<WeaponObjectPOD* >> currentWeapon;
 
 	Optional<CreatureTemplateReference> npcTemplate;
 
@@ -2133,7 +2327,7 @@ public:
 
 	Optional<ManagedWeakReference<SceneObjectPOD* >> followStore;
 
-	Optional<unsigned int> followState;
+	Optional<unsigned int> movementState;
 
 	Optional<int> nextMovementInterval;
 
@@ -2145,19 +2339,19 @@ public:
 
 	Optional<bool> randomRespawn;
 
+	Optional<float> coordinateMin;
+
+	Optional<float> coordinateMax;
+
 	Optional<bool> loadedOutfit;
 
 	Optional<ManagedReference<PetDeedPOD* >> petDeed;
 
-	Optional<unsigned int> currentBehaviorID;
+	Optional<String> aiTemplate;
 
 	Optional<unsigned int> lairTemplateCRC;
 
 	Optional<unsigned int> creatureBitmask;
-
-	Optional<int> waitTime;
-
-	Optional<bool> waiting;
 
 	Optional<float> fleeRange;
 

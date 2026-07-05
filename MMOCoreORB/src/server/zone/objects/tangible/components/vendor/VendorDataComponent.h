@@ -61,8 +61,7 @@ public:
 		DELETEWARNING       = 60 * 60 * 24 * 100, // 100 days
 
 		BARKRANGE           = 15, // 15 Meters
-		BARKINTERVAL        = 60 * 2, // 2 Minutes
-		LOWWARNING			= 360 // Credits, 1 day worth at the default rate
+		BARKINTERVAL        = 60 * 2 // 2 Minutes
 	};
 
 public:
@@ -272,10 +271,6 @@ public:
 	void scheduleVendorCheckTask(int delay); // In minutes
 
 	void cancelVendorCheckTask();
-
-	void skimMaintanence(int value){
-		maintAmount += value;
-	}
 
 private:
 	void addSerializableVariables();

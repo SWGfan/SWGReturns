@@ -127,7 +127,7 @@ namespace building {
 
 class BuildingObject : public StructureObject {
 public:
-	static const int MAXPLAYERITEMS = 1500;
+	static const int MAXPLAYERITEMS = 1000;
 
 	BuildingObject();
 
@@ -255,8 +255,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
 	 */
@@ -311,8 +309,6 @@ public:
 	unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
-
-	String getPackupMessage();
 
 	bool hasAccessFee() const;
 
@@ -432,7 +428,7 @@ protected:
 public:
 	bool publicStructure;
 
-	static const int MAXPLAYERITEMS = 1500;
+	static const int MAXPLAYERITEMS = 1000;
 
 protected:
 	UnicodeString signName;
@@ -570,8 +566,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
 	 */
@@ -626,8 +620,6 @@ public:
 	virtual unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
-
-	String getPackupMessage();
 
 	bool hasAccessFee() const;
 
@@ -797,8 +789,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	void destroyAllPlayerItems();
 
 	void onEnter(CreatureObject* player);
@@ -824,8 +814,6 @@ public:
 	unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
-
-	String getPackupMessage();
 
 	bool hasAccessFee() const;
 

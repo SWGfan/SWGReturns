@@ -1,6 +1,7 @@
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/ZoneServer.h"
+#include "server/zone/Zone.h"
 #include "server/zone/managers/frs/RankMaintenanceTask.h"
 #include "server/zone/managers/frs/VoteStatusTask.h"
 #include "server/zone/managers/frs/FrsRankingData.h"
@@ -19,12 +20,7 @@
 #include "templates/faction/Factions.h"
 #include "server/zone/objects/player/FactionStatus.h"
 #include "server/zone/managers/player/PlayerMap.h"
-#include "server/zone/packets/MessageCallback.h"
-#include "server/zone/ZoneServer.h"
-#include "server/zone/Zone.h"
-#include "server/zone/objects/scene/SceneObject.h"
-#include "server/zone/managers/loot/LootManager.h"
-#include "server/zone/objects/group/GroupObject.h"
+#include "server/login/account/Account.h"
 
 void FrsManagerImplementation::initialize() {
 	auto zoneServer = this->zoneServer.get();
@@ -71,9 +67,13 @@ void FrsManagerImplementation::initialize() {
 }
 
 void FrsManagerImplementation::cancelTasks() {
-	voteStatusTask->cancel();
+	if (voteStatusTask) {
+		voteStatusTask->cancel();
+	}
 
-	rankMaintenanceTask->cancel();
+	if (rankMaintenanceTask) {
+		rankMaintenanceTask->cancel();
+	}
 }
 
 void FrsManagerImplementation::loadFrsData() {
@@ -167,6 +167,7 @@ void FrsManagerImplementation::loadLuaConfig() {
 	maxPetitioners = lua->getGlobalInt("maxPetitioners");
 	missedVotePenalty = lua->getGlobalInt("missedVotePenalty");
 	maxChallenges = lua->getGlobalInt("maxChallenges");
+	sameAccountEnclaveRestrictions = lua->getGlobalInt("sameAccountEnclaveRestrictions");
 
 	uint32 enclaveID = lua->getGlobalInt("lightEnclaveID");
 
@@ -357,9 +358,9 @@ void FrsManagerImplementation::verifyRoomAccess(CreatureObject* player, int play
 			player->teleport(5079, 0, 305, 0);
 	} else if (playerRank < roomReq) {
 		if (buildingType == COUNCIL_LIGHT)
-			player->teleport(-0.1, -19.3, 39.9, 8525439);
+			player->teleport(-0.1f, -19.3f, 39.9f, 8525439);
 		else
-			player->teleport(0.1, -43.4, -32.2, 3435634);
+			player->teleport(0.1f, -43.4f, -32.2f, 3435634);
 	}
 }
 
@@ -373,7 +374,42 @@ void FrsManagerImplementation::playerLoggedIn(CreatureObject* player) {
 	deductDebtExperience(player);
 }
 
-void FrsManagerImplementation::validatePlayerData(CreatureObject* player) {
+bool FrsManagerImplementation::isBanned(CreatureObject* player) {
+	PlayerObject* ghost = player->getPlayerObject();
+
+	if (ghost == nullptr)
+		return false;
+
+	Reference<Account*> account = ghost->getAccount();
+
+	if (account == nullptr || account->isBanned())
+		return true;
+
+	auto zoneServer = this->zoneServer.get();
+
+	if (zoneServer == nullptr)
+		return false;
+
+	uint galaxyID = zoneServer->getGalaxyID();
+
+	const GalaxyBanEntry* galaxyBan = account->getGalaxyBan(galaxyID);
+
+	if (galaxyBan != nullptr)
+		return true;
+
+	Reference<CharacterList*> characters = account->getCharacterList();
+
+	for (int i = 0; i<characters->size(); i++) {
+		CharacterListEntry& entry = characters->get(i);
+
+		if (entry.getFirstName() == player->getFirstName() && entry.getGalaxyID() == galaxyID && entry.isBanned())
+			return true;
+	}
+
+	return false;
+}
+
+void FrsManagerImplementation::validatePlayerData(CreatureObject* player, bool verifyBan) {
 	if (player == nullptr)
 		return;
 
@@ -381,6 +417,13 @@ void FrsManagerImplementation::validatePlayerData(CreatureObject* player) {
 
 	if (ghost == nullptr)
 		return;
+
+	if (verifyBan && isBanned(player)) {
+		removeFromFrs(player);
+		verifyRoomAccess(player, -1);
+		ghost->recalculateForcePower();
+		return;
+	}
 
 	FrsData* playerData = ghost->getFrsData();
 	int councilType = playerData->getCouncilType();
@@ -428,10 +471,13 @@ void FrsManagerImplementation::validatePlayerData(CreatureObject* player) {
 			player->setFaction(Factions::FACTIONREBEL);
 		else if (councilType == COUNCIL_DARK && player->getFaction() != Factions::FACTIONIMPERIAL)
 			player->setFaction(Factions::FACTIONIMPERIAL);
-
-		if (player->getFactionStatus() != FactionStatus::OVERT)
+/*
+		if (player->getZone()->getZoneName() != "elysium" && player->getFactionStatus() != FactionStatus::OVERT)
 			player->setFactionStatus(FactionStatus::OVERT);
 
+		if (player->getZone()->getZoneName() == "elysium" && player->getFactionStatus() != FactionStatus::ONLEAVE)
+			player->setFactionStatus(FactionStatus::ONLEAVE);
+*/
 		if (realPlayerRank >= 4 && !player->hasSkill("force_title_jedi_rank_04"))
 			player->addSkill("force_title_jedi_rank_04", true);
 		if (realPlayerRank >= 8 && !player->hasSkill("force_title_jedi_master"))
@@ -638,7 +684,7 @@ void FrsManagerImplementation::handleSkillRevoked(CreatureObject* player, const 
 		return;
 
 	if (skillName.hashCode() == STRING_HASHCODE("force_title_jedi_rank_03")) {
-		VectorMap<uint, Reference<FrsRankingData*> > rankingData;
+		VectorMap<uint32, Reference<FrsRankingData*> > rankingData;
 
 		if (councilType == COUNCIL_LIGHT)
 			rankingData = lightRankingData;
@@ -674,7 +720,7 @@ void FrsManagerImplementation::handleSkillRevoked(CreatureObject* player, const 
 }
 
 int FrsManagerImplementation::getSkillRank(const String& skillName, int councilType) {
-	VectorMap<uint, Reference<FrsRankingData*> > rankingData;
+	VectorMap<uint32, Reference<FrsRankingData*> > rankingData;
 
 	if (councilType == COUNCIL_LIGHT)
 		rankingData = lightRankingData;
@@ -703,7 +749,7 @@ void FrsManagerImplementation::updatePlayerSkills(CreatureObject* player) {
 	FrsData* playerData = ghost->getFrsData();
 	int playerRank = playerData->getRank();
 	int councilType = playerData->getCouncilType();
-	VectorMap<uint, Reference<FrsRankingData*> > rankingData;
+	VectorMap<uint32, Reference<FrsRankingData*> > rankingData;
 
 	if (councilType == COUNCIL_LIGHT)
 		rankingData = lightRankingData;
@@ -806,6 +852,8 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
 	if (ghost == nullptr)
 		return;
 
+	TransactionLog trx(TrxCode::EXPERIENCE, player);
+
 	if (amount > 0) {
 
           	if (ghost->hasCappedExperience("force_rank_xp"))
@@ -816,7 +864,7 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
                 	return;
                 }
 
-		ghost->addExperience("force_rank_xp", amount, true);
+		ghost->addExperience(trx, "force_rank_xp", amount, true);
 
 		if (sendSystemMessage) {
 			StringIdChatParameter param("@force_rank:experience_granted"); // You have gained %DI Force Rank experience.
@@ -835,7 +883,7 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
 		if ((amount * -1) > curExperience)
 			amount = curExperience * -1;
 
-		ghost->addExperience("force_rank_xp", amount, true);
+		ghost->addExperience(trx, "force_rank_xp", amount, true);
 
 		if (sendSystemMessage) {
 			StringIdChatParameter param("@force_rank:experience_lost"); // You have lost %DI Force Rank experience.
@@ -1048,25 +1096,6 @@ int FrsManagerImplementation::calculatePvpExperienceChange(CreatureObject* attac
 		}
 	}
 
-	if (!isVictim){
-		Zone* zone = attacker->getZone();
-		String planetName = zone->getZoneName();
-		String attackerName = attacker->getFirstName();
-		String victimName = victim->getFirstName();
-		StringBuffer frsKillQuery, zBroadcast;
-		Vector3 worldPosition = attacker->getWorldPosition();
-		String name = " (" + String::valueOf((int)victim->getWorldPositionX()) + ", " + String::valueOf((int)victim->getWorldPositionZ()) + ", " + String::valueOf((int)victim->getWorldPositionY()) + ")";
-		zBroadcast << "\\#00cc99 " << attackerName << " Has Gained FRS From Killing " << "\\#00e604" << victimName << "\\#e60000 on Planet " << planetName; 
-		playerGhost->getZoneServer()->getChatManager()->broadcastGalaxy(nullptr, zBroadcast.toString());
-		ChatManager* chatManager = attacker->getZoneServer()->getChatManager();	
-		StringBuffer zGeneral;
-		zGeneral << " Has Gained FRS From Killing " << victimName << " on Planet " << planetName << name;
-		chatManager->handleGeneralChat(attacker, zGeneral.toString());
-		PlayerManager* playerManager = attacker->getZoneServer()->getPlayerManager();
-		attacker->playEffect("clienteffect/level_granted.cef", "");
-		playerManager->awardExperience(attacker, "force_rank_xp", 10000, true); // Award FRS XP
- 		attacker->sendSystemMessage("You Have Gained 10,000 FRS Points");		
-	}
 	return xpChange;
 }
 
@@ -1088,7 +1117,8 @@ int FrsManagerImplementation::getBaseExperienceGain(PlayerObject* playerGhost, P
 		return 0;
 
 	String key = "";
-	if (opponent->hasSkill("combat_bountyhunter_investigation_03") || opponent->hasSkill("combat_meleebountyhunter_investigation_03")) { // Opponent is Bounty Investigation 3 
+
+	if (opponent->hasSkill("combat_bountyhunter_master")) { // Opponent is MBH
 		key = "bh_";
 	} else if (opponentRank >= 0 && opponent->hasSkill("force_title_jedi_rank_03")) { // Opponent is at least a knight
 		key = "rank" + String::valueOf(opponentRank) + "_";
@@ -1447,6 +1477,21 @@ void FrsManagerImplementation::handleVoteRecordSui(CreatureObject* player, Scene
 		return;
 	}
 
+	ManagedReference<CreatureObject*> petitioner = zoneServer->getObject(petitionerID).castTo<CreatureObject*>();
+
+	if (petitioner == nullptr)
+		return;
+
+	PlayerObject* petitionerGhost = petitioner->getPlayerObject();
+
+	if (petitionerGhost == nullptr)
+		return;
+
+	if (sameAccountEnclaveRestrictions && ghost->getAccountID() == petitionerGhost->getAccountID() && playerID != petitionerID) {
+		player->sendSystemMessage("You cannot vote for other characters on your account.");
+		return;
+	}
+
 	VectorMap<uint64, int>* petitionerList = rankData->getPetitionerList();
 	int curVotes = petitionerList->get(petitionerID);
 
@@ -1609,7 +1654,7 @@ bool FrsManagerImplementation::isEligibleForPromotion(CreatureObject* player, in
 
 	FrsData* playerData = ghost->getFrsData();
 	int councilType = playerData->getCouncilType();
-	VectorMap<uint, Reference<FrsRankingData*> > rankingData;
+	VectorMap<uint32, Reference<FrsRankingData*> > rankingData;
 
 	if (councilType == COUNCIL_LIGHT)
 		rankingData = lightRankingData;
@@ -1702,7 +1747,7 @@ int FrsManagerImplementation::getAvailableRankSlots(FrsRank* rankData) {
 	short councilType = rankData->getCouncilType();
 	int rank = rankData->getRank();
 
-	VectorMap<uint, Reference<FrsRankingData*> > rankingData;
+	VectorMap<uint32, Reference<FrsRankingData*> > rankingData;
 
 	if (councilType == COUNCIL_LIGHT)
 		rankingData = lightRankingData;
@@ -1784,7 +1829,7 @@ void FrsManagerImplementation::runChallengeVoteUpdate() {
 		int yesVotes = challengeData->getTotalYesVotes();
 		int noVotes = challengeData->getTotalNoVotes();
 
-		bool votePassed = yesVotes > noVotes * 2;
+		bool votePassed = yesVotes >= noVotes * 2;
 
 		if (votePassed) {
 			Core::getTaskManager()->executeTask([strongRef, challengedRank, challenged, yesVotes, noVotes] () {
@@ -2199,8 +2244,15 @@ void FrsManagerImplementation::handleChallengeVoteIssueSui(CreatureObject* playe
 
 	PlayerObject* challengedGhost = challenged->getPlayerObject();
 
+
 	if (challengedGhost == nullptr)
 		return;
+
+	if (sameAccountEnclaveRestrictions && ghost->getAccountID() == challengedGhost->getAccountID()) {
+		player->sendSystemMessage("You cannot issue challenges against other characters on your account.");
+		return;
+	}
+
 
 	Locker xlock(challenged, player);
 
@@ -2570,6 +2622,11 @@ void FrsManagerImplementation::handleVoteDemoteSui(CreatureObject* player, Scene
 
 	if (demoteGhost == nullptr)
 		return;
+
+	if (sameAccountEnclaveRestrictions && ghost->getAccountID() == demoteGhost->getAccountID()) {
+		player->sendSystemMessage("You cannot vote to demote other characters on your account.");
+		return;
+	}
 
 	FrsData* demotePlayerData = demoteGhost->getFrsData();
 	int demotePlayerRank = demotePlayerData->getRank();
@@ -3321,7 +3378,7 @@ bool FrsManagerImplementation::handleDarkCouncilDeath(CreatureObject* killer, Cr
 		}
 	}
 
-	if (challengeData == nullptr)
+	if (challengeData == nullptr || challengeData->isChallengeCompleted())
 		return false;
 
 	uint64 challengerID = challengeData->getChallengerID();
@@ -3374,6 +3431,13 @@ bool FrsManagerImplementation::handleDarkCouncilDeath(CreatureObject* killer, Cr
 
 	if (rankData == nullptr)
 		return true;
+
+	if (challengerWon) {
+		Locker datalocker(rankData);
+
+		modifySuddenDeathFlags(killer, rankData, true);
+		rankData->removeFromPetitionerList(challengerID);
+	}
 
 	Locker clocker(rankData, managerData);
 
@@ -3519,6 +3583,17 @@ void FrsManagerImplementation::acceptArenaChallenge(CreatureObject* player, uint
 	if (challenger == nullptr)
 		return;
 
+	PlayerObject* ghost = player->getPlayerObject();
+	PlayerObject* challengerGhost = challenger->getPlayerObject();
+
+	if (ghost == nullptr || challengerGhost == nullptr)
+		return;
+
+	if (sameAccountEnclaveRestrictions && ghost->getAccountID() == challengerGhost->getAccountID()) {
+		player->sendSystemMessage("You cannot accept a challenge from other characters on your account.");
+		return;
+	}
+
 	challengeData->setChallengeAccepterID(player->getObjectID());
 
 	if (!challenger->isOnline() || challenger->isDead() || !isPlayerInEnclave(challenger)) {
@@ -3597,13 +3672,26 @@ void FrsManagerImplementation::acceptArenaChallenge(CreatureObject* player, uint
 }
 
 void FrsManagerImplementation::teleportPlayerToDarkArena(CreatureObject* player) {
-	if (!isPlayerInEnclave(player))
+	if (!isPlayerInEnclave(player)) {
 		return;
+	}
 
 	float randX = -12.f + System::random(24);
 	float randY = -85.f + System::random(24);
 
-	player->teleport(randX, -47.424, randY, ARENA_CELL);
+	PlayerObject* ghost = player->getPlayerObject();
+
+	if (ghost != nullptr) {
+		ghost->setForcedTransform(true);
+
+		uint64 playerCell = player->getParentID();
+
+		auto msg = player->info();
+		msg << "Dark Enclave Arena Movement  X = " << randX  << "  Y = " << randY << " Cell ID:  " << playerCell;
+		msg.flush();
+	}
+
+	player->teleport(randX, -47.424f, randY, ARENA_CELL);
 }
 
 void FrsManagerImplementation::sendArenaChallengeSUI(CreatureObject* player, SceneObject* terminal, short suiType, short enclaveType) {
@@ -4050,15 +4138,17 @@ void FrsManagerImplementation::handleSuddenDeathLoss(CreatureObject* player, Thr
 
 	for (int i = 0; i < threatMap->size(); ++i) {
 		ThreatMapEntry* entry = &threatMap->elementAt(i).getValue();
-		CreatureObject* attacker = threatMap->elementAt(i).getKey();
+		TangibleObject* attacker = threatMap->elementAt(i).getKey();
 
 		if (entry == nullptr || attacker == nullptr || attacker == player || !attacker->isPlayerCreature())
 			continue;
 
-		if (!player->isAttackableBy(attacker, true))
+		CreatureObject* attackerCreo = attacker->asCreatureObject();
+
+		if (!player->isAttackableBy(attackerCreo, true))
 			continue;
 
-		PlayerObject* attackerGhost = attacker->getPlayerObject();
+		PlayerObject* attackerGhost = attackerCreo->getPlayerObject();
 
 		if (attackerGhost == nullptr)
 			continue;

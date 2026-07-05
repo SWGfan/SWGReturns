@@ -51,9 +51,10 @@ object_draft_schematic_bio_engineer_utilities_pet_stimpack_b = object_draft_sche
 	complexity = 24,
 	size = 3,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_bio_engineer_creature",
-	xp = 90,
+	xp = 300,
 
 	assemblySkill = "bio_engineer_assembly",
 	experimentingSkill = "bio_engineer_experimentation",
@@ -66,7 +67,7 @@ object_draft_schematic_bio_engineer_utilities_pet_stimpack_b = object_draft_sche
 	ingredientTemplateNames = {"craft_chemical_ingredients_n", "craft_chemical_ingredients_n", "craft_chemical_ingredients_n", "craft_chemical_ingredients_n", "craft_chemical_ingredients_n"},
 	ingredientTitleNames = {"organic_element", "inorganic_element", "delivery_medium", "drug_duration_compound", "drug_strength_compound"},
 	ingredientSlotType = {0, 0, 1, 1, 1},
-   	resourceTypes = {"vegetable", "chemical", "object/tangible/component/chemistry/shared_liquid_delivery_suspension.iff", "object/tangible/component/chemistry/shared_release_mechanism_duration.iff", "object/tangible/component/chemistry/shared_biologic_effect_controller.iff"},
+	resourceTypes = {"vegetable_fungi_talus", "fiberplast", "object/tangible/component/chemistry/shared_liquid_delivery_suspension.iff", "object/tangible/component/chemistry/shared_release_mechanism_duration.iff", "object/tangible/component/chemistry/shared_biologic_effect_controller.iff"},
 	resourceQuantities = {18, 24, 1, 1, 1},
 	contribution = {100, 100, 100, 100, 100},
 

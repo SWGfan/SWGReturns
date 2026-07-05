@@ -37,22 +37,6 @@ using namespace server::chat;
 namespace server {
 namespace zone {
 namespace objects {
-namespace group {
-
-class GroupObject;
-
-class GroupObjectPOD;
-
-} // namespace group
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::group;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace guild {
 
 class GuildObject;
@@ -210,7 +194,25 @@ class AuctionSearchTask;
 
 using namespace server::zone::managers::auction;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace tangible {
+
+class Instrument;
+
+class InstrumentPOD;
+
+} // namespace tangible
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::tangible;
+
 #include "gmock/gmock.h"
+
+#include "server/zone/objects/group/GroupObject.h"
 
 #include "server/zone/objects/intangible/ControlDevice.h"
 
@@ -243,6 +245,8 @@ using namespace server::zone::managers::auction;
 #include "engine/util/u3d/Vector3.h"
 
 #include "system/util/SortedVector.h"
+
+#include "system/lang/ref/WeakReference.h"
 
 #include "engine/log/Logger.h"
 
@@ -292,58 +296,6 @@ public:
 	static const int ITHORIAN = 0x21;
 
 	static const int SULLUSTAN = 0x31;
-
-	static const int HUTT = 0x1f;
-
-	static const int NAUTOLAN = 0;
-
-	static const int TOGRUTA = 0;
-
-	static const int CHISS = 0;
-
-	static const int DEVARONIAN = 0x11;
-
-	static const int GRAN = 0x1c;
-
-	static const int ISHI_TIB = 0x20;
-
-	static const int NIGHTSISTER = 0;
-
-	static const int NIKTO = 0x2a;
-
-	static const int QUARREN = 0x2e;
-
-	static const int SMC = 0;
-
-	static const int WEEQUAY = 0x37;
-
-	static const int AQUALISH = 9;
-
-	static const int BITH = 0x0e;
-
-	static const int GOTAL = 0x1b;
-
-	static const int TALZ = 0x32;
-
-	static const int ABYSSIN = 8;
-
-	static const int ARCONA = 0x0a;
-
-	static const int CEREAN = 0;
-
-	static const int DUROS = 0x14;
-
-	static const int GUNGAN = 0x1d;
-
-	static const int IKTOTCHI = 0;
-
-	static const int JENET = 0;
-
-	static const int KEL_DOR = 0;
-
-	static const int KUBAZ = 0x27;
-
-	static const int SANYASSAN = 0x28;
 
 	static const int MALE = 0;
 
@@ -577,7 +529,7 @@ public:
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient = true, bool isCombatAction = false);
 
-	bool hasDamage(int attribute);
+	bool hasDamage(int attribute) const;
 
 	/**
 	 * Heals damage
@@ -669,13 +621,13 @@ public:
 	int notifyObjectRemoved(SceneObject* object);
 
 	/**
-	 * Updates the instrument id to the specified object id
+	 * Updates the performance type to the specified type
 	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified weapon id }
-	 * @param instrumentid the new instrument id
+	 * @post { this object is locked, this object has the specified index }
+	 * @param type the new performance type
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setInstrumentID(int instrumentid, bool notifyClient = true);
+	void setPerformanceType(int type, bool notifyClient = true);
 
 	/**
 	 * Updates listen id
@@ -683,13 +635,13 @@ public:
 	void setListenToID(unsigned long long id, bool notifyClient = true);
 
 	/**
-	 * Updates the preformance counter
+	 * Updates the preformance start time
 	 * @pre { this object is locked }
 	 * @post { this object is locked, this object has the counter updated }
 	 * @param counter new performance counter
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceCounter(int counter, bool notifyClient = true);
+	void setPerformanceStartTime(int counter, bool notifyClient = true);
 
 	/**
 	 * Updates the preformance animation string
@@ -719,15 +671,6 @@ public:
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
 	void setTargetID(unsigned long long targetID, bool notifyClient = true);
-
-	/**
-	 * Updates the bank credits of this object
-	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified bank credits }
-	 * @param credits the new credits
-	 * @param notifyClient if set true the client will be updated with the changes
-	 */
-	void setBankCredits(int credits, bool notifyClient = true);
 
 	/**
 	 * Adds the buff to the creature, activating it and sending packets if it is a player.
@@ -774,13 +717,13 @@ public:
 
 	const WearablesDeltaVector* getWearablesDeltaVector() const;
 
-	void sendBuffsTo(CreatureObject* creature);
+	void sendBuffsTo(CreatureObject* creature) const;
 
-	BuffList* getBuffList();
+	const BuffList* getBuffList() const;
 
-	Buff* getBuff(unsigned int buffcrc);
+	Buff* getBuff(unsigned int buffcrc) const;
 
-	long long getSkillModFromBuffs(const String& skillMod);
+	long long getSkillModFromBuffs(const String& skillMod) const;
 
 	int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength = 0);
 
@@ -790,7 +733,7 @@ public:
 
 	DamageOverTimeList* getDamageOverTimeList();
 
-	bool hasBuff(unsigned int buffcrc);
+	bool hasBuff(unsigned int buffcrc) const;
 
 	void notifySelfPositionUpdate();
 
@@ -806,15 +749,25 @@ public:
 
 	void addCashCredits(int credits, bool notifyClient = true);
 
+	void clearBankCredits(bool notifyClient = true);
+
+	void clearCashCredits(bool notifyClient = true);
+
+	void transferCredits(int cash, int bank, bool notifyClient = true);
+
 	CreditObject* getCreditObject();
 
 	void subtractBankCredits(int credits);
 
 	void subtractCashCredits(int credits);
 
+	bool subtractCredits(int credits);
+
 	bool verifyCashCredits(int credits);
 
 	bool verifyBankCredits(int credits);
+
+	bool verifyCredits(int credits);
 
 	bool isDancing();
 
@@ -823,15 +776,6 @@ public:
 	void stopEntertaining();
 
 	bool isEntertaining();
-
-	/**
-	 * Update the cash credits of this object
-	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified cash credits }
-	 * @param credits the new credits
-	 * @param notifyClient if set true the client will be updated with the changes
-	 */
-	void setCashCredits(int credits, bool notifyClient = true);
 
 	/**
 	 * Sets the terrain negotiation variable, and updates it.
@@ -1021,6 +965,8 @@ public:
 
 	bool isHealableBy(CreatureObject* object);
 
+	bool isInvulnerable();
+
 	/**
 	 * Evaluates if the bounty hunter has a mission with the target.
 	 * @param target the target.
@@ -1122,11 +1068,13 @@ public:
 
 	void setFactionRank(int rank, bool notifyClient = true);
 
-	String getFirstName();
+	String getFirstName() const;
+
+	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
-	String getLastName();
+	String getLastName() const;
 
 	String setLastName(const String& newLastName, bool skipVerify);
 
@@ -1152,7 +1100,7 @@ public:
 
 	void dismount();
 
-	float calculateBFRatio();
+	float calculateBFRatio() const;
 
 	void removeFeignedDeath();
 
@@ -1182,7 +1130,7 @@ public:
 
 	void setRootedState(int durationSeconds = 20);
 
-	bool setNextAttackDelay(unsigned int mod, int del);
+	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -1194,39 +1142,41 @@ public:
 
 	void updateTimeOfDeath();
 
-	bool hasAttackDelay();
+	bool hasAttackDelay() const;
 
 	void removeAttackDelay();
 
-	bool hasIncapTimer();
+	bool hasIncapTimer() const;
 
 	CooldownTimerMap* getCooldownTimerMap();
 
-	bool hasSpice();
+	bool hasSpice() const;
 
 	void updateLastSuccessfulCombatAction();
 
-	void updatePostureChangeDelay(unsigned long long delay);
+	void setPostureChangeDelay(unsigned long long delay);
 
-	bool checkPostureChangeDelay();
+	bool hasPostureChangeDelay() const;
+
+	void removePostureChangeDelay();
 
 	void updatePostureDownRecovery();
 
-	bool checkPostureDownRecovery();
+	bool checkPostureDownRecovery() const;
 
 	void updatePostureUpRecovery();
 
-	bool checkPostureUpRecovery();
+	bool checkPostureUpRecovery() const;
 
 	void updateKnockdownRecovery();
 
-	bool checkKnockdownRecovery();
+	bool checkKnockdownRecovery() const;
 
 	void updateGroupMFDPositions();
 
 	void queueDizzyFallEvent();
 
-	bool hasDizzyEvent();
+	bool hasDizzyEvent() const;
 
 	void clearDizzyEvent();
 
@@ -1247,9 +1197,9 @@ public:
 
 	void updateCooldownTimer(const String& coooldownTimer, unsigned long long miliSecondsToAdd = 0);
 
-	bool checkCooldownRecovery(const String& cooldown);
+	bool checkCooldownRecovery(const String& cooldown) const;
 
-	Time* getCooldownTime(const String& cooldown);
+	const Time* getCooldownTime(const String& cooldown) const;
 
 	void addCooldown(const String& name, unsigned long long miliseconds);
 
@@ -1261,9 +1211,11 @@ public:
 
 	void activateQueueAction();
 
+	void removeQueueAction(int action);
+
 	void activateImmediateAction();
 
-	UnicodeString getCreatureName();
+	UnicodeString getCreatureName() const;
 
 	bool isGrouped() const;
 
@@ -1289,9 +1241,9 @@ public:
 
 	const DeltaVector<int>* getEncumbrances() const;
 
-	byte getPosture() const;
+	virtual byte getPosture() const;
 
-	byte getLocomotion() const;
+	virtual byte getLocomotion() const;
 
 	byte getFactionRank() const;
 
@@ -1305,7 +1257,7 @@ public:
 
 	unsigned long long getStateBitmask() const;
 
-	bool hasState(unsigned long long state) const;
+	virtual bool hasState(unsigned long long state) const;
 
 	bool hasStates() const;
 
@@ -1319,11 +1271,13 @@ public:
 
 	float getSpeedMultiplierMod() const;
 
-	float getCurrentSpeed() const;
+	virtual float getCurrentSpeed() const;
 
 	SpeedMultiplierModChanges* getSpeedMultiplierModChanges();
 
-	CommandQueueActionVector* getCommandQueue();
+	const CommandQueueActionVector* getCommandQueue() const;
+
+	const CommandQueueActionVector* getImmediateQueue() const;
 
 	int getCommandQueueSize() const;
 
@@ -1331,7 +1285,7 @@ public:
 
 	unsigned int incrementLastActionCounter();
 
-	unsigned int getLastActionCounter();
+	unsigned int getLastActionCounter() const;
 
 	float getRunSpeed() const;
 
@@ -1352,6 +1306,8 @@ public:
 	unsigned long long getWeaponID() const;
 
 	Reference<WeaponObject* > getWeapon();
+
+	virtual WeaponObject* getDefaultWeapon();
 
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
@@ -1375,23 +1331,23 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceCounter() const;
+	int getPerformanceStartTime() const;
 
-	int getInstrumentID() const;
+	int getPerformanceType() const;
 
 	byte getFrozen() const;
 
 	float getHeight() const;
 
-	bool isDroidSpecies();
+	bool isDroidSpecies() const;
 
-	bool isWalkerSpecies();
+	bool isWalkerSpecies() const;
 
-	bool isProbotSpecies();
+	bool isProbotSpecies() const;
 
-	bool hasEffectImmunity(byte effectType);
+	bool hasEffectImmunity(byte effectType) const;
 
-	bool hasDotImmunity(unsigned int dotType);
+	bool hasDotImmunity(unsigned int dotType) const;
 
 	int getSpecies() const;
 
@@ -1419,7 +1375,7 @@ public:
 
 	CreatureObject* asCreatureObject();
 
-	bool isNextActionPast();
+	bool isNextActionPast() const;
 
 	bool isSwimming() const;
 
@@ -1429,9 +1385,9 @@ public:
 
 	float getSwimHeight() const;
 
-	bool isIncapacitated() const;
+	virtual bool isIncapacitated() const;
 
-	bool isDead() const;
+	virtual bool isDead() const;
 
 	bool isKnockedDown() const;
 
@@ -1447,7 +1403,7 @@ public:
 
 	bool isRallied() const;
 
-	bool isInCombat() const;
+	virtual bool isInCombat() const;
 
 	bool isDizzied() const;
 
@@ -1489,6 +1445,8 @@ public:
 
 	bool isInCover() const;
 
+	bool isWalking() const;
+
 	bool isRunning() const;
 
 	bool isNonPlayerCreatureObject();
@@ -1497,7 +1455,7 @@ public:
 
 	bool isPlayerCreature();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	bool isInformantCreature();
 
@@ -1517,7 +1475,7 @@ public:
 
 	ReadWriteLock* getSkillModMutex();
 
-	float calculateCostAdjustment(byte stat, float baseCost);
+	float calculateCostAdjustment(byte stat, float baseCost) const;
 
 	void updateSpeedAndAccelerationMods();
 
@@ -1559,7 +1517,7 @@ public:
 
 	void setAuctionSearchTask(AuctionSearchTask* task);
 
-	int getPassengerCapacity();
+	Instrument* getPlayableInstrument();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -1590,7 +1548,7 @@ namespace creature {
 
 class CreatureObjectImplementation : public TangibleObjectImplementation {
 protected:
-	ManagedWeakReference<ZoneClientSession* > owner;
+	WeakReference<ZoneClientSession* > owner;
 
 	ManagedReference<CreditObject* > creditObject;
 
@@ -1678,9 +1636,9 @@ protected:
 
 	byte moodID;
 
-	int performanceCounter;
+	int performanceStartTime;
 
-	int instrumentID;
+	int performanceType;
 
 	DeltaVector<int> hamList;
 
@@ -1703,6 +1661,10 @@ protected:
 	unsigned int lastActionCounter;
 
 	Time nextAction;
+
+	Time nextImmediateAction;
+
+	Time removeAction;
 
 	Reference<CooldownTimerMap* > cooldownTimerMap;
 
@@ -1760,58 +1722,6 @@ public:
 	static const int ITHORIAN = 0x21;
 
 	static const int SULLUSTAN = 0x31;
-
-	static const int HUTT = 0x1f;
-
-	static const int NAUTOLAN = 0;
-
-	static const int TOGRUTA = 0;
-
-	static const int CHISS = 0;
-
-	static const int DEVARONIAN = 0x11;
-
-	static const int GRAN = 0x1c;
-
-	static const int ISHI_TIB = 0x20;
-
-	static const int NIGHTSISTER = 0;
-
-	static const int NIKTO = 0x2a;
-
-	static const int QUARREN = 0x2e;
-
-	static const int SMC = 0;
-
-	static const int WEEQUAY = 0x37;
-
-	static const int AQUALISH = 9;
-
-	static const int BITH = 0x0e;
-
-	static const int GOTAL = 0x1b;
-
-	static const int TALZ = 0x32;
-
-	static const int ABYSSIN = 8;
-
-	static const int ARCONA = 0x0a;
-
-	static const int CEREAN = 0;
-
-	static const int DUROS = 0x14;
-
-	static const int GUNGAN = 0x1d;
-
-	static const int IKTOTCHI = 0;
-
-	static const int JENET = 0;
-
-	static const int KEL_DOR = 0;
-
-	static const int KUBAZ = 0x27;
-
-	static const int SANYASSAN = 0x28;
 
 	static const int MALE = 0;
 
@@ -2045,7 +1955,7 @@ public:
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient = true, bool isCombatAction = false);
 
-	bool hasDamage(int attribute);
+	bool hasDamage(int attribute) const;
 
 	/**
 	 * Heals damage
@@ -2137,13 +2047,13 @@ public:
 	int notifyObjectRemoved(SceneObject* object);
 
 	/**
-	 * Updates the instrument id to the specified object id
+	 * Updates the performance type to the specified type
 	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified weapon id }
-	 * @param instrumentid the new instrument id
+	 * @post { this object is locked, this object has the specified index }
+	 * @param type the new performance type
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setInstrumentID(int instrumentid, bool notifyClient = true);
+	void setPerformanceType(int type, bool notifyClient = true);
 
 	/**
 	 * Updates listen id
@@ -2151,13 +2061,13 @@ public:
 	void setListenToID(unsigned long long id, bool notifyClient = true);
 
 	/**
-	 * Updates the preformance counter
+	 * Updates the preformance start time
 	 * @pre { this object is locked }
 	 * @post { this object is locked, this object has the counter updated }
 	 * @param counter new performance counter
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceCounter(int counter, bool notifyClient = true);
+	void setPerformanceStartTime(int counter, bool notifyClient = true);
 
 	/**
 	 * Updates the preformance animation string
@@ -2187,15 +2097,6 @@ public:
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
 	void setTargetID(unsigned long long targetID, bool notifyClient = true);
-
-	/**
-	 * Updates the bank credits of this object
-	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified bank credits }
-	 * @param credits the new credits
-	 * @param notifyClient if set true the client will be updated with the changes
-	 */
-	void setBankCredits(int credits, bool notifyClient = true);
 
 	/**
 	 * Adds the buff to the creature, activating it and sending packets if it is a player.
@@ -2242,13 +2143,13 @@ public:
 
 	const WearablesDeltaVector* getWearablesDeltaVector() const;
 
-	void sendBuffsTo(CreatureObject* creature);
+	void sendBuffsTo(CreatureObject* creature) const;
 
-	BuffList* getBuffList();
+	const BuffList* getBuffList() const;
 
-	Buff* getBuff(unsigned int buffcrc);
+	Buff* getBuff(unsigned int buffcrc) const;
 
-	long long getSkillModFromBuffs(const String& skillMod);
+	long long getSkillModFromBuffs(const String& skillMod) const;
 
 	virtual int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength = 0);
 
@@ -2258,7 +2159,7 @@ public:
 
 	DamageOverTimeList* getDamageOverTimeList();
 
-	bool hasBuff(unsigned int buffcrc);
+	bool hasBuff(unsigned int buffcrc) const;
 
 	void notifySelfPositionUpdate();
 
@@ -2274,15 +2175,25 @@ public:
 
 	void addCashCredits(int credits, bool notifyClient = true);
 
+	void clearBankCredits(bool notifyClient = true);
+
+	void clearCashCredits(bool notifyClient = true);
+
+	void transferCredits(int cash, int bank, bool notifyClient = true);
+
 	CreditObject* getCreditObject();
 
 	void subtractBankCredits(int credits);
 
 	void subtractCashCredits(int credits);
 
+	bool subtractCredits(int credits);
+
 	bool verifyCashCredits(int credits);
 
 	bool verifyBankCredits(int credits);
+
+	bool verifyCredits(int credits);
 
 	bool isDancing();
 
@@ -2291,15 +2202,6 @@ public:
 	void stopEntertaining();
 
 	bool isEntertaining();
-
-	/**
-	 * Update the cash credits of this object
-	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified cash credits }
-	 * @param credits the new credits
-	 * @param notifyClient if set true the client will be updated with the changes
-	 */
-	void setCashCredits(int credits, bool notifyClient = true);
 
 	/**
 	 * Sets the terrain negotiation variable, and updates it.
@@ -2489,6 +2391,8 @@ public:
 
 	bool isHealableBy(CreatureObject* object);
 
+	bool isInvulnerable();
+
 	/**
 	 * Evaluates if the bounty hunter has a mission with the target.
 	 * @param target the target.
@@ -2590,11 +2494,13 @@ public:
 
 	void setFactionRank(int rank, bool notifyClient = true);
 
-	String getFirstName();
+	String getFirstName() const;
+
+	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
-	String getLastName();
+	String getLastName() const;
 
 	String setLastName(const String& newLastName, bool skipVerify);
 
@@ -2620,7 +2526,7 @@ public:
 
 	void dismount();
 
-	float calculateBFRatio();
+	float calculateBFRatio() const;
 
 	void removeFeignedDeath();
 
@@ -2650,7 +2556,7 @@ public:
 
 	void setRootedState(int durationSeconds = 20);
 
-	bool setNextAttackDelay(unsigned int mod, int del);
+	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -2662,39 +2568,41 @@ public:
 
 	void updateTimeOfDeath();
 
-	bool hasAttackDelay();
+	bool hasAttackDelay() const;
 
 	void removeAttackDelay();
 
-	bool hasIncapTimer();
+	bool hasIncapTimer() const;
 
 	CooldownTimerMap* getCooldownTimerMap();
 
-	bool hasSpice();
+	bool hasSpice() const;
 
 	void updateLastSuccessfulCombatAction();
 
-	void updatePostureChangeDelay(unsigned long long delay);
+	void setPostureChangeDelay(unsigned long long delay);
 
-	bool checkPostureChangeDelay();
+	bool hasPostureChangeDelay() const;
+
+	void removePostureChangeDelay();
 
 	void updatePostureDownRecovery();
 
-	bool checkPostureDownRecovery();
+	bool checkPostureDownRecovery() const;
 
 	void updatePostureUpRecovery();
 
-	bool checkPostureUpRecovery();
+	bool checkPostureUpRecovery() const;
 
 	void updateKnockdownRecovery();
 
-	bool checkKnockdownRecovery();
+	bool checkKnockdownRecovery() const;
 
 	void updateGroupMFDPositions();
 
 	virtual void queueDizzyFallEvent();
 
-	bool hasDizzyEvent();
+	bool hasDizzyEvent() const;
 
 	void clearDizzyEvent();
 
@@ -2715,9 +2623,9 @@ public:
 
 	void updateCooldownTimer(const String& coooldownTimer, unsigned long long miliSecondsToAdd = 0);
 
-	bool checkCooldownRecovery(const String& cooldown);
+	bool checkCooldownRecovery(const String& cooldown) const;
 
-	Time* getCooldownTime(const String& cooldown);
+	const Time* getCooldownTime(const String& cooldown) const;
 
 	void addCooldown(const String& name, unsigned long long miliseconds);
 
@@ -2729,9 +2637,11 @@ public:
 
 	void activateQueueAction();
 
+	void removeQueueAction(int action);
+
 	void activateImmediateAction();
 
-	UnicodeString getCreatureName();
+	UnicodeString getCreatureName() const;
 
 	bool isGrouped() const;
 
@@ -2757,9 +2667,9 @@ public:
 
 	const DeltaVector<int>* getEncumbrances() const;
 
-	byte getPosture() const;
+	virtual byte getPosture() const;
 
-	byte getLocomotion() const;
+	virtual byte getLocomotion() const;
 
 	byte getFactionRank() const;
 
@@ -2773,7 +2683,7 @@ public:
 
 	unsigned long long getStateBitmask() const;
 
-	bool hasState(unsigned long long state) const;
+	virtual bool hasState(unsigned long long state) const;
 
 	bool hasStates() const;
 
@@ -2787,11 +2697,13 @@ public:
 
 	float getSpeedMultiplierMod() const;
 
-	float getCurrentSpeed() const;
+	virtual float getCurrentSpeed() const;
 
 	SpeedMultiplierModChanges* getSpeedMultiplierModChanges();
 
-	CommandQueueActionVector* getCommandQueue();
+	const CommandQueueActionVector* getCommandQueue() const;
+
+	const CommandQueueActionVector* getImmediateQueue() const;
 
 	int getCommandQueueSize() const;
 
@@ -2799,7 +2711,7 @@ public:
 
 	unsigned int incrementLastActionCounter();
 
-	unsigned int getLastActionCounter();
+	unsigned int getLastActionCounter() const;
 
 	float getRunSpeed() const;
 
@@ -2820,6 +2732,8 @@ public:
 	unsigned long long getWeaponID() const;
 
 	Reference<WeaponObject* > getWeapon();
+
+	virtual WeaponObject* getDefaultWeapon();
 
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
@@ -2843,23 +2757,23 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceCounter() const;
+	int getPerformanceStartTime() const;
 
-	int getInstrumentID() const;
+	int getPerformanceType() const;
 
 	byte getFrozen() const;
 
 	float getHeight() const;
 
-	bool isDroidSpecies();
+	bool isDroidSpecies() const;
 
-	bool isWalkerSpecies();
+	bool isWalkerSpecies() const;
 
-	bool isProbotSpecies();
+	bool isProbotSpecies() const;
 
-	bool hasEffectImmunity(byte effectType);
+	bool hasEffectImmunity(byte effectType) const;
 
-	bool hasDotImmunity(unsigned int dotType);
+	bool hasDotImmunity(unsigned int dotType) const;
 
 	virtual int getSpecies() const;
 
@@ -2887,7 +2801,7 @@ public:
 
 	CreatureObject* asCreatureObject();
 
-	bool isNextActionPast();
+	bool isNextActionPast() const;
 
 	bool isSwimming() const;
 
@@ -2897,9 +2811,9 @@ public:
 
 	float getSwimHeight() const;
 
-	bool isIncapacitated() const;
+	virtual bool isIncapacitated() const;
 
-	bool isDead() const;
+	virtual bool isDead() const;
 
 	bool isKnockedDown() const;
 
@@ -2915,7 +2829,7 @@ public:
 
 	bool isRallied() const;
 
-	bool isInCombat() const;
+	virtual bool isInCombat() const;
 
 	bool isDizzied() const;
 
@@ -2957,6 +2871,8 @@ public:
 
 	bool isInCover() const;
 
+	bool isWalking() const;
+
 	bool isRunning() const;
 
 	virtual bool isNonPlayerCreatureObject();
@@ -2965,7 +2881,7 @@ public:
 
 	bool isPlayerCreature();
 
-	virtual int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	virtual bool isInformantCreature();
 
@@ -2985,7 +2901,7 @@ public:
 
 	ReadWriteLock* getSkillModMutex();
 
-	float calculateCostAdjustment(byte stat, float baseCost);
+	float calculateCostAdjustment(byte stat, float baseCost) const;
 
 	void updateSpeedAndAccelerationMods();
 
@@ -3027,7 +2943,7 @@ public:
 
 	void setAuctionSearchTask(AuctionSearchTask* task);
 
-	int getPassengerCapacity();
+	Instrument* getPlayableInstrument();
 
 	WeakReference<CreatureObject*> _this;
 
@@ -3141,7 +3057,7 @@ public:
 
 	int inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient, bool isCombatAction);
 
-	bool hasDamage(int attribute);
+	bool hasDamage(int attribute) const;
 
 	int healDamage(TangibleObject* healer, int damageType, int damage, bool notifyClient, bool notifyObservers);
 
@@ -3167,11 +3083,11 @@ public:
 
 	int notifyObjectRemoved(SceneObject* object);
 
-	void setInstrumentID(int instrumentid, bool notifyClient);
+	void setPerformanceType(int type, bool notifyClient);
 
 	void setListenToID(unsigned long long id, bool notifyClient);
 
-	void setPerformanceCounter(int counter, bool notifyClient);
+	void setPerformanceStartTime(int counter, bool notifyClient);
 
 	void setPerformanceAnimation(const String& animation, bool notifyClient);
 
@@ -3180,8 +3096,6 @@ public:
 	void addShockWounds(int shockToAdd, bool notiyClient, bool sendSpam);
 
 	void setTargetID(unsigned long long targetID, bool notifyClient);
-
-	void setBankCredits(int credits, bool notifyClient);
 
 	void addBuff(Buff* buff);
 
@@ -3201,11 +3115,11 @@ public:
 
 	void removeWearableObject(TangibleObject* object, bool notifyClient);
 
-	void sendBuffsTo(CreatureObject* creature);
+	void sendBuffsTo(CreatureObject* creature) const;
 
-	Buff* getBuff(unsigned int buffcrc);
+	Buff* getBuff(unsigned int buffcrc) const;
 
-	long long getSkillModFromBuffs(const String& skillMod);
+	long long getSkillModFromBuffs(const String& skillMod) const;
 
 	int addDotState(CreatureObject* attacker, unsigned long long dotType, unsigned long long objectID, unsigned int strength, byte type, unsigned int duration, float potency, unsigned int defense, int secondaryStrength);
 
@@ -3213,7 +3127,7 @@ public:
 
 	void clearDots();
 
-	bool hasBuff(unsigned int buffcrc);
+	bool hasBuff(unsigned int buffcrc) const;
 
 	void notifySelfPositionUpdate();
 
@@ -3229,15 +3143,25 @@ public:
 
 	void addCashCredits(int credits, bool notifyClient);
 
+	void clearBankCredits(bool notifyClient);
+
+	void clearCashCredits(bool notifyClient);
+
+	void transferCredits(int cash, int bank, bool notifyClient);
+
 	CreditObject* getCreditObject();
 
 	void subtractBankCredits(int credits);
 
 	void subtractCashCredits(int credits);
 
+	bool subtractCredits(int credits);
+
 	bool verifyCashCredits(int credits);
 
 	bool verifyBankCredits(int credits);
+
+	bool verifyCredits(int credits);
 
 	bool isDancing();
 
@@ -3246,8 +3170,6 @@ public:
 	void stopEntertaining();
 
 	bool isEntertaining();
-
-	void setCashCredits(int credits, bool notifyClient);
 
 	void setTerrainNegotiation(float value, bool notifyClient);
 
@@ -3303,6 +3225,8 @@ public:
 
 	bool isHealableBy(CreatureObject* object);
 
+	bool isInvulnerable();
+
 	bool hasBountyMissionFor(CreatureObject* target);
 
 	bool sendConversationStartTo(SceneObject* player);
@@ -3327,11 +3251,13 @@ public:
 
 	void setFactionRank(int rank, bool notifyClient);
 
-	String getFirstName();
+	String getFirstName() const;
+
+	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
-	String getLastName();
+	String getLastName() const;
 
 	String setLastName(const String& newLastName, bool skipVerify);
 
@@ -3357,7 +3283,7 @@ public:
 
 	void dismount();
 
-	float calculateBFRatio();
+	float calculateBFRatio() const;
 
 	void removeFeignedDeath();
 
@@ -3387,7 +3313,7 @@ public:
 
 	void setRootedState(int durationSeconds);
 
-	bool setNextAttackDelay(unsigned int mod, int del);
+	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -3399,37 +3325,39 @@ public:
 
 	void updateTimeOfDeath();
 
-	bool hasAttackDelay();
+	bool hasAttackDelay() const;
 
 	void removeAttackDelay();
 
-	bool hasIncapTimer();
+	bool hasIncapTimer() const;
 
-	bool hasSpice();
+	bool hasSpice() const;
 
 	void updateLastSuccessfulCombatAction();
 
-	void updatePostureChangeDelay(unsigned long long delay);
+	void setPostureChangeDelay(unsigned long long delay);
 
-	bool checkPostureChangeDelay();
+	bool hasPostureChangeDelay() const;
+
+	void removePostureChangeDelay();
 
 	void updatePostureDownRecovery();
 
-	bool checkPostureDownRecovery();
+	bool checkPostureDownRecovery() const;
 
 	void updatePostureUpRecovery();
 
-	bool checkPostureUpRecovery();
+	bool checkPostureUpRecovery() const;
 
 	void updateKnockdownRecovery();
 
-	bool checkKnockdownRecovery();
+	bool checkKnockdownRecovery() const;
 
 	void updateGroupMFDPositions();
 
 	void queueDizzyFallEvent();
 
-	bool hasDizzyEvent();
+	bool hasDizzyEvent() const;
 
 	void clearDizzyEvent();
 
@@ -3439,7 +3367,7 @@ public:
 
 	void updateCooldownTimer(const String& coooldownTimer, unsigned long long miliSecondsToAdd);
 
-	bool checkCooldownRecovery(const String& cooldown);
+	bool checkCooldownRecovery(const String& cooldown) const;
 
 	void addCooldown(const String& name, unsigned long long miliseconds);
 
@@ -3451,9 +3379,11 @@ public:
 
 	void activateQueueAction();
 
+	void removeQueueAction(int action);
+
 	void activateImmediateAction();
 
-	UnicodeString getCreatureName();
+	UnicodeString getCreatureName() const;
 
 	bool isGrouped() const;
 
@@ -3509,7 +3439,7 @@ public:
 
 	unsigned int incrementLastActionCounter();
 
-	unsigned int getLastActionCounter();
+	unsigned int getLastActionCounter() const;
 
 	float getRunSpeed() const;
 
@@ -3530,6 +3460,8 @@ public:
 	unsigned long long getWeaponID() const;
 
 	Reference<WeaponObject* > getWeapon();
+
+	WeaponObject* getDefaultWeapon();
 
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
@@ -3553,23 +3485,23 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceCounter() const;
+	int getPerformanceStartTime() const;
 
-	int getInstrumentID() const;
+	int getPerformanceType() const;
 
 	byte getFrozen() const;
 
 	float getHeight() const;
 
-	bool isDroidSpecies();
+	bool isDroidSpecies() const;
 
-	bool isWalkerSpecies();
+	bool isWalkerSpecies() const;
 
-	bool isProbotSpecies();
+	bool isProbotSpecies() const;
 
-	bool hasEffectImmunity(byte effectType);
+	bool hasEffectImmunity(byte effectType) const;
 
-	bool hasDotImmunity(unsigned int dotType);
+	bool hasDotImmunity(unsigned int dotType) const;
 
 	int getSpecies() const;
 
@@ -3587,7 +3519,7 @@ public:
 
 	bool isCreatureObject();
 
-	bool isNextActionPast();
+	bool isNextActionPast() const;
 
 	bool isSwimming() const;
 
@@ -3657,6 +3589,8 @@ public:
 
 	bool isInCover() const;
 
+	bool isWalking() const;
+
 	bool isRunning() const;
 
 	bool isNonPlayerCreatureObject();
@@ -3665,7 +3599,7 @@ public:
 
 	bool isPlayerCreature();
 
-	int getReceiverFlags();
+	int getReceiverFlags() const;
 
 	bool isInformantCreature();
 
@@ -3683,7 +3617,7 @@ public:
 
 	String getAlternateAppearance() const;
 
-	float calculateCostAdjustment(byte stat, float baseCost);
+	float calculateCostAdjustment(byte stat, float baseCost) const;
 
 	void updateSpeedAndAccelerationMods();
 
@@ -3715,8 +3649,6 @@ public:
 
 	int getHueValue() const;
 
-	int getPassengerCapacity();
-
 };
 
 class CreatureObjectHelper : public DistributedObjectClassHelper, public Singleton<CreatureObjectHelper> {
@@ -3741,10 +3673,35 @@ public:
 class MockCreatureObject : public CreatureObject {
 public:
 
+	MOCK_METHOD0(getPosture,byte());
+	MOCK_METHOD0(getLocomotion,byte());
+	MOCK_METHOD1(hasState,bool(unsigned long long state));
+	MOCK_METHOD0(getCurrentSpeed,float());
+	MOCK_METHOD0(getDefaultWeapon,WeaponObject*());
+	MOCK_METHOD0(isIncapacitated,bool());
+	MOCK_METHOD0(isDead,bool());
+	MOCK_METHOD0(isInCombat,bool());
+	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
+	MOCK_METHOD0(getLevel,int());
+	MOCK_METHOD0(isDestroyed,bool());
+	MOCK_METHOD0(getThreatMap,ThreatMap*());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
 	MOCK_METHOD0(getWorldPositionX,float());
 	MOCK_METHOD0(getWorldPositionY,float());
 	MOCK_METHOD0(getWorldPositionZ,float());
 	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
 
 };
 
@@ -3846,9 +3803,9 @@ public:
 
 	Optional<byte> moodID;
 
-	Optional<int> performanceCounter;
+	Optional<int> performanceStartTime;
 
-	Optional<int> instrumentID;
+	Optional<int> performanceType;
 
 	Optional<DeltaVector<int>> hamList;
 
@@ -3863,6 +3820,10 @@ public:
 	Optional<SkillModList> skillModList;
 
 	Optional<Time> nextAction;
+
+	Optional<Time> nextImmediateAction;
+
+	Optional<Time> removeAction;
 
 	Optional<BuffList> creatureBuffs;
 

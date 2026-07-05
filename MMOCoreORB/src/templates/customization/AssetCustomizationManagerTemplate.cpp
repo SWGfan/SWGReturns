@@ -56,7 +56,7 @@ void* AssetCustomizationManagerTemplate::getCustomizationVariablesFromMap(uint16
 	void* returnValue = nullptr;
 
 	if (uidxResult) {
-		//Logger::console.info("UIDXRESULT NOT NULL", true);
+		//Logger::console.info("UIDXRESULT NOT nullptr", true);
 
 		uint16 currentIndex;
 		memcpy(&currentIndex, (uint16*)uidxResult + 1, sizeof(uint16));
@@ -108,7 +108,7 @@ void* AssetCustomizationManagerTemplate::getCustomizationVariablesFromMap(uint16
 	returnValue = searchLidx(key);
 
 	if (returnValue != nullptr) {
-		//Logger::console.info("RETURN VALUE NOT NULL", true);
+		//Logger::console.info("RETURN VALUE NOT nullptr", true);
 
 		uint16 v23;
 		memcpy(&v23, (uint16*)returnValue + 1, sizeof(v23));
@@ -176,7 +176,7 @@ uint16 AssetCustomizationManagerTemplate::searchCidx(uint32 appearenceFileCRC) {
 	void* result = bsearch(&appearenceFileCRC, cidxTable, cidxTableCount, 6, cidxCompareFunction);
 
 	if (result) {
-		//Logger::console.info("RESULT NOT NULL", true);
+		//Logger::console.info("RESULT NOT nullptr", true);
 		returnValue = *((uint16*)result + 2);
 	} else {
 		//Logger::console.info("RESULT nullptr", true);

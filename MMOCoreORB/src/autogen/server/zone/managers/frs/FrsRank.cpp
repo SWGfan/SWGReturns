@@ -28,7 +28,7 @@ FrsRank::~FrsRank() {
 
 short FrsRank::getRank() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -43,7 +43,7 @@ short FrsRank::getRank() const {
 
 short FrsRank::getCouncilType() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ short FrsRank::getCouncilType() const {
 
 void FrsRank::addToPlayerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ void FrsRank::addToPlayerList(unsigned long long id) {
 
 void FrsRank::removeFromPlayerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void FrsRank::removeFromPlayerList(unsigned long long id) {
 
 int FrsRank::getTotalPlayersInRank() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ int FrsRank::getTotalPlayersInRank() {
 
 bool FrsRank::isOnPlayerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ bool FrsRank::isOnPlayerList(unsigned long long id) {
 
 SortedVector<unsigned long long>* FrsRank::getPlayerList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -130,7 +130,7 @@ SortedVector<unsigned long long>* FrsRank::getPlayerList() {
 
 VectorMap<unsigned long long, int>* FrsRank::getPetitionerList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -141,7 +141,7 @@ VectorMap<unsigned long long, int>* FrsRank::getPetitionerList() {
 
 void FrsRank::addToPetitionerList(unsigned long long playerID, int votes) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ void FrsRank::addToPetitionerList(unsigned long long playerID, int votes) {
 
 bool FrsRank::isOnPetitionerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -173,7 +173,7 @@ bool FrsRank::isOnPetitionerList(unsigned long long id) {
 
 int FrsRank::getPetitionerVotes(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -188,7 +188,7 @@ int FrsRank::getPetitionerVotes(unsigned long long id) {
 
 int FrsRank::getTotalPetitioners() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +202,7 @@ int FrsRank::getTotalPetitioners() {
 
 void FrsRank::clearPetitionerList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ void FrsRank::clearPetitionerList() {
 
 void FrsRank::removeFromPetitionerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ void FrsRank::removeFromPetitionerList(unsigned long long id) {
 
 void FrsRank::addToVotedList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -249,7 +249,7 @@ void FrsRank::addToVotedList(unsigned long long id) {
 
 void FrsRank::removeFromVotedList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +265,7 @@ void FrsRank::removeFromVotedList(unsigned long long id) {
 
 void FrsRank::clearVotedList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -280,7 +280,7 @@ void FrsRank::clearVotedList() {
 
 bool FrsRank::isOnVotedList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -295,7 +295,7 @@ bool FrsRank::isOnVotedList(unsigned long long id) {
 
 SortedVector<unsigned long long>* FrsRank::getVotedList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -306,7 +306,7 @@ SortedVector<unsigned long long>* FrsRank::getVotedList() {
 
 void FrsRank::addToWinnerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -322,7 +322,7 @@ void FrsRank::addToWinnerList(unsigned long long id) {
 
 void FrsRank::removeFromWinnerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -338,7 +338,7 @@ void FrsRank::removeFromWinnerList(unsigned long long id) {
 
 int FrsRank::getTotalWinners() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -352,7 +352,7 @@ int FrsRank::getTotalWinners() {
 
 bool FrsRank::isOnWinnerList(unsigned long long id) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -367,7 +367,7 @@ bool FrsRank::isOnWinnerList(unsigned long long id) {
 
 void FrsRank::clearWinnerList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -382,7 +382,7 @@ void FrsRank::clearWinnerList() {
 
 SortedVector<unsigned long long>* FrsRank::getWinnerList() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -393,7 +393,7 @@ SortedVector<unsigned long long>* FrsRank::getWinnerList() {
 
 void FrsRank::updateLastTick() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -408,7 +408,7 @@ void FrsRank::updateLastTick() {
 
 unsigned long long FrsRank::getLastUpdateTickDiff() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -422,7 +422,7 @@ unsigned long long FrsRank::getLastUpdateTickDiff() {
 
 short FrsRank::getVoteStatus() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -437,7 +437,7 @@ short FrsRank::getVoteStatus() const {
 
 void FrsRank::setVoteStatus(int newStatus) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -453,7 +453,7 @@ void FrsRank::setVoteStatus(int newStatus) {
 
 void FrsRank::resetVotingData() {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -468,7 +468,7 @@ void FrsRank::resetVotingData() {
 
 int FrsRank::getArenaChallengesThisPhase() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -483,7 +483,7 @@ int FrsRank::getArenaChallengesThisPhase() const {
 
 void FrsRank::setArenaChallengesThisPhase(int chal) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -499,7 +499,7 @@ void FrsRank::setArenaChallengesThisPhase(int chal) {
 
 int FrsRank::getArenaChallengesAcceptedThisPhase() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -514,7 +514,7 @@ int FrsRank::getArenaChallengesAcceptedThisPhase() const {
 
 void FrsRank::setArenaChallengesAcceptedThisPhase(int chal) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -530,7 +530,7 @@ void FrsRank::setArenaChallengesAcceptedThisPhase(int chal) {
 
 int FrsRank::getArenaChallengeScore() const {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -545,7 +545,7 @@ int FrsRank::getArenaChallengeScore() const {
 
 void FrsRank::setArenaChallengeScore(int chal) {
 	FrsRankImplementation* _implementation = static_cast<FrsRankImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -592,7 +592,7 @@ void FrsRankImplementation::finalize() {
 void FrsRankImplementation::_initializeImplementation() {
 	_setClassHelper(FrsRankHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

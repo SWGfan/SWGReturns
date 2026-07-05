@@ -6,6 +6,8 @@
 #define CREATENPCCOMMAND_H_
 
 #include "server/zone/managers/director/DirectorManager.h"
+#include "server/zone/objects/creature/ai/AiAgent.h"
+#include "server/zone/objects/creature/commands/QueueCommand.h"
 
 class CreateNPCCommand : public QueueCommand {
 public:
@@ -39,6 +41,32 @@ public:
 			*staffTools << creature;
 
 			staffTools->callFunction();
+		} else if (arg == "toggledebug") {
+			ManagedReference<AiAgent*> aiAgent = server->getZoneServer()->getObject(creature->getTargetID()).castTo<AiAgent*>();
+
+			if (aiAgent == nullptr)
+				return GENERALERROR;
+
+			Locker clocker(aiAgent, creature);
+
+			bool curDebug = aiAgent->getAIDebug();
+
+			aiAgent->setAIDebug(!curDebug);
+
+			StringBuffer msg;
+			msg << "AiAgent " << aiAgent->getObjectID() << " debug set to " << aiAgent->getAIDebug();
+
+#ifndef DEBUG_AI
+			msg << " not compiled with DEBUG_AI, using LogLevel";
+#endif // DEBUG_AI
+
+			String logFileName = aiAgent->getLogFileName();
+
+			if (!logFileName.isEmpty()) {
+				msg << " logging to " << logFileName;
+			}
+
+			creature->sendSystemMessage(msg.toString());
 		}
 
 		return SUCCESS;

@@ -51,9 +51,10 @@ object_draft_schematic_bio_engineer_utilities_pet_stimpack_a = object_draft_sche
 	complexity = 18,
 	size = 3,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_bio_engineer_creature",
-	xp = 75,
+	xp = 100,
 
 	assemblySkill = "bio_engineer_assembly",
 	experimentingSkill = "bio_engineer_experimentation",

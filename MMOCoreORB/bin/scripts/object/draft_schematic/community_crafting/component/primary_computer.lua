@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_primary_computer = object_dr
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_primary_computer = object_dr
 	ingredientTitleNames = {"raw_materials", "energy", "energy_backup", "refactor"},
 	ingredientSlotType = {2, 2, 2, 3},
 	resourceTypes = {"object/tangible/loot/quest/shared_rudic.iff", "object/tangible/loot/quest/shared_ardanium_ii.iff", "object/tangible/loot/quest/shared_wind_crystal.iff", "object/tangible/component/structure/shared_primary_computer.iff"},
-	resourceQuantities = {1, 1, 1, 1},
+	resourceQuantities = {4, 3, 3, 1},
 	contribution = {100, 100, 100, 20},
 
 

@@ -30,7 +30,7 @@ SuiMessageBox::~SuiMessageBox() {
 
 BaseMessage* SuiMessageBox::generateMessage() {
 	SuiMessageBoxImplementation* _implementation = static_cast<SuiMessageBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiMessageBox::generateMessage() {
 
 bool SuiMessageBox::isMessageBox() {
 	SuiMessageBoxImplementation* _implementation = static_cast<SuiMessageBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ void SuiMessageBoxImplementation::finalize() {
 void SuiMessageBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiMessageBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

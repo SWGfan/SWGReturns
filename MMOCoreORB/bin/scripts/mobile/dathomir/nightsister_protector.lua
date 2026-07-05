@@ -2,6 +2,7 @@ nightsister_protector = Creature:new {
 	objectName = "@mob/creature_names:nightsister_protector",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "nightsister",
 	faction = "nightsister",
 	level = 131,
@@ -11,8 +12,8 @@ nightsister_protector = Creature:new {
 	baseXp = 12424,
 	baseHAM = 50000,
 	baseHAMmax = 61000,
-	armor = 2,
-	resists = {15,200,15,200,200,200,200,200,-1},
+	armor = 1,
+	resists = {15,80,15,80,80,80,80,80,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,7 +21,7 @@ nightsister_protector = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -31,77 +32,31 @@ nightsister_protector = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "cl55_backpack_loot", chance = 10000000},
-			},
-			lootChance = 250000
-		},
-		{
-			groups = {
-				{group = "power_crystals", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "nge_all", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "color_crystals", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jedi_dark_robes", chance = 5000000},
-				{group = "jedi_gray_robes", chance = 5000000},
-			},
-			lootChance = 2500000
-		},
-		{
-			groups = {
-				{group = "nightsister_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "armor_attachments", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "tailor_components", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "exceptional_chest_rewards", chance = 4500000},
-				{group = "diamond_chest_rewards", chance = 4500000},
-				{group = "legendary_chest_rewards", chance = 1000000},
-			},
-			lootChance = 500000
-		},
+				{group = "power_crystals", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "nightsister_common", chance = 2300000},
+				{group = "armor_attachments", chance = 350000},
+				{group = "clothing_attachments", chance = 350000},
+				{group = "nightsister_rare", chance = 2000000},
+				{group = "rifles", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "wearables_common", chance = 500000},
+				{group = "tailor_components", chance = 500000}
+			}
+		}
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(fencermaster,swordsmanmaster,tkamid,brawlermaster,pikemanmaster,forcewielder)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(fencermaster,swordsmanmaster,tkamid,brawlermaster,pikemanmaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_protector, "nightsister_protector")

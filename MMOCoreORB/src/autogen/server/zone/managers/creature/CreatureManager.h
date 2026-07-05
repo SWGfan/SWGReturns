@@ -217,7 +217,7 @@ public:
 	 * @param x position x
 	 * @param y position y
 	 * @param parentID cell object id (optional)
-	 * @return returns creature object that has been spawned, nullptr on error
+	 * @return returns creature object that has been spawned, NULL on error
 	 */
 	CreatureObject* spawnCreatureWithAi(unsigned int templateCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false);
 
@@ -229,11 +229,11 @@ public:
 
 	CreatureObject* spawnCreature(unsigned int templateCRC, float x, float z, float y, unsigned long long parentID = 0);
 
-	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false);
+	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false, float direction = 0);
 
 	CreatureObject* createCreature(unsigned int templateCRC, bool persistent = false, unsigned int mobileTemplate = 0);
 
-	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID);
+	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID, float direction = 0);
 
 	String getTemplateToSpawn(unsigned int templateCRC);
 
@@ -342,7 +342,7 @@ public:
 	 * @param x position x
 	 * @param y position y
 	 * @param parentID cell object id (optional)
-	 * @return returns creature object that has been spawned, nullptr on error
+	 * @return returns creature object that has been spawned, NULL on error
 	 */
 	CreatureObject* spawnCreatureWithAi(unsigned int templateCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false);
 
@@ -354,11 +354,11 @@ public:
 
 	CreatureObject* spawnCreature(unsigned int templateCRC, float x, float z, float y, unsigned long long parentID = 0);
 
-	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false);
+	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID = 0, bool persistent = false, float direction = 0);
 
 	CreatureObject* createCreature(unsigned int templateCRC, bool persistent = false, unsigned int mobileTemplate = 0);
 
-	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID);
+	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID, float direction = 0);
 
 	String getTemplateToSpawn(unsigned int templateCRC);
 
@@ -464,11 +464,11 @@ public:
 
 	CreatureObject* spawnCreature(unsigned int templateCRC, float x, float z, float y, unsigned long long parentID);
 
-	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID, bool persistent);
+	CreatureObject* spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long long parentID, bool persistent, float direction);
 
 	CreatureObject* createCreature(unsigned int templateCRC, bool persistent, unsigned int mobileTemplate);
 
-	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID);
+	void placeCreature(CreatureObject* creature, float x, float z, float y, unsigned long long parentID, float direction);
 
 	String getTemplateToSpawn(unsigned int templateCRC);
 

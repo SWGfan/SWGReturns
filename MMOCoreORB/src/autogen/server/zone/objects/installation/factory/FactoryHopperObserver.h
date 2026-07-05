@@ -24,27 +24,15 @@
 #endif
 #include "engine/util/json_utils.h"
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace installation {
-namespace factory {
-
-class FactoryObject;
-
-class FactoryObjectPOD;
-
-} // namespace factory
-} // namespace installation
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::installation::factory;
-
 #include "engine/core/ManagedObject.h"
 
+#include "engine/util/Observer.h"
+
+#include "engine/util/Observable.h"
+
 #include "templates/params/ObserverEventType.h"
+
+#include "server/zone/objects/installation/factory/FactoryObject.h"
 
 #include "engine/log/Logger.h"
 
@@ -55,10 +43,6 @@ using namespace server::zone::objects::installation::factory;
 #include "system/lang/ref/Reference.h"
 
 #include "engine/core/Task.h"
-
-#include "engine/util/Observer.h"
-
-#include "engine/util/Observable.h"
 
 namespace server {
 namespace zone {

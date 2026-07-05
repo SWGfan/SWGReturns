@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_bandolier_field_04_quest = object_draft
    customObjectName = "Weaponsmith\'s Tool Set",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 30, 
+   complexity = 1, 
    size = 1, 
 
    xpType = "crafting_clothing_general", 
@@ -73,9 +73,9 @@ object_draft_schematic_clothing_clothing_bandolier_field_04_quest = object_draft
    targetTemplate = "object/tangible/wearables/bandolier/bandolier_s04_quest.iff",
 				
 	skillMods = {
-	    {"weapon_assembly", 25},
-	    {"weapon_repair", 25},
-	    {"weapon_experimentation", 25}
+	    {"weapon_assembly", 5},
+	    {"weapon_repair", 5},
+	    {"weapon_experimentation", 3}
 	},
 
    additionalTemplates = {

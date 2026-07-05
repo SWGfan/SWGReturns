@@ -8,8 +8,9 @@
 #ifndef STRUCTURESTATUSSUICALLBACK_H_
 #define STRUCTURESTATUSSUICALLBACK_H_
 
-#include "server/zone/objects/intangible/StructureControlDevice.h"
 #include "server/zone/objects/player/sui/SuiCallback.h"
+#include "server/zone/objects/structure/StructureObject.h"
+#include "server/zone/managers/gcw/GCWManager.h"
 
 
 class StructureStatusSuiCallback : public SuiCallback {
@@ -24,22 +25,30 @@ public:
 			return;
 
 		ManagedReference<SceneObject*> obj = sui->getUsingObject().get();
+		ManagedReference<StructureObject*> structure = sui->getStructureObject().get();
 
-		if (obj == nullptr || (!obj->isStructureObject() && !obj->isStructureControlDevice())) {
+		if (obj == nullptr || creature == nullptr || structure == nullptr) {
+			return;
+		}
+
+		Zone* zone = structure->getZone();
+
+		if (zone == nullptr) {
+			return;
+		}
+
+		GCWManager* gcwMan = zone->getGCWManager();
+
+		if (gcwMan == nullptr) {
+			return;
+		}
+
+		if ((structure->isGCWBase() && !gcwMan->canUseTerminals(creature, structure->asBuildingObject(), obj)) || !structure->isOnAdminList(creature)) {
 			creature->sendSystemMessage("@player_structure:no_valid_structurestatus"); //Your /structureStatus target is no longer valid. Cancelling refresh.
 			return;
 		}
 
-		uint64 objID = obj->getObjectID();
-
-		if (obj->isStructureControlDevice()) {
-			StructureControlDevice* device = cast<StructureControlDevice*>(obj.get());
-
-			if (device != nullptr)
-				objID = device->getControlledObject()->getObjectID();
-		}
-
-		creature->executeObjectControllerAction(0x13F7E585, objID, ""); //structureStatus
+		StructureManager::instance()->reportStructureStatus(creature, structure, obj);
 	}
 };
 

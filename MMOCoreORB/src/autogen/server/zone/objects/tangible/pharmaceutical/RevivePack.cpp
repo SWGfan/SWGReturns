@@ -32,7 +32,7 @@ RevivePack::~RevivePack() {
 
 void RevivePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void RevivePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) 
 
 void RevivePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void RevivePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* ob
 
 int RevivePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ int RevivePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 float RevivePack::getHealthWoundHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ float RevivePack::getHealthWoundHealed() {
 
 float RevivePack::getHealthHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ float RevivePack::getHealthHealed() {
 
 float RevivePack::getActionWoundHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ float RevivePack::getActionWoundHealed() {
 
 float RevivePack::getActionHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ float RevivePack::getActionHealed() {
 
 float RevivePack::getMindWoundHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ float RevivePack::getMindWoundHealed() {
 
 float RevivePack::getMindHealed() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ float RevivePack::getMindHealed() {
 
 bool RevivePack::isRevivePack() {
 	RevivePackImplementation* _implementation = static_cast<RevivePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -197,7 +197,7 @@ void RevivePackImplementation::finalize() {
 void RevivePackImplementation::_initializeImplementation() {
 	_setClassHelper(RevivePackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

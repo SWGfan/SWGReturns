@@ -10,7 +10,7 @@
  *	NonPlayerCreatureObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1792645783,RPC_ISNONPLAYERCREATUREOBJECT__,RPC_ISCAMOUFLAGED__CREATUREOBJECT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1792645783,RPC_ISNONPLAYERCREATUREOBJECT__};
 
 NonPlayerCreatureObject::NonPlayerCreatureObject() : AiAgent(DummyConstructorParameter::instance()) {
 	NonPlayerCreatureObjectImplementation* _implementation = new NonPlayerCreatureObjectImplementation();
@@ -30,7 +30,7 @@ NonPlayerCreatureObject::~NonPlayerCreatureObject() {
 
 void NonPlayerCreatureObject::initializeTransientMembers() {
 	NonPlayerCreatureObjectImplementation* _implementation = static_cast<NonPlayerCreatureObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void NonPlayerCreatureObject::initializeTransientMembers() {
 
 bool NonPlayerCreatureObject::isNonPlayerCreatureObject() {
 	NonPlayerCreatureObjectImplementation* _implementation = static_cast<NonPlayerCreatureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -53,21 +53,6 @@ bool NonPlayerCreatureObject::isNonPlayerCreatureObject() {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isNonPlayerCreatureObject();
-	}
-}
-
-bool NonPlayerCreatureObject::isCamouflaged(CreatureObject* target) {
-	NonPlayerCreatureObjectImplementation* _implementation = static_cast<NonPlayerCreatureObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISCAMOUFLAGED__CREATUREOBJECT_);
-		method.addObjectParameter(target);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isCamouflaged(target);
 	}
 }
 
@@ -104,7 +89,7 @@ void NonPlayerCreatureObjectImplementation::finalize() {
 void NonPlayerCreatureObjectImplementation::_initializeImplementation() {
 	_setClassHelper(NonPlayerCreatureObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -224,11 +209,6 @@ bool NonPlayerCreatureObjectImplementation::isNonPlayerCreatureObject() {
 	return true;
 }
 
-bool NonPlayerCreatureObjectImplementation::isCamouflaged(CreatureObject* target) {
-	// server/zone/objects/creature/ai/NonPlayerCreatureObject.idl():  		return isAggressiveTo(target) && isConcealed(target);
-	return isAggressiveTo(target) && isConcealed(target);
-}
-
 /*
  *	NonPlayerCreatureObjectAdapter
  */
@@ -258,14 +238,6 @@ void NonPlayerCreatureObjectAdapter::invokeMethod(uint32 methid, DistributedMeth
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_ISCAMOUFLAGED__CREATUREOBJECT_:
-		{
-			CreatureObject* target = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			bool _m_res = isCamouflaged(target);
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	default:
 		AiAgentAdapter::invokeMethod(methid, inv);
 	}
@@ -277,10 +249,6 @@ void NonPlayerCreatureObjectAdapter::initializeTransientMembers() {
 
 bool NonPlayerCreatureObjectAdapter::isNonPlayerCreatureObject() {
 	return (static_cast<NonPlayerCreatureObject*>(stub))->isNonPlayerCreatureObject();
-}
-
-bool NonPlayerCreatureObjectAdapter::isCamouflaged(CreatureObject* target) {
-	return (static_cast<NonPlayerCreatureObject*>(stub))->isCamouflaged(target);
 }
 
 /*

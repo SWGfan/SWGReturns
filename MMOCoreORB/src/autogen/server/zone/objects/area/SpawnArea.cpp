@@ -4,8 +4,6 @@
 
 #include "SpawnArea.h"
 
-#include "server/zone/managers/creature/LairSpawn.h"
-
 #include "server/zone/objects/area/SpawnAreaObserver.h"
 
 #include "server/zone/objects/scene/SceneObject.h"
@@ -14,7 +12,7 @@
  *	SpawnAreaStub
  */
 
-enum {RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_SETTIER__INT_,RPC_GETTIER__,RPC_GETTOTALWEIGHTING__,RPC_SETMAXSPAWNLIMIT__INT_,RPC_ADDNOSPAWNAREA__SPAWNAREA_,RPC_TRYTOSPAWN__SCENEOBJECT_};
+enum {RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_SETTIER__INT_,RPC_GETTIER__,RPC_GETTOTALWEIGHTING__,RPC_SETMAXSPAWNLIMIT__INT_,RPC_ADDNOSPAWNAREA__SPAWNAREA_,RPC_TRYTOSPAWN__SCENEOBJECT_,RPC_ISWORLDSPAWNAREA__,RPC_SETWORLDSPAWNAREA__BOOL_};
 
 SpawnArea::SpawnArea() : ActiveArea(DummyConstructorParameter::instance()) {
 	SpawnAreaImplementation* _implementation = new SpawnAreaImplementation();
@@ -34,7 +32,7 @@ SpawnArea::~SpawnArea() {
 
 Vector3 SpawnArea::getRandomPosition(SceneObject* player) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -44,7 +42,7 @@ Vector3 SpawnArea::getRandomPosition(SceneObject* player) {
 
 int SpawnArea::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +60,7 @@ int SpawnArea::notifyObserverEvent(unsigned int eventType, Observable* observabl
 
 void SpawnArea::buildSpawnList(Vector<unsigned int>* groupCRCs) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -71,9 +69,9 @@ void SpawnArea::buildSpawnList(Vector<unsigned int>* groupCRCs) {
 	}
 }
 
-Vector<Reference<LairSpawn*> >* SpawnArea::getSpawnList() {
-	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+const Vector<Reference<LairSpawn*> >* SpawnArea::getSpawnList() const {
+	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -83,7 +81,7 @@ Vector<Reference<LairSpawn*> >* SpawnArea::getSpawnList() {
 
 void SpawnArea::setTier(int n) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -99,7 +97,7 @@ void SpawnArea::setTier(int n) {
 
 int SpawnArea::getTier() const {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -113,7 +111,7 @@ int SpawnArea::getTier() const {
 
 int SpawnArea::getTotalWeighting() const {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +125,7 @@ int SpawnArea::getTotalWeighting() const {
 
 void SpawnArea::setMaxSpawnLimit(int n) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +141,7 @@ void SpawnArea::setMaxSpawnLimit(int n) {
 
 void SpawnArea::addNoSpawnArea(SpawnArea* area) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +157,7 @@ void SpawnArea::addNoSpawnArea(SpawnArea* area) {
 
 void SpawnArea::tryToSpawn(SceneObject* object) {
 	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -169,6 +167,36 @@ void SpawnArea::tryToSpawn(SceneObject* object) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->tryToSpawn(object);
+	}
+}
+
+bool SpawnArea::isWorldSpawnArea() const {
+	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISWORLDSPAWNAREA__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isWorldSpawnArea();
+	}
+}
+
+void SpawnArea::setWorldSpawnArea(bool val) {
+	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETWORLDSPAWNAREA__BOOL_);
+		method.addBooleanParameter(val);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setWorldSpawnArea(val);
 	}
 }
 
@@ -205,7 +233,7 @@ void SpawnAreaImplementation::finalize() {
 void SpawnAreaImplementation::_initializeImplementation() {
 	_setClassHelper(SpawnAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -314,6 +342,10 @@ bool SpawnAreaImplementation::readObjectMember(ObjectInputStream* stream, const 
 		TypeInfo<Vector<ManagedWeakReference<SpawnArea*> > >::parseFromBinaryStream(&noSpawnAreas, stream);
 		return true;
 
+	case 0xa9200c52: //SpawnArea.worldSpawnArea
+		TypeInfo<bool >::parseFromBinaryStream(&worldSpawnArea, stream);
+		return true;
+
 	case 0x7d230e7e: //SpawnArea.tier
 		TypeInfo<int >::parseFromBinaryStream(&tier, stream);
 		return true;
@@ -408,6 +440,15 @@ int SpawnAreaImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xa9200c52; //SpawnArea.worldSpawnArea
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&worldSpawnArea, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0x7d230e7e; //SpawnArea.tier
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -441,6 +482,8 @@ void SpawnAreaImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["noSpawnAreas"] = noSpawnAreas;
 
+	thisObject["worldSpawnArea"] = worldSpawnArea;
+
 	thisObject["tier"] = tier;
 
 	j["SpawnArea"] = thisObject;
@@ -457,12 +500,14 @@ SpawnAreaImplementation::SpawnAreaImplementation() {
 	// server/zone/objects/area/SpawnArea.idl():  		spawnTypes.setNullValue(0);
 	(&spawnTypes)->setNullValue(0);
 	// server/zone/objects/area/SpawnArea.idl():  		exitObserver = null;
-	exitObserver = nullptr;
+	exitObserver = NULL;
+	// server/zone/objects/area/SpawnArea.idl():  		worldSpawnArea = false;
+	worldSpawnArea = false;
 	// server/zone/objects/area/SpawnArea.idl():  		Logger.setLoggingName("SpawnArea");
 	Logger::setLoggingName("SpawnArea");
 }
 
-Vector<Reference<LairSpawn*> >* SpawnAreaImplementation::getSpawnList() {
+const Vector<Reference<LairSpawn*> >* SpawnAreaImplementation::getSpawnList() const{
 	// server/zone/objects/area/SpawnArea.idl():  		return possibleSpawns;
 	return (&possibleSpawns);
 }
@@ -490,6 +535,16 @@ void SpawnAreaImplementation::setMaxSpawnLimit(int n) {
 void SpawnAreaImplementation::addNoSpawnArea(SpawnArea* area) {
 	// server/zone/objects/area/SpawnArea.idl():  		noSpawnAreas.add(area);
 	(&noSpawnAreas)->add(area);
+}
+
+bool SpawnAreaImplementation::isWorldSpawnArea() const{
+	// server/zone/objects/area/SpawnArea.idl():  		return worldSpawnArea;
+	return worldSpawnArea;
+}
+
+void SpawnAreaImplementation::setWorldSpawnArea(bool val) {
+	// server/zone/objects/area/SpawnArea.idl():  		worldSpawnArea = val;
+	worldSpawnArea = val;
 }
 
 /*
@@ -564,6 +619,21 @@ void SpawnAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_ISWORLDSPAWNAREA__:
+		{
+			
+			bool _m_res = isWorldSpawnArea();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_SETWORLDSPAWNAREA__BOOL_:
+		{
+			bool val = inv->getBooleanParameter();
+			
+			setWorldSpawnArea(val);
+			
+		}
+		break;
 	default:
 		ActiveAreaAdapter::invokeMethod(methid, inv);
 	}
@@ -595,6 +665,14 @@ void SpawnAreaAdapter::addNoSpawnArea(SpawnArea* area) {
 
 void SpawnAreaAdapter::tryToSpawn(SceneObject* object) {
 	(static_cast<SpawnArea*>(stub))->tryToSpawn(object);
+}
+
+bool SpawnAreaAdapter::isWorldSpawnArea() const {
+	return (static_cast<SpawnArea*>(stub))->isWorldSpawnArea();
+}
+
+void SpawnAreaAdapter::setWorldSpawnArea(bool val) {
+	(static_cast<SpawnArea*>(stub))->setWorldSpawnArea(val);
 }
 
 /*
@@ -676,6 +754,9 @@ void SpawnAreaPOD::writeJSON(nlohmann::json& j) {
 
 	if (noSpawnAreas)
 		thisObject["noSpawnAreas"] = noSpawnAreas.value();
+
+	if (worldSpawnArea)
+		thisObject["worldSpawnArea"] = worldSpawnArea.value();
 
 	if (tier)
 		thisObject["tier"] = tier.value();
@@ -785,6 +866,17 @@ int SpawnAreaPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (worldSpawnArea) {
+	_nameHashCode = 0xa9200c52; //SpawnArea.worldSpawnArea
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&worldSpawnArea.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 	if (tier) {
 	_nameHashCode = 0x7d230e7e; //SpawnArea.tier
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -869,6 +961,14 @@ bool SpawnAreaPOD::readObjectMember(ObjectInputStream* stream, const uint32& nam
 		}
 		return true;
 
+	case 0xa9200c52: //SpawnArea.worldSpawnArea
+		{
+			bool _mnworldSpawnArea;
+			TypeInfo<bool >::parseFromBinaryStream(&_mnworldSpawnArea, stream);
+			worldSpawnArea = std::move(_mnworldSpawnArea);
+		}
+		return true;
+
 	case 0x7d230e7e: //SpawnArea.tier
 		{
 			int _mntier;
@@ -918,6 +1018,8 @@ void SpawnAreaPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<ManagedReference<SpawnAreaObserverPOD* > >::toBinaryStream(&exitObserver.value(), stream);
 
 	TypeInfo<Vector<ManagedWeakReference<SpawnArea*> > >::toBinaryStream(&noSpawnAreas.value(), stream);
+
+	TypeInfo<bool >::toBinaryStream(&worldSpawnArea.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&tier.value(), stream);
 

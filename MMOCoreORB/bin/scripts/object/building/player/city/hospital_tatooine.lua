@@ -43,14 +43,16 @@
 
 object_building_player_city_hospital_tatooine = object_building_player_city_shared_hospital_tatooine:new {
 	skillMods = {
-		{"private_buff_mind", 125},
-		{"private_medical_rating", 125},
-		{"private_med_battle_fatigue", 125},
-		{"private_safe_logout", 1}
+		{"private_medical_rating", 100},
+    {"private_med_wound_health", 100},
+    {"private_med_wound_action", 100},
+    {"private_buff_mind", 100},
+    {"private_med_battle_fatigue", 5},
+    {"private_safe_logout", 1}
 	},
 	lotSize = 3,
 	baseMaintenanceRate = 50,
-	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
+	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir"},
 	length = 5,
 	width = 5,
 	planetMapCategory = "medicalcenter",

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Include any dependencies generated for this target.
 include src/server/web/CMakeFiles/web3.dir/depend.make
@@ -72,267 +72,155 @@ include src/server/web/CMakeFiles/web3.dir/flags.make
 src/server/web/CMakeFiles/web3.dir/codegen:
 .PHONY : src/server/web/CMakeFiles/web3.dir/codegen
 
-src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o: src/server/web/HttpRequest.cpp
-src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o -MF CMakeFiles/web3.dir/HttpRequest.cpp.o.d -o CMakeFiles/web3.dir/HttpRequest.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpRequest.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o: src/server/web/APIProxyChatManager.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o -MF CMakeFiles/web3.dir/APIProxyChatManager.cpp.o.d -o CMakeFiles/web3.dir/APIProxyChatManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyChatManager.cpp
 
-src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/HttpRequest.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpRequest.cpp > CMakeFiles/web3.dir/HttpRequest.cpp.i
+src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIProxyChatManager.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyChatManager.cpp > CMakeFiles/web3.dir/APIProxyChatManager.cpp.i
 
-src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/HttpRequest.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpRequest.cpp -o CMakeFiles/web3.dir/HttpRequest.cpp.s
+src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIProxyChatManager.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyChatManager.cpp -o CMakeFiles/web3.dir/APIProxyChatManager.cpp.s
 
-src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o: src/server/web/HttpResponse.cpp
-src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o -MF CMakeFiles/web3.dir/HttpResponse.cpp.o.d -o CMakeFiles/web3.dir/HttpResponse.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpResponse.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o: src/server/web/APIProxyConfigManager.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o -MF CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o.d -o CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyConfigManager.cpp
 
-src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/HttpResponse.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpResponse.cpp > CMakeFiles/web3.dir/HttpResponse.cpp.i
+src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIProxyConfigManager.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyConfigManager.cpp > CMakeFiles/web3.dir/APIProxyConfigManager.cpp.i
 
-src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/HttpResponse.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/HttpResponse.cpp -o CMakeFiles/web3.dir/HttpResponse.cpp.s
+src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIProxyConfigManager.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyConfigManager.cpp -o CMakeFiles/web3.dir/APIProxyConfigManager.cpp.s
+
+src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o: src/server/web/APIProxyGuildManager.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o -MF CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o.d -o CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyGuildManager.cpp
+
+src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIProxyGuildManager.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyGuildManager.cpp > CMakeFiles/web3.dir/APIProxyGuildManager.cpp.i
+
+src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIProxyGuildManager.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyGuildManager.cpp -o CMakeFiles/web3.dir/APIProxyGuildManager.cpp.s
+
+src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o: src/server/web/APIProxyObjectManager.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o -MF CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o.d -o CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyObjectManager.cpp
+
+src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIProxyObjectManager.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyObjectManager.cpp > CMakeFiles/web3.dir/APIProxyObjectManager.cpp.i
+
+src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIProxyObjectManager.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyObjectManager.cpp -o CMakeFiles/web3.dir/APIProxyObjectManager.cpp.s
+
+src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o: src/server/web/APIProxyPlayerManager.cpp
+src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o -MF CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o.d -o CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyPlayerManager.cpp
+
+src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyPlayerManager.cpp > CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.i
+
+src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIProxyPlayerManager.cpp -o CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.s
+
+src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o: src/server/web/APIRequest.cpp
+src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o -MF CMakeFiles/web3.dir/APIRequest.cpp.o.d -o CMakeFiles/web3.dir/APIRequest.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIRequest.cpp
+
+src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/APIRequest.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIRequest.cpp > CMakeFiles/web3.dir/APIRequest.cpp.i
+
+src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/APIRequest.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/APIRequest.cpp -o CMakeFiles/web3.dir/APIRequest.cpp.s
+
+src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
+src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o: src/server/web/RESTEndpoint.cpp
+src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o -MF CMakeFiles/web3.dir/RESTEndpoint.cpp.o.d -o CMakeFiles/web3.dir/RESTEndpoint.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTEndpoint.cpp
+
+src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/RESTEndpoint.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTEndpoint.cpp > CMakeFiles/web3.dir/RESTEndpoint.cpp.i
+
+src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/RESTEndpoint.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTEndpoint.cpp -o CMakeFiles/web3.dir/RESTEndpoint.cpp.s
 
 src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
 src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o: src/server/web/RESTServer.cpp
 src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o -MF CMakeFiles/web3.dir/RESTServer.cpp.o.d -o CMakeFiles/web3.dir/RESTServer.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/RESTServer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o -MF CMakeFiles/web3.dir/RESTServer.cpp.o.d -o CMakeFiles/web3.dir/RESTServer.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTServer.cpp
 
 src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/RESTServer.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/RESTServer.cpp > CMakeFiles/web3.dir/RESTServer.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTServer.cpp > CMakeFiles/web3.dir/RESTServer.cpp.i
 
 src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/RESTServer.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/RESTServer.cpp -o CMakeFiles/web3.dir/RESTServer.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o: src/server/web/WebServer.cpp
-src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o -MF CMakeFiles/web3.dir/WebServer.cpp.o.d -o CMakeFiles/web3.dir/WebServer.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/WebServer.cpp
-
-src/server/web/CMakeFiles/web3.dir/WebServer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/WebServer.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/WebServer.cpp > CMakeFiles/web3.dir/WebServer.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/WebServer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/WebServer.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/WebServer.cpp -o CMakeFiles/web3.dir/WebServer.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o: src/server/web/servlets/Servlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o -MF CMakeFiles/web3.dir/servlets/Servlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/Servlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/Servlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/Servlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/Servlet.cpp > CMakeFiles/web3.dir/servlets/Servlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/Servlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/Servlet.cpp -o CMakeFiles/web3.dir/servlets/Servlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o: src/server/web/servlets/account/AccountServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/account/AccountServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/account/AccountServlet.cpp > CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/account/AccountServlet.cpp -o CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o: src/server/web/servlets/admin/AdminServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/admin/AdminServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/admin/AdminServlet.cpp > CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/admin/AdminServlet.cpp -o CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o: src/server/web/servlets/character/CharacterServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/character/CharacterServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/character/CharacterServlet.cpp > CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/character/CharacterServlet.cpp -o CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o: src/server/web/servlets/login/LoginServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/login/LoginServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/login/LoginServlet.cpp > CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/login/LoginServlet.cpp -o CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o: src/server/web/servlets/logs/LogsServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/logs/LogsServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/logs/LogsServlet.cpp > CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/logs/LogsServlet.cpp -o CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o: src/server/web/servlets/main/MainServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/main/MainServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/main/MainServlet.cpp > CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/main/MainServlet.cpp -o CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o: src/server/web/servlets/permissions/PermissionsServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/permissions/PermissionsServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/permissions/PermissionsServlet.cpp > CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/permissions/PermissionsServlet.cpp -o CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o: src/server/web/servlets/resource/ResourceServlet.cpp
-src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o -MF CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o.d -o CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/resource/ResourceServlet.cpp
-
-src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/resource/ResourceServlet.cpp > CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/servlets/resource/ResourceServlet.cpp -o CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o: src/server/web/session/HttpSession.cpp
-src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o -MF CMakeFiles/web3.dir/session/HttpSession.cpp.o.d -o CMakeFiles/web3.dir/session/HttpSession.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/session/HttpSession.cpp
-
-src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/web3.dir/session/HttpSession.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/session/HttpSession.cpp > CMakeFiles/web3.dir/session/HttpSession.cpp.i
-
-src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/web3.dir/session/HttpSession.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/session/HttpSession.cpp -o CMakeFiles/web3.dir/session/HttpSession.cpp.s
-
-src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o: src/server/web/CMakeFiles/web3.dir/flags.make
-src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o: src/server/web/mongoose/mongoose.c
-src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o: src/server/web/CMakeFiles/web3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o -MF CMakeFiles/web3.dir/mongoose/mongoose.c.o.d -o CMakeFiles/web3.dir/mongoose/mongoose.c.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/mongoose/mongoose.c
-
-src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/web3.dir/mongoose/mongoose.c.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/mongoose/mongoose.c > CMakeFiles/web3.dir/mongoose/mongoose.c.i
-
-src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/web3.dir/mongoose/mongoose.c.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/mongoose/mongoose.c -o CMakeFiles/web3.dir/mongoose/mongoose.c.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/RESTServer.cpp -o CMakeFiles/web3.dir/RESTServer.cpp.s
 
 # Object files for target web3
 web3_OBJECTS = \
-"CMakeFiles/web3.dir/HttpRequest.cpp.o" \
-"CMakeFiles/web3.dir/HttpResponse.cpp.o" \
-"CMakeFiles/web3.dir/RESTServer.cpp.o" \
-"CMakeFiles/web3.dir/WebServer.cpp.o" \
-"CMakeFiles/web3.dir/servlets/Servlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o" \
-"CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o" \
-"CMakeFiles/web3.dir/session/HttpSession.cpp.o" \
-"CMakeFiles/web3.dir/mongoose/mongoose.c.o"
+"CMakeFiles/web3.dir/APIProxyChatManager.cpp.o" \
+"CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o" \
+"CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o" \
+"CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o" \
+"CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o" \
+"CMakeFiles/web3.dir/APIRequest.cpp.o" \
+"CMakeFiles/web3.dir/RESTEndpoint.cpp.o" \
+"CMakeFiles/web3.dir/RESTServer.cpp.o"
 
 # External object files for target web3
 web3_EXTERNAL_OBJECTS =
 
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/HttpRequest.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/HttpResponse.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIProxyChatManager.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/APIRequest.cpp.o
+src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/RESTEndpoint.cpp.o
 src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/RESTServer.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/WebServer.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/Servlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/account/AccountServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/admin/AdminServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/character/CharacterServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/login/LoginServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/logs/LogsServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/main/MainServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/permissions/PermissionsServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/servlets/resource/ResourceServlet.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/session/HttpSession.cpp.o
-src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/mongoose/mongoose.c.o
 src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/build.make
 src/server/web/libweb3.a: src/server/web/CMakeFiles/web3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libweb3.a"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -P CMakeFiles/web3.dir/cmake_clean_target.cmake
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/web3.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libweb3.a"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -P CMakeFiles/web3.dir/cmake_clean_target.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/web3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/server/web/CMakeFiles/web3.dir/build: src/server/web/libweb3.a
 .PHONY : src/server/web/CMakeFiles/web3.dir/build
 
 src/server/web/CMakeFiles/web3.dir/clean:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -P CMakeFiles/web3.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web && $(CMAKE_COMMAND) -P CMakeFiles/web3.dir/cmake_clean.cmake
 .PHONY : src/server/web/CMakeFiles/web3.dir/clean
 
 src/server/web/CMakeFiles/web3.dir/depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/CMakeFiles/web3.dir/DependInfo.cmake "--color=$(COLOR)" web3
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web /home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/CMakeFiles/web3.dir/DependInfo.cmake "--color=$(COLOR)" web3
 .PHONY : src/server/web/CMakeFiles/web3.dir/depend
 

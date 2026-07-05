@@ -7,19 +7,25 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 
+#include "PendingTasksMap.h"
 #include "OrderedTaskExecutioner.h"
 
 using namespace server::zone::objects::scene::variables;
 using namespace server::zone::objects::scene;
 
-PendingTasksMap::PendingTasksMap() : taskMap(1, 1), orderedTasks(1, 1) {
+PendingTasksMap::PendingTasksMap() : taskMap(1, 1), pendingTasks(1000) {
 	taskMap.setNoDuplicateInsertPlan();
 	taskMap.setNullValue(nullptr);
 }
 
-PendingTasksMap::PendingTasksMap(const PendingTasksMap& p) : Object(), taskMap(p.taskMap), orderedTasks(p.orderedTasks) {
-	taskMap.setNoDuplicateInsertPlan();
-	taskMap.setNullValue(nullptr);
+PendingTasksMap::~PendingTasksMap() {
+	Task* task;
+
+	while (pendingTasks.pop(task)) {
+		if (task != nullptr) {
+			task->release();
+		}
+	}
 }
 
 int PendingTasksMap::put(const String& name, Task* task) {
@@ -40,56 +46,22 @@ bool PendingTasksMap::contains(const String& name) {
 	return taskMap.contains(name);
 }
 
-Reference<Task*> PendingTasksMap::get(const String& name) {
+Reference<Task*> PendingTasksMap::get(const String& name) const {
 	Locker guard(&mutex);
 
 	return taskMap.get(name);
 }
 
-void PendingTasksMap::putOrdered(Task* task, server::zone::objects::scene::SceneObject* sceneObject) {
-	Locker guard(&mutex);
+Reference<Task*> PendingTasksMap::popNextOrderedTask() {
+	Reference<Task*> strongTaskReference;
+	Task* task;
 
-	orderedTasks.add(task);
+	const auto result = pendingTasks.pop(task);
 
-	if (orderedTasks.size() == 1) {
-		OrderedTaskExecutioner* newTask = new OrderedTaskExecutioner(sceneObject);
-		newTask->setCustomTaskQueue(task->getCustomTaskQueue());
-		newTask->execute();
-	}
-}
-
-int PendingTasksMap::getOrderedTasksSize() {
-	return orderedTasks.size();
-}
-
-bool PendingTasksMap::runMoreOrderedTasks(server::zone::objects::scene::SceneObject* sceneObject) {
-	Locker guard(&mutex);
-
-	orderedTasks.remove(0);
-
-	if (orderedTasks.size() > 0) {
-		auto nextTask = orderedTasks.get(0);
-
-		Reference<OrderedTaskExecutioner*> task = new OrderedTaskExecutioner(sceneObject);
-		task->setCustomTaskQueue(nextTask->getCustomTaskQueue());
-		task->execute();
-
-		return true;
+	if (result && task) {
+		strongTaskReference.initializeWithoutAcquire(task);
 	}
 
-	return false;
+	return strongTaskReference;
 }
-
-Reference<Task*> PendingTasksMap::getNextOrderedTask() {
-	Locker guard(&mutex);
-
-	Reference<Task*> task;
-
-	if (orderedTasks.size() != 0) {
-		task = orderedTasks.get(0);
-	}
-
-	return task;
-}
-
 

@@ -33,7 +33,6 @@ reservedNames = {
 	{ "biatch", DECLINED_PROFANE },
 	{ "bitch", DECLINED_PROFANE },
 	{ "boob", DECLINED_PROFANE },
-	{ "butt", DECLINED_PROFANE },
 	{ "christ", DECLINED_PROFANE },
 	{ "clit", DECLINED_PROFANE },
 	{ "cock", DECLINED_PROFANE },
@@ -185,7 +184,7 @@ reservedNames = {
 	{ "seeman", DECLINED_PROFANE },
 	{ "seemen", DECLINED_PROFANE },
 	{ "semen", DECLINED_PROFANE },
-	{ "Sith", DECLINED_PROFANE },
+--	{ "Sith", DECLINED_PROFANE },
 	{ "skank", DECLINED_PROFANE },
 	{ "skanq", DECLINED_PROFANE },
 	{ "Skywalker", DECLINED_PROFANE },
@@ -632,9 +631,5 @@ reservedNames = {
 	{ "guild", DECLINED_RESERVED },
 	{ "tip", DECLINED_RESERVED },
 	{ "citizens", DECLINED_RESERVED },
-	{ "self", DECLINED_RESERVED },
-	{ "tox", DECLINED_RESERVED }, --admin name  
-	{ "syg", DECLINED_RESERVED },  --admin name
-	{ "sig", DECLINED_RESERVED }, --admin name
-  { "mohel", DECLINED_PROFANE } 
+	{ "self", DECLINED_RESERVED }
 }

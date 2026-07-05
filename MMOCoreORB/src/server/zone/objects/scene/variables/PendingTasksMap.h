@@ -15,24 +15,30 @@ namespace zone {
 namespace objects {
 namespace scene {
 class SceneObject;
-}
-}
-}
-}
 
+namespace variables {
+
+template <class TaskOwner>
+class OrderedTaskExecutioner;
+}
+}
+} // namespace objects
+} // namespace zone
+} // namespace server
 
 class PendingTasksMap : public Object {
 protected:
-	Mutex mutex;
+	mutable Mutex mutex;
 
-	VectorMap<String, Reference<Task*> > taskMap;
+	VectorMap<String, Reference<Task*>> taskMap;
 
-	ArrayList<Reference<Task*> > orderedTasks;
+	typedef boost::lockfree::queue<Task*, boost::lockfree::fixed_sized<false>> TaskQueue;
+	TaskQueue pendingTasks{};
+	AtomicLong pendingTasksSize{};
 
 public:
 	PendingTasksMap();
-
-	PendingTasksMap(const PendingTasksMap& p);
+	~PendingTasksMap();
 
 	int put(const String& name, Task* task);
 
@@ -40,15 +46,31 @@ public:
 
 	bool contains(const String& name);
 
-	Reference<Task*> get(const String& name);
+	Reference<Task*> get(const String& name) const;
 
-	void putOrdered(Task* task, server::zone::objects::scene::SceneObject* sceneObject);
+	uint64 decrementPendingTasks() {
+		return pendingTasksSize.decrement();
+	}
 
-	int getOrderedTasksSize();
+	template <class Owner>
+	void putOrdered(Task* task, Owner* owner) {
+		task->acquire();
+		const auto values = pendingTasksSize.increment();
 
-	bool runMoreOrderedTasks(server::zone::objects::scene::SceneObject* sceneObject);
+		if (values == 1) {
+			Reference<Task*> strongReference;
+		        strongReference.initializeWithoutAcquire(task);
 
-	Reference<Task*> getNextOrderedTask();
+			auto newTask = new server::zone::objects::scene::variables::OrderedTaskExecutioner<Owner>(owner, std::move(strongReference));
+			newTask->execute();
+		} else {
+			const bool result = pendingTasks.push(task);
+			E3_ASSERT(result);
+		}
+
+	}
+
+	Reference<Task*> popNextOrderedTask();
 };
 
 #endif /* PENDINGTASKSMAP_H_ */

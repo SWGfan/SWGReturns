@@ -44,99 +44,49 @@
 ForceLightningCone2Command = {
 	name = "forcelightningcone2",
 
-        minDamage = 1300,
-        maxDamage = 2000,
-	speed = 2.0,
-	forceCost = 150,
+  minDamage = 900,
+  maxDamage = 1650,
+  speed = 2.0,
+  forceCost = 60,
+  forceCostMultiplier = 1,
+  actionCostMultiplier = 1,
 	accuracySkillMod = "forcelightning_accuracy",
-	coneAngle = 60,
+	coneAngle = 180,
 	coneAction = true,
 	visMod = 25,
 
 	stateEffects = {
-		StateEffect(
-		BLIND_EFFECT, 
-
-		{}, 
-
-		{ "blind_defense" }, 
-
-		{ "jedi_state_defense", "resistance_states" },
-
-		85, 
-
-		0, 
-
-		60 
-
-	  ),
-
-	  StateEffect( 
-
-		DIZZY_EFFECT, 
-
-		{}, 
-
-		{ "dizzy_defense" }, 
-
-		{ "jedi_state_defense", "resistance_states" }, 
-
-		85, 
-
-		0, 
-
-		30 
-
-	  ),
-
-	  StateEffect( 
-
-		STUN_EFFECT, 
-
-		{}, 
-
-		{ "stun_defense" }, 
-
-		{ "jedi_state_defense", "resistance_states" }, 
-
-		85, 
-
-		0, 
-
-		60
-		)
-	},
-
-	animation = "force_lightning_1_arc_particle_level_3",
-	animType = GENERATE_INTENSITY,
-	combatSpam = "forcelightningcone2",
-
-		dotEffects = {
-	  DotEffect( 
-		ONFIRE, 
-		{"resistance_fire", "fire_resist"},
-		HEALTH,
-		true,
+	  StateEffect(
+    STUN_EFFECT,
+    {},
+    {},
+    { "jedi_state_defense" },
+    30,
+    0,
+    10
+    ), 
+	  StateEffect(
+		DIZZY_EFFECT,
+		{},
+		{},
+		{ "jedi_state_defense" },
+		30,
 		0,
-		125,
-		200, 
-		60,
-		10,
-		2
+		10
 	  )
 	},
-	
-	poolsToDamage = RANDOM_ATTRIBUTE,
+
+	animation = "force_knockdown_1_arc_particle_level_1",
+--	animType = GENERATE_INTENSITY,
+
+	combatSpam = "forcelightningcone2",
+
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	forceAttack = true,
-	damageType = LIGHTSABER_DAMAGE,
+	damageType = ELECTRICITY_DAMAGE,
 
-	frsLightMinDamageModifier = 4,
-	frsLightMaxDamageModifier = 8,
-	frsDarkMinDamageModifier = 8,
-	frsDarkMaxDamageModifier = 16,
-
-	range = 12
+	range = 32
 }
 
 AddCommand(ForceLightningCone2Command)

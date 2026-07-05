@@ -28,7 +28,7 @@ PendingMessageList::~PendingMessageList() {
 
 Vector<unsigned long long>* PendingMessageList::getPendingMessages() {
 	PendingMessageListImplementation* _implementation = static_cast<PendingMessageListImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -38,7 +38,7 @@ Vector<unsigned long long>* PendingMessageList::getPendingMessages() {
 
 void PendingMessageList::clearPendingMessages() {
 	PendingMessageListImplementation* _implementation = static_cast<PendingMessageListImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void PendingMessageList::clearPendingMessages() {
 
 void PendingMessageList::addPendingMessage(unsigned long long oid) {
 	PendingMessageListImplementation* _implementation = static_cast<PendingMessageListImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ void PendingMessageListImplementation::finalize() {
 void PendingMessageListImplementation::_initializeImplementation() {
 	_setClassHelper(PendingMessageListHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

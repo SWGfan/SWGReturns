@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o.d"
   "CMakeFiles/login3.dir/LoginServerImplementation.cpp.o"
   "CMakeFiles/login3.dir/LoginServerImplementation.cpp.o.d"
+  "CMakeFiles/login3.dir/SessionAPIClient.cpp.o"
+  "CMakeFiles/login3.dir/SessionAPIClient.cpp.o.d"
   "CMakeFiles/login3.dir/account/AccountImplementation.cpp.o"
   "CMakeFiles/login3.dir/account/AccountImplementation.cpp.o.d"
   "CMakeFiles/login3.dir/account/AccountManager.cpp.o"

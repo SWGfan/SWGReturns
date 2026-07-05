@@ -63,15 +63,15 @@ public:
 
 	void setCurrentRollAcceleration(float scale, bool notifyClient = true);
 
-	float getMaxYawAcceleration();
+	float getMaxYawAcceleration() const;
 
-	float getMaxRollAcceleration();
+	float getMaxRollAcceleration() const;
 
-	float getMaxPitchAcceleration();
+	float getMaxPitchAcceleration() const;
 
-	float getTotalMass();
+	float getTotalMass() const;
 
-	float getMaxSpeed();
+	float getMaxSpeed() const;
 
 	bool isShipObject();
 
@@ -168,15 +168,15 @@ public:
 
 	void setCurrentRollAcceleration(float scale, bool notifyClient = true);
 
-	float getMaxYawAcceleration();
+	float getMaxYawAcceleration() const;
 
-	float getMaxRollAcceleration();
+	float getMaxRollAcceleration() const;
 
-	float getMaxPitchAcceleration();
+	float getMaxPitchAcceleration() const;
 
-	float getTotalMass();
+	float getTotalMass() const;
 
-	float getMaxSpeed();
+	float getMaxSpeed() const;
 
 	bool isShipObject();
 
@@ -243,15 +243,15 @@ public:
 
 	void setCurrentRollAcceleration(float scale, bool notifyClient);
 
-	float getMaxYawAcceleration();
+	float getMaxYawAcceleration() const;
 
-	float getMaxRollAcceleration();
+	float getMaxRollAcceleration() const;
 
-	float getMaxPitchAcceleration();
+	float getMaxPitchAcceleration() const;
 
-	float getTotalMass();
+	float getTotalMass() const;
 
-	float getMaxSpeed();
+	float getMaxSpeed() const;
 
 	bool isShipObject();
 

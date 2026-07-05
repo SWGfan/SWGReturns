@@ -127,61 +127,61 @@ public:
 
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
-	bool isSpecial(int type);
+	bool isSpecial(int type) const;
 
-	bool isVulnerable(int type);
+	bool isVulnerable(int type) const;
 
 	bool isArmorObject();
 
 	void setRating(int rate);
 
-	int getRating();
+	int getRating() const;
 
-	float getKinetic();
+	float getKinetic() const;
 
 	void setKinetic(float value);
 
-	float getEnergy();
+	float getEnergy() const;
 
 	void setEnergy(float value);
 
-	float getElectricity();
+	float getElectricity() const;
 
 	void setElectricity(float value);
 
-	float getStun();
+	float getStun() const;
 
 	void setStun(float value);
 
-	float getBlast();
+	float getBlast() const;
 
 	void setBlast(float value);
 
-	float getHeat();
+	float getHeat() const;
 
 	void setHeat(float value);
 
-	float getCold();
+	float getCold() const;
 
 	void setCold(float value);
 
-	float getAcid();
+	float getAcid() const;
 
 	void setAcid(float value);
 
-	float getLightSaber();
+	float getLightSaber() const;
 
 	void setLightSaber(float value);
 
-	int getHealthEncumbrance();
+	int getHealthEncumbrance() const;
 
 	void setHealthEncumbrance(int encumber);
 
-	int getActionEncumbrance();
+	int getActionEncumbrance() const;
 
 	void setActionEncumbrance(int encumber);
 
-	int getMindEncumbrance();
+	int getMindEncumbrance() const;
 
 	void setMindEncumbrance(int encumber);
 
@@ -189,11 +189,9 @@ public:
 
 	void setEncumbranceSlice(float value);
 
-	byte getHitLocation();
+	byte getHitLocation() const;
 
 	void setHitLocation(byte h);
-
-	float getResist(int type);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -311,70 +309,70 @@ public:
 private:
 	void calculateSpecialProtection(CraftingValues* values);
 
-	String getStringType(int type);
+	String getStringType(int type) const;
 
 	void setProtectionValue(int type, float value);
 
 public:
-	bool isSpecial(int type);
+	bool isSpecial(int type) const;
 
-	bool isVulnerable(int type);
+	bool isVulnerable(int type) const;
 
 	bool isArmorObject();
 
 	void setRating(int rate);
 
-	int getRating();
+	int getRating() const;
 
 private:
-	float getTypeValue(int type, float value);
+	float getTypeValue(int type, float value) const;
 
 public:
-	float getKinetic();
+	float getKinetic() const;
 
 	void setKinetic(float value);
 
-	float getEnergy();
+	float getEnergy() const;
 
 	void setEnergy(float value);
 
-	float getElectricity();
+	float getElectricity() const;
 
 	void setElectricity(float value);
 
-	float getStun();
+	float getStun() const;
 
 	void setStun(float value);
 
-	float getBlast();
+	float getBlast() const;
 
 	void setBlast(float value);
 
-	float getHeat();
+	float getHeat() const;
 
 	void setHeat(float value);
 
-	float getCold();
+	float getCold() const;
 
 	void setCold(float value);
 
-	float getAcid();
+	float getAcid() const;
 
 	void setAcid(float value);
 
-	float getLightSaber();
+	float getLightSaber() const;
 
 	void setLightSaber(float value);
 
-	int getHealthEncumbrance();
+	int getHealthEncumbrance() const;
 
 	void setHealthEncumbrance(int encumber);
 
-	int getActionEncumbrance();
+	int getActionEncumbrance() const;
 
 	void setActionEncumbrance(int encumber);
 
-	int getMindEncumbrance();
+	int getMindEncumbrance() const;
 
 	void setMindEncumbrance(int encumber);
 
@@ -382,11 +380,9 @@ public:
 
 	void setEncumbranceSlice(float value);
 
-	byte getHitLocation();
+	byte getHitLocation() const;
 
 	void setHitLocation(byte h);
-
-	float getResist(int type);
 
 	WeakReference<ArmorObject*> _this;
 
@@ -438,43 +434,61 @@ public:
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	bool isSpecial(int type);
+	bool isSpecial(int type) const;
 
-	bool isVulnerable(int type);
+	bool isVulnerable(int type) const;
 
 	bool isArmorObject();
 
 	void setRating(int rate);
 
-	int getRating();
+	int getRating() const;
+
+	float getKinetic() const;
 
 	void setKinetic(float value);
 
+	float getEnergy() const;
+
 	void setEnergy(float value);
+
+	float getElectricity() const;
 
 	void setElectricity(float value);
 
+	float getStun() const;
+
 	void setStun(float value);
+
+	float getBlast() const;
 
 	void setBlast(float value);
 
+	float getHeat() const;
+
 	void setHeat(float value);
+
+	float getCold() const;
 
 	void setCold(float value);
 
+	float getAcid() const;
+
 	void setAcid(float value);
+
+	float getLightSaber() const;
 
 	void setLightSaber(float value);
 
-	int getHealthEncumbrance();
+	int getHealthEncumbrance() const;
 
 	void setHealthEncumbrance(int encumber);
 
-	int getActionEncumbrance();
+	int getActionEncumbrance() const;
 
 	void setActionEncumbrance(int encumber);
 
-	int getMindEncumbrance();
+	int getMindEncumbrance() const;
 
 	void setMindEncumbrance(int encumber);
 
@@ -482,11 +496,9 @@ public:
 
 	void setEncumbranceSlice(float value);
 
-	byte getHitLocation();
+	byte getHitLocation() const;
 
 	void setHitLocation(byte h);
-
-	float getResist(int type);
 
 };
 

@@ -1,5 +1,5 @@
 tusken_king = Creature:new {
-	customName = "\\#00ff00<<< Tusken King >>> \\#0000ff[lvl 300]",
+	customName = "a Tusken King",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
 	level = 300,
@@ -7,10 +7,10 @@ tusken_king = Creature:new {
 	damageMin = 1645,
 	damageMax = 3000,
 	baseXp = 25167,
-	baseHAM = 261000,
-	baseHAMmax = 320000,
-	armor = 3,
-	resists = {150,130,150,150,150,150,150,150,150},
+	baseHAM = 761000,
+	baseHAMmax = 820000,
+	armor = 1,
+	resists = {80,45,70,45,80,70,45,70,45},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,173 +21,92 @@ tusken_king = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = PACK + STALKER,
+	creatureBitmask = PACK + KILLER + STALKER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 	scale = 1.5,	
 
-	templates = {"object/mobile/tusken_raider.iff"},
+	templates = {"object/mobile/tusken_king.iff"},
 	lootGroups = {
 		{
 			groups = {
-				{group = "boss_rare", chance = 10000000},
+				{group = "power_crystals", chance = 857143},
+				{group = "lok_track", chance = 857143},
+				{group = "veteran_rewards_630_days", chance = 857143},
+				{group = "veteran_rewards_720_days", chance = 857143},
+				{group = "melee_weapons", chance = 857143},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
+				{group = "tusken_clothing_schematics", chance = 857143},
+				{group = "nge_houses_all", chance = 857143}
 			},
-			lootChance = 1000000
-		},	
+				lootChance = 10000000,
+		},
+		
 		{
 			groups = {
-				{group = "boss_rare", chance = 10000000},
+				{group = "power_crystals", chance = 857143},
+				{group = "lok_track", chance = 857143},
+				{group = "veteran_rewards_630_days", chance = 857143},
+				{group = "veteran_rewards_720_days", chance = 857143},
+				{group = "melee_weapons", chance = 857143},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
+				{group = "tusken_clothing_schematics", chance = 857143},
+				{group = "nge_houses_all", chance = 857143}
 			},
-			lootChance = 1000000
-		},	
+				lootChance = 7500000,
+		},
+		
 		{
 			groups = {
-				{group = "g_named_crystals", chance = 10000000},
+				{group = "power_crystals", chance = 857143},
+				{group = "lok_track", chance = 857143},
+				{group = "veteran_rewards_630_days", chance = 857143},
+				{group = "veteran_rewards_720_days", chance = 857143},
+				{group = "melee_weapons", chance = 857143},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
+				{group = "tusken_clothing_schematics", chance = 857143},
+				{group = "nge_houses_all", chance = 857143}
 			},
-			lootChance = 5000000
+				lootChance = 5000000,
+		},
+		
+		{
+			groups = {
+				{group = "power_crystals", chance = 857143},
+				{group = "lok_track", chance = 857143},
+				{group = "veteran_rewards_630_days", chance = 857143},
+				{group = "veteran_rewards_720_days", chance = 857143},
+				{group = "melee_weapons", chance = 857143},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
+				{group = "tusken_clothing_schematics", chance = 857143},
+				{group = "nge_houses_all", chance = 857143}
+			},
+				lootChance = 2500000,
+		},
+		
+		{
+			groups = {
+				{group = "token_stardust", chance = 10000000}
+			},
+				lootChance = 10000000,
 		},
 		{
 			groups = {
-				{group = "boss_common", chance = 10000000},
+				{group = "weapon_component_advanced", chance = 10000000}
 			},
-			lootChance = 1500000
+			lootChance = 10000000,
 		},
-		{
-			groups = {
-				{group = "capes", chance = 10000000},
-			},
-			lootChance = 1500000
-		},
-		{
-			groups = {
-				{group = "weapon_component_advanced", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "weapon_component_advanced", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "weapons_all", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "worldbosscrate", chance = 10000000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "boss_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "boss_rare", chance = 10000000},
-			},
-			lootChance = 2500000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 10000000
-		}
 	},
-	weapons = {"tusken_weapons"},
+	primaryWeapon = "tusken_ranged",
+	secondaryWeapon = "tusken_melee",
 	conversationTemplate = "",
-	attacks = merge(marksmanmaster,brawlermaster,fencermaster,riflemanmaster)
+	
+	primaryAttacks = merge(marksmanmaster,riflemanmaster),
+	secondaryAttacks = merge(brawlermaster,fencermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(tusken_king, "tusken_king")

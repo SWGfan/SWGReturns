@@ -2,6 +2,7 @@ light_jedi_sentinel = Creature:new {
 	objectName = "@mob/creature_names:light_jedi_sentinel",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "self",
 	faction = "",
 	level = 1,
@@ -11,7 +12,7 @@ light_jedi_sentinel = Creature:new {
 	baseXp = 45,
 	baseHAM = 1106000,
 	baseHAMmax = 1352000,
-	armor = 3,
+	armor = 1,
 	resists = {95,95,95,95,95,95,95,95,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -23,21 +24,25 @@ light_jedi_sentinel = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = PACK + HERD + KILLER,
+	creatureBitmask = KILLER + PACK + HERD,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
+	lightsaberColor = 6,
+	customAiMap = "enclaveSentinel",
 
-	templates = {
-		"object/mobile/dressed_jedi_trainer_old_human_male_01.iff",
-		"object/mobile/dressed_jedi_trainer_chiss_male_01.iff",
-		"object/mobile/dressed_jedi_trainer_nikto_male_01.iff",
-		"object/mobile/dressed_jedi_trainer_twilek_female_01.iff",
-		"object/mobile/dressed_tiberus_anderlock.iff",
-		"object/mobile/dressed_neja_bertolo.iff"},
+	templates = { "light_jedi" },
 	lootGroups = {},
-	weapons = {"light_jedi_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "light_jedi_weapons",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(lightsabermaster,forcepowermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(lightsabermaster,forcepowermaster),
+	secondaryAttacks = forcepowermaster
 }
 
 CreatureTemplates:addCreatureTemplate(light_jedi_sentinel, "light_jedi_sentinel")

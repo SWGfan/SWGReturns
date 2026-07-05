@@ -34,7 +34,7 @@ LootkitObject::~LootkitObject() {
 
 void LootkitObject::initializeTransientMembers() {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void LootkitObject::initializeTransientMembers() {
 
 int LootkitObject::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ int LootkitObject::canAddObject(SceneObject* object, int containmentType, String
 
 int LootkitObject::notifyObjectInserted(SceneObject* object) {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ int LootkitObject::notifyObjectInserted(SceneObject* object) {
 
 int LootkitObject::notifyObjectRemoved(SceneObject* object) {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ int LootkitObject::notifyObjectRemoved(SceneObject* object) {
 
 Reference<CreatureObject* > LootkitObject::getPlayer() {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ Reference<CreatureObject* > LootkitObject::getPlayer() {
 
 void LootkitObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -119,7 +119,7 @@ void LootkitObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void LootkitObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	LootkitObjectImplementation* _implementation = static_cast<LootkitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -160,7 +160,7 @@ void LootkitObjectImplementation::finalize() {
 void LootkitObjectImplementation::_initializeImplementation() {
 	_setClassHelper(LootkitObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -406,7 +406,7 @@ void LootkitObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPlayer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

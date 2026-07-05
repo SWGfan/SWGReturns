@@ -2,6 +2,7 @@ geonosian_worker = Creature:new {
 	objectName = "@mob/creature_names:geonosian_worker",
 	socialGroup = "geonosian",
 	faction = "",
+	mobType = MOB_NPC,
 	level = 44,
 	chanceHit = 0.46,
 	damageMin = 360,
@@ -31,26 +32,23 @@ geonosian_worker = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "geonosian_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "nge_all", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "geonosian_relic", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
+				{group = "geonosian_common", chance = 5000000},
+				{group = "geo_weapons", chance = 500000},
+				{group = "geonosian_relic", chance = 4500000}
+			}
+		}
 	},
-	weapons = {"geonosian_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "geonosian_weapons",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(brawlermaster,marksmanmaster,pistoleermaster,riflemanmaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(brawlermaster,marksmanmaster,pistoleermaster,riflemanmaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(geonosian_worker, "geonosian_worker")

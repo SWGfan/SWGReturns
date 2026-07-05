@@ -8,7 +8,7 @@
  *	AccountStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2608110191,RPC_SETACTIVE__BOOL_,RPC_SETACCOUNTID__INT_,RPC_SETSTATIONID__INT_,RPC_SETADMINLEVEL__INT_,RPC_SETUSERNAME__STRING_,RPC_SETBANEXPIRES__INT_,RPC_SETBANREASON__STRING_,RPC_SETSALT__STRING_,RPC_SETBANADMIN__INT_,RPC_GETBANADMIN__,RPC_SETTIMECREATED__INT_,RPC_ISACTIVE__,RPC_GETACCOUNTID__,RPC_GETSTATIONID__,RPC_GETADMINLEVEL__,RPC_GETUSERNAME__,RPC_GETSALT__,RPC_GETTIMECREATED__,RPC_UPDATEFROMDATABASE__,RPC_UPDATEACCOUNT__,RPC_UPDATECHARACTERS__,RPC_UPDATEGALAXYBANS__,RPC_GETBANEXPIRES__,RPC_GETBANREASON__,RPC_ISBANNED__,RPC_REMOVEGALAXYBAN__INT_,RPC_ISSQLLOADED__,RPC_SETLASTLOGIN__INT_,RPC_GETLASTLOGIN__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2608110191,RPC_SETACTIVE__BOOL_,RPC_SETACCOUNTID__INT_,RPC_SETSTATIONID__INT_,RPC_SETADMINLEVEL__INT_,RPC_SETUSERNAME__STRING_,RPC_SETBANEXPIRES__INT_,RPC_SETBANREASON__STRING_,RPC_SETSALT__STRING_,RPC_SETBANADMIN__INT_,RPC_GETBANADMIN__,RPC_SETTIMECREATED__INT_,RPC_ISACTIVE__,RPC_GETACCOUNTID__,RPC_GETSTATIONID__,RPC_GETADMINLEVEL__,RPC_GETUSERNAME__,RPC_GETSALT__,RPC_GETTIMECREATED__,RPC_UPDATEFROMDATABASE__,RPC_UPDATEACCOUNT__,RPC_UPDATECHARACTERS__,RPC_UPDATEGALAXYBANS__,RPC_GETBANEXPIRES__,RPC_GETBANREASON__,RPC_ISBANNED__,RPC_REMOVEGALAXYBAN__INT_,RPC_ISSQLLOADED__};
 
 Account::Account() : ManagedObject(DummyConstructorParameter::instance()) {
 	AccountImplementation* _implementation = new AccountImplementation();
@@ -29,7 +29,7 @@ Account::~Account() {
 
 void Account::initializeTransientMembers() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -43,7 +43,7 @@ void Account::initializeTransientMembers() {
 
 void Account::setActive(bool act) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ void Account::setActive(bool act) {
 
 void Account::setAccountID(unsigned int accountid) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ void Account::setAccountID(unsigned int accountid) {
 
 void Account::setStationID(unsigned int stationid) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void Account::setStationID(unsigned int stationid) {
 
 void Account::setAdminLevel(unsigned int adminlvl) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ void Account::setAdminLevel(unsigned int adminlvl) {
 
 void Account::setUsername(const String& usern) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ void Account::setUsername(const String& usern) {
 
 void Account::setBanExpires(unsigned int expires) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ void Account::setBanExpires(unsigned int expires) {
 
 void Account::setBanReason(const String& reason) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +155,7 @@ void Account::setBanReason(const String& reason) {
 
 void Account::setSalt(const String& s) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +171,7 @@ void Account::setSalt(const String& s) {
 
 void Account::setBanAdmin(unsigned int value) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -187,7 +187,7 @@ void Account::setBanAdmin(unsigned int value) {
 
 unsigned int Account::getBanAdmin() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -201,7 +201,7 @@ unsigned int Account::getBanAdmin() {
 
 void Account::setTimeCreated(unsigned int seconds) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ void Account::setTimeCreated(unsigned int seconds) {
 
 bool Account::isActive() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -229,9 +229,9 @@ bool Account::isActive() {
 	}
 }
 
-unsigned int Account::getAccountID() {
+unsigned int Account::getAccountID() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -245,7 +245,7 @@ unsigned int Account::getAccountID() {
 
 Reference<GalaxyAccountInfo* > Account::getGalaxyAccountInfo(const String& galaxyName) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -255,7 +255,7 @@ Reference<GalaxyAccountInfo* > Account::getGalaxyAccountInfo(const String& galax
 
 GalaxyAccountInfoMap* Account::getGalaxyAccountInfo() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -263,9 +263,9 @@ GalaxyAccountInfoMap* Account::getGalaxyAccountInfo() {
 	}
 }
 
-unsigned int Account::getStationID() {
+unsigned int Account::getStationID() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -277,9 +277,9 @@ unsigned int Account::getStationID() {
 	}
 }
 
-unsigned int Account::getAdminLevel() {
+unsigned int Account::getAdminLevel() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -291,9 +291,9 @@ unsigned int Account::getAdminLevel() {
 	}
 }
 
-String Account::getUsername() {
+String Account::getUsername() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -307,9 +307,9 @@ String Account::getUsername() {
 	}
 }
 
-String Account::getSalt() {
+String Account::getSalt() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -323,9 +323,9 @@ String Account::getSalt() {
 	}
 }
 
-unsigned int Account::getTimeCreated() {
+unsigned int Account::getTimeCreated() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -339,7 +339,7 @@ unsigned int Account::getTimeCreated() {
 
 void Account::updateFromDatabase() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -354,7 +354,7 @@ void Account::updateFromDatabase() {
 
 void Account::updateAccount() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -369,7 +369,7 @@ void Account::updateAccount() {
 
 void Account::updateCharacters() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -384,7 +384,7 @@ void Account::updateCharacters() {
 
 void Account::updateGalaxyBans() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -397,9 +397,9 @@ void Account::updateGalaxyBans() {
 	}
 }
 
-unsigned int Account::getBanExpires() {
+unsigned int Account::getBanExpires() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -411,9 +411,9 @@ unsigned int Account::getBanExpires() {
 	}
 }
 
-String Account::getBanReason() {
+String Account::getBanReason() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -427,9 +427,9 @@ String Account::getBanReason() {
 	}
 }
 
-bool Account::isBanned() {
+bool Account::isBanned() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -443,7 +443,7 @@ bool Account::isBanned() {
 
 CharacterList* Account::getCharacterList() {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -451,9 +451,19 @@ CharacterList* Account::getCharacterList() {
 	}
 }
 
-GalaxyBanEntry* Account::getGalaxyBan(unsigned const int galaxy) {
+const GalaxyBanEntry* Account::getGalaxyBan(unsigned const int galaxy) const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getGalaxyBan(galaxy);
+	}
+}
+
+GalaxyBanEntry* Account::getGalaxyBan(unsigned const int galaxy) {
+	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -463,7 +473,7 @@ GalaxyBanEntry* Account::getGalaxyBan(unsigned const int galaxy) {
 
 void Account::addGalaxyBan(GalaxyBanEntry* ban, unsigned int galaxy) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -474,7 +484,7 @@ void Account::addGalaxyBan(GalaxyBanEntry* ban, unsigned int galaxy) {
 
 void Account::removeGalaxyBan(unsigned const int galaxy) {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -488,9 +498,9 @@ void Account::removeGalaxyBan(unsigned const int galaxy) {
 	}
 }
 
-CharacterListEntry* Account::getCharacterBan(unsigned const int galaxy, const String& name) {
+const CharacterListEntry* Account::getCharacterBan(unsigned const int galaxy, const String& name) const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -498,9 +508,19 @@ CharacterListEntry* Account::getCharacterBan(unsigned const int galaxy, const St
 	}
 }
 
-unsigned int Account::getAgeInDays() {
+CharacterListEntry* Account::getCharacterBan(unsigned const int galaxy, const String& name) {
+	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getCharacterBan(galaxy, name);
+	}
+}
+
+unsigned int Account::getAgeInDays() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -508,9 +528,9 @@ unsigned int Account::getAgeInDays() {
 	}
 }
 
-bool Account::isSqlLoaded() {
+bool Account::isSqlLoaded() const {
 	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -519,46 +539,6 @@ bool Account::isSqlLoaded() {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isSqlLoaded();
-	}
-}
-
-unsigned int Account::getLastLoginInDays() {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getLastLoginInDays();
-	}
-}
-
-void Account::setLastLogin(unsigned int seconds) {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETLASTLOGIN__INT_);
-		method.addUnsignedIntParameter(seconds);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setLastLogin(seconds);
-	}
-}
-
-unsigned int Account::getLastLogin() {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETLASTLOGIN__);
-
-		return method.executeWithUnsignedIntReturn();
-	} else {
-		return _implementation->getLastLogin();
 	}
 }
 
@@ -595,7 +575,7 @@ void AccountImplementation::finalize() {
 void AccountImplementation::_initializeImplementation() {
 	_setClassHelper(AccountHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -672,6 +652,10 @@ bool AccountImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		return true;
 
 	switch(nameHashCode) {
+	case 0xcc242a49: //Account.created
+		TypeInfo<unsigned int >::parseFromBinaryStream(&created, stream);
+		return true;
+
 	case 0xbcb3362e: //Account.galaxyAccountInfo
 		TypeInfo<GalaxyAccountInfoMap >::parseFromBinaryStream(&galaxyAccountInfo, stream);
 		return true;
@@ -694,6 +678,15 @@ int AccountImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
+	_nameHashCode = 0xcc242a49; //Account.created
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned int >::toBinaryStream(&created, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0xbcb3362e; //Account.galaxyAccountInfo
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -711,6 +704,8 @@ void AccountImplementation::writeJSON(nlohmann::json& j) {
 	ManagedObjectImplementation::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
+	thisObject["created"] = created;
+
 	thisObject["galaxyAccountInfo"] = galaxyAccountInfo;
 
 	j["Account"] = thisObject;
@@ -776,7 +771,7 @@ bool AccountImplementation::isActive() {
 	return active == true;
 }
 
-unsigned int AccountImplementation::getAccountID() {
+unsigned int AccountImplementation::getAccountID() const{
 	// server/login/account/Account.idl():  		return accountID;
 	return accountID;
 }
@@ -786,37 +781,37 @@ GalaxyAccountInfoMap* AccountImplementation::getGalaxyAccountInfo() {
 	return (&galaxyAccountInfo);
 }
 
-unsigned int AccountImplementation::getStationID() {
+unsigned int AccountImplementation::getStationID() const{
 	// server/login/account/Account.idl():  		return stationID;
 	return stationID;
 }
 
-unsigned int AccountImplementation::getAdminLevel() {
+unsigned int AccountImplementation::getAdminLevel() const{
 	// server/login/account/Account.idl():  		return adminLevel;
 	return adminLevel;
 }
 
-String AccountImplementation::getUsername() {
+String AccountImplementation::getUsername() const{
 	// server/login/account/Account.idl():  		return username;
 	return username;
 }
 
-String AccountImplementation::getSalt() {
+String AccountImplementation::getSalt() const{
 	// server/login/account/Account.idl():  		return salt;
 	return salt;
 }
 
-unsigned int AccountImplementation::getTimeCreated() {
+unsigned int AccountImplementation::getTimeCreated() const{
 	// server/login/account/Account.idl():  		return created;
 	return created;
 }
 
-unsigned int AccountImplementation::getBanExpires() {
+unsigned int AccountImplementation::getBanExpires() const{
 	// server/login/account/Account.idl():  		return banExpires;
 	return banExpires;
 }
 
-String AccountImplementation::getBanReason() {
+String AccountImplementation::getBanReason() const{
 	// server/login/account/Account.idl():  		return banReason;
 	return banReason;
 }
@@ -824,16 +819,6 @@ String AccountImplementation::getBanReason() {
 void AccountImplementation::removeGalaxyBan(unsigned const int galaxy) {
 	// server/login/account/Account.idl():  		galaxyBans.drop(galaxy);
 	(&galaxyBans)->drop(galaxy);
-}
-
-void AccountImplementation::setLastLogin(unsigned int seconds) {
-	// server/login/account/Account.idl():  		lastLogin = seconds;
-	lastLogin = seconds;
-}
-
-unsigned int AccountImplementation::getLastLogin() {
-	// server/login/account/Account.idl():  		return lastLogin;
-	return lastLogin;
 }
 
 /*
@@ -1058,21 +1043,6 @@ void AccountAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_SETLASTLOGIN__INT_:
-		{
-			unsigned int seconds = inv->getUnsignedIntParameter();
-			
-			setLastLogin(seconds);
-			
-		}
-		break;
-	case RPC_GETLASTLOGIN__:
-		{
-			
-			unsigned int _m_res = getLastLogin();
-			resp->insertInt(_m_res);
-		}
-		break;
 	default:
 		ManagedObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -1130,27 +1100,27 @@ bool AccountAdapter::isActive() {
 	return (static_cast<Account*>(stub))->isActive();
 }
 
-unsigned int AccountAdapter::getAccountID() {
+unsigned int AccountAdapter::getAccountID() const {
 	return (static_cast<Account*>(stub))->getAccountID();
 }
 
-unsigned int AccountAdapter::getStationID() {
+unsigned int AccountAdapter::getStationID() const {
 	return (static_cast<Account*>(stub))->getStationID();
 }
 
-unsigned int AccountAdapter::getAdminLevel() {
+unsigned int AccountAdapter::getAdminLevel() const {
 	return (static_cast<Account*>(stub))->getAdminLevel();
 }
 
-String AccountAdapter::getUsername() {
+String AccountAdapter::getUsername() const {
 	return (static_cast<Account*>(stub))->getUsername();
 }
 
-String AccountAdapter::getSalt() {
+String AccountAdapter::getSalt() const {
 	return (static_cast<Account*>(stub))->getSalt();
 }
 
-unsigned int AccountAdapter::getTimeCreated() {
+unsigned int AccountAdapter::getTimeCreated() const {
 	return (static_cast<Account*>(stub))->getTimeCreated();
 }
 
@@ -1170,15 +1140,15 @@ void AccountAdapter::updateGalaxyBans() {
 	(static_cast<Account*>(stub))->updateGalaxyBans();
 }
 
-unsigned int AccountAdapter::getBanExpires() {
+unsigned int AccountAdapter::getBanExpires() const {
 	return (static_cast<Account*>(stub))->getBanExpires();
 }
 
-String AccountAdapter::getBanReason() {
+String AccountAdapter::getBanReason() const {
 	return (static_cast<Account*>(stub))->getBanReason();
 }
 
-bool AccountAdapter::isBanned() {
+bool AccountAdapter::isBanned() const {
 	return (static_cast<Account*>(stub))->isBanned();
 }
 
@@ -1186,16 +1156,8 @@ void AccountAdapter::removeGalaxyBan(unsigned const int galaxy) {
 	(static_cast<Account*>(stub))->removeGalaxyBan(galaxy);
 }
 
-bool AccountAdapter::isSqlLoaded() {
+bool AccountAdapter::isSqlLoaded() const {
 	return (static_cast<Account*>(stub))->isSqlLoaded();
-}
-
-void AccountAdapter::setLastLogin(unsigned int seconds) {
-	(static_cast<Account*>(stub))->setLastLogin(seconds);
-}
-
-unsigned int AccountAdapter::getLastLogin() {
-	return (static_cast<Account*>(stub))->getLastLogin();
 }
 
 /*
@@ -1253,6 +1215,9 @@ void AccountPOD::writeJSON(nlohmann::json& j) {
 	ManagedObjectPOD::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
+	if (created)
+		thisObject["created"] = created.value();
+
 	if (galaxyAccountInfo)
 		thisObject["galaxyAccountInfo"] = galaxyAccountInfo.value();
 
@@ -1273,6 +1238,17 @@ int AccountPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
+	if (created) {
+	_nameHashCode = 0xcc242a49; //Account.created
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned int >::toBinaryStream(&created.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 	if (galaxyAccountInfo) {
 	_nameHashCode = 0xbcb3362e; //Account.galaxyAccountInfo
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -1293,6 +1269,14 @@ bool AccountPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		return true;
 
 	switch(nameHashCode) {
+	case 0xcc242a49: //Account.created
+		{
+			unsigned int _mncreated;
+			TypeInfo<unsigned int >::parseFromBinaryStream(&_mncreated, stream);
+			created = std::move(_mncreated);
+		}
+		return true;
+
 	case 0xbcb3362e: //Account.galaxyAccountInfo
 		{
 			GalaxyAccountInfoMap _mngalaxyAccountInfo;
@@ -1326,6 +1310,8 @@ void AccountPOD::readObject(ObjectInputStream* stream) {
 
 void AccountPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	ManagedObjectPOD::writeObjectCompact(stream);
+
+	TypeInfo<unsigned int >::toBinaryStream(&created.value(), stream);
 
 	TypeInfo<GalaxyAccountInfoMap >::toBinaryStream(&galaxyAccountInfo.value(), stream);
 

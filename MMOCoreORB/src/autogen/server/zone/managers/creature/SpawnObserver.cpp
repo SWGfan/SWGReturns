@@ -4,8 +4,6 @@
 
 #include "SpawnObserver.h"
 
-#include "server/zone/objects/creature/CreatureObject.h"
-
 /*
  *	SpawnObserverStub
  */
@@ -30,7 +28,7 @@ SpawnObserver::~SpawnObserver() {
 
 int SpawnObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +46,7 @@ int SpawnObserver::notifyObserverEvent(unsigned int eventType, Observable* obser
 
 void SpawnObserver::setLairTemplate(LairTemplate* tmpl) {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +56,7 @@ void SpawnObserver::setLairTemplate(LairTemplate* tmpl) {
 
 void SpawnObserver::setDifficulty(int diff) {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +71,7 @@ void SpawnObserver::setDifficulty(int diff) {
 
 void SpawnObserver::setSize(float siz) {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +86,7 @@ void SpawnObserver::setSize(float siz) {
 
 String SpawnObserver::getLairTemplateName() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +102,7 @@ String SpawnObserver::getLairTemplateName() {
 
 SynchronizedVector<ManagedReference<CreatureObject* > >* SpawnObserver::getSpawnedCreatures() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -114,7 +112,7 @@ SynchronizedVector<ManagedReference<CreatureObject* > >* SpawnObserver::getSpawn
 
 int SpawnObserver::getBabiesSpawned() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +126,7 @@ int SpawnObserver::getBabiesSpawned() {
 
 bool SpawnObserver::isSpawnObserver() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +140,7 @@ bool SpawnObserver::isSpawnObserver() {
 
 bool SpawnObserver::isLairObserver() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +154,7 @@ bool SpawnObserver::isLairObserver() {
 
 bool SpawnObserver::isDestroyMissionLairObserver() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +168,7 @@ bool SpawnObserver::isDestroyMissionLairObserver() {
 
 bool SpawnObserver::isTheaterSpawnObserver() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +182,7 @@ bool SpawnObserver::isTheaterSpawnObserver() {
 
 bool SpawnObserver::isDynamicSpawnObserver() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +196,7 @@ bool SpawnObserver::isDynamicSpawnObserver() {
 
 void SpawnObserver::despawnSpawns() {
 	SpawnObserverImplementation* _implementation = static_cast<SpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -243,7 +241,7 @@ void SpawnObserverImplementation::finalize() {
 void SpawnObserverImplementation::_initializeImplementation() {
 	_setClassHelper(SpawnObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -399,7 +397,7 @@ SpawnObserverImplementation::SpawnObserverImplementation() : ObserverImplementat
 	// server/zone/managers/creature/SpawnObserver.idl():  		Logger.setLoggingName("SpawnObserver");
 	Logger::setLoggingName("SpawnObserver");
 	// server/zone/managers/creature/SpawnObserver.idl():  		lairTemplate = null;
-	lairTemplate = nullptr;
+	lairTemplate = NULL;
 	// server/zone/managers/creature/SpawnObserver.idl():  		difficulty = 2;
 	difficulty = 2;
 	// server/zone/managers/creature/SpawnObserver.idl():  		babiesSpawned = 0;

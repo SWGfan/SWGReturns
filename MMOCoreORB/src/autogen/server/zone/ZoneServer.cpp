@@ -60,9 +60,9 @@
  *	ZoneServerStub
  */
 
-const float ZoneServer::CLOSEOBJECTRANGE = 512;
+const float ZoneServer::CLOSEOBJECTRANGE = 192;
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
 
 ZoneServer::ZoneServer(ConfigManager* config) : ManagedService(DummyConstructorParameter::instance()) {
 	ZoneServerImplementation* _implementation = new ZoneServerImplementation(config);
@@ -83,7 +83,7 @@ ZoneServer::~ZoneServer() {
 
 void ZoneServer::initializeTransientMembers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void ZoneServer::initializeTransientMembers() {
 
 ZoneClientSession* ZoneServer::createConnection(Socket* sock, SocketAddress& addr) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -107,7 +107,7 @@ ZoneClientSession* ZoneServer::createConnection(Socket* sock, SocketAddress& add
 
 void ZoneServer::initialize() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ void ZoneServer::initialize() {
 
 void ZoneServer::shutdown() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +135,7 @@ void ZoneServer::shutdown() {
 
 void ZoneServer::startManagers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ void ZoneServer::startManagers() {
 
 void ZoneServer::startZones() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ void ZoneServer::startZones() {
 
 void ZoneServer::stopManagers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -177,7 +177,7 @@ void ZoneServer::stopManagers() {
 
 void ZoneServer::start(int p, int mconn) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,7 +193,7 @@ void ZoneServer::start(int p, int mconn) {
 
 void ZoneServer::stop() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -207,7 +207,7 @@ void ZoneServer::stop() {
 
 void ZoneServer::clearZones() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,24 +219,25 @@ void ZoneServer::clearZones() {
 	}
 }
 
-void ZoneServer::timedShutdown(int minutes) {
+void ZoneServer::timedShutdown(int minutes, int flags) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_TIMEDSHUTDOWN__INT_);
+		DistributedMethod method(this, RPC_TIMEDSHUTDOWN__INT_INT_);
 		method.addSignedIntParameter(minutes);
+		method.addSignedIntParameter(flags);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->timedShutdown(minutes);
+		_implementation->timedShutdown(minutes, flags);
 	}
 }
 
 void ZoneServer::handleMessage(ZoneClientSession* client, Packet* message) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -246,7 +247,7 @@ void ZoneServer::handleMessage(ZoneClientSession* client, Packet* message) {
 
 void ZoneServer::processMessage(Message* message) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -256,7 +257,7 @@ void ZoneServer::processMessage(Message* message) {
 
 bool ZoneServer::handleError(ZoneClientSession* client, Exception& e) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -266,7 +267,7 @@ bool ZoneServer::handleError(ZoneClientSession* client, Exception& e) {
 
 void ZoneServer::addTotalSentPacket(int count) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -281,7 +282,7 @@ void ZoneServer::addTotalSentPacket(int count) {
 
 void ZoneServer::addTotalResentPacket(int count) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -296,7 +297,7 @@ void ZoneServer::addTotalResentPacket(int count) {
 
 void ZoneServer::printInfo() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -310,7 +311,7 @@ void ZoneServer::printInfo() {
 
 String ZoneServer::getInfo() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -326,7 +327,7 @@ String ZoneServer::getInfo() {
 
 void ZoneServer::printEvents() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -340,7 +341,7 @@ void ZoneServer::printEvents() {
 
 Reference<SceneObject* > ZoneServer::getObject(unsigned long long objectID, bool doLock) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -356,7 +357,7 @@ Reference<SceneObject* > ZoneServer::getObject(unsigned long long objectID, bool
 
 Reference<SceneObject* > ZoneServer::createObject(unsigned int templateCRC, const String& dbname, int persistenceLevel) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -373,7 +374,7 @@ Reference<SceneObject* > ZoneServer::createObject(unsigned int templateCRC, cons
 
 Reference<SceneObject* > ZoneServer::createObject(unsigned int templateCRC, int persistenceLevel, unsigned long long objectID) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -390,7 +391,7 @@ Reference<SceneObject* > ZoneServer::createObject(unsigned int templateCRC, int 
 
 Reference<SceneObject* > ZoneServer::createClientObject(unsigned int templateCRC, unsigned long long objectID) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -406,7 +407,7 @@ Reference<SceneObject* > ZoneServer::createClientObject(unsigned int templateCRC
 
 void ZoneServer::updateObjectToDatabase(SceneObject* object) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -421,7 +422,7 @@ void ZoneServer::updateObjectToDatabase(SceneObject* object) {
 
 void ZoneServer::updateObjectToStaticDatabase(SceneObject* object) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -436,7 +437,7 @@ void ZoneServer::updateObjectToStaticDatabase(SceneObject* object) {
 
 void ZoneServer::destroyObjectFromDatabase(unsigned long long objectID) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -451,7 +452,7 @@ void ZoneServer::destroyObjectFromDatabase(unsigned long long objectID) {
 
 void ZoneServer::lock(bool doLock) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -466,7 +467,7 @@ void ZoneServer::lock(bool doLock) {
 
 void ZoneServer::unlock(bool doLock) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -481,7 +482,7 @@ void ZoneServer::unlock(bool doLock) {
 
 void ZoneServer::fixScheduler() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -495,7 +496,7 @@ void ZoneServer::fixScheduler() {
 
 void ZoneServer::changeUserCap(int amount) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -510,7 +511,7 @@ void ZoneServer::changeUserCap(int amount) {
 
 int ZoneServer::getConnectionCount() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -524,7 +525,7 @@ int ZoneServer::getConnectionCount() {
 
 void ZoneServer::increaseOnlinePlayers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -538,7 +539,7 @@ void ZoneServer::increaseOnlinePlayers() {
 
 void ZoneServer::decreaseOnlinePlayers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -552,7 +553,7 @@ void ZoneServer::decreaseOnlinePlayers() {
 
 void ZoneServer::increaseTotalDeletedPlayers() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -564,9 +565,9 @@ void ZoneServer::increaseTotalDeletedPlayers() {
 	}
 }
 
-int ZoneServer::getGalaxyID() {
+int ZoneServer::getGalaxyID() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -578,9 +579,9 @@ int ZoneServer::getGalaxyID() {
 	}
 }
 
-String ZoneServer::getGalaxyName() {
+String ZoneServer::getGalaxyName() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -596,7 +597,7 @@ String ZoneServer::getGalaxyName() {
 
 void ZoneServer::setGalaxyName(const String& name) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -609,9 +610,9 @@ void ZoneServer::setGalaxyName(const String& name) {
 	}
 }
 
-bool ZoneServer::isServerLocked() {
+bool ZoneServer::isServerLocked() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,9 +624,9 @@ bool ZoneServer::isServerLocked() {
 	}
 }
 
-bool ZoneServer::isServerOnline() {
+bool ZoneServer::isServerOnline() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -637,9 +638,9 @@ bool ZoneServer::isServerOnline() {
 	}
 }
 
-bool ZoneServer::isServerOffline() {
+bool ZoneServer::isServerOffline() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -651,9 +652,9 @@ bool ZoneServer::isServerOffline() {
 	}
 }
 
-bool ZoneServer::isServerLoading() {
+bool ZoneServer::isServerLoading() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -665,9 +666,9 @@ bool ZoneServer::isServerLoading() {
 	}
 }
 
-bool ZoneServer::isServerShuttingDown() {
+bool ZoneServer::isServerShuttingDown() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -679,9 +680,9 @@ bool ZoneServer::isServerShuttingDown() {
 	}
 }
 
-int ZoneServer::getServerCap() {
+int ZoneServer::getServerCap() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -693,9 +694,9 @@ int ZoneServer::getServerCap() {
 	}
 }
 
-int ZoneServer::getServerState() {
+int ZoneServer::getServerState() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -707,9 +708,9 @@ int ZoneServer::getServerState() {
 	}
 }
 
-Zone* ZoneServer::getZone(const String& terrainName) {
+Zone* ZoneServer::getZone(const String& terrainName) const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -724,7 +725,7 @@ Zone* ZoneServer::getZone(const String& terrainName) {
 
 Zone* ZoneServer::getZone(int idx) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -737,9 +738,9 @@ Zone* ZoneServer::getZone(int idx) {
 	}
 }
 
-int ZoneServer::getZoneCount() {
+int ZoneServer::getZoneCount() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -751,9 +752,9 @@ int ZoneServer::getZoneCount() {
 	}
 }
 
-int ZoneServer::getMaxPlayers() {
+int ZoneServer::getMaxPlayers() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -765,9 +766,9 @@ int ZoneServer::getMaxPlayers() {
 	}
 }
 
-int ZoneServer::getTotalPlayers() {
+int ZoneServer::getTotalPlayers() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -779,9 +780,9 @@ int ZoneServer::getTotalPlayers() {
 	}
 }
 
-int ZoneServer::getDeletedPlayers() {
+int ZoneServer::getDeletedPlayers() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -795,7 +796,7 @@ int ZoneServer::getDeletedPlayers() {
 
 ObjectManager* ZoneServer::getObjectManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -805,7 +806,7 @@ ObjectManager* ZoneServer::getObjectManager() {
 
 PlayerManager* ZoneServer::getPlayerManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -819,7 +820,7 @@ PlayerManager* ZoneServer::getPlayerManager() {
 
 ReactionManager* ZoneServer::getReactionManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -833,7 +834,7 @@ ReactionManager* ZoneServer::getReactionManager() {
 
 FrsManager* ZoneServer::getFrsManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -847,7 +848,7 @@ FrsManager* ZoneServer::getFrsManager() {
 
 ChatManager* ZoneServer::getChatManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -861,7 +862,7 @@ ChatManager* ZoneServer::getChatManager() {
 
 CityManager* ZoneServer::getCityManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -875,7 +876,7 @@ CityManager* ZoneServer::getCityManager() {
 
 ObjectController* ZoneServer::getObjectController() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -889,7 +890,7 @@ ObjectController* ZoneServer::getObjectController() {
 
 MissionManager* ZoneServer::getMissionManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -903,7 +904,7 @@ MissionManager* ZoneServer::getMissionManager() {
 
 RadialManager* ZoneServer::getRadialManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -917,7 +918,7 @@ RadialManager* ZoneServer::getRadialManager() {
 
 GuildManager* ZoneServer::getGuildManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -931,7 +932,7 @@ GuildManager* ZoneServer::getGuildManager() {
 
 ResourceManager* ZoneServer::getResourceManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -945,7 +946,7 @@ ResourceManager* ZoneServer::getResourceManager() {
 
 CraftingManager* ZoneServer::getCraftingManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -959,7 +960,7 @@ CraftingManager* ZoneServer::getCraftingManager() {
 
 LootManager* ZoneServer::getLootManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -973,7 +974,7 @@ LootManager* ZoneServer::getLootManager() {
 
 AuctionManager* ZoneServer::getAuctionManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -987,7 +988,7 @@ AuctionManager* ZoneServer::getAuctionManager() {
 
 PetManager* ZoneServer::getPetManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1001,7 +1002,7 @@ PetManager* ZoneServer::getPetManager() {
 
 SkillManager* ZoneServer::getSkillManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1011,7 +1012,7 @@ SkillManager* ZoneServer::getSkillManager() {
 
 NameManager* ZoneServer::getNameManager() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1021,7 +1022,7 @@ NameManager* ZoneServer::getNameManager() {
 
 Time* ZoneServer::getStartTimestamp() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1031,7 +1032,7 @@ Time* ZoneServer::getStartTimestamp() {
 
 void ZoneServer::setGalaxyID(int galaxyid) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1046,7 +1047,7 @@ void ZoneServer::setGalaxyID(int galaxyid) {
 
 void ZoneServer::setServerState(int state) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1061,7 +1062,7 @@ void ZoneServer::setServerState(int state) {
 
 void ZoneServer::setShouldDeleteNavAreas(bool b) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1074,9 +1075,9 @@ void ZoneServer::setShouldDeleteNavAreas(bool b) {
 	}
 }
 
-bool ZoneServer::shouldDeleteNavAreas() {
+bool ZoneServer::shouldDeleteNavAreas() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1090,7 +1091,7 @@ bool ZoneServer::shouldDeleteNavAreas() {
 
 void ZoneServer::setServerStateLocked() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1104,7 +1105,7 @@ void ZoneServer::setServerStateLocked() {
 
 void ZoneServer::setServerStateOnline() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1118,7 +1119,7 @@ void ZoneServer::setServerStateOnline() {
 
 void ZoneServer::setServerStateShuttingDown() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1132,7 +1133,7 @@ void ZoneServer::setServerStateShuttingDown() {
 
 void ZoneServer::loadLoginMessage() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1146,7 +1147,7 @@ void ZoneServer::loadLoginMessage() {
 
 void ZoneServer::changeLoginMessage(const String& motd) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1159,9 +1160,9 @@ void ZoneServer::changeLoginMessage(const String& motd) {
 	}
 }
 
-String ZoneServer::getLoginMessage() {
+String ZoneServer::getLoginMessage() const {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1193,7 +1194,7 @@ void ZoneServer::_setImplementation(DistributedObjectServant* servant) {
  *	ZoneServerImplementation
  */
 
-const float ZoneServerImplementation::CLOSEOBJECTRANGE = 512;
+const float ZoneServerImplementation::CLOSEOBJECTRANGE = 192;
 
 ZoneServerImplementation::ZoneServerImplementation(DummyConstructorParameter* param) : ManagedServiceImplementation(param) {
 	_initializeImplementation();
@@ -1210,7 +1211,7 @@ void ZoneServerImplementation::finalize() {
 void ZoneServerImplementation::_initializeImplementation() {
 	_setClassHelper(ZoneServerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1609,12 +1610,12 @@ int ZoneServerImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 void ZoneServerImplementation::fixScheduler() {
 }
 
-int ZoneServerImplementation::getGalaxyID() {
+int ZoneServerImplementation::getGalaxyID() const{
 	// server/zone/ZoneServer.idl():  		return galaxyID;
 	return galaxyID;
 }
 
-String ZoneServerImplementation::getGalaxyName() {
+String ZoneServerImplementation::getGalaxyName() const{
 	// server/zone/ZoneServer.idl():  		return galaxyName;
 	return galaxyName;
 }
@@ -1624,42 +1625,42 @@ void ZoneServerImplementation::setGalaxyName(const String& name) {
 	galaxyName = name;
 }
 
-bool ZoneServerImplementation::isServerLocked() {
+bool ZoneServerImplementation::isServerLocked() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get() == LOCKED;
 	return (&serverState)->get() == LOCKED;
 }
 
-bool ZoneServerImplementation::isServerOnline() {
+bool ZoneServerImplementation::isServerOnline() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get() == ONLINE;
 	return (&serverState)->get() == ONLINE;
 }
 
-bool ZoneServerImplementation::isServerOffline() {
+bool ZoneServerImplementation::isServerOffline() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get() == OFFLINE;
 	return (&serverState)->get() == OFFLINE;
 }
 
-bool ZoneServerImplementation::isServerLoading() {
+bool ZoneServerImplementation::isServerLoading() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get() == LOADING;
 	return (&serverState)->get() == LOADING;
 }
 
-bool ZoneServerImplementation::isServerShuttingDown() {
+bool ZoneServerImplementation::isServerShuttingDown() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get() == SHUTTINGDOWN;
 	return (&serverState)->get() == SHUTTINGDOWN;
 }
 
-int ZoneServerImplementation::getServerCap() {
+int ZoneServerImplementation::getServerCap() const{
 	// server/zone/ZoneServer.idl():  		return serverCap;
 	return serverCap;
 }
 
-int ZoneServerImplementation::getServerState() {
+int ZoneServerImplementation::getServerState() const{
 	// server/zone/ZoneServer.idl():  		return serverState.get();
 	return (&serverState)->get();
 }
 
-Zone* ZoneServerImplementation::getZone(const String& terrainName) {
+Zone* ZoneServerImplementation::getZone(const String& terrainName) const{
 	// server/zone/ZoneServer.idl():  		return zones.get(terrainName);
 	return zones->get(terrainName);
 }
@@ -1669,22 +1670,22 @@ Zone* ZoneServerImplementation::getZone(int idx) {
 	return zones->get(idx);
 }
 
-int ZoneServerImplementation::getZoneCount() {
+int ZoneServerImplementation::getZoneCount() const{
 	// server/zone/ZoneServer.idl():  		return zones.size();
 	return zones->size();
 }
 
-int ZoneServerImplementation::getMaxPlayers() {
+int ZoneServerImplementation::getMaxPlayers() const{
 	// server/zone/ZoneServer.idl():  		return maximumPlayers.get();
 	return (&maximumPlayers)->get();
 }
 
-int ZoneServerImplementation::getTotalPlayers() {
+int ZoneServerImplementation::getTotalPlayers() const{
 	// server/zone/ZoneServer.idl():  		return totalPlayers.get();
 	return (&totalPlayers)->get();
 }
 
-int ZoneServerImplementation::getDeletedPlayers() {
+int ZoneServerImplementation::getDeletedPlayers() const{
 	// server/zone/ZoneServer.idl():  		return totalDeletedPlayers.get();
 	return (&totalDeletedPlayers)->get();
 }
@@ -1794,7 +1795,7 @@ void ZoneServerImplementation::setShouldDeleteNavAreas(bool b) {
 	deleteNavAreas = b;
 }
 
-bool ZoneServerImplementation::shouldDeleteNavAreas() {
+bool ZoneServerImplementation::shouldDeleteNavAreas() const{
 	// server/zone/ZoneServer.idl():  		return deleteNavAreas;
 	return deleteNavAreas;
 }
@@ -1879,11 +1880,12 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_TIMEDSHUTDOWN__INT_:
+	case RPC_TIMEDSHUTDOWN__INT_INT_:
 		{
 			int minutes = inv->getSignedIntParameter();
+			int flags = inv->getSignedIntParameter();
 			
-			timedShutdown(minutes);
+			timedShutdown(minutes, flags);
 			
 		}
 		break;
@@ -1930,7 +1932,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			bool doLock = inv->getBooleanParameter();
 			
 			DistributedObject* _m_res = getObject(objectID, doLock);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_CREATEOBJECT__INT_STRING_INT_:
@@ -1940,7 +1942,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int persistenceLevel = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = createObject(templateCRC, dbname, persistenceLevel);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_CREATEOBJECT__INT_INT_LONG_:
@@ -1950,7 +1952,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			unsigned long long objectID = inv->getUnsignedLongParameter();
 			
 			DistributedObject* _m_res = createObject(templateCRC, persistenceLevel, objectID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_CREATECLIENTOBJECT__INT_LONG_:
@@ -1959,7 +1961,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			unsigned long long objectID = inv->getUnsignedLongParameter();
 			
 			DistributedObject* _m_res = createClientObject(templateCRC, objectID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_:
@@ -2121,7 +2123,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			 String terrainName; inv->getAsciiParameter(terrainName);
 			
 			DistributedObject* _m_res = getZone(terrainName);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETZONE__INT_:
@@ -2129,7 +2131,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int idx = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getZone(idx);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETZONECOUNT__:
@@ -2164,98 +2166,98 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPlayerManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETREACTIONMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getReactionManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETFRSMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getFrsManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCHATMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getChatManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCITYMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getCityManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETOBJECTCONTROLLER__:
 		{
 			
 			DistributedObject* _m_res = getObjectController();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETMISSIONMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getMissionManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETRADIALMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getRadialManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGUILDMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getGuildManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETRESOURCEMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getResourceManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCRAFTINGMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getCraftingManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETLOOTMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getLootManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETAUCTIONMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getAuctionManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETPETMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getPetManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETGALAXYID__INT_:
@@ -2373,8 +2375,8 @@ void ZoneServerAdapter::clearZones() {
 	(static_cast<ZoneServer*>(stub))->clearZones();
 }
 
-void ZoneServerAdapter::timedShutdown(int minutes) {
-	(static_cast<ZoneServer*>(stub))->timedShutdown(minutes);
+void ZoneServerAdapter::timedShutdown(int minutes, int flags) {
+	(static_cast<ZoneServer*>(stub))->timedShutdown(minutes, flags);
 }
 
 void ZoneServerAdapter::addTotalSentPacket(int count) {
@@ -2457,11 +2459,11 @@ void ZoneServerAdapter::increaseTotalDeletedPlayers() {
 	(static_cast<ZoneServer*>(stub))->increaseTotalDeletedPlayers();
 }
 
-int ZoneServerAdapter::getGalaxyID() {
+int ZoneServerAdapter::getGalaxyID() const {
 	return (static_cast<ZoneServer*>(stub))->getGalaxyID();
 }
 
-String ZoneServerAdapter::getGalaxyName() {
+String ZoneServerAdapter::getGalaxyName() const {
 	return (static_cast<ZoneServer*>(stub))->getGalaxyName();
 }
 
@@ -2469,35 +2471,35 @@ void ZoneServerAdapter::setGalaxyName(const String& name) {
 	(static_cast<ZoneServer*>(stub))->setGalaxyName(name);
 }
 
-bool ZoneServerAdapter::isServerLocked() {
+bool ZoneServerAdapter::isServerLocked() const {
 	return (static_cast<ZoneServer*>(stub))->isServerLocked();
 }
 
-bool ZoneServerAdapter::isServerOnline() {
+bool ZoneServerAdapter::isServerOnline() const {
 	return (static_cast<ZoneServer*>(stub))->isServerOnline();
 }
 
-bool ZoneServerAdapter::isServerOffline() {
+bool ZoneServerAdapter::isServerOffline() const {
 	return (static_cast<ZoneServer*>(stub))->isServerOffline();
 }
 
-bool ZoneServerAdapter::isServerLoading() {
+bool ZoneServerAdapter::isServerLoading() const {
 	return (static_cast<ZoneServer*>(stub))->isServerLoading();
 }
 
-bool ZoneServerAdapter::isServerShuttingDown() {
+bool ZoneServerAdapter::isServerShuttingDown() const {
 	return (static_cast<ZoneServer*>(stub))->isServerShuttingDown();
 }
 
-int ZoneServerAdapter::getServerCap() {
+int ZoneServerAdapter::getServerCap() const {
 	return (static_cast<ZoneServer*>(stub))->getServerCap();
 }
 
-int ZoneServerAdapter::getServerState() {
+int ZoneServerAdapter::getServerState() const {
 	return (static_cast<ZoneServer*>(stub))->getServerState();
 }
 
-Zone* ZoneServerAdapter::getZone(const String& terrainName) {
+Zone* ZoneServerAdapter::getZone(const String& terrainName) const {
 	return (static_cast<ZoneServer*>(stub))->getZone(terrainName);
 }
 
@@ -2505,19 +2507,19 @@ Zone* ZoneServerAdapter::getZone(int idx) {
 	return (static_cast<ZoneServer*>(stub))->getZone(idx);
 }
 
-int ZoneServerAdapter::getZoneCount() {
+int ZoneServerAdapter::getZoneCount() const {
 	return (static_cast<ZoneServer*>(stub))->getZoneCount();
 }
 
-int ZoneServerAdapter::getMaxPlayers() {
+int ZoneServerAdapter::getMaxPlayers() const {
 	return (static_cast<ZoneServer*>(stub))->getMaxPlayers();
 }
 
-int ZoneServerAdapter::getTotalPlayers() {
+int ZoneServerAdapter::getTotalPlayers() const {
 	return (static_cast<ZoneServer*>(stub))->getTotalPlayers();
 }
 
-int ZoneServerAdapter::getDeletedPlayers() {
+int ZoneServerAdapter::getDeletedPlayers() const {
 	return (static_cast<ZoneServer*>(stub))->getDeletedPlayers();
 }
 
@@ -2589,7 +2591,7 @@ void ZoneServerAdapter::setShouldDeleteNavAreas(bool b) {
 	(static_cast<ZoneServer*>(stub))->setShouldDeleteNavAreas(b);
 }
 
-bool ZoneServerAdapter::shouldDeleteNavAreas() {
+bool ZoneServerAdapter::shouldDeleteNavAreas() const {
 	return (static_cast<ZoneServer*>(stub))->shouldDeleteNavAreas();
 }
 
@@ -2613,7 +2615,7 @@ void ZoneServerAdapter::changeLoginMessage(const String& motd) {
 	(static_cast<ZoneServer*>(stub))->changeLoginMessage(motd);
 }
 
-String ZoneServerAdapter::getLoginMessage() {
+String ZoneServerAdapter::getLoginMessage() const {
 	return (static_cast<ZoneServer*>(stub))->getLoginMessage();
 }
 

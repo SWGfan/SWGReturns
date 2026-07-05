@@ -2,15 +2,16 @@ enhanced_gaping_spider = Creature:new {
 	objectName = "@mob/creature_names:geonosian_gaping_spider_fire",
 	customName = "Fire Breathing Spider",
 	socialGroup = "geonosian_creature",
+	mobType = MOB_CARNIVORE,
 	faction = "",
 	level = 108,
 	chanceHit = 2.5,
-	damageMin = 1500,
-	damageMax = 2500,
+	damageMin = 715,
+	damageMax = 1140,
 	baseXp = 10267,
 	baseHAM = 32000,
-	baseHAMmax = 50000,
-	armor = 2,
+	baseHAMmax = 39000,
+	armor = 1,
 	resists = {150,10,-1,195,-1,10,10,10,-1},
 	meatType = "meat_insect",
 	meatAmount = 50,
@@ -31,35 +32,22 @@ enhanced_gaping_spider = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "fire_breathing_spider", chance = 10000000},
+				{group = "fire_breathing_spider", chance = 10000000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "nge_all", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "geonosian_common", chance = 10000000},
-			},
-			lootChance = 5000000
-		},		
-		{
-			groups = {
-				{group = "fire_breathing_spider", chance = 10000000},
-			},
-			lootChance = 5000000
+			lootChance = 6000000,
 		},
 	},
-	weapons = {"creature_spit_heavy_flame"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "object/weapon/ranged/creature/creature_spit_heavy_flame.iff",
+	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_heavy_flame.iff",
 	conversationTemplate = "",
-	attacks = {
-		{"strongpoison",""},
-		{"stunattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"strongpoison",""}, {"stunattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(enhanced_gaping_spider, "enhanced_gaping_spider")

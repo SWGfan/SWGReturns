@@ -28,7 +28,7 @@ LambdaObserver::~LambdaObserver() {
 
 int LambdaObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	LambdaObserverImplementation* _implementation = static_cast<LambdaObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void LambdaObserverImplementation::finalize() {
 void LambdaObserverImplementation::_initializeImplementation() {
 	_setClassHelper(LambdaObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -191,7 +191,7 @@ int LambdaObserverImplementation::writeObjectMembers(ObjectOutputStream* stream)
 
 int LambdaObserverImplementation::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	// server/utils/LambdaObserver.idl():   	return 1;
-	if (function != nullptr)	// server/utils/LambdaObserver.idl():  			return function.notifyObserverEvent(eventType, observable, arg1, arg2);
+	if (function)	// server/utils/LambdaObserver.idl():  			return function.notifyObserverEvent(eventType, observable, arg1, arg2);
 	return function->notifyObserverEvent(eventType, observable, arg1, arg2);
 
 	else 	// server/utils/LambdaObserver.idl():   	return 1;

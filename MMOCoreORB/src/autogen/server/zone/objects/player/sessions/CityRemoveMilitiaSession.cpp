@@ -4,12 +4,6 @@
 
 #include "CityRemoveMilitiaSession.h"
 
-#include "server/zone/objects/creature/CreatureObject.h"
-
-#include "server/zone/objects/region/CityRegion.h"
-
-#include "server/zone/objects/scene/SceneObject.h"
-
 /*
  *	CityRemoveMilitiaSessionStub
  */
@@ -34,7 +28,7 @@ CityRemoveMilitiaSession::~CityRemoveMilitiaSession() {
 
 unsigned long long CityRemoveMilitiaSession::getMilitiaID() {
 	CityRemoveMilitiaSessionImplementation* _implementation = static_cast<CityRemoveMilitiaSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +42,7 @@ unsigned long long CityRemoveMilitiaSession::getMilitiaID() {
 
 int CityRemoveMilitiaSession::initializeSession() {
 	CityRemoveMilitiaSessionImplementation* _implementation = static_cast<CityRemoveMilitiaSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +56,7 @@ int CityRemoveMilitiaSession::initializeSession() {
 
 int CityRemoveMilitiaSession::cancelSession() {
 	CityRemoveMilitiaSessionImplementation* _implementation = static_cast<CityRemoveMilitiaSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +70,7 @@ int CityRemoveMilitiaSession::cancelSession() {
 
 int CityRemoveMilitiaSession::clearSession() {
 	CityRemoveMilitiaSessionImplementation* _implementation = static_cast<CityRemoveMilitiaSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +115,7 @@ void CityRemoveMilitiaSessionImplementation::finalize() {
 void CityRemoveMilitiaSessionImplementation::_initializeImplementation() {
 	_setClassHelper(CityRemoveMilitiaSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -297,7 +291,7 @@ int CityRemoveMilitiaSessionImplementation::cancelSession() {
 	// server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl():  		CreatureObject creature = creatureObject;
 	ManagedReference<CreatureObject* > creature = creatureObject;
 	// server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl():  		return 
-	if (creature != nullptr)	// server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl():  			creature.dropActiveSession(SessionFacadeType.CITYMILITIA);
+	if (creature)	// server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl():  			creature.dropActiveSession(SessionFacadeType.CITYMILITIA);
 	creature->dropActiveSession(SessionFacadeType::CITYMILITIA);
 	// server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl():  		return 0;
 	return 0;

@@ -54,7 +54,7 @@ CityManager::~CityManager() {
 
 void CityManager::loadLuaConfig() {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ void CityManager::loadLuaConfig() {
 
 void CityManager::loadCityRegions() {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ void CityManager::loadCityRegions() {
 
 void CityManager::stop() {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ void CityManager::stop() {
 
 bool CityManager::validateCityName(const String& name) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ bool CityManager::validateCityName(const String& name) {
 
 bool CityManager::isCityInRange(Zone* zone, float x, float y) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +128,7 @@ bool CityManager::isCityInRange(Zone* zone, float x, float y) {
 
 CityRegion* CityManager::createCity(CreatureObject* mayor, const String& cityName, float x, float y) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -141,14 +141,14 @@ CityRegion* CityManager::createCity(CreatureObject* mayor, const String& cityNam
 		return static_cast<CityRegion*>(method.executeWithObjectReturn());
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((mayor == nullptr) || mayor->isLockedByCurrentThread());
+		assert((mayor == NULL) || mayor->isLockedByCurrentThread());
 		return _implementation->createCity(mayor, cityName, x, y);
 	}
 }
 
 void CityManager::assessCitizens(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ void CityManager::assessCitizens(CityRegion* city) {
 
 void CityManager::processCityUpdate(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -178,7 +178,7 @@ void CityManager::processCityUpdate(CityRegion* city) {
 
 void CityManager::processIncomeTax(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,7 +193,7 @@ void CityManager::processIncomeTax(CityRegion* city) {
 
 void CityManager::updateCityVoting(CityRegion* city, bool override) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -209,7 +209,7 @@ void CityManager::updateCityVoting(CityRegion* city, bool override) {
 
 void CityManager::deductCityMaintenance(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -224,7 +224,7 @@ void CityManager::deductCityMaintenance(CityRegion* city) {
 
 int CityManager::collectNonStructureMaintenance(SceneObject* object, CityRegion* city, int maintenanceDue) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,7 +241,7 @@ int CityManager::collectNonStructureMaintenance(SceneObject* object, CityRegion*
 
 int CityManager::collectCivicStructureMaintenance(StructureObject* structure, CityRegion* city, int maintenanceDue) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -258,7 +258,7 @@ int CityManager::collectCivicStructureMaintenance(StructureObject* structure, Ci
 
 void CityManager::sendMaintenanceEmail(CityRegion* city, int maintenancePaid) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -274,7 +274,7 @@ void CityManager::sendMaintenanceEmail(CityRegion* city, int maintenancePaid) {
 
 void CityManager::sendMaintenanceDecayEmail(CityRegion* city, StructureObject* structure, int maintenanceDue) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -291,7 +291,7 @@ void CityManager::sendMaintenanceDecayEmail(CityRegion* city, StructureObject* s
 
 void CityManager::sendMaintenanceDestroyEmail(CityRegion* city, SceneObject* object) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -307,7 +307,7 @@ void CityManager::sendMaintenanceDestroyEmail(CityRegion* city, SceneObject* obj
 
 void CityManager::sendMaintenanceRepairEmail(CityRegion* city, StructureObject* structure) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -323,7 +323,7 @@ void CityManager::sendMaintenanceRepairEmail(CityRegion* city, StructureObject* 
 
 void CityManager::contractCity(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -338,7 +338,7 @@ void CityManager::contractCity(CityRegion* city) {
 
 void CityManager::expandCity(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -353,7 +353,7 @@ void CityManager::expandCity(CityRegion* city) {
 
 void CityManager::destroyCity(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -368,7 +368,7 @@ void CityManager::destroyCity(CityRegion* city) {
 
 void CityManager::sendStatusReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -385,7 +385,7 @@ void CityManager::sendStatusReport(CityRegion* city, CreatureObject* creature, S
 
 void CityManager::promptCitySpecialization(CityRegion* city, CreatureObject* mayor, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -402,7 +402,7 @@ void CityManager::promptCitySpecialization(CityRegion* city, CreatureObject* may
 
 void CityManager::changeCitySpecialization(CityRegion* city, CreatureObject* mayor, const String& spec) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -419,7 +419,7 @@ void CityManager::changeCitySpecialization(CityRegion* city, CreatureObject* may
 
 void CityManager::promptWithdrawCityTreasury(CityRegion* city, CreatureObject* mayor, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -436,7 +436,7 @@ void CityManager::promptWithdrawCityTreasury(CityRegion* city, CreatureObject* m
 
 void CityManager::promptDepositCityTreasury(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -453,7 +453,7 @@ void CityManager::promptDepositCityTreasury(CityRegion* city, CreatureObject* cr
 
 void CityManager::withdrawFromCityTreasury(CityRegion* city, CreatureObject* mayor, int value, const String& reason, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -472,7 +472,7 @@ void CityManager::withdrawFromCityTreasury(CityRegion* city, CreatureObject* may
 
 void CityManager::depositToCityTreasury(CityRegion* city, CreatureObject* creature, int value) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -489,7 +489,7 @@ void CityManager::depositToCityTreasury(CityRegion* city, CreatureObject* creatu
 
 void CityManager::sendTreasuryReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -506,7 +506,7 @@ void CityManager::sendTreasuryReport(CityRegion* city, CreatureObject* creature,
 
 void CityManager::sendCitizenshipReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -523,7 +523,7 @@ void CityManager::sendCitizenshipReport(CityRegion* city, CreatureObject* creatu
 
 void CityManager::registerCitizen(CityRegion* city, CreatureObject* creature) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -539,7 +539,7 @@ void CityManager::registerCitizen(CityRegion* city, CreatureObject* creature) {
 
 void CityManager::unregisterCitizen(CityRegion* city, CreatureObject* creature) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -555,7 +555,7 @@ void CityManager::unregisterCitizen(CityRegion* city, CreatureObject* creature) 
 
 void CityManager::sendManageMilitia(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -572,7 +572,7 @@ void CityManager::sendManageMilitia(CityRegion* city, CreatureObject* creature, 
 
 void CityManager::promptAddMilitiaMember(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -589,7 +589,7 @@ void CityManager::promptAddMilitiaMember(CityRegion* city, CreatureObject* creat
 
 void CityManager::addMilitiaMember(CityRegion* city, CreatureObject* mayor, const String& playerName) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -606,7 +606,7 @@ void CityManager::addMilitiaMember(CityRegion* city, CreatureObject* mayor, cons
 
 void CityManager::removeMilitiaMember(CityRegion* city, CreatureObject* mayor, unsigned long long militiaid) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,7 +623,7 @@ void CityManager::removeMilitiaMember(CityRegion* city, CreatureObject* mayor, u
 
 void CityManager::sendCityAdvancement(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -640,7 +640,7 @@ void CityManager::sendCityAdvancement(CityRegion* city, CreatureObject* creature
 
 String CityManager::getNextUpdateTimeString(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -657,7 +657,7 @@ String CityManager::getNextUpdateTimeString(CityRegion* city) {
 
 void CityManager::promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -674,7 +674,7 @@ void CityManager::promptRegisterCity(CityRegion* city, CreatureObject* creature,
 
 void CityManager::promptUnregisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -691,7 +691,7 @@ void CityManager::promptUnregisterCity(CityRegion* city, CreatureObject* creatur
 
 void CityManager::registerCity(CityRegion* city, CreatureObject* mayor) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -707,7 +707,7 @@ void CityManager::registerCity(CityRegion* city, CreatureObject* mayor) {
 
 void CityManager::unregisterCity(CityRegion* city, CreatureObject* mayor) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -723,7 +723,7 @@ void CityManager::unregisterCity(CityRegion* city, CreatureObject* mayor) {
 
 void CityManager::promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -740,7 +740,7 @@ void CityManager::promptAdjustTaxes(CityRegion* city, CreatureObject* mayor, Sce
 
 void CityManager::promptSetTax(CityRegion* city, CreatureObject* mayor, int selectedTax, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -758,7 +758,7 @@ void CityManager::promptSetTax(CityRegion* city, CreatureObject* mayor, int sele
 
 void CityManager::setTax(CityRegion* city, CreatureObject* mayor, int selectedTax, int value) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -776,7 +776,7 @@ void CityManager::setTax(CityRegion* city, CreatureObject* mayor, int selectedTa
 
 void CityManager::sendMaintenanceReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -793,7 +793,7 @@ void CityManager::sendMaintenanceReport(CityRegion* city, CreatureObject* creatu
 
 void CityManager::sendMail(CityRegion* city, const String& sender, const UnicodeString& subject, StringIdChatParameter& params, WaypointObject* waypoint) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -803,7 +803,7 @@ void CityManager::sendMail(CityRegion* city, const String& sender, const Unicode
 
 bool CityManager::containsCityName(const String& name) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -818,7 +818,7 @@ bool CityManager::containsCityName(const String& name) {
 
 bool CityManager::isCityRankCapped(const String& planetName, byte cityRank) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -834,7 +834,7 @@ bool CityManager::isCityRankCapped(const String& planetName, byte cityRank) {
 
 void CityManager::sendCityReport(CreatureObject* creature, const String& planetName, byte rank) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -851,7 +851,7 @@ void CityManager::sendCityReport(CreatureObject* creature, const String& planetN
 
 bool CityManager::validateCityInRange(CreatureObject* creature, Zone* zone, float x, float y) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -869,7 +869,7 @@ bool CityManager::validateCityInRange(CreatureObject* creature, Zone* zone, floa
 
 void CityManager::promptToggleZoningEnabled(CityRegion* city, CreatureObject* mayor) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -885,7 +885,7 @@ void CityManager::promptToggleZoningEnabled(CityRegion* city, CreatureObject* ma
 
 void CityManager::toggleZoningEnabled(CityRegion* city, CreatureObject* mayor) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -901,7 +901,7 @@ void CityManager::toggleZoningEnabled(CityRegion* city, CreatureObject* mayor) {
 
 int CityManager::getTotalCities() {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -915,7 +915,7 @@ int CityManager::getTotalCities() {
 
 bool CityManager::renameCity(CityRegion* city, const String& newName) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -931,7 +931,7 @@ bool CityManager::renameCity(CityRegion* city, const String& newName) {
 
 void CityManager::sendMayoralStandings(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -948,7 +948,7 @@ void CityManager::sendMayoralStandings(CityRegion* city, CreatureObject* creatur
 
 void CityManager::promptMayoralVote(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -965,7 +965,7 @@ void CityManager::promptMayoralVote(CityRegion* city, CreatureObject* creature, 
 
 void CityManager::registerForMayoralRace(CityRegion* city, CreatureObject* creature) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -981,7 +981,7 @@ void CityManager::registerForMayoralRace(CityRegion* city, CreatureObject* creat
 
 void CityManager::unregisterFromMayoralRace(CityRegion* city, CreatureObject* creature, bool force) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -998,7 +998,7 @@ void CityManager::unregisterFromMayoralRace(CityRegion* city, CreatureObject* cr
 
 void CityManager::castMayoralVote(CityRegion* city, CreatureObject* creature, unsigned long long oid) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1015,7 +1015,7 @@ void CityManager::castMayoralVote(CityRegion* city, CreatureObject* creature, un
 
 void CityManager::sendStructureReport(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1032,7 +1032,7 @@ void CityManager::sendStructureReport(CityRegion* city, CreatureObject* creature
 
 bool CityManager::canSupportMoreDecorations(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1047,7 +1047,7 @@ bool CityManager::canSupportMoreDecorations(CityRegion* city) {
 
 bool CityManager::canSupportMoreTrainers(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1062,7 +1062,7 @@ bool CityManager::canSupportMoreTrainers(CityRegion* city) {
 
 bool CityManager::canSupportMoreMissionTerminals(CityRegion* city) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1077,7 +1077,7 @@ bool CityManager::canSupportMoreMissionTerminals(CityRegion* city) {
 
 const CitySpecialization* CityManager::getCitySpecialization(const String& cityspec) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1087,7 +1087,7 @@ const CitySpecialization* CityManager::getCitySpecialization(const String& citys
 
 const CityTax* CityManager::getCityTax(int idx) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1097,7 +1097,7 @@ const CityTax* CityManager::getCityTax(int idx) {
 
 void CityManager::sendChangeCityName(CityRegion* city, CreatureObject* mayor) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1113,7 +1113,7 @@ void CityManager::sendChangeCityName(CityRegion* city, CreatureObject* mayor) {
 
 void CityManager::sendAddStructureMails(CityRegion* city, StructureObject* structure) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1129,7 +1129,7 @@ void CityManager::sendAddStructureMails(CityRegion* city, StructureObject* struc
 
 void CityManager::promptForceRank(CityRegion* city, CreatureObject* player, bool rankUp) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1146,7 +1146,7 @@ void CityManager::promptForceRank(CityRegion* city, CreatureObject* player, bool
 
 void CityManager::promptForceUpdate(CityRegion* city, CreatureObject* player) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1162,7 +1162,7 @@ void CityManager::promptForceUpdate(CityRegion* city, CreatureObject* player) {
 
 void CityManager::alignAmenity(CityRegion* city, CreatureObject* player, SceneObject* amenity, int direction) {
 	CityManagerImplementation* _implementation = static_cast<CityManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1223,7 +1223,7 @@ void CityManagerImplementation::finalize() {
 void CityManagerImplementation::_initializeImplementation() {
 	_setClassHelper(CityManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1335,7 +1335,7 @@ CityManagerImplementation::CityManagerImplementation(ZoneServer* zserv) {
 	// server/zone/managers/city/CityManager.idl():  		cities.setNoDuplicateInsertPlan();
 	(&cities)->setNoDuplicateInsertPlan();
 	// server/zone/managers/city/CityManager.idl():  		cities.setNullValue(null);
-	(&cities)->setNullValue(nullptr);
+	(&cities)->setNullValue(NULL);
 }
 
 bool CityManagerImplementation::containsCityName(const String& name) {
@@ -1442,7 +1442,7 @@ void CityManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			float y = inv->getFloatParameter();
 			
 			DistributedObject* _m_res = createCity(mayor, cityName, x, y);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ASSESSCITIZENS__CITYREGION_:

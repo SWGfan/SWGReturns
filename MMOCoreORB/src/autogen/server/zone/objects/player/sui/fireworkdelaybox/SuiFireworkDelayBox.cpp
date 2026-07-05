@@ -30,7 +30,7 @@ SuiFireworkDelayBox::~SuiFireworkDelayBox() {
 
 unsigned int SuiFireworkDelayBox::getFireworkIndex() {
 	SuiFireworkDelayBoxImplementation* _implementation = static_cast<SuiFireworkDelayBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ unsigned int SuiFireworkDelayBox::getFireworkIndex() {
 
 bool SuiFireworkDelayBox::isFireworkDelayBox() {
 	SuiFireworkDelayBoxImplementation* _implementation = static_cast<SuiFireworkDelayBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void SuiFireworkDelayBoxImplementation::finalize() {
 void SuiFireworkDelayBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiFireworkDelayBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

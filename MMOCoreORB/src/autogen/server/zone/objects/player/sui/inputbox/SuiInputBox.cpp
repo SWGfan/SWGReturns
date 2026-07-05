@@ -30,7 +30,7 @@ SuiInputBox::~SuiInputBox() {
 
 BaseMessage* SuiInputBox::generateMessage() {
 	SuiInputBoxImplementation* _implementation = static_cast<SuiInputBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiInputBox::generateMessage() {
 
 void SuiInputBox::setMaxInputSize(int size) {
 	SuiInputBoxImplementation* _implementation = static_cast<SuiInputBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -55,7 +55,7 @@ void SuiInputBox::setMaxInputSize(int size) {
 
 void SuiInputBox::setDefaultInput(const String& text) {
 	SuiInputBoxImplementation* _implementation = static_cast<SuiInputBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ void SuiInputBox::setDefaultInput(const String& text) {
 
 bool SuiInputBox::isFilterBox() {
 	SuiInputBoxImplementation* _implementation = static_cast<SuiInputBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ bool SuiInputBox::isFilterBox() {
 
 bool SuiInputBox::isInputBox() {
 	SuiInputBoxImplementation* _implementation = static_cast<SuiInputBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ void SuiInputBoxImplementation::finalize() {
 void SuiInputBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiInputBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

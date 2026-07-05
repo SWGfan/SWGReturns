@@ -215,6 +215,8 @@ public:
 
 	int getFactoryCrateSize();
 
+	String getFactoryCrateType();
+
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -378,6 +380,8 @@ public:
 
 	int getFactoryCrateSize();
 
+	String getFactoryCrateType();
+
 	WeakReference<DraftSchematic*> _this;
 
 	operator const DraftSchematic*();
@@ -473,6 +477,8 @@ public:
 	int getLabratory();
 
 	int getFactoryCrateSize();
+
+	String getFactoryCrateType();
 
 };
 

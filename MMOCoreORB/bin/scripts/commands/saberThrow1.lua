@@ -50,6 +50,7 @@ SaberThrow1Command = {
 	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 1.5,
+	accuracyBonus = 50,
 	visMod = 25,
 
 	animation = "saberthrow", 
@@ -61,7 +62,7 @@ SaberThrow1Command = {
 
 	weaponType = JEDIWEAPON,
 
-	range = 12
+	range = 32
 }
 
 AddCommand(SaberThrow1Command)

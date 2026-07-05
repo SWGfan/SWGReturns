@@ -32,7 +32,7 @@ ControlDevice::~ControlDevice() {
 
 void ControlDevice::updateToDatabaseAllObjects(bool startTask) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void ControlDevice::updateToDatabaseAllObjects(bool startTask) {
 
 void ControlDevice::storeObject(CreatureObject* player, bool force) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void ControlDevice::storeObject(CreatureObject* player, bool force) {
 
 void ControlDevice::generateObject(CreatureObject* player) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ void ControlDevice::generateObject(CreatureObject* player) {
 
 void ControlDevice::callObject(CreatureObject* player) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void ControlDevice::callObject(CreatureObject* player) {
 
 bool ControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ bool ControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject* receiv
 
 void ControlDevice::setControlledObject(TangibleObject* object) {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ void ControlDevice::setControlledObject(TangibleObject* object) {
 
 TangibleObject* ControlDevice::getControlledObject() {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ TangibleObject* ControlDevice::getControlledObject() {
 
 bool ControlDevice::isControlDevice() {
 	ControlDeviceImplementation* _implementation = static_cast<ControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -185,7 +185,7 @@ void ControlDeviceImplementation::finalize() {
 void ControlDeviceImplementation::_initializeImplementation() {
 	_setClassHelper(ControlDeviceHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -309,7 +309,7 @@ void ControlDeviceImplementation::writeJSON(nlohmann::json& j) {
 ControlDeviceImplementation::ControlDeviceImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/intangible/ControlDevice.idl():  		controlledObject = null;
-	controlledObject = nullptr;
+	controlledObject = NULL;
 	// server/zone/objects/intangible/ControlDevice.idl():  		Logger.setLoggingName("ControlDevice");
 	Logger::setLoggingName("ControlDevice");
 	// server/zone/objects/intangible/ControlDevice.idl():  		Logger.setLogging(false);
@@ -330,7 +330,7 @@ void ControlDeviceImplementation::updateToDatabaseAllObjects(bool startTask) {
 	// server/zone/objects/intangible/ControlDevice.idl():  		TangibleObject obj = controlledObject;
 	ManagedReference<TangibleObject* > obj = controlledObject;
 	// server/zone/objects/intangible/ControlDevice.idl():  		}
-	if (obj != nullptr){
+	if (obj){
 	// server/zone/objects/intangible/ControlDevice.idl():  			obj.updateToDatabaseWithoutChildren();
 	obj->updateToDatabaseWithoutChildren();
 	// server/zone/objects/intangible/ControlDevice.idl():  			super.updateToDatabaseAllObjects(startTask);
@@ -452,7 +452,7 @@ void ControlDeviceAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getControlledObject();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISCONTROLDEVICE__:
@@ -711,7 +711,7 @@ int LuaControlDevice::getControlledObject(lua_State *L) {
 	if (parameterCount == 0) {
 		TangibleObject* result = realObject->getControlledObject();
 
-		if (result != nullptr)
+		if (result != NULL)
 			lua_pushlightuserdata(L, result);
 		else
 			lua_pushnil(L);

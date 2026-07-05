@@ -32,7 +32,7 @@ GuildTerminal::~GuildTerminal() {
 
 void GuildTerminal::initializeTransientMembers() {
 	GuildTerminalImplementation* _implementation = static_cast<GuildTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void GuildTerminal::initializeTransientMembers() {
 
 void GuildTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	GuildTerminalImplementation* _implementation = static_cast<GuildTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void GuildTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Cre
 
 int GuildTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	GuildTerminalImplementation* _implementation = static_cast<GuildTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int GuildTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedI
 
 bool GuildTerminal::isGuildTerminal() {
 	GuildTerminalImplementation* _implementation = static_cast<GuildTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +117,7 @@ void GuildTerminalImplementation::finalize() {
 void GuildTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(GuildTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

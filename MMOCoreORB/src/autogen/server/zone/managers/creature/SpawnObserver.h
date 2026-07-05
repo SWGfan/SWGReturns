@@ -24,21 +24,7 @@
 #endif
 #include "engine/util/json_utils.h"
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace creature {
-
-class CreatureObject;
-
-class CreatureObjectPOD;
-
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature;
+#include "server/zone/objects/creature/CreatureObject.h"
 
 #include "templates/mobile/LairTemplate.h"
 

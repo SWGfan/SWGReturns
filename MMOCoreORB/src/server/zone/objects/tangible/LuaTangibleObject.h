@@ -27,6 +27,7 @@ namespace tangible {
 		~LuaTangibleObject();
 
 		int _setObject(lua_State* L);
+		int getOptionsBitmask(lua_State *L);
 		int setOptionsBitmask(lua_State *L);
 		int setPvpStatusBitmask(lua_State *L);
 		int setPvpStatusBit(lua_State *L);
@@ -60,9 +61,9 @@ namespace tangible {
 		int isBroken(lua_State* L);
 		int isSliced(lua_State* L);
 		int isNoTrade(lua_State* L);
-		int setSocketCount(lua_State* L);
 		int getUseCount(lua_State* L);
 		int setUseCount(lua_State* L);
+
 	protected:
 		TangibleObject* realObject;
 	};

@@ -34,7 +34,7 @@ TicketObject::~TicketObject() {
 
 void TicketObject::initializeTransientMembers() {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void TicketObject::initializeTransientMembers() {
 
 void TicketObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +58,7 @@ void TicketObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 int TicketObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ int TicketObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 
 void TicketObject::setDeparturePlanet(const String& departureplanet) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void TicketObject::setDeparturePlanet(const String& departureplanet) {
 
 void TicketObject::setDeparturePoint(const String& departurepoint) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void TicketObject::setDeparturePoint(const String& departurepoint) {
 
 void TicketObject::setArrivalPlanet(const String& arrival) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ void TicketObject::setArrivalPlanet(const String& arrival) {
 
 void TicketObject::setArrivalPoint(const String& arrival) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -134,7 +134,7 @@ void TicketObject::setArrivalPoint(const String& arrival) {
 
 void TicketObject::setOwnerID(unsigned long long id) {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,9 +147,9 @@ void TicketObject::setOwnerID(unsigned long long id) {
 	}
 }
 
-String TicketObject::getDeparturePlanet() {
+String TicketObject::getDeparturePlanet() const {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,9 +163,9 @@ String TicketObject::getDeparturePlanet() {
 	}
 }
 
-String TicketObject::getDeparturePoint() {
+String TicketObject::getDeparturePoint() const {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,9 +179,9 @@ String TicketObject::getDeparturePoint() {
 	}
 }
 
-String TicketObject::getArrivalPlanet() {
+String TicketObject::getArrivalPlanet() const {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -195,9 +195,9 @@ String TicketObject::getArrivalPlanet() {
 	}
 }
 
-String TicketObject::getArrivalPoint() {
+String TicketObject::getArrivalPoint() const {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,9 +211,9 @@ String TicketObject::getArrivalPoint() {
 	}
 }
 
-unsigned long long TicketObject::getOwnerID() {
+unsigned long long TicketObject::getOwnerID() const {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -227,7 +227,7 @@ unsigned long long TicketObject::getOwnerID() {
 
 bool TicketObject::isTicketObject() {
 	TicketObjectImplementation* _implementation = static_cast<TicketObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -272,7 +272,7 @@ void TicketObjectImplementation::finalize() {
 void TicketObjectImplementation::_initializeImplementation() {
 	_setClassHelper(TicketObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -493,27 +493,27 @@ void TicketObjectImplementation::setOwnerID(unsigned long long id) {
 	ownerID = id;
 }
 
-String TicketObjectImplementation::getDeparturePlanet() {
+String TicketObjectImplementation::getDeparturePlanet() const{
 	// server/zone/objects/tangible/ticket/TicketObject.idl():  		return departurePlanet;
 	return departurePlanet;
 }
 
-String TicketObjectImplementation::getDeparturePoint() {
+String TicketObjectImplementation::getDeparturePoint() const{
 	// server/zone/objects/tangible/ticket/TicketObject.idl():  		return departurePoint;
 	return departurePoint;
 }
 
-String TicketObjectImplementation::getArrivalPlanet() {
+String TicketObjectImplementation::getArrivalPlanet() const{
 	// server/zone/objects/tangible/ticket/TicketObject.idl():  		return arrivalPlanet;
 	return arrivalPlanet;
 }
 
-String TicketObjectImplementation::getArrivalPoint() {
+String TicketObjectImplementation::getArrivalPoint() const{
 	// server/zone/objects/tangible/ticket/TicketObject.idl():  		return arrivalPoint;
 	return arrivalPoint;
 }
 
-unsigned long long TicketObjectImplementation::getOwnerID() {
+unsigned long long TicketObjectImplementation::getOwnerID() const{
 	// server/zone/objects/tangible/ticket/TicketObject.idl():  		return ownerID;
 	return ownerID;
 }
@@ -669,23 +669,23 @@ void TicketObjectAdapter::setOwnerID(unsigned long long id) {
 	(static_cast<TicketObject*>(stub))->setOwnerID(id);
 }
 
-String TicketObjectAdapter::getDeparturePlanet() {
+String TicketObjectAdapter::getDeparturePlanet() const {
 	return (static_cast<TicketObject*>(stub))->getDeparturePlanet();
 }
 
-String TicketObjectAdapter::getDeparturePoint() {
+String TicketObjectAdapter::getDeparturePoint() const {
 	return (static_cast<TicketObject*>(stub))->getDeparturePoint();
 }
 
-String TicketObjectAdapter::getArrivalPlanet() {
+String TicketObjectAdapter::getArrivalPlanet() const {
 	return (static_cast<TicketObject*>(stub))->getArrivalPlanet();
 }
 
-String TicketObjectAdapter::getArrivalPoint() {
+String TicketObjectAdapter::getArrivalPoint() const {
 	return (static_cast<TicketObject*>(stub))->getArrivalPoint();
 }
 
-unsigned long long TicketObjectAdapter::getOwnerID() {
+unsigned long long TicketObjectAdapter::getOwnerID() const {
 	return (static_cast<TicketObject*>(stub))->getOwnerID();
 }
 

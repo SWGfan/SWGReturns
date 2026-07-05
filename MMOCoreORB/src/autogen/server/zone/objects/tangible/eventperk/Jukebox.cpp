@@ -36,7 +36,7 @@ Jukebox::~Jukebox() {
 
 void Jukebox::initializeTransientMembers() {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ void Jukebox::initializeTransientMembers() {
 
 int Jukebox::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,14 +61,14 @@ int Jukebox::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void Jukebox::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void Jukebox::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureO
 
 void Jukebox::createChildObjects() {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void Jukebox::createChildObjects() {
 
 void Jukebox::setRadius(float radius) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void Jukebox::setRadius(float radius) {
 
 void Jukebox::notifyInsertToZone(Zone* zone) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ void Jukebox::notifyInsertToZone(Zone* zone) {
 
 void Jukebox::doMusicSelection(CreatureObject* player) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -134,14 +134,14 @@ void Jukebox::doMusicSelection(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->doMusicSelection(player);
 	}
 }
 
 void Jukebox::playMusicToPlayer(CreatureObject* player, const String& song) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ void Jukebox::playMusicToPlayer(CreatureObject* player, const String& song) {
 
 void Jukebox::changeMusic(const String& song) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -173,7 +173,7 @@ void Jukebox::changeMusic(const String& song) {
 
 void Jukebox::startPlaying(const String& song) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +189,7 @@ void Jukebox::startPlaying(const String& song) {
 
 void Jukebox::stopPlaying() {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,7 +204,7 @@ void Jukebox::stopPlaying() {
 
 void Jukebox::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -220,7 +220,7 @@ void Jukebox::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void Jukebox::activateRemoveEvent(bool immediate) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -236,7 +236,7 @@ void Jukebox::activateRemoveEvent(bool immediate) {
 
 bool Jukebox::isSongPlaying() const {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ bool Jukebox::isSongPlaying() const {
 
 String Jukebox::getCurSong() const {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -266,7 +266,7 @@ String Jukebox::getCurSong() const {
 
 bool Jukebox::isEventPerkItem() {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -280,7 +280,7 @@ bool Jukebox::isEventPerkItem() {
 
 void Jukebox::setOwner(CreatureObject* player) {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -296,7 +296,7 @@ void Jukebox::setOwner(CreatureObject* player) {
 
 Time* Jukebox::getPurchaseTime() {
 	JukeboxImplementation* _implementation = static_cast<JukeboxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -337,7 +337,7 @@ void JukeboxImplementation::finalize() {
 void JukeboxImplementation::_initializeImplementation() {
 	_setClassHelper(JukeboxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -531,7 +531,7 @@ JukeboxImplementation::JukeboxImplementation() {
 	// server/zone/objects/tangible/eventperk/Jukebox.idl():  		radius = 0;
 	radius = 0;
 	// server/zone/objects/tangible/eventperk/Jukebox.idl():  		owner = null;
-	owner = nullptr;
+	owner = NULL;
 }
 
 void JukeboxImplementation::createChildObjects() {

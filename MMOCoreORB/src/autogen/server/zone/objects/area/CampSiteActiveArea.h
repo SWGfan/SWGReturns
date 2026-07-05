@@ -175,7 +175,7 @@ namespace area {
 
 class CampSiteActiveArea : public ActiveArea {
 public:
-	static const int DESPAWNTIME = 10800000;
+	static const int DESPAWNTIME = 6000000;
 
 	static const int ABANDONTIME = 60000;
 
@@ -283,7 +283,7 @@ protected:
 	TemplateReference<CampStructureTemplate*> campStructureData;
 
 public:
-	static const int DESPAWNTIME = 10800000;
+	static const int DESPAWNTIME = 6000000;
 
 	static const int ABANDONTIME = 60000;
 

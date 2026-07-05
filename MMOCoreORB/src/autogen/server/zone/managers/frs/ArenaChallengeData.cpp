@@ -28,7 +28,7 @@ ArenaChallengeData::~ArenaChallengeData() {
 
 unsigned long long ArenaChallengeData::getChallengeStart() const {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ unsigned long long ArenaChallengeData::getChallengeStart() const {
 
 unsigned long long ArenaChallengeData::getChallengeAccepterID() const {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ unsigned long long ArenaChallengeData::getChallengeAccepterID() const {
 
 void ArenaChallengeData::setChallengeAccepterID(unsigned long long newID) {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ void ArenaChallengeData::setChallengeAccepterID(unsigned long long newID) {
 
 unsigned long long ArenaChallengeData::getChallengerID() const {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ unsigned long long ArenaChallengeData::getChallengerID() const {
 
 int ArenaChallengeData::getChallengeRank() const {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -99,7 +99,7 @@ int ArenaChallengeData::getChallengeRank() const {
 
 bool ArenaChallengeData::isChallengeCompleted() const {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -113,7 +113,7 @@ bool ArenaChallengeData::isChallengeCompleted() const {
 
 void ArenaChallengeData::setChallengeCompleted() {
 	ArenaChallengeDataImplementation* _implementation = static_cast<ArenaChallengeDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ void ArenaChallengeDataImplementation::finalize() {
 void ArenaChallengeDataImplementation::_initializeImplementation() {
 	_setClassHelper(ArenaChallengeDataHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

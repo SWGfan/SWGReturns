@@ -8,6 +8,8 @@
 #ifndef SCENEOBJECTTYPE_H_
 #define SCENEOBJECTTYPE_H_
 
+#include <system/lang/String.h>
+
 class SceneObjectType {
 public:
 
@@ -82,7 +84,6 @@ public:
 	const static int VEHICLECONTROLDEVICE = 0x808;
 	const static int SHIPCONTROLDEVICE = 0x80A;
 	const static int DROIDCONTROLDEVICE = 0x80B;
-	const static int STRUCTURECONTROLDEVICE = 0x80D;
 
 	/// Not in client **********
 	const static int THEATEROBJECT = 0x80C;
@@ -363,6 +364,9 @@ public:
 	const static int SHIPCOUNTERMEASURE = 0x4000000E;
 	const static int SHIPWEAPONLAUNCHER = 0x4000000F;
 	const static int SHIPCOUNTERMEASURELAUNCHER = 0x40000010;
+
+public:
+	static const String typeToString(int gameObjectType);
 };
 
 #endif /* SCENEOBJECTTYPE_H_ */

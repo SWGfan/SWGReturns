@@ -2,6 +2,7 @@ sith_shadow_mercenary = Creature:new {
 	objectName = "@mob/creature_names:shadow_mercenary",
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow",
+	mobType = MOB_NPC,
 	level = 69,
 	chanceHit = 0.6,
 	damageMin = 495,
@@ -21,37 +22,11 @@ sith_shadow_mercenary = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE + AGGRESSIVE + ENEMY,
-	creatureBitmask = KILLER + PACK,
+	creatureBitmask = KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {
-		"object/mobile/dressed_sith_shadow_hum_f_01.iff",
-		"object/mobile/dressed_sith_shadow_hum_f_02.iff",
-		"object/mobile/dressed_sith_shadow_hum_f_03.iff",
-		"object/mobile/dressed_sith_shadow_hum_m_01.iff",
-		"object/mobile/dressed_sith_shadow_hum_m_02.iff",
-		"object/mobile/dressed_sith_shadow_hum_m_03.iff",
-		"object/mobile/dressed_sith_shadow_aqualish_f_01.iff",
-		"object/mobile/dressed_sith_shadow_aqualish_f_02.iff",
-		"object/mobile/dressed_sith_shadow_aqualish_m_01.iff",
-		"object/mobile/dressed_sith_shadow_aqualish_m_02.iff",
-		"object/mobile/dressed_sith_shadow_nikto_m_01.iff",
-		"object/mobile/dressed_sith_shadow_nikto_m_02.iff",
-		"object/mobile/dressed_sith_shadow_nikto_m_03.iff",
-		"object/mobile/dressed_sith_shadow_rodian_f_01.iff",
-		"object/mobile/dressed_sith_shadow_rodian_f_02.iff",
-		"object/mobile/dressed_sith_shadow_rodian_m_01.iff",
-		"object/mobile/dressed_sith_shadow_rodian_m_02.iff",
-		"object/mobile/dressed_sith_shadow_trn_f_01.iff",
-		"object/mobile/dressed_sith_shadow_trn_m_01.iff",
-		"object/mobile/dressed_sith_shadow_trn_m_02.iff",
-		"object/mobile/dressed_sith_shadow_trn_m_03.iff",
-		"object/mobile/dressed_sith_shadow_zab_f_01.iff",
-		"object/mobile/dressed_sith_shadow_zab_f_02.iff",
-		"object/mobile/dressed_sith_shadow_zab_m_01.iff",
-		"object/mobile/dressed_sith_shadow_zab_m_02.iff",
-		"object/mobile/dressed_sith_shadow_zab_m_03.iff"},
+	templates = { "sith_shadow" },
 	lootGroups = {
 		{
 			groups = {
@@ -71,9 +46,19 @@ sith_shadow_mercenary = Creature:new {
 			lootChance = 7500000
 		},
 	},
-	weapons = {"pirate_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "pirate_weapons_heavy",
+	secondaryWeapon = "unarmed",
+	thrownWeapon = "thrown_weapons",
+
 	conversationTemplate = "",
-	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(sith_shadow_mercenary, "sith_shadow_mercenary")

@@ -32,7 +32,7 @@ NavArea::~NavArea() {
 
 void NavArea::initializeNavArea(Vector3& position, float radius, Zone* zone, const String& name, bool forceRebuild) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -43,7 +43,7 @@ void NavArea::initializeNavArea(Vector3& position, float radius, Zone* zone, con
 
 void NavArea::initialize() {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void NavArea::initialize() {
 
 void NavArea::notifyEnter(SceneObject* object) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void NavArea::notifyEnter(SceneObject* object) {
 
 void NavArea::notifyExit(SceneObject* object) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +88,7 @@ void NavArea::notifyExit(SceneObject* object) {
 
 void NavArea::destroyObjectFromWorld(bool sendSelfDestroy) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -103,7 +103,7 @@ void NavArea::destroyObjectFromWorld(bool sendSelfDestroy) {
 
 void NavArea::notifyLoadFromDatabase() {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,9 +115,9 @@ void NavArea::notifyLoadFromDatabase() {
 	}
 }
 
-const AABB* NavArea::getMeshBounds() {
+const AABB* NavArea::getMeshBounds() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -127,7 +127,7 @@ const AABB* NavArea::getMeshBounds() {
 
 RecastNavMesh* NavArea::getNavMesh() {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -137,7 +137,7 @@ RecastNavMesh* NavArea::getNavMesh() {
 
 void NavArea::disableMeshUpdates(bool disable) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -146,9 +146,9 @@ void NavArea::disableMeshUpdates(bool disable) {
 	}
 }
 
-bool NavArea::isNavArea() {
+bool NavArea::isNavArea() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -162,7 +162,7 @@ bool NavArea::isNavArea() {
 
 NavArea* NavArea::asNavArea() {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -174,9 +174,9 @@ NavArea* NavArea::asNavArea() {
 	}
 }
 
-bool NavArea::objectInMesh(SceneObject* obj) {
+bool NavArea::objectInMesh(SceneObject* obj) const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,9 +189,9 @@ bool NavArea::objectInMesh(SceneObject* obj) {
 	}
 }
 
-String NavArea::getMeshName() {
+String NavArea::getMeshName() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -207,7 +207,7 @@ String NavArea::getMeshName() {
 
 void NavArea::setMeshName(const String& name) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -223,7 +223,7 @@ void NavArea::setMeshName(const String& name) {
 
 bool NavArea::isInRange(float x, float y, float range) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -240,7 +240,7 @@ bool NavArea::isInRange(float x, float y, float range) {
 
 void NavArea::updateNavMesh(const AABB& area) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -250,7 +250,7 @@ void NavArea::updateNavMesh(const AABB& area) {
 
 void NavArea::updateNavMesh(SceneObject* object, bool toRemove) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -266,7 +266,7 @@ void NavArea::updateNavMesh(SceneObject* object, bool toRemove) {
 
 void NavArea::setRadius(float f) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -275,9 +275,9 @@ void NavArea::setRadius(float f) {
 	}
 }
 
-AABB NavArea::getBoundingBox() {
+AABB NavArea::getBoundingBox() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -285,9 +285,9 @@ AABB NavArea::getBoundingBox() {
 	}
 }
 
-bool NavArea::containsPoint(float x, float y) {
+bool NavArea::containsPoint(float x, float y) const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -303,7 +303,7 @@ bool NavArea::containsPoint(float x, float y) {
 
 bool NavArea::isNavMeshLoaded() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -315,9 +315,9 @@ bool NavArea::isNavMeshLoaded() const {
 	}
 }
 
-int NavArea::getContainedObjectsCount() {
+int NavArea::getContainedObjectsCount() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +331,7 @@ int NavArea::getContainedObjectsCount() {
 
 float NavArea::getAreaTerrainHeight() const {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -345,7 +345,7 @@ float NavArea::getAreaTerrainHeight() const {
 
 void NavArea::setAreaTerrainHeight(float value) {
 	NavAreaImplementation* _implementation = static_cast<NavAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -391,7 +391,7 @@ void NavAreaImplementation::finalize() {
 void NavAreaImplementation::_initializeImplementation() {
 	_setClassHelper(NavAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -565,7 +565,7 @@ NavAreaImplementation::NavAreaImplementation() : ActiveAreaImplementation() {
 	terrainHeight = 0;
 }
 
-const AABB* NavAreaImplementation::getMeshBounds() {
+const AABB* NavAreaImplementation::getMeshBounds() const{
 	// server/zone/objects/pathfinding/NavArea.idl():  		return meshBounds;
 	return (&meshBounds);
 }
@@ -580,12 +580,12 @@ void NavAreaImplementation::disableMeshUpdates(bool disable) {
 	disableUpdates = disable;
 }
 
-bool NavAreaImplementation::isNavArea() {
+bool NavAreaImplementation::isNavArea() const{
 	// server/zone/objects/pathfinding/NavArea.idl():  		return true;
 	return true;
 }
 
-String NavAreaImplementation::getMeshName() {
+String NavAreaImplementation::getMeshName() const{
 	// server/zone/objects/pathfinding/NavArea.idl():  		return meshName;
 	return meshName;
 }
@@ -600,7 +600,7 @@ bool NavAreaImplementation::isNavMeshLoaded() const{
 	return (&recastNavMesh)->isLoaded();
 }
 
-int NavAreaImplementation::getContainedObjectsCount() {
+int NavAreaImplementation::getContainedObjectsCount() const{
 	// server/zone/objects/pathfinding/NavArea.idl():  		return containedObjects.size();
 	return (&containedObjects)->size();
 }
@@ -679,7 +679,7 @@ void NavAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = asNavArea();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_OBJECTINMESH__SCENEOBJECT_:
@@ -787,7 +787,7 @@ void NavAreaAdapter::notifyLoadFromDatabase() {
 	(static_cast<NavArea*>(stub))->notifyLoadFromDatabase();
 }
 
-bool NavAreaAdapter::isNavArea() {
+bool NavAreaAdapter::isNavArea() const {
 	return (static_cast<NavArea*>(stub))->isNavArea();
 }
 
@@ -795,11 +795,11 @@ NavArea* NavAreaAdapter::asNavArea() {
 	return (static_cast<NavArea*>(stub))->asNavArea();
 }
 
-bool NavAreaAdapter::objectInMesh(SceneObject* obj) {
+bool NavAreaAdapter::objectInMesh(SceneObject* obj) const {
 	return (static_cast<NavArea*>(stub))->objectInMesh(obj);
 }
 
-String NavAreaAdapter::getMeshName() {
+String NavAreaAdapter::getMeshName() const {
 	return (static_cast<NavArea*>(stub))->getMeshName();
 }
 
@@ -815,7 +815,7 @@ void NavAreaAdapter::updateNavMesh(SceneObject* object, bool toRemove) {
 	(static_cast<NavArea*>(stub))->updateNavMesh(object, toRemove);
 }
 
-bool NavAreaAdapter::containsPoint(float x, float y) {
+bool NavAreaAdapter::containsPoint(float x, float y) const {
 	return (static_cast<NavArea*>(stub))->containsPoint(x, y);
 }
 
@@ -823,7 +823,7 @@ bool NavAreaAdapter::isNavMeshLoaded() const {
 	return (static_cast<NavArea*>(stub))->isNavMeshLoaded();
 }
 
-int NavAreaAdapter::getContainedObjectsCount() {
+int NavAreaAdapter::getContainedObjectsCount() const {
 	return (static_cast<NavArea*>(stub))->getContainedObjectsCount();
 }
 

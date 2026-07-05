@@ -2,6 +2,7 @@ traveller = Creature:new {
 	objectName = "",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	customName = "a Traveller",
 	socialGroup = "wilder",
 	faction = "",
@@ -28,33 +29,11 @@ traveller = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = { "object/mobile/dressed_commoner_old_human_female_01.iff",
-		"object/mobile/dressed_commoner_old_human_female_02.iff",
-		"object/mobile/dressed_commoner_old_human_male_01.iff",
-		"object/mobile/dressed_commoner_old_human_male_02.iff",
-		"object/mobile/dressed_commoner_old_twilek_female_01.iff",
-		"object/mobile/dressed_commoner_old_twilek_female_02.iff",
-		"object/mobile/dressed_commoner_old_twilek_male_01.iff",
-		"object/mobile/dressed_commoner_old_twilek_male_02.iff",
-		"object/mobile/dressed_commoner_old_zabrak_female_01.iff",
-		"object/mobile/dressed_commoner_old_zabrak_female_02.iff",
-		"object/mobile/dressed_commoner_old_zabrak_male_01.iff",
-		"object/mobile/dressed_commoner_old_zabrak_male_02.iff",
+	templates = { "commoner_old",
+		"commoner_fat",
 		"object/mobile/dressed_commoner_artisan_bith_male_01.iff",
 		"object/mobile/dressed_commoner_artisan_sullustan_male_01.iff",
-		"object/mobile/dressed_commoner_artisan_trandoshan_male_01.iff",
-		"object/mobile/dressed_commoner_fat_human_female_01.iff",
-		"object/mobile/dressed_commoner_fat_human_female_02.iff",
-		"object/mobile/dressed_commoner_fat_human_male_01.iff",
-		"object/mobile/dressed_commoner_fat_human_male_02.iff",
-		"object/mobile/dressed_commoner_fat_twilek_female_01.iff",
-		"object/mobile/dressed_commoner_fat_twilek_female_02.iff",
-		"object/mobile/dressed_commoner_fat_twilek_male_01.iff",
-		"object/mobile/dressed_commoner_fat_twilek_male_02.iff",
-		"object/mobile/dressed_commoner_fat_zabrak_female_01.iff",
-		"object/mobile/dressed_commoner_fat_zabrak_female_02.iff",
-		"object/mobile/dressed_commoner_fat_zabrak_male_01.iff",
-		"object/mobile/dressed_commoner_fat_zabrak_male_02.iff", },
+		"object/mobile/dressed_commoner_artisan_trandoshan_male_01.iff",},
 	lootGroups = {
 		{
 			groups = {
@@ -65,10 +44,18 @@ traveller = Creature:new {
 			}
 		}
 	},
-	weapons = {"rebel_weapons_medium"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "rebel_weapons_medium",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/townperson",
-	attacks = merge(marksmannovice,brawlernovice)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(marksmannovice,brawlernovice),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(traveller, "traveller")

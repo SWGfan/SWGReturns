@@ -11,7 +11,7 @@ if _TEST then
 	ITEMTHEATERDATAPAD = 2
 end
 
-jediProgressionType = HOLOGRINDJEDIPROGRESSION
+jediProgressionType = VILLAGEJEDIPROGRESSION
 
 jediManagerName = "JediManager"
 
@@ -86,3 +86,4 @@ function JediManager:onFSTreeCompleted(pCreatureObject, branch)
 end
 
 return JediManager
+

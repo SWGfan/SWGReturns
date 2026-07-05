@@ -34,7 +34,7 @@ MissionSpawnActiveArea::~MissionSpawnActiveArea() {
 
 void MissionSpawnActiveArea::notifyEnter(SceneObject* player) {
 	MissionSpawnActiveAreaImplementation* _implementation = static_cast<MissionSpawnActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ void MissionSpawnActiveArea::notifyEnter(SceneObject* player) {
 
 void MissionSpawnActiveArea::setMissionObjective(DestroyMissionObjective* mission) {
 	MissionSpawnActiveAreaImplementation* _implementation = static_cast<MissionSpawnActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ void MissionSpawnActiveAreaImplementation::finalize() {
 void MissionSpawnActiveAreaImplementation::_initializeImplementation() {
 	_setClassHelper(MissionSpawnActiveAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -220,7 +220,7 @@ void MissionSpawnActiveAreaImplementation::writeJSON(nlohmann::json& j) {
 MissionSpawnActiveAreaImplementation::MissionSpawnActiveAreaImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  		destroyMissionObjective = null;
-	destroyMissionObjective = nullptr;
+	destroyMissionObjective = NULL;
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  		Logger.setLoggingName("MissionSpawnActiveArea");
 	Logger::setLoggingName("MissionSpawnActiveArea");
 }
@@ -236,7 +236,7 @@ void MissionSpawnActiveAreaImplementation::notifyEnter(SceneObject* player) {
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  			DestroyMissionObjective objective = destroyMissionObjective;
 	ManagedReference<DestroyMissionObjective* > objective = destroyMissionObjective;
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  			}
-	if (objective != nullptr){
+	if (objective){
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  				CreatureObject missionOwner = objective.getPlayerOwner();
 	ManagedReference<CreatureObject* > missionOwner = objective->getPlayerOwner();
 	// server/zone/objects/area/MissionSpawnActiveArea.idl():  			}

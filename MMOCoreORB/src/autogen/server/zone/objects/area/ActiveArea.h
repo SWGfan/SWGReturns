@@ -26,21 +26,15 @@
 
 namespace server {
 namespace zone {
-namespace objects {
-namespace area {
-namespace areashapes {
 
-class AreaShape;
+class Zone;
 
-class AreaShapePOD;
+class ZonePOD;
 
-} // namespace areashapes
-} // namespace area
-} // namespace objects
 } // namespace zone
 } // namespace server
 
-using namespace server::zone::objects::area::areashapes;
+using namespace server::zone;
 
 namespace server {
 namespace zone {
@@ -58,23 +52,13 @@ class NavAreaPOD;
 
 using namespace server::zone::objects::pathfinding;
 
-namespace server {
-namespace zone {
-
-class Zone;
-
-class ZonePOD;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
 #include "gmock/gmock.h"
 
-#include "system/util/Vector.h"
-
 #include "server/zone/objects/scene/SceneObject.h"
+
+#include "server/zone/objects/area/areashapes/AreaShape.h"
+
+#include "system/util/Vector.h"
 
 namespace server {
 namespace zone {
@@ -110,7 +94,7 @@ public:
 
 	bool isCityRegion();
 
-	bool isNavArea();
+	bool isNavArea() const;
 
 	NavArea* asNavArea();
 
@@ -118,11 +102,13 @@ public:
 
 	bool isCampingPermitted() const;
 
-	bool containsPoint(float x, float y, unsigned long long cellid);
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
-	float getRadius2();
+	float getRadius2() const;
+
+	float getRadius() const;
 
 	void setNoBuildArea(bool val);
 
@@ -148,7 +134,9 @@ public:
 
 	AreaShape* getAreaShape() const;
 
-	bool intersectsWith(ActiveArea* area);
+	bool isRectangularAreaShape() const;
+
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
@@ -225,7 +213,7 @@ public:
 
 	virtual bool isCityRegion();
 
-	virtual bool isNavArea();
+	virtual bool isNavArea() const;
 
 	virtual NavArea* asNavArea();
 
@@ -233,11 +221,13 @@ public:
 
 	bool isCampingPermitted() const;
 
-	bool containsPoint(float x, float y, unsigned long long cellid);
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
 
-	virtual bool containsPoint(float x, float y);
+	virtual bool containsPoint(float x, float y) const;
 
-	float getRadius2();
+	float getRadius2() const;
+
+	float getRadius() const;
 
 	void setNoBuildArea(bool val);
 
@@ -263,7 +253,9 @@ public:
 
 	AreaShape* getAreaShape() const;
 
-	bool intersectsWith(ActiveArea* area);
+	bool isRectangularAreaShape() const;
+
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
@@ -331,17 +323,19 @@ public:
 
 	bool isCityRegion();
 
-	bool isNavArea();
+	bool isNavArea() const;
 
 	bool isNoBuildArea() const;
 
 	bool isCampingPermitted() const;
 
-	bool containsPoint(float x, float y, unsigned long long cellid);
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
-	float getRadius2();
+	float getRadius2() const;
+
+	float getRadius() const;
 
 	void setNoBuildArea(bool val);
 
@@ -367,7 +361,9 @@ public:
 
 	AreaShape* getAreaShape() const;
 
-	bool intersectsWith(ActiveArea* area);
+	bool isRectangularAreaShape() const;
+
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
@@ -399,10 +395,23 @@ public:
 
 	MOCK_METHOD1(enqueueEnterEvent,void(SceneObject* obj));
 	MOCK_METHOD1(enqueueExitEvent,void(SceneObject* obj));
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
 	MOCK_METHOD0(getWorldPositionX,float());
 	MOCK_METHOD0(getWorldPositionY,float());
 	MOCK_METHOD0(getWorldPositionZ,float());
 	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
 
 };
 

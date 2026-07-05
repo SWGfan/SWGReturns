@@ -28,7 +28,7 @@ SuiListBoxMenuItem::~SuiListBoxMenuItem() {
 
 unsigned long long SuiListBoxMenuItem::getObjectID() const {
 	SuiListBoxMenuItemImplementation* _implementation = static_cast<SuiListBoxMenuItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ unsigned long long SuiListBoxMenuItem::getObjectID() const {
 
 String SuiListBoxMenuItem::getOptionName() const {
 	SuiListBoxMenuItemImplementation* _implementation = static_cast<SuiListBoxMenuItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void SuiListBoxMenuItemImplementation::finalize() {
 void SuiListBoxMenuItemImplementation::_initializeImplementation() {
 	_setClassHelper(SuiListBoxMenuItemHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

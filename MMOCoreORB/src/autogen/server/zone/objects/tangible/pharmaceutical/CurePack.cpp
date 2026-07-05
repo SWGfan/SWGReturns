@@ -32,7 +32,7 @@ CurePack::~CurePack() {
 
 void CurePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void CurePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void CurePack::loadTemplateData(SharedObjectTemplate* templateData) {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void CurePack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 int CurePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ int CurePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 void CurePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void CurePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* obje
 
 void CurePack::notifyLoadFromDatabase() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void CurePack::notifyLoadFromDatabase() {
 
 int CurePack::calculatePower(CreatureObject* creature) {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ int CurePack::calculatePower(CreatureObject* creature) {
 
 bool CurePack::isArea() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ bool CurePack::isArea() {
 
 float CurePack::getArea() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +135,7 @@ float CurePack::getArea() {
 
 unsigned long long CurePack::getState() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ unsigned long long CurePack::getState() {
 
 float CurePack::getEffectiveness() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ float CurePack::getEffectiveness() {
 
 bool CurePack::isCurePack() {
 	CurePackImplementation* _implementation = static_cast<CurePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +208,7 @@ void CurePackImplementation::finalize() {
 void CurePackImplementation::_initializeImplementation() {
 	_setClassHelper(CurePackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

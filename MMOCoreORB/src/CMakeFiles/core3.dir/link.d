@@ -4,7 +4,22 @@ core3: \
   /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o \
   CMakeFiles/core3.dir/main.cpp.o \
   CMakeFiles/core3.dir/server/ServerCore.cpp.o \
+  CMakeFiles/core3.dir/tests/BasicScreenPlayTest.cpp.o \
+  CMakeFiles/core3.dir/tests/BasicTerrainTest.cpp.o \
+  CMakeFiles/core3.dir/tests/CircularAreaShapeTest.cpp.o \
+  CMakeFiles/core3.dir/tests/CommandLuaTest.cpp.o \
+  CMakeFiles/core3.dir/tests/ConfigManagerTest.cpp.o \
+  CMakeFiles/core3.dir/tests/CreatureObjectTest.cpp.o \
+  CMakeFiles/core3.dir/tests/CreditObjectTest.cpp.o \
+  CMakeFiles/core3.dir/tests/DeadlockTestBase.cpp.o \
+  CMakeFiles/core3.dir/tests/JediManagerTest.cpp.o \
+  CMakeFiles/core3.dir/tests/LuaMobileTest.cpp.o \
+  CMakeFiles/core3.dir/tests/RectangularAreaShapeTest.cpp.o \
+  CMakeFiles/core3.dir/tests/RingAreaShapeTest.cpp.o \
+  CMakeFiles/core3.dir/tests/TerrainManagerTest.cpp.o \
+  CMakeFiles/core3.dir/tests/ZoneTest.cpp.o \
   CMakeFiles/core3.dir/tre3/TreeFile.cpp.o \
+  CMakeFiles/core3.dir/server/zone/ActiveAreaQuadTree.cpp.o \
   CMakeFiles/core3.dir/server/zone/CloseObjectsVector.cpp.o \
   CMakeFiles/core3.dir/server/zone/QuadTree.cpp.o \
   CMakeFiles/core3.dir/server/zone/QuadTreeEntryImplementation.cpp.o \
@@ -54,7 +69,10 @@ core3: \
   CMakeFiles/core3.dir/server/zone/managers/frs/FrsManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/gcw/GCWBaseShutdownObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/gcw/GCWManagerImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/managers/gcw/observers/ContainmentTeamObserverImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/managers/gcw/observers/ProbotObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/gcw/sessions/ContrabandScanSessionImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/managers/gcw/sessions/WildContrabandScanSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/group/GroupManager.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/guild/GuildManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/holocron/HolocronManager.cpp.o \
@@ -65,6 +83,7 @@ core3: \
   CMakeFiles/core3.dir/server/zone/managers/minigames/ForageManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/minigames/GamblingManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/minigames/events/ForageCleanupEvent.cpp.o \
+  CMakeFiles/core3.dir/server/zone/managers/minigames/events/GamblingEvent.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/mission/DestroyMissionLairObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/mission/MissionManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/mission/spawnmaps/MissionNpcSpawnMap.cpp.o \
@@ -85,6 +104,7 @@ core3: \
   CMakeFiles/core3.dir/server/zone/managers/player/LuaQuestInfo.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/player/PermissionLevelList.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/player/PlayerManagerImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/managers/player/PlayerMap.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/player/creation/PlayerCreationManager.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/radial/RadialManagerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/managers/reaction/ReactionManagerImplementation.cpp.o \
@@ -143,14 +163,10 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/creature/ai/LuaAiAgent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/ai/NonPlayerCreatureObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/Behavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/CompositeBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/LuaBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/NonDeterministicBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelSelectorBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelSequenceBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/SelectorBehavior.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/SequenceBehavior.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/leaf/Checks.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Composite.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Selector.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Sequence.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/ai/variables/CreatureTemplateReference.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/buffs/BuffImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/buffs/BuffList.cpp.o \
@@ -165,12 +181,12 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/creature/buffs/SquadLeaderBuffObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/commands/ForceHealQueueCommand.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/commands/QueueCommand.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/commands/VillageCommand.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/components/FactionRecruiterContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/components/PetMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/components/SarlaccMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/components/TrainerMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/conversation/ConversationObserverImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/creature/conversation/ConversationTemplate.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/conversation/DeliverMissionConversationObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/conversation/InformantMissionConversationObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/conversation/LuaConversationScreen.cpp.o \
@@ -183,13 +199,14 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/creature/credits/CreditObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/damageovertime/DamageOverTime.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/damageovertime/DamageOverTimeList.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/creature/events/CloakEventObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/variables/CommandQueueAction.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/variables/LuaSkill.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/creature/variables/SkillList.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/draftschematic/DraftSchematicImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/factorycrate/FactoryCrateImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/group/GroupMember.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/group/GroupObjectImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/guild/GuildMemberInfo.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/guild/GuildObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/installation/InstallationObjectImplementation.cpp.o \
@@ -212,9 +229,8 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/intangible/LuaIntangibleObject.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/PetControlDeviceImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/ShipControlDeviceImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/intangible/StructureControlDeviceImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/intangible/components/UnpackStructureComponent.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/ManufactureSchematicImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/factoryblueprint/BlueprintEntry.cpp.o \
@@ -228,9 +244,11 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/mission/MissionObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/mission/MissionObjectiveImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/mission/MissionObserverImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/mission/PlayerBountyImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/mission/ReconMissionObjectiveImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/mission/SurveyMissionObjectiveImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/mission/bountyhunter/BountyHunterDroid.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/mission/events/FailMissionAfterCertainTimeTask.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/pathfinding/NavAreaImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/LuaPlayerObject.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/PlayerObjectImplementation.cpp.o \
@@ -239,6 +257,7 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerZoneComponent.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/player/events/RecordTrackTimeoutEvent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/CityRemoveMilitiaSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/CitySpecializationSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/CityTreasuryWithdrawalSessionImplementation.cpp.o \
@@ -251,17 +270,14 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/InterplanetarySurveyDroidSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/LootLotterySessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/LuaConversationSession.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/player/sessions/PackupStructureSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/PlaceStructureSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/SlicingSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/StructureSetAccessFeeSessionImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/player/sessions/UnpackStructureSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/admin/PlayerManagementSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/crafting/CraftingSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/survey/SurveySessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/vendor/CreateVendorSessionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sessions/vendor/VendorAdBarkingSessionImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/player/sui/Addweapondot/AddWeaponDotImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/LuaSuiBox.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/LuaSuiPageData.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/SuiBoxImplementation.cpp.o \
@@ -273,7 +289,6 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/callbacks/LuaSuiCallback.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBoxImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/colorbox/SuiColorBoxImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/player/sui/deconstructweapon/DeconstructWeaponImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/inputbox/SuiInputBoxImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/keypadbox/SuiKeypadBoxImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/player/sui/listbox/LuaSuiListBox.cpp.o \
@@ -287,12 +302,14 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/region/RegionImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/region/components/CityManagementMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/region/components/CityVotingMenuComponent.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/region/events/CitizenAssessmentEvent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/region/events/CityUpdateEvent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/resource/ResourceSpawnImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/resource/simplexnoise/SimplexNoise.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/LuaSceneObject.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectType.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/WorldCoordinates.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/components/AttributeListComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/components/ContainerComponent.cpp.o \
@@ -306,7 +323,6 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/ContainerObjectsMap.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/ContainerPermissions.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/CustomizationVariables.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/scene/variables/OrderedTaskExecutioner.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/PendingTasksMap.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/StringId.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/scene/variables/StringIdParameter.cpp.o \
@@ -321,8 +337,8 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/structure/components/StructureZoneComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/structure/events/StructureMaintenanceTask.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/ContainerImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/tangible/DespawnLairOnPlayerDisappear.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/InstrumentImplementation.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/InstrumentObserverImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/LuaTangibleObject.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/TangibleObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/attachment/AttachmentImplementation.cpp.o \
@@ -333,77 +349,44 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/tangible/component/genetic/GeneticComponentImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponentImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ArmorObjectMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/ArtifactMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/BankTerminalMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/BossMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/BountyHunterDroidMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/CampKitMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/CampTerminalMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/CityDecorationMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/CloningTerminalMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectiongoldMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectionplatinumMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectionsilverMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ContainerObjectComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/ContrabandMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/DarkJediMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/DiamondMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/DotpackMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/DroidCustomKitObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ElevatorDownMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ElevatorMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ElevatorUpMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventPerkMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventpackMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/FireHeavyWeaponMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlagGameMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlurrycoalMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlurrypresentMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ForceCrystalMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/ForceShrineMenuComponent1.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/FriendcrateMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/GogglesObjectMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HalloweenMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/HeroRingMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HeroicMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronCombatMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronCraftingMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronReflexMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronSensesMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronsMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/ImperialMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/InsuranceTerminalMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/LairMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/LightJediMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/LightsaberObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/LootContainerComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/NewMemberMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/PersonnelPerkZoneComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/PlaceableLootContainerComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate1MenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate2MenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate3MenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/RebelMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/RingObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/RobeObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/SaberInventoryContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScavengerChestContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScavengerDroidContainerComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScrapMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/SkillBuffObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/SurveyDroidMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/TangibleObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/ThrowGrenadeMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/TrapMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/VehicleCustomKitObjectMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/VisMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/WaypointDatapadMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/WeaponObjectMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/WearableObjectMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/WorldMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/XpMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/droid/BaseDroidModuleComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/droid/DroidArmorModuleDataComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/droid/DroidAutoRepairModuleDataComponent.cpp.o \
@@ -435,11 +418,8 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/DataStorageUnitMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/DiceMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/LootSchematicMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/SarlaccTrashCanMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/ShellfishHarvesterMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/VendorTokenMenucomponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/XpPurchaseMenuComponent.cpp.o \
-  CMakeFiles/core3.dir/server/zone/objects/tangible/components/pvpMenuComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/vendor/VendorContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/vendor/VendorDataComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/components/vendor/VendorMenuComponent.cpp.o \
@@ -522,11 +502,11 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/tangible/wearables/RobeObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/wearables/WearableContainerObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/tangible/wearables/WearableObjectImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/transaction/TransactionLog.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/waypoint/WaypointObjectImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/packets/charcreation/ClientCreateCharacterCallback.cpp.o \
   CMakeFiles/core3.dir/server/zone/packets/object/CommandQueueEnqueue.cpp.o \
   CMakeFiles/core3.dir/server/zone/packets/object/ObjectControllerMessageCallback.cpp.o \
-  libcore3tests.a \
   server/db/libdb3.a \
   conf/libconf3.a \
   server/web/libweb3.a \
@@ -539,10 +519,10 @@ core3: \
   pathfinding/libcore3pathfinding.a \
   libidlobjects.a \
   ../utils/engine3/MMOEngine/lib/unix/libengine3.a \
-  ../utils/googletest-release-1.8.0/googlemock/libgmock.a \
+  ../lib/libgmock.a \
   /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libatomic.so.1 \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libmysqlclient.so \
+  /usr/lib/x86_64-linux-gnu/libmysqlclient.so \
   /usr/lib/x86_64-linux-gnu/liblua5.3.so \
   /usr/lib/x86_64-linux-gnu/libdb-5.3.so \
   /usr/lib/x86_64-linux-gnu/libssl.so \
@@ -550,6 +530,12 @@ core3: \
   /usr/lib/x86_64-linux-gnu/libz.so \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libdl.a \
   /usr/lib/x86_64-linux-gnu/libjemalloc.so \
+  /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0 \
+  ../lib/libgtest.a \
   /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0 \
@@ -594,7 +580,37 @@ CMakeFiles/core3.dir/main.cpp.o:
 
 CMakeFiles/core3.dir/server/ServerCore.cpp.o:
 
+CMakeFiles/core3.dir/tests/BasicScreenPlayTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/BasicTerrainTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/CircularAreaShapeTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/CommandLuaTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/ConfigManagerTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/CreatureObjectTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/CreditObjectTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/DeadlockTestBase.cpp.o:
+
+CMakeFiles/core3.dir/tests/JediManagerTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/LuaMobileTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/RectangularAreaShapeTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/RingAreaShapeTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/TerrainManagerTest.cpp.o:
+
+CMakeFiles/core3.dir/tests/ZoneTest.cpp.o:
+
 CMakeFiles/core3.dir/tre3/TreeFile.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/ActiveAreaQuadTree.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/CloseObjectsVector.cpp.o:
 
@@ -694,7 +710,13 @@ CMakeFiles/core3.dir/server/zone/managers/gcw/GCWBaseShutdownObserverImplementat
 
 CMakeFiles/core3.dir/server/zone/managers/gcw/GCWManagerImplementation.cpp.o:
 
+CMakeFiles/core3.dir/server/zone/managers/gcw/observers/ContainmentTeamObserverImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/managers/gcw/observers/ProbotObserverImplementation.cpp.o:
+
 CMakeFiles/core3.dir/server/zone/managers/gcw/sessions/ContrabandScanSessionImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/managers/gcw/sessions/WildContrabandScanSessionImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/managers/group/GroupManager.cpp.o:
 
@@ -715,6 +737,8 @@ CMakeFiles/core3.dir/server/zone/managers/minigames/ForageManagerImplementation.
 CMakeFiles/core3.dir/server/zone/managers/minigames/GamblingManagerImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/managers/minigames/events/ForageCleanupEvent.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/managers/minigames/events/GamblingEvent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/managers/mission/DestroyMissionLairObserverImplementation.cpp.o:
 
@@ -755,6 +779,8 @@ CMakeFiles/core3.dir/server/zone/managers/player/LuaQuestInfo.cpp.o:
 CMakeFiles/core3.dir/server/zone/managers/player/PermissionLevelList.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/managers/player/PlayerManagerImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/managers/player/PlayerMap.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/managers/player/creation/PlayerCreationManager.cpp.o:
 
@@ -872,21 +898,13 @@ CMakeFiles/core3.dir/server/zone/objects/creature/ai/NonPlayerCreatureObjectImpl
 
 CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/Behavior.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/CompositeBehavior.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/leaf/Checks.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/LuaBehavior.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Composite.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/NonDeterministicBehavior.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Selector.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelBehavior.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelSelectorBehavior.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/ParallelSequenceBehavior.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/SelectorBehavior.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/SequenceBehavior.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/creature/ai/bt/node/Sequence.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/creature/ai/variables/CreatureTemplateReference.cpp.o:
 
@@ -916,8 +934,6 @@ CMakeFiles/core3.dir/server/zone/objects/creature/commands/ForceHealQueueCommand
 
 CMakeFiles/core3.dir/server/zone/objects/creature/commands/QueueCommand.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/commands/VillageCommand.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/creature/components/FactionRecruiterContainerComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/creature/components/PetMenuComponent.cpp.o:
@@ -927,6 +943,8 @@ CMakeFiles/core3.dir/server/zone/objects/creature/components/SarlaccMenuComponen
 CMakeFiles/core3.dir/server/zone/objects/creature/components/TrainerMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/creature/conversation/ConversationObserverImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/creature/conversation/ConversationTemplate.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/creature/conversation/DeliverMissionConversationObserverImplementation.cpp.o:
 
@@ -952,8 +970,6 @@ CMakeFiles/core3.dir/server/zone/objects/creature/damageovertime/DamageOverTime.
 
 CMakeFiles/core3.dir/server/zone/objects/creature/damageovertime/DamageOverTimeList.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/creature/events/CloakEventObserverImplementation.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/creature/variables/CommandQueueAction.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/creature/variables/LuaSkill.cpp.o:
@@ -964,7 +980,11 @@ CMakeFiles/core3.dir/server/zone/objects/draftschematic/DraftSchematicImplementa
 
 CMakeFiles/core3.dir/server/zone/objects/factorycrate/FactoryCrateImplementation.cpp.o:
 
+CMakeFiles/core3.dir/server/zone/objects/group/GroupMember.cpp.o:
+
 CMakeFiles/core3.dir/server/zone/objects/group/GroupObjectImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/guild/GuildMemberInfo.cpp.o:
 
@@ -1010,11 +1030,9 @@ CMakeFiles/core3.dir/server/zone/objects/intangible/PetControlDeviceImplementati
 
 CMakeFiles/core3.dir/server/zone/objects/intangible/ShipControlDeviceImplementation.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/intangible/StructureControlDeviceImplementation.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/intangible/components/UnpackStructureComponent.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/ManufactureSchematicImplementation.cpp.o:
 
@@ -1042,11 +1060,15 @@ CMakeFiles/core3.dir/server/zone/objects/mission/MissionObjectiveImplementation.
 
 CMakeFiles/core3.dir/server/zone/objects/mission/MissionObserverImplementation.cpp.o:
 
+CMakeFiles/core3.dir/server/zone/objects/mission/PlayerBountyImplementation.cpp.o:
+
 CMakeFiles/core3.dir/server/zone/objects/mission/ReconMissionObjectiveImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/mission/SurveyMissionObjectiveImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/mission/bountyhunter/BountyHunterDroid.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/mission/events/FailMissionAfterCertainTimeTask.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/pathfinding/NavAreaImplementation.cpp.o:
 
@@ -1063,6 +1085,8 @@ CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerContainerCompon
 CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerObjectMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/components/PlayerZoneComponent.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/player/events/RecordTrackTimeoutEvent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/CityRemoveMilitiaSessionImplementation.cpp.o:
 
@@ -1088,15 +1112,11 @@ CMakeFiles/core3.dir/server/zone/objects/player/sessions/LootLotterySessionImple
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/LuaConversationSession.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/player/sessions/PackupStructureSessionImplementation.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/PlaceStructureSessionImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/SlicingSessionImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/StructureSetAccessFeeSessionImplementation.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/player/sessions/UnpackStructureSessionImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/admin/PlayerManagementSessionImplementation.cpp.o:
 
@@ -1107,8 +1127,6 @@ CMakeFiles/core3.dir/server/zone/objects/player/sessions/survey/SurveySessionImp
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/vendor/CreateVendorSessionImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sessions/vendor/VendorAdBarkingSessionImplementation.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/player/sui/Addweapondot/AddWeaponDotImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sui/LuaSuiBox.cpp.o:
 
@@ -1131,8 +1149,6 @@ CMakeFiles/core3.dir/server/zone/objects/player/sui/callbacks/LuaSuiCallback.cpp
 CMakeFiles/core3.dir/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBoxImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sui/colorbox/SuiColorBoxImplementation.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/player/sui/deconstructweapon/DeconstructWeaponImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/player/sui/inputbox/SuiInputBoxImplementation.cpp.o:
 
@@ -1160,6 +1176,8 @@ CMakeFiles/core3.dir/server/zone/objects/region/components/CityManagementMenuCom
 
 CMakeFiles/core3.dir/server/zone/objects/region/components/CityVotingMenuComponent.cpp.o:
 
+CMakeFiles/core3.dir/server/zone/objects/region/events/CitizenAssessmentEvent.cpp.o:
+
 CMakeFiles/core3.dir/server/zone/objects/region/events/CityUpdateEvent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplementation.cpp.o:
@@ -1171,6 +1189,8 @@ CMakeFiles/core3.dir/server/zone/objects/resource/simplexnoise/SimplexNoise.cpp.
 CMakeFiles/core3.dir/server/zone/objects/scene/LuaSceneObject.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectType.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/scene/WorldCoordinates.cpp.o:
 
@@ -1197,8 +1217,6 @@ CMakeFiles/core3.dir/server/zone/objects/scene/variables/ContainerObjectsMap.cpp
 CMakeFiles/core3.dir/server/zone/objects/scene/variables/ContainerPermissions.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/scene/variables/CustomizationVariables.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/scene/variables/OrderedTaskExecutioner.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/scene/variables/PendingTasksMap.cpp.o:
 
@@ -1228,9 +1246,9 @@ CMakeFiles/core3.dir/server/zone/objects/structure/events/StructureMaintenanceTa
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/ContainerImplementation.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/InstrumentImplementation.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/tangible/DespawnLairOnPlayerDisappear.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/InstrumentObserverImplementation.cpp.o:
+CMakeFiles/core3.dir/server/zone/objects/tangible/InstrumentImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/LuaTangibleObject.cpp.o:
 
@@ -1252,11 +1270,7 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/component/lightsaber/Lightsabe
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ArmorObjectMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/ArtifactMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/BankTerminalMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/BossMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/BountyHunterDroidMenuComponent.cpp.o:
 
@@ -1268,21 +1282,7 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/components/CityDecorationMenuC
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/CloningTerminalMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectiongoldMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectionplatinumMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/CollectionsilverMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ContainerObjectComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/ContrabandMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/DarkJediMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/DiamondMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/DotpackMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/DroidCustomKitObjectMenuComponent.cpp.o:
 
@@ -1292,71 +1292,31 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/components/ElevatorMenuCompone
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ElevatorUpMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventPerkMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/EventpackMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/FireHeavyWeaponMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlagGameMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlurrycoalMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/FlurrypresentMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ForceCrystalMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/ForceShrineMenuComponent1.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/FriendcrateMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/GogglesObjectMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HalloweenMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/HeroRingMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HeroicMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronCombatMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronCraftingMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronReflexMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronSensesMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/HolocronsMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/ImperialMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/InsuranceTerminalMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/LairMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/LightJediMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/LightsaberObjectMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/LootContainerComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/NewMemberMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/PersonnelPerkZoneComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/PlaceableLootContainerComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate1MenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate2MenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/Rarelootcrate3MenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/RebelMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/RingObjectMenuComponent.cpp.o:
 
@@ -1367,8 +1327,6 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/components/SaberInventoryConta
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScavengerChestContainerComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScavengerDroidContainerComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/ScrapMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/SkillBuffObjectMenuComponent.cpp.o:
 
@@ -1382,17 +1340,11 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/components/TrapMenuComponent.c
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/VehicleCustomKitObjectMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/VisMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/WaypointDatapadMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/WeaponObjectMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/WearableObjectMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/WorldMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/XpMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/droid/BaseDroidModuleComponent.cpp.o:
 
@@ -1456,15 +1408,9 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/DiceMenuCom
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/LootSchematicMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/SarlaccTrashCanMenuComponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/ShellfishHarvesterMenuComponent.cpp.o:
 
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/VendorTokenMenucomponent.cpp.o:
-
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/generic/XpPurchaseMenuComponent.cpp.o:
-
-CMakeFiles/core3.dir/server/zone/objects/tangible/components/pvpMenuComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/components/vendor/VendorContainerComponent.cpp.o:
 
@@ -1630,6 +1576,8 @@ CMakeFiles/core3.dir/server/zone/objects/tangible/wearables/WearableContainerObj
 
 CMakeFiles/core3.dir/server/zone/objects/tangible/wearables/WearableObjectImplementation.cpp.o:
 
+CMakeFiles/core3.dir/server/zone/objects/transaction/TransactionLog.cpp.o:
+
 CMakeFiles/core3.dir/server/zone/objects/waypoint/WaypointObjectImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/packets/charcreation/ClientCreateCharacterCallback.cpp.o:
@@ -1637,8 +1585,6 @@ CMakeFiles/core3.dir/server/zone/packets/charcreation/ClientCreateCharacterCallb
 CMakeFiles/core3.dir/server/zone/packets/object/CommandQueueEnqueue.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/packets/object/ObjectControllerMessageCallback.cpp.o:
-
-libcore3tests.a:
 
 server/db/libdb3.a:
 
@@ -1664,13 +1610,13 @@ libidlobjects.a:
 
 ../utils/engine3/MMOEngine/lib/unix/libengine3.a:
 
-../utils/googletest-release-1.8.0/googlemock/libgmock.a:
+../lib/libgmock.a:
 
 /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0:
 
 /usr/lib/x86_64-linux-gnu/libatomic.so.1:
 
-/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libmysqlclient.so:
+/usr/lib/x86_64-linux-gnu/libmysqlclient.so:
 
 /usr/lib/x86_64-linux-gnu/liblua5.3.so:
 
@@ -1685,6 +1631,18 @@ libidlobjects.a:
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libdl.a:
 
 /usr/lib/x86_64-linux-gnu/libjemalloc.so:
+
+/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0:
+
+../lib/libgtest.a:
 
 /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0:
 

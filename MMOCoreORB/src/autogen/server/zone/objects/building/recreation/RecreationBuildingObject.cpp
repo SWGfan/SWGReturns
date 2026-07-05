@@ -28,7 +28,7 @@ RecreationBuildingObject::~RecreationBuildingObject() {
 
 bool RecreationBuildingObject::isRecreationalBuildingObject() const {
 	RecreationBuildingObjectImplementation* _implementation = static_cast<RecreationBuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void RecreationBuildingObjectImplementation::finalize() {
 void RecreationBuildingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(RecreationBuildingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

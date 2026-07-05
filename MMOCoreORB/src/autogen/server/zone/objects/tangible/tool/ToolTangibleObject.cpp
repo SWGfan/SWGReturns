@@ -28,7 +28,7 @@ ToolTangibleObject::~ToolTangibleObject() {
 
 void ToolTangibleObject::initializeTransientMembers() {
 	ToolTangibleObjectImplementation* _implementation = static_cast<ToolTangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void ToolTangibleObjectImplementation::finalize() {
 void ToolTangibleObjectImplementation::_initializeImplementation() {
 	_setClassHelper(ToolTangibleObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

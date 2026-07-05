@@ -44,11 +44,11 @@
 object_tangible_food_crafted_drink_aitha = object_tangible_food_crafted_shared_drink_aitha:new {
 	templateType = CONSUMABLE,
 
-	duration = 45,
+	duration = 450,
 	filling = 10,
 	nutrition = 10,
 
-	effectType = 6,
+	effectType = 4,
 
 	fillingMin = 18,
 	fillingMax = 11,
@@ -61,7 +61,7 @@ object_tangible_food_crafted_drink_aitha = object_tangible_food_crafted_shared_d
 	quantityMin = 4,
 	quantityMax = 7,
 
-	modifiers = { "mind", 0 },
+	modifiers = { "melee_accuracy", 0 },
 
 	buffName = "",
 	buffCRC = 0,

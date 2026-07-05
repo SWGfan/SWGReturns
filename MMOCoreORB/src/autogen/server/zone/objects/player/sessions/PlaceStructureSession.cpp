@@ -38,7 +38,7 @@ PlaceStructureSession::~PlaceStructureSession() {
 
 int PlaceStructureSession::initializeSession() {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ int PlaceStructureSession::initializeSession() {
 
 void PlaceStructureSession::placeTemporaryNoBuildZone(const SharedStructureObjectTemplate* serverTemplate) {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void PlaceStructureSession::placeTemporaryNoBuildZone(const SharedStructureObjec
 
 void PlaceStructureSession::removeTemporaryNoBuildZone() {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void PlaceStructureSession::removeTemporaryNoBuildZone() {
 
 int PlaceStructureSession::constructStructure(float x, float y, int angle) {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ int PlaceStructureSession::constructStructure(float x, float y, int angle) {
 
 int PlaceStructureSession::completeSession() {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ int PlaceStructureSession::completeSession() {
 
 int PlaceStructureSession::cancelSession() {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ int PlaceStructureSession::cancelSession() {
 
 int PlaceStructureSession::clearSession() {
 	PlaceStructureSessionImplementation* _implementation = static_cast<PlaceStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ void PlaceStructureSessionImplementation::finalize() {
 void PlaceStructureSessionImplementation::_initializeImplementation() {
 	_setClassHelper(PlaceStructureSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -411,9 +411,9 @@ PlaceStructureSessionImplementation::PlaceStructureSessionImplementation(Creatur
 	// server/zone/objects/player/sessions/PlaceStructureSession.idl():  		directionAngle = 0;
 	directionAngle = 0;
 	// server/zone/objects/player/sessions/PlaceStructureSession.idl():  		constructionBarricade = null;
-	constructionBarricade = nullptr;
+	constructionBarricade = NULL;
 	// server/zone/objects/player/sessions/PlaceStructureSession.idl():  		temporaryNoBuildZone = null;
-	temporaryNoBuildZone = nullptr;
+	temporaryNoBuildZone = NULL;
 }
 
 int PlaceStructureSessionImplementation::initializeSession() {

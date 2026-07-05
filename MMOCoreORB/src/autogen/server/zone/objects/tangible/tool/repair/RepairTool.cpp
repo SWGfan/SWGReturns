@@ -32,7 +32,7 @@ RepairTool::~RepairTool() {
 
 bool RepairTool::isRepairTool() {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ bool RepairTool::isRepairTool() {
 
 void RepairTool::loadTemplateData(SharedObjectTemplate* templateData) {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void RepairTool::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void RepairTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void RepairTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* ob
 
 int RepairTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ int RepairTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 void RepairTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -92,7 +92,7 @@ void RepairTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) 
 
 float RepairTool::getQuality() {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ float RepairTool::getQuality() {
 
 void RepairTool::sendRepairListTo(CreatureObject* player) {
 	RepairToolImplementation* _implementation = static_cast<RepairToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void RepairToolImplementation::finalize() {
 void RepairToolImplementation::_initializeImplementation() {
 	_setClassHelper(RepairToolHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

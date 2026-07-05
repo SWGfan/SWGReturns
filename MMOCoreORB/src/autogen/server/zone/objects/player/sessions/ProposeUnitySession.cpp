@@ -28,7 +28,7 @@ ProposeUnitySession::~ProposeUnitySession() {
 
 unsigned long long ProposeUnitySession::getAskingPlayer() {
 	ProposeUnitySessionImplementation* _implementation = static_cast<ProposeUnitySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ unsigned long long ProposeUnitySession::getAskingPlayer() {
 
 unsigned long long ProposeUnitySession::getRespondingPlayer() {
 	ProposeUnitySessionImplementation* _implementation = static_cast<ProposeUnitySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ unsigned long long ProposeUnitySession::getRespondingPlayer() {
 
 unsigned long long ProposeUnitySession::getAskingPlayerRing() {
 	ProposeUnitySessionImplementation* _implementation = static_cast<ProposeUnitySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ void ProposeUnitySessionImplementation::finalize() {
 void ProposeUnitySessionImplementation::_initializeImplementation() {
 	_setClassHelper(ProposeUnitySessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

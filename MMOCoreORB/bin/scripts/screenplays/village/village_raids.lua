@@ -27,8 +27,8 @@ VillageRaids = ScreenPlay:new {
 	},
 
 	enemyData = {
-		minSpawnPulse = 2700 * 1000, -- 45 min 
-		maxSpawnPulse = 3600 * 1000, -- 1 hour
+		minSpawnPulse = 5000 * 1000,
+		maxSpawnPulse = 7000 * 1000,
 		minDistance = 25, -- Min distance from center of spawn loc
 		maxDistance = 50 -- Max distance from center of spawn loc
 	},
@@ -219,8 +219,8 @@ function VillageRaids:setupSpawnedRaider(pMobile)
 		return
 	end
 
-	AiAgent(pMobile):setAiTemplate("villageraider")
-	AiAgent(pMobile):setFollowState(4)
+	AiAgent(pMobile):addCreatureFlag(AI_ESCORT)
+	AiAgent(pMobile):setMovementState(AI_PATROLLING)
 
 	createObserver(OBJECTDESTRUCTION, "FsVillageDefense", "notifyKilledRaider", pMobile)
 
@@ -257,10 +257,7 @@ function VillageRaids:startAttackerPatrolPath(pMobile)
 
 	local locInfo = self.victimSpawnLocs[closestVictimLoc]
 	AiAgent(pMobile):setHomeLocation(locInfo[1], locInfo[2], locInfo[3], 0)
-	AiAgent(pMobile):stopWaiting()
-	AiAgent(pMobile):setWait(0)
 	AiAgent(pMobile):setNextPosition(locInfo[1], locInfo[2], locInfo[3], 0)
-	AiAgent(pMobile):executeBehavior()
 end
 
 function VillageRaids:despawnTurrets()

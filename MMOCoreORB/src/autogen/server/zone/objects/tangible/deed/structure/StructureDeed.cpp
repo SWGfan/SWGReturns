@@ -32,7 +32,7 @@ StructureDeed::~StructureDeed() {
 
 void StructureDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void StructureDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject*
 
 int StructureDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ int StructureDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedI
 
 void StructureDeed::initializeTransientMembers() {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ void StructureDeed::initializeTransientMembers() {
 
 void StructureDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -82,7 +82,7 @@ void StructureDeed::updateCraftingValues(CraftingValues* values, bool firstUpdat
 
 int StructureDeed::placeStructure(CreatureObject* creature, float x, float y, int angle) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ int StructureDeed::placeStructure(CreatureObject* creature, float x, float y, in
 
 int StructureDeed::notifyStructurePlaced(CreatureObject* creature, StructureObject* structure) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,7 +116,7 @@ int StructureDeed::notifyStructurePlaced(CreatureObject* creature, StructureObje
 
 void StructureDeed::setSurplusMaintenance(unsigned int maint) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +131,7 @@ void StructureDeed::setSurplusMaintenance(unsigned int maint) {
 
 void StructureDeed::setSurplusPower(unsigned int power) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -146,7 +146,7 @@ void StructureDeed::setSurplusPower(unsigned int power) {
 
 void StructureDeed::setExtractionRate(float rate) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -161,7 +161,7 @@ void StructureDeed::setExtractionRate(float rate) {
 
 void StructureDeed::setHopperSize(float size) {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -176,7 +176,7 @@ void StructureDeed::setHopperSize(float size) {
 
 unsigned int StructureDeed::getSurplusMaintenance() const {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,7 +190,7 @@ unsigned int StructureDeed::getSurplusMaintenance() const {
 
 unsigned int StructureDeed::getSurplusPower() const {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,7 +204,7 @@ unsigned int StructureDeed::getSurplusPower() const {
 
 float StructureDeed::getExtractionRate() const {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -218,7 +218,7 @@ float StructureDeed::getExtractionRate() const {
 
 float StructureDeed::getHopperSize() const {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -232,7 +232,7 @@ float StructureDeed::getHopperSize() const {
 
 bool StructureDeed::isStructureDeed() {
 	StructureDeedImplementation* _implementation = static_cast<StructureDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -277,7 +277,7 @@ void StructureDeedImplementation::finalize() {
 void StructureDeedImplementation::_initializeImplementation() {
 	_setClassHelper(StructureDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

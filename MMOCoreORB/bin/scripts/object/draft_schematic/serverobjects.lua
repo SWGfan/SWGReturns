@@ -47,7 +47,6 @@ includeFile("draft_schematic/bio_engineer/serverobjects.lua")
 includeFile("draft_schematic/chemistry/serverobjects.lua")
 includeFile("draft_schematic/clothing/serverobjects.lua")
 includeFile("draft_schematic/community_crafting/serverobjects.lua")
-includeFile("draft_schematic/dance_prop/serverobjects.lua")
 includeFile("draft_schematic/droid/serverobjects.lua")
 includeFile("draft_schematic/food/serverobjects.lua")
 includeFile("draft_schematic/furniture/serverobjects.lua")
@@ -64,4 +63,4 @@ includeFile("draft_schematic/vehicle/serverobjects.lua")
 includeFile("draft_schematic/weapon/serverobjects.lua")
 
 -- Server Objects
-
+includeFile("draft_schematic/armored_clothing/serverobjects.lua")

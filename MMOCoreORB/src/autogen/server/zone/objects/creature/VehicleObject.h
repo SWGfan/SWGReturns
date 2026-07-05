@@ -280,16 +280,6 @@ public:
 
 	float getLightSaber();
 
-	int getPassengerCapacity();
-
-	String getPassengerSeatName();
-
-	bool hasOpenSeat();
-
-	int getOpenSeat();
-
-	bool slotPassenger(CreatureObject* passenger);
-
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -495,16 +485,6 @@ public:
 
 	float getLightSaber();
 
-	int getPassengerCapacity();
-
-	String getPassengerSeatName();
-
-	bool hasOpenSeat();
-
-	int getOpenSeat();
-
-	bool slotPassenger(CreatureObject* passenger);
-
 	WeakReference<VehicleObject*> _this;
 
 	operator const VehicleObject*();
@@ -608,16 +588,6 @@ public:
 	float getAcid();
 
 	float getLightSaber();
-
-	int getPassengerCapacity();
-
-	String getPassengerSeatName();
-
-	bool hasOpenSeat();
-
-	int getOpenSeat();
-
-	bool slotPassenger(CreatureObject* passenger);
 
 };
 

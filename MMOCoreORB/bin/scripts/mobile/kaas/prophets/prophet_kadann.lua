@@ -3,6 +3,7 @@ prophet_kadann = Creature:new {
 	customName ="Kadann (Supreme Prophet of the Dark Side)",
 	socialGroup = "thug",
 	faction = "prophets",
+	mobType = MOB_NPC,
 	level = 126,
 	chanceHit = 4,
 	damageMin = 745,

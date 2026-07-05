@@ -34,7 +34,7 @@ SurveyMissionObjective::~SurveyMissionObjective() {
 
 void SurveyMissionObjective::initializeTransientMembers() {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void SurveyMissionObjective::initializeTransientMembers() {
 
 void SurveyMissionObjective::activate() {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void SurveyMissionObjective::activate() {
 
 void SurveyMissionObjective::abort() {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ void SurveyMissionObjective::abort() {
 
 void SurveyMissionObjective::complete() {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void SurveyMissionObjective::complete() {
 
 int SurveyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ int SurveyMissionObjective::notifyObserverEvent(MissionObserver* observer, unsig
 
 void SurveyMissionObjective::setSpawnFamily(String& spf) {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ void SurveyMissionObjective::setSpawnFamily(String& spf) {
 
 void SurveyMissionObjective::setEfficiency(unsigned int eff) {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ void SurveyMissionObjective::setEfficiency(unsigned int eff) {
 
 Vector3 SurveyMissionObjective::getEndPosition() {
 	SurveyMissionObjectiveImplementation* _implementation = static_cast<SurveyMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -182,7 +182,7 @@ SurveyMissionObjectiveImplementation::~SurveyMissionObjectiveImplementation() {
 void SurveyMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(SurveyMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

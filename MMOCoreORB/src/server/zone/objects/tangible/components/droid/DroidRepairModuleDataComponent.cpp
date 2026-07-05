@@ -6,6 +6,8 @@
 #include "server/zone/ZoneServer.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/managers/creature/PetManager.h"
+#include "server/zone/objects/creature/ai/DroidObject.h"
+#include "server/zone/objects/intangible/PetControlDevice.h"
 
 DroidRepairModuleDataComponent::DroidRepairModuleDataComponent() {
 	setLoggingName("DroidRepairModule");
@@ -13,7 +15,7 @@ DroidRepairModuleDataComponent::DroidRepairModuleDataComponent() {
 DroidRepairModuleDataComponent::~DroidRepairModuleDataComponent() {
 
 }
-String DroidRepairModuleDataComponent::getModuleName() {
+String DroidRepairModuleDataComponent::getModuleName() const {
 	return String("repair_module");
 }
 void DroidRepairModuleDataComponent::initializeTransientMembers() {
@@ -82,7 +84,7 @@ void DroidRepairModuleDataComponent::handlePetCommand(String cmd, CreatureObject
 	if( droid->getLinkedCreature() != speaker )
 		return;
 
-	if( petManager->isTrainedCommand( pcd, PetManager::REPAIR, cmd ) ){
+	if (petManager->getTrainedCommandNum( pcd, cmd) == PetManager::REPAIR){
 		petManager->enqueuePetCommand(speaker, droid, STRING_HASHCODE("petrepair"), "");
 	}
 }
@@ -91,6 +93,6 @@ int DroidRepairModuleDataComponent::getBatteryDrain() {
 	return 0;  // No constant drain, but each activation will use power
 }
 
-String DroidRepairModuleDataComponent::toString(){
+String DroidRepairModuleDataComponent::toString() const {
 	return BaseDroidModuleComponent::toString();
 }

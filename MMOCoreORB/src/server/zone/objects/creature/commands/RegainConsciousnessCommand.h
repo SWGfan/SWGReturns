@@ -7,6 +7,7 @@
 
 #include "server/zone/ZoneServer.h"
 #include "server/zone/managers/player/PlayerManager.h"
+
 #include "server/zone/objects/creature/buffs/PrivateBuff.h"
 #include "server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.h"
 
@@ -21,11 +22,6 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-
-	if (creature->hasSkill("combat_jedi_novice") && creature->getScreenPlayState("jediLives") == 0) {
-		creature->sendSystemMessage("You Have 1 Gray Jedi Life Or Less, You May Not Use This Ability."); // You Have 1 Gray Jedi Life Or Less, You May Not Use This Ability.
-		return 0;
-		}
 
 		// They should be dead...
 		if (creature->isDead()){
@@ -74,7 +70,7 @@ public:
 			creature->sendSystemMessage(message);
 
 			// Revive user by setting posture to standing.
-			
+
 			creature->removeFeignedDeath();
 
 			creature->setPosture(CreaturePosture::UPRIGHT);

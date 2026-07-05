@@ -38,7 +38,7 @@ public:
 
 	void initializeTransientMembers();
 
-	String getSkillRequired();
+	String getSkillRequired() const;
 
 	bool isRobeObject();
 
@@ -78,7 +78,7 @@ public:
 
 	void initializeTransientMembers();
 
-	String getSkillRequired();
+	String getSkillRequired() const;
 
 	bool isRobeObject();
 
@@ -128,7 +128,7 @@ public:
 
 	void initializeTransientMembers();
 
-	String getSkillRequired();
+	String getSkillRequired() const;
 
 	bool isRobeObject();
 

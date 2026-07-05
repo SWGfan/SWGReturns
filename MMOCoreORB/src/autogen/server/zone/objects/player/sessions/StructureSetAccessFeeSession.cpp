@@ -34,7 +34,7 @@ StructureSetAccessFeeSession::~StructureSetAccessFeeSession() {
 
 int StructureSetAccessFeeSession::initializeSession() {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int StructureSetAccessFeeSession::initializeSession() {
 
 int StructureSetAccessFeeSession::cancelSession() {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ int StructureSetAccessFeeSession::cancelSession() {
 
 int StructureSetAccessFeeSession::clearSession() {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ int StructureSetAccessFeeSession::clearSession() {
 
 void StructureSetAccessFeeSession::promptSetAccessFee() {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void StructureSetAccessFeeSession::promptSetAccessFee() {
 
 void StructureSetAccessFeeSession::setAccessFee(const int fee) {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ void StructureSetAccessFeeSession::setAccessFee(const int fee) {
 
 void StructureSetAccessFeeSession::promptSetAccessDuration() {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ void StructureSetAccessFeeSession::promptSetAccessDuration() {
 
 void StructureSetAccessFeeSession::setAccessDuration(const int duration) {
 	StructureSetAccessFeeSessionImplementation* _implementation = static_cast<StructureSetAccessFeeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,7 +165,7 @@ void StructureSetAccessFeeSessionImplementation::finalize() {
 void StructureSetAccessFeeSessionImplementation::_initializeImplementation() {
 	_setClassHelper(StructureSetAccessFeeSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -336,9 +336,9 @@ StructureSetAccessFeeSessionImplementation::StructureSetAccessFeeSessionImplemen
 	// server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl():  		structure = struc;
 	structure = struc;
 	// server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl():  		feeAmountBox = null;
-	feeAmountBox = nullptr;
+	feeAmountBox = NULL;
 	// server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl():  		durationBox = null;
-	durationBox = nullptr;
+	durationBox = NULL;
 	// server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl():  		accessFee = 0;
 	accessFee = 0;
 	// server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl():  		Logger.setLoggingName("StructureSetAccessFeeSession");

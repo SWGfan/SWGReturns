@@ -34,7 +34,7 @@ FishingSession::~FishingSession() {
 
 void FishingSession::setEvent(FishingEvent* ev) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -44,7 +44,7 @@ void FishingSession::setEvent(FishingEvent* ev) {
 
 void FishingSession::setMood(const String& m) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ void FishingSession::setMood(const String& m) {
 
 FishingEvent* FishingSession::getEvent() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +69,7 @@ FishingEvent* FishingSession::getEvent() {
 
 void FishingSession::setNextAction(int action) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ void FishingSession::setNextAction(int action) {
 
 int FishingSession::getNextAction() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ int FishingSession::getNextAction() {
 
 void FishingSession::setFishBoxID(unsigned int box) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -113,7 +113,7 @@ void FishingSession::setFishBoxID(unsigned int box) {
 
 unsigned int FishingSession::getFishBoxID() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ unsigned int FishingSession::getFishBoxID() {
 
 SceneObject* FishingSession::getMarker() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -141,7 +141,7 @@ SceneObject* FishingSession::getMarker() {
 
 void FishingSession::setMarker(SceneObject* mar) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ void FishingSession::setMarker(SceneObject* mar) {
 
 int FishingSession::getFish() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ int FishingSession::getFish() {
 
 void FishingSession::setFish(int fi) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -185,7 +185,7 @@ void FishingSession::setFish(int fi) {
 
 int FishingSession::getFishingState() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -199,7 +199,7 @@ int FishingSession::getFishingState() {
 
 void FishingSession::setFishingState(int state) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -214,7 +214,7 @@ void FishingSession::setFishingState(int state) {
 
 void FishingSession::update(int nextAction, SceneObject* marker, int fish, unsigned int boxID, int fishingState) {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ void FishingSession::update(int nextAction, SceneObject* marker, int fish, unsig
 
 String FishingSession::getMoodString() {
 	FishingSessionImplementation* _implementation = static_cast<FishingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -280,7 +280,7 @@ void FishingSessionImplementation::finalize() {
 void FishingSessionImplementation::_initializeImplementation() {
 	_setClassHelper(FishingSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -634,7 +634,7 @@ void FishingSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			DistributedObject* _m_res = getMarker();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETMARKER__SCENEOBJECT_:

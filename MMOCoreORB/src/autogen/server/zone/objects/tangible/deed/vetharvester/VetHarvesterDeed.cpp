@@ -32,7 +32,7 @@ VetHarvesterDeed::~VetHarvesterDeed() {
 
 void VetHarvesterDeed::initializeTransientMembers() {
 	VetHarvesterDeedImplementation* _implementation = static_cast<VetHarvesterDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void VetHarvesterDeed::initializeTransientMembers() {
 
 void VetHarvesterDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	VetHarvesterDeedImplementation* _implementation = static_cast<VetHarvesterDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void VetHarvesterDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, 
 
 int VetHarvesterDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	VetHarvesterDeedImplementation* _implementation = static_cast<VetHarvesterDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int VetHarvesterDeed::handleObjectMenuSelect(CreatureObject* player, byte select
 
 int VetHarvesterDeed::useObject(CreatureObject* player) {
 	VetHarvesterDeedImplementation* _implementation = static_cast<VetHarvesterDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ int VetHarvesterDeed::useObject(CreatureObject* player) {
 
 void VetHarvesterDeed::destroyDeed() {
 	VetHarvesterDeedImplementation* _implementation = static_cast<VetHarvesterDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -132,7 +132,7 @@ void VetHarvesterDeedImplementation::finalize() {
 void VetHarvesterDeedImplementation::_initializeImplementation() {
 	_setClassHelper(VetHarvesterDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

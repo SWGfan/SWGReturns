@@ -10,11 +10,13 @@
 
 #include "server/zone/objects/creature/ai/AiAgent.h"
 
+#include "server/zone/objects/scene/SceneObject.h"
+
 /*
  *	ReactionManagerStub
  */
 
-enum {RPC_GETREACTIONLEVEL__STRING_ = 913684871,RPC_LOADLUACONFIG__,RPC_SENDCHATREACTION__AIAGENT_INT_INT_BOOL_,RPC_GETREACTIONQUIP__INT_,RPC_EMOTEREACTION__CREATUREOBJECT_AIAGENT_INT_,RPC_DOKNOCKDOWN__CREATUREOBJECT_AIAGENT_,RPC_DOREACTIONFINEMAILCHECK__CREATUREOBJECT_};
+enum {RPC_GETREACTIONLEVEL__STRING_ = 913684871,RPC_LOADLUACONFIG__,RPC_SENDCHATREACTION__AIAGENT_SCENEOBJECT_INT_INT_BOOL_,RPC_GETREACTIONQUIP__INT_,RPC_EMOTEREACTION__CREATUREOBJECT_AIAGENT_INT_,RPC_DOKNOCKDOWN__CREATUREOBJECT_AIAGENT_,RPC_DOREACTIONFINEMAILCHECK__CREATUREOBJECT_};
 
 ReactionManager::ReactionManager(ZoneServer* zserv) : ManagedService(DummyConstructorParameter::instance()) {
 	ReactionManagerImplementation* _implementation = new ReactionManagerImplementation(zserv);
@@ -34,7 +36,7 @@ ReactionManager::~ReactionManager() {
 
 int ReactionManager::getReactionLevel(const String& emote) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +51,7 @@ int ReactionManager::getReactionLevel(const String& emote) {
 
 void ReactionManager::loadLuaConfig() {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,28 +63,29 @@ void ReactionManager::loadLuaConfig() {
 	}
 }
 
-void ReactionManager::sendChatReaction(AiAgent* npc, int type, int state, bool force) {
+void ReactionManager::sendChatReaction(AiAgent* npc, SceneObject* object, int type, int state, bool force) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SENDCHATREACTION__AIAGENT_INT_INT_BOOL_);
+		DistributedMethod method(this, RPC_SENDCHATREACTION__AIAGENT_SCENEOBJECT_INT_INT_BOOL_);
 		method.addObjectParameter(npc);
+		method.addObjectParameter(object);
 		method.addSignedIntParameter(type);
 		method.addSignedIntParameter(state);
 		method.addBooleanParameter(force);
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((npc == nullptr) || npc->isLockedByCurrentThread());
-		_implementation->sendChatReaction(npc, type, state, force);
+		assert((npc == NULL) || npc->isLockedByCurrentThread());
+		_implementation->sendChatReaction(npc, object, type, state, force);
 	}
 }
 
 EmoteReactionFine* ReactionManager::getEmoteReactionFine(CreatureObject* emoteUser, AiAgent* emoteTarget, int reactionLevel) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -92,7 +95,7 @@ EmoteReactionFine* ReactionManager::getEmoteReactionFine(CreatureObject* emoteUs
 
 ReactionRankData* ReactionManager::getReactionRankData(const String& name) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -102,7 +105,7 @@ ReactionRankData* ReactionManager::getReactionRankData(const String& name) {
 
 String ReactionManager::getReactionQuip(int num) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +122,7 @@ String ReactionManager::getReactionQuip(int num) {
 
 void ReactionManager::emoteReaction(CreatureObject* emoteUser, AiAgent* emoteTarget, int emoteid) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +139,7 @@ void ReactionManager::emoteReaction(CreatureObject* emoteUser, AiAgent* emoteTar
 
 void ReactionManager::doKnockdown(CreatureObject* victim, AiAgent* attacker) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +155,7 @@ void ReactionManager::doKnockdown(CreatureObject* victim, AiAgent* attacker) {
 
 void ReactionManager::doReactionFineMailCheck(CreatureObject* player) {
 	ReactionManagerImplementation* _implementation = static_cast<ReactionManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +201,7 @@ void ReactionManagerImplementation::finalize() {
 void ReactionManagerImplementation::_initializeImplementation() {
 	_setClassHelper(ReactionManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -345,14 +348,15 @@ void ReactionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 		}
 		break;
-	case RPC_SENDCHATREACTION__AIAGENT_INT_INT_BOOL_:
+	case RPC_SENDCHATREACTION__AIAGENT_SCENEOBJECT_INT_INT_BOOL_:
 		{
 			AiAgent* npc = static_cast<AiAgent*>(inv->getObjectParameter());
+			SceneObject* object = static_cast<SceneObject*>(inv->getObjectParameter());
 			int type = inv->getSignedIntParameter();
 			int state = inv->getSignedIntParameter();
 			bool force = inv->getBooleanParameter();
 			
-			sendChatReaction(npc, type, state, force);
+			sendChatReaction(npc, object, type, state, force);
 			
 		}
 		break;
@@ -404,8 +408,8 @@ void ReactionManagerAdapter::loadLuaConfig() {
 	(static_cast<ReactionManager*>(stub))->loadLuaConfig();
 }
 
-void ReactionManagerAdapter::sendChatReaction(AiAgent* npc, int type, int state, bool force) {
-	(static_cast<ReactionManager*>(stub))->sendChatReaction(npc, type, state, force);
+void ReactionManagerAdapter::sendChatReaction(AiAgent* npc, SceneObject* object, int type, int state, bool force) {
+	(static_cast<ReactionManager*>(stub))->sendChatReaction(npc, object, type, state, force);
 }
 
 String ReactionManagerAdapter::getReactionQuip(int num) {

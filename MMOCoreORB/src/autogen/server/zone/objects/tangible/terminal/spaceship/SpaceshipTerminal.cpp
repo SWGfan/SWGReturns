@@ -30,7 +30,7 @@ SpaceshipTerminal::~SpaceshipTerminal() {
 
 int SpaceshipTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	SpaceshipTerminalImplementation* _implementation = static_cast<SpaceshipTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void SpaceshipTerminalImplementation::finalize() {
 void SpaceshipTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(SpaceshipTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

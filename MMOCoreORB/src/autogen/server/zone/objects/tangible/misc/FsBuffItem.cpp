@@ -40,7 +40,7 @@ FsBuffItem::~FsBuffItem() {
 
 void FsBuffItem::fillAttributeList(AttributeListMessage* msg, CreatureObject* player) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -50,7 +50,7 @@ void FsBuffItem::fillAttributeList(AttributeListMessage* msg, CreatureObject* pl
 
 int FsBuffItem::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,14 +61,14 @@ int FsBuffItem::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void FsBuffItem::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void FsBuffItem::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatu
 
 String FsBuffItem::getTimeString(unsigned int timestamp) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -95,7 +95,7 @@ String FsBuffItem::getTimeString(unsigned int timestamp) {
 
 unsigned int FsBuffItem::getBuffCRC() {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ unsigned int FsBuffItem::getBuffCRC() {
 
 void FsBuffItem::setReuseTime(unsigned int time) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -125,7 +125,7 @@ void FsBuffItem::setReuseTime(unsigned int time) {
 
 void FsBuffItem::setBuffAttribute(int attrib) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -141,7 +141,7 @@ void FsBuffItem::setBuffAttribute(int attrib) {
 
 void FsBuffItem::setBuffValue(int value) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ void FsBuffItem::setBuffValue(int value) {
 
 void FsBuffItem::setBuffDuration(unsigned int dur) {
 	FsBuffItemImplementation* _implementation = static_cast<FsBuffItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -204,7 +204,7 @@ void FsBuffItemImplementation::finalize() {
 void FsBuffItemImplementation::_initializeImplementation() {
 	_setClassHelper(FsBuffItemHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

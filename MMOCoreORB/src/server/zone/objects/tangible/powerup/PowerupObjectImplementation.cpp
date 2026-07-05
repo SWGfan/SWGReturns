@@ -11,8 +11,8 @@
 #include "server/zone/packets/scene/AttributeListMessage.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
 
-float PowerupObjectImplementation::MAXPRIMARY = 33.16;
-float PowerupObjectImplementation::MAXSECONDARY = 16.33;
+float PowerupObjectImplementation::MAXPRIMARY = 33.16f;
+float PowerupObjectImplementation::MAXSECONDARY = 16.33f;
 
 void PowerupObjectImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 
@@ -72,12 +72,12 @@ float PowerupObjectImplementation::getWeaponStat(const String& attrib, WeaponObj
 		return weapon->getWoundsRatio(withPup);
 	else if (attrib == "damageRadius")
 		return weapon->getDamageRadius(withPup);
-	else if (attrib == "healthAttackCost")
-		return weapon->getHealthAttackCost(withPup);
+	//else if (attrib == "healthAttackCost")
+		//return weapon->getHealthAttackCost(withPup);
 	else if (attrib == "actionAttackCost")
 		return weapon->getActionAttackCost(withPup);
-	else if (attrib == "mindAttackCost")
-		return weapon->getMindAttackCost(withPup);
+	//else if (attrib == "mindAttackCost")
+		//return weapon->getMindAttackCost(withPup);
 	else if (attrib == "pointBlankRange")
 		return weapon->getPointBlankRange(withPup);
 

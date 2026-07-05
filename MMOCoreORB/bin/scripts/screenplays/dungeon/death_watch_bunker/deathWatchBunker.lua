@@ -179,7 +179,7 @@ end
 function DeathWatchBunkerScreenPlay:givePermission(pPlayer, permissionGroup)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-	if (pGhost ~= nil) then
+	if (pGhost ~= nil and not PlayerObject(pGhost):hasPermissionGroup(permissionGroup)) then
 		PlayerObject(pGhost):addPermissionGroup(permissionGroup, true)
 	end
 end
@@ -527,8 +527,7 @@ function DeathWatchBunkerScreenPlay:spawnObjects()
 end
 
 function DeathWatchBunkerScreenPlay:setBombDroidTemplate(pDroid)
-	AiAgent(pDroid):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
-	AiAgent(pDroid):setFollowState(4) -- Patrolling
+	AiAgent(pDroid):setMovementState(AI_PATROLLING)
 end
 
 function DeathWatchBunkerScreenPlay:setLootBoxPermissions(pContainer)
@@ -674,7 +673,7 @@ function DeathWatchBunkerScreenPlay:refillContainer(pSceneObject)
 		deleteData(SceneObject(pSceneObject):getObjectID() .. ":dwb:spawned")
 
 		createLoot(pSceneObject, "death_watch_bunker_lootbox", 1, false)
-		if getRandomNumber(100) > 95 then
+		if getRandomNumber(100) > 35 then
 			createLoot(pSceneObject, "death_watch_bunker_lootbox", 1, false)
 		end
 	end
@@ -755,12 +754,12 @@ function DeathWatchBunkerScreenPlay:removeFromBunker(pCreature)
 			local pMember = CreatureObject(pCreature):getGroupMember(i)
 			if pMember ~= nil then
 				if CreatureObject(pMember):getParentID() > 5996313 and CreatureObject(pMember):getParentID() < 5996380 then
-					createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pMember, "")
+					--createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pMember, "")
 				end
 			end
 		end
 	else
-		createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pCreature, "")
+		--createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pCreature, "")
 	end
 end
 
@@ -920,6 +919,64 @@ function DeathWatchBunkerScreenPlay:notifyTerminalChatSent(pPlayer, pChatMessage
 	return 0
 end
 
+function DeathWatchBunkerScreenPlay:doBombDroidAction(pBombDroid)
+	local spatialCommand = readStringData("dwb:bombDroidHandlerLastSpatialCommand")
+
+	if (spatialCommand == "reset" and pBombDroid == nil) then
+		self:respawnBombDroid()
+		return
+	end
+
+	if (pBombDroid == nil or not SceneObject(pBombDroid):isAiAgent()) then
+		return
+	end
+
+	if (spatialCommand == "detonate") then
+		CreatureObject(pBombDroid):playEffect("clienteffect/combat_grenade_proton.cef", "")
+		CreatureObject(pBombDroid):inflictDamage(pBombDroid, 0, 1000000, 1)
+		writeData("dwb:lastDroidDetonate", os.time())
+		return
+	end
+
+	local moveDistance = readData("dwb:bombDroidHandlerLastMoveDistance")
+
+	local droidLoc = { x = SceneObject(pBombDroid):getPositionX(), z = SceneObject(pBombDroid):getPositionZ(), y = SceneObject(pBombDroid):getPositionY(), cell = SceneObject(pBombDroid):getParentID() }
+
+	if (spatialCommand == "forward") then
+		droidLoc.x = droidLoc.x + moveDistance
+		if (droidLoc.x > 115) then
+			droidLoc.x = 115
+		end
+	elseif (spatialCommand == "backward") then
+		droidLoc.x = droidLoc.x - moveDistance
+		if (droidLoc.x < 76) then
+			droidLoc.x = 76
+		end
+	elseif (spatialCommand == "left") then
+		droidLoc.y = droidLoc.y + moveDistance
+		if (droidLoc.y > -114) then
+			droidLoc.y = -114
+		end
+	elseif (spatialCommand == "right") then
+		droidLoc.y = droidLoc.y - moveDistance
+		if (droidLoc.y < -152) then
+			droidLoc.y = -152
+		end
+	end
+
+	AiAgent(pBombDroid):stopWaiting()
+	AiAgent(pBombDroid):setNextPosition(droidLoc.x, droidLoc.z, droidLoc.y, droidLoc.cell)
+	AiAgent(pBombDroid):executeBehavior()
+end
+
+function DeathWatchBunkerScreenPlay:notifyEnteredVoiceTerminalArea(pArea, pPlayer)
+	if (not SceneObject(pPlayer):isPlayerCreature()) then
+		return 0
+	end
+
+	CreatureObject(pPlayer):sendSystemMessage("@dungeon/death_watch:rc_mouse_instructions")
+	return 0
+end
 
 function DeathWatchBunkerScreenPlay:notifyEnteredOutsideLockedDoorArea(pArea, pPlayer)
 	if (not SceneObject(pPlayer):isPlayerCreature()) then
@@ -1142,8 +1199,7 @@ function DeathWatchBunkerScreenPlay:startDefenderPath(pMobile, spawnName)
 		return
 	end
 
-	AiAgent(pMobile):setAiTemplate("deathwatchdefender")
-	AiAgent(pMobile):setFollowState(4)
+	AiAgent(pMobile):setMovementState(AI_PATROLLING)
 	AiAgent(pMobile):setHomeLocation(patrolPoint[1] + randomX, patrolPoint[2], patrolPoint[3] + randomY, pCell)
 	AiAgent(pMobile):stopWaiting()
 	AiAgent(pMobile):setWait(0)
@@ -1702,9 +1758,9 @@ function DeathWatchBunkerScreenPlay:stopCraftingProcess(pCreature, pTerm, succes
 
 	if teleport == true then
 		if (number == 4) then
-			createEvent(5000, "DeathWatchBunkerScreenPlay", "removeFromBunker", pCreature, "")
+			--createEvent(5000, "DeathWatchBunkerScreenPlay", "removeFromBunker", pCreature, "")
 		else
-			createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pCreature, "")
+			--createEvent(500, "DeathWatchBunkerScreenPlay", "teleportPlayer", pCreature, "")
 		end
 	end
 end
@@ -1779,7 +1835,7 @@ function DeathWatchBunkerScreenPlay:doValveSwitch(pCreature, valveNumber)
 	local state4 = readData("dwb:valve4")
 
 	if (state1 == 1 and state2 == 1 and state3 == 1 and state4 == 1) then
-		playClientEffectLoc(CreatureObject(pCreature):getObjectID(), "clienteffect/dth_watch_water_pressure.cef", "endor", CreatureObject(pCreature):getPositionX(), CreatureObject(pCreature):getPositionZ(), CreatureObject(pCreature):getPositionY(), CreatureObject(pCreature):getParentID())
+		playClientEffectLoc(pCreature, "clienteffect/dth_watch_water_pressure.cef", "endor", CreatureObject(pCreature):getPositionX(), CreatureObject(pCreature):getPositionZ(), CreatureObject(pCreature):getPositionY(), CreatureObject(pCreature):getParentID())
 		CreatureObject(pCreature):setScreenPlayState(64, "death_watch_foreman_stage")
 		CreatureObject(pCreature):sendSystemMessage("@dungeon/death_watch:restored_pressure")
 		-- Reset valves to starting state with A, B and D active
@@ -1909,8 +1965,9 @@ function DeathWatchBunkerScreenPlay:doVentDroidStep(pDroid)
 		SceneObject(pDroid):setCustomObjectName("Ventilation Repair Droid")
 		CreatureObject(pDroid):setPvpStatusBitmask(0)
 		createObserver(DESTINATIONREACHED, "DeathWatchBunkerScreenPlay", "ventDroidDestinationReached", pDroid)
-		AiAgent(pDroid):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
-		AiAgent(pDroid):setFollowState(4) -- Patrolling
+		AiAgent(pDroid):addCreatureFlag(AI_NOAIAGGRO)
+		AiAgent(pDroid):addCreatureFlag(AI_FOLLOW)
+		AiAgent(pDroid):setMovementState(AI_PATROLLING)
 		createEvent(10 * 1000, "DeathWatchBunkerScreenPlay", "doVentDroidStep", pDroid, "")
 		writeData("dwb:ventDroidStep", curStep + 1)
 	elseif (curStep == 1) then -- Move to toolbox
@@ -2000,7 +2057,6 @@ function DeathWatchBunkerScreenPlay:doVentDroidMove(pDroid)
 	local nextPoint = patrolPoints[onCurrentPoint + 1]
 
 	AiAgent(pDroid):stopWaiting()
-	AiAgent(pDroid):setWait(0)
 	AiAgent(pDroid):setNextPosition(nextPoint[1], nextPoint[2], nextPoint[3], nextPoint[4])
 	AiAgent(pDroid):executeBehavior()
 

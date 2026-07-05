@@ -34,7 +34,7 @@ FireworkObject::~FireworkObject() {
 
 void FireworkObject::initializeTransientMembers() {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void FireworkObject::initializeTransientMembers() {
 
 void FireworkObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +58,7 @@ void FireworkObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void FireworkObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -68,7 +68,7 @@ void FireworkObject::updateCraftingValues(CraftingValues* values, bool firstUpda
 
 void FireworkObject::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void FireworkObject::fillAttributeList(AttributeListMessage* alm, CreatureObject
 
 void FireworkObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void FireworkObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void FireworkObject::launch(CreatureObject* player, int removeTime) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ void FireworkObject::launch(CreatureObject* player, int removeTime) {
 
 void FireworkObject::completeLaunch(CreatureObject* player, int removeDelay) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -125,7 +125,7 @@ void FireworkObject::completeLaunch(CreatureObject* player, int removeDelay) {
 
 void FireworkObject::beginShowLaunch(CreatureObject* player) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ void FireworkObject::beginShowLaunch(CreatureObject* player) {
 
 int FireworkObject::getDisplayedUseCount() {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ int FireworkObject::getDisplayedUseCount() {
 
 void FireworkObject::setDelay(int d) {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -169,7 +169,7 @@ void FireworkObject::setDelay(int d) {
 
 int FireworkObject::getDelay() const {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ int FireworkObject::getDelay() const {
 
 int FireworkObject::getCapacity() const {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -197,7 +197,7 @@ int FireworkObject::getCapacity() const {
 
 String FireworkObject::getFireworkObjectPath() const {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ String FireworkObject::getFireworkObjectPath() const {
 
 bool FireworkObject::isFireworkObject() {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -227,7 +227,7 @@ bool FireworkObject::isFireworkObject() {
 
 bool FireworkObject::isFireworkShow() {
 	FireworkObjectImplementation* _implementation = static_cast<FireworkObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -272,7 +272,7 @@ void FireworkObjectImplementation::finalize() {
 void FireworkObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FireworkObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -32,7 +32,7 @@ GeneratorObject::~GeneratorObject() {
 
 void GeneratorObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void GeneratorObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, C
 
 int GeneratorObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -53,14 +53,14 @@ int GeneratorObject::handleObjectMenuSelect(CreatureObject* player, byte selecte
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void GeneratorObject::synchronizedUIListen(CreatureObject* player, int value) {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void GeneratorObject::synchronizedUIListen(CreatureObject* player, int value) {
 
 void GeneratorObject::synchronizedUIStopListen(CreatureObject* player, int value) {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void GeneratorObject::synchronizedUIStopListen(CreatureObject* player, int value
 
 bool GeneratorObject::isGeneratorObject() {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ bool GeneratorObject::isGeneratorObject() {
 
 String GeneratorObject::getRedeedMessage() {
 	GeneratorObjectImplementation* _implementation = static_cast<GeneratorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +155,7 @@ void GeneratorObjectImplementation::finalize() {
 void GeneratorObjectImplementation::_initializeImplementation() {
 	_setClassHelper(GeneratorObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

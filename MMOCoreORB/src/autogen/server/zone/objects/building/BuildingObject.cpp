@@ -16,7 +16,7 @@
  *	BuildingObjectStub
  */
 
-enum {RPC_CREATECELLOBJECTS__ = 3291165931,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_CREATECONTAINERCOMPONENT__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_UPDATESIGNNAME__BOOL_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_UPDATECELLPERMISSIONSTO__CREATUREOBJECT_,RPC_BROADCASTCELLPERMISSIONS__,RPC_BROADCASTCELLPERMISSIONS__LONG_,RPC_ISALLOWEDENTRY__CREATUREOBJECT_,RPC_ISCITYBANNED__CREATUREOBJECT_,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_HASTEMPLATEEJECTIONPOINT__,RPC_EJECTOBJECT__CREATUREOBJECT_,RPC_NOTIFYREMOVEFROMZONE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_NOTIFYOBJECTINSERTEDTOZONE__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDESTROYTO__SCENEOBJECT_,RPC_ADDCELL__CELLOBJECT_INT_,RPC_ISSTATICBUILDING__,RPC_GETCELL__INT_,RPC_GETCELL__STRING_,RPC_GETTOTALCELLNUMBER__,RPC_NOTIFYOBJECTINSERTEDTOCHILD__SCENEOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_NOTIFYOBJECTREMOVEDFROMCHILD__SCENEOBJECT_SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_GETCURRENTNUMBEROFPLAYERVENDORS__,RPC_DESTROYALLPLAYERITEMS__,RPC_ONENTER__CREATUREOBJECT_,RPC_ONEXIT__CREATUREOBJECT_LONG_,RPC_SETSIGNOBJECT__SIGNOBJECT_,RPC_GETSIGNOBJECT__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISCONDEMNED__,RPC_GETMAPCELLSIZE__,RPC_TOGGLEPRIVACY__,RPC_GETMAXIMUMNUMBEROFPLAYERITEMS__,RPC_GETREDEEDMESSAGE__,RPC_GETPACKUPMESSAGE__,RPC_HASACCESSFEE__,RPC_GETACCESSFEE__,RPC_CANCHANGEACCESSFEE__,RPC_SETACCESSFEE__INT_INT_,RPC_REMOVEACCESSFEE__,RPC_GETACCESSFEEDELAY__,RPC_PAYACCESSFEE__CREATUREOBJECT_,RPC_UPDATEPAIDACCESSLIST__,RPC_REGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_UNREGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_ISINPLAYERCITY__,RPC_CANPLAYERREGISTERWITHIN__,RPC_ISPLAYERREGISTEREDWITHIN__LONG_,RPC_CREATECHILDOBJECTS__,RPC_SPAWNCHILDCREATURESFROMTEMPLATE__,RPC_HASTEMPLATECHILDCREATURES__,RPC_DESTROYCHILDOBJECTS__,RPC_ISRESIDENCE__,RPC_SETRESIDENCE__BOOL_,RPC_GETFACTIONBASETYPE__,RPC_GETOUTOFRANGEDISTANCE__,RPC_GETCELLNAME__LONG_};
+enum {RPC_CREATECELLOBJECTS__ = 3291165931,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_CREATECONTAINERCOMPONENT__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_UPDATESIGNNAME__BOOL_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_UPDATECELLPERMISSIONSTO__CREATUREOBJECT_,RPC_BROADCASTCELLPERMISSIONS__,RPC_BROADCASTCELLPERMISSIONS__LONG_,RPC_ISALLOWEDENTRY__CREATUREOBJECT_,RPC_ISCITYBANNED__CREATUREOBJECT_,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_HASTEMPLATEEJECTIONPOINT__,RPC_EJECTOBJECT__CREATUREOBJECT_,RPC_NOTIFYREMOVEFROMZONE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_NOTIFYOBJECTINSERTEDTOZONE__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDESTROYTO__SCENEOBJECT_,RPC_ADDCELL__CELLOBJECT_INT_,RPC_ISSTATICBUILDING__,RPC_GETCELL__INT_,RPC_GETCELL__STRING_,RPC_GETTOTALCELLNUMBER__,RPC_NOTIFYOBJECTINSERTEDTOCHILD__SCENEOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_NOTIFYOBJECTREMOVEDFROMCHILD__SCENEOBJECT_SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_DESTROYALLPLAYERITEMS__,RPC_ONENTER__CREATUREOBJECT_,RPC_ONEXIT__CREATUREOBJECT_LONG_,RPC_SETSIGNOBJECT__SIGNOBJECT_,RPC_GETSIGNOBJECT__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISCONDEMNED__,RPC_GETMAPCELLSIZE__,RPC_TOGGLEPRIVACY__,RPC_GETMAXIMUMNUMBEROFPLAYERITEMS__,RPC_GETREDEEDMESSAGE__,RPC_HASACCESSFEE__,RPC_GETACCESSFEE__,RPC_CANCHANGEACCESSFEE__,RPC_SETACCESSFEE__INT_INT_,RPC_REMOVEACCESSFEE__,RPC_GETACCESSFEEDELAY__,RPC_PAYACCESSFEE__CREATUREOBJECT_,RPC_UPDATEPAIDACCESSLIST__,RPC_REGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_UNREGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_ISINPLAYERCITY__,RPC_CANPLAYERREGISTERWITHIN__,RPC_ISPLAYERREGISTEREDWITHIN__LONG_,RPC_CREATECHILDOBJECTS__,RPC_SPAWNCHILDCREATURESFROMTEMPLATE__,RPC_HASTEMPLATECHILDCREATURES__,RPC_DESTROYCHILDOBJECTS__,RPC_ISRESIDENCE__,RPC_SETRESIDENCE__BOOL_,RPC_GETFACTIONBASETYPE__,RPC_GETOUTOFRANGEDISTANCE__,RPC_GETCELLNAME__LONG_};
 
 BuildingObject::BuildingObject() : StructureObject(DummyConstructorParameter::instance()) {
 	BuildingObjectImplementation* _implementation = new BuildingObjectImplementation();
@@ -36,7 +36,7 @@ BuildingObject::~BuildingObject() {
 
 void BuildingObject::createCellObjects() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -51,7 +51,7 @@ void BuildingObject::createCellObjects() {
 
 void BuildingObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -67,7 +67,7 @@ void BuildingObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void BuildingObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -77,7 +77,7 @@ void BuildingObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void BuildingObject::initializeTransientMembers() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void BuildingObject::initializeTransientMembers() {
 
 void BuildingObject::createContainerComponent() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ void BuildingObject::createContainerComponent() {
 
 void BuildingObject::setCustomObjectName(const UnicodeString& name, bool notifyClient) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ void BuildingObject::setCustomObjectName(const UnicodeString& name, bool notifyC
 
 void BuildingObject::updateSignName(bool notifyClient) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ void BuildingObject::updateSignName(bool notifyClient) {
 
 void BuildingObject::sendContainerObjectsTo(SceneObject* player, bool forceLoad) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ void BuildingObject::sendContainerObjectsTo(SceneObject* player, bool forceLoad)
 
 void BuildingObject::updateCellPermissionsTo(CreatureObject* creature) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -169,7 +169,7 @@ void BuildingObject::updateCellPermissionsTo(CreatureObject* creature) {
 
 void BuildingObject::broadcastCellPermissions() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ void BuildingObject::broadcastCellPermissions() {
 
 void BuildingObject::broadcastCellPermissions(unsigned long long objectid) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ void BuildingObject::broadcastCellPermissions(unsigned long long objectid) {
 
 bool BuildingObject::isAllowedEntry(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ bool BuildingObject::isAllowedEntry(CreatureObject* player) {
 
 bool BuildingObject::isCityBanned(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -228,7 +228,7 @@ bool BuildingObject::isCityBanned(CreatureObject* player) {
 
 int BuildingObject::notifyStructurePlaced(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -243,7 +243,7 @@ int BuildingObject::notifyStructurePlaced(CreatureObject* player) {
 
 bool BuildingObject::hasTemplateEjectionPoint() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -257,7 +257,7 @@ bool BuildingObject::hasTemplateEjectionPoint() {
 
 Vector3 BuildingObject::getTemplateEjectionPoint() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -267,7 +267,7 @@ Vector3 BuildingObject::getTemplateEjectionPoint() const {
 
 Vector3 BuildingObject::getEjectionPoint() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -277,7 +277,7 @@ Vector3 BuildingObject::getEjectionPoint() {
 
 void BuildingObject::ejectObject(CreatureObject* creature) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -292,7 +292,7 @@ void BuildingObject::ejectObject(CreatureObject* creature) {
 
 void BuildingObject::notifyRemoveFromZone() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -306,7 +306,7 @@ void BuildingObject::notifyRemoveFromZone() {
 
 void BuildingObject::notifyInsert(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -316,7 +316,7 @@ void BuildingObject::notifyInsert(QuadTreeEntry* obj) {
 
 void BuildingObject::notifyInsertToZone(Zone* zone) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +331,7 @@ void BuildingObject::notifyInsertToZone(Zone* zone) {
 
 void BuildingObject::notifyDissapear(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -341,7 +341,7 @@ void BuildingObject::notifyDissapear(QuadTreeEntry* obj) {
 
 void BuildingObject::notifyPositionUpdate(QuadTreeEntry* entry) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -351,7 +351,7 @@ void BuildingObject::notifyPositionUpdate(QuadTreeEntry* entry) {
 
 void BuildingObject::notifyObjectInsertedToZone(SceneObject* object) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -366,7 +366,7 @@ void BuildingObject::notifyObjectInsertedToZone(SceneObject* object) {
 
 void BuildingObject::insert(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -376,7 +376,7 @@ void BuildingObject::insert(QuadTreeEntry* obj) {
 
 void BuildingObject::remove(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -386,7 +386,7 @@ void BuildingObject::remove(QuadTreeEntry* obj) {
 
 void BuildingObject::update(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -396,7 +396,7 @@ void BuildingObject::update(QuadTreeEntry* obj) {
 
 void BuildingObject::inRange(QuadTreeEntry* obj, float range) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -406,7 +406,7 @@ void BuildingObject::inRange(QuadTreeEntry* obj, float range) {
 
 void BuildingObject::sendTo(SceneObject* player, bool doClose, bool forceLoadContainer) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -423,7 +423,7 @@ void BuildingObject::sendTo(SceneObject* player, bool doClose, bool forceLoadCon
 
 void BuildingObject::sendBaselinesTo(SceneObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -438,7 +438,7 @@ void BuildingObject::sendBaselinesTo(SceneObject* player) {
 
 void BuildingObject::sendDestroyTo(SceneObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -453,7 +453,7 @@ void BuildingObject::sendDestroyTo(SceneObject* player) {
 
 void BuildingObject::addCell(CellObject* cell, unsigned int cellNumber) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -470,7 +470,7 @@ void BuildingObject::addCell(CellObject* cell, unsigned int cellNumber) {
 
 bool BuildingObject::isStaticBuilding() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -484,7 +484,7 @@ bool BuildingObject::isStaticBuilding() const {
 
 CellObject* BuildingObject::getCell(unsigned int idx) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -499,7 +499,7 @@ CellObject* BuildingObject::getCell(unsigned int idx) {
 
 CellObject* BuildingObject::getCell(const String& cellName) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -514,7 +514,7 @@ CellObject* BuildingObject::getCell(const String& cellName) {
 
 int BuildingObject::getTotalCellNumber() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -528,7 +528,7 @@ int BuildingObject::getTotalCellNumber() const {
 
 int BuildingObject::notifyObjectInsertedToChild(SceneObject* object, SceneObject* child, SceneObject* oldParent) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -545,7 +545,7 @@ int BuildingObject::notifyObjectInsertedToChild(SceneObject* object, SceneObject
 
 int BuildingObject::notifyObjectRemovedFromChild(SceneObject* object, SceneObject* child) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -561,7 +561,7 @@ int BuildingObject::notifyObjectRemovedFromChild(SceneObject* object, SceneObjec
 
 int BuildingObject::getCurrentNumberOfPlayerItems() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -573,23 +573,9 @@ int BuildingObject::getCurrentNumberOfPlayerItems() {
 	}
 }
 
-int BuildingObject::getCurrentNumberOfPlayerVendors() {
-	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCURRENTNUMBEROFPLAYERVENDORS__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getCurrentNumberOfPlayerVendors();
-	}
-}
-
 void BuildingObject::destroyAllPlayerItems() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -603,7 +589,7 @@ void BuildingObject::destroyAllPlayerItems() {
 
 void BuildingObject::onEnter(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -618,7 +604,7 @@ void BuildingObject::onEnter(CreatureObject* player) {
 
 void BuildingObject::onExit(CreatureObject* player, unsigned long long parentid) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -634,7 +620,7 @@ void BuildingObject::onExit(CreatureObject* player, unsigned long long parentid)
 
 bool BuildingObject::__isBuildingObject() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -644,7 +630,7 @@ bool BuildingObject::__isBuildingObject() {
 
 void BuildingObject::setSignObject(SignObject* sign) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -660,7 +646,7 @@ void BuildingObject::setSignObject(SignObject* sign) {
 
 SignObject* BuildingObject::getSignObject() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -674,7 +660,7 @@ SignObject* BuildingObject::getSignObject() const {
 
 bool BuildingObject::isPublicStructure() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -688,7 +674,7 @@ bool BuildingObject::isPublicStructure() const {
 
 bool BuildingObject::isPrivateStructure() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -702,7 +688,7 @@ bool BuildingObject::isPrivateStructure() const {
 
 void BuildingObject::setPublicStructure(bool privacy) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -718,7 +704,7 @@ void BuildingObject::setPublicStructure(bool privacy) {
 
 bool BuildingObject::isCondemned() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -732,7 +718,7 @@ bool BuildingObject::isCondemned() {
 
 int BuildingObject::getMapCellSize() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -746,7 +732,7 @@ int BuildingObject::getMapCellSize() const {
 
 bool BuildingObject::togglePrivacy() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -761,7 +747,7 @@ bool BuildingObject::togglePrivacy() {
 
 unsigned int BuildingObject::getMaximumNumberOfPlayerItems() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -775,7 +761,7 @@ unsigned int BuildingObject::getMaximumNumberOfPlayerItems() {
 
 String BuildingObject::getRedeedMessage() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -789,25 +775,9 @@ String BuildingObject::getRedeedMessage() {
 	}
 }
 
-String BuildingObject::getPackupMessage() {
-	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPACKUPMESSAGE__);
-
-		String _return_getPackupMessage;
-		method.executeWithAsciiReturn(_return_getPackupMessage);
-		return _return_getPackupMessage;
-	} else {
-		return _implementation->getPackupMessage();
-	}
-}
-
 bool BuildingObject::hasAccessFee() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -821,7 +791,7 @@ bool BuildingObject::hasAccessFee() const {
 
 int BuildingObject::getAccessFee() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -835,7 +805,7 @@ int BuildingObject::getAccessFee() const {
 
 bool BuildingObject::canChangeAccessFee() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -849,7 +819,7 @@ bool BuildingObject::canChangeAccessFee() {
 
 void BuildingObject::setAccessFee(int fee, int duration) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -865,7 +835,7 @@ void BuildingObject::setAccessFee(int fee, int duration) {
 
 void BuildingObject::removeAccessFee() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -879,7 +849,7 @@ void BuildingObject::removeAccessFee() {
 
 BuildingObject* BuildingObject::__asBuildingObject() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -889,7 +859,7 @@ BuildingObject* BuildingObject::__asBuildingObject() {
 
 int BuildingObject::getAccessFeeDelay() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -903,7 +873,7 @@ int BuildingObject::getAccessFeeDelay() {
 
 void BuildingObject::payAccessFee(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -912,14 +882,14 @@ void BuildingObject::payAccessFee(CreatureObject* player) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->payAccessFee(player);
 	}
 }
 
 void BuildingObject::updatePaidAccessList() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -933,7 +903,7 @@ void BuildingObject::updatePaidAccessList() {
 
 void BuildingObject::registerProfessional(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -948,7 +918,7 @@ void BuildingObject::registerProfessional(CreatureObject* player) {
 
 void BuildingObject::unregisterProfessional(CreatureObject* player) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -963,7 +933,7 @@ void BuildingObject::unregisterProfessional(CreatureObject* player) {
 
 bool BuildingObject::isInPlayerCity() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -977,7 +947,7 @@ bool BuildingObject::isInPlayerCity() {
 
 bool BuildingObject::canPlayerRegisterWithin() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -991,7 +961,7 @@ bool BuildingObject::canPlayerRegisterWithin() {
 
 bool BuildingObject::isPlayerRegisteredWithin(unsigned long long id) const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1006,7 +976,7 @@ bool BuildingObject::isPlayerRegisteredWithin(unsigned long long id) const {
 
 void BuildingObject::createChildObjects() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1021,7 +991,7 @@ void BuildingObject::createChildObjects() {
 
 void BuildingObject::spawnChildSceneObject(String& templatePath, float x, float z, float y, unsigned long long cellID, float dw, float dx, float dy, float dz) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1031,7 +1001,7 @@ void BuildingObject::spawnChildSceneObject(String& templatePath, float x, float 
 
 void BuildingObject::spawnChildCreaturesFromTemplate() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1046,7 +1016,7 @@ void BuildingObject::spawnChildCreaturesFromTemplate() {
 
 void BuildingObject::spawnChildCreature(String& mobile, int respawnTimer, float x, float z, float y, float heading, unsigned long long cellID) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1057,7 +1027,7 @@ void BuildingObject::spawnChildCreature(String& mobile, int respawnTimer, float 
 
 bool BuildingObject::hasTemplateChildCreatures() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1071,7 +1041,7 @@ bool BuildingObject::hasTemplateChildCreatures() const {
 
 void BuildingObject::destroyChildObjects() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1086,7 +1056,7 @@ void BuildingObject::destroyChildObjects() {
 
 bool BuildingObject::isResidence() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1100,7 +1070,7 @@ bool BuildingObject::isResidence() const {
 
 void BuildingObject::setResidence(bool isResidence) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1116,7 +1086,7 @@ void BuildingObject::setResidence(bool isResidence) {
 
 int BuildingObject::getFactionBaseType() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1130,7 +1100,7 @@ int BuildingObject::getFactionBaseType() const {
 
 void BuildingObject::changeSign(const SignTemplate* signConfig) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1141,7 +1111,7 @@ void BuildingObject::changeSign(const SignTemplate* signConfig) {
 
 Vector<Reference<MeshData*> > BuildingObject::getTransformedMeshData(const Matrix4* parentTransform) const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1151,7 +1121,7 @@ Vector<Reference<MeshData*> > BuildingObject::getTransformedMeshData(const Matri
 
 const BaseBoundingVolume* BuildingObject::getBoundingVolume() {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1161,7 +1131,7 @@ const BaseBoundingVolume* BuildingObject::getBoundingVolume() {
 
 float BuildingObject::getOutOfRangeDistance() const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1175,7 +1145,7 @@ float BuildingObject::getOutOfRangeDistance() const {
 
 String BuildingObject::getCellName(unsigned long long cellID) const {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1223,7 +1193,7 @@ void BuildingObjectImplementation::finalize() {
 void BuildingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(BuildingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1866,7 +1836,7 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			unsigned int idx = inv->getUnsignedIntParameter();
 			
 			DistributedObject* _m_res = getCell(idx);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCELL__STRING_:
@@ -1874,7 +1844,7 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			 String cellName; inv->getAsciiParameter(cellName);
 			
 			DistributedObject* _m_res = getCell(cellName);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETTOTALCELLNUMBER__:
@@ -1907,13 +1877,6 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			int _m_res = getCurrentNumberOfPlayerItems();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETCURRENTNUMBEROFPLAYERVENDORS__:
-		{
-			
-			int _m_res = getCurrentNumberOfPlayerVendors();
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -1953,7 +1916,7 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			DistributedObject* _m_res = getSignObject();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISPUBLICSTRUCTURE__:
@@ -2010,13 +1973,6 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			String _m_res = getRedeedMessage();
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_GETPACKUPMESSAGE__:
-		{
-			
-			String _m_res = getPackupMessage();
 			resp->insertAscii(_m_res);
 		}
 		break;
@@ -2303,10 +2259,6 @@ int BuildingObjectAdapter::getCurrentNumberOfPlayerItems() {
 	return (static_cast<BuildingObject*>(stub))->getCurrentNumberOfPlayerItems();
 }
 
-int BuildingObjectAdapter::getCurrentNumberOfPlayerVendors() {
-	return (static_cast<BuildingObject*>(stub))->getCurrentNumberOfPlayerVendors();
-}
-
 void BuildingObjectAdapter::destroyAllPlayerItems() {
 	(static_cast<BuildingObject*>(stub))->destroyAllPlayerItems();
 }
@@ -2357,10 +2309,6 @@ unsigned int BuildingObjectAdapter::getMaximumNumberOfPlayerItems() {
 
 String BuildingObjectAdapter::getRedeedMessage() {
 	return (static_cast<BuildingObject*>(stub))->getRedeedMessage();
-}
-
-String BuildingObjectAdapter::getPackupMessage() {
-	return (static_cast<BuildingObject*>(stub))->getPackupMessage();
 }
 
 bool BuildingObjectAdapter::hasAccessFee() const {

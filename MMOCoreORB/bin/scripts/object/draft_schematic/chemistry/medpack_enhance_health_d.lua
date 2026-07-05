@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_medpack_enhance_health_d = object_draft_schemat
 	complexity = 37,
 	size = 3,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 90,
+	xp = 900,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",
@@ -67,7 +68,7 @@ object_draft_schematic_chemistry_medpack_enhance_health_d = object_draft_schemat
 	ingredientTitleNames = {"organic_element", "inorganic_element", "delivery_medium", "drug_duration_compound", "drug_strength_compound"},
 	ingredientSlotType = {0, 0, 1, 1, 1},
 	resourceTypes = {"meat_avian", "gas_reactive", "object/tangible/component/chemistry/shared_solid_delivery_shell.iff", "object/tangible/component/chemistry/shared_release_mechanism_duration.iff", "object/tangible/component/chemistry/shared_biologic_effect_controller.iff"},
-	resourceQuantities = {22, 22, 1, 2, 2},
+	resourceQuantities = {28, 28, 1, 2, 3},
 	contribution = {100, 100, 100, 100, 100},
 
 	targetTemplate = "object/tangible/medicine/crafted/medpack_enhance_health_d.iff",

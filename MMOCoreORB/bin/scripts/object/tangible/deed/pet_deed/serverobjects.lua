@@ -144,3 +144,7 @@ includeFile("tangible/deed/pet_deed/vesp_deed.lua")
 includeFile("tangible/deed/pet_deed/vir_vur_deed.lua")
 includeFile("tangible/deed/pet_deed/woolamander_deed.lua")
 includeFile("tangible/deed/pet_deed/zucca_boar_deed.lua")
+
+-- Flurry custom pet deeds (migrated)
+includeFile("custom_content/tangible/deed/pet_deed/nerf_deed.lua")
+includeFile("custom_content/tangible/deed/pet_deed/tauntaun_deed.lua")

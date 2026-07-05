@@ -2,6 +2,7 @@ commoner_old = Creature:new {
 	objectName = "@mob/creature_names:commoner",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "townsperson",
 	faction = "townsperson",
 	level = 4,
@@ -27,25 +28,20 @@ commoner_old = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = {	"object/mobile/dressed_commoner_old_human_female_01.iff",
-					"object/mobile/dressed_commoner_old_human_female_02.iff",
-					"object/mobile/dressed_commoner_old_human_male_01.iff",
-					"object/mobile/dressed_commoner_old_human_male_02.iff",
-					"object/mobile/dressed_commoner_old_twilek_female_01.iff",
-					"object/mobile/dressed_commoner_old_twilek_female_02.iff",
-					"object/mobile/dressed_commoner_old_twilek_male_01.iff",
-					"object/mobile/dressed_commoner_old_twilek_male_02.iff",
-					"object/mobile/dressed_commoner_old_zabrak_female_01.iff",
-					"object/mobile/dressed_commoner_old_zabrak_female_02.iff",
-					"object/mobile/dressed_commoner_old_zabrak_male_01.iff",
-					"object/mobile/dressed_commoner_old_zabrak_male_02.iff"
-					},
-				
+	templates = { "commoner_old" },
+
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "none",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-	}
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = {},
+	secondaryAttacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(commoner_old, "commoner_old")

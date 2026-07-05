@@ -23,9 +23,9 @@ class CloseObjectsVector : public Object {
 
 	VectorMap<uint32, SortedVector<server::zone::QuadTreeEntry*> > messageReceivers;
 
-	AtomicInteger count;
+	uint32 count;
 
-#ifdef CXX11_COMPILER
+#if defined(CXX11_COMPILER) && !defined(TRACE_REFERENCES)
 	static_assert(sizeof(server::zone::QuadTreeEntry*) == sizeof(Reference<server::zone::QuadTreeEntry*>), "Reference<> size is not the size of a pointer");
 #endif
 
@@ -33,7 +33,13 @@ protected:
 	void dropReceiver(server::zone::QuadTreeEntry* entry);
 	void putReceiver(server::zone::QuadTreeEntry* entry, uint32 receiverTypes);
 public:
-	enum { PLAYERTYPE=1, CREOTYPE=2, COLLIDABLETYPE=4, STRUCTURETYPE=8, MAXTYPES=STRUCTURETYPE };
+	enum {
+		PLAYERTYPE = 1 << 0,
+		CREOTYPE = 1 << 1,
+		COLLIDABLETYPE = 1 << 2,
+		STRUCTURETYPE = 1 << 3,
+		MAXTYPES = STRUCTURETYPE
+	};
 
 	CloseObjectsVector();
 
@@ -46,13 +52,12 @@ public:
 	bool drop(const Reference<server::zone::QuadTreeEntry*>& o);
 
 	void safeCopyTo(Vector<server::zone::QuadTreeEntry*>& vec) const;
+	void safeCopyTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec) const;
 
 	void safeCopyReceiversTo(Vector<server::zone::QuadTreeEntry*>& vec, uint32 receiverType) const;
 	void safeCopyReceiversTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec, uint32 receiverType) const;
 	void safeAppendReceiversTo(Vector<server::zone::QuadTreeEntry*>& vec, uint32 receiverType) const;
 	void safeAppendReceiversTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec, uint32 receiverType) const;
-
-	void safeCopyTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec) const;
 
 	SortedVector<ManagedReference<server::zone::QuadTreeEntry*> > getSafeCopy() const;
 
@@ -60,6 +65,8 @@ public:
 
 	int put(const Reference<server::zone::QuadTreeEntry*>& o);
 	int put(Reference<server::zone::QuadTreeEntry*>&& o);
+
+	void safeRunForEach(const Function<void(QuadTreeEntry* const&)>& lambda, uint32 receiverType) const;
 
 	int size() const NO_THREAD_SAFETY_ANALYSIS {
 		return count;

@@ -59,24 +59,6 @@ using namespace server::zone::objects::creature;
 namespace server {
 namespace zone {
 namespace objects {
-namespace creature {
-namespace ai {
-
-class AiAgent;
-
-class AiAgentPOD;
-
-} // namespace ai
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature::ai;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace player {
 namespace events {
 
@@ -212,6 +194,8 @@ class AccountPOD;
 
 using namespace server::login::account;
 
+#include "server/zone/objects/creature/ai/AiAgent.h"
+
 #include "templates/SharedObjectTemplate.h"
 
 #include "system/lang/ref/Reference.h"
@@ -251,6 +235,8 @@ using namespace server::login::account;
 #include "server/zone/objects/scene/variables/DeltaVectorMap.h"
 
 #include "server/zone/objects/scene/variables/DeltaBitArray.h"
+
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 #include "engine/log/Logger.h"
 
@@ -297,11 +283,7 @@ public:
 
 	static const int LINKDEAD = 3;
 
-	static const int LOGGINGIN = 4;
-
 	static const int LOGGINGOUT = 5;
-
-	static const int LOADING = 6;
 
 	static const int PVP_RATING_FLOOR = 500;
 
@@ -309,15 +291,13 @@ public:
 
 	PlayerObject();
 
-	void showInstallationInfo(CreatureObject* player);
-
 	PlayerObject* asPlayerObject();
 
 	void setLogLevel(int newLevel);
 
-	int getLogLevel();
+	int getLogLevel() const;
 
-	int getCountMaxCov();
+	int getCountMaxCov() const;
 
 	void setCountMaxCov(int newMaxCov);
 
@@ -348,7 +328,7 @@ public:
 
 	void removeOwnedStructure(StructureObject* obj);
 
-	int getAcceptedTOSVersion();
+	int getAcceptedTOSVersion() const;
 
 	void setAcceptedTOSVersion(int version);
 
@@ -377,7 +357,7 @@ public:
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience gain.
 	 * @return returns total experience awarded
 	 */
-	int addExperience(const String& xpType, int xp, bool notifyClient = true);
+	int addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient = true);
 
 	/**
 	 * Removes experience of a type from the player's experience pool.
@@ -386,14 +366,14 @@ public:
 	 * @param xpType The string value for the type of experience to remove.
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience loss.
 	 */
-	void removeExperience(const String& xpType, bool notifyClient = true);
+	void removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient = true);
 
 	/**
 	 * Checks if the player has capped the experience type.
 	 * @param xpType The string value for the type of experience to check.
 	 * @return true if experience is capped, false otherwise.
 	 */
-	bool hasCappedExperience(const String& xpType);
+	bool hasCappedExperience(const String& xpType) const;
 
 	/**
 	 * Adds waypoint object to waypointList
@@ -459,9 +439,9 @@ public:
 
 	void insertWaypointListToMessage(BaseMessage* msg) const;
 
-	int getWaypointListSize();
+	int getWaypointListSize() const;
 
-	WaypointObject* getWaypoint(int index);
+	WaypointObject* getWaypoint(int index) const;
 
 	/**
 	 * Adds new abilities commands to player
@@ -561,13 +541,13 @@ public:
 
 	void setFactionStanding(const String& factionName, float amount);
 
-	float getFactionStanding(const String& factionName);
+	float getFactionStanding(const String& factionName) const;
 
 	void setScreenPlayData(const String& screenPlay, const String& variable, const String& data);
 
 	void deleteScreenPlayData(const String& screenPlay, const String& variable);
 
-	String getScreenPlayData(const String& screenPlay, const String& variable);
+	String getScreenPlayData(const String& screenPlay, const String& variable) const;
 
 	void clearScreenPlayData(const String& screenPlay);
 
@@ -609,9 +589,9 @@ public:
 
 	void activateQuest(int questID);
 
-	bool hasActiveQuestBitSet(int bitIndex);
+	bool hasActiveQuestBitSet(int bitIndex) const;
 
-	bool hasCompletedQuestsBitSet(int bitIndex);
+	bool hasCompletedQuestsBitSet(int bitIndex) const;
 
 	void setCompletedQuestsBit(int bitIndex, byte value, bool notifyClient = true);
 
@@ -619,7 +599,7 @@ public:
 
 	void completeQuest(int questID);
 
-	PlayerQuestData getQuestData(unsigned int questHashCode);
+	PlayerQuestData getQuestData(unsigned int questHashCode) const;
 
 	bool hasQuestData(unsigned int questHashCode) const;
 
@@ -652,7 +632,7 @@ public:
 
 	void setTrainerCoordinates(const Vector3& trainer);
 
-	Vector3 getTrainerCoordinates();
+	Vector3 getTrainerCoordinates() const;
 
 	void setTrainerZoneName(String& zoneName);
 
@@ -704,11 +684,9 @@ public:
 	 */
 	void notifyOnline();
 
-	int numSpecificSkills(CreatureObject* creature, const String& reqSkillName);
-
 	void doDigest(int fillingReduction);
 
-	bool isDigesting();
+	bool isDigesting() const;
 
 	String getSavedTerrainName() const;
 
@@ -732,7 +710,7 @@ public:
 
 	bool hasSuiBox(unsigned int boxID) const;
 
-	Reference<SuiBox* > getSuiBox(unsigned int boxID);
+	Reference<SuiBox* > getSuiBox(unsigned int boxID) const;
 
 	/**
 	 * Removes the specified box id and optionally closes the client sui
@@ -755,7 +733,7 @@ public:
 
 	void updateInRangeBuildingPermissions();
 
-	bool hasPermissionGroup(const String& group);
+	bool hasPermissionGroup(const String& group) const;
 
 	SortedVector<String>* getPermissionGroups();
 
@@ -771,7 +749,7 @@ public:
 
 	Reference<CreatureObject* > getDuelListObject(int index);
 
-	bool requestedDuelTo(CreatureObject* targetPlayer);
+	bool requestedDuelTo(CreatureObject* targetPlayer) const;
 
 	bool isDuelListEmpty() const;
 
@@ -810,9 +788,11 @@ public:
 
 	void setOnLoadScreen(bool val);
 
-	int getNumBadges();
+	void setForcedTransform(bool val);
 
-	int getBadgeTypeCount(unsigned int type);
+	int getNumBadges() const;
+
+	int getBadgeTypeCount(unsigned int type) const;
 
 	bool hasFriend(const String& name) const;
 
@@ -878,23 +858,29 @@ public:
 
 	bool isNewbieHelper() const;
 
+	const VectorMap<String, int>* getXpTypeCapList() const;
+
 	VectorMap<String, int>* getXpTypeCapList();
+
+	const DeltaVectorMap<String, int>* getExperienceList() const;
 
 	DeltaVectorMap<String, int>* getExperienceList();
 
-	DeltaVectorMap<uint32, PlayerQuestData >* getPlayerQuestsData();
+	const DeltaVectorMap<uint32, PlayerQuestData >* getPlayerQuestsData() const;
 
-	DeltaBitArray* getActiveQuests();
+	const DeltaBitArray* getActiveQuests() const;
 
-	DeltaBitArray* getCompletedQuests();
+	const DeltaBitArray* getCompletedQuests() const;
 
 	int getForcePower() const;
 
 	int getForcePowerMax() const;
 
-	AbilityList* getAbilityList();
+	const AbilityList* getAbilityList() const;
 
 	FrsData* getFrsData();
+
+	const SchematicList* getSchematics() const;
 
 	SchematicList* getSchematics();
 
@@ -914,11 +900,13 @@ public:
 
 	byte getLanguageID() const;
 
-	DeltaVector<String>* getFriendList();
+	const DeltaVector<String>* getFriendList() const;
 
 	bool isTeleporting() const;
 
 	bool isOnLoadScreen() const;
+
+	bool isForcedTransform() const;
 
 	void addChatRoom(unsigned int roomID);
 
@@ -934,7 +922,7 @@ public:
 
 	String getBankLocation() const;
 
-	DeltaVector<String>* getIgnoreList();
+	const DeltaVector<String>* getIgnoreList() const;
 
 	int getExperience(const String& xp) const;
 
@@ -945,11 +933,9 @@ public:
 
 	void activateMissions();
 
-	void regrantSkills();
+	String getCommandMessageString(unsigned int actionCRC) const;
 
-	String getCommandMessageString(unsigned int actionCRC);
-
-	bool hasBadge(unsigned int badge);
+	bool hasBadge(unsigned int badge) const;
 
 	void clearDisconnectEvent();
 
@@ -957,11 +943,7 @@ public:
 
 	bool isOffline() const;
 
-	bool isLoading() const;
-
 	bool isLinkDead() const;
-
-	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -975,7 +957,13 @@ public:
 
 	int getSkillPoints() const;
 
+	void setLastLogoutWorldPosition(const Vector3& position);
+
+	Vector3 getLastLogoutWorldPosition() const;
+
 	ValidatedPosition* getLastValidatedPosition();
+
+	const ValidatedPosition* getLastValidatedPosition() const;
 
 	void updateLastValidatedPosition();
 
@@ -983,7 +971,7 @@ public:
 
 	GalaxyAccountInfo* getGalaxyAccountInfo() const;
 
-	unsigned long long getServerMovementTimeDelta();
+	unsigned long long getServerMovementTimeDelta() const;
 
 	Time* getServerMovementTimeStamp();
 
@@ -997,7 +985,7 @@ public:
 
 	void addHologrindProfession(byte prof);
 
-	Vector<byte>* getHologrindProfessions();
+	const Vector<byte>* getHologrindProfessions() const;
 
 	void setMaximumLots(byte lots);
 
@@ -1025,29 +1013,27 @@ public:
 
 	Time getLastGcwPvpCombatActionTimestamp() const;
 
-	Time getLastJediPvpCombatActionTimestamp();
+	Time getLastGcwCrackdownCombatActionTimestamp() const;
 
-	Time getLastJediAttackableTimestamp();
-
-	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
+	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	void updateLastJediPvpCombatActionTimestamp();
-
-	void updateLastJediAttackableTimestamp();
+	bool hasTef() const;
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	bool hasJediTef() const;
+	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask = true);
 
-	bool isJediAttackable() const;
+	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
 
-	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
+	bool hasCrackdownTef() const;
+
+	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow = false);
 
@@ -1057,7 +1043,7 @@ public:
 
 	int getVendorCount();
 
-	SortedVector<unsigned long long>* getOwnedVendors();
+	const SortedVector<unsigned long long>* getOwnedVendors() const;
 
 	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
 
@@ -1097,9 +1083,9 @@ public:
 
 	Account* getAccount();
 
-	String getChosenVeteranReward(unsigned int milestone);
+	String getChosenVeteranReward(unsigned int milestone) const;
 
-	bool hasChosenVeteranReward(const String& rewardTemplate);
+	bool hasChosenVeteranReward(const String& rewardTemplate) const;
 
 	void clearVeteranReward(unsigned int milestone);
 
@@ -1143,43 +1129,9 @@ public:
 
 	void setPvpRating(int rating);
 
-	void setIpAddress(String& address);
+	bool isCloning() const;
 
-	String getIpAddress();
-
-	void updatePvpKills();
-
-	unsigned long long getPvpKills();
-
-	void updateworldbossKills();
-
-	unsigned long long getworldbossKills();
-
-	void updateeventplayerCrate();
-
-	unsigned long long geteventplayerCrate();
-
-	void updatePvpDeaths();
-
-	unsigned long long getPvpDeaths();
-
-	void updateBountyKills();
-
-	unsigned long long getBountyKills();
-
-	void updatePveKills();
-
-	unsigned long long getPveKills();
-
-	void updatePveDeaths();
-
-	unsigned long long getPveDeaths();
-
-	void updateMissionsCompleted();
-
-	unsigned long long getMissionsCompleted();
-
-	void updateWebStats(const String& stat, int newValue);
+	void setCloning(bool val);
 
 	void updatePlayerBountyTimestamp(int duration);
 
@@ -1193,17 +1145,13 @@ public:
 
 	bool hasPlayerBounty();
 
-	void refundPlayerBountyCredits();
-
-	bool isCloning() const;
-
-	void setCloning(bool val);
-
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
+
+	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose = false) const;
 
@@ -1282,6 +1230,8 @@ protected:
 
 	bool onLoadScreen;
 
+	bool forcedTransform;
+
 	bool muted;
 
 	String mutedReason;
@@ -1358,6 +1308,8 @@ protected:
 
 	Vector3 trainerCoordinates;
 
+	Vector3 lastLogoutWorldPosition;
+
 	String trainerZoneName;
 
 	Reference<PlayerDisconnectEvent*> disconnectEvent;
@@ -1402,9 +1354,9 @@ protected:
 
 	Time lastGcwPvpCombatActionTimestamp;
 
-	Time lastJediPvpCombatActionTimestamp;
+	Time lastCrackdownGcwCombatActionTimestamp;
 
-	Time lastJediAttackableTimestamp;
+	unsigned int crackdownFactionTefCrc;
 
 	Reference<PvpTefRemovalTask*> pvpTefTask;
 
@@ -1449,27 +1401,9 @@ protected:
 
 	unsigned long long sessionStatsTotalMovement;
 
+	unsigned long long sessionStatsTotalCredits;
+
 	String sessionStatsIPAddress;
-
-	String ipAddress;
-
-	bool opposingFactionArea;
-
-	unsigned long long pvpKills;
-
-	unsigned long long pvpDeaths;
-
-	unsigned long long bountyKills;
-
-	unsigned long long pveKills;
-
-	unsigned long long pveDeaths;
-
-	unsigned long long missionsCompleted;
-
-	unsigned long long worldbossKills;
-
-	unsigned long long eventplayerCrate;
 
 	Time playerBountyTimestamp;
 
@@ -1498,11 +1432,7 @@ public:
 
 	static const int LINKDEAD = 3;
 
-	static const int LOGGINGIN = 4;
-
 	static const int LOGGINGOUT = 5;
-
-	static const int LOADING = 6;
 
 	static const int PVP_RATING_FLOOR = 500;
 
@@ -1514,15 +1444,13 @@ public:
 
 	void finalize();
 
-	void showInstallationInfo(CreatureObject* player);
-
 	PlayerObject* asPlayerObject();
 
 	void setLogLevel(int newLevel);
 
-	int getLogLevel();
+	int getLogLevel() const;
 
-	int getCountMaxCov();
+	int getCountMaxCov() const;
 
 	void setCountMaxCov(int newMaxCov);
 
@@ -1553,7 +1481,7 @@ public:
 
 	void removeOwnedStructure(StructureObject* obj);
 
-	int getAcceptedTOSVersion();
+	int getAcceptedTOSVersion() const;
 
 	void setAcceptedTOSVersion(int version);
 
@@ -1582,7 +1510,7 @@ public:
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience gain.
 	 * @return returns total experience awarded
 	 */
-	int addExperience(const String& xpType, int xp, bool notifyClient = true);
+	int addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient = true);
 
 	/**
 	 * Removes experience of a type from the player's experience pool.
@@ -1591,14 +1519,14 @@ public:
 	 * @param xpType The string value for the type of experience to remove.
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience loss.
 	 */
-	void removeExperience(const String& xpType, bool notifyClient = true);
+	void removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient = true);
 
 	/**
 	 * Checks if the player has capped the experience type.
 	 * @param xpType The string value for the type of experience to check.
 	 * @return true if experience is capped, false otherwise.
 	 */
-	bool hasCappedExperience(const String& xpType);
+	bool hasCappedExperience(const String& xpType) const;
 
 	/**
 	 * Adds waypoint object to waypointList
@@ -1664,9 +1592,9 @@ public:
 
 	void insertWaypointListToMessage(BaseMessage* msg) const;
 
-	int getWaypointListSize();
+	int getWaypointListSize() const;
 
-	WaypointObject* getWaypoint(int index);
+	WaypointObject* getWaypoint(int index) const;
 
 	/**
 	 * Adds new abilities commands to player
@@ -1766,13 +1694,13 @@ public:
 
 	void setFactionStanding(const String& factionName, float amount);
 
-	float getFactionStanding(const String& factionName);
+	float getFactionStanding(const String& factionName) const;
 
 	void setScreenPlayData(const String& screenPlay, const String& variable, const String& data);
 
 	void deleteScreenPlayData(const String& screenPlay, const String& variable);
 
-	String getScreenPlayData(const String& screenPlay, const String& variable);
+	String getScreenPlayData(const String& screenPlay, const String& variable) const;
 
 	void clearScreenPlayData(const String& screenPlay);
 
@@ -1818,9 +1746,9 @@ public:
 
 	void activateQuest(int questID);
 
-	bool hasActiveQuestBitSet(int bitIndex);
+	bool hasActiveQuestBitSet(int bitIndex) const;
 
-	bool hasCompletedQuestsBitSet(int bitIndex);
+	bool hasCompletedQuestsBitSet(int bitIndex) const;
 
 	void setCompletedQuestsBit(int bitIndex, byte value, bool notifyClient = true);
 
@@ -1828,7 +1756,7 @@ public:
 
 	void completeQuest(int questID);
 
-	PlayerQuestData getQuestData(unsigned int questHashCode);
+	PlayerQuestData getQuestData(unsigned int questHashCode) const;
 
 	bool hasQuestData(unsigned int questHashCode) const;
 
@@ -1861,7 +1789,7 @@ public:
 
 	void setTrainerCoordinates(const Vector3& trainer);
 
-	Vector3 getTrainerCoordinates();
+	Vector3 getTrainerCoordinates() const;
 
 	void setTrainerZoneName(String& zoneName);
 
@@ -1913,11 +1841,9 @@ public:
 	 */
 	void notifyOnline();
 
-	int numSpecificSkills(CreatureObject* creature, const String& reqSkillName);
-
 	void doDigest(int fillingReduction);
 
-	bool isDigesting();
+	bool isDigesting() const;
 
 	String getSavedTerrainName() const;
 
@@ -1941,7 +1867,7 @@ public:
 
 	bool hasSuiBox(unsigned int boxID) const;
 
-	Reference<SuiBox* > getSuiBox(unsigned int boxID);
+	Reference<SuiBox* > getSuiBox(unsigned int boxID) const;
 
 	/**
 	 * Removes the specified box id and optionally closes the client sui
@@ -1964,7 +1890,7 @@ public:
 
 	void updateInRangeBuildingPermissions();
 
-	bool hasPermissionGroup(const String& group);
+	bool hasPermissionGroup(const String& group) const;
 
 	SortedVector<String>* getPermissionGroups();
 
@@ -1980,7 +1906,7 @@ public:
 
 	Reference<CreatureObject* > getDuelListObject(int index);
 
-	bool requestedDuelTo(CreatureObject* targetPlayer);
+	bool requestedDuelTo(CreatureObject* targetPlayer) const;
 
 	bool isDuelListEmpty() const;
 
@@ -2019,9 +1945,11 @@ public:
 
 	void setOnLoadScreen(bool val);
 
-	int getNumBadges();
+	void setForcedTransform(bool val);
 
-	int getBadgeTypeCount(unsigned int type);
+	int getNumBadges() const;
+
+	int getBadgeTypeCount(unsigned int type) const;
 
 	bool hasFriend(const String& name) const;
 
@@ -2087,23 +2015,29 @@ public:
 
 	bool isNewbieHelper() const;
 
+	const VectorMap<String, int>* getXpTypeCapList() const;
+
 	VectorMap<String, int>* getXpTypeCapList();
+
+	const DeltaVectorMap<String, int>* getExperienceList() const;
 
 	DeltaVectorMap<String, int>* getExperienceList();
 
-	DeltaVectorMap<uint32, PlayerQuestData >* getPlayerQuestsData();
+	const DeltaVectorMap<uint32, PlayerQuestData >* getPlayerQuestsData() const;
 
-	DeltaBitArray* getActiveQuests();
+	const DeltaBitArray* getActiveQuests() const;
 
-	DeltaBitArray* getCompletedQuests();
+	const DeltaBitArray* getCompletedQuests() const;
 
 	int getForcePower() const;
 
 	int getForcePowerMax() const;
 
-	AbilityList* getAbilityList();
+	const AbilityList* getAbilityList() const;
 
 	FrsData* getFrsData();
+
+	const SchematicList* getSchematics() const;
 
 	SchematicList* getSchematics();
 
@@ -2123,11 +2057,13 @@ public:
 
 	byte getLanguageID() const;
 
-	DeltaVector<String>* getFriendList();
+	const DeltaVector<String>* getFriendList() const;
 
 	bool isTeleporting() const;
 
 	bool isOnLoadScreen() const;
+
+	bool isForcedTransform() const;
 
 	void addChatRoom(unsigned int roomID);
 
@@ -2143,7 +2079,7 @@ public:
 
 	String getBankLocation() const;
 
-	DeltaVector<String>* getIgnoreList();
+	const DeltaVector<String>* getIgnoreList() const;
 
 	int getExperience(const String& xp) const;
 
@@ -2154,11 +2090,9 @@ public:
 
 	void activateMissions();
 
-	void regrantSkills();
+	String getCommandMessageString(unsigned int actionCRC) const;
 
-	String getCommandMessageString(unsigned int actionCRC);
-
-	bool hasBadge(unsigned int badge);
+	bool hasBadge(unsigned int badge) const;
 
 	void clearDisconnectEvent();
 
@@ -2166,11 +2100,7 @@ public:
 
 	bool isOffline() const;
 
-	bool isLoading() const;
-
 	bool isLinkDead() const;
-
-	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -2184,7 +2114,13 @@ public:
 
 	int getSkillPoints() const;
 
+	void setLastLogoutWorldPosition(const Vector3& position);
+
+	Vector3 getLastLogoutWorldPosition() const;
+
 	ValidatedPosition* getLastValidatedPosition();
+
+	const ValidatedPosition* getLastValidatedPosition() const;
 
 	void updateLastValidatedPosition();
 
@@ -2192,7 +2128,7 @@ public:
 
 	GalaxyAccountInfo* getGalaxyAccountInfo() const;
 
-	unsigned long long getServerMovementTimeDelta();
+	unsigned long long getServerMovementTimeDelta() const;
 
 	Time* getServerMovementTimeStamp();
 
@@ -2206,7 +2142,7 @@ public:
 
 	void addHologrindProfession(byte prof);
 
-	Vector<byte>* getHologrindProfessions();
+	const Vector<byte>* getHologrindProfessions() const;
 
 	void setMaximumLots(byte lots);
 
@@ -2234,29 +2170,27 @@ public:
 
 	Time getLastGcwPvpCombatActionTimestamp() const;
 
-	Time getLastJediPvpCombatActionTimestamp();
+	Time getLastGcwCrackdownCombatActionTimestamp() const;
 
-	Time getLastJediAttackableTimestamp();
-
-	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
+	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	void updateLastJediPvpCombatActionTimestamp();
-
-	void updateLastJediAttackableTimestamp();
+	bool hasTef() const;
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	bool hasJediTef() const;
+	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask = true);
 
-	bool isJediAttackable() const;
+	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
 
-	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
+	bool hasCrackdownTef() const;
+
+	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow = false);
 
@@ -2266,7 +2200,7 @@ public:
 
 	int getVendorCount();
 
-	SortedVector<unsigned long long>* getOwnedVendors();
+	const SortedVector<unsigned long long>* getOwnedVendors() const;
 
 	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
 
@@ -2314,9 +2248,9 @@ public:
 
 	Account* getAccount();
 
-	String getChosenVeteranReward(unsigned int milestone);
+	String getChosenVeteranReward(unsigned int milestone) const;
 
-	bool hasChosenVeteranReward(const String& rewardTemplate);
+	bool hasChosenVeteranReward(const String& rewardTemplate) const;
 
 	void clearVeteranReward(unsigned int milestone);
 
@@ -2360,43 +2294,9 @@ public:
 
 	void setPvpRating(int rating);
 
-	void setIpAddress(String& address);
+	bool isCloning() const;
 
-	String getIpAddress();
-
-	void updatePvpKills();
-
-	unsigned long long getPvpKills();
-
-	void updateworldbossKills();
-
-	unsigned long long getworldbossKills();
-
-	void updateeventplayerCrate();
-
-	unsigned long long geteventplayerCrate();
-
-	void updatePvpDeaths();
-
-	unsigned long long getPvpDeaths();
-
-	void updateBountyKills();
-
-	unsigned long long getBountyKills();
-
-	void updatePveKills();
-
-	unsigned long long getPveKills();
-
-	void updatePveDeaths();
-
-	unsigned long long getPveDeaths();
-
-	void updateMissionsCompleted();
-
-	unsigned long long getMissionsCompleted();
-
-	void updateWebStats(const String& stat, int newValue);
+	void setCloning(bool val);
 
 	void updatePlayerBountyTimestamp(int duration);
 
@@ -2410,17 +2310,13 @@ public:
 
 	bool hasPlayerBounty();
 
-	void refundPlayerBountyCredits();
-
-	bool isCloning() const;
-
-	void setCloning(bool val);
-
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
+
+	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose = false) const;
 
@@ -2470,13 +2366,11 @@ public:
 
 	void finalize();
 
-	void showInstallationInfo(CreatureObject* player);
-
 	void setLogLevel(int newLevel);
 
-	int getLogLevel();
+	int getLogLevel() const;
 
-	int getCountMaxCov();
+	int getCountMaxCov() const;
 
 	void setCountMaxCov(int newMaxCov);
 
@@ -2498,7 +2392,7 @@ public:
 
 	void removeOwnedStructure(StructureObject* obj);
 
-	int getAcceptedTOSVersion();
+	int getAcceptedTOSVersion() const;
 
 	void setAcceptedTOSVersion(int version);
 
@@ -2518,11 +2412,7 @@ public:
 
 	void checkPendingMessages();
 
-	int addExperience(const String& xpType, int xp, bool notifyClient);
-
-	void removeExperience(const String& xpType, bool notifyClient);
-
-	bool hasCappedExperience(const String& xpType);
+	bool hasCappedExperience(const String& xpType) const;
 
 	void addWaypoint(WaypointObject* waypoint, bool checkName, bool notifyClient);
 
@@ -2542,9 +2432,9 @@ public:
 
 	WaypointObject* getWaypointAt(float x, float y, String& planet) const;
 
-	int getWaypointListSize();
+	int getWaypointListSize() const;
 
-	WaypointObject* getWaypoint(int index);
+	WaypointObject* getWaypoint(int index) const;
 
 	void setLanguageID(byte language, bool notifyClient);
 
@@ -2570,13 +2460,13 @@ public:
 
 	void setFactionStanding(const String& factionName, float amount);
 
-	float getFactionStanding(const String& factionName);
+	float getFactionStanding(const String& factionName) const;
 
 	void setScreenPlayData(const String& screenPlay, const String& variable, const String& data);
 
 	void deleteScreenPlayData(const String& screenPlay, const String& variable);
 
-	String getScreenPlayData(const String& screenPlay, const String& variable);
+	String getScreenPlayData(const String& screenPlay, const String& variable) const;
 
 	void clearScreenPlayData(const String& screenPlay);
 
@@ -2612,9 +2502,9 @@ public:
 
 	void activateQuest(int questID);
 
-	bool hasActiveQuestBitSet(int bitIndex);
+	bool hasActiveQuestBitSet(int bitIndex) const;
 
-	bool hasCompletedQuestsBitSet(int bitIndex);
+	bool hasCompletedQuestsBitSet(int bitIndex) const;
 
 	void setCompletedQuestsBit(int bitIndex, byte value, bool notifyClient);
 
@@ -2682,11 +2572,9 @@ public:
 
 	void notifyOnline();
 
-	int numSpecificSkills(CreatureObject* creature, const String& reqSkillName);
-
 	void doDigest(int fillingReduction);
 
-	bool isDigesting();
+	bool isDigesting() const;
 
 	String getSavedTerrainName() const;
 
@@ -2710,7 +2598,7 @@ public:
 
 	bool hasSuiBox(unsigned int boxID) const;
 
-	Reference<SuiBox* > getSuiBox(unsigned int boxID);
+	Reference<SuiBox* > getSuiBox(unsigned int boxID) const;
 
 	void removeSuiBox(unsigned int boxID, bool closeWindowToClient);
 
@@ -2730,7 +2618,7 @@ public:
 
 	void updateInRangeBuildingPermissions();
 
-	bool hasPermissionGroup(const String& group);
+	bool hasPermissionGroup(const String& group) const;
 
 	void addIncapacitationTime();
 
@@ -2744,7 +2632,7 @@ public:
 
 	Reference<CreatureObject* > getDuelListObject(int index);
 
-	bool requestedDuelTo(CreatureObject* targetPlayer);
+	bool requestedDuelTo(CreatureObject* targetPlayer) const;
 
 	bool isDuelListEmpty() const;
 
@@ -2778,9 +2666,11 @@ public:
 
 	void setOnLoadScreen(bool val);
 
-	int getNumBadges();
+	void setForcedTransform(bool val);
 
-	int getBadgeTypeCount(unsigned int type);
+	int getNumBadges() const;
+
+	int getBadgeTypeCount(unsigned int type) const;
 
 	bool hasFriend(const String& name) const;
 
@@ -2793,6 +2683,8 @@ public:
 	void removeReverseFriend(const String& name);
 
 	void sendFriendLists();
+
+	bool hasAbility(const String& ability) const;
 
 	bool hasCommandMessageString(unsigned int actionCRC) const;
 
@@ -2858,6 +2750,8 @@ public:
 
 	bool isOnLoadScreen() const;
 
+	bool isForcedTransform() const;
+
 	void addChatRoom(unsigned int roomID);
 
 	void removeChatRoom(unsigned int roomID);
@@ -2878,11 +2772,9 @@ public:
 
 	void activateMissions();
 
-	void regrantSkills();
+	String getCommandMessageString(unsigned int actionCRC) const;
 
-	String getCommandMessageString(unsigned int actionCRC);
-
-	bool hasBadge(unsigned int badge);
+	bool hasBadge(unsigned int badge) const;
 
 	void clearDisconnectEvent();
 
@@ -2890,11 +2782,7 @@ public:
 
 	bool isOffline() const;
 
-	bool isLoading() const;
-
 	bool isLinkDead() const;
-
-	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -2908,7 +2796,7 @@ public:
 
 	unsigned int getAccountID() const;
 
-	unsigned long long getServerMovementTimeDelta();
+	unsigned long long getServerMovementTimeDelta() const;
 
 	void setClientLastMovementStamp(unsigned int stamp);
 
@@ -2940,25 +2828,25 @@ public:
 
 	void setVisibility(float value);
 
-	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
+	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	void updateLastJediPvpCombatActionTimestamp();
-
-	void updateLastJediAttackableTimestamp();
+	bool hasTef() const;
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	bool hasJediTef() const;
+	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask);
 
-	bool isJediAttackable() const;
+	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
 
-	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
+	bool hasCrackdownTef() const;
+
+	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow);
 
@@ -3006,9 +2894,9 @@ public:
 
 	Account* getAccount();
 
-	String getChosenVeteranReward(unsigned int milestone);
+	String getChosenVeteranReward(unsigned int milestone) const;
 
-	bool hasChosenVeteranReward(const String& rewardTemplate);
+	bool hasChosenVeteranReward(const String& rewardTemplate) const;
 
 	void clearVeteranReward(unsigned int milestone);
 
@@ -3048,43 +2936,9 @@ public:
 
 	void setPvpRating(int rating);
 
-	void setIpAddress(String& address);
+	bool isCloning() const;
 
-	String getIpAddress();
-
-	void updatePvpKills();
-
-	unsigned long long getPvpKills();
-
-	void updateworldbossKills();
-
-	unsigned long long getworldbossKills();
-
-	void updateeventplayerCrate();
-
-	unsigned long long geteventplayerCrate();
-
-	void updatePvpDeaths();
-
-	unsigned long long getPvpDeaths();
-
-	void updateBountyKills();
-
-	unsigned long long getBountyKills();
-
-	void updatePveKills();
-
-	unsigned long long getPveKills();
-
-	void updatePveDeaths();
-
-	unsigned long long getPveDeaths();
-
-	void updateMissionsCompleted();
-
-	unsigned long long getMissionsCompleted();
-
-	void updateWebStats(const String& stat, int newValue);
+	void setCloning(bool val);
 
 	void updatePlayerBountyTimestamp(int duration);
 
@@ -3098,17 +2952,13 @@ public:
 
 	bool hasPlayerBounty();
 
-	void refundPlayerBountyCredits();
-
-	bool isCloning() const;
-
-	void setCloning(bool val);
-
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
+
+	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose) const;
 
@@ -3187,6 +3037,8 @@ public:
 
 	Optional<bool> onLoadScreen;
 
+	Optional<bool> forcedTransform;
+
 	Optional<bool> muted;
 
 	Optional<String> mutedReason;
@@ -3261,6 +3113,8 @@ public:
 
 	Optional<Vector3> trainerCoordinates;
 
+	Optional<Vector3> lastLogoutWorldPosition;
+
 	Optional<String> trainerZoneName;
 
 	Optional<Time> logoutTimeStamp;
@@ -3299,9 +3153,9 @@ public:
 
 	Optional<Time> lastGcwPvpCombatActionTimestamp;
 
-	Optional<Time> lastJediPvpCombatActionTimestamp;
+	Optional<Time> lastCrackdownGcwCombatActionTimestamp;
 
-	Optional<Time> lastJediAttackableTimestamp;
+	Optional<unsigned int> crackdownFactionTefCrc;
 
 	Optional<Time> lastDigestion;
 
@@ -3328,24 +3182,6 @@ public:
 	Optional<unsigned long long> miliSecsSession;
 
 	Optional<unsigned long long> sessionStatsMiliSecs;
-
-	Optional<bool> opposingFactionArea;
-
-	Optional<unsigned long long> pvpKills;
-
-	Optional<unsigned long long> pvpDeaths;
-
-	Optional<unsigned long long> bountyKills;
-
-	Optional<unsigned long long> pveKills;
-
-	Optional<unsigned long long> pveDeaths;
-
-	Optional<unsigned long long> missionsCompleted;
-
-	Optional<unsigned long long> worldbossKills;
-
-	Optional<unsigned long long> eventplayerCrate;
 
 	Optional<Time> playerBountyTimestamp;
 

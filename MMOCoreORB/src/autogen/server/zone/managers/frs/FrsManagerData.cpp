@@ -28,7 +28,7 @@ FrsManagerData::~FrsManagerData() {
 
 Vector<ManagedReference<FrsRank* > >* FrsManagerData::getLightRanks() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -39,7 +39,7 @@ Vector<ManagedReference<FrsRank* > >* FrsManagerData::getLightRanks() {
 
 Vector<ManagedReference<FrsRank* > >* FrsManagerData::getDarkRanks() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -50,7 +50,7 @@ Vector<ManagedReference<FrsRank* > >* FrsManagerData::getDarkRanks() {
 
 VectorMap<unsigned long long, ManagedReference<ChallengeVoteData* > >* FrsManagerData::getLightChallenges() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -61,7 +61,7 @@ VectorMap<unsigned long long, ManagedReference<ChallengeVoteData* > >* FrsManage
 
 int FrsManagerData::getTotalLightChallenges() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ int FrsManagerData::getTotalLightChallenges() const {
 
 void FrsManagerData::addLightChallenge(unsigned long long playerID, ChallengeVoteData* voteData) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void FrsManagerData::addLightChallenge(unsigned long long playerID, ChallengeVot
 
 void FrsManagerData::removeLightChallenge(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ void FrsManagerData::removeLightChallenge(unsigned long long playerID) {
 
 ChallengeVoteData* FrsManagerData::getLightChallenge(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -119,7 +119,7 @@ ChallengeVoteData* FrsManagerData::getLightChallenge(unsigned long long playerID
 
 bool FrsManagerData::hasChallengedRecently(unsigned long long playerID, unsigned long long challengeCooldown) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ bool FrsManagerData::hasChallengedRecently(unsigned long long playerID, unsigned
 
 unsigned long long FrsManagerData::getChallengeTime(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ unsigned long long FrsManagerData::getChallengeTime(unsigned long long playerID)
 
 unsigned long long FrsManagerData::getChallengeDuration(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ unsigned long long FrsManagerData::getChallengeDuration(unsigned long long playe
 
 void FrsManagerData::updateChallengeTime(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ void FrsManagerData::updateChallengeTime(unsigned long long playerID) {
 
 void FrsManagerData::removeChallengeTime(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -200,7 +200,7 @@ void FrsManagerData::removeChallengeTime(unsigned long long playerID) {
 
 void FrsManagerData::removeDemoteTime(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -216,7 +216,7 @@ void FrsManagerData::removeDemoteTime(unsigned long long playerID) {
 
 bool FrsManagerData::hasDemotedRecently(unsigned long long playerID, unsigned long long demoteCooldown) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ bool FrsManagerData::hasDemotedRecently(unsigned long long playerID, unsigned lo
 
 unsigned long long FrsManagerData::getDemoteTime(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -249,7 +249,7 @@ unsigned long long FrsManagerData::getDemoteTime(unsigned long long playerID) co
 
 unsigned long long FrsManagerData::getDemoteDuration(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +265,7 @@ unsigned long long FrsManagerData::getDemoteDuration(unsigned long long playerID
 
 void FrsManagerData::updateDemoteTime(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -281,7 +281,7 @@ void FrsManagerData::updateDemoteTime(unsigned long long playerID) {
 
 void FrsManagerData::updateLastMaintenanceTick() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -295,7 +295,7 @@ void FrsManagerData::updateLastMaintenanceTick() {
 
 unsigned long long FrsManagerData::getLastMaintenanceTick() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -310,7 +310,7 @@ unsigned long long FrsManagerData::getLastMaintenanceTick() const {
 
 void FrsManagerData::updateLastVoteStatusTick() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -324,7 +324,7 @@ void FrsManagerData::updateLastVoteStatusTick() {
 
 unsigned long long FrsManagerData::getLastVoteStatusTick() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -339,7 +339,7 @@ unsigned long long FrsManagerData::getLastVoteStatusTick() const {
 
 int FrsManagerData::getExperienceDebt(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -355,7 +355,7 @@ int FrsManagerData::getExperienceDebt(unsigned long long playerID) const {
 
 void FrsManagerData::setExperienceDebt(unsigned long long playerID, int debt) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -372,7 +372,7 @@ void FrsManagerData::setExperienceDebt(unsigned long long playerID, int debt) {
 
 void FrsManagerData::removeExperienceDebt(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -388,7 +388,7 @@ void FrsManagerData::removeExperienceDebt(unsigned long long playerID) {
 
 unsigned long long FrsManagerData::getLastArenaOpenTime() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -403,7 +403,7 @@ unsigned long long FrsManagerData::getLastArenaOpenTime() const {
 
 void FrsManagerData::updateLastArenaOpenTime() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -418,7 +418,7 @@ void FrsManagerData::updateLastArenaOpenTime() {
 
 short FrsManagerData::getArenaStatus() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -433,7 +433,7 @@ short FrsManagerData::getArenaStatus() const {
 
 void FrsManagerData::setArenaStatus(short status) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -449,7 +449,7 @@ void FrsManagerData::setArenaStatus(short status) {
 
 void FrsManagerData::addArenaChallenge(unsigned long long playerID, ArenaChallengeData* data) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -466,7 +466,7 @@ void FrsManagerData::addArenaChallenge(unsigned long long playerID, ArenaChallen
 
 bool FrsManagerData::hasOpenArenaChallenge(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -482,7 +482,7 @@ bool FrsManagerData::hasOpenArenaChallenge(unsigned long long playerID) const {
 
 ArenaChallengeData* FrsManagerData::getArenaChallenge(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -498,7 +498,7 @@ ArenaChallengeData* FrsManagerData::getArenaChallenge(unsigned long long playerI
 
 void FrsManagerData::removeArenaChallenge(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -514,7 +514,7 @@ void FrsManagerData::removeArenaChallenge(unsigned long long playerID) {
 
 void FrsManagerData::addArenaFighter(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -530,7 +530,7 @@ void FrsManagerData::addArenaFighter(unsigned long long playerID) {
 
 void FrsManagerData::removeArenaFighter(unsigned long long playerID) {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -546,7 +546,7 @@ void FrsManagerData::removeArenaFighter(unsigned long long playerID) {
 
 bool FrsManagerData::isFightingInArena(unsigned long long playerID) const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -562,7 +562,7 @@ bool FrsManagerData::isFightingInArena(unsigned long long playerID) const {
 
 const SortedVector<unsigned long long>* FrsManagerData::getArenaFighters() const {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -573,7 +573,7 @@ const SortedVector<unsigned long long>* FrsManagerData::getArenaFighters() const
 
 VectorMap<unsigned long long, ManagedReference<ArenaChallengeData* > >* FrsManagerData::getArenaChallenges() {
 	FrsManagerDataImplementation* _implementation = static_cast<FrsManagerDataImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -615,7 +615,7 @@ void FrsManagerDataImplementation::finalize() {
 void FrsManagerDataImplementation::_initializeImplementation() {
 	_setClassHelper(FrsManagerDataHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1288,7 +1288,7 @@ void FrsManagerDataAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			unsigned long long playerID = inv->getUnsignedLongParameter();
 			
 			DistributedObject* _m_res = getArenaChallenge(playerID);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_REMOVEARENACHALLENGE__LONG_:

@@ -42,7 +42,6 @@
 
 
 object_tangible_loot_quest_hero_of_tatooine_mark_altruism = object_tangible_loot_quest_hero_of_tatooine_shared_mark_altruism:new {
-	noTrade = 1
 }
 
 ObjectTemplates:addTemplate(object_tangible_loot_quest_hero_of_tatooine_mark_altruism, "object/tangible/loot/quest/hero_of_tatooine/mark_altruism.iff")

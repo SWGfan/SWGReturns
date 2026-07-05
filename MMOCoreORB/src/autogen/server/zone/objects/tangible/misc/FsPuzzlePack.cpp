@@ -32,7 +32,7 @@ FsPuzzlePack::~FsPuzzlePack() {
 
 void FsPuzzlePack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void FsPuzzlePack::updateCraftingValues(CraftingValues* values, bool firstUpdate
 
 void FsPuzzlePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void FsPuzzlePack::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 int FsPuzzlePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ int FsPuzzlePack::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 
 int FsPuzzlePack::getCureSymptomOne() {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ int FsPuzzlePack::getCureSymptomOne() {
 
 int FsPuzzlePack::getCureSymptomTwo() {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ int FsPuzzlePack::getCureSymptomTwo() {
 
 int FsPuzzlePack::getGiveSymptomOne() {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ int FsPuzzlePack::getGiveSymptomOne() {
 
 bool FsPuzzlePack::isFsPuzzlePack() {
 	FsPuzzlePackImplementation* _implementation = static_cast<FsPuzzlePackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +155,7 @@ void FsPuzzlePackImplementation::finalize() {
 void FsPuzzlePackImplementation::_initializeImplementation() {
 	_setClassHelper(FsPuzzlePackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

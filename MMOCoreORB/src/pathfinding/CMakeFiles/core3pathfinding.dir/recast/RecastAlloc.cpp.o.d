@@ -1,5 +1,5 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.o: \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/RecastAlloc.cpp \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastAlloc.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/15/stdlib.h \
  /usr/include/c++/15/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
@@ -40,6 +40,8 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/select2.h \
+ /usr/include/x86_64-linux-gnu/bits/select-decl.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -48,6 +50,14 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/15/bits/std_abs.h /usr/include/string.h \
  /usr/include/strings.h \
- /home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/recast/RecastAlloc.h
+ /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastAlloc.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastAssert.h

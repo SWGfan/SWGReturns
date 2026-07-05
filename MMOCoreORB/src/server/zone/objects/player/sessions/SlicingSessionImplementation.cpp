@@ -21,7 +21,7 @@
 #include "server/zone/objects/tangible/terminal/mission/MissionTerminal.h"
 #include "server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.h"
 #include "server/zone/objects/tangible/powerup/PowerupObject.h"
-#include "server/zone/managers/visibility/VisibilityManager.h"
+
 #include "server/zone/objects/player/sessions/sui/SlicingSessionSuiCallback.h"
 
 #include "server/zone/ZoneServer.h"
@@ -39,10 +39,6 @@ int SlicingSessionImplementation::initializeSession() {
 	usedNode = false;
 	usedClamp = false;
 
-	selectSlice = false;
-	firstRun = true;
-	
-	sliceOption = 0;
 	relockEvent = nullptr;
 
 	baseSlice = false;
@@ -137,27 +133,12 @@ void SlicingSessionImplementation::generateSliceMenu(SuiListBox* suiBox) {
 		else
 			prompt << progress;
 
-		if(!firstRun || tangibleObject->isContainerObject() || tangibleObject->isMissionTerminal() || isBaseSlice()){
+		suiBox->addMenuItem("@slicing/slicing:blue_cable", 0);
+		suiBox->addMenuItem("@slicing/slicing:red_cable", 1);
 
-			suiBox->addMenuItem("@slicing/slicing:blue_cable", 0);
-			suiBox->addMenuItem("@slicing/slicing:red_cable", 1);
-
-			if (!usedClamp && !usedNode) {
-				suiBox->addMenuItem("@slicing/slicing:use_clamp", 2);
-				suiBox->addMenuItem("@slicing/slicing:use_analyzer", 3);
-			}
-		}
-		if(!selectSlice && !tangibleObject->isContainerObject() && !tangibleObject->isMissionTerminal() && firstRun){
-			if(tangibleObject->isArmorObject()){
-				suiBox->addMenuItem("Slice For Base Effectiveness.", 4);
-				suiBox->addMenuItem("Slice For Encumbrance.", 5);
-				suiBox->addMenuItem("Slice For Armor Piercing.", 10);
-			}else if(tangibleObject->isWeaponObject()){
-				suiBox->addMenuItem("Slice For Speed.", 6);
-				suiBox->addMenuItem("Slice For Damage.", 7);
-				suiBox->addMenuItem("Slice For Weapon Armor Piercing.", 9);
-			}
-			suiBox->addMenuItem("Random Slice.", 8);
+		if (!usedClamp && !usedNode) {
+			suiBox->addMenuItem("@slicing/slicing:use_clamp", 2);
+			suiBox->addMenuItem("@slicing/slicing:use_analyzer", 3);
 		}
 
 	} else if (progress == 1) {
@@ -223,46 +204,6 @@ void SlicingSessionImplementation::handleMenuSelect(CreatureObject* pl, byte men
 			handleUseFlowAnalyzer(); // Handle Use of Flow Analyzer
 			break;
 		}
-		case 4: {
-			selectSlice = true;
-			sliceOption = 1;
-			firstRun = false;
-			break;
-		}
-		case 5: {
-			selectSlice = true;
-			sliceOption = 2;
-			firstRun = false;
-			break;
-		}
-		case 6: {
-			selectSlice = true;
-			sliceOption = 1;
-			firstRun = false;
-			break;
-		}
-		case 7: {
-			selectSlice = true;
-			sliceOption = 2;
-			firstRun = false;
-			break;
-		}
-		case 8: {
-			firstRun = false;
-			break;
-		}
-		case 9: {
-			selectSlice = true;
-			sliceOption = 3;
-			firstRun = false;
-			break;
-		}
-		case 10: {
-			selectSlice = true;
-			sliceOption = 3;
-			firstRun = false;
-			break;
-		}
 		default:
 			cancelSession();
 			break;
@@ -292,7 +233,7 @@ void SlicingSessionImplementation::endSlicing() {
 	}
 
 	if (tangibleObject->isMissionTerminal())
-		player->addCooldown("slicing.terminal", (1 * (30 * 1000))); // 30 seconds cool down
+		player->addCooldown("slicing.terminal", (2 * (60 * 1000))); // 2min Cooldown
 
 	cancelSession();
 
@@ -529,30 +470,20 @@ void SlicingSessionImplementation::handleSlice(SuiListBox* suiBox) {
 
 	if (tangibleObject->isContainerObject() || tangibleObject->getGameObjectType() == SceneObjectType::PLAYERLOOTCRATE) {
 		handleContainerSlice();
-		playerManager->awardExperience(player, "slicing", 500, true); // Container Slice XP
-		VisibilityManager::instance()->increaseVisibility(player, 500);
-		VisibilityManager::instance()->addToVisibilityList(player);
+		playerManager->awardExperience(player, "slicing", 1000, true); // Container Slice XP
 	} else if (tangibleObject->isMissionTerminal()) {
 		MissionTerminal* term = cast<MissionTerminal*>( tangibleObject.get());
-		playerManager->awardExperience(player, "slicing", 200, true); // Terminal Slice XP
+		playerManager->awardExperience(player, "slicing", 400, true); // Terminal Slice XP
 		term->addSlicer(player);
 		player->sendSystemMessage("@slicing/slicing:terminal_success");
-		VisibilityManager::instance()->increaseVisibility(player, 200);
-		VisibilityManager::instance()->addToVisibilityList(player);
 	} else if (tangibleObject->isWeaponObject()) {
 		handleWeaponSlice();
-		playerManager->awardExperience(player, "slicing", 500, true); // Weapon Slice XP
-		VisibilityManager::instance()->increaseVisibility(player, 500);
-		VisibilityManager::instance()->addToVisibilityList(player);
+		playerManager->awardExperience(player, "slicing", 1000, true); // Weapon Slice XP
 	} else if (tangibleObject->isArmorObject()) {
 		handleArmorSlice();
-		playerManager->awardExperience(player, "slicing", 500, true); // Armor Slice XP
-		VisibilityManager::instance()->increaseVisibility(player, 500);
-		VisibilityManager::instance()->addToVisibilityList(player);
+		playerManager->awardExperience(player, "slicing", 1000, true); // Armor Slice XP
 	} else if ( isBaseSlice()){
-		playerManager->awardExperience(player,"slicing", 2000, true); // Base slicing
-		VisibilityManager::instance()->increaseVisibility(player, 2000);
-		VisibilityManager::instance()->addToVisibilityList(player);
+		playerManager->awardExperience(player,"slicing", 2500, true); // Base slicing
 
 		Zone* zone = player->getZone();
 
@@ -584,7 +515,7 @@ void SlicingSessionImplementation::handleWeaponSlice() {
 	uint8 min = 0;
 	uint8 max = 0;
 
-	switch (sliceSkill) { // 20%-35% weapon slice at master smuggler
+	switch (sliceSkill) {
 	case 5:
 		min += 5;
 		max += 5;
@@ -602,34 +533,14 @@ void SlicingSessionImplementation::handleWeaponSlice() {
 	}
 
 	uint8 percentage = System::random(max - min) + min;
-	player->sendSystemMessage(" \\#C7DB00\\Your Maximum allowed slice is: \\#ff0000" + String::valueOf(max));
-	player->sendSystemMessage(" \\#C7DB00\\Your Minimum allowed slice is: \\#ff0000" + String::valueOf(min));
-	player->sendSystemMessage(" \\#C7DB00\\Your Slice roll is: \\#ff0000" + String::valueOf(percentage));
 
-	if(!selectSlice){
-		switch(System::random(1)) {
-			case 0:
-				handleSliceDamage(percentage);
-				break;
-			case 1:
-				handleSliceSpeed(percentage);
-				break;
-			case 2:
-				handleSliceAp();
-				break;
-		}
-	}else{
-		switch(sliceOption) {
-			case 2:
-				handleSliceDamage(percentage);
-				break;
-			case 1:
-				handleSliceSpeed(percentage);
-				break;
-			case 3:
-				handleSliceAp();
-				break;
-		}
+	switch(System::random(1)) {
+	case 0:
+		handleSliceDamage(percentage);
+		break;
+	case 1:
+		handleSliceDamage(percentage);
+		break;
 	}
 }
 
@@ -654,7 +565,6 @@ void SlicingSessionImplementation::detachPowerUp(CreatureObject* player, WeaponO
 void SlicingSessionImplementation::handleSliceDamage(uint8 percent) {
 	ManagedReference<CreatureObject*> player = this->player.get();
 	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
-	int conDmg = System::random(3000)+2000;
 
 	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isWeaponObject())
 		return;
@@ -667,7 +577,6 @@ void SlicingSessionImplementation::handleSliceDamage(uint8 percent) {
 		this->detachPowerUp(player, weap);
 
 	weap->setDamageSlice(percent / 100.f);
-	weap->setMaxCondition(conDmg);
 	weap->setSliced(true);
 
 	StringIdChatParameter params;
@@ -675,36 +584,12 @@ void SlicingSessionImplementation::handleSliceDamage(uint8 percent) {
 	params.setStringId("@slicing/slicing:dam_mod");
 
 	player->sendSystemMessage(params);
- 	player->sendSystemMessage(" \\#C7DB00\\Your Weapon Condition Roll Is: \\#ff0000" + String::valueOf(conDmg));
-}
 
-void SlicingSessionImplementation::handleSliceAp() {
-	ManagedReference<CreatureObject*> player = this->player.get();
-	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
- 	int apslice = System::random(3);
-	int conDmg = System::random(3000)+2000;
-
-	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isWeaponObject())
-		return;
-
-	WeaponObject* weap = cast<WeaponObject*>(tangibleObject.get());
-
-	Locker locker(weap);
-
-	if (weap->hasPowerup())
-		this->detachPowerUp(player, weap);
-
-	weap->setArmorPiercing(apslice);
-	weap->setMaxCondition(conDmg);
-	weap->setSliced(true);
- 	player->sendSystemMessage(" \\#C7DB00\\Your Weapon Armor Piercing Roll Is: \\#ff0000" + String::valueOf(apslice));
- 	player->sendSystemMessage(" \\#C7DB00\\Your Weapon Condition Roll Is: \\#ff0000" + String::valueOf(conDmg));
 }
 
 void SlicingSessionImplementation::handleSliceSpeed(uint8 percent) {
 	ManagedReference<CreatureObject*> player = this->player.get();
 	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
-	int conDmg = System::random(3000)+2000;
 
 	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isWeaponObject())
 		return;
@@ -717,7 +602,6 @@ void SlicingSessionImplementation::handleSliceSpeed(uint8 percent) {
 		this->detachPowerUp(player, weap);
 
 	weap->setSpeedSlice(percent / 100.f);
-	weap->setMaxCondition(conDmg);
 	weap->setSliced(true);
 
 	StringIdChatParameter params;
@@ -725,7 +609,6 @@ void SlicingSessionImplementation::handleSliceSpeed(uint8 percent) {
 	params.setStringId("@slicing/slicing:spd_mod");
 
 	player->sendSystemMessage(params);
- 	player->sendSystemMessage(" \\#C7DB00\\Your Weapon Condition Roll Is: \\#ff0000" + String::valueOf(conDmg));
 }
 
 void SlicingSessionImplementation::handleArmorSlice() {
@@ -735,74 +618,41 @@ void SlicingSessionImplementation::handleArmorSlice() {
 	if (tangibleObject == nullptr || player == nullptr)
 		return;
 
-	uint8 sliceType = 0;
+	uint8 sliceType = System::random(1);
 	int sliceSkill = getSlicingSkill(player);
 	uint8 min = 0;
 	uint8 max = 0;
 
-	if(!selectSlice){
-		sliceType = System::random(1);    //If not selected type, random slice
-	}else{
-		switch (sliceOption) {
-			case 1:
-				sliceType=0;      // Effectiveness slice
-				break;
-			case 2:
-				sliceType=1;      // Encumbrance slice
-				break;
-		}
-	}
-	switch (sliceSkill) {       // 25-45% max encumbrance slice, 25-45% max effectiveness slice at master smuggler
+	switch (sliceSkill) {
 	case 5:
-		min += 5;
+		min += (sliceType == 0) ? 6 : 5;
 		max += 5;
 	case 4:
-		min += 10;
-		max += 10;
+		min += (sliceType == 0) ? 0 : 10;
+		max += 5;
 	case 3:
-		min += 10;
-		max += (sliceType == 0) ? 25 : 30;
+		min += 5;
+		max += (sliceType == 0) ? 20 : 30;
 		break;
 	default:
 		return;
 	}
 
 	uint8 percent = System::random(max - min) + min;
-	player->sendSystemMessage(" \\#C7DB00\\Your Maximum allowed slice is: \\#ff0000" + String::valueOf(max));
-	player->sendSystemMessage(" \\#C7DB00\\Your Minimum allowed slice is: \\#ff0000" + String::valueOf(min));
-	player->sendSystemMessage(" \\#C7DB00\\Your Slice roll is: \\#ff0000" + String::valueOf(percent));
 
-	if(!selectSlice){
-		switch (sliceType) {
-			case 0:
-				handleSliceEffectiveness(percent);
-				break;
-			case 1:
-				handleSliceEncumbrance(percent);
-				break;
-			case 2:
-				handleSliceArmorAp();
-				break;
-		}
-	}else{
-		switch (sliceOption) {
-			case 1:
-				handleSliceEffectiveness(percent);
-				break;
-			case 2:
-				handleSliceEncumbrance(percent);
-				break;
-			case 3:
-				handleSliceArmorAp();
-				break;
-		}
+	switch (sliceType) {
+	case 0:
+		handleSliceEffectiveness(percent);
+		break;
+	case 1:
+		handleSliceEncumbrance(percent);
+		break;
 	}
 }
 
 void SlicingSessionImplementation::handleSliceEncumbrance(uint8 percent) {
 	ManagedReference<CreatureObject*> player = this->player.get();
 	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
- 	int sockets = 4;
 
 	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isArmorObject())
 		return;
@@ -812,20 +662,18 @@ void SlicingSessionImplementation::handleSliceEncumbrance(uint8 percent) {
 	Locker locker(armor);
 
 	armor->setEncumbranceSlice(percent / 100.f);
-	armor->setMaxSockets(sockets);
 	armor->setSliced(true);
+
 	StringIdChatParameter params;
 	params.setDI(percent);
 	params.setStringId("@slicing/slicing:enc_mod");
 
 	player->sendSystemMessage(params);
-	player->sendSystemMessage(" \\#C7DB00\\Your Armor Socket Roll Is: \\#ff0000" + String::valueOf(sockets));
 }
 
 void SlicingSessionImplementation::handleSliceEffectiveness(uint8 percent) {
 	ManagedReference<CreatureObject*> player = this->player.get();
 	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
- 	int sockets = 4;
 
 	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isArmorObject())
 		return;
@@ -835,34 +683,13 @@ void SlicingSessionImplementation::handleSliceEffectiveness(uint8 percent) {
 	Locker locker(armor);
 
 	armor->setEffectivenessSlice(percent / 100.f);
-	armor->setMaxSockets(sockets);
 	armor->setSliced(true);
+
 	StringIdChatParameter params;
 	params.setDI(percent);
 	params.setStringId("@slicing/slicing:eff_mod");
 
 	player->sendSystemMessage(params);
-	player->sendSystemMessage(" \\#C7DB00\\Your Armor Socket Roll Is: \\#ff0000" + String::valueOf(sockets));
-}
-
-void SlicingSessionImplementation::handleSliceArmorAp() {
-	ManagedReference<CreatureObject*> player = this->player.get();
-	ManagedReference<TangibleObject*> tangibleObject = this->tangibleObject.get();
- 	int apslice = System::random(3);
- 	int sockets = 4;
-
-	if (tangibleObject == nullptr || player == nullptr || !tangibleObject->isArmorObject())
-		return;
-
-	ArmorObject* armor = cast<ArmorObject*>(tangibleObject.get());
-
-	Locker locker(armor);
-	
-	armor->setRating(apslice);
-	armor->setMaxSockets(sockets);
-	armor->setSliced(true);
- 	player->sendSystemMessage(" \\#C7DB00\\Your Armor Piercing Roll Is: \\#ff0000" + String::valueOf(apslice));
- 	player->sendSystemMessage(" \\#C7DB00\\Your Armor Socket Roll Is: \\#ff0000" + String::valueOf(sockets));
 }
 
 void SlicingSessionImplementation::handleContainerSlice() {
@@ -896,15 +723,16 @@ void SlicingSessionImplementation::handleContainerSlice() {
 			return;
 		}
 
-		int roll = 200 - System::random(100);
-		int numRoll = (System::random(2) + 1);
+		TransactionLog trx(TrxCode::SLICECONTAINER, player, container);
 
-		for (int x=0; x < numRoll; x++) {
-			lootManager->createLoot(container, "looted_container", roll);
+		if (System::random(10) != 4) {
+			lootManager->createLoot(trx, container, "looted_container");
 		}
 
 		inventory->transferObject(container, -1);
 		container->sendTo(player, true);
+
+		trx.commit();
 
 		if (inventory->hasObjectInContainer(tangibleObject->getObjectID())) {
 			//inventory->removeObject(tangibleObject, true);

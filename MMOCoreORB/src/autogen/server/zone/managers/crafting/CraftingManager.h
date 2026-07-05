@@ -88,37 +88,11 @@ class DraftSchematicPOD;
 
 using namespace server::zone::objects::draftschematic;
 
-namespace server {
-namespace zone {
-namespace managers {
-namespace crafting {
-namespace labratories {
+#include "system/util/Vector.h"
 
-class SharedLabratory;
+#include "server/zone/managers/crafting/labratories/SharedLabratory.h"
 
-} // namespace labratories
-} // namespace crafting
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::crafting::labratories;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-
-class TangibleObject;
-
-class TangibleObjectPOD;
-
-} // namespace tangible
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::tangible;
+#include "server/zone/objects/tangible/TangibleObject.h"
 
 #include "server/zone/managers/crafting/schematicmap/SchematicMap.h"
 
@@ -129,8 +103,6 @@ using namespace server::zone::objects::tangible;
 #include "system/util/VectorMap.h"
 
 #include "system/lang/ref/Reference.h"
-
-#include "system/util/Vector.h"
 
 #include "server/zone/managers/ZoneManager.h"
 

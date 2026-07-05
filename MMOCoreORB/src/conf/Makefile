@@ -57,13 +57,23 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -132,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles /home/ubuntu/SWGGhosts/MMOCoreORB/src/conf//CMakeFiles/progress.marks
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB/src/conf//CMakeFiles/progress.marks
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/clean
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/conf/CMakeFiles/conf3.dir/rule:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/CMakeFiles/conf3.dir/rule
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/CMakeFiles/conf3.dir/rule
 .PHONY : src/conf/CMakeFiles/conf3.dir/rule
 
 # Convenience name for target.
@@ -172,7 +182,7 @@ conf3: src/conf/CMakeFiles/conf3.dir/rule
 
 # fast build rule for target.
 conf3/fast:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/build
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/build
 .PHONY : conf3/fast
 
 ConfigManager.o: ConfigManager.cpp.o
@@ -180,7 +190,7 @@ ConfigManager.o: ConfigManager.cpp.o
 
 # target to build an object file
 ConfigManager.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.o
 .PHONY : ConfigManager.cpp.o
 
 ConfigManager.i: ConfigManager.cpp.i
@@ -188,7 +198,7 @@ ConfigManager.i: ConfigManager.cpp.i
 
 # target to preprocess a source file
 ConfigManager.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.i
 .PHONY : ConfigManager.cpp.i
 
 ConfigManager.s: ConfigManager.cpp.s
@@ -196,7 +206,7 @@ ConfigManager.s: ConfigManager.cpp.s
 
 # target to generate assembly for a file
 ConfigManager.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/conf/CMakeFiles/conf3.dir/build.make src/conf/CMakeFiles/conf3.dir/ConfigManager.cpp.s
 .PHONY : ConfigManager.cpp.s
 
 # Help Target
@@ -211,6 +221,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... conf3"
 	@echo "... ConfigManager.o"
 	@echo "... ConfigManager.i"
@@ -226,6 +237,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

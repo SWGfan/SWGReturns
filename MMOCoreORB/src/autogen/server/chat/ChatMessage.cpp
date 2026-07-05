@@ -28,7 +28,7 @@ ChatMessage::~ChatMessage() {
 
 void ChatMessage::setString(const String& msg) {
 	ChatMessageImplementation* _implementation = static_cast<ChatMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -41,9 +41,9 @@ void ChatMessage::setString(const String& msg) {
 	}
 }
 
-String ChatMessage::toString() {
-	ChatMessageImplementation* _implementation = static_cast<ChatMessageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+String ChatMessage::toString() const {
+	ChatMessageImplementation* _implementation = static_cast<ChatMessageImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void ChatMessageImplementation::finalize() {
 void ChatMessageImplementation::_initializeImplementation() {
 	_setClassHelper(ChatMessageHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -222,7 +222,7 @@ void ChatMessageImplementation::setString(const String& msg) {
 	message = msg;
 }
 
-String ChatMessageImplementation::toString() {
+String ChatMessageImplementation::toString() const{
 	// server/chat/ChatMessage.idl():  		return message;
 	return message;
 }
@@ -266,7 +266,7 @@ void ChatMessageAdapter::setString(const String& msg) {
 	(static_cast<ChatMessage*>(stub))->setString(msg);
 }
 
-String ChatMessageAdapter::toString() {
+String ChatMessageAdapter::toString() const {
 	return (static_cast<ChatMessage*>(stub))->toString();
 }
 

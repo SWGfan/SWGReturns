@@ -26,7 +26,7 @@
 
 unsigned const int MissionManager::UNKNOWN_TARGET = 0xB911DA26;
 
-enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
+enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_REMOVESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
 
 MissionManager::MissionManager(ZoneServer* srv, ZoneProcessServer* impl) : Observer(DummyConstructorParameter::instance()) {
 	MissionManagerImplementation* _implementation = new MissionManagerImplementation(srv, impl);
@@ -110,6 +110,16 @@ void MissionManager::removeMission(MissionObject* mission, CreatureObject* playe
 	}
 }
 
+NpcSpawnPoint* MissionManager::getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType, const float maxRange) {
+	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getFreeNpcSpawnPoint(planetCRC, x, y, spawnType, maxRange);
+	}
+}
+
 NpcSpawnPoint* MissionManager::getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -133,6 +143,22 @@ void MissionManager::createSpawnPoint(CreatureObject* player, const String& spaw
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->createSpawnPoint(player, spawnTypes);
+	}
+}
+
+void MissionManager::removeSpawnPoint(CreatureObject* player, const String& spawnTypes) {
+	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_REMOVESPAWNPOINT__CREATUREOBJECT_STRING_);
+		method.addObjectParameter(player);
+		method.addAsciiParameter(spawnTypes);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->removeSpawnPoint(player, spawnTypes);
 	}
 }
 
@@ -224,22 +250,6 @@ void MissionManager::updatePlayerBountyReward(unsigned long long targetId, int r
 	}
 }
 
-void MissionManager::increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease) {
-	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_);
-		method.addUnsignedLongParameter(targetId);
-		method.addSignedIntParameter(rewardIncrease);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->increasePlayerBountyReward(targetId, rewardIncrease);
-	}
-}
-
 void MissionManager::updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -318,7 +328,7 @@ bool MissionManager::hasBountyHunterInPlayerBounty(unsigned long long targetId, 
 	}
 }
 
-Vector<unsigned long long>* MissionManager::getHuntersHuntingTarget(unsigned long long targetId) {
+Vector<unsigned long long> MissionManager::getHuntersHuntingTarget(unsigned long long targetId) {
 	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -566,6 +576,38 @@ bool MissionManagerImplementation::readObjectMember(ObjectInputStream* stream, c
 		TypeInfo<unsigned long long >::parseFromBinaryStream(&playerBountyDebuffLength, stream);
 		return true;
 
+	case 0xb0995722: //MissionManager.destroyMissionBaseDistance
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionBaseDistance, stream);
+		return true;
+
+	case 0xf32ade35: //MissionManager.destroyMissionDifficultyDistanceFactor
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionDifficultyDistanceFactor, stream);
+		return true;
+
+	case 0x86310fe0: //MissionManager.destroyMissionRandomDistance
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionRandomDistance, stream);
+		return true;
+
+	case 0x40dbd014: //MissionManager.destroyMissionDifficultyRandomDistance
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionDifficultyRandomDistance, stream);
+		return true;
+
+	case 0x7278d6a1: //MissionManager.destroyMissionBaseReward
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionBaseReward, stream);
+		return true;
+
+	case 0x23bbb9e2: //MissionManager.destroyMissionDifficultyRewardFactor
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionDifficultyRewardFactor, stream);
+		return true;
+
+	case 0x93afdea5: //MissionManager.destroyMissionRandomReward
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionRandomReward, stream);
+		return true;
+
+	case 0x2b22557: //MissionManager.destroyMissionDifficultyRandomReward
+		TypeInfo<unsigned long long >::parseFromBinaryStream(&destroyMissionDifficultyRandomReward, stream);
+		return true;
+
 	}
 
 	return false;
@@ -692,6 +734,78 @@ int MissionManagerImplementation::writeObjectMembers(ObjectOutputStream* stream)
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xb0995722; //MissionManager.destroyMissionBaseDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseDistance, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xf32ade35; //MissionManager.destroyMissionDifficultyDistanceFactor
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyDistanceFactor, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x86310fe0; //MissionManager.destroyMissionRandomDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomDistance, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x40dbd014; //MissionManager.destroyMissionDifficultyRandomDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomDistance, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x7278d6a1; //MissionManager.destroyMissionBaseReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseReward, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x23bbb9e2; //MissionManager.destroyMissionDifficultyRewardFactor
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRewardFactor, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x93afdea5; //MissionManager.destroyMissionRandomReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomReward, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x2b22557; //MissionManager.destroyMissionDifficultyRandomReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomReward, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -724,14 +838,27 @@ MissionManagerImplementation::MissionManagerImplementation(ZoneServer* srv, Zone
 	loadPlayerBounties();
 }
 
+NpcSpawnPoint* MissionManagerImplementation::getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType) {
+	// server/zone/managers/mission/MissionManager.idl():  		return getFreeNpcSpawnPoint(planetCRC, x, y, spawnType, 1600.f);
+	return getFreeNpcSpawnPoint(planetCRC, x, y, spawnType, 1600.f);
+}
+
 bool MissionManagerImplementation::hasPlayerBountyTargetInList(unsigned long long targetId) {
-	// server/zone/managers/mission/MissionManager.idl():  		return playerBountyList.contains(targetId);
+	// server/zone/managers/mission/MissionManager.idl():  		}
+{
+	Locker _locker((&playerBountyListMutex));
+	// server/zone/managers/mission/MissionManager.idl():  			return playerBountyList.contains(targetId);
 	return (&playerBountyList)->contains(targetId);
+}
 }
 
 bool MissionManagerImplementation::hasBountyHunterInPlayerBounty(unsigned long long targetId, unsigned long long bhId) {
-	// server/zone/managers/mission/MissionManager.idl():  		return playerBountyList.contains(targetId) && playerBountyList.get(targetId).hasBountyHunter(bhId);
+	// server/zone/managers/mission/MissionManager.idl():  		}
+{
+	Locker _locker((&playerBountyListMutex));
+	// server/zone/managers/mission/MissionManager.idl():  			return playerBountyList.contains(targetId) && playerBountyList.get(targetId).hasBountyHunter(bhId);
 	return (&playerBountyList)->contains(targetId) && (&playerBountyList)->get(targetId)->hasBountyHunter(bhId);
+}
 }
 
 /*
@@ -796,6 +923,15 @@ void MissionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
+	case RPC_REMOVESPAWNPOINT__CREATUREOBJECT_STRING_:
+		{
+			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			 String spawnTypes; inv->getAsciiParameter(spawnTypes);
+			
+			removeSpawnPoint(player, spawnTypes);
+			
+		}
+		break;
 	case RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -836,15 +972,6 @@ void MissionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			int reward = inv->getSignedIntParameter();
 			
 			updatePlayerBountyReward(targetId, reward);
-			
-		}
-		break;
-	case RPC_INCREASEPLAYERBOUNTYREWARD__LONG_INT_:
-		{
-			unsigned long long targetId = inv->getUnsignedLongParameter();
-			int rewardIncrease = inv->getSignedIntParameter();
-			
-			increasePlayerBountyReward(targetId, rewardIncrease);
 			
 		}
 		break;
@@ -940,6 +1067,10 @@ void MissionManagerAdapter::createSpawnPoint(CreatureObject* player, const Strin
 	(static_cast<MissionManager*>(stub))->createSpawnPoint(player, spawnTypes);
 }
 
+void MissionManagerAdapter::removeSpawnPoint(CreatureObject* player, const String& spawnTypes) {
+	(static_cast<MissionManager*>(stub))->removeSpawnPoint(player, spawnTypes);
+}
+
 Reference<MissionObject* > MissionManagerAdapter::getBountyHunterMission(CreatureObject* player) {
 	return (static_cast<MissionManager*>(stub))->getBountyHunterMission(player);
 }
@@ -958,10 +1089,6 @@ void MissionManagerAdapter::removePlayerFromBountyList(unsigned long long target
 
 void MissionManagerAdapter::updatePlayerBountyReward(unsigned long long targetId, int reward) {
 	(static_cast<MissionManager*>(stub))->updatePlayerBountyReward(targetId, reward);
-}
-
-void MissionManagerAdapter::increasePlayerBountyReward(unsigned long long targetId, int rewardIncrease) {
-	(static_cast<MissionManager*>(stub))->increasePlayerBountyReward(targetId, rewardIncrease);
 }
 
 void MissionManagerAdapter::updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status) {
@@ -1192,6 +1319,94 @@ int MissionManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (destroyMissionBaseDistance) {
+	_nameHashCode = 0xb0995722; //MissionManager.destroyMissionBaseDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseDistance.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionDifficultyDistanceFactor) {
+	_nameHashCode = 0xf32ade35; //MissionManager.destroyMissionDifficultyDistanceFactor
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyDistanceFactor.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionRandomDistance) {
+	_nameHashCode = 0x86310fe0; //MissionManager.destroyMissionRandomDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomDistance.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionDifficultyRandomDistance) {
+	_nameHashCode = 0x40dbd014; //MissionManager.destroyMissionDifficultyRandomDistance
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomDistance.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionBaseReward) {
+	_nameHashCode = 0x7278d6a1; //MissionManager.destroyMissionBaseReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseReward.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionDifficultyRewardFactor) {
+	_nameHashCode = 0x23bbb9e2; //MissionManager.destroyMissionDifficultyRewardFactor
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRewardFactor.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionRandomReward) {
+	_nameHashCode = 0x93afdea5; //MissionManager.destroyMissionRandomReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomReward.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (destroyMissionDifficultyRandomReward) {
+	_nameHashCode = 0x2b22557; //MissionManager.destroyMissionDifficultyRandomReward
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomReward.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -1297,6 +1512,70 @@ bool MissionManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32
 		}
 		return true;
 
+	case 0xb0995722: //MissionManager.destroyMissionBaseDistance
+		{
+			unsigned long long _mndestroyMissionBaseDistance;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionBaseDistance, stream);
+			destroyMissionBaseDistance = std::move(_mndestroyMissionBaseDistance);
+		}
+		return true;
+
+	case 0xf32ade35: //MissionManager.destroyMissionDifficultyDistanceFactor
+		{
+			unsigned long long _mndestroyMissionDifficultyDistanceFactor;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionDifficultyDistanceFactor, stream);
+			destroyMissionDifficultyDistanceFactor = std::move(_mndestroyMissionDifficultyDistanceFactor);
+		}
+		return true;
+
+	case 0x86310fe0: //MissionManager.destroyMissionRandomDistance
+		{
+			unsigned long long _mndestroyMissionRandomDistance;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionRandomDistance, stream);
+			destroyMissionRandomDistance = std::move(_mndestroyMissionRandomDistance);
+		}
+		return true;
+
+	case 0x40dbd014: //MissionManager.destroyMissionDifficultyRandomDistance
+		{
+			unsigned long long _mndestroyMissionDifficultyRandomDistance;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionDifficultyRandomDistance, stream);
+			destroyMissionDifficultyRandomDistance = std::move(_mndestroyMissionDifficultyRandomDistance);
+		}
+		return true;
+
+	case 0x7278d6a1: //MissionManager.destroyMissionBaseReward
+		{
+			unsigned long long _mndestroyMissionBaseReward;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionBaseReward, stream);
+			destroyMissionBaseReward = std::move(_mndestroyMissionBaseReward);
+		}
+		return true;
+
+	case 0x23bbb9e2: //MissionManager.destroyMissionDifficultyRewardFactor
+		{
+			unsigned long long _mndestroyMissionDifficultyRewardFactor;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionDifficultyRewardFactor, stream);
+			destroyMissionDifficultyRewardFactor = std::move(_mndestroyMissionDifficultyRewardFactor);
+		}
+		return true;
+
+	case 0x93afdea5: //MissionManager.destroyMissionRandomReward
+		{
+			unsigned long long _mndestroyMissionRandomReward;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionRandomReward, stream);
+			destroyMissionRandomReward = std::move(_mndestroyMissionRandomReward);
+		}
+		return true;
+
+	case 0x2b22557: //MissionManager.destroyMissionDifficultyRandomReward
+		{
+			unsigned long long _mndestroyMissionDifficultyRandomReward;
+			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mndestroyMissionDifficultyRandomReward, stream);
+			destroyMissionDifficultyRandomReward = std::move(_mndestroyMissionDifficultyRandomReward);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -1346,6 +1625,22 @@ void MissionManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<unsigned long long >::toBinaryStream(&playerBountyKillBuffer.value(), stream);
 
 	TypeInfo<unsigned long long >::toBinaryStream(&playerBountyDebuffLength.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseDistance.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyDistanceFactor.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomDistance.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomDistance.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionBaseReward.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRewardFactor.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionRandomReward.value(), stream);
+
+	TypeInfo<unsigned long long >::toBinaryStream(&destroyMissionDifficultyRandomReward.value(), stream);
 
 
 }

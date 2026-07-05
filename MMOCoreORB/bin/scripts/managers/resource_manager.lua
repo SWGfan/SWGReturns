@@ -44,7 +44,7 @@ buildInitialResourcesFromScript = 1 -- Use a script to build resource database w
   -- So that during wipes crafters can mantain spreadsheets with calculations
 
 --  These indicate zone names where resources spawn
-activeZones = "corellia,tatooine,lok,naboo,rori,endor,talus,yavin4,dathomir,dantooine"
+activeZones = "corellia,tatooine,lok,naboo,rori,endor,talus,yavin4,dathomir,dantooine,kaas,chandrila,moraband,hutta,florrum,lothal"
 
 averageShiftTime = 7200000 -- In milliseconds
   --  This is the time between each time the Resource Manager schedules
@@ -67,15 +67,13 @@ spawnThrottling = 90 -- *** 10-90 ***
   -- a value of < 700 and a 10% chance it will be > 700.
   -- Set to 90 for standard SOE behavior
 
-lowerGateOverride = 1000 -- 1-1000  
-  -- This will manually set the lower gate to this 
-  -- number if it has a lower gate greater than the
-  -- number entered.  ex. if a resource has a SOE gate
-  -- of 850-950, and the number is set at 300, it will
-  -- change the gate to 300-950.  This allows for resource
-  -- quality control, especially for resources with 
-  -- very high gates.  
-  -- Set to 1000 for standard SOE behavior.
+lowerGateOverride = 900 -- 1-1000
+  -- This raises a resource's lower gate up to this number
+  -- whenever its natural lower gate is below it, so rolled
+  -- stats land between this floor and the resource's max.
+  -- ex. if a resource has a gate of 300-950 and this is set
+  -- at 900, it will change the gate to 900-950.
+  -- Set to 1 to disable (standard SOE behavior).
   
 maxSpawnQuantity = 0 
   -- This value specifies the quantity that a specific resource

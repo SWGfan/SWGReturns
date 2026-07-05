@@ -34,7 +34,7 @@ HarvesterObject::~HarvesterObject() {
 
 void HarvesterObject::setSelfPowered(bool isSelfPowered) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ void HarvesterObject::setSelfPowered(bool isSelfPowered) {
 
 bool HarvesterObject::isSelfPowered() const {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ bool HarvesterObject::isSelfPowered() const {
 
 int HarvesterObject::getBasePowerRate() const {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int HarvesterObject::getBasePowerRate() const {
 
 void HarvesterObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -88,7 +88,7 @@ void HarvesterObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void HarvesterObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -98,7 +98,7 @@ void HarvesterObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, C
 
 int HarvesterObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,14 +109,14 @@ int HarvesterObject::handleObjectMenuSelect(CreatureObject* player, byte selecte
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void HarvesterObject::synchronizedUIListen(CreatureObject* player, int value) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ void HarvesterObject::synchronizedUIListen(CreatureObject* player, int value) {
 
 void HarvesterObject::synchronizedUIStopListen(CreatureObject* player, int value) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -150,7 +150,7 @@ void HarvesterObject::synchronizedUIStopListen(CreatureObject* player, int value
 
 void HarvesterObject::updateOperators() {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -164,7 +164,7 @@ void HarvesterObject::updateOperators() {
 
 bool HarvesterObject::isHarvesterObject() {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -178,7 +178,7 @@ bool HarvesterObject::isHarvesterObject() {
 
 String HarvesterObject::getRedeedMessage() {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -194,7 +194,7 @@ String HarvesterObject::getRedeedMessage() {
 
 void HarvesterObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	HarvesterObjectImplementation* _implementation = static_cast<HarvesterObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -235,7 +235,7 @@ void HarvesterObjectImplementation::finalize() {
 void HarvesterObjectImplementation::_initializeImplementation() {
 	_setClassHelper(HarvesterObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

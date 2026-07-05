@@ -4,6 +4,7 @@ gundark = Creature:new {
 	socialGroup = "graul",
 	pvpFaction = "",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 100,
 	chanceHit = 0.39,
 	damageMin = 690,

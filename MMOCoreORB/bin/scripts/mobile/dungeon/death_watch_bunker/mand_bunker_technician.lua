@@ -2,6 +2,7 @@ mand_bunker_technician = Creature:new {
 	objectName = "",
 	customName = "Labsoll Renuffi (a technican)",
 	socialGroup = "death_watch",
+	mobType = MOB_NPC,
 	faction = "",
 	level = 100,
 	chanceHit = 1,
@@ -27,48 +28,18 @@ mand_bunker_technician = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_mand_bunker_technician.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "wearables_uncommon", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jetpack_base", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "black_suns", chance = 10000000}
-			},
-			lootChance = 100000
-		},
-	},
-	weapons = {},
+	lootGroups = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "deathWatchTechnicianConvoTemplate",
-	attacks = {
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = {},
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(mand_bunker_technician, "mand_bunker_technician")

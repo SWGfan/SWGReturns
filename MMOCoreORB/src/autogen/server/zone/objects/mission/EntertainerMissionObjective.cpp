@@ -34,7 +34,7 @@ EntertainerMissionObjective::~EntertainerMissionObjective() {
 
 void EntertainerMissionObjective::initializeTransientMembers() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void EntertainerMissionObjective::initializeTransientMembers() {
 
 void EntertainerMissionObjective::activate() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void EntertainerMissionObjective::activate() {
 
 void EntertainerMissionObjective::abort() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void EntertainerMissionObjective::abort() {
 
 void EntertainerMissionObjective::complete() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void EntertainerMissionObjective::complete() {
 
 void EntertainerMissionObjective::setIsEntertaining(bool value) {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,7 +105,7 @@ void EntertainerMissionObjective::setIsEntertaining(bool value) {
 
 void EntertainerMissionObjective::clearLocationActiveAreaAndObservers() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ void EntertainerMissionObjective::clearLocationActiveAreaAndObservers() {
 
 int EntertainerMissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ int EntertainerMissionObjective::notifyObserverEvent(MissionObserver* observer, 
 
 void EntertainerMissionObjective::startCompleteTask() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void EntertainerMissionObjective::startCompleteTask() {
 
 Vector3 EntertainerMissionObjective::getEndPosition() {
 	EntertainerMissionObjectiveImplementation* _implementation = static_cast<EntertainerMissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -191,7 +191,7 @@ EntertainerMissionObjectiveImplementation::~EntertainerMissionObjectiveImplement
 void EntertainerMissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(EntertainerMissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -349,9 +349,9 @@ EntertainerMissionObjectiveImplementation::EntertainerMissionObjectiveImplementa
 	// server/zone/objects/mission/EntertainerMissionObjective.idl():  		isEntertaining = false;
 	isEntertaining = false;
 	// server/zone/objects/mission/EntertainerMissionObjective.idl():  		locationActiveArea = null;
-	locationActiveArea = nullptr;
+	locationActiveArea = NULL;
 	// server/zone/objects/mission/EntertainerMissionObjective.idl():  		completeTask = null;
-	completeTask = nullptr;
+	completeTask = NULL;
 	// server/zone/objects/mission/EntertainerMissionObjective.idl():  		Logger.setLoggingName("EntertainerMissionObjective");
 	Logger::setLoggingName("EntertainerMissionObjective");
 }

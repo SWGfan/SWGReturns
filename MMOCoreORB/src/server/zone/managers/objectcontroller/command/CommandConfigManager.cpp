@@ -41,6 +41,7 @@
 #include "server/zone/objects/creature/commands/pet/PetEmoteCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetFeedCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetFollowCommand.h"
+#include "server/zone/objects/creature/commands/pet/PetFormationCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetFriendCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetGroupCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetGuardCommand.h"
@@ -345,6 +346,7 @@ void CommandConfigManager::registerSpecialCommands(CommandList* sCommands) {
 	createCommand(String("petEmote").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petFeed").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petFollow").toLowerCase())->setCommandGroup(0xe1c9a54a);
+	createCommand(String("petFormation").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petFriend").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petGroup").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petGuard").toLowerCase())->setCommandGroup(0xe1c9a54a);
@@ -700,7 +702,54 @@ void CommandConfigManager::parseVariableData(String varName, LuaObject &command,
 			Logger::console.error("unknown variable " + varName + " in combat queue command " + slashCommand->getQueueCommandName());
 			command.pop();
 		}
-	} else if (slashCommand->isJediQueueCommand()) {
+	} else if (slashCommand->isForceHealCommand()) {
+		ForceHealQueueCommand* healCommand = cast<ForceHealQueueCommand*>(slashCommand);
+		if (varName == "forceCost")
+					healCommand->setForceCost(Lua::getIntParameter(L));
+		else if (varName == "healAmount")
+			healCommand->setHealAmount(Lua::getIntParameter(L));
+		else if (varName == "healWoundAmount")
+			healCommand->setHealWoundAmount(Lua::getIntParameter(L));
+		else if (varName == "attributesToHeal")
+			healCommand->setAttributesToHeal(Lua::getUnsignedIntParameter(L));
+		else if (varName == "woundAttributesToHeal")
+			healCommand->setWoundAttributesToHeal(Lua::getUnsignedIntParameter(L));
+		else if (varName == "forceCostMultiplier")
+			healCommand->setForceCostMultiplier(Lua::getFloatParameter(L));
+		else if (varName == "range")
+			healCommand->setRange(Lua::getIntParameter(L));
+		else if (varName == "healBleedingCost")
+			healCommand->setHealBleedingCost(Lua::getUnsignedIntParameter(L));
+		else if (varName == "healFireCost")
+			healCommand->setHealFireCost(Lua::getUnsignedIntParameter(L));
+		else if (varName == "healDiseaseCost")
+			healCommand->setHealDiseaseCost(Lua::getUnsignedIntParameter(L));
+		else if (varName == "healPoisonCost")
+			healCommand->setHealPoisonCost(Lua::getUnsignedIntParameter(L));
+		else if (varName == "healBattleFatigue")
+			healCommand->setHealBattleFatigue(Lua::getUnsignedIntParameter(L));
+		else if (varName == "healStateCost")
+			healCommand->setHealStateCost(Lua::getUnsignedIntParameter(L));
+		else if (varName == "statesToHeal")
+			healCommand->setStatesToHeal(Lua::getUnsignedIntParameter(L));
+		else if (varName == "bleedHealIterations")
+			healCommand->setBleedHealIterations(Lua::getUnsignedIntParameter(L));
+		else if (varName == "poisonHealIterations")
+			healCommand->setPoisonHealIterations(Lua::getUnsignedIntParameter(L));
+		else if (varName == "diseaseHealIterations")
+			healCommand->setDiseaseHealIterations(Lua::getUnsignedIntParameter(L));
+		else if (varName == "fireHealIterations")
+			healCommand->setFireHealIterations(Lua::getUnsignedIntParameter(L));
+		else if (varName == "speed")
+			healCommand->setSpeed(Lua::getUnsignedIntParameter(L));
+		else if (varName == "allowedTarget")
+			healCommand->setAllowedTarget(Lua::getUnsignedIntParameter(L));
+		else {
+			Logger::console.error("unknown variable " + varName + " in force healing command " + slashCommand->getQueueCommandName());
+			command.pop();
+		}
+	  }
+	else if (slashCommand->isJediQueueCommand()) {
 		JediQueueCommand* jediCommand = cast<JediQueueCommand*>(slashCommand);
 		if (varName == "forceCost")
 			jediCommand->setForceCost(Lua::getIntParameter(L));
@@ -732,55 +781,14 @@ void CommandConfigManager::parseVariableData(String varName, LuaObject &command,
 			jediCommand->setFrsLightForcePowerModifier(Lua::getFloatParameter(L));
 		else if (varName == "frsDarkForcePowerModifier")
 			jediCommand->setFrsDarkForcePowerModifier(Lua::getFloatParameter(L));
-		else if (jediCommand->isForceHealCommand()) {
-			ForceHealQueueCommand* healCommand = cast<ForceHealQueueCommand*>(jediCommand);
-			if (varName == "healAmount")
-				healCommand->setHealAmount(Lua::getIntParameter(L));
-			else if (varName == "healWoundAmount")
-				healCommand->setHealWoundAmount(Lua::getIntParameter(L));
-			else if (varName == "attributesToHeal")
-				healCommand->setAttributesToHeal(Lua::getUnsignedIntParameter(L));
-			else if (varName == "woundAttributesToHeal")
-				healCommand->setWoundAttributesToHeal(Lua::getUnsignedIntParameter(L));
-			else if (varName == "forceCostMultiplier")
-				healCommand->setForceCostMultiplier(Lua::getFloatParameter(L));
-			else if (varName == "range")
-				healCommand->setRange(Lua::getIntParameter(L));
-			else if (varName == "healBleedingCost")
-				healCommand->setHealBleedingCost(Lua::getUnsignedIntParameter(L));
-			else if (varName == "healFireCost")
-				healCommand->setHealFireCost(Lua::getUnsignedIntParameter(L));
-			else if (varName == "healDiseaseCost")
-				healCommand->setHealDiseaseCost(Lua::getUnsignedIntParameter(L));
-			else if (varName == "healPoisonCost")
-				healCommand->setHealPoisonCost(Lua::getUnsignedIntParameter(L));
-			else if (varName == "healBattleFatigue")
-				healCommand->setHealBattleFatigue(Lua::getUnsignedIntParameter(L));
-			else if (varName == "healStateCost")
-				healCommand->setHealStateCost(Lua::getUnsignedIntParameter(L));
-			else if (varName == "statesToHeal")
-				healCommand->setStatesToHeal(Lua::getUnsignedIntParameter(L));
-			else if (varName == "bleedHealIterations")
-				healCommand->setBleedHealIterations(Lua::getUnsignedIntParameter(L));
-			else if (varName == "poisonHealIterations")
-				healCommand->setPoisonHealIterations(Lua::getUnsignedIntParameter(L));
-			else if (varName == "diseaseHealIterations")
-				healCommand->setDiseaseHealIterations(Lua::getUnsignedIntParameter(L));
-			else if (varName == "fireHealIterations")
-				healCommand->setFireHealIterations(Lua::getUnsignedIntParameter(L));
-			else if (varName == "speed")
-				healCommand->setSpeed(Lua::getUnsignedIntParameter(L));
-			else if (varName == "allowedTarget")
-				healCommand->setAllowedTarget(Lua::getUnsignedIntParameter(L));
-			else {
-				Logger::console.error("unknown variable " + varName + " in force healing command " + slashCommand->getQueueCommandName());
-				command.pop();
-			}
-		} else {
+
+		else {
 			Logger::console.error("unknown variable " + varName + " in jedi queue command " + slashCommand->getQueueCommandName());
 			command.pop();
 		}
-	} else {
+	}
+
+	else {
 		Logger::console.error("unknown variable " + varName + " in command " + slashCommand->getQueueCommandName());
 		command.pop();
 	}
@@ -832,6 +840,7 @@ void CommandConfigManager::registerCommands() {
 	commandFactory.registerCommand<PetEmoteCommand>(String("petEmote").toLowerCase());
 	commandFactory.registerCommand<PetFeedCommand>(String("petFeed").toLowerCase());
 	commandFactory.registerCommand<PetFollowCommand>(String("petFollow").toLowerCase());
+	commandFactory.registerCommand<PetFormationCommand>(String("petFormation").toLowerCase());
 	commandFactory.registerCommand<PetFriendCommand>(String("petFriend").toLowerCase());
 	commandFactory.registerCommand<PetGroupCommand>(String("petGroup").toLowerCase());
 	commandFactory.registerCommand<PetGuardCommand>(String("petGuard").toLowerCase());
@@ -850,5 +859,4 @@ void CommandConfigManager::registerCommands() {
 	commandFactory.registerCommand<PetPatrolCommand>(String("petPatrol").toLowerCase());
 	commandFactory.registerCommand<PetClearPatrolPointsCommand>(String("petClearPatrolPoints").toLowerCase());
 	commandFactory.registerCommand<PetGetPatrolPointCommand>(String("petGetPatrolPoint").toLowerCase());
-	
-	}
+}

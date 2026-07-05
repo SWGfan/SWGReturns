@@ -58,7 +58,7 @@ void PetTrainingConversationObserverImplementation::finalize() {
 void PetTrainingConversationObserverImplementation::_initializeImplementation() {
 	_setClassHelper(PetTrainingConversationObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

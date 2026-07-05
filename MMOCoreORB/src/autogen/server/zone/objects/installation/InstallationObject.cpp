@@ -22,7 +22,7 @@
  *	InstallationObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3858591664,RPC_GETCURRENTSPAWNNAME__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_UPDATERESOURCECONTAINERQUANTITY__RESOURCECONTAINER_INT_BOOL_,RPC_SETOPERATING__BOOL_BOOL_,RPC_ACTIVATEUISYNC__,RPC_UPDATEOPERATORS__,RPC_VERIFYOPERATORS__,RPC_UPDATEINSTALLATIONWORK__,RPC_HANDLESTRUCTUREADDENERGY__CREATUREOBJECT_,RPC_SETACTIVERESOURCE__RESOURCECONTAINER_,RPC_CHANGEACTIVERESOURCEID__LONG_,RPC_ADDRESOURCETOHOPPER__RESOURCECONTAINER_,RPC_CLEARRESOURCEHOPPER__,RPC_GETHOPPERSIZE__,RPC_GETHOPPERITEMQUANTITY__RESOURCESPAWN_,RPC_GETCONTAINERFROMHOPPER__RESOURCESPAWN_,RPC_GETRESOURCECONTAINERCOUNTFROMHOPPER__,RPC_GETCONTAINERFROMHOPPERBYINDEX__INT_,RPC_GETACTIVERESOURCESPAWNID__,RPC_GETACTUALRATE__,RPC_QUICKRETRIEVEALLRESOURCES__CREATUREOBJECT_,RPC_QUICKADDMAINT__CREATUREOBJECT_FLOAT_,RPC_QUICKADDPOWER__CREATUREOBJECT_FLOAT_,RPC_ADDOPERATOR__CREATUREOBJECT_,RPC_REMOVEOPERATOR__CREATUREOBJECT_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_ISINSTALLATIONOBJECT__,RPC_ISOPERATING__,RPC_GETINSTALLATIONTYPE__,RPC_GETEXTRACTIONRATE__,RPC_GETHOPPERSIZEMAX__,RPC_UPDATESTRUCTURESTATUS__,RPC_ISHARVESTEROBJECT__,RPC_ISGENERATOROBJECT__,RPC_ISSHUTTLEINSTALLATION__,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_GETHITCHANCE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3858591664,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_UPDATERESOURCECONTAINERQUANTITY__RESOURCECONTAINER_INT_BOOL_,RPC_SETOPERATING__BOOL_BOOL_,RPC_ACTIVATEUISYNC__,RPC_UPDATEOPERATORS__,RPC_VERIFYOPERATORS__,RPC_UPDATEINSTALLATIONWORK__,RPC_HANDLESTRUCTUREADDENERGY__CREATUREOBJECT_,RPC_SETACTIVERESOURCE__RESOURCECONTAINER_,RPC_CHANGEACTIVERESOURCEID__LONG_,RPC_ADDRESOURCETOHOPPER__RESOURCECONTAINER_,RPC_CLEARRESOURCEHOPPER__,RPC_GETHOPPERSIZE__,RPC_GETHOPPERITEMQUANTITY__RESOURCESPAWN_,RPC_GETCONTAINERFROMHOPPER__RESOURCESPAWN_,RPC_GETACTIVERESOURCESPAWNID__,RPC_GETACTUALRATE__,RPC_ADDOPERATOR__CREATUREOBJECT_,RPC_REMOVEOPERATOR__CREATUREOBJECT_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_ISINSTALLATIONOBJECT__,RPC_ISOPERATING__,RPC_GETINSTALLATIONTYPE__,RPC_GETEXTRACTIONRATE__,RPC_GETHOPPERSIZEMAX__,RPC_UPDATESTRUCTURESTATUS__,RPC_ISHARVESTEROBJECT__,RPC_ISGENERATOROBJECT__,RPC_ISSHUTTLEINSTALLATION__,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_GETHITCHANCE__};
 
 InstallationObject::InstallationObject() : StructureObject(DummyConstructorParameter::instance()) {
 	InstallationObjectImplementation* _implementation = new InstallationObjectImplementation();
@@ -42,7 +42,7 @@ InstallationObject::~InstallationObject() {
 
 void InstallationObject::initializeTransientMembers() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -54,25 +54,9 @@ void InstallationObject::initializeTransientMembers() {
 	}
 }
 
-String InstallationObject::getCurrentSpawnName() {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCURRENTSPAWNNAME__);
-
-		String _return_getCurrentSpawnName;
-		method.executeWithAsciiReturn(_return_getCurrentSpawnName);
-		return _return_getCurrentSpawnName;
-	} else {
-		return _implementation->getCurrentSpawnName();
-	}
-}
-
 void InstallationObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +72,7 @@ void InstallationObject::destroyObjectFromDatabase(bool destroyContainedObjects)
 
 void InstallationObject::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -98,7 +82,7 @@ void InstallationObject::fillAttributeList(AttributeListMessage* alm, CreatureOb
 
 void InstallationObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -108,7 +92,7 @@ void InstallationObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void InstallationObject::updateResourceContainerQuantity(ResourceContainer* container, int newQuantity, bool notifyClient) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +110,7 @@ void InstallationObject::updateResourceContainerQuantity(ResourceContainer* cont
 
 void InstallationObject::setOperating(bool operating, bool notifyClient) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +127,7 @@ void InstallationObject::setOperating(bool operating, bool notifyClient) {
 
 void InstallationObject::activateUiSync() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +142,7 @@ void InstallationObject::activateUiSync() {
 
 void InstallationObject::updateOperators() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -172,7 +156,7 @@ void InstallationObject::updateOperators() {
 
 void InstallationObject::verifyOperators() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -187,7 +171,7 @@ void InstallationObject::verifyOperators() {
 
 void InstallationObject::updateInstallationWork() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +186,7 @@ void InstallationObject::updateInstallationWork() {
 
 void InstallationObject::handleStructureAddEnergy(CreatureObject* player) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +201,7 @@ void InstallationObject::handleStructureAddEnergy(CreatureObject* player) {
 
 void InstallationObject::setActiveResource(ResourceContainer* container) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +217,7 @@ void InstallationObject::setActiveResource(ResourceContainer* container) {
 
 void InstallationObject::changeActiveResourceID(unsigned long long spawnObjectID) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -249,7 +233,7 @@ void InstallationObject::changeActiveResourceID(unsigned long long spawnObjectID
 
 void InstallationObject::addResourceToHopper(ResourceContainer* container) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +249,7 @@ void InstallationObject::addResourceToHopper(ResourceContainer* container) {
 
 void InstallationObject::clearResourceHopper() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -280,7 +264,7 @@ void InstallationObject::clearResourceHopper() {
 
 float InstallationObject::getHopperSize() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -294,7 +278,7 @@ float InstallationObject::getHopperSize() {
 
 bool InstallationObject::updateMaintenance(Time& workingTime) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -305,7 +289,7 @@ bool InstallationObject::updateMaintenance(Time& workingTime) {
 
 void InstallationObject::updateHopper(Time& workingTime, bool shutdownAfterUpdate) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -315,7 +299,7 @@ void InstallationObject::updateHopper(Time& workingTime, bool shutdownAfterUpdat
 
 int InstallationObject::getHopperItemQuantity(ResourceSpawn* spawn) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -330,7 +314,7 @@ int InstallationObject::getHopperItemQuantity(ResourceSpawn* spawn) {
 
 ResourceContainer* InstallationObject::getContainerFromHopper(ResourceSpawn* spawn) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -343,38 +327,9 @@ ResourceContainer* InstallationObject::getContainerFromHopper(ResourceSpawn* spa
 	}
 }
 
-int InstallationObject::getResourceContainerCountFromHopper() {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETRESOURCECONTAINERCOUNTFROMHOPPER__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getResourceContainerCountFromHopper();
-	}
-}
-
-ResourceContainer* InstallationObject::getContainerFromHopperByIndex(int index) {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCONTAINERFROMHOPPERBYINDEX__INT_);
-		method.addSignedIntParameter(index);
-
-		return static_cast<ResourceContainer*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->getContainerFromHopperByIndex(index);
-	}
-}
-
 unsigned long long InstallationObject::getActiveResourceSpawnID() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -388,7 +343,7 @@ unsigned long long InstallationObject::getActiveResourceSpawnID() {
 
 float InstallationObject::getActualRate() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -400,56 +355,9 @@ float InstallationObject::getActualRate() {
 	}
 }
 
-void InstallationObject::quickRetrieveAllResources(CreatureObject* player) {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_QUICKRETRIEVEALLRESOURCES__CREATUREOBJECT_);
-		method.addObjectParameter(player);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->quickRetrieveAllResources(player);
-	}
-}
-
-void InstallationObject::quickAddMaint(CreatureObject* player, float amount) {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_QUICKADDMAINT__CREATUREOBJECT_FLOAT_);
-		method.addObjectParameter(player);
-		method.addFloatParameter(amount);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->quickAddMaint(player, amount);
-	}
-}
-
-void InstallationObject::quickAddPower(CreatureObject* player, float amount) {
-	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_QUICKADDPOWER__CREATUREOBJECT_FLOAT_);
-		method.addObjectParameter(player);
-		method.addFloatParameter(amount);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->quickAddPower(player, amount);
-	}
-}
-
 void InstallationObject::broadcastToOperators(BasePacket* packet) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -459,7 +367,7 @@ void InstallationObject::broadcastToOperators(BasePacket* packet) {
 
 void InstallationObject::addOperator(CreatureObject* player) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -475,7 +383,7 @@ void InstallationObject::addOperator(CreatureObject* player) {
 
 void InstallationObject::removeOperator(CreatureObject* player) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -491,7 +399,7 @@ void InstallationObject::removeOperator(CreatureObject* player) {
 
 void InstallationObject::sendBaselinesTo(SceneObject* player) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -506,7 +414,7 @@ void InstallationObject::sendBaselinesTo(SceneObject* player) {
 
 bool InstallationObject::isInstallationObject() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -520,7 +428,7 @@ bool InstallationObject::isInstallationObject() {
 
 bool InstallationObject::isOperating() const {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -534,7 +442,7 @@ bool InstallationObject::isOperating() const {
 
 int InstallationObject::getInstallationType() const {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -548,7 +456,7 @@ int InstallationObject::getInstallationType() const {
 
 float InstallationObject::getExtractionRate() const {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -562,7 +470,7 @@ float InstallationObject::getExtractionRate() const {
 
 float InstallationObject::getHopperSizeMax() const {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -576,7 +484,7 @@ float InstallationObject::getHopperSizeMax() const {
 
 void InstallationObject::updateStructureStatus() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -591,7 +499,7 @@ void InstallationObject::updateStructureStatus() {
 
 HopperList* InstallationObject::getHopperList() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -601,7 +509,7 @@ HopperList* InstallationObject::getHopperList() {
 
 bool InstallationObject::isHarvesterObject() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -615,7 +523,7 @@ bool InstallationObject::isHarvesterObject() {
 
 bool InstallationObject::isGeneratorObject() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -629,7 +537,7 @@ bool InstallationObject::isGeneratorObject() {
 
 bool InstallationObject::isShuttleInstallation() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -643,7 +551,7 @@ bool InstallationObject::isShuttleInstallation() {
 
 void InstallationObject::setHopperSizeMax(float size) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -654,7 +562,7 @@ void InstallationObject::setHopperSizeMax(float size) {
 
 void InstallationObject::setExtractionRate(float rate) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -665,7 +573,7 @@ void InstallationObject::setExtractionRate(float rate) {
 
 bool InstallationObject::isAggressiveTo(CreatureObject* object) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -680,7 +588,7 @@ bool InstallationObject::isAggressiveTo(CreatureObject* object) {
 
 bool InstallationObject::isAttackableBy(CreatureObject* object) {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -695,7 +603,7 @@ bool InstallationObject::isAttackableBy(CreatureObject* object) {
 
 void InstallationObject::createChildObjects() {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -710,7 +618,7 @@ void InstallationObject::createChildObjects() {
 
 float InstallationObject::getHitChance() const {
 	InstallationObjectImplementation* _implementation = static_cast<InstallationObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -755,7 +663,7 @@ void InstallationObjectImplementation::finalize() {
 void InstallationObjectImplementation::_initializeImplementation() {
 	_setClassHelper(InstallationObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1142,13 +1050,6 @@ void InstallationObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 			
 		}
 		break;
-	case RPC_GETCURRENTSPAWNNAME__:
-		{
-			
-			String _m_res = getCurrentSpawnName();
-			resp->insertAscii(_m_res);
-		}
-		break;
 	case RPC_DESTROYOBJECTFROMDATABASE__BOOL_:
 		{
 			bool destroyContainedObjects = inv->getBooleanParameter();
@@ -1263,22 +1164,7 @@ void InstallationObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 			ResourceSpawn* spawn = static_cast<ResourceSpawn*>(inv->getObjectParameter());
 			
 			DistributedObject* _m_res = getContainerFromHopper(spawn);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
-		}
-		break;
-	case RPC_GETRESOURCECONTAINERCOUNTFROMHOPPER__:
-		{
-			
-			int _m_res = getResourceContainerCountFromHopper();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETCONTAINERFROMHOPPERBYINDEX__INT_:
-		{
-			int index = inv->getSignedIntParameter();
-			
-			DistributedObject* _m_res = getContainerFromHopperByIndex(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETACTIVERESOURCESPAWNID__:
@@ -1293,32 +1179,6 @@ void InstallationObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 			
 			float _m_res = getActualRate();
 			resp->insertFloat(_m_res);
-		}
-		break;
-	case RPC_QUICKRETRIEVEALLRESOURCES__CREATUREOBJECT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			quickRetrieveAllResources(player);
-			
-		}
-		break;
-	case RPC_QUICKADDMAINT__CREATUREOBJECT_FLOAT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			float amount = inv->getFloatParameter();
-			
-			quickAddMaint(player, amount);
-			
-		}
-		break;
-	case RPC_QUICKADDPOWER__CREATUREOBJECT_FLOAT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			float amount = inv->getFloatParameter();
-			
-			quickAddPower(player, amount);
-			
 		}
 		break;
 	case RPC_ADDOPERATOR__CREATUREOBJECT_:
@@ -1447,10 +1307,6 @@ void InstallationObjectAdapter::initializeTransientMembers() {
 	(static_cast<InstallationObject*>(stub))->initializeTransientMembers();
 }
 
-String InstallationObjectAdapter::getCurrentSpawnName() {
-	return (static_cast<InstallationObject*>(stub))->getCurrentSpawnName();
-}
-
 void InstallationObjectAdapter::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	(static_cast<InstallationObject*>(stub))->destroyObjectFromDatabase(destroyContainedObjects);
 }
@@ -1511,32 +1367,12 @@ ResourceContainer* InstallationObjectAdapter::getContainerFromHopper(ResourceSpa
 	return (static_cast<InstallationObject*>(stub))->getContainerFromHopper(spawn);
 }
 
-int InstallationObjectAdapter::getResourceContainerCountFromHopper() {
-	return (static_cast<InstallationObject*>(stub))->getResourceContainerCountFromHopper();
-}
-
-ResourceContainer* InstallationObjectAdapter::getContainerFromHopperByIndex(int index) {
-	return (static_cast<InstallationObject*>(stub))->getContainerFromHopperByIndex(index);
-}
-
 unsigned long long InstallationObjectAdapter::getActiveResourceSpawnID() {
 	return (static_cast<InstallationObject*>(stub))->getActiveResourceSpawnID();
 }
 
 float InstallationObjectAdapter::getActualRate() {
 	return (static_cast<InstallationObject*>(stub))->getActualRate();
-}
-
-void InstallationObjectAdapter::quickRetrieveAllResources(CreatureObject* player) {
-	(static_cast<InstallationObject*>(stub))->quickRetrieveAllResources(player);
-}
-
-void InstallationObjectAdapter::quickAddMaint(CreatureObject* player, float amount) {
-	(static_cast<InstallationObject*>(stub))->quickAddMaint(player, amount);
-}
-
-void InstallationObjectAdapter::quickAddPower(CreatureObject* player, float amount) {
-	(static_cast<InstallationObject*>(stub))->quickAddPower(player, amount);
 }
 
 void InstallationObjectAdapter::addOperator(CreatureObject* player) {

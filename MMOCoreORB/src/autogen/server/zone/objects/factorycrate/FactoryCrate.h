@@ -148,6 +148,8 @@ public:
 
 	bool isFactoryCrate();
 
+	bool isValidFactoryCrate();
+
 	int getMaxCapacity() const;
 
 	void setMaxCapacity(int value);
@@ -239,6 +241,8 @@ public:
 
 	virtual bool isFactoryCrate();
 
+	bool isValidFactoryCrate();
+
 	int getMaxCapacity() const;
 
 	void setMaxCapacity(int value);
@@ -312,6 +316,8 @@ public:
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
 	bool isFactoryCrate();
+
+	bool isValidFactoryCrate();
 
 	int getMaxCapacity() const;
 

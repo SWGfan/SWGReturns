@@ -6,7 +6,6 @@
 #define RETREATCOMMAND_H_
 
 #include "SquadLeaderCommand.h"
-#include "server/zone/objects/scene/SceneObject.h"
 
 class RetreatCommand : public SquadLeaderCommand {
 public:
@@ -42,11 +41,6 @@ public:
 			return false;
 		}
 
-		if (creature->isFrozen()){
-			creature->sendSystemMessage("Cannot Force Run while ROOTED");
-			return false;
-		}
-
 		if (!creature->checkCooldownRecovery("retreat")) {
 			creature->sendSystemMessage("@combat_effects:burst_run_no"); //You cannot burst run right now.
 			return false;
@@ -77,7 +71,6 @@ public:
 			return GENERALERROR;
 
 		ManagedReference<GroupObject*> group = player->getGroup();
-		player->playEffect("clienteffect/combat_special_defender_rally.cef", "head");
 
 		if (!checkGroupLeader(player, group))
 			return GENERALERROR;
@@ -91,7 +84,7 @@ public:
 		if (!inflictHAM(player, 0, actionCost, mindCost))
 			return GENERALERROR;
 
-		for (int i = 0; i < group->getGroupSize(); ++i) {
+		for (int i = 1; i < group->getGroupSize(); ++i) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
 			if (member == nullptr || !member->isPlayerCreature())
@@ -153,7 +146,7 @@ public:
 		player->addBuff(buff);
 
 		player->updateCooldownTimer("retreat", 30000);
-		player->playEffect("clienteffect/combat_special_defender_rally.cef", "head");
+
 	}
 
 };

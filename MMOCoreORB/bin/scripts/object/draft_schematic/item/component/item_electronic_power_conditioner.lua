@@ -50,8 +50,9 @@ object_draft_schematic_item_component_item_electronic_power_conditioner = object
    craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
    complexity = 15, 
    size = 2, 
+   factoryCrateType = "object/factory/factory_crate_electronics.iff",
    factoryCrateSize = 1000,
-
+   
    xpType = "crafting_general", 
    xp = 74, 
 

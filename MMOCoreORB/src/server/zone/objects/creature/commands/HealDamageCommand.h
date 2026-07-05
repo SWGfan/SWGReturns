@@ -5,7 +5,6 @@
 #ifndef HEALDAMAGECOMMAND_H_
 #define HEALDAMAGECOMMAND_H_
 
-#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/tangible/pharmaceutical/StimPack.h"
 #include "server/zone/objects/tangible/pharmaceutical/RangedStimPack.h"
@@ -37,7 +36,7 @@ public:
 			modSkill = (float)creature->getSkillMod("healing_injury_speed");
 
 		int delay = (int)round(20.0f - (modSkill / 5));
-
+/*
 		if (creature->hasBuff(BuffCRC::FOOD_HEAL_RECOVERY)) {
 			DelayedBuff* buff = cast<DelayedBuff*>( creature->getBuff(BuffCRC::FOOD_HEAL_RECOVERY));
 
@@ -47,9 +46,9 @@ public:
 				delay = round(delay * (100.0f - percent) / 100.0f);
 			}
 		}
-
-		//Force the delay to be at least 4 seconds.
-		delay = (delay < 1) ? 1 : delay;
+*/
+		//Force the delay to be at least 6 seconds.
+		delay = (delay < 6) ? 6 : delay;
 
 		StringIdChatParameter message("healing_response", "healing_response_58"); //You are now ready to heal more damage.
 		Reference<InjuryTreatmentTask*> task = new InjuryTreatmentTask(creature, message, "injuryTreatment");
@@ -57,7 +56,7 @@ public:
 	}
 
 	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
-		creatureTarget->playEffect("clienteffect/healing_healdamage.cef", "");
+		creatureTarget->playEffect("clienteffect/medic_heal.cef", "");
 
 		if (creature == creatureTarget)
 			creature->doAnimation("heal_self");
@@ -120,7 +119,7 @@ public:
 	}
 
 	bool checkTarget(CreatureObject* creature, CreatureObject* creatureTarget) const {
-		if (!creatureTarget->hasDamage(CreatureAttribute::HEALTH) && !creatureTarget->hasDamage(CreatureAttribute::ACTION) && !creatureTarget->hasDamage(CreatureAttribute::MIND)) {
+		if (!creatureTarget->hasDamage(CreatureAttribute::HEALTH) && !creatureTarget->hasDamage(CreatureAttribute::ACTION)) {
 			return false;
 		}
 
@@ -147,13 +146,8 @@ public:
 			return false;
 		}
 
-		if (creature->getHAM(CreatureAttribute::MIND) < mindCostNew) {
-			creature->sendSystemMessage("@healing_response:not_enough_mind"); //You do not have enough mind to do that.
-			return false;
-		}
-
-		if (creature != creatureTarget && checkForArenaDuel(creatureTarget)) {
-			creature->sendSystemMessage("@jedi_spam:no_help_target"); // You are not permitted to help that target.
+		if (creature->getHAM(CreatureAttribute::ACTION) < mindCostNew) {
+			creature->sendSystemMessage("Not enough Action Points to Heal Damage."); //You do not have enough mind to do that.
 			return false;
 		}
 
@@ -276,7 +270,7 @@ public:
 				healthHealed = targetCreature->healDamage(creature, CreatureAttribute::HEALTH, stimPower);
 				notifyObservers = false;
 			}
-
+			/*
 			if (atts.contains(CreatureAttribute::ACTION)) {
 				if (notifyObservers) {
 					actionHealed = targetCreature->healDamage(creature, CreatureAttribute::ACTION, stimPower);
@@ -293,7 +287,7 @@ public:
 					mindHealed = targetCreature->healDamage(creature, CreatureAttribute::MIND, stimPower, true, false);
 				}
 			}
-
+			*/
 			if (creature->isPlayerCreature()) {
 				PlayerManager* playerManager = server->getZoneServer()->getPlayerManager();
 				playerManager->sendBattleFatigueMessage(creature, targetCreature);
@@ -311,7 +305,7 @@ public:
 	void handleArea(CreatureObject* creature, CreatureObject* areaCenter, StimPack* pharma, float range) const {
 
 		// TODO: Replace this with a CombatManager::getAreaTargets() call
-
+		
 		Zone* zone = creature->getZone();
 
 		if (zone == nullptr)
@@ -343,34 +337,6 @@ public:
 					continue;
 
 				if (!creatureTarget->isHealableBy(creature))
-					continue;
-
-				if (creature->isPlayerCreature() && object->getParentID() != 0 && creature->getParentID() != object->getParentID()) {
-					Reference<CellObject*> targetCell = object->getParent().get().castTo<CellObject*>();
-
-					if (targetCell != nullptr) {
-						if (object->isPlayerCreature()) {
-							auto perms = targetCell->getContainerPermissions();
-
-							if (!perms->hasInheritPermissionsFromParent()) {
-								if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN))
-									continue;
-							}
-						}
-
-						ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
-
-						if (parentSceneObject != nullptr) {
-							BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
-
-							if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature))
-								continue;
-						}
-					}
-				}
-
-
-				if (creature != creatureTarget && checkForArenaDuel(creatureTarget))
 					continue;
 
 				//zone->runlock();
@@ -413,7 +379,7 @@ public:
 				if (tangibleObject != nullptr && tangibleObject->isAttackableBy(creature)) {
 					object = creature;
 				} else {
-					creature->sendSystemMessage("@healing_response:healing_response_62"); //Target must be a player or a creature pet in order to heal damage.
+					creature->sendSystemMessage("@healing_response:healing_response_62"); //Target must be a player or a creature pet in order to heal damage. 
 					return GENERALERROR;
 				}
 			}
@@ -449,7 +415,7 @@ public:
 			}
 		}
 
-		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
+		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::ACTION, mindCost);
 
 		if (!canPerformSkill(creature, targetCreature, stimPack, mindCostNew))
 			return GENERALERROR;
@@ -467,34 +433,6 @@ public:
 			return GENERALERROR;
 		}
 
-		if (creature->isPlayerCreature() && targetCreature->getParentID() != 0 && creature->getParentID() != targetCreature->getParentID()) {
-			Reference<CellObject*> targetCell = targetCreature->getParent().get().castTo<CellObject*>();
-
-			if (targetCell != nullptr) {
-				if (!targetCreature->isPlayerCreature()) {
-					auto perms = targetCell->getContainerPermissions();
-
-					if (!perms->hasInheritPermissionsFromParent()) {
-						if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
-							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-							return GENERALERROR;
-						}
-					}
-				}
-
-				ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
-
-				if (parentSceneObject != nullptr) {
-					BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
-
-					if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
-						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-						return GENERALERROR;
-					}
-				}
-			}
-		}
-
 		uint32 stimPower = stimPack->calculatePower(creature, targetCreature);
 
 		Vector<byte> atts = stimPack->getAttributes();
@@ -506,7 +444,7 @@ public:
 			healthHealed = targetCreature->healDamage(creature, CreatureAttribute::HEALTH, stimPower);
 			notifyObservers = false;
 		}
-
+		/*
 		if (atts.contains(CreatureAttribute::ACTION)) {
 			if (notifyObservers) {
 				actionHealed = targetCreature->healDamage(creature, CreatureAttribute::ACTION, stimPower);
@@ -523,7 +461,7 @@ public:
 				mindHealed = targetCreature->healDamage(creature, CreatureAttribute::MIND, stimPower, true, false);
 			}
 		}
-
+		*/
 		if (creature->isPlayerCreature()) {
 			PlayerManager* playerManager = server->getPlayerManager();
 			playerManager->sendBattleFatigueMessage(creature, targetCreature);
@@ -531,7 +469,9 @@ public:
 
 		sendHealMessage(creature, targetCreature, healthHealed, actionHealed, mindHealed);
 
-		creature->inflictDamage(creature, CreatureAttribute::MIND, mindCostNew, false);
+		mindCostNew = 650;
+
+		creature->inflictDamage(creature, CreatureAttribute::ACTION, 1000, false);
 
 		Locker locker(stimPack);
 		stimPack->decreaseUseCount();

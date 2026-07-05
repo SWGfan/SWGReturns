@@ -87,6 +87,8 @@ public:
 
 	void initializeTransientMembers();
 
+	void notifyLoadFromDatabase();
+
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
@@ -140,6 +142,8 @@ public:
 	AntiDecayKitImplementation(DummyConstructorParameter* param);
 
 	void initializeTransientMembers();
+
+	void notifyLoadFromDatabase();
 
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
@@ -200,6 +204,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initializeTransientMembers();
+
+	void notifyLoadFromDatabase();
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 

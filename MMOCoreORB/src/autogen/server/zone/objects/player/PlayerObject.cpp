@@ -8,8 +8,6 @@
 
 #include "server/zone/objects/creature/CreatureObject.h"
 
-#include "server/zone/objects/creature/ai/AiAgent.h"
-
 #include "server/zone/objects/player/events/PlayerDisconnectEvent.h"
 
 #include "server/zone/objects/player/events/PlayerRecoveryEvent.h"
@@ -34,7 +32,7 @@
 
 unsigned const long long PlayerObject::PVP_RESET_TIME = 300000;
 
-enum {RPC_FINALIZE__ = 594400956,RPC_SHOWINSTALLATIONINFO__CREATUREOBJECT_,RPC_SETLOGLEVEL__INT_,RPC_GETLOGLEVEL__,RPC_GETCOUNTMAXCOV__,RPC_SETCOUNTMAXCOV__INT_,RPC_SETCLIENTPATHWAYPOINT__SCENEOBJECT_,RPC_INITIALIZEACCOUNT__,RPC_NOTIFYLOADFROMDATABASE__,RPC_UNLOAD__,RPC_CALCULATEBHREWARD__,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_ADDOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_REMOVEOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_GETACCEPTEDTOSVERSION__,RPC_SETACCEPTEDTOSVERSION__INT_,RPC_CHECKANDSHOWTOS__,RPC_GETTOTALOWNEDSTRUCTURECOUNT__,RPC_ISOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_GETOWNEDSTRUCTURE__INT_,RPC_GETLOTSREMAINING__,RPC_HASLOTSREMAINING__INT_,RPC_NOTIFYSCENEREADY__,RPC_CHECKPENDINGMESSAGES__,RPC_ADDEXPERIENCE__STRING_INT_BOOL_,RPC_REMOVEEXPERIENCE__STRING_BOOL_,RPC_HASCAPPEDEXPERIENCE__STRING_,RPC_ADDWAYPOINT__WAYPOINTOBJECT_BOOL_BOOL_,RPC_SETWAYPOINT__WAYPOINTOBJECT_BOOL_,RPC_REMOVEWAYPOINT__LONG_BOOL_BOOL_,RPC_UPDATEWAYPOINT__LONG_,RPC_REMOVEWAYPOINTBYSPECIALTYPE__INT_BOOL_,RPC_GETWAYPOINTBYSPECIALTYPE__INT_,RPC_GETSURVEYWAYPOINT__,RPC_HASWAYPOINT__LONG_,RPC_GETWAYPOINTAT__FLOAT_FLOAT_STRING_,RPC_GETWAYPOINTLISTSIZE__,RPC_GETWAYPOINT__INT_,RPC_SETLANGUAGEID__BYTE_BOOL_,RPC_ADDFRIEND__STRING_BOOL_,RPC_REMOVEFRIEND__STRING_BOOL_,RPC_REMOVEALLREVERSEFRIENDS__STRING_,RPC_ADDIGNORE__STRING_BOOL_,RPC_REMOVEIGNORE__STRING_BOOL_,RPC_SETTITLE__STRING_BOOL_,RPC_SETFOODFILLING__INT_BOOL_,RPC_SETDRINKFILLING__INT_BOOL_,RPC_INCREASEFACTIONSTANDING__STRING_FLOAT_,RPC_DECREASEFACTIONSTANDING__STRING_FLOAT_,RPC_SETFACTIONSTANDING__STRING_FLOAT_,RPC_GETFACTIONSTANDING__STRING_,RPC_SETSCREENPLAYDATA__STRING_STRING_STRING_,RPC_DELETESCREENPLAYDATA__STRING_STRING_,RPC_GETSCREENPLAYDATA__STRING_STRING_,RPC_CLEARSCREENPLAYDATA__STRING_,RPC_ACTIVATERECOVERY__,RPC_ACTIVATEFORCEPOWERREGEN__,RPC_DORECOVERY__INT_,RPC_DISCONNECT__BOOL_BOOL_,RPC_RELOAD__ZONECLIENTSESSION_,RPC_SETOFFLINE__,RPC_SETLINKDEAD__BOOL_,RPC_SETONLINE__,RPC_SETLOGGINGOUT__,RPC_SENDBADGESRESPONSETO__CREATUREOBJECT_,RPC_LOGOUT__BOOL_,RPC_SETJEDISTATE__INT_BOOL_,RPC_SETACTIVEQUESTSBIT__INT_BYTE_BOOL_,RPC_CLEARACTIVEQUESTSBIT__INT_BOOL_,RPC_CANACTIVATEQUEST__INT_,RPC_ACTIVATEQUEST__INT_,RPC_HASACTIVEQUESTBITSET__INT_,RPC_HASCOMPLETEDQUESTSBITSET__INT_,RPC_SETCOMPLETEDQUESTSBIT__INT_BYTE_BOOL_,RPC_CLEARCOMPLETEDQUESTSBIT__INT_BOOL_,RPC_COMPLETEQUEST__INT_,RPC_HASQUESTDATA__INT_,RPC_SETLASTNPCCONVSTR__STRING_,RPC_SETLASTNPCCONVMESSSTR__STRING_,RPC_GETLASTNPCCONVSTR__,RPC_GETLASTNPCCONVMESSSTR__,RPC_GETLASTNPCCONVOPTION__INT_,RPC_ADDLASTNPCCONVOPTIONS__STRING_,RPC_COUNTLASTNPCCONVOPTIONS__,RPC_CLEARLASTNPCCONVOPTIONS__,RPC_SETCONVERSATINGCREATURE__CREATUREOBJECT_,RPC_GETCONVERSATINGCREATURE__,RPC_SETTRAINERZONENAME__STRING_,RPC_GETTRAINERZONENAME__,RPC_ADDPERSISTENTMESSAGE__LONG_,RPC_DROPPERSISTENTMESSAGE__LONG_,RPC_UNLOADSPAWNEDCHILDREN__,RPC_ADDTOCONSENTLIST__STRING_,RPC_HASINCONSENTLIST__STRING_,RPC_REMOVEFROMCONSENTLIST__STRING_,RPC_GETCONSENTNAME__INT_,RPC_GETCONSENTLISTSIZE__,RPC_GETREACTIONFINES__,RPC_GETFACTIONRANK__,RPC_SETCOMMANDMESSAGESTRING__INT_STRING_,RPC_REMOVECOMMANDMESSAGESTRING__INT_,RPC_GETDECLAREDRESIDENCE__,RPC_SETDECLAREDRESIDENCE__BUILDINGOBJECT_,RPC_SETCLONINGFACILITY__BUILDINGOBJECT_,RPC_GETCLONINGFACILITY__,RPC_NOTIFYONLINE__,RPC_NUMSPECIFICSKILLS__CREATUREOBJECT_STRING_,RPC_DODIGEST__INT_,RPC_ISDIGESTING__,RPC_GETSAVEDTERRAINNAME__,RPC_SETSAVEDPARENTID__LONG_,RPC_SETSAVEDTERRAINNAME__STRING_,RPC_SETFORCEPOWER__INT_BOOL_,RPC_SETFORCEPOWERMAX__INT_BOOL_,RPC_DOFORCEREGEN__,RPC_RECALCULATEFORCEPOWER__,RPC_GETFORCEPOWERREGEN__,RPC_GETSAVEDPARENTID__,RPC_GETNEWSUIBOXID__INT_,RPC_HASSUIBOX__INT_,RPC_GETSUIBOX__INT_,RPC_REMOVESUIBOX__INT_BOOL_,RPC_REMOVESUIBOXTYPE__INT_,RPC_HASSUIBOXWINDOWTYPE__INT_,RPC_CLOSESUIWINDOWTYPE__INT_,RPC_GETSUIBOXFROMWINDOWTYPE__INT_,RPC_ADDSUIBOX__SUIBOX_,RPC_ADDPERMISSIONGROUP__STRING_BOOL_,RPC_REMOVEPERMISSIONGROUP__STRING_BOOL_,RPC_UPDATEINRANGEBUILDINGPERMISSIONS__,RPC_HASPERMISSIONGROUP__STRING_,RPC_ADDINCAPACITATIONTIME__,RPC_GETINCAPACITATIONCOUNTER__,RPC_RESETINCAPACITATIONTIMES__,RPC_ADDTODUELLIST__CREATUREOBJECT_,RPC_REMOVEFROMDUELLIST__CREATUREOBJECT_,RPC_GETDUELLISTOBJECT__INT_,RPC_REQUESTEDDUELTO__CREATUREOBJECT_,RPC_ISDUELLISTEMPTY__,RPC_GETDUELLISTSIZE__,RPC_ADDTOACTIVEPETS__AIAGENT_,RPC_REMOVEFROMACTIVEPETS__AIAGENT_,RPC_GETACTIVEPET__INT_,RPC_HASACTIVEPET__AIAGENT_,RPC_GETACTIVEPETSSIZE__,RPC_GETBIOGRAPHY__,RPC_NOTIFYOFFLINE__,RPC_RESETSESSIONSTATS__BOOL_,RPC_INCREMENTSESSIONMOVEMENT__FLOAT_,RPC_LOGSESSIONSTATS__BOOL_,RPC_SETBADGE__INT_,RPC_AWARDBADGE__INT_,RPC_SETTELEPORTING__BOOL_,RPC_SETONLOADSCREEN__BOOL_,RPC_GETNUMBADGES__,RPC_GETBADGETYPECOUNT__INT_,RPC_HASFRIEND__STRING_,RPC_GETFRIENDLISTSIZE__,RPC_ISIGNORING__STRING_,RPC_ADDREVERSEFRIEND__STRING_,RPC_REMOVEREVERSEFRIEND__STRING_,RPC_SENDFRIENDLISTS__,RPC_HASCOMMANDMESSAGESTRING__INT_,RPC_GETCHARACTERBITMASK__,RPC_GETTITLE__,RPC_GETADMINLEVEL__,RPC_SETADMINLEVEL__INT_,RPC_GETPRIVILEDGEFLAG__,RPC_SETPRIVILEDGEFLAG__INT_,RPC_SETBIOGRAPHY__UNICODESTRING_,RPC_HASGODMODE__,RPC_ISPRIVILEGED__,RPC_ISSTAFF__,RPC_ISADMIN__,RPC_SETCHARACTERBITMASK__INT_,RPC_SETCHARACTERBIT__INT_BOOL_,RPC_CLEARCHARACTERBIT__INT_BOOL_,RPC_TOGGLECHARACTERBIT__INT_,RPC_ISLFG__,RPC_ISAFK__,RPC_ISANONYMOUS__,RPC_ISROLEPLAYER__,RPC_ISNEWBIEHELPER__,RPC_GETFORCEPOWER__,RPC_GETFORCEPOWERMAX__,RPC_GETSCHEMATIC__INT_,RPC_GETFOODFILLING__,RPC_GETFOODFILLINGMAX__,RPC_GETDRINKFILLING__,RPC_GETDRINKFILLINGMAX__,RPC_GETJEDISTATE__,RPC_GETLANGUAGEID__,RPC_ISTELEPORTING__,RPC_ISONLOADSCREEN__,RPC_ADDCHATROOM__INT_,RPC_REMOVECHATROOM__INT_,RPC_ADDOWNEDCHATROOM__INT_,RPC_REMOVEOWNEDCHATROOM__INT_,RPC_GETOWNEDCHATROOMCOUNT__,RPC_SETBANKLOCATION__STRING_,RPC_GETBANKLOCATION__,RPC_GETEXPERIENCE__STRING_,RPC_MAXIMIZEEXPERIENCE__,RPC_ACTIVATEMISSIONS__,RPC_REGRANTSKILLS__,RPC_GETCOMMANDMESSAGESTRING__INT_,RPC_HASBADGE__INT_,RPC_CLEARDISCONNECTEVENT__,RPC_ISONLINE__,RPC_ISOFFLINE__,RPC_ISLOADING__,RPC_ISLINKDEAD__,RPC_ISLOGGINGIN__,RPC_ISLOGGINGOUT__,RPC_SETSKILLPOINTS__INT_,RPC_ADDSKILLPOINTS__INT_,RPC_GETSKILLPOINTS__,RPC_UPDATELASTVALIDATEDPOSITION__,RPC_GETACCOUNTID__,RPC_GETSERVERMOVEMENTTIMEDELTA__,RPC_SETCLIENTLASTMOVEMENTSTAMP__INT_,RPC_UPDATESERVERLASTMOVEMENTSTAMP__,RPC_SETACCOUNTID__INT_,RPC_GETCLIENTLASTMOVEMENTSTAMP__,RPC_ADDHOLOGRINDPROFESSION__BYTE_,RPC_SETMAXIMUMLOTS__BYTE_,RPC_GETMAXIMUMLOTS__,RPC_GETSTARTERPROFESSION__,RPC_SETSTARTERPROFESSION__STRING_,RPC_GETPERFORMANCEBUFFTARGET__,RPC_SETPERFORMANCEBUFFTARGET__LONG_,RPC_SETDEBUG__BOOL_,RPC_GETDEBUG__,RPC_GETVISIBILITY__,RPC_SETVISIBILITY__FLOAT_,RPC_UPDATELASTPVPCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_,RPC_UPDATELASTBHPVPCOMBATACTIONTIMESTAMP__,RPC_UPDATELASTGCWPVPCOMBATACTIONTIMESTAMP__,RPC_UPDATELASTJEDIPVPCOMBATACTIONTIMESTAMP__,RPC_UPDATELASTJEDIATTACKABLETIMESTAMP__,RPC_HASPVPTEF__,RPC_HASBHTEF__,RPC_HASJEDITEF__,RPC_ISJEDIATTACKABLE__,RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_BOOL_BOOL_,RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_,RPC_ADDVENDOR__SCENEOBJECT_,RPC_REMOVEVENDOR__SCENEOBJECT_,RPC_GETVENDORCOUNT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_DELETEALLPERSISTENTMESSAGES__,RPC_ISJEDI__,RPC_ISJEDILIGHT__,RPC_ISJEDIDARK__,RPC_ISMUTED__,RPC_SETMUTEDSTATE__BOOL_,RPC_GETMUTEDREASON__,RPC_SETMUTEDREASON__STRING_,RPC_GETINSTALLEDHOLOEMOTE__,RPC_SETINSTALLEDHOLOEMOTE__STRING_,RPC_REMOVEINSTALLEDHOLOEMOTE__,RPC_GETHOLOEMOTEUSECOUNT__,RPC_DECREASEHOLOEMOTEUSECOUNT__,RPC_ISMARRIED__,RPC_GETSPOUSENAME__,RPC_SETSPOUSENAME__STRING_,RPC_REMOVESPOUSE__,RPC_GETACCOUNT__,RPC_GETCHOSENVETERANREWARD__INT_,RPC_HASCHOSENVETERANREWARD__STRING_,RPC_CLEARVETERANREWARD__INT_,RPC_ADDEVENTPERK__SCENEOBJECT_,RPC_REMOVEEVENTPERK__SCENEOBJECT_,RPC_GETEVENTPERKCOUNT__,RPC_GETCHARACTERAGEINDAYS__,RPC_ADDTOREACTIONFINES__INT_,RPC_SETREACTIONFINES__INT_,RPC_SUBTRACTFROMREACTIONFINES__INT_,RPC_UPDATEREACTIONFINETIMESTAMP__,RPC_UPDATEREACTIONFINEMAILTIMESTAMP__,RPC_GETXPCAP__STRING_,RPC_GETSPENTJEDISKILLPOINTS__,RPC_HASSCHEMATIC__DRAFTSCHEMATIC_,RPC_HASEVENTPERK__STRING_,RPC_DOFIELDFACTIONCHANGE__INT_,RPC_ADDTOVICTIMLIST__INT_,RPC_HASONVICTIMLIST__INT_,RPC_GETPVPRATING__,RPC_SETPVPRATING__INT_,RPC_SETIPADDRESS__STRING_,RPC_GETIPADDRESS__,RPC_UPDATEPVPKILLS__,RPC_GETPVPKILLS__,RPC_UPDATEWORLDBOSSKILLS__,RPC_GETWORLDBOSSKILLS__,RPC_UPDATEEVENTPLAYERCRATE__,RPC_GETEVENTPLAYERCRATE__,RPC_UPDATEPVPDEATHS__,RPC_GETPVPDEATHS__,RPC_UPDATEBOUNTYKILLS__,RPC_GETBOUNTYKILLS__,RPC_UPDATEPVEKILLS__,RPC_GETPVEKILLS__,RPC_UPDATEPVEDEATHS__,RPC_GETPVEDEATHS__,RPC_UPDATEMISSIONSCOMPLETED__,RPC_GETMISSIONSCOMPLETED__,RPC_UPDATEWEBSTATS__STRING_INT_,RPC_UPDATEPLAYERBOUNTYTIMESTAMP__INT_,RPC_SETBOUNTYREWARD__INT_,RPC_GETBOUNTYREWARD__,RPC_SETBOUNTYPLACERID__LONG_,RPC_GETBOUNTYPLACERID__,RPC_HASPLAYERBOUNTY__,RPC_REFUNDPLAYERBOUNTYCREDITS__,RPC_ISCLONING__,RPC_SETCLONING__BOOL_,RPC_GETPLAYEDMILISECS__,RPC_GETSESSIONMILISECS__,RPC_GETSESSIONTOTALMOVEMENT__,RPC_GETMILISECSTIMESTRING__LONG_BOOL_,RPC_GETPLAYEDTIMESTRING__BOOL_};
+enum {RPC_FINALIZE__ = 594400956,RPC_SETLOGLEVEL__INT_,RPC_GETLOGLEVEL__,RPC_GETCOUNTMAXCOV__,RPC_SETCOUNTMAXCOV__INT_,RPC_SETCLIENTPATHWAYPOINT__SCENEOBJECT_,RPC_INITIALIZEACCOUNT__,RPC_NOTIFYLOADFROMDATABASE__,RPC_UNLOAD__,RPC_CALCULATEBHREWARD__,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_ADDOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_REMOVEOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_GETACCEPTEDTOSVERSION__,RPC_SETACCEPTEDTOSVERSION__INT_,RPC_CHECKANDSHOWTOS__,RPC_GETTOTALOWNEDSTRUCTURECOUNT__,RPC_ISOWNEDSTRUCTURE__STRUCTUREOBJECT_,RPC_GETOWNEDSTRUCTURE__INT_,RPC_GETLOTSREMAINING__,RPC_HASLOTSREMAINING__INT_,RPC_NOTIFYSCENEREADY__,RPC_CHECKPENDINGMESSAGES__,RPC_HASCAPPEDEXPERIENCE__STRING_,RPC_ADDWAYPOINT__WAYPOINTOBJECT_BOOL_BOOL_,RPC_SETWAYPOINT__WAYPOINTOBJECT_BOOL_,RPC_REMOVEWAYPOINT__LONG_BOOL_BOOL_,RPC_UPDATEWAYPOINT__LONG_,RPC_REMOVEWAYPOINTBYSPECIALTYPE__INT_BOOL_,RPC_GETWAYPOINTBYSPECIALTYPE__INT_,RPC_GETSURVEYWAYPOINT__,RPC_HASWAYPOINT__LONG_,RPC_GETWAYPOINTAT__FLOAT_FLOAT_STRING_,RPC_GETWAYPOINTLISTSIZE__,RPC_GETWAYPOINT__INT_,RPC_SETLANGUAGEID__BYTE_BOOL_,RPC_ADDFRIEND__STRING_BOOL_,RPC_REMOVEFRIEND__STRING_BOOL_,RPC_REMOVEALLREVERSEFRIENDS__STRING_,RPC_ADDIGNORE__STRING_BOOL_,RPC_REMOVEIGNORE__STRING_BOOL_,RPC_SETTITLE__STRING_BOOL_,RPC_SETFOODFILLING__INT_BOOL_,RPC_SETDRINKFILLING__INT_BOOL_,RPC_INCREASEFACTIONSTANDING__STRING_FLOAT_,RPC_DECREASEFACTIONSTANDING__STRING_FLOAT_,RPC_SETFACTIONSTANDING__STRING_FLOAT_,RPC_GETFACTIONSTANDING__STRING_,RPC_SETSCREENPLAYDATA__STRING_STRING_STRING_,RPC_DELETESCREENPLAYDATA__STRING_STRING_,RPC_GETSCREENPLAYDATA__STRING_STRING_,RPC_CLEARSCREENPLAYDATA__STRING_,RPC_ACTIVATERECOVERY__,RPC_ACTIVATEFORCEPOWERREGEN__,RPC_DORECOVERY__INT_,RPC_DISCONNECT__BOOL_BOOL_,RPC_RELOAD__ZONECLIENTSESSION_,RPC_SETOFFLINE__,RPC_SETLINKDEAD__BOOL_,RPC_SETONLINE__,RPC_SETLOGGINGOUT__,RPC_SENDBADGESRESPONSETO__CREATUREOBJECT_,RPC_LOGOUT__BOOL_,RPC_SETJEDISTATE__INT_BOOL_,RPC_SETACTIVEQUESTSBIT__INT_BYTE_BOOL_,RPC_CLEARACTIVEQUESTSBIT__INT_BOOL_,RPC_CANACTIVATEQUEST__INT_,RPC_ACTIVATEQUEST__INT_,RPC_HASACTIVEQUESTBITSET__INT_,RPC_HASCOMPLETEDQUESTSBITSET__INT_,RPC_SETCOMPLETEDQUESTSBIT__INT_BYTE_BOOL_,RPC_CLEARCOMPLETEDQUESTSBIT__INT_BOOL_,RPC_COMPLETEQUEST__INT_,RPC_HASQUESTDATA__INT_,RPC_SETLASTNPCCONVSTR__STRING_,RPC_SETLASTNPCCONVMESSSTR__STRING_,RPC_GETLASTNPCCONVSTR__,RPC_GETLASTNPCCONVMESSSTR__,RPC_GETLASTNPCCONVOPTION__INT_,RPC_ADDLASTNPCCONVOPTIONS__STRING_,RPC_COUNTLASTNPCCONVOPTIONS__,RPC_CLEARLASTNPCCONVOPTIONS__,RPC_SETCONVERSATINGCREATURE__CREATUREOBJECT_,RPC_GETCONVERSATINGCREATURE__,RPC_SETTRAINERZONENAME__STRING_,RPC_GETTRAINERZONENAME__,RPC_ADDPERSISTENTMESSAGE__LONG_,RPC_DROPPERSISTENTMESSAGE__LONG_,RPC_UNLOADSPAWNEDCHILDREN__,RPC_ADDTOCONSENTLIST__STRING_,RPC_HASINCONSENTLIST__STRING_,RPC_REMOVEFROMCONSENTLIST__STRING_,RPC_GETCONSENTNAME__INT_,RPC_GETCONSENTLISTSIZE__,RPC_GETREACTIONFINES__,RPC_GETFACTIONRANK__,RPC_SETCOMMANDMESSAGESTRING__INT_STRING_,RPC_REMOVECOMMANDMESSAGESTRING__INT_,RPC_GETDECLAREDRESIDENCE__,RPC_SETDECLAREDRESIDENCE__BUILDINGOBJECT_,RPC_SETCLONINGFACILITY__BUILDINGOBJECT_,RPC_GETCLONINGFACILITY__,RPC_NOTIFYONLINE__,RPC_DODIGEST__INT_,RPC_ISDIGESTING__,RPC_GETSAVEDTERRAINNAME__,RPC_SETSAVEDPARENTID__LONG_,RPC_SETSAVEDTERRAINNAME__STRING_,RPC_SETFORCEPOWER__INT_BOOL_,RPC_SETFORCEPOWERMAX__INT_BOOL_,RPC_DOFORCEREGEN__,RPC_RECALCULATEFORCEPOWER__,RPC_GETFORCEPOWERREGEN__,RPC_GETSAVEDPARENTID__,RPC_GETNEWSUIBOXID__INT_,RPC_HASSUIBOX__INT_,RPC_GETSUIBOX__INT_,RPC_REMOVESUIBOX__INT_BOOL_,RPC_REMOVESUIBOXTYPE__INT_,RPC_HASSUIBOXWINDOWTYPE__INT_,RPC_CLOSESUIWINDOWTYPE__INT_,RPC_GETSUIBOXFROMWINDOWTYPE__INT_,RPC_ADDSUIBOX__SUIBOX_,RPC_ADDPERMISSIONGROUP__STRING_BOOL_,RPC_REMOVEPERMISSIONGROUP__STRING_BOOL_,RPC_UPDATEINRANGEBUILDINGPERMISSIONS__,RPC_HASPERMISSIONGROUP__STRING_,RPC_ADDINCAPACITATIONTIME__,RPC_GETINCAPACITATIONCOUNTER__,RPC_RESETINCAPACITATIONTIMES__,RPC_ADDTODUELLIST__CREATUREOBJECT_,RPC_REMOVEFROMDUELLIST__CREATUREOBJECT_,RPC_GETDUELLISTOBJECT__INT_,RPC_REQUESTEDDUELTO__CREATUREOBJECT_,RPC_ISDUELLISTEMPTY__,RPC_GETDUELLISTSIZE__,RPC_ADDTOACTIVEPETS__AIAGENT_,RPC_REMOVEFROMACTIVEPETS__AIAGENT_,RPC_GETACTIVEPET__INT_,RPC_HASACTIVEPET__AIAGENT_,RPC_GETACTIVEPETSSIZE__,RPC_GETBIOGRAPHY__,RPC_NOTIFYOFFLINE__,RPC_RESETSESSIONSTATS__BOOL_,RPC_INCREMENTSESSIONMOVEMENT__FLOAT_,RPC_LOGSESSIONSTATS__BOOL_,RPC_SETBADGE__INT_,RPC_AWARDBADGE__INT_,RPC_SETTELEPORTING__BOOL_,RPC_SETONLOADSCREEN__BOOL_,RPC_SETFORCEDTRANSFORM__BOOL_,RPC_GETNUMBADGES__,RPC_GETBADGETYPECOUNT__INT_,RPC_HASFRIEND__STRING_,RPC_GETFRIENDLISTSIZE__,RPC_ISIGNORING__STRING_,RPC_ADDREVERSEFRIEND__STRING_,RPC_REMOVEREVERSEFRIEND__STRING_,RPC_SENDFRIENDLISTS__,RPC_HASABILITY__STRING_,RPC_HASCOMMANDMESSAGESTRING__INT_,RPC_GETCHARACTERBITMASK__,RPC_GETTITLE__,RPC_GETADMINLEVEL__,RPC_SETADMINLEVEL__INT_,RPC_GETPRIVILEDGEFLAG__,RPC_SETPRIVILEDGEFLAG__INT_,RPC_SETBIOGRAPHY__UNICODESTRING_,RPC_HASGODMODE__,RPC_ISPRIVILEGED__,RPC_ISSTAFF__,RPC_ISADMIN__,RPC_SETCHARACTERBITMASK__INT_,RPC_SETCHARACTERBIT__INT_BOOL_,RPC_CLEARCHARACTERBIT__INT_BOOL_,RPC_TOGGLECHARACTERBIT__INT_,RPC_ISLFG__,RPC_ISAFK__,RPC_ISANONYMOUS__,RPC_ISROLEPLAYER__,RPC_ISNEWBIEHELPER__,RPC_GETFORCEPOWER__,RPC_GETFORCEPOWERMAX__,RPC_GETSCHEMATIC__INT_,RPC_GETFOODFILLING__,RPC_GETFOODFILLINGMAX__,RPC_GETDRINKFILLING__,RPC_GETDRINKFILLINGMAX__,RPC_GETJEDISTATE__,RPC_GETLANGUAGEID__,RPC_ISTELEPORTING__,RPC_ISONLOADSCREEN__,RPC_ISFORCEDTRANSFORM__,RPC_ADDCHATROOM__INT_,RPC_REMOVECHATROOM__INT_,RPC_ADDOWNEDCHATROOM__INT_,RPC_REMOVEOWNEDCHATROOM__INT_,RPC_GETOWNEDCHATROOMCOUNT__,RPC_SETBANKLOCATION__STRING_,RPC_GETBANKLOCATION__,RPC_GETEXPERIENCE__STRING_,RPC_MAXIMIZEEXPERIENCE__,RPC_ACTIVATEMISSIONS__,RPC_GETCOMMANDMESSAGESTRING__INT_,RPC_HASBADGE__INT_,RPC_CLEARDISCONNECTEVENT__,RPC_ISONLINE__,RPC_ISOFFLINE__,RPC_ISLINKDEAD__,RPC_ISLOGGINGOUT__,RPC_SETSKILLPOINTS__INT_,RPC_ADDSKILLPOINTS__INT_,RPC_GETSKILLPOINTS__,RPC_UPDATELASTVALIDATEDPOSITION__,RPC_GETACCOUNTID__,RPC_GETSERVERMOVEMENTTIMEDELTA__,RPC_SETCLIENTLASTMOVEMENTSTAMP__INT_,RPC_UPDATESERVERLASTMOVEMENTSTAMP__,RPC_SETACCOUNTID__INT_,RPC_GETCLIENTLASTMOVEMENTSTAMP__,RPC_ADDHOLOGRINDPROFESSION__BYTE_,RPC_SETMAXIMUMLOTS__BYTE_,RPC_GETMAXIMUMLOTS__,RPC_GETSTARTERPROFESSION__,RPC_SETSTARTERPROFESSION__STRING_,RPC_GETPERFORMANCEBUFFTARGET__,RPC_SETPERFORMANCEBUFFTARGET__LONG_,RPC_SETDEBUG__BOOL_,RPC_GETDEBUG__,RPC_GETVISIBILITY__,RPC_SETVISIBILITY__FLOAT_,RPC_UPDATELASTCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_,RPC_UPDATELASTBHPVPCOMBATACTIONTIMESTAMP__,RPC_UPDATELASTGCWPVPCOMBATACTIONTIMESTAMP__,RPC_HASTEF__,RPC_HASPVPTEF__,RPC_HASBHTEF__,RPC_SETCRACKDOWNTEFTOWARDS__INT_BOOL_,RPC_HASCRACKDOWNTEFTOWARDS__INT_,RPC_HASCRACKDOWNTEF__,RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_BOOL_BOOL_,RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_,RPC_ADDVENDOR__SCENEOBJECT_,RPC_REMOVEVENDOR__SCENEOBJECT_,RPC_GETVENDORCOUNT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_DELETEALLPERSISTENTMESSAGES__,RPC_ISJEDI__,RPC_ISJEDILIGHT__,RPC_ISJEDIDARK__,RPC_ISMUTED__,RPC_SETMUTEDSTATE__BOOL_,RPC_GETMUTEDREASON__,RPC_SETMUTEDREASON__STRING_,RPC_GETINSTALLEDHOLOEMOTE__,RPC_SETINSTALLEDHOLOEMOTE__STRING_,RPC_REMOVEINSTALLEDHOLOEMOTE__,RPC_GETHOLOEMOTEUSECOUNT__,RPC_DECREASEHOLOEMOTEUSECOUNT__,RPC_ISMARRIED__,RPC_GETSPOUSENAME__,RPC_SETSPOUSENAME__STRING_,RPC_REMOVESPOUSE__,RPC_GETACCOUNT__,RPC_GETCHOSENVETERANREWARD__INT_,RPC_HASCHOSENVETERANREWARD__STRING_,RPC_CLEARVETERANREWARD__INT_,RPC_ADDEVENTPERK__SCENEOBJECT_,RPC_REMOVEEVENTPERK__SCENEOBJECT_,RPC_GETEVENTPERKCOUNT__,RPC_GETCHARACTERAGEINDAYS__,RPC_ADDTOREACTIONFINES__INT_,RPC_SETREACTIONFINES__INT_,RPC_SUBTRACTFROMREACTIONFINES__INT_,RPC_UPDATEREACTIONFINETIMESTAMP__,RPC_UPDATEREACTIONFINEMAILTIMESTAMP__,RPC_GETXPCAP__STRING_,RPC_GETSPENTJEDISKILLPOINTS__,RPC_HASSCHEMATIC__DRAFTSCHEMATIC_,RPC_HASEVENTPERK__STRING_,RPC_DOFIELDFACTIONCHANGE__INT_,RPC_ADDTOVICTIMLIST__INT_,RPC_HASONVICTIMLIST__INT_,RPC_GETPVPRATING__,RPC_SETPVPRATING__INT_,RPC_ISCLONING__,RPC_SETCLONING__BOOL_,RPC_UPDATEPLAYERBOUNTYTIMESTAMP__INT_,RPC_SETBOUNTYREWARD__INT_,RPC_GETBOUNTYREWARD__,RPC_SETBOUNTYPLACERID__LONG_,RPC_GETBOUNTYPLACERID__,RPC_HASPLAYERBOUNTY__,RPC_GETPLAYEDMILISECS__,RPC_GETSESSIONMILISECS__,RPC_GETSESSIONTOTALMOVEMENT__,RPC_GETSESSIONTOTALCREDITS__,RPC_GETMILISECSTIMESTRING__LONG_BOOL_,RPC_GETPLAYEDTIMESTRING__BOOL_};
 
 PlayerObject::PlayerObject() : IntangibleObject(DummyConstructorParameter::instance()) {
 	PlayerObjectImplementation* _implementation = new PlayerObjectImplementation();
@@ -51,21 +49,6 @@ PlayerObject::~PlayerObject() {
 }
 
 
-
-void PlayerObject::showInstallationInfo(CreatureObject* player) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SHOWINSTALLATIONINFO__CREATUREOBJECT_);
-		method.addObjectParameter(player);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->showInstallationInfo(player);
-	}
-}
 
 PlayerObject* PlayerObject::__asPlayerObject() {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
@@ -92,8 +75,8 @@ void PlayerObject::setLogLevel(int newLevel) {
 	}
 }
 
-int PlayerObject::getLogLevel() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+int PlayerObject::getLogLevel() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -106,8 +89,8 @@ int PlayerObject::getLogLevel() {
 	}
 }
 
-int PlayerObject::getCountMaxCov() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+int PlayerObject::getCountMaxCov() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -285,7 +268,7 @@ void PlayerObject::removeOwnedStructure(StructureObject* obj) {
 	}
 }
 
-int PlayerObject::getAcceptedTOSVersion() {
+int PlayerObject::getAcceptedTOSVersion() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -429,40 +412,27 @@ void PlayerObject::checkPendingMessages() {
 	}
 }
 
-int PlayerObject::addExperience(const String& xpType, int xp, bool notifyClient) {
+int PlayerObject::addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_ADDEXPERIENCE__STRING_INT_BOOL_);
-		method.addAsciiParameter(xpType);
-		method.addSignedIntParameter(xp);
-		method.addBooleanParameter(notifyClient);
-
-		return method.executeWithSignedIntReturn();
 	} else {
-		return _implementation->addExperience(xpType, xp, notifyClient);
+		return _implementation->addExperience(trx, xpType, xp, notifyClient);
 	}
 }
 
-void PlayerObject::removeExperience(const String& xpType, bool notifyClient) {
+void PlayerObject::removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_REMOVEEXPERIENCE__STRING_BOOL_);
-		method.addAsciiParameter(xpType);
-		method.addBooleanParameter(notifyClient);
-
-		method.executeWithVoidReturn();
 	} else {
-		_implementation->removeExperience(xpType, notifyClient);
+		_implementation->removeExperience(trx, xpType, notifyClient);
 	}
 }
 
-bool PlayerObject::hasCappedExperience(const String& xpType) {
+bool PlayerObject::hasCappedExperience(const String& xpType) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -639,7 +609,7 @@ void PlayerObject::insertWaypointListToMessage(BaseMessage* msg) const {
 	}
 }
 
-int PlayerObject::getWaypointListSize() {
+int PlayerObject::getWaypointListSize() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -653,7 +623,7 @@ int PlayerObject::getWaypointListSize() {
 	}
 }
 
-WaypointObject* PlayerObject::getWaypoint(int index) {
+WaypointObject* PlayerObject::getWaypoint(int index) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -949,8 +919,8 @@ void PlayerObject::setFactionStanding(const String& factionName, float amount) {
 	}
 }
 
-float PlayerObject::getFactionStanding(const String& factionName) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+float PlayerObject::getFactionStanding(const String& factionName) const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -997,7 +967,7 @@ void PlayerObject::deleteScreenPlayData(const String& screenPlay, const String& 
 	}
 }
 
-String PlayerObject::getScreenPlayData(const String& screenPlay, const String& variable) {
+String PlayerObject::getScreenPlayData(const String& screenPlay, const String& variable) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -1270,7 +1240,7 @@ void PlayerObject::activateQuest(int questID) {
 	}
 }
 
-bool PlayerObject::hasActiveQuestBitSet(int bitIndex) {
+bool PlayerObject::hasActiveQuestBitSet(int bitIndex) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -1285,7 +1255,7 @@ bool PlayerObject::hasActiveQuestBitSet(int bitIndex) {
 	}
 }
 
-bool PlayerObject::hasCompletedQuestsBitSet(int bitIndex) {
+bool PlayerObject::hasCompletedQuestsBitSet(int bitIndex) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -1348,7 +1318,7 @@ void PlayerObject::completeQuest(int questID) {
 	}
 }
 
-PlayerQuestData PlayerObject::getQuestData(unsigned int questHashCode) {
+PlayerQuestData PlayerObject::getQuestData(unsigned int questHashCode) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -1554,7 +1524,7 @@ void PlayerObject::setTrainerCoordinates(const Vector3& trainer) {
 	}
 }
 
-Vector3 PlayerObject::getTrainerCoordinates() {
+Vector3 PlayerObject::getTrainerCoordinates() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -1868,22 +1838,6 @@ void PlayerObject::notifyOnline() {
 	}
 }
 
-int PlayerObject::numSpecificSkills(CreatureObject* creature, const String& reqSkillName) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_NUMSPECIFICSKILLS__CREATUREOBJECT_STRING_);
-		method.addObjectParameter(creature);
-		method.addAsciiParameter(reqSkillName);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->numSpecificSkills(creature, reqSkillName);
-	}
-}
-
 void PlayerObject::doDigest(int fillingReduction) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
@@ -1899,7 +1853,7 @@ void PlayerObject::doDigest(int fillingReduction) {
 	}
 }
 
-bool PlayerObject::isDigesting() {
+bool PlayerObject::isDigesting() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2048,7 +2002,7 @@ unsigned long long PlayerObject::getSavedParentID() const {
 }
 
 unsigned int PlayerObject::getNewSuiBoxID(unsigned int type) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -2077,7 +2031,7 @@ bool PlayerObject::hasSuiBox(unsigned int boxID) const {
 	}
 }
 
-Reference<SuiBox* > PlayerObject::getSuiBox(unsigned int boxID) {
+Reference<SuiBox* > PlayerObject::getSuiBox(unsigned int boxID) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2229,7 +2183,7 @@ void PlayerObject::updateInRangeBuildingPermissions() {
 	}
 }
 
-bool PlayerObject::hasPermissionGroup(const String& group) {
+bool PlayerObject::hasPermissionGroup(const String& group) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2341,7 +2295,7 @@ Reference<CreatureObject* > PlayerObject::getDuelListObject(int index) {
 	}
 }
 
-bool PlayerObject::requestedDuelTo(CreatureObject* targetPlayer) {
+bool PlayerObject::requestedDuelTo(CreatureObject* targetPlayer) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2593,7 +2547,22 @@ void PlayerObject::setOnLoadScreen(bool val) {
 	}
 }
 
-int PlayerObject::getNumBadges() {
+void PlayerObject::setForcedTransform(bool val) {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETFORCEDTRANSFORM__BOOL_);
+		method.addBooleanParameter(val);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setForcedTransform(val);
+	}
+}
+
+int PlayerObject::getNumBadges() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2607,7 +2576,7 @@ int PlayerObject::getNumBadges() {
 	}
 }
 
-int PlayerObject::getBadgeTypeCount(unsigned int type) {
+int PlayerObject::getBadgeTypeCount(unsigned int type) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -2713,8 +2682,13 @@ void PlayerObject::sendFriendLists() {
 bool PlayerObject::hasAbility(const String& ability) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
 
+		DistributedMethod method(this, RPC_HASABILITY__STRING_);
+		method.addAsciiParameter(ability);
+
+		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->hasAbility(ability);
 	}
@@ -3026,7 +3000,7 @@ bool PlayerObject::isNewbieHelper() const {
 	}
 }
 
-VectorMap<String, int>* PlayerObject::getXpTypeCapList() {
+const VectorMap<String, int>* PlayerObject::getXpTypeCapList() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3036,7 +3010,17 @@ VectorMap<String, int>* PlayerObject::getXpTypeCapList() {
 	}
 }
 
-DeltaVectorMap<String, int>* PlayerObject::getExperienceList() {
+VectorMap<String, int>* PlayerObject::getXpTypeCapList() {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getXpTypeCapList();
+	}
+}
+
+const DeltaVectorMap<String, int>* PlayerObject::getExperienceList() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3046,7 +3030,17 @@ DeltaVectorMap<String, int>* PlayerObject::getExperienceList() {
 	}
 }
 
-DeltaVectorMap<uint32, PlayerQuestData >* PlayerObject::getPlayerQuestsData() {
+DeltaVectorMap<String, int>* PlayerObject::getExperienceList() {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getExperienceList();
+	}
+}
+
+const DeltaVectorMap<uint32, PlayerQuestData >* PlayerObject::getPlayerQuestsData() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3056,7 +3050,7 @@ DeltaVectorMap<uint32, PlayerQuestData >* PlayerObject::getPlayerQuestsData() {
 	}
 }
 
-DeltaBitArray* PlayerObject::getActiveQuests() {
+const DeltaBitArray* PlayerObject::getActiveQuests() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3066,7 +3060,7 @@ DeltaBitArray* PlayerObject::getActiveQuests() {
 	}
 }
 
-DeltaBitArray* PlayerObject::getCompletedQuests() {
+const DeltaBitArray* PlayerObject::getCompletedQuests() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3104,7 +3098,7 @@ int PlayerObject::getForcePowerMax() const {
 	}
 }
 
-AbilityList* PlayerObject::getAbilityList() {
+const AbilityList* PlayerObject::getAbilityList() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3124,8 +3118,18 @@ FrsData* PlayerObject::getFrsData() {
 	}
 }
 
-SchematicList* PlayerObject::getSchematics() {
+const SchematicList* PlayerObject::getSchematics() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getSchematics();
+	}
+}
+
+SchematicList* PlayerObject::getSchematics() {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
@@ -3243,7 +3247,7 @@ byte PlayerObject::getLanguageID() const {
 	}
 }
 
-DeltaVector<String>* PlayerObject::getFriendList() {
+const DeltaVector<String>* PlayerObject::getFriendList() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3278,6 +3282,20 @@ bool PlayerObject::isOnLoadScreen() const {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isOnLoadScreen();
+	}
+}
+
+bool PlayerObject::isForcedTransform() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISFORCEDTRANSFORM__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isForcedTransform();
 	}
 }
 
@@ -3386,7 +3404,7 @@ String PlayerObject::getBankLocation() const {
 	}
 }
 
-DeltaVector<String>* PlayerObject::getIgnoreList() {
+const DeltaVector<String>* PlayerObject::getIgnoreList() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3439,21 +3457,7 @@ void PlayerObject::activateMissions() {
 	}
 }
 
-void PlayerObject::regrantSkills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_REGRANTSKILLS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->regrantSkills();
-	}
-}
-
-String PlayerObject::getCommandMessageString(unsigned int actionCRC) {
+String PlayerObject::getCommandMessageString(unsigned int actionCRC) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -3470,7 +3474,7 @@ String PlayerObject::getCommandMessageString(unsigned int actionCRC) {
 	}
 }
 
-bool PlayerObject::hasBadge(unsigned int badge) {
+bool PlayerObject::hasBadge(unsigned int badge) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -3527,20 +3531,6 @@ bool PlayerObject::isOffline() const {
 	}
 }
 
-bool PlayerObject::isLoading() const {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISLOADING__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isLoading();
-	}
-}
-
 bool PlayerObject::isLinkDead() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -3552,20 +3542,6 @@ bool PlayerObject::isLinkDead() const {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isLinkDead();
-	}
-}
-
-bool PlayerObject::isLoggingIn() const {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISLOGGINGIN__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isLoggingIn();
 	}
 }
 
@@ -3647,7 +3623,37 @@ int PlayerObject::getSkillPoints() const {
 	}
 }
 
+void PlayerObject::setLastLogoutWorldPosition(const Vector3& position) {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->setLastLogoutWorldPosition(position);
+	}
+}
+
+Vector3 PlayerObject::getLastLogoutWorldPosition() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getLastLogoutWorldPosition();
+	}
+}
+
 ValidatedPosition* PlayerObject::getLastValidatedPosition() {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getLastValidatedPosition();
+	}
+}
+
+const ValidatedPosition* PlayerObject::getLastValidatedPosition() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3695,7 +3701,7 @@ GalaxyAccountInfo* PlayerObject::getGalaxyAccountInfo() const {
 	}
 }
 
-unsigned long long PlayerObject::getServerMovementTimeDelta() {
+unsigned long long PlayerObject::getServerMovementTimeDelta() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -3792,7 +3798,7 @@ void PlayerObject::addHologrindProfession(byte prof) {
 	}
 }
 
-Vector<byte>* PlayerObject::getHologrindProfessions() {
+const Vector<byte>* PlayerObject::getHologrindProfessions() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -3979,40 +3985,30 @@ Time PlayerObject::getLastGcwPvpCombatActionTimestamp() const {
 	}
 }
 
-Time PlayerObject::getLastJediPvpCombatActionTimestamp() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+Time PlayerObject::getLastGcwCrackdownCombatActionTimestamp() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->getLastJediPvpCombatActionTimestamp();
+		return _implementation->getLastGcwCrackdownCombatActionTimestamp();
 	}
 }
 
-Time PlayerObject::getLastJediAttackableTimestamp() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getLastJediAttackableTimestamp();
-	}
-}
-
-void PlayerObject::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction) {
+void PlayerObject::updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_UPDATELASTPVPCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_);
+		DistributedMethod method(this, RPC_UPDATELASTCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_);
+		method.addBooleanParameter(updateGcwCrackdownAction);
 		method.addBooleanParameter(updateGcwAction);
 		method.addBooleanParameter(updateBhAction);
-		method.addBooleanParameter(updateJediAction);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->updateLastPvpCombatActionTimestamp(updateGcwAction, updateBhAction, updateJediAction);
+		_implementation->updateLastCombatActionTimestamp(updateGcwCrackdownAction, updateGcwAction, updateBhAction);
 	}
 }
 
@@ -4044,31 +4040,17 @@ void PlayerObject::updateLastGcwPvpCombatActionTimestamp() {
 	}
 }
 
-void PlayerObject::updateLastJediPvpCombatActionTimestamp() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+bool PlayerObject::hasTef() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_UPDATELASTJEDIPVPCOMBATACTIONTIMESTAMP__);
+		DistributedMethod method(this, RPC_HASTEF__);
 
-		method.executeWithVoidReturn();
+		return method.executeWithBooleanReturn();
 	} else {
-		_implementation->updateLastJediPvpCombatActionTimestamp();
-	}
-}
-
-void PlayerObject::updateLastJediAttackableTimestamp() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATELASTJEDIATTACKABLETIMESTAMP__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateLastJediAttackableTimestamp();
+		return _implementation->hasTef();
 	}
 }
 
@@ -4100,48 +4082,65 @@ bool PlayerObject::hasBhTef() const {
 	}
 }
 
-bool PlayerObject::hasJediTef() const {
+void PlayerObject::setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask) {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETCRACKDOWNTEFTOWARDS__INT_BOOL_);
+		method.addUnsignedIntParameter(factionCrc);
+		method.addBooleanParameter(scheduleTefRemovalTask);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setCrackdownTefTowards(factionCrc, scheduleTefRemovalTask);
+	}
+}
+
+bool PlayerObject::hasCrackdownTefTowards(unsigned int factionCrc) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_HASJEDITEF__);
+		DistributedMethod method(this, RPC_HASCRACKDOWNTEFTOWARDS__INT_);
+		method.addUnsignedIntParameter(factionCrc);
 
 		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->hasJediTef();
+		return _implementation->hasCrackdownTefTowards(factionCrc);
 	}
 }
 
-bool PlayerObject::isJediAttackable() const {
+bool PlayerObject::hasCrackdownTef() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ISJEDIATTACKABLE__);
+		DistributedMethod method(this, RPC_HASCRACKDOWNTEF__);
 
 		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->isJediAttackable();
+		return _implementation->hasCrackdownTef();
 	}
 }
 
-void PlayerObject::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow) {
+void PlayerObject::schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_BOOL_BOOL_);
+		method.addBooleanParameter(removeCrackdownGcwTefNow);
 		method.addBooleanParameter(removeGcwTefNow);
 		method.addBooleanParameter(removeBhTefNow);
-		method.addBooleanParameter(removeJediTefNow);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->schedulePvpTefRemovalTask(removeGcwTefNow, removeBhTefNow, removeJediTefNow);
+		_implementation->schedulePvpTefRemovalTask(removeCrackdownGcwTefNow, removeGcwTefNow, removeBhTefNow);
 	}
 }
 
@@ -4204,8 +4203,8 @@ int PlayerObject::getVendorCount() {
 	}
 }
 
-SortedVector<unsigned long long>* PlayerObject::getOwnedVendors() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
+const SortedVector<unsigned long long>* PlayerObject::getOwnedVendors() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
@@ -4491,7 +4490,7 @@ Account* PlayerObject::getAccount() {
 	}
 }
 
-String PlayerObject::getChosenVeteranReward(unsigned int milestone) {
+String PlayerObject::getChosenVeteranReward(unsigned int milestone) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -4508,7 +4507,7 @@ String PlayerObject::getChosenVeteranReward(unsigned int milestone) {
 	}
 }
 
-bool PlayerObject::hasChosenVeteranReward(const String& rewardTemplate) {
+bool PlayerObject::hasChosenVeteranReward(const String& rewardTemplate) const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -4822,274 +4821,32 @@ void PlayerObject::setPvpRating(int rating) {
 	}
 }
 
-void PlayerObject::setIpAddress(String& address) {
+bool PlayerObject::isCloning() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISCLONING__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isCloning();
+	}
+}
+
+void PlayerObject::setCloning(bool val) {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SETIPADDRESS__STRING_);
-		method.addAsciiParameter(address);
+		DistributedMethod method(this, RPC_SETCLONING__BOOL_);
+		method.addBooleanParameter(val);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->setIpAddress(address);
-	}
-}
-
-String PlayerObject::getIpAddress() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETIPADDRESS__);
-
-		String _return_getIpAddress;
-		method.executeWithAsciiReturn(_return_getIpAddress);
-		return _return_getIpAddress;
-	} else {
-		return _implementation->getIpAddress();
-	}
-}
-
-void PlayerObject::updatePvpKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEPVPKILLS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updatePvpKills();
-	}
-}
-
-unsigned long long PlayerObject::getPvpKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPVPKILLS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getPvpKills();
-	}
-}
-
-void PlayerObject::updateworldbossKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEWORLDBOSSKILLS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateworldbossKills();
-	}
-}
-
-unsigned long long PlayerObject::getworldbossKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETWORLDBOSSKILLS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getworldbossKills();
-	}
-}
-
-void PlayerObject::updateeventplayerCrate() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEEVENTPLAYERCRATE__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateeventplayerCrate();
-	}
-}
-
-unsigned long long PlayerObject::geteventplayerCrate() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETEVENTPLAYERCRATE__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->geteventplayerCrate();
-	}
-}
-
-void PlayerObject::updatePvpDeaths() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEPVPDEATHS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updatePvpDeaths();
-	}
-}
-
-unsigned long long PlayerObject::getPvpDeaths() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPVPDEATHS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getPvpDeaths();
-	}
-}
-
-void PlayerObject::updateBountyKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEBOUNTYKILLS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateBountyKills();
-	}
-}
-
-unsigned long long PlayerObject::getBountyKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETBOUNTYKILLS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getBountyKills();
-	}
-}
-
-void PlayerObject::updatePveKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEPVEKILLS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updatePveKills();
-	}
-}
-
-unsigned long long PlayerObject::getPveKills() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPVEKILLS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getPveKills();
-	}
-}
-
-void PlayerObject::updatePveDeaths() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEPVEDEATHS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updatePveDeaths();
-	}
-}
-
-unsigned long long PlayerObject::getPveDeaths() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPVEDEATHS__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getPveDeaths();
-	}
-}
-
-void PlayerObject::updateMissionsCompleted() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEMISSIONSCOMPLETED__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateMissionsCompleted();
-	}
-}
-
-unsigned long long PlayerObject::getMissionsCompleted() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETMISSIONSCOMPLETED__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getMissionsCompleted();
-	}
-}
-
-void PlayerObject::updateWebStats(const String& stat, int newValue) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_UPDATEWEBSTATS__STRING_INT_);
-		method.addAsciiParameter(stat);
-		method.addSignedIntParameter(newValue);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->updateWebStats(stat, newValue);
+		_implementation->setCloning(val);
 	}
 }
 
@@ -5180,49 +4937,6 @@ bool PlayerObject::hasPlayerBounty() {
 	}
 }
 
-void PlayerObject::refundPlayerBountyCredits() {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_REFUNDPLAYERBOUNTYCREDITS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->refundPlayerBountyCredits();
-	}
-}
-
-bool PlayerObject::isCloning() const {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISCLONING__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isCloning();
-	}
-}
-
-void PlayerObject::setCloning(bool val) {
-	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETCLONING__BOOL_);
-		method.addBooleanParameter(val);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->setCloning(val);
-	}
-}
-
 unsigned long long PlayerObject::getPlayedMiliSecs() const {
 	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -5262,6 +4976,20 @@ unsigned long long PlayerObject::getSessionTotalMovement() const {
 		return method.executeWithUnsignedLongReturn();
 	} else {
 		return _implementation->getSessionTotalMovement();
+	}
+}
+
+long long PlayerObject::getSessionTotalCredits() const {
+	PlayerObjectImplementation* _implementation = static_cast<PlayerObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETSESSIONTOTALCREDITS__);
+
+		return method.executeWithSignedLongReturn();
+	} else {
+		return _implementation->getSessionTotalCredits();
 	}
 }
 
@@ -5486,6 +5214,10 @@ bool PlayerObjectImplementation::readObjectMember(ObjectInputStream* stream, con
 		TypeInfo<bool >::parseFromBinaryStream(&onLoadScreen, stream);
 		return true;
 
+	case 0xdf6adf19: //PlayerObject.forcedTransform
+		TypeInfo<bool >::parseFromBinaryStream(&forcedTransform, stream);
+		return true;
+
 	case 0x9af4d57b: //PlayerObject.muted
 		TypeInfo<bool >::parseFromBinaryStream(&muted, stream);
 		return true;
@@ -5634,6 +5366,10 @@ bool PlayerObjectImplementation::readObjectMember(ObjectInputStream* stream, con
 		TypeInfo<Vector3 >::parseFromBinaryStream(&trainerCoordinates, stream);
 		return true;
 
+	case 0xa3160433: //PlayerObject.lastLogoutWorldPosition
+		TypeInfo<Vector3 >::parseFromBinaryStream(&lastLogoutWorldPosition, stream);
+		return true;
+
 	case 0x891a3d47: //PlayerObject.trainerZoneName
 		TypeInfo<String >::parseFromBinaryStream(&trainerZoneName, stream);
 		return true;
@@ -5710,12 +5446,12 @@ bool PlayerObjectImplementation::readObjectMember(ObjectInputStream* stream, con
 		TypeInfo<Time >::parseFromBinaryStream(&lastGcwPvpCombatActionTimestamp, stream);
 		return true;
 
-	case 0x4483d280: //PlayerObject.lastJediPvpCombatActionTimestamp
-		TypeInfo<Time >::parseFromBinaryStream(&lastJediPvpCombatActionTimestamp, stream);
+	case 0x615d7df2: //PlayerObject.lastCrackdownGcwCombatActionTimestamp
+		TypeInfo<Time >::parseFromBinaryStream(&lastCrackdownGcwCombatActionTimestamp, stream);
 		return true;
 
-	case 0x4762b94a: //PlayerObject.lastJediAttackableTimestamp
-		TypeInfo<Time >::parseFromBinaryStream(&lastJediAttackableTimestamp, stream);
+	case 0x2dda2fc3: //PlayerObject.crackdownFactionTefCrc
+		TypeInfo<unsigned int >::parseFromBinaryStream(&crackdownFactionTefCrc, stream);
 		return true;
 
 	case 0x23960f0c: //PlayerObject.lastDigestion
@@ -5768,42 +5504,6 @@ bool PlayerObjectImplementation::readObjectMember(ObjectInputStream* stream, con
 
 	case 0x469b6d7e: //PlayerObject.sessionStatsMiliSecs
 		TypeInfo<unsigned long long >::parseFromBinaryStream(&sessionStatsMiliSecs, stream);
-		return true;
-
-	case 0x2dfd87f9: //PlayerObject.opposingFactionArea
-		TypeInfo<bool >::parseFromBinaryStream(&opposingFactionArea, stream);
-		return true;
-
-	case 0x246c09a3: //PlayerObject.pvpKills
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&pvpKills, stream);
-		return true;
-
-	case 0xe064b006: //PlayerObject.pvpDeaths
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&pvpDeaths, stream);
-		return true;
-
-	case 0x80ba3ab4: //PlayerObject.bountyKills
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&bountyKills, stream);
-		return true;
-
-	case 0xe5a5fb0c: //PlayerObject.pveKills
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&pveKills, stream);
-		return true;
-
-	case 0x70dd9228: //PlayerObject.pveDeaths
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&pveDeaths, stream);
-		return true;
-
-	case 0xa17d48e1: //PlayerObject.missionsCompleted
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&missionsCompleted, stream);
-		return true;
-
-	case 0x55323b7a: //PlayerObject.worldbossKills
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&worldbossKills, stream);
-		return true;
-
-	case 0x5aa45c77: //PlayerObject.eventplayerCrate
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&eventplayerCrate, stream);
 		return true;
 
 	case 0xa298a583: //PlayerObject.playerBountyTimestamp
@@ -6003,6 +5703,15 @@ int PlayerObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<bool >::toBinaryStream(&onLoadScreen, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xdf6adf19; //PlayerObject.forcedTransform
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&forcedTransform, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6340,6 +6049,15 @@ int PlayerObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xa3160433; //PlayerObject.lastLogoutWorldPosition
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector3 >::toBinaryStream(&lastLogoutWorldPosition, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0x891a3d47; //PlayerObject.trainerZoneName
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -6511,20 +6229,20 @@ int PlayerObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x4483d280; //PlayerObject.lastJediPvpCombatActionTimestamp
+	_nameHashCode = 0x615d7df2; //PlayerObject.lastCrackdownGcwCombatActionTimestamp
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Time >::toBinaryStream(&lastJediPvpCombatActionTimestamp, stream);
+	TypeInfo<Time >::toBinaryStream(&lastCrackdownGcwCombatActionTimestamp, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x4762b94a; //PlayerObject.lastJediAttackableTimestamp
+	_nameHashCode = 0x2dda2fc3; //PlayerObject.crackdownFactionTefCrc
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Time >::toBinaryStream(&lastJediAttackableTimestamp, stream);
+	TypeInfo<unsigned int >::toBinaryStream(&crackdownFactionTefCrc, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -6646,87 +6364,6 @@ int PlayerObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x2dfd87f9; //PlayerObject.opposingFactionArea
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&opposingFactionArea, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x246c09a3; //PlayerObject.pvpKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpKills, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xe064b006; //PlayerObject.pvpDeaths
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpDeaths, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x80ba3ab4; //PlayerObject.bountyKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&bountyKills, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xe5a5fb0c; //PlayerObject.pveKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pveKills, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x70dd9228; //PlayerObject.pveDeaths
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pveDeaths, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xa17d48e1; //PlayerObject.missionsCompleted
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&missionsCompleted, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x55323b7a; //PlayerObject.worldbossKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&worldbossKills, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x5aa45c77; //PlayerObject.eventplayerCrate
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&eventplayerCrate, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0xa298a583; //PlayerObject.playerBountyTimestamp
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -6799,6 +6436,8 @@ void PlayerObjectImplementation::writeJSON(nlohmann::json& j) {
 	thisObject["teleporting"] = teleporting;
 
 	thisObject["onLoadScreen"] = onLoadScreen;
+
+	thisObject["forcedTransform"] = forcedTransform;
 
 	thisObject["muted"] = muted;
 
@@ -6874,6 +6513,8 @@ void PlayerObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["trainerCoordinates"] = trainerCoordinates;
 
+	thisObject["lastLogoutWorldPosition"] = lastLogoutWorldPosition;
+
 	thisObject["trainerZoneName"] = trainerZoneName;
 
 	thisObject["logoutTimeStamp"] = logoutTimeStamp;
@@ -6912,9 +6553,9 @@ void PlayerObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["lastGcwPvpCombatActionTimestamp"] = lastGcwPvpCombatActionTimestamp;
 
-	thisObject["lastJediPvpCombatActionTimestamp"] = lastJediPvpCombatActionTimestamp;
+	thisObject["lastCrackdownGcwCombatActionTimestamp"] = lastCrackdownGcwCombatActionTimestamp;
 
-	thisObject["lastJediAttackableTimestamp"] = lastJediAttackableTimestamp;
+	thisObject["crackdownFactionTefCrc"] = crackdownFactionTefCrc;
 
 	thisObject["lastDigestion"] = lastDigestion;
 
@@ -6942,24 +6583,6 @@ void PlayerObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["sessionStatsMiliSecs"] = sessionStatsMiliSecs;
 
-	thisObject["opposingFactionArea"] = opposingFactionArea;
-
-	thisObject["pvpKills"] = pvpKills;
-
-	thisObject["pvpDeaths"] = pvpDeaths;
-
-	thisObject["bountyKills"] = bountyKills;
-
-	thisObject["pveKills"] = pveKills;
-
-	thisObject["pveDeaths"] = pveDeaths;
-
-	thisObject["missionsCompleted"] = missionsCompleted;
-
-	thisObject["worldbossKills"] = worldbossKills;
-
-	thisObject["eventplayerCrate"] = eventplayerCrate;
-
 	thisObject["playerBountyTimestamp"] = playerBountyTimestamp;
 
 	thisObject["bountyPlacerId"] = bountyPlacerId;
@@ -6983,6 +6606,8 @@ PlayerObjectImplementation::PlayerObjectImplementation() {
 	teleporting = false;
 	// server/zone/objects/player/PlayerObject.idl():  		onLoadScreen = false;
 	onLoadScreen = false;
+	// server/zone/objects/player/PlayerObject.idl():  		forcedTransform = false;
+	forcedTransform = false;
 	// server/zone/objects/player/PlayerObject.idl():  		muted = false;
 	muted = false;
 	// server/zone/objects/player/PlayerObject.idl():  		mutedReason = "";
@@ -7027,16 +6652,16 @@ PlayerObjectImplementation::PlayerObjectImplementation() {
 	accountID = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		clientLastMovementStamp = 0;
 	clientLastMovementStamp = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		maximumLots = 100;
-	maximumLots = 100;
+	// server/zone/objects/player/PlayerObject.idl():  		maximumLots = 10;
+	maximumLots = 10;
 	// server/zone/objects/player/PlayerObject.idl():  		adminLevel = 0;
 	adminLevel = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		priviledgeFlag = 0;
 	priviledgeFlag = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		languageID = 0;
 	languageID = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		setOffline();
-	setOffline();
+	// server/zone/objects/player/PlayerObject.idl():  		onlineStatus = OFFLINE;
+	onlineStatus = OFFLINE;
 	// server/zone/objects/player/PlayerObject.idl():  		performanceBuffTarget = 0;
 	performanceBuffTarget = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		visibility = 0;
@@ -7047,10 +6672,10 @@ PlayerObjectImplementation::PlayerObjectImplementation() {
 	(&lastBhPvpCombatActionTimestamp)->updateToCurrentTime();
 	// server/zone/objects/player/PlayerObject.idl():  		lastGcwPvpCombatActionTimestamp.updateToCurrentTime();
 	(&lastGcwPvpCombatActionTimestamp)->updateToCurrentTime();
-	// server/zone/objects/player/PlayerObject.idl():  		lastJediPvpCombatActionTimestamp.updateToCurrentTime();
-	(&lastJediPvpCombatActionTimestamp)->updateToCurrentTime();
-	// server/zone/objects/player/PlayerObject.idl():  		lastJediAttackableTimestamp.updateToCurrentTime();
-	(&lastJediAttackableTimestamp)->updateToCurrentTime();
+	// server/zone/objects/player/PlayerObject.idl():  		lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
+	(&lastCrackdownGcwCombatActionTimestamp)->updateToCurrentTime();
+	// server/zone/objects/player/PlayerObject.idl():  		crackdownFactionTefCrc = 0;
+	crackdownFactionTefCrc = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		lastDigestion.updateToCurrentTime();
 	(&lastDigestion)->updateToCurrentTime();
 	// server/zone/objects/player/PlayerObject.idl():  		installedHoloEmote = "";
@@ -7075,32 +6700,6 @@ PlayerObjectImplementation::PlayerObjectImplementation() {
 	tosVersionAccepted = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		miliSecsPlayed = 0;
 	miliSecsPlayed = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		ipAddress = "";
-	ipAddress = "";
-	// server/zone/objects/player/PlayerObject.idl():  		opposingFactionArea = false;
-	opposingFactionArea = false;
-	// server/zone/objects/player/PlayerObject.idl():  		worldbossKills = 0;
-	worldbossKills = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		eventplayerCrate = 0;
-	eventplayerCrate = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		pvpKills = 0;
-	pvpKills = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		pvpDeaths = 0;
-	pvpDeaths = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		bountyKills = 0;
-	bountyKills = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		pveKills = 0;
-	pveKills = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		pveDeaths = 0;
-	pveDeaths = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		missionsCompleted = 0;
-	missionsCompleted = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		playerBountyTimestamp.updateToCurrentTime();
-	(&playerBountyTimestamp)->updateToCurrentTime();
-	// server/zone/objects/player/PlayerObject.idl():  		bountyPlacerId = 0;
-	bountyPlacerId = 0;
-	// server/zone/objects/player/PlayerObject.idl():  		bountyReward = 0;
-	bountyReward = 0;
 	// server/zone/objects/player/PlayerObject.idl():  		Logger.setLoggingName("PlayerObjectBase");
 	Logger::setLoggingName("PlayerObjectBase");
 }
@@ -7113,12 +6712,12 @@ void PlayerObjectImplementation::setLogLevel(int newLevel) {
 	playerLogLevel = newLevel;
 }
 
-int PlayerObjectImplementation::getLogLevel() {
+int PlayerObjectImplementation::getLogLevel() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return playerLogLevel;
 	return playerLogLevel;
 }
 
-int PlayerObjectImplementation::getCountMaxCov() {
+int PlayerObjectImplementation::getCountMaxCov() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return countMaxCov;
 	return countMaxCov;
 }
@@ -7136,7 +6735,7 @@ void PlayerObjectImplementation::setClientPathWaypoint(SceneObject* obj) {
 void PlayerObjectImplementation::addOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.
-	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return;
+	if (!obj)	// server/zone/objects/player/PlayerObject.idl():  			return;
 	return;
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.put(obj.getObjectID());
 	(&ownedStructures)->put(obj->getObjectID());
@@ -7145,7 +6744,7 @@ void PlayerObjectImplementation::addOwnedStructure(StructureObject* obj) {
 void PlayerObjectImplementation::removeOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.
-	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return;
+	if (!obj)	// server/zone/objects/player/PlayerObject.idl():  			return;
 	return;
 	// server/zone/objects/player/PlayerObject.idl():  		ownedStructures.drop(obj.getObjectID());
 	(&ownedStructures)->drop(obj->getObjectID());
@@ -7154,7 +6753,7 @@ void PlayerObjectImplementation::removeOwnedStructure(StructureObject* obj) {
 	setDeclaredResidence(NULL);
 }
 
-int PlayerObjectImplementation::getAcceptedTOSVersion() {
+int PlayerObjectImplementation::getAcceptedTOSVersion() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return tosVersionAccepted;
 	return tosVersionAccepted;
 }
@@ -7173,7 +6772,7 @@ int PlayerObjectImplementation::getTotalOwnedStructureCount() {
 bool PlayerObjectImplementation::isOwnedStructure(StructureObject* obj) {
 	Locker _locker(_this.getReferenceUnsafeStaticCast());
 	// server/zone/objects/player/PlayerObject.idl():  		return 
-	if (obj == NULL)	// server/zone/objects/player/PlayerObject.idl():  			return false;
+	if (!obj)	// server/zone/objects/player/PlayerObject.idl():  			return false;
 	return false;
 	// server/zone/objects/player/PlayerObject.idl():  		return ownedStructures.contains(obj.getObjectID());
 	return (&ownedStructures)->contains(obj->getObjectID());
@@ -7206,12 +6805,12 @@ void PlayerObjectImplementation::insertWaypointListToMessage(BaseMessage* msg) c
 	(&waypointList)->insertToMessage(msg);
 }
 
-int PlayerObjectImplementation::getWaypointListSize() {
+int PlayerObjectImplementation::getWaypointListSize() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return waypointList.size();
 	return (&waypointList)->size();
 }
 
-WaypointObject* PlayerObjectImplementation::getWaypoint(int index) {
+WaypointObject* PlayerObjectImplementation::getWaypoint(int index) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return waypointList.getValueAt(index);
 	return (&waypointList)->getValueAt(index);
 }
@@ -7226,22 +6825,9 @@ void PlayerObjectImplementation::deleteScreenPlayData(const String& screenPlay, 
 	(&screenPlayData)->drop(screenPlay + "_" + variable);
 }
 
-String PlayerObjectImplementation::getScreenPlayData(const String& screenPlay, const String& variable) {
+String PlayerObjectImplementation::getScreenPlayData(const String& screenPlay, const String& variable) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return screenPlayData.get(screenPlay + "_" + variable);
 	return (&screenPlayData)->get(screenPlay + "_" + variable);
-}
-
-void PlayerObjectImplementation::setOffline() {
-	// server/zone/objects/player/PlayerObject.idl():  		onlineStatus 
-	if (isLinkDead()){
-}
-	// server/zone/objects/player/PlayerObject.idl():  		onlineStatus = OFFLINE;
-	onlineStatus = OFFLINE;
-}
-
-void PlayerObjectImplementation::setLoggingOut() {
-	// server/zone/objects/player/PlayerObject.idl():  		onlineStatus = LOGGINGOUT;
-	onlineStatus = LOGGINGOUT;
 }
 
 void PlayerObjectImplementation::clearActiveQuestsBit(int bitIndex, bool notifyClient) {
@@ -7249,12 +6835,12 @@ void PlayerObjectImplementation::clearActiveQuestsBit(int bitIndex, bool notifyC
 	setActiveQuestsBit(bitIndex, (byte) 0, notifyClient);
 }
 
-bool PlayerObjectImplementation::hasActiveQuestBitSet(int bitIndex) {
+bool PlayerObjectImplementation::hasActiveQuestBitSet(int bitIndex) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return activeQuests.getBitValue(bitIndex);
 	return (&activeQuests)->getBitValue(bitIndex);
 }
 
-bool PlayerObjectImplementation::hasCompletedQuestsBitSet(int bitIndex) {
+bool PlayerObjectImplementation::hasCompletedQuestsBitSet(int bitIndex) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return completedQuests.getBitValue(bitIndex);
 	return (&completedQuests)->getBitValue(bitIndex);
 }
@@ -7316,7 +6902,7 @@ void PlayerObjectImplementation::clearLastNpcConvOptions() {
 
 void PlayerObjectImplementation::setConversatingCreature(CreatureObject* creature) {
 	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = creature.getObjectID();
-	if (creature == NULL)	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = 0;
+	if (!creature)	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = 0;
 	conversatingCreature = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			conversatingCreature = creature.getObjectID();
@@ -7410,7 +6996,7 @@ unsigned long long PlayerObjectImplementation::getDeclaredResidence() const{
 
 void PlayerObjectImplementation::setDeclaredResidence(BuildingObject* residence) {
 	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = residence.getObjectID();
-	if (residence == NULL)	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = 0;
+	if (!residence)	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = 0;
 	declaredResidence = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			declaredResidence = residence.getObjectID();
@@ -7419,7 +7005,7 @@ void PlayerObjectImplementation::setDeclaredResidence(BuildingObject* residence)
 
 void PlayerObjectImplementation::setCloningFacility(BuildingObject* cloningfac) {
 	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = cloningfac.getObjectID();
-	if (cloningfac == NULL)	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = 0;
+	if (!cloningfac)	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = 0;
 	cloningFacility = 0;
 
 	else 	// server/zone/objects/player/PlayerObject.idl():  			cloningFacility = cloningfac.getObjectID();
@@ -7431,7 +7017,7 @@ unsigned long long PlayerObjectImplementation::getCloningFacility() const{
 	return cloningFacility;
 }
 
-bool PlayerObjectImplementation::isDigesting() {
+bool PlayerObjectImplementation::isDigesting() const{
 	// server/zone/objects/player/PlayerObject.idl():  		}
 	if (getDrinkFilling() > 0 || getFoodFilling() > 0){
 	// server/zone/objects/player/PlayerObject.idl():  			return true;
@@ -7469,7 +7055,7 @@ bool PlayerObjectImplementation::hasSuiBox(unsigned int boxID) const{
 	return (&suiBoxes)->contains(boxID);
 }
 
-Reference<SuiBox* > PlayerObjectImplementation::getSuiBox(unsigned int boxID) {
+Reference<SuiBox* > PlayerObjectImplementation::getSuiBox(unsigned int boxID) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return suiBoxes.get(boxID);
 	return (&suiBoxes)->get(boxID);
 }
@@ -7500,7 +7086,7 @@ void PlayerObjectImplementation::closeSuiWindowType(unsigned int windowType) {
 	// server/zone/objects/player/PlayerObject.idl():  			SuiBox sui = getSuiBoxFromWindowType(windowType);
 	ManagedReference<SuiBox* > sui = getSuiBoxFromWindowType(windowType);
 	// server/zone/objects/player/PlayerObject.idl():  		}
-	if (sui != nullptr){
+	if (sui){
 	// server/zone/objects/player/PlayerObject.idl():  				sendMessage(sui.generateCloseMessage());
 	sendMessage(sui->generateCloseMessage());
 	// server/zone/objects/player/PlayerObject.idl():  				removeSuiBox(sui.getBoxID());
@@ -7564,7 +7150,7 @@ Reference<CreatureObject* > PlayerObjectImplementation::getDuelListObject(int in
 	return (&duelList)->get(index);
 }
 
-bool PlayerObjectImplementation::requestedDuelTo(CreatureObject* targetPlayer) {
+bool PlayerObjectImplementation::requestedDuelTo(CreatureObject* targetPlayer) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return duelList.contains(targetPlayer);
 	return (&duelList)->contains(targetPlayer);
 }
@@ -7624,12 +7210,17 @@ void PlayerObjectImplementation::setOnLoadScreen(bool val) {
 	onLoadScreen = val;
 }
 
-int PlayerObjectImplementation::getNumBadges() {
+void PlayerObjectImplementation::setForcedTransform(bool val) {
+	// server/zone/objects/player/PlayerObject.idl():  		forcedTransform = val;
+	forcedTransform = val;
+}
+
+int PlayerObjectImplementation::getNumBadges() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return badges.getNumBadges();
 	return (&badges)->getNumBadges();
 }
 
-int PlayerObjectImplementation::getBadgeTypeCount(unsigned int type) {
+int PlayerObjectImplementation::getBadgeTypeCount(unsigned int type) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return badges.getTypeCount(type);
 	return (&badges)->getTypeCount(type);
 }
@@ -7724,9 +7315,19 @@ void PlayerObjectImplementation::setCharacterBitmask(unsigned int bitmask) {
 	characterBitmask = bitmask;
 }
 
+const VectorMap<String, int>* PlayerObjectImplementation::getXpTypeCapList() const{
+	// server/zone/objects/player/PlayerObject.idl():  	 return xpTypeCapList;
+	return (&xpTypeCapList);
+}
+
 VectorMap<String, int>* PlayerObjectImplementation::getXpTypeCapList() {
 	// server/zone/objects/player/PlayerObject.idl():  	 return xpTypeCapList;
 	return (&xpTypeCapList);
+}
+
+const DeltaVectorMap<String, int>* PlayerObjectImplementation::getExperienceList() const{
+	// server/zone/objects/player/PlayerObject.idl():  		return experienceList;
+	return (&experienceList);
 }
 
 DeltaVectorMap<String, int>* PlayerObjectImplementation::getExperienceList() {
@@ -7734,17 +7335,17 @@ DeltaVectorMap<String, int>* PlayerObjectImplementation::getExperienceList() {
 	return (&experienceList);
 }
 
-DeltaVectorMap<uint32, PlayerQuestData >* PlayerObjectImplementation::getPlayerQuestsData() {
+const DeltaVectorMap<uint32, PlayerQuestData >* PlayerObjectImplementation::getPlayerQuestsData() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return playerQuestsData;
 	return (&playerQuestsData);
 }
 
-DeltaBitArray* PlayerObjectImplementation::getActiveQuests() {
+const DeltaBitArray* PlayerObjectImplementation::getActiveQuests() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return activeQuests;
 	return (&activeQuests);
 }
 
-DeltaBitArray* PlayerObjectImplementation::getCompletedQuests() {
+const DeltaBitArray* PlayerObjectImplementation::getCompletedQuests() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return completedQuests;
 	return (&completedQuests);
 }
@@ -7759,7 +7360,7 @@ int PlayerObjectImplementation::getForcePowerMax() const{
 	return forcePowerMax;
 }
 
-AbilityList* PlayerObjectImplementation::getAbilityList() {
+const AbilityList* PlayerObjectImplementation::getAbilityList() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return abilityList;
 	return (&abilityList);
 }
@@ -7767,6 +7368,11 @@ AbilityList* PlayerObjectImplementation::getAbilityList() {
 FrsData* PlayerObjectImplementation::getFrsData() {
 	// server/zone/objects/player/PlayerObject.idl():  		return frsData;
 	return (&frsData);
+}
+
+const SchematicList* PlayerObjectImplementation::getSchematics() const{
+	// server/zone/objects/player/PlayerObject.idl():  		return schematicList;
+	return (&schematicList);
 }
 
 SchematicList* PlayerObjectImplementation::getSchematics() {
@@ -7809,7 +7415,7 @@ byte PlayerObjectImplementation::getLanguageID() const{
 	return languageID;
 }
 
-DeltaVector<String>* PlayerObjectImplementation::getFriendList() {
+const DeltaVector<String>* PlayerObjectImplementation::getFriendList() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return friendList;
 	return (&friendList);
 }
@@ -7822,6 +7428,11 @@ bool PlayerObjectImplementation::isTeleporting() const{
 bool PlayerObjectImplementation::isOnLoadScreen() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return onLoadScreen;
 	return onLoadScreen;
+}
+
+bool PlayerObjectImplementation::isForcedTransform() const{
+	// server/zone/objects/player/PlayerObject.idl():  		return forcedTransform;
+	return forcedTransform;
 }
 
 void PlayerObjectImplementation::addChatRoom(unsigned int roomID) {
@@ -7854,7 +7465,7 @@ String PlayerObjectImplementation::getBankLocation() const{
 	return bankLocation;
 }
 
-DeltaVector<String>* PlayerObjectImplementation::getIgnoreList() {
+const DeltaVector<String>* PlayerObjectImplementation::getIgnoreList() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return ignoreList;
 	return (&ignoreList);
 }
@@ -7872,12 +7483,12 @@ int PlayerObjectImplementation::getExperience(const String& xp) const{
 }
 }
 
-String PlayerObjectImplementation::getCommandMessageString(unsigned int actionCRC) {
+String PlayerObjectImplementation::getCommandMessageString(unsigned int actionCRC) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return commandMessageStrings.get(actionCRC);
 	return (&commandMessageStrings)->get(actionCRC);
 }
 
-bool PlayerObjectImplementation::hasBadge(unsigned int badge) {
+bool PlayerObjectImplementation::hasBadge(unsigned int badge) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return badges.hasBadge(badge);
 	return (&badges)->hasBadge(badge);
 }
@@ -7892,19 +7503,9 @@ bool PlayerObjectImplementation::isOffline() const{
 	return onlineStatus == OFFLINE;
 }
 
-bool PlayerObjectImplementation::isLoading() const{
-	// server/zone/objects/player/PlayerObject.idl():  		return onlineStatus == LOADING || onlineStatus == LOGGINGOUT;
-	return onlineStatus == LOADING || onlineStatus == LOGGINGOUT;
-}
-
 bool PlayerObjectImplementation::isLinkDead() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return onlineStatus == LINKDEAD;
 	return onlineStatus == LINKDEAD;
-}
-
-bool PlayerObjectImplementation::isLoggingIn() const{
-	// server/zone/objects/player/PlayerObject.idl():  		return onlineStatus == LOGGINGIN;
-	return onlineStatus == LOGGINGIN;
 }
 
 bool PlayerObjectImplementation::isLoggingOut() const{
@@ -7942,6 +7543,11 @@ ValidatedPosition* PlayerObjectImplementation::getLastValidatedPosition() {
 	return (&lastValidatedPosition);
 }
 
+const ValidatedPosition* PlayerObjectImplementation::getLastValidatedPosition() const{
+	// server/zone/objects/player/PlayerObject.idl():  		return lastValidatedPosition;
+	return (&lastValidatedPosition);
+}
+
 void PlayerObjectImplementation::updateLastValidatedPosition() {
 	// server/zone/objects/player/PlayerObject.idl():  		SceneObject par = super.getParent();
 	ManagedReference<SceneObject* > par = IntangibleObjectImplementation::getParent();
@@ -7961,7 +7567,7 @@ GalaxyAccountInfo* PlayerObjectImplementation::getGalaxyAccountInfo() const{
 	return galaxyAccountInfo;
 }
 
-unsigned long long PlayerObjectImplementation::getServerMovementTimeDelta() {
+unsigned long long PlayerObjectImplementation::getServerMovementTimeDelta() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return serverLastMovementStamp.miliDifference();
 	return (&serverLastMovementStamp)->miliDifference();
 }
@@ -7996,7 +7602,7 @@ void PlayerObjectImplementation::addHologrindProfession(byte prof) {
 	(&hologrindProfessions)->add(prof);
 }
 
-Vector<byte>* PlayerObjectImplementation::getHologrindProfessions() {
+const Vector<byte>* PlayerObjectImplementation::getHologrindProfessions() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return hologrindProfessions;
 	return (&hologrindProfessions);
 }
@@ -8063,7 +7669,7 @@ void PlayerObjectImplementation::removeVendor(SceneObject* vendor) {
 	(&ownedVendors)->removeElement(vendor->getObjectID());
 }
 
-SortedVector<unsigned long long>* PlayerObjectImplementation::getOwnedVendors() {
+const SortedVector<unsigned long long>* PlayerObjectImplementation::getOwnedVendors() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return ownedVendors;
 	return (&ownedVendors);
 }
@@ -8160,12 +7766,12 @@ Account* PlayerObjectImplementation::getAccount() {
 	return account;
 }
 
-String PlayerObjectImplementation::getChosenVeteranReward(unsigned int milestone) {
+String PlayerObjectImplementation::getChosenVeteranReward(unsigned int milestone) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return galaxyAccountInfo.getChosenVeteranReward(milestone);
 	return galaxyAccountInfo->getChosenVeteranReward(milestone);
 }
 
-bool PlayerObjectImplementation::hasChosenVeteranReward(const String& rewardTemplate) {
+bool PlayerObjectImplementation::hasChosenVeteranReward(const String& rewardTemplate) const{
 	// server/zone/objects/player/PlayerObject.idl():  		return galaxyAccountInfo.hasChosenVeteranReward(rewardTemplate);
 	return galaxyAccountInfo->hasChosenVeteranReward(rewardTemplate);
 }
@@ -8277,110 +7883,14 @@ void PlayerObjectImplementation::setPvpRating(int rating) {
 	pvpRating = rating;
 }
 
-void PlayerObjectImplementation::setIpAddress(String& address) {
-	// server/zone/objects/player/PlayerObject.idl():  		ipAddress = address;
-	ipAddress = address;
+bool PlayerObjectImplementation::isCloning() const{
+	// server/zone/objects/player/PlayerObject.idl():  		return isPlayerCloning;
+	return isPlayerCloning;
 }
 
-String PlayerObjectImplementation::getIpAddress() {
-	// server/zone/objects/player/PlayerObject.idl():  		return ipAddress;
-	return ipAddress;
-}
-
-void PlayerObjectImplementation::updatePvpKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		pvpKills += 1;
-	pvpKills += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("pvpKills", pvpKills);
-	updateWebStats("pvpKills", pvpKills);
-}
-
-unsigned long long PlayerObjectImplementation::getPvpKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		return pvpKills;
-	return pvpKills;
-}
-
-void PlayerObjectImplementation::updateworldbossKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		worldbossKills += 1;
-	worldbossKills += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("worldbossKills", worldbossKills);
-	updateWebStats("worldbossKills", worldbossKills);
-}
-
-unsigned long long PlayerObjectImplementation::getworldbossKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		return worldbossKills;
-	return worldbossKills;
-}
-
-void PlayerObjectImplementation::updateeventplayerCrate() {
-	// server/zone/objects/player/PlayerObject.idl():  		eventplayerCrate += 1;
-	eventplayerCrate += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("eventplayerCrate", eventplayerCrate);
-	updateWebStats("eventplayerCrate", eventplayerCrate);
-}
-
-unsigned long long PlayerObjectImplementation::geteventplayerCrate() {
-	// server/zone/objects/player/PlayerObject.idl():  		return eventplayerCrate;
-	return eventplayerCrate;
-}
-
-void PlayerObjectImplementation::updatePvpDeaths() {
-	// server/zone/objects/player/PlayerObject.idl():  		pvpDeaths += 1;
-	pvpDeaths += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("pvpDeaths", pvpDeaths);
-	updateWebStats("pvpDeaths", pvpDeaths);
-}
-
-unsigned long long PlayerObjectImplementation::getPvpDeaths() {
-	// server/zone/objects/player/PlayerObject.idl():  		return pvpDeaths;
-	return pvpDeaths;
-}
-
-void PlayerObjectImplementation::updateBountyKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		bountyKills += 1;
-	bountyKills += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("bountykills", bountyKills);
-	updateWebStats("bountykills", bountyKills);
-}
-
-unsigned long long PlayerObjectImplementation::getBountyKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		return bountyKills;
-	return bountyKills;
-}
-
-void PlayerObjectImplementation::updatePveKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		pveKills += 1;
-	pveKills += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("pvekills", pveKills);
-	updateWebStats("pvekills", pveKills);
-}
-
-unsigned long long PlayerObjectImplementation::getPveKills() {
-	// server/zone/objects/player/PlayerObject.idl():  		return pveKills;
-	return pveKills;
-}
-
-void PlayerObjectImplementation::updatePveDeaths() {
-	// server/zone/objects/player/PlayerObject.idl():  		pveDeaths += 1;
-	pveDeaths += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("pveDeaths", pveDeaths);
-	updateWebStats("pveDeaths", pveDeaths);
-}
-
-unsigned long long PlayerObjectImplementation::getPveDeaths() {
-	// server/zone/objects/player/PlayerObject.idl():  		return pveDeaths;
-	return pveDeaths;
-}
-
-void PlayerObjectImplementation::updateMissionsCompleted() {
-	// server/zone/objects/player/PlayerObject.idl():  		missionsCompleted += 1;
-	missionsCompleted += 1;
-	// server/zone/objects/player/PlayerObject.idl():  		updateWebStats("missionscompleted", missionsCompleted);
-	updateWebStats("missionscompleted", missionsCompleted);
-}
-
-unsigned long long PlayerObjectImplementation::getMissionsCompleted() {
-	// server/zone/objects/player/PlayerObject.idl():  		return missionsCompleted;
-	return missionsCompleted;
+void PlayerObjectImplementation::setCloning(bool val) {
+	// server/zone/objects/player/PlayerObject.idl():  		isPlayerCloning = val;
+	isPlayerCloning = val;
 }
 
 void PlayerObjectImplementation::updatePlayerBountyTimestamp(int duration) {
@@ -8415,16 +7925,6 @@ bool PlayerObjectImplementation::hasPlayerBounty() {
 	return !(&playerBountyTimestamp)->isPast();
 }
 
-bool PlayerObjectImplementation::isCloning() const{
-	// server/zone/objects/player/PlayerObject.idl():  		return isPlayerCloning;
-	return isPlayerCloning;
-}
-
-void PlayerObjectImplementation::setCloning(bool val) {
-	// server/zone/objects/player/PlayerObject.idl():  		isPlayerCloning = val;
-	isPlayerCloning = val;
-}
-
 unsigned long long PlayerObjectImplementation::getPlayedMiliSecs() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return miliSecsPlayed;
 	return miliSecsPlayed;
@@ -8438,6 +7938,11 @@ unsigned long long PlayerObjectImplementation::getSessionMiliSecs() const{
 unsigned long long PlayerObjectImplementation::getSessionTotalMovement() const{
 	// server/zone/objects/player/PlayerObject.idl():  		return sessionStatsTotalMovement;
 	return sessionStatsTotalMovement;
+}
+
+long long PlayerObjectImplementation::getSessionTotalCredits() const{
+	// server/zone/objects/player/PlayerObject.idl():  	 return sessionStatsTotalCredits;
+	return sessionStatsTotalCredits;
 }
 
 /*
@@ -8459,14 +7964,6 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			finalize();
-			
-		}
-		break;
-	case RPC_SHOWINSTALLATIONINFO__CREATUREOBJECT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			showInstallationInfo(player);
 			
 		}
 		break;
@@ -8638,25 +8135,6 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			checkPendingMessages();
-			
-		}
-		break;
-	case RPC_ADDEXPERIENCE__STRING_INT_BOOL_:
-		{
-			 String xpType; inv->getAsciiParameter(xpType);
-			int xp = inv->getSignedIntParameter();
-			bool notifyClient = inv->getBooleanParameter();
-			
-			int _m_res = addExperience(xpType, xp, notifyClient);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_REMOVEEXPERIENCE__STRING_BOOL_:
-		{
-			 String xpType; inv->getAsciiParameter(xpType);
-			bool notifyClient = inv->getBooleanParameter();
-			
-			removeExperience(xpType, notifyClient);
 			
 		}
 		break;
@@ -9312,15 +8790,6 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_NUMSPECIFICSKILLS__CREATUREOBJECT_STRING_:
-		{
-			CreatureObject* creature = static_cast<CreatureObject*>(inv->getObjectParameter());
-			 String reqSkillName; inv->getAsciiParameter(reqSkillName);
-			
-			int _m_res = numSpecificSkills(creature, reqSkillName);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
 	case RPC_DODIGEST__INT_:
 		{
 			int fillingReduction = inv->getSignedIntParameter();
@@ -9687,6 +9156,14 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_SETFORCEDTRANSFORM__BOOL_:
+		{
+			bool val = inv->getBooleanParameter();
+			
+			setForcedTransform(val);
+			
+		}
+		break;
 	case RPC_GETNUMBADGES__:
 		{
 			
@@ -9746,6 +9223,14 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			sendFriendLists();
 			
+		}
+		break;
+	case RPC_HASABILITY__STRING_:
+		{
+			 String ability; inv->getAsciiParameter(ability);
+			
+			bool _m_res = hasAbility(ability);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_HASCOMMANDMESSAGESTRING__INT_:
@@ -9983,6 +9468,13 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_ISFORCEDTRANSFORM__:
+		{
+			
+			bool _m_res = isForcedTransform();
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_ADDCHATROOM__INT_:
 		{
 			unsigned int roomID = inv->getUnsignedIntParameter();
@@ -10059,13 +9551,6 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_REGRANTSKILLS__:
-		{
-			
-			regrantSkills();
-			
-		}
-		break;
 	case RPC_GETCOMMANDMESSAGESTRING__INT_:
 		{
 			unsigned int actionCRC = inv->getUnsignedIntParameter();
@@ -10103,24 +9588,10 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_ISLOADING__:
-		{
-			
-			bool _m_res = isLoading();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_ISLINKDEAD__:
 		{
 			
 			bool _m_res = isLinkDead();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_ISLOGGINGIN__:
-		{
-			
-			bool _m_res = isLoggingIn();
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -10288,13 +9759,13 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_UPDATELASTPVPCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_:
+	case RPC_UPDATELASTCOMBATACTIONTIMESTAMP__BOOL_BOOL_BOOL_:
 		{
+			bool updateGcwCrackdownAction = inv->getBooleanParameter();
 			bool updateGcwAction = inv->getBooleanParameter();
 			bool updateBhAction = inv->getBooleanParameter();
-			bool updateJediAction = inv->getBooleanParameter();
 			
-			updateLastPvpCombatActionTimestamp(updateGcwAction, updateBhAction, updateJediAction);
+			updateLastCombatActionTimestamp(updateGcwCrackdownAction, updateGcwAction, updateBhAction);
 			
 		}
 		break;
@@ -10312,18 +9783,11 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_UPDATELASTJEDIPVPCOMBATACTIONTIMESTAMP__:
+	case RPC_HASTEF__:
 		{
 			
-			updateLastJediPvpCombatActionTimestamp();
-			
-		}
-		break;
-	case RPC_UPDATELASTJEDIATTACKABLETIMESTAMP__:
-		{
-			
-			updateLastJediAttackableTimestamp();
-			
+			bool _m_res = hasTef();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_HASPVPTEF__:
@@ -10340,27 +9804,37 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_HASJEDITEF__:
+	case RPC_SETCRACKDOWNTEFTOWARDS__INT_BOOL_:
 		{
+			unsigned int factionCrc = inv->getUnsignedIntParameter();
+			bool scheduleTefRemovalTask = inv->getBooleanParameter();
 			
-			bool _m_res = hasJediTef();
+			setCrackdownTefTowards(factionCrc, scheduleTefRemovalTask);
+			
+		}
+		break;
+	case RPC_HASCRACKDOWNTEFTOWARDS__INT_:
+		{
+			unsigned int factionCrc = inv->getUnsignedIntParameter();
+			
+			bool _m_res = hasCrackdownTefTowards(factionCrc);
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_ISJEDIATTACKABLE__:
+	case RPC_HASCRACKDOWNTEF__:
 		{
 			
-			bool _m_res = isJediAttackable();
+			bool _m_res = hasCrackdownTef();
 			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_SCHEDULEPVPTEFREMOVALTASK__BOOL_BOOL_BOOL_:
 		{
+			bool removeCrackdownGcwTefNow = inv->getBooleanParameter();
 			bool removeGcwTefNow = inv->getBooleanParameter();
 			bool removeBhTefNow = inv->getBooleanParameter();
-			bool removeJediTefNow = inv->getBooleanParameter();
 			
-			schedulePvpTefRemovalTask(removeGcwTefNow, removeBhTefNow, removeJediTefNow);
+			schedulePvpTefRemovalTask(removeCrackdownGcwTefNow, removeGcwTefNow, removeBhTefNow);
 			
 		}
 		break;
@@ -10695,139 +10169,18 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_SETIPADDRESS__STRING_:
+	case RPC_ISCLONING__:
 		{
-			String address; inv->getAsciiParameter(address);
 			
-			setIpAddress(address);
-			
+			bool _m_res = isCloning();
+			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_GETIPADDRESS__:
+	case RPC_SETCLONING__BOOL_:
 		{
+			bool val = inv->getBooleanParameter();
 			
-			String _m_res = getIpAddress();
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_UPDATEPVPKILLS__:
-		{
-			
-			updatePvpKills();
-			
-		}
-		break;
-	case RPC_GETPVPKILLS__:
-		{
-			
-			unsigned long long _m_res = getPvpKills();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEWORLDBOSSKILLS__:
-		{
-			
-			updateworldbossKills();
-			
-		}
-		break;
-	case RPC_GETWORLDBOSSKILLS__:
-		{
-			
-			unsigned long long _m_res = getworldbossKills();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEEVENTPLAYERCRATE__:
-		{
-			
-			updateeventplayerCrate();
-			
-		}
-		break;
-	case RPC_GETEVENTPLAYERCRATE__:
-		{
-			
-			unsigned long long _m_res = geteventplayerCrate();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEPVPDEATHS__:
-		{
-			
-			updatePvpDeaths();
-			
-		}
-		break;
-	case RPC_GETPVPDEATHS__:
-		{
-			
-			unsigned long long _m_res = getPvpDeaths();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEBOUNTYKILLS__:
-		{
-			
-			updateBountyKills();
-			
-		}
-		break;
-	case RPC_GETBOUNTYKILLS__:
-		{
-			
-			unsigned long long _m_res = getBountyKills();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEPVEKILLS__:
-		{
-			
-			updatePveKills();
-			
-		}
-		break;
-	case RPC_GETPVEKILLS__:
-		{
-			
-			unsigned long long _m_res = getPveKills();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEPVEDEATHS__:
-		{
-			
-			updatePveDeaths();
-			
-		}
-		break;
-	case RPC_GETPVEDEATHS__:
-		{
-			
-			unsigned long long _m_res = getPveDeaths();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEMISSIONSCOMPLETED__:
-		{
-			
-			updateMissionsCompleted();
-			
-		}
-		break;
-	case RPC_GETMISSIONSCOMPLETED__:
-		{
-			
-			unsigned long long _m_res = getMissionsCompleted();
-			resp->insertLong(_m_res);
-		}
-		break;
-	case RPC_UPDATEWEBSTATS__STRING_INT_:
-		{
-			 String stat; inv->getAsciiParameter(stat);
-			int newValue = inv->getSignedIntParameter();
-			
-			updateWebStats(stat, newValue);
+			setCloning(val);
 			
 		}
 		break;
@@ -10876,28 +10229,6 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_REFUNDPLAYERBOUNTYCREDITS__:
-		{
-			
-			refundPlayerBountyCredits();
-			
-		}
-		break;
-	case RPC_ISCLONING__:
-		{
-			
-			bool _m_res = isCloning();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_SETCLONING__BOOL_:
-		{
-			bool val = inv->getBooleanParameter();
-			
-			setCloning(val);
-			
-		}
-		break;
 	case RPC_GETPLAYEDMILISECS__:
 		{
 			
@@ -10917,6 +10248,13 @@ void PlayerObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			unsigned long long _m_res = getSessionTotalMovement();
 			resp->insertLong(_m_res);
+		}
+		break;
+	case RPC_GETSESSIONTOTALCREDITS__:
+		{
+			
+			long long _m_res = getSessionTotalCredits();
+			resp->insertSignedLong(_m_res);
 		}
 		break;
 	case RPC_GETMILISECSTIMESTRING__LONG_BOOL_:
@@ -10945,19 +10283,15 @@ void PlayerObjectAdapter::finalize() {
 	(static_cast<PlayerObject*>(stub))->finalize();
 }
 
-void PlayerObjectAdapter::showInstallationInfo(CreatureObject* player) {
-	(static_cast<PlayerObject*>(stub))->showInstallationInfo(player);
-}
-
 void PlayerObjectAdapter::setLogLevel(int newLevel) {
 	(static_cast<PlayerObject*>(stub))->setLogLevel(newLevel);
 }
 
-int PlayerObjectAdapter::getLogLevel() {
+int PlayerObjectAdapter::getLogLevel() const {
 	return (static_cast<PlayerObject*>(stub))->getLogLevel();
 }
 
-int PlayerObjectAdapter::getCountMaxCov() {
+int PlayerObjectAdapter::getCountMaxCov() const {
 	return (static_cast<PlayerObject*>(stub))->getCountMaxCov();
 }
 
@@ -11001,7 +10335,7 @@ void PlayerObjectAdapter::removeOwnedStructure(StructureObject* obj) {
 	(static_cast<PlayerObject*>(stub))->removeOwnedStructure(obj);
 }
 
-int PlayerObjectAdapter::getAcceptedTOSVersion() {
+int PlayerObjectAdapter::getAcceptedTOSVersion() const {
 	return (static_cast<PlayerObject*>(stub))->getAcceptedTOSVersion();
 }
 
@@ -11041,15 +10375,7 @@ void PlayerObjectAdapter::checkPendingMessages() {
 	(static_cast<PlayerObject*>(stub))->checkPendingMessages();
 }
 
-int PlayerObjectAdapter::addExperience(const String& xpType, int xp, bool notifyClient) {
-	return (static_cast<PlayerObject*>(stub))->addExperience(xpType, xp, notifyClient);
-}
-
-void PlayerObjectAdapter::removeExperience(const String& xpType, bool notifyClient) {
-	(static_cast<PlayerObject*>(stub))->removeExperience(xpType, notifyClient);
-}
-
-bool PlayerObjectAdapter::hasCappedExperience(const String& xpType) {
+bool PlayerObjectAdapter::hasCappedExperience(const String& xpType) const {
 	return (static_cast<PlayerObject*>(stub))->hasCappedExperience(xpType);
 }
 
@@ -11089,11 +10415,11 @@ WaypointObject* PlayerObjectAdapter::getWaypointAt(float x, float y, String& pla
 	return (static_cast<PlayerObject*>(stub))->getWaypointAt(x, y, planet);
 }
 
-int PlayerObjectAdapter::getWaypointListSize() {
+int PlayerObjectAdapter::getWaypointListSize() const {
 	return (static_cast<PlayerObject*>(stub))->getWaypointListSize();
 }
 
-WaypointObject* PlayerObjectAdapter::getWaypoint(int index) {
+WaypointObject* PlayerObjectAdapter::getWaypoint(int index) const {
 	return (static_cast<PlayerObject*>(stub))->getWaypoint(index);
 }
 
@@ -11145,7 +10471,7 @@ void PlayerObjectAdapter::setFactionStanding(const String& factionName, float am
 	(static_cast<PlayerObject*>(stub))->setFactionStanding(factionName, amount);
 }
 
-float PlayerObjectAdapter::getFactionStanding(const String& factionName) {
+float PlayerObjectAdapter::getFactionStanding(const String& factionName) const {
 	return (static_cast<PlayerObject*>(stub))->getFactionStanding(factionName);
 }
 
@@ -11157,7 +10483,7 @@ void PlayerObjectAdapter::deleteScreenPlayData(const String& screenPlay, const S
 	(static_cast<PlayerObject*>(stub))->deleteScreenPlayData(screenPlay, variable);
 }
 
-String PlayerObjectAdapter::getScreenPlayData(const String& screenPlay, const String& variable) {
+String PlayerObjectAdapter::getScreenPlayData(const String& screenPlay, const String& variable) const {
 	return (static_cast<PlayerObject*>(stub))->getScreenPlayData(screenPlay, variable);
 }
 
@@ -11229,11 +10555,11 @@ void PlayerObjectAdapter::activateQuest(int questID) {
 	(static_cast<PlayerObject*>(stub))->activateQuest(questID);
 }
 
-bool PlayerObjectAdapter::hasActiveQuestBitSet(int bitIndex) {
+bool PlayerObjectAdapter::hasActiveQuestBitSet(int bitIndex) const {
 	return (static_cast<PlayerObject*>(stub))->hasActiveQuestBitSet(bitIndex);
 }
 
-bool PlayerObjectAdapter::hasCompletedQuestsBitSet(int bitIndex) {
+bool PlayerObjectAdapter::hasCompletedQuestsBitSet(int bitIndex) const {
 	return (static_cast<PlayerObject*>(stub))->hasCompletedQuestsBitSet(bitIndex);
 }
 
@@ -11369,15 +10695,11 @@ void PlayerObjectAdapter::notifyOnline() {
 	(static_cast<PlayerObject*>(stub))->notifyOnline();
 }
 
-int PlayerObjectAdapter::numSpecificSkills(CreatureObject* creature, const String& reqSkillName) {
-	return (static_cast<PlayerObject*>(stub))->numSpecificSkills(creature, reqSkillName);
-}
-
 void PlayerObjectAdapter::doDigest(int fillingReduction) {
 	(static_cast<PlayerObject*>(stub))->doDigest(fillingReduction);
 }
 
-bool PlayerObjectAdapter::isDigesting() {
+bool PlayerObjectAdapter::isDigesting() const {
 	return (static_cast<PlayerObject*>(stub))->isDigesting();
 }
 
@@ -11425,7 +10747,7 @@ bool PlayerObjectAdapter::hasSuiBox(unsigned int boxID) const {
 	return (static_cast<PlayerObject*>(stub))->hasSuiBox(boxID);
 }
 
-Reference<SuiBox* > PlayerObjectAdapter::getSuiBox(unsigned int boxID) {
+Reference<SuiBox* > PlayerObjectAdapter::getSuiBox(unsigned int boxID) const {
 	return (static_cast<PlayerObject*>(stub))->getSuiBox(boxID);
 }
 
@@ -11465,7 +10787,7 @@ void PlayerObjectAdapter::updateInRangeBuildingPermissions() {
 	(static_cast<PlayerObject*>(stub))->updateInRangeBuildingPermissions();
 }
 
-bool PlayerObjectAdapter::hasPermissionGroup(const String& group) {
+bool PlayerObjectAdapter::hasPermissionGroup(const String& group) const {
 	return (static_cast<PlayerObject*>(stub))->hasPermissionGroup(group);
 }
 
@@ -11493,7 +10815,7 @@ Reference<CreatureObject* > PlayerObjectAdapter::getDuelListObject(int index) {
 	return (static_cast<PlayerObject*>(stub))->getDuelListObject(index);
 }
 
-bool PlayerObjectAdapter::requestedDuelTo(CreatureObject* targetPlayer) {
+bool PlayerObjectAdapter::requestedDuelTo(CreatureObject* targetPlayer) const {
 	return (static_cast<PlayerObject*>(stub))->requestedDuelTo(targetPlayer);
 }
 
@@ -11561,11 +10883,15 @@ void PlayerObjectAdapter::setOnLoadScreen(bool val) {
 	(static_cast<PlayerObject*>(stub))->setOnLoadScreen(val);
 }
 
-int PlayerObjectAdapter::getNumBadges() {
+void PlayerObjectAdapter::setForcedTransform(bool val) {
+	(static_cast<PlayerObject*>(stub))->setForcedTransform(val);
+}
+
+int PlayerObjectAdapter::getNumBadges() const {
 	return (static_cast<PlayerObject*>(stub))->getNumBadges();
 }
 
-int PlayerObjectAdapter::getBadgeTypeCount(unsigned int type) {
+int PlayerObjectAdapter::getBadgeTypeCount(unsigned int type) const {
 	return (static_cast<PlayerObject*>(stub))->getBadgeTypeCount(type);
 }
 
@@ -11591,6 +10917,10 @@ void PlayerObjectAdapter::removeReverseFriend(const String& name) {
 
 void PlayerObjectAdapter::sendFriendLists() {
 	(static_cast<PlayerObject*>(stub))->sendFriendLists();
+}
+
+bool PlayerObjectAdapter::hasAbility(const String& ability) const {
+	return (static_cast<PlayerObject*>(stub))->hasAbility(ability);
 }
 
 bool PlayerObjectAdapter::hasCommandMessageString(unsigned int actionCRC) const {
@@ -11721,6 +11051,10 @@ bool PlayerObjectAdapter::isOnLoadScreen() const {
 	return (static_cast<PlayerObject*>(stub))->isOnLoadScreen();
 }
 
+bool PlayerObjectAdapter::isForcedTransform() const {
+	return (static_cast<PlayerObject*>(stub))->isForcedTransform();
+}
+
 void PlayerObjectAdapter::addChatRoom(unsigned int roomID) {
 	(static_cast<PlayerObject*>(stub))->addChatRoom(roomID);
 }
@@ -11761,15 +11095,11 @@ void PlayerObjectAdapter::activateMissions() {
 	(static_cast<PlayerObject*>(stub))->activateMissions();
 }
 
-void PlayerObjectAdapter::regrantSkills() {
-	(static_cast<PlayerObject*>(stub))->regrantSkills();
-}
-
-String PlayerObjectAdapter::getCommandMessageString(unsigned int actionCRC) {
+String PlayerObjectAdapter::getCommandMessageString(unsigned int actionCRC) const {
 	return (static_cast<PlayerObject*>(stub))->getCommandMessageString(actionCRC);
 }
 
-bool PlayerObjectAdapter::hasBadge(unsigned int badge) {
+bool PlayerObjectAdapter::hasBadge(unsigned int badge) const {
 	return (static_cast<PlayerObject*>(stub))->hasBadge(badge);
 }
 
@@ -11785,16 +11115,8 @@ bool PlayerObjectAdapter::isOffline() const {
 	return (static_cast<PlayerObject*>(stub))->isOffline();
 }
 
-bool PlayerObjectAdapter::isLoading() const {
-	return (static_cast<PlayerObject*>(stub))->isLoading();
-}
-
 bool PlayerObjectAdapter::isLinkDead() const {
 	return (static_cast<PlayerObject*>(stub))->isLinkDead();
-}
-
-bool PlayerObjectAdapter::isLoggingIn() const {
-	return (static_cast<PlayerObject*>(stub))->isLoggingIn();
 }
 
 bool PlayerObjectAdapter::isLoggingOut() const {
@@ -11821,7 +11143,7 @@ unsigned int PlayerObjectAdapter::getAccountID() const {
 	return (static_cast<PlayerObject*>(stub))->getAccountID();
 }
 
-unsigned long long PlayerObjectAdapter::getServerMovementTimeDelta() {
+unsigned long long PlayerObjectAdapter::getServerMovementTimeDelta() const {
 	return (static_cast<PlayerObject*>(stub))->getServerMovementTimeDelta();
 }
 
@@ -11885,8 +11207,8 @@ void PlayerObjectAdapter::setVisibility(float value) {
 	(static_cast<PlayerObject*>(stub))->setVisibility(value);
 }
 
-void PlayerObjectAdapter::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction) {
-	(static_cast<PlayerObject*>(stub))->updateLastPvpCombatActionTimestamp(updateGcwAction, updateBhAction, updateJediAction);
+void PlayerObjectAdapter::updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction) {
+	(static_cast<PlayerObject*>(stub))->updateLastCombatActionTimestamp(updateGcwCrackdownAction, updateGcwAction, updateBhAction);
 }
 
 void PlayerObjectAdapter::updateLastBhPvpCombatActionTimestamp() {
@@ -11897,12 +11219,8 @@ void PlayerObjectAdapter::updateLastGcwPvpCombatActionTimestamp() {
 	(static_cast<PlayerObject*>(stub))->updateLastGcwPvpCombatActionTimestamp();
 }
 
-void PlayerObjectAdapter::updateLastJediPvpCombatActionTimestamp() {
-	(static_cast<PlayerObject*>(stub))->updateLastJediPvpCombatActionTimestamp();
-}
-
-void PlayerObjectAdapter::updateLastJediAttackableTimestamp() {
-	(static_cast<PlayerObject*>(stub))->updateLastJediAttackableTimestamp();
+bool PlayerObjectAdapter::hasTef() const {
+	return (static_cast<PlayerObject*>(stub))->hasTef();
 }
 
 bool PlayerObjectAdapter::hasPvpTef() const {
@@ -11913,16 +11231,20 @@ bool PlayerObjectAdapter::hasBhTef() const {
 	return (static_cast<PlayerObject*>(stub))->hasBhTef();
 }
 
-bool PlayerObjectAdapter::hasJediTef() const {
-	return (static_cast<PlayerObject*>(stub))->hasJediTef();
+void PlayerObjectAdapter::setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask) {
+	(static_cast<PlayerObject*>(stub))->setCrackdownTefTowards(factionCrc, scheduleTefRemovalTask);
 }
 
-bool PlayerObjectAdapter::isJediAttackable() const {
-	return (static_cast<PlayerObject*>(stub))->isJediAttackable();
+bool PlayerObjectAdapter::hasCrackdownTefTowards(unsigned int factionCrc) const {
+	return (static_cast<PlayerObject*>(stub))->hasCrackdownTefTowards(factionCrc);
 }
 
-void PlayerObjectAdapter::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow) {
-	(static_cast<PlayerObject*>(stub))->schedulePvpTefRemovalTask(removeGcwTefNow, removeBhTefNow, removeJediTefNow);
+bool PlayerObjectAdapter::hasCrackdownTef() const {
+	return (static_cast<PlayerObject*>(stub))->hasCrackdownTef();
+}
+
+void PlayerObjectAdapter::schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow) {
+	(static_cast<PlayerObject*>(stub))->schedulePvpTefRemovalTask(removeCrackdownGcwTefNow, removeGcwTefNow, removeBhTefNow);
 }
 
 void PlayerObjectAdapter::schedulePvpTefRemovalTask(bool removeNow) {
@@ -12017,11 +11339,11 @@ Account* PlayerObjectAdapter::getAccount() {
 	return (static_cast<PlayerObject*>(stub))->getAccount();
 }
 
-String PlayerObjectAdapter::getChosenVeteranReward(unsigned int milestone) {
+String PlayerObjectAdapter::getChosenVeteranReward(unsigned int milestone) const {
 	return (static_cast<PlayerObject*>(stub))->getChosenVeteranReward(milestone);
 }
 
-bool PlayerObjectAdapter::hasChosenVeteranReward(const String& rewardTemplate) {
+bool PlayerObjectAdapter::hasChosenVeteranReward(const String& rewardTemplate) const {
 	return (static_cast<PlayerObject*>(stub))->hasChosenVeteranReward(rewardTemplate);
 }
 
@@ -12101,80 +11423,12 @@ void PlayerObjectAdapter::setPvpRating(int rating) {
 	(static_cast<PlayerObject*>(stub))->setPvpRating(rating);
 }
 
-void PlayerObjectAdapter::setIpAddress(String& address) {
-	(static_cast<PlayerObject*>(stub))->setIpAddress(address);
+bool PlayerObjectAdapter::isCloning() const {
+	return (static_cast<PlayerObject*>(stub))->isCloning();
 }
 
-String PlayerObjectAdapter::getIpAddress() {
-	return (static_cast<PlayerObject*>(stub))->getIpAddress();
-}
-
-void PlayerObjectAdapter::updatePvpKills() {
-	(static_cast<PlayerObject*>(stub))->updatePvpKills();
-}
-
-unsigned long long PlayerObjectAdapter::getPvpKills() {
-	return (static_cast<PlayerObject*>(stub))->getPvpKills();
-}
-
-void PlayerObjectAdapter::updateworldbossKills() {
-	(static_cast<PlayerObject*>(stub))->updateworldbossKills();
-}
-
-unsigned long long PlayerObjectAdapter::getworldbossKills() {
-	return (static_cast<PlayerObject*>(stub))->getworldbossKills();
-}
-
-void PlayerObjectAdapter::updateeventplayerCrate() {
-	(static_cast<PlayerObject*>(stub))->updateeventplayerCrate();
-}
-
-unsigned long long PlayerObjectAdapter::geteventplayerCrate() {
-	return (static_cast<PlayerObject*>(stub))->geteventplayerCrate();
-}
-
-void PlayerObjectAdapter::updatePvpDeaths() {
-	(static_cast<PlayerObject*>(stub))->updatePvpDeaths();
-}
-
-unsigned long long PlayerObjectAdapter::getPvpDeaths() {
-	return (static_cast<PlayerObject*>(stub))->getPvpDeaths();
-}
-
-void PlayerObjectAdapter::updateBountyKills() {
-	(static_cast<PlayerObject*>(stub))->updateBountyKills();
-}
-
-unsigned long long PlayerObjectAdapter::getBountyKills() {
-	return (static_cast<PlayerObject*>(stub))->getBountyKills();
-}
-
-void PlayerObjectAdapter::updatePveKills() {
-	(static_cast<PlayerObject*>(stub))->updatePveKills();
-}
-
-unsigned long long PlayerObjectAdapter::getPveKills() {
-	return (static_cast<PlayerObject*>(stub))->getPveKills();
-}
-
-void PlayerObjectAdapter::updatePveDeaths() {
-	(static_cast<PlayerObject*>(stub))->updatePveDeaths();
-}
-
-unsigned long long PlayerObjectAdapter::getPveDeaths() {
-	return (static_cast<PlayerObject*>(stub))->getPveDeaths();
-}
-
-void PlayerObjectAdapter::updateMissionsCompleted() {
-	(static_cast<PlayerObject*>(stub))->updateMissionsCompleted();
-}
-
-unsigned long long PlayerObjectAdapter::getMissionsCompleted() {
-	return (static_cast<PlayerObject*>(stub))->getMissionsCompleted();
-}
-
-void PlayerObjectAdapter::updateWebStats(const String& stat, int newValue) {
-	(static_cast<PlayerObject*>(stub))->updateWebStats(stat, newValue);
+void PlayerObjectAdapter::setCloning(bool val) {
+	(static_cast<PlayerObject*>(stub))->setCloning(val);
 }
 
 void PlayerObjectAdapter::updatePlayerBountyTimestamp(int duration) {
@@ -12201,18 +11455,6 @@ bool PlayerObjectAdapter::hasPlayerBounty() {
 	return (static_cast<PlayerObject*>(stub))->hasPlayerBounty();
 }
 
-void PlayerObjectAdapter::refundPlayerBountyCredits() {
-	(static_cast<PlayerObject*>(stub))->refundPlayerBountyCredits();
-}
-
-bool PlayerObjectAdapter::isCloning() const {
-	return (static_cast<PlayerObject*>(stub))->isCloning();
-}
-
-void PlayerObjectAdapter::setCloning(bool val) {
-	(static_cast<PlayerObject*>(stub))->setCloning(val);
-}
-
 unsigned long long PlayerObjectAdapter::getPlayedMiliSecs() const {
 	return (static_cast<PlayerObject*>(stub))->getPlayedMiliSecs();
 }
@@ -12223,6 +11465,10 @@ unsigned long long PlayerObjectAdapter::getSessionMiliSecs() const {
 
 unsigned long long PlayerObjectAdapter::getSessionTotalMovement() const {
 	return (static_cast<PlayerObject*>(stub))->getSessionTotalMovement();
+}
+
+long long PlayerObjectAdapter::getSessionTotalCredits() const {
+	return (static_cast<PlayerObject*>(stub))->getSessionTotalCredits();
 }
 
 String PlayerObjectAdapter::getMiliSecsTimeString(unsigned long long miliSecs, bool verbose) const {
@@ -12346,6 +11592,9 @@ void PlayerObjectPOD::writeJSON(nlohmann::json& j) {
 	if (onLoadScreen)
 		thisObject["onLoadScreen"] = onLoadScreen.value();
 
+	if (forcedTransform)
+		thisObject["forcedTransform"] = forcedTransform.value();
+
 	if (muted)
 		thisObject["muted"] = muted.value();
 
@@ -12457,6 +11706,9 @@ void PlayerObjectPOD::writeJSON(nlohmann::json& j) {
 	if (trainerCoordinates)
 		thisObject["trainerCoordinates"] = trainerCoordinates.value();
 
+	if (lastLogoutWorldPosition)
+		thisObject["lastLogoutWorldPosition"] = lastLogoutWorldPosition.value();
+
 	if (trainerZoneName)
 		thisObject["trainerZoneName"] = trainerZoneName.value();
 
@@ -12514,11 +11766,11 @@ void PlayerObjectPOD::writeJSON(nlohmann::json& j) {
 	if (lastGcwPvpCombatActionTimestamp)
 		thisObject["lastGcwPvpCombatActionTimestamp"] = lastGcwPvpCombatActionTimestamp.value();
 
-	if (lastJediPvpCombatActionTimestamp)
-		thisObject["lastJediPvpCombatActionTimestamp"] = lastJediPvpCombatActionTimestamp.value();
+	if (lastCrackdownGcwCombatActionTimestamp)
+		thisObject["lastCrackdownGcwCombatActionTimestamp"] = lastCrackdownGcwCombatActionTimestamp.value();
 
-	if (lastJediAttackableTimestamp)
-		thisObject["lastJediAttackableTimestamp"] = lastJediAttackableTimestamp.value();
+	if (crackdownFactionTefCrc)
+		thisObject["crackdownFactionTefCrc"] = crackdownFactionTefCrc.value();
 
 	if (lastDigestion)
 		thisObject["lastDigestion"] = lastDigestion.value();
@@ -12558,33 +11810,6 @@ void PlayerObjectPOD::writeJSON(nlohmann::json& j) {
 
 	if (sessionStatsMiliSecs)
 		thisObject["sessionStatsMiliSecs"] = sessionStatsMiliSecs.value();
-
-	if (opposingFactionArea)
-		thisObject["opposingFactionArea"] = opposingFactionArea.value();
-
-	if (pvpKills)
-		thisObject["pvpKills"] = pvpKills.value();
-
-	if (pvpDeaths)
-		thisObject["pvpDeaths"] = pvpDeaths.value();
-
-	if (bountyKills)
-		thisObject["bountyKills"] = bountyKills.value();
-
-	if (pveKills)
-		thisObject["pveKills"] = pveKills.value();
-
-	if (pveDeaths)
-		thisObject["pveDeaths"] = pveDeaths.value();
-
-	if (missionsCompleted)
-		thisObject["missionsCompleted"] = missionsCompleted.value();
-
-	if (worldbossKills)
-		thisObject["worldbossKills"] = worldbossKills.value();
-
-	if (eventplayerCrate)
-		thisObject["eventplayerCrate"] = eventplayerCrate.value();
 
 	if (playerBountyTimestamp)
 		thisObject["playerBountyTimestamp"] = playerBountyTimestamp.value();
@@ -12816,6 +12041,17 @@ int PlayerObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<bool >::toBinaryStream(&onLoadScreen.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (forcedTransform) {
+	_nameHashCode = 0xdf6adf19; //PlayerObject.forcedTransform
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&forcedTransform.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -13228,6 +12464,17 @@ int PlayerObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (lastLogoutWorldPosition) {
+	_nameHashCode = 0xa3160433; //PlayerObject.lastLogoutWorldPosition
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector3 >::toBinaryStream(&lastLogoutWorldPosition.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 	if (trainerZoneName) {
 	_nameHashCode = 0x891a3d47; //PlayerObject.trainerZoneName
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -13437,23 +12684,23 @@ int PlayerObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (lastJediPvpCombatActionTimestamp) {
-	_nameHashCode = 0x4483d280; //PlayerObject.lastJediPvpCombatActionTimestamp
+	if (lastCrackdownGcwCombatActionTimestamp) {
+	_nameHashCode = 0x615d7df2; //PlayerObject.lastCrackdownGcwCombatActionTimestamp
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Time >::toBinaryStream(&lastJediPvpCombatActionTimestamp.value(), stream);
+	TypeInfo<Time >::toBinaryStream(&lastCrackdownGcwCombatActionTimestamp.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 	}
 
-	if (lastJediAttackableTimestamp) {
-	_nameHashCode = 0x4762b94a; //PlayerObject.lastJediAttackableTimestamp
+	if (crackdownFactionTefCrc) {
+	_nameHashCode = 0x2dda2fc3; //PlayerObject.crackdownFactionTefCrc
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Time >::toBinaryStream(&lastJediAttackableTimestamp.value(), stream);
+	TypeInfo<unsigned int >::toBinaryStream(&crackdownFactionTefCrc.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -13597,105 +12844,6 @@ int PlayerObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<unsigned long long >::toBinaryStream(&sessionStatsMiliSecs.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (opposingFactionArea) {
-	_nameHashCode = 0x2dfd87f9; //PlayerObject.opposingFactionArea
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&opposingFactionArea.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (pvpKills) {
-	_nameHashCode = 0x246c09a3; //PlayerObject.pvpKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpKills.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (pvpDeaths) {
-	_nameHashCode = 0xe064b006; //PlayerObject.pvpDeaths
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpDeaths.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (bountyKills) {
-	_nameHashCode = 0x80ba3ab4; //PlayerObject.bountyKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&bountyKills.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (pveKills) {
-	_nameHashCode = 0xe5a5fb0c; //PlayerObject.pveKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pveKills.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (pveDeaths) {
-	_nameHashCode = 0x70dd9228; //PlayerObject.pveDeaths
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&pveDeaths.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (missionsCompleted) {
-	_nameHashCode = 0xa17d48e1; //PlayerObject.missionsCompleted
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&missionsCompleted.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (worldbossKills) {
-	_nameHashCode = 0x55323b7a; //PlayerObject.worldbossKills
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&worldbossKills.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (eventplayerCrate) {
-	_nameHashCode = 0x5aa45c77; //PlayerObject.eventplayerCrate
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&eventplayerCrate.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -13892,6 +13040,14 @@ bool PlayerObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 			bool _mnonLoadScreen;
 			TypeInfo<bool >::parseFromBinaryStream(&_mnonLoadScreen, stream);
 			onLoadScreen = std::move(_mnonLoadScreen);
+		}
+		return true;
+
+	case 0xdf6adf19: //PlayerObject.forcedTransform
+		{
+			bool _mnforcedTransform;
+			TypeInfo<bool >::parseFromBinaryStream(&_mnforcedTransform, stream);
+			forcedTransform = std::move(_mnforcedTransform);
 		}
 		return true;
 
@@ -14191,6 +13347,14 @@ bool PlayerObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 		}
 		return true;
 
+	case 0xa3160433: //PlayerObject.lastLogoutWorldPosition
+		{
+			Vector3 _mnlastLogoutWorldPosition;
+			TypeInfo<Vector3 >::parseFromBinaryStream(&_mnlastLogoutWorldPosition, stream);
+			lastLogoutWorldPosition = std::move(_mnlastLogoutWorldPosition);
+		}
+		return true;
+
 	case 0x891a3d47: //PlayerObject.trainerZoneName
 		{
 			String _mntrainerZoneName;
@@ -14343,19 +13507,19 @@ bool PlayerObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 		}
 		return true;
 
-	case 0x4483d280: //PlayerObject.lastJediPvpCombatActionTimestamp
+	case 0x615d7df2: //PlayerObject.lastCrackdownGcwCombatActionTimestamp
 		{
-			Time _mnlastJediPvpCombatActionTimestamp;
-			TypeInfo<Time >::parseFromBinaryStream(&_mnlastJediPvpCombatActionTimestamp, stream);
-			lastJediPvpCombatActionTimestamp = std::move(_mnlastJediPvpCombatActionTimestamp);
+			Time _mnlastCrackdownGcwCombatActionTimestamp;
+			TypeInfo<Time >::parseFromBinaryStream(&_mnlastCrackdownGcwCombatActionTimestamp, stream);
+			lastCrackdownGcwCombatActionTimestamp = std::move(_mnlastCrackdownGcwCombatActionTimestamp);
 		}
 		return true;
 
-	case 0x4762b94a: //PlayerObject.lastJediAttackableTimestamp
+	case 0x2dda2fc3: //PlayerObject.crackdownFactionTefCrc
 		{
-			Time _mnlastJediAttackableTimestamp;
-			TypeInfo<Time >::parseFromBinaryStream(&_mnlastJediAttackableTimestamp, stream);
-			lastJediAttackableTimestamp = std::move(_mnlastJediAttackableTimestamp);
+			unsigned int _mncrackdownFactionTefCrc;
+			TypeInfo<unsigned int >::parseFromBinaryStream(&_mncrackdownFactionTefCrc, stream);
+			crackdownFactionTefCrc = std::move(_mncrackdownFactionTefCrc);
 		}
 		return true;
 
@@ -14463,78 +13627,6 @@ bool PlayerObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& 
 		}
 		return true;
 
-	case 0x2dfd87f9: //PlayerObject.opposingFactionArea
-		{
-			bool _mnopposingFactionArea;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnopposingFactionArea, stream);
-			opposingFactionArea = std::move(_mnopposingFactionArea);
-		}
-		return true;
-
-	case 0x246c09a3: //PlayerObject.pvpKills
-		{
-			unsigned long long _mnpvpKills;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnpvpKills, stream);
-			pvpKills = std::move(_mnpvpKills);
-		}
-		return true;
-
-	case 0xe064b006: //PlayerObject.pvpDeaths
-		{
-			unsigned long long _mnpvpDeaths;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnpvpDeaths, stream);
-			pvpDeaths = std::move(_mnpvpDeaths);
-		}
-		return true;
-
-	case 0x80ba3ab4: //PlayerObject.bountyKills
-		{
-			unsigned long long _mnbountyKills;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnbountyKills, stream);
-			bountyKills = std::move(_mnbountyKills);
-		}
-		return true;
-
-	case 0xe5a5fb0c: //PlayerObject.pveKills
-		{
-			unsigned long long _mnpveKills;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnpveKills, stream);
-			pveKills = std::move(_mnpveKills);
-		}
-		return true;
-
-	case 0x70dd9228: //PlayerObject.pveDeaths
-		{
-			unsigned long long _mnpveDeaths;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnpveDeaths, stream);
-			pveDeaths = std::move(_mnpveDeaths);
-		}
-		return true;
-
-	case 0xa17d48e1: //PlayerObject.missionsCompleted
-		{
-			unsigned long long _mnmissionsCompleted;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnmissionsCompleted, stream);
-			missionsCompleted = std::move(_mnmissionsCompleted);
-		}
-		return true;
-
-	case 0x55323b7a: //PlayerObject.worldbossKills
-		{
-			unsigned long long _mnworldbossKills;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mnworldbossKills, stream);
-			worldbossKills = std::move(_mnworldbossKills);
-		}
-		return true;
-
-	case 0x5aa45c77: //PlayerObject.eventplayerCrate
-		{
-			unsigned long long _mneventplayerCrate;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mneventplayerCrate, stream);
-			eventplayerCrate = std::move(_mneventplayerCrate);
-		}
-		return true;
-
 	case 0xa298a583: //PlayerObject.playerBountyTimestamp
 		{
 			Time _mnplayerBountyTimestamp;
@@ -14623,6 +13715,8 @@ void PlayerObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<bool >::toBinaryStream(&onLoadScreen.value(), stream);
 
+	TypeInfo<bool >::toBinaryStream(&forcedTransform.value(), stream);
+
 	TypeInfo<bool >::toBinaryStream(&muted.value(), stream);
 
 	TypeInfo<String >::toBinaryStream(&mutedReason.value(), stream);
@@ -14697,6 +13791,8 @@ void PlayerObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<Vector3 >::toBinaryStream(&trainerCoordinates.value(), stream);
 
+	TypeInfo<Vector3 >::toBinaryStream(&lastLogoutWorldPosition.value(), stream);
+
 	TypeInfo<String >::toBinaryStream(&trainerZoneName.value(), stream);
 
 	TypeInfo<Time >::toBinaryStream(&logoutTimeStamp.value(), stream);
@@ -14735,9 +13831,9 @@ void PlayerObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<Time >::toBinaryStream(&lastGcwPvpCombatActionTimestamp.value(), stream);
 
-	TypeInfo<Time >::toBinaryStream(&lastJediPvpCombatActionTimestamp.value(), stream);
+	TypeInfo<Time >::toBinaryStream(&lastCrackdownGcwCombatActionTimestamp.value(), stream);
 
-	TypeInfo<Time >::toBinaryStream(&lastJediAttackableTimestamp.value(), stream);
+	TypeInfo<unsigned int >::toBinaryStream(&crackdownFactionTefCrc.value(), stream);
 
 	TypeInfo<Time >::toBinaryStream(&lastDigestion.value(), stream);
 
@@ -14764,24 +13860,6 @@ void PlayerObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<unsigned long long >::toBinaryStream(&miliSecsSession.value(), stream);
 
 	TypeInfo<unsigned long long >::toBinaryStream(&sessionStatsMiliSecs.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&opposingFactionArea.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpKills.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&pvpDeaths.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&bountyKills.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&pveKills.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&pveDeaths.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&missionsCompleted.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&worldbossKills.value(), stream);
-
-	TypeInfo<unsigned long long >::toBinaryStream(&eventplayerCrate.value(), stream);
 
 	TypeInfo<Time >::toBinaryStream(&playerBountyTimestamp.value(), stream);
 

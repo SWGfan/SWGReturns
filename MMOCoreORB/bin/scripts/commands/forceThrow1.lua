@@ -44,32 +44,22 @@
 ForceThrow1Command = {
 	name = "forcethrow1",
 
-	minDamage = 150,
-	maxDamage = 300,
-	speed = 4.0,
+	minDamage = 375,
+	maxDamage = 1000,
+	speed = 2.0,
 	forceCost = 28,
 	visMod = 25,
 	accuracySkillMod = "forcethrow_accuracy",
 
 	stateEffects = {
-		StateEffect(
-			STUN_EFFECT,
-			{},
-			{},
-			{ "jedi_state_defense" },
-			65,
-			0,
-			10
-		),
-
 	  StateEffect(
-		POSTUREDOWN_EFFECT,
-		{ "postureDownRecovery" },
-		{ "posture_change_down_defense" },
+		STUN_EFFECT,
 		{},
-		100,
+		{ "jedi_state_defense" },
+		{},
+		65,
 		0,
-		0
+		10
 	  )
 	},
 
@@ -78,17 +68,12 @@ ForceThrow1Command = {
 
 	combatSpam = "forcethrow1",
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	forceAttack = true,
 	damageType = KINETIC_DAMAGE,
 
-	frsLightMinDamageModifier = 1,
-	frsLightMaxDamageModifier = 3,
-	frsDarkMinDamageModifier = 1,
-	frsDarkMaxDamageModifier = 3,
-
-	range = 12
+	range = 32
 }
 
 AddCommand(ForceThrow1Command)

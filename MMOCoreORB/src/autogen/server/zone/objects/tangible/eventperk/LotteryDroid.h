@@ -148,6 +148,8 @@ public:
 
 	void addToCreditPool(int amount);
 
+	int getCreditPool() const;
+
 	int getNumPlayers() const;
 
 	void addNewPlayer(unsigned long long playerID);
@@ -276,6 +278,8 @@ public:
 
 	void addToCreditPool(int amount);
 
+	int getCreditPool() const;
+
 	int getNumPlayers() const;
 
 	void addNewPlayer(unsigned long long playerID);
@@ -373,6 +377,8 @@ public:
 	void setTicketPrice(int price);
 
 	void addToCreditPool(int amount);
+
+	int getCreditPool() const;
 
 	int getNumPlayers() const;
 

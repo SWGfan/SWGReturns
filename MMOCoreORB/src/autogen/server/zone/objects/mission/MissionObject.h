@@ -232,6 +232,8 @@ public:
 
 	unsigned int getTypeCRC() const;
 
+	String getTypeAsString() const;
+
 	int getRewardCredits() const;
 
 	int getRewardCreditsDivisor() const;
@@ -276,6 +278,10 @@ public:
 
 	float getSize() const;
 
+	void setBonusCredits(int creds);
+
+	int getBonusCredits() const;
+
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -318,6 +324,8 @@ protected:
 	UnicodeString creatorName;
 
 	int rewardCredits;
+
+	int bonusCredits;
 
 	int rewardCreditsDivisor;
 
@@ -473,6 +481,8 @@ public:
 
 	unsigned int getTypeCRC() const;
 
+	String getTypeAsString() const;
+
 	int getRewardCredits() const;
 
 	int getRewardCreditsDivisor() const;
@@ -516,6 +526,10 @@ public:
 	void setSize(float siz);
 
 	float getSize() const;
+
+	void setBonusCredits(int creds);
+
+	int getBonusCredits() const;
 
 	WeakReference<MissionObject*> _this;
 
@@ -643,6 +657,8 @@ public:
 
 	unsigned int getTypeCRC() const;
 
+	String getTypeAsString() const;
+
 	int getRewardCredits() const;
 
 	int getRewardCreditsDivisor() const;
@@ -680,6 +696,10 @@ public:
 	void setSize(float siz);
 
 	float getSize() const;
+
+	void setBonusCredits(int creds);
+
+	int getBonusCredits() const;
 
 };
 
@@ -731,6 +751,8 @@ public:
 	Optional<UnicodeString> creatorName;
 
 	Optional<int> rewardCredits;
+
+	Optional<int> bonusCredits;
 
 	Optional<int> rewardCreditsDivisor;
 

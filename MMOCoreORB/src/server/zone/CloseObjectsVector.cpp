@@ -71,7 +71,7 @@ void CloseObjectsVector::dropReceiver(QuadTreeEntry* entry) {
 	uint32 receiverTypes = entry->registerToCloseObjectsReceivers();
 
 	if (receiverTypes && messageReceivers.size()) {
-		for (int i = 0; i < CloseObjectsVector::MAXTYPES; ++i) {
+		for (int i = 0; i < CloseObjectsVector::MAXTYPES / 2; ++i) {
 			uint32 type = 1 << i;
 
 			if (receiverTypes & type) {
@@ -127,6 +127,18 @@ void CloseObjectsVector::safeCopyReceiversTo(Vector<QuadTreeEntry*>& vec, uint32
 	}
 }
 
+void CloseObjectsVector::safeRunForEach(const Function<void(QuadTreeEntry* const&)>& lambda, uint32 receiverType) const {
+	ReadLocker locker(&mutex);
+
+	int i = messageReceivers.find(receiverType);
+
+	if (i != -1) {
+		const auto& receivers = messageReceivers.elementAt(i).getValue();
+
+		receivers.forEach(lambda);
+	}
+}
+
 void CloseObjectsVector::safeCopyReceiversTo(Vector<ManagedReference<QuadTreeEntry*> >& vec, uint32 receiverType) const {
 	ReadLocker locker(&mutex);
 
@@ -171,7 +183,7 @@ const Reference<QuadTreeEntry*>& CloseObjectsVector::get(int idx) const {
 
 void CloseObjectsVector::putReceiver(QuadTreeEntry* entry, uint32 receiverTypes) {
 	if (receiverTypes) {
-		for (int i = 0; i < CloseObjectsVector::MAXTYPES; ++i) {
+		for (int i = 0; i < CloseObjectsVector::MAXTYPES / 2; ++i) {
 			uint32 type = 1 << i;
 
 			if (receiverTypes & type) {

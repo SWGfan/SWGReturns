@@ -44,9 +44,9 @@
 HealMindSelf1Command = {
 	name = "healmindself1",
 	healAmount = 500,
-	forceCost = 20,
+	forceCost = 40,
 	forceCostMultiplier = 0.05,
-	defaultTime = 1,
+	defaultTime = 6,
 	attributesToHeal = MIND_ATTRIBUTE,
 	range = 0,
 }

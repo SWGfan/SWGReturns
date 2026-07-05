@@ -30,7 +30,7 @@ DroidPersonalityObserver::~DroidPersonalityObserver() {
 
 int DroidPersonalityObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DroidPersonalityObserverImplementation* _implementation = static_cast<DroidPersonalityObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void DroidPersonalityObserverImplementation::finalize() {
 void DroidPersonalityObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DroidPersonalityObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

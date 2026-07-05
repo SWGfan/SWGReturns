@@ -22,12 +22,17 @@ core3client: \
   ../../utils/engine3/MMOEngine/lib/unix/libengine3.a \
   /usr/lib/x86_64-linux-gnu/libz.so \
   /usr/lib/x86_64-linux-gnu/libatomic.so.1 \
-  /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libmysqlclient.so \
+  /usr/lib/x86_64-linux-gnu/libmysqlclient.so \
   /usr/lib/x86_64-linux-gnu/liblua5.3.so \
   /usr/lib/x86_64-linux-gnu/libdb-5.3.so \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libdl.a \
   /usr/lib/x86_64-linux-gnu/libssl.so \
   /usr/lib/x86_64-linux-gnu/libcrypto.so \
+  /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0 \
+  /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0 \
   /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libm.so \
@@ -103,7 +108,7 @@ CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o:
 
 /usr/lib/x86_64-linux-gnu/libatomic.so.1:
 
-/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/libmysqlclient.so:
+/usr/lib/x86_64-linux-gnu/libmysqlclient.so:
 
 /usr/lib/x86_64-linux-gnu/liblua5.3.so:
 
@@ -114,6 +119,16 @@ CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o:
 /usr/lib/x86_64-linux-gnu/libssl.so:
 
 /usr/lib/x86_64-linux-gnu/libcrypto.so:
+
+/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0:
+
+/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/libstdc++.so:
 

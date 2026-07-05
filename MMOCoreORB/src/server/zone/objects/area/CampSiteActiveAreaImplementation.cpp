@@ -23,7 +23,14 @@ void CampSiteActiveAreaImplementation::initializeTransientMembers() {
 
 	startTasks();
 
-	setAbandoned(abandoned);
+	Core::getTaskManager()->executeTask([weakCampSiteArea = WeakReference<CampSiteActiveArea*>(_this.getReferenceUnsafeStaticCast())]() {
+		auto strongCampSiteArea = weakCampSiteArea.get();
+
+		if (strongCampSiteArea != nullptr) {
+			Locker lock(strongCampSiteArea);
+			strongCampSiteArea->setAbandoned(strongCampSiteArea->isAbandoned());
+		}
+	}, "InitCampSiteActiveArea");
 }
 
 void CampSiteActiveAreaImplementation::init(CampStructureTemplate* campData) {
@@ -204,15 +211,10 @@ void CampSiteActiveAreaImplementation::abandonCamp() {
 
 	if(despawnTask != nullptr && despawnTask->isScheduled()) {
 		despawnTask->cancel();
-                if (camp->getZone() != nullptr && campOwner != nullptr  && campOwner->getZone() != nullptr && campOwner->getZone()->getZoneName() != camp->getZone()->getZoneName()) { //If, at the time the camp goes abandoned (which happens one minute after it is empty), the camp owner is in a different zone from the camp (has teleported off world), schedule the despawn task in five seconds
-                	despawnTask->schedule(5000);
+		int newTime = (CampSiteActiveArea::DESPAWNTIME / 6);
+		int maxTime = CampSiteActiveArea::DESPAWNTIME - ((System::getTime() - timeCreated) * 1000);
 
-                } else { // Otherwise, despawn the camp 2 minutes after it becomes abandoned
-			int newTime = (CampSiteActiveArea::DESPAWNTIME * 0.011111); 
-			int maxTime = CampSiteActiveArea::DESPAWNTIME - ((System::getTime() - timeCreated) * 1000);
-
-			despawnTask->schedule(newTime < maxTime ? newTime : maxTime);
-		}
+		despawnTask->schedule(newTime < maxTime ? newTime : maxTime);
 	}
 
 	if(terminal != nullptr) {

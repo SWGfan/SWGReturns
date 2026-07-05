@@ -61,20 +61,20 @@ CityVotingCycles = 1
 CityVotingCyclesUntilLocked = 1
 
 --The amount of time in minutes before the city performs an update.
-CityUpdateInterval = 10080
+CityUpdateInterval = 60 * 24 --10080
 
 --The amount of time in minutes a new city has to gain enough citizens to remain a city.
-NewCityGracePeriod = 1440
+NewCityGracePeriod = 60 * 24 --1440
 
 --The amount of time in minutes an old city has to regain enough citizens to remain a city.
-OldCityGracePeriod = 4320
+OldCityGracePeriod = 60 * 24 --4320
 
 --Whether or not to allow the use of the command, /cityWarn to give players a TEF while in the city limits.
 EnableCityWarn = true
 
 --The number of citizens required to achieve each city rank. (Outpost, Village, Township, City, Metropolis)
 --CitizensPerRank = {2, 4, 6, 8, 10}
-CitizensPerRank = {2, 4, 6, 8, 10}
+CitizensPerRank = {1, 1, 1, 1, 1}
 
 --The radius in meters of the city at each city rank. (Outpost, Village, Township, City, Metropolis)
 RadiusPerRank = {150, 200, 300, 400, 450}
@@ -85,7 +85,7 @@ TrainersPerRank = 25
 MissionTerminalsPerRank = 5
 
 -- Amount to discount city maintenance  float.  1 = 100%, .75 =75%, .5=50% etc
-maintenanceDiscount = 1.0
+maintenanceDiscount = .01
 
 --[[
 	CITIES ALLOWED PER PLANET

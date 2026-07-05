@@ -2,23 +2,24 @@ aggrivated_kaadu_trampler = Creature:new {
 	objectName = "@mob/creature_names:kaadu_aggrivated_trampler",
 	socialGroup = "kaadu",
 	faction = "",
-	level = 60,
-	chanceHit = 0.55,
-	damageMin = 470,
-	damageMax = 650,
-	baseXp = 5830,
-	baseHAM = 11000,
-	baseHAMmax = 14000,
-  armor = 3,
-	resists = {140,135,135,125,125,165,135,125,140},
+	mobType = MOB_HERBIVORE,
+	level = 17,
+	chanceHit = 0.31,
+	damageMin = 170,
+	damageMax = 180,
+	baseXp = 1102,
+	baseHAM = 2900,
+	baseHAMmax = 3500,
+	armor = 0,
+	resists = {110,5,-1,5,5,5,5,-1,-1},
 	meatType = "meat_avian",
-	meatAmount = 240,
+	meatAmount = 120,
 	hideType = "hide_leathery",
-	hideAmount = 170,
+	hideAmount = 85,
 	boneType = "bone_avian",
-	boneAmount = 140,
+	boneAmount = 70,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD,
@@ -29,12 +30,17 @@ aggrivated_kaadu_trampler = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/kaadu_hue.iff",
 	scale = 1.25,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"stunattack","stateAccuracyBonus=100"},
-		{"posturedownattack","stateAccuracyBonus=100"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"stunattack",""}, {"posturedownattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(aggrivated_kaadu_trampler, "aggrivated_kaadu_trampler")

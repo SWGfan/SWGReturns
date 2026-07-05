@@ -2,6 +2,7 @@ spiderclan_web_dancer = Creature:new {
 	objectName = "@mob/creature_names:spider_nightsister_web_dancer",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "spider_nightsister",
 	faction = "spider_nightsister",
 	level = 87,
@@ -12,7 +13,7 @@ spiderclan_web_dancer = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {100,95,100,65,100,65,90,100,-1},
+	resists = {10,95,10,65,10,65,90,10,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,7 +21,7 @@ spiderclan_web_dancer = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -31,50 +32,31 @@ spiderclan_web_dancer = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 10000000},
-			},
-			lootChance = 500000
-		},
-		{
-			groups = {
-				{group = "color_crystals", chance = 10000000},
-			},
-			lootChance = 500000
-		},
-		{
-			groups = {
-				{group = "nightsister_common", chance = 10000000},
-			},
-			lootChance = 2000000
-		},
-		{
-			groups = {
-				{group = "armor_attachments", chance = 10000000},
-			},
-			lootChance = 250000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 10000000},
-			},
-			lootChance = 250000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000},
-			},
-			lootChance = 500000
-		},
-		{
-			groups = {
-				{group = "tailor_components", chance = 10000000},
-			},
-			lootChance = 500000
-		},
+				{group = "junk", chance = 1500000},
+				{group = "power_crystals", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "armor_attachments", chance = 400000},
+				{group = "clothing_attachments", chance = 400000},
+				{group = "melee_weapons", chance = 2700000},
+				{group = "pistols", chance = 1000000},
+				{group = "rifles", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "wearables_common", chance = 500000},
+				{group = "wearables_uncommon", chance = 500000}
+			}
+		}
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(brawlermaster,pikemanmaster,forcewielder,swordsmanmaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(spiderclan_web_dancer, "spiderclan_web_dancer")

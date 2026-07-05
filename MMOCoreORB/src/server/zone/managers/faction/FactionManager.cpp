@@ -10,10 +10,9 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "templates/manager/TemplateManager.h"
 #include "server/zone/managers/loot/LootManager.h"
-#include "server/zone/managers/player/PlayerManager.h"
-#include "server/chat/ChatManager.h"
-#include "server/zone/packets/player/PlayMusicMessage.h"
-#include "server/zone/objects/group/GroupObject.h"
+#include "server/zone/Zone.h"
+#include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 FactionManager::FactionManager() {
 	setLoggingName("FactionManager");
@@ -151,27 +150,7 @@ void FactionManager::awardFactionStanding(CreatureObject* player, const String& 
 
 		if (!enemyFaction.isPlayerAllowed())
 			continue;
-		if (enemy == "rebel" || enemy == "imperial") {
 
-			if (player->isGrouped()) {
-		
-				ManagedReference<GroupObject*> group = player->getGroup();
-				int groupSize = group->getGroupSize();
-
-				for (int i = 0; i < groupSize; i++) {
-					ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
-
-					ManagedReference<PlayerObject*> groupMemberPlayer = groupMember->getPlayerObject();
-
-					if (groupMember->isInRange(player, 100.0) && (groupMember != player)) {	
-						if (groupMember->isPlayerCreature()) {			
-							groupMemberPlayer->increaseFactionStanding(enemy, (gain * 0.5));
-						} 			
-					}	
-				}	
-		    
-			}
-		}
 		ghost->increaseFactionStanding(enemy, gain);
 	}
 }
@@ -183,112 +162,38 @@ void FactionManager::awardPvpFactionPoints(TangibleObject* killer, CreatureObjec
 		ManagedReference<PlayerObject*> ghost = killerCreature->getPlayerObject();
 
 		ManagedReference<PlayerObject*> killedGhost = destructedObject->getPlayerObject();
-		ManagedReference<SceneObject*> inventory = killer->getSlottedObject("inventory");
 		ManagedReference<LootManager*> lootManager = killer->getZoneServer()->getLootManager();
-		ManagedReference<PlayerManager*> playerManager = killerCreature->getZoneServer()->getPlayerManager();
-		//Player name on player datapad
-		//Broadcast to Server
-		String playerName = destructedObject->getFirstName();
-		String killerName = killerCreature->getFirstName();
-		StringBuffer zBroadcast;
-		ChatManager* chatManager = ghost->getZoneServer()->getChatManager();
-
+		ManagedReference<SceneObject*> inventory = killer->getSlottedObject("inventory");
+		TransactionLog trx(TrxCode::PVPTOKEN, killer);
 
 		if (killer->isRebel() && destructedObject->isImperial()) {
 			ghost->increaseFactionStanding("rebel", 30);
-			killer->playEffect("clienteffect/holoemote_rebel.cef", "head");
-			killer->playEffect("clienteffect/aurabuff_rebel_caster.cef", "");
-			PlayMusicMessage* pmm = new PlayMusicMessage("sound/music_themequest_victory_imperial.snd");
- 			killer->sendMessage(pmm);
-			lootManager->createLoot(inventory, "rebpoints", 300);
-			if(ghost->getJediState() >= 1){
-				lootManager->createNamedLoot(inventory, "task_loot_padawan_braid", playerName, 300);//, playerName);
-			}else{
-				lootManager->createNamedLoot(inventory, "playerDatapad", playerName, 300);//, playerName);
-			}
 			ghost->decreaseFactionStanding("imperial", 45);
+
 			killedGhost->decreaseFactionStanding("imperial", 45);
-			
-			if (killerCreature->hasSkill("force_rank_light_novice") && destructedObject->hasSkill("force_rank_dark_novice")) {
-				playerManager->awardExperience(killerCreature, "force_rank_xp", 10000);
-	 			killerCreature->sendSystemMessage("You Have Gained 10,000 GCW FRS Points");		
-				playerManager->awardExperience(destructedObject, "force_rank_xp", -5000);
-				StringIdChatParameter message("base_player","prose_revoke_xp");
-				message.setDI(-5000);
-				message.setTO("exp_n", "force_rank_xp");
-				destructedObject->sendSystemMessage(message);
-				zBroadcast << "\\#00e604" << "Light Jedi " << "\\#00bfff" << killerName << "\\#ffd700 has defeated" << "\\#e60000 Dark Jedi " << "\\#00bfff" << playerName << "\\#ffd700 in the FRS";
-				//Broadcast player has died forward to discord channel. created by :TOXIC
-				StringBuffer zGeneral;
-				zGeneral << "A [Light Jedi] Has Killed " << playerName << " A [Dark Jedi] In The [FRS]";	
-				chatManager->handleGeneralChat(killerCreature, zGeneral.toString());
-			if (killerCreature->isGrouped()) {
-		
-				ManagedReference<GroupObject*> group = killerCreature->getGroup();
-				int groupSize = group->getGroupSize();
 
-				for (int i = 0; i < groupSize; i++) {
-					ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
+			//PvP Token Award.
 
-					if (groupMember->isInRange(killerCreature, 100.0)) {	
-						if (groupMember->isPlayerCreature()) {			
-							playerManager->awardExperience(groupMember, "force_rank_xp", 5000);
- 							groupMember->sendSystemMessage("You Have Gained 5,000 FRS Points");
-							} 			
-						}	
-					}	
-		    
-				}
-
-			}
-			ghost->getZoneServer()->getChatManager()->broadcastGalaxy(nullptr, zBroadcast.toString());
+			if (killer->getZone()->getZoneName() == "jakku") {
+				lootManager->createLoot(trx, inventory, "token_stardust", 1);
+				//killer->sendMessage(packet);
+			} else {
+				return;
+					}
 		} else if (killer->isImperial() && destructedObject->isRebel()) {
 			ghost->increaseFactionStanding("imperial", 30);
-			killer->playEffect("clienteffect/holoemote_imperial.cef", "head");
-			killer->playEffect("clienteffect/aurabuff_imperial_caster.cef", "");
-			PlayMusicMessage* pmm = new PlayMusicMessage("sound/music_themequest_victory_imperial.snd");
- 			killer->sendMessage(pmm);
-			lootManager->createLoot(inventory, "imppoints", 300);
-			if(ghost->getJediState() >= 1){
-				lootManager->createNamedLoot(inventory, "task_loot_padawan_braid", playerName, 300);//, playerName);
-			}else{
-				lootManager->createNamedLoot(inventory, "playerDatapad", playerName, 300);//, playerName);
-			}
 			ghost->decreaseFactionStanding("rebel", 45);
+
 			killedGhost->decreaseFactionStanding("rebel", 45);
-			if (killerCreature->hasSkill("force_rank_dark_novice") && destructedObject->hasSkill("force_rank_light_novice")) {
-				playerManager->awardExperience(killerCreature, "force_rank_xp", 100000);
- 				killerCreature->sendSystemMessage("You Have Gained 10,000 GCW FRS Points");		
-				playerManager->awardExperience(destructedObject, "force_rank_xp", -5000);
-				StringIdChatParameter message("base_player","prose_revoke_xp");
-				message.setDI(-5000);
-				message.setTO("exp_n", "force_rank_xp");
-				destructedObject->sendSystemMessage(message);
-				zBroadcast << "\\#e60000" << "Dark Jedi " << "\\#00bfff" << killerName << "\\#ffd700 has defeated" << "\\#00e604 Light Jedi " << "\\#00bfff" << playerName << "\\#ffd700 in the FRS";
-				//Broadcast player has died forward to discord channel. created by :TOXIC
-				StringBuffer zGeneral;
-				zGeneral << "A [Dark Jedi] Has Killed " << playerName << " A [Light Jedi] In The [FRS]";	
-				chatManager->handleGeneralChat(killerCreature, zGeneral.toString());
-			if (killerCreature->isGrouped()) {
-		
-				ManagedReference<GroupObject*> group = killerCreature->getGroup();
-				int groupSize = group->getGroupSize();
+			
+			//PvP Token Award.
 
-				for (int i = 0; i < groupSize; i++) {
-					ManagedReference<CreatureObject*> groupMember = group->getGroupMember(i);
-
-					if (groupMember->isInRange(killerCreature, 100.0)) {	
-						if (groupMember->isPlayerCreature()) {			
-							playerManager->awardExperience(groupMember, "force_rank_xp", 5000);
- 								groupMember->sendSystemMessage("You Have Gained 5,000 FRS Points");		
-							}	
-						}	
-		    
+			if (killer->getZone()->getZoneName() == "jakku") {
+				lootManager->createLoot(trx, inventory, "token_stardust", 1);
+				//killer->sendMessage("You have been awarded a Stardust PvP Token.");
+			} else {
+				return;
 					}
-
-				}
-			}
-				ghost->getZoneServer()->getChatManager()->broadcastGalaxy(nullptr, zBroadcast.toString());
 		}
 	}
 }
@@ -325,7 +230,7 @@ int FactionManager::getFactionPointsCap(int rank) {
 	if (rank >= factionRanks.getCount())
 		return -1;
 
-	return Math::max(1000, getRankCost(rank) * 30000);
+	return Math::max(1000, getRankCost(rank) * 20);
 }
 
 bool FactionManager::isFaction(const String& faction) {

@@ -32,7 +32,7 @@ PrecisionLaserKnife::~PrecisionLaserKnife() {
 
 int PrecisionLaserKnife::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int PrecisionLaserKnife::handleObjectMenuSelect(CreatureObject* player, byte sel
 
 void PrecisionLaserKnife::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +58,7 @@ void PrecisionLaserKnife::fillAttributeList(AttributeListMessage* msg, CreatureO
 
 void PrecisionLaserKnife::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -68,7 +68,7 @@ void PrecisionLaserKnife::updateCraftingValues(CraftingValues* values, bool firs
 
 void PrecisionLaserKnife::updateCharges(int val) {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -83,7 +83,7 @@ void PrecisionLaserKnife::updateCharges(int val) {
 
 void PrecisionLaserKnife::useCharge(CreatureObject* player) {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ void PrecisionLaserKnife::useCharge(CreatureObject* player) {
 
 int PrecisionLaserKnife::getCharges() {
 	PrecisionLaserKnifeImplementation* _implementation = static_cast<PrecisionLaserKnifeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ void PrecisionLaserKnifeImplementation::finalize() {
 void PrecisionLaserKnifeImplementation::_initializeImplementation() {
 	_setClassHelper(PrecisionLaserKnifeHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -279,7 +279,7 @@ void PrecisionLaserKnifeImplementation::updateCraftingValues(CraftingValues* val
 
 void PrecisionLaserKnifeImplementation::useCharge(CreatureObject* player) {
 	// server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl():  		decreaseUseCount(
-	if (player == nullptr)	// server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl():  			return;
+	if (player == NULL)	// server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl():  			return;
 	return;
 	// server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl():  		decreaseUseCount();
 	decreaseUseCount();

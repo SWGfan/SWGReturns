@@ -38,7 +38,7 @@ VendorToken::~VendorToken() {
 
 int VendorToken::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	VendorTokenImplementation* _implementation = static_cast<VendorTokenImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,14 +49,14 @@ int VendorToken::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void VendorToken::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	VendorTokenImplementation* _implementation = static_cast<VendorTokenImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void VendorToken::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creat
 
 int VendorToken::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	VendorTokenImplementation* _implementation = static_cast<VendorTokenImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -83,7 +83,7 @@ int VendorToken::canAddObject(SceneObject* object, int containmentType, String& 
 
 int VendorToken::notifyObjectInserted(SceneObject* object) {
 	VendorTokenImplementation* _implementation = static_cast<VendorTokenImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ int VendorToken::notifyObjectInserted(SceneObject* object) {
 
 byte VendorToken::checkContainerPermission(CreatureObject* player, unsigned short permission) {
 	VendorTokenImplementation* _implementation = static_cast<VendorTokenImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -145,7 +145,7 @@ void VendorTokenImplementation::finalize() {
 void VendorTokenImplementation::_initializeImplementation() {
 	_setClassHelper(VendorTokenHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

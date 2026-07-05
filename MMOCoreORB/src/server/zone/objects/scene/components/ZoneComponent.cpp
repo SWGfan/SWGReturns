@@ -23,6 +23,8 @@ void ZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* newZone) 
 	if (newZone == nullptr)
 		return;
 
+	//Locker locker(sceneObject);
+
 	sceneObject->teleport(sceneObject->getPositionX(), sceneObject->getPositionZ(), sceneObject->getPositionY(), sceneObject->getParentID());
 
 	insertChildObjectsToZone(sceneObject, newZone);
@@ -68,6 +70,8 @@ void ZoneComponent::teleport(SceneObject* sceneObject, float newPositionX, float
 
 		//sceneObject->info("sending data transform with parent", true);
 
+		sceneObject->incrementMovementCounter();
+
 		DataTransformWithParent* pack = new DataTransformWithParent(sceneObject);
 		sceneObject->broadcastMessage(pack, true, false);
 	} else {
@@ -78,31 +82,10 @@ void ZoneComponent::teleport(SceneObject* sceneObject, float newPositionX, float
 
 		//sceneObject->info("sending data transform", true);
 
+		sceneObject->incrementMovementCounter();
+
 		DataTransform* pack = new DataTransform(sceneObject);
 		sceneObject->broadcastMessage(pack, true, false);
-	}
-}
-
-void ZoneComponent::updateInRangeObjectsOnMount(SceneObject* sceneObject) const {
-	try {
-		CloseObjectsVector* parentCloseObjectsVector = sceneObject->getRootParent()->getCloseObjects();
-		SortedVector<QuadTreeEntry*> parentCloseObjects(parentCloseObjectsVector->size(), 10);
-
-		parentCloseObjectsVector->safeCopyTo(parentCloseObjects);
-
-		//insert new ones
-		for (int i = 0; i < parentCloseObjects.size(); ++i) {
-			QuadTreeEntry* o = parentCloseObjects.getUnsafe(i);
-
-			if (sceneObject->getCloseObjects() != nullptr)
-				sceneObject->addInRangeObject(o, false);
-
-			if (o->getCloseObjects() != nullptr)
-				o->addInRangeObject(sceneObject, true);
-		}
-	} catch (Exception& e) {
-		sceneObject->error(e.getMessage());
-		e.printStackTrace();
 	}
 }
 
@@ -118,11 +101,7 @@ void ZoneComponent::updateZone(SceneObject* sceneObject, bool lightUpdate, bool 
 		zone = sceneObjectRootParent->getZone();
 	}
 
-	bool isSeat = false;
-	if (sceneObject->getObjectTemplate()->getFullTemplateString().contains("passenger_"))
-		isSeat = true;
-
-	if (parent != nullptr && !isSeat && (parent->isVehicleObject() || parent->isMount()))
+	if (parent != nullptr && (parent->isVehicleObject() || parent->isMount()))
 		sceneObject->updateVehiclePosition(sendPackets);
 
 	Locker _locker(zone);
@@ -154,11 +133,6 @@ void ZoneComponent::updateZone(SceneObject* sceneObject, bool lightUpdate, bool 
 				sceneObject->error(e.getMessage());
 				e.printStackTrace();
 			}
-		} else if (parent != nullptr) {
-			zone->unlock();
-			zoneUnlocked = true;
-
-			updateInRangeObjectsOnMount(sceneObject);
 		}
 	}
 
@@ -324,6 +298,7 @@ void ZoneComponent::switchZone(SceneObject* sceneObject, const String& newTerrai
 	Locker locker(newZone);
 
 	sceneObject->initializePosition(newPostionX, newPositionZ, newPositionY);
+	sceneObject->incrementMovementCounter();
 
 	if (newParent != nullptr) {
 		if (zone == newZone) {
@@ -345,6 +320,8 @@ void ZoneComponent::switchZone(SceneObject* sceneObject, const String& newTerrai
 	} else {
 		newZone->transferObject(sceneObject, -1, true);
 	}
+
+	sceneObject->setMovementCounter(0);
 }
 
 void ZoneComponent::notifyRemoveFromZone(SceneObject* sceneObject) const {
@@ -474,7 +451,7 @@ void ZoneComponent::removeObjectFromZone(SceneObject* sceneObject, Zone* zone, S
 		// hack to get around notifyEnter/Exit only working with tangible objects
 		Vector3 worldPos = sceneObject->getWorldPosition();
 		SortedVector<ActiveArea* > objects;
-		zone->getInRangeActiveAreas(worldPos.getX(), worldPos.getY(), 5, &objects, false);
+		zone->getInRangeActiveAreas(worldPos.getX(), worldPos.getY(), &objects, false);
 
 		for(auto& area : objects) {
 			NavArea *mesh = area->asNavArea();
@@ -493,8 +470,8 @@ void ZoneComponent::notifySelfPositionUpdate(SceneObject* sceneObject) const {
 }
 
 void ZoneComponent::removeAllObjectsFromCOV(CloseObjectsVector *closeobjects,
-											SortedVector<ManagedReference<QuadTreeEntry *> > &closeSceneObjects,
-											SceneObject *sceneObject, SceneObject *vectorOwner) {
+					SortedVector<ManagedReference<QuadTreeEntry *> > &closeSceneObjects,
+					SceneObject *sceneObject, SceneObject *vectorOwner) {
 	for (int i = 0; closeobjects->size() != 0 && i < 100; i++) {
 		closeobjects->safeCopyTo(closeSceneObjects);
 

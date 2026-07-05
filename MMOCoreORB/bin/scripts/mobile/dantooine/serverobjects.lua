@@ -105,11 +105,6 @@ includeFile("dantooine/voritor_dasher.lua")
 includeFile("dantooine/voritor_lizard.lua")
 includeFile("dantooine/yras_shen_jen.lua")
 includeFile("dantooine/ytzosh.lua")
-includeFile("dantooine/janta_cave_boss.lua")
-includeFile("dantooine/janta_chieftain.lua")
----------additions-----------
-includeFile("dantooine/mokk_chieftain.lua")
-includeFile("dantooine/mokk_guard.lua")
-includeFile("dantooine/mokk_sentry.lua")
-includeFile("dantooine/mokk_huurton_reaper.lua")
-
+--
+includeFile("dantooine/janta_scion.lua")
+includeFile("dantooine/dant_disciple.lua")

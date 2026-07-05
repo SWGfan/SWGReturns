@@ -57,7 +57,7 @@ void TravelBuildingObjectImplementation::finalize() {
 void TravelBuildingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(TravelBuildingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

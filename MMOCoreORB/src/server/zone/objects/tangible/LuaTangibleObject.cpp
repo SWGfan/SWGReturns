@@ -11,13 +11,13 @@
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
 #include "templates/appearance/PaletteTemplate.h"
 #include "server/zone/objects/player/FactionStatus.h"
-#include "server/zone/objects/tangible/wearables/WearableObject.h"
 
 const char LuaTangibleObject::className[] = "LuaTangibleObject";
 
 Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "_setObject", &LuaTangibleObject::_setObject },
 		{ "_getObject", &LuaSceneObject::_getObject },
+		{ "getOptionsBitmask", &LuaTangibleObject::getOptionsBitmask },
 		{ "setOptionsBitmask", &LuaTangibleObject::setOptionsBitmask },
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask },
 		{ "setPvpStatusBit", &LuaTangibleObject::setPvpStatusBit },
@@ -51,7 +51,6 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "isBroken", &LuaTangibleObject::isBroken},
 		{ "isSliced", &LuaTangibleObject::isSliced},
 		{ "isNoTrade", &LuaTangibleObject::isNoTrade},
-		{ "setSocketCount", &LuaTangibleObject::setSocketCount},
 		{ "getUseCount", &LuaTangibleObject::getUseCount},
 		{ "setUseCount", &LuaTangibleObject::setUseCount},
 		{ 0, 0 }
@@ -61,7 +60,7 @@ LuaTangibleObject::LuaTangibleObject(lua_State *L) : LuaSceneObject(L) {
 #ifdef DYNAMIC_CAST_LUAOBJECTS
 	realObject = dynamic_cast<TangibleObject*>(_getRealSceneObject());
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	realObject = static_cast<TangibleObject*>(lua_touserdata(L, 1));
 #endif
@@ -79,7 +78,7 @@ int LuaTangibleObject::_setObject(lua_State* L) {
 	if (realObject != obj)
 		realObject = obj;
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	auto obj = static_cast<TangibleObject*>(lua_touserdata(L, -1));
 
@@ -110,8 +109,8 @@ int LuaTangibleObject::getPaletteColorCount(lua_State* L) {
 
 	int colors = 0;
 
-	for (int i = 0; i< variables.size(); ++i) {
-		String varkey = variables.elementAt(i).getKey();
+	for (int i = 0; i < variables.size(); ++i) {
+		const String& varkey = variables.elementAt(i).getKey();
 
 		if (varkey.contains(variableName)) {
 			CustomizationVariable* customizationVariable = variables.get(varkey).get();
@@ -122,15 +121,13 @@ int LuaTangibleObject::getPaletteColorCount(lua_State* L) {
 			PaletteColorCustomizationVariable* palette = dynamic_cast<PaletteColorCustomizationVariable*>(customizationVariable);
 
 			if (palette != nullptr) {
-				String paletteFileName = palette->getPaletteFileName();
-				PaletteTemplate* paletteTemplate = TemplateManager::instance()->getPaletteTemplate(paletteFileName);
+				const auto& paletteFileName = palette->getPaletteFileName();
+				UniqueReference<PaletteTemplate*> paletteTemplate(TemplateManager::instance()->getPaletteTemplate(paletteFileName));
 
 				if (paletteTemplate == nullptr)
 					continue;
 
 				colors = paletteTemplate->getColorCount();
-
-				delete paletteTemplate;
 
 				break;
 			}
@@ -304,6 +301,14 @@ int LuaTangibleObject::getLuaStringData(lua_State *L) {
 	return 1;
 }
 
+int LuaTangibleObject::getOptionsBitmask(lua_State* L) {
+	uint32 bitmask = realObject->getOptionsBitmask();
+
+	lua_pushinteger(L, bitmask);
+
+	return 1;
+}
+
 int LuaTangibleObject::setOptionBit(lua_State* L) {
 	uint32 bit = lua_tointeger(L, -1);
 
@@ -379,37 +384,6 @@ int LuaTangibleObject::isSliced(lua_State* L){
 	return 1;
 }
 
-int LuaTangibleObject::isNoTrade(lua_State* L){
-	bool noTrade = realObject->isNoTrade();
-
-	lua_pushboolean(L, noTrade);
-
-	return 1;
-}
-
-int LuaTangibleObject::setSocketCount(lua_State* L){
-
-    int count = lua_tointeger(L, -1);
-    
-    if (realObject->isWearableObject() && realObject != nullptr)
-    {
-        Locker locker(realObject);
-        
-        WearableObject* wo = cast<WearableObject*>(realObject);
-        
-        // Prevent over 4 sockets
-        if (count > 4)
-        { count = 4; }
-        // Prevent trying to set negative sockets
-        if (count < 0)
-        { count = 0; }
-        
-        wo->setSockets(count);
-    }
-    
-    return 0;
-}
-
 int LuaTangibleObject::getUseCount(lua_State* L){
 	int useCount = realObject->getUseCount();
 
@@ -426,4 +400,12 @@ int LuaTangibleObject::setUseCount(lua_State* L){
 	realObject->setUseCount(useCount, true);
 
 	return 0;
+}
+
+int LuaTangibleObject::isNoTrade(lua_State* L){
+	bool noTrade = realObject->isNoTrade();
+
+	lua_pushboolean(L, noTrade);
+
+	return 1;
 }

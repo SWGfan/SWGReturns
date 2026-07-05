@@ -51,7 +51,8 @@ object_draft_schematic_food_component_container_barrel = object_draft_schematic_
    complexity = 15, 
    size = 1, 
    factoryCrateSize = 1000,
-
+   factoryCrateType = "object/factory/factory_crate_food.iff",
+   
    xpType = "crafting_general", 
    xp = 500, 
 

@@ -104,6 +104,8 @@ class PetControlObserverPOD;
 
 using namespace server::zone::objects::intangible;
 
+#include "gmock/gmock.h"
+
 #include "server/zone/objects/creature/ai/PatrolPointsVector.h"
 
 #include "server/zone/objects/creature/ai/PatrolPoint.h"
@@ -200,11 +202,15 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	unsigned int getLastCommand() const;
+	virtual unsigned int getLastCommand();
+
+	void setLastCommander(SceneObject* commander);
+
+	ManagedWeakReference<SceneObject* > getLastCommander();
 
 	void setLastCommandTarget(SceneObject* target);
 
-	ManagedWeakReference<SceneObject* > getLastCommandTarget();
+	virtual ManagedWeakReference<SceneObject* > getLastCommandTarget();
 
 	String getFutureName() const;
 
@@ -304,6 +310,8 @@ protected:
 	unsigned int trainingCommand;
 
 	unsigned int lastCommand;
+
+	ManagedWeakReference<SceneObject* > lastCommander;
 
 	ManagedWeakReference<SceneObject* > lastCommandTarget;
 
@@ -405,11 +413,15 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	unsigned int getLastCommand() const;
+	virtual unsigned int getLastCommand();
+
+	void setLastCommander(SceneObject* commander);
+
+	ManagedWeakReference<SceneObject* > getLastCommander();
 
 	void setLastCommandTarget(SceneObject* target);
 
-	ManagedWeakReference<SceneObject* > getLastCommandTarget();
+	virtual ManagedWeakReference<SceneObject* > getLastCommandTarget();
 
 	String getFutureName() const;
 
@@ -547,7 +559,7 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	unsigned int getLastCommand() const;
+	unsigned int getLastCommand();
 
 	String getFutureName() const;
 
@@ -614,6 +626,31 @@ public:
 	friend class Singleton<PetControlDeviceHelper>;
 };
 
+class MockPetControlDevice : public PetControlDevice {
+public:
+
+	MOCK_METHOD0(getLastCommand,unsigned int());
+	MOCK_METHOD0(getLastCommandTarget,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
+
+};
+
 } // namespace intangible
 } // namespace objects
 } // namespace zone
@@ -647,6 +684,8 @@ public:
 	Optional<unsigned int> trainingCommand;
 
 	Optional<unsigned int> lastCommand;
+
+	Optional<ManagedWeakReference<SceneObjectPOD* >> lastCommander;
 
 	Optional<ManagedWeakReference<SceneObjectPOD* >> lastCommandTarget;
 

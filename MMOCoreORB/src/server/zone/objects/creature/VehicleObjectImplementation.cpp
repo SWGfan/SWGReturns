@@ -17,24 +17,9 @@
 #include "server/zone/objects/region/Region.h"
 #include "server/zone/objects/creature/sui/RepairVehicleSuiCallback.h"
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
-#include "templates/manager/TemplateManager.h"
-#include "templates/creature/SharedCreatureObjectTemplate.h"
 
-#include "server/zone/objects/group/GroupObject.h"
-#include "templates/creature/VehicleObjectTemplate.h"
-#include "server/zone/managers/creature/CreatureManager.h"
 
 void VehicleObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
-	if (linkedCreature != player) {
-		ManagedReference<GroupObject*> group = player->getGroup();
-		if (group != nullptr) {
-			CreatureObject* vehicleOwner = this->linkedCreature.get();
-			if (vehicleOwner != nullptr)
-				if (group->hasMember(this->linkedCreature.get()) && hasRidingCreature() && hasOpenSeat())
-					menuResponse->addRadialMenuItem(205, 1, "@pet/pet_menu:menu_enter_exit");
-		}
-	}
-
 	if (!player->getPlayerObject()->isPrivileged() && linkedCreature != player)
 		return;
 
@@ -91,8 +76,6 @@ void VehicleObjectImplementation::fillAttributeList(AttributeListMessage* alm, C
 
 	alm->insertAttribute("@obj_attr_n:owner", linkedCreature->getFirstName());
 
-	alm->insertAttribute("@obj_attr_n:riders", getPassengerCapacity() + 1);
-
 }
 
 void VehicleObjectImplementation::notifyInsertToZone(Zone* zone) {
@@ -133,21 +116,6 @@ void VehicleObjectImplementation::notifyInsertToZone(Zone* zone) {
 		--paintCount;
 	}
 
-	//Ensure Vehicle speed and turn rate matches what's in the .tre file
-	TemplateManager* templateManager = TemplateManager::instance();
-	uint32 vehicleCRC = getObjectTemplate()->getFullTemplateString().hashCode();
-	SharedCreatureObjectTemplate* vehicleTemplate = dynamic_cast<SharedCreatureObjectTemplate*>(templateManager->getTemplate(vehicleCRC));
-
-	if (vehicleTemplate != nullptr) {
-		float speed = vehicleTemplate->getSpeed().get(0);
-		float turn = vehicleTemplate->getTurnRate().get(0);
-
-		if (getRunSpeed() != speed)
-			setRunSpeed(speed, true);
-
-		if (getTurnScale() != turn)
-			setTurnScale(turn, true);
-	}
 }
 
 bool VehicleObjectImplementation::checkInRangeGarage() {
@@ -222,12 +190,13 @@ void VehicleObjectImplementation::repairVehicle(CreatureObject* player) {
 			player->sendSystemMessage("@pet/pet_menu:undamaged_vehicle"); //The targeted vehicle does not require any repairs at the moment.
 			return;
 		}
-/*
+
+
 		if (isDisabled()) {
-			player->sendSystemMessage("@pet/pet_menu:cannot_repair_disabled"); //You may not repair a disabled vehicle.
-			return;
+			//player->sendSystemMessage("@pet/pet_menu:cannot_repair_disabled"); //You may not repair a disabled vehicle.
+			sendRepairConfirmTo(player);
 		}
-*/
+
 		if (!checkInRangeGarage()) {
 			player->sendSystemMessage("@pet/pet_menu:repair_unrecognized_garages"); //Your vehicle does not recognize any local garages. Try again in a garage repair zone.
 			return;
@@ -266,9 +235,7 @@ int VehicleObjectImplementation::calculateRepairCost(CreatureObject* player) {
 	if (player->getPlayerObject()->isPrivileged())
 		return 0;
 
-	int repairCost = getConditionDamage() * 4;
-	if (isDisabled()) repairCost += 1000000;
-	return repairCost;
+	return getConditionDamage() * 4;
 }
 
 int VehicleObjectImplementation::inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, bool notifyClient, bool isCombatAction) {
@@ -324,106 +291,5 @@ bool VehicleObject::isVehicleObject() {
 }
 
 bool VehicleObjectImplementation::isVehicleObject() {
-	return true;
-}
-
-int VehicleObjectImplementation::getPassengerCapacity() {
-	ManagedReference<TangibleObject*> vehicle = _this.getReferenceUnsafeStaticCast();
-
-	if (vehicle == nullptr)
-		return 10;
-
-	Reference<VehicleObjectTemplate*> vehicleTemplate = cast<VehicleObjectTemplate*>(vehicle->getObjectTemplate());
-
-	if (vehicleTemplate == nullptr)
-		return 10;
-
-	return vehicleTemplate->getPassengerCapacity();
-
-}
-
-String VehicleObjectImplementation::getPassengerSeatName() {
-	ManagedReference<TangibleObject*> vehicle = _this.getReferenceUnsafeStaticCast();
-
-	if (vehicle == nullptr)
-		return "default";
-
-	Reference<VehicleObjectTemplate*> vehicleTemplate = cast<VehicleObjectTemplate*>(vehicle->getObjectTemplate());
-
-	if (vehicleTemplate == nullptr)
-		return "error";
-
-	return vehicleTemplate->getPassengerSeatString();
-
-}
-
-bool VehicleObjectImplementation::hasOpenSeat() {
-	int passengerSeats = getPassengerCapacity();
-
-	if (passengerSeats == 0)
-		return false;
-
-	bool openSeat = false;
-
-	for (int i = 1; i <= passengerSeats; ++i){
-		String text = "rider";
-		text += String::valueOf(i);
-		CreatureObject* seat = this->getSlottedObject(text).castTo<CreatureObject*>();
-		if (seat == nullptr) {
-			openSeat = true;
-		}
-	}
-
-	return openSeat;
-}
-
-int VehicleObjectImplementation::getOpenSeat() {
-	int passengerSeats = getPassengerCapacity();
-
-	if (passengerSeats == 0)
-		return 0;
-
-	for (int i = 1; i <= passengerSeats; ++i){
-		String text = "rider";
-		text += String::valueOf(i);
-		CreatureObject* seat = this->getSlottedObject(text).castTo<CreatureObject*>();
-		if (seat == nullptr) {
-			return i;
-		}
-	}
-
-	return 0;
-}
-
-bool VehicleObjectImplementation::slotPassenger(CreatureObject* passenger) {
-	//get everything necessary for the passenger seat
-	int seatNumber = getOpenSeat();
-	String seat = "passenger_" + getPassengerSeatName() + "_" + String::valueOf(seatNumber);
-	Zone* zone = getZone();
-	float x = getWorldPositionX();
-	float y = getWorldPositionY();
-	float z = getWorldPositionZ();
-	String name = zone->getZoneName();
-	CreatureManager* creatureManager = zone->getCreatureManager();
-
-	//spawn seat and slot it in
-	CreatureObject* seatObject = creatureManager->spawnCreature(seat.hashCode(), 0, x, z, y, 0);
-	Locker slocker(seatObject);
-	seatObject->switchZone(name, x, z, y);
-	transferObject(seatObject, 4 + seatNumber, true);
-
-	//transfer the player in
-	Locker plocker(passenger, seatObject);
-	seatObject->transferObject(passenger, 4, true);
-
-	if (passenger->isPlayerCreature()) {
-		//set all the things
-		passenger->setState(CreatureState::RIDINGMOUNT);
-		passenger->setPosition(x, z, y);
-		synchronizeCloseObjects();
-		seatObject->synchronizeCloseObjects();
-		passenger->synchronizeCloseObjects();
-	}
-
 	return true;
 }

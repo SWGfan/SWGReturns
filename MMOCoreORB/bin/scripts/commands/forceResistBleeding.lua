@@ -43,8 +43,8 @@
 
 ForceResistBleedingCommand = {
 	name = "forceresistbleeding",
-	forceCost = 250,
-	duration = 1800,
+	forceCost = 50,
+	duration = 900,
 	--animationCRC = hashCode()
 	clientEffect = "clienteffect/pl_force_resist_bleeding_self.cef",
 	frsLightBuffModifier = 0.35,

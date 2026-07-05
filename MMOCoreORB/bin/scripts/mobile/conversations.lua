@@ -1,5 +1,9 @@
 includeFile("conversation.lua")
 
+-- Custom Vendors
+includeFile("conversations/vendor/stardust_vendor_conv.lua")
+includeFile("conversations/vendor/stardust_gambling_conv.lua")
+
 -- ** THEMEPARKS **
 
 -- Tutorial
@@ -170,16 +174,6 @@ includeFile("conversations/trainer/trainer_conv.lua")
 -- Missions
 includeFile("conversations/mission/deliver_npc.lua")
 includeFile("conversations/mission/informant_npc.lua")
-includeFile("conversations/mission_quest/mission_conv.lua")
-includeFile("conversations/mission_quest/missionone_conv.lua")
-includeFile("conversations/mission_quest/missiontwo_conv.lua")
-includeFile("conversations/mission_quest/missionthree_conv.lua")
-includeFile("conversations/mission_quest/missionfour_conv.lua")
-includeFile("conversations/mission_quest/missionfive_conv.lua")
-includeFile("conversations/mission_quest/missionsix_conv.lua")
-includeFile("conversations/mission_quest/missionseven_conv.lua")
-includeFile("conversations/mission_quest/missioneight_conv.lua")
-
 
 -- Recruiters
 includeFile("conversations/recruiter/rebel_recruiter_conv.lua")
@@ -288,6 +282,7 @@ includeFile("conversations/pet/pets_conv.lua")
 
 -- Misc
 includeFile("conversations/misc/philosopher_conv.lua")
+includeFile("conversations/misc/character_builder_frog_conv.lua")
 
 -- Junk Dealers
 includeFile("conversations/junk_dealer/junk_dealer_generic_conv.lua")
@@ -305,28 +300,46 @@ includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
---custom waypoint npc's
-includeFile("conversations/events/corellia_poi_waypoints.lua")
-includeFile("conversations/events/dantooine_poi_waypoints.lua")
-includeFile("conversations/events/dathomir_poi_waypoints.lua")
-includeFile("conversations/events/endor_poi_waypoints.lua")
-includeFile("conversations/events/lok_poi_waypoints.lua")
-includeFile("conversations/events/naboo_poi_waypoints.lua")
-includeFile("conversations/events/rori_poi_waypoints.lua")
-includeFile("conversations/events/talus_poi_waypoints.lua")
-includeFile("conversations/events/tatooine_poi_waypoints.lua")
-includeFile("conversations/events/yavin4_poi_waypoints.lua")
+--Stardust New
+includeFile("conversations/dungeon/rebel_chasm_teleporter.lua")
+includeFile("conversations/dungeon/rebel_jakku_teleporter.lua")
+includeFile("conversations/dungeon/jakku_overseer.lua")
+includeFile("conversations/dungeon/retreat_curator.lua")
+includeFile("conversations/dungeon/death_sticks.lua")
+includeFile("conversations/dungeon/dex_diner.lua")
+includeFile("conversations/dungeon/hondo_return_teleporter.lua")
+includeFile("conversations/dungeon/hondo_send_teleporter.lua")
+includeFile("conversations/dungeon/fake_imperial_officer.lua")
+includeFile("conversations/dungeon/herald_of_the_prophets.lua")
+includeFile("conversations/dungeon/prophet_kadann.lua")
+includeFile("conversations/dungeon/prophet_cronal.lua")
+includeFile("conversations/dungeon/imperial_palace_onlooker.lua")
+includeFile("conversations/dungeon/swoop_race_hutt.lua")
+includeFile("conversations/dungeon/chiss_hunter_herald.lua")
+includeFile("conversations/dungeon/chiss_hunter_herald_cave.lua")
+includeFile("conversations/dungeon/chandriltech_greeter.lua")
+includeFile("conversations/dungeon/archaeologist_leader.lua")
+includeFile("conversations/dungeon/moraband_bunker_protocol_droid.lua")
+includeFile("conversations/dungeon/reltha_aiden.lua")
+includeFile("conversations/dungeon/bex_delata.lua")
+includeFile("conversations/dungeon/omor_rikan.lua")
+includeFile("conversations/dungeon/taelan_delar.lua")
+includeFile("conversations/dungeon/bray_terex.lua")
+includeFile("conversations/dungeon/jar_jar_binks.lua")
+includeFile("conversations/dungeon/hutt_slave_auctioneer.lua")
+includeFile("conversations/dungeon/respec_conv.lua")
+includeFile("conversations/dungeon/imperial_isd_teleporter.lua")
+includeFile("conversations/dungeon/rebel_vette_teleporter.lua")
+includeFile("conversations/dungeon/obi_wan_elysium.lua")
+includeFile("conversations/dungeon/oowroora.lua")
+includeFile("conversations/dungeon/tansarii_exit_teleporter.lua")
+includeFile("conversations/dungeon/warren_information_officer.lua")
+includeFile("conversations/racetracks/coruscantconversation.lua")
+includeFile("conversations/racetracks/huttaconversation.lua")
+includeFile("conversations/racetracks/lothalconversation.lua")
+includeFile("conversations/dungeon/imperial_genocide_coordinator.lua")
+includeFile("conversations/dungeon/boba_fett_tusken.lua")
+includeFile("conversations/dungeon/aurilian_teleporter.lua")
 
---custom painting exchange
-includeFile("conversations/events/painting_exchange.lua")
---Holo exchnage
-includeFile("conversations/events/holo_exchange.lua")
---custom exchange
-includeFile("conversations/events/event_exchange_dealer.lua")
-
-includeFile("conversations/merchants/vendor_conv.lua") 
-includeFile("conversations/tasks/myswg_vendor_conv.lua")
-
-includeFile("conversations/jedi/darth_zivon_conv.lua")
-includeFile("conversations/jedi/kaas_villans_conv.lua")
-
+--Mustafar
+includeFile("conversations/mustafar/som_exploration_marker.lua")

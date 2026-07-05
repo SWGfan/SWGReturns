@@ -2,6 +2,7 @@ bh_ig_assassin_droid = Creature:new {
 	objectName = "@mob/creature_names:ig_assassin_droid",
 	socialGroup = "",
 	faction = "",
+	mobType = MOB_ANDROID,
 	level = 45,
 	chanceHit = 0.47,
 	damageMin = 395,
@@ -29,8 +30,8 @@ bh_ig_assassin_droid = Creature:new {
 	lootGroups = {
 	     {
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
@@ -40,13 +41,13 @@ bh_ig_assassin_droid = Creature:new {
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 3900000
 		},
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 500000},
-				{group = "tierthree", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},

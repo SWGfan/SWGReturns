@@ -44,43 +44,44 @@
 Saber2hPhantomCommand = {
         name = "saber2hphantom",
 
-	damageMultiplier = 4.5,
-	speedMultiplier = 4.0,
+	damageMultiplier = 2.5,
+	speedMultiplier = 1.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
+	actionCostMultiplier = 2.5,
 	mindCostMultiplier = 0,
 	areaAction = true,
-	areaRange = 9,
-	forceCostMultiplier = 3.0,
+	areaRange = 16,
+	forceCostMultiplier = 2.0,
+	accuracyBonus = 50,
 	visMod = 25,
 
 		stateEffects = {
 	   StateEffect( 
 		BLIND_EFFECT, 
 		{}, 
-		{ "blind_defense" }, 
-		{ "jedi_state_defense", "resistance_states" },
-		85, 
-		0, 
-		60 
-	  ),
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
-		{ "jedi_state_defense", "resistance_states" },
+		{ "blind_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
 		85, 
 		0, 
 		30 
 	  ),
 	  StateEffect( 
+		DIZZY_EFFECT, 
+		{}, 
+		{ "dizzy_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		75, 
+		0, 
+		10 
+	  ),
+	  StateEffect( 
 		STUN_EFFECT, 
 		{}, 
-		{ "stun_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
+		{ "stun_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
 		85, 
 		0, 
-		60 
+		30 
 	  )
 	},
 
@@ -89,11 +90,11 @@ Saber2hPhantomCommand = {
 
 	combatSpam = "saber2hphantom",
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	weaponType = TWOHANDJEDIWEAPON,
 
-	range = -1
+	range = 8
 }
 
 AddCommand(Saber2hPhantomCommand)

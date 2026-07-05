@@ -30,7 +30,7 @@ ConcealBuff::~ConcealBuff() {
 
 CreatureObject* ConcealBuff::getBuffGiver() {
 	ConcealBuffImplementation* _implementation = static_cast<ConcealBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ CreatureObject* ConcealBuff::getBuffGiver() {
 
 String ConcealBuff::getPlanetName() {
 	ConcealBuffImplementation* _implementation = static_cast<ConcealBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void ConcealBuffImplementation::finalize() {
 void ConcealBuffImplementation::_initializeImplementation() {
 	_setClassHelper(ConcealBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -266,7 +266,7 @@ void ConcealBuffAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getBuffGiver();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETPLANETNAME__:

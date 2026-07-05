@@ -78,8 +78,6 @@ public:
 
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
-	void updateAttachmentValues(const String& modName, int value);
-
 	void initializeMembers();
 
 	/**
@@ -153,8 +151,6 @@ public:
 
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
-	void updateAttachmentValues(const String& modName, int value);
-
 	void initializeMembers();
 
 	/**
@@ -227,8 +223,6 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initializeTransientMembers();
-
-	void updateAttachmentValues(const String& modName, int value);
 
 	void initializeMembers();
 

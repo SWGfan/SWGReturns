@@ -18,7 +18,7 @@
  *	FactoryCrateStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_ISFACTORYCRATE__,RPC_GETMAXCAPACITY__,RPC_SETMAXCAPACITY__INT_,RPC_SETUSECOUNT__INT_BOOL_,RPC_GETPROTOTYPE__,RPC_GETCRAFTERSNAME__,RPC_GETSERIALNUMBER__,RPC_EXTRACTOBJECTTOINVENTORY__CREATUREOBJECT_,RPC_EXTRACTOBJECT__INT_,RPC_SPLIT__INT_,RPC_GETCOUNTABLEOBJECTSRECURSIVE__,RPC_GETSIZEONVENDORRECURSIVE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_ISFACTORYCRATE__,RPC_ISVALIDFACTORYCRATE__,RPC_GETMAXCAPACITY__,RPC_SETMAXCAPACITY__INT_,RPC_SETUSECOUNT__INT_BOOL_,RPC_GETPROTOTYPE__,RPC_GETCRAFTERSNAME__,RPC_GETSERIALNUMBER__,RPC_EXTRACTOBJECTTOINVENTORY__CREATUREOBJECT_,RPC_EXTRACTOBJECT__INT_,RPC_SPLIT__INT_,RPC_GETCOUNTABLEOBJECTSRECURSIVE__,RPC_GETSIZEONVENDORRECURSIVE__};
 
 FactoryCrate::FactoryCrate() : TangibleObject(DummyConstructorParameter::instance()) {
 	FactoryCrateImplementation* _implementation = new FactoryCrateImplementation();
@@ -38,7 +38,7 @@ FactoryCrate::~FactoryCrate() {
 
 void FactoryCrate::loadTemplateData(SharedObjectTemplate* templateData) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -48,7 +48,7 @@ void FactoryCrate::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void FactoryCrate::initializeTransientMembers() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void FactoryCrate::initializeTransientMembers() {
 
 void FactoryCrate::sendBaselinesTo(SceneObject* player) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void FactoryCrate::sendBaselinesTo(SceneObject* player) {
 
 void FactoryCrate::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -87,7 +87,7 @@ void FactoryCrate::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 void FactoryCrate::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -97,7 +97,7 @@ void FactoryCrate::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Crea
 
 int FactoryCrate::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,14 +108,14 @@ int FactoryCrate::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 bool FactoryCrate::isFactoryCrate() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,9 +127,23 @@ bool FactoryCrate::isFactoryCrate() {
 	}
 }
 
+bool FactoryCrate::isValidFactoryCrate() {
+	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISVALIDFACTORYCRATE__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isValidFactoryCrate();
+	}
+}
+
 int FactoryCrate::getMaxCapacity() const {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +157,7 @@ int FactoryCrate::getMaxCapacity() const {
 
 void FactoryCrate::setMaxCapacity(int value) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +173,7 @@ void FactoryCrate::setMaxCapacity(int value) {
 
 void FactoryCrate::setUseCount(unsigned int newUseCount, bool notifyClient) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -176,7 +190,7 @@ void FactoryCrate::setUseCount(unsigned int newUseCount, bool notifyClient) {
 
 Reference<TangibleObject* > FactoryCrate::getPrototype() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,7 +204,7 @@ Reference<TangibleObject* > FactoryCrate::getPrototype() {
 
 String FactoryCrate::getCraftersName() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -206,7 +220,7 @@ String FactoryCrate::getCraftersName() {
 
 String FactoryCrate::getSerialNumber() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,7 +236,7 @@ String FactoryCrate::getSerialNumber() {
 
 bool FactoryCrate::extractObjectToInventory(CreatureObject* player) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -237,7 +251,7 @@ bool FactoryCrate::extractObjectToInventory(CreatureObject* player) {
 
 Reference<TangibleObject* > FactoryCrate::extractObject(int count) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -252,7 +266,7 @@ Reference<TangibleObject* > FactoryCrate::extractObject(int count) {
 
 void FactoryCrate::split(int newStackSize) {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +282,7 @@ void FactoryCrate::split(int newStackSize) {
 
 int FactoryCrate::getCountableObjectsRecursive() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -282,7 +296,7 @@ int FactoryCrate::getCountableObjectsRecursive() {
 
 int FactoryCrate::getSizeOnVendorRecursive() {
 	FactoryCrateImplementation* _implementation = static_cast<FactoryCrateImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -327,7 +341,7 @@ void FactoryCrateImplementation::finalize() {
 void FactoryCrateImplementation::_initializeImplementation() {
 	_setClassHelper(FactoryCrateHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -475,8 +489,6 @@ int FactoryCrateImplementation::getMaxCapacity() const{
 }
 
 void FactoryCrateImplementation::setMaxCapacity(int value) {
-	// server/zone/objects/factorycrate/FactoryCrate.idl():  		value = 1000;
-	value = 1000;
 	// server/zone/objects/factorycrate/FactoryCrate.idl():  		maxCapacity = value;
 	maxCapacity = value;
 }
@@ -537,6 +549,13 @@ void FactoryCrateAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_ISVALIDFACTORYCRATE__:
+		{
+			
+			bool _m_res = isValidFactoryCrate();
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_GETMAXCAPACITY__:
 		{
 			
@@ -565,7 +584,7 @@ void FactoryCrateAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPrototype();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCRAFTERSNAME__:
@@ -595,7 +614,7 @@ void FactoryCrateAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int count = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = extractObject(count);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SPLIT__INT_:
@@ -639,6 +658,10 @@ int FactoryCrateAdapter::handleObjectMenuSelect(CreatureObject* player, byte sel
 
 bool FactoryCrateAdapter::isFactoryCrate() {
 	return (static_cast<FactoryCrate*>(stub))->isFactoryCrate();
+}
+
+bool FactoryCrateAdapter::isValidFactoryCrate() {
+	return (static_cast<FactoryCrate*>(stub))->isValidFactoryCrate();
 }
 
 int FactoryCrateAdapter::getMaxCapacity() const {

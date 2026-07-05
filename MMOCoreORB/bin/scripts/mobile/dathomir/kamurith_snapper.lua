@@ -2,6 +2,7 @@ kamurith_snapper = Creature:new {
 	objectName = "@mob/creature_names:kamurith_snapper",
 	socialGroup = "kamurith",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 44,
 	chanceHit = 0.46,
 	damageMin = 405,
@@ -18,7 +19,7 @@ kamurith_snapper = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 50,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 2,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -29,12 +30,17 @@ kamurith_snapper = Creature:new {
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"dizzyattack",""},
-		{"stunattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"dizzyattack",""}, {"stunattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(kamurith_snapper, "kamurith_snapper")

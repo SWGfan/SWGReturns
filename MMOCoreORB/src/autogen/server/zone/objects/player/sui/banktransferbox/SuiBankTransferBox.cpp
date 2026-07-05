@@ -32,7 +32,7 @@ SuiBankTransferBox::~SuiBankTransferBox() {
 
 void SuiBankTransferBox::addCash(int cash) {
 	SuiBankTransferBoxImplementation* _implementation = static_cast<SuiBankTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void SuiBankTransferBox::addCash(int cash) {
 
 void SuiBankTransferBox::addBank(int bank) {
 	SuiBankTransferBoxImplementation* _implementation = static_cast<SuiBankTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void SuiBankTransferBox::addBank(int bank) {
 
 SceneObject* SuiBankTransferBox::getBank() {
 	SuiBankTransferBoxImplementation* _implementation = static_cast<SuiBankTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ SceneObject* SuiBankTransferBox::getBank() {
 
 BaseMessage* SuiBankTransferBox::generateMessage() {
 	SuiBankTransferBoxImplementation* _implementation = static_cast<SuiBankTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -86,7 +86,7 @@ BaseMessage* SuiBankTransferBox::generateMessage() {
 
 bool SuiBankTransferBox::isBankTransferBox() {
 	SuiBankTransferBoxImplementation* _implementation = static_cast<SuiBankTransferBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +131,7 @@ void SuiBankTransferBoxImplementation::finalize() {
 void SuiBankTransferBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiBankTransferBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -420,7 +420,7 @@ void SuiBankTransferBoxAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 		{
 			
 			DistributedObject* _m_res = getBank();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISBANKTRANSFERBOX__:

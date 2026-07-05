@@ -4,19 +4,13 @@
 
 #include "MissionObjective.h"
 
-#include "server/zone/objects/mission/MissionObject.h"
-
-#include "server/zone/objects/mission/MissionObserver.h"
-
 #include "server/zone/objects/creature/CreatureObject.h"
-
-#include "server/zone/objects/mission/events/FailMissionAfterCertainTimeTask.h"
 
 /*
  *	MissionObjectiveStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1042134107,RPC_DESTROYOBJECTFROMDATABASE__,RPC_NOTIFYOBSERVEREVENT__MISSIONOBSERVER_INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_ADDOBSERVER__MISSIONOBSERVER_BOOL_,RPC_DROPOBSERVER__MISSIONOBSERVER_BOOL_,RPC_GETOBSERVERCOUNT__,RPC_REMOVEALLOBSERVERS__,RPC_GETOBSERVER__INT_,RPC_HASOBSERVERS__,RPC_ACTIVATE__,RPC_DEACTIVATE__,RPC_ABORT__,RPC_COMPLETE__,RPC_FAIL__,RPC_GETMISSIONOBJECT__,RPC_GETOBJECTIVETYPE__,RPC_GETPLAYEROWNER__,RPC_AWARDFACTIONPOINTS__,RPC_REMOVEMISSIONFROMPLAYER__,RPC_AWARDREWARD__,RPC_CLEARFAILTASK__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1042134107,RPC_DESTROYOBJECTFROMDATABASE__,RPC_NOTIFYOBSERVEREVENT__MISSIONOBSERVER_INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_ADDOBSERVER__MISSIONOBSERVER_BOOL_,RPC_DROPOBSERVER__MISSIONOBSERVER_BOOL_,RPC_GETOBSERVERCOUNT__,RPC_REMOVEALLOBSERVERS__,RPC_GETOBSERVER__INT_,RPC_HASOBSERVERS__,RPC_ACTIVATE__,RPC_DEACTIVATE__,RPC_ABORT__,RPC_COMPLETE__,RPC_FAIL__,RPC_GETMISSIONOBJECT__,RPC_GETOBJECTIVETYPE__,RPC_GETPLAYEROWNER__,RPC_AWARDFACTIONPOINTS__,RPC_REMOVEMISSIONFROMPLAYER__,RPC_AWARDREWARD__,RPC_CLEARFAILTASK__,RPC_ISPLAYERBOUNTY__};
 
 MissionObjective::MissionObjective(MissionObject* parent) : ManagedObject(DummyConstructorParameter::instance()) {
 	MissionObjectiveImplementation* _implementation = new MissionObjectiveImplementation(parent);
@@ -36,7 +30,7 @@ MissionObjective::~MissionObjective() {
 
 void MissionObjective::initializeTransientMembers() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +44,7 @@ void MissionObjective::initializeTransientMembers() {
 
 void MissionObjective::destroyObjectFromDatabase() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +59,7 @@ void MissionObjective::destroyObjectFromDatabase() {
 
 int MissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +78,7 @@ int MissionObjective::notifyObserverEvent(MissionObserver* observer, unsigned in
 
 void MissionObjective::addObserver(MissionObserver* observer, bool makePersistent) {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +94,7 @@ void MissionObjective::addObserver(MissionObserver* observer, bool makePersisten
 
 void MissionObjective::dropObserver(MissionObserver* observer, bool removeFromDatabase) {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +111,7 @@ void MissionObjective::dropObserver(MissionObserver* observer, bool removeFromDa
 
 int MissionObjective::getObserverCount() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +125,7 @@ int MissionObjective::getObserverCount() {
 
 void MissionObjective::removeAllObservers() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -146,7 +140,7 @@ void MissionObjective::removeAllObservers() {
 
 MissionObserver* MissionObjective::getObserver(int index) {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -161,7 +155,7 @@ MissionObserver* MissionObjective::getObserver(int index) {
 
 bool MissionObjective::hasObservers() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -175,7 +169,7 @@ bool MissionObjective::hasObservers() {
 
 void MissionObjective::activate() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -190,7 +184,7 @@ void MissionObjective::activate() {
 
 void MissionObjective::deactivate() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -205,7 +199,7 @@ void MissionObjective::deactivate() {
 
 void MissionObjective::abort() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,7 +213,7 @@ void MissionObjective::abort() {
 
 void MissionObjective::complete() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +227,7 @@ void MissionObjective::complete() {
 
 void MissionObjective::fail() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -247,7 +241,7 @@ void MissionObjective::fail() {
 
 ManagedWeakReference<MissionObject* > MissionObjective::getMissionObject() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -261,7 +255,7 @@ ManagedWeakReference<MissionObject* > MissionObjective::getMissionObject() {
 
 unsigned int MissionObjective::getObjectiveType() const {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -275,7 +269,7 @@ unsigned int MissionObjective::getObjectiveType() const {
 
 Reference<CreatureObject* > MissionObjective::getPlayerOwner() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -289,7 +283,7 @@ Reference<CreatureObject* > MissionObjective::getPlayerOwner() {
 
 void MissionObjective::awardFactionPoints() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -303,7 +297,7 @@ void MissionObjective::awardFactionPoints() {
 
 void MissionObjective::removeMissionFromPlayer() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -317,7 +311,7 @@ void MissionObjective::removeMissionFromPlayer() {
 
 void MissionObjective::awardReward() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -330,9 +324,19 @@ void MissionObjective::awardReward() {
 	}
 }
 
+void MissionObjective::addMissionStats(TransactionLog& trx) {
+	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->addMissionStats(trx);
+	}
+}
+
 Vector3 MissionObjective::getEndPosition() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -342,7 +346,7 @@ Vector3 MissionObjective::getEndPosition() {
 
 void MissionObjective::clearFailTask() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -351,6 +355,20 @@ void MissionObjective::clearFailTask() {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->clearFailTask();
+	}
+}
+
+bool MissionObjective::isPlayerBounty() const {
+	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISPLAYERBOUNTY__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isPlayerBounty();
 	}
 }
 
@@ -387,7 +405,7 @@ void MissionObjectiveImplementation::finalize() {
 void MissionObjectiveImplementation::_initializeImplementation() {
 	_setClassHelper(MissionObjectiveHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -564,7 +582,7 @@ MissionObjectiveImplementation::MissionObjectiveImplementation(MissionObject* pa
 	// server/zone/objects/mission/MissionObjective.idl():  		missionStartTime.updateToCurrentTime();
 	(&missionStartTime)->updateToCurrentTime();
 	// server/zone/objects/mission/MissionObjective.idl():  		failTask = null;
-	failTask = nullptr;
+	failTask = NULL;
 }
 
 void MissionObjectiveImplementation::initializeTransientMembers() {
@@ -624,6 +642,11 @@ ManagedWeakReference<MissionObject* > MissionObjectiveImplementation::getMission
 unsigned int MissionObjectiveImplementation::getObjectiveType() const{
 	// server/zone/objects/mission/MissionObjective.idl():  		return objectiveType;
 	return objectiveType;
+}
+
+bool MissionObjectiveImplementation::isPlayerBounty() const{
+	// server/zone/objects/mission/MissionObjective.idl():  		return false;
+	return false;
 }
 
 /*
@@ -704,7 +727,7 @@ void MissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getObserver(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_HASOBSERVERS__:
@@ -753,7 +776,7 @@ void MissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 		{
 			
 			DistributedObject* _m_res = getMissionObject().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETOBJECTIVETYPE__:
@@ -767,7 +790,7 @@ void MissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 		{
 			
 			DistributedObject* _m_res = getPlayerOwner();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_AWARDFACTIONPOINTS__:
@@ -796,6 +819,13 @@ void MissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 			
 			clearFailTask();
 			
+		}
+		break;
+	case RPC_ISPLAYERBOUNTY__:
+		{
+			
+			bool _m_res = isPlayerBounty();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	default:
@@ -885,6 +915,10 @@ void MissionObjectiveAdapter::awardReward() {
 
 void MissionObjectiveAdapter::clearFailTask() {
 	(static_cast<MissionObjective*>(stub))->clearFailTask();
+}
+
+bool MissionObjectiveAdapter::isPlayerBounty() const {
+	return (static_cast<MissionObjective*>(stub))->isPlayerBounty();
 }
 
 /*

@@ -30,7 +30,7 @@ SingleUseBuffObserver::~SingleUseBuffObserver() {
 
 int SingleUseBuffObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SingleUseBuffObserverImplementation* _implementation = static_cast<SingleUseBuffObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void SingleUseBuffObserverImplementation::finalize() {
 void SingleUseBuffObserverImplementation::_initializeImplementation() {
 	_setClassHelper(SingleUseBuffObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -30,7 +30,7 @@ MissionObserver::~MissionObserver() {
 
 int MissionObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	MissionObserverImplementation* _implementation = static_cast<MissionObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int MissionObserver::notifyObserverEvent(unsigned int eventType, Observable* obs
 
 void MissionObserver::destroyObjectFromDatabase() {
 	MissionObserverImplementation* _implementation = static_cast<MissionObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void MissionObserverImplementation::finalize() {
 void MissionObserverImplementation::_initializeImplementation() {
 	_setClassHelper(MissionObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

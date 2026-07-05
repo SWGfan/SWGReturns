@@ -54,7 +54,7 @@ object_weapon_ranged_grenade_grenade_fallback = object_weapon_ranged_grenade_sha
 	idealRange = 20,
 	idealAccuracy = 15,
 
-	maxRange = 12,
+	maxRange = 32,
 	maxRangeAccuracy = -30,
 
 	minDamage = 98,

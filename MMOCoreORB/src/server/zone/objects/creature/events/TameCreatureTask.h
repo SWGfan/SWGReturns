@@ -81,11 +81,8 @@ public:
 			break;
 		case FINAL:
 			float tamingChance = creature->getChanceToTame(player);
-			int failureChance = System::random(100);
-			player->sendSystemMessage("Your taming chance against this creature was: " + String::valueOf(tamingChance));
-			player->sendSystemMessage("The creature rolled a " + String::valueOf(failureChance) + " against your tame!");
 
-			if (tamingChance > failureChance)
+			if (tamingChance > System::random(100))
 				success(false);
 			else {
 				player->sendSystemMessage("@hireling/hireling:taming_fail"); // You fail to tame the creature.
@@ -93,9 +90,15 @@ public:
 				resetStatus();
 
 				int ferocity = creature->getFerocity();
+				int aggroChance = System::random(20 - ferocity);
 
-				if (System::random(20 - ferocity) == 0) {
-					CombatManager::instance()->startCombat(creature,player,true);
+				if (aggroChance == 0 && creature->isAiAgent()) {
+					AiAgent* agent = creature->asAiAgent();
+
+					if (agent != nullptr) {
+						Locker aLock(agent);
+						agent->addDefender(player);
+					}
 				}
 			}
 
@@ -206,7 +209,7 @@ public:
 			agent->clearPatrolPoints();
 
 			agent->setCreatureBitmask(CreatureFlag::PET);
-			agent->activateLoad("");
+			agent->setAITemplate();
 		}
 
 		creature->getZone()->broadcastObject(creature, true);
@@ -233,9 +236,15 @@ public:
 			return;
 
 		creature->setPvpStatusBitmask(originalMask, true);
+
 		if (creature->isAiAgent()) {
 			AiAgent* agent = cast<AiAgent*>(creature.get());
-			agent->activateLoad("");
+
+			if (agent == nullptr)
+				return;
+
+			agent->clearCreatureBit(CreatureFlag::STATIONARY);
+			agent->setAITemplate();
 		}
 	}
 };

@@ -48,6 +48,7 @@ object_draft_schematic_community_crafting_component_reinforced_wall_module = obj
 	complexity = 15,
 	size = 1,
 	factoryCrateSize = 0,
+	factoryCrateType = "object/factory/factory_crate_generic_items.iff",
 
 	xpType = "crafting_general",
 	xp = 0,
@@ -64,7 +65,7 @@ object_draft_schematic_community_crafting_component_reinforced_wall_module = obj
 	ingredientTitleNames = {"foundation", "support", "refactor"},
 	ingredientSlotType = {2, 2, 3},
 	resourceTypes = {"object/tangible/loot/quest/shared_endrine.iff", "object/tangible/loot/quest/shared_rudic.iff", "object/tangible/component/structure/shared_reinforced_wall_module.iff"},
-	resourceQuantities = {1, 1, 1},
+	resourceQuantities = {10, 10, 1},
 	contribution = {100, 100, 20},
 
 

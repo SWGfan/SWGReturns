@@ -30,7 +30,7 @@ SuiListBox::~SuiListBox() {
 
 void SuiListBox::init() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void SuiListBox::init() {
 
 void SuiListBox::addMenuItem(const String& name, unsigned long long objectID) {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ void SuiListBox::addMenuItem(const String& name, unsigned long long objectID) {
 
 String SuiListBox::getMenuItemName(int index) {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ String SuiListBox::getMenuItemName(int index) {
 
 void SuiListBox::removeAllMenuItems() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void SuiListBox::removeAllMenuItems() {
 
 unsigned long long SuiListBox::getMenuObjectID(unsigned int idx) {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ unsigned long long SuiListBox::getMenuObjectID(unsigned int idx) {
 
 int SuiListBox::getMenuSize() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -120,7 +120,7 @@ int SuiListBox::getMenuSize() {
 
 BaseMessage* SuiListBox::generateMessage() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -130,7 +130,7 @@ BaseMessage* SuiListBox::generateMessage() {
 
 void SuiListBox::setNextBox(unsigned int boxID) {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -145,7 +145,7 @@ void SuiListBox::setNextBox(unsigned int boxID) {
 
 void SuiListBox::setPreviousBox(unsigned int boxID) {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -160,7 +160,7 @@ void SuiListBox::setPreviousBox(unsigned int boxID) {
 
 unsigned long long SuiListBox::getNextBox() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -174,7 +174,7 @@ unsigned long long SuiListBox::getNextBox() {
 
 unsigned long long SuiListBox::getPreviousBox() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -188,7 +188,7 @@ unsigned long long SuiListBox::getPreviousBox() {
 
 bool SuiListBox::isListBox() {
 	SuiListBoxImplementation* _implementation = static_cast<SuiListBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +233,7 @@ void SuiListBoxImplementation::finalize() {
 void SuiListBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiListBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -425,7 +425,7 @@ unsigned long long SuiListBoxImplementation::getMenuObjectID(unsigned int idx) {
 	// server/zone/objects/player/sui/listbox/SuiListBox.idl():  			SuiListBoxMenuItem menuItem = menuItems.get(idx);
 	ManagedReference<SuiListBoxMenuItem* > menuItem = (&menuItems)->get(idx);
 	// server/zone/objects/player/sui/listbox/SuiListBox.idl():  		}
-	if (menuItem != nullptr)	// server/zone/objects/player/sui/listbox/SuiListBox.idl():  				return menuItem.getObjectID();
+	if (menuItem)	// server/zone/objects/player/sui/listbox/SuiListBox.idl():  				return menuItem.getObjectID();
 	return menuItem->getObjectID();
 }
 	// server/zone/objects/player/sui/listbox/SuiListBox.idl():  		return 0;

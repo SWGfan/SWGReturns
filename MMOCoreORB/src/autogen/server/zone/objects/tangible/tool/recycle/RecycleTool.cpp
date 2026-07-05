@@ -32,7 +32,7 @@ RecycleTool::~RecycleTool() {
 
 void RecycleTool::initializeTransientMembers() {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void RecycleTool::initializeTransientMembers() {
 
 void RecycleTool::loadTemplateData(SharedObjectTemplate* templateData) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void RecycleTool::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void RecycleTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void RecycleTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creat
 
 int RecycleTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ int RecycleTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID)
 
 void RecycleTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -92,7 +92,7 @@ void RecycleTool::updateCraftingValues(CraftingValues* values, bool firstUpdate)
 
 int RecycleTool::getToolType() {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,7 +106,7 @@ int RecycleTool::getToolType() {
 
 int RecycleTool::getSelectedResource() {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -120,7 +120,7 @@ int RecycleTool::getSelectedResource() {
 
 void RecycleTool::setSelectedResource(int res) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +135,7 @@ void RecycleTool::setSelectedResource(int res) {
 
 String RecycleTool::getSelectedTypeName() {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ String RecycleTool::getSelectedTypeName() {
 
 void RecycleTool::setSelectedTypeName(String& res) {
 	RecycleToolImplementation* _implementation = static_cast<RecycleToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -197,7 +197,7 @@ void RecycleToolImplementation::finalize() {
 void RecycleToolImplementation::_initializeImplementation() {
 	_setClassHelper(RecycleToolHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

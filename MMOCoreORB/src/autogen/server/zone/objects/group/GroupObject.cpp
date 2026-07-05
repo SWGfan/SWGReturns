@@ -8,13 +8,11 @@
 
 #include "server/chat/room/ChatRoom.h"
 
-#include "server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h"
-
 /*
  *	GroupObjectStub
  */
 
-enum {RPC_SENDBASELINESTO__SCENEOBJECT_ = 1552788934,RPC_UPDATEPVPSTATUSNEARCREATURE__CREATUREOBJECT_,RPC_SENDSYSTEMMESSAGE__STRING_BOOL_,RPC_ADDMEMBER__CREATUREOBJECT_,RPC_REMOVEMEMBER__CREATUREOBJECT_,RPC_DISBAND__,RPC_MAKELEADER__CREATUREOBJECT_,RPC_HASMEMBER__CREATUREOBJECT_,RPC_HASMEMBER__LONG_,RPC_STARTCHATROOM__CREATUREOBJECT_,RPC_DESTROYCHATROOM__,RPC_GETGROUPHARVESTMODIFIER__CREATUREOBJECT_,RPC_CALCGROUPLEVEL__,RPC_GETGROUPLEVEL__,RPC_GETCHATROOM__,RPC_GETGROUPSIZE__,RPC_GETNUMBEROFPLAYERMEMBERS__,RPC_GETGROUPMEMBER__INT_,RPC_INITIALIZELEADER__CREATUREOBJECT_,RPC_GETLEADER__,RPC_ISGROUPOBJECT__,RPC_HASSQUADLEADER__,RPC_ADDGROUPMODIFIERS__,RPC_REMOVEGROUPMODIFIERS__,RPC_ISOTHERMEMBERPLAYINGMUSIC__CREATUREOBJECT_,RPC_GETBANDSONG__,RPC_SETBANDSONG__STRING_,RPC_GETLOOTRULE__,RPC_SETLOOTRULE__INT_,RPC_GETMASTERLOOTERID__,RPC_SETMASTERLOOTERID__LONG_,RPC_CHECKMASTERLOOTER__CREATUREOBJECT_,RPC_SCHEDULEUPDATENEARESTMISSIONFORGROUP__INT_,RPC_UPDATELOOTRULES__};
+enum {RPC_SENDBASELINESTO__SCENEOBJECT_ = 1552788934,RPC_UPDATEPVPSTATUSNEARCREATURE__CREATUREOBJECT_,RPC_SENDSYSTEMMESSAGE__STRING_BOOL_,RPC_ADDMEMBER__CREATUREOBJECT_,RPC_REMOVEMEMBER__CREATUREOBJECT_,RPC_DISBAND__,RPC_MAKELEADER__CREATUREOBJECT_,RPC_HASMEMBER__CREATUREOBJECT_,RPC_HASMEMBER__LONG_,RPC_STARTCHATROOM__CREATUREOBJECT_,RPC_DESTROYCHATROOM__,RPC_GETGROUPHARVESTMODIFIER__CREATUREOBJECT_,RPC_CALCGROUPLEVEL__,RPC_GETGROUPLEVEL__BOOL_,RPC_GETFACTIONPETLEVEL__,RPC_GETCHATROOM__,RPC_GETGROUPSIZE__,RPC_GETNUMBEROFPLAYERMEMBERS__,RPC_GETGROUPMEMBER__INT_,RPC_INITIALIZELEADER__CREATUREOBJECT_,RPC_GETLEADER__,RPC_ISGROUPOBJECT__,RPC_HASSQUADLEADER__,RPC_ADDGROUPMODIFIERS__,RPC_REMOVEGROUPMODIFIERS__,RPC_ISOTHERMEMBERPLAYINGMUSIC__CREATUREOBJECT_,RPC_GETLOOTRULE__,RPC_SETLOOTRULE__INT_,RPC_GETMASTERLOOTERID__,RPC_SETMASTERLOOTERID__LONG_,RPC_CHECKMASTERLOOTER__CREATUREOBJECT_,RPC_SCHEDULEUPDATENEARESTMISSIONFORGROUP__INT_,RPC_UPDATELOOTRULES__};
 
 GroupObject::GroupObject() : SceneObject(DummyConstructorParameter::instance()) {
 	GroupObjectImplementation* _implementation = new GroupObjectImplementation();
@@ -34,7 +32,7 @@ GroupObject::~GroupObject() {
 
 void GroupObject::sendBaselinesTo(SceneObject* player) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +47,7 @@ void GroupObject::sendBaselinesTo(SceneObject* player) {
 
 void GroupObject::broadcastMessage(BaseMessage* msg) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -59,7 +57,7 @@ void GroupObject::broadcastMessage(BaseMessage* msg) {
 
 void GroupObject::broadcastMessage(CreatureObject* player, BaseMessage* msg, bool sendSelf) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +67,7 @@ void GroupObject::broadcastMessage(CreatureObject* player, BaseMessage* msg, boo
 
 void GroupObject::updatePvPStatusNearCreature(CreatureObject* creature) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +82,7 @@ void GroupObject::updatePvPStatusNearCreature(CreatureObject* creature) {
 
 void GroupObject::sendSystemMessage(StringIdChatParameter& param, bool sendLeader) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -94,7 +92,7 @@ void GroupObject::sendSystemMessage(StringIdChatParameter& param, bool sendLeade
 
 void GroupObject::sendSystemMessage(const String& fullPath, bool sendLeader) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +108,7 @@ void GroupObject::sendSystemMessage(const String& fullPath, bool sendLeader) {
 
 void GroupObject::sendSystemMessage(StringIdChatParameter& param, CreatureObject* excluded) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -120,7 +118,7 @@ void GroupObject::sendSystemMessage(StringIdChatParameter& param, CreatureObject
 
 void GroupObject::addMember(CreatureObject* newMember) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +133,7 @@ void GroupObject::addMember(CreatureObject* newMember) {
 
 void GroupObject::removeMember(CreatureObject* member) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +149,7 @@ void GroupObject::removeMember(CreatureObject* member) {
 
 void GroupObject::disband() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +164,7 @@ void GroupObject::disband() {
 
 void GroupObject::makeLeader(CreatureObject* player) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +179,7 @@ void GroupObject::makeLeader(CreatureObject* player) {
 
 bool GroupObject::hasMember(CreatureObject* member) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +194,7 @@ bool GroupObject::hasMember(CreatureObject* member) {
 
 bool GroupObject::hasMember(unsigned long long member) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,7 +209,7 @@ bool GroupObject::hasMember(unsigned long long member) {
 
 void GroupObject::startChatRoom(CreatureObject* leader) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -227,7 +225,7 @@ void GroupObject::startChatRoom(CreatureObject* leader) {
 
 void GroupObject::destroyChatRoom() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -242,7 +240,7 @@ void GroupObject::destroyChatRoom() {
 
 float GroupObject::getGroupHarvestModifier(CreatureObject* player) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -257,7 +255,7 @@ float GroupObject::getGroupHarvestModifier(CreatureObject* player) {
 
 void GroupObject::calcGroupLevel() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -269,23 +267,38 @@ void GroupObject::calcGroupLevel() {
 	}
 }
 
-int GroupObject::getGroupLevel() const {
+int GroupObject::getGroupLevel(bool includeFactionPets) const {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_GETGROUPLEVEL__);
+		DistributedMethod method(this, RPC_GETGROUPLEVEL__BOOL_);
+		method.addBooleanParameter(includeFactionPets);
 
 		return method.executeWithSignedIntReturn();
 	} else {
-		return _implementation->getGroupLevel();
+		return _implementation->getGroupLevel(includeFactionPets);
+	}
+}
+
+int GroupObject::getFactionPetLevel() const {
+	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETFACTIONPETLEVEL__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getFactionPetLevel();
 	}
 }
 
 ChatRoom* GroupObject::getChatRoom() const {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -299,7 +312,7 @@ ChatRoom* GroupObject::getChatRoom() const {
 
 int GroupObject::getGroupSize() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -313,7 +326,7 @@ int GroupObject::getGroupSize() {
 
 int GroupObject::getNumberOfPlayerMembers() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -327,7 +340,7 @@ int GroupObject::getNumberOfPlayerMembers() {
 
 Reference<CreatureObject* > GroupObject::getGroupMember(int index) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -342,7 +355,7 @@ Reference<CreatureObject* > GroupObject::getGroupMember(int index) {
 
 void GroupObject::initializeLeader(CreatureObject* player) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -357,7 +370,7 @@ void GroupObject::initializeLeader(CreatureObject* player) {
 
 Reference<CreatureObject* > GroupObject::getLeader() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -371,7 +384,7 @@ Reference<CreatureObject* > GroupObject::getLeader() {
 
 GroupList* GroupObject::getGroupList() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -381,7 +394,7 @@ GroupList* GroupObject::getGroupList() {
 
 bool GroupObject::isGroupObject() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -395,7 +408,7 @@ bool GroupObject::isGroupObject() {
 
 bool GroupObject::hasSquadLeader() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -409,7 +422,7 @@ bool GroupObject::hasSquadLeader() {
 
 void GroupObject::addGroupModifiers() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -423,7 +436,7 @@ void GroupObject::addGroupModifiers() {
 
 void GroupObject::removeGroupModifiers() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -438,7 +451,7 @@ void GroupObject::removeGroupModifiers() {
 
 bool GroupObject::isOtherMemberPlayingMusic(CreatureObject* player) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -451,41 +464,9 @@ bool GroupObject::isOtherMemberPlayingMusic(CreatureObject* player) {
 	}
 }
 
-String GroupObject::getBandSong() const {
-	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETBANDSONG__);
-
-		String _return_getBandSong;
-		method.executeWithAsciiReturn(_return_getBandSong);
-		return _return_getBandSong;
-	} else {
-		return _implementation->getBandSong();
-	}
-}
-
-void GroupObject::setBandSong(const String& song) {
-	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETBANDSONG__STRING_);
-		method.addAsciiParameter(song);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setBandSong(song);
-	}
-}
-
 int GroupObject::getLootRule() const {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -499,7 +480,7 @@ int GroupObject::getLootRule() const {
 
 void GroupObject::setLootRule(int newRule) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -515,7 +496,7 @@ void GroupObject::setLootRule(int newRule) {
 
 unsigned long long GroupObject::getMasterLooterID() const {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -529,7 +510,7 @@ unsigned long long GroupObject::getMasterLooterID() const {
 
 void GroupObject::setMasterLooterID(unsigned long long newID) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -545,7 +526,7 @@ void GroupObject::setMasterLooterID(unsigned long long newID) {
 
 bool GroupObject::checkMasterLooter(CreatureObject* object) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -560,7 +541,7 @@ bool GroupObject::checkMasterLooter(CreatureObject* object) {
 
 void GroupObject::scheduleUpdateNearestMissionForGroup(unsigned int planetCRC) {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -576,7 +557,7 @@ void GroupObject::scheduleUpdateNearestMissionForGroup(unsigned int planetCRC) {
 
 void GroupObject::updateLootRules() {
 	GroupObjectImplementation* _implementation = static_cast<GroupObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -621,7 +602,7 @@ void GroupObjectImplementation::finalize() {
 void GroupObjectImplementation::_initializeImplementation() {
 	_setClassHelper(GroupObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -710,8 +691,8 @@ bool GroupObjectImplementation::readObjectMember(ObjectInputStream* stream, cons
 		TypeInfo<int >::parseFromBinaryStream(&groupLevel, stream);
 		return true;
 
-	case 0x68fdca98: //GroupObject.bandSong
-		TypeInfo<String >::parseFromBinaryStream(&bandSong, stream);
+	case 0x243f30e: //GroupObject.factionPetLevel
+		TypeInfo<int >::parseFromBinaryStream(&factionPetLevel, stream);
 		return true;
 
 	case 0x48661f7e: //GroupObject.lootRule
@@ -767,11 +748,11 @@ int GroupObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x68fdca98; //GroupObject.bandSong
+	_nameHashCode = 0x243f30e; //GroupObject.factionPetLevel
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&bandSong, stream);
+	TypeInfo<int >::toBinaryStream(&factionPetLevel, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -808,7 +789,7 @@ void GroupObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["groupLevel"] = groupLevel;
 
-	thisObject["bandSong"] = bandSong;
+	thisObject["factionPetLevel"] = factionPetLevel;
 
 	thisObject["lootRule"] = lootRule;
 
@@ -821,21 +802,30 @@ GroupObjectImplementation::GroupObjectImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/group/GroupObject.idl():  		groupLevel = 0;
 	groupLevel = 0;
+	// server/zone/objects/group/GroupObject.idl():  		factionPetLevel = 0;
+	factionPetLevel = 0;
 	// server/zone/objects/group/GroupObject.idl():  		Logger.setLoggingName("GroupObject");
 	Logger::setLoggingName("GroupObject");
 	// server/zone/objects/group/GroupObject.idl():  		chatRoom = null;
-	chatRoom = nullptr;
-	// server/zone/objects/group/GroupObject.idl():  		bandSong = "";
-	bandSong = "";
+	chatRoom = NULL;
 	// server/zone/objects/group/GroupObject.idl():  		lootRule = GroupManager.FREEFORALL;
 	lootRule = GroupManager::FREEFORALL;
 	// server/zone/objects/group/GroupObject.idl():  		masterLooterID = 0;
 	masterLooterID = 0;
 }
 
-int GroupObjectImplementation::getGroupLevel() const{
-	// server/zone/objects/group/GroupObject.idl():  		return groupLevel;
+int GroupObjectImplementation::getGroupLevel(bool includeFactionPets) const{
+	// server/zone/objects/group/GroupObject.idl():  			return groupLevel - factionPetLevel;
+	if (includeFactionPets)	// server/zone/objects/group/GroupObject.idl():  			return groupLevel;
 	return groupLevel;
+
+	else 	// server/zone/objects/group/GroupObject.idl():  			return groupLevel - factionPetLevel;
+	return groupLevel - factionPetLevel;
+}
+
+int GroupObjectImplementation::getFactionPetLevel() const{
+	// server/zone/objects/group/GroupObject.idl():  	 return factionPetLevel;
+	return factionPetLevel;
 }
 
 ChatRoom* GroupObjectImplementation::getChatRoom() const{
@@ -879,16 +869,6 @@ GroupList* GroupObjectImplementation::getGroupList() {
 bool GroupObjectImplementation::isGroupObject() {
 	// server/zone/objects/group/GroupObject.idl():  		return true;
 	return true;
-}
-
-String GroupObjectImplementation::getBandSong() const{
-	// server/zone/objects/group/GroupObject.idl():  		return bandSong;
-	return bandSong;
-}
-
-void GroupObjectImplementation::setBandSong(const String& song) {
-	// server/zone/objects/group/GroupObject.idl():  		bandSong = song;
-	bandSong = song;
 }
 
 int GroupObjectImplementation::getLootRule() const{
@@ -1033,10 +1013,18 @@ void GroupObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_GETGROUPLEVEL__:
+	case RPC_GETGROUPLEVEL__BOOL_:
+		{
+			bool includeFactionPets = inv->getBooleanParameter();
+			
+			int _m_res = getGroupLevel(includeFactionPets);
+			resp->insertSignedInt(_m_res);
+		}
+		break;
+	case RPC_GETFACTIONPETLEVEL__:
 		{
 			
-			int _m_res = getGroupLevel();
+			int _m_res = getFactionPetLevel();
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -1044,7 +1032,7 @@ void GroupObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getChatRoom();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGROUPSIZE__:
@@ -1066,7 +1054,7 @@ void GroupObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getGroupMember(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_INITIALIZELEADER__CREATUREOBJECT_:
@@ -1081,7 +1069,7 @@ void GroupObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getLeader();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ISGROUPOBJECT__:
@@ -1118,21 +1106,6 @@ void GroupObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			bool _m_res = isOtherMemberPlayingMusic(player);
 			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_GETBANDSONG__:
-		{
-			
-			String _m_res = getBandSong();
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_SETBANDSONG__STRING_:
-		{
-			 String song; inv->getAsciiParameter(song);
-			
-			setBandSong(song);
-			
 		}
 		break;
 	case RPC_GETLOOTRULE__:
@@ -1245,8 +1218,12 @@ void GroupObjectAdapter::calcGroupLevel() {
 	(static_cast<GroupObject*>(stub))->calcGroupLevel();
 }
 
-int GroupObjectAdapter::getGroupLevel() const {
-	return (static_cast<GroupObject*>(stub))->getGroupLevel();
+int GroupObjectAdapter::getGroupLevel(bool includeFactionPets) const {
+	return (static_cast<GroupObject*>(stub))->getGroupLevel(includeFactionPets);
+}
+
+int GroupObjectAdapter::getFactionPetLevel() const {
+	return (static_cast<GroupObject*>(stub))->getFactionPetLevel();
 }
 
 ChatRoom* GroupObjectAdapter::getChatRoom() const {
@@ -1291,14 +1268,6 @@ void GroupObjectAdapter::removeGroupModifiers() {
 
 bool GroupObjectAdapter::isOtherMemberPlayingMusic(CreatureObject* player) {
 	return (static_cast<GroupObject*>(stub))->isOtherMemberPlayingMusic(player);
-}
-
-String GroupObjectAdapter::getBandSong() const {
-	return (static_cast<GroupObject*>(stub))->getBandSong();
-}
-
-void GroupObjectAdapter::setBandSong(const String& song) {
-	(static_cast<GroupObject*>(stub))->setBandSong(song);
 }
 
 int GroupObjectAdapter::getLootRule() const {
@@ -1394,8 +1363,8 @@ void GroupObjectPOD::writeJSON(nlohmann::json& j) {
 	if (groupLevel)
 		thisObject["groupLevel"] = groupLevel.value();
 
-	if (bandSong)
-		thisObject["bandSong"] = bandSong.value();
+	if (factionPetLevel)
+		thisObject["factionPetLevel"] = factionPetLevel.value();
 
 	if (lootRule)
 		thisObject["lootRule"] = lootRule.value();
@@ -1453,12 +1422,12 @@ int GroupObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (bandSong) {
-	_nameHashCode = 0x68fdca98; //GroupObject.bandSong
+	if (factionPetLevel) {
+	_nameHashCode = 0x243f30e; //GroupObject.factionPetLevel
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&bandSong.value(), stream);
+	TypeInfo<int >::toBinaryStream(&factionPetLevel.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -1519,11 +1488,11 @@ bool GroupObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32& n
 		}
 		return true;
 
-	case 0x68fdca98: //GroupObject.bandSong
+	case 0x243f30e: //GroupObject.factionPetLevel
 		{
-			String _mnbandSong;
-			TypeInfo<String >::parseFromBinaryStream(&_mnbandSong, stream);
-			bandSong = std::move(_mnbandSong);
+			int _mnfactionPetLevel;
+			TypeInfo<int >::parseFromBinaryStream(&_mnfactionPetLevel, stream);
+			factionPetLevel = std::move(_mnfactionPetLevel);
 		}
 		return true;
 
@@ -1575,7 +1544,7 @@ void GroupObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<int >::toBinaryStream(&groupLevel.value(), stream);
 
-	TypeInfo<String >::toBinaryStream(&bandSong.value(), stream);
+	TypeInfo<int >::toBinaryStream(&factionPetLevel.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&lootRule.value(), stream);
 

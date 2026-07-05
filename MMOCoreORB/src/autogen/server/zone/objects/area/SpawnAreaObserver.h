@@ -24,21 +24,7 @@
 #endif
 #include "engine/util/json_utils.h"
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace area {
-
-class SpawnArea;
-
-class SpawnAreaPOD;
-
-} // namespace area
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::area;
+#include "server/zone/objects/area/SpawnArea.h"
 
 #include "engine/log/Logger.h"
 

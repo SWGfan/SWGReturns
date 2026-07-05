@@ -93,22 +93,6 @@ using namespace server::zone::objects::scene;
 namespace server {
 namespace zone {
 namespace objects {
-namespace guild {
-
-class GuildObject;
-
-class GuildObjectPOD;
-
-} // namespace guild
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::guild;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace tangible {
 namespace terminal {
 namespace guild {
@@ -147,6 +131,10 @@ using namespace server::zone::objects::creature;
 #include "server/chat/StringIdChatParameter.h"
 
 #include "system/util/VectorMap.h"
+
+#include "server/zone/objects/guild/GuildObject.h"
+
+#include "server/zone/managers/guild/GuildObjectIterator.h"
 
 #include "engine/core/ManagedService.h"
 
@@ -294,6 +282,8 @@ public:
 	void castVote(GuildObject* guild, CreatureObject* player, unsigned long long candidateID);
 
 	void viewElectionStandings(GuildObject* guild, CreatureObject* player, GuildTerminal* terminal);
+
+	void iterateGuilds(const GuildObjectIterator& iterator);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -489,6 +479,8 @@ public:
 	void castVote(GuildObject* guild, CreatureObject* player, unsigned long long candidateID);
 
 	void viewElectionStandings(GuildObject* guild, CreatureObject* player, GuildTerminal* terminal);
+
+	void iterateGuilds(const GuildObjectIterator& iterator);
 
 	WeakReference<GuildManager*> _this;
 

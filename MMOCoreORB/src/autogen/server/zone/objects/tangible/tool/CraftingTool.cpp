@@ -42,7 +42,7 @@ CraftingTool::~CraftingTool() {
 
 void CraftingTool::initializeTransientMembers() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ void CraftingTool::initializeTransientMembers() {
 
 void CraftingTool::loadTemplateData(SharedObjectTemplate* templateData) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void CraftingTool::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void CraftingTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -76,7 +76,7 @@ void CraftingTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Crea
 
 int CraftingTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ int CraftingTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 
 void CraftingTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -102,7 +102,7 @@ void CraftingTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 void CraftingTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -112,7 +112,7 @@ void CraftingTool::updateCraftingValues(CraftingValues* values, bool firstUpdate
 
 bool CraftingTool::isCraftingTool() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ bool CraftingTool::isCraftingTool() {
 
 bool CraftingTool::isReady() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ bool CraftingTool::isReady() {
 
 void CraftingTool::setReady() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ void CraftingTool::setReady() {
 
 bool CraftingTool::isBusy() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ bool CraftingTool::isBusy() {
 
 void CraftingTool::setBusy() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ void CraftingTool::setBusy() {
 
 bool CraftingTool::isFinished() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool CraftingTool::isFinished() {
 
 void CraftingTool::setFinished() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ void CraftingTool::setFinished() {
 
 void CraftingTool::sendToolStartFailure(CreatureObject* player, const String& message) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -226,7 +226,7 @@ void CraftingTool::sendToolStartFailure(CreatureObject* player, const String& me
 
 int CraftingTool::getToolType() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -240,7 +240,7 @@ int CraftingTool::getToolType() {
 
 float CraftingTool::getEffectiveness() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +254,7 @@ float CraftingTool::getEffectiveness() {
 
 float CraftingTool::getComplexityLevel() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +268,7 @@ float CraftingTool::getComplexityLevel() {
 
 Reference<TangibleObject* > CraftingTool::getPrototype() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -282,7 +282,7 @@ Reference<TangibleObject* > CraftingTool::getPrototype() {
 
 Reference<ManufactureSchematic* > CraftingTool::getManufactureSchematic() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -296,7 +296,7 @@ Reference<ManufactureSchematic* > CraftingTool::getManufactureSchematic() {
 
 Vector<unsigned int>* CraftingTool::getToolTabs() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -306,7 +306,7 @@ Vector<unsigned int>* CraftingTool::getToolTabs() {
 
 void CraftingTool::disperseItems() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -320,7 +320,7 @@ void CraftingTool::disperseItems() {
 
 int CraftingTool::getForceCriticalAssembly() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -334,7 +334,7 @@ int CraftingTool::getForceCriticalAssembly() {
 
 int CraftingTool::getForceCriticalExperiment() {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -348,7 +348,7 @@ int CraftingTool::getForceCriticalExperiment() {
 
 void CraftingTool::setForceCriticalAssembly(int amount) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -363,7 +363,7 @@ void CraftingTool::setForceCriticalAssembly(int amount) {
 
 void CraftingTool::setForceCriticalExperiment(int amount) {
 	CraftingToolImplementation* _implementation = static_cast<CraftingToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -409,7 +409,7 @@ void CraftingToolImplementation::finalize() {
 void CraftingToolImplementation::_initializeImplementation() {
 	_setClassHelper(CraftingToolHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -843,14 +843,14 @@ void CraftingToolAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPrototype();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETMANUFACTURESCHEMATIC__:
 		{
 			
 			DistributedObject* _m_res = getManufactureSchematic();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_DISPERSEITEMS__:

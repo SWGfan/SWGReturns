@@ -44,7 +44,7 @@ CampSiteActiveArea::~CampSiteActiveArea() {
 
 void CampSiteActiveArea::initializeTransientMembers() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void CampSiteActiveArea::initializeTransientMembers() {
 
 void CampSiteActiveArea::init(CampStructureTemplate* campData) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +69,7 @@ void CampSiteActiveArea::init(CampStructureTemplate* campData) {
 
 void CampSiteActiveArea::notifyEnter(SceneObject* player) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ void CampSiteActiveArea::notifyEnter(SceneObject* player) {
 
 void CampSiteActiveArea::notifyExit(SceneObject* player) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -99,7 +99,7 @@ void CampSiteActiveArea::notifyExit(SceneObject* player) {
 
 void CampSiteActiveArea::setTerminal(Terminal* term) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ void CampSiteActiveArea::setTerminal(Terminal* term) {
 
 void CampSiteActiveArea::setOwner(CreatureObject* player) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +131,7 @@ void CampSiteActiveArea::setOwner(CreatureObject* player) {
 
 void CampSiteActiveArea::setCamp(StructureObject* c) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,7 +147,7 @@ void CampSiteActiveArea::setCamp(StructureObject* c) {
 
 StructureObject* CampSiteActiveArea::getCamp() const {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -161,7 +161,7 @@ StructureObject* CampSiteActiveArea::getCamp() const {
 
 int CampSiteActiveArea::getMedicalRating() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -175,7 +175,7 @@ int CampSiteActiveArea::getMedicalRating() {
 
 int CampSiteActiveArea::getHealthWoundRegenRate() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +189,7 @@ int CampSiteActiveArea::getHealthWoundRegenRate() {
 
 int CampSiteActiveArea::getActionWoundRegenRate() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -203,7 +203,7 @@ int CampSiteActiveArea::getActionWoundRegenRate() {
 
 int CampSiteActiveArea::getMindWoundRegenRate() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ int CampSiteActiveArea::getMindWoundRegenRate() {
 
 float CampSiteActiveArea::getAggroMod() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -231,7 +231,7 @@ float CampSiteActiveArea::getAggroMod() {
 
 bool CampSiteActiveArea::isCampArea() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -245,7 +245,7 @@ bool CampSiteActiveArea::isCampArea() {
 
 int CampSiteActiveArea::getVisitorCount() const {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -259,7 +259,7 @@ int CampSiteActiveArea::getVisitorCount() const {
 
 unsigned int CampSiteActiveArea::getUptime() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -273,7 +273,7 @@ unsigned int CampSiteActiveArea::getUptime() {
 
 bool CampSiteActiveArea::isAbandoned() const {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -287,7 +287,7 @@ bool CampSiteActiveArea::isAbandoned() const {
 
 int CampSiteActiveArea::notifyHealEvent(long long quantity) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -302,7 +302,7 @@ int CampSiteActiveArea::notifyHealEvent(long long quantity) {
 
 int CampSiteActiveArea::notifyCombatEvent() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -316,7 +316,7 @@ int CampSiteActiveArea::notifyCombatEvent() {
 
 void CampSiteActiveArea::abandonCamp() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +331,7 @@ void CampSiteActiveArea::abandonCamp() {
 
 void CampSiteActiveArea::setAbandoned(bool isAbandoned) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -347,7 +347,7 @@ void CampSiteActiveArea::setAbandoned(bool isAbandoned) {
 
 bool CampSiteActiveArea::despawnCamp() {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -361,7 +361,7 @@ bool CampSiteActiveArea::despawnCamp() {
 
 void CampSiteActiveArea::assumeOwnership(CreatureObject* player) {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -377,7 +377,7 @@ void CampSiteActiveArea::assumeOwnership(CreatureObject* player) {
 
 CreatureObject* CampSiteActiveArea::getOwner() const {
 	CampSiteActiveAreaImplementation* _implementation = static_cast<CampSiteActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -422,7 +422,7 @@ void CampSiteActiveAreaImplementation::finalize() {
 void CampSiteActiveAreaImplementation::_initializeImplementation() {
 	_setClassHelper(CampSiteActiveAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -614,17 +614,17 @@ CampSiteActiveAreaImplementation::CampSiteActiveAreaImplementation() {
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		currentXp = 0;
 	currentXp = 0;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		campOwner = null;
-	campOwner = nullptr;
+	campOwner = NULL;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		camp = null;
-	camp = nullptr;
+	camp = NULL;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		terminal = null;
-	terminal = nullptr;
+	terminal = NULL;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		abandonTask = null;
-	abandonTask = nullptr;
+	abandonTask = NULL;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		despawnTask = null;
-	despawnTask = nullptr;
+	despawnTask = NULL;
 	// server/zone/objects/area/CampSiteActiveArea.idl():  		campFire = null;
-	campFire = nullptr;
+	campFire = NULL;
 }
 
 void CampSiteActiveAreaImplementation::setTerminal(Terminal* term) {
@@ -758,7 +758,7 @@ void CampSiteActiveAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 		{
 			
 			DistributedObject* _m_res = getCamp();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETMEDICALRATING__:
@@ -873,7 +873,7 @@ void CampSiteActiveAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 		{
 			
 			DistributedObject* _m_res = getOwner();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

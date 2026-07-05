@@ -50,7 +50,7 @@ object_draft_schematic_droid_component_armor_module_6 = object_draft_schematic_d
    craftingToolTab = 32, -- (See DraftSchematicObjectTemplate.h)
    complexity = 32, 
    size = 2, 
-   factoryCrateSize = 1000,
+	factoryCrateType = "object/factory/factory_crate_electronics.iff",
 
    xpType = "crafting_droid_general", 
    xp = 250, 
@@ -66,7 +66,7 @@ object_draft_schematic_droid_component_armor_module_6 = object_draft_schematic_d
    ingredientTemplateNames = {"craft_droid_ingredients_n", "craft_droid_ingredients_n", "craft_droid_ingredients_n", "craft_droid_ingredients_n", "craft_droid_ingredients_n"},
    ingredientTitleNames = {"module_frame", "armor_filler", "stress_resist_plate", "fracture_capture_medium", "reinforcement_layer"},
    ingredientSlotType = {0, 0, 0, 0, 1},
-   resourceTypes = {"steel_duralloy", "metal_ferrous", "aluminum_linksteel", "fiberplast", "object/tangible/component/armor/shared_armor_segment_composite.iff"},
+   resourceTypes = {"steel_duralloy", "metal_ferrous", "aluminum_linksteel", "fiberplast", "object/tangible/component/armor/shared_armor_segment_armor_advanced.iff"},
    resourceQuantities = {70, 20, 25, 10, 1},
    contribution = {100, 100, 100, 100, 100},
 

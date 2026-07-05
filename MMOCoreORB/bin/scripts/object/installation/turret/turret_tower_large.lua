@@ -44,7 +44,7 @@
 object_installation_turret_turret_tower_large = object_installation_turret_shared_turret_tower_large:new {
 	pvpStatusBitmask = ATTACKABLE,
 	optionsBitmask = 0,
-	maxCondition = 750000,
+	maxCondition = 300000,
 	zoneComponent = "TurretZoneComponent",
 	dataObjectComponent = "TurretDataComponent",
 	-- Damagetypes in WeaponObject
@@ -52,16 +52,16 @@ object_installation_turret_turret_tower_large = object_installation_turret_share
 	-- LIGHT, MEDIUM, HEAVY
 	rating = HEAVY,
 
-	kinetic = 95,
-	energy = 90,
+	kinetic = 90,
+	energy = 95,
 	electricity = 90,
 	stun = 100,
-	blast = 90,
+	blast = -1,
 	heat = 90,
 	cold = 90,
 	acid = 90,
-	lightSaber = 90,
-	chanceHit = 75,
+	lightSaber = -1,
+	chanceHit = 4,
 	weapon = "object/weapon/ranged/turret/turret_tower_large.iff",
 
 }

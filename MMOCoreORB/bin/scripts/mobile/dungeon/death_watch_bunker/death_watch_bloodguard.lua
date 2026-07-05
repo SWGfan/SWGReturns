@@ -2,6 +2,7 @@ death_watch_bloodguard = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_dthwatch_red",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 121,
@@ -11,7 +12,7 @@ death_watch_bloodguard = Creature:new {
 	baseXp = 11390,
 	baseHAM = 50000,
 	baseHAMmax = 50000,
-	armor = 2,
+	armor = 1,
 	resists = {55,55,70,60,30,30,100,40,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -32,63 +33,26 @@ death_watch_bloodguard = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "wearables_uncommon", chance = 10000000}
+				{group = "death_watch_bunker_commoners",   chance = 6300000},
+				{group = "death_watch_bunker_lieutenants", chance = 3400000},
+				{group = "death_watch_bunker_ingredient_protective",  chance = 100000},
+				{group = "dwb_weapons",  chance = 100000},
+				{group = "death_watch_bunker_ingredient_binary",  chance = 100000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 6000000},
-				{group = "death_watch_bunker_lieutenants", chance = 4000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_lieutenants", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_common", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "jetpack_base", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "junk", chance = 10000000}
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "black_suns", chance = 10000000}
-			},
-			lootChance = 100000
-		},
+			lootChance = 7500000
+		}
 	},
-	weapons = {"pirate_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "pirate_weapons_heavy",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster,tkamaster)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster,tkamaster),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(death_watch_bloodguard, "death_watch_bloodguard")

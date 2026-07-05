@@ -34,7 +34,7 @@ CityTreasuryWithdrawalSession::~CityTreasuryWithdrawalSession() {
 
 void CityTreasuryWithdrawalSession::setReason(const String& r) {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ void CityTreasuryWithdrawalSession::setReason(const String& r) {
 
 int CityTreasuryWithdrawalSession::initializeSession() {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ int CityTreasuryWithdrawalSession::initializeSession() {
 
 int CityTreasuryWithdrawalSession::sendTransferBox(const String& reason) {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int CityTreasuryWithdrawalSession::sendTransferBox(const String& reason) {
 
 int CityTreasuryWithdrawalSession::withdrawCredits(int value) {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ int CityTreasuryWithdrawalSession::withdrawCredits(int value) {
 
 int CityTreasuryWithdrawalSession::cancelSession() {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ int CityTreasuryWithdrawalSession::cancelSession() {
 
 int CityTreasuryWithdrawalSession::clearSession() {
 	CityTreasuryWithdrawalSessionImplementation* _implementation = static_cast<CityTreasuryWithdrawalSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void CityTreasuryWithdrawalSessionImplementation::finalize() {
 void CityTreasuryWithdrawalSessionImplementation::_initializeImplementation() {
 	_setClassHelper(CityTreasuryWithdrawalSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -326,7 +326,7 @@ int CityTreasuryWithdrawalSessionImplementation::cancelSession() {
 	// server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl():  		CreatureObject creature = creatureObject;
 	ManagedReference<CreatureObject* > creature = creatureObject;
 	// server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl():  		return 
-	if (creature != nullptr)	// server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl():  			creature.dropActiveSession(SessionFacadeType.CITYWITHDRAW);
+	if (creature)	// server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl():  			creature.dropActiveSession(SessionFacadeType.CITYWITHDRAW);
 	creature->dropActiveSession(SessionFacadeType::CITYWITHDRAW);
 	// server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl():  		return 0;
 	return 0;

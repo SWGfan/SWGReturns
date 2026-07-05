@@ -44,11 +44,11 @@
 object_tangible_food_crafted_drink_caf = object_tangible_food_crafted_shared_drink_caf:new {
 	templateType = CONSUMABLE,
 
-	duration = 45,
+	duration = 300,
 	filling = 10,
 	nutrition = 10,
 
-	effectType = 1,
+	effectType = 4,
 
 	fillingMin = 17,
 	fillingMax = 10,
@@ -61,7 +61,7 @@ object_tangible_food_crafted_drink_caf = object_tangible_food_crafted_shared_dri
 	quantityMin = 6,
 	quantityMax = 10,
 
-	modifiers = { "willpower", 0 },
+	modifiers = { "alert", 0 },
 
 	buffName = "food.drink_caf",
 	buffCRC = 0,

@@ -12,35 +12,32 @@
 
 class CraftingStationTemplate : public SharedTangibleObjectTemplate {
 private:
-
 	int stationType;
 	int complexityLevel;
 
 public:
 	CraftingStationTemplate() : stationType(0), complexityLevel(0) {
-
 	}
 
 	~CraftingStationTemplate() {
-
 	}
 
-	void readObject(LuaObject* templateData) {
+	void readObject(LuaObject* templateData) override {
 		SharedTangibleObjectTemplate::readObject(templateData);
 
 		stationType = templateData->getIntField("stationType");
 		complexityLevel = templateData->getIntField("complexityLevel");
 	}
 
-	int getStationType() {
+	int getStationType() const {
 		return stationType;
 	}
 
-	int getComplexityLevel() {
+	int getComplexityLevel() const {
 		return complexityLevel;
 	}
 
-	bool isCraftingStationTemplate() {
+	bool isCraftingStationTemplate() const override {
 		return true;
 	}
 };

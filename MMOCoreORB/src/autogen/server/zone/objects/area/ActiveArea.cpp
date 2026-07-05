@@ -4,17 +4,15 @@
 
 #include "ActiveArea.h"
 
-#include "server/zone/objects/area/areashapes/AreaShape.h"
+#include "server/zone/Zone.h"
 
 #include "server/zone/objects/pathfinding/NavArea.h"
-
-#include "server/zone/Zone.h"
 
 /*
  *	ActiveAreaStub
  */
 
-enum {RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_ = 1878528101,RPC_ENQUEUEENTEREVENT__SCENEOBJECT_,RPC_ENQUEUEEXITEVENT__SCENEOBJECT_,RPC_NOTIFYENTER__SCENEOBJECT_,RPC_NOTIFYEXIT__SCENEOBJECT_,RPC_SETZONE__ZONE_,RPC_ISACTIVEAREA__,RPC_ISREGION__,RPC_ISCITYREGION__,RPC_ISNAVAREA__,RPC_ISNOBUILDAREA__,RPC_ISCAMPINGPERMITTED__,RPC_CONTAINSPOINT__FLOAT_FLOAT_LONG_,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_GETRADIUS2__,RPC_SETNOBUILDAREA__BOOL_,RPC_SETCAMPINGPERMITTED__BOOL_,RPC_SETMUNICIPALZONE__BOOL_,RPC_SETRADIUS__FLOAT_,RPC_ISCAMPAREA__,RPC_SETNOSPAWNAREA__BOOL_,RPC_ISNOSPAWNAREA__,RPC_ISMUNICIPALZONE__,RPC_GETCELLOBJECTID__,RPC_SETCELLOBJECTID__LONG_,RPC_SETAREASHAPE__AREASHAPE_,RPC_GETAREASHAPE__,RPC_INTERSECTSWITH__ACTIVEAREA_,RPC_ATTACHSCENERY__SCENEOBJECT_,RPC_INITIALIZECHILDOBJECT__SCENEOBJECT_};
+enum {RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_ = 1878528101,RPC_ENQUEUEENTEREVENT__SCENEOBJECT_,RPC_ENQUEUEEXITEVENT__SCENEOBJECT_,RPC_NOTIFYENTER__SCENEOBJECT_,RPC_NOTIFYEXIT__SCENEOBJECT_,RPC_SETZONE__ZONE_,RPC_ISACTIVEAREA__,RPC_ISREGION__,RPC_ISCITYREGION__,RPC_ISNAVAREA__,RPC_ISNOBUILDAREA__,RPC_ISCAMPINGPERMITTED__,RPC_CONTAINSPOINT__FLOAT_FLOAT_LONG_,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_GETRADIUS2__,RPC_GETRADIUS__,RPC_SETNOBUILDAREA__BOOL_,RPC_SETCAMPINGPERMITTED__BOOL_,RPC_SETMUNICIPALZONE__BOOL_,RPC_SETRADIUS__FLOAT_,RPC_ISCAMPAREA__,RPC_SETNOSPAWNAREA__BOOL_,RPC_ISNOSPAWNAREA__,RPC_ISMUNICIPALZONE__,RPC_GETCELLOBJECTID__,RPC_SETCELLOBJECTID__LONG_,RPC_SETAREASHAPE__AREASHAPE_,RPC_GETAREASHAPE__,RPC_ISRECTANGULARAREASHAPE__,RPC_INTERSECTSWITH__ACTIVEAREA_,RPC_ATTACHSCENERY__SCENEOBJECT_,RPC_INITIALIZECHILDOBJECT__SCENEOBJECT_};
 
 ActiveArea::ActiveArea() : SceneObject(DummyConstructorParameter::instance()) {
 	ActiveAreaImplementation* _implementation = new ActiveAreaImplementation();
@@ -34,7 +32,7 @@ ActiveArea::~ActiveArea() {
 
 void ActiveArea::sendTo(SceneObject* player, bool doClose, bool forceLoadContainer) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -51,7 +49,7 @@ void ActiveArea::sendTo(SceneObject* player, bool doClose, bool forceLoadContain
 
 void ActiveArea::enqueueEnterEvent(SceneObject* obj) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +64,7 @@ void ActiveArea::enqueueEnterEvent(SceneObject* obj) {
 
 void ActiveArea::enqueueExitEvent(SceneObject* obj) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +79,7 @@ void ActiveArea::enqueueExitEvent(SceneObject* obj) {
 
 void ActiveArea::notifyEnter(SceneObject* object) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +94,7 @@ void ActiveArea::notifyEnter(SceneObject* object) {
 
 void ActiveArea::notifyExit(SceneObject* object) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +109,7 @@ void ActiveArea::notifyExit(SceneObject* object) {
 
 void ActiveArea::setZone(Zone* zone) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +124,7 @@ void ActiveArea::setZone(Zone* zone) {
 
 bool ActiveArea::isActiveArea() {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +138,7 @@ bool ActiveArea::isActiveArea() {
 
 bool ActiveArea::isRegion() {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +152,7 @@ bool ActiveArea::isRegion() {
 
 bool ActiveArea::isCityRegion() {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,9 +164,9 @@ bool ActiveArea::isCityRegion() {
 	}
 }
 
-bool ActiveArea::isNavArea() {
+bool ActiveArea::isNavArea() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +180,7 @@ bool ActiveArea::isNavArea() {
 
 NavArea* ActiveArea::asNavArea() {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -192,7 +190,7 @@ NavArea* ActiveArea::asNavArea() {
 
 bool ActiveArea::isNoBuildArea() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -206,7 +204,7 @@ bool ActiveArea::isNoBuildArea() const {
 
 bool ActiveArea::isCampingPermitted() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -218,9 +216,9 @@ bool ActiveArea::isCampingPermitted() const {
 	}
 }
 
-bool ActiveArea::containsPoint(float x, float y, unsigned long long cellid) {
+bool ActiveArea::containsPoint(float x, float y, unsigned long long cellid) const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -235,9 +233,9 @@ bool ActiveArea::containsPoint(float x, float y, unsigned long long cellid) {
 	}
 }
 
-bool ActiveArea::containsPoint(float x, float y) {
+bool ActiveArea::containsPoint(float x, float y) const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -251,9 +249,9 @@ bool ActiveArea::containsPoint(float x, float y) {
 	}
 }
 
-float ActiveArea::getRadius2() {
+float ActiveArea::getRadius2() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,9 +263,23 @@ float ActiveArea::getRadius2() {
 	}
 }
 
+float ActiveArea::getRadius() const {
+	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETRADIUS__);
+
+		return method.executeWithFloatReturn();
+	} else {
+		return _implementation->getRadius();
+	}
+}
+
 void ActiveArea::setNoBuildArea(bool val) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -283,7 +295,7 @@ void ActiveArea::setNoBuildArea(bool val) {
 
 void ActiveArea::setCampingPermitted(bool val) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -299,7 +311,7 @@ void ActiveArea::setCampingPermitted(bool val) {
 
 void ActiveArea::setMunicipalZone(bool val) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -315,7 +327,7 @@ void ActiveArea::setMunicipalZone(bool val) {
 
 void ActiveArea::setRadius(float r) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -331,7 +343,7 @@ void ActiveArea::setRadius(float r) {
 
 bool ActiveArea::isCampArea() {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -345,7 +357,7 @@ bool ActiveArea::isCampArea() {
 
 void ActiveArea::setNoSpawnArea(bool val) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -361,7 +373,7 @@ void ActiveArea::setNoSpawnArea(bool val) {
 
 bool ActiveArea::isNoSpawnArea() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -375,7 +387,7 @@ bool ActiveArea::isNoSpawnArea() const {
 
 bool ActiveArea::isMunicipalZone() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -389,7 +401,7 @@ bool ActiveArea::isMunicipalZone() const {
 
 unsigned long long ActiveArea::getCellObjectID() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -403,7 +415,7 @@ unsigned long long ActiveArea::getCellObjectID() const {
 
 void ActiveArea::setCellObjectID(unsigned long long celloid) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -419,7 +431,7 @@ void ActiveArea::setCellObjectID(unsigned long long celloid) {
 
 void ActiveArea::setAreaShape(AreaShape* area) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -435,7 +447,7 @@ void ActiveArea::setAreaShape(AreaShape* area) {
 
 AreaShape* ActiveArea::getAreaShape() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -447,9 +459,23 @@ AreaShape* ActiveArea::getAreaShape() const {
 	}
 }
 
-bool ActiveArea::intersectsWith(ActiveArea* area) {
+bool ActiveArea::isRectangularAreaShape() const {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISRECTANGULARAREASHAPE__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isRectangularAreaShape();
+	}
+}
+
+bool ActiveArea::intersectsWith(ActiveArea* area) const {
+	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -464,7 +490,7 @@ bool ActiveArea::intersectsWith(ActiveArea* area) {
 
 void ActiveArea::attachScenery(SceneObject* scene) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -480,7 +506,7 @@ void ActiveArea::attachScenery(SceneObject* scene) {
 
 void ActiveArea::initializeChildObject(SceneObject* controllerObject) {
 	ActiveAreaImplementation* _implementation = static_cast<ActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -526,7 +552,7 @@ void ActiveAreaImplementation::finalize() {
 void ActiveAreaImplementation::_initializeImplementation() {
 	_setClassHelper(ActiveAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -735,7 +761,7 @@ ActiveAreaImplementation::ActiveAreaImplementation() {
 	// server/zone/objects/area/ActiveArea.idl():  		noSpawnArea = false;
 	noSpawnArea = false;
 	// server/zone/objects/area/ActiveArea.idl():  		areaShape = null;
-	areaShape = nullptr;
+	areaShape = NULL;
 	// server/zone/objects/area/ActiveArea.idl():  		Logger.setLoggingName("ActiveArea");
 	Logger::setLoggingName("ActiveArea");
 }
@@ -758,7 +784,7 @@ bool ActiveAreaImplementation::isCityRegion() {
 	return false;
 }
 
-bool ActiveAreaImplementation::isNavArea() {
+bool ActiveAreaImplementation::isNavArea() const{
 	// server/zone/objects/area/ActiveArea.idl():  		return false;
 	return false;
 }
@@ -778,16 +804,23 @@ bool ActiveAreaImplementation::isCampingPermitted() const{
 	return campingPermitted;
 }
 
-float ActiveAreaImplementation::getRadius2() {
+float ActiveAreaImplementation::getRadius2() const{
+	// server/zone/objects/area/ActiveArea.idl():  		float radius = getRadius();
+	float radius = getRadius();
+	// server/zone/objects/area/ActiveArea.idl():  		return radius * radius;
+	return radius * radius;
+}
+
+float ActiveAreaImplementation::getRadius() const{
 	// server/zone/objects/area/ActiveArea.idl():  		}
-	if (areaShape != nullptr){
-	// server/zone/objects/area/ActiveArea.idl():  			return areaShape.getRadius() * areaShape.getRadius();
-	return areaShape->getRadius() * areaShape->getRadius();
+	if (areaShape){
+	// server/zone/objects/area/ActiveArea.idl():  			return areaShape.getRadius();
+	return areaShape->getRadius();
 }
 
 	else {
-	// server/zone/objects/area/ActiveArea.idl():  			return super.getRadius() * super.getRadius();
-	return SceneObjectImplementation::getRadius() * SceneObjectImplementation::getRadius();
+	// server/zone/objects/area/ActiveArea.idl():  			return super.getRadius();
+	return SceneObjectImplementation::getRadius();
 }
 }
 
@@ -808,7 +841,7 @@ void ActiveAreaImplementation::setMunicipalZone(bool val) {
 
 void ActiveAreaImplementation::setRadius(float r) {
 	// server/zone/objects/area/ActiveArea.idl():  		super.
-	if (areaShape != nullptr && r < areaShape->getRadius()){
+	if (areaShape && r < areaShape->getRadius()){
 	// server/zone/objects/area/ActiveArea.idl():  			r = areaShape.getRadius();
 	r = areaShape->getRadius();
 }
@@ -850,7 +883,7 @@ void ActiveAreaImplementation::setAreaShape(AreaShape* area) {
 	// server/zone/objects/area/ActiveArea.idl():  		areaShape = area;
 	areaShape = area;
 	// server/zone/objects/area/ActiveArea.idl():  	}
-	if (areaShape != nullptr){
+	if (areaShape){
 	// server/zone/objects/area/ActiveArea.idl():  			setRadius(areaShape.getRadius());
 	setRadius(areaShape->getRadius());
 }
@@ -859,6 +892,11 @@ void ActiveAreaImplementation::setAreaShape(AreaShape* area) {
 AreaShape* ActiveAreaImplementation::getAreaShape() const{
 	// server/zone/objects/area/ActiveArea.idl():  		return areaShape;
 	return areaShape;
+}
+
+bool ActiveAreaImplementation::isRectangularAreaShape() const{
+	// server/zone/objects/area/ActiveArea.idl():  		return areaShape && areaShape.isRectangularAreaShape();
+	return areaShape && areaShape->isRectangularAreaShape();
 }
 
 void ActiveAreaImplementation::attachScenery(SceneObject* scene) {
@@ -999,6 +1037,13 @@ void ActiveAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertFloat(_m_res);
 		}
 		break;
+	case RPC_GETRADIUS__:
+		{
+			
+			float _m_res = getRadius();
+			resp->insertFloat(_m_res);
+		}
+		break;
 	case RPC_SETNOBUILDAREA__BOOL_:
 		{
 			bool val = inv->getBooleanParameter();
@@ -1087,7 +1132,14 @@ void ActiveAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getAreaShape();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_ISRECTANGULARAREASHAPE__:
+		{
+			
+			bool _m_res = isRectangularAreaShape();
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_INTERSECTSWITH__ACTIVEAREA_:
@@ -1155,7 +1207,7 @@ bool ActiveAreaAdapter::isCityRegion() {
 	return (static_cast<ActiveArea*>(stub))->isCityRegion();
 }
 
-bool ActiveAreaAdapter::isNavArea() {
+bool ActiveAreaAdapter::isNavArea() const {
 	return (static_cast<ActiveArea*>(stub))->isNavArea();
 }
 
@@ -1167,16 +1219,20 @@ bool ActiveAreaAdapter::isCampingPermitted() const {
 	return (static_cast<ActiveArea*>(stub))->isCampingPermitted();
 }
 
-bool ActiveAreaAdapter::containsPoint(float x, float y, unsigned long long cellid) {
+bool ActiveAreaAdapter::containsPoint(float x, float y, unsigned long long cellid) const {
 	return (static_cast<ActiveArea*>(stub))->containsPoint(x, y, cellid);
 }
 
-bool ActiveAreaAdapter::containsPoint(float x, float y) {
+bool ActiveAreaAdapter::containsPoint(float x, float y) const {
 	return (static_cast<ActiveArea*>(stub))->containsPoint(x, y);
 }
 
-float ActiveAreaAdapter::getRadius2() {
+float ActiveAreaAdapter::getRadius2() const {
 	return (static_cast<ActiveArea*>(stub))->getRadius2();
+}
+
+float ActiveAreaAdapter::getRadius() const {
+	return (static_cast<ActiveArea*>(stub))->getRadius();
 }
 
 void ActiveAreaAdapter::setNoBuildArea(bool val) {
@@ -1227,7 +1283,11 @@ AreaShape* ActiveAreaAdapter::getAreaShape() const {
 	return (static_cast<ActiveArea*>(stub))->getAreaShape();
 }
 
-bool ActiveAreaAdapter::intersectsWith(ActiveArea* area) {
+bool ActiveAreaAdapter::isRectangularAreaShape() const {
+	return (static_cast<ActiveArea*>(stub))->isRectangularAreaShape();
+}
+
+bool ActiveAreaAdapter::intersectsWith(ActiveArea* area) const {
 	return (static_cast<ActiveArea*>(stub))->intersectsWith(area);
 }
 

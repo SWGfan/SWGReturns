@@ -1,0 +1,7 @@
+includeFile("dungeon/rakata/zatras.lua")
+includeFile("dungeon/rakata/lorosh.lua")
+includeFile("dungeon/rakata/rakata_fanatic_guardsman.lua")
+includeFile("dungeon/rakata/rakata_enslaved_varactyl.lua")
+includeFile("dungeon/rakata/rakata_enslaved_beastmaster.lua")
+includeFile("dungeon/rakata/rakata_enslaved_deadeye.lua")
+includeFile("dungeon/rakata/rakata_enslaved_brawler.lua")

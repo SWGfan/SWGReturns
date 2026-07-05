@@ -16,10 +16,10 @@
  *	ContrabandScanSessionStub
  */
 
-enum {RPC_INITIALIZESESSION__ = 414740677,RPC_CANCELSESSION__,RPC_CLEARSESSION__,RPC_RUNCONTRABANDSCAN__,RPC_SCANPREREQUISITESMET__AIAGENT_CREATUREOBJECT_,RPC_SETACCEPTFINEANSWER__BOOL_,};
+enum {RPC_INITIALIZESESSION__ = 414740677,RPC_CANCELSESSION__,RPC_CLEARSESSION__,RPC_RUNCONTRABANDSCAN__,RPC_SCANPREREQUISITESMET__AIAGENT_CREATUREOBJECT_,RPC_ADJUSTREINFORCEMENTSTRENGTH__AIAGENT_,RPC_SETACCEPTFINEANSWER__BOOL_,};
 
-ContrabandScanSession::ContrabandScanSession(AiAgent* scanner, CreatureObject* player) : Facade(DummyConstructorParameter::instance()) {
-	ContrabandScanSessionImplementation* _implementation = new ContrabandScanSessionImplementation(scanner, player);
+ContrabandScanSession::ContrabandScanSession(AiAgent* scanner, CreatureObject* player, int winningFaction, int winningFactionDifficultyScaling, bool enforced) : Facade(DummyConstructorParameter::instance()) {
+	ContrabandScanSessionImplementation* _implementation = new ContrabandScanSessionImplementation(scanner, player, winningFaction, winningFactionDifficultyScaling, enforced);
 	_impl = _implementation;
 	_impl->_setStub(this);
 	_setClassName("ContrabandScanSession");
@@ -36,7 +36,7 @@ ContrabandScanSession::~ContrabandScanSession() {
 
 int ContrabandScanSession::initializeSession() {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int ContrabandScanSession::initializeSession() {
 
 int ContrabandScanSession::cancelSession() {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ int ContrabandScanSession::cancelSession() {
 
 int ContrabandScanSession::clearSession() {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int ContrabandScanSession::clearSession() {
 
 void ContrabandScanSession::runContrabandScan() {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void ContrabandScanSession::runContrabandScan() {
 
 bool ContrabandScanSession::scanPrerequisitesMet(AiAgent* scanner, CreatureObject* player) {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,9 +106,24 @@ bool ContrabandScanSession::scanPrerequisitesMet(AiAgent* scanner, CreatureObjec
 	}
 }
 
+void ContrabandScanSession::adjustReinforcementStrength(AiAgent* scanner) {
+	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ADJUSTREINFORCEMENTSTRENGTH__AIAGENT_);
+		method.addObjectParameter(scanner);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->adjustReinforcementStrength(scanner);
+	}
+}
+
 void ContrabandScanSession::setAcceptFineAnswer(bool acceptFine) {
 	ContrabandScanSessionImplementation* _implementation = static_cast<ContrabandScanSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +169,7 @@ void ContrabandScanSessionImplementation::finalize() {
 void ContrabandScanSessionImplementation::_initializeImplementation() {
 	_setClassHelper(ContrabandScanSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -247,6 +262,10 @@ bool ContrabandScanSessionImplementation::readObjectMember(ObjectInputStream* st
 		TypeInfo<int >::parseFromBinaryStream(&previousTimeLeft, stream);
 		return true;
 
+	case 0xc79295d7: //ContrabandScanSession.enforcedScan
+		TypeInfo<bool >::parseFromBinaryStream(&enforcedScan, stream);
+		return true;
+
 	case 0xc53d78c4: //ContrabandScanSession.alreadyTriedToAvoidScan
 		TypeInfo<bool >::parseFromBinaryStream(&alreadyTriedToAvoidScan, stream);
 		return true;
@@ -321,6 +340,15 @@ int ContrabandScanSessionImplementation::writeObjectMembers(ObjectOutputStream* 
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xc79295d7; //ContrabandScanSession.enforcedScan
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&enforcedScan, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0xc53d78c4; //ContrabandScanSession.alreadyTriedToAvoidScan
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -370,7 +398,7 @@ int ContrabandScanSessionImplementation::writeObjectMembers(ObjectOutputStream* 
 	return _count;
 }
 
-ContrabandScanSessionImplementation::ContrabandScanSessionImplementation(AiAgent* scanner, CreatureObject* player) {
+ContrabandScanSessionImplementation::ContrabandScanSessionImplementation(AiAgent* scanner, CreatureObject* player, int winningFaction, int winningFactionDifficultyScaling, bool enforced) {
 	_initializeImplementation();
 	// server/zone/managers/gcw/sessions/ContrabandScanSession.idl():  		Logger.setLoggingName("ContrabandScanSession");
 	Logger::setLoggingName("ContrabandScanSession");
@@ -398,6 +426,12 @@ ContrabandScanSessionImplementation::ContrabandScanSessionImplementation(AiAgent
 	fineToPay = 0;
 	// server/zone/managers/gcw/sessions/ContrabandScanSession.idl():  		smugglerAvoidedScan = false;
 	smugglerAvoidedScan = false;
+	// server/zone/managers/gcw/sessions/ContrabandScanSession.idl():  		currentWinningFaction = winningFaction;
+	currentWinningFaction = winningFaction;
+	// server/zone/managers/gcw/sessions/ContrabandScanSession.idl():  		currentWinningFactionDifficultyScaling = winningFactionDifficultyScaling;
+	currentWinningFactionDifficultyScaling = winningFactionDifficultyScaling;
+	// server/zone/managers/gcw/sessions/ContrabandScanSession.idl():  		enforcedScan = enforced;
+	enforcedScan = enforced;
 }
 
 void ContrabandScanSessionImplementation::setAcceptFineAnswer(bool acceptFine) {
@@ -459,6 +493,14 @@ void ContrabandScanSessionAdapter::invokeMethod(uint32 methid, DistributedMethod
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_ADJUSTREINFORCEMENTSTRENGTH__AIAGENT_:
+		{
+			AiAgent* scanner = static_cast<AiAgent*>(inv->getObjectParameter());
+			
+			adjustReinforcementStrength(scanner);
+			
+		}
+		break;
 	case RPC_SETACCEPTFINEANSWER__BOOL_:
 		{
 			bool acceptFine = inv->getBooleanParameter();
@@ -490,6 +532,10 @@ void ContrabandScanSessionAdapter::runContrabandScan() {
 
 bool ContrabandScanSessionAdapter::scanPrerequisitesMet(AiAgent* scanner, CreatureObject* player) {
 	return (static_cast<ContrabandScanSession*>(stub))->scanPrerequisitesMet(scanner, player);
+}
+
+void ContrabandScanSessionAdapter::adjustReinforcementStrength(AiAgent* scanner) {
+	(static_cast<ContrabandScanSession*>(stub))->adjustReinforcementStrength(scanner);
 }
 
 void ContrabandScanSessionAdapter::setAcceptFineAnswer(bool acceptFine) {
@@ -604,6 +650,17 @@ int ContrabandScanSessionPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (enforcedScan) {
+	_nameHashCode = 0xc79295d7; //ContrabandScanSession.enforcedScan
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&enforcedScan.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 	if (alreadyTriedToAvoidScan) {
 	_nameHashCode = 0xc53d78c4; //ContrabandScanSession.alreadyTriedToAvoidScan
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -700,6 +757,14 @@ bool ContrabandScanSessionPOD::readObjectMember(ObjectInputStream* stream, const
 		}
 		return true;
 
+	case 0xc79295d7: //ContrabandScanSession.enforcedScan
+		{
+			bool _mnenforcedScan;
+			TypeInfo<bool >::parseFromBinaryStream(&_mnenforcedScan, stream);
+			enforcedScan = std::move(_mnenforcedScan);
+		}
+		return true;
+
 	case 0xc53d78c4: //ContrabandScanSession.alreadyTriedToAvoidScan
 		{
 			bool _mnalreadyTriedToAvoidScan;
@@ -773,6 +838,8 @@ void ContrabandScanSessionPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<int >::toBinaryStream(&timeLeft.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&previousTimeLeft.value(), stream);
+
+	TypeInfo<bool >::toBinaryStream(&enforcedScan.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&alreadyTriedToAvoidScan.value(), stream);
 

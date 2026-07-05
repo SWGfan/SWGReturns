@@ -28,7 +28,7 @@ ScreenPlayObserver::~ScreenPlayObserver() {
 
 int ScreenPlayObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	ScreenPlayObserverImplementation* _implementation = static_cast<ScreenPlayObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ int ScreenPlayObserver::notifyObserverEvent(unsigned int eventType, Observable* 
 
 void ScreenPlayObserver::setScreenPlay(const String& screen) {
 	ScreenPlayObserverImplementation* _implementation = static_cast<ScreenPlayObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ void ScreenPlayObserver::setScreenPlay(const String& screen) {
 
 void ScreenPlayObserver::setScreenKey(const String& screenKey) {
 	ScreenPlayObserverImplementation* _implementation = static_cast<ScreenPlayObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ void ScreenPlayObserver::setScreenKey(const String& screenKey) {
 
 String ScreenPlayObserver::getScreenPlay() {
 	ScreenPlayObserverImplementation* _implementation = static_cast<ScreenPlayObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ String ScreenPlayObserver::getScreenPlay() {
 
 String ScreenPlayObserver::getScreenKey() {
 	ScreenPlayObserverImplementation* _implementation = static_cast<ScreenPlayObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ void ScreenPlayObserverImplementation::finalize() {
 void ScreenPlayObserverImplementation::_initializeImplementation() {
 	_setClassHelper(ScreenPlayObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

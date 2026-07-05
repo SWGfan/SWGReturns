@@ -30,7 +30,7 @@ SarlaccArea::~SarlaccArea() {
 
 void SarlaccArea::updateEruptTime() {
 	SarlaccAreaImplementation* _implementation = static_cast<SarlaccAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ void SarlaccArea::updateEruptTime() {
 
 void SarlaccArea::notifyEnter(SceneObject* player) {
 	SarlaccAreaImplementation* _implementation = static_cast<SarlaccAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void SarlaccAreaImplementation::finalize() {
 void SarlaccAreaImplementation::_initializeImplementation() {
 	_setClassHelper(SarlaccAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

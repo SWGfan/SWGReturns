@@ -9,7 +9,7 @@ import server.zone.objects.creature.CreatureObject;
 import server.zone.packets.object.ObjectMenuResponse;
 import server.zone.packets.scene.AttributeListMessage;
 import server.zone.objects.creature.ai.AiAgent;
-import server.zone.objects.tangible.components.droid.BaseDroidModuleComponent;
+include server.zone.objects.tangible.components.droid.BaseDroidModuleComponent;
 include server.zone.objects.tangible.tool.CraftingStation;
 include server.zone.objects.structure.StructureObject;
 include system.util.Vector;
@@ -88,8 +88,6 @@ class DroidObject extends AiAgent {
 	public static final int DZ70 = 0xDE;
 	public static final int TREADWELL = 0xDF;
 	public static final int PROBE_DROID = 0xE1;
-	public static final int SPIDER_DROID = 0xDB;
-	public static final int ROBODOG = 0x46;
 
 	protected int maximumHam;
 	protected int minDamage;
@@ -172,11 +170,6 @@ class DroidObject extends AiAgent {
 
 	public void setAttackSpeed(float f) {
 		attackSpeed = f;
-	}
-
-	@dirty
-	public boolean isCamouflaged(CreatureObject target) {
-		return isAggressiveTo(target) && isConcealed(target);
 	}
 
 	@dirty
@@ -266,7 +259,7 @@ class DroidObject extends AiAgent {
 	public native void initDroidWeapons();
 
 	/**
-	 * Returns a crafting station of the given type if droid has the appropriate module. Returns nullptr otherwise.
+	 * Returns a crafting station of the given type if droid has the appropriate module. Returns NULL otherwise.
 	 */
 	@local
 	public native CraftingStation getCraftingStation(int type);
@@ -274,7 +267,7 @@ class DroidObject extends AiAgent {
 	/**
 	 * Returns a reaction stf if the droid has a personality chip
 	 */
-	@local
+	@read
 	public native string getPersonalityBase();
 
 	@local
@@ -493,7 +486,7 @@ class DroidObject extends AiAgent {
 		return getPersonalityBase() != "" || super.hasReactionChatMessages();
 	}
 
-	@dirty
+	@read
 	public string getReactionStf() {
 		if (getPersonalityBase() != "")
 			return getPersonalityBase();
@@ -501,12 +494,12 @@ class DroidObject extends AiAgent {
 		return super.getReactionStf();
 	}
 
-	@dirty
+	@read
 	public int getHamMaximum() {
 		return maximumHam;
 	}
 
-	@dirty
+	@read
 	public int getHamBase() {
 		return maximumHam;
 	}

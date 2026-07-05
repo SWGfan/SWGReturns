@@ -47,9 +47,10 @@ Saber2hSweep1Command = {
 	damageMultiplier = 1.25,
 	speedMultiplier = 1.25,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 0,
+	actionCostMultiplier = 1,
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 1.25,
+	accuracyBonus = 50,
 	visMod = 25,
 
 	stateEffects = {
@@ -57,8 +58,8 @@ Saber2hSweep1Command = {
 		POSTUREDOWN_EFFECT, 
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
-		{},
-		100, 
+		{}, 
+		70, 
 		0, 
 		0 
 	  )
@@ -68,11 +69,11 @@ Saber2hSweep1Command = {
 
 	combatSpam = "saber2hsweep1",
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	weaponType = TWOHANDJEDIWEAPON,
 
-	range = -1
+	range = 8
 }
 
 AddCommand(Saber2hSweep1Command)

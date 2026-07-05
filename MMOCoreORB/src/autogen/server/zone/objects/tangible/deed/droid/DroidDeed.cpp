@@ -36,7 +36,7 @@ DroidDeed::~DroidDeed() {
 
 void DroidDeed::onCloneObject(SceneObject* objectToClone) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -51,7 +51,7 @@ void DroidDeed::onCloneObject(SceneObject* objectToClone) {
 
 void DroidDeed::initializeTransientMembers() {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ void DroidDeed::initializeTransientMembers() {
 
 void DroidDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -75,7 +75,7 @@ void DroidDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void DroidDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -85,7 +85,7 @@ void DroidDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* obj
 
 void DroidDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -95,7 +95,7 @@ void DroidDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatur
 
 int DroidDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -106,14 +106,14 @@ int DroidDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void DroidDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -123,7 +123,7 @@ void DroidDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 bool DroidDeed::isDroidDeedObject() {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ bool DroidDeed::isDroidDeedObject() {
 
 HashTable<String, ManagedReference<DroidComponent* > >* DroidDeed::getModules() {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -147,7 +147,7 @@ HashTable<String, ManagedReference<DroidComponent* > >* DroidDeed::getModules() 
 
 void DroidDeed::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	DroidDeedImplementation* _implementation = static_cast<DroidDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,7 +193,7 @@ void DroidDeedImplementation::finalize() {
 void DroidDeedImplementation::_initializeImplementation() {
 	_setClassHelper(DroidDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

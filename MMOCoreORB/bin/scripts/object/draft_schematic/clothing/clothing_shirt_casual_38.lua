@@ -48,11 +48,11 @@ object_draft_schematic_clothing_clothing_shirt_casual_38 = object_draft_schemati
    customObjectName = "Flex-form Shirt",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 21, 
+   complexity = 1, 
    size = 3, 
 
    xpType = "crafting_clothing_general", 
-   xp = 75, 
+   xp = 400, 
 
    assemblySkill = "clothing_assembly", 
    experimentingSkill = "clothing_experimentation", 

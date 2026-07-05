@@ -12,7 +12,7 @@
  *	DotPackStub
  */
 
-enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CALCULATEPOWER__CREATUREOBJECT_,RPC_ISPOISONDELIVERYUNIT__,RPC_ISDISEASEDELIVERYUNIT__,RPC_GETEFFECTIVENESS__,RPC_GETRANGE__,RPC_GETAREA__,RPC_GETRANGEMOD__,RPC_GETPOTENCY__,RPC_GETDURATION__,RPC_ISAREA__,RPC_GETPOOL__,RPC_GETDOTTYPE__};
+enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CALCULATEPOWER__CREATUREOBJECT_,RPC_ISDOTPACKOBJECT__,RPC_ISPOISONDELIVERYUNIT__,RPC_ISDISEASEDELIVERYUNIT__,RPC_GETEFFECTIVENESS__,RPC_GETRANGE__,RPC_GETAREA__,RPC_GETRANGEMOD__,RPC_GETPOTENCY__,RPC_GETDURATION__,RPC_ISAREA__,RPC_GETPOOL__,RPC_GETDOTTYPE__};
 
 DotPack::DotPack() : PharmaceuticalObject(DummyConstructorParameter::instance()) {
 	DotPackImplementation* _implementation = new DotPackImplementation();
@@ -32,7 +32,7 @@ DotPack::~DotPack() {
 
 void DotPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void DotPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 void DotPack::loadTemplateData(SharedObjectTemplate* templateData) {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void DotPack::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void DotPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void DotPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* objec
 
 int DotPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ int DotPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 void DotPack::notifyLoadFromDatabase() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void DotPack::notifyLoadFromDatabase() {
 
 int DotPack::calculatePower(CreatureObject* creature) {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -105,9 +105,23 @@ int DotPack::calculatePower(CreatureObject* creature) {
 	}
 }
 
+bool DotPack::isDotPackObject() {
+	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISDOTPACKOBJECT__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isDotPackObject();
+	}
+}
+
 bool DotPack::isPoisonDeliveryUnit() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +135,7 @@ bool DotPack::isPoisonDeliveryUnit() {
 
 bool DotPack::isDiseaseDeliveryUnit() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +149,7 @@ bool DotPack::isDiseaseDeliveryUnit() {
 
 float DotPack::getEffectiveness() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +163,7 @@ float DotPack::getEffectiveness() {
 
 float DotPack::getRange() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +177,7 @@ float DotPack::getRange() {
 
 float DotPack::getArea() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -177,7 +191,7 @@ float DotPack::getArea() {
 
 float DotPack::getRangeMod() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -191,7 +205,7 @@ float DotPack::getRangeMod() {
 
 float DotPack::getPotency() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -205,7 +219,7 @@ float DotPack::getPotency() {
 
 unsigned int DotPack::getDuration() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,7 +233,7 @@ unsigned int DotPack::getDuration() {
 
 bool DotPack::isArea() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -233,7 +247,7 @@ bool DotPack::isArea() {
 
 unsigned int DotPack::getPool() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -247,7 +261,7 @@ unsigned int DotPack::getPool() {
 
 unsigned int DotPack::getDotType() {
 	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -292,7 +306,7 @@ void DotPackImplementation::finalize() {
 void DotPackImplementation::_initializeImplementation() {
 	_setClassHelper(DotPackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -676,8 +690,8 @@ int DotPackImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 }
 
 	else {
-	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			player.sendCommand(commandToExecute, String.valueOf(super.getObjectID()), player.getTargetID());
-	player->sendCommand(commandToExecute, String::valueOf(PharmaceuticalObjectImplementation::getObjectID()), player->getTargetID());
+	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			player.sendCommand(commandToExecute, BuffAttribute.getName(pool) + "|" + String.valueOf(super.getObjectID()), player.getTargetID());
+	player->sendCommand(commandToExecute, BuffAttribute::getName(pool) + "|" + String::valueOf(PharmaceuticalObjectImplementation::getObjectID()), player->getTargetID());
 	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			return 0;
 	return 0;
 }
@@ -688,6 +702,11 @@ int DotPackImplementation::calculatePower(CreatureObject* creature) {
 	float modSkill = (float) creature->getSkillMod("combat_medic_effectiveness");
 	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  		return ((100 + modSkill) / 100 * effectiveness);
 	return ((100 + modSkill) / 100 * effectiveness);
+}
+
+bool DotPackImplementation::isDotPackObject() {
+	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  		return true;
+	return true;
 }
 
 bool DotPackImplementation::isPoisonDeliveryUnit() {
@@ -784,6 +803,13 @@ void DotPackAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_ISDOTPACKOBJECT__:
+		{
+			
+			bool _m_res = isDotPackObject();
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_ISPOISONDELIVERYUNIT__:
 		{
 			
@@ -876,6 +902,10 @@ void DotPackAdapter::notifyLoadFromDatabase() {
 
 int DotPackAdapter::calculatePower(CreatureObject* creature) {
 	return (static_cast<DotPack*>(stub))->calculatePower(creature);
+}
+
+bool DotPackAdapter::isDotPackObject() {
+	return (static_cast<DotPack*>(stub))->isDotPackObject();
 }
 
 bool DotPackAdapter::isPoisonDeliveryUnit() {

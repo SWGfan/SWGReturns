@@ -2,6 +2,7 @@ coa2_imperial_slicer_gang = Creature:new {
 	objectName = "@mob/creature_names:slicer",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 11,
@@ -34,15 +35,23 @@ coa2_imperial_slicer_gang = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 4000000},
-				{group = "weapons_all", chance = 500000},
-				{group = "armor_all", chance = 2500000},
-				{group = "wearables_all", chance = 3000000}
+				{group = "weapons_all", chance = 2000000},
+				{group = "armor_all", chance = 2000000},
+				{group = "wearables_all", chance = 2000000}
 			}
 		}
 	},
-	weapons = {"pirate_weapons_heavy"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "pirate_weapons_heavy",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(brawlermid,marksmanmid)
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(brawlermid,marksmanmid),
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(coa2_imperial_slicer_gang, "coa2_imperial_slicer_gang")

@@ -461,7 +461,7 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes);
+	void timedShutdown(int minutes, int flags = 0);
 
 	void handleMessage(ZoneClientSession* client, Packet* message);
 
@@ -509,27 +509,27 @@ public:
 
 	void increaseTotalDeletedPlayers();
 
-	int getGalaxyID();
+	int getGalaxyID() const;
 
-	String getGalaxyName();
+	String getGalaxyName() const;
 
 	void setGalaxyName(const String& name);
 
-	bool isServerLocked();
+	bool isServerLocked() const;
 
-	bool isServerOnline();
+	bool isServerOnline() const;
 
-	bool isServerOffline();
+	bool isServerOffline() const;
 
-	bool isServerLoading();
+	bool isServerLoading() const;
 
-	bool isServerShuttingDown();
+	bool isServerShuttingDown() const;
 
-	int getServerCap();
+	int getServerCap() const;
 
-	int getServerState();
+	int getServerState() const;
 
-	Zone* getZone(const String& terrainName);
+	Zone* getZone(const String& terrainName) const;
 
 	/**
 	 * Gets a note based on it's position in the zone map.
@@ -538,13 +538,13 @@ public:
 	 */
 	Zone* getZone(int idx);
 
-	int getZoneCount();
+	int getZoneCount() const;
 
-	int getMaxPlayers();
+	int getMaxPlayers() const;
 
-	int getTotalPlayers();
+	int getTotalPlayers() const;
 
-	int getDeletedPlayers();
+	int getDeletedPlayers() const;
 
 	ObjectManager* getObjectManager();
 
@@ -588,7 +588,7 @@ public:
 
 	void setShouldDeleteNavAreas(bool b);
 
-	bool shouldDeleteNavAreas();
+	bool shouldDeleteNavAreas() const;
 
 	void setServerStateLocked();
 
@@ -600,7 +600,7 @@ public:
 
 	void changeLoginMessage(const String& motd);
 
-	String getLoginMessage();
+	String getLoginMessage() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -737,7 +737,7 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes);
+	void timedShutdown(int minutes, int flags = 0);
 
 	void handleMessage(ZoneClientSession* client, Packet* message);
 
@@ -785,27 +785,27 @@ public:
 
 	void increaseTotalDeletedPlayers();
 
-	int getGalaxyID();
+	int getGalaxyID() const;
 
-	String getGalaxyName();
+	String getGalaxyName() const;
 
 	void setGalaxyName(const String& name);
 
-	bool isServerLocked();
+	bool isServerLocked() const;
 
-	bool isServerOnline();
+	bool isServerOnline() const;
 
-	bool isServerOffline();
+	bool isServerOffline() const;
 
-	bool isServerLoading();
+	bool isServerLoading() const;
 
-	bool isServerShuttingDown();
+	bool isServerShuttingDown() const;
 
-	int getServerCap();
+	int getServerCap() const;
 
-	int getServerState();
+	int getServerState() const;
 
-	Zone* getZone(const String& terrainName);
+	Zone* getZone(const String& terrainName) const;
 
 	/**
 	 * Gets a note based on it's position in the zone map.
@@ -814,13 +814,13 @@ public:
 	 */
 	Zone* getZone(int idx);
 
-	int getZoneCount();
+	int getZoneCount() const;
 
-	int getMaxPlayers();
+	int getMaxPlayers() const;
 
-	int getTotalPlayers();
+	int getTotalPlayers() const;
 
-	int getDeletedPlayers();
+	int getDeletedPlayers() const;
 
 	ObjectManager* getObjectManager();
 
@@ -864,7 +864,7 @@ public:
 
 	void setShouldDeleteNavAreas(bool b);
 
-	bool shouldDeleteNavAreas();
+	bool shouldDeleteNavAreas() const;
 
 	void setServerStateLocked();
 
@@ -876,7 +876,7 @@ public:
 
 	void changeLoginMessage(const String& motd);
 
-	String getLoginMessage();
+	String getLoginMessage() const;
 
 	WeakReference<ZoneServer*> _this;
 
@@ -933,7 +933,7 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes);
+	void timedShutdown(int minutes, int flags);
 
 	void addTotalSentPacket(int count);
 
@@ -975,37 +975,37 @@ public:
 
 	void increaseTotalDeletedPlayers();
 
-	int getGalaxyID();
+	int getGalaxyID() const;
 
-	String getGalaxyName();
+	String getGalaxyName() const;
 
 	void setGalaxyName(const String& name);
 
-	bool isServerLocked();
+	bool isServerLocked() const;
 
-	bool isServerOnline();
+	bool isServerOnline() const;
 
-	bool isServerOffline();
+	bool isServerOffline() const;
 
-	bool isServerLoading();
+	bool isServerLoading() const;
 
-	bool isServerShuttingDown();
+	bool isServerShuttingDown() const;
 
-	int getServerCap();
+	int getServerCap() const;
 
-	int getServerState();
+	int getServerState() const;
 
-	Zone* getZone(const String& terrainName);
+	Zone* getZone(const String& terrainName) const;
 
 	Zone* getZone(int idx);
 
-	int getZoneCount();
+	int getZoneCount() const;
 
-	int getMaxPlayers();
+	int getMaxPlayers() const;
 
-	int getTotalPlayers();
+	int getTotalPlayers() const;
 
-	int getDeletedPlayers();
+	int getDeletedPlayers() const;
 
 	PlayerManager* getPlayerManager();
 
@@ -1041,7 +1041,7 @@ public:
 
 	void setShouldDeleteNavAreas(bool b);
 
-	bool shouldDeleteNavAreas();
+	bool shouldDeleteNavAreas() const;
 
 	void setServerStateLocked();
 
@@ -1053,7 +1053,7 @@ public:
 
 	void changeLoginMessage(const String& motd);
 
-	String getLoginMessage();
+	String getLoginMessage() const;
 
 };
 

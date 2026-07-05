@@ -30,7 +30,7 @@ DroidPlaybackObserver::~DroidPlaybackObserver() {
 
 void DroidPlaybackObserver::setSlot(int i) {
 	DroidPlaybackObserverImplementation* _implementation = static_cast<DroidPlaybackObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ void DroidPlaybackObserver::setSlot(int i) {
 
 int DroidPlaybackObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DroidPlaybackObserverImplementation* _implementation = static_cast<DroidPlaybackObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void DroidPlaybackObserverImplementation::finalize() {
 void DroidPlaybackObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DroidPlaybackObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

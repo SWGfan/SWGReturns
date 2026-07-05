@@ -28,7 +28,7 @@ ClothingObject::~ClothingObject() {
 
 void ClothingObject::initializeTransientMembers() {
 	ClothingObjectImplementation* _implementation = static_cast<ClothingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ void ClothingObject::initializeTransientMembers() {
 
 void ClothingObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ClothingObjectImplementation* _implementation = static_cast<ClothingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -83,7 +83,7 @@ void ClothingObjectImplementation::finalize() {
 void ClothingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(ClothingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

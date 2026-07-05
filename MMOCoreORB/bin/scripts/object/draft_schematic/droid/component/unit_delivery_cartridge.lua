@@ -51,9 +51,10 @@ object_draft_schematic_droid_component_unit_delivery_cartridge = object_draft_sc
 	complexity = 10,
 	size = 1,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_electronics.iff",
 
 	xpType = "crafting_droid_general",
-	xp = 1000,
+	xp = 50,
 
 	assemblySkill = "droid_assembly",
 	experimentingSkill = "droid_experimentation",

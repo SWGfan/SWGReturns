@@ -2,15 +2,16 @@ giant_dune_kimogila = Creature:new {
 	objectName = "@mob/creature_names:giant_dune_kimogila",
 	socialGroup = "kimogila",
 	faction = "",
-	level = 300,
-	chanceHit = 10.0,
-	damageMin = 2200,
-	damageMax = 4400,
-	baseXp = 12000,
-	baseHAM = 80000,
-	baseHAMmax = 125000,
-	armor = 2,
-	resists = {165,180,165,200,165,165,200,165,130},
+	mobType = MOB_CARNIVORE,
+	level = 153,
+	chanceHit = 8.5,
+	damageMin = 895,
+	damageMax = 1500,
+	baseXp = 14504,
+	baseHAM = 81000,
+	baseHAMmax = 99000,
+	armor = 1,
+	resists = {165,180,165,200,165,165,200,165,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
@@ -18,8 +19,8 @@ giant_dune_kimogila = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.25,
-	ferocity = 30,
+	tamingChance = 0,
+	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
@@ -34,15 +35,20 @@ giant_dune_kimogila = Creature:new {
 				{group = "giant_dune_kimo_common", chance = 3500000},
 				{group = "kimogila_common", chance = 6500000},
 			},
-			lootChance = 5000000
+			lootChance = 9000000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"creatureareacombo",""},
-		{"creatureareadisease",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"creatureareacombo",""}, {"creatureareadisease",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(giant_dune_kimogila, "giant_dune_kimogila")

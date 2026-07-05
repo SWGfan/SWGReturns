@@ -2,15 +2,16 @@ ancient_bull_rancor = Creature:new {
 	objectName = "@mob/creature_names:ancient_bull_rancor",
 	socialGroup = "rancor",
 	faction = "",
-	level = 300,
-	chanceHit = 100,
-	damageMin = 3500,
-	damageMax = 5500,
-	baseXp = 10500,
-	baseHAM = 50000,
-	baseHAMmax = 100000,
-	armor = 3,
-	resists = {150,165,150,200,200,200,150,140,140},
+	mobType = MOB_CARNIVORE,
+	level = 98,
+	chanceHit = 0.95,
+	damageMin = 620,
+	damageMax = 950,
+	baseXp = 9336,
+	baseHAM = 20000,
+	baseHAMmax = 25000,
+	armor = 1,
+	resists = {50,65,0,20,20,20,0,0,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
@@ -18,7 +19,7 @@ ancient_bull_rancor = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 950,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 20,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -31,21 +32,25 @@ ancient_bull_rancor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rancor_common", chance = 5000000},
-				{group = "armor_all", chance = 3000000},
-				{group = "weapons_all", chance = 500000},
+				{group = "rancor_common", chance = 4000000},
+				{group = "armor_all", chance = 2000000},
+				{group = "weapons_all", chance = 2500000},
 				{group = "wearables_all", chance = 1500000}
 			},
 			lootChance = 2960000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"creatureareableeding","BleedChance=80"},
-		{"creatureareapoison","PoisonChance=80"},
-		{"creatureareacombo","stateAccuracyBonus=80"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"creatureareableeding",""}, {"creatureareacombo",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(ancient_bull_rancor, "ancient_bull_rancor")

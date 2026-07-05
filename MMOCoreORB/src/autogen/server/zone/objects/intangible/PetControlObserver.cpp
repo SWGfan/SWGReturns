@@ -32,7 +32,7 @@ PetControlObserver::~PetControlObserver() {
 
 int PetControlObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	PetControlObserverImplementation* _implementation = static_cast<PetControlObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void PetControlObserverImplementation::finalize() {
 void PetControlObserverImplementation::_initializeImplementation() {
 	_setClassHelper(PetControlObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -208,7 +208,7 @@ int PetControlObserverImplementation::notifyObserverEvent(unsigned int eventType
 	// server/zone/objects/intangible/PetControlObserver.idl():  		PetControlDevice strongRef = petControlDevice;
 	ManagedReference<PetControlDevice* > strongRef = petControlDevice;
 	// server/zone/objects/intangible/PetControlObserver.idl():  		return 
-	if (strongRef != nullptr){
+	if (strongRef){
 	// server/zone/objects/intangible/PetControlObserver.idl():  			CreatureObject creature = (CreatureObject) observable;
 	ManagedReference<CreatureObject* > creature = dynamic_cast<CreatureObject*>(observable);
 	// server/zone/objects/intangible/PetControlObserver.idl():  			strongRef.cancelSpawnObject(creature);

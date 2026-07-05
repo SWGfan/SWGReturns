@@ -32,7 +32,7 @@ PetDeed::~PetDeed() {
 
 void PetDeed::setSpecialResist(int type) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void PetDeed::setSpecialResist(int type) {
 
 bool PetDeed::isSpecialResist(int type) const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ bool PetDeed::isSpecialResist(int type) const {
 
 int PetDeed::getSampleCount() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ int PetDeed::getSampleCount() const {
 
 void PetDeed::incrementSampleCount() {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -90,7 +90,7 @@ void PetDeed::incrementSampleCount() {
 
 void PetDeed::initializeTransientMembers() {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void PetDeed::initializeTransientMembers() {
 
 const CreatureAttackMap* PetDeed::getAttacks() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -114,7 +114,7 @@ const CreatureAttackMap* PetDeed::getAttacks() const {
 
 int PetDeed::getQuality() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +128,7 @@ int PetDeed::getQuality() const {
 
 int PetDeed::getLevel() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ int PetDeed::getLevel() const {
 
 float PetDeed::getAttackSpeed() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ float PetDeed::getAttackSpeed() const {
 
 float PetDeed::getHitChance() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ float PetDeed::getHitChance() const {
 
 int PetDeed::getHealth() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ int PetDeed::getHealth() const {
 
 int PetDeed::getAction() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ int PetDeed::getAction() const {
 
 int PetDeed::getMind() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -212,7 +212,7 @@ int PetDeed::getMind() const {
 
 int PetDeed::getMinDamage() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -226,7 +226,7 @@ int PetDeed::getMinDamage() const {
 
 int PetDeed::getMaxDamage() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -240,7 +240,7 @@ int PetDeed::getMaxDamage() const {
 
 float PetDeed::getKinetic() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +254,7 @@ float PetDeed::getKinetic() const {
 
 float PetDeed::getEnergy() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +268,7 @@ float PetDeed::getEnergy() const {
 
 float PetDeed::getBlast() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -282,7 +282,7 @@ float PetDeed::getBlast() const {
 
 float PetDeed::getCold() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -296,7 +296,7 @@ float PetDeed::getCold() const {
 
 float PetDeed::getHeat() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -310,7 +310,7 @@ float PetDeed::getHeat() const {
 
 float PetDeed::getElectric() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -324,7 +324,7 @@ float PetDeed::getElectric() const {
 
 float PetDeed::getAcid() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -338,7 +338,7 @@ float PetDeed::getAcid() const {
 
 float PetDeed::getStun() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -352,7 +352,7 @@ float PetDeed::getStun() const {
 
 float PetDeed::getSaber() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -366,7 +366,7 @@ float PetDeed::getSaber() const {
 
 bool PetDeed::getRanged() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -380,7 +380,7 @@ bool PetDeed::getRanged() const {
 
 int PetDeed::getArmor() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -394,7 +394,7 @@ int PetDeed::getArmor() const {
 
 void PetDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -404,7 +404,7 @@ void PetDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void PetDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -414,7 +414,7 @@ void PetDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* objec
 
 void PetDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -424,7 +424,7 @@ void PetDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureO
 
 int PetDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -435,14 +435,14 @@ int PetDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void PetDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -452,7 +452,7 @@ void PetDeed::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 
 bool PetDeed::isPetDeedObject() {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -466,7 +466,7 @@ bool PetDeed::isPetDeedObject() {
 
 String PetDeed::getSpecial1() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -482,7 +482,7 @@ String PetDeed::getSpecial1() const {
 
 String PetDeed::getSpecial2() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -498,7 +498,7 @@ String PetDeed::getSpecial2() const {
 
 int PetDeed::getCleverness() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -512,7 +512,7 @@ int PetDeed::getCleverness() const {
 
 int PetDeed::getEndurance() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -526,7 +526,7 @@ int PetDeed::getEndurance() const {
 
 int PetDeed::getFierceness() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -540,7 +540,7 @@ int PetDeed::getFierceness() const {
 
 int PetDeed::getPower() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -554,7 +554,7 @@ int PetDeed::getPower() const {
 
 int PetDeed::getIntelligence() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -568,7 +568,7 @@ int PetDeed::getIntelligence() const {
 
 int PetDeed::getCourage() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -582,7 +582,7 @@ int PetDeed::getCourage() const {
 
 int PetDeed::getDependency() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -596,7 +596,7 @@ int PetDeed::getDependency() const {
 
 int PetDeed::getDexterity() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -610,7 +610,7 @@ int PetDeed::getDexterity() const {
 
 int PetDeed::getFortitude() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -624,7 +624,7 @@ int PetDeed::getFortitude() const {
 
 int PetDeed::getHardiness() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -638,7 +638,7 @@ int PetDeed::getHardiness() const {
 
 String PetDeed::getTemplateName() const {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -648,7 +648,7 @@ String PetDeed::getTemplateName() const {
 
 void PetDeed::setupAttacks() {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -658,7 +658,7 @@ void PetDeed::setupAttacks() {
 
 int PetDeed::calculatePetLevel() {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -668,7 +668,7 @@ int PetDeed::calculatePetLevel() {
 
 void PetDeed::adjustPetLevel(CreatureObject* player, CreatureObject* pet) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -678,7 +678,7 @@ void PetDeed::adjustPetLevel(CreatureObject* player, CreatureObject* pet) {
 
 bool PetDeed::adjustPetStats(CreatureObject* player, CreatureObject* pet) {
 	PetDeedImplementation* _implementation = static_cast<PetDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -719,7 +719,7 @@ void PetDeedImplementation::finalize() {
 void PetDeedImplementation::_initializeImplementation() {
 	_setClassHelper(PetDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

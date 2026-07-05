@@ -32,7 +32,7 @@ SlicingSession::~SlicingSession() {
 
 void SlicingSession::initalizeSlicingMenu(CreatureObject* pl, TangibleObject* obj) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void SlicingSession::initalizeSlicingMenu(CreatureObject* pl, TangibleObject* ob
 
 void SlicingSession::handleMenuSelect(CreatureObject* pl, byte menuID, SuiListBox* suiBox) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void SlicingSession::handleMenuSelect(CreatureObject* pl, byte menuID, SuiListBo
 
 int SlicingSession::initializeSession() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +66,7 @@ int SlicingSession::initializeSession() {
 
 int SlicingSession::cancelSession() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ int SlicingSession::cancelSession() {
 
 int SlicingSession::clearSession() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ int SlicingSession::clearSession() {
 
 void SlicingSession::endSlicing() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -108,7 +108,7 @@ void SlicingSession::endSlicing() {
 
 bool SlicingSession::isBaseSlice() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ bool SlicingSession::isBaseSlice() {
 
 bool SlicingSession::isKeypadSlice() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ bool SlicingSession::isKeypadSlice() {
 
 void SlicingSession::setKeypadSlice(bool val) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ void SlicingSession::setKeypadSlice(bool val) {
 
 void SlicingSession::setBaseSlice(bool val) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ void SlicingSession::setBaseSlice(bool val) {
 
 int SlicingSession::getSlicingSkill(CreatureObject* slicer) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ int SlicingSession::getSlicingSkill(CreatureObject* slicer) {
 
 bool SlicingSession::hasPrecisionLaserKnife(bool removeItem) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool SlicingSession::hasPrecisionLaserKnife(bool removeItem) {
 
 bool SlicingSession::hasWeaponUpgradeKit() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ bool SlicingSession::hasWeaponUpgradeKit() {
 
 bool SlicingSession::hasArmorUpgradeKit() {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -224,7 +224,7 @@ bool SlicingSession::hasArmorUpgradeKit() {
 
 void SlicingSession::useClampFromInventory(SlicingTool* clamp) {
 	SlicingSessionImplementation* _implementation = static_cast<SlicingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -270,7 +270,7 @@ void SlicingSessionImplementation::finalize() {
 void SlicingSessionImplementation::_initializeImplementation() {
 	_setClassHelper(SlicingSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -379,18 +379,6 @@ bool SlicingSessionImplementation::readObjectMember(ObjectInputStream* stream, c
 		TypeInfo<bool >::parseFromBinaryStream(&usedClamp, stream);
 		return true;
 
-	case 0x9bb3e24: //SlicingSession.sliceOption
-		TypeInfo<byte >::parseFromBinaryStream(&sliceOption, stream);
-		return true;
-
-	case 0xcb4cfef7: //SlicingSession.selectSlice
-		TypeInfo<bool >::parseFromBinaryStream(&selectSlice, stream);
-		return true;
-
-	case 0xc107cefa: //SlicingSession.firstRun
-		TypeInfo<bool >::parseFromBinaryStream(&firstRun, stream);
-		return true;
-
 	case 0x331f459c: //SlicingSession.baseSlice
 		TypeInfo<bool >::parseFromBinaryStream(&baseSlice, stream);
 		return true;
@@ -489,33 +477,6 @@ int SlicingSessionImplementation::writeObjectMembers(ObjectOutputStream* stream)
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x9bb3e24; //SlicingSession.sliceOption
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<byte >::toBinaryStream(&sliceOption, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xcb4cfef7; //SlicingSession.selectSlice
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&selectSlice, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xc107cefa; //SlicingSession.firstRun
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&firstRun, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0x331f459c; //SlicingSession.baseSlice
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -558,12 +519,6 @@ void SlicingSessionImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["usedClamp"] = usedClamp;
 
-	thisObject["sliceOption"] = sliceOption;
-
-	thisObject["selectSlice"] = selectSlice;
-
-	thisObject["firstRun"] = firstRun;
-
 	thisObject["baseSlice"] = baseSlice;
 
 	thisObject["keypadSlice"] = keypadSlice;
@@ -583,9 +538,9 @@ SlicingSessionImplementation::SlicingSessionImplementation(CreatureObject* paren
 
 int SlicingSessionImplementation::clearSession() {
 	// server/zone/objects/player/sessions/SlicingSession.idl():  		player = null;
-	player = nullptr;
+	player = NULL;
 	// server/zone/objects/player/sessions/SlicingSession.idl():  		tangibleObject = null;
-	tangibleObject = nullptr;
+	tangibleObject = NULL;
 	// server/zone/objects/player/sessions/SlicingSession.idl():  		return 0;
 	return 0;
 }
@@ -891,15 +846,6 @@ void SlicingSessionPOD::writeJSON(nlohmann::json& j) {
 	if (usedClamp)
 		thisObject["usedClamp"] = usedClamp.value();
 
-	if (sliceOption)
-		thisObject["sliceOption"] = sliceOption.value();
-
-	if (selectSlice)
-		thisObject["selectSlice"] = selectSlice.value();
-
-	if (firstRun)
-		thisObject["firstRun"] = firstRun.value();
-
 	if (baseSlice)
 		thisObject["baseSlice"] = baseSlice.value();
 
@@ -1011,39 +957,6 @@ int SlicingSessionPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (sliceOption) {
-	_nameHashCode = 0x9bb3e24; //SlicingSession.sliceOption
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<byte >::toBinaryStream(&sliceOption.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (selectSlice) {
-	_nameHashCode = 0xcb4cfef7; //SlicingSession.selectSlice
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&selectSlice.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (firstRun) {
-	_nameHashCode = 0xc107cefa; //SlicingSession.firstRun
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&firstRun.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (baseSlice) {
 	_nameHashCode = 0x331f459c; //SlicingSession.baseSlice
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -1139,30 +1052,6 @@ bool SlicingSessionPOD::readObjectMember(ObjectInputStream* stream, const uint32
 		}
 		return true;
 
-	case 0x9bb3e24: //SlicingSession.sliceOption
-		{
-			byte _mnsliceOption;
-			TypeInfo<byte >::parseFromBinaryStream(&_mnsliceOption, stream);
-			sliceOption = std::move(_mnsliceOption);
-		}
-		return true;
-
-	case 0xcb4cfef7: //SlicingSession.selectSlice
-		{
-			bool _mnselectSlice;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnselectSlice, stream);
-			selectSlice = std::move(_mnselectSlice);
-		}
-		return true;
-
-	case 0xc107cefa: //SlicingSession.firstRun
-		{
-			bool _mnfirstRun;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnfirstRun, stream);
-			firstRun = std::move(_mnfirstRun);
-		}
-		return true;
-
 	case 0x331f459c: //SlicingSession.baseSlice
 		{
 			bool _mnbaseSlice;
@@ -1220,12 +1109,6 @@ void SlicingSessionPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<bool >::toBinaryStream(&usedNode.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&usedClamp.value(), stream);
-
-	TypeInfo<byte >::toBinaryStream(&sliceOption.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&selectSlice.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&firstRun.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&baseSlice.value(), stream);
 

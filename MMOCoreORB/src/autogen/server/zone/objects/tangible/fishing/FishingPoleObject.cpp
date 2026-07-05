@@ -38,7 +38,7 @@ FishingPoleObject::~FishingPoleObject() {
 
 void FishingPoleObject::initializeTransientMembers() {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void FishingPoleObject::initializeTransientMembers() {
 
 int FishingPoleObject::getQuality() const {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +66,7 @@ int FishingPoleObject::getQuality() const {
 
 void FishingPoleObject::setQuality(int value) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void FishingPoleObject::setQuality(int value) {
 
 void FishingPoleObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -91,7 +91,7 @@ void FishingPoleObject::fillObjectMenuResponse(ObjectMenuResponse* menuResponse,
 
 int FishingPoleObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ int FishingPoleObject::handleObjectMenuSelect(CreatureObject* player, byte selec
 
 void FishingPoleObject::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -117,7 +117,7 @@ void FishingPoleObject::updateCraftingValues(CraftingValues* values, bool firstU
 
 int FishingPoleObject::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -134,7 +134,7 @@ int FishingPoleObject::canAddObject(SceneObject* object, int containmentType, St
 
 void FishingPoleObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -144,7 +144,7 @@ void FishingPoleObject::fillAttributeList(AttributeListMessage* msg, CreatureObj
 
 void FishingPoleObject::doFishing(CreatureObject* player) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +159,7 @@ void FishingPoleObject::doFishing(CreatureObject* player) {
 
 String FishingPoleObject::getText(CreatureObject* player) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -176,7 +176,7 @@ String FishingPoleObject::getText(CreatureObject* player) {
 
 bool FishingPoleObject::removeObject(SceneObject* object, SceneObject* destination, bool notifyClient) {
 	FishingPoleObjectImplementation* _implementation = static_cast<FishingPoleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -224,7 +224,7 @@ void FishingPoleObjectImplementation::finalize() {
 void FishingPoleObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FishingPoleObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

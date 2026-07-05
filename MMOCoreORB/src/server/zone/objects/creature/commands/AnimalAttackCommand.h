@@ -6,8 +6,6 @@
 #define ANIMALATTACKCOMMAND_H_
 
 #include "ForcePowersQueueCommand.h"
-#include "server/zone/objects/creature/ai/Creature.h"
-#include "server/zone/managers/combat/CombatManager.h"
 
 class AnimalAttackCommand : public ForcePowersQueueCommand {
 public:
@@ -18,79 +16,73 @@ public:
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target);
-
-		Creature* targetCreature = cast<Creature*>(targetObject.get());
-
-		if (targetCreature == nullptr)
-			return INVALIDTARGET;
-
-
-	  if (targetCreature->getDistanceTo(creature) > 32.f) {
-			 creature->sendSystemMessage("@error_message:target_out_of_range");
-			 return true;
+		if (isWearingArmor(creature)) {
+			return NOJEDIARMOR;
 		}
 
+		ZoneServer* zoneServer = creature->getZoneServer();
 
-				TangibleObject* defender = cast<TangibleObject*>(creature->getMainDefender());
+		if (zoneServer == nullptr)
+			return GENERALERROR;
 
-			  if (defender == nullptr) {
-				return INVALIDTARGET;
-				}
+		ManagedReference<SceneObject*> targetObject = zoneServer->getObject(target);
 
-				if (defender == targetCreature) {
-					 creature->sendSystemMessage("@error_message:targetting_error"); //"You fail to enrage your target."
-					 return true;
-				}
+		StringIdChatParameter param;
+		param.setStringId("@error_message:target_not_creature");
 
+		if (targetObject == nullptr)
+			return GENERALERROR;
 
-		int res = doCombatAction(creature, target);
+		if (!targetObject->isCreatureObject()) {
+			creature->sendSystemMessage(param);
+			return GENERALERROR;
+		}
 
-		if (res == SUCCESS) {
+		// Command Target - Creature that will attack look players main defender
+		CreatureObject* tarCreo = targetObject->asCreatureObject();
 
-			Locker clocker(targetCreature, creature);
+		if (tarCreo == nullptr || !tarCreo->isAiAgent() || tarCreo->isNonPlayerCreatureObject()) {
+			creature->sendSystemMessage(param);
+			return GENERALERROR;
+		}
 
-			// Commence controlling action...
+		// Target to be attacked by the command target
+		SceneObject* attackedScno = creature->getMainDefender();
 
-			CombatManager::instance()->forcePeace(targetCreature);
+		if (attackedScno == nullptr || !attackedScno->isCreatureObject())
+			return GENERALERROR;
 
-	//		TangibleObject* defender = cast<TangibleObject*>(creature->getMainDefender());
+		CreatureObject* attackedCreo = attackedScno->asCreatureObject();
+		AiAgent* agent = tarCreo->asAiAgent();
 
-	//		if (defender == nullptr || defender == targetCreature) {
-	//			creature->sendSystemMessage("@jedi_spam:animal_attack_fail"); //"You fail to enrage your target."
-	//			return true;
-	//		}
+		if (agent == nullptr || attackedCreo == nullptr)
+			return GENERALERROR;
 
-			{
-				Locker clocker (defender, creature);
-				if (!defender->isAttackableBy(targetCreature)) {
-					return INVALIDTARGET;
-				}
+		int result = doCombatAction(creature, target);
+
+		if (result == SUCCESS) {
+			int failChance = System::random(100);
+
+			if (failChance < 75) {
+				Locker alock(agent, creature);
+
+				agent->setDefender(attackedScno);
+
+				param.setStringId("@jedi_spam:animal_attack_success");
+			} else {
+				param.setStringId("@jedi_spam:animal_attack_fail");
 			}
 
-			targetCreature->setDefender(defender);
-
-			creature->doCombatAnimation(targetCreature, STRING_HASHCODE("mind_trick_1"), 1, 0);
-			creature->sendSystemMessage("@jedi_spam:animal_attack_success"); //"You successfully enrage your target."
-
-		  CombatManager::instance()->broadcastCombatSpam(creature, targetCreature, nullptr, 0, "cbt_spam", combatSpam + "_hit", 1);
-
-			return SUCCESS;
-
-		} else {
-
-			creature->sendSystemMessage("@jedi_spam:animal_attack_fail"); //"You fail to enrage your target."
-	//		CombatManager::instance()->broadcastCombatSpam(creature, targetCreature, nullptr, 0, "cbt_spam", combatSpam + "_miss", 1);
+			creature->sendSystemMessage(param);
 		}
 
-		return res;
+		return result;
 	}
 };
 

@@ -26,6 +26,8 @@
 
 #include "system/util/SortedVector.h"
 
+#include "system/util/VectorMap.h"
+
 #include "engine/core/ManagedObject.h"
 
 namespace server {
@@ -53,9 +55,9 @@ public:
 
 	void removeBountyHunter(unsigned long long id);
 
-	bool hasBountyHunter(unsigned long long id);
+	bool hasBountyHunter(unsigned long long id) const;
 
-	SortedVector<unsigned long long>* getBountyHunters();
+	const SortedVector<unsigned long long>* getBountyHunters() const;
 
 	unsigned long long getLastBountyKill() const;
 
@@ -64,6 +66,10 @@ public:
 	unsigned long long getLastBountyDebuff() const;
 
 	void setLastBountyDebuff(unsigned long long newTime);
+
+	bool canTakeMission(unsigned long long enemyID, unsigned long long cooldownTime);
+
+	void addMissionCooldown(unsigned long long enemyID, unsigned long long newTime);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -104,6 +110,8 @@ protected:
 
 	SortedVector<unsigned long long> bountyHunterIDs;
 
+	VectorMap<unsigned long long, unsigned long long> missionCooldownList;
+
 public:
 	PlayerBountyImplementation(unsigned long long targetID, int payout);
 
@@ -125,9 +133,9 @@ public:
 
 	void removeBountyHunter(unsigned long long id);
 
-	bool hasBountyHunter(unsigned long long id);
+	bool hasBountyHunter(unsigned long long id) const;
 
-	SortedVector<unsigned long long>* getBountyHunters();
+	const SortedVector<unsigned long long>* getBountyHunters() const;
 
 	unsigned long long getLastBountyKill() const;
 
@@ -136,6 +144,10 @@ public:
 	unsigned long long getLastBountyDebuff() const;
 
 	void setLastBountyDebuff(unsigned long long newTime);
+
+	bool canTakeMission(unsigned long long enemyID, unsigned long long cooldownTime);
+
+	void addMissionCooldown(unsigned long long enemyID, unsigned long long newTime);
 
 	WeakReference<PlayerBounty*> _this;
 
@@ -196,7 +208,7 @@ public:
 
 	void removeBountyHunter(unsigned long long id);
 
-	bool hasBountyHunter(unsigned long long id);
+	bool hasBountyHunter(unsigned long long id) const;
 
 	unsigned long long getLastBountyKill() const;
 
@@ -205,6 +217,10 @@ public:
 	unsigned long long getLastBountyDebuff() const;
 
 	void setLastBountyDebuff(unsigned long long newTime);
+
+	bool canTakeMission(unsigned long long enemyID, unsigned long long cooldownTime);
+
+	void addMissionCooldown(unsigned long long enemyID, unsigned long long newTime);
 
 };
 
@@ -252,6 +268,8 @@ public:
 	Optional<unsigned long long> lastBountyDebuff;
 
 	Optional<SortedVector<unsigned long long>> bountyHunterIDs;
+
+	Optional<VectorMap<unsigned long long, unsigned long long>> missionCooldownList;
 
 	String _className;
 	PlayerBountyPOD();

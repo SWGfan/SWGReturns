@@ -42,6 +42,8 @@ using namespace server::zone::objects::creature;
 
 #include "server/zone/objects/area/ForageMap.h"
 
+#include "server/zone/objects/transaction/TransactionLog.h"
+
 #include "engine/log/Logger.h"
 
 #include "engine/util/Observer.h"
@@ -110,20 +112,6 @@ public:
 	 * @param planet The planet (zone ID) the player was on when they first started foraging.
 	 */
 	bool forageGiveItems(CreatureObject* player, int forageType, float forageX, float forageY, const String& planet);
-
-	/**
-	 * Gives the player resources for a successful forage.
-	 * Pulls a list of all the flora resource spawns on that planet.
- 	 * Picks a random flora from the list and gives it to the player if there is some under them.
-	 * If the density of the flora is zero, it picks a different resource.
-	 * @pre { this object is not locked, player is locked }
-	 * @post { this object is not locked, player is not locked }
-	 * @param player CreatureObject who is foraging.
-	 * @param forageX The x coordinate of the player's position when they first started foraging.
-	 * @param forageY The y coordinate of the player's position when they first started foraging.
-	 * @param planet The planet (zone ID) the player was on when they first started foraging.
-	 */
-	bool forageGiveResource(CreatureObject* player, float forageX, float forageY, const String& planet, String& resType);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -216,6 +204,7 @@ public:
 	 */
 	bool forageGiveItems(CreatureObject* player, int forageType, float forageX, float forageY, const String& planet);
 
+private:
 	/**
 	 * Gives the player resources for a successful forage.
 	 * Pulls a list of all the flora resource spawns on that planet.
@@ -228,8 +217,9 @@ public:
 	 * @param forageY The y coordinate of the player's position when they first started foraging.
 	 * @param planet The planet (zone ID) the player was on when they first started foraging.
 	 */
-	bool forageGiveResource(CreatureObject* player, float forageX, float forageY, const String& planet, String& resType);
+	bool forageGiveResource(TransactionLog& trx, CreatureObject* player, float forageX, float forageY, const String& planet, String& resType);
 
+public:
 	WeakReference<ForageManager*> _this;
 
 	operator const ForageManager*();
@@ -280,8 +270,6 @@ public:
 	void finishForaging(CreatureObject* player, int forageType, float forageX, float forageY, const String& planet);
 
 	bool forageGiveItems(CreatureObject* player, int forageType, float forageX, float forageY, const String& planet);
-
-	bool forageGiveResource(CreatureObject* player, float forageX, float forageY, const String& planet, String& resType);
 
 };
 

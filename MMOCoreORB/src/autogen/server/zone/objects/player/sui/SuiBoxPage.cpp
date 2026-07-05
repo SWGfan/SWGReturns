@@ -30,7 +30,7 @@ SuiBoxPage::~SuiBoxPage() {
 
 BaseMessage* SuiBoxPage::generateMessage() {
 	SuiBoxPageImplementation* _implementation = static_cast<SuiBoxPageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiBoxPage::generateMessage() {
 
 bool SuiBoxPage::isSuiBoxPage() {
 	SuiBoxPageImplementation* _implementation = static_cast<SuiBoxPageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -54,7 +54,7 @@ bool SuiBoxPage::isSuiBoxPage() {
 
 SuiPageData* SuiBoxPage::getSuiPageData() {
 	SuiBoxPageImplementation* _implementation = static_cast<SuiBoxPageImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -95,7 +95,7 @@ void SuiBoxPageImplementation::finalize() {
 void SuiBoxPageImplementation::_initializeImplementation() {
 	_setClassHelper(SuiBoxPageHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -331,7 +331,7 @@ int LuaSuiBoxPage::generateMessage(lua_State *L) {
 	if (parameterCount == 0) {
 		BaseMessage* result = realObject->generateMessage();
 
-		if (result != nullptr)
+		if (result != NULL)
 			lua_pushlightuserdata(L, result);
 		else
 			lua_pushnil(L);
@@ -362,7 +362,7 @@ int LuaSuiBoxPage::getSuiPageData(lua_State *L) {
 	if (parameterCount == 0) {
 		SuiPageData* result = realObject->getSuiPageData();
 
-		if (result != nullptr)
+		if (result != NULL)
 			lua_pushlightuserdata(L, result);
 		else
 			lua_pushnil(L);

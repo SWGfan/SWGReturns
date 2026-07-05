@@ -20,20 +20,6 @@ JediTrials = ScreenPlay:new {
 
 	COUNCIL_LIGHT = 1,
 	COUNCIL_DARK = 2,
-
-	lightJourneymanKnightTrialSkills = {
-		"jedi_light_side_journeyman_saber_04",
-		"jedi_light_side_journeyman_healing_04",
-		"jedi_light_side_journeyman_force_power_04",
-		"jedi_light_side_journeyman_force_manipulation_04"
-	},
-
-	darkJourneymanKnightTrialSkills = {
-		"jedi_dark_side_journeyman_saber_04",
-		"jedi_dark_side_journeyman_healing_04",
-		"jedi_dark_side_journeyman_force_power_04",
-		"jedi_dark_side_journeyman_force_manipulation_04"
-	}
 }
 
 function JediTrials:isEligibleForPadawanTrials(pPlayer)
@@ -43,7 +29,7 @@ function JediTrials:isEligibleForPadawanTrials(pPlayer)
 
 	local learnedBranches = VillageJediManagerCommon.getLearnedForceSensitiveBranches(pPlayer)
 
-	return CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression") and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and learnedBranches >= 3 and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
+	return CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression") and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and learnedBranches >= 4 and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
 end
 
 function JediTrials:isOnPadawanTrials(pPlayer)
@@ -63,7 +49,7 @@ function JediTrials:isEligibleForKnightTrials(pPlayer)
 		return false
 	end
 
-	return CreatureObject(pPlayer):villageKnightPrereqsMet("") or self:hasCompletedJourneymanKnightTrialSkills(pPlayer)
+	return CreatureObject(pPlayer):villageKnightPrereqsMet("")
 end
 
 function JediTrials:isOnKnightTrials(pPlayer)
@@ -72,53 +58,6 @@ function JediTrials:isOnKnightTrials(pPlayer)
 	end
 
 	return tonumber(readScreenPlayData(pPlayer, "KnightTrials", "startedTrials")) == 1 and tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) ~= 1
-end
-
-function JediTrials:isKnightTrialsTriggerSkill(skillName)
-	if (skillName == nil) then
-		return false
-	end
-
-	for i = 1, #self.lightJourneymanKnightTrialSkills, 1 do
-		if (skillName == self.lightJourneymanKnightTrialSkills[i]) then
-			return true
-		end
-	end
-
-	for i = 1, #self.darkJourneymanKnightTrialSkills, 1 do
-		if (skillName == self.darkJourneymanKnightTrialSkills[i]) then
-			return true
-		end
-	end
-
-	return false
-end
-
-function JediTrials:hasAllSkills(pPlayer, skillList)
-	if (pPlayer == nil or skillList == nil) then
-		return false
-	end
-
-	for i = 1, #skillList, 1 do
-		if (not CreatureObject(pPlayer):hasSkill(skillList[i])) then
-			return false
-		end
-	end
-
-	return true
-end
-
-function JediTrials:hasCompletedJourneymanKnightTrialSkills(pPlayer)
-	return self:hasAllSkills(pPlayer, self.lightJourneymanKnightTrialSkills) or self:hasAllSkills(pPlayer, self.darkJourneymanKnightTrialSkills)
-end
-
-function JediTrials:tryStartKnightTrials(pPlayer)
-	if (pPlayer == nil or CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03") or self:isOnKnightTrials(pPlayer) or not self:isEligibleForKnightTrials(pPlayer)) then
-		return false
-	end
-
-	KnightTrials:startKnightTrials(pPlayer)
-	return true
 end
 
 function JediTrials:onPlayerLoggedIn(pPlayer)
@@ -246,7 +185,7 @@ function JediTrials:unlockJediKnight(pPlayer)
 	awardSkill(pPlayer, "force_title_jedi_rank_03")
 	writeScreenPlayData(pPlayer, "KnightTrials", "completedTrials", 1)
 	CreatureObject(pPlayer):playMusicMessage(unlockMusic)
-	playClientEffectLoc(CreatureObject(pPlayer):getObjectID(), "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
+	playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
 
 	PlayerObject(pGhost):addWaypoint(enclaveLoc[3], enclaveName, "", enclaveLoc[1], enclaveLoc[2], WAYPOINTYELLOW, true, true, 0)
 	PlayerObject(pGhost):setJediState(jediState)
@@ -568,6 +507,11 @@ function JediTrials:completeKnightForTesting(pPlayer, councilType)
 			enclaveLoc = { 5079, 0, 305 }
 		end
 
+		local player = CreatureObject(pPlayer)
+
+		if (player:isRidingMount()) then
+			player:dismount()
+		end
 		SceneObject(pPlayer):switchZone("yavin4", enclaveLoc[1], enclaveLoc[2], enclaveLoc[3], 0)
 	end
 end

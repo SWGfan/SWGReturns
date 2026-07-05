@@ -1,11 +1,9 @@
 ForceShrineMenuComponent = {}
 
-local HologrindJediManager = require("managers.jedi.hologrind_jedi_manager")
-
 function ForceShrineMenuComponent:fillObjectMenuResponse(pSceneObject, pMenuResponse, pPlayer)
 	local menuResponse = LuaObjectMenuResponse(pMenuResponse)
 
-	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice") or HologrindJediManager:isAwaitingShrineMeditation(pPlayer)) then
+	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
 		menuResponse:addRadialMenuItem(120, 3, "@jedi_trials:meditate") -- Meditate
 	end
 
@@ -20,7 +18,7 @@ function ForceShrineMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selec
 		return 0
 	end
 
-	if (selectedID == 120 and (CreatureObject(pPlayer):hasSkill("force_title_jedi_novice") or HologrindJediManager:isAwaitingShrineMeditation(pPlayer))) then
+	if (selectedID == 120 and CreatureObject(pPlayer):hasSkill("force_title_jedi_novice")) then
 		if (CreatureObject(pPlayer):getPosture() ~= CROUCHED) then
 			CreatureObject(pPlayer):sendSystemMessage("@jedi_trials:show_respect") -- Must respect
 		else
@@ -34,12 +32,6 @@ function ForceShrineMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selec
 end
 
 function ForceShrineMenuComponent:doMeditate(pObject, pPlayer)
-	if (HologrindJediManager:isAwaitingShrineMeditation(pPlayer)) then
-		HologrindJediManager:awardJediStatusAndSkill(pPlayer)
-		CreatureObject(pPlayer):sendSystemMessage("@quest/force_sensitive/intro:force_sensitive")
-		return
-	end
-
 	if (tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
 		KnightTrials:resetCompletedTrialsToStart(pPlayer)
 	end

@@ -2,23 +2,24 @@ spiked_slasher = Creature:new {
 	objectName = "@mob/creature_names:voritor_spiked_slasher",
 	socialGroup = "voritor",
 	faction = "",
-	level = 55,
-	chanceHit = 1.25,
-	damageMin = 480,
-	damageMax = 620,
-	baseXp = 11147,
-	baseHAM = 11500,
-	baseHAMmax = 14500,
-	armor = 1,
-	resists = {165,165,150,150,150,145,200,150,-1},
+	mobType = MOB_CARNIVORE,
+	level = 58,
+	chanceHit = 0.53,
+	damageMin = 430,
+	damageMax = 570,
+	baseXp = 5647,
+	baseHAM = 10000,
+	baseHAMmax = 13000,
+	armor = 0,
+	resists = {165,140,0,0,150,-1,120,0,-1},
 	meatType = "meat_carnivore",
-	meatAmount = 130,
+	meatAmount = 65,
 	hideType = "hide_leathery",
-	hideAmount = 80,
+	hideAmount = 40,
 	boneType = "bone_avian",
-	boneAmount = 100,
+	boneAmount = 50,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER,
@@ -36,12 +37,17 @@ spiked_slasher = Creature:new {
 			lootChance = 2160000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"strongpoison","stateAccuracyBonus=75"},
-		{"creatureareapoison","stateAccuracyBonus=75"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"strongpoison",""}, {"creatureareapoison",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(spiked_slasher, "spiked_slasher")

@@ -28,7 +28,7 @@ VeteranRewardSession::~VeteranRewardSession() {
 
 unsigned int VeteranRewardSession::getMilestone() {
 	VeteranRewardSessionImplementation* _implementation = static_cast<VeteranRewardSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ unsigned int VeteranRewardSession::getMilestone() {
 
 int VeteranRewardSession::getSelectedRewardIndex() {
 	VeteranRewardSessionImplementation* _implementation = static_cast<VeteranRewardSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ int VeteranRewardSession::getSelectedRewardIndex() {
 
 void VeteranRewardSession::setSelectedRewardIndex(int idx) {
 	VeteranRewardSessionImplementation* _implementation = static_cast<VeteranRewardSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,7 +102,7 @@ void VeteranRewardSessionImplementation::finalize() {
 void VeteranRewardSessionImplementation::_initializeImplementation() {
 	_setClassHelper(VeteranRewardSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

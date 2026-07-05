@@ -71,22 +71,6 @@ using namespace server::zone::objects::structure;
 namespace server {
 namespace zone {
 namespace objects {
-namespace building {
-
-class BuildingObject;
-
-class BuildingObjectPOD;
-
-} // namespace building
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::building;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace installation {
 
 class InstallationObject;
@@ -168,19 +152,9 @@ class DeedPOD;
 
 using namespace server::zone::objects::tangible::deed;
 
-namespace server {
-namespace zone {
-namespace managers {
-namespace gcw {
+#include "server/zone/objects/building/BuildingObject.h"
 
-class TerminalSpawn;
-
-} // namespace gcw
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::gcw;
+#include "server/zone/managers/gcw/TerminalSpawn.h"
 
 #include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
@@ -225,6 +199,10 @@ public:
 
 	static const int STATICFACTIONBASE = 2;
 
+	static const int HACKALARM = 1;
+
+	static const int DESTRUCTALARM = 2;
+
 	GCWManager(Zone* zne);
 
 	Zone* getZone();
@@ -254,6 +232,8 @@ public:
 	void addScanner(BuildingObject* building, SceneObject* scanner);
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
+
+	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
 
 	void startVulnerability(BuildingObject* building);
 
@@ -290,6 +270,8 @@ public:
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
+
+	void renewUplinkBand(BuildingObject* building);
 
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
@@ -345,7 +327,17 @@ public:
 
 	float getGCWDiscount(CreatureObject* creature);
 
-	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+
+	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
+
+	void performCheckWildContrabandScanTask();
+
+	int countContrabandItems(CreatureObject* player);
+
+	void activateBaseAlarms(BuildingObject* building, int alarmType);
+
+	void deactivateBaseAlarms(BuildingObject* building);
 
 	int isStrongholdCity(String& city);
 
@@ -369,6 +361,14 @@ public:
 
 	int getWinningFactionDifficultyScaling() const;
 
+	int getCrackdownPlayerScanCooldown() const;
+
+	int getCrackdownContrabandFineCredits() const;
+
+	int getCrackdownContrabandFineFactionPoints() const;
+
+	int getCrackdownScanInterval() const;
+
 	int getGCWXPBonus() const;
 
 	int getPointValue(const String& templateString);
@@ -383,6 +383,8 @@ public:
 
 	bool shouldSpawnDefenses() const;
 
+	bool shouldSpawnBaseAlarms() const;
+
 	int getInitialVulnerabilityDelay() const;
 
 	int getTurretAutoFireTimeout() const;
@@ -392,6 +394,10 @@ public:
 	int getOvertCooldown() const;
 
 	int getResetTimer() const;
+
+	int getCrackdownScansEnabled() const;
+
+	String getCrackdownInfo(CreatureObject* player) const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -426,6 +432,10 @@ public:
 
 	static const int STATICFACTIONBASE = 2;
 
+	static const int HACKALARM = 1;
+
+	static const int DESTRUCTALARM = 2;
+
 private:
 	ManagedReference<Zone* > zone;
 
@@ -448,6 +458,8 @@ protected:
 
 	Vector<int> difficultyScalingThresholds;
 
+	Vector<String> planetsWithWildScans;
+
 	HashTable<int, float> racialPenaltyMap;
 
 private:
@@ -462,6 +474,20 @@ private:
 	int winningFaction;
 
 	int winnerDifficultyScaling;
+
+	bool crackdownScansEnabled;
+
+	bool crackdownScanPrivilegedPlayers;
+
+	int crackdownScanInterval;
+
+	int crackdownPlayerScanCooldown;
+
+	int crackdownContrabandFineCredits;
+
+	int crackdownContrabandFineFactionPoints;
+
+	int crackdownPerformanceWildScanPlayerFindRadius;
 
 public:
 	unsigned long long gcwCheckTimer;
@@ -499,6 +525,8 @@ public:
 	int loserBonus;
 
 	bool spawnDefenses;
+
+	bool spawnBaseAlarms;
 
 	int initialVulnerabilityDelay;
 
@@ -554,6 +582,8 @@ public:
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
 
+	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
+
 	void startVulnerability(BuildingObject* building);
 
 	void endVulnerability(BuildingObject* building);
@@ -606,10 +636,8 @@ public:
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
 
-private:
 	void renewUplinkBand(BuildingObject* building);
 
-public:
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
 	void completeSecuritySlice(CreatureObject* creature, TangibleObject* securityTerminal);
@@ -675,7 +703,7 @@ private:
 
 	void performDonateTurret(BuildingObject* building, CreatureObject* creature, Deed* deed);
 
-	unsigned long long addChildInstallationFromDeed(BuildingObject* building, ChildObject* child, CreatureObject* creature, Deed* deed);
+	unsigned long long addChildInstallationFromDeed(BuildingObject* building, const ChildObject* child, CreatureObject* creature, Deed* deed);
 
 public:
 	void sendTurretAttackListTo(CreatureObject* creature, SceneObject* turretControlTerminal);
@@ -692,7 +720,19 @@ private:
 public:
 	float getGCWDiscount(CreatureObject* creature);
 
-	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+
+	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
+
+	void performCheckWildContrabandScanTask();
+
+private:
+	bool isContraband(SceneObject* item);
+
+	int countContrabandItemsInContainer(SceneObject* container);
+
+public:
+	int countContrabandItems(CreatureObject* player);
 
 private:
 	void spawnBaseTerminals(BuildingObject* building);
@@ -700,6 +740,10 @@ private:
 	void despawnBaseTerminals(BuildingObject* building);
 
 public:
+	void activateBaseAlarms(BuildingObject* building, int alarmType);
+
+	void deactivateBaseAlarms(BuildingObject* building);
+
 	int isStrongholdCity(String& city);
 
 protected:
@@ -759,10 +803,20 @@ private:
 
 	void updateWinningFaction();
 
+	void spawnGcwControlBanners();
+
 public:
 	unsigned int getWinningFaction() const;
 
 	int getWinningFactionDifficultyScaling() const;
+
+	int getCrackdownPlayerScanCooldown() const;
+
+	int getCrackdownContrabandFineCredits() const;
+
+	int getCrackdownContrabandFineFactionPoints() const;
+
+	int getCrackdownScanInterval() const;
 
 	int getGCWXPBonus() const;
 
@@ -778,6 +832,8 @@ public:
 
 	bool shouldSpawnDefenses() const;
 
+	bool shouldSpawnBaseAlarms() const;
+
 	int getInitialVulnerabilityDelay() const;
 
 	int getTurretAutoFireTimeout() const;
@@ -787,6 +843,10 @@ public:
 	int getOvertCooldown() const;
 
 	int getResetTimer() const;
+
+	int getCrackdownScansEnabled() const;
+
+	String getCrackdownInfo(CreatureObject* player) const;
 
 	WeakReference<GCWManager*> _this;
 
@@ -859,6 +919,8 @@ public:
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
 
+	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
+
 	void startVulnerability(BuildingObject* building);
 
 	void endVulnerability(BuildingObject* building);
@@ -894,6 +956,8 @@ public:
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
+
+	void renewUplinkBand(BuildingObject* building);
 
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
@@ -947,7 +1011,17 @@ public:
 
 	float getGCWDiscount(CreatureObject* creature);
 
-	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+
+	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
+
+	void performCheckWildContrabandScanTask();
+
+	int countContrabandItems(CreatureObject* player);
+
+	void activateBaseAlarms(BuildingObject* building, int alarmType);
+
+	void deactivateBaseAlarms(BuildingObject* building);
 
 	int isStrongholdCity(String& city);
 

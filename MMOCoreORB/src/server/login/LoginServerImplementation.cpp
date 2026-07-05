@@ -111,7 +111,7 @@ LoginClient* LoginServerImplementation::createConnection(Socket* sock, SocketAdd
 
 	LoginClient* client = new LoginClient(session);
 
-		StringBuffer msg; msg << "client connected from '" << session->getAddress().getFullIPAddress() << "'"; info(msg.toString());
+	info("client connected from \'" + session->getAddress() + "\'");
 
 	return client;
 }
@@ -136,11 +136,10 @@ void LoginServerImplementation::handleMessage(LoginClient* client, Packet* messa
 }
 
 void LoginServerImplementation::processMessage(Message* message) {
-	//info("processing message " + message->toStringData());
+	debug() << "processing message " << *message;
 
 	Reference<Task*> task = new LoginMessageProcessorTask(message, processor->getPacketHandler());
-
-	Core::getTaskManager()->executeTask(task);
+	task->execute();
 }
 
 LoginClient* LoginServerImplementation::getLoginClient(ServiceClient* session) {
@@ -162,9 +161,7 @@ bool LoginServerImplementation::handleError(ServiceClient* client, Exception& e)
 void LoginServerImplementation::printInfo() {
 	lock();
 
-	StringBuffer msg;
-	msg << "MessageQueue - size = " << datagramService->getMessageQueue()->size();
-	info(msg, true);
+	info(true) << "MessageQueue - size = " << datagramService->getMessageQueue()->size();
 
 	unlock();
 }

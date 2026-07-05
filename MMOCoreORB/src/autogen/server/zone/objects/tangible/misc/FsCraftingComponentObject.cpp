@@ -32,7 +32,7 @@ FsCraftingComponentObject::~FsCraftingComponentObject() {
 
 void FsCraftingComponentObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FsCraftingComponentObjectImplementation* _implementation = static_cast<FsCraftingComponentObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void FsCraftingComponentObject::fillAttributeList(AttributeListMessage* msg, Cre
 
 void FsCraftingComponentObject::destroyObjectFromWorld(bool sendSelfDestroy) {
 	FsCraftingComponentObjectImplementation* _implementation = static_cast<FsCraftingComponentObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void FsCraftingComponentObject::destroyObjectFromWorld(bool sendSelfDestroy) {
 
 int FsCraftingComponentObject::getStatus() {
 	FsCraftingComponentObjectImplementation* _implementation = static_cast<FsCraftingComponentObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int FsCraftingComponentObject::getStatus() {
 
 void FsCraftingComponentObject::setStatus(int st) {
 	FsCraftingComponentObjectImplementation* _implementation = static_cast<FsCraftingComponentObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -118,7 +118,7 @@ void FsCraftingComponentObjectImplementation::finalize() {
 void FsCraftingComponentObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FsCraftingComponentObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

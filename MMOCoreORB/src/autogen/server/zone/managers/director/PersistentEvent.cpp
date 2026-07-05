@@ -30,7 +30,7 @@ PersistentEvent::~PersistentEvent() {
 
 void PersistentEvent::setScreenplayTask(ScreenPlayTask* task) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ void PersistentEvent::setScreenplayTask(ScreenPlayTask* task) {
 
 WeakReference<ScreenPlayTask* > PersistentEvent::getScreenplayTask() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -50,7 +50,7 @@ WeakReference<ScreenPlayTask* > PersistentEvent::getScreenplayTask() const {
 
 unsigned long long PersistentEvent::getMiliDiff() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ unsigned long long PersistentEvent::getMiliDiff() const {
 
 const String PersistentEvent::getKey() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -80,7 +80,7 @@ const String PersistentEvent::getKey() const {
 
 const String PersistentEvent::getScreenplay() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ const String PersistentEvent::getScreenplay() const {
 
 const String PersistentEvent::getArgs() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ const String PersistentEvent::getArgs() const {
 
 ManagedWeakReference<SceneObject* > PersistentEvent::getObject() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ ManagedWeakReference<SceneObject* > PersistentEvent::getObject() const {
 
 unsigned long long PersistentEvent::getCurTime() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ unsigned long long PersistentEvent::getCurTime() const {
 
 const String PersistentEvent::getEventName() const {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ const String PersistentEvent::getEventName() const {
 
 void PersistentEvent::setEventName(const String& en) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +171,7 @@ void PersistentEvent::setEventName(const String& en) {
 
 void PersistentEvent::setCurTime(unsigned long long time) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -186,7 +186,7 @@ void PersistentEvent::setCurTime(unsigned long long time) {
 
 void PersistentEvent::setMiliDiff(unsigned long long mdiff) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -201,7 +201,7 @@ void PersistentEvent::setMiliDiff(unsigned long long mdiff) {
 
 void PersistentEvent::setKey(const String& k) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -216,7 +216,7 @@ void PersistentEvent::setKey(const String& k) {
 
 void PersistentEvent::setScreenplay(const String& sp) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -231,7 +231,7 @@ void PersistentEvent::setScreenplay(const String& sp) {
 
 void PersistentEvent::setArgs(const String& ar) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -246,7 +246,7 @@ void PersistentEvent::setArgs(const String& ar) {
 
 void PersistentEvent::setObject(SceneObject* o) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -261,7 +261,7 @@ void PersistentEvent::setObject(SceneObject* o) {
 
 void PersistentEvent::setEventExecuted(bool val) {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -276,7 +276,7 @@ void PersistentEvent::setEventExecuted(bool val) {
 
 void PersistentEvent::loadTransientTask() {
 	PersistentEventImplementation* _implementation = static_cast<PersistentEventImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -321,7 +321,7 @@ void PersistentEventImplementation::finalize() {
 void PersistentEventImplementation::_initializeImplementation() {
 	_setClassHelper(PersistentEventHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -706,7 +706,7 @@ void PersistentEventAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 		{
 			
 			DistributedObject* _m_res = getObject().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCURTIME__:

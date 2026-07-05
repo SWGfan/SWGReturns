@@ -32,7 +32,7 @@ PsgArmorObject::~PsgArmorObject() {
 
 void PsgArmorObject::initializeTransientMembers() {
 	PsgArmorObjectImplementation* _implementation = static_cast<PsgArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,8 +45,8 @@ void PsgArmorObject::initializeTransientMembers() {
 }
 
 bool PsgArmorObject::isPsgArmorObject() {
-	PsgArmorObjectImplementation* _implementation = static_cast<PsgArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	PsgArmorObjectImplementation* _implementation = static_cast<PsgArmorObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ bool PsgArmorObject::isPsgArmorObject() {
 
 void PsgArmorObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	PsgArmorObjectImplementation* _implementation = static_cast<PsgArmorObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -70,7 +70,7 @@ void PsgArmorObject::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 void PsgArmorObject::updateCraftingValues(CraftingValues* schematic, bool firstUpdate) {
 	PsgArmorObjectImplementation* _implementation = static_cast<PsgArmorObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -111,7 +111,7 @@ void PsgArmorObjectImplementation::finalize() {
 void PsgArmorObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PsgArmorObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

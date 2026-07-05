@@ -38,7 +38,7 @@ ImageDesignSession::~ImageDesignSession() {
 
 void ImageDesignSession::initializeTransientMembers() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void ImageDesignSession::initializeTransientMembers() {
 
 void ImageDesignSession::startImageDesign(CreatureObject* designer, CreatureObject* targetPlayer) {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void ImageDesignSession::startImageDesign(CreatureObject* designer, CreatureObje
 
 void ImageDesignSession::updateImageDesign(CreatureObject* updater, unsigned long long designer, unsigned long long targetPlayer, unsigned long long tent, int type, const ImageDesignData& data) {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ void ImageDesignSession::updateImageDesign(CreatureObject* updater, unsigned lon
 
 void ImageDesignSession::cancelImageDesign(unsigned long long designer, unsigned long long targetPlayer, unsigned long long tent, int type, const ImageDesignData& data) {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -82,7 +82,7 @@ void ImageDesignSession::cancelImageDesign(unsigned long long designer, unsigned
 
 int ImageDesignSession::initializeSession() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -96,7 +96,7 @@ int ImageDesignSession::initializeSession() {
 
 int ImageDesignSession::doPayment() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +110,7 @@ int ImageDesignSession::doPayment() {
 
 int ImageDesignSession::cancelSession() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +124,7 @@ int ImageDesignSession::cancelSession() {
 
 int ImageDesignSession::clearSession() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +138,7 @@ int ImageDesignSession::clearSession() {
 
 void ImageDesignSession::clearIdTimeoutEvent() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void ImageDesignSession::clearIdTimeoutEvent() {
 
 void ImageDesignSession::checkDequeueEvent(SceneObject* scene) {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -167,7 +167,7 @@ void ImageDesignSession::checkDequeueEvent(SceneObject* scene) {
 
 void ImageDesignSession::queueIdTimeoutEvent() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ void ImageDesignSession::queueIdTimeoutEvent() {
 
 void ImageDesignSession::dequeueIdTimeoutEvent() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -195,7 +195,7 @@ void ImageDesignSession::dequeueIdTimeoutEvent() {
 
 void ImageDesignSession::sessionTimeout() {
 	ImageDesignSessionImplementation* _implementation = static_cast<ImageDesignSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -240,7 +240,7 @@ void ImageDesignSessionImplementation::finalize() {
 void ImageDesignSessionImplementation::_initializeImplementation() {
 	_setClassHelper(ImageDesignSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -416,13 +416,13 @@ ImageDesignSessionImplementation::ImageDesignSessionImplementation(CreatureObjec
 
 int ImageDesignSessionImplementation::initializeSession() {
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		designerCreature = null;
-	designerCreature = nullptr;
+	designerCreature = NULL;
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		targetCreature = null;
-	targetCreature = nullptr;
+	targetCreature = NULL;
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		idTimeoutEvent = null;
-	idTimeoutEvent = nullptr;
+	idTimeoutEvent = NULL;
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		positionObserver = null;
-	positionObserver = nullptr;
+	positionObserver = NULL;
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		return 0;
 	return 0;
 }
@@ -437,7 +437,7 @@ void ImageDesignSessionImplementation::clearIdTimeoutEvent() {
 {
 	Locker _locker((&idTimeoutLock));
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  			idTimeoutEvent = null;
-	idTimeoutEvent = nullptr;
+	idTimeoutEvent = NULL;
 }
 }
 
@@ -446,7 +446,7 @@ void ImageDesignSessionImplementation::queueIdTimeoutEvent() {
 {
 	Locker _locker((&idTimeoutLock));
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  			if 
-	if (idTimeoutEvent == nullptr){
+	if (!idTimeoutEvent){
 	Reference<ImageDesignTimeoutEvent*> _ref0;
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  				ImageDesignTimeoutEvent ev = new ImageDesignTimeoutEvent(this);
 	ImageDesignTimeoutEvent* ev = _ref0 = new ImageDesignTimeoutEvent(_this.getReferenceUnsafeStaticCast());
@@ -464,12 +464,12 @@ void ImageDesignSessionImplementation::dequeueIdTimeoutEvent() {
 {
 	Locker _locker((&idTimeoutLock));
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  		}
-	if (idTimeoutEvent != nullptr){
+	if (idTimeoutEvent){
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  				idTimeoutEvent 
 	if (idTimeoutEvent->isScheduled())	// server/zone/objects/player/sessions/ImageDesignSession.idl():  					idTimeoutEvent.cancel();
 	idTimeoutEvent->cancel();
 	// server/zone/objects/player/sessions/ImageDesignSession.idl():  				idTimeoutEvent = null;
-	idTimeoutEvent = nullptr;
+	idTimeoutEvent = NULL;
 }
 }
 }

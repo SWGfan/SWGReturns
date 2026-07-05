@@ -2,6 +2,7 @@ nightsister_rancor = Creature:new {
 	objectName = "@mob/creature_names:nightsister_rancor",
 	socialGroup = "nightsister",
 	faction = "nightsister",
+	mobType = MOB_CARNIVORE,
 	level = 55,
 	chanceHit = 0.5,
 	damageMin = 395,
@@ -10,7 +11,7 @@ nightsister_rancor = Creature:new {
 	baseHAM = 10000,
 	baseHAMmax = 12000,
 	armor = 1,
-	resists = {130,160,5,200,200,200,5,5,-1},
+	resists = {30,60,5,20,20,20,5,5,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 950,
 	hideType = "hide_leathery",
@@ -18,7 +19,7 @@ nightsister_rancor = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 776,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 10,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -31,29 +32,25 @@ nightsister_rancor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "rancor_common", chance = 10000000},
+				{group = "rancor_common", chance = 4000000},
+				{group = "armor_all", chance = 2000000},
+				{group = "weapons_all", chance = 2500000},
+				{group = "wearables_all", chance = 1500000}
 			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "weapons_all", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
-		{
-			groups = {
-				{group = "wearables_all", chance = 10000000},
-			},
-			lootChance = 5000000
-		},
+			lootChance = 2100000
+		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"posturedownattack",""},
-		{"creatureareaknockdown",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"posturedownattack",""}, {"creatureareaknockdown",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_rancor, "nightsister_rancor")

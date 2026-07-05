@@ -35,7 +35,7 @@ public:
 
 	void setString(const String& msg);
 
-	String toString();
+	String toString() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -69,7 +69,7 @@ public:
 
 	void setString(const String& msg);
 
-	String toString();
+	String toString() const;
 
 	WeakReference<ChatMessage*> _this;
 
@@ -117,7 +117,7 @@ public:
 
 	void setString(const String& msg);
 
-	String toString();
+	String toString() const;
 
 };
 

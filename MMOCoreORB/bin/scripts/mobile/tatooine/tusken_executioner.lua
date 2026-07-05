@@ -2,15 +2,16 @@ tusken_executioner = Creature:new {
 	objectName = "@mob/creature_names:tusken_executioner",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
-	level = 300,
-	chanceHit = 35.0,
-	damageMin = 1650,
-	damageMax = 2500,
+	mobType = MOB_NPC,
+	level = 263,
+	chanceHit = 23.5,
+	damageMin = 1645,
+	damageMax = 3000,
 	baseXp = 25167,
-	baseHAM = 110000,
-	baseHAMmax = 130000,
-	armor = 2,
-	resists = {125,125,125,125,125,125,125,125,125},
+	baseHAM = 261000,
+	baseHAMmax = 320000,
+	armor = 1,
+	resists = {85,80,35,100,20,30,45,80,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,35 +30,35 @@ tusken_executioner = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "trash_rare", chance = 10000000},
-			},
-			lootChance = 2000000
-		},		
+				{group = "junk", chance = 1500000},
+				{group = "tusken_common", chance = 3000000},
+				{group = "wearables_scarce", chance = 2000000},
+				{group = "bone_armor", chance = 750000},
+				{group = "chitin_armor", chance = 750000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "power_crystals", chance = 500000}
+			}
+		},
 		{
 			groups = {
-				{group = "trash_common", chance = 10000000},
+				{group = "weapon_component_advanced", chance = 10000000}
 			},
 			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "weapon_component_advanced", chance = 10000000},
-			},
-			lootChance = 7000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 3000000
 		}
 	},
-	weapons = {"tusken_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "tusken_ranged",
+	secondaryWeapon = "tusken_melee",
 	conversationTemplate = "",
-	attacks = merge(marksmanmaster,brawlermaster,fencermaster,riflemanmaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(marksmanmaster,riflemanmaster),
+	secondaryAttacks = merge(brawlermaster,fencermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(tusken_executioner, "tusken_executioner")

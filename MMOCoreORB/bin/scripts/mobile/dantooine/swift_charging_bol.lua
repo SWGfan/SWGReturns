@@ -2,23 +2,24 @@ swift_charging_bol = Creature:new {
 	objectName = "@mob/creature_names:bol_swift_charger",
 	socialGroup = "bol",
 	faction = "",
-	level = 35,
-	chanceHit = 1.25,
-	damageMin = 350,
-	damageMax = 400,
-	baseXp = 6740,
-	baseHAM = 9500,
-	baseHAMmax = 11500,
-	armor = 1,
-	resists = {160,160,145,140,150,145,145,140,-1},
+	mobType = MOB_HERBIVORE,
+	level = 34,
+	chanceHit = 0.41,
+	damageMin = 310,
+	damageMax = 330,
+	baseXp = 3370,
+	baseHAM = 8700,
+	baseHAMmax = 10700,
+	armor = 0,
+	resists = {120,120,0,0,0,0,0,0,-1},
 	meatType = "meat_herbivore",
-	meatAmount = 360,
+	meatAmount = 180,
 	hideType = "hide_leathery",
-	hideAmount = 600,
+	hideAmount = 300,
 	boneType = "bone_mammal",
-	boneAmount = 360,
+	boneAmount = 180,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -29,12 +30,17 @@ swift_charging_bol = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/bol_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"knockdownattack","stateAccuracyBonus=100"},
-		{"stunattack","stateAccuracyBonus=100"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"knockdownattack",""}, {"stunattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(swift_charging_bol, "swift_charging_bol")

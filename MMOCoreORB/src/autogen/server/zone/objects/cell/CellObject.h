@@ -142,8 +142,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	/**
 	 * This method loops through all items in the cell and attempts to destroy them from the database.
 	 */
@@ -256,8 +254,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	/**
 	 * This method loops through all items in the cell and attempts to destroy them from the database.
 	 */
@@ -339,8 +335,6 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
-	int getCurrentNumberOfPlayerVendors();
-
 	void destroyAllPlayerItems();
 
 	int getCellNumber() const;
@@ -394,7 +388,6 @@ public:
 	int initializeTransientMembers(lua_State *L);
 	int sendBaselinesTo(lua_State *L);
 	int getCurrentNumberOfPlayerItems(lua_State *L);
-	int getCurrentNumberOfPlayerVendors(lua_State *L);
 	int destroyAllPlayerItems(lua_State *L);
 	int getCellNumber(lua_State *L);
 	int setCellNumber(lua_State *L);

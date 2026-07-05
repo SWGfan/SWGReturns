@@ -8,12 +8,14 @@
 #include "DirectorManager.h"
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/objects/creature/LuaCreatureObject.h"
+#include "templates/params/creature/CreatureFlag.h"
 #include "server/zone/objects/scene/LuaSceneObject.h"
 #include "server/zone/objects/building/LuaBuildingObject.h"
 #include "server/zone/objects/intangible/LuaIntangibleObject.h"
 #include "server/zone/objects/intangible/ControlDevice.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/objects/player/LuaPlayerObject.h"
+#include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/tangible/LuaTangibleObject.h"
 #include "server/zone/objects/region/LuaCityRegion.h"
 #include "server/zone/packets/cell/UpdateCellPermissionsMessage.h"
@@ -88,7 +90,6 @@
 #include "server/zone/objects/intangible/TheaterObject.h"
 #include "server/zone/objects/tangible/misc/ContractCrate.h"
 #include "server/zone/managers/crafting/schematicmap/SchematicMap.h"
-#include "server/zone/managers/structure/tasks/DestroyPackedupStructureTask.h"
 #include "server/zone/objects/tangible/misc/VendorToken.h"
 
 int DirectorManager::DEBUG_MODE = 0;
@@ -247,6 +248,20 @@ String DirectorManager::readStringSharedMemory(const String& key) {
 	return data;
 }
 
+Vector3 DirectorManager::readVector3SharedMemory(const String& key) {
+#ifndef WITH_STM
+	DirectorManager::instance()->rlock();
+#endif
+
+	Vector3 data = DirectorManager::instance()->sharedMemory->getVector3(key);
+
+#ifndef WITH_STM
+	DirectorManager::instance()->runlock();
+#endif
+
+	return data;
+}
+
 uint64 DirectorManager::readSharedMemory(const String& key) {
 #ifndef WITH_STM
 	DirectorManager::instance()->rlock();
@@ -287,15 +302,42 @@ String DirectorManager::getStringSharedMemory(const String& key) const {
 }
 
 void DirectorManager::startGlobalScreenPlays() {
-	info("Starting global screenplays.", true);
+	info(true) << "Starting " << screenPlays.size() << " global screenplays.";
+
+	auto slowLoadMs = ConfigManager::instance()->getInt("Core3.DirectorManager.SlowLoadMs", 1000);
+
+	Time nextReport;
+	nextReport.addMiliTime(5000);
+	int countStarted = 0;
+
+	Timer profileAll;
+	profileAll.start();
 
 	for (int i = 0; i < screenPlays.size(); ++i) {
 		String screenPlay = screenPlays.elementAt(i).getKey();
 		bool start = screenPlays.elementAt(i).getValue();
 
-		if (start)
+		if (!nextReport.isFuture()) {
+			nextReport.updateToCurrentTime();
+			nextReport.addMiliTime(5000);
+			info(true) << "Started " << countStarted << " of " << screenPlays.size() << " screenplays.";
+		}
+
+		if (start) {
+			Timer profileStart;
+			profileStart.start();
 			startScreenPlay(nullptr, screenPlay);
+			auto elapsedMs = profileStart.stopMs();
+
+			if (elapsedMs > slowLoadMs) {
+				info(true) << "Slow screenplay: " << screenPlay << " took " << msToString(elapsedMs) << " to start.";
+			}
+
+			countStarted++;
+		}
 	}
+
+	info(true) << "Started " << countStarted << " global screenplays in " << msToString(profileAll.stopMs());
 }
 
 void DirectorManager::setupLuaPackagePath(Lua* luaEngine) {
@@ -319,10 +361,20 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->init();
 	luaEngine->setLoggingName("DirectorManagerLuaInstance");
 	luaEngine->setGlobalLogging(true);
-	luaEngine->setLogging(true);
 
-	luaEngine->setFileLogger("log/lua.log", true);
+	if (DEBUG_MODE) {
+		luaEngine->setLogLevel(Logger::DEBUG);
+	} else {
+		luaEngine->setLogLevel(Logger::INFO);
+	}
+
+	luaEngine->setFileLogger("log/lua.log", true, ConfigManager::instance()->getRotateLogAtStart());
 	luaEngine->setLogJSON(ConfigManager::instance()->getLuaLogJSON());
+	luaEngine->setRotateLogSizeMB(ConfigManager::instance()->getRotateLogSizeMB());
+
+	if (luaEngine->getLogJSON()) {
+		luaEngine->setLogSynchronized(true);
+	}
 
 	setupLuaPackagePath(luaEngine);
 
@@ -350,6 +402,9 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("readStringSharedMemory", readStringSharedMemory);
 	luaEngine->registerFunction("writeStringSharedMemory", writeStringSharedMemory);
 	luaEngine->registerFunction("deleteStringSharedMemory", deleteStringSharedMemory);
+	luaEngine->registerFunction("readVector3SharedMemory", readVector3SharedMemory);
+	luaEngine->registerFunction("writeVector3SharedMemory", writeVector3SharedMemory);
+	luaEngine->registerFunction("deleteVector3SharedMemory", deleteVector3SharedMemory);
 	luaEngine->registerFunction("spawnSceneObject", spawnSceneObject);
 	luaEngine->registerFunction("spawnActiveArea", spawnActiveArea);
 	luaEngine->registerFunction("spawnBuilding", spawnBuilding);
@@ -421,6 +476,7 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->registerFunction("spawnTheaterObject", spawnTheaterObject);
 	luaEngine->registerFunction("getSchematicItemName", getSchematicItemName);
 	luaEngine->registerFunction("getBadgeListByType", getBadgeListByType);
+	luaEngine->registerFunction("getGalaxyName", getGalaxyName);
 
 	//Navigation Mesh Management
 	luaEngine->registerFunction("createNavMesh", createNavMesh);
@@ -437,7 +493,6 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->setGlobalInt("EXITEDAREA", ObserverEventType::EXITEDAREA);
 	luaEngine->setGlobalInt("DESTINATIONREACHED", ObserverEventType::DESTINATIONREACHED);
 	luaEngine->setGlobalInt("SPECIALATTACK", ObserverEventType::SPECIALATTACK);
-	luaEngine->setGlobalInt("CALLFORHELP", ObserverEventType::CALLFORHELP);
 	luaEngine->setGlobalInt("NEWBIETUTORIALZOOMCAMERA", ObserverEventType::NEWBIETUTORIALZOOMCAMERA);
 	luaEngine->setGlobalInt("CHAT", ObserverEventType::CHAT);
 	luaEngine->setGlobalInt("NEWBIETUTORIALHOLOCRON", ObserverEventType::NEWBIETUTORIALHOLOCRON);
@@ -484,8 +539,6 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->setGlobalInt("TUNEDCRYSTAL", ObserverEventType::TUNEDCRYSTAL);
 	luaEngine->setGlobalInt("PROTOTYPECREATED", ObserverEventType::PROTOTYPECREATED);
 	luaEngine->setGlobalInt("SLICED", ObserverEventType::SLICED);
-	luaEngine->setGlobalInt("MOUNTED", ObserverEventType::MOUNTED);
-	luaEngine->setGlobalInt("DISMOUNTED", ObserverEventType::DISMOUNTED);
 
 	luaEngine->setGlobalInt("UPRIGHT", CreaturePosture::UPRIGHT);
 	luaEngine->setGlobalInt("PRONE", CreaturePosture::PRONE);
@@ -566,6 +619,39 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->setGlobalLong("FACTIONNEUTRAL", Factions::FACTIONNEUTRAL);
 	luaEngine->setGlobalLong("FACTIONIMPERIAL", Factions::FACTIONIMPERIAL);
 	luaEngine->setGlobalLong("FACTIONREBEL", Factions::FACTIONREBEL);
+
+	// AI/creature bitmasks
+	luaEngine->setGlobalInt("AI_NPC", CreatureFlag::NPC);
+	luaEngine->setGlobalInt("AI_PACK", CreatureFlag::PACK);
+	luaEngine->setGlobalInt("AI_HERD", CreatureFlag::HERD);
+	luaEngine->setGlobalInt("AI_KILLER", CreatureFlag::KILLER);
+	luaEngine->setGlobalInt("AI_STALKER", CreatureFlag::STALKER);
+	luaEngine->setGlobalInt("AI_BABY", CreatureFlag::BABY);
+	luaEngine->setGlobalInt("AI_LAIR", CreatureFlag::LAIR);
+	luaEngine->setGlobalInt("AI_HEALER", CreatureFlag::HEALER);
+	luaEngine->setGlobalInt("AI_SCOUT", CreatureFlag::SCOUT);
+	luaEngine->setGlobalInt("AI_PET", CreatureFlag::PET);
+	luaEngine->setGlobalInt("AI_DROID_PET", CreatureFlag::DROID_PET);
+	luaEngine->setGlobalInt("AI_FACTION_PET", CreatureFlag::FACTION_PET);
+	luaEngine->setGlobalInt("AI_ESCORT", CreatureFlag::ESCORT);
+	luaEngine->setGlobalInt("AI_FOLLOW", CreatureFlag::FOLLOW);
+	luaEngine->setGlobalInt("AI_STATIC", CreatureFlag::STATIC);
+	luaEngine->setGlobalInt("AI_STATIONARY", CreatureFlag::STATIONARY);
+	luaEngine->setGlobalInt("AI_NOAIAGGRO", CreatureFlag::NOAIAGGRO);
+
+	// AI Movement States
+	luaEngine->setGlobalInt("AI_OBLIVIOUS", AiAgent::OBLIVIOUS);
+	luaEngine->setGlobalInt("AI_WATCHING", AiAgent::WATCHING);
+	luaEngine->setGlobalInt("AI_STALKING", AiAgent::STALKING);
+	luaEngine->setGlobalInt("AI_FOLLOWING", AiAgent::FOLLOWING);
+	luaEngine->setGlobalInt("AI_PATROLLING", AiAgent::PATROLLING);
+	luaEngine->setGlobalInt("AI_FLEEING", AiAgent::FLEEING);
+	luaEngine->setGlobalInt("AI_LEASHING", AiAgent::LEASHING);
+	luaEngine->setGlobalInt("AI_EVADING", AiAgent::EVADING);
+	luaEngine->setGlobalInt("AI_PATHING_HOME", AiAgent::PATHING_HOME);
+	luaEngine->setGlobalInt("AI_FOLLOW_FORMATION", AiAgent::FOLLOW_FORMATION);
+	luaEngine->setGlobalInt("AI_MOVING_TO_HEAL", AiAgent::MOVING_TO_HEAL);
+	luaEngine->setGlobalInt("AI_NOTIFY_ALLY", AiAgent::NOTIFY_ALLY);
 
 	// Badges
 	const auto badges = BadgeList::instance()->getMap();
@@ -697,7 +783,13 @@ int DirectorManager::createLoot(lua_State* L) {
 		return 0;
 
 	LootManager* lootManager = ServerCore::getZoneServer()->getLootManager();
-	lootManager->createLoot(container, lootGroup, level, maxCondition);
+	TransactionLog trx(TrxCode::LUASCRIPT, container);
+	trx.addContextFromLua(L);
+	if (lootManager->createLoot(trx,container, lootGroup, level, maxCondition)) {
+		trx.commit(true);
+	} else {
+		trx.abort() << __FUNCTION__ << " failed: lootGroup=" << lootGroup << "; level=" << level << "; maxCondition=" << maxCondition;
+	}
 
 	return 0;
 }
@@ -720,7 +812,13 @@ int DirectorManager::createLootSet(lua_State* L) {
 		return 0;
 
 	LootManager* lootManager = ServerCore::getZoneServer()->getLootManager();
-	lootManager->createLootSet(container, lootGroup, level, maxCondition, setSize);
+	TransactionLog trx(TrxCode::LUASCRIPT, container);
+	trx.addContextFromLua(L);
+	if (lootManager->createLootSet(trx, container, lootGroup, level, maxCondition, setSize)) {
+		trx.commit(true);
+	} else {
+		trx.abort() << __FUNCTION__ << " failed: lootGroup=" << lootGroup << "; level=" << level << "; maxCondition=" << maxCondition << "; setSize=" << setSize;
+	}
 
 	return 0;
 }
@@ -749,7 +847,13 @@ int DirectorManager::createLootFromCollection(lua_State* L) {
 	luaObject.pop();
 
 	LootManager* lootManager = ServerCore::getZoneServer()->getLootManager();
-	lootManager->createLootFromCollection(container, &lootCollection, level);
+	TransactionLog trx(TrxCode::LUASCRIPT, container);
+	trx.addContextFromLua(L);
+	if (lootManager->createLootFromCollection(trx, container, &lootCollection, level)) {
+		trx.commit(true);
+	} else {
+		trx.abort() << __FUNCTION__ << " failed: level=" << level;
+	}
 
 	return 0;
 }
@@ -1062,6 +1166,80 @@ int DirectorManager::writeStringSharedMemory(lua_State* L) {
 #endif
 
 	DirectorManager::instance()->sharedMemory->putString(key, data);
+
+#ifndef WITH_STM
+	DirectorManager::instance()->unlock();
+#endif
+
+	return 0;
+}
+
+int DirectorManager::readVector3SharedMemory(lua_State* L) {
+	if (checkArgumentCount(L, 1) == 1) {
+		String err = "incorrect number of arguments passed to DirectorManager::readVector3SharedMemory";
+		printTraceError(L, err);
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	String key = Lua::getStringParameter(L);
+
+	Vector3 data = instance()->readVector3SharedMemory(key);
+
+	lua_newtable(L);
+	lua_pushnumber(L, data.getX());
+	lua_pushnumber(L, data.getZ());
+	lua_pushnumber(L, data.getY());
+	lua_rawseti(L, -4, 3);
+	lua_rawseti(L, -3, 2);
+	lua_rawseti(L, -2, 1);
+
+	return 1;
+}
+
+int DirectorManager::deleteVector3SharedMemory(lua_State* L) {
+	if (checkArgumentCount(L, 1) == 1) {
+		String err = "incorrect number of arguments passed to DirectorManager::deleteVector3SharedMemory";
+		printTraceError(L, err);
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	String key = Lua::getStringParameter(L);
+
+#ifndef WITH_STM
+	DirectorManager::instance()->wlock();
+#endif
+
+	DirectorManager::instance()->sharedMemory->removeVector3(key);
+
+#ifndef WITH_STM
+	DirectorManager::instance()->unlock();
+#endif
+
+	return 0;
+}
+
+int DirectorManager::writeVector3SharedMemory(lua_State* L) {
+	if (checkArgumentCount(L, 4) == 1) {
+		String err = "incorrect number of arguments passed to DirectorManager::writeVector3SharedMemory";
+		printTraceError(L, err);
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	String key = lua_tostring(L, -4);
+	float x = lua_tonumber(L, -3);
+	float z = lua_tonumber(L, -2);
+	float y = lua_tonumber(L, -1);
+
+	Vector3 newVector = Vector3(x, y, z);
+
+#ifndef WITH_STM
+	DirectorManager::instance()->wlock();
+#endif
+
+	DirectorManager::instance()->sharedMemory->putVector3(key, newVector);
 
 #ifndef WITH_STM
 	DirectorManager::instance()->unlock();
@@ -2012,7 +2190,7 @@ int DirectorManager::spawnMobile(lua_State* L) {
 	msg << "trying to spawn with mobile: " << mobile << " x:" << x;
 	DirectorManager::instance()->info(msg.toString(), true);*/
 
-	CreatureObject* creature = creatureManager->spawnCreature(mobile.hashCode(), 0, x, z, y, parentID);
+	CreatureObject* creature = creatureManager->spawnCreature(mobile.hashCode(), 0, x, z, y, parentID, false, heading);
 
 	if (creature == nullptr) {
 		String err = "could not spawn mobile " + mobile;
@@ -2031,8 +2209,7 @@ int DirectorManager::spawnMobile(lua_State* L) {
 			if (randomRespawn)
 				ai->setRandomRespawn(true);
 
-			// TODO (dannuic): this is a temporary measure until we add an AI setting method to DirectorManager -- make stationary the default
-			ai->activateLoad("stationary");
+			ai->setAITemplate();
 		}
 
 		creature->_setUpdated(true); //mark updated so the GC doesnt delete it while in LUA
@@ -2162,13 +2339,8 @@ int DirectorManager::destroyBuilding(lua_State* L) {
 	if (pendingTask != nullptr)
 		return 0;
 
-	if (building->isPackedUp()) {
-		Reference<DestroyPackedupStructureTask*> task = new DestroyPackedupStructureTask(building);
-		task->execute();
-	} else {
-		Reference<DestroyStructureTask*> task = new DestroyStructureTask(building);
-		task->execute();
-	}
+	Reference<DestroyStructureTask*> task = new DestroyStructureTask(building);
+	task->execute();
 	return 1;
 }
 
@@ -2462,16 +2634,27 @@ Lua* DirectorManager::getLuaInstance() {
 		initializeLuaEngine(lua);
 		loadScreenPlays(lua);
 		JediManager::instance()->loadConfiguration(lua);
-		AiMap::instance()->initialize(lua);
-		if (!AiMap::instance()->isLoaded())
-			AiMap::instance()->loadTemplates(lua);
 
 		localLua.set(lua);
+
+		if (!lua->checkStack(0)) {
+			error()
+				<< __FILE__ << ":" << __LINE__ << ":" <<  __FUNCTION__ << "()"
+				<< " LUA Stack Leak: Found " << lua_gettop(lua->getLuaState()) << " item(s) on stack.";
+		}
 	}
 
 	if (*version != masterScreenPlayVersion.get()) {
+		int stackSize = lua_gettop(lua->getLuaState());
+
 		loadScreenPlays(lua);
 		*version = masterScreenPlayVersion.get();
+
+		if (!lua->checkStack(stackSize)) {
+			error()
+				<< __FILE__ << ":" << __LINE__ << ":" <<  __FUNCTION__ << "()"
+				<< " LUA Stack Leak: Found " << lua_gettop(lua->getLuaState()) << " item(s) on stack.";
+		}
 	}
 
 	return lua;
@@ -2493,16 +2676,27 @@ int DirectorManager::runScreenPlays() {
 		initializeLuaEngine(lua);
 		ret = loadScreenPlays(lua);
 		JediManager::instance()->loadConfiguration(lua);
-		AiMap::instance()->initialize(lua);
-		if (!AiMap::instance()->isLoaded())
-			AiMap::instance()->loadTemplates(lua);
 
 		localLua.set(lua);
+
+		if (!lua->checkStack(0)) {
+			error()
+				<< __FILE__ << ":" << __LINE__ << ":" <<  __FUNCTION__ << "()"
+				<< " LUA Stack Leak: Found " << lua_gettop(lua->getLuaState()) << " item(s) on stack.";
+		}
 	}
 
 	if (*version != masterScreenPlayVersion.get()) {
+		int stackSize = lua_gettop(lua->getLuaState());
+
 		ret = loadScreenPlays(lua);
 		*version = masterScreenPlayVersion.get();
+
+		if (!lua->checkStack(stackSize)) {
+			error()
+				<< __FILE__ << ":" << __LINE__ << ":" <<  __FUNCTION__ << "()"
+				<< " LUA Stack Leak: Found " << lua_gettop(lua->getLuaState()) << " item(s) on stack.";
+		}
 	}
 
 	return ret || ERROR_CODE;
@@ -3003,7 +3197,7 @@ int DirectorManager::getGCWDiscount(lua_State* L){
 
 int DirectorManager::getTerrainHeight(lua_State* L){
 	if (checkArgumentCount(L, 3) == 1) {
-		String err = "incorrect number of arguments passed to DirectorManager::getGCWDiscount";
+		String err = "incorrect number of arguments passed to DirectorManager::getTerrainHeight";
 		printTraceError(L, err);
 		ERROR_CODE = INCORRECT_ARGUMENTS;
 		return 0;
@@ -3265,7 +3459,16 @@ int DirectorManager::getWinningFactionDifficultyScaling(lua_State* L) {
 }
 
 int DirectorManager::playClientEffectLoc(lua_State* L) {
-	uint64 playerId = lua_tointeger(L, -7);
+	SceneObject* obj = nullptr;
+
+	if (lua_isnumber(L, -7)) {
+		uint64 objectID = lua_tointeger(L, -7);
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		obj = zoneServer->getObject(objectID);
+	} else {
+		obj = (SceneObject*) lua_touserdata(L, -7);
+	}
+
 	String effect = lua_tostring(L, -6);
 	String zone = lua_tostring(L, -5);
 	float x = lua_tonumber(L, -4);
@@ -3273,17 +3476,13 @@ int DirectorManager::playClientEffectLoc(lua_State* L) {
 	float y = lua_tonumber(L, -2);
 	int cell = lua_tonumber(L, -1);
 
-	ZoneServer* zoneServer = ServerCore::getZoneServer();
-
-	ManagedReference<CreatureObject*> creature = zoneServer->getObject(playerId).castTo<CreatureObject*>();
-
-	if (creature == nullptr)
+	if (obj == nullptr)
 		return 0;
 
 	PlayClientEffectLoc* effectLoc = new PlayClientEffectLoc(effect, zone, x, z, y, cell);
-	creature->broadcastMessage(effectLoc, true);
+	obj->broadcastMessage(effectLoc, true);
 
-	return 1;
+	return 0;
 }
 
 int DirectorManager::getPlayerQuestID(lua_State* L) {
@@ -3679,6 +3878,18 @@ int DirectorManager::getBadgeListByType(lua_State* L) {
 			lua_rawseti(L, -2, count);
 		}
 	}
+
+	return 1;
+}
+
+int DirectorManager::getGalaxyName(lua_State* L) {
+	ZoneServer* zoneServer = ServerCore::getZoneServer();
+
+	if (zoneServer == nullptr) {
+		return 0;
+	}
+
+	lua_pushstring(L, zoneServer->getGalaxyName().toCharArray());
 
 	return 1;
 }

@@ -48,7 +48,7 @@ object_draft_schematic_armor_armor_segment_composite = object_draft_schematic_ar
 	customObjectName = "Composite Armor Segment",
 
 	craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 30,
+	complexity = 1,
 	size = 6,
 	factoryCrateSize = 1000,
 

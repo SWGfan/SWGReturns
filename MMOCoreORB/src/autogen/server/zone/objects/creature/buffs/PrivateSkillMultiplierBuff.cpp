@@ -30,7 +30,7 @@ PrivateSkillMultiplierBuff::~PrivateSkillMultiplierBuff() {
 
 void PrivateSkillMultiplierBuff::applySkillModifiers() {
 	PrivateSkillMultiplierBuffImplementation* _implementation = static_cast<PrivateSkillMultiplierBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void PrivateSkillMultiplierBuff::applySkillModifiers() {
 
 void PrivateSkillMultiplierBuff::removeSkillModifiers() {
 	PrivateSkillMultiplierBuffImplementation* _implementation = static_cast<PrivateSkillMultiplierBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void PrivateSkillMultiplierBuffImplementation::finalize() {
 void PrivateSkillMultiplierBuffImplementation::_initializeImplementation() {
 	_setClassHelper(PrivateSkillMultiplierBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

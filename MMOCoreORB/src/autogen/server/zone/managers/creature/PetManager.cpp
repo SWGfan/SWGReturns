@@ -84,7 +84,7 @@ PetManager::~PetManager() {
 
 void PetManager::initialize() {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ void PetManager::initialize() {
 
 void PetManager::loadLuaConfig() {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void PetManager::loadLuaConfig() {
 
 void PetManager::loadValidMountScaleRanges() {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ void PetManager::loadValidMountScaleRanges() {
 
 short PetManager::isValidMountScale(const String& appearanceFilename, int saddleCapacity, float scale) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -143,7 +143,7 @@ short PetManager::isValidMountScale(const String& appearanceFilename, int saddle
 
 short PetManager::checkMountEligibility(PetControlDevice* petControlDevice, float height) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +159,7 @@ short PetManager::checkMountEligibility(PetControlDevice* petControlDevice, floa
 
 MountSpeedData* PetManager::getMountSpeedData(const String& appearanceFilename) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -169,7 +169,7 @@ MountSpeedData* PetManager::getMountSpeedData(const String& appearanceFilename) 
 
 float PetManager::getMountedRunSpeed(CreatureObject* mount) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ float PetManager::getMountedRunSpeed(CreatureObject* mount) {
 
 void PetManager::handleChat(CreatureObject* speaker, AiAgent* pet, const String& message) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -194,7 +194,7 @@ void PetManager::handleChat(CreatureObject* speaker, AiAgent* pet, const String&
 
 void PetManager::enqueuePetCommand(CreatureObject* player, AiAgent* pet, unsigned int command, const String& args, bool selfTarget) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -204,7 +204,7 @@ void PetManager::enqueuePetCommand(CreatureObject* player, AiAgent* pet, unsigne
 
 void PetManager::enqueueOwnerOnlyPetCommand(CreatureObject* player, AiAgent* pet, unsigned int command, const String& args) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -212,19 +212,19 @@ void PetManager::enqueueOwnerOnlyPetCommand(CreatureObject* player, AiAgent* pet
 	}
 }
 
-bool PetManager::isTrainedCommand(PetControlDevice* petControlDevice, unsigned int command, const String& msg) {
+int PetManager::getTrainedCommandNum(PetControlDevice* petControlDevice, const String& msg) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->isTrainedCommand(petControlDevice, command, msg);
+		return _implementation->getTrainedCommandNum(petControlDevice, msg);
 	}
 }
 
 int PetManager::notifyDestruction(TangibleObject* destructor, AiAgent* destructedObject, int condition, bool isCombatAction) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -234,7 +234,7 @@ int PetManager::notifyDestruction(TangibleObject* destructor, AiAgent* destructe
 
 unsigned int PetManager::calculateIncapacitationTimer(AiAgent* player, int condition) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -250,7 +250,7 @@ unsigned int PetManager::calculateIncapacitationTimer(AiAgent* player, int condi
 
 void PetManager::killPet(TangibleObject* attacker, AiAgent* pet, bool isCombatAction) {
 	PetManagerImplementation* _implementation = static_cast<PetManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -344,7 +344,7 @@ void PetManagerImplementation::finalize() {
 void PetManagerImplementation::_initializeImplementation() {
 	_setClassHelper(PetManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

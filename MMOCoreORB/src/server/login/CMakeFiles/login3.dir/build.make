@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Include any dependencies generated for this target.
 include src/server/login/CMakeFiles/login3.dir/depend.make
@@ -75,106 +75,121 @@ src/server/login/CMakeFiles/login3.dir/codegen:
 src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o: src/server/login/LoginPacketHandler.cpp
 src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o -MF CMakeFiles/login3.dir/LoginPacketHandler.cpp.o.d -o CMakeFiles/login3.dir/LoginPacketHandler.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginPacketHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o -MF CMakeFiles/login3.dir/LoginPacketHandler.cpp.o.d -o CMakeFiles/login3.dir/LoginPacketHandler.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginPacketHandler.cpp
 
 src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/LoginPacketHandler.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginPacketHandler.cpp > CMakeFiles/login3.dir/LoginPacketHandler.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginPacketHandler.cpp > CMakeFiles/login3.dir/LoginPacketHandler.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/LoginPacketHandler.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginPacketHandler.cpp -o CMakeFiles/login3.dir/LoginPacketHandler.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginPacketHandler.cpp -o CMakeFiles/login3.dir/LoginPacketHandler.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o: src/server/login/LoginProcessServerImplementation.cpp
 src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o -MF CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o.d -o CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o -MF CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o.d -o CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp
 
 src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp > CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp > CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp -o CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginProcessServerImplementation.cpp -o CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o: src/server/login/LoginServerImplementation.cpp
 src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o -MF CMakeFiles/login3.dir/LoginServerImplementation.cpp.o.d -o CMakeFiles/login3.dir/LoginServerImplementation.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginServerImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o -MF CMakeFiles/login3.dir/LoginServerImplementation.cpp.o.d -o CMakeFiles/login3.dir/LoginServerImplementation.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginServerImplementation.cpp
 
 src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/LoginServerImplementation.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginServerImplementation.cpp > CMakeFiles/login3.dir/LoginServerImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginServerImplementation.cpp > CMakeFiles/login3.dir/LoginServerImplementation.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/LoginServerImplementation.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/LoginServerImplementation.cpp -o CMakeFiles/login3.dir/LoginServerImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/LoginServerImplementation.cpp -o CMakeFiles/login3.dir/LoginServerImplementation.cpp.s
+
+src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
+src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o: src/server/login/SessionAPIClient.cpp
+src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o -MF CMakeFiles/login3.dir/SessionAPIClient.cpp.o.d -o CMakeFiles/login3.dir/SessionAPIClient.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/SessionAPIClient.cpp
+
+src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/SessionAPIClient.cpp.i"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/SessionAPIClient.cpp > CMakeFiles/login3.dir/SessionAPIClient.cpp.i
+
+src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/SessionAPIClient.cpp.s"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/SessionAPIClient.cpp -o CMakeFiles/login3.dir/SessionAPIClient.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o: src/server/login/account/AccountImplementation.cpp
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o -MF CMakeFiles/login3.dir/account/AccountImplementation.cpp.o.d -o CMakeFiles/login3.dir/account/AccountImplementation.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o -MF CMakeFiles/login3.dir/account/AccountImplementation.cpp.o.d -o CMakeFiles/login3.dir/account/AccountImplementation.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountImplementation.cpp
 
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/account/AccountImplementation.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountImplementation.cpp > CMakeFiles/login3.dir/account/AccountImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountImplementation.cpp > CMakeFiles/login3.dir/account/AccountImplementation.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/account/AccountImplementation.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountImplementation.cpp -o CMakeFiles/login3.dir/account/AccountImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountImplementation.cpp -o CMakeFiles/login3.dir/account/AccountImplementation.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o: src/server/login/account/AccountManager.cpp
 src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o -MF CMakeFiles/login3.dir/account/AccountManager.cpp.o.d -o CMakeFiles/login3.dir/account/AccountManager.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o -MF CMakeFiles/login3.dir/account/AccountManager.cpp.o.d -o CMakeFiles/login3.dir/account/AccountManager.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountManager.cpp
 
 src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/account/AccountManager.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountManager.cpp > CMakeFiles/login3.dir/account/AccountManager.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountManager.cpp > CMakeFiles/login3.dir/account/AccountManager.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/account/AccountManager.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/AccountManager.cpp -o CMakeFiles/login3.dir/account/AccountManager.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/AccountManager.cpp -o CMakeFiles/login3.dir/account/AccountManager.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o: src/server/login/account/GalaxyAccountInfo.cpp
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o -MF CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o.d -o CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o -MF CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o.d -o CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp > CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp > CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp -o CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfo.cpp -o CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.s
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o: src/server/login/CMakeFiles/login3.dir/flags.make
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o: src/server/login/account/GalaxyAccountInfoMap.cpp
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o: src/server/login/CMakeFiles/login3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o -MF CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o.d -o CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o -MF CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o.d -o CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o -c /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.i"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp > CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp > CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.i
 
 src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.s"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp -o CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/account/GalaxyAccountInfoMap.cpp -o CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.s
 
 # Object files for target login3
 login3_OBJECTS = \
 "CMakeFiles/login3.dir/LoginPacketHandler.cpp.o" \
 "CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o" \
 "CMakeFiles/login3.dir/LoginServerImplementation.cpp.o" \
+"CMakeFiles/login3.dir/SessionAPIClient.cpp.o" \
 "CMakeFiles/login3.dir/account/AccountImplementation.cpp.o" \
 "CMakeFiles/login3.dir/account/AccountManager.cpp.o" \
 "CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o" \
@@ -186,25 +201,26 @@ login3_EXTERNAL_OBJECTS =
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/LoginProcessServerImplementation.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o
+src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfo.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/account/GalaxyAccountInfoMap.cpp.o
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/build.make
 src/server/login/liblogin3.a: src/server/login/CMakeFiles/login3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library liblogin3.a"
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -P CMakeFiles/login3.dir/cmake_clean_target.cmake
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/login3.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library liblogin3.a"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -P CMakeFiles/login3.dir/cmake_clean_target.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/login3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/server/login/CMakeFiles/login3.dir/build: src/server/login/liblogin3.a
 .PHONY : src/server/login/CMakeFiles/login3.dir/build
 
 src/server/login/CMakeFiles/login3.dir/clean:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -P CMakeFiles/login3.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login && $(CMAKE_COMMAND) -P CMakeFiles/login3.dir/cmake_clean.cmake
 .PHONY : src/server/login/CMakeFiles/login3.dir/clean
 
 src/server/login/CMakeFiles/login3.dir/depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login /home/ubuntu/SWGGhosts/MMOCoreORB /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login /home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/CMakeFiles/login3.dir/DependInfo.cmake "--color=$(COLOR)" login3
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login /home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/CMakeFiles/login3.dir/DependInfo.cmake "--color=$(COLOR)" login3
 .PHONY : src/server/login/CMakeFiles/login3.dir/depend
 

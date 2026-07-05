@@ -16,10 +16,12 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/autogen/server/zone/managers/creature/PetManager.h \
   src/autogen/server/zone/managers/player/PlayerManager.h \
   src/autogen/server/zone/objects/area/ActiveArea.h \
+  src/autogen/server/zone/objects/area/areashapes/AreaShape.h \
   src/autogen/server/zone/objects/cell/CellObject.h \
   src/autogen/server/zone/objects/creature/CreatureObject.h \
   src/autogen/server/zone/objects/creature/ai/AiAgent.h \
   src/autogen/server/zone/objects/creature/buffs/Buff.h \
+  src/autogen/server/zone/objects/creature/credits/CreditObject.h \
   src/autogen/server/zone/objects/draftschematic/DraftSchematic.h \
   src/autogen/server/zone/objects/group/GroupObject.h \
   src/autogen/server/zone/objects/guild/GuildObject.h \
@@ -27,7 +29,10 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/autogen/server/zone/objects/intangible/IntangibleObject.h \
   src/autogen/server/zone/objects/player/PlayerObject.h \
   src/autogen/server/zone/objects/player/sui/SuiBox.h \
+  src/autogen/server/zone/objects/region/CityRegion.h \
+  src/autogen/server/zone/objects/region/Region.h \
   src/autogen/server/zone/objects/scene/SceneObject.h \
+  src/autogen/server/zone/objects/structure/StructureObject.h \
   src/autogen/server/zone/objects/tangible/TangibleObject.h \
   src/autogen/server/zone/objects/tangible/attachment/Attachment.h \
   src/autogen/server/zone/objects/tangible/deed/Deed.h \
@@ -38,6 +43,13 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/autogen/server/zone/objects/tangible/wearables/WearableObject.h \
   src/autogen/server/zone/objects/waypoint/WaypointObject.h \
   src/conf/ConfigManager.h \
+  src/pathfinding/RecastNavMesh.h \
+  src/pathfinding/RecastPolygon.h \
+  src/pathfinding/RecastTileBuilder.h \
+  src/pathfinding/recast/DetourAlloc.h \
+  src/pathfinding/recast/DetourNavMesh.h \
+  src/pathfinding/recast/DetourStatus.h \
+  src/pathfinding/recast/Recast.h \
   src/server/ServerCore.h \
   src/server/chat/ChatParameter.h \
   src/server/chat/StringIdChatParameter.h \
@@ -81,6 +93,7 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/managers/player/OnlineZoneClientMap.h \
   src/server/zone/managers/player/PermissionLevelList.h \
   src/server/zone/managers/player/PlayerMap.h \
+  src/server/zone/managers/player/PlayerNameIterator.h \
   src/server/zone/managers/player/QuestInfo.h \
   src/server/zone/managers/player/StartingLocation.h \
   src/server/zone/managers/player/StartingLocationList.h \
@@ -92,6 +105,10 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/objects/creature/ai/CreatureTemplate.h \
   src/server/zone/objects/creature/ai/PatrolPoint.h \
   src/server/zone/objects/creature/ai/PatrolPointsVector.h \
+  src/server/zone/objects/creature/ai/bt/Behavior.h \
+  src/server/zone/objects/creature/ai/bt/BehaviorTreeSlot.h \
+  src/server/zone/objects/creature/ai/bt/BlackboardData.h \
+  src/server/zone/objects/creature/ai/bt/BlackboardDataMap.h \
   src/server/zone/objects/creature/ai/variables/CreatureAttackMap.h \
   src/server/zone/objects/creature/ai/variables/CreatureTemplateReference.h \
   src/server/zone/objects/creature/ai/variables/CurrentFoundPath.h \
@@ -111,6 +128,7 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
   src/server/zone/objects/group/GroupList.h \
   src/server/zone/objects/group/GroupMember.h \
+  src/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h \
   src/server/zone/objects/guild/GuildMemberInfo.h \
   src/server/zone/objects/guild/GuildMemberList.h \
   src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
@@ -131,6 +149,9 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/objects/player/variables/PlayerQuestData.h \
   src/server/zone/objects/player/variables/SchematicList.h \
   src/server/zone/objects/player/variables/WaypointList.h \
+  src/server/zone/objects/region/CitizenList.h \
+  src/server/zone/objects/region/events/CitizenAssessmentEvent.h \
+  src/server/zone/objects/region/events/CityUpdateEvent.h \
   src/server/zone/objects/scene/ObserverType.h \
   src/server/zone/objects/scene/SceneObjectType.h \
   src/server/zone/objects/scene/SessionFacadeType.h \
@@ -150,12 +171,15 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/objects/scene/variables/DeltaBitArray.h \
   src/server/zone/objects/scene/variables/DeltaVector.h \
   src/server/zone/objects/scene/variables/DeltaVectorMap.h \
+  src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
   src/server/zone/objects/scene/variables/PendingTasksMap.h \
   src/server/zone/objects/scene/variables/StdFunction.h \
   src/server/zone/objects/scene/variables/StringId.h \
   src/server/zone/objects/scene/variables/StringIdParameter.h \
+  src/server/zone/objects/structure/StructurePermissionList.h \
   src/server/zone/objects/tangible/threat/ThreatMap.h \
   src/server/zone/objects/tangible/threat/ThreatMatrix.h \
+  src/server/zone/objects/transaction/TransactionLog.h \
   src/server/zone/packets/DeltaMessage.h \
   src/server/zone/packets/MessageCallback.h \
   src/server/zone/packets/charcreation/ClientCreateCharacterCallback.h \
@@ -181,7 +205,6 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/packets/object/SpatialChat.h \
   src/server/zone/packets/scene/AttributeListMessage.h \
   src/server/zone/packets/ui/SuiCreatePageMessage.h \
-  src/templates/AiTemplate.h \
   src/templates/ChildObject.h \
   src/templates/IffTemplate.h \
   src/templates/LuaTemplate.h \
@@ -233,293 +256,294 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/templates/string/StringFile.h \
   src/templates/tangible/ArmorObjectTemplate.h \
   src/templates/tangible/SharedWeaponObjectTemplate.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedService.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
-  utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/Facade.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Observable.h \
-  utils/engine3/MMOEngine/include/engine/util/Observer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedService.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/MetricsManager.h \
+  utils/engine3/MMOEngine/src/engine/core/RunStatistics.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/Facade.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Observable.h \
+  utils/engine3/MMOEngine/src/engine/util/Observer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Pipe.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -1300,6 +1324,8 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -1319,7 +1345,9 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -1335,6 +1363,7 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
@@ -1344,9 +1373,14 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -1395,10 +1429,14 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -1437,246 +1475,246 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
 
 src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatParameter.cpp \
   src/server/chat/ChatParameter.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -2448,6 +2486,8 @@ src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatPa
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -2467,7 +2507,9 @@ src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatPa
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -2483,15 +2525,21 @@ src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatPa
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -2536,10 +2584,14 @@ src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatPa
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -2580,246 +2632,246 @@ src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/
   src/server/chat/StringIdChatParameter.h \
   src/server/zone/objects/scene/variables/StringId.h \
   src/server/zone/objects/scene/variables/StringIdParameter.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -3591,6 +3643,8 @@ src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -3610,7 +3664,9 @@ src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -3626,15 +3682,21 @@ src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -3679,10 +3741,14 @@ src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -3723,6 +3789,7 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/autogen/server/zone/ZoneServer.h \
   src/autogen/server/zone/objects/creature/CreatureObject.h \
   src/autogen/server/zone/objects/creature/buffs/Buff.h \
+  src/autogen/server/zone/objects/group/GroupObject.h \
   src/autogen/server/zone/objects/intangible/ControlDevice.h \
   src/autogen/server/zone/objects/intangible/IntangibleObject.h \
   src/autogen/server/zone/objects/scene/SceneObject.h \
@@ -3739,6 +3806,7 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/server/metrics/Metrics.h \
   src/server/zone/CloseObjectsVector.h \
   src/server/zone/ZoneReference.h \
+  src/server/zone/managers/group/GroupManager.h \
   src/server/zone/managers/skill/SkillModManager.h \
   src/server/zone/objects/creature/SpeedMultiplierModChanges.h \
   src/server/zone/objects/creature/BuffAttribute.h \
@@ -3755,6 +3823,9 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/server/zone/objects/creature/variables/SkillModEntry.h \
   src/server/zone/objects/creature/variables/SkillModList.h \
   src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
+  src/server/zone/objects/group/GroupList.h \
+  src/server/zone/objects/group/GroupMember.h \
+  src/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h \
   src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
   src/server/zone/objects/scene/ObserverType.h \
   src/server/zone/objects/scene/SceneObjectType.h \
@@ -3773,6 +3844,7 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/server/zone/objects/scene/variables/CustomizationVariables.h \
   src/server/zone/objects/scene/variables/DeltaVector.h \
   src/server/zone/objects/scene/variables/DeltaVectorMap.h \
+  src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
   src/server/zone/objects/scene/variables/PendingTasksMap.h \
   src/server/zone/objects/scene/variables/StdFunction.h \
   src/server/zone/objects/scene/variables/StringId.h \
@@ -3824,293 +3896,293 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/templates/slots/SlotDescriptor.h \
   src/templates/slots/SlotId.h \
   src/templates/tangible/ArmorObjectTemplate.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedService.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
-  utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/Facade.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Observable.h \
-  utils/engine3/MMOEngine/include/engine/util/Observer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedService.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/MetricsManager.h \
+  utils/engine3/MMOEngine/src/engine/core/RunStatistics.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/Facade.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Observable.h \
+  utils/engine3/MMOEngine/src/engine/util/Observer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -4891,6 +4963,8 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -4910,7 +4984,9 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -4926,6 +5002,7 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
@@ -4935,9 +5012,14 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -4986,10 +5068,14 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -5031,246 +5117,246 @@ src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/cha
   src/server/chat/StringIdChatParameter.h \
   src/server/zone/objects/scene/variables/StringId.h \
   src/server/zone/objects/scene/variables/StringIdParameter.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -6042,6 +6128,8 @@ src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -6061,7 +6149,9 @@ src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -6077,15 +6167,21 @@ src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
@@ -6130,10 +6226,14 @@ src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -6192,6 +6292,7 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   src/server/zone/objects/scene/components/ZoneComponent.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
+  src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
   src/server/zone/objects/scene/variables/PendingTasksMap.h \
   src/server/zone/objects/scene/variables/StdFunction.h \
   src/server/zone/objects/scene/variables/StringId.h \
@@ -6230,292 +6331,292 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   src/templates/slots/ArrangementDescriptor.h \
   src/templates/slots/SlotDescriptor.h \
   src/templates/slots/SlotId.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
-  utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/Facade.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Observable.h \
-  utils/engine3/MMOEngine/include/engine/util/Observer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/MetricsManager.h \
+  utils/engine3/MMOEngine/src/engine/core/RunStatistics.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/Facade.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Observable.h \
+  utils/engine3/MMOEngine/src/engine/util/Observer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -7296,6 +7397,8 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -7315,7 +7418,9 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -7331,6 +7436,7 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
@@ -7340,9 +7446,14 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -7391,10 +7502,14 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -7442,8 +7557,12 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/autogen/server/zone/ZoneServer.h \
   src/autogen/server/zone/managers/player/PlayerManager.h \
   src/autogen/server/zone/objects/area/ActiveArea.h \
+  src/autogen/server/zone/objects/area/areashapes/AreaShape.h \
+  src/autogen/server/zone/objects/cell/CellObject.h \
   src/autogen/server/zone/objects/creature/CreatureObject.h \
+  src/autogen/server/zone/objects/creature/ai/AiAgent.h \
   src/autogen/server/zone/objects/creature/buffs/Buff.h \
+  src/autogen/server/zone/objects/creature/credits/CreditObject.h \
   src/autogen/server/zone/objects/draftschematic/DraftSchematic.h \
   src/autogen/server/zone/objects/group/GroupObject.h \
   src/autogen/server/zone/objects/guild/GuildObject.h \
@@ -7451,21 +7570,34 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/autogen/server/zone/objects/intangible/IntangibleObject.h \
   src/autogen/server/zone/objects/player/PlayerObject.h \
   src/autogen/server/zone/objects/player/sui/SuiBox.h \
+  src/autogen/server/zone/objects/region/CityRegion.h \
+  src/autogen/server/zone/objects/region/Region.h \
   src/autogen/server/zone/objects/scene/SceneObject.h \
+  src/autogen/server/zone/objects/structure/StructureObject.h \
   src/autogen/server/zone/objects/tangible/TangibleObject.h \
   src/autogen/server/zone/objects/tangible/attachment/Attachment.h \
+  src/autogen/server/zone/objects/tangible/deed/Deed.h \
+  src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.h \
   src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.h \
   src/autogen/server/zone/objects/tangible/weapon/WeaponObject.h \
   src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h \
   src/autogen/server/zone/objects/tangible/wearables/WearableObject.h \
   src/autogen/server/zone/objects/waypoint/WaypointObject.h \
   src/conf/ConfigManager.h \
+  src/pathfinding/RecastNavMesh.h \
+  src/pathfinding/RecastPolygon.h \
+  src/pathfinding/RecastTileBuilder.h \
+  src/pathfinding/recast/DetourAlloc.h \
+  src/pathfinding/recast/DetourNavMesh.h \
+  src/pathfinding/recast/DetourStatus.h \
+  src/pathfinding/recast/Recast.h \
   src/server/ServerCore.h \
   src/server/chat/ChatParameter.h \
   src/server/chat/StringIdChatParameter.h \
   src/server/chat/StringIdChatParameterVector.h \
   src/server/chat/WaypointChatParameter.h \
   src/server/chat/WaypointChatParameterVector.h \
+  src/server/chat/room/ChatRoomMap.h \
   src/server/db/ServerDatabase.h \
   src/server/features/Features.h \
   src/server/login/account/GalaxyAccountInfo.h \
@@ -7481,6 +7613,10 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/ZoneReference.h \
   src/server/zone/managers/collision/IntersectionResults.h \
   src/server/zone/managers/group/GroupManager.h \
+  src/server/zone/managers/loot/lootgroup/LootGroupCollection.h \
+  src/server/zone/managers/loot/lootgroup/LootGroupCollectionEntry.h \
+  src/server/zone/managers/loot/lootgroup/LootGroupEntry.h \
+  src/server/zone/managers/loot/lootgroup/LootGroups.h \
   src/server/zone/managers/object/ObjectMap.h \
   src/server/zone/managers/planet/MapLocationEntry.h \
   src/server/zone/managers/planet/MapLocationTable.h \
@@ -7489,6 +7625,8 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/managers/player/JukeboxSong.h \
   src/server/zone/managers/player/OnlineZoneClientMap.h \
   src/server/zone/managers/player/PermissionLevelList.h \
+  src/server/zone/managers/player/PlayerMap.h \
+  src/server/zone/managers/player/PlayerNameIterator.h \
   src/server/zone/managers/player/QuestInfo.h \
   src/server/zone/managers/player/StartingLocation.h \
   src/server/zone/managers/player/StartingLocationList.h \
@@ -7497,6 +7635,16 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/managers/player/XpBonusList.h \
   src/server/zone/managers/skill/SkillModManager.h \
   src/server/zone/objects/creature/SpeedMultiplierModChanges.h \
+  src/server/zone/objects/creature/ai/CreatureTemplate.h \
+  src/server/zone/objects/creature/ai/PatrolPoint.h \
+  src/server/zone/objects/creature/ai/PatrolPointsVector.h \
+  src/server/zone/objects/creature/ai/bt/Behavior.h \
+  src/server/zone/objects/creature/ai/bt/BehaviorTreeSlot.h \
+  src/server/zone/objects/creature/ai/bt/BlackboardData.h \
+  src/server/zone/objects/creature/ai/bt/BlackboardDataMap.h \
+  src/server/zone/objects/creature/ai/variables/CreatureAttackMap.h \
+  src/server/zone/objects/creature/ai/variables/CreatureTemplateReference.h \
+  src/server/zone/objects/creature/ai/variables/CurrentFoundPath.h \
   src/server/zone/objects/creature/BuffAttribute.h \
   src/server/zone/objects/creature/buffs/BuffCRC.h \
   src/server/zone/objects/creature/buffs/BuffList.h \
@@ -7513,6 +7661,7 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
   src/server/zone/objects/group/GroupList.h \
   src/server/zone/objects/group/GroupMember.h \
+  src/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h \
   src/server/zone/objects/guild/GuildMemberInfo.h \
   src/server/zone/objects/guild/GuildMemberList.h \
   src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
@@ -7533,10 +7682,14 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/objects/player/variables/PlayerQuestData.h \
   src/server/zone/objects/player/variables/SchematicList.h \
   src/server/zone/objects/player/variables/WaypointList.h \
+  src/server/zone/objects/region/CitizenList.h \
+  src/server/zone/objects/region/events/CitizenAssessmentEvent.h \
+  src/server/zone/objects/region/events/CityUpdateEvent.h \
   src/server/zone/objects/scene/ObserverType.h \
   src/server/zone/objects/scene/SceneObjectType.h \
   src/server/zone/objects/scene/SessionFacadeType.h \
   src/server/zone/objects/scene/TransferErrorCode.h \
+  src/server/zone/objects/scene/WorldCoordinates.h \
   src/server/zone/objects/scene/components/AttributeListComponent.h \
   src/server/zone/objects/scene/components/ContainerComponent.h \
   src/server/zone/objects/scene/components/DataObjectComponent.h \
@@ -7551,12 +7704,15 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/objects/scene/variables/DeltaBitArray.h \
   src/server/zone/objects/scene/variables/DeltaVector.h \
   src/server/zone/objects/scene/variables/DeltaVectorMap.h \
+  src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
   src/server/zone/objects/scene/variables/PendingTasksMap.h \
   src/server/zone/objects/scene/variables/StdFunction.h \
   src/server/zone/objects/scene/variables/StringId.h \
   src/server/zone/objects/scene/variables/StringIdParameter.h \
+  src/server/zone/objects/structure/StructurePermissionList.h \
   src/server/zone/objects/tangible/threat/ThreatMap.h \
   src/server/zone/objects/tangible/threat/ThreatMatrix.h \
+  src/server/zone/objects/transaction/TransactionLog.h \
   src/server/zone/packets/DeltaMessage.h \
   src/server/zone/packets/MessageCallback.h \
   src/server/zone/packets/charcreation/ClientCreateCharacterCallback.h \
@@ -7603,6 +7759,7 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/templates/params/Param.h \
   src/templates/params/StringIdParam.h \
   src/templates/params/TemplateBase.h \
+  src/templates/params/creature/CreatureFlag.h \
   src/templates/params/creature/CreatureLocomotion.h \
   src/templates/params/creature/CreaturePosture.h \
   src/templates/params/creature/CreatureState.h \
@@ -7615,293 +7772,294 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/templates/slots/SlotId.h \
   src/templates/tangible/ArmorObjectTemplate.h \
   src/templates/tangible/SharedWeaponObjectTemplate.h \
-  utils/engine3/MMOEngine/include/engine/core/Core.h \
-  utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedObject.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedReference.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedService.h \
-  utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/core/MetricsManager.h \
-  utils/engine3/MMOEngine/include/engine/core/RunStatistics.h \
-  utils/engine3/MMOEngine/include/engine/core/Task.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskManager.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h \
-  utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h \
-  utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h \
-  utils/engine3/MMOEngine/include/engine/db/BinaryData.h \
-  utils/engine3/MMOEngine/include/engine/db/Database.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseException.h \
-  utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h \
-  utils/engine3/MMOEngine/include/engine/db/ResultSet.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h \
-  utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h \
-  utils/engine3/MMOEngine/include/engine/engine.h \
-  utils/engine3/MMOEngine/include/engine/log/Logger.h \
-  utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h \
-  utils/engine3/MMOEngine/include/engine/lua/Lua.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h \
-  utils/engine3/MMOEngine/include/engine/lua/LuaObject.h \
-  utils/engine3/MMOEngine/include/engine/lua/Luna.h \
-  utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h \
-  utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h \
-  utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h \
-  utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h \
-  utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/Message.h \
-  utils/engine3/MMOEngine/include/engine/service/MessageQueue.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceException.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h \
-  utils/engine3/MMOEngine/include/engine/service/ServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h \
-  utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h \
-  utils/engine3/MMOEngine/include/engine/stm/Transaction.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h \
-  utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h \
-  utils/engine3/MMOEngine/include/engine/util/Command.h \
-  utils/engine3/MMOEngine/include/engine/util/Facade.h \
-  utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h \
-  utils/engine3/MMOEngine/include/engine/util/Observable.h \
-  utils/engine3/MMOEngine/include/engine/util/Observer.h \
-  utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h \
-  utils/engine3/MMOEngine/include/engine/util/Singleton.h \
-  utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h \
-  utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h \
-  utils/engine3/MMOEngine/include/engine/util/json.hpp \
-  utils/engine3/MMOEngine/include/engine/util/json_utils.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h \
-  utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h \
-  utils/engine3/MMOEngine/include/system/io/BufferedReader.h \
-  utils/engine3/MMOEngine/include/system/io/File.h \
-  utils/engine3/MMOEngine/include/system/io/FileDescriptor.h \
-  utils/engine3/MMOEngine/include/system/io/FileInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileLogWriter.h \
-  utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h \
-  utils/engine3/MMOEngine/include/system/io/FileOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/FileReader.h \
-  utils/engine3/MMOEngine/include/system/io/FileWriter.h \
-  utils/engine3/MMOEngine/include/system/io/IOException.h \
-  utils/engine3/MMOEngine/include/system/io/InputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h \
-  utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/OutputStream.h \
-  utils/engine3/MMOEngine/include/system/io/Reader.h \
-  utils/engine3/MMOEngine/include/system/io/Serializable.h \
-  utils/engine3/MMOEngine/include/system/io/Stream.h \
-  utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/io/StringTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/TextStream.h \
-  utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h \
-  utils/engine3/MMOEngine/include/system/io/Writer.h \
-  utils/engine3/MMOEngine/include/system/lang.h \
-  utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h \
-  utils/engine3/MMOEngine/include/system/lang/Bool.h \
-  utils/engine3/MMOEngine/include/system/lang/Byte.h \
-  utils/engine3/MMOEngine/include/system/lang/Character.h \
-  utils/engine3/MMOEngine/include/system/lang/ConstString.h \
-  utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h \
-  utils/engine3/MMOEngine/include/system/lang/Double.h \
-  utils/engine3/MMOEngine/include/system/lang/Exception.h \
-  utils/engine3/MMOEngine/include/system/lang/Float.h \
-  utils/engine3/MMOEngine/include/system/lang/Function.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h \
-  utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h \
-  utils/engine3/MMOEngine/include/system/lang/Integer.h \
-  utils/engine3/MMOEngine/include/system/lang/Long.h \
-  utils/engine3/MMOEngine/include/system/lang/Math.h \
-  utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h \
-  utils/engine3/MMOEngine/include/system/lang/Object.h \
-  utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h \
-  utils/engine3/MMOEngine/include/system/lang/Pair.h \
-  utils/engine3/MMOEngine/include/system/lang/Runnable.h \
-  utils/engine3/MMOEngine/include/system/lang/Short.h \
-  utils/engine3/MMOEngine/include/system/lang/StackTrace.h \
-  utils/engine3/MMOEngine/include/system/lang/String.h \
-  utils/engine3/MMOEngine/include/system/lang/StringBuffer.h \
-  utils/engine3/MMOEngine/include/system/lang/System.h \
-  utils/engine3/MMOEngine/include/system/lang/Time.h \
-  utils/engine3/MMOEngine/include/system/lang/UnicodeString.h \
-  utils/engine3/MMOEngine/include/system/lang/Variable.h \
-  utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/Reference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h \
-  utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h \
-  utils/engine3/MMOEngine/include/system/lang/types.h \
-  utils/engine3/MMOEngine/include/system/mm/MemoryManager.h \
-  utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h \
-  utils/engine3/MMOEngine/include/system/net/InetAddress.h \
-  utils/engine3/MMOEngine/include/system/net/NetworkInterface.h \
-  utils/engine3/MMOEngine/include/system/net/Packet.h \
-  utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h \
-  utils/engine3/MMOEngine/include/system/net/Socket.h \
-  utils/engine3/MMOEngine/include/system/net/SocketAddress.h \
-  utils/engine3/MMOEngine/include/system/net/SocketException.h \
-  utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/TCPSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h \
-  utils/engine3/MMOEngine/include/system/net/UDPSocket.h \
-  utils/engine3/MMOEngine/include/system/platform.h \
-  utils/engine3/MMOEngine/include/system/security/Crypto.h \
-  utils/engine3/MMOEngine/include/system/thread/Condition.h \
-  utils/engine3/MMOEngine/include/system/thread/DeadlockException.h \
-  utils/engine3/MMOEngine/include/system/thread/Lockable.h \
-  utils/engine3/MMOEngine/include/system/thread/Locker.h \
-  utils/engine3/MMOEngine/include/system/thread/Mutex.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadLocker.h \
-  utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h \
-  utils/engine3/MMOEngine/include/system/thread/Thread.h \
-  utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h \
-  utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayList.h \
-  utils/engine3/MMOEngine/include/system/util/ArrayQueue.h \
-  utils/engine3/MMOEngine/include/system/util/BinaryHeap.h \
-  utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h \
-  utils/engine3/MMOEngine/include/system/util/HashSet.h \
-  utils/engine3/MMOEngine/include/system/util/HashTable.h \
-  utils/engine3/MMOEngine/include/system/util/LinkedList.h \
-  utils/engine3/MMOEngine/include/system/util/Optional.h \
-  utils/engine3/MMOEngine/include/system/util/PriorityQueue.h \
-  utils/engine3/MMOEngine/include/system/util/SortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h \
-  utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/Timer.h \
-  utils/engine3/MMOEngine/include/system/util/Vector.h \
-  utils/engine3/MMOEngine/include/system/util/VectorMap.h \
-  utils/engine3/MMOEngine/include/system/util/VectorSet.h \
-  utils/engine3/MMOEngine/include/system/util/optional.hpp \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
-  utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h \
-  utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h \
+  utils/engine3/MMOEngine/src/engine/core/Core.h \
+  utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedObject.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedReference.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedService.h \
+  utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/core/MetricsManager.h \
+  utils/engine3/MMOEngine/src/engine/core/RunStatistics.h \
+  utils/engine3/MMOEngine/src/engine/core/Task.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskManager.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h \
+  utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h \
+  utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h \
+  utils/engine3/MMOEngine/src/engine/db/BinaryData.h \
+  utils/engine3/MMOEngine/src/engine/db/Database.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseException.h \
+  utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h \
+  utils/engine3/MMOEngine/src/engine/db/ResultSet.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h \
+  utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h \
+  utils/engine3/MMOEngine/src/engine/engine.h \
+  utils/engine3/MMOEngine/src/engine/log/Logger.h \
+  utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h \
+  utils/engine3/MMOEngine/src/engine/lua/Lua.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h \
+  utils/engine3/MMOEngine/src/engine/lua/LuaObject.h \
+  utils/engine3/MMOEngine/src/engine/lua/Luna.h \
+  utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h \
+  utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h \
+  utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h \
+  utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h \
+  utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/Message.h \
+  utils/engine3/MMOEngine/src/engine/service/MessageQueue.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceException.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h \
+  utils/engine3/MMOEngine/src/engine/service/ServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h \
+  utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h \
+  utils/engine3/MMOEngine/src/engine/stm/Transaction.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h \
+  utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h \
+  utils/engine3/MMOEngine/src/engine/util/Command.h \
+  utils/engine3/MMOEngine/src/engine/util/Facade.h \
+  utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h \
+  utils/engine3/MMOEngine/src/engine/util/Observable.h \
+  utils/engine3/MMOEngine/src/engine/util/Observer.h \
+  utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
+  utils/engine3/MMOEngine/src/engine/util/Singleton.h \
+  utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h \
+  utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+  utils/engine3/MMOEngine/src/engine/util/json.hpp \
+  utils/engine3/MMOEngine/src/engine/util/json_utils.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h \
+  utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h \
+  utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
+  utils/engine3/MMOEngine/src/system/io/File.h \
+  utils/engine3/MMOEngine/src/system/io/FileDescriptor.h \
+  utils/engine3/MMOEngine/src/system/io/FileInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
+  utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h \
+  utils/engine3/MMOEngine/src/system/io/FileOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/FileReader.h \
+  utils/engine3/MMOEngine/src/system/io/FileWriter.h \
+  utils/engine3/MMOEngine/src/system/io/IOException.h \
+  utils/engine3/MMOEngine/src/system/io/InputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h \
+  utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/OutputStream.h \
+  utils/engine3/MMOEngine/src/system/io/Pipe.h \
+  utils/engine3/MMOEngine/src/system/io/Reader.h \
+  utils/engine3/MMOEngine/src/system/io/Serializable.h \
+  utils/engine3/MMOEngine/src/system/io/Stream.h \
+  utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/TextStream.h \
+  utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
+  utils/engine3/MMOEngine/src/system/io/Writer.h \
+  utils/engine3/MMOEngine/src/system/lang.h \
+  utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h \
+  utils/engine3/MMOEngine/src/system/lang/Bool.h \
+  utils/engine3/MMOEngine/src/system/lang/Byte.h \
+  utils/engine3/MMOEngine/src/system/lang/Character.h \
+  utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+  utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h \
+  utils/engine3/MMOEngine/src/system/lang/Double.h \
+  utils/engine3/MMOEngine/src/system/lang/Exception.h \
+  utils/engine3/MMOEngine/src/system/lang/Float.h \
+  utils/engine3/MMOEngine/src/system/lang/Function.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h \
+  utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h \
+  utils/engine3/MMOEngine/src/system/lang/Integer.h \
+  utils/engine3/MMOEngine/src/system/lang/Long.h \
+  utils/engine3/MMOEngine/src/system/lang/Math.h \
+  utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h \
+  utils/engine3/MMOEngine/src/system/lang/Object.h \
+  utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h \
+  utils/engine3/MMOEngine/src/system/lang/Pair.h \
+  utils/engine3/MMOEngine/src/system/lang/Runnable.h \
+  utils/engine3/MMOEngine/src/system/lang/Short.h \
+  utils/engine3/MMOEngine/src/system/lang/StackTrace.h \
+  utils/engine3/MMOEngine/src/system/lang/String.h \
+  utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
+  utils/engine3/MMOEngine/src/system/lang/System.h \
+  utils/engine3/MMOEngine/src/system/lang/Time.h \
+  utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
+  utils/engine3/MMOEngine/src/system/lang/Variable.h \
+  utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
+  utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
+  utils/engine3/MMOEngine/src/system/lang/types.h \
+  utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
+  utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
+  utils/engine3/MMOEngine/src/system/net/InetAddress.h \
+  utils/engine3/MMOEngine/src/system/net/NetworkInterface.h \
+  utils/engine3/MMOEngine/src/system/net/Packet.h \
+  utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h \
+  utils/engine3/MMOEngine/src/system/net/Socket.h \
+  utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
+  utils/engine3/MMOEngine/src/system/net/SocketException.h \
+  utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/TCPSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h \
+  utils/engine3/MMOEngine/src/system/net/UDPSocket.h \
+  utils/engine3/MMOEngine/src/system/platform.h \
+  utils/engine3/MMOEngine/src/system/security/Crypto.h \
+  utils/engine3/MMOEngine/src/system/thread/Condition.h \
+  utils/engine3/MMOEngine/src/system/thread/DeadlockException.h \
+  utils/engine3/MMOEngine/src/system/thread/Lockable.h \
+  utils/engine3/MMOEngine/src/system/thread/Locker.h \
+  utils/engine3/MMOEngine/src/system/thread/Mutex.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadLocker.h \
+  utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h \
+  utils/engine3/MMOEngine/src/system/thread/Thread.h \
+  utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
+  utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayList.h \
+  utils/engine3/MMOEngine/src/system/util/ArrayQueue.h \
+  utils/engine3/MMOEngine/src/system/util/BinaryHeap.h \
+  utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h \
+  utils/engine3/MMOEngine/src/system/util/HashSet.h \
+  utils/engine3/MMOEngine/src/system/util/HashTable.h \
+  utils/engine3/MMOEngine/src/system/util/LinkedList.h \
+  utils/engine3/MMOEngine/src/system/util/Optional.h \
+  utils/engine3/MMOEngine/src/system/util/PriorityQueue.h \
+  utils/engine3/MMOEngine/src/system/util/SortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h \
+  utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/Timer.h \
+  utils/engine3/MMOEngine/src/system/util/Vector.h \
+  utils/engine3/MMOEngine/src/system/util/VectorMap.h \
+  utils/engine3/MMOEngine/src/system/util/VectorSet.h \
+  utils/engine3/MMOEngine/src/system/util/optional.hpp \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
+  utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
+  utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -8682,6 +8840,8 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -8701,7 +8861,9 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/select-decl.h \
   /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/sigaction.h \
   /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
@@ -8717,6 +8879,7 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   /usr/include/x86_64-linux-gnu/bits/sigthread.h \
   /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket2.h \
   /usr/include/x86_64-linux-gnu/bits/socket_type.h \
   /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
@@ -8726,9 +8889,14 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/x86_64-linux-gnu/bits/stdio.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
+  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
@@ -8777,10 +8945,14 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   /usr/include/x86_64-linux-gnu/bits/typesizes.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
   /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
@@ -8834,6 +9006,8 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h:
@@ -8842,15 +9016,9 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/sys/wait.h:
 
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
-
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/x86_64-linux-gnu/sys/time.h:
-
-/usr/include/x86_64-linux-gnu/sys/stat.h:
-
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
 
@@ -8861,8 +9029,6 @@ src/server/chat/ChatParameter.cpp:
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/messages_members.h:
-
-/usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/gthr-default.h:
 
@@ -8880,11 +9046,19 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/usr/include/x86_64-linux-gnu/bits/wchar2.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd-decl.h:
+
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
@@ -8914,25 +9088,19 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
@@ -8942,23 +9110,23 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+
 /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdio.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
-/usr/include/x86_64-linux-gnu/bits/statx.h:
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/x86_64-linux-gnu/bits/statx-generic.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+/usr/include/x86_64-linux-gnu/bits/socket2.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
@@ -8970,11 +9138,13 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
-
 /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/select2.h:
+
+/usr/include/x86_64-linux-gnu/bits/select-decl.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
@@ -9008,9 +9178,11 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/timex.h:
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
 
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
@@ -9032,9 +9204,11 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/time.h:
 
+/usr/include/strings.h:
+
 /usr/include/string.h:
 
-/usr/include/stdio.h:
+/usr/include/stdlib.h:
 
 /usr/include/stdint.h:
 
@@ -9046,13 +9220,7 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/regex.h:
 
-/usr/include/netinet/in.h:
-
-/usr/include/netdb.h:
-
 /usr/include/lua5.3/luaconf.h:
-
-/usr/include/lua5.3/lauxlib.h:
 
 /usr/include/locale.h:
 
@@ -9072,8 +9240,6 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/libintl.h:
 
-/usr/include/features.h:
-
 /usr/include/features-time64.h:
 
 /usr/include/execinfo.h:
@@ -9086,8 +9252,6 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/vector:
 
-/usr/include/c++/15/utility:
-
 /usr/include/c++/15/unordered_map:
 
 /usr/include/c++/15/typeinfo:
@@ -9099,6 +9263,8 @@ src/server/chat/ChatParameter.cpp:
 /usr/include/c++/15/string:
 
 /usr/include/c++/15/sstream:
+
+/usr/include/c++/15/set:
 
 /usr/include/c++/15/ratio:
 
@@ -9118,8 +9284,6 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/iomanip:
 
-/usr/include/c++/15/functional:
-
 /usr/include/c++/15/ext/string_conversions.h:
 
 /usr/include/c++/15/ext/numeric_traits.h:
@@ -9132,6 +9296,10 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/exception:
 
+/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/c++/15/debug/debug.h:
+
 /usr/include/c++/15/debug/assertions.h:
 
 /usr/include/c++/15/cwctype:
@@ -9143,6 +9311,8 @@ src/server/chat/ChatParameter.cpp:
 /usr/include/c++/15/cstdarg:
 
 /usr/include/c++/15/csignal:
+
+/usr/include/c++/15/concepts:
 
 /usr/include/c++/15/version:
 
@@ -9162,11 +9332,11 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/bits/version.h:
 
-/usr/include/c++/15/bits/vector.tcc:
-
 /usr/include/c++/15/bits/valarray_before.h:
 
 /usr/include/c++/15/bits/valarray_array.tcc:
+
+/usr/include/c++/15/bits/valarray_array.h:
 
 /usr/include/c++/15/bits/utility.h:
 
@@ -9184,9 +9354,13 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/bits/stl_tree.h:
 
+/usr/include/c++/15/bits/stl_tempbuf.h:
+
 /usr/include/c++/15/bits/stl_relops.h:
 
 /usr/include/c++/15/bits/stl_pair.h:
+
+/usr/include/c++/15/bits/stl_numeric.h:
 
 /usr/include/c++/15/bits/stl_multiset.h:
 
@@ -9203,6 +9377,8 @@ src/server/chat/ChatParameter.cpp:
 /usr/include/c++/15/bits/stl_iterator.h:
 
 /usr/include/c++/15/bits/stl_function.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2-decl.h:
 
 /usr/include/c++/15/bits/stl_construct.h:
 
@@ -9238,8 +9414,6 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/bits/range_access.h:
 
-/usr/include/c++/15/bits/quoted_string.h:
-
 /usr/include/c++/15/bits/ptr_traits.h:
 
 /usr/include/c++/15/bits/predefined_ops.h:
@@ -9248,871 +9422,69 @@ src/server/chat/ChatParameter.cpp:
 
 /usr/include/c++/15/bits/ostream.tcc:
 
-/usr/include/boost/align/alignment_of_forward.hpp:
+/usr/include/c++/15/bits/new_allocator.h:
 
-/usr/include/boost/align/aligned_allocator_forward.hpp:
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
 
-/usr/include/boost/align/aligned_alloc.hpp:
+/usr/include/c++/15/bits/nested_exception.h:
 
-utils/engine3/MMOEngine/include/engine/service/ServiceThread.h:
+/usr/include/c++/15/bits/move.h:
 
-src/server/ping/PingClient.h:
+/usr/include/c++/15/bits/memoryfwd.h:
 
-/usr/include/boost/preprocessor/debug/error.hpp:
+/usr/include/c++/15/bits/mask_array.h:
 
-/usr/include/asm-generic/errno.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/boost/preprocessor/repetition/limits/repeat_256.hpp:
-
-/usr/include/arpa/inet.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port-arch.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util-generated.h:
-
-utils/engine3/MMOEngine/include/engine/lua/LuaObject.h:
-
-/usr/include/boost/predef/platform/cloudabi.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-linked_ptr.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-internal.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest_prod.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-test-part.h:
-
-/usr/include/boost/mp11/detail/mp_fold.hpp:
-
-/usr/include/boost/config/detail/select_stdlib_config.hpp:
-
-/usr/include/boost/mpl/aux_/O1_size_impl.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-param-test.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-utils/engine3/MMOEngine/include/system/net/InetAddress.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-port.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-death-test.h:
-
-/usr/include/boost/predef/language/objc.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-port.h:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/boost/mp11/detail/mp_min_element.hpp:
-
-/usr/include/boost/predef/library/c/vms.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-generated-internal-utils.h:
-
-/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
-
-/usr/include/c++/15/debug/debug.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-port.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-function-mockers.h:
-
-/usr/include/c++/15/bits/erase_if.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-actions.h:
-
-src/server/zone/packets/chat/ChatOnUninviteFromRoom.h:
-
-/usr/include/boost/mp11/detail/mp_plus.hpp:
-
-src/server/zone/objects/scene/WorldCoordinates.h:
-
-/usr/include/boost/mp11/integral.hpp:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-actions.h:
-
-/usr/include/c++/15/bits/stl_raw_storage_iter.h:
-
-/usr/include/boost/parameter/aux_/pack/tag_deduced.hpp:
-
-/usr/include/boost/predef/platform/windows_uwp.h:
-
-utils/engine3/MMOEngine/include/system/util/SynchronizedVector.h:
-
-utils/engine3/MMOEngine/include/engine/util/Singleton.h:
-
-/usr/include/c++/15/ios:
-
-utils/engine3/MMOEngine/include/system/io/FileDescriptor.h:
-
-src/server/zone/objects/creature/ai/PatrolPointsVector.h:
-
-utils/engine3/MMOEngine/include/system/util/HashTable.h:
-
-/usr/include/boost/align/detail/not_pointer.hpp:
-
-/usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusRequestMessage.h:
-
-utils/engine3/MMOEngine/include/system/util/ArrayList.h:
-
-/usr/include/c++/15/valarray:
-
-utils/engine3/MMOEngine/include/system/thread/atomic/AtomicReference.h:
-
-utils/engine3/MMOEngine/include/system/net/TCPServerSocket.h:
-
-utils/engine3/MMOEngine/include/system/thread/atomic/AtomicLong.h:
-
-/usr/include/boost/parameter/template_keyword.hpp:
-
-/usr/include/c++/15/bits/stl_set.h:
-
-/usr/include/boost/preprocessor/empty.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/Mutex.h:
-
-/usr/include/boost/align/detail/is_alignment_constant.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/Condition.h:
-
-/usr/include/c++/15/bits/alloc_traits.h:
-
-utils/engine3/MMOEngine/include/system/net/UDPSocket.h:
-
-src/templates/appearance/PathEdge.h:
-
-utils/engine3/MMOEngine/include/system/net/SocketException.h:
-
-src/autogen/server/zone/objects/scene/SceneObject.h:
-
-/usr/include/boost/preprocessor/facilities/overload.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/ref/WeakReference.h:
-
-src/server/zone/managers/collision/IntersectionResults.h:
-
-utils/engine3/MMOEngine/include/system/util/SortedVector.h:
-
-utils/engine3/MMOEngine/include/engine/lua/Luna.h:
-
-/usr/include/boost/predef/library/std/dinkumware.h:
-
-utils/engine3/MMOEngine/include/system/lang/ref/UniqueReference.h:
+/usr/include/c++/15/bits/localefwd.h:
 
 /usr/include/c++/15/bits/locale_facets.tcc:
 
-/usr/include/c++/15/bits/ostream.h:
-
-utils/engine3/MMOEngine/include/system/mm/MemoryManager.h:
-
-utils/engine3/MMOEngine/include/system/lang/ref/StrongAndWeakReferenceCount.h:
-
-utils/engine3/MMOEngine/include/system/lang/ref/Reference.h:
-
-utils/engine3/MMOEngine/include/system/lang/mersenne/MersenneTwister.h:
-
-utils/engine3/MMOEngine/include/system/lang/Variable.h:
-
-utils/engine3/MMOEngine/include/system/lang/Runnable.h:
-
-utils/engine3/MMOEngine/include/system/util/SynchronizedHashTable.h:
-
-/usr/include/x86_64-linux-gnu/bits/in.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/custom/gmock-matchers.h:
-
-src/templates/params/creature/CreatureFlag.h:
-
-utils/engine3/MMOEngine/include/system/lang/Float.h:
-
-utils/engine3/MMOEngine/include/system/lang/StackTrace.h:
-
-/usr/include/boost/parameter/aux_/always_true_predicate.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/Short.h:
-
-/usr/include/boost/preprocessor/cat.hpp:
-
-src/server/ping/PingServer.h:
-
-utils/engine3/MMOEngine/include/system/lang/Math.h:
-
-utils/engine3/MMOEngine/include/system/lang/Long.h:
-
-/usr/include/boost/config/compiler/gcc.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/boost/mpl/find.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/Double.h:
-
-/usr/include/lua5.3/lualib.h:
-
-/usr/include/boost/predef/compiler/digitalmars.h:
-
-utils/engine3/MMOEngine/include/system/lang/DivisionByZeroException.h:
-
-src/server/zone/managers/creature/ValidMountScaleRange.h:
-
-utils/engine3/MMOEngine/include/engine/stm/TransactionalMemoryManager.h:
-
-/usr/include/boost/config/detail/cxx_composite.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/ThreadLocal.h:
-
-/usr/include/c++/15/bits/align.h:
-
-utils/engine3/MMOEngine/include/system/io/Stream.h:
-
-/usr/include/boost/mpl/O1_size.hpp:
-
-utils/engine3/MMOEngine/include/system/io/ObjectOutputStream.h:
-
-/usr/include/boost/type_traits/intrinsics.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
-
-utils/engine3/MMOEngine/include/system/io/IOException.h:
-
-/usr/include/boost/predef/library.h:
-
-utils/engine3/MMOEngine/include/system/io/FileOutputStream.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/Environment.h:
-
-src/autogen/server/chat/room/ChatRoom.h:
-
-/usr/include/boost/predef/language.h:
-
-/usr/include/boost/align/alignment_of.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/bind.hpp:
-
-/usr/include/boost/mpl/deref.hpp:
-
-utils/engine3/MMOEngine/include/system/io/FileInputStream.h:
-
-utils/engine3/MMOEngine/include/system/io/File.h:
-
-src/autogen/server/zone/objects/tangible/attachment/Attachment.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-port.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp:
-
-/usr/include/boost/config/user.hpp:
-
-/usr/include/boost/parameter/aux_/tag.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/ReadLocker.h:
-
-/usr/include/c++/15/bits/basic_ios.tcc:
-
-utils/engine3/MMOEngine/include/system/lang/System.h:
-
-utils/engine3/MMOEngine/include/system/io/TextStream.h:
-
-/usr/include/boost/predef/compiler/sgi_mipspro.h:
-
-src/autogen/server/zone/ZoneClientSession.h:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/TriangleNode.h:
-
-/usr/include/boost/version.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/IllegalStateException.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Triangle.h:
-
-/usr/include/boost/parameter/keyword_fwd.hpp:
-
-/usr/include/strings.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Sphere.h:
-
-/usr/include/c++/15/bits/stl_numeric.h:
-
-utils/engine3/MMOEngine/include/system/util/PriorityQueue.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Ray.h:
-
-/usr/include/pthread.h:
-
-src/autogen/server/zone/objects/group/GroupObject.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/boost/predef/library/std/vacpp.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Quaternion.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-matchers.h:
-
-/usr/include/boost/preprocessor/detail/check.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-src/server/chat/WaypointChatParameterVector.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Matrix4.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Matrix3.h:
-
-/usr/include/boost/preprocessor/logical/limits/bool_256.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/AStarAlgorithm.h:
-
-/usr/include/boost/preprocessor/logical/bool.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/AABBTree.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/AABBNode.h:
-
-/usr/include/boost/predef/compiler/compaq.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/AABB.h:
-
-/usr/include/c++/15/bits/forward_list.tcc:
-
-utils/engine3/MMOEngine/include/system/lang/OutOfMemoryError.h:
-
-/usr/include/boost/predef/compiler/gcc.h:
-
-/usr/include/boost/type_traits/conditional.hpp:
-
-src/server/zone/packets/object/SpatialChat.h:
-
-utils/engine3/MMOEngine/include/system/lang/ArrayIndexOutOfBoundsException.h:
-
-utils/engine3/MMOEngine/include/engine/util/json_utils.h:
-
-/usr/include/c++/15/bit:
-
-utils/engine3/MMOEngine/include/engine/util/iffstream/chunks/Chunk.h:
-
-/usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h:
-
-/usr/include/boost/mpl/aux_/iter_fold_impl.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/flat_hash_map.hpp:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseEntry.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/boost/parameter/aux_/pack/unmatched_argument.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/bytell_hash_map.hpp:
-
-src/server/zone/managers/object/SceneObjectFactory.h:
-
-utils/engine3/MMOEngine/include/engine/util/ObserverEventMap.h:
-
-utils/engine3/MMOEngine/include/engine/util/Observer.h:
-
-/usr/include/boost/mpl/aux_/has_begin.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/Command.h:
-
-utils/engine3/MMOEngine/include/system/thread/Locker.h:
-
-/usr/include/boost/preprocessor/control/limits/while_256.hpp:
-
-utils/engine3/MMOEngine/include/system/util/Timer.h:
-
-src/autogen/server/zone/managers/creature/PetManager.h:
-
-/usr/include/boost/predef/architecture/superh.h:
-
-utils/engine3/MMOEngine/include/engine/stm/task/TransactionalTaskManager.h:
-
-utils/engine3/MMOEngine/include/engine/stm/service/TransactionalSocketManager.h:
-
-src/server/zone/objects/scene/SceneObjectType.h:
-
-utils/engine3/MMOEngine/include/engine/stm/mm/KernelCall.h:
-
-src/server/zone/packets/chat/ChatRoomMessage.h:
-
-utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHeader.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-typed-test.h:
-
-/usr/include/boost/mpl/or.hpp:
-
-utils/engine3/MMOEngine/include/engine/stm/TransactionAbortedException.h:
-
-src/server/zone/objects/creature/buffs/BuffCRC.h:
-
-/usr/include/boost/mpl/apply_wrap.hpp:
-
-utils/engine3/MMOEngine/include/system/io/StreamIndexOutOfBoundsException.h:
-
-src/server/zone/managers/name/NameData.h:
-
-src/templates/manager/PlanetMapCategory.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-utils/engine3/MMOEngine/include/system/net/UDPServerSocket.h:
-
-/usr/include/boost/mp11/detail/mp_with_index.hpp:
-
-/usr/include/boost/predef/compiler/comeau.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Coordinate.h:
-
-/usr/include/boost/predef/library/c/uc.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeMessage.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/events/BasePacketChekupEvent.h:
-
-/usr/include/c++/15/bits/valarray_array.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BaseProtocol.h:
-
-utils/engine3/MMOEngine/include/system/thread/ReadWriteLock.h:
-
-src/server/zone/packets/DeltaMessage.h:
-
-/usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BaseClientStats.h:
-
-src/templates/appearance/PathGraph.h:
-
-utils/engine3/MMOEngine/include/engine/util/Observable.h:
-
-utils/engine3/MMOEngine/include/engine/service/StreamServiceThread.h:
-
-src/templates/tangible/SharedWeaponObjectTemplate.h:
-
-/usr/include/c++/15/math.h:
-
-/usr/include/boost/mpl/iter_fold.hpp:
-
-utils/engine3/MMOEngine/include/system/net/Packet.h:
-
-/usr/include/boost/preprocessor/control/iif.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/ConstString.h:
-
-utils/engine3/MMOEngine/include/engine/service/StreamServiceClient.h:
-
-/usr/include/boost/parameter/aux_/use_default.hpp:
-
-/usr/include/c++/15/set:
-
-utils/engine3/MMOEngine/include/engine/service/ServiceHandler.h:
-
-utils/engine3/MMOEngine/include/engine/service/ServiceFilter.h:
-
-utils/engine3/MMOEngine/include/engine/service/DatagramServiceThread.h:
-
-/usr/include/c++/15/bits/cpp_type_traits.h:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-utils/engine3/MMOEngine/include/system/lang/types.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotLocalException.h:
-
-utils/engine3/MMOEngine/include/engine/orb/messages/DOBMessage.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/ObjectAlreadyDeployedException.h:
-
-src/server/zone/packets/chat/ChatInstantMessageToClient.h:
-
-/usr/include/boost/mpl/aux_/adl_barrier.hpp:
-
-utils/engine3/MMOEngine/include/system/util/BinaryHeap.h:
-
-/usr/include/boost/mpl/integral_c_tag.hpp:
-
-/usr/include/boost/preprocessor/punctuation/comma.hpp:
-
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelper.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObject.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedMethod.h:
-
-utils/engine3/MMOEngine/include/system/lang/Object.h:
-
-utils/engine3/MMOEngine/include/engine/orb/messages/InvokeMethodMessage.h:
-
-utils/engine3/MMOEngine/include/engine/orb/messages/DOBServiceClient.h:
-
-/usr/include/boost/mp11/detail/mp_value.hpp:
-
-/usr/include/boost/predef/architecture/z.h:
-
-utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectDirectory.h:
-
-utils/engine3/MMOEngine/include/engine/orb/db/DOBObjectManager.h:
-
-utils/engine3/MMOEngine/include/engine/orb/NameAlreadyBoundException.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/boost/mpl/aux_/lambda_spec.hpp:
-
-/usr/include/boost/preprocessor/detail/auto_rec.hpp:
-
-/usr/include/boost/align/aligned_allocator.hpp:
-
-/usr/include/boost/mpl/if.hpp:
-
-utils/engine3/MMOEngine/include/engine/orb/DistributedObjectBroker.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/DatabaseConfig.h:
-
-utils/engine3/MMOEngine/include/system/security/Crypto.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest_pred_impl.h:
-
 /usr/include/c++/15/bits/locale_facets.h:
 
-/usr/include/boost/parameter/aux_/pack/deduced_item.hpp:
+/usr/include/c++/15/bits/valarray_after.h:
 
-src/server/chat/StringIdChatParameterVector.h:
+/usr/include/c++/15/bits/locale_classes.h:
 
-src/templates/params/primitives/FloatParam.h:
+/usr/include/c++/15/bits/ios_base.h:
 
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-spec-builders.h:
+/usr/include/c++/15/bits/invoke.h:
 
-/usr/include/boost/mp11/detail/mp_map_find.hpp:
+/usr/include/c++/15/bits/indirect_array.h:
 
-/usr/include/boost/predef/os/amigaos.h:
+/usr/include/c++/15/bits/hashtable_policy.h:
 
-src/server/zone/objects/scene/variables/DeltaBitArray.h:
+/usr/include/c++/15/bits/gslice_array.h:
 
-/usr/include/stdlib.h:
+/usr/include/c++/15/bits/functexcept.h:
 
-utils/engine3/MMOEngine/include/engine/orb/ObjectBroker.h:
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h:
 
-src/server/zone/objects/player/variables/PlayerList.h:
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h:
 
-utils/engine3/MMOEngine/include/system/io/ObjectInputStream.h:
+/usr/include/boost/predef/make.h:
 
-/usr/include/boost/exception/exception.hpp:
+/usr/include/boost/mpl/aux_/preprocessor/default_params.hpp:
 
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-matchers.h:
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h:
 
-utils/engine3/MMOEngine/include/engine/stm/TransactionalObjectHandle.h:
+/usr/include/boost/predef/library/std/sgi.h:
 
-/usr/include/boost/preprocessor/arithmetic/dec.hpp:
+src/server/zone/packets/object/Emote.h:
 
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-printers.h:
+utils/engine3/MMOEngine/src/engine/stm/TransactionAbortedException.h:
 
-src/server/zone/objects/player/variables/Ability.h:
+/usr/include/boost/type_traits/is_class.hpp:
 
-utils/engine3/MMOEngine/include/system/net/PacketIndexOutOfBoundsException.h:
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h:
 
-utils/engine3/MMOEngine/include/engine/db/ObjectDatabaseManager.h:
+utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h:
 
-src/server/zone/objects/player/variables/FriendList.h:
+/usr/include/c++/15/ios:
 
-utils/engine3/MMOEngine/include/engine/orb/object/ObjectNotDeployedException.h:
+utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h:
 
-utils/engine3/MMOEngine/include/system/net/Socket.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/CheckpointConfig.h:
-
-/usr/include/asm-generic/types.h:
-
-src/server/zone/ZoneReference.h:
-
-utils/engine3/MMOEngine/include/system/util/optional.hpp:
-
-src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h:
-
-src/server/zone/objects/player/sui/SuiWindowType.h:
-
-src/server/zone/managers/creature/MountSpeedData.h:
-
-src/server/zone/objects/player/variables/FrsData.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-src/server/zone/objects/player/variables/AbilityList.h:
-
-/usr/include/boost/parameter/aux_/pack/tag_template_keyword_arg.hpp:
-
-src/server/db/ServerDatabase.h:
-
-/usr/include/boost/mpl/bool_fwd.hpp:
-
-src/server/zone/objects/creature/variables/CooldownTimerMap.h:
-
-/usr/include/boost/mpl/long_fwd.hpp:
-
-/usr/include/boost/parameter/value_type.hpp:
-
-src/server/zone/managers/loot/lootgroup/LootGroupCollection.h:
-
-/usr/include/boost/predef/os.h:
-
-src/server/zone/objects/creature/ai/variables/CurrentFoundPath.h:
-
-utils/engine3/MMOEngine/include/system/util/Optional.h:
-
-src/server/zone/objects/player/sui/SuiCommand.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/EnvironmentConfig.h:
-
-src/server/zone/managers/player/VeteranRewardList.h:
-
-utils/engine3/MMOEngine/include/system/util/SynchronizedSortedVector.h:
-
-/usr/include/boost/align/aligned_allocator_adaptor_forward.hpp:
-
-src/autogen/server/chat/ChatManager.h:
-
-src/server/zone/managers/player/VeteranReward.h:
-
-src/autogen/server/zone/objects/intangible/ControlDevice.h:
-
-utils/engine3/MMOEngine/include/system/io/FileReader.h:
-
-src/server/zone/managers/player/StartingLocationList.h:
-
-utils/engine3/MMOEngine/include/engine/service/ServiceMessageHandlerThread.h:
-
-src/server/zone/objects/creature/buffs/BuffType.h:
-
-src/templates/appearance/CellProperty.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectPOD.h:
-
-/usr/include/boost/mpl/aux_/config/gcc.hpp:
-
-/usr/include/boost/config/detail/posix_features.hpp:
-
-/usr/include/boost/preprocessor/arithmetic/add.hpp:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-filepath.h:
-
-src/server/zone/managers/player/PermissionLevelList.h:
-
-/usr/include/boost/mpl/arg_fwd.hpp:
-
-/usr/include/c++/15/ciso646:
-
-src/server/zone/managers/player/BadgeList.h:
-
-src/server/zone/managers/object/ObjectMap.h:
-
-src/server/zone/objects/creature/variables/CommandQueueActionVector.h:
-
-utils/engine3/MMOEngine/include/engine/util/iffstream/IffStream.h:
-
-src/server/zone/managers/name/NameRules.h:
-
-/usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
-
-src/server/chat/WaypointChatParameter.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-src/server/zone/objects/creature/damageovertime/DamageOverTime.h:
-
-/usr/include/boost/align/aligned_allocator_adaptor.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/atomic/AtomicInteger.h:
-
-/usr/include/boost/mpl/pair.hpp:
-
-/usr/include/boost/preprocessor/logical/bitand.hpp:
-
-/usr/include/boost/type_traits/is_member_function_pointer.hpp:
-
-src/server/zone/managers/loot/lootgroup/LootGroupEntry.h:
-
-/usr/include/c++/15/cxxabi.h:
-
-/usr/include/boost/type_traits/is_member_pointer.hpp:
-
-src/server/zone/managers/loot/lootgroup/LootGroupCollectionEntry.h:
-
-/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
-
-src/templates/datatables/DataTableRow.h:
-
-/usr/include/c++/15/bits/stl_heap.h:
-
-src/autogen/server/zone/objects/player/PlayerObject.h:
-
-src/templates/SharedIntangibleObjectTemplate.h:
-
-utils/engine3/MMOEngine/include/engine/db/BinaryData.h:
-
-/usr/include/x86_64-linux-gnu/c++/15/bits/atomic_word.h:
-
-src/server/zone/objects/player/variables/IgnoreList.h:
-
-utils/engine3/MMOEngine/include/engine/service/DatagramServiceClientProxy.h:
-
-utils/engine3/MMOEngine/include/system/io/InputStream.h:
-
-src/server/zone/objects/scene/variables/ContainerPermissions.h:
-
-/usr/include/boost/predef/os/bsd/bsdi.h:
-
-/usr/include/c++/15/cstddef:
-
-src/autogen/server/zone/objects/tangible/TangibleObject.h:
-
-/usr/include/linux/errno.h:
-
-utils/engine3/MMOEngine/include/system/lang/Exception.h:
-
-utils/engine3/MMOEngine/include/engine/service/MessageQueue.h:
-
-/usr/include/boost/predef/os/aix.h:
-
-/usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
-
-src/server/zone/objects/player/ValidatedPosition.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/packets/LoginServerMessage.h:
-
-/usr/include/boost/predef/architecture/riscv.h:
-
-src/server/zone/objects/scene/ObserverType.h:
-
-utils/engine3/MMOEngine/include/engine/core/LambdaFunction.h:
-
-src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.h:
-
-/usr/include/boost/predef/language/cuda.h:
-
-utils/engine3/MMOEngine/include/engine/util/Facade.h:
-
-src/templates/params/StringIdParam.h:
-
-/usr/include/boost/parameter/required.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/atomic/AtomicTime.h:
-
-/usr/include/boost/preprocessor/punctuation/comma_if.hpp:
-
-src/server/zone/objects/creature/variables/CommandQueueAction.h:
-
-utils/engine3/MMOEngine/include/system/util/SynchronizedVectorMap.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/TransactionConfig.h:
-
-src/server/metrics/Metrics.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket_type.h:
-
-utils/engine3/MMOEngine/include/system/util/VectorMap.h:
-
-src/server/zone/managers/object/ObjectManager.h:
-
-/usr/include/boost/mpl/aux_/config/nttp.hpp:
-
-utils/engine3/MMOEngine/include/engine/stm/task/LocalTaskManager.h:
-
-src/server/zone/objects/scene/components/ObjectMenuComponent.h:
-
-/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
-
-src/server/zone/packets/chat/ChatRoomList.h:
-
-src/server/zone/QuadTreeNode.h:
-
-/usr/include/c++/15/bits/functional_hash.h:
-
-/usr/include/boost/predef/compiler/mpw.h:
-
-src/server/zone/objects/creature/variables/Skill.h:
-
-utils/engine3/MMOEngine/include/system/util/HashSet.h:
-
-src/autogen/server/zone/objects/tangible/wearables/WearableObject.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-param-util.h:
-
-utils/engine3/MMOEngine/include/system/util/ArrayQueue.h:
-
-src/autogen/server/zone/managers/player/PlayerManager.h:
-
-src/server/zone/objects/scene/variables/CustomizationVariables.h:
-
-/usr/include/boost/predef/version.h:
-
-src/server/zone/managers/planet/MapLocationEntry.h:
-
-/usr/include/x86_64-linux-gnu/bits/stat.h:
-
-/usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
-
-/usr/include/alloca.h:
-
-src/templates/appearance/PortalLayout.h:
-
-src/autogen/server/zone/ZoneProcessServer.h:
-
-src/autogen/server/zone/QuadTreeEntry.h:
-
-utils/engine3/MMOEngine/include/system/lang/Character.h:
-
-src/server/zone/objects/guild/GuildMemberList.h:
-
-src/autogen/server/zone/objects/waypoint/WaypointObject.h:
-
-/usr/include/c++/15/bits/stl_uninitialized.h:
-
-/usr/include/boost/predef/architecture/blackfin.h:
-
-/usr/include/boost/preprocessor/control/while.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-src/templates/crafting/draftslot/DraftSlot.h:
-
-/usr/include/boost/mpl/aux_/common_name_wknd.hpp:
-
-src/server/zone/packets/chat/ChatOnSendInstantMessage.h:
-
-/usr/include/boost/predef/hardware.h:
-
-/usr/include/c++/15/bits/basic_ios.h:
-
-src/autogen/server/zone/objects/player/sui/SuiBox.h:
-
-/usr/include/c++/15/bits/streambuf_iterator.h:
-
-/usr/include/boost/predef/architecture/sys390.h:
-
-utils/engine3/MMOEngine/include/system/io/StringTokenizer.h:
-
-/usr/include/boost/predef/compiler/intel.h:
+/usr/include/boost/mpl/aux_/find_if_pred.hpp:
 
 src/server/chat/WaypointChatParameter.h:
 
@@ -10126,7 +9498,1145 @@ src/server/chat/WaypointChatParameter.h:
 
 /usr/include/c++/15/backward/binders.h:
 
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h:
+
+utils/engine3/MMOEngine/src/engine/service/DatagramServiceClientProxy.h:
+
+utils/engine3/MMOEngine/src/engine/stm/Transaction.h:
+
+/usr/include/boost/predef/compiler/edg.h:
+
+/usr/include/alloca.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h:
+
+/usr/include/boost/mpl/aux_/template_arity_fwd.hpp:
+
+/usr/include/x86_64-linux-gnu/sys/stat.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h:
+
+/usr/include/linux/errno.h:
+
+utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar2-decl.h:
+
+utils/engine3/MMOEngine/src/system/util/SynchronizedVectorMap.h:
+
+/usr/include/c++/15/functional:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelper.h:
+
+/usr/include/boost/preprocessor/list/detail/limits/fold_right_256.hpp:
+
+utils/engine3/MMOEngine/src/system/thread/atomic/AtomicTime.h:
+
+src/templates/appearance/FloorMesh.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+utils/engine3/MMOEngine/src/system/lang/Time.h:
+
+/usr/include/boost/mp11/detail/mp_defer.hpp:
+
+/usr/include/lua5.3/lauxlib.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h:
+
+/usr/include/boost/mp11/function.hpp:
+
+utils/engine3/MMOEngine/src/system/thread/atomic/AtomicLong.h:
+
+utils/engine3/MMOEngine/src/system/thread/Thread.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/boost/parameter/aux_/pack/unmatched_argument.hpp:
+
+src/server/ping/PingClient.h:
+
+/usr/include/boost/preprocessor/debug/error.hpp:
+
+/usr/include/boost/predef/compiler/diab.h:
+
+/usr/include/boost/predef/platform/windows_store.h:
+
+/usr/include/boost/predef/compiler/compaq.h:
+
+utils/engine3/MMOEngine/src/system/net/TCPSocket.h:
+
+/usr/include/stdio.h:
+
+utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h:
+
+utils/engine3/MMOEngine/src/system/net/TCPServerSocket.h:
+
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+utils/engine3/MMOEngine/src/system/net/SocketException.h:
+
+utils/engine3/MMOEngine/src/system/net/Socket.h:
+
+/usr/include/boost/mpl/at_fwd.hpp:
+
+/usr/include/boost/predef/platform/windows_server.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h:
+
+utils/engine3/MMOEngine/src/system/net/NetworkInterface.h:
+
+utils/engine3/MMOEngine/src/system/net/InetAddress.h:
+
+utils/engine3/MMOEngine/src/system/thread/Condition.h:
+
+/usr/include/c++/15/bits/vector.tcc:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Matrix4.h:
+
+/usr/include/boost/preprocessor/detail/check.hpp:
+
+utils/engine3/MMOEngine/src/system/mm/MemoryManager.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h:
+
+utils/engine3/MMOEngine/src/system/lang/String.h:
+
+utils/engine3/MMOEngine/src/system/io/FileOutputStream.h:
+
+/usr/include/boost/align/detail/not_pointer.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/Runnable.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h:
+
+utils/engine3/MMOEngine/src/system/lang/Object.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h:
+
+utils/engine3/MMOEngine/src/system/lang/NumberFormatException.h:
+
+/usr/include/boost/predef/version_number.h:
+
+/usr/include/c++/15/bits/ostream.h:
+
+utils/engine3/MMOEngine/src/system/lang/Math.h:
+
+utils/engine3/MMOEngine/src/engine/core/TaskScheduler.h:
+
+utils/engine3/MMOEngine/src/system/lang/IllegalArgumentException.h:
+
+utils/engine3/MMOEngine/src/system/lang/BaseTypeVariable.h:
+
+utils/engine3/MMOEngine/src/system/io/Serializable.h:
+
+/usr/include/netinet/in.h:
+
+utils/engine3/MMOEngine/src/system/io/TextStream.h:
+
+utils/engine3/MMOEngine/src/system/io/ObjectInputStream.h:
+
+/usr/include/boost/type_traits/is_base_and_derived.hpp:
+
+/usr/include/boost/mpl/arg.hpp:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/TriangulationAStarAlgorithm.h:
+
+/usr/include/boost/predef/os/beos.h:
+
+utils/engine3/MMOEngine/src/system/lang/Short.h:
+
+/usr/include/c++/15/valarray:
+
+src/pathfinding/RecastTileBuilder.h:
+
+/usr/include/boost/mpl/aux_/type_wrapper.hpp:
+
+/usr/include/boost/preprocessor/list/adt.hpp:
+
+/usr/include/lua5.3/lua.h:
+
+/usr/include/boost/mpl/sequence_tag.hpp:
+
+utils/engine3/MMOEngine/src/system/io/FileInputStream.h:
+
+utils/engine3/MMOEngine/src/system/io/FileDescriptor.h:
+
+src/server/zone/managers/player/OnlineZoneClientMap.h:
+
+/usr/include/c++/15/bits/hashtable.h:
+
+utils/engine3/MMOEngine/src/system/io/File.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h:
+
+utils/engine3/MMOEngine/src/system/io/BufferedReader.h:
+
+/usr/include/features.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Sphere.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h:
+
+/usr/include/boost/align/detail/integral_constant.hpp:
+
+/usr/include/boost/align/detail/max_size.hpp:
+
+/usr/include/boost/assert/source_location.hpp:
+
+utils/engine3/MMOEngine/src/engine/util/Facade.h:
+
+utils/engine3/MMOEngine/src/system/io/FileNotFoundException.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/boost/predef/architecture/rs6k.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/Cursor.h:
+
+/usr/include/x86_64-linux-gnu/c++/15/bits/atomic_word.h:
+
+src/server/zone/objects/player/variables/IgnoreList.h:
+
+utils/engine3/MMOEngine/src/engine/util/json.hpp:
+
+/usr/include/boost/predef/library/std/roguewave.h:
+
+utils/engine3/MMOEngine/src/engine/service/MessageQueue.h:
+
+utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h:
+
+src/server/zone/objects/scene/components/SceneObjectComponent.h:
+
+utils/engine3/MMOEngine/src/engine/util/iffstream/IffStream.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+
+utils/engine3/MMOEngine/src/engine/util/Observer.h:
+
+/usr/include/netdb.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/BerkeleyDatabase.h:
+
+utils/engine3/MMOEngine/src/engine/stm/task/TransactionalTaskManager.h:
+
+utils/engine3/MMOEngine/src/engine/stm/service/TransactionalSocketManager.h:
+
+/usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h:
+
+utils/engine3/MMOEngine/src/engine/stm/service/TransactionalBaseClientManager.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/boost/config/stdlib/libstdcpp3.hpp:
+
+utils/engine3/MMOEngine/src/engine/stm/orb/TransactionalObjectManager.h:
+
+utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h:
+
+utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h:
+
+src/templates/SharedTangibleObjectTemplate.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/LoginServerMessage.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/ConnectionServerMessage.h:
+
+utils/engine3/MMOEngine/src/system/thread/ReadLocker.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeMessage.h:
+
+/usr/include/boost/predef/detail/comp_detected.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/events/BasePacketChekupEvent.h:
+
+/usr/include/boost/mpl/aux_/has_begin.hpp:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseProtocol.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h:
+
+utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h:
+
+/usr/include/c++/15/bits/quoted_string.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseClient.h:
+
+/usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h:
+
+utils/engine3/MMOEngine/src/engine/service/StreamServiceThread.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/BTransaction.h:
+
+utils/engine3/MMOEngine/src/engine/service/StreamServiceClientProxy.h:
+
+/usr/include/boost/preprocessor/facilities/check_empty.hpp:
+
+/usr/include/boost/predef/os/solaris.h:
+
+utils/engine3/MMOEngine/src/system/io/FileReader.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseMultiPacket.h:
+
+utils/engine3/MMOEngine/src/system/util/HashTable.h:
+
+utils/engine3/MMOEngine/src/engine/service/ServiceClient.h:
+
+utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp:
+
+utils/engine3/MMOEngine/src/engine/core/util/ManagedVectorMap.h:
+
+/usr/include/boost/predef/os/vms.h:
+
+/usr/include/boost/preprocessor/logical/compl.hpp:
+
+utils/engine3/MMOEngine/src/engine/service/Message.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotDeployedException.h:
+
+/usr/include/c++/15/utility:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h:
+
+/usr/include/boost/type_traits/is_integral.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedMethod.h:
+
+utils/engine3/MMOEngine/src/engine/orb/messages/InvokeMethodMessage.h:
+
+src/autogen/server/chat/PendingMessageList.h:
+
+src/server/zone/managers/skill/SkillModManager.h:
+
+utils/engine3/MMOEngine/src/engine/service/ServiceHandler.h:
+
+/usr/include/boost/predef/platform/windows_uwp.h:
+
+/usr/include/boost/config/detail/select_compiler_config.hpp:
+
+/usr/include/boost/mpl/apply.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/timex.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+utils/engine3/MMOEngine/src/engine/orb/messages/DOBMessage.h:
+
+src/templates/LuaTemplate.h:
+
+/usr/include/c++/15/bits/locale_facets_nonio.tcc:
+
+/usr/include/boost/predef/os/qnxnto.h:
+
+utils/engine3/MMOEngine/src/system/util/ArrayList.h:
+
+utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectDirectory.h:
+
+utils/engine3/MMOEngine/src/engine/orb/DistributedObjectBroker.h:
+
+utils/engine3/MMOEngine/src/engine/orb/NamingDirectoryService.h:
+
+utils/engine3/MMOEngine/src/engine/orb/NameAlreadyBoundException.h:
+
+utils/engine3/MMOEngine/src/engine/lua/Luna.h:
+
+/usr/include/boost/mpl/aux_/config/intel.hpp:
+
+src/server/chat/WaypointChatParameter.cpp:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+src/server/zone/objects/creature/damageovertime/DamageOverTime.h:
+
+src/templates/intangible/DraftSchematicObjectTemplate.h:
+
+utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h:
+
+utils/engine3/MMOEngine/src/system/util/LinkedList.h:
+
+utils/engine3/MMOEngine/src/system/util/SynchronizedSortedVector.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseClientStats.h:
+
+src/server/zone/objects/player/variables/PlayerList.h:
+
+utils/engine3/MMOEngine/src/engine/engine.h:
+
+/usr/include/boost/type_traits/is_void.hpp:
+
+src/autogen/server/login/LoginServer.h:
+
+utils/engine3/MMOEngine/src/engine/orb/db/DistributedObjectMap.h:
+
+utils/engine3/MMOEngine/src/engine/db/ObjectDatabaseManager.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
+
+src/templates/string/StringFile.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseConfig.h:
+
+/usr/include/boost/mpl/aux_/template_arity.hpp:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h:
+
+/usr/include/boost/predef/compiler/metrowerks.h:
+
+/usr/include/c++/15/ext/alloc_traits.h:
+
+/usr/include/c++/15/bits/locale_facets_nonio.h:
+
+/usr/include/boost/predef/hardware/simd/x86_amd/versions.h:
+
+/usr/include/boost/preprocessor/list/detail/limits/fold_left_256.hpp:
+
+utils/engine3/MMOEngine/src/engine/db/ObjectDatabase.h:
+
+src/templates/appearance/PathGraph.h:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h:
+
+src/autogen/server/zone/objects/region/Region.h:
+
+/usr/include/boost/static_assert.hpp:
+
+utils/engine3/MMOEngine/src/engine/db/DatabaseManager.h:
+
+utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h:
+
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+
+utils/engine3/MMOEngine/src/engine/db/DatabaseException.h:
+
+src/server/zone/managers/name/NameRules.h:
+
+utils/engine3/MMOEngine/src/engine/core/util/ManagedSortedVector.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h:
+
+utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h:
+
+utils/engine3/MMOEngine/src/engine/core/TaskQueue.h:
+
+utils/engine3/MMOEngine/src/engine/service/ServiceException.h:
+
+utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp:
+
+utils/engine3/MMOEngine/src/engine/core/TaskManager.h:
+
+utils/engine3/MMOEngine/src/engine/core/Task.h:
+
+utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Matrix3.h:
+
+/usr/include/c++/15/bits/basic_ios.tcc:
+
+utils/engine3/MMOEngine/src/engine/core/RunStatistics.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+src/pathfinding/RecastPolygon.h:
+
+/usr/include/boost/align/aligned_allocator_adaptor.hpp:
+
+/usr/include/boost/preprocessor/logical/bitand.hpp:
+
+utils/engine3/MMOEngine/src/engine/util/ObjectFactory.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/DatabaseEntry.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
+utils/engine3/MMOEngine/src/engine/core/ManagedService.h:
+
+utils/engine3/MMOEngine/src/engine/core/ManagedReference.h:
+
+/usr/include/boost/predef/compiler/sunpro.h:
+
+/usr/include/boost/predef/detail/os_detected.h:
+
+utils/engine3/MMOEngine/src/system/io/Writer.h:
+
+/usr/include/boost/predef/architecture/riscv.h:
+
+src/server/zone/objects/scene/ObserverType.h:
+
+src/server/zone/managers/creature/MountSpeedData.h:
+
+src/server/zone/objects/creature/variables/SkillList.h:
+
+utils/engine3/MMOEngine/src/system/io/Stream.h:
+
+src/server/zone/objects/creature/variables/CooldownTimerMap.h:
+
+/usr/include/boost/mpl/long_fwd.hpp:
+
+/usr/include/boost/parameter/value_type.hpp:
+
+/usr/include/boost/type_traits/is_member_function_pointer.hpp:
+
+src/pathfinding/recast/DetourNavMesh.h:
+
+src/server/zone/objects/creature/ai/variables/CurrentFoundPath.h:
+
+/usr/include/c++/15/math.h:
+
+/usr/include/boost/mpl/iter_fold.hpp:
+
+/usr/include/lua5.3/lualib.h:
+
+/usr/include/boost/predef/compiler/digitalmars.h:
+
+src/autogen/server/chat/ChatMessage.h:
+
+src/server/zone/objects/creature/ai/bt/BehaviorTreeSlot.h:
+
+/usr/include/boost/align/alignment_of_forward.hpp:
+
+src/server/zone/packets/chat/ChatQueryRoomResults.h:
+
+src/server/zone/objects/creature/ai/bt/Behavior.h:
+
+utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h:
+
+src/server/zone/packets/chat/ChatOnBanFromRoom.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/CheckpointConfig.h:
+
+/usr/include/boost/mpl/aux_/config/arrays.hpp:
+
+src/server/zone/objects/player/sui/SuiCommand.h:
+
+src/server/zone/packets/chat/ChatInstantMessageToClient.h:
+
+utils/engine3/MMOEngine/src/engine/util/Observable.h:
+
+src/server/zone/managers/player/VeteranReward.h:
+
+src/autogen/server/zone/objects/intangible/ControlDevice.h:
+
+src/server/zone/managers/player/StartingLocationList.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h:
+
+src/server/zone/objects/creature/buffs/BuffType.h:
+
+src/templates/appearance/CellProperty.h:
+
+/usr/include/boost/mpl/aux_/config/gcc.hpp:
+
+src/server/zone/objects/creature/variables/Skill.h:
+
+utils/engine3/MMOEngine/src/system/lang/Float.h:
+
+/usr/include/boost/config/detail/posix_features.hpp:
+
+/usr/include/boost/preprocessor/arithmetic/add.hpp:
+
+/usr/include/c++/15/ciso646:
+
+src/server/zone/managers/player/BadgeList.h:
+
+src/server/zone/managers/object/ObjectMap.h:
+
+src/server/zone/objects/creature/variables/CommandQueueActionVector.h:
+
+/usr/include/boost/preprocessor/tuple/detail/is_single_return.hpp:
+
+src/server/zone/managers/name/NameData.h:
+
+utils/engine3/MMOEngine/src/engine/lua/Lua.h:
+
+/usr/include/c++/15/cxxabi.h:
+
+/usr/include/boost/type_traits/is_member_pointer.hpp:
+
+utils/engine3/MMOEngine/src/engine/db/Database.h:
+
+src/server/zone/managers/loot/lootgroup/LootGroupCollectionEntry.h:
+
+/usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
+
+src/templates/datatables/DataTableRow.h:
+
+/usr/include/c++/15/bits/stl_heap.h:
+
+src/autogen/server/zone/objects/player/PlayerObject.h:
+
+src/templates/SharedIntangibleObjectTemplate.h:
+
+utils/engine3/MMOEngine/src/system/net/PacketIndexOutOfBoundsException.h:
+
+src/server/zone/objects/creature/buffs/BuffCRC.h:
+
+/usr/include/boost/mpl/apply_wrap.hpp:
+
+src/server/zone/managers/loot/lootgroup/LootGroupCollection.h:
+
+/usr/include/boost/predef/os.h:
+
+src/autogen/server/zone/managers/creature/PetManager.h:
+
+/usr/include/boost/predef/architecture/superh.h:
+
+utils/engine3/MMOEngine/src/system/io/StringTokenizer.h:
+
+src/server/zone/managers/creature/ValidMountScaleRange.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h:
+
+/usr/include/boost/mp11/detail/config.hpp:
+
+src/server/zone/managers/collision/IntersectionResults.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h:
+
+src/autogen/server/zone/objects/waypoint/WaypointObject.h:
+
+/usr/include/c++/15/bits/stl_uninitialized.h:
+
+/usr/include/boost/predef/architecture/blackfin.h:
+
+/usr/include/boost/preprocessor/control/while.hpp:
+
+/usr/include/boost/predef/hardware.h:
+
+/usr/include/c++/15/bits/basic_ios.h:
+
+src/server/zone/objects/region/events/CityUpdateEvent.h:
+
+utils/engine3/MMOEngine/src/system/net/SocketAddress.h:
+
+/usr/include/boost/parameter/aux_/pack/is_named_argument.hpp:
+
+src/server/zone/managers/player/PlayerMap.h:
+
+src/server/zone/managers/loot/lootgroup/LootGroupEntry.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/TriangleNode.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/boost/mpl/find.hpp:
+
+src/server/zone/objects/creature/variables/CommandQueueAction.h:
+
+src/server/zone/QuadTreeNode.h:
+
+/usr/include/c++/15/bits/functional_hash.h:
+
+/usr/include/boost/predef/compiler/mpw.h:
+
+/usr/include/boost/mpl/pair.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/types.h:
+
+/usr/include/boost/preprocessor/control/detail/while.hpp:
+
+src/autogen/server/zone/objects/tangible/attachment/Attachment.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp:
+
+/usr/include/boost/predef/compiler/comeau.h:
+
+utils/engine3/MMOEngine/src/system/util/optional.hpp:
+
+/usr/include/boost/mpl/distance.hpp:
+
+utils/engine3/MMOEngine/src/engine/core/MetricsManager.h:
+
+utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h:
+
+src/server/zone/objects/scene/variables/StringIdParameter.h:
+
+utils/engine3/MMOEngine/src/engine/service/StreamServiceClient.h:
+
+/usr/include/boost/predef/library/std/msvc.h:
+
+/usr/include/boost/predef/platform/windows_desktop.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h:
+
+src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.h:
+
+utils/engine3/MMOEngine/src/engine/stm/mm/TransactionalObjectCloner.h:
+
+/usr/include/boost/predef/compiler/sgi_mipspro.h:
+
+src/autogen/server/zone/objects/scene/SceneObject.h:
+
+src/server/zone/objects/scene/variables/ContainerPermissions.h:
+
+/usr/include/boost/predef/os/bsd/bsdi.h:
+
+utils/engine3/MMOEngine/src/engine/stm/TransactionalWeakReference.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+src/server/zone/objects/player/ValidatedPosition.h:
+
+src/server/zone/managers/object/SceneObjectFactory.h:
+
+utils/engine3/MMOEngine/src/system/net/Packet.h:
+
+src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.h:
+
+/usr/include/boost/predef/language/cuda.h:
+
+src/autogen/server/zone/ZoneClientSession.h:
+
+/usr/include/x86_64-linux-gnu/bits/strings_fortified.h:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp:
+
+/usr/include/c++/15/streambuf:
+
+src/server/chat/room/ChatRoomMap.h:
+
+src/server/zone/objects/scene/variables/StringId.h:
+
+src/templates/params/StringIdParam.h:
+
+/usr/include/boost/parameter/required.hpp:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Vector4.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/ObjectNotLocalException.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+src/server/zone/managers/object/ObjectManager.h:
+
+/usr/include/boost/mpl/aux_/config/nttp.hpp:
+
+src/server/zone/objects/scene/components/ObjectMenuComponent.h:
+
+/usr/include/boost/preprocessor/list/detail/fold_right.hpp:
+
+src/server/zone/packets/chat/ChatRoomList.h:
+
+src/server/metrics/Metrics.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+utils/engine3/MMOEngine/src/system/lang/ConstString.h:
+
+/usr/include/boost/mpl/limits/arity.hpp:
+
+/usr/include/boost/mpl/same_as.hpp:
+
+/usr/include/boost/parameter/aux_/template_keyword.hpp:
+
+src/templates/params/creature/CreatureFlag.h:
+
+src/server/zone/objects/scene/WorldCoordinates.h:
+
+/usr/include/boost/mp11/integral.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectAdapter.h:
+
+src/autogen/server/zone/objects/region/CityRegion.h:
+
+src/templates/appearance/PathEdge.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h:
+
+src/server/zone/managers/loot/lootgroup/LootGroups.h:
+
+src/templates/SharedObjectTemplate.h:
+
+/usr/include/c++/15/bits/atomic_base.h:
+
+src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h:
+
+/usr/include/boost/mpl/long.hpp:
+
+src/autogen/server/zone/objects/area/ActiveArea.h:
+
+/usr/include/boost/mpl/eval_if.hpp:
+
+/usr/include/pthread.h:
+
+src/autogen/server/zone/objects/group/GroupObject.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/boost/predef/library/std/vacpp.h:
+
+src/server/ping/PingServer.h:
+
+utils/engine3/MMOEngine/src/system/io/ObjectOutputStream.h:
+
+src/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h:
+
+utils/engine3/MMOEngine/src/system/lang/Variable.h:
+
+src/server/zone/objects/player/variables/FriendList.h:
+
+src/autogen/server/zone/managers/player/PlayerManager.h:
+
+utils/engine3/MMOEngine/src/engine/core/ManagedObject.h:
+
+src/server/zone/objects/scene/variables/CustomizationVariables.h:
+
+/usr/include/boost/predef/version.h:
+
+src/server/zone/managers/planet/MapLocationEntry.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
+
+/usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp:
+
+src/templates/appearance/PortalLayout.h:
+
+src/autogen/server/zone/ZoneProcessServer.h:
+
+src/autogen/server/zone/QuadTreeEntry.h:
+
+src/autogen/server/zone/objects/player/sui/SuiBox.h:
+
+/usr/include/c++/15/bits/streambuf_iterator.h:
+
+/usr/include/boost/predef/architecture/sys390.h:
+
+src/pathfinding/RecastNavMesh.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/AcknowledgeOkMessage.h:
+
+/usr/include/boost/mpl/aux_/config/adl.hpp:
+
+utils/engine3/MMOEngine/src/engine/service/ServiceFilter.h:
+
+src/server/zone/objects/player/sui/SuiWindowType.h:
+
+/usr/include/c++/15/stdexcept:
+
+/usr/include/boost/mpl/iterator_tags.hpp:
+
+src/templates/datatables/DataTableIff.h:
+
+utils/engine3/MMOEngine/src/engine/orb/ObjectBroker.h:
+
+/usr/include/boost/parameter/aux_/void.hpp:
+
+src/server/zone/objects/creature/damageovertime/DamageOverTimeList.h:
+
+/usr/include/boost/predef/architecture/m68k.h:
+
+/usr/include/boost/preprocessor/facilities/identity.hpp:
+
+src/server/login/account/GalaxyAccountInfo.h:
+
+src/templates/collision/BaseBoundingVolume.h:
+
+/usr/include/boost/predef/os/bsd/net.h:
+
+src/server/zone/managers/player/PlayerNameIterator.h:
+
+utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHandle.h:
+
+/usr/include/boost/predef/os/windows.h:
+
+utils/engine3/MMOEngine/src/system/util/HashSet.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h:
+
+utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h:
+
+/usr/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp:
+
+/usr/include/boost/predef/compiler/intel.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/TransactionConfig.h:
+
+src/server/db/ServerDatabase.h:
+
+/usr/include/boost/mpl/bool_fwd.hpp:
+
+utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h:
+
+src/server/zone/objects/player/variables/FrsData.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+src/server/zone/objects/player/variables/AbilityList.h:
+
+/usr/include/boost/parameter/aux_/pack/tag_template_keyword_arg.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/ref/Reference.h:
+
+utils/engine3/MMOEngine/src/system/lang/Exception.h:
+
 src/autogen/server/zone/objects/creature/CreatureObject.h:
+
+src/server/zone/QuadTree.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+utils/engine3/MMOEngine/src/engine/service/DatagramServiceThread.h:
+
+src/templates/slots/SlotDescriptor.h:
+
+/usr/include/c++/15/bits/cxxabi_forced.h:
+
+utils/engine3/MMOEngine/src/system/lang.h:
+
+src/autogen/server/zone/objects/guild/GuildObject.h:
+
+utils/engine3/MMOEngine/src/system/io/StreamIndexOutOfBoundsException.h:
+
+/usr/include/boost/mp11/algorithm.hpp:
+
+/usr/include/boost/mpl/int_fwd.hpp:
+
+src/templates/crafting/resourceweight/ResourceWeight.h:
+
+utils/engine3/MMOEngine/src/system/lang/Character.h:
+
+src/server/ServerCore.h:
+
+src/templates/intangible/SharedDraftSchematicObjectTemplate.h:
+
+src/templates/appearance/AppearanceTemplate.h:
+
+/usr/include/boost/predef/compiler/borland.h:
+
+/usr/include/c++/15/cwchar:
+
+/usr/include/boost/preprocessor/variadic/limits/elem_64.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/EnvironmentConfig.h:
+
+utils/engine3/MMOEngine/src/system/lang/Long.h:
+
+src/server/zone/packets/chat/ChatOnCreateRoom.h:
+
+utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+src/pathfinding/recast/DetourStatus.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/AABBNode.h:
+
+/usr/include/boost/parameter/keyword_fwd.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/c++/15/numeric:
+
+/usr/include/boost/predef/compiler/kai.h:
+
+/usr/include/asm-generic/int-ll64.h:
+
+src/templates/manager/PlanetMapCategory.h:
+
+utils/engine3/MMOEngine/src/system/net/UDPSocket.h:
+
+src/server/zone/packets/chat/ChatInstantMessageToCharacter.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/AABBTree.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h:
+
+/usr/include/boost/assert.hpp:
+
+/usr/include/c++/15/cstddef:
+
+src/autogen/server/zone/objects/tangible/TangibleObject.h:
+
+utils/engine3/MMOEngine/src/system/thread/ReadWriteLock.h:
+
+utils/engine3/MMOEngine/src/engine/orb/messages/DOBServiceClient.h:
+
+src/server/zone/managers/player/CharacterNameMap.h:
+
+src/conf/ConfigManager.h:
+
+/usr/include/x86_64-linux-gnu/bits/statx.h:
+
+utils/engine3/MMOEngine/src/engine/util/Command.h:
+
+src/server/zone/managers/name/NameManager.h:
+
+utils/engine3/MMOEngine/src/system/lang/Double.h:
+
+/usr/include/boost/predef/library/std/modena.h:
+
+utils/engine3/MMOEngine/src/system/thread/Lockable.h:
+
+/usr/include/boost/config/helper_macros.hpp:
+
+utils/engine3/MMOEngine/src/system/io/FileLogWriter.h:
+
+src/server/zone/managers/player/PermissionLevelList.h:
+
+/usr/include/c++/15/bits/gslice.h:
+
+src/server/zone/objects/transaction/TransactionLog.h:
+
+utils/engine3/MMOEngine/src/engine/lua/LuaObject.h:
+
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h:
+
+/usr/include/boost/mpl/arg_fwd.hpp:
+
+src/server/zone/managers/player/VeteranRewardList.h:
+
+src/pathfinding/recast/DetourAlloc.h:
+
+/usr/include/c++/15/cstdio:
+
+utils/engine3/MMOEngine/src/system/lang/Integer.h:
+
+/usr/include/boost/mpl/aux_/yes_no.hpp:
+
+src/autogen/server/chat/room/ChatRoom.h:
+
+utils/engine3/MMOEngine/src/engine/db/BinaryData.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusResponseMessage.h:
+
+/usr/include/boost/mp11/bind.hpp:
+
+src/pathfinding/recast/Recast.h:
+
+/usr/include/c++/15/cmath:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h:
+
+/usr/include/boost/predef/platform/mingw64.h:
+
+src/server/zone/objects/player/variables/FactionStandingList.h:
+
+src/templates/footprint/StructureFootprint.h:
+
+src/templates/params/creature/CreaturePosture.h:
+
+src/server/zone/objects/group/GroupList.h:
+
+utils/engine3/MMOEngine/src/system/lang/Bool.h:
+
+utils/engine3/MMOEngine/src/engine/core/Core.h:
+
+src/server/zone/objects/scene/SceneObjectType.h:
+
+src/server/zone/managers/player/XpBonusList.h:
+
+/usr/include/boost/mpl/O1_size_fwd.hpp:
+
+/usr/include/boost/preprocessor/tuple/elem.hpp:
+
+src/server/zone/ZoneReference.h:
+
+/usr/include/asm-generic/types.h:
+
+/usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h:
+
+/usr/include/boost/config/user.hpp:
+
+/usr/include/boost/parameter/aux_/tag.hpp:
+
+/usr/include/boost/predef/hardware/simd/arm/versions.h:
+
+utils/engine3/MMOEngine/src/system/lang/DivisionByZeroException.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
+src/server/chat/WaypointChatParameterVector.h:
+
+/usr/include/c++/15/bits/erase_if.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h:
+
+/usr/include/boost/mpl/lambda_fwd.hpp:
+
+src/server/zone/objects/player/badges/Badges.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h:
+
+/usr/include/boost/exception/exception.hpp:
+
+/usr/include/boost/lockfree/detail/parameter.hpp:
+
+src/templates/building/InteriorLayoutTemplate.h:
+
+src/server/zone/objects/player/variables/Ability.h:
+
+utils/engine3/MMOEngine/src/engine/util/Singleton.h:
+
+src/server/zone/objects/guild/GuildMemberInfo.h:
+
+utils/engine3/MMOEngine/src/system/util/Vector.h:
+
+utils/engine3/MMOEngine/src/system/io/FileWriter.h:
+
+src/templates/params/primitives/BoolParam.h:
+
+src/server/zone/objects/creature/variables/SkillModList.h:
+
+src/server/zone/objects/guild/GuildMemberList.h:
+
+src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h:
+
+/usr/include/boost/mpl/int.hpp:
+
+src/server/zone/objects/player/badges/Badge.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h:
+
+/usr/include/boost/preprocessor/control/iif.hpp:
+
+src/server/zone/objects/scene/variables/ContainerObjectsMap.h:
 
 src/autogen/server/zone/ZoneServer.h:
 
@@ -10138,273 +10648,43 @@ src/server/zone/objects/scene/variables/PendingTasksMap.h:
 
 /usr/include/boost/parameter/aux_/is_tagged_argument.hpp:
 
-src/server/zone/managers/loot/lootgroup/LootGroups.h:
+src/server/zone/objects/region/events/CitizenAssessmentEvent.h:
 
-src/templates/SharedObjectTemplate.h:
+/usr/include/boost/predef/architecture/x86/64.h:
 
-/usr/include/c++/15/bits/atomic_base.h:
+utils/engine3/MMOEngine/src/system/thread/Locker.h:
 
-src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h:
+/usr/include/boost/mpl/aux_/config/static_constant.hpp:
 
-src/autogen/server/login/LoginServer.h:
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectClassHelperMap.h:
 
-src/server/zone/managers/player/OnlineZoneClientMap.h:
+utils/engine3/MMOEngine/src/engine/db/ResultSet.h:
 
-/usr/include/boost/parameter/aux_/unwrap_cv_reference.hpp:
+/usr/include/boost/predef/language.h:
 
-/usr/include/c++/15/bits/algorithmfwd.h:
-
-/usr/include/boost/mpl/eval_if.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/Pair.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/packets/NetStatusResponseMessage.h:
-
-src/server/zone/objects/creature/variables/SkillModList.h:
-
-src/templates/params/primitives/BoolParam.h:
-
-/usr/include/boost/mpl/aux_/config/arrays.hpp:
-
-src/server/zone/objects/guild/GuildMemberInfo.h:
-
-/usr/include/boost/align/detail/alignment_of_cxx11.hpp:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BaseMultiPacket.h:
-
-src/templates/appearance/FloorMesh.h:
-
-/usr/include/boost/mp11/detail/mp_defer.hpp:
-
-src/autogen/server/zone/objects/guild/GuildObject.h:
-
-/usr/include/boost/mp11/algorithm.hpp:
-
-/usr/include/boost/mpl/int_fwd.hpp:
-
-/usr/include/boost/predef/library/std/roguewave.h:
-
-utils/engine3/MMOEngine/include/system/io/UnicodeTokenizer.h:
-
-utils/engine3/MMOEngine/include/system/thread/DeadlockException.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/packets/ConnectionServerMessage.h:
-
-/usr/include/boost/mpl/protect.hpp:
-
-src/server/zone/packets/ui/SuiCreatePageMessage.h:
-
-src/autogen/server/zone/objects/creature/ai/AiAgent.h:
-
-/usr/include/boost/predef/architecture/x86.h:
-
-utils/engine3/MMOEngine/include/system/lang/Integer.h:
-
-src/server/zone/managers/skill/SkillModManager.h:
-
-src/autogen/server/chat/PendingMessageList.h:
-
-utils/engine3/MMOEngine/include/engine/core/ManagedWeakReference.h:
-
-/usr/include/boost/preprocessor/comparison/equal.hpp:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-matchers.h:
-
-src/server/zone/QuadTree.h:
-
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
-
-src/templates/slots/SlotDescriptor.h:
-
-/usr/include/boost/type_traits/is_base_of.hpp:
-
-/usr/include/boost/predef/other/workaround.h:
-
-/usr/include/asm-generic/errno-base.h:
-
-utils/engine3/MMOEngine/include/engine/engine.h:
-
-/usr/include/boost/predef/architecture/rs6k.h:
-
-/usr/include/boost/config.hpp:
-
-src/server/zone/managers/player/CharacterNameMap.h:
-
-utils/engine3/MMOEngine/include/engine/service/Message.h:
-
-/usr/include/boost/mp11/detail/mp_copy_if.hpp:
-
-/usr/include/boost/predef/platform/mingw.h:
-
-utils/engine3/MMOEngine/include/system/util/BinarySearchTree.h:
-
-/usr/include/asm-generic/sockios.h:
-
-src/autogen/server/zone/objects/tangible/deed/Deed.h:
-
-/usr/include/boost/align/detail/integral_constant.hpp:
-
-/usr/include/boost/align/detail/max_size.hpp:
-
-/usr/include/boost/assert/source_location.hpp:
-
-src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.h:
-
-utils/engine3/MMOEngine/include/engine/service/StreamServiceClientProxy.h:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/BTransaction.h:
-
-/usr/include/boost/mpl/aux_/na_fwd.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
-
-/usr/include/sched.h:
-
-src/autogen/server/chat/PersistentMessage.h:
-
-utils/engine3/MMOEngine/include/engine/util/ObjectContainer.h:
-
-src/conf/ConfigManager.h:
-
-src/server/zone/managers/name/NameManager.h:
-
-/usr/include/boost/predef/library/std/modena.h:
-
-src/server/zone/objects/player/variables/FactionStandingList.h:
-
-src/server/ServerCore.h:
-
-/usr/include/boost/predef/compiler/borland.h:
-
-/usr/include/c++/15/cwchar:
-
-/usr/include/boost/preprocessor/variadic/limits/elem_64.hpp:
-
-src/templates/footprint/StructureFootprint.h:
-
-src/templates/params/creature/CreaturePosture.h:
-
-src/server/zone/objects/group/GroupList.h:
-
-src/server/zone/managers/player/XpBonusList.h:
-
-utils/engine3/MMOEngine/include/engine/stm/Transaction.h:
-
-/usr/include/boost/mpl/O1_size_fwd.hpp:
-
-/usr/include/boost/preprocessor/tuple/elem.hpp:
-
-/usr/include/c++/15/bits/hashtable_policy.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BaseClientProxy.h:
-
-/usr/include/boost/preprocessor/variadic/elem.hpp:
-
-/usr/include/boost/align/align.hpp:
-
-/usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp:
-
-src/server/zone/objects/scene/variables/ContainerObjectsMap.h:
-
-utils/engine3/MMOEngine/include/engine/core/ManagedService.h:
-
-utils/engine3/MMOEngine/include/system/lang/Function.h:
-
-src/templates/intangible/DraftSchematicObjectTemplate.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-utils/engine3/MMOEngine/include/engine/db/Database.h:
-
-/usr/include/boost/predef/language/stdc.h:
-
-utils/engine3/MMOEngine/include/engine/lua/Lua.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-string.h:
-
-src/autogen/server/chat/ChatMessage.h:
-
-src/server/zone/packets/chat/ChatQueryRoomResults.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Funnel.h:
-
-utils/engine3/MMOEngine/include/engine/service/ServiceClient.h:
-
-/usr/include/boost/preprocessor/control/detail/while.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/ref/ReferenceCounter.h:
-
-src/server/zone/objects/scene/components/ZoneComponent.h:
-
-/usr/include/boost/parameter/aux_/is_maybe.hpp:
-
-utils/engine3/MMOEngine/include/engine/lua/LuaCallbackException.h:
-
-src/server/zone/objects/player/variables/PlayerQuestData.h:
-
-/usr/include/boost/parameter/aux_/result_of0.hpp:
-
-/usr/include/boost/lockfree/queue.hpp:
-
-/usr/include/boost/mpl/bind.hpp:
-
-src/templates/appearance/AppearanceTemplate.h:
-
-src/templates/intangible/SharedDraftSchematicObjectTemplate.h:
-
-utils/engine3/MMOEngine/include/system/net/TCPSocket.h:
-
-/usr/include/boost/predef/os/windows.h:
-
-utils/engine3/MMOEngine/include/engine/db/ObjectDatabase.h:
-
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectAdapter.h:
-
-src/templates/appearance/PathNode.h:
-
-/usr/include/c++/15/bits/istream.tcc:
-
-src/server/zone/objects/creature/damageovertime/DamageOverTimeList.h:
-
-/usr/include/boost/predef/architecture/m68k.h:
-
-/usr/include/boost/core/pointer_traits.hpp:
-
-src/server/zone/objects/creature/buffs/BuffList.h:
-
-/usr/include/c++/15/bits/cxxabi_forced.h:
-
-src/server/zone/objects/player/badges/Badge.h:
-
-/usr/include/boost/mpl/int.hpp:
-
-utils/engine3/MMOEngine/include/engine/util/ObjectFactory.h:
-
-src/templates/collision/BaseBoundingVolume.h:
-
-/usr/include/boost/predef/os/bsd/net.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
-
-/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
-
-utils/engine3/MMOEngine/include/engine/db/DatabaseException.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-more-actions.h:
-
-utils/engine3/MMOEngine/include/system/io/Writer.h:
+utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h:
 
 /usr/include/boost/type_traits/is_function.hpp:
 
-utils/engine3/MMOEngine/include/engine/stm/service/TransactionalBaseClientManager.h:
+src/server/zone/packets/object/ObjectControllerMessage.h:
 
-utils/engine3/MMOEngine/include/engine/core/Core.h:
+src/server/zone/packets/object/SpatialChat.h:
 
-src/server/zone/objects/scene/components/ContainerComponent.h:
+utils/engine3/MMOEngine/src/system/util/VectorMap.h:
 
-utils/engine3/MMOEngine/include/engine/stm/mm/TransactionalObjectCloner.h:
+/usr/include/boost/parameter/template_keyword.hpp:
+
+src/server/zone/objects/creature/ai/CreatureTemplate.h:
+
+src/server/zone/objects/scene/components/AttributeListComponent.h:
+
+/usr/include/boost/predef/architecture/x86.h:
+
+src/autogen/server/zone/objects/structure/StructureObject.h:
 
 src/server/zone/packets/chat/ChatOnReceiveRoomInvitation.h:
+
+src/server/zone/objects/creature/ai/bt/BlackboardDataMap.h:
 
 src/templates/crafting/ValuesClasses.h:
 
@@ -10412,23 +10692,25 @@ src/templates/crafting/ValuesClasses.h:
 
 /usr/include/boost/predef/os/bsd/open.h:
 
+src/server/zone/objects/creature/ai/PatrolPointsVector.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h:
+
 src/templates/appearance/MeshData.h:
 
 /usr/include/boost/align/detail/element_type.hpp:
 
-/usr/include/c++/15/concepts:
+utils/engine3/MMOEngine/src/system/util/Optional.h:
 
-utils/engine3/MMOEngine/include/system/io/FileLogWriter.h:
+/usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+src/server/zone/objects/scene/components/ContainerComponent.h:
 
-/usr/include/boost/preprocessor/facilities/empty.hpp:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BasePacketHandler.h:
-
-src/server/zone/objects/scene/components/SceneObjectComponent.h:
+utils/engine3/MMOEngine/src/engine/log/Logger.h:
 
 /usr/include/boost/parameter/aux_/arg_list.hpp:
+
+src/server/zone/objects/scene/variables/DeltaBitArray.h:
 
 src/server/zone/ActiveAreasVector.h:
 
@@ -10436,61 +10718,81 @@ src/server/chat/StringIdChatParameter.h:
 
 src/server/zone/objects/scene/variables/DeltaVector.h:
 
-utils/engine3/MMOEngine/include/engine/core/util/ManagedVectorMap.h:
-
-utils/engine3/MMOEngine/include/engine/db/LocalDatabase.h:
-
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/boost/predef/architecture/arm.h:
 
 src/server/zone/objects/scene/variables/DeltaVectorMap.h:
 
-utils/engine3/MMOEngine/include/system/util/LinkedList.h:
-
-/usr/include/boost/predef/os/bsd/dragonfly.h:
-
 src/templates/slots/ArrangementDescriptor.h:
 
 src/templates/manager/PortalLayoutMap.h:
 
-utils/engine3/MMOEngine/include/engine/db/DatabaseManager.h:
+src/server/zone/objects/region/CitizenList.h:
 
-/usr/include/boost/align/detail/align.hpp:
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
 
-/usr/include/boost/predef/compiler/metaware.h:
+/usr/include/boost/predef/architecture/pyramid.h:
 
-utils/engine3/MMOEngine/include/engine/log/LoggerHelperStream.h:
+src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h:
+
+/usr/include/boost/predef/compiler/nvcc.h:
+
+utils/engine3/MMOEngine/src/system/lang/Pair.h:
+
+/usr/include/boost/mpl/void_fwd.hpp:
+
+/usr/include/boost/preprocessor/list/fold_left.hpp:
+
+utils/engine3/MMOEngine/src/system/util/BinaryHeap.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/packets/NetStatusRequestMessage.h:
+
+/usr/include/boost/mpl/has_key_fwd.hpp:
 
 src/templates/params/Param.h:
+
+/usr/include/boost/predef/library/std/stdcpp3.h:
+
+/usr/include/boost/type_traits/integral_constant.hpp:
 
 /usr/include/linux/limits.h:
 
 src/server/zone/objects/player/sui/SuiPageData.h:
 
+src/templates/tangible/SharedWeaponObjectTemplate.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
+
+/usr/include/boost/mpl/aux_/nested_type_wknd.hpp:
+
+/usr/include/boost/mpl/identity.hpp:
+
+src/server/zone/objects/creature/variables/WearablesDeltaVector.h:
+
+src/server/zone/objects/scene/variables/StdFunction.h:
+
 /usr/include/boost/parameter/aux_/pack/make_arg_list.hpp:
 
-/usr/include/boost/mpl/aux_/config/has_xxx.hpp:
-
-/usr/include/assert.h:
-
-utils/engine3/MMOEngine/include/system/lang/UnicodeString.h:
-
-/usr/include/boost/mpl/aux_/config/eti.hpp:
+utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h:
 
 src/server/zone/objects/tangible/threat/ThreatMap.h:
 
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectClassHelperMap.h:
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
-/usr/include/c++/15/bits/locale_classes.tcc:
+/usr/include/sched.h:
 
-/usr/include/boost/mpl/aux_/config/msvc.hpp:
+src/autogen/server/chat/PersistentMessage.h:
+
+utils/engine3/MMOEngine/src/system/util/PriorityQueue.h:
 
 src/server/zone/packets/scene/AttributeListMessage.h:
 
 src/server/zone/objects/tangible/threat/ThreatMatrix.h:
 
-utils/engine3/MMOEngine/include/system/thread/Lockable.h:
+utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h:
+
+src/server/zone/packets/DeltaMessage.h:
 
 src/server/zone/packets/MessageCallback.h:
 
@@ -10498,31 +10800,21 @@ src/server/zone/packets/MessageCallback.h:
 
 src/server/zone/packets/chat/ChatOnSendRoomMessage.h:
 
-src/server/zone/packets/chat/ChatInstantMessageToCharacter.h:
-
-/usr/include/c++/15/streambuf:
-
-src/server/chat/room/ChatRoomMap.h:
-
-src/server/zone/objects/scene/variables/StringId.h:
-
-utils/engine3/MMOEngine/include/system/io/FileNotFoundException.h:
-
-src/server/zone/packets/chat/ChatOnBanFromRoom.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-death-test-internal.h:
-
-utils/engine3/MMOEngine/include/engine/core/ManagedReference.h:
-
-src/templates/datatables/DataTableCell.h:
-
-/usr/include/boost/mpl/aux_/config/bcc.hpp:
-
-src/server/zone/packets/chat/ChatOnCreateRoom.h:
+src/server/zone/packets/chat/ChatOnAddModeratorToRoom.h:
 
 /usr/include/inttypes.h:
 
+utils/engine3/MMOEngine/src/system/thread/Mutex.h:
+
 src/server/zone/packets/chat/ChatOnEnteredRoom.h:
+
+utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/boost/predef/hardware/simd/ppc.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/BaseClientProxy.h:
 
 src/templates/slots/SlotId.h:
 
@@ -10530,41 +10822,51 @@ src/server/zone/managers/player/QuestInfo.h:
 
 src/server/zone/packets/chat/ChatOnRemoveModeratorFromRoom.h:
 
+src/server/zone/objects/creature/ai/bt/BlackboardData.h:
+
 src/templates/collision/BoundingVolumeFactory.h:
 
-utils/engine3/MMOEngine/include/system/io/OutputStream.h:
+src/autogen/server/zone/objects/tangible/wearables/WearableObject.h:
+
+utils/engine3/MMOEngine/src/system/util/ArrayQueue.h:
+
+/usr/include/boost/mpl/limits/vector.hpp:
+
+src/server/zone/packets/chat/ChatOnUninviteFromRoom.h:
+
+/usr/include/boost/mp11/detail/mp_plus.hpp:
+
+/usr/include/c++/15/bits/stl_bvector.h:
+
+/usr/include/boost/mp11/detail/mp_list.hpp:
+
+/usr/include/c++/15/array:
+
+src/server/zone/packets/chat/ChatRoomMessage.h:
 
 src/autogen/server/zone/objects/tangible/weapon/WeaponObject.h:
 
-src/server/zone/packets/object/Emote.h:
+src/autogen/server/zone/objects/creature/ai/AiAgent.h:
 
-src/server/zone/packets/object/ObjectControllerMessage.h:
+src/server/zone/packets/ui/SuiCreatePageMessage.h:
 
-/usr/include/boost/predef/hardware/simd/arm/versions.h:
+/usr/include/c++/15/bits/shared_ptr_atomic.h:
 
-utils/engine3/MMOEngine/include/engine/service/proto/packets/PingMessage.h:
+/usr/include/boost/predef/compiler/greenhills.h:
 
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/gtest-type-util.h:
-
-/usr/include/boost/parameter/aux_/pack/predicate.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/Thread.h:
-
-src/templates/AiTemplate.h:
+/usr/include/boost/predef/compiler/palm.h:
 
 src/templates/ChildObject.h:
 
-src/templates/LuaTemplate.h:
+/usr/include/x86_64-linux-gnu/sys/socket.h:
 
-/usr/include/c++/15/bits/locale_facets_nonio.tcc:
+/usr/include/boost/mp11/detail/mp_append.hpp:
 
-/usr/include/boost/predef/os/qnxnto.h:
+/usr/include/boost/type_traits/type_identity.hpp:
 
-utils/engine3/MMOEngine/include/system/lang/String.h:
+utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h:
 
-src/templates/SharedTangibleObjectTemplate.h:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BasePacket.h:
+utils/engine3/MMOEngine/src/engine/service/ServiceThread.h:
 
 src/server/zone/packets/chat/ChatOnUnbanFromRoom.h:
 
@@ -10572,113 +10874,123 @@ src/server/zone/packets/chat/ChatOnUnbanFromRoom.h:
 
 /usr/include/boost/parameter/aux_/default.hpp:
 
+utils/engine3/MMOEngine/src/system/lang/IllegalStateException.h:
+
 src/templates/TemplateData.h:
+
+utils/engine3/MMOEngine/src/system/util/VectorSet.h:
+
+utils/engine3/MMOEngine/src/engine/stm/mm/KernelCall.h:
+
+/usr/include/c++/15/bits/stringfwd.h:
+
+/usr/include/boost/mpl/aux_/config/dtp.hpp:
+
+/usr/include/c++/15/bits/istream.tcc:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h:
+
+src/templates/appearance/PathNode.h:
+
+/usr/include/boost/config.hpp:
 
 src/server/zone/objects/creature/BuffAttribute.h:
 
-src/server/zone/objects/player/badges/Badges.h:
+/usr/include/boost/mpl/aux_/preprocessed/gcc/full_lambda.hpp:
 
-/usr/include/boost/mpl/lambda_fwd.hpp:
+utils/engine3/MMOEngine/src/engine/orb/db/DOBObjectManager.h:
 
-utils/engine3/MMOEngine/include/system/io/Serializable.h:
+src/server/zone/objects/player/variables/PlayerQuestData.h:
 
-/usr/include/c++/15/bits/allocated_ptr.h:
+/usr/include/boost/parameter/aux_/result_of0.hpp:
 
-utils/engine3/MMOEngine/include/engine/db/berkeley/CursorConfig.h:
+/usr/include/boost/predef/library/std/cxx.h:
+
+/usr/include/boost/preprocessor/logical/and.hpp:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h:
+
+/usr/include/boost/preprocessor/facilities/overload.hpp:
 
 src/server/zone/objects/player/sui/SuiCallback.h:
 
-src/server/zone/packets/chat/ChatOnAddModeratorToRoom.h:
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
-utils/engine3/MMOEngine/include/engine/core/TaskManager.h:
+src/templates/crafting/draftslot/DraftSlot.h:
 
-src/server/zone/objects/creature/ai/CreatureTemplate.h:
+src/autogen/server/zone/objects/tangible/deed/Deed.h:
 
-src/server/zone/objects/scene/components/AttributeListComponent.h:
-
-utils/engine3/MMOEngine/include/engine/log/Logger.h:
-
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
-
-utils/engine3/MMOEngine/include/engine/core/util/ManagedSortedVector.h:
-
-/usr/include/boost/mp11/detail/mp_is_list.hpp:
-
-src/server/zone/objects/group/GroupMember.h:
-
-/usr/include/c++/15/numeric:
-
-/usr/include/boost/predef/compiler/kai.h:
-
-utils/engine3/MMOEngine/include/engine/service/ServiceException.h:
-
-utils/engine3/MMOEngine/include/system/lang/StringBuffer.h:
-
-/usr/include/boost/predef/version_number.h:
-
-utils/engine3/MMOEngine/include/engine/core/TaskScheduler.h:
-
-src/templates/params/ObserverEventType.h:
-
-src/templates/params/OptionBitmask.h:
+/usr/include/asm-generic/sockios.h:
 
 /usr/include/boost/predef/library/std.h:
 
-utils/engine3/MMOEngine/include/system/mm/ObjectCloner.h:
+utils/engine3/MMOEngine/src/system/util/BinarySearchTree.h:
 
-src/server/zone/objects/scene/variables/StringIdParameter.h:
+src/templates/params/ObserverEventType.h:
 
-/usr/include/boost/predef/library/std/msvc.h:
+utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h:
 
-/usr/include/boost/predef/platform/windows_desktop.h:
+src/templates/params/OptionBitmask.h:
 
-utils/engine3/MMOEngine/include/system/lang/IllegalArgumentException.h:
+/usr/include/x86_64-linux-gnu/bits/inet-fortified.h:
 
-/usr/include/boost/parameter/aux_/pack/deduce_tag.hpp:
+src/server/zone/objects/creature/buffs/BuffList.h:
+
+/usr/include/boost/core/pointer_traits.hpp:
+
+/usr/include/c++/15/bits/stl_raw_storage_iter.h:
+
+/usr/include/boost/parameter/aux_/pack/tag_deduced.hpp:
+
+src/templates/params/primitives/FloatParam.h:
+
+/usr/include/boost/parameter/aux_/always_true_predicate.hpp:
+
+/usr/include/boost/preprocessor/comparison/equal.hpp:
 
 src/server/zone/managers/player/JukeboxSong.h:
 
 /usr/include/boost/core/addressof.hpp:
 
-/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
+utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h:
 
-utils/engine3/MMOEngine/include/engine/core/ManagedObject.h:
+/usr/include/boost/mpl/aux_/iter_apply.hpp:
 
-src/templates/string/StringFile.h:
+utils/engine3/MMOEngine/src/system/lang/UnicodeString.h:
 
-src/templates/building/InteriorLayoutTemplate.h:
+/usr/include/arpa/inet.h:
 
-/usr/include/boost/lockfree/detail/parameter.hpp:
+/usr/include/asm-generic/errno.h:
 
-src/server/login/account/GalaxyAccountInfo.h:
+/usr/include/boost/preprocessor/repetition/limits/repeat_256.hpp:
 
-/usr/include/boost/preprocessor/facilities/identity.hpp:
+/usr/include/asm-generic/posix_types.h:
 
-utils/engine3/MMOEngine/include/engine/core/RunStatistics.h:
+/usr/include/boost/mp11/detail/mp_min_element.hpp:
 
-src/templates/crafting/resourceweight/ResourceWeight.h:
+/usr/include/boost/predef/library/c/vms.h:
 
-/usr/include/c++/15/bits/stl_tempbuf.h:
+/usr/include/boost/align/align.hpp:
 
-utils/engine3/MMOEngine/include/engine/core/Task.h:
+/usr/include/boost/align/aligned_alloc.hpp:
 
-/usr/include/boost/predef/architecture.h:
+/usr/include/boost/align/aligned_allocator.hpp:
 
-src/templates/IffTemplate.h:
+/usr/include/boost/mpl/if.hpp:
 
-/usr/include/boost/predef/platform/windows_phone.h:
+src/autogen/server/chat/ChatManager.h:
 
-utils/engine3/MMOEngine/include/engine/core/TaskQueue.h:
+/usr/include/boost/align/aligned_allocator_adaptor_forward.hpp:
 
-src/server/zone/objects/creature/variables/SkillList.h:
+/usr/include/boost/align/aligned_allocator_forward.hpp:
 
-utils/engine3/MMOEngine/include/engine/db/IndexDatabase.h:
+/usr/include/boost/align/alignment_of.hpp:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/bind.hpp:
+
+/usr/include/boost/mpl/deref.hpp:
 
 /usr/include/boost/align/detail/align_up.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessed/gcc/placeholders.hpp:
-
-/usr/include/boost/mpl/aux_/na_assert.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h:
 
@@ -10689,6 +11001,8 @@ src/templates/params/primitives/StringParam.h:
 /usr/include/boost/lockfree/detail/atomic.hpp:
 
 /usr/include/boost/type_traits/is_rvalue_reference.hpp:
+
+/usr/include/boost/align/detail/alignment_of_cxx11.hpp:
 
 /usr/include/boost/mpl/aux_/has_size.hpp:
 
@@ -10702,33 +11016,29 @@ src/server/zone/QuadTreeReference.h:
 
 /usr/include/boost/preprocessor/list/limits/fold_left_256.hpp:
 
+/usr/include/boost/align/detail/is_alignment_constant.hpp:
+
 /usr/include/boost/align/detail/max_align.hpp:
 
 /usr/include/boost/align/detail/max_objects.hpp:
 
 /usr/include/boost/align/detail/throw_exception.hpp:
 
-/usr/include/boost/assert.hpp:
+/usr/include/boost/config/compiler/gcc.hpp:
 
-/usr/include/c++/15/bits/valarray_after.h:
-
-/usr/include/c++/15/bits/locale_classes.h:
-
-/usr/include/boost/config/detail/select_compiler_config.hpp:
-
-/usr/include/boost/mpl/apply.hpp:
+/usr/include/boost/config/detail/cxx_composite.hpp:
 
 /usr/include/boost/config/detail/select_platform_config.hpp:
 
+/usr/include/boost/config/detail/select_stdlib_config.hpp:
+
+/usr/include/boost/mpl/aux_/O1_size_impl.hpp:
+
+utils/engine3/MMOEngine/src/engine/stm/TransactionalMemoryManager.h:
+
 /usr/include/boost/config/detail/suffix.hpp:
 
-/usr/include/boost/config/helper_macros.hpp:
-
 /usr/include/boost/config/platform/linux.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/boost/config/stdlib/libstdcpp3.hpp:
 
 /usr/include/boost/core/allocator_access.hpp:
 
@@ -10736,21 +11046,15 @@ src/server/zone/objects/creature/ai/variables/CreatureTemplateReference.h:
 
 /usr/include/boost/core/enable_if.hpp:
 
-utils/engine3/MMOEngine/include/engine/stm/TransactionalWeakReference.h:
-
-/usr/include/c++/15/bits/functexcept.h:
-
 /usr/include/boost/parameter/optional.hpp:
 
 /usr/include/boost/detail/workaround.hpp:
 
 /usr/include/boost/lockfree/detail/freelist.hpp:
 
+utils/engine3/MMOEngine/src/system/io/IOException.h:
+
 /usr/include/boost/lockfree/detail/prefix.hpp:
-
-/usr/include/boost/mpl/next_prior.hpp:
-
-/usr/include/boost/predef/compiler/llvm.h:
 
 src/server/zone/objects/creature/SpeedMultiplierModChanges.h:
 
@@ -10758,57 +11062,63 @@ src/server/zone/objects/creature/SpeedMultiplierModChanges.h:
 
 /usr/include/c++/15/initializer_list:
 
+utils/engine3/MMOEngine/src/system/io/Pipe.h:
+
 /usr/include/boost/lockfree/detail/tagged_ptr.hpp:
-
-/usr/include/boost/mp11/set.hpp:
-
-/usr/include/boost/lockfree/detail/uses_optional.hpp:
 
 /usr/include/c++/15/bits/ostream_insert.h:
 
-utils/engine3/MMOEngine/include/engine/service/proto/packets/AcknowledgeOkMessage.h:
-
 /usr/include/boost/predef/platform/ios.h:
+
+utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h:
 
 /usr/include/boost/parameter/binding.hpp:
 
-/usr/include/boost/mp11/bind.hpp:
+/usr/include/boost/mp11/detail/mp_copy_if.hpp:
 
-/usr/include/boost/mp11/detail/config.hpp:
+/usr/include/boost/predef/platform/mingw.h:
+
+/usr/include/boost/mp11/detail/mp_fold.hpp:
+
+src/server/chat/StringIdChatParameterVector.h:
+
+/usr/include/boost/parameter/aux_/pack/deduced_item.hpp:
+
+/usr/include/boost/mpl/has_xxx.hpp:
+
+/usr/include/boost/mp11/detail/mp_front.hpp:
+
+/usr/include/boost/mpl/aux_/na_fwd.hpp:
+
+src/server/zone/objects/group/GroupMember.h:
+
+/usr/include/boost/mp11/detail/mp_is_list.hpp:
 
 /usr/include/boost/mp11/detail/mp_is_value_list.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-utils/engine3/MMOEngine/include/system/net/NetworkInterface.h:
-
 /usr/include/boost/preprocessor/comparison/limits/not_equal_256.hpp:
 
-/usr/include/c++/15/bits/stl_bvector.h:
-
-/usr/include/c++/15/array:
-
-/usr/include/boost/mp11/detail/mp_list.hpp:
-
-utils/engine3/MMOEngine/include/system/lang/Time.h:
-
 /usr/include/boost/mp11/detail/mp_list_v.hpp:
+
+/usr/include/boost/mp11/detail/mp_map_find.hpp:
+
+/usr/include/boost/predef/os/amigaos.h:
 
 /usr/include/boost/mpl/distance_fwd.hpp:
 
 /usr/include/boost/predef/architecture/sys370.h:
 
+utils/engine3/MMOEngine/src/engine/util/json_utils.h:
+
 /usr/include/boost/mp11/detail/mp_rename.hpp:
 
-/usr/include/c++/15/bits/hashtable.h:
+utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h:
 
-/usr/include/boost/mpl/aux_/static_cast.hpp:
+/usr/include/boost/mp11/detail/mp_value.hpp:
 
-/usr/include/c++/15/bits/hash_bytes.h:
-
-/usr/include/boost/mp11/function.hpp:
-
-utils/engine3/MMOEngine/include/system/thread/atomic/AtomicBoolean.h:
+/usr/include/boost/mp11/detail/mp_with_index.hpp:
 
 /usr/include/boost/mp11/integer_sequence.hpp:
 
@@ -10818,11 +11128,23 @@ src/server/zone/objects/scene/SessionFacadeType.h:
 
 /usr/include/boost/predef/compiler/watcom.h:
 
-/usr/include/boost/mpl/order_fwd.hpp:
+/usr/include/boost/mpl/aux_/preprocessor/enum.hpp:
 
-/usr/include/boost/predef/platform.h:
+src/server/zone/managers/player/StartingLocation.h:
 
-/usr/include/boost/mpl/always.hpp:
+/usr/include/boost/config/workaround.hpp:
+
+/usr/include/c++/15/atomic:
+
+/usr/include/boost/lockfree/detail/uses_optional.hpp:
+
+/usr/include/boost/mp11/set.hpp:
+
+/usr/include/boost/predef/platform/cloudabi.h:
+
+/usr/include/boost/mpl/O1_size.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/Function.h:
 
 /usr/include/boost/mpl/and.hpp:
 
@@ -10832,8 +11154,6 @@ src/server/zone/objects/player/variables/SchematicList.h:
 
 /usr/include/boost/mpl/apply_fwd.hpp:
 
-/usr/include/boost/mpl/arg.hpp:
-
 /usr/include/c++/15/bits/slice_array.h:
 
 /usr/include/boost/mpl/assert.hpp:
@@ -10842,13 +11162,7 @@ src/server/zone/objects/player/variables/SchematicList.h:
 
 /usr/include/boost/preprocessor/list/fold_right.hpp:
 
-/usr/include/boost/mpl/at_fwd.hpp:
-
-/usr/include/boost/mp11/detail/mp_front.hpp:
-
-/usr/include/boost/mpl/has_xxx.hpp:
-
-/usr/include/boost/predef/platform/windows_server.h:
+/usr/include/boost/mpl/aux_/adl_barrier.hpp:
 
 /usr/include/boost/lockfree/detail/copy_payload.hpp:
 
@@ -10862,15 +11176,9 @@ src/server/zone/objects/scene/variables/AutoDeltaSet.h:
 
 /usr/include/boost/preprocessor/comma_if.hpp:
 
-utils/engine3/MMOEngine/include/system/lang/NumberFormatException.h:
-
 /usr/include/boost/lockfree/detail/tagged_ptr_ptrcompression.hpp:
 
 /usr/include/boost/mpl/aux_/arity.hpp:
-
-/usr/include/boost/predef/compiler.h:
-
-/usr/include/boost/preprocessor/arithmetic/limits/inc_256.hpp:
 
 /usr/include/boost/mpl/aux_/arity_spec.hpp:
 
@@ -10878,19 +11186,25 @@ src/server/zone/packets/chat/ChatOnDestroyRoom.h:
 
 /usr/include/boost/mpl/aux_/begin_end_impl.hpp:
 
-/usr/include/boost/mpl/aux_/config/adl.hpp:
+src/server/zone/packets/chat/ChatOnSendInstantMessage.h:
+
+/usr/include/boost/mpl/aux_/common_name_wknd.hpp:
+
+src/templates/datatables/DataTableCell.h:
+
+/usr/include/boost/mpl/aux_/config/bcc.hpp:
+
+utils/engine3/MMOEngine/src/system/thread/DeadlockException.h:
 
 /usr/include/boost/mpl/aux_/config/bind.hpp:
 
-utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h:
+utils/engine3/MMOEngine/src/system/util/SortedVector.h:
 
 /usr/include/boost/mpl/aux_/config/compiler.hpp:
 
 /usr/include/boost/mpl/aux_/config/ctps.hpp:
 
-/usr/include/c++/15/bits/stringfwd.h:
-
-/usr/include/boost/mpl/aux_/config/dtp.hpp:
+/usr/include/boost/mpl/aux_/config/eti.hpp:
 
 /usr/include/boost/mpl/aux_/config/forwarding.hpp:
 
@@ -10900,21 +11214,15 @@ utils/engine3/MMOEngine/include/engine/service/proto/BaseClient.h:
 
 /usr/include/boost/mpl/aux_/config/has_apply.hpp:
 
-utils/engine3/MMOEngine/include/engine/service/ServiceClientMap.h:
+/usr/include/assert.h:
+
+/usr/include/boost/mpl/aux_/config/has_xxx.hpp:
+
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h:
+
+/usr/include/boost/parameter/aux_/use_default.hpp:
 
 /usr/include/boost/mpl/aux_/config/integral.hpp:
-
-utils/engine3/MMOEngine/include/system/io/BufferedReader.h:
-
-/usr/include/boost/mpl/aux_/config/intel.hpp:
-
-src/server/zone/managers/player/StartingLocation.h:
-
-/usr/include/boost/config/workaround.hpp:
-
-/usr/include/c++/15/atomic:
-
-/usr/include/boost/mpl/aux_/preprocessor/enum.hpp:
 
 /usr/include/boost/mp11/version.hpp:
 
@@ -10925,6 +11233,10 @@ src/server/zone/managers/player/StartingLocation.h:
 /usr/include/boost/mp11/detail/mp_count.hpp:
 
 /usr/include/boost/type_traits/is_same.hpp:
+
+/usr/include/c++/15/bits/locale_classes.tcc:
+
+/usr/include/boost/mpl/aux_/config/msvc.hpp:
 
 /usr/include/boost/mpl/aux_/config/msvc_typename.hpp:
 
@@ -10938,15 +11250,23 @@ src/server/zone/managers/planet/MapLocationTable.h:
 
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
 
-/usr/include/boost/mpl/aux_/config/static_constant.hpp:
+/usr/include/boost/predef/os/os400.h:
 
-utils/googletest-release-1.8.0/googletest/include/gtest/gtest-message.h:
+/usr/include/boost/predef/hardware/simd/ppc/versions.h:
+
+/usr/include/boost/mpl/aux_/config/ttp.hpp:
+
+/usr/include/boost/preprocessor/list/detail/fold_left.hpp:
+
+/usr/include/boost/mpl/aux_/config/use_preprocessed.hpp:
+
+utils/engine3/MMOEngine/src/system/platform.h:
+
+utils/engine3/MMOEngine/src/system/util/Timer.h:
 
 /usr/include/boost/mpl/aux_/config/workaround.hpp:
 
 /usr/include/c++/15/bits/forward_list.h:
-
-/usr/include/boost/mpl/aux_/find_if_pred.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/signum-arch.h:
 
@@ -10964,31 +11284,49 @@ src/templates/crafting/ValuesMap.h:
 
 /usr/include/boost/mpl/aux_/has_type.hpp:
 
+src/server/zone/packets/chat/ChatOnInviteToRoom.h:
+
+/usr/include/boost/predef/os/bsd/free.h:
+
+/usr/include/boost/type_traits/remove_const.hpp:
+
+utils/engine3/MMOEngine/src/engine/lua/LuaFunction.h:
+
 /usr/include/boost/mpl/aux_/include_preprocessed.hpp:
 
 /usr/include/boost/mpl/aux_/integral_wrapper.hpp:
 
 /usr/include/boost/type_traits/is_scalar.hpp:
 
-/usr/include/boost/mpl/aux_/iter_apply.hpp:
+/usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h:
+
+/usr/include/boost/mpl/aux_/iter_fold_impl.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+utils/engine3/MMOEngine/src/system/io/InputStream.h:
+
+/usr/include/boost/mpl/aux_/lambda_spec.hpp:
+
+/usr/include/boost/preprocessor/detail/auto_rec.hpp:
 
 /usr/include/boost/mpl/aux_/lambda_support.hpp:
 
 /usr/include/boost/mpl/aux_/msvc_eti_base.hpp:
 
-/usr/include/c++/15/bits/charconv.h:
+src/autogen/server/zone/objects/draftschematic/DraftSchematic.h:
 
 src/templates/params/creature/CreatureLocomotion.h:
 
-src/autogen/server/zone/objects/draftschematic/DraftSchematic.h:
+/usr/include/c++/15/bits/charconv.h:
 
 /usr/include/boost/preprocessor/variadic/limits/size_64.hpp:
 
 /usr/include/boost/mpl/aux_/msvc_type.hpp:
 
-/usr/include/boost/mpl/aux_/na.hpp:
+utils/engine3/MMOEngine/src/system/security/Crypto.h:
 
-utils/engine3/MMOEngine/include/engine/db/ResultSet.h:
+/usr/include/boost/mpl/aux_/na.hpp:
 
 src/server/chat/ChatParameter.h:
 
@@ -11002,23 +11340,23 @@ src/templates/manager/TemplateManager.h:
 
 /usr/include/c++/15/bits/chrono.h:
 
-utils/googletest-release-1.8.0/googlemock/include/gmock/internal/gmock-internal-utils.h:
-
 /usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp:
 
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h:
+utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h:
 
 /usr/include/boost/mpl/iter_fold_if.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply.hpp:
 
-/usr/include/c++/15/bits/invoke.h:
-
 /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp:
 
 /usr/include/boost/predef/architecture/parisc.h:
 
-/usr/include/boost/mpl/aux_/preprocessed/gcc/full_lambda.hpp:
+utils/engine3/MMOEngine/src/engine/service/ServiceMessageHandlerThread.h:
+
+/usr/include/boost/preprocessor/detail/limits/auto_rec_256.hpp:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp:
 
 /usr/include/endian.h:
 
@@ -11028,43 +11366,31 @@ utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectServant.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
 
+/usr/include/boost/mpl/aux_/na_assert.hpp:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/placeholders.hpp:
+
 /usr/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp:
-
-utils/engine3/MMOEngine/include/engine/service/proto/BaseMessage.h:
-
-/usr/include/boost/mpl/aux_/preprocessor/def_params_tail.hpp:
-
-/usr/include/boost/mpl/aux_/preprocessor/default_params.hpp:
 
 /usr/include/boost/mpl/aux_/preprocessor/params.hpp:
 
-/usr/include/boost/mpl/aux_/template_arity.hpp:
+/usr/include/c++/15/bits/hash_bytes.h:
 
-src/server/zone/objects/creature/variables/WearablesDeltaVector.h:
-
-src/server/zone/objects/scene/variables/StdFunction.h:
-
-/usr/include/boost/mpl/identity.hpp:
-
-/usr/include/boost/mpl/aux_/template_arity_fwd.hpp:
-
-utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h:
+/usr/include/boost/mpl/aux_/static_cast.hpp:
 
 /usr/include/boost/mpl/aux_/traits_lambda_spec.hpp:
 
-/usr/include/boost/mpl/aux_/type_wrapper.hpp:
-
-/usr/include/boost/preprocessor/list/adt.hpp:
+utils/engine3/MMOEngine/src/system/util/SynchronizedVector.h:
 
 /usr/include/boost/mpl/aux_/value_wknd.hpp:
-
-/usr/include/c++/15/cstdio:
-
-/usr/include/boost/mpl/aux_/yes_no.hpp:
 
 /usr/include/boost/mpl/begin_end.hpp:
 
 /usr/include/boost/mpl/begin_end_fwd.hpp:
+
+/usr/include/boost/lockfree/queue.hpp:
+
+/usr/include/boost/mpl/bind.hpp:
 
 /usr/include/boost/mpl/bind_fwd.hpp:
 
@@ -11072,25 +11398,19 @@ utils/engine3/MMOEngine/include/engine/db/berkeley/BerkeleyDatabase.h:
 
 /usr/include/boost/mpl/count_fwd.hpp:
 
-/usr/include/boost/mpl/distance.hpp:
-
 src/autogen/server/zone/objects/creature/buffs/Buff.h:
 
 /usr/include/boost/mpl/find_if.hpp:
 
-/usr/include/boost/mpl/has_key_fwd.hpp:
+/usr/include/boost/mpl/integral_c_tag.hpp:
+
+/usr/include/boost/preprocessor/punctuation/comma.hpp:
+
+utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h:
 
 /usr/include/boost/mpl/iterator_range.hpp:
 
-/usr/include/c++/15/stdexcept:
-
-src/templates/datatables/DataTableIff.h:
-
-/usr/include/boost/mpl/iterator_tags.hpp:
-
 /usr/include/boost/mpl/key_type_fwd.hpp:
-
-utils/engine3/MMOEngine/include/engine/core/MetricsManager.h:
 
 /usr/include/boost/parameter/aux_/tagged_argument_fwd.hpp:
 
@@ -11100,67 +11420,49 @@ src/templates/manager/PlanetMapCategoryList.h:
 
 /usr/include/boost/mpl/lambda.hpp:
 
-/usr/include/boost/mpl/limits/vector.hpp:
-
 /usr/include/boost/mpl/logical.hpp:
 
 /usr/include/boost/predef/compiler/clang.h:
 
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-generated-nice-strict.h:
-
 /usr/include/boost/predef/architecture/loongarch.h:
-
-utils/engine3/MMOEngine/include/engine/util/json.hpp:
-
-src/autogen/server/zone/objects/area/ActiveArea.h:
-
-/usr/include/boost/mpl/long.hpp:
 
 /usr/include/boost/cstdint.hpp:
 
 /usr/include/boost/preprocessor/stringize.hpp:
 
+utils/engine3/MMOEngine/src/engine/util/u3d/Quaternion.h:
+
+/usr/include/boost/predef/compiler/llvm.h:
+
+/usr/include/boost/mpl/next_prior.hpp:
+
 /usr/include/boost/mpl/not.hpp:
 
 /usr/include/boost/predef/compiler/microtec.h:
 
-utils/engine3/MMOEngine/include/system/io/Reader.h:
+/usr/include/boost/mpl/or.hpp:
+
+/usr/include/boost/mpl/always.hpp:
+
+/usr/include/boost/predef/platform.h:
+
+/usr/include/boost/mpl/order_fwd.hpp:
 
 /usr/include/boost/mpl/placeholders.hpp:
 
-/usr/include/boost/mpl/quote.hpp:
+/usr/include/boost/mpl/protect.hpp:
 
-utils/engine3/MMOEngine/include/system/platform.h:
+/usr/include/boost/mpl/quote.hpp:
 
 /usr/include/c++/15/bits/exception_defines.h:
 
 /usr/include/boost/preprocessor/identity.hpp:
 
-utils/engine3/MMOEngine/include/engine/db/berkeley/Cursor.h:
+/usr/include/c++/15/bits/locale_conv.h:
 
-/usr/include/boost/parameter/aux_/template_keyword.hpp:
-
-/usr/include/boost/mpl/limits/arity.hpp:
-
-/usr/include/boost/mpl/same_as.hpp:
-
-/usr/include/lua5.3/lua.h:
-
-/usr/include/boost/mpl/sequence_tag.hpp:
-
-/usr/include/boost/mpl/aux_/config/ttp.hpp:
-
-/usr/include/boost/predef/hardware/simd/ppc/versions.h:
-
-/usr/include/boost/predef/os/os400.h:
-
-utils/engine3/MMOEngine/include/system/io/FileWriter.h:
+/usr/include/boost/mpl/value_type_fwd.hpp:
 
 /usr/include/boost/mpl/void.hpp:
-
-/usr/include/boost/mpl/void_fwd.hpp:
-
-/usr/include/boost/preprocessor/list/fold_left.hpp:
 
 /usr/include/boost/parameter/aux_/augment_predicate.hpp:
 
@@ -11170,11 +11472,11 @@ src/autogen/server/zone/objects/cell/CellObject.h:
 
 /usr/include/boost/parameter/aux_/has_nested_template_fn.hpp:
 
-/usr/include/boost/preprocessor/repeat.hpp:
+src/server/zone/objects/scene/components/ZoneComponent.h:
 
-src/server/zone/objects/player/variables/WaypointList.h:
+/usr/include/boost/parameter/aux_/is_maybe.hpp:
 
-/usr/include/boost/parameter/aux_/is_placeholder.hpp:
+src/autogen/server/zone/objects/area/areashapes/AreaShape.h:
 
 /usr/include/boost/parameter/aux_/lambda_tag.hpp:
 
@@ -11182,19 +11484,9 @@ src/server/zone/objects/player/variables/WaypointList.h:
 
 /usr/include/boost/parameter/aux_/pack/as_parameter_requirements.hpp:
 
-utils/engine3/MMOEngine/include/engine/stm/TransactionalReference.h:
+/usr/include/boost/parameter/aux_/pack/deduce_tag.hpp:
 
 /usr/include/boost/parameter/aux_/pack/insert_tagged.hpp:
-
-utils/engine3/MMOEngine/include/engine/service/DatagramServiceClient.h:
-
-src/server/zone/managers/player/PlayerMap.h:
-
-/usr/include/boost/parameter/aux_/pack/is_named_argument.hpp:
-
-/usr/include/boost/predef/library/std/sgi.h:
-
-utils/engine3/MMOEngine/include/system/lang/Byte.h:
 
 /usr/include/boost/parameter/aux_/pack/make_deduced_items.hpp:
 
@@ -11210,9 +11502,7 @@ src/server/zone/objects/scene/components/DataObjectComponent.h:
 
 /usr/include/boost/parameter/aux_/pack/make_parameter_spec_items.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp:
+/usr/include/boost/parameter/aux_/pack/predicate.hpp:
 
 /usr/include/boost/parameter/aux_/pack/satisfies.hpp:
 
@@ -11221,8 +11511,6 @@ src/autogen/server/zone/Zone.h:
 /usr/include/c++/15/algorithm:
 
 /usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp:
-
-utils/engine3/MMOEngine/include/engine/orb/NamingDirectoryService.h:
 
 src/templates/tangible/ArmorObjectTemplate.h:
 
@@ -11234,31 +11522,37 @@ src/server/zone/objects/creature/variables/SkillModEntry.h:
 
 /usr/include/x86_64-linux-gnu/c++/15/bits/cxxabi_tweaks.h:
 
+utils/engine3/MMOEngine/src/system/lang/System.h:
+
+src/autogen/server/zone/objects/creature/credits/CreditObject.h:
+
 /usr/include/boost/parameter/aux_/set.hpp:
 
 /usr/include/boost/preprocessor/repetition/repeat.hpp:
-
-utils/engine3/MMOEngine/include/system/util/Vector.h:
 
 src/server/features/Features.h:
 
 /usr/include/c++/15/bits/codecvt.h:
 
+utils/engine3/MMOEngine/src/system/io/Reader.h:
+
 /usr/include/boost/parameter/aux_/tagged_argument.hpp:
 
-utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h:
+/usr/include/c++/15/bits/algorithmfwd.h:
+
+/usr/include/boost/parameter/aux_/unwrap_cv_reference.hpp:
 
 /usr/include/boost/parameter/aux_/use_default_tag.hpp:
 
 /usr/include/boost/predef/architecture/ia64.h:
-
-/usr/include/boost/parameter/aux_/void.hpp:
 
 /usr/include/boost/parameter/aux_/yesno.hpp:
 
 /usr/include/asm-generic/socket.h:
 
 /usr/include/boost/parameter/config.hpp:
+
+utils/engine3/MMOEngine/src/system/lang/StackTrace.h:
 
 /usr/include/boost/mpl/aux_/lambda_arity_param.hpp:
 
@@ -11267,6 +11561,12 @@ utils/engine3/MMOEngine/include/engine/stm/orb/TransactionalObjectManager.h:
 /usr/include/boost/parameter/parameters.hpp:
 
 /usr/include/boost/predef.h:
+
+/usr/include/boost/predef/architecture.h:
+
+src/templates/IffTemplate.h:
+
+/usr/include/boost/predef/platform/windows_phone.h:
 
 /usr/include/boost/predef/architecture/alpha.h:
 
@@ -11282,15 +11582,9 @@ src/server/zone/InRangeObjectsVector.h:
 
 /usr/include/boost/predef/architecture/mips.h:
 
-utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h:
-
 /usr/include/boost/predef/architecture/ppc.h:
 
 /usr/include/boost/predef/architecture/ptx.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
-
-/usr/include/boost/predef/architecture/pyramid.h:
 
 /usr/include/boost/parameter/aux_/pack/item.hpp:
 
@@ -11300,45 +11594,31 @@ utils/engine3/MMOEngine/include/engine/orb/object/DistributedObjectStub.h:
 
 /usr/include/boost/predef/architecture/x86/32.h:
 
-/usr/include/boost/predef/architecture/x86/64.h:
+/usr/include/boost/predef/architecture/z.h:
 
-/usr/include/x86_64-linux-gnu/sys/socket.h:
+/usr/include/boost/preprocessor/arithmetic/limits/inc_256.hpp:
 
-utils/engine3/MMOEngine/include/system/util/VectorSet.h:
-
-/usr/include/boost/mp11/detail/mp_append.hpp:
-
-/usr/include/boost/type_traits/type_identity.hpp:
-
-/usr/include/boost/predef/compiler/diab.h:
-
-/usr/include/boost/predef/platform/windows_store.h:
+/usr/include/boost/predef/compiler.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+utils/engine3/MMOEngine/src/system/io/OutputStream.h:
 
 /usr/include/boost/predef/os/cygwin.h:
 
 /usr/include/boost/predef/compiler/dignus.h:
 
-utils/engine3/MMOEngine/include/system/lang/Bool.h:
-
-/usr/include/boost/predef/compiler/edg.h:
-
 /usr/include/boost/predef/compiler/ekopath.h:
 
 /usr/include/boost/preprocessor/list/reverse.hpp:
 
+/usr/include/boost/predef/compiler/gcc.h:
+
+/usr/include/boost/type_traits/conditional.hpp:
+
 /usr/include/boost/predef/compiler/gcc_xml.h:
 
 /usr/include/boost/predef/language/stdcpp.h:
-
-/usr/include/c++/15/bits/shared_ptr_atomic.h:
-
-utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h:
-
-/usr/include/boost/predef/compiler/palm.h:
-
-/usr/include/boost/predef/compiler/greenhills.h:
 
 /usr/include/boost/predef/compiler/hp_acc.h:
 
@@ -11346,35 +11626,21 @@ utils/engine3/MMOEngine/include/engine/lua/LuaFunction.h:
 
 /usr/include/boost/predef/compiler/iar.h:
 
-utils/engine3/MMOEngine/include/system/net/SocketAddress.h:
-
-utils/engine3/MMOEngine/include/system/lang.h:
-
 /usr/include/boost/mpl/aux_/msvc_never_true.hpp:
 
 /usr/include/boost/predef/library/c.h:
 
 /usr/include/boost/predef/compiler/ibm.h:
 
-/usr/include/boost/predef/compiler/metrowerks.h:
+/usr/include/boost/align/detail/align.hpp:
 
-/usr/include/boost/preprocessor/list/detail/limits/fold_left_256.hpp:
-
-/usr/include/boost/predef/compiler/nvcc.h:
-
-/usr/include/boost/mpl/aux_/config/use_preprocessed.hpp:
-
-/usr/include/boost/preprocessor/list/detail/fold_left.hpp:
+/usr/include/boost/predef/compiler/metaware.h:
 
 /usr/include/boost/predef/compiler/pgi.h:
 
-/usr/include/boost/predef/compiler/sunpro.h:
-
-/usr/include/boost/predef/detail/os_detected.h:
-
 /usr/include/linux/sched/types.h:
 
-utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h:
+utils/engine3/MMOEngine/src/engine/db/berkeley/Environment.h:
 
 /usr/include/boost/predef/compiler/tendra.h:
 
@@ -11384,71 +11650,69 @@ utils/engine3/MMOEngine/include/engine/service/proto/StandaloneBaseMessage.h:
 
 /usr/include/boost/predef/detail/_exception.h:
 
-utils/engine3/MMOEngine/include/engine/util/u3d/Vector3.h:
-
 /usr/include/c++/15/bits/allocator.h:
-
-utils/engine3/MMOEngine/include/engine/util/u3d/Vector4.h:
-
-/usr/include/boost/predef/detail/comp_detected.h:
 
 /usr/include/c++/15/bits/unique_ptr.h:
 
 /usr/include/boost/predef/detail/test.h:
 
-utils/engine3/MMOEngine/include/engine/service/proto/BaseFragmentedPacket.h:
-
 /usr/include/boost/predef/hardware/simd.h:
+
+utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h:
 
 src/templates/params/TemplateBase.h:
 
 /usr/include/boost/predef/hardware/simd/arm.h:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
-
-utils/googletest-release-1.8.0/googletest/include/gtest/internal/custom/gtest-printers.h:
-
-/usr/include/boost/predef/hardware/simd/ppc.h:
-
-src/server/zone/packets/chat/ChatOnInviteToRoom.h:
-
-/usr/include/boost/type_traits/remove_const.hpp:
-
-/usr/include/boost/predef/os/bsd/free.h:
-
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock-cardinalities.h:
-
 /usr/include/boost/predef/hardware/simd/x86/versions.h:
 
-utils/googletest-release-1.8.0/googlemock/include/gmock/gmock.h:
+utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h:
+
+/usr/include/boost/predef/language/objc.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Funnel.h:
+
+/usr/include/boost/predef/language/stdc.h:
+
+utils/engine3/MMOEngine/src/engine/stm/TransactionalObjectHeader.h:
+
+/usr/include/boost/predef/library.h:
 
 /usr/include/boost/predef/library/c/_prefix.h:
+
+utils/engine3/MMOEngine/src/system/lang/OutOfMemoryError.h:
+
+utils/engine3/MMOEngine/src/engine/db/berkeley/CursorConfig.h:
 
 /usr/include/boost/predef/platform/mingw32.h:
 
 /usr/include/boost/predef/library/c/gnu.h:
 
+/usr/include/boost/predef/library/c/uc.h:
+
+utils/engine3/MMOEngine/src/system/lang/Byte.h:
+
 /usr/include/boost/predef/library/c/zos.h:
 
 /usr/include/boost/preprocessor/control/if.hpp:
 
-utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h:
-
-/usr/include/boost/preprocessor/logical/and.hpp:
-
-/usr/include/boost/predef/library/std/cxx.h:
+/usr/include/boost/predef/library/std/dinkumware.h:
 
 /usr/include/boost/predef/library/std/msl.h:
 
-/usr/include/boost/type_traits/integral_constant.hpp:
-
-/usr/include/boost/predef/library/std/stdcpp3.h:
-
 /usr/include/boost/predef/library/std/stlport.h:
 
-/usr/include/boost/predef/make.h:
+/usr/include/boost/predef/os/aix.h:
 
-/usr/include/boost/predef/os/beos.h:
+/usr/include/c++/15/backward/auto_ptr.h:
+
+src/server/zone/objects/creature/ai/variables/CreatureAttackMap.h:
+
+/usr/include/boost/predef/os/bsd.h:
+
+/usr/include/boost/predef/os/bsd/dragonfly.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Ray.h:
 
 /usr/include/boost/mpl/sequence_tag_fwd.hpp:
 
@@ -11470,15 +11734,9 @@ utils/engine3/MMOEngine/include/system/lang/BaseTypeVariable.h:
 
 /usr/include/boost/predef/os/macos.h:
 
-/usr/include/boost/predef/os/solaris.h:
-
 src/templates/params/creature/CreatureState.h:
 
 /usr/include/boost/predef/os/unix.h:
-
-/usr/include/boost/predef/os/vms.h:
-
-/usr/include/boost/preprocessor/logical/compl.hpp:
 
 /usr/include/lua5.3/lua.hpp:
 
@@ -11490,15 +11748,13 @@ src/templates/params/creature/CreatureState.h:
 
 /usr/include/boost/predef/platform/android.h:
 
-/usr/include/c++/15/cmath:
-
-/usr/include/boost/predef/platform/mingw64.h:
-
 /usr/include/boost/predef/platform/windows_runtime.h:
 
 /usr/include/boost/preprocessor/repetition/enum_params.hpp:
 
 /usr/include/boost/predef/platform/windows_system.h:
+
+/usr/include/boost/preprocessor/arithmetic/dec.hpp:
 
 /usr/include/c++/15/iosfwd:
 
@@ -11508,11 +11764,11 @@ src/templates/params/creature/CreatureState.h:
 
 src/server/chat/PersistentMessageImplementation.cpp:
 
-utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h:
-
 /usr/include/boost/preprocessor/arithmetic/detail/maximum_number.hpp:
 
 /usr/include/boost/preprocessor/arithmetic/inc.hpp:
+
+/usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp:
 
 /usr/include/boost/preprocessor/array/data.hpp:
 
@@ -11523,6 +11779,8 @@ utils/engine3/MMOEngine/include/engine/orb/db/DistributedObjectMap.h:
 src/server/zone/objects/creature/ai/PatrolPoint.h:
 
 /usr/include/c++/15/bits/basic_string.h:
+
+/usr/include/boost/preprocessor/cat.hpp:
 
 /usr/include/boost/preprocessor/comparison/not_equal.hpp:
 
@@ -11536,45 +11794,61 @@ src/server/zone/objects/creature/ai/PatrolPoint.h:
 
 /usr/include/boost/preprocessor/control/expr_iif.hpp:
 
+/usr/include/boost/preprocessor/control/limits/while_256.hpp:
+
+/usr/include/boost/predef/other/workaround.h:
+
+/usr/include/boost/type_traits/is_base_of.hpp:
+
 src/server/zone/objects/scene/TransferErrorCode.h:
 
 /usr/include/boost/preprocessor/detail/is_binary.hpp:
 
-/usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp:
+/usr/include/c++/15/bits/stl_set.h:
 
-/usr/include/boost/preprocessor/detail/limits/auto_rec_256.hpp:
+/usr/include/boost/preprocessor/empty.hpp:
 
-/usr/include/boost/preprocessor/facilities/check_empty.hpp:
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
 
-utils/engine3/MMOEngine/include/engine/stm/orb/LocalObjectManager.h:
+/usr/include/boost/preprocessor/facilities/empty.hpp:
 
 /usr/include/boost/preprocessor/facilities/expand.hpp:
 
 /usr/include/c++/15/cstring:
 
-/usr/include/boost/mpl/aux_/preprocessed/gcc/bind_fwd.hpp:
-
 /usr/include/boost/preprocessor/array/size.hpp:
+
+/usr/include/boost/mpl/aux_/preprocessed/gcc/bind_fwd.hpp:
 
 /usr/include/boost/preprocessor/inc.hpp:
 
-/usr/include/boost/preprocessor/list/detail/limits/fold_right_256.hpp:
+utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h:
 
 /usr/include/boost/preprocessor/logical/bitor.hpp:
 
+/usr/include/boost/preprocessor/logical/bool.hpp:
+
+/usr/include/boost/preprocessor/logical/limits/bool_256.hpp:
+
 /usr/include/boost/preprocessor/logical/not.hpp:
 
-/usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp:
+/usr/include/boost/preprocessor/punctuation/comma_if.hpp:
+
+src/server/zone/objects/player/variables/WaypointList.h:
+
+/usr/include/boost/parameter/aux_/is_placeholder.hpp:
+
+/usr/include/boost/preprocessor/repeat.hpp:
 
 /usr/include/boost/preprocessor/tuple/eat.hpp:
+
+/usr/include/boost/preprocessor/variadic/elem.hpp:
 
 /usr/include/boost/preprocessor/variadic/has_opt.hpp:
 
 src/server/zone/objects/scene/components/DataObjectComponentReference.h:
 
 /usr/include/boost/preprocessor/variadic/size.hpp:
-
-/usr/include/boost/static_assert.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
@@ -11588,21 +11862,19 @@ src/server/zone/objects/scene/components/DataObjectComponentReference.h:
 
 /usr/include/boost/type_traits/add_rvalue_reference.hpp:
 
-utils/engine3/MMOEngine/include/engine/util/JSONSerializationType.h:
-
 /usr/include/boost/type_traits/declval.hpp:
 
 /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp:
 
 /usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp:
 
+/usr/include/boost/type_traits/intrinsics.hpp:
+
 src/templates/params/primitives/IntegerParam.h:
 
+utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h:
+
 /usr/include/boost/type_traits/is_arithmetic.hpp:
-
-/usr/include/boost/type_traits/is_base_and_derived.hpp:
-
-/usr/include/boost/type_traits/is_class.hpp:
 
 /usr/include/boost/type_traits/is_const.hpp:
 
@@ -11610,19 +11882,15 @@ src/templates/params/primitives/IntegerParam.h:
 
 /usr/include/boost/type_traits/is_enum.hpp:
 
-/usr/include/boost/type_traits/is_floating_point.hpp:
+utils/engine3/MMOEngine/src/engine/service/ServiceClientMap.h:
 
-/usr/include/boost/type_traits/is_integral.hpp:
+/usr/include/boost/type_traits/is_floating_point.hpp:
 
 src/server/chat/ChatManagerImplementation.cpp:
 
 /usr/include/boost/type_traits/is_lvalue_reference.hpp:
 
-utils/engine3/MMOEngine/include/engine/util/u3d/TriangulationAStarAlgorithm.h:
-
 /usr/include/boost/predef/hardware/simd/x86.h:
-
-utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h:
 
 /usr/include/boost/lockfree/lockfree_forward.hpp:
 
@@ -11632,17 +11900,25 @@ utils/engine3/MMOEngine/include/engine/core/TimedTaskQueue.h:
 
 /usr/include/boost/type_traits/is_reference.hpp:
 
-/usr/include/boost/type_traits/is_void.hpp:
-
 /usr/include/boost/utility/detail/result_of_variadic.hpp:
 
 /usr/include/boost/utility/result_of.hpp:
 
-src/server/zone/objects/creature/ai/variables/CreatureAttackMap.h:
+/usr/include/boost/version.hpp:
 
-/usr/include/boost/predef/os/bsd.h:
+src/server/zone/objects/structure/StructurePermissionList.h:
 
-/usr/include/c++/15/backward/auto_ptr.h:
+/usr/include/c++/15/bit:
+
+/usr/include/c++/15/bits/align.h:
+
+utils/engine3/MMOEngine/src/engine/util/ObjectContainer.h:
+
+/usr/include/c++/15/bits/alloc_traits.h:
+
+utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h:
+
+/usr/include/c++/15/bits/allocated_ptr.h:
 
 /usr/include/c++/15/bits/atomic_lockfree_defines.h:
 
@@ -11652,6 +11928,8 @@ src/server/zone/objects/creature/ai/variables/CreatureAttackMap.h:
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+utils/engine3/MMOEngine/src/system/lang/StringBuffer.h:
+
 src/server/zone/managers/group/GroupManager.h:
 
 /usr/include/c++/15/bits/char_traits.h:
@@ -11660,44 +11938,14 @@ src/server/zone/managers/group/GroupManager.h:
 
 /usr/include/c++/15/bits/concept_check.h:
 
+/usr/include/c++/15/bits/cpp_type_traits.h:
+
 /usr/include/c++/15/bits/cxxabi_init_exception.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/arg.hpp:
 
 /usr/include/c++/15/bits/exception.h:
 
-/usr/include/c++/15/bits/gslice_array.h:
-
 /usr/include/c++/15/bits/exception_ptr.h:
 
-/usr/include/c++/15/bits/gslice.h:
-
-/usr/include/c++/15/bits/indirect_array.h:
-
-/usr/include/c++/15/bits/ios_base.h:
-
-/usr/include/boost/mpl/value_type_fwd.hpp:
-
-/usr/include/c++/15/bits/locale_conv.h:
-
-/usr/include/c++/15/ext/alloc_traits.h:
-
-/usr/include/boost/predef/hardware/simd/x86_amd/versions.h:
-
-/usr/include/c++/15/bits/locale_facets_nonio.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/c++/15/bits/localefwd.h:
-
-/usr/include/c++/15/bits/mask_array.h:
-
-/usr/include/c++/15/bits/memoryfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
-
-/usr/include/c++/15/bits/nested_exception.h:
-
-/usr/include/c++/15/bits/move.h:
-
-/usr/include/c++/15/bits/new_allocator.h:
+/usr/include/c++/15/bits/forward_list.tcc:

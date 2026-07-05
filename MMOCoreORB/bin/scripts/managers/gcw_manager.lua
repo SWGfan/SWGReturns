@@ -43,11 +43,39 @@ turretAutoFireTimeout = 20
 
 maxBasesPerPlayer = 3
 
+-- Enable Alarms on player GCW bases
+spawnBaseAlarms = false
+
 -- xp bonus for faction controlling a planet
 bonusXP = 50
 
+-- Crackdown settings
+crackdownScansEnabled = false
+
 -- thresholds for scaling crackdown npc's difficulty, first threshold should always be 0.
 difficutlyScalingThresholds = {0, 64}
+
+--[[
+	-- TESTING VALUES
+	crackdownScanPrivilegedPlayers = true
+	crackdownPlayerScanCooldown = 15 * 60  -- In seconds
+	crackdownContrabandFineCredits = 10000
+	crackdownContrabandFineFactionPoints = 100
+	crackdownPlanetsWithWildScans = { "corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4"}
+	-- Radius for the area in which all players are retrieved in order to select one of them randomly to be scanned in the wild.
+	-- All objects in the quadtree in that radius will be iterated. Iteration will happen every 10s on each active planet.
+	crackdownPerformanceWildScanPlayerFindRadius = 2560 -- meter radius
+]]
+	-- PRODUCTION SERVER VALUES
+	crackdownScanPrivilegedPlayers = false
+	crackdownScanInterval = 10
+	crackdownPlayerScanCooldown = 2 * 24 * 60 * 60  -- In seconds, 48 hour cooldown
+	crackdownContrabandFineCredits = 10000
+	crackdownContrabandFineFactionPoints = 100
+	crackdownPlanetsWithWildScans = { "corellia", "dantooine", "lok", "naboo", "rori", "talus", "tatooine"}
+	-- Radius for the area in which all players are retrieved in order to select one of them randomly to be scanned in the wild.
+	-- All objects in the quadtree in that radius will be iterated. Iteration will happen every 10 s on each active planet.
+	crackdownPerformanceWildScanPlayerFindRadius = 256 -- 256m radius
 
 -- discount percentage for side losing&winning the gcw.  negative value of increase in price (penality).  positive for a decrease (Bonus)
 
@@ -85,6 +113,9 @@ HQValues = {
 	{"object/building/general/bunker_imperial_weapons_research_facility_01.iff", 2},
 	{"object/building/general/bunker_imperial_detainment_center_01.iff", 2},
 	{"object/building/general/bunker_rebel_weapons_depot.iff", 2},
+	{"object/building/military/military_base_police_station_imperial_style_01.iff", 2},
+	{"object/building/military/military_base_shed_imperial_style_officer_s01.iff", 2},
+	{"object/building/military/military_outpost_guard_house_rebel.iff", 2},
 
 }
 

@@ -16,22 +16,13 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
-
-		ManagedReference<WeaponObject*> weapon = creature->getWeapon();
-
-		if (weapon == nullptr)
-			return GENERALERROR;
-
-		if (!weapon->isRangedWeapon())
-			return INVALIDWEAPON;
-
 			if (!checkStateMask(creature))
 				return INVALIDSTATE;
 
 			if (!checkInvalidLocomotions(creature))
 				return INVALIDLOCOMOTION;
 
-			UnicodeString args = "healthDamageMultiplier=0.33f;actionDamageMultiplier=0.33f;mindDamageMultiplier=0.33f;";
+			UnicodeString args = "healthDamageMultiplier=0.33f;actionDamageMultiplier=0.00f;mindDamageMultiplier=0.00f;";
 
 			return doCombatAction(creature, target, args);
 		}

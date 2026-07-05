@@ -30,7 +30,7 @@ CreateVendorSession::~CreateVendorSession() {
 
 int CreateVendorSession::initializeSession() {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ int CreateVendorSession::initializeSession() {
 
 int CreateVendorSession::cancelSession() {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ int CreateVendorSession::cancelSession() {
 
 int CreateVendorSession::clearSession() {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ int CreateVendorSession::clearSession() {
 
 void CreateVendorSession::handleVendorSelection(byte menuID) {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ void CreateVendorSession::handleVendorSelection(byte menuID) {
 
 void CreateVendorSession::createVendor(String& name) {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -102,7 +102,7 @@ void CreateVendorSession::createVendor(String& name) {
 
 void CreateVendorSession::randomizeVendorLooks(CreatureObject* vendor) {
 	CreateVendorSessionImplementation* _implementation = static_cast<CreateVendorSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -148,7 +148,7 @@ void CreateVendorSessionImplementation::finalize() {
 void CreateVendorSessionImplementation::_initializeImplementation() {
 	_setClassHelper(CreateVendorSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -321,7 +321,7 @@ CreateVendorSessionImplementation::CreateVendorSessionImplementation(CreatureObj
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		player = play;
 	player = play;
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		suiNameVendor = null;
-	suiNameVendor = nullptr;
+	suiNameVendor = NULL;
 }
 
 int CreateVendorSessionImplementation::cancelSession() {
@@ -338,13 +338,13 @@ int CreateVendorSessionImplementation::cancelSession() {
 
 int CreateVendorSessionImplementation::clearSession() {
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		player = null;
-	player = nullptr;
+	player = NULL;
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		currentNode = null;
-	currentNode = nullptr;
+	currentNode = NULL;
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		suiSelectVendor = null;
-	suiSelectVendor = nullptr;
+	suiSelectVendor = NULL;
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		suiNameVendor = null;
-	suiNameVendor = nullptr;
+	suiNameVendor = NULL;
 	// server/zone/objects/player/sessions/vendor/CreateVendorSession.idl():  		return 0;
 	return 0;
 }

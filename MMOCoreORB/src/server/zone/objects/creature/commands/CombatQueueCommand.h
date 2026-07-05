@@ -12,7 +12,6 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/objects/player/PlayerObject.h"
-#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/managers/combat/CreatureAttackData.h"
 #include "server/zone/managers/collision/CollisionManager.h"
@@ -25,7 +24,7 @@
 #include "server/zone/packets/object/CombatSpam.h"
 #include "QueueCommand.h"
 #include "server/zone/objects/player/FactionStatus.h"
-#include "server/zone/managers/visibility/VisibilityManager.h"
+#include "server/zone/packets/player/PlayMusicMessage.h"
 
 class CombatQueueCommand : public QueueCommand {
 protected:
@@ -185,9 +184,8 @@ public:
 
 				ManagedReference<TangibleObject*> targetTano = targetObject.castTo<TangibleObject*>();
 
-				//Comment out field faction change
-				/*if (targetTano != nullptr && creature->getFaction() != 0 && targetTano->getFaction() != 0 && targetTano->getFaction() != creature->getFaction() && creature->getFactionStatus() != FactionStatus::OVERT) {
- 					if (targetTano->isCreatureObject()) {
+				if (targetTano != nullptr && creature->getFaction() != 0 && targetTano->getFaction() != 0 && targetTano->getFaction() != creature->getFaction() && creature->getFactionStatus() != FactionStatus::OVERT && !ghost->hasCrackdownTef()) {
+					if (targetTano->isCreatureObject()) {
 						ManagedReference<CreatureObject*> targetCreature = targetObject.castTo<CreatureObject*>();
 
 						if (targetCreature != nullptr) {
@@ -212,7 +210,7 @@ public:
 						else if ((targetTano->getPvpStatusBitmask() & CreatureFlag::OVERT))
 							ghost->doFieldFactionChange(FactionStatus::OVERT);
 					}
-				}*/
+				}
 			}
 		}
 
@@ -233,32 +231,8 @@ public:
 			return GENERALERROR;
 		}
 
-		if (creature->isPlayerCreature() && targetObject->getParentID() != 0 && creature->getParentID() != targetObject->getParentID()) {
-			Reference<CellObject*> targetCell = targetObject->getParent().get().castTo<CellObject*>();
-
-			if (targetCell != nullptr) {
-				if (!targetObject->isPlayerCreature()) {
-					auto perms = targetCell->getContainerPermissions();
-
-					if (!perms->hasInheritPermissionsFromParent()) {
-						if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
-							creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-							return GENERALERROR;
-						}
-					}
-				}
-
-				ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
-
-				if (parentSceneObject != nullptr) {
-					BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
-
-					if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
-						creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
-						return GENERALERROR;
-					}
-				}
-			}
+		if (!playerEntryCheck(creature, targetObject->asTangibleObject())) {
+			return GENERALERROR;
 		}
 
 		CombatManager* combatManager = CombatManager::instance();
@@ -270,6 +244,8 @@ public:
 			case -1:
 				return INVALIDTARGET;
 			case -2:
+				creature->sendSystemMessage("You don't have enough action to use that ability yet.");
+				creature->playMusicMessage("sound/ui_negative.snd");
 				return INSUFFICIENTHAM;
 			case -3:
 				return GENERALERROR;
@@ -284,20 +260,6 @@ public:
 		// only clear aiming states if command was successful
 		creature->removeStateBuff(CreatureState::AIMING);
 		creature->removeBuff(STRING_HASHCODE("steadyaim"));
-
-		//Give visibility
-		if (creature->isPlayerCreature()){
-			PlayerObject* visGhost = creature->getPlayerObject().get();
-			if (visGhost->isJedi()){
-				WeaponObject* visWeap = creature->getWeapon();
-				if (visWeap->isJediWeapon()){
-					VisibilityManager::instance()->increaseVisibility(creature, 25);
-					//Jedi Attackable
-					visGhost->updateLastJediAttackableTimestamp();
-				}
-
-			}
-		}
 
 		return SUCCESS;
 	}
@@ -515,7 +477,7 @@ public:
 				return "creature_attack" + intensity;
 		}
 
-		//debug() << "Generated Attack Animation- " << buffer;
+		debug() << "Generated Attack Animation- " << buffer;
 
 		return buffer.toString();
 	}
@@ -539,7 +501,7 @@ public:
 			return anim;
 		}
 
-		//debug() << "Generated Attack Animation- " << anim;
+		debug() << "Generated Attack Animation- " << anim;
 
 		return anim;
 	}
@@ -563,12 +525,12 @@ public:
 		return poolsToDamage;
 	}
 
-	inline VectorMap<uint8, StateEffect>* getStateEffects() const {
-		return &(const_cast<CombatQueueCommand*>(this)->stateEffects);
+	inline const VectorMap<uint8, StateEffect>* getStateEffects() const {
+		return &stateEffects;
 	}
 
-	inline Vector<DotEffect>* getDotEffects() const {
-		return &(const_cast<CombatQueueCommand*>(this)->dotEffects);
+	inline const Vector<DotEffect>* getDotEffects() const {
+		return &dotEffects;
 	}
 
 	void setAnimationString(const String& anim) {
@@ -639,11 +601,11 @@ public:
 		this->accuracySkillMod = acc;
 	}
 
-	bool hasCombatSpam() {
+	bool hasCombatSpam() const {
 		return !combatSpam.isEmpty();
 	}
 
-	bool isCombatCommand() {
+	bool isCombatCommand() const {
 		return true;
 	}
 
@@ -695,7 +657,7 @@ public:
 				defender->setPosture(CreaturePosture::KNOCKEDDOWN, false, false);
 
 			defender->updateKnockdownRecovery();
-			defender->updatePostureChangeDelay(5000);
+			defender->setPostureChangeDelay(5000);
 			defender->removeBuff(STRING_HASHCODE("burstrun"));
 			defender->removeBuff(STRING_HASHCODE("retreat"));
 			defender->sendSystemMessage("@cbt_spam:posture_knocked_down");
@@ -724,7 +686,7 @@ public:
 			}
 
 			defender->updatePostureUpRecovery();
-			defender->updatePostureChangeDelay(2500);
+			defender->setPostureChangeDelay(2500);
 			defender->removeBuff(STRING_HASHCODE("burstrun"));
 			defender->removeBuff(STRING_HASHCODE("retreat"));
 			break;
@@ -751,12 +713,12 @@ public:
 			}
 
 			defender->updatePostureDownRecovery();
-			defender->updatePostureChangeDelay(2500);
+			defender->setPostureChangeDelay(2500);
 			defender->removeBuff(STRING_HASHCODE("burstrun"));
 			defender->removeBuff(STRING_HASHCODE("retreat"));
 			break;
 		case CommandEffect::NEXTATTACKDELAY:
-			defender->setNextAttackDelay(mod, duration);
+			defender->setNextAttackDelay(attacker, name, mod, duration);
 			break;
 		case CommandEffect::HEALTHDEGRADE:
 			buff = new Buff(defender, STRING_HASHCODE("healthdegrade"), duration, BuffType::STATE);
@@ -780,7 +742,7 @@ public:
 			if (defender->hasState(CreatureState::COVER)) {
 				defender->clearState(CreatureState::COVER);
 				defender->sendSystemMessage("@combat_effects:strafe_system");
-				defender->setNextAttackDelay(mod, duration);
+				defender->setNextAttackDelay(attacker, name, mod, duration);
 			}
 			break;
 		case CommandEffect::ATTACKER_FORCE_STAND:

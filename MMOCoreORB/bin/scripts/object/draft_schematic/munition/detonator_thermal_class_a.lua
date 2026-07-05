@@ -50,7 +50,8 @@ object_draft_schematic_munition_detonator_thermal_class_a = object_draft_schemat
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 3, 
-
+   factoryCrateType = "object/factory/factory_crate_weapon.iff",
+   
    xpType = "crafting_weapons_general", 
    xp = 96, 
 
@@ -65,7 +66,7 @@ object_draft_schematic_munition_detonator_thermal_class_a = object_draft_schemat
    ingredientTemplateNames = {"craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n", "craft_munition_ingredients_n"},
    ingredientTitleNames = {"shell", "thumb_trigger", "activation_indicator", "warhead_insulator", "warhead_assembly", "null_field_generator", "warhead_fusing", "warhead_booster"},
    ingredientSlotType = {0, 0, 0, 0, 1, 1, 1, 3},
-   resourceTypes = {"metal", "petrochem_inert_polymer", "steel_thoranium", "ore_siliclastic_crism", "object/tangible/component/munition/shared_warhead_medium.iff", "object/tangible/component/munition/shared_warhead_stabilizer.iff", "object/tangible/component/munition/shared_warhead_fusing_mechanism.iff", "object/tangible/component/munition/shared_enhanced_charge_composition.iff"},
+   resourceTypes = {"metal", "petrochem_inert_polymer", "steel_thoranium", "ore_siliclastic_crism", "object/tangible/component/munition/shared_warhead_medium.iff", "object/tangible/component/munition/shared_warhead_stabilizer.iff", "object/tangible/component/munition/shared_warhead_fusing_mechanism.iff", "object/tangible/component/munition/shared_enhanced_destructive_pulse_channeling.iff"},
    resourceQuantities = {10, 1, 15, 3, 1, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100, 100},
 
@@ -73,16 +74,7 @@ object_draft_schematic_munition_detonator_thermal_class_a = object_draft_schemat
    targetTemplate = "object/weapon/ranged/grenade/grenade_thermal_detonator.iff",
 
    additionalTemplates = {
-           },
- 	weaponDots = {
-		{
-			{"type", 3}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
-			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
-			{"strength", 150},
-			{"duration", 240},
-			{"potency", 150},
-			{"uses", 5}
-		}
-	},          
-}           
+             }
+
+}
 ObjectTemplates:addTemplate(object_draft_schematic_munition_detonator_thermal_class_a, "object/draft_schematic/munition/detonator_thermal_class_a.iff")

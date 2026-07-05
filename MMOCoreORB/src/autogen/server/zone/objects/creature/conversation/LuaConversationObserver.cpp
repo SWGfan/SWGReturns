@@ -28,7 +28,7 @@ LuaConversationObserver::~LuaConversationObserver() {
 
 ConversationScreen* LuaConversationObserver::getNextConversationScreen(CreatureObject* conversingPlayer, int selectedOption, CreatureObject* conversingNPC) {
 	LuaConversationObserverImplementation* _implementation = static_cast<LuaConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -38,7 +38,7 @@ ConversationScreen* LuaConversationObserver::getNextConversationScreen(CreatureO
 
 ConversationScreen* LuaConversationObserver::runScreenHandlers(CreatureObject* conversingPlayer, CreatureObject* conversingNPC, int selectedOption, ConversationScreen* conversationScreen) {
 	LuaConversationObserverImplementation* _implementation = static_cast<LuaConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -79,7 +79,7 @@ void LuaConversationObserverImplementation::finalize() {
 void LuaConversationObserverImplementation::_initializeImplementation() {
 	_setClassHelper(LuaConversationObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

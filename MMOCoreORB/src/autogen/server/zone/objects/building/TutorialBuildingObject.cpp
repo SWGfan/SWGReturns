@@ -28,7 +28,7 @@ TutorialBuildingObject::~TutorialBuildingObject() {
 
 void TutorialBuildingObject::setTutorialOwnerID(unsigned long long ownerID) {
 	TutorialBuildingObjectImplementation* _implementation = static_cast<TutorialBuildingObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void TutorialBuildingObject::setTutorialOwnerID(unsigned long long ownerID) {
 
 unsigned long long TutorialBuildingObject::getTutorialOwnerID() const {
 	TutorialBuildingObjectImplementation* _implementation = static_cast<TutorialBuildingObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void TutorialBuildingObjectImplementation::finalize() {
 void TutorialBuildingObjectImplementation::_initializeImplementation() {
 	_setClassHelper(TutorialBuildingObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

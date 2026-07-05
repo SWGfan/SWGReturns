@@ -30,7 +30,7 @@ TradeSession::~TradeSession() {
 
 bool TradeSession::getAcceptedTrade() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ bool TradeSession::getAcceptedTrade() {
 
 void TradeSession::addTradeItem(SceneObject* object) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ void TradeSession::addTradeItem(SceneObject* object) {
 
 SortedVector<ManagedReference<SceneObject* > >* TradeSession::getItemsToTrade() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +69,7 @@ SortedVector<ManagedReference<SceneObject* > >* TradeSession::getItemsToTrade() 
 
 SceneObject* TradeSession::getTradeItem(int index) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ SceneObject* TradeSession::getTradeItem(int index) {
 
 int TradeSession::getTradeSize() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ int TradeSession::getTradeSize() {
 
 int TradeSession::getMoneyToTrade() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ int TradeSession::getMoneyToTrade() {
 
 unsigned long long TradeSession::getTradeTargetPlayer() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ unsigned long long TradeSession::getTradeTargetPlayer() {
 
 bool TradeSession::isTryingToTrade() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ bool TradeSession::isTryingToTrade() {
 
 bool TradeSession::hasVerifiedTrade() {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ bool TradeSession::hasVerifiedTrade() {
 
 void TradeSession::setAcceptedTrade(bool val) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -169,7 +169,7 @@ void TradeSession::setAcceptedTrade(bool val) {
 
 void TradeSession::setMoneyToTrade(int val) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ void TradeSession::setMoneyToTrade(int val) {
 
 void TradeSession::setTradeTargetPlayer(unsigned long long val) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -199,7 +199,7 @@ void TradeSession::setTradeTargetPlayer(unsigned long long val) {
 
 void TradeSession::setVerifiedTrade(bool val) {
 	TradeSessionImplementation* _implementation = static_cast<TradeSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -245,7 +245,7 @@ void TradeSessionImplementation::finalize() {
 void TradeSessionImplementation::_initializeImplementation() {
 	_setClassHelper(TradeSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -523,7 +523,7 @@ void TradeSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			int index = inv->getSignedIntParameter();
 			
 			DistributedObject* _m_res = getTradeItem(index);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETTRADESIZE__:

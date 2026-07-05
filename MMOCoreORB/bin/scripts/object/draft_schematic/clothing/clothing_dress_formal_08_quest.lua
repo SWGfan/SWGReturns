@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_dress_formal_08_quest = object_draft_sc
    customObjectName = "Exquisite Dancer\'s Leotard",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 23, 
+   complexity = 1, 
    size = 4, 
 
    xpType = "crafting_clothing_general", 
@@ -76,9 +76,9 @@ object_draft_schematic_clothing_clothing_dress_formal_08_quest = object_draft_sc
              },
       
         skillMods = {
-	    {"healing_dance_mind", 25},
-	    {"healing_dance_shock", 25},
-	    {"healing_dance_wound", 25},
+	    {"healing_dance_mind", 5},
+	    {"healing_dance_shock", 5},
+	    {"healing_dance_wound", 5},
 	},
 }
 

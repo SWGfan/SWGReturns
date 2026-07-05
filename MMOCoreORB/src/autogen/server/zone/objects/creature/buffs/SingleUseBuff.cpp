@@ -32,7 +32,7 @@ SingleUseBuff::~SingleUseBuff() {
 
 void SingleUseBuff::init(Vector<unsigned int>* events) {
 	SingleUseBuffImplementation* _implementation = static_cast<SingleUseBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -43,7 +43,7 @@ void SingleUseBuff::init(Vector<unsigned int>* events) {
 
 unsigned int SingleUseBuff::getCommandCRC() const {
 	SingleUseBuffImplementation* _implementation = static_cast<SingleUseBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -57,7 +57,7 @@ unsigned int SingleUseBuff::getCommandCRC() const {
 
 CreatureObject* SingleUseBuff::getPlayer() {
 	SingleUseBuffImplementation* _implementation = static_cast<SingleUseBuffImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ CreatureObject* SingleUseBuff::getPlayer() {
 
 void SingleUseBuff::activate() {
 	SingleUseBuffImplementation* _implementation = static_cast<SingleUseBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ void SingleUseBuff::activate() {
 
 void SingleUseBuff::deactivate() {
 	SingleUseBuffImplementation* _implementation = static_cast<SingleUseBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -132,7 +132,7 @@ void SingleUseBuffImplementation::finalize() {
 void SingleUseBuffImplementation::_initializeImplementation() {
 	_setClassHelper(SingleUseBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -394,7 +394,7 @@ void SingleUseBuffAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPlayer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_ACTIVATE__:

@@ -40,7 +40,7 @@ SurveySession::~SurveySession() {
 
 int SurveySession::initializeSession(SurveyTool* tool) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -55,7 +55,7 @@ int SurveySession::initializeSession(SurveyTool* tool) {
 
 int SurveySession::cancelSession() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -69,7 +69,7 @@ int SurveySession::cancelSession() {
 
 int SurveySession::clearSession() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -83,7 +83,7 @@ int SurveySession::clearSession() {
 
 void SurveySession::startSurvey(const String& resname) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ void SurveySession::startSurvey(const String& resname) {
 
 void SurveySession::reSample() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void SurveySession::reSample() {
 
 void SurveySession::startSample(const String& resname) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ void SurveySession::startSample(const String& resname) {
 
 void SurveySession::surveyCnodeMinigame(int value) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ void SurveySession::surveyCnodeMinigame(int value) {
 
 void SurveySession::surveyGnodeMinigame(int value) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ void SurveySession::surveyGnodeMinigame(int value) {
 
 ManagedWeakReference<SurveyTool* > SurveySession::getActiveSurveyTool() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +171,7 @@ ManagedWeakReference<SurveyTool* > SurveySession::getActiveSurveyTool() {
 
 void SurveySession::setActiveSurveyTool(SurveyTool* tool) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -186,7 +186,7 @@ void SurveySession::setActiveSurveyTool(SurveyTool* tool) {
 
 ManagedWeakReference<SurveyTool* > SurveySession::getOpenSurveyTool() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -200,7 +200,7 @@ ManagedWeakReference<SurveyTool* > SurveySession::getOpenSurveyTool() {
 
 void SurveySession::setOpenSurveyTool(SurveyTool* tool) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -215,7 +215,7 @@ void SurveySession::setOpenSurveyTool(SurveyTool* tool) {
 
 bool SurveySession::tryGamble() const {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -229,7 +229,7 @@ bool SurveySession::tryGamble() const {
 
 void SurveySession::clearGamble() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -243,7 +243,7 @@ void SurveySession::clearGamble() {
 
 Coordinate* SurveySession::getRichSampleLocation() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -253,7 +253,7 @@ Coordinate* SurveySession::getRichSampleLocation() {
 
 void SurveySession::clearRichSampleLocation() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -267,7 +267,7 @@ void SurveySession::clearRichSampleLocation() {
 
 void SurveySession::rescheduleSurvey(SurveyMessage* surveyMessage, WaypointObject* waypoint, float maxDensity, ResourceSpawn* resourceSpawn) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -277,7 +277,7 @@ void SurveySession::rescheduleSurvey(SurveyMessage* surveyMessage, WaypointObjec
 
 void SurveySession::rescheduleSample() {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -287,7 +287,7 @@ void SurveySession::rescheduleSample() {
 
 void SurveySession::rescheduleSampleResults(const ResourceSpawner* resourceSpawner, float density, const String& resname) {
 	SurveySessionImplementation* _implementation = static_cast<SurveySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -328,7 +328,7 @@ void SurveySessionImplementation::finalize() {
 void SurveySessionImplementation::_initializeImplementation() {
 	_setClassHelper(SurveySessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -566,7 +566,7 @@ void SurveySessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getActiveSurveyTool().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETACTIVESURVEYTOOL__SURVEYTOOL_:
@@ -581,7 +581,7 @@ void SurveySessionAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getOpenSurveyTool().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETOPENSURVEYTOOL__SURVEYTOOL_:

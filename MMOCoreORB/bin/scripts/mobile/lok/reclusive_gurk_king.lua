@@ -2,6 +2,7 @@ reclusive_gurk_king = Creature:new {
 	objectName = "@mob/creature_names:recluse_gurk_king",
 	socialGroup = "gurk",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 45,
 	chanceHit = 0.47,
 	damageMin = 370,
@@ -18,7 +19,7 @@ reclusive_gurk_king = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 300,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -33,15 +34,20 @@ reclusive_gurk_king = Creature:new {
 	        groups = {
 				{group = "gurk_king_common", chance = 10000000}
 			},
-			lootChance = 1900000
+			lootChance = 5000000
 		}
 	},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"posturedownattack",""},
-		{"blindattack",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"posturedownattack",""}, {"blindattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(reclusive_gurk_king, "reclusive_gurk_king")

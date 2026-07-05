@@ -2,23 +2,24 @@ elder_pulverizer = Creature:new {
 	objectName = "@mob/creature_names:bolle_bol_elder_pulverizer",
 	socialGroup = "bol",
 	faction = "",
-	level = 60,
-	chanceHit = 0.55,
-	damageMin = 470,
-	damageMax = 650,
-	baseXp = 5830,
-	baseHAM = 11000,
-	baseHAMmax = 14000,
-  armor = 3,
-	resists = {165,165,165,145,145,160,145,140,140},
+	mobType = MOB_HERBIVORE,
+	level = 30,
+	chanceHit = 0.35,
+	damageMin = 315,
+	damageMax = 340,
+	baseXp = 3005,
+	baseHAM = 8300,
+	baseHAMmax = 10100,
+	armor = 0,
+	resists = {125,125,15,15,115,-1,115,-1,-1},
 	meatType = "meat_herbivore",
-	meatAmount = 900,
+	meatAmount = 450,
 	hideType = "hide_leathery",
-	hideAmount = 600,
+	hideAmount = 300,
 	boneType = "bone_mammal",
-	boneAmount = 360,
+	boneAmount = 180,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.05,
 	ferocity = 6,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD,
@@ -29,12 +30,17 @@ elder_pulverizer = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/bolle_bol_hue.iff",
 	scale = 1.2,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"dizzyattack","stateAccuracyBonus=100"},
-		{"knockdownattack","stateAccuracyBonus=100"}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"dizzyattack",""}, {"knockdownattack",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(elder_pulverizer, "elder_pulverizer")

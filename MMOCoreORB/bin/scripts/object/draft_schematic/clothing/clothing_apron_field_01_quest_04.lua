@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_apron_field_01_quest_04 = object_draft_
    customObjectName = "Crafter\'s Apron",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 30, 
+   complexity = 1, 
    size = 1, 
 
    xpType = "crafting_clothing_general", 
@@ -76,8 +76,8 @@ object_draft_schematic_clothing_clothing_apron_field_01_quest_04 = object_draft_
              },
       
         skillMods = {
-	    {"structure_assembly", 25},
-	    {"structure_experimentation", 25},
+	    {"structure_assembly", 5},
+	    {"structure_experimentation", 5},
 	},
 
 }

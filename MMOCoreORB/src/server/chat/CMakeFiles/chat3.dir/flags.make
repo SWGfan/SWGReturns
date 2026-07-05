@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DCOMPILE_CORE3_TESTS -DDEFAULT_DYNAMIC_CAST -DODB_REFERENCES
 
-CXX_INCLUDES = -I/usr/include/lua5.3 -I/usr/include/mysql -I/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/include -I/home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googletest/include -I/home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/include -I/home/ubuntu/SWGGhosts/MMOCoreORB/src -I/home/ubuntu/SWGGhosts/MMOCoreORB/src/autogen -I/home/ubuntu/SWGGhosts/MMOCoreORB/utils -I/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/chat/../..
+CXX_INCLUDES = -I/usr/include/lua5.3 -I/usr/include/mysql -I/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src -I/home/ubuntu/StarDust-2/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include -I/home/ubuntu/StarDust-2/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include -I/home/ubuntu/StarDust-2/MMOCoreORB/src -I/home/ubuntu/StarDust-2/MMOCoreORB/src/autogen -I/home/ubuntu/StarDust-2/MMOCoreORB/utils -I/home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat/../..
 
-CXX_FLAGS = -D_FORTIFY_SOURCE=0 -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess  -march=native -fno-omit-frame-pointer -O3 -DNDEBUG -std=gnu++14
+CXX_FLAGS =  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Werror -Wno-error=stringop-overflow -faligned-new  -march=native -fno-omit-frame-pointer -O3 -DNDEBUG -std=gnu++14
 

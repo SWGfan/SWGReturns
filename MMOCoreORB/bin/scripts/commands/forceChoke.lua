@@ -42,24 +42,26 @@
 --true = 1, false = 0
 
 ForceChokeCommand = {
-	name = "forcechoke",
+  name = "forcechoke",
 
-	minDamage = 1500,
-	maxDamage = 2500,
-	speed = 2.0,
-	forceCost = 200,
-	visMod = 25,
-	forceAttack = true,
-	accuracyBonus = 100,
+  minDamage = 275,
+  maxDamage = 400,
+  speed = 2.0,
+  forceCost = 45,
+  visMod = 25,
+  forceAttack = true,
+  accuracySkillMod = "mindblast_accuracy",
+  --accuracyBonus = 95,
 
+  animation = "force_choke_1_particle_level_1",
+  animType = GENERATE_INTENSITY,
 
+  combatSpam = "forcechoke",
 
-	animation = "force_choke_1_particle_level_1",
-	animType = GENERATE_INTENSITY,
-	combatSpam = "forcechoke",
-	poolsToDamage = HEALTH_ATTRIBUTE,
-	damageType = LIGHTSABER_DAMAGE,
-	range = 12,
+  poolsToDamage = HEALTH_ATTRIBUTE,
+  damageType = KINETIC_DAMAGE,
+
+  range = 32,
 
   dotEffects = {
     DotEffect(
@@ -68,76 +70,17 @@ ForceChokeCommand = {
     HEALTH,
     true,
     -1,
-    250,
-    400,
-    35,
-    33.0,
-    0.33
-    ),
-
-    DotEffect(
-    FORCECHOKE,
-    { "", "" },
-    ACTION,
-    true,
-    -1,
-    250,
-    400,
-    35,
-    33.0,
-    0.33
-    ),
-
-    DotEffect(
-    FORCECHOKE,
-    { "", "" },
-    MIND,
-    true,
-    -1,
-    250,
-    400,
-    35,
-    33.0,
-    0.33
+     100,
+     300,
+     30,
+     100,
+     1
     )
   },
-  
-  	stateEffects = {
-	  StateEffect(
-		POSTUREDOWN_EFFECT,
-		{ "postureDownRecovery" },
-		{ "posture_change_down_defense" },
-		{},
-		100,
-		0,
-		0
-	  ),
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		30 
-	  ),
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		85, 
-		0, 
-		60
-	  )
-	},
-
-
-
-	frsLightMinDamageModifier = 1,
-	frsLightMaxDamageModifier = 4,
-	frsDarkMinDamageModifier = 3,
-	frsDarkMaxDamageModifier = 6,
+  frsLightMinDamageModifier = 1,
+  frsLightMaxDamageModifier = 2,
+  frsDarkMinDamageModifier = 1,
+  frsDarkMaxDamageModifier = 2,
 }
 
 AddCommand(ForceChokeCommand)

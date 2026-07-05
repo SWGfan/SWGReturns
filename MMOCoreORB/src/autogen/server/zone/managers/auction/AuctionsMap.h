@@ -95,7 +95,9 @@ public:
 
 	int addItem(CreatureObject* player, SceneObject* vendor, AuctionItem* item);
 
-	void deleteItem(SceneObject* vendor, AuctionItem* item);
+	void deleteItem(SceneObject* vendor, AuctionItem* item, bool deleteAuctionedObject = false);
+
+	void removeItem(SceneObject* vendor, AuctionItem* item);
 
 	AuctionItem* getItem(unsigned long long id);
 
@@ -106,10 +108,6 @@ public:
 	TerminalListVector getBazaarTerminalData(const String& planet, const String& region, SceneObject* vendor);
 
 	int getPlayerItemCount(CreatureObject* player);
-
-	int getVendorExpiredOffersCount(SceneObject* vendor, CreatureObject* player);
-
-	int getVendorExpiredItemCount(SceneObject* vendor);
 
 	int getVendorItemCount(SceneObject* vendor, bool forSaleOnly = false);
 
@@ -183,7 +181,9 @@ private:
 	int addBazaarItem(CreatureObject* player, const String& planet, const String& region, SceneObject* vendor, AuctionItem* item);
 
 public:
-	void deleteItem(SceneObject* vendor, AuctionItem* item);
+	void deleteItem(SceneObject* vendor, AuctionItem* item, bool deleteAuctionedObject = false);
+
+	void removeItem(SceneObject* vendor, AuctionItem* item);
 
 private:
 	void removeVendorItem(SceneObject* vendor, AuctionItem* item);
@@ -200,10 +200,6 @@ public:
 	TerminalListVector getBazaarTerminalData(const String& planet, const String& region, SceneObject* vendor);
 
 	int getPlayerItemCount(CreatureObject* player);
-
-	int getVendorExpiredOffersCount(SceneObject* vendor, CreatureObject* player);
-
-	int getVendorExpiredItemCount(SceneObject* vendor);
 
 	int getVendorItemCount(SceneObject* vendor, bool forSaleOnly = false);
 
@@ -271,17 +267,15 @@ public:
 
 	int addItem(CreatureObject* player, SceneObject* vendor, AuctionItem* item);
 
-	void deleteItem(SceneObject* vendor, AuctionItem* item);
+	void deleteItem(SceneObject* vendor, AuctionItem* item, bool deleteAuctionedObject);
+
+	void removeItem(SceneObject* vendor, AuctionItem* item);
 
 	AuctionItem* getItem(unsigned long long id);
 
 	bool containsItem(unsigned long long id);
 
 	int getPlayerItemCount(CreatureObject* player);
-
-	int getVendorExpiredOffersCount(SceneObject* vendor, CreatureObject* player);
-
-	int getVendorExpiredItemCount(SceneObject* vendor);
 
 	int getVendorItemCount(SceneObject* vendor, bool forSaleOnly);
 

@@ -2,6 +2,7 @@ fbase_rebel_elite_heavy_trooper = Creature:new {
 	objectName = "@mob/creature_names:fbase_rebel_elite_heavy_trooper",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_ANDROID,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 90,
@@ -35,21 +36,32 @@ fbase_rebel_elite_heavy_trooper = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "color_crystals", chance = 100000},
-				{group = "junk", chance = 6600000},
-				{group = "imppoints", chance = 500000},
-				{group = "armor_all", chance = 1100000},
+				{group = "color_crystals", chance = 300000},
+				{group = "junk", chance = 6000000},
+				{group = "holocron_dark", chance = 150000},
+				{group = "holocron_light", chance = 150000},
+				{group = "weapons_all", chance = 1050000},
+				{group = "armor_all", chance = 1050000},
 				{group = "clothing_attachments", chance = 150000},
 				{group = "armor_attachments", chance = 150000},
-				{group = "rebel_officer_common", chance = 400000},
 				{group = "wearables_all", chance = 1000000}
 			}
 		}
 	},
-	weapons = {"rebel_weapons_medium"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "rebel_carbine",
+	secondaryWeapon = "rebel_pistol",
+	thrownWeapon = "thrown_weapons",
+
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	attacks = merge(brawlermaster,marksmanmaster,riflemanmaster,teraskasinovice)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(marksmanmaster,carbineernovice),
+	secondaryAttacks = merge(marksmanmaster,pistoleernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_rebel_elite_heavy_trooper, "fbase_rebel_elite_heavy_trooper")

@@ -14,7 +14,7 @@
  *	DraftSchematicStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 237642605,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDRAFTSLOTSTO__CREATUREOBJECT_,RPC_SENDRESOURCEWEIGHTSTO__CREATUREOBJECT_,RPC_CREATEMANUFACTURESCHEMATIC__SCENEOBJECT_,RPC_SETGROUPNAME__STRING_,RPC_GETGROUPNAME__,RPC_GETDRAFTSLOTCOUNT__,RPC_ISVALIDDRAFTSCHEMATIC__,RPC_GETRESOURCEWEIGHTCOUNT__,RPC_GETCOMPLEXITY__,RPC_GETTOOLTAB__,RPC_GETSIZE__,RPC_GETXPTYPE__,RPC_GETXPAMOUNT__,RPC_GETISMAGIC__,RPC_GETASSEMBLYSKILL__,RPC_GETEXPERIMENTATIONSKILL__,RPC_GETCUSTOMIZATIONSKILL__,RPC_GETCUSTOMNAME__,RPC_GETTANOCRC__,RPC_GETTEMPLATELISTSIZE__,RPC_GETTEMPLATE__INT_,RPC_GETAPPEARANCE__INT_,RPC_GETLABRATORY__,RPC_GETFACTORYCRATESIZE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 237642605,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDRAFTSLOTSTO__CREATUREOBJECT_,RPC_SENDRESOURCEWEIGHTSTO__CREATUREOBJECT_,RPC_CREATEMANUFACTURESCHEMATIC__SCENEOBJECT_,RPC_SETGROUPNAME__STRING_,RPC_GETGROUPNAME__,RPC_GETDRAFTSLOTCOUNT__,RPC_ISVALIDDRAFTSCHEMATIC__,RPC_GETRESOURCEWEIGHTCOUNT__,RPC_GETCOMPLEXITY__,RPC_GETTOOLTAB__,RPC_GETSIZE__,RPC_GETXPTYPE__,RPC_GETXPAMOUNT__,RPC_GETISMAGIC__,RPC_GETASSEMBLYSKILL__,RPC_GETEXPERIMENTATIONSKILL__,RPC_GETCUSTOMIZATIONSKILL__,RPC_GETCUSTOMNAME__,RPC_GETTANOCRC__,RPC_GETTEMPLATELISTSIZE__,RPC_GETTEMPLATE__INT_,RPC_GETAPPEARANCE__INT_,RPC_GETLABRATORY__,RPC_GETFACTORYCRATESIZE__,RPC_GETFACTORYCRATETYPE__};
 
 DraftSchematic::DraftSchematic() : IntangibleObject(DummyConstructorParameter::instance()) {
 	DraftSchematicImplementation* _implementation = new DraftSchematicImplementation();
@@ -34,7 +34,7 @@ DraftSchematic::~DraftSchematic() {
 
 void DraftSchematic::initializeTransientMembers() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void DraftSchematic::initializeTransientMembers() {
 
 void DraftSchematic::loadTemplateData(SharedObjectTemplate* templateData) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -59,7 +59,7 @@ void DraftSchematic::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void DraftSchematic::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +69,7 @@ void DraftSchematic::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 void DraftSchematic::sendBaselinesTo(SceneObject* player) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -84,7 +84,7 @@ void DraftSchematic::sendBaselinesTo(SceneObject* player) {
 
 void DraftSchematic::sendDraftSlotsTo(CreatureObject* player) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -99,7 +99,7 @@ void DraftSchematic::sendDraftSlotsTo(CreatureObject* player) {
 
 void DraftSchematic::sendResourceWeightsTo(CreatureObject* player) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,7 +114,7 @@ void DraftSchematic::sendResourceWeightsTo(CreatureObject* player) {
 
 Reference<SceneObject* > DraftSchematic::createManufactureSchematic(SceneObject* craftingTool) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ Reference<SceneObject* > DraftSchematic::createManufactureSchematic(SceneObject*
 
 void DraftSchematic::setGroupName(const String& name) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -145,7 +145,7 @@ void DraftSchematic::setGroupName(const String& name) {
 
 String DraftSchematic::getGroupName() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -161,7 +161,7 @@ String DraftSchematic::getGroupName() {
 
 int DraftSchematic::getDraftSlotCount() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -175,7 +175,7 @@ int DraftSchematic::getDraftSlotCount() {
 
 bool DraftSchematic::isValidDraftSchematic() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -189,7 +189,7 @@ bool DraftSchematic::isValidDraftSchematic() {
 
 DraftSlot* DraftSchematic::getDraftSlot(int i) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -199,7 +199,7 @@ DraftSlot* DraftSchematic::getDraftSlot(int i) {
 
 int DraftSchematic::getResourceWeightCount() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ int DraftSchematic::getResourceWeightCount() {
 
 ResourceWeight* DraftSchematic::getResourceWeight(int i) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -223,7 +223,7 @@ ResourceWeight* DraftSchematic::getResourceWeight(int i) {
 
 float DraftSchematic::getComplexity() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -237,7 +237,7 @@ float DraftSchematic::getComplexity() {
 
 unsigned int DraftSchematic::getToolTab() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -251,7 +251,7 @@ unsigned int DraftSchematic::getToolTab() {
 
 float DraftSchematic::getSize() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -265,7 +265,7 @@ float DraftSchematic::getSize() {
 
 String DraftSchematic::getXpType() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -281,7 +281,7 @@ String DraftSchematic::getXpType() {
 
 int DraftSchematic::getXpAmount() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -295,7 +295,7 @@ int DraftSchematic::getXpAmount() {
 
 bool DraftSchematic::getIsMagic() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -309,7 +309,7 @@ bool DraftSchematic::getIsMagic() {
 
 String DraftSchematic::getAssemblySkill() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -325,7 +325,7 @@ String DraftSchematic::getAssemblySkill() {
 
 String DraftSchematic::getExperimentationSkill() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -341,7 +341,7 @@ String DraftSchematic::getExperimentationSkill() {
 
 String DraftSchematic::getCustomizationSkill() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -357,7 +357,7 @@ String DraftSchematic::getCustomizationSkill() {
 
 String DraftSchematic::getCustomName() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -373,7 +373,7 @@ String DraftSchematic::getCustomName() {
 
 unsigned int DraftSchematic::getTanoCRC() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -387,7 +387,7 @@ unsigned int DraftSchematic::getTanoCRC() {
 
 int DraftSchematic::getTemplateListSize() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -401,7 +401,7 @@ int DraftSchematic::getTemplateListSize() {
 
 String DraftSchematic::getTemplate(int i) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -418,7 +418,7 @@ String DraftSchematic::getTemplate(int i) {
 
 String DraftSchematic::getAppearance(int i) {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -435,7 +435,7 @@ String DraftSchematic::getAppearance(int i) {
 
 DraftSchematicObjectTemplate* DraftSchematic::getDraftSchematicTemplate() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -445,7 +445,7 @@ DraftSchematicObjectTemplate* DraftSchematic::getDraftSchematicTemplate() {
 
 int DraftSchematic::getLabratory() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -459,7 +459,7 @@ int DraftSchematic::getLabratory() {
 
 int DraftSchematic::getFactoryCrateSize() {
 	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -468,6 +468,22 @@ int DraftSchematic::getFactoryCrateSize() {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getFactoryCrateSize();
+	}
+}
+
+String DraftSchematic::getFactoryCrateType() {
+	DraftSchematicImplementation* _implementation = static_cast<DraftSchematicImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETFACTORYCRATETYPE__);
+
+		String _return_getFactoryCrateType;
+		method.executeWithAsciiReturn(_return_getFactoryCrateType);
+		return _return_getFactoryCrateType;
+	} else {
+		return _implementation->getFactoryCrateType();
 	}
 }
 
@@ -504,7 +520,7 @@ void DraftSchematicImplementation::finalize() {
 void DraftSchematicImplementation::_initializeImplementation() {
 	_setClassHelper(DraftSchematicHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -613,7 +629,7 @@ void DraftSchematicImplementation::writeJSON(nlohmann::json& j) {
 DraftSchematicImplementation::DraftSchematicImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/draftschematic/DraftSchematic.idl():  		schematicTemplate = null;
-	schematicTemplate = nullptr;
+	schematicTemplate = NULL;
 	// server/zone/objects/draftschematic/DraftSchematic.idl():  		groupName = "";
 	groupName = "";
 	// server/zone/objects/draftschematic/DraftSchematic.idl():  		Logger.setLoggingName("DraftSchematic");
@@ -631,8 +647,8 @@ String DraftSchematicImplementation::getGroupName() {
 }
 
 bool DraftSchematicImplementation::isValidDraftSchematic() {
-	// server/zone/objects/draftschematic/DraftSchematic.idl():  		return schematicTemplate != null;
-	return schematicTemplate != nullptr;
+	// server/zone/objects/draftschematic/DraftSchematic.idl():  		return schematicTemplate;
+	return schematicTemplate;
 }
 
 int DraftSchematicImplementation::getTemplateListSize() {
@@ -706,7 +722,7 @@ void DraftSchematicAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			SceneObject* craftingTool = static_cast<SceneObject*>(inv->getObjectParameter());
 			
 			DistributedObject* _m_res = createManufactureSchematic(craftingTool);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_SETGROUPNAME__STRING_:
@@ -859,6 +875,13 @@ void DraftSchematicAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_GETFACTORYCRATETYPE__:
+		{
+			
+			String _m_res = getFactoryCrateType();
+			resp->insertAscii(_m_res);
+		}
+		break;
 	default:
 		IntangibleObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -966,6 +989,10 @@ int DraftSchematicAdapter::getLabratory() {
 
 int DraftSchematicAdapter::getFactoryCrateSize() {
 	return (static_cast<DraftSchematic*>(stub))->getFactoryCrateSize();
+}
+
+String DraftSchematicAdapter::getFactoryCrateType() {
+	return (static_cast<DraftSchematic*>(stub))->getFactoryCrateType();
 }
 
 /*

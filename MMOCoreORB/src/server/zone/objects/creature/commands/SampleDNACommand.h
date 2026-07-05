@@ -6,6 +6,7 @@
 #define SAMPLEDNACOMMAND_H_
 
 #include "server/zone/objects/scene/SceneObject.h"
+#include "server/zone/objects/creature/ai/Creature.h"
 
 class SampleDNACommand : public QueueCommand {
 public:
@@ -64,8 +65,8 @@ public:
 			return INVALIDTARGET;
 		}
 
-		// Sample DNa is a 25M max range
-		if (!checkDistance(object, creature, 25.0f)){
+		// Sample DNa is a 16M max range
+		if (!checkDistance(object, creature, 16.0f)){
 			player->sendSystemMessage("@bio_engineer:harvest_dna_out_of_range"); // Your target is too far away to be able to sample from.
 			return TOOFAR;
 		}

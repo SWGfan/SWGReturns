@@ -32,7 +32,7 @@ LairObserver::~LairObserver() {
 
 int LairObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ int LairObserver::notifyObserverEvent(unsigned int eventType, Observable* observ
 
 void LairObserver::notifyDestruction(TangibleObject* lair, TangibleObject* attacker, int condition) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -67,7 +67,7 @@ void LairObserver::notifyDestruction(TangibleObject* lair, TangibleObject* attac
 
 bool LairObserver::checkForNewSpawns(TangibleObject* lair, TangibleObject* attacker, bool forceSpawn) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,14 +78,14 @@ bool LairObserver::checkForNewSpawns(TangibleObject* lair, TangibleObject* attac
 
 		return method.executeWithBooleanReturn();
 	} else {
-		assert((lair == nullptr) || lair->isLockedByCurrentThread());
+		assert((lair == NULL) || lair->isLockedByCurrentThread());
 		return _implementation->checkForNewSpawns(lair, attacker, forceSpawn);
 	}
 }
 
 void LairObserver::healLair(TangibleObject* lair, TangibleObject* attacker) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ void LairObserver::healLair(TangibleObject* lair, TangibleObject* attacker) {
 
 void LairObserver::checkForHeal(TangibleObject* lair, TangibleObject* attacker, bool forceNewUpdate) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -118,7 +118,7 @@ void LairObserver::checkForHeal(TangibleObject* lair, TangibleObject* attacker, 
 
 void LairObserver::doAggro(TangibleObject* lair, TangibleObject* attacker, bool allAttack) {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +135,7 @@ void LairObserver::doAggro(TangibleObject* lair, TangibleObject* attacker, bool 
 
 bool LairObserver::isLairObserver() {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +149,7 @@ bool LairObserver::isLairObserver() {
 
 int LairObserver::getLivingCreatureCount() {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +163,7 @@ int LairObserver::getLivingCreatureCount() {
 
 int LairObserver::getMobType() {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -177,7 +177,7 @@ int LairObserver::getMobType() {
 
 int LairObserver::getSpawnNumber() {
 	LairObserverImplementation* _implementation = static_cast<LairObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -222,7 +222,7 @@ void LairObserverImplementation::finalize() {
 void LairObserverImplementation::_initializeImplementation() {
 	_setClassHelper(LairObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -339,7 +339,7 @@ LairObserverImplementation::LairObserverImplementation() : SpawnObserverImplemen
 	// server/zone/managers/creature/LairObserver.idl():  		Logger.setLoggingName("LairObserver");
 	Logger::setLoggingName("LairObserver");
 	// server/zone/managers/creature/LairObserver.idl():  		healLairEvent = null;
-	healLairEvent = nullptr;
+	healLairEvent = NULL;
 	// server/zone/managers/creature/LairObserver.idl():  		spawnNumber.set(0);
 	(&spawnNumber)->set(0);
 }

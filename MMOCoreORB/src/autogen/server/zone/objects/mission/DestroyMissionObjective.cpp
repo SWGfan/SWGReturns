@@ -8,10 +8,6 @@
 
 #include "server/zone/objects/mission/MissionObserver.h"
 
-#include "server/zone/objects/area/MissionSpawnActiveArea.h"
-
-#include "server/zone/objects/tangible/LairObject.h"
-
 #include "server/zone/Zone.h"
 
 /*
@@ -204,6 +200,16 @@ Vector3 DestroyMissionObjective::getEndPosition() {
 	}
 }
 
+void DestroyMissionObjective::addMissionStats(TransactionLog& trx) {
+	DestroyMissionObjectiveImplementation* _implementation = static_cast<DestroyMissionObjectiveImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->addMissionStats(trx);
+	}
+}
+
 DistributedObjectServant* DestroyMissionObjective::_getImplementation() {
 
 	 if (!_updated) _updated = true;
@@ -332,6 +338,10 @@ bool DestroyMissionObjectiveImplementation::readObjectMember(ObjectInputStream* 
 		TypeInfo<int >::parseFromBinaryStream(&difficulty, stream);
 		return true;
 
+	case 0x343af369: //DestroyMissionObjective.lairSpawnTime
+		TypeInfo<Time >::parseFromBinaryStream(&lairSpawnTime, stream);
+		return true;
+
 	}
 
 	return false;
@@ -395,6 +405,15 @@ int DestroyMissionObjectiveImplementation::writeObjectMembers(ObjectOutputStream
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0x343af369; //DestroyMissionObjective.lairSpawnTime
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Time >::toBinaryStream(&lairSpawnTime, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -412,6 +431,8 @@ void DestroyMissionObjectiveImplementation::writeJSON(nlohmann::json& j) {
 	thisObject["difficultyLevel"] = difficultyLevel;
 
 	thisObject["difficulty"] = difficulty;
+
+	thisObject["lairSpawnTime"] = lairSpawnTime;
 
 	j["DestroyMissionObjective"] = thisObject;
 }
@@ -432,6 +453,8 @@ void DestroyMissionObjectiveImplementation::finalize() {
 void DestroyMissionObjectiveImplementation::initializeTransientMembers() {
 	// server/zone/objects/mission/DestroyMissionObjective.idl():  		super.initializeTransientMembers();
 	MissionObjectiveImplementation::initializeTransientMembers();
+	// server/zone/objects/mission/DestroyMissionObjective.idl():  		lairSpawnTime.updateToCurrentTime();
+	(&lairSpawnTime)->updateToCurrentTime();
 	// server/zone/objects/mission/DestroyMissionObjective.idl():  		Logger.setLoggingName("DestroyMissionObjective");
 	Logger::setLoggingName("DestroyMissionObjective");
 }
@@ -654,6 +677,9 @@ void DestroyMissionObjectivePOD::writeJSON(nlohmann::json& j) {
 	if (difficulty)
 		thisObject["difficulty"] = difficulty.value();
 
+	if (lairSpawnTime)
+		thisObject["lairSpawnTime"] = lairSpawnTime.value();
+
 	j["DestroyMissionObjective"] = thisObject;
 }
 
@@ -726,6 +752,17 @@ int DestroyMissionObjectivePOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (lairSpawnTime) {
+	_nameHashCode = 0x343af369; //DestroyMissionObjective.lairSpawnTime
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Time >::toBinaryStream(&lairSpawnTime.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -775,6 +812,14 @@ bool DestroyMissionObjectivePOD::readObjectMember(ObjectInputStream* stream, con
 		}
 		return true;
 
+	case 0x343af369: //DestroyMissionObjective.lairSpawnTime
+		{
+			Time _mnlairSpawnTime;
+			TypeInfo<Time >::parseFromBinaryStream(&_mnlairSpawnTime, stream);
+			lairSpawnTime = std::move(_mnlairSpawnTime);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -810,6 +855,8 @@ void DestroyMissionObjectivePOD::writeObjectCompact(ObjectOutputStream* stream) 
 	TypeInfo<int >::toBinaryStream(&difficultyLevel.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&difficulty.value(), stream);
+
+	TypeInfo<Time >::toBinaryStream(&lairSpawnTime.value(), stream);
 
 
 }

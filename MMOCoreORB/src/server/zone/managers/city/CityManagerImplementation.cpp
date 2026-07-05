@@ -769,7 +769,7 @@ void CityManagerImplementation::processCityUpdate(CityRegion* city) {
 			Reference<PlayerObject*> ghost = mayor->getSlottedObject("ghost").castTo<PlayerObject*> ();
 
 			if (ghost != nullptr) {
-				ghost->addExperience("political", 3000, true);
+				{ TransactionLog trx(TrxCode::EXPERIENCE, ghost); ghost->addExperience(trx, "political", 3000, true); }
 			}
 		}
 		updateCityVoting(city);
@@ -1156,7 +1156,7 @@ void CityManagerImplementation::updateCityVoting(CityRegion* city, bool override
 			Reference<PlayerObject*> ghost = mayorObject->getSlottedObject("ghost").castTo<PlayerObject*>();
 
 			if (ghost != nullptr) {
-				ghost->addExperience("political", votes * 3000, true);
+				{ TransactionLog trx(TrxCode::EXPERIENCE, ghost); ghost->addExperience(trx, "political", votes * 3000, true); }
 			}
 
 			if (votes > topVotes || (votes == topVotes && candidateID == incumbentID)) {
@@ -1187,7 +1187,7 @@ void CityManagerImplementation::updateCityVoting(CityRegion* city, bool override
 			CreatureObject* oldmayorCreo = cast<CreatureObject*> (oldmayor.get());
 
 			if (oldmayorCreo != nullptr) {
-				Time* cooldownTime = oldmayorCreo->getCooldownTime("city_specialization");
+				const Time* cooldownTime = oldmayorCreo->getCooldownTime("city_specialization");
 				int64 miliDiff = 0;
 
 				if (cooldownTime != nullptr) {

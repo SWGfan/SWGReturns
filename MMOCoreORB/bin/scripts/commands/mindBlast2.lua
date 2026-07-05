@@ -44,76 +44,58 @@
 MindBlast2Command = {
 	name = "mindblast2",
 
-	minDamage = 500,
-	maxDamage = 800,
+	minDamage = 750,
+	maxDamage = 1200,
 	speed = 2.0,
-	forceCost = 160,
+	forceCost = 55,
 	visMod = 25,
 	accuracySkillMod = "mindblast_accuracy";
-	coneAngle = 40,
-	coneAction = true,
-  
-	dotEffects = {
-	  DotEffect( 
-		BLEEDING, 
-		{ "resistance_bleeding", "bleed_resist" },
-		MIND,
-		true,
-		0,
-		100,
-		60, 
-		60
-	  )
-	},  
+	--coneAngle = 40,
+	--coneAction = true,
 
 	stateEffects = {
-		StateEffect(
-			STUN_EFFECT,
-			{},
-			{},
-			{ "jedi_state_defense" },
-			55,
-			0,
-			10
-		),
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "jedi_state_defense" },
+		{},
+		55,
+		0,
+		10
+	  ),
 
-		StateEffect(
-			BLIND_EFFECT,
-			{},
-			{},
-			{ "jedi_state_defense" },
-			55,
-			0,
-			10
-		),
+	  StateEffect(
+		BLIND_EFFECT,
+		{},
+		{ "jedi_state_defense" },
+		{},
+		55,
+		0,
+		10
+	  ),
 
-		StateEffect(
-			DIZZY_EFFECT,
-			{},
-			{},
-			{ "jedi_state_defense" },
-			55,
-			0,
-			10
-		)
+	  StateEffect(
+		DIZZY_EFFECT,
+		{},
+		{ "jedi_state_defense" },
+		{},
+		55,
+		0,
+		10
+	  )
 	},
 
-	animation = "force_mind_blast_1_arc_particle_level_1",
+	animation = "force_mind_blast_1_arc_particle_level_1", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "mindblast2",
 
-	poolsToDamage = MIND_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	forceAttack = true,
-	damageType = LIGHTSABER_DAMAGE,
+	damageType = STUN_DAMAGE,
 
-	frsLightMinDamageModifier = 2,
-	frsLightMaxDamageModifier = 3,
-	frsDarkMinDamageModifier = 2,
-	frsDarkMaxDamageModifier = 3,
-
-	range = 12
+	range = 32
 }
 
 AddCommand(MindBlast2Command)

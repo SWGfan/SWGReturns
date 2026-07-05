@@ -178,7 +178,7 @@ public:
 
 	void setPublic();
 
-	bool isPublic();
+	bool isPublic() const;
 
 	bool isPrivate();
 
@@ -420,7 +420,7 @@ public:
 
 	void setPublic();
 
-	bool isPublic();
+	bool isPublic() const;
 
 	bool isPrivate();
 
@@ -608,7 +608,7 @@ public:
 
 	void setPublic();
 
-	bool isPublic();
+	bool isPublic() const;
 
 	bool isPrivate();
 

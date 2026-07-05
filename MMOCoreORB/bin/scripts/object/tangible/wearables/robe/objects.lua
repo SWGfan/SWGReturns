@@ -40,6 +40,15 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
+object_tangible_wearables_robe_shared_robe_tusken_raider_s01_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_tusken_raider_s01_crafted.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_tusken_raider_s01_crafted, 
+"object/tangible/wearables/robe/shared_robe_tusken_raider_s01_crafted.iff")
+
+object_tangible_wearables_robe_shared_robe_tusken_raider_s02_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_tusken_raider_s02_crafted.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_tusken_raider_s02_crafted, 
+"object/tangible/wearables/robe/shared_robe_tusken_raider_s02_crafted.iff")
 
 object_tangible_wearables_robe_shared_aakuan_robe = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/wearables/robe/shared_aakuan_robe.iff"
@@ -1457,264 +1466,57 @@ object_tangible_wearables_robe_shared_robe_tusken_raider_s02 = SharedTangibleObj
 
 ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_tusken_raider_s02, "object/tangible/wearables/robe/shared_robe_tusken_raider_s02.iff")
 
---****************************************************************************************
-
-object_tangible_wearables_robe_shared_robe_jedi_black_01 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_black_01.iff"
-}
-
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_black_01, "object/tangible/wearables/robe/shared_robe_jedi_black_01.iff")
-
---****************************************************************************************
-
-object_tangible_wearables_robe_shared_robe_jedi_black_02 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_black_02.iff"
-}
-
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_black_02, "object/tangible/wearables/robe/shared_robe_jedi_black_02.iff")
-
---********************************************
+-- New Jedi Robes
 
 object_tangible_wearables_robe_shared_robe_s32 = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_s32.iff"
 }
 ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_s32, "object/tangible/wearables/robe/shared_robe_s32.iff")
-
---********************************************
+--*********************************************************************************
+object_tangible_wearables_robe_shared_robe_s33 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_s33.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_s33, "object/tangible/wearables/robe/shared_robe_s33.iff")
+--*********************************************************************************
 
 object_tangible_wearables_robe_shared_robe_s32_h1 = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_s32_h1.iff"
 }
 ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_s32_h1, "object/tangible/wearables/robe/shared_robe_s32_h1.iff")
-
---********************************************
-
-object_tangible_wearables_robe_shared_robe_s33 = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_s33.iff"
-}
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_s33, "object/tangible/wearables/robe/shared_robe_s33.iff")
-
---********************************************
+--*********************************************************************************
 
 object_tangible_wearables_robe_shared_robe_s33_h1 = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_s33_h1.iff"
 }
 ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_s33_h1, "object/tangible/wearables/robe/shared_robe_s33_h1.iff")
+--*********************************************************************************
 
-object_tangible_wearables_robe_shared_robe_jedi_tan_01 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_tan_01.iff"
+object_tangible_wearables_robe_shared_exar_cultist_hood_down = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_exar_cultist_hood_down.iff"
 }
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_exar_cultist_hood_down, "object/tangible/wearables/robe/shared_exar_cultist_hood_down.iff")
+--*********************************************************************************
 
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_tan_01, "object/tangible/wearables/robe/shared_robe_jedi_tan_01.iff")
-
-object_tangible_wearables_robe_shared_robe_jedi_tan_02 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_tan_02.iff"
+object_tangible_wearables_robe_shared_exar_cultist_hood_up = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_exar_cultist_hood_up.iff"
 }
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_exar_cultist_hood_up, "object/tangible/wearables/robe/shared_exar_cultist_hood_up.iff")
+--*********************************************************************************
 
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_tan_02, "object/tangible/wearables/robe/shared_robe_jedi_tan_02.iff")
-
-object_tangible_wearables_robe_shared_robe_jedi_gray_01 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_gray_01.iff"
+object_tangible_wearables_robe_shared_robe_jedi_padawan_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_padawan_crafted.iff"
 }
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_padawan_crafted, "object/tangible/wearables/robe/shared_robe_jedi_padawan_crafted.iff")
+--*********************************************************************************
 
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_gray_01, "object/tangible/wearables/robe/shared_robe_jedi_gray_01.iff")
-
-object_tangible_wearables_robe_shared_robe_jedi_gray_02 = SharedTangibleObjectTemplate:new {
-clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_gray_02.iff"
+object_tangible_wearables_robe_shared_robe_jedi_dark_s01_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark_s01_crafted.iff"
 }
-
-ObjectTemplates: addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_gray_02, "object/tangible/wearables/robe/shared_robe_jedi_gray_02.iff")
-
-
-
-
-
-object_tangible_wearables_robe_shared_robe_jedi_dark2_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark2_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark2_s05, "object/tangible/wearables/robe/shared_robe_jedi_dark2_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_dark2_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark2_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark2_s04, "object/tangible/wearables/robe/shared_robe_jedi_dark2_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_dark2_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark2_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark2_s03, "object/tangible/wearables/robe/shared_robe_jedi_dark2_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_dark2_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark2_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark2_s02, "object/tangible/wearables/robe/shared_robe_jedi_dark2_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_dark2_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_dark2_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark2_s01, "object/tangible/wearables/robe/shared_robe_jedi_dark2_s01.iff")
-
--------
-
-
--------
-
-object_tangible_wearables_robe_shared_robe_jedi_grey2_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey2_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey2_s05, "object/tangible/wearables/robe/shared_robe_jedi_grey2_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey2_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey2_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey2_s04, "object/tangible/wearables/robe/shared_robe_jedi_grey2_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey2_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey2_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey2_s03, "object/tangible/wearables/robe/shared_robe_jedi_grey2_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey2_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey2_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey2_s02, "object/tangible/wearables/robe/shared_robe_jedi_grey2_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey2_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey2_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey2_s01, "object/tangible/wearables/robe/shared_robe_jedi_grey2_s01.iff")
-
--------
-
--------
-
-object_tangible_wearables_robe_shared_robe_jedi_light2_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light2_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light2_s05, "object/tangible/wearables/robe/shared_robe_jedi_light2_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_light2_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light2_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light2_s04, "object/tangible/wearables/robe/shared_robe_jedi_light2_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_light2_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light2_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light2_s03, "object/tangible/wearables/robe/shared_robe_jedi_light2_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_light2_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light2_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light2_s02, "object/tangible/wearables/robe/shared_robe_jedi_light2_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_light2_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light2_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light2_s01, "object/tangible/wearables/robe/shared_robe_jedi_light2_s01.iff")
-
--------
-
--------
-
-object_tangible_wearables_robe_shared_robe_jedi_sith2_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith2_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith2_s05, "object/tangible/wearables/robe/shared_robe_jedi_sith2_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith2_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith2_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith2_s04, "object/tangible/wearables/robe/shared_robe_jedi_sith2_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith2_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith2_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith2_s03, "object/tangible/wearables/robe/shared_robe_jedi_sith2_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith2_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith2_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith2_s02, "object/tangible/wearables/robe/shared_robe_jedi_sith2_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith2_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith2_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith2_s01, "object/tangible/wearables/robe/shared_robe_jedi_sith2_s01.iff")
-
--------
-
--------
-
-object_tangible_wearables_robe_shared_robe_jedi_grey_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey_s05, "object/tangible/wearables/robe/shared_robe_jedi_grey_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey_s04, "object/tangible/wearables/robe/shared_robe_jedi_grey_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey_s03, "object/tangible/wearables/robe/shared_robe_jedi_grey_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey_s02, "object/tangible/wearables/robe/shared_robe_jedi_grey_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_grey_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_grey_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_grey_s01, "object/tangible/wearables/robe/shared_robe_jedi_grey_s01.iff")
-
--------
--------
-
-object_tangible_wearables_robe_shared_robe_jedi_sith_s05 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith_s05.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith_s05, "object/tangible/wearables/robe/shared_robe_jedi_sith_s05.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith_s04 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith_s04.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith_s04, "object/tangible/wearables/robe/shared_robe_jedi_sith_s04.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith_s03 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith_s03.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith_s03, "object/tangible/wearables/robe/shared_robe_jedi_sith_s03.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith_s02 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith_s02.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith_s02, "object/tangible/wearables/robe/shared_robe_jedi_sith_s02.iff")
-
-
-object_tangible_wearables_robe_shared_robe_jedi_sith_s01 = SharedTangibleObjectTemplate:new {clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_sith_s01.iff"}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_sith_s01, "object/tangible/wearables/robe/shared_robe_jedi_sith_s01.iff")
-
--------
-
-object_tangible_wearables_robe_shared_robe_revan = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_revan.iff"
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_dark_s01_crafted, "object/tangible/wearables/robe/shared_robe_jedi_dark_s01_crafted.iff")
+--*********************************************************************************
+
+object_tangible_wearables_robe_shared_robe_jedi_light_s01_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_jedi_light_s01_crafted.iff"
 }
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_revan, "object/tangible/wearables/robe/shared_robe_revan.iff")
-
-object_tangible_wearables_robe_shared_robe_atris = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_atris.iff"
-}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_atris, "object/tangible/wearables/robe/shared_robe_atris.iff")
-
-object_tangible_wearables_robe_shared_robe_starforge = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_starforge.iff"
-}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_starforge, "object/tangible/wearables/robe/shared_robe_starforge.iff")
-
-object_tangible_wearables_robe_shared_robe_swtor = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/robe/shared_robe_swtor.iff"
-}
-
-ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_swtor, "object/tangible/wearables/robe/shared_robe_swtor.iff")
+ObjectTemplates:addClientTemplate(object_tangible_wearables_robe_shared_robe_jedi_light_s01_crafted, "object/tangible/wearables/robe/shared_robe_jedi_light_s01_crafted.iff")
+--*********************************************************************************

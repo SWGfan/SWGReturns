@@ -57,13 +57,23 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -132,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles /home/ubuntu/SWGGhosts/MMOCoreORB//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -288,7 +298,7 @@ gmock: cmake_check_build_system
 
 # fast build rule for target.
 gmock/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.8.0/googlemock/CMakeFiles/gmock.dir/build.make utils/googletest-release-1.8.0/googlemock/CMakeFiles/gmock.dir/build
+	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock.dir/build.make utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock.dir/build
 .PHONY : gmock/fast
 
 #=============================================================================
@@ -301,7 +311,7 @@ gmock_main: cmake_check_build_system
 
 # fast build rule for target.
 gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.8.0/googlemock/CMakeFiles/gmock_main.dir/build.make utils/googletest-release-1.8.0/googlemock/CMakeFiles/gmock_main.dir/build
+	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock_main.dir/build.make utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock_main.dir/build
 .PHONY : gmock_main/fast
 
 #=============================================================================
@@ -314,7 +324,7 @@ gtest: cmake_check_build_system
 
 # fast build rule for target.
 gtest/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.8.0/googlemock/gtest/CMakeFiles/gtest.dir/build.make utils/googletest-release-1.8.0/googlemock/gtest/CMakeFiles/gtest.dir/build
+	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googletest/CMakeFiles/gtest.dir/build.make utils/googletest-release-1.10.0/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
 #=============================================================================
@@ -327,7 +337,7 @@ gtest_main: cmake_check_build_system
 
 # fast build rule for target.
 gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.8.0/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make utils/googletest-release-1.8.0/googlemock/gtest/CMakeFiles/gtest_main.dir/build
+	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googletest/CMakeFiles/gtest_main.dir/build.make utils/googletest-release-1.10.0/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
 #=============================================================================
@@ -342,19 +352,6 @@ idlobjects: cmake_check_build_system
 idlobjects/fast:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/idlobjects.dir/build.make src/CMakeFiles/idlobjects.dir/build
 .PHONY : idlobjects/fast
-
-#=============================================================================
-# Target rules for targets named core3tests
-
-# Build rule for target.
-core3tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core3tests
-.PHONY : core3tests
-
-# fast build rule for target.
-core3tests/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/core3tests.dir/build.make src/CMakeFiles/core3tests.dir/build
-.PHONY : core3tests/fast
 
 #=============================================================================
 # Target rules for targets named core3
@@ -550,6 +547,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... compdb"
 	@echo "... engine3compdb"
 	@echo "... engine3idl"
@@ -566,7 +564,6 @@ help:
 	@echo "... core3pathfinding"
 	@echo "... core3templates"
 	@echo "... core3terrain"
-	@echo "... core3tests"
 	@echo "... db3"
 	@echo "... engine3"
 	@echo "... gmock"

@@ -32,7 +32,7 @@ DnaComponent::~DnaComponent() {
 
 void DnaComponent::setStats(int cle, int end, int fie, int pow, int ite, int cou, int dep, int dex, int frt, int har) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ void DnaComponent::setStats(int cle, int end, int fie, int pow, int ite, int cou
 
 void DnaComponent::setSpecialResist(int type) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ void DnaComponent::setSpecialResist(int type) {
 
 bool DnaComponent::isSpecialResist(int type) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ bool DnaComponent::isSpecialResist(int type) {
 
 void DnaComponent::setCleverness(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -101,7 +101,7 @@ void DnaComponent::setCleverness(int value) {
 
 int DnaComponent::getCleverness() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ int DnaComponent::getCleverness() {
 
 void DnaComponent::setLevel(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -130,7 +130,7 @@ void DnaComponent::setLevel(int value) {
 
 int DnaComponent::getLevel() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +144,7 @@ int DnaComponent::getLevel() {
 
 void DnaComponent::setEndurance(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +159,7 @@ void DnaComponent::setEndurance(int value) {
 
 int DnaComponent::getEndurance() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -173,7 +173,7 @@ int DnaComponent::getEndurance() {
 
 void DnaComponent::setFierceness(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -188,7 +188,7 @@ void DnaComponent::setFierceness(int value) {
 
 int DnaComponent::getFierceness() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +202,7 @@ int DnaComponent::getFierceness() {
 
 void DnaComponent::setPower(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -217,7 +217,7 @@ void DnaComponent::setPower(int value) {
 
 int DnaComponent::getPower() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -231,7 +231,7 @@ int DnaComponent::getPower() {
 
 void DnaComponent::setIntellect(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -246,7 +246,7 @@ void DnaComponent::setIntellect(int value) {
 
 int DnaComponent::getIntellect() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -260,7 +260,7 @@ int DnaComponent::getIntellect() {
 
 void DnaComponent::setCourage(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -275,7 +275,7 @@ void DnaComponent::setCourage(int value) {
 
 int DnaComponent::getCourage() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -289,7 +289,7 @@ int DnaComponent::getCourage() {
 
 void DnaComponent::setDependency(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -304,7 +304,7 @@ void DnaComponent::setDependency(int value) {
 
 int DnaComponent::getDependency() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -318,7 +318,7 @@ int DnaComponent::getDependency() {
 
 void DnaComponent::setDexterity(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -333,7 +333,7 @@ void DnaComponent::setDexterity(int value) {
 
 int DnaComponent::getDexterity() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -347,7 +347,7 @@ int DnaComponent::getDexterity() {
 
 void DnaComponent::setFortitude(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -362,7 +362,7 @@ void DnaComponent::setFortitude(int value) {
 
 int DnaComponent::getForititude() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -376,7 +376,7 @@ int DnaComponent::getForititude() {
 
 void DnaComponent::setHardiness(int value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -391,7 +391,7 @@ void DnaComponent::setHardiness(int value) {
 
 int DnaComponent::getHardiness() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -405,7 +405,7 @@ int DnaComponent::getHardiness() {
 
 void DnaComponent::setEnergy(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -420,7 +420,7 @@ void DnaComponent::setEnergy(float value) {
 
 float DnaComponent::getEnergy() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -434,7 +434,7 @@ float DnaComponent::getEnergy() {
 
 void DnaComponent::setBlast(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -449,7 +449,7 @@ void DnaComponent::setBlast(float value) {
 
 float DnaComponent::getBlast() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -463,7 +463,7 @@ float DnaComponent::getBlast() {
 
 void DnaComponent::setCold(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -478,7 +478,7 @@ void DnaComponent::setCold(float value) {
 
 float DnaComponent::getCold() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -492,7 +492,7 @@ float DnaComponent::getCold() {
 
 void DnaComponent::setHeat(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -507,7 +507,7 @@ void DnaComponent::setHeat(float value) {
 
 float DnaComponent::getHeat() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -521,7 +521,7 @@ float DnaComponent::getHeat() {
 
 void DnaComponent::setElectric(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -536,7 +536,7 @@ void DnaComponent::setElectric(float value) {
 
 float DnaComponent::getElectric() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -550,7 +550,7 @@ float DnaComponent::getElectric() {
 
 void DnaComponent::setAcid(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -565,7 +565,7 @@ void DnaComponent::setAcid(float value) {
 
 float DnaComponent::getAcid() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -579,7 +579,7 @@ float DnaComponent::getAcid() {
 
 void DnaComponent::setStun(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -594,7 +594,7 @@ void DnaComponent::setStun(float value) {
 
 float DnaComponent::getStun() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -608,7 +608,7 @@ float DnaComponent::getStun() {
 
 void DnaComponent::setSaber(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,7 +623,7 @@ void DnaComponent::setSaber(float value) {
 
 float DnaComponent::getSaber() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -637,7 +637,7 @@ float DnaComponent::getSaber() {
 
 void DnaComponent::setArmorRating(int rating) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -652,7 +652,7 @@ void DnaComponent::setArmorRating(int rating) {
 
 void DnaComponent::setKinetic(float value) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -667,7 +667,7 @@ void DnaComponent::setKinetic(float value) {
 
 float DnaComponent::getKinetic() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -681,7 +681,7 @@ float DnaComponent::getKinetic() {
 
 void DnaComponent::setSource(const String& src) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -696,7 +696,7 @@ void DnaComponent::setSource(const String& src) {
 
 void DnaComponent::setSpecialAttackOne(const String& atk) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -711,7 +711,7 @@ void DnaComponent::setSpecialAttackOne(const String& atk) {
 
 String DnaComponent::getSpecialAttackOne() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -727,7 +727,7 @@ String DnaComponent::getSpecialAttackOne() {
 
 void DnaComponent::setSpecialAttackTwo(const String& atk) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -742,7 +742,7 @@ void DnaComponent::setSpecialAttackTwo(const String& atk) {
 
 String DnaComponent::getSpecialAttackTwo() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -758,7 +758,7 @@ String DnaComponent::getSpecialAttackTwo() {
 
 void DnaComponent::setRanged(bool b) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -773,7 +773,7 @@ void DnaComponent::setRanged(bool b) {
 
 bool DnaComponent::isRanged() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -787,7 +787,7 @@ bool DnaComponent::isRanged() {
 
 void DnaComponent::setQuality(int qual) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -802,7 +802,7 @@ void DnaComponent::setQuality(int qual) {
 
 unsigned int DnaComponent::getQuality() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -816,7 +816,7 @@ unsigned int DnaComponent::getQuality() {
 
 void DnaComponent::initializeTransientMembers() {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -830,7 +830,7 @@ void DnaComponent::initializeTransientMembers() {
 
 void DnaComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -840,7 +840,7 @@ void DnaComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate
 
 void DnaComponent::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -850,7 +850,7 @@ void DnaComponent::fillAttributeList(AttributeListMessage* msg, CreatureObject* 
 
 String DnaComponent::convertSpecialAttack(String& attackName) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -867,7 +867,7 @@ String DnaComponent::convertSpecialAttack(String& attackName) {
 
 String DnaComponent::resistValue(float input) {
 	DnaComponentImplementation* _implementation = static_cast<DnaComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -915,7 +915,7 @@ void DnaComponentImplementation::finalize() {
 void DnaComponentImplementation::_initializeImplementation() {
 	_setClassHelper(DnaComponentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

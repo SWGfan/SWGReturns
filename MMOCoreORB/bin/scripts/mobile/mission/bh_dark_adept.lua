@@ -2,16 +2,17 @@ bh_dark_adept = Creature:new {
 	objectName = "@mob/creature_names:dark_adept",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "dark_jedi",
 	faction = "",
-	level = 300,
+	level = 120,
 	chanceHit = 4.75,
 	damageMin = 945,
-	damageMax = 1200,
+	damageMax = 1600,
 	baseXp = 13178,
-	baseHAM = 50000,
-	baseHAMmax = 61000,
-	armor = 2,
+	baseHAM = 65000,
+	baseHAMmax = 80000,
+	armor = 1,
 	resists = {80,80,80,80,80,80,80,80,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -31,56 +32,58 @@ bh_dark_adept = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings_ranged", chance = 500000},
-				{group = "capes", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
-				{group = "weapons_all", chance = 500000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings", chance = 500000},
-				{group = "g_necklaces", chance = 500000},
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2500000}, 
+				{group = "wearables_all", chance = 500000},
 				{group = "weapons_all", chance = 500000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 8500000
 		},
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "vehicledeedsnormal", chance = 500000},
-				{group = "vehicledeedsrare", chance = 500000},
-				{group = "g_named_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2500000}, 
+				{group = "wearables_all", chance = 500000},
 				{group = "weapons_all", chance = 500000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 6000000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2500000}, 
+				{group = "wearables_all", chance = 500000},
+				{group = "weapons_all", chance = 500000},
+				{group = "clothing_attachments", chance = 1000000},
+				{group = "armor_attachments", chance = 1000000}
+			},
+			lootChance = 4000000
 		},
 	},
-	weapons = {"dark_jedi_weapons_gen2"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "dark_jedi_weapons_gen2",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(lightsabermaster,forcewielder)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = lightsabermaster,
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(bh_dark_adept, "bh_dark_adept")

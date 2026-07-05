@@ -1,13 +1,9 @@
--- Loot System Server Objects
--- Merged: Base + Custom Loot
--- Load order: Items first, then Groups
-
-print("Loading loot system...")
-
--- Load all loot items
 includeFile("items.lua")
-
--- Load all loot groups  
 includeFile("groups.lua")
 
-print("Loot system loaded: Items and Groups merged successfully")
+-- Flurry custom loot (migrated)
+includeFile("custom_loot/groups.lua")
+includeFile("custom_loot/common_groups.lua")
+includeFile("custom_loot/uncommon_groups.lua")
+includeFile("custom_loot/rare_groups.lua")
+includeFile("custom_loot/items.lua")

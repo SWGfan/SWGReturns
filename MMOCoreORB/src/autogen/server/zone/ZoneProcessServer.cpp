@@ -57,7 +57,7 @@ ZoneProcessServer::~ZoneProcessServer() {
 
 void ZoneProcessServer::initialize() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ void ZoneProcessServer::initialize() {
 
 void ZoneProcessServer::stop() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ void ZoneProcessServer::stop() {
 
 VendorManager* ZoneProcessServer::getVendorManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -95,7 +95,7 @@ VendorManager* ZoneProcessServer::getVendorManager() {
 
 ZoneServer* ZoneProcessServer::getZoneServer() const {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -109,7 +109,7 @@ ZoneServer* ZoneProcessServer::getZoneServer() const {
 
 ZonePacketHandler* ZoneProcessServer::getPacketHandler() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -119,7 +119,7 @@ ZonePacketHandler* ZoneProcessServer::getPacketHandler() {
 
 SkillManager* ZoneProcessServer::getSkillManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -129,7 +129,7 @@ SkillManager* ZoneProcessServer::getSkillManager() {
 
 ObjectController* ZoneProcessServer::getObjectController() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -139,7 +139,7 @@ ObjectController* ZoneProcessServer::getObjectController() {
 
 PlayerManager* ZoneProcessServer::getPlayerManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -153,7 +153,7 @@ PlayerManager* ZoneProcessServer::getPlayerManager() {
 
 NameManager* ZoneProcessServer::getNameManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -163,7 +163,7 @@ NameManager* ZoneProcessServer::getNameManager() {
 
 HolocronManager* ZoneProcessServer::getHolocronManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -173,7 +173,7 @@ HolocronManager* ZoneProcessServer::getHolocronManager() {
 
 ChatManager* ZoneProcessServer::getChatManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -187,7 +187,7 @@ ChatManager* ZoneProcessServer::getChatManager() {
 
 SuiManager* ZoneProcessServer::getSuiManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -197,7 +197,7 @@ SuiManager* ZoneProcessServer::getSuiManager() {
 
 FishingManager* ZoneProcessServer::getFishingManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,7 +211,7 @@ FishingManager* ZoneProcessServer::getFishingManager() {
 
 GamblingManager* ZoneProcessServer::getGamblingManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,7 +225,7 @@ GamblingManager* ZoneProcessServer::getGamblingManager() {
 
 ForageManager* ZoneProcessServer::getForageManager() {
 	ZoneProcessServerImplementation* _implementation = static_cast<ZoneProcessServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -270,7 +270,7 @@ void ZoneProcessServerImplementation::finalize() {
 void ZoneProcessServerImplementation::_initializeImplementation() {
 	_setClassHelper(ZoneProcessServerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -467,42 +467,42 @@ void ZoneProcessServerAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 		{
 			
 			DistributedObject* _m_res = getZoneServer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETPLAYERMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getPlayerManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCHATMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getChatManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETFISHINGMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getFishingManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGAMBLINGMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getGamblingManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETFORAGEMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getForageManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

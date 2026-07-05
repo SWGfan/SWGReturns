@@ -4,6 +4,7 @@ vine_cat = Creature:new {
 	socialGroup = "death_watch",
 	pvpFaction = "death_watch",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 138,
 	chanceHit = 0.95,
 	damageMin = 620,
@@ -27,7 +28,7 @@ vine_cat = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/graul.iff"},
+	templates = {"object/mobile/greater_sludge_panther.iff"},
 	lootGroups = {
 		{
 			groups = {

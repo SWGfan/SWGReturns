@@ -26,22 +26,6 @@
 
 namespace server {
 namespace zone {
-namespace objects {
-namespace creature {
-
-class CreatureObject;
-
-class CreatureObjectPOD;
-
-} // namespace creature
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::creature;
-
-namespace server {
-namespace zone {
 namespace packets {
 namespace object {
 
@@ -55,36 +39,6 @@ class ObjectMenuResponse;
 using namespace server::zone::packets::object;
 
 namespace server {
-namespace zone {
-namespace managers {
-namespace minigames {
-
-class GamblingBet;
-
-} // namespace minigames
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::minigames;
-
-namespace server {
-namespace zone {
-namespace managers {
-namespace minigames {
-namespace events {
-
-class GamblingEvent;
-
-} // namespace events
-} // namespace minigames
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::minigames::events;
-
-namespace server {
 namespace chat {
 
 class StringIdChatParameter;
@@ -94,17 +48,23 @@ class StringIdChatParameter;
 
 using namespace server::chat;
 
+#include "server/zone/objects/tangible/terminal/Terminal.h"
+
+#include "system/util/Vector.h"
+
+#include "system/util/VectorMap.h"
+
 #include "templates/tangible/GamblingTerminalTemplate.h"
 
 #include "templates/SharedObjectTemplate.h"
 
 #include "system/lang/ref/Reference.h"
 
-#include "server/zone/objects/tangible/terminal/Terminal.h"
+#include "server/zone/objects/creature/CreatureObject.h"
 
-#include "system/util/Vector.h"
+#include "server/zone/managers/minigames/GamblingBet.h"
 
-#include "system/util/VectorMap.h"
+#include "server/zone/managers/minigames/events/GamblingEvent.h"
 
 namespace server {
 namespace zone {
@@ -247,6 +207,8 @@ public:
 
 	bool gameRunning();
 
+	bool bettingAllowed();
+
 	/**
 	 * Notifies other Players
 	 * This method sends the argument text to every Player joined to the Terminal except the Player provided
@@ -319,7 +281,7 @@ public:
 	 * This method handles all game-related messages based on the event that is happening
 	 * @pre { this object is locked }
 	 * @post { this object is locked }
-	 * @param player Protagonist of the event, may be set to nullptr for a variety of events
+	 * @param player Protagonist of the event, may be set to NULL for a variety of events
 	 * @param event The switch argument to decide what needs to be sent
 	 */
 	void statusUpdate(CreatureObject* player, int event);
@@ -525,6 +487,8 @@ public:
 
 	bool gameRunning();
 
+	bool bettingAllowed();
+
 	/**
 	 * Notifies other Players
 	 * This method sends the argument text to every Player joined to the Terminal except the Player provided
@@ -597,7 +561,7 @@ public:
 	 * This method handles all game-related messages based on the event that is happening
 	 * @pre { this object is locked }
 	 * @post { this object is locked }
-	 * @param player Protagonist of the event, may be set to nullptr for a variety of events
+	 * @param player Protagonist of the event, may be set to NULL for a variety of events
 	 * @param event The switch argument to decide what needs to be sent
 	 */
 	void statusUpdate(CreatureObject* player, int event);
@@ -702,6 +666,8 @@ public:
 	String getGamblingRegion();
 
 	bool gameRunning();
+
+	bool bettingAllowed();
 
 	bool checkJoin(CreatureObject* player);
 

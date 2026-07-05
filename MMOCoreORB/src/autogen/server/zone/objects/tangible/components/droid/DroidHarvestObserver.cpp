@@ -30,7 +30,7 @@ DroidHarvestObserver::~DroidHarvestObserver() {
 
 int DroidHarvestObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DroidHarvestObserverImplementation* _implementation = static_cast<DroidHarvestObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void DroidHarvestObserverImplementation::finalize() {
 void DroidHarvestObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DroidHarvestObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

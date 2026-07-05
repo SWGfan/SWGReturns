@@ -70,7 +70,7 @@ namespace wearables {
 
 class WearableObject : public TangibleObject {
 public:
-	static const int MAXSOCKETS = 8;
+	static const int MAXSOCKETS = 4;
 
 	WearableObject();
 
@@ -97,11 +97,11 @@ public:
 
 	bool isEquipped();
 
-	int getMaxSockets();
+	int getMaxSockets() const;
 
-	int socketsUsed();
+	int socketsUsed() const;
 
-	int socketsLeft();
+	int socketsLeft() const;
 
 	String repairAttempt(int repairChance);
 
@@ -112,8 +112,6 @@ public:
 	void addSkillMod(const int skillType, const String& skillMod, int value, bool notifyClient = true);
 
 	void setMaxSockets(int maxSockets);
-
-	void setSockets(int count);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -155,7 +153,7 @@ protected:
 	int modsNotInSockets;
 
 public:
-	static const int MAXSOCKETS = 8;
+	static const int MAXSOCKETS = 4;
 
 protected:
 	VectorMap<String, int> wearableSkillMods;
@@ -188,11 +186,11 @@ public:
 
 	bool isEquipped();
 
-	int getMaxSockets();
+	int getMaxSockets() const;
 
-	int socketsUsed();
+	int socketsUsed() const;
 
-	int socketsLeft();
+	int socketsLeft() const;
 
 private:
 	void generateSockets(CraftingValues* craftingValues);
@@ -207,8 +205,6 @@ public:
 	virtual void addSkillMod(const int skillType, const String& skillMod, int value, bool notifyClient = true);
 
 	void setMaxSockets(int maxSockets);
-
-	void setSockets(int count);
 
 	WeakReference<WearableObject*> _this;
 
@@ -266,19 +262,17 @@ public:
 
 	bool isEquipped();
 
-	int getMaxSockets();
+	int getMaxSockets() const;
 
-	int socketsUsed();
+	int socketsUsed() const;
 
-	int socketsLeft();
+	int socketsLeft() const;
 
 	String repairAttempt(int repairChance);
 
 	void addSkillMod(const int skillType, const String& skillMod, int value, bool notifyClient);
 
 	void setMaxSockets(int maxSockets);
-
-	void setSockets(int count);
 
 };
 

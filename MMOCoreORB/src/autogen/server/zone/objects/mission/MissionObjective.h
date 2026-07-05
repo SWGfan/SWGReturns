@@ -27,38 +27,6 @@
 namespace server {
 namespace zone {
 namespace objects {
-namespace mission {
-
-class MissionObject;
-
-class MissionObjectPOD;
-
-} // namespace mission
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::mission;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace mission {
-
-class MissionObserver;
-
-class MissionObserverPOD;
-
-} // namespace mission
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::mission;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace creature {
 
 class CreatureObject;
@@ -72,33 +40,25 @@ class CreatureObjectPOD;
 
 using namespace server::zone::objects::creature;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace mission {
-namespace events {
-
-class FailMissionAfterCertainTimeTask;
-
-} // namespace events
-} // namespace mission
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::mission::events;
-
-#include "system/lang/Time.h"
-
-#include "engine/util/Observable.h"
-
-#include "system/util/SortedVector.h"
-
 #include "engine/log/Logger.h"
 
 #include "engine/core/ManagedObject.h"
 
 #include "engine/util/u3d/Vector3.h"
+
+#include "system/lang/Time.h"
+
+#include "server/zone/objects/mission/MissionObserver.h"
+
+#include "server/zone/objects/mission/events/FailMissionAfterCertainTimeTask.h"
+
+#include "server/zone/objects/mission/MissionObject.h"
+
+#include "server/zone/objects/transaction/TransactionLog.h"
+
+#include "engine/util/Observable.h"
+
+#include "system/util/SortedVector.h"
 
 namespace server {
 namespace zone {
@@ -107,7 +67,7 @@ namespace mission {
 
 class MissionObjective : public ManagedObject {
 public:
-	static const int MISSIONDURATION = 18000000;
+	static const int MISSIONDURATION = 172800000;
 
 	MissionObjective(MissionObject* parent);
 
@@ -156,9 +116,13 @@ public:
 
 	void awardReward();
 
+	void addMissionStats(TransactionLog& trx);
+
 	Vector3 getEndPosition();
 
 	void clearFailTask();
+
+	bool isPlayerBounty() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -200,7 +164,7 @@ protected:
 	bool activated;
 
 public:
-	static const int MISSIONDURATION = 18000000;
+	static const int MISSIONDURATION = 172800000;
 
 	MissionObjectiveImplementation(MissionObject* parent);
 
@@ -251,9 +215,13 @@ public:
 
 	void awardReward();
 
+	virtual void addMissionStats(TransactionLog& trx);
+
 	virtual Vector3 getEndPosition();
 
 	void clearFailTask();
+
+	virtual bool isPlayerBounty() const;
 
 	WeakReference<MissionObjective*> _this;
 
@@ -340,6 +308,8 @@ public:
 	void awardReward();
 
 	void clearFailTask();
+
+	bool isPlayerBounty() const;
 
 };
 

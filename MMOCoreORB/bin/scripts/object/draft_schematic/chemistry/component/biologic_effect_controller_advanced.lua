@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_component_biologic_effect_controller_advanced =
 	complexity = 15,
 	size = 2,
 	factoryCrateSize = 1000,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 80,
+	xp = 450,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",

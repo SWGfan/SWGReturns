@@ -2,17 +2,18 @@ bh_spiderclan_auspex = Creature:new {
 	objectName = "@mob/creature_names:spider_nightsister_spell_weaver",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "spider_nightsister",
 	faction = "spider_nightsister",
-	level = 300,
+	level = 107,
 	chanceHit = 1,
 	damageMin = 645,
 	damageMax = 1000,
-	baseXp = 110174,
-	baseHAM = 124000,
+	baseXp = 10174,
+	baseHAM = 24000,
 	baseHAMmax = 30000,
-	armor = 2,
-	resists = {80,100,100,80,100,100,80,80,-1},
+	armor = 1,
+	resists = {55,100,100,75,100,100,90,55,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,56 +32,62 @@ bh_spiderclan_auspex = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings_ranged", chance = 500000},
-				{group = "capes", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
-				{group = "weapons_all", chance = 500000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings", chance = 500000},
-				{group = "g_necklaces", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
-				{group = "weapons_all", chance = 500000},
+				{group = "power_crystals", chance = 1000000},
+				{group = "wearables_all", chance = 1000000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 5140000
 		},
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "vehicledeedsnormal", chance = 500000},
-				{group = "vehicledeedsrare", chance = 500000},
-				{group = "g_named_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
-				{group = "weapons_all", chance = 500000},
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "power_crystals", chance = 1000000},
+				{group = "wearables_all", chance = 1000000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 5140000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 2500000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "power_crystals", chance = 500000},
+				{group = "power_crystals", chance = 500000},
+				{group = "wearables_all", chance = 1000000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
+				{group = "clothing_attachments", chance = 1000000},
+				{group = "armor_attachments", chance = 1000000}
+			},
+			lootChance = 5140000
 		}
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(bh_spiderclan_auspex, "bh_spiderclan_auspex")

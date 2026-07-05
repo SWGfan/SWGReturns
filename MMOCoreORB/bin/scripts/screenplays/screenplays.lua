@@ -1,12 +1,10 @@
--- Coded by BoosterSteel 19-03-2026
 package.path = package.path .. ";scripts/screenplays/themepark/?.lua;scripts/screenplays/?.lua;scripts/screenplays/dungeon/corellian_corvette/?.lua"
 require("screenplay")
 require("conv_handler")
 require("themeParkLogic")
-require("screenplayHelper")
 require("corvetteTicketGiverLogic")
 require("corvetteTicketTakerLogic")
---includeFile("screenplays/jedi/master_trial.lua")
+
 -- SUI
 --require("sui.custom.SuiSample")
 require("sui.SuiCalibrationGame1")
@@ -29,19 +27,8 @@ require("sui.custom.SuiProcessorPuzzle")
 require("sui.custom.SuiRadiationSensor")
 require("sui.custom.SuiReceiverPuzzle")
 
--- Server Event Automation
-includeFile("events/ServerEventAutomation.lua")
-
--- Custom content - Loads last to allow for overrides
-includeFile("../custom_scripts/screenplays/screenplays.lua")
-includeFile("tools/FlurryBuffTerminal.lua")
-includeFile("tools/mission_level_choice.lua")
-includeFile("tools/mission_direction_choice.lua")
 includeFile("helperfuncs.lua")
 includeFile("playerTriggers.lua")
---includeFile("jedi/jedi_knight_poll.lua")
---includeFile("jedi/holocron_observer_registration")
-includeFile("jedi/jedi_trainer_spawns.lua")
 
 -- Theme parks
 includeFile("themepark/conversations/goru_conv_handler.lua")
@@ -72,18 +59,20 @@ includeFile("utils/quest_spawner.lua")
 includeFile("tools/tools.lua")
 includeFile("tools/shuttle_dropoff.lua")
 includeFile("tools/firework_event.lua")
-
+includeFile("tools/mission_direction_choice.lua")
+includeFile("tools/mission_level_choice.lua")
 includeFile("trainers/trainerData.lua")
 includeFile("trainers/skillTrainer.lua")
 includeFile("trainers/trainerConvHandler.lua")
 
 -- GCW
+includeFile("gcw/city_control_banners.lua")
+includeFile("gcw/city_control_landing.lua")
 includeFile("gcw/newsnet.lua")
 includeFile("gcw/recruiters/recruiterConvoHandler.lua")
 includeFile("gcw/recruiters/recruiterScreenplay.lua")
 includeFile("crackdown/cantina.lua")
-includeFile("gcw/pvp.lua")
-includeFile("gcw/restuss_cloner.lua")
+
 -- Quest Tasks
 includeFile("quest_tasks/task.lua")
 includeFile("quest_tasks/persistent_event.lua")
@@ -137,6 +126,7 @@ includeFile("dungeon/geonosian_lab/conversations/biogenicRandomConvoHandler.lua"
 includeFile("dungeon/geonosian_lab/conversations/biogenicScientistGeneric02ConvoHandler.lua")
 includeFile("dungeon/geonosian_lab/conversations/biogenicScientistHumanConvoHandler.lua")
 includeFile("dungeon/geonosian_lab/conversations/biogenicSecurityTechConvoHandler.lua")
+
 includeFile("dungeon/warren/warren.lua")
 includeFile("dungeon/warren/warrenComponents.lua")
 includeFile("dungeon/warren/convos/mirla_convo_handler.lua")
@@ -144,6 +134,7 @@ includeFile("dungeon/warren/convos/oevitt_piboi_convo_handler.lua")
 includeFile("dungeon/warren/convos/manx_try_convo_handler.lua")
 includeFile("dungeon/warren/convos/captain_heff_convo_handler.lua")
 includeFile("dungeon/warren/convos/warren_worker_convo_handler.lua")
+
 includeFile("dungeon/corellian_corvette/conversations/corvetteTicketTakerConvoHandler.lua")
 includeFile("dungeon/corellian_corvette/conversations/corvetteTicketGiverConvoHandler.lua")
 includeFile("dungeon/corellian_corvette/conversations/corvetteRepairDroidConvoHandler.lua")
@@ -168,29 +159,10 @@ includeFile("dungeon/corellian_corvette/ticket_givers/corvette_yondalla_neutral_
 includeFile("dungeon/corellian_corvette/ticket_takers/ds_297.lua")
 includeFile("dungeon/corellian_corvette/ticket_takers/klaatu.lua")
 includeFile("dungeon/corellian_corvette/ticket_takers/lt_lance.lua")
---Custom exar kun dungeon
-includeFile("dungeon/exar_kun_temple/exar_kun.lua")
---Custom sher kar dungeon
-includeFile("dungeon/sher_kar/sher_kar.lua")
---Custom geo acklay dungeon
-includeFile("dungeon/geo_acklay/geo_acklay.lua")
-includeFile("dungeon/geo_acklay/geo_acklayboss.lua")
---Custom janta cave
-includeFile("dungeon/janta_cave/janta_cave.lua")
---Custom Wampa Boss
-includeFile("dungeon/wampa_cave/wampa_cave.lua")
---Custom avatar dungeon
-includeFile("dungeon/avatar_platform/avatar_platform.lua")
---custom rogue star destoryer
-includeFile("dungeon/isd/isd_platform.lua")
---custom nightsister temple
-includeFile("dungeon/nightsister_temple/nightsister_temple.lua")
---custom ig88 platform
-includeFile("dungeon/ig88/ig88_platform.lua")
---custom general grievous platform
-includeFile("dungeon/general_grievous/generalgrievous_platform.lua")
---custom geonosis lab dungeon
---includeFile("dungeon/geonosis/geonosis_lab.lua")
+
+-- Player VillageCommand SUI
+includeFile("village/village_sui.lua")
+
 -- Village
 includeFile("village/village_community_crafting.lua")
 includeFile("village/village_gm_sui.lua")
@@ -278,12 +250,8 @@ includeFile("village/convos/phase4/sarguillo_phase4_conv_handler.lua")
 includeFile("village/convos/phase4/sivarra_phase4_conv_handler.lua")
 
 -- Jedi Trials
-includeFile("jedi/kaas_villan_quests.lua")
 includeFile("jedi/trialData.lua")
-includeFile("jedi/frs.lua")
 includeFile("jedi/jedi_trials.lua")
-includeFile("jedi/yavin4_light_enclave.lua")
-includeFile("jedi/yavin4_dark_enclave.lua")
 includeFile("jedi/knight/knight_trials.lua")
 includeFile("jedi/padawan/padawan_trials.lua")
 includeFile("jedi/padawan/convos/padawan_architect_01_conv_handler.lua")
@@ -310,37 +278,6 @@ includeFile("jedi/padawan/convos/padawan_spice_mom_02_conv_handler.lua")
 includeFile("jedi/padawan/convos/padawan_surveyor_01_conv_handler.lua")
 includeFile("jedi/padawan/convos/padawan_the_ring_01_conv_handler.lua")
 includeFile("jedi/padawan/convos/padawan_the_ring_02_conv_handler.lua")
-includeFile("jedi/gray/jedi1.lua")
-includeFile("jedi/gray/jedi2.lua")
---includeFile("jedi/gray/jedi3.lua")
---includeFile("jedi/gray/jedi4.lua")
---includeFile("jedi/gray/jedi5.lua")
---includeFile("jedi/gray/jedi6.lua")
---includeFile("jedi/gray/jedi7.lua")
---includeFile("jedi/gray/jedi8.lua")
---includeFile("jedi/gray/jedi9.lua")
---includeFile("jedi/gray/jedi10.lua")
---includeFile("jedi/gray/jedi11.lua")
---includeFile("jedi/gray/jedi12.lua")
---includeFile("jedi/gray/jedi13.lua")
---includeFile("jedi/gray/jedi14.lua")
---includeFile("jedi/gray/jedi15.lua")
---includeFile("jedi/gray/jedi16.lua")
---includeFile("jedi/gray/jedi17.lua")
---includeFile("jedi/gray/jedi18.lua")
---includeFile("jedi/gray/jedi19.lua")
---includeFile("jedi/gray/jedi20.lua")
---includeFile("jedi/gray/jedi21.lua")
---includeFile("jedi/gray/jedi22.lua")
---includeFile("jedi/gray/jedi23.lua")
---includeFile("jedi/gray/jedi24.lua")
---includeFile("jedi/gray/jedi25.lua")
---includeFile("jedi/gray/jedi26.lua")
---includeFile("jedi/gray/jedi27.lua")
---includeFile("jedi/gray/jedi28.lua")
---includeFile("jedi/gray/jedi29.lua")
---includeFile("jedi/gray/jedi30.lua")
-
 
 -- Jedi Objects
 includeFile("jedi/components/ForceShrineMenuComponent.lua")
@@ -390,20 +327,10 @@ includeFile("events/conversations/museum_curator_conv_handler.lua")
 includeFile("events/conversations/race_droid_conv_handler.lua")
 includeFile("events/bestineMuseum.lua")
 includeFile("events/eventPromoter.lua")
+includeFile("events/mosEisleyStarportNpcs.lua")
 includeFile("events/lifeDay.lua")
 includeFile("events/buffTerminalMenuComponent.lua")
 includeFile("events/race_droid.lua")
-includeFile("events/jediQuest.lua")
-includeFile("events/jediLives.lua")
---includeFile("events/black_sun.lua")
-includeFile("events/deathBounty.lua")
---includeFile("events/halloween_moenia.lua")
-
---Holo exchange
-includeFile("events/holo_exchange_dealer.lua")
-
---Pvp Arena
-includeFile("events/pvp/pvp.lua")
 
 -- Hero of Tatooine
 includeFile("tasks/hero_of_tatooine/conversations/hermitConvoHandler.lua")
@@ -578,10 +505,9 @@ includeFile("caves/corellia_afarathu_cave.lua")
 includeFile("caves/corellia_drall_cave.lua")
 includeFile("caves/corellia_lord_nyax_cult.lua")
 includeFile("caves/dantooine_force_crystal_hunter_cave.lua")
-includeFile("caves/dantooine_force_cave.lua")
-includeFile("caves/dantooine_janta_cave.lua") --old janta king screenplay
+includeFile("caves/dantooine_janta_cave.lua")
 includeFile("caves/dantooine_kunga_stronghold.lua")
---includeFile("caves/dantooine_lizard_cave.lua") -- Has Students of the Force
+includeFile("caves/dantooine_lizard_cave.lua")
 includeFile("caves/dathomir_rancor_cave.lua")
 includeFile("caves/dathomir_spider_clan_cave.lua")
 includeFile("caves/endor_jinda_ritualist_cave.lua")
@@ -657,8 +583,7 @@ includeFile("poi/corellia_rebel_hideout.lua")
 includeFile("poi/corellia_stronghold.lua")
 includeFile("poi/dantooine_abandoned_rebel_base.lua")
 includeFile("poi/dantooine_dantari_village.lua")
---includeFile("poi/dantooine_mokk_stronghold.lua")
-includeFile("poi/dantooine_mokk_stronghold_revamp.lua")
+includeFile("poi/dantooine_mokk_stronghold.lua")
 includeFile("poi/dathomir_crash_site.lua")
 includeFile("poi/dathomir_imperial_prison.lua")
 includeFile("poi/dathomir_nightsister_stronghold.lua")
@@ -703,7 +628,6 @@ includeFile("poi/tatooine_imperial_detachment_hq.lua")
 includeFile("poi/tatooine_imperial_oasis_base.lua")
 includeFile("poi/tatooine_jabbas_palace_mobs.lua")
 includeFile("poi/tatooine_jawa_traders.lua")
-includeFile("poi/tatooine_dune_sea_krayt_dragons.lua") -- Added Dune Sea Krayts
 includeFile("poi/tatooine_krayt_graveyard.lua")
 includeFile("poi/tatooine_sandcrawler_ne.lua")
 includeFile("poi/tatooine_village_ruins.lua")
@@ -727,8 +651,7 @@ includeFile("static_spawns/talus_static_spawns_north.lua")
 includeFile("static_spawns/talus_static_spawns_south.lua")
 includeFile("static_spawns/tatooine_static_spawns_north.lua")
 includeFile("static_spawns/tatooine_static_spawns_south.lua")
-includeFile("static_spawns/korriban_static_spawns.lua")
---includeFile("static_spawns/kaas_static_spawns.lua")
+
 --Yavin4
 includeFile("static_spawns/yavin4_static_spawns.lua")
 
@@ -748,95 +671,219 @@ includeFile("space/space_chassis_dealer_conv_handler.lua")
 --Record Keepers
 includeFile("record_keepers/record_keepers.lua")
 
+--Battlefields
+includeFile("battlefields/battlefield_spawner.lua");
+
 --Tests
 includeFile("tests/tests.lua")
-
-
---Acive Quest
-includeFile("mission_quest/mission.lua")--First Acive Quest Line /way Tatooine
---New quest missions (Not Active In Development)
---includeFile("mission_quest/mission_one.lua")
---includeFile("mission_quest/mission_two.lua")
---includeFile("mission_quest/mission_three.lua")
---includeFile("mission_quest/mission_four.lua")
---includeFile("mission_quest/mission_five.lua")
---includeFile("mission_quest/mission_six.lua")
---includeFile("mission_quest/mission_seven.lua")
---includeFile("mission_quest/mission_eight.lua")
-
---New Badge Locations poi waypoint npc's (Not Active In Development)
-includeFile("events/poi/corellia_poi_waypoints.lua")
-includeFile("events/poi/dantooine_poi_waypoints.lua")
-includeFile("events/poi/dathomir_poi_waypoints.lua")
-includeFile("events/poi/endor_poi_waypoints.lua")
-includeFile("events/poi/lok_poi_waypoints.lua")
-includeFile("events/poi/naboo_poi_waypoints.lua")
-includeFile("events/poi/rori_poi_waypoints.lua")
-includeFile("events/poi/talus_poi_waypoints.lua")
-includeFile("events/poi/tatooine_poi_waypoints.lua")
-includeFile("events/poi/yavin4_poi_waypoints.lua")
+--includeFile("tests/jakku_vendor_test.lua")
 
 -- Server Event Automation
 includeFile("events/ServerEventAutomation.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/screenplays/screenplays.lua")
+includeFile("poi/corellia_rogue_corsec_base.lua")
+includeFile("sphelper.lua")
+--  Start all Stardust Content Here.
 
--- World Boss Systems
-includeFile("events/worldboss_one.lua")
-includeFile("events/worldboss_two.lua")
-includeFile("events/worldboss_three.lua")
-includeFile("events/worldboss_four.lua")
-includeFile("events/worldboss_five.lua")
-includeFile("events/worldboss_six.lua")
-includeFile("events/worldboss_seven.lua")
-includeFile("events/ns_tamer.lua")
-includeFile("events/mokk_worldboss_sp.lua")
---includeFile("events/worldboss_ten.lua")
---includeFile("events/worldboss_eleven.lua")
---includeFile("events/worldboss_tewlve.lua")
---includeFile("events/worldboss_thirteen.lua")
---includeFile("events/worldboss_fourteen.lua")
---includeFile("events/worldboss_fifteen.lua")
-includeFile("events/baxterstockman.lua")
-includeFile("events/inquisitor_boss.lua")
-includeFile("events/world_boss_spawner.lua")
+-- Vendors
+includeFile("vendor/stardust_vendor_logic_misc.lua")
+includeFile("vendor/stardust_vendor_logic_segments_aw.lua")
+includeFile("vendor/stardust_vendor_logic_segments_as.lua")
+includeFile("vendor/stardust_vendor_logic_weapons.lua")
+includeFile("vendor/stardust_vendor_logic_vehicles.lua")
+includeFile("vendor/stardust_gambling_logic.lua")
+includeFile("vendor/stardust_vendor_conv_handler.lua")
+includeFile("vendor/stardust_gambling_conv_handler.lua")
+includeFile("vendor/stardust_vendor_spawn.lua")
 
---painting exchange dealer
-includeFile("events/painting_exchange_dealer.lua")
---Event Vendor
-includeFile("events/event_exchange_dealer.lua")
-
---BE and Bosses SP
-includeFile("events/FlurryWorldBossScreenPlay.lua")
-includeFile("events/spawn_points_table.lua")
-
-includeFile("custom_screenplays/screenplays.lua")
-
---Battlefields
-includeFile("battlefields/battlefield_spawner.lua")
-
-
---Merchants
-includeFile("merchants/vendor_logic.lua")
-includeFile("merchants/vendorData.lua")
-includeFile("merchants/houseVendorData.lua")
-includeFile("merchants/halloweenvendorData.lua")
-includeFile("merchants/risvendorData.lua")
-includeFile("merchants/vendor_conv_handler.lua")
-includeFile("merchants/tcgonevendorData.lua")
-includeFile("merchants/tcgtwovendorData.lua")
+-- Chandrila
 includeFile("cities/chandrila_hanna_city.lua")
-includeFile("cities/coruscant_city.lua")
-includeFile("cities/hoth_city.lua")
-includeFile("cities/hutta_city.lua")
-includeFile("cities/jakku_city.lua")
-includeFile("cities/kaas_city.lua")
-includeFile("cities/korriban_city.lua")
-includeFile("cities/mandalore_city.lua")
+includeFile("cities/chandrila_nayli_outpost.lua")
+includeFile("cities/chandrila_chandriltech_facility.lua")
+includeFile("heroics/chandriltech_greeter.lua")
 
---myswg vendor
-includeFile("tasks/naboo/myswg_vendor.lua")
+--Coruscant
+includeFile("cities/coruscant_entertainment_district.lua")
+includeFile("heroics/dex_diner.lua")
+includeFile("heroics/death_sticks.lua")
+includeFile("heroics/imperial_palace_onlooker.lua")
+includeFile("heroics/swoop_race_hutt.lua")
+   -- Coruscant swoop track
+includeFile("events/coruscant_race/race_hazard_01.lua")
+includeFile("events/coruscant_race/race_hazard_02.lua")
+includeFile("events/coruscant_race/race_hazard_03.lua")
+includeFile("events/coruscant_race/race_hazard_04.lua")
+includeFile("events/coruscant_race/race_hazard_05.lua")
+includeFile("events/coruscant_race/race_hazard_06.lua")
+includeFile("events/coruscant_race/race_hazard_07.lua")
+includeFile("events/coruscant_race/race_hazard_08.lua")
+includeFile("events/coruscant_race/race_hazard_09.lua")
+includeFile("events/coruscant_race/race_hazard_10.lua")
+includeFile("events/coruscant_race/race_hazard_11.lua")
+includeFile("events/coruscant_race/race_hazard_12.lua")
+includeFile("events/coruscant_race/race_hazard_13.lua")
+includeFile("events/coruscant_race/race_hazard_14.lua")
+includeFile("events/coruscant_race/race_hazard_15.lua")
+includeFile("events/coruscant_race/race_hazard_16.lua")
+includeFile("events/coruscant_race/race_hazard_17.lua")
+includeFile("events/coruscant_race/race_hazard_18.lua")
+includeFile("events/coruscant_race/race_hazard_19.lua")
+includeFile("events/coruscant_race/race_hazard_20.lua")
+includeFile("events/coruscant_race/race_hazard_21.lua")
+includeFile("events/coruscant_race/race_hazard_22.lua")
+includeFile("events/coruscant_race/race_hazard_23.lua")
+includeFile("events/coruscant_race/race_hazard_24.lua")
+includeFile("events/coruscant_race/race_hazard_25.lua")
+includeFile("events/coruscant_race/race_hazard_26.lua")
+includeFile("events/coruscant_race/race_hazard_27.lua")
+includeFile("events/coruscant_race/race_hazard_28.lua")
+includeFile("events/coruscant_race/race_hazard_29.lua")
+includeFile("events/coruscant_race/race_hazard_30.lua")
+includeFile("events/coruscant_race/race_hazard_31.lua")
+includeFile("events/coruscant_race/race_hazard_32.lua")
+includeFile("events/coruscant_race/race_hazard_33.lua")
+includeFile("events/coruscant_race/race_hazard_34.lua")
+includeFile("events/coruscant_race/race_hazard_35.lua")
+includeFile("events/coruscant_race/race_hazard_36.lua")
+includeFile("events/coruscant_race/race_hazard_37.lua")
+includeFile("events/coruscant_race/race_hazard_38.lua")
+includeFile("events/coruscant_race/race_hazard_39.lua")
+includeFile("events/coruscant_race/race_hazard_40.lua")
+includeFile("events/coruscant_race/race_hazard_41.lua")
+includeFile("events/coruscant_race/race_hazard_42.lua")
+includeFile("events/coruscant_race/race_hazard_43.lua")
+includeFile("events/coruscant_race/race_hazard_44.lua")
+includeFile("events/coruscant_race/race_hazard_45.lua")
+includeFile("events/coruscant_race/race_hazard_46.lua")
+includeFile("events/coruscant_race/race_hazard_47.lua")
+includeFile("events/coruscant_race/race_hazard_48.lua")
+includeFile("events/coruscant_race/race_hazard_49.lua")
+includeFile("events/coruscant_race/race_hazard_50.lua")
 
---kaas_quest
-includeFile("jedi/kaas_ancient_holocron_quest.lua")
+-- Dromund Kaas
+
+includeFile("poi/kaas_abandon_separ_facility.lua")
+includeFile("poi/kaas_city_ruins.lua")
+includeFile("poi/kaas_imperial_garrison.lua")
+includeFile("poi/kaas_rebel_cave.lua")
+includeFile("poi/kaas_sith_facility.lua")
+includeFile("heroics/herald_of_the_prophets.lua")
+includeFile("heroics/prophet_kadann.lua")
+includeFile("heroics/prophet_cronal.lua")
+includeFile("poi/kaas_dark_force_shrine.lua")
+includeFile("poi/kaas_smuggler_starport.lua")
+includeFile("heroics/chiss_hunter_herald.lua")
+includeFile("heroics/chiss_hunter_herald_cave.lua")
+includeFile("poi/kaas_city_ruins_mellichae.lua")
+includeFile("poi/kaas_abandon_separ_facility_necrosis.lua")
+includeFile("poi/kaas_vitiate_tomb.lua")
+
+--Moraband
+includeFile("cities/moraband_valley.lua")
+includeFile("heroics/archaeologist_leader.lua")
+includeFile("heroics/moraband_bunker_protocol_droid.lua")
+includeFile("heroics/reltha_aiden.lua")
+includeFile("heroics/bex_delata.lua")
+includeFile("heroics/omor_rikan.lua")
+includeFile("heroics/taelan_delar.lua")
+includeFile("heroics/bray_terex.lua")
+
+-- Nal Hutta
+includeFile("cities/hutta_bilbousa_city.lua")
+includeFile("heroics/hutt_slave_auctioneer.lua")
+
+-- Florrum hidden world.
+includeFile("cities/florrum_outpost.lua")
+includeFile("heroics/hondo_return_teleporter.lua")
+includeFile("heroics/hondo_send_teleporter.lua")
+
+
+-- Lothal
+includeFile("poi/lothal_easthills_bunker.lua")
+includeFile("cities/lothal_capital_city.lua")
+--includeFile("cities/lothal_capital_city_patrol_mobs.lua")   -- Need to re-write (Low priority)
+includeFile("heroics/oowroora.lua")
+includeFile("themepark/lothal/lothal_theme_park.lua")
+includeFile("themepark/lothal/themeParkLothal.lua")
+
+
+-- Jakku
+includeFile("gcw/jakku_battle_boundary.lua")
+includeFile("gcw/jakku_battle_spawns.lua")
+includeFile("heroics/rebel_jakku_teleporter.lua")
+includeFile("gcw/jakku_weapons_facility.lua")
+includeFile("gcw/jakku_weapons_facility_boss_1.lua")
+includeFile("gcw/jakku_weapons_facility_boss_2.lua")
+includeFile("gcw/jakku_weapons_facility_boss_3.lua")
+includeFile("gcw/jakku_weapons_facility_boss_4.lua")
+includeFile("gcw/jakku_weapons_facility_boss_5.lua")
+includeFile("gcw/jakku_weapons_facility_boss_6.lua")  --pending debug
+includeFile("heroics/jakku_overseer.lua")
+
+-- Jar Jar
+includeFile("heroics/jar_jar_binks.lua")
+
+-- Dungeon2
+includeFile("poi/republic_corvette.lua")
+includeFile("poi/isd_active_areas.lua")
+includeFile("heroics/imperial_isd_teleporter.lua")
+includeFile("heroics/rebel_vette_teleporter.lua")
+
+--Elysium WbW
+includeFile("events/buffTerminalMenuComponent2.lua")
+includeFile("events/elysiumTerminalMenuComponent_01.lua")
+includeFile("events/elysiumTerminalMenuComponent_02.lua")
+includeFile("poi/elysium_teleportation_network.lua")
+includeFile("events/elysiumTerminalMenuComponent_03.lua")
+includeFile("heroics/obi_wan_elysium.lua")
+includeFile("poi/elysium_vision.lua")
+
+-- Exar Kun
+includeFile("dungeon/exar_kun/exarKun.lua")
+includeFile("dungeon/exar_kun/exarKun2.lua")
+includeFile("dungeon/exar_kun/exarKun3.lua")
+includeFile("dungeon/exar_kun/exarKun4.lua")
+
+includeFile("events/exarKunEntryMenuComponent.lua")
+includeFile("dungeon/exar_kun/exarKunEntryWay.lua")
+
+-- Axkva Min
+includeFile("dungeon/axkva_min/axkvaMin.lua")
+includeFile("dungeon/axkva_min/axkvaMinEntryWay.lua")
+includeFile("events/axkvaMinEntryMenuComponent.lua")
+
+-- Mustafar
+includeFile("mustafar/boundaries/mustafar_boundaries.lua")
+
+includeFile("mustafar/mensix/mensix_mining_facility_main.lua")
+
+includeFile("mustafar/quest/mustafar_quest_manager.lua")
+includeFile("mustafar/quest/map_exploration.lua")
+includeFile("mustafar/quest/mining_field_markers.lua")
+
+includeFile("mustafar/regions/mensix_facility_region.lua")
+includeFile("mustafar/regions/storm_lord_region.lua")
+includeFile("mustafar/regions/smoking_forest_region.lua")
+includeFile("mustafar/regions/north_west_region.lua")
+
+--Timeline Fixes
+includeFile("heroics/boba_fett_tusken.lua")
+includeFile("poi/talus_mandalorian_covert.lua")
+includeFile("poi/naboo_memorial.lua")
+includeFile("poi/republic_corvette.lua")
+includeFile("poi/isd_active_areas.lua")
+-- Village enhancements
+includeFile("heroics/aurilian_teleporter.lua")
+
+--Custom Bosses
+includeFile("dungeon/tusken/tusken_king_boss.lua")
+includeFile("dungeon/rori/imperial_remnant.lua")
+includeFile("dungeon/the_collector_spawn.lua")
+includeFile("dungeon/lok/kimo_matriarch.lua")
+includeFile("dungeon/dantooine/dant_disciple_boss.lua")
+includeFile("dungeon/dathomir/dath_disciple_boss.lua")
+includeFile("dungeon/endor/endor_wb.lua")
+includeFile("dungeon/lothal/lothal_wb.lua")
+includeFile("custom_content/character_builder_frog_handler.lua")

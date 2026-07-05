@@ -28,7 +28,7 @@ TurretObserver::~TurretObserver() {
 
 int TurretObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	TurretObserverImplementation* _implementation = static_cast<TurretObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void TurretObserverImplementation::finalize() {
 void TurretObserverImplementation::_initializeImplementation() {
 	_setClassHelper(TurretObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

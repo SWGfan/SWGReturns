@@ -34,7 +34,7 @@ Container::~Container() {
 
 void Container::loadTemplateData(SharedObjectTemplate* templateData) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -44,7 +44,7 @@ void Container::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void Container::initializeTransientMembers() {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void Container::initializeTransientMembers() {
 
 void Container::notifyLoadFromDatabase() {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -68,7 +68,7 @@ void Container::notifyLoadFromDatabase() {
 
 void Container::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ void Container::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatur
 
 int Container::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ int Container::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 
 int Container::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ int Container::canAddObject(SceneObject* object, int containmentType, String& er
 
 bool Container::isContainerObject() {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -125,7 +125,7 @@ bool Container::isContainerObject() {
 
 bool Container::isContainerLocked() const {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +139,7 @@ bool Container::isContainerLocked() const {
 
 void Container::setLockedStatus(bool lock) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ void Container::setLockedStatus(bool lock) {
 
 int Container::getLockChance() const {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ int Container::getLockChance() const {
 
 long long Container::getLockTime() const {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ long long Container::getLockTime() const {
 
 bool Container::isRelocking() const {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool Container::isRelocking() const {
 
 bool Container::setRelockingStatus(bool relock) {
 	ContainerImplementation* _implementation = static_cast<ContainerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -242,7 +242,7 @@ void ContainerImplementation::finalize() {
 void ContainerImplementation::_initializeImplementation() {
 	_setClassHelper(ContainerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

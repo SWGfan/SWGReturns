@@ -2,17 +2,18 @@ bh_nightsister_spell_weaver = Creature:new {
 	objectName = "@mob/creature_names:nightsister_spell_weaver",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	level = 300,
+	level = 107,
 	chanceHit = 1,
 	damageMin = 645,
 	damageMax = 1000,
 	baseXp = 10174,
-	baseHAM = 124000,
-	baseHAMmax = 130000,
-	armor = 2,
-	resists = {80,100,80,80,100,100,80,100,-1},
+	baseHAM = 34000,
+	baseHAMmax = 45000,
+	armor = 1,
+	resists = {35,100,35,90,100,100,90,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,56 +32,58 @@ bh_nightsister_spell_weaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tiertwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings_ranged", chance = 500000},
-				{group = "capes", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
-				{group = "weapons_all", chance = 500000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000}
-			},
-			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "non_jedi_rings", chance = 500000},
-				{group = "g_necklaces", chance = 500000},
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 500000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 8500000
 		},
 		{
 			groups = {
-				{group = "tierone", chance = 2500000},
-				{group = "tierrwo", chance = 1000000},
-				{group = "tierthree", chance = 1000000},
-				{group = "tierdiamond", chance = 1000000},
-				{group = "vehicledeedsnormal", chance = 500000},
-				{group = "vehicledeedsrare", chance = 500000},
-				{group = "g_named_crystals", chance = 500000},
-				{group = "nge_all", chance = 500000},
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 500000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 10000000
-		}
+			lootChance = 6000000
+		},
+		{
+			groups = {
+				{group = "junk", chance = 3000000},
+				{group = "tailor_components", chance = 500000},
+				{group = "loot_kit_parts", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "wearables_all", chance = 1000000},
+				{group = "weapons_all", chance = 500000},
+				{group = "clothing_attachments", chance = 1000000},
+				{group = "armor_attachments", chance = 1000000}
+			},
+			lootChance = 4000000
+		},
 	},
-	weapons = {"mixed_force_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "force_sword",
+	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
-	attacks = merge(pikemanmaster,brawlermaster,forcewielder)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
+	secondaryAttacks = forcewielder
 }
 
 CreatureTemplates:addCreatureTemplate(bh_nightsister_spell_weaver, "bh_nightsister_spell_weaver")

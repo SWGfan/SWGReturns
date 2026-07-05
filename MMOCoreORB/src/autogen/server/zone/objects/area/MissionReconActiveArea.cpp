@@ -34,7 +34,7 @@ MissionReconActiveArea::~MissionReconActiveArea() {
 
 void MissionReconActiveArea::notifyEnter(SceneObject* player) {
 	MissionReconActiveAreaImplementation* _implementation = static_cast<MissionReconActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ void MissionReconActiveArea::notifyEnter(SceneObject* player) {
 
 void MissionReconActiveArea::notifyExit(SceneObject* player) {
 	MissionReconActiveAreaImplementation* _implementation = static_cast<MissionReconActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -64,7 +64,7 @@ void MissionReconActiveArea::notifyExit(SceneObject* player) {
 
 void MissionReconActiveArea::setMissionObjective(ReconMissionObjective* mission) {
 	MissionReconActiveAreaImplementation* _implementation = static_cast<MissionReconActiveAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ void MissionReconActiveAreaImplementation::finalize() {
 void MissionReconActiveAreaImplementation::_initializeImplementation() {
 	_setClassHelper(MissionReconActiveAreaHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -235,9 +235,9 @@ void MissionReconActiveAreaImplementation::writeJSON(nlohmann::json& j) {
 MissionReconActiveAreaImplementation::MissionReconActiveAreaImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/area/MissionReconActiveArea.idl():  		missionObjective = null;
-	missionObjective = nullptr;
+	missionObjective = NULL;
 	// server/zone/objects/area/MissionReconActiveArea.idl():  		completeTask = null;
-	completeTask = nullptr;
+	completeTask = NULL;
 	// server/zone/objects/area/MissionReconActiveArea.idl():  		Logger.setLoggingName("MissionReconActiveArea");
 	Logger::setLoggingName("MissionReconActiveArea");
 }
@@ -255,13 +255,13 @@ void MissionReconActiveAreaImplementation::notifyEnter(SceneObject* player) {
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			ReconMissionObjective strongReference = missionObjective;
 	ManagedReference<ReconMissionObjective* > strongReference = missionObjective;
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			}
-	if (strongReference != nullptr){
+	if (strongReference){
 	// server/zone/objects/area/MissionReconActiveArea.idl():  				CreatureObject missionOwner = strongReference.getPlayerOwner();
 	ManagedReference<CreatureObject* > missionOwner = strongReference->getPlayerOwner();
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			}
 	if (dynamic_cast<CreatureObject*>(player) == missionOwner){
 	// server/zone/objects/area/MissionReconActiveArea.idl():  					if 
-	if (completeTask == nullptr){
+	if (!completeTask){
 	Reference<CompleteMissionAfterCertainTimeTask*> _ref0;
 	// server/zone/objects/area/MissionReconActiveArea.idl():  						completeTask = new CompleteMissionAfterCertainTimeTask(strongReference);
 	completeTask = _ref0 = new CompleteMissionAfterCertainTimeTask(strongReference);
@@ -301,13 +301,13 @@ void MissionReconActiveAreaImplementation::notifyExit(SceneObject* player) {
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			ReconMissionObjective strongReference = missionObjective;
 	ManagedReference<ReconMissionObjective* > strongReference = missionObjective;
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			}
-	if (strongReference != nullptr){
+	if (strongReference){
 	// server/zone/objects/area/MissionReconActiveArea.idl():  				CreatureObject missionOwner = strongReference.getPlayerOwner();
 	ManagedReference<CreatureObject* > missionOwner = strongReference->getPlayerOwner();
 	// server/zone/objects/area/MissionReconActiveArea.idl():  			}
 	if (dynamic_cast<CreatureObject*>(player) == missionOwner){
 	// server/zone/objects/area/MissionReconActiveArea.idl():  				}
-	if (completeTask != nullptr){
+	if (completeTask){
 	// server/zone/objects/area/MissionReconActiveArea.idl():  						missionOwner.sendSystemMessage("Reconnaissance aborted.");
 	missionOwner->sendSystemMessage("Reconnaissance aborted.");
 	// server/zone/objects/area/MissionReconActiveArea.idl():  						completeTask.cancel();

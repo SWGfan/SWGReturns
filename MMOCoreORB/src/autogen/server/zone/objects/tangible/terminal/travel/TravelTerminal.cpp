@@ -34,7 +34,7 @@ TravelTerminal::~TravelTerminal() {
 
 void TravelTerminal::initializeTransientMembers() {
 	TravelTerminalImplementation* _implementation = static_cast<TravelTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void TravelTerminal::initializeTransientMembers() {
 
 void TravelTerminal::notifyInsertToZone(Zone* zone) {
 	TravelTerminalImplementation* _implementation = static_cast<TravelTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void TravelTerminal::notifyInsertToZone(Zone* zone) {
 
 int TravelTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	TravelTerminalImplementation* _implementation = static_cast<TravelTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ int TravelTerminal::handleObjectMenuSelect(CreatureObject* player, byte selected
 
 PlanetTravelPoint* TravelTerminal::getPlanetTravelPoint() {
 	TravelTerminalImplementation* _implementation = static_cast<TravelTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -120,7 +120,7 @@ void TravelTerminalImplementation::finalize() {
 void TravelTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(TravelTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -230,8 +230,8 @@ TravelTerminalImplementation::TravelTerminalImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		Logger.setLoggingName("TravelTerminal");
 	Logger::setLoggingName("TravelTerminal");
-	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		planetTravelPoint == null;
-	planetTravelPoint == nullptr;
+	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		planetTravelPoint = null;
+	planetTravelPoint = NULL;
 }
 
 void TravelTerminalImplementation::initializeTransientMembers() {
@@ -243,12 +243,12 @@ void TravelTerminalImplementation::initializeTransientMembers() {
 
 PlanetTravelPoint* TravelTerminalImplementation::getPlanetTravelPoint() {
 	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		Zone 
-	if (planetTravelPoint != nullptr)	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		 return planetTravelPoint;
+	if (planetTravelPoint)	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		 return planetTravelPoint;
 	return planetTravelPoint;
 	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		Zone zone = getZone();
 	ManagedReference<Zone* > zone = getZone();
 	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  		return 
-	if (zone != nullptr){
+	if (zone){
 	// server/zone/objects/tangible/terminal/travel/TravelTerminal.idl():  			planetTravelPoint = zone.getPlanetManager().getNearestPlanetTravelPoint(this);
 	planetTravelPoint = zone->getPlanetManager()->getNearestPlanetTravelPoint(_this.getReferenceUnsafeStaticCast());
 }

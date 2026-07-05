@@ -11,10 +11,8 @@
 
 class PetFollowCommand : public QueueCommand {
 public:
-	PetFollowCommand(const String& name, ZoneProcessServer* server)
-		: QueueCommand(name, server) {
+	PetFollowCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
 	}
-
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().get().castTo<PetControlDevice*>();
@@ -33,9 +31,15 @@ public:
 		if (pet->getPosture() != CreaturePosture::UPRIGHT && pet->getPosture() != CreaturePosture::KNOCKEDDOWN)
 			pet->setPosture(CreaturePosture::UPRIGHT);
 
-		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target, true);
-		if (targetObject == nullptr || !targetObject->isCreatureObject() ) { // pets should be able to follow other mobiles as a command. i found multiple references to this. -- washu
-			pet->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
+		ZoneServer* zoneServer = server->getZoneServer();
+
+		if (zoneServer == nullptr)
+			return GENERALERROR;
+
+		ManagedReference<SceneObject*> targetObject = zoneServer->getObject(target, true);
+
+		if (targetObject == nullptr || !targetObject->isCreatureObject()) {  // pets should be able to follow other mobiles as a command. i found multiple references to this. -- washu
+			pet->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
 			return GENERALERROR;
 		}
 
@@ -46,7 +50,7 @@ public:
 
 		uint64 playerID = tokenizer.getLongToken();
 
-		ManagedReference<CreatureObject*> player = server->getZoneServer()->getObject(playerID, true).castTo<CreatureObject*>();
+		ManagedReference<CreatureObject*> player = zoneServer->getObject(playerID, true).castTo<CreatureObject*>();
 
 		if (player == nullptr)
 			return GENERALERROR;
@@ -57,7 +61,7 @@ public:
 			return GENERALERROR;
 
 		if (targetCreature != player && targetCreature->isAttackableBy(creature) && !CollisionManager::checkLineOfSight(player, targetObject)) {
-			pet->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
+			pet->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
 			return INVALIDTARGET;
 		}
 
@@ -68,23 +72,24 @@ public:
 
 			if (!perms->hasInheritPermissionsFromParent()) {
 				if (!targetCell->checkContainerPermission(player, ContainerPermissions::WALKIN)) {
-					pet->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
+					pet->showFlyText("npc_reaction/flytext", "confused", 204, 0, 0); // "?!!?!?!"
 					return INVALIDTARGET;
 				}
 			}
 		}
 
 		// Check if droid has power
-		if( controlDevice->getPetType() == PetManager::DROIDPET ){
+		if (controlDevice->getPetType() == PetManager::DROIDPET) {
 			ManagedReference<DroidObject*> droidPet = cast<DroidObject*>(pet.get());
-			if( droidPet == nullptr )
+			if (droidPet == nullptr)
 				return GENERALERROR;
 
-			if( !droidPet->hasPower() ){
-				pet->showFlyText("npc_reaction/flytext","low_power", 204, 0, 0);  // "*Low Power*"
+			if (!droidPet->hasPower()) {
+				pet->showFlyText("npc_reaction/flytext", "low_power", 204, 0, 0); // "*Low Power*"
 				return GENERALERROR;
 			}
 		}
+
 		// attempt peace if the pet is in combat
 		if (pet->isInCombat())
 			CombatManager::instance()->attemptPeace(pet);
@@ -92,29 +97,10 @@ public:
 		pet->setFollowObject(targetObject);
 		pet->storeFollowObject();
 
-		if (player == targetObject) {
-			ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-			int activePets = ghost->getActivePetsSize();
-			activePets -= 1;
-			for (int i = 1; i < activePets; ++i) {
-				ManagedReference<AiAgent*> lastPet = ghost->getActivePet(i - 1);
-				ManagedReference<AiAgent*> currentPet = ghost->getActivePet(i);
-				if(lastPet == nullptr || currentPet == nullptr)
-					continue;
-				currentPet->setFollowObject(lastPet);
-				currentPet->storeFollowObject();
-			}
-		}
-
-		Locker clocker(controlDevice, creature);
-		controlDevice->setLastCommand(PetManager::FOLLOW);
-
-		pet->activateInterrupt(pet->getLinkedCreature().get(), ObserverEventType::STARTCOMBAT);
+		pet->notifyObservers(ObserverEventType::STARTCOMBAT, pet->getLinkedCreature().get());
 
 		return SUCCESS;
 	}
-
 };
-
 
 #endif /* PETFOLLOWCOMMAND_H_ */

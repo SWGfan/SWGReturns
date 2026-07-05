@@ -32,7 +32,7 @@ TicketCollector::~TicketCollector() {
 
 void TicketCollector::initializeTransientMembers() {
 	TicketCollectorImplementation* _implementation = static_cast<TicketCollectorImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void TicketCollector::initializeTransientMembers() {
 
 int TicketCollector::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	TicketCollectorImplementation* _implementation = static_cast<TicketCollectorImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ int TicketCollector::handleObjectMenuSelect(CreatureObject* player, byte selecte
 
 void TicketCollector::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	TicketCollectorImplementation* _implementation = static_cast<TicketCollectorImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ void TicketCollector::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, C
 
 bool TicketCollector::isTicketCollector() {
 	TicketCollectorImplementation* _implementation = static_cast<TicketCollectorImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +117,7 @@ void TicketCollectorImplementation::finalize() {
 void TicketCollectorImplementation::_initializeImplementation() {
 	_setClassHelper(TicketCollectorHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -4,13 +4,7 @@
 
 #include "GamblingTerminal.h"
 
-#include "server/zone/objects/creature/CreatureObject.h"
-
 #include "server/zone/packets/object/ObjectMenuResponse.h"
-
-#include "server/zone/managers/minigames/GamblingBet.h"
-
-#include "server/zone/managers/minigames/events/GamblingEvent.h"
 
 #include "server/chat/StringIdChatParameter.h"
 
@@ -18,7 +12,7 @@
  *	GamblingTerminalStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3740544218,RPC_RESET__,RPC_GETFIRST__,RPC_GETSECOND__,RPC_GETTHIRD__,RPC_SETFIRST__INT_,RPC_SETSECOND__INT_,RPC_SETTHIRD__INT_,RPC_GETMINBET__,RPC_GETMAXBET__,RPC_GETSTATE__,RPC_SETSTATE__INT_,RPC_GETMACHINETYPE__,RPC_INCGAMECOUNT__,RPC_GETGAMECOUNT__,RPC_ISGONEEMPTY__,RPC_GETMACHINETYPETEXT__,RPC_GETTEXT__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETGAMBLINGREGION__STRING_,RPC_GETGAMBLINGREGION__,RPC_GAMERUNNING__,RPC_CHECKJOIN__CREATUREOBJECT_,RPC_JOINTERMINAL__CREATUREOBJECT_,RPC_LEAVETERMINAL__CREATUREOBJECT_,RPC_CLOSEMENU__CREATUREOBJECT_BOOL_,RPC_CLOSEALLMENUS__,RPC_STATUSUPDATE__CREATUREOBJECT_INT_,RPC_STATUSUPDATE__INT_,};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3740544218,RPC_RESET__,RPC_GETFIRST__,RPC_GETSECOND__,RPC_GETTHIRD__,RPC_SETFIRST__INT_,RPC_SETSECOND__INT_,RPC_SETTHIRD__INT_,RPC_GETMINBET__,RPC_GETMAXBET__,RPC_GETSTATE__,RPC_SETSTATE__INT_,RPC_GETMACHINETYPE__,RPC_INCGAMECOUNT__,RPC_GETGAMECOUNT__,RPC_ISGONEEMPTY__,RPC_GETMACHINETYPETEXT__,RPC_GETTEXT__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETGAMBLINGREGION__STRING_,RPC_GETGAMBLINGREGION__,RPC_GAMERUNNING__,RPC_BETTINGALLOWED__,RPC_CHECKJOIN__CREATUREOBJECT_,RPC_JOINTERMINAL__CREATUREOBJECT_,RPC_LEAVETERMINAL__CREATUREOBJECT_,RPC_CLOSEMENU__CREATUREOBJECT_BOOL_,RPC_CLOSEALLMENUS__,RPC_STATUSUPDATE__CREATUREOBJECT_INT_,RPC_STATUSUPDATE__INT_,};
 
 GamblingTerminal::GamblingTerminal() : Terminal(DummyConstructorParameter::instance()) {
 	GamblingTerminalImplementation* _implementation = new GamblingTerminalImplementation();
@@ -38,7 +32,7 @@ GamblingTerminal::~GamblingTerminal() {
 
 void GamblingTerminal::initializeTransientMembers() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +46,7 @@ void GamblingTerminal::initializeTransientMembers() {
 
 void GamblingTerminal::reset() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +60,7 @@ void GamblingTerminal::reset() {
 
 Vector<Reference<GamblingBet*> >* GamblingTerminal::getBets() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -76,7 +70,7 @@ Vector<Reference<GamblingBet*> >* GamblingTerminal::getBets() {
 
 VectorMap<ManagedReference<CreatureObject* >, unsigned int>* GamblingTerminal::getPlayersWindows() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -86,7 +80,7 @@ VectorMap<ManagedReference<CreatureObject* >, unsigned int>* GamblingTerminal::g
 
 VectorMap<ManagedReference<CreatureObject* >, int>* GamblingTerminal::getWinnings() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -96,7 +90,7 @@ VectorMap<ManagedReference<CreatureObject* >, int>* GamblingTerminal::getWinning
 
 int GamblingTerminal::getFirst() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -110,7 +104,7 @@ int GamblingTerminal::getFirst() {
 
 int GamblingTerminal::getSecond() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -124,7 +118,7 @@ int GamblingTerminal::getSecond() {
 
 int GamblingTerminal::getThird() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -138,7 +132,7 @@ int GamblingTerminal::getThird() {
 
 void GamblingTerminal::setFirst(int value) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -153,7 +147,7 @@ void GamblingTerminal::setFirst(int value) {
 
 void GamblingTerminal::setSecond(int value) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +162,7 @@ void GamblingTerminal::setSecond(int value) {
 
 void GamblingTerminal::setThird(int value) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +177,7 @@ void GamblingTerminal::setThird(int value) {
 
 int GamblingTerminal::getMinBet() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -197,7 +191,7 @@ int GamblingTerminal::getMinBet() {
 
 int GamblingTerminal::getMaxBet() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,7 +205,7 @@ int GamblingTerminal::getMaxBet() {
 
 int GamblingTerminal::getState() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,7 +219,7 @@ int GamblingTerminal::getState() {
 
 void GamblingTerminal::setState(int value) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -240,7 +234,7 @@ void GamblingTerminal::setState(int value) {
 
 int GamblingTerminal::getMachineType() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +248,7 @@ int GamblingTerminal::getMachineType() {
 
 GamblingEvent* GamblingTerminal::getEvent() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -264,7 +258,7 @@ GamblingEvent* GamblingTerminal::getEvent() {
 
 void GamblingTerminal::setEvent(GamblingEvent* event) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -274,7 +268,7 @@ void GamblingTerminal::setEvent(GamblingEvent* event) {
 
 void GamblingTerminal::incGameCount() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -288,7 +282,7 @@ void GamblingTerminal::incGameCount() {
 
 int GamblingTerminal::getGameCount() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -302,7 +296,7 @@ int GamblingTerminal::getGameCount() {
 
 bool GamblingTerminal::isGoneEmpty() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -316,7 +310,7 @@ bool GamblingTerminal::isGoneEmpty() {
 
 String GamblingTerminal::getMachineTypeText() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -332,7 +326,7 @@ String GamblingTerminal::getMachineTypeText() {
 
 void GamblingTerminal::loadTemplateData(SharedObjectTemplate* templateData) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -342,7 +336,7 @@ void GamblingTerminal::loadTemplateData(SharedObjectTemplate* templateData) {
 
 String GamblingTerminal::getText(CreatureObject* player) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -359,7 +353,7 @@ String GamblingTerminal::getText(CreatureObject* player) {
 
 void GamblingTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -369,7 +363,7 @@ void GamblingTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, 
 
 int GamblingTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -385,7 +379,7 @@ int GamblingTerminal::handleObjectMenuSelect(CreatureObject* player, byte select
 
 void GamblingTerminal::setGamblingRegion(const String& region) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -400,7 +394,7 @@ void GamblingTerminal::setGamblingRegion(const String& region) {
 
 String GamblingTerminal::getGamblingRegion() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -416,7 +410,7 @@ String GamblingTerminal::getGamblingRegion() {
 
 bool GamblingTerminal::gameRunning() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -428,9 +422,23 @@ bool GamblingTerminal::gameRunning() {
 	}
 }
 
+bool GamblingTerminal::bettingAllowed() {
+	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_BETTINGALLOWED__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->bettingAllowed();
+	}
+}
+
 void GamblingTerminal::notifyOthers(CreatureObject* player, StringIdChatParameter* text) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -440,7 +448,7 @@ void GamblingTerminal::notifyOthers(CreatureObject* player, StringIdChatParamete
 
 void GamblingTerminal::notifyAll(StringIdChatParameter* text) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -450,7 +458,7 @@ void GamblingTerminal::notifyAll(StringIdChatParameter* text) {
 
 bool GamblingTerminal::checkJoin(CreatureObject* player) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -465,7 +473,7 @@ bool GamblingTerminal::checkJoin(CreatureObject* player) {
 
 void GamblingTerminal::joinTerminal(CreatureObject* player) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -480,7 +488,7 @@ void GamblingTerminal::joinTerminal(CreatureObject* player) {
 
 void GamblingTerminal::leaveTerminal(CreatureObject* player) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -495,7 +503,7 @@ void GamblingTerminal::leaveTerminal(CreatureObject* player) {
 
 void GamblingTerminal::closeMenu(CreatureObject* player, bool payout) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -511,7 +519,7 @@ void GamblingTerminal::closeMenu(CreatureObject* player, bool payout) {
 
 void GamblingTerminal::closeAllMenus() {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -525,7 +533,7 @@ void GamblingTerminal::closeAllMenus() {
 
 void GamblingTerminal::statusUpdate(CreatureObject* player, int event) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -541,7 +549,7 @@ void GamblingTerminal::statusUpdate(CreatureObject* player, int event) {
 
 void GamblingTerminal::statusUpdate(int event) {
 	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -587,7 +595,7 @@ void GamblingTerminalImplementation::finalize() {
 void GamblingTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(GamblingTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1059,6 +1067,25 @@ bool GamblingTerminalImplementation::gameRunning() {
 	return state != NOGAMERUNNING;
 }
 
+bool GamblingTerminalImplementation::bettingAllowed() {
+	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  		}
+	if (machineType == ROULETTEMACHINE){
+	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return NOGAMERUNNING < state && state < WHEELSTART;
+	return NOGAMERUNNING < state && state < WHEELSTART;
+}
+
+	else 	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  		}
+	if (machineType == SLOTMACHINE){
+	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return state < GAMESTARTING;
+	return state < GAMESTARTING;
+}
+
+	else {
+	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return false;
+	return false;
+}
+}
+
 /*
  *	GamblingTerminalAdapter
  */
@@ -1236,6 +1263,13 @@ void GamblingTerminalAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_BETTINGALLOWED__:
+		{
+			
+			bool _m_res = bettingAllowed();
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_CHECKJOIN__CREATUREOBJECT_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -1384,6 +1418,10 @@ String GamblingTerminalAdapter::getGamblingRegion() {
 
 bool GamblingTerminalAdapter::gameRunning() {
 	return (static_cast<GamblingTerminal*>(stub))->gameRunning();
+}
+
+bool GamblingTerminalAdapter::bettingAllowed() {
+	return (static_cast<GamblingTerminal*>(stub))->bettingAllowed();
 }
 
 bool GamblingTerminalAdapter::checkJoin(CreatureObject* player) {

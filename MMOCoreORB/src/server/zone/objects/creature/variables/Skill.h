@@ -311,7 +311,7 @@ public:
 	 * @return the credits required for training the skill at a trainer.
 	 */
 	inline int getMoneyRequired() const {
-		return moneyRequired/10;
+		return moneyRequired;
 	}
 
 	/**
@@ -320,10 +320,6 @@ public:
 	 */
 	inline int getSkillPointsRequired() const {
 		return pointsRequired;
-	}
-
-	inline int getApprenticeshipsRequired() const {
-		return apprenticeshipsRequired;
 	}
 
 	/**

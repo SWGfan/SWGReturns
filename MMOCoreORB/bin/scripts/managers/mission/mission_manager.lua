@@ -60,17 +60,7 @@ bh_targets_at_mission_level = {
 		"bh_feral_force_wielder", --level 115
 		"bh_force_crystal_hunter", --level 115
 		"bh_tusken_carnage_champion", --level 116
-		"bh_dark_adept", --level 120
-
-    "stintaril_prowler",
-    "blurrg_raptor",
-    "enraged_kimogila",
-    "peko_peko_albatross",
-    "graul_marauder",
-    "nightsister_elder",
-    "gaping_spider_recluse_giant_kiin_dray",
-    "giant_canyon_krayt_dragon",
-
+		"bh_dark_adept" --level 120
 	}
 }
 
@@ -85,3 +75,20 @@ enable_same_account_bounty_missions = "false"
 playerBountyKillBuffer = 0 -- Buffer before player bounty can be put back on terminal after target is killed, set 0 to disable
 
 playerBountyDebuffLength = 3 * 24 * 60 * 60 * 1000 -- Time before their bounty resets from the minimum amount
+
+-- Destroy Mission Configuration
+-- Distance calculated as: 
+--    <BaseDistance> + <DifficultyDistanceFactor> * <difficultyLevel> + 
+--    rand(<RandomDistance>) + rand(<DifficutlyRandomDistance * <difficultyLevel>)
+destroyMissionBaseDistance = 1000
+destroyMissionDifficultyDistanceFactor = 0
+destroyMissionRandomDistance = 1000
+destroyMissionDifficultyRandomDistance = 0
+
+-- Mission payout calculated as: 
+--    <BaseReward> + <DifficultyRewardFactor> * <difficultyLevel> + 
+--    rand(<RandomReward>) + rand(<DifficutlyRandomReward * <difficultyLevel>)
+destroyMissionBaseReward = 0
+destroyMissionDifficultyRewardFactor = 1875
+destroyMissionRandomReward = 0
+destroyMissionDifficultyRandomReward = 75

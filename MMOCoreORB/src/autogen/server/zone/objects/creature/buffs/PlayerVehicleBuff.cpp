@@ -30,7 +30,7 @@ PlayerVehicleBuff::~PlayerVehicleBuff() {
 
 void PlayerVehicleBuff::applyAllModifiers() {
 	PlayerVehicleBuffImplementation* _implementation = static_cast<PlayerVehicleBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ void PlayerVehicleBuff::applyAllModifiers() {
 
 void PlayerVehicleBuff::removeAllModifiers() {
 	PlayerVehicleBuffImplementation* _implementation = static_cast<PlayerVehicleBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void PlayerVehicleBuff::removeAllModifiers() {
 
 void PlayerVehicleBuff::activate(bool applyModifiers) {
 	PlayerVehicleBuffImplementation* _implementation = static_cast<PlayerVehicleBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void PlayerVehicleBuff::activate(bool applyModifiers) {
 
 void PlayerVehicleBuff::deactivate(bool removeModifiers) {
 	PlayerVehicleBuffImplementation* _implementation = static_cast<PlayerVehicleBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +88,7 @@ void PlayerVehicleBuff::deactivate(bool removeModifiers) {
 
 void PlayerVehicleBuff::updateRiderSpeeds() {
 	PlayerVehicleBuffImplementation* _implementation = static_cast<PlayerVehicleBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ void PlayerVehicleBuffImplementation::finalize() {
 void PlayerVehicleBuffImplementation::_initializeImplementation() {
 	_setClassHelper(PlayerVehicleBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

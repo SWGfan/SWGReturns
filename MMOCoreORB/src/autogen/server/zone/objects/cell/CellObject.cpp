@@ -12,7 +12,7 @@
  *	CellObjectStub
  */
 
-enum {RPC_SETALLOWENTRYPERMISSIONGROUP__STRING_,RPC_NOTIFYLOADFROMDATABASE__,RPC_ONCONTAINERLOADED__,RPC_HASFORCELOADOBJECT__,RPC_ONBUILDINGINSERTEDTOZONE__BUILDINGOBJECT_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_SENDPERMISSIONSTO__CREATUREOBJECT_BOOL_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_TRANSFEROBJECT__SCENEOBJECT_INT_BOOL_BOOL_BOOL_,RPC_REMOVEOBJECT__SCENEOBJECT_SCENEOBJECT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_GETCURRENTNUMBEROFPLAYERVENDORS__,RPC_DESTROYALLPLAYERITEMS__,RPC_GETCELLNUMBER__,RPC_SETCELLNUMBER__INT_,RPC_ISCELLOBJECT__};
+enum {RPC_SETALLOWENTRYPERMISSIONGROUP__STRING_,RPC_NOTIFYLOADFROMDATABASE__,RPC_ONCONTAINERLOADED__,RPC_HASFORCELOADOBJECT__,RPC_ONBUILDINGINSERTEDTOZONE__BUILDINGOBJECT_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_SENDPERMISSIONSTO__CREATUREOBJECT_BOOL_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_TRANSFEROBJECT__SCENEOBJECT_INT_BOOL_BOOL_BOOL_,RPC_REMOVEOBJECT__SCENEOBJECT_SCENEOBJECT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_DESTROYALLPLAYERITEMS__,RPC_GETCELLNUMBER__,RPC_SETCELLNUMBER__INT_,RPC_ISCELLOBJECT__};
 
 CellObject::CellObject() : SceneObject(DummyConstructorParameter::instance()) {
 	CellObjectImplementation* _implementation = new CellObjectImplementation();
@@ -32,7 +32,7 @@ CellObject::~CellObject() {
 
 void CellObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void CellObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void CellObject::setAllowEntryPermissionGroup(const String& group) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void CellObject::setAllowEntryPermissionGroup(const String& group) {
 
 void CellObject::notifyLoadFromDatabase() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ void CellObject::notifyLoadFromDatabase() {
 
 void CellObject::onContainerLoaded() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ void CellObject::onContainerLoaded() {
 
 bool CellObject::hasForceLoadObject() const {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ bool CellObject::hasForceLoadObject() const {
 
 void CellObject::onBuildingInsertedToZone(BuildingObject* building) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ void CellObject::onBuildingInsertedToZone(BuildingObject* building) {
 
 void CellObject::sendContainerObjectsTo(SceneObject* player, bool forceLoad) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -131,7 +131,7 @@ void CellObject::sendContainerObjectsTo(SceneObject* player, bool forceLoad) {
 
 void CellObject::sendPermissionsTo(CreatureObject* object, bool allowEntry) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,7 +147,7 @@ void CellObject::sendPermissionsTo(CreatureObject* object, bool allowEntry) {
 
 int CellObject::canAddObject(SceneObject* object, int containmentType, String& errorDescription) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -164,7 +164,7 @@ int CellObject::canAddObject(SceneObject* object, int containmentType, String& e
 
 bool CellObject::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow, bool notifyRoot) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -183,7 +183,7 @@ bool CellObject::transferObject(SceneObject* object, int containmentType, bool n
 
 bool CellObject::removeObject(SceneObject* object, SceneObject* destination, bool notifyClient) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -200,7 +200,7 @@ bool CellObject::removeObject(SceneObject* object, SceneObject* destination, boo
 
 void CellObject::initializeTransientMembers() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -214,7 +214,7 @@ void CellObject::initializeTransientMembers() {
 
 void CellObject::sendBaselinesTo(SceneObject* player) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -229,7 +229,7 @@ void CellObject::sendBaselinesTo(SceneObject* player) {
 
 int CellObject::getCurrentNumberOfPlayerItems() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,23 +241,9 @@ int CellObject::getCurrentNumberOfPlayerItems() {
 	}
 }
 
-int CellObject::getCurrentNumberOfPlayerVendors() {
-	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCURRENTNUMBEROFPLAYERVENDORS__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getCurrentNumberOfPlayerVendors();
-	}
-}
-
 void CellObject::destroyAllPlayerItems() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -271,7 +257,7 @@ void CellObject::destroyAllPlayerItems() {
 
 int CellObject::getCellNumber() const {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -285,7 +271,7 @@ int CellObject::getCellNumber() const {
 
 void CellObject::setCellNumber(int number) {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -301,7 +287,7 @@ void CellObject::setCellNumber(int number) {
 
 bool CellObject::isCellObject() {
 	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -346,7 +332,7 @@ void CellObjectImplementation::finalize() {
 void CellObjectImplementation::_initializeImplementation() {
 	_setClassHelper(CellObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -645,13 +631,6 @@ void CellObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_GETCURRENTNUMBEROFPLAYERVENDORS__:
-		{
-			
-			int _m_res = getCurrentNumberOfPlayerVendors();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
 	case RPC_DESTROYALLPLAYERITEMS__:
 		{
 			
@@ -738,10 +717,6 @@ int CellObjectAdapter::getCurrentNumberOfPlayerItems() {
 	return (static_cast<CellObject*>(stub))->getCurrentNumberOfPlayerItems();
 }
 
-int CellObjectAdapter::getCurrentNumberOfPlayerVendors() {
-	return (static_cast<CellObject*>(stub))->getCurrentNumberOfPlayerVendors();
-}
-
 void CellObjectAdapter::destroyAllPlayerItems() {
 	(static_cast<CellObject*>(stub))->destroyAllPlayerItems();
 }
@@ -816,7 +791,6 @@ Luna<LuaCellObject>::RegType LuaCellObject::Register[] = {
 	{ "initializeTransientMembers", &LuaCellObject::initializeTransientMembers },
 	{ "sendBaselinesTo", &LuaCellObject::sendBaselinesTo },
 	{ "getCurrentNumberOfPlayerItems", &LuaCellObject::getCurrentNumberOfPlayerItems },
-	{ "getCurrentNumberOfPlayerVendors", &LuaCellObject::getCurrentNumberOfPlayerVendors },
 	{ "destroyAllPlayerItems", &LuaCellObject::destroyAllPlayerItems },
 	{ "getCellNumber", &LuaCellObject::getCellNumber },
 	{ "setCellNumber", &LuaCellObject::setCellNumber },
@@ -1132,20 +1106,6 @@ int LuaCellObject::getCurrentNumberOfPlayerItems(lua_State *L) {
 		return 1;
 	} else {
 		throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'CellObject:getCurrentNumberOfPlayerItems()'");
-	}
-	return 0;
-}
-
-int LuaCellObject::getCurrentNumberOfPlayerVendors(lua_State *L) {
-	int parameterCount = lua_gettop(L) - 1;
-	
-	if (parameterCount == 0) {
-		int result = realObject->getCurrentNumberOfPlayerVendors();
-
-		lua_pushinteger(L, result);
-		return 1;
-	} else {
-		throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'CellObject:getCurrentNumberOfPlayerVendors()'");
 	}
 	return 0;
 }

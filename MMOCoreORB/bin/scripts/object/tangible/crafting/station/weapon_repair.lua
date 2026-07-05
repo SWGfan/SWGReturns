@@ -52,7 +52,6 @@ object_tangible_crafting_station_weapon_repair = object_tangible_crafting_statio
 
 	stationType = 7,
 	useCount = 5,
-
 	numberExperimentalProperties = {1, 1, 1, 1},
 	experimentalProperties = {"XX", "XX", "UT", "CD"},
 	experimentalWeights = {1, 1, 1, 1},

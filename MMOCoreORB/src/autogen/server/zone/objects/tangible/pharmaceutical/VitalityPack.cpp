@@ -32,7 +32,7 @@ VitalityPack::~VitalityPack() {
 
 void VitalityPack::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	VitalityPackImplementation* _implementation = static_cast<VitalityPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void VitalityPack::updateCraftingValues(CraftingValues* values, bool firstUpdate
 
 int VitalityPack::getEffectiveness() {
 	VitalityPackImplementation* _implementation = static_cast<VitalityPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ int VitalityPack::getEffectiveness() {
 
 bool VitalityPack::isVitalityPack() {
 	VitalityPackImplementation* _implementation = static_cast<VitalityPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ bool VitalityPack::isVitalityPack() {
 
 int VitalityPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	VitalityPackImplementation* _implementation = static_cast<VitalityPackImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -80,7 +80,7 @@ int VitalityPack::handleObjectMenuSelect(CreatureObject* player, byte selectedID
 
 void VitalityPack::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	VitalityPackImplementation* _implementation = static_cast<VitalityPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -121,7 +121,7 @@ void VitalityPackImplementation::finalize() {
 void VitalityPackImplementation::_initializeImplementation() {
 	_setClassHelper(VitalityPackHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -16,7 +16,6 @@
 #include "server/zone/Zone.h"
 #include "server/zone/objects/region/CityRegion.h"
 #include "server/zone/objects/player/sessions/SlicingSession.h"
-#include "server/chat/ChatManager.h"
 
 const char LuaPlayerObject::className[] = "LuaPlayerObject";
 
@@ -80,9 +79,12 @@ Luna<LuaPlayerObject>::RegType LuaPlayerObject::Register[] = {
 		{ "setFrsRank", &LuaPlayerObject::setFrsRank },
 		{ "getFrsRank", &LuaPlayerObject::getFrsRank },
 		{ "getFrsCouncil", &LuaPlayerObject::getFrsCouncil },
+		{ "addSkillPoints", &LuaPlayerObject::addSkillPoints },
+		{ "getSkillPoints", &LuaPlayerObject::getSkillPoints },
 		{ "startSlicingSession", &LuaPlayerObject::startSlicingSession },
 		{ "setVisibility", &LuaPlayerObject::setVisibility },
 		{ "getPlayedTimeString", &LuaPlayerObject::getPlayedTimeString },
+		{ "getAccountID", &LuaPlayerObject::getAccountID },
 		{ 0, 0 }
 };
 
@@ -91,7 +93,7 @@ LuaPlayerObject::LuaPlayerObject(lua_State *L) : LuaIntangibleObject(L) {
 #ifdef DYNAMIC_CAST_LUAOBJECTS
 	realObject = dynamic_cast<PlayerObject*>(_getRealSceneObject());
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	realObject = reinterpret_cast<PlayerObject*>(lua_touserdata(L, 1));
 #endif
@@ -106,7 +108,7 @@ int LuaPlayerObject::_setObject(lua_State* L) {
 #ifdef DYNAMIC_CAST_LUAOBJECTS
 	realObject = dynamic_cast<PlayerObject*>(_getRealSceneObject());
 
-	assert(!_getRealSceneObject() || realObject != nullptr);
+	E3_ASSERT(!_getRealSceneObject() || realObject != nullptr);
 #else
 	realObject = (PlayerObject*)lua_touserdata(L, -1);
 #endif
@@ -340,7 +342,7 @@ int LuaPlayerObject::addHologrindProfession(lua_State* L){
 }
 
 int LuaPlayerObject::getHologrindProfessions(lua_State* L) {
-	Vector<byte>* professions = realObject->getHologrindProfessions();
+	const Vector<byte>* professions = realObject->getHologrindProfessions();
 
 	lua_newtable(L);
 
@@ -586,7 +588,7 @@ int LuaPlayerObject::closeSuiWindowType(lua_State* L) {
 }
 
 int LuaPlayerObject::getExperienceList(lua_State* L) {
-	DeltaVectorMap<String, int>* expList = realObject->getExperienceList();
+	const DeltaVectorMap<String, int>* expList = realObject->getExperienceList();
 
 	lua_newtable(L);
 
@@ -711,6 +713,20 @@ int LuaPlayerObject::getFrsCouncil(lua_State* L) {
 	return 1;
 }
 
+int LuaPlayerObject::addSkillPoints(lua_State* L) {
+	int points = lua_tointeger(L, -1);
+
+	realObject->addSkillPoints(points);
+
+	return 0;
+}
+
+int LuaPlayerObject::getSkillPoints(lua_State* L) {
+	lua_pushinteger(L, realObject->getSkillPoints());
+
+	return 1;
+}
+
 int LuaPlayerObject::startSlicingSession(lua_State* L) {
 	TangibleObject* objToSlice = (TangibleObject*) lua_touserdata(L, -2);
 	bool isKeypadSlice = lua_toboolean(L, -1);
@@ -748,6 +764,14 @@ int LuaPlayerObject::getPlayedTimeString(lua_State* L) {
 	Locker locker(realObject);
 
 	lua_pushstring(L, realObject->getPlayedTimeString(verbose).toCharArray());
+
+	return 1;
+}
+
+int LuaPlayerObject::getAccountID(lua_State* L) {
+	Locker locker(realObject);
+
+	lua_pushinteger(L, realObject->getAccountID());
 
 	return 1;
 }

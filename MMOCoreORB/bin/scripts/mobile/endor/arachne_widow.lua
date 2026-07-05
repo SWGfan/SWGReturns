@@ -2,6 +2,7 @@ arachne_widow = Creature:new {
 	objectName = "@mob/creature_names:arachne_widow",
 	socialGroup = "arachne",
 	faction = "",
+	mobType = MOB_CARNIVORE,
 	level = 58,
 	chanceHit = 0.53,
 	damageMin = 400,
@@ -18,7 +19,7 @@ arachne_widow = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.25,
+	tamingChance = 0.01,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -30,12 +31,17 @@ arachne_widow = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/angler_hue.iff",
 	scale = 1.25,
 	lootGroups = {},
-	weapons = {},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "unarmed",
+	secondaryWeapon = "none",
 	conversationTemplate = "",
-	attacks = {
-		{"stunattack",""},
-		{"strongpoison",""}
-	}
+	
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = { {"stunattack",""}, {"strongpoison",""} },
+	secondaryAttacks = { }
 }
 
 CreatureTemplates:addCreatureTemplate(arachne_widow, "arachne_widow")

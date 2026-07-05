@@ -1,4 +1,4 @@
-# Install script for directory: /home/ubuntu/SWGGhosts/MMOCoreORB
+# Install script for directory: /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,27 +44,27 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/utils/googletest-release-1.8.0/googlemock/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/conf/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/terrain/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/templates/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/pathfinding/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/db/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/status/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/web/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/ping/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/login/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/chat/cmake_install.cmake")
-  include("/home/ubuntu/SWGGhosts/MMOCoreORB/src/client/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/utils/googletest-release-1.10.0/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/conf/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/terrain/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/templates/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/db/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/status/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/ping/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat/cmake_install.cmake")
+  include("/home/ubuntu/StarDust-2/MMOCoreORB/src/client/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/ubuntu/SWGGhosts/MMOCoreORB/install_local_manifest.txt"
+  file(WRITE "/home/ubuntu/StarDust-2/MMOCoreORB/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -80,6 +80,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/ubuntu/SWGGhosts/MMOCoreORB/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/ubuntu/StarDust-2/MMOCoreORB/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

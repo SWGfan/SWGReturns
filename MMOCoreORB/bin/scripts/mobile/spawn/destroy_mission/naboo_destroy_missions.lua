@@ -124,8 +124,8 @@ naboo_destroy_missions = {
 		},
 		{
 			lairTemplateName = "naboo_mauler_sect_neutral_medium_theater",
-			minDifficulty = 60,
-			maxDifficulty = 75,
+			minDifficulty = 10,
+			maxDifficulty = 14,
 			size = 25,
 		},
 		{
@@ -217,6 +217,13 @@ naboo_destroy_missions = {
 			minDifficulty = 32,
 			maxDifficulty = 36,
 			size = 35,
+		},
+		-- This is for the 6th Jedi Knight Trial Mobs
+		{
+			lairTemplateName = "naboo_peko_peko_albatross_neutral_none",
+			minDifficulty = 22,
+			maxDifficulty = 26,
+			size = 25,
 		},
 	}
 }

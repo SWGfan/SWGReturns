@@ -40,7 +40,11 @@ class CreatureObjectPOD;
 
 using namespace server::zone::objects::creature;
 
+#include "engine/log/LoggerHelperStream.h"
+
 #include "system/lang/ref/WeakReference.h"
+
+#include "engine/log/Logger.h"
 
 #include "engine/core/ManagedObject.h"
 
@@ -52,6 +56,8 @@ namespace credits {
 
 class CreditObject : public ManagedObject {
 public:
+	static const int CREDITCAP = 2000000000;
+
 	CreditObject();
 
 	void notifyLoadFromDatabase();
@@ -68,9 +74,19 @@ public:
 
 	void subtractCashCredits(int credits, bool notifyClient = true);
 
+	bool subtractCredits(int credits, bool notifyClient = true, bool bankFirst = false);
+
+	void transferCredits(int cash, int bank, bool notifyClient = true);
+
+	void clearBankCredits(bool notifyClient = true);
+
+	void clearCashCredits(bool notifyClient = true);
+
 	void addBankCredits(int credits, bool notifyClient = true);
 
 	void addCashCredits(int credits, bool notifyClient = true);
+
+	bool verifyCredits(int credits);
 
 	bool verifyCashCredits(int credits);
 
@@ -78,7 +94,17 @@ public:
 
 	WeakReference<CreatureObject* > getOwner();
 
+	unsigned long long getOwnerObjectID() const;
+
 	void setOwner(CreatureObject* obj);
+
+	LoggerHelperStream error() const;
+
+	LoggerHelperStream info(int forced = false) const;
+
+	LoggerHelperStream debug() const;
+
+	String toStringData() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -108,10 +134,15 @@ namespace creature {
 namespace credits {
 
 class CreditObjectImplementation : public ManagedObjectImplementation {
+public:
+	static const int CREDITCAP = 2000000000;
+
 protected:
 	int bankCredits;
 
 	int cashCredits;
+
+	unsigned long long ownerObjectID;
 
 	WeakReference<CreatureObject* > owner;
 
@@ -134,9 +165,19 @@ public:
 
 	void subtractCashCredits(int credits, bool notifyClient = true);
 
+	bool subtractCredits(int credits, bool notifyClient = true, bool bankFirst = false);
+
+	void transferCredits(int cash, int bank, bool notifyClient = true);
+
+	void clearBankCredits(bool notifyClient = true);
+
+	void clearCashCredits(bool notifyClient = true);
+
 	void addBankCredits(int credits, bool notifyClient = true);
 
 	void addCashCredits(int credits, bool notifyClient = true);
+
+	bool verifyCredits(int credits);
 
 	bool verifyCashCredits(int credits);
 
@@ -144,7 +185,17 @@ public:
 
 	WeakReference<CreatureObject* > getOwner();
 
+	virtual unsigned long long getOwnerObjectID() const;
+
 	void setOwner(CreatureObject* obj);
+
+	LoggerHelperStream error() const;
+
+	LoggerHelperStream info(int forced = false) const;
+
+	LoggerHelperStream debug() const;
+
+	String toStringData() const;
 
 	WeakReference<CreditObject*> _this;
 
@@ -204,9 +255,19 @@ public:
 
 	void subtractCashCredits(int credits, bool notifyClient);
 
+	bool subtractCredits(int credits, bool notifyClient, bool bankFirst);
+
+	void transferCredits(int cash, int bank, bool notifyClient);
+
+	void clearBankCredits(bool notifyClient);
+
+	void clearCashCredits(bool notifyClient);
+
 	void addBankCredits(int credits, bool notifyClient);
 
 	void addCashCredits(int credits, bool notifyClient);
+
+	bool verifyCredits(int credits);
 
 	bool verifyCashCredits(int credits);
 
@@ -254,6 +315,8 @@ public:
 	Optional<int> bankCredits;
 
 	Optional<int> cashCredits;
+
+	Optional<unsigned long long> ownerObjectID;
 
 	String _className;
 	CreditObjectPOD();

@@ -28,7 +28,7 @@ ArmorComponent::~ArmorComponent() {
 
 void ArmorComponent::initializeTransientMembers() {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ void ArmorComponent::initializeTransientMembers() {
 
 void ArmorComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void ArmorComponent::updateCraftingValues(CraftingValues* values, bool firstUpda
 
 void ArmorComponent::setKinetic(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -67,7 +67,7 @@ void ArmorComponent::setKinetic(float value) {
 
 void ArmorComponent::setEnergy(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ void ArmorComponent::setEnergy(float value) {
 
 void ArmorComponent::setElectricity(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -97,7 +97,7 @@ void ArmorComponent::setElectricity(float value) {
 
 void ArmorComponent::setStun(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ void ArmorComponent::setStun(float value) {
 
 void ArmorComponent::setBlast(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -127,7 +127,7 @@ void ArmorComponent::setBlast(float value) {
 
 void ArmorComponent::setHeat(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ void ArmorComponent::setHeat(float value) {
 
 void ArmorComponent::setCold(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ void ArmorComponent::setCold(float value) {
 
 void ArmorComponent::setAcid(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -172,7 +172,7 @@ void ArmorComponent::setAcid(float value) {
 
 void ArmorComponent::setLightSaber(float value) {
 	ArmorComponentImplementation* _implementation = static_cast<ArmorComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -218,7 +218,7 @@ void ArmorComponentImplementation::finalize() {
 void ArmorComponentImplementation::_initializeImplementation() {
 	_setClassHelper(ArmorComponentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

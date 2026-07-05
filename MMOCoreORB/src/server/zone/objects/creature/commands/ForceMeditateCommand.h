@@ -26,6 +26,10 @@ public:
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
+		if (isWearingArmor(creature)) {
+			return NOJEDIARMOR;
+		}
+		
 		if (creature->isInCombat()) {
 			creature->sendSystemMessage("@jedi_spam:not_while_in_combat");
 			return GENERALERROR;
@@ -52,7 +56,7 @@ public:
 
 		PlayerManager* playermgr = server->getZoneServer()->getPlayerManager();	
 		creature->registerObserver(ObserverEventType::POSTURECHANGED, playermgr);
-		ghost->updateLastJediAttackableTimestamp();
+
 		return SUCCESS;
 
 	}

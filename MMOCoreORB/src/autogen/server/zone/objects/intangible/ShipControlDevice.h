@@ -54,6 +54,22 @@ class ObjectMenuResponse;
 
 using namespace server::zone::packets::object;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace scene {
+
+class SceneObject;
+
+class SceneObjectPOD;
+
+} // namespace scene
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::scene;
+
 #include "server/zone/managers/radial/RadialOptions.h"
 
 #include "server/zone/objects/intangible/ControlDevice.h"

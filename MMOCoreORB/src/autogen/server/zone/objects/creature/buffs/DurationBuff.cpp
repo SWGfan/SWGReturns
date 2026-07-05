@@ -30,7 +30,7 @@ DurationBuff::~DurationBuff() {
 
 void DurationBuff::activate(bool applyModifiers) {
 	DurationBuffImplementation* _implementation = static_cast<DurationBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +45,7 @@ void DurationBuff::activate(bool applyModifiers) {
 
 void DurationBuff::deactivate(bool applyModifiers) {
 	DurationBuffImplementation* _implementation = static_cast<DurationBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +91,7 @@ void DurationBuffImplementation::finalize() {
 void DurationBuffImplementation::_initializeImplementation() {
 	_setClassHelper(DurationBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

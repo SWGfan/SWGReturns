@@ -35,7 +35,7 @@ RadialManager::~RadialManager() {
 
 void RadialManager::handleObjectMenuSelect(CreatureObject* player, byte selectID, unsigned long long objectID) {
 	RadialManagerImplementation* _implementation = static_cast<RadialManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void RadialManager::handleObjectMenuSelect(CreatureObject* player, byte selectID
 
 void RadialManager::handleObjectMenuRequest(CreatureObject* player, ObjectMenuResponse* defaultMenuResponse, unsigned long long objectID) {
 	RadialManagerImplementation* _implementation = static_cast<RadialManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -93,7 +93,7 @@ void RadialManagerImplementation::finalize() {
 void RadialManagerImplementation::_initializeImplementation() {
 	_setClassHelper(RadialManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

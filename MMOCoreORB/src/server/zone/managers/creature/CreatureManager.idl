@@ -68,16 +68,16 @@ class CreatureManager extends ZoneManager {
 	 * @param x position x
 	 * @param y position y
 	 * @param parentID cell object id (optional)
-	 * @return returns creature object that has been spawned, nullptr on error
+	 * @return returns creature object that has been spawned, NULL on error
 	 */
 	public native CreatureObject spawnCreatureWithAi(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false);
 	public native CreatureObject spawnCreatureWithLevel(unsigned int mobileTemplateCRC, int level, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreatureAsBaby(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreatureAsEventMob(unsigned int templateCRC, int level, float x, float z, float y, unsigned long parentID = 0);
 	public native CreatureObject spawnCreature(unsigned int templateCRC, float x, float z, float y, unsigned long parentID = 0);
-	public native CreatureObject spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false);
+	public native CreatureObject spawnCreature(unsigned int templateCRC, unsigned int objectCRC, float x, float z, float y, unsigned long parentID = 0, boolean persistent = false, float direction = 0);
 	public native CreatureObject createCreature(unsigned int templateCRC, boolean persistent = false, unsigned int mobileTemplate = 0);
-	public native void placeCreature(CreatureObject creature, float x, float z, float y, unsigned long parentID);
+	public native void placeCreature(CreatureObject creature, float x, float z, float y, unsigned long parentID, float direction = 0);
 
 	@dereferenced
 	public native string getTemplateToSpawn(unsigned int templateCRC);

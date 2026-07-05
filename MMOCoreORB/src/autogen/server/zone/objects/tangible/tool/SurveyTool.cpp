@@ -32,7 +32,7 @@ SurveyTool::~SurveyTool() {
 
 void SurveyTool::initializeTransientMembers() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void SurveyTool::initializeTransientMembers() {
 
 void SurveyTool::loadTemplateData(SharedObjectTemplate* templateData) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -56,7 +56,7 @@ void SurveyTool::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void SurveyTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void SurveyTool::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Creatu
 
 int SurveyTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ int SurveyTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 void SurveyTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -92,7 +92,7 @@ void SurveyTool::updateCraftingValues(CraftingValues* values, bool firstUpdate) 
 
 void SurveyTool::setRange(int r) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ void SurveyTool::setRange(int r) {
 
 void SurveyTool::sendRangeSui(CreatureObject* player) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ void SurveyTool::sendRangeSui(CreatureObject* player) {
 
 int SurveyTool::getRange(CreatureObject* player) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ int SurveyTool::getRange(CreatureObject* player) {
 
 int SurveyTool::getPoints() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ int SurveyTool::getPoints() {
 
 int SurveyTool::getToolType() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,7 +165,7 @@ int SurveyTool::getToolType() {
 
 String SurveyTool::getSurveyType() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -181,7 +181,7 @@ String SurveyTool::getSurveyType() {
 
 String SurveyTool::getSurveyAnimation() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -197,7 +197,7 @@ String SurveyTool::getSurveyAnimation() {
 
 String SurveyTool::getSampleAnimation() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ String SurveyTool::getSampleAnimation() {
 
 bool SurveyTool::canSampleRadioactive() {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -227,7 +227,7 @@ bool SurveyTool::canSampleRadioactive() {
 
 void SurveyTool::sendRadioactiveWarning(CreatureObject* player) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -242,7 +242,7 @@ void SurveyTool::sendRadioactiveWarning(CreatureObject* player) {
 
 void SurveyTool::consentRadioactiveSample(CreatureObject* player) {
 	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -288,7 +288,7 @@ void SurveyToolImplementation::finalize() {
 void SurveyToolImplementation::_initializeImplementation() {
 	_setClassHelper(SurveyToolHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

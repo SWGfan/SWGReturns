@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/swgadmin/Desktop/SWGGhosts/MMOCoreORB/src/templates
-# Build directory: /home/swgadmin/Desktop/SWGGhosts/MMOCoreORB/src/templates
+# Source directory: /home/ubuntu/StarDust-2/MMOCoreORB/src/templates
+# Build directory: /home/ubuntu/StarDust-2/MMOCoreORB/src/templates
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

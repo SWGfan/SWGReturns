@@ -28,7 +28,7 @@ Drink::~Drink() {
 
 void Drink::initializeTransientMembers() {
 	DrinkImplementation* _implementation = static_cast<DrinkImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ void Drink::initializeTransientMembers() {
 
 void Drink::initializePrivateData() {
 	DrinkImplementation* _implementation = static_cast<DrinkImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -87,7 +87,7 @@ void DrinkImplementation::finalize() {
 void DrinkImplementation::_initializeImplementation() {
 	_setClassHelper(DrinkHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -31,7 +31,7 @@ ConversationObserver::~ConversationObserver() {
 
 int ConversationObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	ConversationObserverImplementation* _implementation = static_cast<ConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -49,7 +49,7 @@ int ConversationObserver::notifyObserverEvent(unsigned int eventType, Observable
 
 ConversationScreen* ConversationObserver::getNextConversationScreen(CreatureObject* conversingPlayer, int selectedOption, CreatureObject* conversingNPC) {
 	ConversationObserverImplementation* _implementation = static_cast<ConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -59,7 +59,7 @@ ConversationScreen* ConversationObserver::getNextConversationScreen(CreatureObje
 
 ConversationScreen* ConversationObserver::runScreenHandlers(CreatureObject* conversingPlayer, CreatureObject* conversingNPC, int selectedOption, ConversationScreen* conversationScreen) {
 	ConversationObserverImplementation* _implementation = static_cast<ConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -69,7 +69,7 @@ ConversationScreen* ConversationObserver::runScreenHandlers(CreatureObject* conv
 
 ConversationTemplate* ConversationObserver::getConversationTemplate() {
 	ConversationObserverImplementation* _implementation = static_cast<ConversationObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -110,7 +110,7 @@ void ConversationObserverImplementation::finalize() {
 void ConversationObserverImplementation::_initializeImplementation() {
 	_setClassHelper(ConversationObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

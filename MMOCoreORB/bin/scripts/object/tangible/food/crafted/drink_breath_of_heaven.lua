@@ -44,11 +44,11 @@
 object_tangible_food_crafted_drink_breath_of_heaven = object_tangible_food_crafted_shared_drink_breath_of_heaven:new {
 	templateType = CONSUMABLE,
 
-	duration = 10,
-	filling = 10,
-	nutrition = 10,
+	duration = 1200,
+	filling = 45,
+	nutrition = 20,
 
-	effectType = 1,
+	effectType = 4,
 
 	fillingMin = 71,
 	fillingMax = 47,
@@ -59,7 +59,7 @@ object_tangible_food_crafted_drink_breath_of_heaven = object_tangible_food_craft
 	quantityMin = 1,
 	quantityMax = 6,
 
-	modifiers = { "strength", 0, "quickness", 0, "focus", 0 },
+	modifiers = { "melee_defense", 0, "ranged_defense", 0, "slope_move", 0 },
 
 	buffName = "food.drink_breath_of_heaven",
 	buffCRC = 0xF87AA911,

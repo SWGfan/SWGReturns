@@ -21,10 +21,6 @@ protected:
 	int junkMinValue;
 	int junkMaxValue;
 
-	int minimumLevel;
-	int maximumLevel;
-
-
 	ValuesMap craftingValues;
 	bool suppressSerialNumber;
 
@@ -38,12 +34,6 @@ protected:
 
 	VectorMap<String, int> skillMods;
 
-	bool randomJediRobeMods;
-	int minJediRobeMods;
-	int maxJediRobeMods;
-	int minJediRobeModValue;
-	int maxJediRobeModValue;
-
 public:
 	LootItemTemplate(const String& name) : craftingValues() {
 		templateName = name;
@@ -54,16 +44,7 @@ public:
 		junkDealerTypeNeeded = 0;
 		junkMinValue = 0;
 		junkMaxValue = 0;
-		// Added by Tyclo
-		minimumLevel = 0;
-		maximumLevel = -1; 
 		suppressSerialNumber = false;
-
-		randomJediRobeMods = false;
-		minJediRobeMods = 3;
-		maxJediRobeMods = 7;
-		minJediRobeModValue = 5;
-		maxJediRobeModValue = 25;
 	}
 
 	void readObject(LuaObject* templateData) {
@@ -74,31 +55,6 @@ public:
 		junkDealerTypeNeeded = templateData->getIntField("junkDealerTypeNeeded");
 		junkMinValue = templateData->getIntField("junkMinValue");
 		junkMaxValue = templateData->getIntField("junkMaxValue");
-    
-    		// Added by Tyclo
-		minimumLevel = templateData->getIntField("minimumLevel");
-		maximumLevel = templateData->getIntField("maximumLevel");
-
-		randomJediRobeMods = templateData->getBooleanField("randomJediRobeMods");
-
-		if (randomJediRobeMods) {
-			int minMods = templateData->getIntField("minJediRobeMods");
-			int maxMods = templateData->getIntField("maxJediRobeMods");
-			int minValue = templateData->getIntField("minJediRobeModValue");
-			int maxValue = templateData->getIntField("maxJediRobeModValue");
-
-			if (minMods > 0)
-				minJediRobeMods = minMods;
-
-			if (maxMods > 0)
-				maxJediRobeMods = maxMods;
-
-			if (minValue > 0)
-				minJediRobeModValue = minValue;
-
-			if (maxValue > 0)
-				maxJediRobeModValue = maxValue;
-		}
 
 		//TODO: At this point, we should go ahead and pull in the tangible objects stats
 
@@ -262,26 +218,6 @@ public:
 		return &skillMods;
 	}
 
-	bool usesRandomJediRobeMods() const {
-		return randomJediRobeMods;
-	}
-
-	int getMinJediRobeMods() const {
-		return minJediRobeMods;
-	}
-
-	int getMaxJediRobeMods() const {
-		return maxJediRobeMods;
-	}
-
-	int getMinJediRobeModValue() const {
-		return minJediRobeModValue;
-	}
-
-	int getMaxJediRobeModValue() const {
-		return maxJediRobeModValue;
-	}
-
 	float getRandomDotChance() const {
 		return randomDotChance;
 	}
@@ -305,13 +241,7 @@ public:
 	int getJunkMaxValue() const {
 		return junkMaxValue;
 	}
-	// Added by Tyclo
-	int getMinimumLevel() const {
-		return minimumLevel;
-	}
-	int getMaximumLevel() const {
-		return maximumLevel;
-	}
+
 	const VectorMap<String, SortedVector<int> >* getStaticDotValues() const {
 		return &staticDotValues;
 	}

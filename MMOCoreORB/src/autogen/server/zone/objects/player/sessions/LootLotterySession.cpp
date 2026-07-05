@@ -28,7 +28,7 @@ LootLotterySession::~LootLotterySession() {
 
 int LootLotterySession::initializeSession() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ int LootLotterySession::initializeSession() {
 
 int LootLotterySession::cancelSession() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ int LootLotterySession::cancelSession() {
 
 int LootLotterySession::clearSession() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -70,7 +70,7 @@ int LootLotterySession::clearSession() {
 
 void LootLotterySession::addEligiblePlayer(CreatureObject* player) {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -85,7 +85,7 @@ void LootLotterySession::addEligiblePlayer(CreatureObject* player) {
 
 void LootLotterySession::removeEligiblePlayer(CreatureObject* player) {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ void LootLotterySession::removeEligiblePlayer(CreatureObject* player) {
 
 bool LootLotterySession::containsEligiblePlayer(CreatureObject* player) {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -115,7 +115,7 @@ bool LootLotterySession::containsEligiblePlayer(CreatureObject* player) {
 
 bool LootLotterySession::isLotteryFinished() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -129,7 +129,7 @@ bool LootLotterySession::isLotteryFinished() {
 
 void LootLotterySession::setLotteryFinished(bool value) {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +144,7 @@ void LootLotterySession::setLotteryFinished(bool value) {
 
 AiAgent* LootLotterySession::getCorpse() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ AiAgent* LootLotterySession::getCorpse() {
 
 void LootLotterySession::addPlayerSelections(CreatureObject* player, LootLotteryBallot* ballot) {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -168,7 +168,7 @@ void LootLotterySession::addPlayerSelections(CreatureObject* player, LootLottery
 
 void LootLotterySession::doLotteryDraw() {
 	LootLotterySessionImplementation* _implementation = static_cast<LootLotterySessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -213,7 +213,7 @@ void LootLotterySessionImplementation::finalize() {
 void LootLotterySessionImplementation::_initializeImplementation() {
 	_setClassHelper(LootLotterySessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -517,7 +517,7 @@ void LootLotterySessionAdapter::invokeMethod(uint32 methid, DistributedMethod* i
 		{
 			
 			DistributedObject* _m_res = getCorpse();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_DOLOTTERYDRAW__:

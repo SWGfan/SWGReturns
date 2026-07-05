@@ -194,11 +194,15 @@ void DroidDeedImplementation::updateCraftingValues(CraftingValues* values, bool 
 
 	overallQuality = values->getCurrentPercentage("power_level"); // effectiveness
 	if (overallQuality < 0)
-		overallQuality = 0.1;
+		overallQuality = 0.1f;
 
 	combatRating = values->getCurrentValue("cmbt_module");
 	if (combatRating < 0)
 		combatRating = 0;
+
+	if (combatRating > 600)
+		combatRating = 600;
+
 	// @TODO Add crafting values, this should adjust toHit and Speed based on droid ham, also
 	// we need to stack modules if they are stackable.
 	// walk all components and ensure we have all modules that are stackable there.
@@ -257,12 +261,11 @@ void DroidDeedImplementation::updateCraftingValues(CraftingValues* values, bool 
 void DroidDeedImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	DeedImplementation::fillObjectMenuResponse(menuResponse, player);
 
-	if(isASubChildOf(player))
+	if (isASubChildOf(player))
 		menuResponse->addRadialMenuItem(20, 3, "@pet/pet_menu:menu_unpack"); //"Ready Droid Unit"
 }
 
 int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
-
 	if (selectedID == 20) {
 		if (generated || !isASubChildOf(player))
 			return 1;

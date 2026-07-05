@@ -42,7 +42,7 @@ WaypointObject::~WaypointObject() {
 
 void WaypointObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void WaypointObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void WaypointObject::insertToMessage(BaseMessage* msg) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void WaypointObject::insertToMessage(BaseMessage* msg) {
 
 void WaypointObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ void WaypointObject::fillAttributeList(AttributeListMessage* msg, CreatureObject
 
 void WaypointObject::setCellID(unsigned int id) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +88,7 @@ void WaypointObject::setCellID(unsigned int id) {
 
 void WaypointObject::setPlanetCRC(unsigned int crc) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void WaypointObject::setPlanetCRC(unsigned int crc) {
 
 unsigned int WaypointObject::getPlanetCRC() const {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -118,7 +118,7 @@ unsigned int WaypointObject::getPlanetCRC() const {
 
 void WaypointObject::setColor(byte newColor) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -134,7 +134,7 @@ void WaypointObject::setColor(byte newColor) {
 
 void WaypointObject::setActive(byte newStatus) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -150,7 +150,7 @@ void WaypointObject::setActive(byte newStatus) {
 
 void WaypointObject::setUnknown(unsigned long long id) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -166,7 +166,7 @@ void WaypointObject::setUnknown(unsigned long long id) {
 
 void WaypointObject::setSpecialTypeID(int id) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ void WaypointObject::setSpecialTypeID(int id) {
 
 int WaypointObject::getSpecialTypeID() const {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ int WaypointObject::getSpecialTypeID() const {
 
 void WaypointObject::toggleStatus() {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -211,7 +211,7 @@ void WaypointObject::toggleStatus() {
 
 bool WaypointObject::isActive() const {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,7 +225,7 @@ bool WaypointObject::isActive() const {
 
 byte WaypointObject::getColor() const {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -237,9 +237,9 @@ byte WaypointObject::getColor() const {
 	}
 }
 
-String WaypointObject::getDetailedDescription() {
+String WaypointObject::getDetailedDescription() const {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -255,7 +255,7 @@ String WaypointObject::getDetailedDescription() {
 
 void WaypointObject::setDetailedDescription(const String& desc) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -271,7 +271,7 @@ void WaypointObject::setDetailedDescription(const String& desc) {
 
 void WaypointObject::setQuestDetails(const String& detail) {
 	WaypointObjectImplementation* _implementation = static_cast<WaypointObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -330,7 +330,7 @@ void WaypointObjectImplementation::finalize() {
 void WaypointObjectImplementation::_initializeImplementation() {
 	_setClassHelper(WaypointObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -797,7 +797,7 @@ byte WaypointObjectAdapter::getColor() const {
 	return (static_cast<WaypointObject*>(stub))->getColor();
 }
 
-String WaypointObjectAdapter::getDetailedDescription() {
+String WaypointObjectAdapter::getDetailedDescription() const {
 	return (static_cast<WaypointObject*>(stub))->getDetailedDescription();
 }
 

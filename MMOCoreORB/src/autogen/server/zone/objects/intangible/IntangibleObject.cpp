@@ -28,7 +28,7 @@ IntangibleObject::~IntangibleObject() {
 
 void IntangibleObject::initializeTransientMembers() {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -42,7 +42,7 @@ void IntangibleObject::initializeTransientMembers() {
 
 void IntangibleObject::loadTemplateData(SharedObjectTemplate* templateData) {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -52,7 +52,7 @@ void IntangibleObject::loadTemplateData(SharedObjectTemplate* templateData) {
 
 bool IntangibleObject::isIntangibleObject() {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -66,7 +66,7 @@ bool IntangibleObject::isIntangibleObject() {
 
 void IntangibleObject::sendBaselinesTo(SceneObject* player) {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ void IntangibleObject::sendBaselinesTo(SceneObject* player) {
 
 void IntangibleObject::updateStatus(int newStatus, bool notifyClient) {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ void IntangibleObject::updateStatus(int newStatus, bool notifyClient) {
 
 unsigned int IntangibleObject::getStatus() const {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ unsigned int IntangibleObject::getStatus() const {
 
 void IntangibleObject::setCustomObjectName(const UnicodeString& name, bool notifyClient) {
 	IntangibleObjectImplementation* _implementation = static_cast<IntangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -158,7 +158,7 @@ IntangibleObjectImplementation::~IntangibleObjectImplementation() {
 void IntangibleObjectImplementation::_initializeImplementation() {
 	_setClassHelper(IntangibleObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

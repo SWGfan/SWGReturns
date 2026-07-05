@@ -2,6 +2,7 @@ jabba_compound_guard = Creature:new {
 	objectName = "@mob/creature_names:jabba_compound_guard",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
+	mobType = MOB_NPC,
 	socialGroup = "jabba",
 	faction = "jabba",
 	level = 14,
@@ -20,7 +21,7 @@ jabba_compound_guard = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + KILLER,
@@ -40,10 +41,18 @@ jabba_compound_guard = Creature:new {
 			}
 		}
 	},
-	weapons = {"pirate_weapons_medium"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "pirate_carbine",
+	secondaryWeapon = "pirate_sword",
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	attacks = merge(marksmanmid,brawlermid)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = marksmanmid,
+	secondaryAttacks = brawlermid
 }
 
 CreatureTemplates:addCreatureTemplate(jabba_compound_guard, "jabba_compound_guard")

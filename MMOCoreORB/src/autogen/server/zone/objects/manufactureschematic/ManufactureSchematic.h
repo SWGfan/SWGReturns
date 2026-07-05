@@ -141,6 +141,8 @@ public:
 
 	void initializeTransientMembers();
 
+	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
+
 	/**
 	 * Fills the attribute list message options that are sent to player creature
 	 * @pre { }
@@ -255,6 +257,8 @@ public:
 
 	int getLabratory();
 
+	String getFactoryCrateType();
+
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -338,6 +342,8 @@ public:
 	ManufactureSchematicImplementation(DummyConstructorParameter* param);
 
 	void initializeTransientMembers();
+
+	virtual void destroyObjectFromDatabase(bool destroyContainedObjects = false);
 
 	/**
 	 * Fills the attribute list message options that are sent to player creature
@@ -475,6 +481,8 @@ public:
 
 	int getLabratory();
 
+	String getFactoryCrateType();
+
 	WeakReference<ManufactureSchematic*> _this;
 
 	operator const ManufactureSchematic*();
@@ -520,6 +528,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initializeTransientMembers();
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects);
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer);
 
@@ -592,6 +602,8 @@ public:
 	bool allowFactoryRun();
 
 	int getLabratory();
+
+	String getFactoryCrateType();
 
 };
 

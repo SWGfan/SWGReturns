@@ -3,6 +3,7 @@ mailoc = Creature:new {
 	customName = "a Mailoc",
 	socialGroup = "self",
 	faction = "",
+	mobType = MOB_HERBIVORE,
 	level = 100,
 	chanceHit = 0.23,
 	damageMin = 735,
@@ -26,7 +27,7 @@ mailoc = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = CARNIVORE,
 
-	templates = {"object/mobile/graul.iff"},
+	templates = {"object/mobile/mynock.iff"},
 	controlDeviceTemplate = "object/intangible/pet/mynock_hue.iff",
 	lootGroups = {},
 	weapons = {},

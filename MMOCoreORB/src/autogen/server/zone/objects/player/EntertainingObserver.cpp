@@ -30,7 +30,7 @@ EntertainingObserver::~EntertainingObserver() {
 
 int EntertainingObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	EntertainingObserverImplementation* _implementation = static_cast<EntertainingObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void EntertainingObserverImplementation::finalize() {
 void EntertainingObserverImplementation::_initializeImplementation() {
 	_setClassHelper(EntertainingObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

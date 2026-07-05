@@ -73,31 +73,31 @@ public:
 	 * Get the inner radius of the ring.
 	 * @return inner radius of the ring
 	 */
-	float getInnerRadius();
+	float getInnerRadius() const;
 
 	/**
 	 * Get the inner squared radius of the ring.
 	 * @return inner squared radius of the ring
 	 */
-	float getInnerRadius2();
+	float getInnerRadius2() const;
 
 	/**
 	 * Get the outer radius of the ring.
 	 * @return outer radius of the ring
 	 */
-	float getOuterRadius();
+	float getOuterRadius() const;
 
 	/**
 	 * Get the outer squared radius of the ring.
 	 * @return outer squared radius of the ring
 	 */
-	float getOuterRadius2();
+	float getOuterRadius2() const;
 
 	/**
 	 * Get the minimum radius of a circle bounding the area shape.
 	 * @return the minimum bonding radius.
 	 */
-	float getRadius();
+	float getRadius() const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
@@ -105,20 +105,20 @@ public:
 	 * @param y the y coordinate.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
 	 * @param point the point to check if it is within the area shape.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	bool containsPoint(const Vector3& point);
+	bool containsPoint(const Vector3& point) const;
 
 	/**
 	 * Generate a random position within the area.
 	 * @return a random position within the area.
 	 */
-	Vector3 getRandomPosition();
+	Vector3 getRandomPosition() const;
 
 	/**
 	 * Generate a random position within the area with the supplied origin and radius as limits.
@@ -127,26 +127,26 @@ public:
 	 * @param maxDistance the maximum distance from the origin.
 	 * @return a random position within the area.
 	 */
-	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance);
+	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const;
 
 	/**
 	 * Check if this is a ring area shape.
 	 * @return true if it is a ring area shape.
 	 */
-	bool isRingAreaShape();
+	bool isRingAreaShape() const;
 
 	/**
 	 * Check if this area shape intersects with the supplied area shape.
 	 * @param areaShape the area shape to check for intersections with.s
 	 * @return true if the area shapes intersects each other.
 	 */
-	bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
 	/**
 	 * Get the area of the areaShape.
 	 * @return the area of the area shape.
 	 */
-	float getArea();
+	float getArea() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -210,31 +210,31 @@ public:
 	 * Get the inner radius of the ring.
 	 * @return inner radius of the ring
 	 */
-	virtual float getInnerRadius();
+	float getInnerRadius() const;
 
 	/**
 	 * Get the inner squared radius of the ring.
 	 * @return inner squared radius of the ring
 	 */
-	float getInnerRadius2();
+	float getInnerRadius2() const;
 
 	/**
 	 * Get the outer radius of the ring.
 	 * @return outer radius of the ring
 	 */
-	virtual float getOuterRadius();
+	float getOuterRadius() const;
 
 	/**
 	 * Get the outer squared radius of the ring.
 	 * @return outer squared radius of the ring
 	 */
-	float getOuterRadius2();
+	float getOuterRadius2() const;
 
 	/**
 	 * Get the minimum radius of a circle bounding the area shape.
 	 * @return the minimum bonding radius.
 	 */
-	float getRadius();
+	float getRadius() const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
@@ -242,20 +242,20 @@ public:
 	 * @param y the y coordinate.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	virtual bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
 	/**
 	 * Check if the coordinate is within the area shape.
 	 * @param point the point to check if it is within the area shape.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	virtual bool containsPoint(const Vector3& point);
+	bool containsPoint(const Vector3& point) const;
 
 	/**
 	 * Generate a random position within the area.
 	 * @return a random position within the area.
 	 */
-	virtual Vector3 getRandomPosition();
+	Vector3 getRandomPosition() const;
 
 	/**
 	 * Generate a random position within the area with the supplied origin and radius as limits.
@@ -264,20 +264,20 @@ public:
 	 * @param maxDistance the maximum distance from the origin.
 	 * @return a random position within the area.
 	 */
-	virtual Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance);
+	Vector3 getRandomPosition(const Vector3& origin, float minDistance, float maxDistance) const;
 
 	/**
 	 * Check if this is a ring area shape.
 	 * @return true if it is a ring area shape.
 	 */
-	virtual bool isRingAreaShape();
+	bool isRingAreaShape() const;
 
 	/**
 	 * Check if this area shape intersects with the supplied area shape.
 	 * @param areaShape the area shape to check for intersections with.s
 	 * @return true if the area shapes intersects each other.
 	 */
-	virtual bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
 private:
 	/**
@@ -285,21 +285,21 @@ private:
 	 * @param circle the circular area shape to check for intersections with.
 	 * @return true if the area shapes intersects each other.
 	 */
-	bool intersectsWithCircle(CircularAreaShape* circle);
+	bool intersectsWithCircle(CircularAreaShape* circle) const;
 
 	/**
 	 * Check if this area shape intersects with the supplied ring area shape.
 	 * @param ring the ring area shape to check for intersections with.
 	 * @return true if the rings intersect with each other.
 	 */
-	bool intersectsWithRing(RingAreaShape* ring);
+	bool intersectsWithRing(RingAreaShape* ring) const;
 
 public:
 	/**
 	 * Get the area of the areaShape.
 	 * @return the area of the area shape.
 	 */
-	virtual float getArea();
+	float getArea() const;
 
 	WeakReference<RingAreaShape*> _this;
 
@@ -348,23 +348,23 @@ public:
 
 	void setOuterRadius(float r);
 
-	float getInnerRadius();
+	float getInnerRadius() const;
 
-	float getInnerRadius2();
+	float getInnerRadius2() const;
 
-	float getOuterRadius();
+	float getOuterRadius() const;
 
-	float getOuterRadius2();
+	float getOuterRadius2() const;
 
-	float getRadius();
+	float getRadius() const;
 
-	bool containsPoint(float x, float y);
+	bool containsPoint(float x, float y) const;
 
-	bool isRingAreaShape();
+	bool isRingAreaShape() const;
 
-	bool intersectsWith(AreaShape* areaShape);
+	bool intersectsWith(AreaShape* areaShape) const;
 
-	float getArea();
+	float getArea() const;
 
 };
 

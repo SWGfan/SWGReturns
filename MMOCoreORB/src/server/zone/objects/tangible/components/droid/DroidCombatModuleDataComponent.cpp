@@ -15,7 +15,7 @@ DroidCombatModuleDataComponent::~DroidCombatModuleDataComponent() {
 
 }
 
-String DroidCombatModuleDataComponent::getModuleName() {
+String DroidCombatModuleDataComponent::getModuleName() const {
 	return String("combat_module");
 }
 
@@ -62,7 +62,7 @@ void DroidCombatModuleDataComponent::fillAttributeList(AttributeListMessage* alm
 	alm->insertAttribute("creature_damage", String::valueOf(damageMin) + " - " + String::valueOf(damageMax));
 }
 
-String DroidCombatModuleDataComponent::toString() {
+String DroidCombatModuleDataComponent::toString() const {
 	return BaseDroidModuleComponent::toString();
 }
 
@@ -72,6 +72,9 @@ void DroidCombatModuleDataComponent::addToStack(BaseDroidModuleComponent* other)
 		return;
 
 	rating = rating + otherModule->rating;
+	if (rating > 600) {
+		rating = 600;
+	}
 
 	DroidComponent* droidComponent = cast<DroidComponent*>(getParent());
 	if (droidComponent != nullptr)

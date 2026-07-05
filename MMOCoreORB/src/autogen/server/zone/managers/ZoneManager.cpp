@@ -32,7 +32,7 @@ ZoneManager::~ZoneManager() {
 
 void ZoneManager::setZoneProcessor(ZoneProcessServer* server) {
 	ZoneManagerImplementation* _implementation = static_cast<ZoneManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ void ZoneManagerImplementation::finalize() {
 void ZoneManagerImplementation::_initializeImplementation() {
 	_setClassHelper(ZoneManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -181,14 +181,14 @@ ZoneManagerImplementation::ZoneManagerImplementation(const String& name) {
 	_initializeImplementation();
 	// server/zone/managers/ZoneManager.idl():  		Logger.setLoggingName(name);
 	Logger::setLoggingName(name);
-	// server/zone/managers/ZoneManager.idl():  		Logger.setLogging(true);
-	Logger::setLogging(true);
+	// server/zone/managers/ZoneManager.idl():  		Logger.setLogging(false);
+	Logger::setLogging(false);
 	// server/zone/managers/ZoneManager.idl():  		Logger.setGlobalLogging(true);
 	Logger::setGlobalLogging(true);
 	// server/zone/managers/ZoneManager.idl():  		zoneServer = null;
-	zoneServer = nullptr;
+	zoneServer = NULL;
 	// server/zone/managers/ZoneManager.idl():  		zoneProcessor = null;
-	zoneProcessor = nullptr;
+	zoneProcessor = NULL;
 }
 
 void ZoneManagerImplementation::setZoneProcessor(ZoneProcessServer* server) {

@@ -51,9 +51,10 @@ object_draft_schematic_chemistry_med_stimpack_e = object_draft_schematic_chemist
 	complexity = 32,
 	size = 1,
 	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 80,
+	xp = 500,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",

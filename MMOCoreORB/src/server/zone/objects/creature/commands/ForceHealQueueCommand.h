@@ -80,6 +80,7 @@ protected:
 	int diseaseHealIterations;
 	int fireHealIterations;
 
+	int forceCost;
 	int range; // range to heal up to, if <= 0 it heals the user
 
 public:
@@ -91,15 +92,19 @@ public:
 
 	int runCommand(CreatureObject* creature, CreatureObject* targetCreature) const;
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const;
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const override;
 
-	bool isForceHealCommand() {
+	bool isForceHealCommand() const override {
 		return true;
 	}
 
 	void setForceCostMultiplier(float fcm) {
 		forceCostMultiplier = fcm;
 	}
+
+	void setForceCost(int fc) {
+			forceCost = fc;
+		}
 
 	void setHealStateCost(unsigned int cost) {
 		healStateCost = cost;
@@ -173,9 +178,6 @@ public:
 		allowedTarget = t;
 	}
 
-	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
-		return defaultTime * 0.0;
-	}
 };
 
 #endif /* FORCEHEALQUEUECOMMAND_H_ */

@@ -18,7 +18,7 @@
  *	MissionObjectStub
  */
 
-enum {RPC_CREATEWAYPOINT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_UPDATETODATABASEALLOBJECTS__BOOL_,RPC_SETREFRESHCOUNTER__INT_BOOL_,RPC_SETTYPECRC__INT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SETMISSIONDESCRIPTION__STRING_STRING_BOOL_,RPC_SETMISSIONTITLE__STRING_STRING_BOOL_,RPC_SETMISSIONTARGETNAME__STRING_BOOL_,RPC_SETMISSIONDIFFICULTY__INT_BOOL_,RPC_SETMISSIONDIFFICULTY__INT_INT_INT_BOOL_,RPC_SETREWARDCREDITS__INT_BOOL_,RPC_SETSTARTPOSITION__FLOAT_FLOAT_STRING_BOOL_,RPC_SETSTARTPOSITION__FLOAT_FLOAT_BOOL_,RPC_SETENDPOSITION__FLOAT_FLOAT_STRING_BOOL_,RPC_SETCREATORNAME__STRING_BOOL_,RPC_GETSTARTPLANETCRC__,RPC_UPDATEMISSIONLOCATION__,RPC_ABORT__,RPC_SETFACTION__INT_,RPC_SETMISSIONOBJECTIVE__MISSIONOBJECTIVE_,RPC_SETREWARDFACTIONPOINTSREBEL__INT_,RPC_SETREWARDFACTIONPOINTSIMPERIAL__INT_,RPC_SETMISSIONNUMBER__INT_,RPC_SETTARGETOPTIONALTEMPLATE__STRING_,RPC_SETTEMPLATESTRINGS__STRING_STRING_,RPC_GETMISSIONOBJECTIVE__,RPC_GETFACTION__,RPC_GETREWARDFACTIONPOINTSREBEL__,RPC_GETREWARDFACTIONPOINTSIMPERIAL__,RPC_GETSTARTPOSITIONX__,RPC_GETSTARTPOSITIONY__,RPC_GETTARGETOPTIONALTEMPLATE__,RPC_GETSTARTPLANET__,RPC_GETENDPOSITIONX__,RPC_GETENDPOSITIONY__,RPC_GETENDPLANET__,RPC_SETENDPLANET__STRING_,RPC_GETWAYPOINTTOMISSION__,RPC_GETTYPECRC__,RPC_GETREWARDCREDITS__,RPC_GETREWARDCREDITSDIVISOR__,RPC_GETCREATORNAME__,RPC_GETDIFFICULTYLEVEL__,RPC_GETDIFFICULTYDISPLAY__,RPC_GETDIFFICULTY__,RPC_GETTARGETNAME__,RPC_GETREFRESHCOUNTER__,RPC_GETMISSIONNUMBER__,RPC_ISSURVEYMISSION__,RPC_ISMISSIONOBJECT__,RPC_GETTEMPLATESTRING1__,RPC_GETTEMPLATESTRING2__,RPC_GETTARGETOBJECTID__,RPC_SETTARGETOBJECTID__LONG_,RPC_SETMISSIONLEVEL__INT_,RPC_GETMISSIONLEVEL__,RPC_SETSIZE__FLOAT_,RPC_GETSIZE__};
+enum {RPC_CREATEWAYPOINT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_UPDATETODATABASEALLOBJECTS__BOOL_,RPC_SETREFRESHCOUNTER__INT_BOOL_,RPC_SETTYPECRC__INT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SETMISSIONDESCRIPTION__STRING_STRING_BOOL_,RPC_SETMISSIONTITLE__STRING_STRING_BOOL_,RPC_SETMISSIONTARGETNAME__STRING_BOOL_,RPC_SETMISSIONDIFFICULTY__INT_BOOL_,RPC_SETMISSIONDIFFICULTY__INT_INT_INT_BOOL_,RPC_SETREWARDCREDITS__INT_BOOL_,RPC_SETSTARTPOSITION__FLOAT_FLOAT_STRING_BOOL_,RPC_SETSTARTPOSITION__FLOAT_FLOAT_BOOL_,RPC_SETENDPOSITION__FLOAT_FLOAT_STRING_BOOL_,RPC_SETCREATORNAME__STRING_BOOL_,RPC_GETSTARTPLANETCRC__,RPC_UPDATEMISSIONLOCATION__,RPC_ABORT__,RPC_SETFACTION__INT_,RPC_SETMISSIONOBJECTIVE__MISSIONOBJECTIVE_,RPC_SETREWARDFACTIONPOINTSREBEL__INT_,RPC_SETREWARDFACTIONPOINTSIMPERIAL__INT_,RPC_SETMISSIONNUMBER__INT_,RPC_SETTARGETOPTIONALTEMPLATE__STRING_,RPC_SETTEMPLATESTRINGS__STRING_STRING_,RPC_GETMISSIONOBJECTIVE__,RPC_GETFACTION__,RPC_GETREWARDFACTIONPOINTSREBEL__,RPC_GETREWARDFACTIONPOINTSIMPERIAL__,RPC_GETSTARTPOSITIONX__,RPC_GETSTARTPOSITIONY__,RPC_GETTARGETOPTIONALTEMPLATE__,RPC_GETSTARTPLANET__,RPC_GETENDPOSITIONX__,RPC_GETENDPOSITIONY__,RPC_GETENDPLANET__,RPC_SETENDPLANET__STRING_,RPC_GETWAYPOINTTOMISSION__,RPC_GETTYPECRC__,RPC_GETTYPEASSTRING__,RPC_GETREWARDCREDITS__,RPC_GETREWARDCREDITSDIVISOR__,RPC_GETCREATORNAME__,RPC_GETDIFFICULTYLEVEL__,RPC_GETDIFFICULTYDISPLAY__,RPC_GETDIFFICULTY__,RPC_GETTARGETNAME__,RPC_GETREFRESHCOUNTER__,RPC_GETMISSIONNUMBER__,RPC_ISSURVEYMISSION__,RPC_ISMISSIONOBJECT__,RPC_GETTEMPLATESTRING1__,RPC_GETTEMPLATESTRING2__,RPC_GETTARGETOBJECTID__,RPC_SETTARGETOBJECTID__LONG_,RPC_SETMISSIONLEVEL__INT_,RPC_GETMISSIONLEVEL__,RPC_SETSIZE__FLOAT_,RPC_GETSIZE__,RPC_SETBONUSCREDITS__INT_,RPC_GETBONUSCREDITS__};
 
 MissionObject::MissionObject() : IntangibleObject(DummyConstructorParameter::instance()) {
 	MissionObjectImplementation* _implementation = new MissionObjectImplementation();
@@ -38,7 +38,7 @@ MissionObject::~MissionObject() {
 
 void MissionObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -48,7 +48,7 @@ void MissionObject::fillAttributeList(AttributeListMessage* msg, CreatureObject*
 
 WaypointObject* MissionObject::createWaypoint() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ WaypointObject* MissionObject::createWaypoint() {
 
 void MissionObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void MissionObject::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void MissionObject::updateToDatabaseAllObjects(bool startTask) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -94,7 +94,7 @@ void MissionObject::updateToDatabaseAllObjects(bool startTask) {
 
 void MissionObject::setRefreshCounter(int ctr, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +111,7 @@ void MissionObject::setRefreshCounter(int ctr, bool notifyClient) {
 
 void MissionObject::setTypeCRC(unsigned int crc, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +128,7 @@ void MissionObject::setTypeCRC(unsigned int crc, bool notifyClient) {
 
 void MissionObject::initializeTransientMembers() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ void MissionObject::initializeTransientMembers() {
 
 void MissionObject::sendBaselinesTo(SceneObject* player) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -157,7 +157,7 @@ void MissionObject::sendBaselinesTo(SceneObject* player) {
 
 void MissionObject::setMissionDescription(const String& file, const String& id, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -175,7 +175,7 @@ void MissionObject::setMissionDescription(const String& file, const String& id, 
 
 void MissionObject::setMissionTitle(const String& file, const String& id, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,7 +193,7 @@ void MissionObject::setMissionTitle(const String& file, const String& id, bool n
 
 void MissionObject::setMissionTargetName(const String& target, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ void MissionObject::setMissionTargetName(const String& target, bool notifyClient
 
 void MissionObject::setMissionDifficulty(int diffLevel, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -226,7 +226,7 @@ void MissionObject::setMissionDifficulty(int diffLevel, bool notifyClient) {
 
 void MissionObject::setMissionDifficulty(int diffLevel, int display, int diff, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -245,7 +245,7 @@ void MissionObject::setMissionDifficulty(int diffLevel, int display, int diff, b
 
 void MissionObject::setRewardCredits(int creds, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -262,7 +262,7 @@ void MissionObject::setRewardCredits(int creds, bool notifyClient) {
 
 void MissionObject::setTargetTemplate(SharedObjectTemplate* templ, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -273,7 +273,7 @@ void MissionObject::setTargetTemplate(SharedObjectTemplate* templ, bool notifyCl
 
 void MissionObject::setStartPosition(float posX, float posY, const String& planet, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -292,7 +292,7 @@ void MissionObject::setStartPosition(float posX, float posY, const String& plane
 
 void MissionObject::setStartPosition(float posX, float posY, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -309,7 +309,7 @@ void MissionObject::setStartPosition(float posX, float posY, bool notifyClient) 
 
 void MissionObject::setEndPosition(float posX, float posY, const String& planet, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -328,7 +328,7 @@ void MissionObject::setEndPosition(float posX, float posY, const String& planet,
 
 void MissionObject::setCreatorName(const String& name, bool notifyClient) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -345,7 +345,7 @@ void MissionObject::setCreatorName(const String& name, bool notifyClient) {
 
 unsigned int MissionObject::getStartPlanetCRC() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -359,7 +359,7 @@ unsigned int MissionObject::getStartPlanetCRC() {
 
 void MissionObject::updateMissionLocation() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -373,7 +373,7 @@ void MissionObject::updateMissionLocation() {
 
 void MissionObject::abort() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -387,7 +387,7 @@ void MissionObject::abort() {
 
 void MissionObject::setFaction(const int missionFaction) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -403,7 +403,7 @@ void MissionObject::setFaction(const int missionFaction) {
 
 void MissionObject::setMissionObjective(MissionObjective* obj) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -419,7 +419,7 @@ void MissionObject::setMissionObjective(MissionObjective* obj) {
 
 void MissionObject::setRewardFactionPointsRebel(int points) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -435,7 +435,7 @@ void MissionObject::setRewardFactionPointsRebel(int points) {
 
 void MissionObject::setRewardFactionPointsImperial(int points) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -451,7 +451,7 @@ void MissionObject::setRewardFactionPointsImperial(int points) {
 
 void MissionObject::setMissionNumber(int num) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -467,7 +467,7 @@ void MissionObject::setMissionNumber(int num) {
 
 void MissionObject::setTargetOptionalTemplate(const String& tml) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -483,7 +483,7 @@ void MissionObject::setTargetOptionalTemplate(const String& tml) {
 
 void MissionObject::setTemplateStrings(const String& temp1, const String& temp2) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -500,7 +500,7 @@ void MissionObject::setTemplateStrings(const String& temp1, const String& temp2)
 
 MissionObjective* MissionObject::getMissionObjective() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -514,7 +514,7 @@ MissionObjective* MissionObject::getMissionObjective() {
 
 unsigned int MissionObject::getFaction() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -528,7 +528,7 @@ unsigned int MissionObject::getFaction() const {
 
 int MissionObject::getRewardFactionPointsRebel() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -542,7 +542,7 @@ int MissionObject::getRewardFactionPointsRebel() const {
 
 int MissionObject::getRewardFactionPointsImperial() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -556,7 +556,7 @@ int MissionObject::getRewardFactionPointsImperial() const {
 
 float MissionObject::getStartPositionX() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -570,7 +570,7 @@ float MissionObject::getStartPositionX() const {
 
 float MissionObject::getStartPositionY() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -584,7 +584,7 @@ float MissionObject::getStartPositionY() const {
 
 String MissionObject::getTargetOptionalTemplate() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -600,7 +600,7 @@ String MissionObject::getTargetOptionalTemplate() const {
 
 String MissionObject::getStartPlanet() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -616,7 +616,7 @@ String MissionObject::getStartPlanet() const {
 
 float MissionObject::getEndPositionX() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -630,7 +630,7 @@ float MissionObject::getEndPositionX() const {
 
 float MissionObject::getEndPositionY() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -644,7 +644,7 @@ float MissionObject::getEndPositionY() const {
 
 String MissionObject::getEndPlanet() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -660,7 +660,7 @@ String MissionObject::getEndPlanet() const {
 
 void MissionObject::setEndPlanet(const String& newEndPlanet) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -676,7 +676,7 @@ void MissionObject::setEndPlanet(const String& newEndPlanet) {
 
 WaypointObject* MissionObject::getWaypointToMission() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -690,7 +690,7 @@ WaypointObject* MissionObject::getWaypointToMission() {
 
 unsigned int MissionObject::getTypeCRC() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -702,9 +702,25 @@ unsigned int MissionObject::getTypeCRC() const {
 	}
 }
 
+String MissionObject::getTypeAsString() const {
+	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETTYPEASSTRING__);
+
+		String _return_getTypeAsString;
+		method.executeWithAsciiReturn(_return_getTypeAsString);
+		return _return_getTypeAsString;
+	} else {
+		return _implementation->getTypeAsString();
+	}
+}
+
 int MissionObject::getRewardCredits() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -718,7 +734,7 @@ int MissionObject::getRewardCredits() const {
 
 int MissionObject::getRewardCreditsDivisor() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -732,7 +748,7 @@ int MissionObject::getRewardCreditsDivisor() const {
 
 UnicodeString MissionObject::getCreatorName() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -748,7 +764,7 @@ UnicodeString MissionObject::getCreatorName() const {
 
 int MissionObject::getDifficultyLevel() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -762,7 +778,7 @@ int MissionObject::getDifficultyLevel() const {
 
 int MissionObject::getDifficultyDisplay() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -776,7 +792,7 @@ int MissionObject::getDifficultyDisplay() const {
 
 int MissionObject::getDifficulty() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -790,7 +806,7 @@ int MissionObject::getDifficulty() const {
 
 StringId* MissionObject::getMissionDescription() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -800,7 +816,7 @@ StringId* MissionObject::getMissionDescription() {
 
 StringId* MissionObject::getMissionTitle() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -810,7 +826,7 @@ StringId* MissionObject::getMissionTitle() {
 
 String MissionObject::getTargetName() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -826,7 +842,7 @@ String MissionObject::getTargetName() const {
 
 int MissionObject::getRefreshCounter() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -840,7 +856,7 @@ int MissionObject::getRefreshCounter() const {
 
 int MissionObject::getMissionNumber() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -854,7 +870,7 @@ int MissionObject::getMissionNumber() const {
 
 SharedObjectTemplate* MissionObject::getTargetTemplate() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -864,7 +880,7 @@ SharedObjectTemplate* MissionObject::getTargetTemplate() {
 
 bool MissionObject::isSurveyMission() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -878,7 +894,7 @@ bool MissionObject::isSurveyMission() {
 
 bool MissionObject::isMissionObject() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -892,7 +908,7 @@ bool MissionObject::isMissionObject() {
 
 String MissionObject::getTemplateString1() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -908,7 +924,7 @@ String MissionObject::getTemplateString1() const {
 
 String MissionObject::getTemplateString2() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -924,7 +940,7 @@ String MissionObject::getTemplateString2() const {
 
 unsigned long long MissionObject::getTargetObjectId() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -938,7 +954,7 @@ unsigned long long MissionObject::getTargetObjectId() const {
 
 void MissionObject::setTargetObjectId(unsigned long long id) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -954,7 +970,7 @@ void MissionObject::setTargetObjectId(unsigned long long id) {
 
 void MissionObject::setMissionLevel(int level) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -970,7 +986,7 @@ void MissionObject::setMissionLevel(int level) {
 
 int MissionObject::getMissionLevel() {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -984,7 +1000,7 @@ int MissionObject::getMissionLevel() {
 
 void MissionObject::setSize(float siz) {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1000,7 +1016,7 @@ void MissionObject::setSize(float siz) {
 
 float MissionObject::getSize() const {
 	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1009,6 +1025,36 @@ float MissionObject::getSize() const {
 		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getSize();
+	}
+}
+
+void MissionObject::setBonusCredits(int creds) {
+	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETBONUSCREDITS__INT_);
+		method.addSignedIntParameter(creds);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setBonusCredits(creds);
+	}
+}
+
+int MissionObject::getBonusCredits() const {
+	MissionObjectImplementation* _implementation = static_cast<MissionObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETBONUSCREDITS__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getBonusCredits();
 	}
 }
 
@@ -1045,7 +1091,7 @@ void MissionObjectImplementation::finalize() {
 void MissionObjectImplementation::_initializeImplementation() {
 	_setClassHelper(MissionObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1152,6 +1198,10 @@ bool MissionObjectImplementation::readObjectMember(ObjectInputStream* stream, co
 
 	case 0x6da29f69: //MissionObject.rewardCredits
 		TypeInfo<int >::parseFromBinaryStream(&rewardCredits, stream);
+		return true;
+
+	case 0x7a5bced8: //MissionObject.bonusCredits
+		TypeInfo<int >::parseFromBinaryStream(&bonusCredits, stream);
 		return true;
 
 	case 0x6c912b9c: //MissionObject.rewardCreditsDivisor
@@ -1328,6 +1378,15 @@ int MissionObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) 
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<int >::toBinaryStream(&rewardCredits, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x7a5bced8; //MissionObject.bonusCredits
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&bonusCredits, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -1554,6 +1613,8 @@ void MissionObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["rewardCredits"] = rewardCredits;
 
+	thisObject["bonusCredits"] = bonusCredits;
+
 	thisObject["rewardCreditsDivisor"] = rewardCreditsDivisor;
 
 	thisObject["rewardFactionPointsRebel"] = rewardFactionPointsRebel;
@@ -1621,6 +1682,8 @@ MissionObjectImplementation::MissionObjectImplementation() {
 	difficulty = 2;
 	// server/zone/objects/mission/MissionObject.idl():  		rewardCredits = 100;
 	rewardCredits = 100;
+	// server/zone/objects/mission/MissionObject.idl():  		bonusCredits = 0;
+	bonusCredits = 0;
 	// server/zone/objects/mission/MissionObject.idl():  		rewardCreditsDivisor = 1;
 	rewardCreditsDivisor = 1;
 	// server/zone/objects/mission/MissionObject.idl():  		rewardFactionPointsRebel = 0;
@@ -1651,7 +1714,7 @@ MissionObjectImplementation::MissionObjectImplementation() {
 
 void MissionObjectImplementation::abort() {
 	// server/zone/objects/mission/MissionObject.idl():  	}
-	if (missionObjective != nullptr)	// server/zone/objects/mission/MissionObject.idl():  			missionObjective.abort();
+	if (missionObjective)	// server/zone/objects/mission/MissionObject.idl():  			missionObjective.abort();
 	missionObjective->abort();
 }
 
@@ -1867,6 +1930,16 @@ float MissionObjectImplementation::getSize() const{
 	return size;
 }
 
+void MissionObjectImplementation::setBonusCredits(int creds) {
+	// server/zone/objects/mission/MissionObject.idl():  		bonusCredits = creds;
+	bonusCredits = creds;
+}
+
+int MissionObjectImplementation::getBonusCredits() const{
+	// server/zone/objects/mission/MissionObject.idl():  		return bonusCredits;
+	return bonusCredits;
+}
+
 /*
  *	MissionObjectAdapter
  */
@@ -1886,7 +1959,7 @@ void MissionObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = createWaypoint();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_DESTROYOBJECTFROMDATABASE__BOOL_:
@@ -2119,7 +2192,7 @@ void MissionObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getMissionObjective();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETFACTION__:
@@ -2204,7 +2277,7 @@ void MissionObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getWaypointToMission();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETTYPECRC__:
@@ -2212,6 +2285,13 @@ void MissionObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			unsigned int _m_res = getTypeCRC();
 			resp->insertInt(_m_res);
+		}
+		break;
+	case RPC_GETTYPEASSTRING__:
+		{
+			
+			String _m_res = getTypeAsString();
+			resp->insertAscii(_m_res);
 		}
 		break;
 	case RPC_GETREWARDCREDITS__:
@@ -2348,6 +2428,21 @@ void MissionObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			float _m_res = getSize();
 			resp->insertFloat(_m_res);
+		}
+		break;
+	case RPC_SETBONUSCREDITS__INT_:
+		{
+			int creds = inv->getSignedIntParameter();
+			
+			setBonusCredits(creds);
+			
+		}
+		break;
+	case RPC_GETBONUSCREDITS__:
+		{
+			
+			int _m_res = getBonusCredits();
+			resp->insertSignedInt(_m_res);
 		}
 		break;
 	default:
@@ -2519,6 +2614,10 @@ unsigned int MissionObjectAdapter::getTypeCRC() const {
 	return (static_cast<MissionObject*>(stub))->getTypeCRC();
 }
 
+String MissionObjectAdapter::getTypeAsString() const {
+	return (static_cast<MissionObject*>(stub))->getTypeAsString();
+}
+
 int MissionObjectAdapter::getRewardCredits() const {
 	return (static_cast<MissionObject*>(stub))->getRewardCredits();
 }
@@ -2593,6 +2692,14 @@ void MissionObjectAdapter::setSize(float siz) {
 
 float MissionObjectAdapter::getSize() const {
 	return (static_cast<MissionObject*>(stub))->getSize();
+}
+
+void MissionObjectAdapter::setBonusCredits(int creds) {
+	(static_cast<MissionObject*>(stub))->setBonusCredits(creds);
+}
+
+int MissionObjectAdapter::getBonusCredits() const {
+	return (static_cast<MissionObject*>(stub))->getBonusCredits();
 }
 
 /*
@@ -2674,6 +2781,9 @@ void MissionObjectPOD::writeJSON(nlohmann::json& j) {
 
 	if (rewardCredits)
 		thisObject["rewardCredits"] = rewardCredits.value();
+
+	if (bonusCredits)
+		thisObject["bonusCredits"] = bonusCredits.value();
 
 	if (rewardCreditsDivisor)
 		thisObject["rewardCreditsDivisor"] = rewardCreditsDivisor.value();
@@ -2841,6 +2951,17 @@ int MissionObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<int >::toBinaryStream(&rewardCredits.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (bonusCredits) {
+	_nameHashCode = 0x7a5bced8; //MissionObject.bonusCredits
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&bonusCredits.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3161,6 +3282,14 @@ bool MissionObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32&
 		}
 		return true;
 
+	case 0x7a5bced8: //MissionObject.bonusCredits
+		{
+			int _mnbonusCredits;
+			TypeInfo<int >::parseFromBinaryStream(&_mnbonusCredits, stream);
+			bonusCredits = std::move(_mnbonusCredits);
+		}
+		return true;
+
 	case 0x6c912b9c: //MissionObject.rewardCreditsDivisor
 		{
 			int _mnrewardCreditsDivisor;
@@ -3378,6 +3507,8 @@ void MissionObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<UnicodeString >::toBinaryStream(&creatorName.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&rewardCredits.value(), stream);
+
+	TypeInfo<int >::toBinaryStream(&bonusCredits.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&rewardCreditsDivisor.value(), stream);
 

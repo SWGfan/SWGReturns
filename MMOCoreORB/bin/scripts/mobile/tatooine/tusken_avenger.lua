@@ -2,15 +2,16 @@ tusken_avenger = Creature:new {
 	objectName = "@mob/creature_names:tusken_avenger",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
-	level = 300,
-	chanceHit = 25.0,
-	damageMin = 1450,
-	damageMax = 1850,
-	baseXp = 25000,
-	baseHAM = 100000,
-	baseHAMmax = 110000,
-	armor = 2,
-	resists = {115,115,115,115,115,115,115,115,115},
+	mobType = MOB_NPC,
+	level = 48,
+	chanceHit = 0.49,
+	damageMin = 385,
+	damageMax = 480,
+	baseXp = 4734,
+	baseHAM = 10000,
+	baseHAMmax = 12200,
+	armor = 0,
+	resists = {40,10,0,50,-1,30,-1,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -18,7 +19,7 @@ tusken_avenger = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.0,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -29,35 +30,36 @@ tusken_avenger = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "trash_rare", chance = 10000000},
-			},
-			lootChance = 2000000
-		},		
+				{group = "junk", chance = 1000000},
+				{group = "tusken_common", chance = 4000000},
+				{group = "wearables_common", chance = 1000000},
+				{group = "wearables_uncommon", chance = 500000},
+				{group = "bone_armor", chance = 750000},
+				{group = "chitin_armor", chance = 750000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "power_crystals", chance = 500000}
+			}
+		},
 		{
 			groups = {
-				{group = "trash_common", chance = 10000000},
+				{group = "weapon_component_advanced", chance = 10000000}
 			},
 			lootChance = 10000000
-		},
-		{
-			groups = {
-				{group = "weapon_component_advanced", chance = 10000000},
-			},
-			lootChance = 7000000
-		},
-		{
-			groups = {
-				{group = "tierone", chance = 1500000},
-				{group = "tiertwo", chance = 3500000},
-				{group = "tierthree", chance = 2500000},
-				{group = "tierdiamond", chance = 2500000},
-			},
-			lootChance = 3000000
 		}
 	},
-	weapons = {"tusken_weapons"},
+
+	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
+	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
+	primaryWeapon = "tusken_ranged",
+	secondaryWeapon = "tusken_melee",
 	conversationTemplate = "",
-	attacks = merge(marksmanmaster,brawlermaster,fencermaster,riflemanmaster)
+
+	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
+	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
+	primaryAttacks = merge(marksmanmaster,riflemanmaster),
+	secondaryAttacks = merge(brawlermaster,fencermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(tusken_avenger, "tusken_avenger")

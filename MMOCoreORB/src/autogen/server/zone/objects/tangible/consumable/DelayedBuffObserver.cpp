@@ -30,7 +30,7 @@ DelayedBuffObserver::~DelayedBuffObserver() {
 
 int DelayedBuffObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DelayedBuffObserverImplementation* _implementation = static_cast<DelayedBuffObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void DelayedBuffObserverImplementation::finalize() {
 void DelayedBuffObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DelayedBuffObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

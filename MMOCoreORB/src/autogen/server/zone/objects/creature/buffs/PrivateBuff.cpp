@@ -30,7 +30,7 @@ PrivateBuff::~PrivateBuff() {
 
 void PrivateBuff::activate(bool applyModifiers) {
 	PrivateBuffImplementation* _implementation = static_cast<PrivateBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void PrivateBuff::activate(bool applyModifiers) {
 
 void PrivateBuff::deactivate(bool removeModifiers) {
 	PrivateBuffImplementation* _implementation = static_cast<PrivateBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,7 +93,7 @@ void PrivateBuffImplementation::finalize() {
 void PrivateBuffImplementation::_initializeImplementation() {
 	_setClassHelper(PrivateBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

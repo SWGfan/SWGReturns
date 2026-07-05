@@ -133,7 +133,7 @@ function GeonosianLab:createContainerLoot(pContainer)
 
 	local containerNum = readData(SceneObject(pContainer):getObjectID() .. ":containerNum")
 
-	if (containerNum == 0) then
+	if (containerNum == 0 or containerNum > #self.lootContainers) then
 		return
 	end
 
@@ -150,7 +150,7 @@ function GeonosianLab:createContainerLoot(pContainer)
 end
 
 function GeonosianLab:notifyContainerLooted(pContainer, pLooter)
-	if pItem == nil or pLooter == nil or not SceneObject(pLooter):isCreatureObject() then
+	if pContainer == nil or pLooter == nil or not SceneObject(pLooter):isCreatureObject() then
 		return 1
 	end
 
@@ -376,8 +376,10 @@ function GeonosianLab:spawnMobiles()
 
 	-- operatingroom2 (1627815)
 	spawnMobile("yavin4", "biogenic_scientist_generic_02", 1, -127.2, -34, -189.0, -93, 1627815)
+	spawnMobile("yavin4", "enhanced_kwi",180,-143.2,-34,-180.8,-139,1627815)
+	spawnMobile("yavin4", "enhanced_kliknik",180,-129.0,-34,-192.6,-32,1627815)
 	spawnMobile("yavin4", "geonosian_scientist",180,-124.3,-34.0,-199.5,-60,1627815)
-	--spawnMobile("yavin4", "acklayboss",3600,-139.8,-34,-194.3,57,1627815)
+	spawnMobile("yavin4", "enhanced_kliknik",180,-139.8,-34,-194.3,57,1627815)
 
 	-- transition9 (1627816)
 	spawnMobile("yavin4", "alert_droideka",180,-129.8,-34.0,-267.9,87,1627816)
@@ -420,7 +422,7 @@ function GeonosianLab:spawnMobiles()
 	spawnMobile("yavin4", "cavern_spider",180,13.4,-22.0,-337.3,-179,1627822)
 
 	-- largeendcave (1627823)
-	--spawnMobile("yavin4", "acklay",3600,101.1,-34.3,-321.6,-136,1627823, true) --Randomized respawn
+	spawnMobile("yavin4", "acklay",7200,101.1,-34.3,-321.6,-136,1627823, true) --Randomized respawn
 	spawnMobile("yavin4", "enhanced_kwi",180,48.0,-34.0,-334.4,0,1627823)
 	spawnMobile("yavin4", "cavern_spider",180,91.2,-33.9,-347.9,5,1627823)
 	spawnMobile("yavin4", "enhanced_kliknik",180,98.0,-34.1,-334.4,-53,1627823)
@@ -607,7 +609,6 @@ function GeonosianLab:keypadSuiCallback(pPlayer, pSui, eventIndex, code, pressed
 			local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 			if (pGhost ~= nil) then
-				printf("starting slicing session on " .. SceneObject(pKeypad):getObjectID() .. "\n")
 				PlayerObject(pGhost):startSlicingSession(pKeypad, true)
 			end
 		end
@@ -674,7 +675,7 @@ function GeonosianLab:notifyExitedBunker(pBuilding, pPlayer)
 	deleteData(playerID .. ":geoEngineerState")
 	deleteData(playerID .. ":geoAssistantState")
 	deleteData(playerID .. ":geo_security_tech_talked")
-	CreatureObject(pPlayer):removeScreenPlayState(1, "geonosian_lab_tenloss")
+	deleteData(playerID .. ":geoHumanScientistState")
 
 	CreatureObject(pPlayer):sendSystemMessage("@dungeon/geonosian_madbio:relock") --Security systems at this facility have been cycled and reset.
 
@@ -720,17 +721,13 @@ function GeonosianLab:giveGeoItem(pPlayer, itemTemplate)
 end
 
 function GeonosianLab:respawnDebris(pDebris, index)
-	if (pDebris == nil) then
-		return
-	end
-
 	local debrisData = self.debrisLocs[tonumber(index)]
 
-	pDebris = spawnSceneObject("yavin4", debrisData.template, debrisData.x, debrisData.z, debrisData.y, debrisData.cell, 1, 0, 0, 0)
+	local pNewDebris = spawnSceneObject("yavin4", debrisData.template, debrisData.x, debrisData.z, debrisData.y, debrisData.cell, math.rad(debrisData.rot))
 
-	if (pDebris ~= nil) then
-		writeData(SceneObject(pDebris):getObjectID() .. ":geonosianLab:debrisIndex", index)
-		createObserver(OBJECTDESTRUCTION, "GeonosianLab", "notifyDebrisDestroyed", pDebris)
+	if (pNewDebris ~= nil) then
+		writeData(SceneObject(pNewDebris):getObjectID() .. ":geonosianLab:debrisIndex", index)
+		createObserver(OBJECTDESTRUCTION, "GeonosianLab", "notifyDebrisDestroyed", pNewDebris)
 	end
 end
 
@@ -742,8 +739,10 @@ function GeonosianLab:notifyDebrisDestroyed(pDebris, pPlayer)
 	local index = readData(SceneObject(pDebris):getObjectID() .. ":geonosianLab:debrisIndex")
 
 	playClientEffectLoc(SceneObject(pPlayer):getObjectID(), "clienteffect/combat_explosion_lair_large.cef", "yavin4", SceneObject(pDebris):getPositionX(), SceneObject(pDebris):getPositionZ(), SceneObject(pDebris):getPositionY(), SceneObject(pDebris):getParentID())
-	createEvent(1000, "Warren", "destroySceneObject", pDebris, "")
-	createEvent(180000, "GeonosianLab", "respawnDebris", pDebris, tostring(index))
+
+	createEvent(3 * 60 * 1000, "GeonosianLab", "respawnDebris", nil, tostring(index))
+	createEvent(200, "GeonosianLab", "destroySceneObject", pDebris, "")
+
 	CreatureObject(pPlayer):clearCombatState(1)
 
 	return 1
@@ -815,7 +814,7 @@ end
 function GeonosianLab:givePermission(pPlayer, permissionGroup)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-	if (pGhost ~= nil) then
+	if (pGhost ~= nil and not PlayerObject(pGhost):hasPermissionGroup(permissionGroup)) then
 		PlayerObject(pGhost):addPermissionGroup(permissionGroup, true)
 	end
 end

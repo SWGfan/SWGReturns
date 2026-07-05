@@ -30,7 +30,7 @@ SuiColorBox::~SuiColorBox() {
 
 BaseMessage* SuiColorBox::generateMessage() {
 	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -40,7 +40,7 @@ BaseMessage* SuiColorBox::generateMessage() {
 
 String SuiColorBox::getColorPalette() {
 	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ String SuiColorBox::getColorPalette() {
 
 void SuiColorBox::setColorPalette(String& pal) {
 	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -71,7 +71,7 @@ void SuiColorBox::setColorPalette(String& pal) {
 
 bool SuiColorBox::isColorPicker() {
 	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -116,7 +116,7 @@ void SuiColorBoxImplementation::finalize() {
 void SuiColorBoxImplementation::_initializeImplementation() {
 	_setClassHelper(SuiColorBoxHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

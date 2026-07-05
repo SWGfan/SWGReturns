@@ -22,9 +22,9 @@
 
 #include "server/zone/objects/tangible/TangibleObject.h"
 
-#include "server/zone/objects/region/CityRegion.h"
-
 #include "server/zone/objects/pathfinding/NavArea.h"
+
+#include "server/zone/ActiveAreaQuadTree.h"
 
 /*
  *	ZoneStub
@@ -51,7 +51,7 @@ Zone::~Zone() {
 
 void Zone::initializeTransientMembers() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -65,7 +65,7 @@ void Zone::initializeTransientMembers() {
 
 Reference<SceneObject* > Zone::getNearestPlanetaryObject(SceneObject* object, const String& mapObjectLocationType) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -81,7 +81,7 @@ Reference<SceneObject* > Zone::getNearestPlanetaryObject(SceneObject* object, co
 
 void Zone::initializePrivateData() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -93,19 +93,19 @@ void Zone::initializePrivateData() {
 	}
 }
 
-QuadTree* Zone::getRegionTree() {
+ActiveAreaQuadTree* Zone::getActiveAreaTree() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->getRegionTree();
+		return _implementation->getActiveAreaTree();
 	}
 }
 
 int Zone::getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -115,7 +115,7 @@ int Zone::getInRangeSolidObjects(float x, float y, float range, SortedVector<Man
 
 int Zone::getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -125,7 +125,7 @@ int Zone::getInRangeObjects(float x, float y, float range, SortedVector<ManagedR
 
 int Zone::getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -133,9 +133,19 @@ int Zone::getInRangeObjects(float x, float y, float range, InRangeObjectsVector*
 	}
 }
 
+int Zone::getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects) {
+	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getInRangePlayers(x, y, range, objects);
+	}
+}
+
 void Zone::createContainerComponent() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +159,7 @@ void Zone::createContainerComponent() {
 
 int Zone::getInRangeActiveAreas(float x, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -159,7 +169,7 @@ int Zone::getInRangeActiveAreas(float x, float y, SortedVector<ManagedReference<
 
 int Zone::getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -169,7 +179,7 @@ int Zone::getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bo
 
 int Zone::getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -177,29 +187,9 @@ int Zone::getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<Na
 	}
 }
 
-int Zone::getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone) {
-	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getInRangeActiveAreas(x, y, range, objects, readLockZone);
-	}
-}
-
-int Zone::getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone) {
-	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getInRangeActiveAreas(x, y, range, objects, readLockZone);
-	}
-}
-
 SortedVector<ManagedReference<SceneObject* > > Zone::getPlanetaryObjectList(const String& mapObjectLocationType) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -209,7 +199,7 @@ SortedVector<ManagedReference<SceneObject* > > Zone::getPlanetaryObjectList(cons
 
 void Zone::insert(QuadTreeEntry* entry) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -219,7 +209,7 @@ void Zone::insert(QuadTreeEntry* entry) {
 
 void Zone::remove(QuadTreeEntry* entry) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -229,7 +219,7 @@ void Zone::remove(QuadTreeEntry* entry) {
 
 void Zone::update(QuadTreeEntry* entry) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -239,7 +229,7 @@ void Zone::update(QuadTreeEntry* entry) {
 
 void Zone::inRange(QuadTreeEntry* entry, float range) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -249,7 +239,7 @@ void Zone::inRange(QuadTreeEntry* entry, float range) {
 
 void Zone::updateActiveAreas(TangibleObject* tano) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -264,7 +254,7 @@ void Zone::updateActiveAreas(TangibleObject* tano) {
 
 void Zone::startManagers() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -278,7 +268,7 @@ void Zone::startManagers() {
 
 void Zone::stopManagers() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -292,7 +282,7 @@ void Zone::stopManagers() {
 
 void Zone::clearZone() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -306,7 +296,7 @@ void Zone::clearZone() {
 
 float Zone::getHeight(float x, float y) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -322,7 +312,7 @@ float Zone::getHeight(float x, float y) {
 
 float Zone::getHeightNoCache(float x, float y) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -338,7 +328,7 @@ float Zone::getHeightNoCache(float x, float y) {
 
 void Zone::addSceneObject(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -348,14 +338,14 @@ void Zone::addSceneObject(SceneObject* object) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((object == nullptr) || object->isLockedByCurrentThread());
+		assert((object == NULL) || object->isLockedByCurrentThread());
 		_implementation->addSceneObject(object);
 	}
 }
 
 void Zone::addCityRegionToUpdate(CityRegion* city) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -370,7 +360,7 @@ void Zone::addCityRegionToUpdate(CityRegion* city) {
 
 void Zone::updateCityRegions() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -384,7 +374,7 @@ void Zone::updateCityRegions() {
 
 void Zone::sendMapLocationsTo(CreatureObject* player) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -399,7 +389,7 @@ void Zone::sendMapLocationsTo(CreatureObject* player) {
 
 void Zone::dropSceneObject(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -409,14 +399,14 @@ void Zone::dropSceneObject(SceneObject* object) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((object == nullptr) || object->isLockedByCurrentThread());
+		assert((object == NULL) || object->isLockedByCurrentThread());
 		_implementation->dropSceneObject(object);
 	}
 }
 
 PlanetManager* Zone::getPlanetManager() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -430,7 +420,7 @@ PlanetManager* Zone::getPlanetManager() {
 
 ZoneServer* Zone::getZoneServer() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -444,7 +434,7 @@ ZoneServer* Zone::getZoneServer() {
 
 CreatureManager* Zone::getCreatureManager() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -458,7 +448,7 @@ CreatureManager* Zone::getCreatureManager() {
 
 GCWManager* Zone::getGCWManager() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -472,7 +462,7 @@ GCWManager* Zone::getGCWManager() {
 
 unsigned long long Zone::getGalacticTime() const {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -486,7 +476,7 @@ unsigned long long Zone::getGalacticTime() const {
 
 bool Zone::hasManagersStarted() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -500,7 +490,7 @@ bool Zone::hasManagersStarted() {
 
 bool Zone::isZoneCleared() const {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -514,7 +504,7 @@ bool Zone::isZoneCleared() const {
 
 int Zone::getSpawnedAiAgents() const {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -528,7 +518,7 @@ int Zone::getSpawnedAiAgents() const {
 
 float Zone::getMinX() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -542,7 +532,7 @@ float Zone::getMinX() {
 
 float Zone::getMaxX() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -556,7 +546,7 @@ float Zone::getMaxX() {
 
 float Zone::getMinY() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -570,7 +560,7 @@ float Zone::getMinY() {
 
 float Zone::getMaxY() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -584,7 +574,7 @@ float Zone::getMaxY() {
 
 bool Zone::isWithinBoundaries(const Vector3& position) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -594,7 +584,7 @@ bool Zone::isWithinBoundaries(const Vector3& position) {
 
 float Zone::getBoundingRadius() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -608,7 +598,7 @@ float Zone::getBoundingRadius() {
 
 void Zone::registerObjectWithPlanetaryMap(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,7 +613,7 @@ void Zone::registerObjectWithPlanetaryMap(SceneObject* object) {
 
 void Zone::unregisterObjectWithPlanetaryMap(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -638,7 +628,7 @@ void Zone::unregisterObjectWithPlanetaryMap(SceneObject* object) {
 
 bool Zone::objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -653,7 +643,7 @@ bool Zone::objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object) {
 
 bool Zone::isObjectRegisteredWithPlanetaryMap(SceneObject* object) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -668,7 +658,7 @@ bool Zone::isObjectRegisteredWithPlanetaryMap(SceneObject* object) {
 
 void Zone::updatePlanetaryMapIcon(SceneObject* object, byte icon) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -684,7 +674,7 @@ void Zone::updatePlanetaryMapIcon(SceneObject* object, byte icon) {
 
 String Zone::getZoneName() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -700,7 +690,7 @@ String Zone::getZoneName() {
 
 unsigned int Zone::getZoneCRC() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -714,7 +704,7 @@ unsigned int Zone::getZoneCRC() {
 
 void Zone::setPlanetChatRoom(ChatRoom* room) {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -729,7 +719,7 @@ void Zone::setPlanetChatRoom(ChatRoom* room) {
 
 ChatRoom* Zone::getPlanetChatRoom() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -772,7 +762,7 @@ ZoneImplementation::~ZoneImplementation() {
 void ZoneImplementation::_initializeImplementation() {
 	_setClassHelper(ZoneHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -857,10 +847,6 @@ bool ZoneImplementation::readObjectMember(ObjectInputStream* stream, const uint3
 		TypeInfo<unsigned int >::parseFromBinaryStream(&zoneCRC, stream);
 		return true;
 
-	case 0x7b0557ae: //Zone.regionTree
-		TypeInfo<QuadTreeReference >::parseFromBinaryStream(&regionTree, stream);
-		return true;
-
 	case 0x623385b4: //Zone.quadTree
 		TypeInfo<QuadTreeReference >::parseFromBinaryStream(&quadTree, stream);
 		return true;
@@ -905,15 +891,6 @@ int ZoneImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x7b0557ae; //Zone.regionTree
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<QuadTreeReference >::toBinaryStream(&regionTree, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0x623385b4; //Zone.quadTree
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -936,9 +913,9 @@ int ZoneImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	return _count;
 }
 
-QuadTree* ZoneImplementation::getRegionTree() {
-	// server/zone/Zone.idl():  		return regionTree.get();
-	return (&regionTree)->get();
+ActiveAreaQuadTree* ZoneImplementation::getActiveAreaTree() {
+	// server/zone/Zone.idl():  		return areaTree;
+	return areaTree;
 }
 
 void ZoneImplementation::addCityRegionToUpdate(CityRegion* city) {
@@ -1041,7 +1018,7 @@ void ZoneAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			 String mapObjectLocationType; inv->getAsciiParameter(mapObjectLocationType);
 			
 			DistributedObject* _m_res = getNearestPlanetaryObject(object, mapObjectLocationType);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_INITIALIZEPRIVATEDATA__:
@@ -1148,28 +1125,28 @@ void ZoneAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPlanetManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETZONESERVER__:
 		{
 			
 			DistributedObject* _m_res = getZoneServer();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETCREATUREMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getCreatureManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGCWMANAGER__:
 		{
 			
 			DistributedObject* _m_res = getGCWManager();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGALACTICTIME__:
@@ -1302,7 +1279,7 @@ void ZoneAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getPlanetChatRoom();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:
@@ -1549,17 +1526,6 @@ int ZonePOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (regionTree) {
-	_nameHashCode = 0x7b0557ae; //Zone.regionTree
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<QuadTreeReference >::toBinaryStream(&regionTree.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (quadTree) {
 	_nameHashCode = 0x623385b4; //Zone.quadTree
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -1604,14 +1570,6 @@ bool ZonePOD::readObjectMember(ObjectInputStream* stream, const uint32& nameHash
 			unsigned int _mnzoneCRC;
 			TypeInfo<unsigned int >::parseFromBinaryStream(&_mnzoneCRC, stream);
 			zoneCRC = std::move(_mnzoneCRC);
-		}
-		return true;
-
-	case 0x7b0557ae: //Zone.regionTree
-		{
-			QuadTreeReference _mnregionTree;
-			TypeInfo<QuadTreeReference >::parseFromBinaryStream(&_mnregionTree, stream);
-			regionTree = std::move(_mnregionTree);
 		}
 		return true;
 
@@ -1660,8 +1618,6 @@ void ZonePOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<String >::toBinaryStream(&zoneName.value(), stream);
 
 	TypeInfo<unsigned int >::toBinaryStream(&zoneCRC.value(), stream);
-
-	TypeInfo<QuadTreeReference >::toBinaryStream(&regionTree.value(), stream);
 
 	TypeInfo<QuadTreeReference >::toBinaryStream(&quadTree.value(), stream);
 

@@ -32,7 +32,7 @@ SignObject::~SignObject() {
 
 int SignObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	SignObjectImplementation* _implementation = static_cast<SignObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int SignObject::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 
 void SignObject::sendSignNameTo(CreatureObject* player) {
 	SignObjectImplementation* _implementation = static_cast<SignObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -63,7 +63,7 @@ void SignObject::sendSignNameTo(CreatureObject* player) {
 
 bool SignObject::isSignObject() {
 	SignObjectImplementation* _implementation = static_cast<SignObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ bool SignObject::isSignObject() {
 
 void SignObject::initializeChildObject(SceneObject* controllerObject) {
 	SignObjectImplementation* _implementation = static_cast<SignObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ void SignObjectImplementation::finalize() {
 void SignObjectImplementation::_initializeImplementation() {
 	_setClassHelper(SignObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

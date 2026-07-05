@@ -37,6 +37,8 @@ void CityRegionImplementation::initializeTransientMembers() {
 
 	loaded = false;
 	completeStructureList.setNoDuplicateInsertPlan();
+
+	setCustomRegionName(customRegionName);
 }
 
 void CityRegionImplementation::notifyLoadFromDatabase() {
@@ -163,6 +165,8 @@ void CityRegionImplementation::rescheduleUpdateEvent(uint32 seconds) {
 	Core::getTaskManager()->getNextExecutionTime(cityUpdateEvent, next);
 
 	nextUpdateTime = next.getTimeObject();
+
+	info(true) << "Next update: " << nextUpdateTime.getFormattedTimeFull();
 }
 
 void CityRegionImplementation::scheduleCitizenAssessment(uint32 seconds) {
@@ -180,6 +184,8 @@ void CityRegionImplementation::scheduleCitizenAssessment(uint32 seconds) {
 	Core::getTaskManager()->getNextExecutionTime(citizenAssessmentEvent, next);
 
 	nextCitizenAssessment = next.getTimeObject();
+
+	info(true) << "Next citizen update: " << nextCitizenAssessment.getFormattedTimeFull();
 }
 
 int CityRegionImplementation::getTimeToUpdate() {
@@ -451,11 +457,6 @@ bool CityRegionImplementation::hasZoningRights(uint64 objectid) {
 	if(getMayorID() != 0 && objectid == getMayorID())
 		return true;
 
-  if(isMilitiaMember(objectid))
-    {
-		return true;
-    }
-
 	uint32 timestamp = zoningRights.get(objectid);
 
 	if (timestamp == 0)
@@ -584,6 +585,20 @@ void CityRegionImplementation::setZone(Zone* zne) {
 	if (zone != zne) {
         zone = zne;
     }
+}
+
+void CityRegionImplementation::setCustomRegionName(const String& name) {
+	customRegionName = name;
+
+	StringBuffer logName;
+
+	logName << "CityRegion " << getObjectID() << " " << getRegionName();
+
+	if (zone != nullptr) {
+		logName << " on " << zone->getZoneName();
+	}
+
+	setLoggingName(logName.toString());
 }
 
 void CityRegionImplementation::setRadius(float rad) {
@@ -880,6 +895,8 @@ void CityRegionImplementation::transferCivicStructuresToMayor() {
 		ManagedReference<CreatureObject*> oldOwner = structure->getOwnerCreatureObject();
 
 		if(newMayor != oldOwner) {
+			Locker clocker(newMayor, _this.getReferenceUnsafeStaticCast());
+
 			TransferstructureCommand::doTransferStructure(oldOwner, newMayor, structure,true);
 		}
 	}
@@ -899,6 +916,8 @@ void CityRegionImplementation::transferCivicStructuresToMayor() {
 		ManagedReference<CreatureObject*> oldOwner = structure->getOwnerCreatureObject();
 
 		if(newMayor != oldOwner) {
+			Locker clocker(newMayor, _this.getReferenceUnsafeStaticCast());
+
 			TransferstructureCommand::doTransferStructure(oldOwner, newMayor, structure,true);
 		}
 	}

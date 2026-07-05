@@ -28,7 +28,7 @@ CampSiteObserver::~CampSiteObserver() {
 
 int CampSiteObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	CampSiteObserverImplementation* _implementation = static_cast<CampSiteObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void CampSiteObserverImplementation::finalize() {
 void CampSiteObserverImplementation::_initializeImplementation() {
 	_setClassHelper(CampSiteObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -201,10 +201,10 @@ int CampSiteObserverImplementation::notifyObserverEvent(unsigned int eventType, 
 	// server/zone/objects/area/CampSiteObserver.idl():  		CampSiteActiveArea strongRef = campArea;
 	ManagedReference<CampSiteActiveArea* > strongRef = campArea;
 	// server/zone/objects/area/CampSiteObserver.idl():  		if(
-	if (strongRef != nullptr && eventType == ObserverEventType::HEALINGRECEIVED)	// server/zone/objects/area/CampSiteObserver.idl():  			return strongRef.notifyHealEvent(arg2);
+	if (strongRef && eventType == ObserverEventType::HEALINGRECEIVED)	// server/zone/objects/area/CampSiteObserver.idl():  			return strongRef.notifyHealEvent(arg2);
 	return strongRef->notifyHealEvent(arg2);
 	// server/zone/objects/area/CampSiteObserver.idl():  		return 
-	if (strongRef != nullptr && eventType == ObserverEventType::STARTCOMBAT)	// server/zone/objects/area/CampSiteObserver.idl():  			return strongRef.notifyCombatEvent();
+	if (strongRef && eventType == ObserverEventType::STARTCOMBAT)	// server/zone/objects/area/CampSiteObserver.idl():  			return strongRef.notifyCombatEvent();
 	return strongRef->notifyCombatEvent();
 	// server/zone/objects/area/CampSiteObserver.idl():  		return 0;
 	return 0;

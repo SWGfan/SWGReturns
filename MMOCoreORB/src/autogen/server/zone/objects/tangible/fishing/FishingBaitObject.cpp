@@ -32,7 +32,7 @@ FishingBaitObject::~FishingBaitObject() {
 
 void FishingBaitObject::initializeTransientMembers() {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ void FishingBaitObject::initializeTransientMembers() {
 
 int FishingBaitObject::getFreshness() const {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ int FishingBaitObject::getFreshness() const {
 
 void FishingBaitObject::setFreshness(int value) {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ void FishingBaitObject::setFreshness(int value) {
 
 void FishingBaitObject::lessFresh() {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void FishingBaitObject::lessFresh() {
 
 int FishingBaitObject::getUseCount() const {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -103,7 +103,7 @@ int FishingBaitObject::getUseCount() const {
 
 void FishingBaitObject::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	FishingBaitObjectImplementation* _implementation = static_cast<FishingBaitObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -144,7 +144,7 @@ void FishingBaitObjectImplementation::finalize() {
 void FishingBaitObjectImplementation::_initializeImplementation() {
 	_setClassHelper(FishingBaitObjectHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

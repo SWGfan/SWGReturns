@@ -38,7 +38,7 @@ EventPerkDeed::~EventPerkDeed() {
 
 void EventPerkDeed::initializeTransientMembers() {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -52,7 +52,7 @@ void EventPerkDeed::initializeTransientMembers() {
 
 void EventPerkDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -62,7 +62,7 @@ void EventPerkDeed::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void EventPerkDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -72,7 +72,7 @@ void EventPerkDeed::fillAttributeList(AttributeListMessage* alm, CreatureObject*
 
 void EventPerkDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -82,7 +82,7 @@ void EventPerkDeed::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Cre
 
 int EventPerkDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ int EventPerkDeed::handleObjectMenuSelect(CreatureObject* player, byte selectedI
 
 void EventPerkDeed::destroyObjectFromDatabase(bool destroyContainedObjects) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -113,7 +113,7 @@ void EventPerkDeed::destroyObjectFromDatabase(bool destroyContainedObjects) {
 
 void EventPerkDeed::activateRemoveEvent(bool immediate) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +128,7 @@ void EventPerkDeed::activateRemoveEvent(bool immediate) {
 
 String EventPerkDeed::getDurationString() {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -144,7 +144,7 @@ String EventPerkDeed::getDurationString() {
 
 void EventPerkDeed::parseChildObjects(SceneObject* parent) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -159,7 +159,7 @@ void EventPerkDeed::parseChildObjects(SceneObject* parent) {
 
 void EventPerkDeed::setOwner(CreatureObject* player) {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -174,7 +174,7 @@ void EventPerkDeed::setOwner(CreatureObject* player) {
 
 ManagedWeakReference<CreatureObject* > EventPerkDeed::getOwner() const {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -188,7 +188,7 @@ ManagedWeakReference<CreatureObject* > EventPerkDeed::getOwner() const {
 
 ManagedWeakReference<TangibleObject* > EventPerkDeed::getGeneratedObject() const {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -202,7 +202,7 @@ ManagedWeakReference<TangibleObject* > EventPerkDeed::getGeneratedObject() const
 
 int EventPerkDeed::getPerkType() const {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -216,7 +216,7 @@ int EventPerkDeed::getPerkType() const {
 
 Time* EventPerkDeed::getPurchaseTime() {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -226,7 +226,7 @@ Time* EventPerkDeed::getPurchaseTime() {
 
 bool EventPerkDeed::isEventPerkDeed() {
 	EventPerkDeedImplementation* _implementation = static_cast<EventPerkDeedImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -271,7 +271,7 @@ void EventPerkDeedImplementation::finalize() {
 void EventPerkDeedImplementation::_initializeImplementation() {
 	_setClassHelper(EventPerkDeedHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -463,9 +463,9 @@ EventPerkDeedImplementation::EventPerkDeedImplementation() {
 	// server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl():  		purchaseTime.updateToCurrentTime();
 	(&purchaseTime)->updateToCurrentTime();
 	// server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl():  		owner = null;
-	owner = nullptr;
+	owner = NULL;
 	// server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl():  		generatedObject = null;
-	generatedObject = nullptr;
+	generatedObject = NULL;
 }
 
 void EventPerkDeedImplementation::setOwner(CreatureObject* player) {
@@ -572,14 +572,14 @@ void EventPerkDeedAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getOwner().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETGENERATEDOBJECT__:
 		{
 			
 			DistributedObject* _m_res = getGeneratedObject().get();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_GETPERKTYPE__:

@@ -284,6 +284,8 @@ using namespace server::zone::objects::player::events;
 
 #include "engine/util/JSONSerializationType.h"
 
+#include "server/zone/managers/player/PlayerNameIterator.h"
+
 #include "engine/log/Logger.h"
 
 #include "system/util/SortedVector.h"
@@ -327,7 +329,7 @@ public:
 
 	bool checkPlayerName(ClientCreateCharacterCallback* callback);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName);
+	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify = false);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify = false);
 
@@ -373,12 +375,6 @@ public:
 	void setExperienceMultiplier(float globalMultiplier);
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage = true, float localMultiplier = 1.0f, bool applyModifiers = true);
-
-	void frsSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void gcwSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void bhgSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
 
 	SortedVector<ManagedReference<SceneObject* > > getInsurableItems(CreatureObject* player, bool onlyInsurable = true);
 
@@ -684,14 +680,7 @@ public:
 	 */
 	void enhanceCharacter(CreatureObject* player);
 
-	/**
-	 * Creates and adds buff to Player
-	 * @pre { player is locked }
-	 * @post { player is locked }
-	 * @returns true if it was added
-	 * @param crc CRC of the buff, player target of buff, amount is the attribute modifier for the buff, duration of the buff, buffType specifies whether medical or performance and attribute sets the creature attribute to modify
-	 */
-	bool doEnhanceCharacter(unsigned int crc, CreatureObject* player, int amount, int duration, int buffType, byte attribute);
+	void enhanceCharacterFrog(CreatureObject* player);
 
 	int getBaseStoredCreaturePets();
 
@@ -713,9 +702,9 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
+	int getOnlineCharactersPerAccount();
 
-	void updatePvPKillCount(CreatureObject* player);
+	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
 
 	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
 
@@ -732,6 +721,8 @@ public:
 	void updateOnlinePlayers();
 
 	void stopOnlinePlayerLogTask();
+
+	void iteratePlayerNames(const PlayerNameIterator& iterator);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -774,7 +765,7 @@ protected:
 
 	WeakReference<OnlinePlayerLogTask* > onlinePlayerLogTask;
 
-	int onlinePlayerLogSum;
+	int onlinePlayerLogSum = 0;
 
 	bool onlinePlayersLogOnSessionChange;
 
@@ -819,30 +810,14 @@ private:
 
 	float groupExpMultiplier;
 
-	float craftingExpMultiplier;
-
-	float entertainingExpMultiplier;
-
-	float scoutExpMultiplier;
-
-	float shipwrightExpMultiplier;
-
-	float bioEngineerExpMultiplier;
-
-	float jediExpMultiplier;
-
-	float imagedesignExpMultiplier;
-
-	float slicingExpMultiplier;
-
-	float medicExpMultiplier;
-
 	ReadWriteLock onlineMapMutex;
 
 protected:
 	Vector<Reference<JukeboxSong*> > jukeboxSongs;
 
 	Vector<Reference<QuestInfo*> > questInfo;
+
+	VectorMap<unsigned int, String> questCrcTable;
 
 private:
 	OnlineZoneClientMap onlineZoneClientMap;
@@ -867,6 +842,8 @@ private:
 
 	void loadQuestInfo();
 
+	void loadQuestCrcTable();
+
 public:
 	void finalize();
 
@@ -884,7 +861,7 @@ public:
 
 	bool checkPlayerName(ClientCreateCharacterCallback* callback);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName);
+	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify = false);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify = false);
 
@@ -930,12 +907,6 @@ public:
 	void setExperienceMultiplier(float globalMultiplier);
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage = true, float localMultiplier = 1.0f, bool applyModifiers = true);
-
-	void frsSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void gcwSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void bhgSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
 
 	SortedVector<ManagedReference<SceneObject* > > getInsurableItems(CreatureObject* player, bool onlyInsurable = true);
 
@@ -1252,6 +1223,9 @@ public:
 	 */
 	void enhanceCharacter(CreatureObject* player);
 
+	void enhanceCharacterFrog(CreatureObject* player);
+
+private:
 	/**
 	 * Creates and adds buff to Player
 	 * @pre { player is locked }
@@ -1261,6 +1235,7 @@ public:
 	 */
 	bool doEnhanceCharacter(unsigned int crc, CreatureObject* player, int amount, int duration, int buffType, byte attribute);
 
+public:
 	int getBaseStoredCreaturePets();
 
 	int getBaseStoredFactionPets();
@@ -1281,9 +1256,9 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
+	int getOnlineCharactersPerAccount();
 
-	void updatePvPKillCount(CreatureObject* player);
+	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
 
 	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
 
@@ -1304,6 +1279,8 @@ public:
 	void updateOnlinePlayers();
 
 	void stopOnlinePlayerLogTask();
+
+	void iteratePlayerNames(const PlayerNameIterator& iterator);
 
 	WeakReference<PlayerManager*> _this;
 
@@ -1352,7 +1329,7 @@ public:
 
 	bool kickUser(const String& name, const String& admin, String& reason, bool doBan);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName);
+	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify);
 
@@ -1381,12 +1358,6 @@ public:
 	void setExperienceMultiplier(float globalMultiplier);
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage, float localMultiplier, bool applyModifiers);
-
-	void frsSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void gcwSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
-
-	void bhgSkillCheck(CreatureObject* player, const String& skill, const String& skillParent);
 
 	void handleAbortTradeMessage(CreatureObject* player);
 
@@ -1542,7 +1513,7 @@ public:
 
 	void enhanceCharacter(CreatureObject* player);
 
-	bool doEnhanceCharacter(unsigned int crc, CreatureObject* player, int amount, int duration, int buffType, byte attribute);
+	void enhanceCharacterFrog(CreatureObject* player);
 
 	int getBaseStoredCreaturePets();
 
@@ -1562,7 +1533,7 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	void updatePvPKillCount(CreatureObject* player);
+	int getOnlineCharactersPerAccount();
 
 	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
 
@@ -1644,24 +1615,6 @@ public:
 	Optional<float> globalExpMultiplier;
 
 	Optional<float> groupExpMultiplier;
-
-	Optional<float> craftingExpMultiplier;
-
-	Optional<float> entertainingExpMultiplier;
-
-	Optional<float> scoutExpMultiplier;
-
-	Optional<float> shipwrightExpMultiplier;
-
-	Optional<float> bioEngineerExpMultiplier;
-
-	Optional<float> jediExpMultiplier;
-
-	Optional<float> imagedesignExpMultiplier;
-
-	Optional<float> slicingExpMultiplier;
-
-	Optional<float> medicExpMultiplier;
 
 	String _className;
 	PlayerManagerPOD();

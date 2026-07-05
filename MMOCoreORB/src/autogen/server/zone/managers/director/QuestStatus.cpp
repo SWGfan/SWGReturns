@@ -28,7 +28,7 @@ QuestStatus::~QuestStatus() {
 
 String QuestStatus::getKey() {
 	QuestStatusImplementation* _implementation = static_cast<QuestStatusImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ String QuestStatus::getKey() {
 
 void QuestStatus::setKey(const String& k) {
 	QuestStatusImplementation* _implementation = static_cast<QuestStatusImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ void QuestStatus::setKey(const String& k) {
 
 String QuestStatus::getStatus() {
 	QuestStatusImplementation* _implementation = static_cast<QuestStatusImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ String QuestStatus::getStatus() {
 
 void QuestStatus::setStatus(const String& s) {
 	QuestStatusImplementation* _implementation = static_cast<QuestStatusImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ void QuestStatusImplementation::finalize() {
 void QuestStatusImplementation::_initializeImplementation() {
 	_setClassHelper(QuestStatusHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

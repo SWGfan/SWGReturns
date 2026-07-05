@@ -10,7 +10,7 @@
  *	AuctionItemStub
  */
 
-enum {RPC_COMPARETO__AUCTIONITEM_ = 276266056,RPC_NOTIFYLOADFROMDATABASE__,RPC_SETVENDORID__LONG_,RPC_SETITEMNAME__STRING_,RPC_SETITEMDESCRIPTION__STRING_,RPC_SETPRICE__INT_,RPC_SETPROXY__INT_,RPC_SETAUCTIONEDITEMOBJECTID__LONG_,RPC_SETITEMTYPE__INT_,RPC_SETOWNERID__LONG_,RPC_SETOFFERTOID__LONG_,RPC_SETBIDDERNAME__STRING_,RPC_SETOWNERNAME__STRING_,RPC_SETAUCTION__BOOL_,RPC_SETAUCTIONPREMIUM__,RPC_CLEARAUCTIONWITHDRAW__,RPC_SETONBAZAAR__BOOL_,RPC_SETEXPIRETIME__INT_,RPC_SETBUYERID__LONG_,RPC_SETSTATUS__INT_,RPC_ISONBAZAAR__,RPC_ISAUCTION__,RPC_GETSTATUS__,RPC_GETVENDORID__,RPC_GETAUCTIONEDITEMOBJECTID__,RPC_GETOWNERID__,RPC_GETOFFERTOID__,RPC_SETVENDORUID__STRING_,RPC_GETVENDORUID__,RPC_GETOWNERNAME__,RPC_GETITEMNAME__,RPC_GETEXPIRETIME__,RPC_GETPRICE__,RPC_GETPROXY__,RPC_GETITEMTYPE__,RPC_GETBUYERID__,RPC_GETBIDDERNAME__,RPC_GETITEMDESCRIPTION__,RPC_GETAUCTIONOPTIONS__,RPC_ISPREMIUMAUCTION__,RPC_ISOWNER__SCENEOBJECT_,RPC_ISAUCTIONOBJECT__,RPC_SETSIZE__INT_,RPC_GETSIZE__,RPC_GETCRATEDITEMTYPE__,RPC_SETCRATEDITEMTYPE__INT_,RPC_ISFACTORYCRATE__,RPC_SETFACTORYCRATE__BOOL_,RPC_SETUPDATED__BOOL_,RPC_ISUPDATED__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 276266056,RPC_COMPARETO__AUCTIONITEM_,RPC_NOTIFYLOADFROMDATABASE__,RPC_DESTROYAUCTIONITEMFROMDATABASE__BOOL_BOOL_,RPC_SETVENDORID__LONG_,RPC_SETITEMNAME__STRING_,RPC_SETITEMDESCRIPTION__STRING_,RPC_SETPRICE__INT_,RPC_SETPROXY__INT_,RPC_SETAUCTIONEDITEMOBJECTID__LONG_,RPC_SETITEMTYPE__INT_,RPC_SETOWNERID__LONG_,RPC_SETOFFERTOID__LONG_,RPC_SETBIDDERNAME__STRING_,RPC_SETOWNERNAME__STRING_,RPC_SETAUCTION__BOOL_,RPC_SETAUCTIONPREMIUM__,RPC_CLEARAUCTIONWITHDRAW__,RPC_SETONBAZAAR__BOOL_,RPC_SETEXPIRETIME__INT_,RPC_SETBUYERID__LONG_,RPC_SETSTATUS__INT_,RPC_ISONBAZAAR__,RPC_ISAUCTION__,RPC_GETSTATUS__,RPC_GETSTATUSSTRING__,RPC_GETVENDORID__,RPC_GETAUCTIONEDITEMOBJECTID__,RPC_GETOWNERID__,RPC_GETOFFERTOID__,RPC_SETVENDORUID__STRING_,RPC_GETVENDORUID__,RPC_GETOWNERNAME__,RPC_GETITEMNAME__,RPC_GETEXPIRETIME__,RPC_GETPRICE__,RPC_GETPROXY__,RPC_GETITEMTYPE__,RPC_GETBUYERID__,RPC_GETBIDDERNAME__,RPC_GETITEMDESCRIPTION__,RPC_GETAUCTIONOPTIONS__,RPC_ISPREMIUMAUCTION__,RPC_ISOWNER__SCENEOBJECT_,RPC_ISAUCTIONOBJECT__,RPC_SETSIZE__INT_,RPC_GETSIZE__,RPC_GETCRATEDITEMTYPE__,RPC_SETCRATEDITEMTYPE__INT_,RPC_ISFACTORYCRATE__,RPC_SETFACTORYCRATE__BOOL_,RPC_SETUPDATED__BOOL_,RPC_ISUPDATED__,RPC_GETOBJECTID__,};
 
 AuctionItem::AuctionItem(unsigned long long objectid) : ManagedObject(DummyConstructorParameter::instance()) {
 	AuctionItemImplementation* _implementation = new AuctionItemImplementation(objectid);
@@ -28,9 +28,23 @@ AuctionItem::~AuctionItem() {
 
 
 
+void AuctionItem::initializeTransientMembers() {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZETRANSIENTMEMBERS__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeTransientMembers();
+	}
+}
+
 int AuctionItem::compareTo(AuctionItem* obj) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -45,7 +59,7 @@ int AuctionItem::compareTo(AuctionItem* obj) {
 
 void AuctionItem::notifyLoadFromDatabase() {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -57,9 +71,25 @@ void AuctionItem::notifyLoadFromDatabase() {
 	}
 }
 
+bool AuctionItem::destroyAuctionItemFromDatabase(bool checkAuctionMap, bool deleteAuctionedObject) {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_DESTROYAUCTIONITEMFROMDATABASE__BOOL_BOOL_);
+		method.addBooleanParameter(checkAuctionMap);
+		method.addBooleanParameter(deleteAuctionedObject);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->destroyAuctionItemFromDatabase(checkAuctionMap, deleteAuctionedObject);
+	}
+}
+
 void AuctionItem::setVendorID(unsigned long long val) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +105,7 @@ void AuctionItem::setVendorID(unsigned long long val) {
 
 void AuctionItem::setItemName(const String& name) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -91,7 +121,7 @@ void AuctionItem::setItemName(const String& name) {
 
 void AuctionItem::setItemDescription(const String& descr) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +137,7 @@ void AuctionItem::setItemDescription(const String& descr) {
 
 void AuctionItem::setPrice(int newPrice) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +153,7 @@ void AuctionItem::setPrice(int newPrice) {
 
 void AuctionItem::setProxy(int newProxy) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -139,7 +169,7 @@ void AuctionItem::setProxy(int newProxy) {
 
 void AuctionItem::setAuctionedItemObjectID(unsigned long long objectID) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -155,7 +185,7 @@ void AuctionItem::setAuctionedItemObjectID(unsigned long long objectID) {
 
 void AuctionItem::setItemType(int type) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -171,7 +201,7 @@ void AuctionItem::setItemType(int type) {
 
 void AuctionItem::setOwnerID(unsigned long long ownerObjectID) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -187,7 +217,7 @@ void AuctionItem::setOwnerID(unsigned long long ownerObjectID) {
 
 void AuctionItem::setOfferToID(unsigned long long vendorOwnerID) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -203,7 +233,7 @@ void AuctionItem::setOfferToID(unsigned long long vendorOwnerID) {
 
 void AuctionItem::setBidderName(const String& name) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -219,7 +249,7 @@ void AuctionItem::setBidderName(const String& name) {
 
 void AuctionItem::setOwnerName(const String& name) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -235,7 +265,7 @@ void AuctionItem::setOwnerName(const String& name) {
 
 void AuctionItem::setAuction(bool isAuction) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -251,7 +281,7 @@ void AuctionItem::setAuction(bool isAuction) {
 
 void AuctionItem::setAuctionPremium() {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -266,7 +296,7 @@ void AuctionItem::setAuctionPremium() {
 
 void AuctionItem::clearAuctionWithdraw() {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -281,7 +311,7 @@ void AuctionItem::clearAuctionWithdraw() {
 
 void AuctionItem::setOnBazaar(bool val) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -297,7 +327,7 @@ void AuctionItem::setOnBazaar(bool val) {
 
 void AuctionItem::setExpireTime(int time) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -313,7 +343,7 @@ void AuctionItem::setExpireTime(int time) {
 
 void AuctionItem::setBuyerID(unsigned long long id) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -329,7 +359,7 @@ void AuctionItem::setBuyerID(unsigned long long id) {
 
 void AuctionItem::setStatus(int value) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -345,7 +375,7 @@ void AuctionItem::setStatus(int value) {
 
 bool AuctionItem::isOnBazaar() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -359,7 +389,7 @@ bool AuctionItem::isOnBazaar() const {
 
 bool AuctionItem::isAuction() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -373,7 +403,7 @@ bool AuctionItem::isAuction() const {
 
 int AuctionItem::getStatus() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -385,9 +415,25 @@ int AuctionItem::getStatus() const {
 	}
 }
 
+String AuctionItem::getStatusString() const {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETSTATUSSTRING__);
+
+		String _return_getStatusString;
+		method.executeWithAsciiReturn(_return_getStatusString);
+		return _return_getStatusString;
+	} else {
+		return _implementation->getStatusString();
+	}
+}
+
 unsigned long long AuctionItem::getVendorID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -401,7 +447,7 @@ unsigned long long AuctionItem::getVendorID() const {
 
 unsigned long long AuctionItem::getAuctionedItemObjectID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -415,7 +461,7 @@ unsigned long long AuctionItem::getAuctionedItemObjectID() const {
 
 unsigned long long AuctionItem::getOwnerID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -429,7 +475,7 @@ unsigned long long AuctionItem::getOwnerID() const {
 
 unsigned long long AuctionItem::getOfferToID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -443,7 +489,7 @@ unsigned long long AuctionItem::getOfferToID() const {
 
 void AuctionItem::setVendorUID(const String& uid) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -459,7 +505,7 @@ void AuctionItem::setVendorUID(const String& uid) {
 
 const String AuctionItem::getVendorUID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -475,7 +521,7 @@ const String AuctionItem::getVendorUID() const {
 
 String AuctionItem::getOwnerName() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -491,7 +537,7 @@ String AuctionItem::getOwnerName() const {
 
 String AuctionItem::getItemName() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -507,7 +553,7 @@ String AuctionItem::getItemName() const {
 
 int AuctionItem::getExpireTime() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -521,7 +567,7 @@ int AuctionItem::getExpireTime() const {
 
 int AuctionItem::getPrice() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -535,7 +581,7 @@ int AuctionItem::getPrice() const {
 
 int AuctionItem::getProxy() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -549,7 +595,7 @@ int AuctionItem::getProxy() const {
 
 int AuctionItem::getItemType() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -563,7 +609,7 @@ int AuctionItem::getItemType() const {
 
 unsigned long long AuctionItem::getBuyerID() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -577,7 +623,7 @@ unsigned long long AuctionItem::getBuyerID() const {
 
 String AuctionItem::getBidderName() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -593,7 +639,7 @@ String AuctionItem::getBidderName() const {
 
 String AuctionItem::getItemDescription() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -609,7 +655,7 @@ String AuctionItem::getItemDescription() const {
 
 int AuctionItem::getAuctionOptions() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,7 +669,7 @@ int AuctionItem::getAuctionOptions() const {
 
 bool AuctionItem::isPremiumAuction() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -637,7 +683,7 @@ bool AuctionItem::isPremiumAuction() const {
 
 bool AuctionItem::isOwner(SceneObject* player) const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -652,7 +698,7 @@ bool AuctionItem::isOwner(SceneObject* player) const {
 
 bool AuctionItem::isAuctionObject() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -666,7 +712,7 @@ bool AuctionItem::isAuctionObject() const {
 
 void AuctionItem::setSize(int s) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -682,7 +728,7 @@ void AuctionItem::setSize(int s) {
 
 int AuctionItem::getSize() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -696,7 +742,7 @@ int AuctionItem::getSize() const {
 
 int AuctionItem::getCratedItemType() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -710,7 +756,7 @@ int AuctionItem::getCratedItemType() const {
 
 void AuctionItem::setCratedItemType(int type) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -726,7 +772,7 @@ void AuctionItem::setCratedItemType(int type) {
 
 bool AuctionItem::isFactoryCrate() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -740,7 +786,7 @@ bool AuctionItem::isFactoryCrate() const {
 
 void AuctionItem::setFactoryCrate(bool crate) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -756,7 +802,7 @@ void AuctionItem::setFactoryCrate(bool crate) {
 
 void AuctionItem::setUpdated(bool val) {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -772,7 +818,7 @@ void AuctionItem::setUpdated(bool val) {
 
 bool AuctionItem::isUpdated() const {
 	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -781,6 +827,50 @@ bool AuctionItem::isUpdated() const {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isUpdated();
+	}
+}
+
+unsigned long long AuctionItem::getObjectID() const {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETOBJECTID__);
+
+		return method.executeWithUnsignedLongReturn();
+	} else {
+		return _implementation->getObjectID();
+	}
+}
+
+LoggerHelperStream AuctionItem::error() const {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->error();
+	}
+}
+
+LoggerHelperStream AuctionItem::info(int forced) const {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->info(forced);
+	}
+}
+
+LoggerHelperStream AuctionItem::debug() const {
+	AuctionItemImplementation* _implementation = static_cast<AuctionItemImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->debug();
 	}
 }
 
@@ -817,7 +907,7 @@ void AuctionItemImplementation::finalize() {
 void AuctionItemImplementation::_initializeImplementation() {
 	_setClassHelper(AuctionItemHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -1552,6 +1642,13 @@ void AuctionItemAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 	DOBMessage* resp = inv->getInvocationMessage();
 
 	switch (methid) {
+	case RPC_INITIALIZETRANSIENTMEMBERS__:
+		{
+			
+			initializeTransientMembers();
+			
+		}
+		break;
 	case RPC_COMPARETO__AUCTIONITEM_:
 		{
 			AuctionItem* obj = static_cast<AuctionItem*>(inv->getObjectParameter());
@@ -1565,6 +1662,15 @@ void AuctionItemAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			notifyLoadFromDatabase();
 			
+		}
+		break;
+	case RPC_DESTROYAUCTIONITEMFROMDATABASE__BOOL_BOOL_:
+		{
+			bool checkAuctionMap = inv->getBooleanParameter();
+			bool deleteAuctionedObject = inv->getBooleanParameter();
+			
+			bool _m_res = destroyAuctionItemFromDatabase(checkAuctionMap, deleteAuctionedObject);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_SETVENDORID__LONG_:
@@ -1728,6 +1834,13 @@ void AuctionItemAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			int _m_res = getStatus();
 			resp->insertSignedInt(_m_res);
+		}
+		break;
+	case RPC_GETSTATUSSTRING__:
+		{
+			
+			String _m_res = getStatusString();
+			resp->insertAscii(_m_res);
 		}
 		break;
 	case RPC_GETVENDORID__:
@@ -1925,9 +2038,20 @@ void AuctionItemAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_GETOBJECTID__:
+		{
+			
+			unsigned long long _m_res = getObjectID();
+			resp->insertLong(_m_res);
+		}
+		break;
 	default:
 		ManagedObjectAdapter::invokeMethod(methid, inv);
 	}
+}
+
+void AuctionItemAdapter::initializeTransientMembers() {
+	(static_cast<AuctionItem*>(stub))->initializeTransientMembers();
 }
 
 int AuctionItemAdapter::compareTo(AuctionItem* obj) {
@@ -1936,6 +2060,10 @@ int AuctionItemAdapter::compareTo(AuctionItem* obj) {
 
 void AuctionItemAdapter::notifyLoadFromDatabase() {
 	(static_cast<AuctionItem*>(stub))->notifyLoadFromDatabase();
+}
+
+bool AuctionItemAdapter::destroyAuctionItemFromDatabase(bool checkAuctionMap, bool deleteAuctionedObject) {
+	return (static_cast<AuctionItem*>(stub))->destroyAuctionItemFromDatabase(checkAuctionMap, deleteAuctionedObject);
 }
 
 void AuctionItemAdapter::setVendorID(unsigned long long val) {
@@ -2020,6 +2148,10 @@ bool AuctionItemAdapter::isAuction() const {
 
 int AuctionItemAdapter::getStatus() const {
 	return (static_cast<AuctionItem*>(stub))->getStatus();
+}
+
+String AuctionItemAdapter::getStatusString() const {
+	return (static_cast<AuctionItem*>(stub))->getStatusString();
 }
 
 unsigned long long AuctionItemAdapter::getVendorID() const {
@@ -2128,6 +2260,10 @@ void AuctionItemAdapter::setUpdated(bool val) {
 
 bool AuctionItemAdapter::isUpdated() const {
 	return (static_cast<AuctionItem*>(stub))->isUpdated();
+}
+
+unsigned long long AuctionItemAdapter::getObjectID() const {
+	return (static_cast<AuctionItem*>(stub))->getObjectID();
 }
 
 /*

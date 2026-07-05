@@ -104,6 +104,8 @@ public:
 
 	void loadTemplateData(SharedObjectTemplate* templateData);
 
+	void notifyLoadFromDatabase();
+
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
 	/**
@@ -183,6 +185,8 @@ public:
 	void initializeTransientMembers();
 
 	void loadTemplateData(SharedObjectTemplate* templateData);
+
+	void notifyLoadFromDatabase();
 
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
@@ -266,6 +270,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initializeTransientMembers();
+
+	void notifyLoadFromDatabase();
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 

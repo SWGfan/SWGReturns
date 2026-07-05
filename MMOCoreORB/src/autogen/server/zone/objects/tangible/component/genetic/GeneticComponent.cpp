@@ -32,7 +32,7 @@ GeneticComponent::~GeneticComponent() {
 
 void GeneticComponent::setSpecialResist(int type) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ void GeneticComponent::setSpecialResist(int type) {
 
 bool GeneticComponent::isSpecialResist(int type) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ bool GeneticComponent::isSpecialResist(int type) {
 
 void GeneticComponent::setStats(int cle, int end, int fie, int pow, int ite, int cou, int dep, int dex, int frt, int har) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +86,7 @@ void GeneticComponent::setStats(int cle, int end, int fie, int pow, int ite, int
 
 int GeneticComponent::getCleverness() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -100,7 +100,7 @@ int GeneticComponent::getCleverness() {
 
 int GeneticComponent::getEndurance() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -114,7 +114,7 @@ int GeneticComponent::getEndurance() {
 
 int GeneticComponent::getFierceness() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -128,7 +128,7 @@ int GeneticComponent::getFierceness() {
 
 int GeneticComponent::getPower() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -142,7 +142,7 @@ int GeneticComponent::getPower() {
 
 int GeneticComponent::getIntelligence() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -156,7 +156,7 @@ int GeneticComponent::getIntelligence() {
 
 int GeneticComponent::getCourage() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -170,7 +170,7 @@ int GeneticComponent::getCourage() {
 
 int GeneticComponent::getDependency() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ int GeneticComponent::getDependency() {
 
 int GeneticComponent::getDexterity() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ int GeneticComponent::getDexterity() {
 
 int GeneticComponent::getFortitude() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -212,7 +212,7 @@ int GeneticComponent::getFortitude() {
 
 int GeneticComponent::getHardiness() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -226,7 +226,7 @@ int GeneticComponent::getHardiness() {
 
 void GeneticComponent::setLevel(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,7 +241,7 @@ void GeneticComponent::setLevel(int value) {
 
 float GeneticComponent::getKinetic() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -255,7 +255,7 @@ float GeneticComponent::getKinetic() {
 
 float GeneticComponent::getEnergy() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -269,7 +269,7 @@ float GeneticComponent::getEnergy() {
 
 float GeneticComponent::getBlast() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -283,7 +283,7 @@ float GeneticComponent::getBlast() {
 
 float GeneticComponent::getCold() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -297,7 +297,7 @@ float GeneticComponent::getCold() {
 
 float GeneticComponent::getHeat() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -311,7 +311,7 @@ float GeneticComponent::getHeat() {
 
 float GeneticComponent::getElectrical() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -325,7 +325,7 @@ float GeneticComponent::getElectrical() {
 
 float GeneticComponent::getAcid() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -339,7 +339,7 @@ float GeneticComponent::getAcid() {
 
 float GeneticComponent::getStun() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -353,7 +353,7 @@ float GeneticComponent::getStun() {
 
 float GeneticComponent::getSaber() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -367,7 +367,7 @@ float GeneticComponent::getSaber() {
 
 String GeneticComponent::getSpecial1() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -383,7 +383,7 @@ String GeneticComponent::getSpecial1() {
 
 String GeneticComponent::getSpecial2() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -399,7 +399,7 @@ String GeneticComponent::getSpecial2() {
 
 int GeneticComponent::getArmor() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -413,7 +413,7 @@ int GeneticComponent::getArmor() {
 
 float GeneticComponent::getHit() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -427,7 +427,7 @@ float GeneticComponent::getHit() {
 
 float GeneticComponent::getSpeed() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -441,7 +441,7 @@ float GeneticComponent::getSpeed() {
 
 int GeneticComponent::getMinDamage() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -455,7 +455,7 @@ int GeneticComponent::getMinDamage() {
 
 int GeneticComponent::getMaxDamage() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -469,7 +469,7 @@ int GeneticComponent::getMaxDamage() {
 
 int GeneticComponent::getHealth() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -483,7 +483,7 @@ int GeneticComponent::getHealth() {
 
 int GeneticComponent::getMind() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -497,7 +497,7 @@ int GeneticComponent::getMind() {
 
 int GeneticComponent::getAction() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -511,7 +511,7 @@ int GeneticComponent::getAction() {
 
 int GeneticComponent::getLevel() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -525,7 +525,7 @@ int GeneticComponent::getLevel() {
 
 bool GeneticComponent::getRanged() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -539,7 +539,7 @@ bool GeneticComponent::getRanged() {
 
 int GeneticComponent::getFocus() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -553,7 +553,7 @@ int GeneticComponent::getFocus() {
 
 int GeneticComponent::getWillPower() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -567,7 +567,7 @@ int GeneticComponent::getWillPower() {
 
 int GeneticComponent::getStrength() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -581,7 +581,7 @@ int GeneticComponent::getStrength() {
 
 int GeneticComponent::getConstitution() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -595,7 +595,7 @@ int GeneticComponent::getConstitution() {
 
 int GeneticComponent::getQuickness() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -609,7 +609,7 @@ int GeneticComponent::getQuickness() {
 
 int GeneticComponent::getStamina() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -623,7 +623,7 @@ int GeneticComponent::getStamina() {
 
 void GeneticComponent::setWillPower(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -638,7 +638,7 @@ void GeneticComponent::setWillPower(int value) {
 
 void GeneticComponent::setFocus(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -653,7 +653,7 @@ void GeneticComponent::setFocus(int value) {
 
 void GeneticComponent::setStamina(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -668,7 +668,7 @@ void GeneticComponent::setStamina(int value) {
 
 void GeneticComponent::setStrength(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -683,7 +683,7 @@ void GeneticComponent::setStrength(int value) {
 
 void GeneticComponent::setQuickness(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -698,7 +698,7 @@ void GeneticComponent::setQuickness(int value) {
 
 void GeneticComponent::setConstitution(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -713,7 +713,7 @@ void GeneticComponent::setConstitution(int value) {
 
 void GeneticComponent::setCleverness(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -728,7 +728,7 @@ void GeneticComponent::setCleverness(int value) {
 
 void GeneticComponent::setEndurance(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -743,7 +743,7 @@ void GeneticComponent::setEndurance(int value) {
 
 void GeneticComponent::setFierceness(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -758,7 +758,7 @@ void GeneticComponent::setFierceness(int value) {
 
 void GeneticComponent::setPower(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -773,7 +773,7 @@ void GeneticComponent::setPower(int value) {
 
 void GeneticComponent::setIntellect(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -788,7 +788,7 @@ void GeneticComponent::setIntellect(int value) {
 
 void GeneticComponent::setCourage(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -803,7 +803,7 @@ void GeneticComponent::setCourage(int value) {
 
 void GeneticComponent::setDependency(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -818,7 +818,7 @@ void GeneticComponent::setDependency(int value) {
 
 void GeneticComponent::setDexterity(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -833,7 +833,7 @@ void GeneticComponent::setDexterity(int value) {
 
 void GeneticComponent::setFortitude(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -848,7 +848,7 @@ void GeneticComponent::setFortitude(int value) {
 
 void GeneticComponent::setHardiness(int value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -863,7 +863,7 @@ void GeneticComponent::setHardiness(int value) {
 
 void GeneticComponent::setEnergy(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -878,7 +878,7 @@ void GeneticComponent::setEnergy(float value) {
 
 void GeneticComponent::setBlast(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -893,7 +893,7 @@ void GeneticComponent::setBlast(float value) {
 
 void GeneticComponent::setCold(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -908,7 +908,7 @@ void GeneticComponent::setCold(float value) {
 
 void GeneticComponent::setHeat(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -923,7 +923,7 @@ void GeneticComponent::setHeat(float value) {
 
 void GeneticComponent::setElectric(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -938,7 +938,7 @@ void GeneticComponent::setElectric(float value) {
 
 void GeneticComponent::setAcid(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -953,7 +953,7 @@ void GeneticComponent::setAcid(float value) {
 
 void GeneticComponent::setStun(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -968,7 +968,7 @@ void GeneticComponent::setStun(float value) {
 
 void GeneticComponent::setSaber(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -983,7 +983,7 @@ void GeneticComponent::setSaber(float value) {
 
 void GeneticComponent::setArmorRating(int rating) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -998,7 +998,7 @@ void GeneticComponent::setArmorRating(int rating) {
 
 void GeneticComponent::setKinetic(float value) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1013,7 +1013,7 @@ void GeneticComponent::setKinetic(float value) {
 
 void GeneticComponent::setSpecialAttackOne(const String& atk) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1028,7 +1028,7 @@ void GeneticComponent::setSpecialAttackOne(const String& atk) {
 
 void GeneticComponent::setSpecialAttackTwo(const String& atk) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1043,7 +1043,7 @@ void GeneticComponent::setSpecialAttackTwo(const String& atk) {
 
 void GeneticComponent::setRanged(bool b) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1058,7 +1058,7 @@ void GeneticComponent::setRanged(bool b) {
 
 void GeneticComponent::setQuality(int qual) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1073,7 +1073,7 @@ void GeneticComponent::setQuality(int qual) {
 
 int GeneticComponent::getQuality() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1087,7 +1087,7 @@ int GeneticComponent::getQuality() {
 
 void GeneticComponent::initializeTransientMembers() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1101,7 +1101,7 @@ void GeneticComponent::initializeTransientMembers() {
 
 void GeneticComponent::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1111,7 +1111,7 @@ void GeneticComponent::updateCraftingValues(CraftingValues* values, bool firstUp
 
 void GeneticComponent::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1121,7 +1121,7 @@ void GeneticComponent::fillAttributeList(AttributeListMessage* msg, CreatureObje
 
 String GeneticComponent::convertSpecialAttack(String& attackName) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1138,7 +1138,7 @@ String GeneticComponent::convertSpecialAttack(String& attackName) {
 
 String GeneticComponent::resistValue(float input) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -1155,7 +1155,7 @@ String GeneticComponent::resistValue(float input) {
 
 void GeneticComponent::resetResists(CraftingValues* values) {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1165,7 +1165,7 @@ void GeneticComponent::resetResists(CraftingValues* values) {
 
 int GeneticComponent::getEffectiveArmor() {
 	GeneticComponentImplementation* _implementation = static_cast<GeneticComponentImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -1206,7 +1206,7 @@ void GeneticComponentImplementation::finalize() {
 void GeneticComponentImplementation::_initializeImplementation() {
 	_setClassHelper(GeneticComponentHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

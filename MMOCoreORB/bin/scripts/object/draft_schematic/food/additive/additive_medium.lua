@@ -51,7 +51,8 @@ object_draft_schematic_food_additive_additive_medium = object_draft_schematic_fo
    complexity = 7, 
    size = 1, 
    factoryCrateSize = 1000,
-
+   factoryCrateType = "object/factory/factory_crate_food.iff",
+   
    xpType = "crafting_food_general", 
    xp = 60, 
 

@@ -30,7 +30,7 @@ DynamicSpawnObserver::~DynamicSpawnObserver() {
 
 int DynamicSpawnObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	DynamicSpawnObserverImplementation* _implementation = static_cast<DynamicSpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ int DynamicSpawnObserver::notifyObserverEvent(unsigned int eventType, Observable
 
 void DynamicSpawnObserver::spawnInitialMobiles(SceneObject* building) {
 	DynamicSpawnObserverImplementation* _implementation = static_cast<DynamicSpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -57,14 +57,14 @@ void DynamicSpawnObserver::spawnInitialMobiles(SceneObject* building) {
 
 		method.executeWithVoidReturn();
 	} else {
-		assert((building == nullptr) || building->isLockedByCurrentThread());
+		assert((building == NULL) || building->isLockedByCurrentThread());
 		_implementation->spawnInitialMobiles(building);
 	}
 }
 
 bool DynamicSpawnObserver::isTheaterSpawnObserver() {
 	DynamicSpawnObserverImplementation* _implementation = static_cast<DynamicSpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -78,7 +78,7 @@ bool DynamicSpawnObserver::isTheaterSpawnObserver() {
 
 bool DynamicSpawnObserver::isDynamicSpawnObserver() {
 	DynamicSpawnObserverImplementation* _implementation = static_cast<DynamicSpawnObserverImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ void DynamicSpawnObserverImplementation::finalize() {
 void DynamicSpawnObserverImplementation::_initializeImplementation() {
 	_setClassHelper(DynamicSpawnObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

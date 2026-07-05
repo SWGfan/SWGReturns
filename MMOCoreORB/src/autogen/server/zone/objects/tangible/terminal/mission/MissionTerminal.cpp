@@ -32,7 +32,7 @@ MissionTerminal::~MissionTerminal() {
 
 void MissionTerminal::loadTemplateData(SharedObjectTemplate* templateData) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -42,7 +42,7 @@ void MissionTerminal::loadTemplateData(SharedObjectTemplate* templateData) {
 
 void MissionTerminal::initializeTransientMembers() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -56,7 +56,7 @@ void MissionTerminal::initializeTransientMembers() {
 
 void MissionTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -66,7 +66,7 @@ void MissionTerminal::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, C
 
 int MissionTerminal::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,7 +82,7 @@ int MissionTerminal::handleObjectMenuSelect(CreatureObject* player, byte selecte
 
 String MissionTerminal::getTerminalName() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -98,7 +98,7 @@ String MissionTerminal::getTerminalName() {
 
 bool MissionTerminal::isMissionTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -112,7 +112,7 @@ bool MissionTerminal::isMissionTerminal() {
 
 bool MissionTerminal::isArtisanTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -126,7 +126,7 @@ bool MissionTerminal::isArtisanTerminal() {
 
 bool MissionTerminal::isGeneralTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -140,7 +140,7 @@ bool MissionTerminal::isGeneralTerminal() {
 
 bool MissionTerminal::isBountyTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -154,7 +154,7 @@ bool MissionTerminal::isBountyTerminal() {
 
 bool MissionTerminal::isEntertainerTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -168,7 +168,7 @@ bool MissionTerminal::isEntertainerTerminal() {
 
 bool MissionTerminal::isImperialTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -182,7 +182,7 @@ bool MissionTerminal::isImperialTerminal() {
 
 bool MissionTerminal::isNewbieTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -196,7 +196,7 @@ bool MissionTerminal::isNewbieTerminal() {
 
 bool MissionTerminal::isRebelTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ bool MissionTerminal::isRebelTerminal() {
 
 bool MissionTerminal::isScoutTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -224,7 +224,7 @@ bool MissionTerminal::isScoutTerminal() {
 
 bool MissionTerminal::isStatueTerminal() {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -238,7 +238,7 @@ bool MissionTerminal::isStatueTerminal() {
 
 bool MissionTerminal::isSlicer(CreatureObject* slicer) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -253,7 +253,7 @@ bool MissionTerminal::isSlicer(CreatureObject* slicer) {
 
 void MissionTerminal::addSlicer(CreatureObject* slicer) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -268,7 +268,7 @@ void MissionTerminal::addSlicer(CreatureObject* slicer) {
 
 void MissionTerminal::removeSlicer(CreatureObject* slicer) {
 	MissionTerminalImplementation* _implementation = static_cast<MissionTerminalImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -314,7 +314,7 @@ void MissionTerminalImplementation::finalize() {
 void MissionTerminalImplementation::_initializeImplementation() {
 	_setClassHelper(MissionTerminalHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -524,7 +524,7 @@ bool MissionTerminalImplementation::isStatueTerminal() {
 
 bool MissionTerminalImplementation::isSlicer(CreatureObject* slicer) {
 	// server/zone/objects/tangible/terminal/mission/MissionTerminal.idl():  		for 
-	if (slicer == nullptr)	// server/zone/objects/tangible/terminal/mission/MissionTerminal.idl():  			return 0;
+	if (slicer == NULL)	// server/zone/objects/tangible/terminal/mission/MissionTerminal.idl():  			return 0;
 	return 0;
 	// server/zone/objects/tangible/terminal/mission/MissionTerminal.idl():  		}
 	for (	// server/zone/objects/tangible/terminal/mission/MissionTerminal.idl():  		for (int i = 0;

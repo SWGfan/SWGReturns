@@ -50,8 +50,8 @@ object_draft_schematic_food_dessert_pastebread = object_draft_schematic_food_sha
    craftingToolTab = 4, -- (See DraftSchematicObjectTemplate.h)
    complexity = 6, 
    size = 1, 
-   factoryCrateSize = 1000,
-
+   factoryCrateType = "object/factory/factory_crate_food.iff",
+   
    xpType = "crafting_food_general", 
    xp = 160, 
 

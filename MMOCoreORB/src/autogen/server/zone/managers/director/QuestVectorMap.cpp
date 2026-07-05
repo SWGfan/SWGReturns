@@ -28,7 +28,7 @@ QuestVectorMap::~QuestVectorMap() {
 
 String QuestVectorMap::getKey() {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -44,7 +44,7 @@ String QuestVectorMap::getKey() {
 
 void QuestVectorMap::setKey(const String& k) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -59,7 +59,7 @@ void QuestVectorMap::setKey(const String& k) {
 
 String QuestVectorMap::getMapRow(const String& mapKey) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -76,7 +76,7 @@ String QuestVectorMap::getMapRow(const String& mapKey) {
 
 void QuestVectorMap::addMapRow(const String& mapKey, const String& mapValue) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void QuestVectorMap::addMapRow(const String& mapKey, const String& mapValue) {
 
 void QuestVectorMap::deleteMapRow(const String& mapKey) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ void QuestVectorMap::deleteMapRow(const String& mapKey) {
 
 bool QuestVectorMap::hasMapRow(const String& mapKey) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -122,7 +122,7 @@ bool QuestVectorMap::hasMapRow(const String& mapKey) {
 
 int QuestVectorMap::getMapSize() {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ int QuestVectorMap::getMapSize() {
 
 String QuestVectorMap::getMapKeyAtIndex(int idx) {
 	QuestVectorMapImplementation* _implementation = static_cast<QuestVectorMapImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -184,7 +184,7 @@ void QuestVectorMapImplementation::finalize() {
 void QuestVectorMapImplementation::_initializeImplementation() {
 	_setClassHelper(QuestVectorMapHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

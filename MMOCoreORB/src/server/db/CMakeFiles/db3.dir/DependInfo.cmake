@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/db/MantisDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/MantisDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/MantisDatabase.cpp.o.d"
-  "/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/db/MySqlDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/MySqlDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/MySqlDatabase.cpp.o.d"
-  "/home/ubuntu/SWGGhosts/MMOCoreORB/src/server/db/ServerDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/ServerDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/ServerDatabase.cpp.o.d"
+  "/home/ubuntu/StarDust-2/MMOCoreORB/src/server/db/MantisDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/MantisDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/MantisDatabase.cpp.o.d"
+  "/home/ubuntu/StarDust-2/MMOCoreORB/src/server/db/MySqlDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/MySqlDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/MySqlDatabase.cpp.o.d"
+  "/home/ubuntu/StarDust-2/MMOCoreORB/src/server/db/ServerDatabase.cpp" "src/server/db/CMakeFiles/db3.dir/ServerDatabase.cpp.o" "gcc" "src/server/db/CMakeFiles/db3.dir/ServerDatabase.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

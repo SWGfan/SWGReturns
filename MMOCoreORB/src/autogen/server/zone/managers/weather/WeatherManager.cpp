@@ -34,7 +34,7 @@ WeatherManager::~WeatherManager() {
 
 void WeatherManager::initialize() {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -48,7 +48,7 @@ void WeatherManager::initialize() {
 
 void WeatherManager::createNewWeatherPattern() {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -62,7 +62,7 @@ void WeatherManager::createNewWeatherPattern() {
 
 void WeatherManager::sendWeatherTo(CreatureObject* player) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -77,7 +77,7 @@ void WeatherManager::sendWeatherTo(CreatureObject* player) {
 
 void WeatherManager::enableWeather(CreatureObject* player) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -92,7 +92,7 @@ void WeatherManager::enableWeather(CreatureObject* player) {
 
 void WeatherManager::disableWeather(CreatureObject* player) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -107,7 +107,7 @@ void WeatherManager::disableWeather(CreatureObject* player) {
 
 void WeatherManager::changeWeather(CreatureObject* player, int newWeather) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -123,7 +123,7 @@ void WeatherManager::changeWeather(CreatureObject* player, int newWeather) {
 
 bool WeatherManager::isWeatherEnabled() {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -137,7 +137,7 @@ bool WeatherManager::isWeatherEnabled() {
 
 void WeatherManager::setWeatherEnabled(bool value) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -152,7 +152,7 @@ void WeatherManager::setWeatherEnabled(bool value) {
 
 void WeatherManager::printInfo(CreatureObject* player) {
 	WeatherManagerImplementation* _implementation = static_cast<WeatherManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -198,7 +198,7 @@ void WeatherManagerImplementation::finalize() {
 void WeatherManagerImplementation::_initializeImplementation() {
 	_setClassHelper(WeatherManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

@@ -6,6 +6,7 @@
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/packets/object/StartNpcConversation.h"
+#include "server/zone/managers/conversation/ConversationManager.h"
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
 #include "server/zone/objects/tangible/tool/CraftingTool.h"
 #include "server/zone/objects/tangible/components/droid/BaseDroidModuleComponent.h"
@@ -238,7 +239,7 @@ void DroidObjectImplementation::initDroidModules() {
 
 void DroidObjectImplementation::initDroidWeapons() {
 	//Set weapon stats
-	WeaponObject* weapon = getSlottedObject("default_weapon").castTo<WeaponObject*>();
+	WeaponObject* weapon = asAiAgent()->getDefaultWeapon();
 
 	if (weapon != nullptr) {
 		Locker locker(weapon);
@@ -247,11 +248,11 @@ void DroidObjectImplementation::initDroidWeapons() {
 		weapon->setAttackSpeed(getAttackSpeed());
 	}
 
-	if (readyWeapon != nullptr) {
-		Locker locker(readyWeapon);
-		readyWeapon->setMinDamage(getDamageMin());
-		readyWeapon->setMaxDamage(getDamageMax());
-		readyWeapon->setAttackSpeed(getAttackSpeed());
+	if (primaryWeapon != nullptr && primaryWeapon != weapon) {
+		Locker locker(primaryWeapon);
+		primaryWeapon->setMinDamage(getDamageMin());
+		primaryWeapon->setMaxDamage(getDamageMax());
+		primaryWeapon->setAttackSpeed(getAttackSpeed());
 	}
 }
 
@@ -278,7 +279,7 @@ CraftingStation* DroidObjectImplementation::getCraftingStation(int type) {
 	return nullptr;
 }
 
-String DroidObjectImplementation::getPersonalityBase() {
+String DroidObjectImplementation::getPersonalityBase() const {
 	for (int i = 0; i < modules.size(); i++) {
 		auto module = modules.get(i).castTo<DroidPersonalityModuleDataComponent*>();
 

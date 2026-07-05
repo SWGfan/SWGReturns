@@ -50,9 +50,10 @@ object_draft_schematic_scout_item_camp_multi = object_draft_schematic_scout_shar
    craftingToolTab = 524288, -- (See DraftSchematicObjectTemplate.h)
    complexity = 4, 
    size = 1, 
-
+   factoryCrateType = "object/factory/factory_crate_electronics.iff",
+   
    xpType = "camp", 
-   xp = 56, 
+   xp = 1000, 
 
    assemblySkill = "general_assembly", 
    experimentingSkill = "general_experimentation", 

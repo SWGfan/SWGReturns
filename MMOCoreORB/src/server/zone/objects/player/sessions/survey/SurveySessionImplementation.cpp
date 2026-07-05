@@ -95,7 +95,11 @@ void SurveySessionImplementation::startSurvey(const String& resname) {
 			surveyer->sendSystemMessage("@error_message:survey_cant");
 			return;
 		}
-	} else {
+	}
+	if (surveyer->getZone()->getZoneName()== "coruscant" || surveyer->getZone()->getZoneName()== "jakku" || surveyer->getZone()->getZoneName()== "elysium"){
+			surveyer->sendSystemMessage("You can not survey on this planet.");
+			return;
+	}else {
 		if (surveyer->getPosture() != CreaturePosture::UPRIGHT) {
 			surveyer->sendSystemMessage("@error_message:survey_standing");
 			return;
@@ -228,7 +232,7 @@ void SurveySessionImplementation::startSample(const String& resname) {
 	message.setTO(lastResourceSampleName);
 	surveyer->sendSystemMessage(message);
 
-	if (!doGamble && richSampleLocation.getPosition() != Vector3(0, 0, 0) && System::random(50) == 7) {
+	if (!doGamble && richSampleLocation.getPosition() == Vector3(0, 0, 0) && System::random(50) == 7) {
 
 		if (ghost->hasSuiBoxWindowType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME)) {
 			ghost->removeSuiBoxType(SuiWindowType::SURVEY_TOOL_CONCENTRATED_MINIGAME);
@@ -399,3 +403,4 @@ void SurveySessionImplementation::rescheduleSampleResults(const ResourceSpawner*
 		surveyer->addPendingTask("sampleresults", sampleResultsTask, 3000);
 	}
 }
+

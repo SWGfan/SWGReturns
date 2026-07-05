@@ -32,7 +32,7 @@ VendorAdBarkingSession::~VendorAdBarkingSession() {
 
 int VendorAdBarkingSession::initializeSession() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -46,7 +46,7 @@ int VendorAdBarkingSession::initializeSession() {
 
 int VendorAdBarkingSession::cancelSession() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -60,7 +60,7 @@ int VendorAdBarkingSession::cancelSession() {
 
 int VendorAdBarkingSession::clearSession() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -74,7 +74,7 @@ int VendorAdBarkingSession::clearSession() {
 
 void VendorAdBarkingSession::setMessage(const String& mess) {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ void VendorAdBarkingSession::setMessage(const String& mess) {
 
 void VendorAdBarkingSession::setMood(const String& mo) {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -104,7 +104,7 @@ void VendorAdBarkingSession::setMood(const String& mo) {
 
 void VendorAdBarkingSession::setAnimation(const String& ani) {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -119,7 +119,7 @@ void VendorAdBarkingSession::setAnimation(const String& ani) {
 
 void VendorAdBarkingSession::sendPhraseOptions() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -133,7 +133,7 @@ void VendorAdBarkingSession::sendPhraseOptions() {
 
 void VendorAdBarkingSession::sendCustomMessageInput() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -147,7 +147,7 @@ void VendorAdBarkingSession::sendCustomMessageInput() {
 
 void VendorAdBarkingSession::sendMoodSelect() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -161,7 +161,7 @@ void VendorAdBarkingSession::sendMoodSelect() {
 
 void VendorAdBarkingSession::sendAnimationSelect() {
 	VendorAdBarkingSessionImplementation* _implementation = static_cast<VendorAdBarkingSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -206,7 +206,7 @@ void VendorAdBarkingSessionImplementation::finalize() {
 void VendorAdBarkingSessionImplementation::_initializeImplementation() {
 	_setClassHelper(VendorAdBarkingSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -370,7 +370,7 @@ int VendorAdBarkingSessionImplementation::cancelSession() {
 
 int VendorAdBarkingSessionImplementation::clearSession() {
 	// server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl():  		owner = null;
-	owner = nullptr;
+	owner = NULL;
 	// server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl():  		return 0;
 	return 0;
 }

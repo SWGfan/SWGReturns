@@ -57,13 +57,23 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGGhosts/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/usr/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -132,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles /home/ubuntu/SWGGhosts/MMOCoreORB/src/terrain//CMakeFiles/progress.marks
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain//CMakeFiles/progress.marks
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/clean
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/clean
 .PHONY : clean
 
 # The main clean target
@@ -148,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/terrain/CMakeFiles/core3terrain.dir/rule:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/CMakeFiles/core3terrain.dir/rule
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/CMakeFiles/core3terrain.dir/rule
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/rule
 
 # Convenience name for target.
@@ -172,7 +182,7 @@ core3terrain: src/terrain/CMakeFiles/core3terrain.dir/rule
 
 # fast build rule for target.
 core3terrain/fast:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/build
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/build
 .PHONY : core3terrain/fast
 
 MapFractal.o: MapFractal.cpp.o
@@ -180,7 +190,7 @@ MapFractal.o: MapFractal.cpp.o
 
 # target to build an object file
 MapFractal.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o
 .PHONY : MapFractal.cpp.o
 
 MapFractal.i: MapFractal.cpp.i
@@ -188,7 +198,7 @@ MapFractal.i: MapFractal.cpp.i
 
 # target to preprocess a source file
 MapFractal.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.i
 .PHONY : MapFractal.cpp.i
 
 MapFractal.s: MapFractal.cpp.s
@@ -196,7 +206,7 @@ MapFractal.s: MapFractal.cpp.s
 
 # target to generate assembly for a file
 MapFractal.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.s
 .PHONY : MapFractal.cpp.s
 
 ProceduralTerrainAppearance.o: ProceduralTerrainAppearance.cpp.o
@@ -204,7 +214,7 @@ ProceduralTerrainAppearance.o: ProceduralTerrainAppearance.cpp.o
 
 # target to build an object file
 ProceduralTerrainAppearance.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o
 .PHONY : ProceduralTerrainAppearance.cpp.o
 
 ProceduralTerrainAppearance.i: ProceduralTerrainAppearance.cpp.i
@@ -212,7 +222,7 @@ ProceduralTerrainAppearance.i: ProceduralTerrainAppearance.cpp.i
 
 # target to preprocess a source file
 ProceduralTerrainAppearance.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i
 .PHONY : ProceduralTerrainAppearance.cpp.i
 
 ProceduralTerrainAppearance.s: ProceduralTerrainAppearance.cpp.s
@@ -220,7 +230,7 @@ ProceduralTerrainAppearance.s: ProceduralTerrainAppearance.cpp.s
 
 # target to generate assembly for a file
 ProceduralTerrainAppearance.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s
 .PHONY : ProceduralTerrainAppearance.cpp.s
 
 SpaceTerrainAppearance.o: SpaceTerrainAppearance.cpp.o
@@ -228,7 +238,7 @@ SpaceTerrainAppearance.o: SpaceTerrainAppearance.cpp.o
 
 # target to build an object file
 SpaceTerrainAppearance.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o
 .PHONY : SpaceTerrainAppearance.cpp.o
 
 SpaceTerrainAppearance.i: SpaceTerrainAppearance.cpp.i
@@ -236,7 +246,7 @@ SpaceTerrainAppearance.i: SpaceTerrainAppearance.cpp.i
 
 # target to preprocess a source file
 SpaceTerrainAppearance.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i
 .PHONY : SpaceTerrainAppearance.cpp.i
 
 SpaceTerrainAppearance.s: SpaceTerrainAppearance.cpp.s
@@ -244,7 +254,7 @@ SpaceTerrainAppearance.s: SpaceTerrainAppearance.cpp.s
 
 # target to generate assembly for a file
 SpaceTerrainAppearance.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s
 .PHONY : SpaceTerrainAppearance.cpp.s
 
 TargaBitmap.o: TargaBitmap.cpp.o
@@ -252,7 +262,7 @@ TargaBitmap.o: TargaBitmap.cpp.o
 
 # target to build an object file
 TargaBitmap.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o
 .PHONY : TargaBitmap.cpp.o
 
 TargaBitmap.i: TargaBitmap.cpp.i
@@ -260,7 +270,7 @@ TargaBitmap.i: TargaBitmap.cpp.i
 
 # target to preprocess a source file
 TargaBitmap.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i
 .PHONY : TargaBitmap.cpp.i
 
 TargaBitmap.s: TargaBitmap.cpp.s
@@ -268,7 +278,7 @@ TargaBitmap.s: TargaBitmap.cpp.s
 
 # target to generate assembly for a file
 TargaBitmap.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s
 .PHONY : TargaBitmap.cpp.s
 
 TerrainGenerator.o: TerrainGenerator.cpp.o
@@ -276,7 +286,7 @@ TerrainGenerator.o: TerrainGenerator.cpp.o
 
 # target to build an object file
 TerrainGenerator.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o
 .PHONY : TerrainGenerator.cpp.o
 
 TerrainGenerator.i: TerrainGenerator.cpp.i
@@ -284,7 +294,7 @@ TerrainGenerator.i: TerrainGenerator.cpp.i
 
 # target to preprocess a source file
 TerrainGenerator.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i
 .PHONY : TerrainGenerator.cpp.i
 
 TerrainGenerator.s: TerrainGenerator.cpp.s
@@ -292,7 +302,7 @@ TerrainGenerator.s: TerrainGenerator.cpp.s
 
 # target to generate assembly for a file
 TerrainGenerator.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s
 .PHONY : TerrainGenerator.cpp.s
 
 layer/Layer.o: layer/Layer.cpp.o
@@ -300,7 +310,7 @@ layer/Layer.o: layer/Layer.cpp.o
 
 # target to build an object file
 layer/Layer.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o
 .PHONY : layer/Layer.cpp.o
 
 layer/Layer.i: layer/Layer.cpp.i
@@ -308,7 +318,7 @@ layer/Layer.i: layer/Layer.cpp.i
 
 # target to preprocess a source file
 layer/Layer.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.i
 .PHONY : layer/Layer.cpp.i
 
 layer/Layer.s: layer/Layer.cpp.s
@@ -316,7 +326,7 @@ layer/Layer.s: layer/Layer.cpp.s
 
 # target to generate assembly for a file
 layer/Layer.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.s
 .PHONY : layer/Layer.cpp.s
 
 layer/affectors/AffectorHeightFractal.o: layer/affectors/AffectorHeightFractal.cpp.o
@@ -324,7 +334,7 @@ layer/affectors/AffectorHeightFractal.o: layer/affectors/AffectorHeightFractal.c
 
 # target to build an object file
 layer/affectors/AffectorHeightFractal.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o
 .PHONY : layer/affectors/AffectorHeightFractal.cpp.o
 
 layer/affectors/AffectorHeightFractal.i: layer/affectors/AffectorHeightFractal.cpp.i
@@ -332,7 +342,7 @@ layer/affectors/AffectorHeightFractal.i: layer/affectors/AffectorHeightFractal.c
 
 # target to preprocess a source file
 layer/affectors/AffectorHeightFractal.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i
 .PHONY : layer/affectors/AffectorHeightFractal.cpp.i
 
 layer/affectors/AffectorHeightFractal.s: layer/affectors/AffectorHeightFractal.cpp.s
@@ -340,7 +350,7 @@ layer/affectors/AffectorHeightFractal.s: layer/affectors/AffectorHeightFractal.c
 
 # target to generate assembly for a file
 layer/affectors/AffectorHeightFractal.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s
 .PHONY : layer/affectors/AffectorHeightFractal.cpp.s
 
 layer/filters/FilterBitmap.o: layer/filters/FilterBitmap.cpp.o
@@ -348,7 +358,7 @@ layer/filters/FilterBitmap.o: layer/filters/FilterBitmap.cpp.o
 
 # target to build an object file
 layer/filters/FilterBitmap.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o
 .PHONY : layer/filters/FilterBitmap.cpp.o
 
 layer/filters/FilterBitmap.i: layer/filters/FilterBitmap.cpp.i
@@ -356,7 +366,7 @@ layer/filters/FilterBitmap.i: layer/filters/FilterBitmap.cpp.i
 
 # target to preprocess a source file
 layer/filters/FilterBitmap.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i
 .PHONY : layer/filters/FilterBitmap.cpp.i
 
 layer/filters/FilterBitmap.s: layer/filters/FilterBitmap.cpp.s
@@ -364,7 +374,7 @@ layer/filters/FilterBitmap.s: layer/filters/FilterBitmap.cpp.s
 
 # target to generate assembly for a file
 layer/filters/FilterBitmap.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s
 .PHONY : layer/filters/FilterBitmap.cpp.s
 
 layer/filters/FilterFractal.o: layer/filters/FilterFractal.cpp.o
@@ -372,7 +382,7 @@ layer/filters/FilterFractal.o: layer/filters/FilterFractal.cpp.o
 
 # target to build an object file
 layer/filters/FilterFractal.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o
 .PHONY : layer/filters/FilterFractal.cpp.o
 
 layer/filters/FilterFractal.i: layer/filters/FilterFractal.cpp.i
@@ -380,7 +390,7 @@ layer/filters/FilterFractal.i: layer/filters/FilterFractal.cpp.i
 
 # target to preprocess a source file
 layer/filters/FilterFractal.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i
 .PHONY : layer/filters/FilterFractal.cpp.i
 
 layer/filters/FilterFractal.s: layer/filters/FilterFractal.cpp.s
@@ -388,7 +398,7 @@ layer/filters/FilterFractal.s: layer/filters/FilterFractal.cpp.s
 
 # target to generate assembly for a file
 layer/filters/FilterFractal.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s
 .PHONY : layer/filters/FilterFractal.cpp.s
 
 manager/TerrainCache.o: manager/TerrainCache.cpp.o
@@ -396,7 +406,7 @@ manager/TerrainCache.o: manager/TerrainCache.cpp.o
 
 # target to build an object file
 manager/TerrainCache.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o
 .PHONY : manager/TerrainCache.cpp.o
 
 manager/TerrainCache.i: manager/TerrainCache.cpp.i
@@ -404,7 +414,7 @@ manager/TerrainCache.i: manager/TerrainCache.cpp.i
 
 # target to preprocess a source file
 manager/TerrainCache.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i
 .PHONY : manager/TerrainCache.cpp.i
 
 manager/TerrainCache.s: manager/TerrainCache.cpp.s
@@ -412,7 +422,7 @@ manager/TerrainCache.s: manager/TerrainCache.cpp.s
 
 # target to generate assembly for a file
 manager/TerrainCache.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s
 .PHONY : manager/TerrainCache.cpp.s
 
 manager/TerrainManager.o: manager/TerrainManager.cpp.o
@@ -420,7 +430,7 @@ manager/TerrainManager.o: manager/TerrainManager.cpp.o
 
 # target to build an object file
 manager/TerrainManager.cpp.o:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o
 .PHONY : manager/TerrainManager.cpp.o
 
 manager/TerrainManager.i: manager/TerrainManager.cpp.i
@@ -428,7 +438,7 @@ manager/TerrainManager.i: manager/TerrainManager.cpp.i
 
 # target to preprocess a source file
 manager/TerrainManager.cpp.i:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i
 .PHONY : manager/TerrainManager.cpp.i
 
 manager/TerrainManager.s: manager/TerrainManager.cpp.s
@@ -436,7 +446,7 @@ manager/TerrainManager.s: manager/TerrainManager.cpp.s
 
 # target to generate assembly for a file
 manager/TerrainManager.cpp.s:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/terrain/CMakeFiles/core3terrain.dir/build.make src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s
 .PHONY : manager/TerrainManager.cpp.s
 
 # Help Target
@@ -451,6 +461,7 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... core3terrain"
 	@echo "... MapFractal.o"
 	@echo "... MapFractal.i"
@@ -496,6 +507,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ubuntu/SWGGhosts/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

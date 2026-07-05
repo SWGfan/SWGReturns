@@ -201,7 +201,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
       
       The CXX compiler identification is GNU, found in:
-        /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/4.2.3/CompilerIdCXX/a.out
+        /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/4.2.3/CompilerIdCXX/a.out
       
   -
     kind: "find-v1"
@@ -845,7 +845,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
       
       The C compiler identification is GNU, found in:
-        /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/4.2.3/CompilerIdC/a.out
+        /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/4.2.3/CompilerIdC/a.out
       
   -
     kind: "find-v1"
@@ -958,8 +958,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
@@ -968,13 +968,13 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d9b72/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d9b72.dir/build.make CMakeFiles/cmTC_d9b72.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT'
-        Building CXX object CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2d820/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_2d820.dir/build.make CMakeFiles/cmTC_2d820.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg'
+        Building CXX object CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -984,8 +984,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/15/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d9b72.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccDGch5e.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/15/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_2d820.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/cc1UlBmq.s
         GNU C++17 (Ubuntu 15.2.0-16ubuntu1) version 15.2.0 (x86_64-linux-gnu)
         	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -1006,14 +1006,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: b661a74662ad7cf413c4193391ab5290
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/'
-         /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccDGch5e.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/'
+         /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc1UlBmq.s
         GNU assembler version 2.46 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.46
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_d9b72
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9b72.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_2d820
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d820.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper
@@ -1026,14 +1026,14 @@ events:
         gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d9b72' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d9b72.'
-         /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuEOftM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d9b72 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2d820' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2d820.'
+         /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSICELJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2d820 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
         collect2 version 15.2.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuEOftM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d9b72 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSICELJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2d820 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Ubuntu) 2.46
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d9b72' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d9b72.'
-        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_d9b72
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2d820' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2d820.'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2d820
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg'
         
       exitCode: 0
   -
@@ -1074,13 +1074,13 @@ events:
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT']
+        ignore line: [Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d9b72/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_d9b72.dir/build.make CMakeFiles/cmTC_d9b72.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-F2dRWT']
-        ignore line: [Building CXX object CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2d820/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_2d820.dir/build.make CMakeFiles/cmTC_2d820.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-GklImg']
+        ignore line: [Building CXX object CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -1090,8 +1090,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_d9b72.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccDGch5e.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-4.2/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_2d820.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/cc1UlBmq.s]
         ignore line: [GNU C++17 (Ubuntu 15.2.0-16ubuntu1) version 15.2.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1112,14 +1112,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: b661a74662ad7cf413c4193391ab5290]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/']
-        ignore line: [ /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccDGch5e.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/']
+        ignore line: [ /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o /tmp/cc1UlBmq.s]
         ignore line: [GNU assembler version 2.46 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.46]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_d9b72]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9b72.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_2d820]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d820.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper]
@@ -1132,13 +1132,13 @@ events:
         ignore line: [gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d9b72' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_d9b72.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuEOftM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d9b72 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_2d820' '-foffload-options=-l_GCC_stdc++' '-foffload-options=-l_GCC_m' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_2d820.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSICELJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2d820 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/15/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccuEOftM.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccSICELJ.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1156,7 +1156,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_d9b72] ==> ignore
+          arg [cmTC_2d820] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o]
@@ -1171,7 +1171,7 @@ events:
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -1182,7 +1182,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 15.2.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccuEOftM.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_d9b72 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_d9b72.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccSICELJ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_2d820 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_2d820.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'CXX': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -1222,8 +1222,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
@@ -1231,13 +1231,13 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fa805/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_fa805.dir/build.make CMakeFiles/cmTC_fa805.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG'
-        Building C object CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4dd25/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4dd25.dir/build.make CMakeFiles/cmTC_4dd25.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8'
+        Building C object CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -1247,8 +1247,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/'
-         /usr/libexec/gcc/x86_64-linux-gnu/15/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_fa805.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccSGFWPY.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/15/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4dd25.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccZbQqlw.s
         GNU C23 (Ubuntu 15.2.0-16ubuntu1) version 15.2.0 (x86_64-linux-gnu)
         	compiled by GNU C version 15.2.0, GMP version 6.3.0, MPFR version 4.2.2, MPC version 1.3.1, isl version isl-0.27-GMP
         
@@ -1265,14 +1265,14 @@ events:
          /usr/include
         End of search list.
         Compiler executable checksum: edd70396dcc669433a92073f97309866
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/'
-         /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o /tmp/ccSGFWPY.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/'
+         /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o /tmp/ccZbQqlw.s
         GNU assembler version 2.46 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.46
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_fa805
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa805.dir/link.txt --verbose=1
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_4dd25
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4dd25.dir/link.txt --verbose=1
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper
@@ -1285,14 +1285,14 @@ events:
         gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) 
         COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_fa805' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_fa805.'
-         /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfsRkOP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fa805 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4dd25' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4dd25.'
+         /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccM1DwZT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4dd25 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
         collect2 version 15.2.0
-        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfsRkOP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fa805 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
+        /usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccM1DwZT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4dd25 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o
         GNU ld (GNU Binutils for Ubuntu) 2.46
-        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_fa805' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_fa805.'
-        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -o cmTC_fa805
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG'
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4dd25' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4dd25.'
+        /usr/bin/cc  -v -Wl,-v CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -o cmTC_4dd25
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8'
         
       exitCode: 0
   -
@@ -1327,13 +1327,13 @@ events:
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG']
+        ignore line: [Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8']
         ignore line: []
-        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fa805/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_fa805.dir/build.make CMakeFiles/cmTC_fa805.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hnT6tG']
-        ignore line: [Building C object CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4dd25/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_4dd25.dir/build.make CMakeFiles/cmTC_4dd25.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-lfGXW8']
+        ignore line: [Building C object CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -1343,8 +1343,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/']
-        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_fa805.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccSGFWPY.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-4.2/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_4dd25.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all -Wbidi-chars=any -o /tmp/ccZbQqlw.s]
         ignore line: [GNU C23 (Ubuntu 15.2.0-16ubuntu1) version 15.2.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 15.2.0  GMP version 6.3.0  MPFR version 4.2.2  MPC version 1.3.1  isl version isl-0.27-GMP]
         ignore line: []
@@ -1361,14 +1361,14 @@ events:
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
         ignore line: [Compiler executable checksum: edd70396dcc669433a92073f97309866]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/']
-        ignore line: [ /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o /tmp/ccSGFWPY.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/']
+        ignore line: [ /usr/bin/x86_64-linux-gnu-as -v --64 -o CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o /tmp/ccZbQqlw.s]
         ignore line: [GNU assembler version 2.46 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.46]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_fa805]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa805.dir/link.txt --verbose=1]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_4dd25]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4dd25.dir/link.txt --verbose=1]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper]
@@ -1381,13 +1381,13 @@ events:
         ignore line: [gcc version 15.2.0 (Ubuntu 15.2.0-16ubuntu1) ]
         ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/15/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/15/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/15/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_fa805' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_fa805.']
-        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfsRkOP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fa805 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4dd25' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_4dd25.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/15/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccM1DwZT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4dd25 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/libexec/gcc/x86_64-linux-gnu/15/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccfsRkOP.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccM1DwZT.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -1405,7 +1405,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_fa805] ==> ignore
+          arg [cmTC_4dd25] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o]
@@ -1420,7 +1420,7 @@ events:
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -1435,7 +1435,7 @@ events:
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
         ignore line: [collect2 version 15.2.0]
-        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfsRkOP.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_fa805 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_fa805.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/15/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/15/lto-wrapper -plugin-opt=-fresolution=/tmp/ccM1DwZT.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4dd25 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/15 -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/15/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/15/../../.. -L/lib -L/usr/lib -v CMakeFiles/cmTC_4dd25.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o]
         linker tool for 'C': /usr/bin/ld
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
         collapse obj [/usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
@@ -1470,7 +1470,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindGit.cmake:111 (find_program)"
-      - "CMakeLists.txt:53 (find_package)"
+      - "CMakeLists.txt:64 (find_package)"
     mode: "program"
     variable: "GIT_EXECUTABLE"
     description: "Git command line client"
@@ -1540,7 +1540,7 @@ events:
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:264 (find_path)"
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:296 (_lua_find_header)"
-      - "CMakeLists.txt:56 (find_package)"
+      - "CMakeLists.txt:67 (find_package)"
     mode: "path"
     variable: "LUA_INCLUDE_DIR"
     description: "Path to a file."
@@ -1688,7 +1688,7 @@ events:
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:264 (find_path)"
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:296 (_lua_find_header)"
-      - "CMakeLists.txt:56 (find_package)"
+      - "CMakeLists.txt:67 (find_package)"
     mode: "path"
     variable: "LUA_INCLUDE_DIR"
     description: "Path to a file."
@@ -1807,7 +1807,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:309 (find_library)"
-      - "CMakeLists.txt:56 (find_package)"
+      - "CMakeLists.txt:67 (find_package)"
     mode: "library"
     variable: "LUA_LIBRARY"
     description: "Path to a library."
@@ -2022,7 +2022,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindLua.cmake:321 (find_library)"
-      - "CMakeLists.txt:56 (find_package)"
+      - "CMakeLists.txt:67 (find_package)"
     mode: "library"
     variable: "LUA_MATH_LIBRARY"
     description: "Path to a library."
@@ -2102,7 +2102,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindMySql.cmake:40 (FIND_PATH)"
-      - "CMakeLists.txt:60 (find_package)"
+      - "CMakeLists.txt:71 (find_package)"
     mode: "path"
     variable: "MYSQL_INCLUDE_DIR"
     description: "Path to a file."
@@ -2210,7 +2210,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindMySql.cmake:81 (FIND_LIBRARY)"
-      - "CMakeLists.txt:60 (find_package)"
+      - "CMakeLists.txt:71 (find_package)"
     mode: "library"
     variable: "MYSQL_LIB"
     description: "Path to a library."
@@ -2300,7 +2300,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindMySql.cmake:105 (FIND_LIBRARY)"
-      - "CMakeLists.txt:60 (find_package)"
+      - "CMakeLists.txt:71 (find_package)"
     mode: "library"
     variable: "MYSQL_ZLIB"
     description: "Path to a library."
@@ -2397,7 +2397,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindMySql.cmake:106 (FIND_LIBRARY)"
-      - "CMakeLists.txt:60 (find_package)"
+      - "CMakeLists.txt:71 (find_package)"
     mode: "library"
     variable: "MYSQL_TAOCRYPT"
     description: "Path to a library."
@@ -2493,8 +2493,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindBerkeley.cmake:29 (FIND_PATH)"
-      - "CMakeLists.txt:64 (find_package)"
+      - "cmake/Modules/FindBerkeley.cmake:30 (FIND_PATH)"
+      - "CMakeLists.txt:75 (find_package)"
     mode: "path"
     variable: "DB_INCLUDE_DIR"
     description: "Path to a file."
@@ -2511,10 +2511,12 @@ events:
     candidate_directories:
       - "/opt/local/include/db53/"
       - "/usr/local/BerkeleyDB.5.3/include/"
+      - "/usr/local/include/"
       - "/usr/include/"
     searched_directories:
       - "/opt/local/include/db53/db.h"
       - "/usr/local/BerkeleyDB.5.3/include/db.h"
+      - "/usr/local/include/db.h"
     found: "/usr/include/"
     search_context:
       ENV{PATH}:
@@ -2541,8 +2543,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindBerkeley.cmake:37 (FIND_LIBRARY)"
-      - "CMakeLists.txt:64 (find_package)"
+      - "cmake/Modules/FindBerkeley.cmake:39 (FIND_LIBRARY)"
+      - "CMakeLists.txt:75 (find_package)"
     mode: "library"
     variable: "DB_LIBRARIES"
     description: "Path to a library."
@@ -2556,6 +2558,7 @@ events:
       CMAKE_FIND_USE_INSTALL_PREFIX: true
     names:
       - "db-5.3"
+      - "db"
     candidate_directories:
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -2586,6 +2589,7 @@ events:
       - "/opt/local/lib/db53/"
       - "/usr/local/BerkeleyDB.5.3/lib/"
       - "/usr/lib/x86_64-linux-gnu/"
+      - "/usr/local/lib/"
     searched_directories:
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -2625,7 +2629,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:222 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JAVA_EXECUTABLE"
     description: "Path to a program."
@@ -2705,7 +2709,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:321 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JAR_EXECUTABLE"
     description: "Path to a program."
@@ -2818,7 +2822,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:327 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JAVAC_EXECUTABLE"
     description: "Path to a program."
@@ -2931,7 +2935,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:333 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JAVAH_EXECUTABLE"
     description: "Path to a program."
@@ -3044,7 +3048,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:339 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JAVADOC_EXECUTABLE"
     description: "Path to a program."
@@ -3157,7 +3161,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:345 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_IDLJ_EXECUTABLE"
     description: "Path to a program."
@@ -3270,7 +3274,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindJava.cmake:351 (find_program)"
-      - "CMakeLists.txt:67 (find_package)"
+      - "CMakeLists.txt:78 (find_package)"
     mode: "program"
     variable: "Java_JARSIGNER_EXECUTABLE"
     description: "Path to a program."
@@ -3383,7 +3387,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindEngine3.cmake:20 (FIND_PATH)"
-      - "CMakeLists.txt:70 (find_package)"
+      - "CMakeLists.txt:81 (find_package)"
     mode: "path"
     variable: "IDLC_BIN_DIR"
     description: "Path to a file."
@@ -3400,74 +3404,21 @@ events:
     candidate_directories:
       - "/opt/engine3/bin/"
       - "/opt/engine3pub/bin/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/bin/"
       - "/home/ubuntu/engine3/MMOEngine/lib/"
       - "/home/ubuntu/engine3/MMOEngine/bin/"
-      - "/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/lib/"
       - "/utils/engine3/MMOEngine/bin/"
+      - "/utils/engine3/MMOEngine/lib/"
     searched_directories:
       - "/opt/engine3/bin/idlc.jar"
       - "/opt/engine3pub/bin/idlc.jar"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/idlc.jar"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/idlc.jar"
+      - "/home/ubuntu/StarDust-2/MMOEngine/bin/idlc.jar"
       - "/home/ubuntu/engine3/MMOEngine/lib/idlc.jar"
       - "/home/ubuntu/engine3/MMOEngine/bin/idlc.jar"
-    found: "/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/lib/"
-    search_context:
-      ENV{PATH}:
-        - "/usr/local/sbin"
-        - "/usr/local/bin"
-        - "/usr/sbin"
-        - "/usr/bin"
-        - "/sbin"
-        - "/bin"
-        - "/snap/bin"
-        - "/usr/lib/oracle/18.3/client/bin"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-      CMAKE_SYSTEM_PREFIX_PATH:
-        - "/usr/local"
-        - "/usr"
-        - "/"
-        - "/usr"
-        - "/usr/local"
-        - "/usr/X11R6"
-        - "/usr/pkg"
-        - "/opt"
-      CMAKE_SYSTEM_INCLUDE_PATH:
-        - "/usr/include/X11"
-  -
-    kind: "find-v1"
-    backtrace:
-      - "cmake/Modules/FindEngine3.cmake:32 (FIND_PATH)"
-      - "CMakeLists.txt:70 (find_package)"
-    mode: "path"
-    variable: "ENGINE3_INCLUDE_DIR"
-    description: "Path to a file."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "engine/engine.h"
-    candidate_directories:
-      - "/opt/engine3/include/"
-      - "/opt/engine3pub/include/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/src/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/include/"
-      - "/home/ubuntu/engine3/MMOEngine/src/"
-      - "/home/ubuntu/engine3/MMOEngine/include/"
-      - "/utils/engine3/MMOEngine/include/"
-    searched_directories:
-      - "/opt/engine3/include/engine/engine.h"
-      - "/opt/engine3pub/include/engine/engine.h"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/src/engine/engine.h"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/include/engine/engine.h"
-      - "/home/ubuntu/engine3/MMOEngine/src/engine/engine.h"
-      - "/home/ubuntu/engine3/MMOEngine/include/engine/engine.h"
-      - "/utils/engine3/MMOEngine/include/engine/engine.h"
+      - "/utils/engine3/MMOEngine/bin/idlc.jar"
+      - "/utils/engine3/MMOEngine/lib/idlc.jar"
     found: false
     search_context:
       ENV{PATH}:
@@ -3494,8 +3445,67 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindEngine3.cmake:45 (FIND_LIBRARY)"
-      - "CMakeLists.txt:70 (find_package)"
+      - "cmake/Modules/FindEngine3.cmake:32 (FIND_PATH)"
+      - "CMakeLists.txt:81 (find_package)"
+    mode: "path"
+    variable: "ENGINE3_INCLUDE_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "engine/engine.h"
+    candidate_directories:
+      - "/opt/engine3/include/"
+      - "/opt/engine3pub/include/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/src/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/include/"
+      - "/home/ubuntu/engine3/MMOEngine/src/"
+      - "/home/ubuntu/engine3/MMOEngine/include/"
+      - "/utils/engine3/MMOEngine/include/"
+      - "/utils/engine3/MMOEngine/src/"
+    searched_directories:
+      - "/opt/engine3/include/engine/engine.h"
+      - "/opt/engine3pub/include/engine/engine.h"
+      - "/home/ubuntu/StarDust-2/MMOEngine/src/engine/engine.h"
+      - "/home/ubuntu/StarDust-2/MMOEngine/include/engine/engine.h"
+      - "/home/ubuntu/engine3/MMOEngine/src/engine/engine.h"
+      - "/home/ubuntu/engine3/MMOEngine/include/engine/engine.h"
+      - "/utils/engine3/MMOEngine/include/engine/engine.h"
+      - "/utils/engine3/MMOEngine/src/engine/engine.h"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/snap/bin"
+        - "/usr/lib/oracle/18.3/client/bin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include/X11"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "cmake/Modules/FindEngine3.cmake:46 (FIND_LIBRARY)"
+      - "CMakeLists.txt:81 (find_package)"
     mode: "library"
     variable: "ENGINE3_LIBRARY"
     description: "Path to a library."
@@ -3539,9 +3549,10 @@ events:
       - "/utils/engine3/MMOEngine/lib/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/osx/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/osx/"
     searched_directories:
       - "/usr/local/sbin/"
       - "/usr/local/bin/"
@@ -3572,9 +3583,10 @@ events:
       - "/utils/engine3/MMOEngine/lib/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/osx/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/osx/"
     found: false
     search_context:
       ENV{PATH}:
@@ -3601,8 +3613,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindEngine3.cmake:49 (FIND_LIBRARY)"
-      - "CMakeLists.txt:70 (find_package)"
+      - "cmake/Modules/FindEngine3.cmake:50 (FIND_LIBRARY)"
+      - "CMakeLists.txt:81 (find_package)"
     mode: "library"
     variable: "ENGINE3_ASAN_LIBRARY"
     description: "Path to a library."
@@ -3646,7 +3658,8 @@ events:
       - "/utils/engine3/MMOEngine/lib/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     searched_directories:
       - "/usr/local/sbin/"
@@ -3678,7 +3691,8 @@ events:
       - "/utils/engine3/MMOEngine/lib/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     found: false
     search_context:
@@ -3706,8 +3720,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindEngine3.cmake:53 (FIND_LIBRARY)"
-      - "CMakeLists.txt:70 (find_package)"
+      - "cmake/Modules/FindEngine3.cmake:54 (FIND_LIBRARY)"
+      - "CMakeLists.txt:81 (find_package)"
     mode: "library"
     variable: "ENGINE3_TSAN_LIBRARY"
     description: "Path to a library."
@@ -3751,7 +3765,8 @@ events:
       - "/utils/engine3/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     searched_directories:
       - "/usr/local/sbin/"
@@ -3783,7 +3798,8 @@ events:
       - "/utils/engine3/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     found: false
     search_context:
@@ -3811,8 +3827,8 @@ events:
   -
     kind: "find-v1"
     backtrace:
-      - "cmake/Modules/FindEngine3.cmake:57 (FIND_LIBRARY)"
-      - "CMakeLists.txt:70 (find_package)"
+      - "cmake/Modules/FindEngine3.cmake:58 (FIND_LIBRARY)"
+      - "CMakeLists.txt:81 (find_package)"
     mode: "library"
     variable: "ENGINE3_UBSAN_LIBRARY"
     description: "Path to a library."
@@ -3856,7 +3872,8 @@ events:
       - "/utils/engine3/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     searched_directories:
       - "/usr/local/sbin/"
@@ -3888,7 +3905,8 @@ events:
       - "/utils/engine3/unix/"
       - "/opt/engine3/lib/"
       - "/opt/engine3pub/lib/"
-      - "/home/ubuntu/SWGGhosts/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/unix/"
+      - "/home/ubuntu/StarDust-2/MMOEngine/lib/linux64/"
       - "/home/ubuntu/engine3/MMOEngine/lib/unix/"
     found: false
     search_context:
@@ -5449,27 +5467,27 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_fe298/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_fe298.dir/build.make CMakeFiles/cmTC_fe298.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ'
-        Building C object CMakeFiles/cmTC_fe298.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_fe298.dir/src.c.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ/src.c
-        Linking C executable cmTC_fe298
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fe298.dir/link.txt --verbose=1
-        /usr/bin/cc CMakeFiles/cmTC_fe298.dir/src.c.o -o cmTC_fe298
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V5OicJ'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3e5dc/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3e5dc.dir/build.make CMakeFiles/cmTC_3e5dc.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A'
+        Building C object CMakeFiles/cmTC_3e5dc.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_3e5dc.dir/src.c.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A/src.c
+        Linking C executable cmTC_3e5dc
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3e5dc.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_3e5dc.dir/src.c.o -o cmTC_3e5dc
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-MPoA0A'
         
       exitCode: 0
   -
@@ -5605,11 +5623,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_headersConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_headersConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_headers-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_headers-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5692,11 +5710,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_atomicConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_atomicConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_atomic-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_atomic-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5779,11 +5797,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_chronoConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_chronoConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_chrono-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_chrono-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5866,11 +5884,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_containerConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_containerConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_container-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_container-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -5953,11 +5971,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_date_timeConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_date_timeConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_date_time-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_date_time-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -6040,11 +6058,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_exceptionConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_exceptionConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_exception-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_exception-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -6126,11 +6144,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_threadConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_threadConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost_thread-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost_thread-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -6211,11 +6229,11 @@ events:
         CMAKE_FIND_ROOT_PATH_MODE: "BOTH"
     candidates:
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/BoostConfig.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/BoostConfig.cmake"
         mode: "config"
         reason: "no_exist"
       -
-        path: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/pkgRedirects/boost-config.cmake"
+        path: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/pkgRedirects/boost-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -6689,32 +6707,32 @@ events:
     checks:
       - "Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "HAVE_CXX_ATOMICS_WITHOUT_LIB"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1969c/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1969c.dir/build.make CMakeFiles/cmTC_1969c.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP'
-        Building CXX object CMakeFiles/cmTC_1969c.dir/src.cxx.o
-        /usr/bin/c++ -DHAVE_CXX_ATOMICS_WITHOUT_LIB  -std=c++11 -o CMakeFiles/cmTC_1969c.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP/src.cxx
-        Linking CXX executable cmTC_1969c
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1969c.dir/link.txt --verbose=1
-        /usr/bin/x86_64-linux-gnu-ld.bfd: CMakeFiles/cmTC_1969c.dir/src.cxx.o: in function `std::atomic<test_type>::compare_exchange_strong(test_type&, test_type, std::memory_order, std::memory_order)':
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8ce92/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8ce92.dir/build.make CMakeFiles/cmTC_8ce92.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6'
+        Building CXX object CMakeFiles/cmTC_8ce92.dir/src.cxx.o
+        /usr/bin/c++ -DHAVE_CXX_ATOMICS_WITHOUT_LIB  -std=c++11 -o CMakeFiles/cmTC_8ce92.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6/src.cxx
+        Linking CXX executable cmTC_8ce92
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ce92.dir/link.txt --verbose=1
+        /usr/bin/x86_64-linux-gnu-ld.bfd: CMakeFiles/cmTC_8ce92.dir/src.cxx.o: in function `std::atomic<test_type>::compare_exchange_strong(test_type&, test_type, std::memory_order, std::memory_order)':
         src.cxx:(.text._ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_[_ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_]+0x142): undefined reference to `__atomic_compare_exchange'
         collect2: error: ld returned 1 exit status
-        /usr/bin/c++  -std=c++11 CMakeFiles/cmTC_1969c.dir/src.cxx.o -o cmTC_1969c
-        gmake[1]: *** [CMakeFiles/cmTC_1969c.dir/build.make:102: cmTC_1969c] Error 1
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-E04RpP'
-        gmake: *** [Makefile:134: cmTC_1969c/fast] Error 2
+        /usr/bin/c++  -std=c++11 CMakeFiles/cmTC_8ce92.dir/src.cxx.o -o cmTC_8ce92
+        gmake[1]: *** [CMakeFiles/cmTC_8ce92.dir/build.make:102: cmTC_8ce92] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Tvjyv6'
+        gmake: *** [Makefile:134: cmTC_8ce92/fast] Error 2
         
       exitCode: 2
   -
@@ -6958,28 +6976,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wall"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wall"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_02f42/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_02f42.dir/build.make CMakeFiles/cmTC_02f42.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH'
-        Building CXX object CMakeFiles/cmTC_02f42.dir/src.cxx.o
-        /usr/bin/c++   -DCxxFlag-Wall -Wall -o CMakeFiles/cmTC_02f42.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dc9b1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_dc9b1.dir/build.make CMakeFiles/cmTC_dc9b1.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO'
+        Building CXX object CMakeFiles/cmTC_dc9b1.dir/src.cxx.o
+        /usr/bin/c++   -DCxxFlag-Wall -Wall -o CMakeFiles/cmTC_dc9b1.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_02f42
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_02f42.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_02f42.dir/src.cxx.o -o cmTC_02f42
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zpxKFH'
+        Linking CXX executable cmTC_dc9b1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc9b1.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_dc9b1.dir/src.cxx.o -o cmTC_dc9b1
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ytZgCO'
         
       exitCode: 0
   -
@@ -6992,28 +7010,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wextra"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wextra"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0d245/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_0d245.dir/build.make CMakeFiles/cmTC_0d245.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd'
-        Building CXX object CMakeFiles/cmTC_0d245.dir/src.cxx.o
-        /usr/bin/c++   -Wall    -DCxxFlag-Wextra -Wextra -o CMakeFiles/cmTC_0d245.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e2fc9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e2fc9.dir/build.make CMakeFiles/cmTC_e2fc9.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m'
+        Building CXX object CMakeFiles/cmTC_e2fc9.dir/src.cxx.o
+        /usr/bin/c++   -Wall    -DCxxFlag-Wextra -Wextra -o CMakeFiles/cmTC_e2fc9.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_0d245
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0d245.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall  CMakeFiles/cmTC_0d245.dir/src.cxx.o -o cmTC_0d245
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-V23xKd'
+        Linking CXX executable cmTC_e2fc9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2fc9.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  CMakeFiles/cmTC_e2fc9.dir/src.cxx.o -o cmTC_e2fc9
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5wY35m'
         
       exitCode: 0
   -
@@ -7026,28 +7044,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-unused"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-unused"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_39ac2/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_39ac2.dir/build.make CMakeFiles/cmTC_39ac2.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s'
-        Building CXX object CMakeFiles/cmTC_39ac2.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra    -DCxxFlag-Wno-unused -Wno-unused -o CMakeFiles/cmTC_39ac2.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_85887/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_85887.dir/build.make CMakeFiles/cmTC_85887.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I'
+        Building CXX object CMakeFiles/cmTC_85887.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra    -DCxxFlag-Wno-unused -Wno-unused -o CMakeFiles/cmTC_85887.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_39ac2
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_39ac2.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra  CMakeFiles/cmTC_39ac2.dir/src.cxx.o -o cmTC_39ac2
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-IDZ94s'
+        Linking CXX executable cmTC_85887
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_85887.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra  CMakeFiles/cmTC_85887.dir/src.cxx.o -o cmTC_85887
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ce0D2I'
         
       exitCode: 0
   -
@@ -7060,28 +7078,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-sign-compare"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-sign-compare"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1cbaa/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1cbaa.dir/build.make CMakeFiles/cmTC_1cbaa.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8'
-        Building CXX object CMakeFiles/cmTC_1cbaa.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused    -DCxxFlag-Wno-sign-compare -Wno-sign-compare -o CMakeFiles/cmTC_1cbaa.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_22b68/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_22b68.dir/build.make CMakeFiles/cmTC_22b68.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy'
+        Building CXX object CMakeFiles/cmTC_22b68.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused    -DCxxFlag-Wno-sign-compare -Wno-sign-compare -o CMakeFiles/cmTC_22b68.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_1cbaa
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cbaa.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused  CMakeFiles/cmTC_1cbaa.dir/src.cxx.o -o cmTC_1cbaa
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-FiLHk8'
+        Linking CXX executable cmTC_22b68
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_22b68.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused  CMakeFiles/cmTC_22b68.dir/src.cxx.o -o cmTC_22b68
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-yDdCSy'
         
       exitCode: 0
   -
@@ -7094,28 +7112,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-multichar"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-multichar"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a138d/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_a138d.dir/build.make CMakeFiles/cmTC_a138d.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV'
-        Building CXX object CMakeFiles/cmTC_a138d.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare    -DCxxFlag-Wno-multichar -Wno-multichar -o CMakeFiles/cmTC_a138d.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f8de2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f8de2.dir/build.make CMakeFiles/cmTC_f8de2.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO'
+        Building CXX object CMakeFiles/cmTC_f8de2.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare    -DCxxFlag-Wno-multichar -Wno-multichar -o CMakeFiles/cmTC_f8de2.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_a138d
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a138d.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare  CMakeFiles/cmTC_a138d.dir/src.cxx.o -o cmTC_a138d
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-SIhpUV'
+        Linking CXX executable cmTC_f8de2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f8de2.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare  CMakeFiles/cmTC_f8de2.dir/src.cxx.o -o cmTC_f8de2
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-hxfdZO'
         
       exitCode: 0
   -
@@ -7128,28 +7146,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-unused-parameter"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-unused-parameter"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_577e9/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_577e9.dir/build.make CMakeFiles/cmTC_577e9.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK'
-        Building CXX object CMakeFiles/cmTC_577e9.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar    -DCxxFlag-Wno-unused-parameter -Wno-unused-parameter -o CMakeFiles/cmTC_577e9.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_84723/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_84723.dir/build.make CMakeFiles/cmTC_84723.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj'
+        Building CXX object CMakeFiles/cmTC_84723.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar    -DCxxFlag-Wno-unused-parameter -Wno-unused-parameter -o CMakeFiles/cmTC_84723.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_577e9
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_577e9.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar  CMakeFiles/cmTC_577e9.dir/src.cxx.o -o cmTC_577e9
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-RXEVFK'
+        Linking CXX executable cmTC_84723
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84723.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar  CMakeFiles/cmTC_84723.dir/src.cxx.o -o cmTC_84723
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HmsAxj'
         
       exitCode: 0
   -
@@ -7162,28 +7180,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-overloaded-virtual"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-overloaded-virtual"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6ea1e/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_6ea1e.dir/build.make CMakeFiles/cmTC_6ea1e.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI'
-        Building CXX object CMakeFiles/cmTC_6ea1e.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter    -DCxxFlag-Wno-overloaded-virtual -Wno-overloaded-virtual -o CMakeFiles/cmTC_6ea1e.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3a468/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3a468.dir/build.make CMakeFiles/cmTC_3a468.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z'
+        Building CXX object CMakeFiles/cmTC_3a468.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter    -DCxxFlag-Wno-overloaded-virtual -Wno-overloaded-virtual -o CMakeFiles/cmTC_3a468.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_6ea1e
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6ea1e.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter  CMakeFiles/cmTC_6ea1e.dir/src.cxx.o -o cmTC_6ea1e
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-9SvWCI'
+        Linking CXX executable cmTC_3a468
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a468.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter  CMakeFiles/cmTC_3a468.dir/src.cxx.o -o cmTC_3a468
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-HCMk1z'
         
       exitCode: 0
   -
@@ -7196,28 +7214,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-missing-declarations"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-missing-declarations"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_736a2/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_736a2.dir/build.make CMakeFiles/cmTC_736a2.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22'
-        Building CXX object CMakeFiles/cmTC_736a2.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual    -DCxxFlag-Wno-missing-declarations -Wno-missing-declarations -o CMakeFiles/cmTC_736a2.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5de93/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5de93.dir/build.make CMakeFiles/cmTC_5de93.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj'
+        Building CXX object CMakeFiles/cmTC_5de93.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual    -DCxxFlag-Wno-missing-declarations -Wno-missing-declarations -o CMakeFiles/cmTC_5de93.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_736a2
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_736a2.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual  CMakeFiles/cmTC_736a2.dir/src.cxx.o -o cmTC_736a2
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-A6CN22'
+        Linking CXX executable cmTC_5de93
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5de93.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual  CMakeFiles/cmTC_5de93.dir/src.cxx.o -o cmTC_5de93
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-5UcZDj'
         
       exitCode: 0
   -
@@ -7230,29 +7248,29 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-return-std-move"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-return-std-move"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1604a/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_1604a.dir/build.make CMakeFiles/cmTC_1604a.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC'
-        Building CXX object CMakeFiles/cmTC_1604a.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-return-std-move -Wno-return-std-move -o CMakeFiles/cmTC_1604a.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_bc170/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_bc170.dir/build.make CMakeFiles/cmTC_bc170.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl'
+        Building CXX object CMakeFiles/cmTC_bc170.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-return-std-move -Wno-return-std-move -o CMakeFiles/cmTC_bc170.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
         cc1plus: note: unrecognized command-line option '-Wno-return-std-move' may have been intended to silence earlier diagnostics
-        Linking CXX executable cmTC_1604a
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1604a.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  CMakeFiles/cmTC_1604a.dir/src.cxx.o -o cmTC_1604a
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-nBVYfC'
+        Linking CXX executable cmTC_bc170
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc170.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  CMakeFiles/cmTC_bc170.dir/src.cxx.o -o cmTC_bc170
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VEAarl'
         
       exitCode: 0
   -
@@ -7265,28 +7283,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-implicit-fallthrough"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-implicit-fallthrough"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2caa8/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_2caa8.dir/build.make CMakeFiles/cmTC_2caa8.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5'
-        Building CXX object CMakeFiles/cmTC_2caa8.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-implicit-fallthrough -Wno-implicit-fallthrough -o CMakeFiles/cmTC_2caa8.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_caafb/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_caafb.dir/build.make CMakeFiles/cmTC_caafb.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787'
+        Building CXX object CMakeFiles/cmTC_caafb.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-implicit-fallthrough -Wno-implicit-fallthrough -o CMakeFiles/cmTC_caafb.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_2caa8
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2caa8.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  CMakeFiles/cmTC_2caa8.dir/src.cxx.o -o cmTC_2caa8
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-zaOJw5'
+        Linking CXX executable cmTC_caafb
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_caafb.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  CMakeFiles/cmTC_caafb.dir/src.cxx.o -o cmTC_caafb
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-eTe787'
         
       exitCode: 0
   -
@@ -7299,28 +7317,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-class-memaccess"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-class-memaccess"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2a2ff/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_2a2ff.dir/build.make CMakeFiles/cmTC_2a2ff.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb'
-        Building CXX object CMakeFiles/cmTC_2a2ff.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough    -DCxxFlag-Wno-class-memaccess -Wno-class-memaccess -o CMakeFiles/cmTC_2a2ff.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a5b22/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a5b22.dir/build.make CMakeFiles/cmTC_a5b22.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH'
+        Building CXX object CMakeFiles/cmTC_a5b22.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough    -DCxxFlag-Wno-class-memaccess -Wno-class-memaccess -o CMakeFiles/cmTC_a5b22.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_2a2ff
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a2ff.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough  CMakeFiles/cmTC_2a2ff.dir/src.cxx.o -o cmTC_2a2ff
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NAlOzb'
+        Linking CXX executable cmTC_a5b22
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a5b22.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough  CMakeFiles/cmTC_a5b22.dir/src.cxx.o -o cmTC_a5b22
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-h0o2DH'
         
       exitCode: 0
   -
@@ -7333,27 +7351,27 @@ events:
     checks:
       - "Performing Test CxxFlag-fcolor-diagnostics"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-fcolor-diagnostics"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_be029/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_be029.dir/build.make CMakeFiles/cmTC_be029.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b'
-        Building CXX object CMakeFiles/cmTC_be029.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-fcolor-diagnostics -fcolor-diagnostics -o CMakeFiles/cmTC_be029.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0c7b9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0c7b9.dir/build.make CMakeFiles/cmTC_0c7b9.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ'
+        Building CXX object CMakeFiles/cmTC_0c7b9.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-fcolor-diagnostics -fcolor-diagnostics -o CMakeFiles/cmTC_0c7b9.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ/src.cxx
         c++: error: unrecognized command-line option '-fcolor-diagnostics'
-        gmake[1]: *** [CMakeFiles/cmTC_be029.dir/build.make:81: CMakeFiles/cmTC_be029.dir/src.cxx.o] Error 1
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YxsA2b'
-        gmake: *** [Makefile:134: cmTC_be029/fast] Error 2
+        gmake[1]: *** [CMakeFiles/cmTC_0c7b9.dir/build.make:81: CMakeFiles/cmTC_0c7b9.dir/src.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-PnnENQ'
+        gmake: *** [Makefile:134: cmTC_0c7b9/fast] Error 2
         
       exitCode: 2
   -
@@ -7366,28 +7384,28 @@ events:
     checks:
       - "Performing Test CxxFlag-Wno-deprecated-copy"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlag-Wno-deprecated-copy"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2b732/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_2b732.dir/build.make CMakeFiles/cmTC_2b732.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg'
-        Building CXX object CMakeFiles/cmTC_2b732.dir/src.cxx.o
-        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-Wno-deprecated-copy -Wno-deprecated-copy -o CMakeFiles/cmTC_2b732.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg/src.cxx
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4af8a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4af8a.dir/build.make CMakeFiles/cmTC_4af8a.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ'
+        Building CXX object CMakeFiles/cmTC_4af8a.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-Wno-deprecated-copy -Wno-deprecated-copy -o CMakeFiles/cmTC_4af8a.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ/src.cxx
         <command-line>: warning: ISO C++11 requires whitespace after the macro name
-        Linking CXX executable cmTC_2b732
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b732.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess  CMakeFiles/cmTC_2b732.dir/src.cxx.o -o cmTC_2b732
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-4t0nSg'
+        Linking CXX executable cmTC_4af8a
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4af8a.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess  CMakeFiles/cmTC_4af8a.dir/src.cxx.o -o cmTC_4af8a
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-NVrldJ'
         
       exitCode: 0
   -
@@ -7400,27 +7418,27 @@ events:
     checks:
       - "Performing Test CxxFlagMnative"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlagMnative"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cfba5/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_cfba5.dir/build.make CMakeFiles/cmTC_cfba5.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx'
-        Building CXX object CMakeFiles/cmTC_cfba5.dir/src.cxx.o
-        /usr/bin/c++ -DCxxFlagMnative  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy    -march=native -o CMakeFiles/cmTC_cfba5.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx/src.cxx
-        Linking CXX executable cmTC_cfba5
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cfba5.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy  CMakeFiles/cmTC_cfba5.dir/src.cxx.o -o cmTC_cfba5
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Z0OSwx'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3d388/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3d388.dir/build.make CMakeFiles/cmTC_3d388.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI'
+        Building CXX object CMakeFiles/cmTC_3d388.dir/src.cxx.o
+        /usr/bin/c++ -DCxxFlagMnative  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy    -march=native -o CMakeFiles/cmTC_3d388.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI/src.cxx
+        Linking CXX executable cmTC_3d388
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3d388.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy  CMakeFiles/cmTC_3d388.dir/src.cxx.o -o cmTC_3d388
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-B301eI'
         
       exitCode: 0
   -
@@ -7433,65 +7451,69 @@ events:
     checks:
       - "Performing Test CxxFlagFramePointer"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu"
     cmakeVariables:
       CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native"
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGGhosts/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/;/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
     buildResult:
       variable: "CxxFlagFramePointer"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d2696/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d2696.dir/build.make CMakeFiles/cmTC_d2696.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2'
-        Building CXX object CMakeFiles/cmTC_d2696.dir/src.cxx.o
-        /usr/bin/c++ -DCxxFlagFramePointer  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native    -fno-omit-frame-pointer -o CMakeFiles/cmTC_d2696.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2/src.cxx
-        Linking CXX executable cmTC_d2696
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2696.dir/link.txt --verbose=1
-        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native  CMakeFiles/cmTC_d2696.dir/src.cxx.o -o cmTC_d2696
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-YZiOW2'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_66921/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_66921.dir/build.make CMakeFiles/cmTC_66921.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu'
+        Building CXX object CMakeFiles/cmTC_66921.dir/src.cxx.o
+        /usr/bin/c++ -DCxxFlagFramePointer  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native    -fno-omit-frame-pointer -o CMakeFiles/cmTC_66921.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu/src.cxx
+        Linking CXX executable cmTC_66921
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66921.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native  CMakeFiles/cmTC_66921.dir/src.cxx.o -o cmTC_66921
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-c7gGgu'
         
       exitCode: 0
+...
+
+---
+events:
   -
     kind: "try_compile-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
       - "/usr/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
       - "/usr/share/cmake-4.2/Modules/CheckCXXCompilerFlag.cmake:103 (cmake_check_compiler_flag)"
-      - "CMakeLists.txt:83 (check_cxx_compiler_flag)"
-      - "CMakeLists.txt:87 (check_cxx_linker_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:113 (check_cxx_linker_flag)"
     checks:
       - "Performing Test LLD_LINKER_SUPPORTED"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/"
     buildResult:
       variable: "LLD_LINKER_SUPPORTED"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_20f1b/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_20f1b.dir/build.make CMakeFiles/cmTC_20f1b.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2'
-        Building CXX object CMakeFiles/cmTC_20f1b.dir/src.cxx.o
-        /usr/bin/c++ -DLLD_LINKER_SUPPORTED  -fuse-ld=lld -o CMakeFiles/cmTC_20f1b.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2/src.cxx
-        Linking CXX executable cmTC_20f1b
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20f1b.dir/link.txt --verbose=1
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d0e62/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d0e62.dir/build.make CMakeFiles/cmTC_d0e62.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq'
+        Building CXX object CMakeFiles/cmTC_d0e62.dir/src.cxx.o
+        /usr/bin/c++ -DLLD_LINKER_SUPPORTED  -fuse-ld=lld -o CMakeFiles/cmTC_d0e62.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq/src.cxx
+        Linking CXX executable cmTC_d0e62
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d0e62.dir/link.txt --verbose=1
         collect2: fatal error: cannot find 'ld'
         compilation terminated.
-        /usr/bin/c++ CMakeFiles/cmTC_20f1b.dir/src.cxx.o -o cmTC_20f1b  -fuse-ld=lld
-        gmake[1]: *** [CMakeFiles/cmTC_20f1b.dir/build.make:102: cmTC_20f1b] Error 1
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-XrGnP2'
-        gmake: *** [Makefile:134: cmTC_20f1b/fast] Error 2
+        /usr/bin/c++ CMakeFiles/cmTC_d0e62.dir/src.cxx.o -o cmTC_d0e62  -fuse-ld=lld
+        gmake[1]: *** [CMakeFiles/cmTC_d0e62.dir/build.make:102: cmTC_d0e62] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-ckJCjq'
+        gmake: *** [Makefile:134: cmTC_d0e62/fast] Error 2
         
       exitCode: 2
   -
@@ -7500,36 +7522,36 @@ events:
       - "/usr/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
       - "/usr/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
       - "/usr/share/cmake-4.2/Modules/CheckCXXCompilerFlag.cmake:103 (cmake_check_compiler_flag)"
-      - "CMakeLists.txt:83 (check_cxx_compiler_flag)"
-      - "CMakeLists.txt:88 (check_cxx_linker_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:114 (check_cxx_linker_flag)"
     checks:
       - "Performing Test GOLD_LINKER_SUPPORTED"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/"
     buildResult:
       variable: "GOLD_LINKER_SUPPORTED"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_696ab/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_696ab.dir/build.make CMakeFiles/cmTC_696ab.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV'
-        Building CXX object CMakeFiles/cmTC_696ab.dir/src.cxx.o
-        /usr/bin/c++ -DGOLD_LINKER_SUPPORTED  -fuse-ld=gold -o CMakeFiles/cmTC_696ab.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV/src.cxx
-        Linking CXX executable cmTC_696ab
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_696ab.dir/link.txt --verbose=1
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_28889/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_28889.dir/build.make CMakeFiles/cmTC_28889.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk'
+        Building CXX object CMakeFiles/cmTC_28889.dir/src.cxx.o
+        /usr/bin/c++ -DGOLD_LINKER_SUPPORTED  -fuse-ld=gold -o CMakeFiles/cmTC_28889.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk/src.cxx
+        Linking CXX executable cmTC_28889
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28889.dir/link.txt --verbose=1
         collect2: fatal error: cannot find 'ld'
         compilation terminated.
-        /usr/bin/c++ CMakeFiles/cmTC_696ab.dir/src.cxx.o -o cmTC_696ab  -fuse-ld=gold
-        gmake[1]: *** [CMakeFiles/cmTC_696ab.dir/build.make:102: cmTC_696ab] Error 1
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-euoCRV'
-        gmake: *** [Makefile:134: cmTC_696ab/fast] Error 2
+        /usr/bin/c++ CMakeFiles/cmTC_28889.dir/src.cxx.o -o cmTC_28889  -fuse-ld=gold
+        gmake[1]: *** [CMakeFiles/cmTC_28889.dir/build.make:102: cmTC_28889] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-xifmxk'
+        gmake: *** [Makefile:134: cmTC_28889/fast] Error 2
         
       exitCode: 2
   -
@@ -7538,31 +7560,31 @@ events:
       - "/usr/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
       - "/usr/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
       - "/usr/share/cmake-4.2/Modules/CheckCXXCompilerFlag.cmake:103 (cmake_check_compiler_flag)"
-      - "CMakeLists.txt:89 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:115 (check_cxx_compiler_flag)"
     checks:
       - "Performing Test WL_ZDEFS_SUPPORTED"
     directories:
-      source: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj"
-      binary: "/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj"
+      source: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu"
+      binary: "/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/home/ubuntu/SWGGhosts/MMOCoreORB/cmake/Modules/"
+      CMAKE_MODULE_PATH: "/home/ubuntu/StarDust-2/MMOCoreORB/cmake/Modules/"
     buildResult:
       variable: "WL_ZDEFS_SUPPORTED"
       cached: true
       stdout: |
-        Change Dir: '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj'
+        Change Dir: '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu'
         
-        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1607/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_d1607.dir/build.make CMakeFiles/cmTC_d1607.dir/build
-        gmake[1]: Entering directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj'
-        Building CXX object CMakeFiles/cmTC_d1607.dir/src.cxx.o
-        /usr/bin/c++ -DWL_ZDEFS_SUPPORTED  -Wl,-z,defs -o CMakeFiles/cmTC_d1607.dir/src.cxx.o -c /home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj/src.cxx
-        Linking CXX executable cmTC_d1607
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1607.dir/link.txt --verbose=1
-        /usr/bin/c++ CMakeFiles/cmTC_d1607.dir/src.cxx.o -o cmTC_d1607
-        gmake[1]: Leaving directory '/home/ubuntu/SWGGhosts/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-Ylksxj'
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1e773/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1e773.dir/build.make CMakeFiles/cmTC_1e773.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu'
+        Building CXX object CMakeFiles/cmTC_1e773.dir/src.cxx.o
+        /usr/bin/c++ -DWL_ZDEFS_SUPPORTED  -Wl,-z,defs -o CMakeFiles/cmTC_1e773.dir/src.cxx.o -c /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu/src.cxx
+        Linking CXX executable cmTC_1e773
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e773.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_1e773.dir/src.cxx.o -o cmTC_1e773
+        gmake[1]: Leaving directory '/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/CMakeScratch/TryCompile-VzsTQu'
         
       exitCode: 0
   -
@@ -7573,7 +7595,7 @@ events:
       - "/usr/share/cmake-4.2/Modules/FindPkgConfig.cmake:1149 (_pkg_recalculate)"
       - "/usr/share/cmake-4.2/Modules/FindPkgConfig.cmake:1166 (_pkg_check_modules_internal)"
       - "cmake/Modules/FindJEMALLOC.cmake:10 (pkg_check_modules)"
-      - "CMakeLists.txt:117 (find_package)"
+      - "CMakeLists.txt:153 (find_package)"
     mode: "library"
     variable: "pkgcfg_lib_PC_JEMALLOC_jemalloc"
     description: "Path to a library."
@@ -7616,7 +7638,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindJEMALLOC.cmake:22 (find_path)"
-      - "CMakeLists.txt:117 (find_package)"
+      - "CMakeLists.txt:153 (find_package)"
     mode: "path"
     variable: "JEMALLOC_INCLUDE_DIR"
     description: "Path to a file."
@@ -7698,7 +7720,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "cmake/Modules/FindJEMALLOC.cmake:34 (find_library)"
-      - "CMakeLists.txt:117 (find_package)"
+      - "CMakeLists.txt:153 (find_package)"
     mode: "library"
     variable: "JEMALLOC_LIBRARY"
     description: "Path to a library."
@@ -7767,8 +7789,8 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindPythonInterp.cmake:144 (find_program)"
-      - "utils/googletest-release-1.8.0/googletest/cmake/internal_utils.cmake:209 (find_package)"
-      - "utils/googletest-release-1.8.0/googletest/CMakeLists.txt:60 (include)"
+      - "utils/googletest-release-1.10.0/googletest/cmake/internal_utils.cmake:243 (find_package)"
+      - "utils/googletest-release-1.10.0/googletest/CMakeLists.txt:91 (include)"
     mode: "program"
     variable: "PYTHON_EXECUTABLE"
     description: "Path to a program."
@@ -7831,8 +7853,8 @@ events:
     kind: "find-v1"
     backtrace:
       - "/usr/share/cmake-4.2/Modules/FindPythonInterp.cmake:175 (find_program)"
-      - "utils/googletest-release-1.8.0/googletest/cmake/internal_utils.cmake:209 (find_package)"
-      - "utils/googletest-release-1.8.0/googletest/CMakeLists.txt:60 (include)"
+      - "utils/googletest-release-1.10.0/googletest/cmake/internal_utils.cmake:243 (find_package)"
+      - "utils/googletest-release-1.10.0/googletest/CMakeLists.txt:91 (include)"
     mode: "program"
     variable: "PYTHON_EXECUTABLE"
     description: "Path to a program."

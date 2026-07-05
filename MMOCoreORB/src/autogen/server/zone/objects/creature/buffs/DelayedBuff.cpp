@@ -32,7 +32,7 @@ DelayedBuff::~DelayedBuff() {
 
 void DelayedBuff::init(Vector<int>* events) {
 	DelayedBuffImplementation* _implementation = static_cast<DelayedBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -43,7 +43,7 @@ void DelayedBuff::init(Vector<int>* events) {
 
 void DelayedBuff::activate() {
 	DelayedBuffImplementation* _implementation = static_cast<DelayedBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -58,7 +58,7 @@ void DelayedBuff::activate() {
 
 void DelayedBuff::deactivate() {
 	DelayedBuffImplementation* _implementation = static_cast<DelayedBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -73,7 +73,7 @@ void DelayedBuff::deactivate() {
 
 void DelayedBuff::useCharge() {
 	DelayedBuffImplementation* _implementation = static_cast<DelayedBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -88,7 +88,7 @@ void DelayedBuff::useCharge() {
 
 void DelayedBuff::setUsesRemaining(int uses) {
 	DelayedBuffImplementation* _implementation = static_cast<DelayedBuffImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +135,7 @@ void DelayedBuffImplementation::finalize() {
 void DelayedBuffImplementation::_initializeImplementation() {
 	_setClassHelper(DelayedBuffHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

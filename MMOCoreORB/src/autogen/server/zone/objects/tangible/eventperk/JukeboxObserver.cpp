@@ -30,7 +30,7 @@ JukeboxObserver::~JukeboxObserver() {
 
 int JukeboxObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	JukeboxObserverImplementation* _implementation = static_cast<JukeboxObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +79,7 @@ void JukeboxObserverImplementation::finalize() {
 void JukeboxObserverImplementation::_initializeImplementation() {
 	_setClassHelper(JukeboxObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }

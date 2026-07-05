@@ -30,7 +30,7 @@ ScavengerDroid::~ScavengerDroid() {
 
 int ScavengerDroid::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -41,14 +41,14 @@ int ScavengerDroid::handleObjectMenuSelect(CreatureObject* player, byte selected
 		return method.executeWithSignedIntReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		return _implementation->handleObjectMenuSelect(player, selectedID);
 	}
 }
 
 void ScavengerDroid::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,7 +58,7 @@ void ScavengerDroid::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, Cr
 
 CreatureObject* ScavengerDroid::getDeedOwner() {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -72,7 +72,7 @@ CreatureObject* ScavengerDroid::getDeedOwner() {
 
 void ScavengerDroid::startGame(CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -82,14 +82,14 @@ void ScavengerDroid::startGame(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->startGame(player);
 	}
 }
 
 void ScavengerDroid::updatePlayerScore(CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -99,14 +99,14 @@ void ScavengerDroid::updatePlayerScore(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		assert((player == nullptr) || player->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->updatePlayerScore(player);
 	}
 }
 
 void ScavengerDroid::sendItemListSUI(CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -121,7 +121,7 @@ void ScavengerDroid::sendItemListSUI(CreatureObject* player) {
 
 void ScavengerDroid::sendSetupInstructionsSUI(CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -136,7 +136,7 @@ void ScavengerDroid::sendSetupInstructionsSUI(CreatureObject* player) {
 
 void ScavengerDroid::sendGameInstructionsSUI(CreatureObject* player) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -151,7 +151,7 @@ void ScavengerDroid::sendGameInstructionsSUI(CreatureObject* player) {
 
 int ScavengerDroid::getGameStatus() const {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -165,7 +165,7 @@ int ScavengerDroid::getGameStatus() const {
 
 int ScavengerDroid::getItemListSize() const {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -179,7 +179,7 @@ int ScavengerDroid::getItemListSize() const {
 
 void ScavengerDroid::addToItemList(String& item) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -195,7 +195,7 @@ void ScavengerDroid::addToItemList(String& item) {
 
 bool ScavengerDroid::hasItemInItemList(String& item) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -210,7 +210,7 @@ bool ScavengerDroid::hasItemInItemList(String& item) {
 
 void ScavengerDroid::clearItemList() {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -225,7 +225,7 @@ void ScavengerDroid::clearItemList() {
 
 bool ScavengerDroid::hasItemInPlayerItemList(unsigned long long playerID, const String& item) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -241,7 +241,7 @@ bool ScavengerDroid::hasItemInPlayerItemList(unsigned long long playerID, const 
 
 void ScavengerDroid::addToPlayerItemList(unsigned long long playerID, const String& item) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -258,7 +258,7 @@ void ScavengerDroid::addToPlayerItemList(unsigned long long playerID, const Stri
 
 void ScavengerDroid::announceToPlayers(const String& msg) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -273,7 +273,7 @@ void ScavengerDroid::announceToPlayers(const String& msg) {
 
 int ScavengerDroid::getTurnedInItemListSize(unsigned long long playerID) {
 	ScavengerDroidImplementation* _implementation = static_cast<ScavengerDroidImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -319,7 +319,7 @@ void ScavengerDroidImplementation::finalize() {
 void ScavengerDroidImplementation::_initializeImplementation() {
 	_setClassHelper(ScavengerDroidHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -522,7 +522,7 @@ ScavengerDroidImplementation::ScavengerDroidImplementation() {
 	// server/zone/objects/tangible/eventperk/ScavengerDroid.idl():  		gameStatus = 0;
 	gameStatus = 0;
 	// server/zone/objects/tangible/eventperk/ScavengerDroid.idl():  		currentWinner = null;
-	currentWinner = nullptr;
+	currentWinner = NULL;
 }
 
 int ScavengerDroidImplementation::getGameStatus() const{
@@ -578,7 +578,7 @@ void ScavengerDroidAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			DistributedObject* _m_res = getDeedOwner();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_STARTGAME__CREATUREOBJECT_:

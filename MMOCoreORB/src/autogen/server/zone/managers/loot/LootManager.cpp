@@ -20,7 +20,7 @@
  *	LootManagerStub
  */
 
-enum {RPC_INITIALIZE__ = 2917100624,RPC_STOP__,RPC_CALCULATELOOTCREDITS__INT_,RPC_CREATELOOT__SCENEOBJECT_AIAGENT_,RPC_CREATENAMEDLOOT__SCENEOBJECT_STRING_STRING_INT_BOOL_,RPC_CREATELOOT__SCENEOBJECT_STRING_INT_BOOL_,RPC_CREATELOOTSET__SCENEOBJECT_STRING_INT_BOOL_INT_,RPC_GETYELLOWLOOTED__,RPC_GETEXCEPTIONALLOOTED__,RPC_GETLEGENDARYLOOTED__,};
+enum {RPC_INITIALIZE__ = 2917100624,RPC_STOP__,RPC_CALCULATELOOTCREDITS__INT_,RPC_GETYELLOWLOOTED__,RPC_GETEXCEPTIONALLOOTED__,RPC_GETLEGENDARYLOOTED__,};
 
 LootManager::LootManager(CraftingManager* craftman, ObjectManager* objMan, ZoneServer* server) : ManagedService(DummyConstructorParameter::instance()) {
 	LootManagerImplementation* _implementation = new LootManagerImplementation(craftman, objMan, server);
@@ -40,7 +40,7 @@ LootManager::~LootManager() {
 
 void LootManager::initialize() {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -54,7 +54,7 @@ void LootManager::initialize() {
 
 void LootManager::stop() {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -68,7 +68,7 @@ void LootManager::stop() {
 
 TangibleObject* LootManager::createLootObject(const LootItemTemplate* templateObject, int level, bool maxCondition) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -78,7 +78,7 @@ TangibleObject* LootManager::createLootObject(const LootItemTemplate* templateOb
 
 String LootManager::getRandomLootableMod(unsigned int sceneObjectType) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -86,19 +86,9 @@ String LootManager::getRandomLootableMod(unsigned int sceneObjectType) {
 	}
 }
 
-TangibleObject* LootManager::createLootAttachment(LootItemTemplate* templateObject, const String& modName, int value) {
-	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->createLootAttachment(templateObject, modName, value);
-	}
-}
-
 int LootManager::calculateLootCredits(int level) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,91 +101,49 @@ int LootManager::calculateLootCredits(int level) {
 	}
 }
 
-bool LootManager::createLoot(SceneObject* container, AiAgent* creature) {
+bool LootManager::createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_CREATELOOT__SCENEOBJECT_AIAGENT_);
-		method.addObjectParameter(container);
-		method.addObjectParameter(creature);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->createLoot(container, creature);
-	}
-}
-
-bool LootManager::createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition) {
-	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_CREATENAMEDLOOT__SCENEOBJECT_STRING_STRING_INT_BOOL_);
-		method.addObjectParameter(container);
-		method.addAsciiParameter(lootGroup);
-		method.addAsciiParameter(name);
-		method.addSignedIntParameter(level);
-		method.addBooleanParameter(maxCondition);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->createNamedLoot(container, lootGroup, name, level, maxCondition);
-	}
-}
-
-bool LootManager::createLootFromCollection(SceneObject* container, const LootGroupCollection* collection, int level) {
-	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->createLootFromCollection(container, collection, level);
+		return _implementation->createLoot(trx, container, creature);
 	}
 }
 
-bool LootManager::createLoot(SceneObject* container, const String& lootGroup, int level, bool maxCondition) {
+bool LootManager::createLootFromCollection(TransactionLog& trx, SceneObject* container, const LootGroupCollection* collection, int level) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_CREATELOOT__SCENEOBJECT_STRING_INT_BOOL_);
-		method.addObjectParameter(container);
-		method.addAsciiParameter(lootGroup);
-		method.addSignedIntParameter(level);
-		method.addBooleanParameter(maxCondition);
-
-		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->createLoot(container, lootGroup, level, maxCondition);
+		return _implementation->createLootFromCollection(trx, container, collection, level);
 	}
 }
 
-bool LootManager::createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize) {
+bool LootManager::createLoot(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
 
-		DistributedMethod method(this, RPC_CREATELOOTSET__SCENEOBJECT_STRING_INT_BOOL_INT_);
-		method.addObjectParameter(container);
-		method.addAsciiParameter(lootGroup);
-		method.addSignedIntParameter(level);
-		method.addBooleanParameter(maxCondition);
-		method.addSignedIntParameter(setSize);
-
-		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->createLootSet(container, lootGroup, level, maxCondition, setSize);
+		return _implementation->createLoot(trx, container, lootGroup, level, maxCondition);
+	}
+}
+
+bool LootManager::createLootSet(TransactionLog& trx, SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize) {
+	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->createLootSet(trx, container, lootGroup, level, maxCondition, setSize);
 	}
 }
 
 unsigned int LootManager::getYellowLooted() const {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -209,7 +157,7 @@ unsigned int LootManager::getYellowLooted() const {
 
 unsigned int LootManager::getExceptionalLooted() const {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -223,7 +171,7 @@ unsigned int LootManager::getExceptionalLooted() const {
 
 unsigned int LootManager::getLegendaryLooted() const {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -237,7 +185,7 @@ unsigned int LootManager::getLegendaryLooted() const {
 
 const LootGroupMap* LootManager::getLootMap() const {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -247,7 +195,7 @@ const LootGroupMap* LootManager::getLootMap() const {
 
 const CrystalData* LootManager::getCrystalData(const String& name) const {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -288,7 +236,7 @@ void LootManagerImplementation::finalize() {
 void LootManagerImplementation::_initializeImplementation() {
 	_setClassHelper(LootManagerHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -396,7 +344,7 @@ LootManagerImplementation::LootManagerImplementation(CraftingManager* craftman, 
 	// server/zone/managers/loot/LootManager.idl():  		zoneServer = server;
 	zoneServer = server;
 	// server/zone/managers/loot/LootManager.idl():  		lootGroupMap = null;
-	lootGroupMap = nullptr;
+	lootGroupMap = NULL;
 	// server/zone/managers/loot/LootManager.idl():  		lootableArmorAttachmentMods.setNoDuplicateInsertPlan();
 	(&lootableArmorAttachmentMods)->setNoDuplicateInsertPlan();
 	// server/zone/managers/loot/LootManager.idl():  		lootableClothingAttachmentMods.setNoDuplicateInsertPlan();
@@ -499,50 +447,6 @@ void LootManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_CREATELOOT__SCENEOBJECT_AIAGENT_:
-		{
-			SceneObject* container = static_cast<SceneObject*>(inv->getObjectParameter());
-			AiAgent* creature = static_cast<AiAgent*>(inv->getObjectParameter());
-			
-			bool _m_res = createLoot(container, creature);
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_CREATENAMEDLOOT__SCENEOBJECT_STRING_STRING_INT_BOOL_:
-		{
-			SceneObject* container = static_cast<SceneObject*>(inv->getObjectParameter());
-			 String lootGroup; inv->getAsciiParameter(lootGroup);
-			 String name; inv->getAsciiParameter(name);
-			int level = inv->getSignedIntParameter();
-			bool maxCondition = inv->getBooleanParameter();
-			
-			bool _m_res = createNamedLoot(container, lootGroup, name, level, maxCondition);
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_CREATELOOT__SCENEOBJECT_STRING_INT_BOOL_:
-		{
-			SceneObject* container = static_cast<SceneObject*>(inv->getObjectParameter());
-			 String lootGroup; inv->getAsciiParameter(lootGroup);
-			int level = inv->getSignedIntParameter();
-			bool maxCondition = inv->getBooleanParameter();
-			
-			bool _m_res = createLoot(container, lootGroup, level, maxCondition);
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_CREATELOOTSET__SCENEOBJECT_STRING_INT_BOOL_INT_:
-		{
-			SceneObject* container = static_cast<SceneObject*>(inv->getObjectParameter());
-			 String lootGroup; inv->getAsciiParameter(lootGroup);
-			int level = inv->getSignedIntParameter();
-			bool maxCondition = inv->getBooleanParameter();
-			int setSize = inv->getSignedIntParameter();
-			
-			bool _m_res = createLootSet(container, lootGroup, level, maxCondition, setSize);
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_GETYELLOWLOOTED__:
 		{
 			
@@ -579,22 +483,6 @@ void LootManagerAdapter::stop() {
 
 int LootManagerAdapter::calculateLootCredits(int level) {
 	return (static_cast<LootManager*>(stub))->calculateLootCredits(level);
-}
-
-bool LootManagerAdapter::createLoot(SceneObject* container, AiAgent* creature) {
-	return (static_cast<LootManager*>(stub))->createLoot(container, creature);
-}
-
-bool LootManagerAdapter::createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition) {
-	return (static_cast<LootManager*>(stub))->createNamedLoot(container, lootGroup, name, level, maxCondition);
-}
-
-bool LootManagerAdapter::createLoot(SceneObject* container, const String& lootGroup, int level, bool maxCondition) {
-	return (static_cast<LootManager*>(stub))->createLoot(container, lootGroup, level, maxCondition);
-}
-
-bool LootManagerAdapter::createLootSet(SceneObject* container, const String& lootGroup, int level, bool maxCondition, int setSize) {
-	return (static_cast<LootManager*>(stub))->createLootSet(container, lootGroup, level, maxCondition, setSize);
 }
 
 unsigned int LootManagerAdapter::getYellowLooted() const {

@@ -2,14 +2,14 @@ local ObjectManager = require("managers.object.object_manager")
 
 CorellianCorvette = ScreenPlay:new {
 	buildings = {
-		{ faction = "neutral",  buildingIds = { 1945494, 1945561, 1945628, 1945695, 1945762, 1945829, 1945896, 1945963, 1946030, 1946097, 1946164 } },
-		{ faction = "imperial", buildingIds = { 1946231, 1946298, 1946365, 1946432, 1946499, 1946566, 1946633, 1946700, 1946767, 1946834, 1946901 } },
-		{ faction = "rebel",    buildingIds = { 1946968, 1947035, 1947102, 1947169, 1947236, 1947303, 1947370, 1947437, 1947504, 1947571, 1947638 } }
+		{ faction = "neutral", buildingIds = { 1945494, 1945561, 1945628, 1945695, 1945762, 1945829, 1945896, 1945963, 1946030, 1946097, 1946164, 4335861, 4335928, 4335995, 4336062, 4336129 } },
+		{ faction = "imperial", buildingIds = { 1946231, 1946298, 1946365, 1946432, 1946499, 1946566, 1946633, 1946700, 1946767, 1946834, 1946901, 4336196, 4336263, 4336330, 4336397, 4336464 } },
+		{ faction = "rebel", buildingIds = { 1946968, 1947035, 1947102, 1947169, 1947236, 1947303, 1947370, 1947437, 1947504, 1947571, 1947638, 4336531, 4336598, 4336665, 4336732, 4336799 } }
 	},
 
 	escapePoints = {
-		{ faction = "neutral", planet = "tatooine", x = -5842, y = -6191 },
-		{ faction = "imperial", planet = "naboo", x = 2445, y = -3913 },
+		{ faction = "neutral", planet = "chandrila", x = 164, y = -2937 },
+		{ faction = "imperial", planet = "lok", x = -1933, y = -3209 },  --x = -1933.0, z = 12, y = -3209.0
 		{ faction = "rebel", planet = "corellia", x = -6460, y = 5972 },
 	},
 
@@ -51,7 +51,7 @@ function CorellianCorvette:initialize()
 		for j = 1, #building.buildingIds, 1 do
 			local pCorvette = getSceneObject(building.buildingIds[j])
 			if pCorvette == nil or not SceneObject(pCorvette):isBuildingObject() then
-				-- building not in snapshot, skip
+				printLuaError("CorellianCorvette:initialize tried using a corvette id that was nil or not a building: " .. building.buildingIds[j])
 			else
 				local corvetteID = SceneObject(pCorvette):getObjectID()
 				deleteData("corvetteActive:" .. corvetteID)
@@ -418,8 +418,7 @@ function CorellianCorvette:setupBrokenDroid(pDroid)
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "repairDroidDestinationReached", pDroid)
 	SceneObject(pDroid):setContainerComponent("corvetteBrokenDroidContainerComponent")
 
-	AiAgent(pDroid):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
-	AiAgent(pDroid):setFollowState(4) -- Patrolling
+	AiAgent(pDroid):setMovementState(AI_PATROLLING)
 
 	writeData(corvetteID .. ":electricTrapEnabled", 1)
 end
@@ -541,8 +540,7 @@ function CorellianCorvette:setupPrisoner(pPrisoner)
 	end
 
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "prisonerDestinationReached", pPrisoner)
-	AiAgent(pPrisoner):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
-	AiAgent(pPrisoner):setFollowState(4) -- Patrolling
+	AiAgent(pPrisoner):setMovementState(AI_PATROLLING)
 
 	if (SceneObject(pPrisoner):getObjectName() == "prisoner") then
 		CreatureObject(pPrisoner):setOptionBit(CONVERSABLE)
@@ -893,6 +891,11 @@ function CorellianCorvette:transportPlayer(pPlayer)
 	end
 
 	local cellID = SceneObject(pCell):getObjectID()
+	local player = CreatureObject(pPlayer)
+
+	if (player:isRidingMount()) then
+		player:dismount()
+	end
 	SceneObject(pPlayer):switchZone("dungeon1", -42.9, 0, 0.1, cellID)
 end
 

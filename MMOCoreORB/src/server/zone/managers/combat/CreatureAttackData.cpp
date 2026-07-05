@@ -46,7 +46,6 @@ CreatureAttackData::CreatureAttackData(const CreatureAttackData& data) {
 	accuracyBonus = data.accuracyBonus;
 	speedMultiplier = data.speedMultiplier;
 	poolsToDamage = data.poolsToDamage;
-	forceCost = data.forceCost;
 	frsLightMinDamageModifier = data.frsLightMinDamageModifier;
 	frsLightMaxDamageModifier = data.frsLightMaxDamageModifier;
 	frsDarkMinDamageModifier = data.frsDarkMinDamageModifier;
@@ -98,7 +97,6 @@ void CreatureAttackData::fillFromBase() {
 	trails = baseCommand->getTrails();
 	combatSpam = baseCommand->getCombatSpam();
 	splashDamage = baseCommand->isSplashDamage();
-	forceCost = baseCommand->getForceCost();
 	frsLightMinDamageModifier = baseCommand->getFrsLightMinDamageModifier();
 	frsLightMaxDamageModifier = baseCommand->getFrsLightMaxDamageModifier();
 	frsDarkMinDamageModifier = baseCommand->getFrsDarkMinDamageModifier();
@@ -187,7 +185,7 @@ void CreatureAttackData::setVariable(const String& var, const String& val) {
 	}
 }
 
-String CreatureAttackData::getCommandName() const {
+const String& CreatureAttackData::getCommandName() const {
 	return baseCommand->getQueueCommandName();
 }
 
@@ -196,11 +194,11 @@ uint32 CreatureAttackData::getCommandCRC() const {
 }
 
 bool CreatureAttackData::changesDefenderPosture() const {
-	if(stateEffects == nullptr)
+	if (stateEffects == nullptr)
 		return false;
 
-	for(int i=0; i<stateEffects->size(); i++) {
-		switch(stateEffects->get(i).getEffectType()) {
+	for (int i = 0; i < stateEffects->size(); i++) {
+		switch (stateEffects->get(i).getEffectType()) {
 		case CommandEffect::KNOCKDOWN:
 		case CommandEffect::POSTUREUP:
 		case CommandEffect::POSTUREDOWN:
@@ -212,16 +210,17 @@ bool CreatureAttackData::changesDefenderPosture() const {
 }
 
 bool CreatureAttackData::changesAttackerPosture() const {
-	if(stateEffects == nullptr)
+	if (stateEffects == nullptr)
 		return false;
 
-	for(int i=0; i<stateEffects->size(); i++) {
-		switch(stateEffects->get(i).getEffectType()) {
+	for (int i = 0; i < stateEffects->size(); i++) {
+		switch (stateEffects->get(i).getEffectType()) {
 		case CommandEffect::ATTACKER_FORCE_STAND:
 		case CommandEffect::ATTACKER_FORCE_CROUCH:
 		case CommandEffect::ATTACKER_FORCE_PRONE:
 			return true;
 		}
 	}
+
 	return false;
 }

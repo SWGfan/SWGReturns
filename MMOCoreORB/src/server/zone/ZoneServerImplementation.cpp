@@ -21,6 +21,7 @@
 #include "server/zone/managers/loot/LootManager.h"
 #include "server/zone/managers/auction/AuctionManager.h"
 #include "server/zone/managers/mission/MissionManager.h"
+#include "server/zone/managers/creature/AiMap.h"
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
 #include "server/zone/managers/creature/DnaManager.h"
 #include "server/zone/managers/creature/PetManager.h"
@@ -85,7 +86,7 @@ ZoneServerImplementation::ZoneServerImplementation(ConfigManager* config) :
 	serverState = OFFLINE;
 	deleteNavAreas = false;
 
-	setLogging(true);
+	setLogLevel(Logger::INFO);
 }
 
 void ZoneServerImplementation::initializeTransientMembers() {
@@ -100,15 +101,15 @@ void ZoneServerImplementation::initializeTransientMembers() {
 
 void ZoneServerImplementation::loadGalaxyName() {
 	try {
-		String query = "SELECT name FROM galaxy WHERE galaxy_id = " + String::valueOf(galaxyID);
+		const String query = "SELECT name FROM galaxy WHERE galaxy_id = " + String::valueOf(galaxyID);
 
-		Reference<ResultSet*> result = ServerDatabase::instance()->executeQuery(query);
+		UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
 
 		if (result->next())
 			galaxyName = result->getString(0);
 
-	} catch (DatabaseException& e) {
-		info(e.getMessage());
+	} catch (const DatabaseException& e) {
+		fatal(e.getMessage());
 	}
 
 	setLoggingName("ZoneServer " + galaxyName);
@@ -138,6 +139,8 @@ void ZoneServerImplementation::initialize() {
 
 	creatureTemplateManager = CreatureTemplateManager::instance();
 	creatureTemplateManager->loadTemplates();
+
+	AiMap::instance()->loadTemplates();
 
 	dnaManager = DnaManager::instance();
 	dnaManager->loadSampleData();
@@ -288,8 +291,8 @@ void ZoneServerImplementation::stop() {
 	shutdown();
 }
 
-void ZoneServerImplementation::timedShutdown(int minutes) {
-	Reference<Task*> task = new ShutdownTask(_this.getReferenceUnsafeStaticCast(), minutes);
+void ZoneServerImplementation::timedShutdown(int minutes, int flags) {
+	Reference<Task*> task = new ShutdownTask(_this.getReferenceUnsafeStaticCast(), minutes, flags);
 
 	if (minutes <= 0) {
 		task->execute();
@@ -315,7 +318,8 @@ void ZoneServerImplementation::shutdown() {
 
 		if (zone != nullptr) {
 			zone->stopManagers();
-			//info("zone references " + String::valueOf(zone->getReferenceCount()), true);
+
+			debug() << "zone references " << zone->getReferenceCount();
 		}
 	}
 
@@ -442,9 +446,9 @@ ZoneClientSession* ZoneServerImplementation::createConnection(Socket* sock, Sock
 	//client->deploy("ZoneClientSession " + addr.getFullIPAddress());
 	//client->deploy();
 
-	String address = session->getAddress().getFullIPAddress();
+	const auto& address = session->getAddress();
 
-	//info("client connected from \'" + address + "\'");
+	debug() << "client connected from \'" << address << "\'";
 
 	return client;
 }
@@ -475,15 +479,20 @@ void ZoneServerImplementation::processMessage(Message* message) {
 
 	auto client = zoneHandler->getClientSession(message->getClient());
 
+	// move generateMessageTask to the client task at some point
 	Task* task = zonePacketHandler->generateMessageTask(client, message);
 
 	if (task != nullptr) {
-		auto taskManager = Core::getTaskManager();
-
-		if (taskManager) {
-			taskManager->executeTask(task);
+		if (client != nullptr) {
+			client->executeOrderedTask(task);
 		} else {
-			delete task;
+			auto taskManager = Core::getTaskManager();
+
+			if (taskManager) {
+				taskManager->executeTask(task);
+			} else {
+				delete task;
+			}
 		}
 	}
 
@@ -519,7 +528,7 @@ Reference<SceneObject*> ZoneServerImplementation::getObject(uint64 oid, bool doL
 		}
 
 		//unlock(doLock);
-	} catch (Exception& e) {
+	} catch (const Exception& e) {
 		//unlock(doLock);
 		error(e.getMessage());
 		e.printStackTrace();
@@ -764,7 +773,7 @@ void ZoneServerImplementation::setServerStateShuttingDown() {
 	info(msg, true);
 }
 
-String ZoneServerImplementation::getLoginMessage() {
+String ZoneServerImplementation::getLoginMessage() const {
 	return loginMessage;
 }
 
@@ -789,8 +798,8 @@ void ZoneServerImplementation::loadLoginMessage() {
 		reader = nullptr;
 	}
 
-	//loginMessage += "\nLatest Commits:\n";
-	//loginMessage += ConfigManager::instance()->getRevision();
+	loginMessage += "\nLatest Commits:\n";
+	loginMessage += ConfigManager::instance()->getRevision();
 
 	delete reader;
 	delete file;

@@ -17,13 +17,14 @@
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/packets/object/SpatialChat.h"
 #include "server/zone/objects/tangible/tasks/VendorReturnToPositionTask.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 VendorDataComponent::VendorDataComponent() : AuctionTerminalDataComponent(), adBarkingMutex() {
 	ownerId = 0;
 	auctionMan = nullptr;
 	initialized = false;
 	vendorSearchEnabled = false;
-	disabled = true;
+	disabled = false;
 	registered = false;
 	maintAmount = 0;
 	awardUsageXP = 0;
@@ -149,28 +150,6 @@ void VendorDataComponent::runVendorUpdate() {
 		vendor->setMaxCondition(1000, true);
 	}
 
-	// Aprox 24 hours of maint warnings.
-	if (maintAmount < LOWWARNING && maintAmount > LOWWARNING * -1) {
-		ManagedReference<ChatManager*> cman = strongParent->getZoneServer()->getChatManager();
-
-		String sender = strongParent->getDisplayedName();
-		UnicodeString subject("@auction:vendor_status_subject");
-		StringBuffer body;
-		
-		if (maintAmount > 0){
-			body << strongParent->getDisplayedName() << " is running low on maintenance. There are currently only " << maintAmount << " credits available. ";
-		} else {
-			body << strongParent->getDisplayedName() << " is disabled, because it ran out of credits. The maintenance is overdrawn by " << abs(maintAmount) << " credits. ";
-			body << "You will only receive this warning for approximately 24 hours. ";
-		}
-		
-		body << "The maintenance rate is " << getMaintenanceRate() << " credits / hour. You can check the status of all your vendors by using the command: /tarkin aboutme\n\n";
-		body << "Vendor Location: " << int(vendor->getWorldPositionX()) << ", " << int(vendor->getWorldPositionY()) << " " << strongParent->getZone()->getZoneName();
-		
-		if (cman != nullptr)
-			cman->sendMail(sender, subject, body.toString(), owner->getFirstName());
-	}
-
 	if (isEmpty()) {
 		ManagedReference<ChatManager*> cman = strongParent->getZoneServer()->getChatManager();
 
@@ -221,7 +200,7 @@ void VendorDataComponent::runVendorUpdate() {
 	} else {
 
 		/// Award hourly XP
-		assert(vendor->isLockedByCurrentThread());
+		E3_ASSERT(vendor->isLockedByCurrentThread());
 
 		Locker locker(owner, vendor);
 		playerManager->awardExperience(owner, "merchant", 150 * hoursSinceLastUpdate, false);
@@ -252,7 +231,7 @@ float VendorDataComponent::getMaintenanceRate() {
 	}
 
 	// Additional 6 credits per hour to be registered on the map
-	if(registered)
+	if (registered)
 		maintRate += 6.f;
 
 	return maintRate;
@@ -299,13 +278,19 @@ void VendorDataComponent::handlePayMaintanence(int value) {
 	}
 
 	if(owner->getBankCredits() + owner->getCashCredits() >= value) {
-		maintAmount += value;
-
 		if(owner->getBankCredits() > value) {
+			TransactionLog trx(owner, strongParent, TrxCode::VENDORMAINTANENCE, value, false);
+			maintAmount += value;
 			owner->subtractBankCredits(value);
 		} else {
+			TransactionLog trxCash(owner, strongParent, TrxCode::VENDORMAINTANENCE, value - owner->getBankCredits(), true);
 			owner->subtractCashCredits(value - owner->getBankCredits());
+			maintAmount += value - owner->getBankCredits();
+
+			TransactionLog trxBank(owner, strongParent, TrxCode::VENDORMAINTANENCE, owner->getBankCredits(), false);
+			trxBank.groupWith(trxCash);
 			owner->subtractBankCredits(owner->getBankCredits());
+			maintAmount += owner->getBankCredits();
 		}
 
 		StringIdChatParameter message("@player_structure:vendor_maint_accepted");
@@ -359,8 +344,11 @@ void VendorDataComponent::handleWithdrawMaintanence(int value) {
 		return;
 	}
 
-	maintAmount -= value;
-	owner->addBankCredits(value, true);
+	{
+		TransactionLog trx(strongParent, owner, TrxCode::VENDORMAINTANENCE, value, true);
+		maintAmount -= value;
+		owner->addBankCredits(value, true);
+	}
 
 	StringIdChatParameter message("@player_structure:vendor_withdraw"); // You successfully withdraw %DI credits from the maintenance pool.
 	message.setDI(value);

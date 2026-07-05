@@ -44,10 +44,12 @@
 object_building_player_city_cityhall_corellia = object_building_player_city_shared_cityhall_corellia:new {
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"chandrila", "corellia", "coruscant", "dantooine", "dathomir", "endor", "geonosis", "hoth", "hutta", "jakku", "kaas", "kashyyyk", "korriban", "lok", "mandalore", "mustafar", "naboo", "rori", "taanab", "talus", "tatooine", "yavin4"},
+	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir"},
+	zoneComponent = "CityHallZoneComponent",
+	cityRankRequired = 0,
 	uniqueStructure = true,
-	cityMaintenanceBase = 35000,
-	cityMaintenanceRate = 25000,
+	cityMaintenanceBase = 12500,
+	cityMaintenanceRate = 8000,
 	abilityRequired = "place_cityhall",
 	skillMods = {
 		{"private_buff_mind", 100},

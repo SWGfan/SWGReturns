@@ -114,7 +114,7 @@ RecastTileBuilder::RecastTileBuilder(float waterTableHeight, float x, float y, c
 }
 
 RecastTileBuilder::~RecastTileBuilder() {
-	m_geom = nullptr;
+	m_geom = NULL;
 	cleanup();
 	delete m_ctx;
 }
@@ -494,12 +494,12 @@ unsigned char* RecastTileBuilder::buildTileMesh(const int tx, const int ty, int&
 		params.detailVertsCount = m_dmesh->nverts;
 		params.detailTris = m_dmesh->tris;
 		params.detailTriCount = m_dmesh->ntris;
-		params.offMeshConVerts = nullptr;//m_geom->getOffMeshConnectionVerts();
-		params.offMeshConRad = nullptr;//m_geom->getOffMeshConnectionRads();
-		params.offMeshConDir = nullptr;//m_geom->getOffMeshConnectionDirs();
-		params.offMeshConAreas = nullptr;//m_geom->getOffMeshConnectionAreas();
-		params.offMeshConFlags = nullptr;//m_geom->getOffMeshConnectionFlags();
-		params.offMeshConUserID = nullptr;//m_geom->getOffMeshConnectionId();
+		params.offMeshConVerts = NULL;//m_geom->getOffMeshConnectionVerts();
+		params.offMeshConRad = NULL;//m_geom->getOffMeshConnectionRads();
+		params.offMeshConDir = NULL;//m_geom->getOffMeshConnectionDirs();
+		params.offMeshConAreas = NULL;//m_geom->getOffMeshConnectionAreas();
+		params.offMeshConFlags = NULL;//m_geom->getOffMeshConnectionFlags();
+		params.offMeshConUserID = NULL;//m_geom->getOffMeshConnectionId();
 		params.offMeshConCount = 0;//m_geom->getOffMeshConnectionCount();
 		params.walkableHeight = settings.m_agentHeight;
 		params.walkableRadius = settings.m_agentRadius;

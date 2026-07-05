@@ -32,7 +32,7 @@ DestroyStructureSession::~DestroyStructureSession() {
 
 bool DestroyStructureSession::isDestroyCode(unsigned int code) {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -47,7 +47,7 @@ bool DestroyStructureSession::isDestroyCode(unsigned int code) {
 
 int DestroyStructureSession::initializeSession() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -61,7 +61,7 @@ int DestroyStructureSession::initializeSession() {
 
 int DestroyStructureSession::sendDestroyCode() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -75,7 +75,7 @@ int DestroyStructureSession::sendDestroyCode() {
 
 int DestroyStructureSession::destroyStructure() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -89,7 +89,7 @@ int DestroyStructureSession::destroyStructure() {
 
 int DestroyStructureSession::cancelSession() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -103,7 +103,7 @@ int DestroyStructureSession::cancelSession() {
 
 int DestroyStructureSession::clearSession() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -117,7 +117,7 @@ int DestroyStructureSession::clearSession() {
 
 StructureObject* DestroyStructureSession::getStructureObject() {
 	DestroyStructureSessionImplementation* _implementation = static_cast<DestroyStructureSessionImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -162,7 +162,7 @@ void DestroyStructureSessionImplementation::finalize() {
 void DestroyStructureSessionImplementation::_initializeImplementation() {
 	_setClassHelper(DestroyStructureSessionHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -398,7 +398,7 @@ void DestroyStructureSessionAdapter::invokeMethod(uint32 methid, DistributedMeth
 		{
 			
 			DistributedObject* _m_res = getStructureObject();
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:

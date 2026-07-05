@@ -16,7 +16,7 @@
  *	CraftingStationStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2544907394,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINPUTHOPPER__CREATUREOBJECT_,RPC_ISCRAFTINGSTATION__,RPC_GETCOMPLEXITYLEVEL__,RPC_GETSTATIONTYPE__,RPC_SETCOMPLEXITYLEVEL__INT_,RPC_FINDCRAFTINGTOOL__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_SETEFFECTIVENESS__FLOAT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2544907394,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINPUTHOPPER__CREATUREOBJECT_,RPC_ISCRAFTINGSTATION__,RPC_GETCOMPLEXITYLEVEL__,RPC_GETSTATIONTYPE__,RPC_SETCOMPLEXITYLEVEL__INT_,RPC_FINDCRAFTINGTOOL__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_SETEFFECTIVENESS__FLOAT_};
 
 CraftingStation::CraftingStation() : ToolTangibleObject(DummyConstructorParameter::instance()) {
 	CraftingStationImplementation* _implementation = new CraftingStationImplementation();
@@ -36,7 +36,7 @@ CraftingStation::~CraftingStation() {
 
 void CraftingStation::initializeTransientMembers() {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -50,7 +50,7 @@ void CraftingStation::initializeTransientMembers() {
 
 void CraftingStation::loadTemplateData(SharedObjectTemplate* templateData) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -58,9 +58,23 @@ void CraftingStation::loadTemplateData(SharedObjectTemplate* templateData) {
 	}
 }
 
+void CraftingStation::notifyLoadFromDatabase() {
+	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_NOTIFYLOADFROMDATABASE__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->notifyLoadFromDatabase();
+	}
+}
+
 void CraftingStation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -70,7 +84,7 @@ void CraftingStation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, C
 
 int CraftingStation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -86,7 +100,7 @@ int CraftingStation::handleObjectMenuSelect(CreatureObject* player, byte selecte
 
 void CraftingStation::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -96,7 +110,7 @@ void CraftingStation::fillAttributeList(AttributeListMessage* msg, CreatureObjec
 
 void CraftingStation::sendInputHopper(CreatureObject* player) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -111,7 +125,7 @@ void CraftingStation::sendInputHopper(CreatureObject* player) {
 
 void CraftingStation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
@@ -121,7 +135,7 @@ void CraftingStation::updateCraftingValues(CraftingValues* values, bool firstUpd
 
 bool CraftingStation::isCraftingStation() {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -135,7 +149,7 @@ bool CraftingStation::isCraftingStation() {
 
 int CraftingStation::getComplexityLevel() {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -149,7 +163,7 @@ int CraftingStation::getComplexityLevel() {
 
 int CraftingStation::getStationType() {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -163,7 +177,7 @@ int CraftingStation::getStationType() {
 
 void CraftingStation::setComplexityLevel(int level) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -178,7 +192,7 @@ void CraftingStation::setComplexityLevel(int level) {
 
 SceneObject* CraftingStation::findCraftingTool(CreatureObject* player) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -193,7 +207,7 @@ SceneObject* CraftingStation::findCraftingTool(CreatureObject* player) {
 
 void CraftingStation::createChildObjects() {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -208,7 +222,7 @@ void CraftingStation::createChildObjects() {
 
 void CraftingStation::setEffectiveness(float newValue) {
 	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -254,7 +268,7 @@ void CraftingStationImplementation::finalize() {
 void CraftingStationImplementation::_initializeImplementation() {
 	_setClassHelper(CraftingStationHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -469,6 +483,13 @@ void CraftingStationAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 		}
 		break;
+	case RPC_NOTIFYLOADFROMDATABASE__:
+		{
+			
+			notifyLoadFromDatabase();
+			
+		}
+		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -520,7 +541,7 @@ void CraftingStationAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
 			
 			DistributedObject* _m_res = findCraftingTool(player);
-			resp->insertLong(_m_res == nullptr ? 0 : _m_res->_getObjectID());
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	case RPC_CREATECHILDOBJECTS__:
@@ -545,6 +566,10 @@ void CraftingStationAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 
 void CraftingStationAdapter::initializeTransientMembers() {
 	(static_cast<CraftingStation*>(stub))->initializeTransientMembers();
+}
+
+void CraftingStationAdapter::notifyLoadFromDatabase() {
+	(static_cast<CraftingStation*>(stub))->notifyLoadFromDatabase();
 }
 
 int CraftingStationAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

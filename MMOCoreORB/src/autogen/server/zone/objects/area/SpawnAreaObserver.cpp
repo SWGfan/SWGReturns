@@ -4,8 +4,6 @@
 
 #include "SpawnAreaObserver.h"
 
-#include "server/zone/objects/area/SpawnArea.h"
-
 /*
  *	SpawnAreaObserverStub
  */
@@ -30,7 +28,7 @@ SpawnAreaObserver::~SpawnAreaObserver() {
 
 int SpawnAreaObserver::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
 	SpawnAreaObserverImplementation* _implementation = static_cast<SpawnAreaObserverImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == nullptr)) {
+	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
@@ -79,7 +77,7 @@ void SpawnAreaObserverImplementation::finalize() {
 void SpawnAreaObserverImplementation::_initializeImplementation() {
 	_setClassHelper(SpawnAreaObserverHelper::instance());
 
-	_this = nullptr;
+	_this = NULL;
 
 	_serializationHelperMethod();
 }
@@ -212,7 +210,7 @@ int SpawnAreaObserverImplementation::notifyObserverEvent(unsigned int eventType,
 	// server/zone/objects/area/SpawnAreaObserver.idl():  		SpawnArea area = spawnArea;
 	ManagedReference<SpawnArea* > area = spawnArea;
 	// server/zone/objects/area/SpawnAreaObserver.idl():  			return area.notifyObserverEvent(eventType, observable, arg1, arg2);
-	if (area == nullptr)	// server/zone/objects/area/SpawnAreaObserver.idl():  			return 1;
+	if (!area)	// server/zone/objects/area/SpawnAreaObserver.idl():  			return 1;
 	return 1;
 
 	else 	// server/zone/objects/area/SpawnAreaObserver.idl():  			return area.notifyObserverEvent(eventType, observable, arg1, arg2);

@@ -31,6 +31,8 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 		closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 	}
 
+	bool disableGroupVis = ConfigManager::instance()->getBool("Core3.PlayerManager.DisableGroupVisibility", false);
+
 	for (int i = 0; i < closeObjects.size(); ++i) {
 		SceneObject* obj = static_cast<SceneObject*>(closeObjects.get(i));
 
@@ -48,25 +50,29 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 		if (c->isDead() || c->isIncapacitated() || (c->isPlayerCreature() && c->getPlayerObject()->hasGodMode()))
 			continue;
 
+		if (disableGroupVis && creature->isGrouped()) {
+			ManagedReference<GroupObject*> group = creature->getGroup();
+
+			if (group != nullptr && group->hasMember(c))
+				continue;
+		}
+
 		if (!creature->isInRange(c, 32) || !CollisionManager::checkLineOfSight(creature, c))
 			continue;
-
+		if (creature->hasSkill("force_title_jedi_rank_03")) {
 		if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
 			visibilityIncrease += 0.5;
-			creature->playEffect("clienteffect/frs_dark_envy.cef");
 			//info(c->getCreatureName().toString() + " generating a 0.5 visibility modifier", true);
 		} else {
 			if (creature->getFaction() == c->getFaction()) {
 				visibilityIncrease += 0.25;
-				creature->playEffect("clienteffect/frs_dark_envy.cef");
 				//info(c->getCreatureName().toString() + " generating a 0.25 visibility modifier", true);
 			} else {
 				visibilityIncrease += 1;
-				creature->playEffect("clienteffect/frs_dark_envy.cef");
 				//info( c->getCreatureName().toString() + " generating a 1.0 visibility modifier", true);
 			}
 		}
-
+		}
 	}
 
 	//info("Increasing visibility for player " + String::valueOf(creature->getObjectID()) + " with " + String::valueOf(visibilityIncrease), true);

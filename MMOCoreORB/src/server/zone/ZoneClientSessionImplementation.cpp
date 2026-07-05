@@ -19,7 +19,8 @@ ZoneClientSessionImplementation::ZoneClientSessionImplementation(BaseClientProxy
 	ipAddress = session != nullptr ? session->getIPAddress() : "";
 
 	player = nullptr;
-	sessionID = 0;
+
+	pendingTasks = new PendingTasksMap();
 
 	accountID = 0;
 
@@ -33,10 +34,60 @@ ZoneClientSessionImplementation::ZoneClientSessionImplementation(BaseClientProxy
 	bannedCharacters.setNullValue(0);
 	bannedCharacters.setAllowDuplicateInsertPlan();
 
+	setupLogging();
+
 	//session->setDebugLogLevel();
 }
 
+void ZoneClientSessionImplementation::setupLogging() {
+	auto clientLogLevel = ConfigManager::instance()->getInt("Core3.ZoneServer.ClientLogLevel", -1, accountID);
+
+	if (clientLogLevel < 0) {
+		return;
+	}
+
+	if (session == nullptr) {
+		error() << "setupLogging failed: session == nullptr";
+		return;
+	}
+
+	// Files should end up in: log/clients/YYYY-MM-DD/HH/{ip}/BaseClientProxy-{timeSecs}-{ip}-{port}.log
+	auto addr = session->ServiceClient::getAddress();
+	Time now;
+	StringBuffer logFilename;
+	logFilename << "log/clients/"
+		<< now.getFormattedTime("%Y-%m-%d/%H")
+		<< "/" << session->getIPAddress()
+	    << "/BaseClientProxy-" << now.getTime() << "-" << addr.getIPAddress() << "-" << addr.getPort() << ".log";
+
+	session->setFileLogger(logFilename.toString(), true, ConfigManager::instance()->getRotateLogAtStart());
+	session->setLogSynchronized(true);
+	session->setLogToConsole(false);
+	session->setGlobalLogging(false);
+	session->setLogLevel(static_cast<Logger::LogLevel>(clientLogLevel));
+
+	if (accountID == 0) {
+		session->reportStats("Client connected");
+	} else {
+		session->info() << "AccountID=" << accountID << "; ClientLogLevel=" << clientLogLevel;
+		session->reportStats("account_id=" + String::valueOf(accountID));
+	}
+
+}
+
+void ZoneClientSessionImplementation::setAccountID(unsigned int newAccountID) {
+	accountID = newAccountID;
+
+	if (session == nullptr) {
+		error() << "setAccountID(" << newAccountID << ") session == nullptr";
+		return;
+	}
+
+	setupLogging();
+}
+
 void ZoneClientSessionImplementation::disconnect() {
+	session->reportStats("ZoneClientSessionImplementation::disconnect()");
 	session->disconnect();
 }
 
@@ -127,6 +178,19 @@ void ZoneClientSessionImplementation::setPlayer(CreatureObject* playerCreature) 
 		}
 	}
 
+	if (session != nullptr) {
+		if (playerCreature != nullptr) {
+			session->info() << "Player " << playerCreature->getObjectID() << " logged in.";
+			session->reportStats("login character_oid=" + String::valueOf(playerCreature->getObjectID()));
+		} else if (player != nullptr) {
+			session->info() << "Player " << player->getObjectID() << " logged out.";
+			session->reportStats("logout character_oid=" + String::valueOf(player->getObjectID()));
+		} else {
+			session->info() << "Cleared player from session.";
+			session->reportStats("Player cleared from session");
+		}
+	}
+
 	this->player = playerCreature;
 }
 
@@ -180,11 +244,11 @@ void ZoneClientSessionImplementation::error(const String& msg) {
 	session->error(msg);
 }
 
-String ZoneClientSessionImplementation::getAddress() {
-	return session->getAddress().getFullIPAddress();
+String ZoneClientSessionImplementation::getAddress() const {
+	return session->getAddress();
 }
 
-String ZoneClientSessionImplementation::getIPAddress() {
+String ZoneClientSessionImplementation::getIPAddress() const {
 	return ipAddress.isEmpty() ? "0.0.0.0" : ipAddress;
 }
 
@@ -192,7 +256,7 @@ BaseClientProxy* ZoneClientSessionImplementation::getSession() {
 	return session;
 }
 
-int ZoneClientSessionImplementation::getCharacterCount(int galaxyId) {
+int ZoneClientSessionImplementation::getCharacterCount(int galaxyId) const {
 	int count = 0;
 
 	for (int i = 0; i < characters.size(); ++i) {
@@ -208,28 +272,12 @@ int ZoneClientSessionImplementation::getCharacterCount(int galaxyId) {
 	return count;
 }
 
-bool ZoneClientSessionImplementation::hasCharacter(uint64 cid, unsigned int galaxyId) {
-/*	int lowerBound = characters.lowerBound(VectorMapEntry<uint32, uint64>(galaxyId));
-
-	if (lowerBound < 0)
-		return false;
-
-	for (int i = lowerBound; i < characters.size(); ++i) {
-		if (characters.elementAt(i).getKey() != galaxyId)
-			break;
-
-		if (characters.elementAt(i).getValue() == cid)
-			return true;
-	}
-
-	*/
-
+bool ZoneClientSessionImplementation::hasCharacter(uint64 cid, unsigned int galaxyId) const {
 	for (int i = 0; i < characters.size(); ++i) {
 		if (characters.getKey(i) == galaxyId &&
 			characters.get(i) == cid)
 			return true;
 	}
-
 
 	return false;
 }
