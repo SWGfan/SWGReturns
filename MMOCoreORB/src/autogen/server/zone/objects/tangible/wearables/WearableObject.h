@@ -70,7 +70,7 @@ namespace wearables {
 
 class WearableObject : public TangibleObject {
 public:
-	static const int MAXSOCKETS = 4;
+	static const int MAXSOCKETS = 8;
 
 	WearableObject();
 
@@ -153,7 +153,7 @@ protected:
 	int modsNotInSockets;
 
 public:
-	static const int MAXSOCKETS = 4;
+	static const int MAXSOCKETS = 8;
 
 protected:
 	VectorMap<String, int> wearableSkillMods;

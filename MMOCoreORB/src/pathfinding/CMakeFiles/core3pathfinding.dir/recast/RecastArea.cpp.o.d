@@ -1,5 +1,5 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastArea.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/RecastArea.cpp \
  /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
@@ -82,10 +82,10 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/stdio2.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/Recast.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastAlloc.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/Recast.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/RecastAlloc.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/RecastAssert.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/RecastAssert.h

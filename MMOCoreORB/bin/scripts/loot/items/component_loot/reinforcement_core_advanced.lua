@@ -6,8 +6,8 @@ reinforcement_core_advanced = {
 	customObjectName = "",
 	directObjectTemplate = "object/tangible/component/weapon/reinforcement_core_advanced.iff",
 	craftingValues = {
-		{"mindamage", 10,50,0},
-		{"maxdamage", 10,50,0},
+		{"mindamage",320,600,0},
+		{"maxdamage",600,1200,0},
 		{"attackspeed",-0.2,-0.7,1},
 		{"woundchance",3,15,1},
 		{"hitpoints",20,100,0},

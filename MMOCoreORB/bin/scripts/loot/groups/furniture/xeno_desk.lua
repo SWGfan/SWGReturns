@@ -3,7 +3,7 @@ xeno_desk = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "xeno_desk", weight = 10000000}
+		{groupTemplate = "xeno_desk", weight = 10000000}
 	}
 }
 

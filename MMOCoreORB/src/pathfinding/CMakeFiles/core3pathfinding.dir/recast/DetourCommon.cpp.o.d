@@ -1,8 +1,8 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourCommon.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
  /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \

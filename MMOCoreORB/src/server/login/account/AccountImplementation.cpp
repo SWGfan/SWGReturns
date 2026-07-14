@@ -5,6 +5,7 @@
 
 #include "../objects.h"
 #include "server/login/account/Account.h"
+#include "server/db/AccountDatabase.h"
 #include "../objects/GalaxyBanEntry.h"
 
 AccountImplementation::AccountImplementation() {
@@ -53,7 +54,7 @@ void AccountImplementation::updateAccount() {
 			<< "IFNULL((SELECT b.issuer_id FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0) "
 			<< "FROM accounts a WHERE a.account_id = '" << accountID << "' LIMIT 1;";
 
-	UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
+	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
 
 	if (result->next()) {
 		setActive(result->getBoolean(0));
@@ -73,7 +74,7 @@ void AccountImplementation::updateGalaxyBans() {
 	StringBuffer query;
 	query << "SELECT * FROM galaxy_bans as gb WHERE account_id=" << getAccountID() << " and expires > UNIX_TIMESTAMP()";
 
-	UniqueReference<ResultSet*> results(ServerDatabase::instance()->executeQuery(query));
+	UniqueReference<ResultSet*> results(AccountDatabase::instance()->executeQuery(query));
 
 	galaxyBans.removeAll();
 

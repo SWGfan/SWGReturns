@@ -4,7 +4,7 @@ maximumRevision = 2572;
 
 function updateObject()
 
-if (className == "bla") 
+if (className == "bla") then 
 --deleteVariable("varName")
 --changeVariableName("oldName", "newName)
 end

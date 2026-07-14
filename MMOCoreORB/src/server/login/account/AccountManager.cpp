@@ -6,6 +6,7 @@
  */
 
 #include "server/login/account/Account.h"
+#include "server/db/AccountDatabase.h"
 #include "AccountManager.h"
 #include "server/login/LoginClient.h"
 #include "server/login/LoginServer.h"
@@ -37,7 +38,7 @@ AccountManager::AccountManager(LoginServer* loginserv) : Logger("AccountManager"
 		try {
 			String query = "TRUNCATE TABLE characters";
 
-			UniqueReference<ResultSet*> res(ServerDatabase::instance()->executeQuery(query));
+			UniqueReference<ResultSet*> res(AccountDatabase::instance()->executeQuery(query));
 
 			info("characters table truncated", true);
 		} catch (const Exception& e) {
@@ -120,8 +121,8 @@ void AccountManager::loginApprovedAccount(LoginClient* client, ManagedReference<
 	logQuery << "INSERT INTO account_log (account_id, ip_address, timestamp) VALUES (" << accountID << ", '" << ip << "', NOW());";
 
 	try {
-		ServerDatabase::instance()->executeStatement(sessionQuery);
-		ServerDatabase::instance()->executeStatement(logQuery);
+		AccountDatabase::instance()->executeStatement(sessionQuery);
+		AccountDatabase::instance()->executeStatement(logQuery);
 	} catch (const DatabaseException& e) {
 		client->error() << e.getMessage();
 	}
@@ -240,7 +241,7 @@ void AccountManager::updateHash(const String& username, const String& password) 
 	query << "WHERE username = '" << username << "';";
 
 	try {
-		ServerDatabase::instance()->executeStatement(query);
+		AccountDatabase::instance()->executeStatement(query);
 	} catch (const DatabaseException& e) {
 		error(e.getMessage());
 	}
@@ -259,7 +260,7 @@ Reference<Account*> AccountManager::createAccount(const String& username, const 
 	query << stationID << ",";
 	query << "'" << salt << "');";
 
-	UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query.toString()));
+	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query.toString()));
 
 	if (result == nullptr)
 		return nullptr;
@@ -298,7 +299,7 @@ Reference<Account*> AccountManager::getAccount(uint32 accountID, bool forceSqlUp
 	StringBuffer query;
 	query << "SELECT a.active, a.username, a.password, a.salt, a.account_id, a.station_id, UNIX_TIMESTAMP(a.created), a.admin_level FROM accounts a WHERE a.account_id = '" << accountID << "' LIMIT 1;";
 
-	UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query.toString()));
+	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query.toString()));
 
 	if (result->next()) {
 		Locker locker(accObj);
@@ -342,7 +343,7 @@ Reference<Account*> AccountManager::getAccount(String query, String& passwordSto
 
 	Reference<Account*> account;
 
-	UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
+	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
 
 	if (result->next()) {
 		static uint64 databaseID = ObjectDatabaseManager::instance()->getDatabaseID("accounts");

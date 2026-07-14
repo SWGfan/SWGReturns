@@ -29,8 +29,11 @@ function RareLewtBoxMenuComponent:handleObjectMenuSelect(pSceneObject, pPlayer, 
     local LewtChest = getContainerObjectByTemplate(inventory, "object/tangible/loot/lewt_chests/lewt_chest_rare.iff", false)
     
     if (inventory ~= nil) then
-            createLoot(inventory, "janta_common", 350, true)
-            createLoot(inventory, "kunga_common", 400, true)
+            createLoot(inventory, "rarelootsystem", 350, true)
+            createLoot(inventory, "legendary_comp_group", 400, true)
+            createLoot(inventory, "boss_rare", 425, true)
+            createLoot(inventory, "resource_deed_loot", 450, true)
+            createLoot(inventory, "resource_crate_loot", 450, true)
         end
 
         CreatureObject(pPlayer):sendSystemMessage("Lewt Chest Opened.")

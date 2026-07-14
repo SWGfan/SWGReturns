@@ -62,7 +62,28 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_unstable_gen4
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff" },
+				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/aqualish_male.iff",
+				"object/creature/player/aqualish_female.iff",
+				"object/creature/player/bith_male.iff",
+				"object/creature/player/bith_female.iff",
+				"object/creature/player/chiss_male.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/devaronian_male.iff",
+				"object/creature/player/gotal_male.iff",
+				"object/creature/player/gran_male.iff",
+				"object/creature/player/hutt_male.iff",
+				"object/creature/player/hutt_female.iff",
+				"object/creature/player/ishi_tib_male.iff",
+				"object/creature/player/nautolan_male.iff",
+				"object/creature/player/nightsister_female.iff",
+				"object/creature/player/nikto_male.iff",
+				"object/creature/player/quarren_male.iff",
+				"object/creature/player/smc_female.iff",
+				"object/creature/player/talz_male.iff",
+				"object/creature/player/togruta_female.iff",
+				"object/creature/player/weequay_male.iff"
+},
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
   -- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
@@ -72,7 +93,7 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_unstable_gen4
   damageType = LIGHTSABER,
 
   -- NONE, LIGHT, MEDIUM, HEAVY
-  armorPiercing = LIGHT,
+  armorPiercing = HEAVY,
 
   -- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
   -- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -115,7 +136,7 @@ object_weapon_melee_polearm_crafted_saber_sword_lightsaber_polearm_unstable_gen4
   minDamage = 225,
   maxDamage = 305,
 
-  attackSpeed = 1.0,
+  attackSpeed = 5.1,
 
   woundsRatio = 37,
 

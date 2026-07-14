@@ -122,7 +122,7 @@ function PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
 	if (trialsCompleted == #padawanTrialQuests) then
 		JediTrials:unlockJediPadawan(pPlayer)
 		return
-	elseif (trialsCompleted == 7) then
+	elseif (trialsCompleted == #padawanTrialQuests - 1) then
 		local trialNum = self:getSaberCraftingTrialNumber()
 		self:startTrial(pPlayer, trialNum)
 	else
@@ -132,6 +132,12 @@ function PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
 			if not CreatureObject(pPlayer):hasScreenPlayState(1, trialState) and padawanTrialQuests[i].trialType ~= TRIAL_LIGHTSABER then
 				table.insert(incompleteTrials, i)
 			end
+		end
+
+		if (#incompleteTrials == 0) then
+			-- Only the lightsaber-craft trial remains; grant it rather than indexing an empty list.
+			self:startTrial(pPlayer, self:getSaberCraftingTrialNumber())
+			return
 		end
 
 		local rand = getRandomNumber(1, #incompleteTrials)

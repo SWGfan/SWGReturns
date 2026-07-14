@@ -227,8 +227,7 @@ int FactionManager::getRankDelegateRatioTo(int rank) {
 }
 
 int FactionManager::getFactionPointsCap(int rank) {
-	// No cap - limitless faction points
-	return 2147483647; // INT_MAX
+    return INT_MAX;
 }
 
 bool FactionManager::isFaction(const String& faction) {

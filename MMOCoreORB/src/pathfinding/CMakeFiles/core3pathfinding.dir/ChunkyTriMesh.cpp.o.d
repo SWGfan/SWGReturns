@@ -1,7 +1,7 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/ChunkyTriMesh.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/ChunkyTriMesh.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/ChunkyTriMesh.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/ChunkyTriMesh.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

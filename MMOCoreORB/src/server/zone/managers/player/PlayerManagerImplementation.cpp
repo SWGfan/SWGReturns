@@ -2248,6 +2248,30 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 
 	player->notifyObservers(ObserverEventType::XPAWARDED, player, xp);
 
+        // =====================================================
+        // PHASE719_JEDI_FRS_XP
+        // Award FRS XP from Jedi XP gains only.
+        // =====================================================
+
+        if (xp > 0 && xpType.beginsWith("jedi")) {
+
+                FrsManager* frsManager = server->getFrsManager();
+
+                if (frsManager != nullptr) {
+
+                        int frsXp = xp / 100;
+
+                        if (frsXp < 1)
+                                frsXp = 1;
+
+                        frsManager->adjustFrsExperience(player, frsXp, false);
+                }
+        }
+
+        // =====================================================
+
+
+
 	if (sendSystemMessage) {
 		if (xp > 0) {
 			StringIdChatParameter message("base_player","prose_grant_xp");
@@ -2868,14 +2892,22 @@ int PlayerManagerImplementation::healEnhance(CreatureObject* enhancer, CreatureO
 			if (BuffAttribute::isProtection(attribute))
 				value = buff->getSkillModifierValue(BuffAttribute::getProtectionString(attribute));
 
-			if (value > buffvalue)
-				return 0;
+			
+                        if (value > buffvalue)
+                                return 0;
 
-			buffdiff -= value;
+                        if (value == buffvalue) {
+                                return buffvalue;
+                        }
+
+                        patient->removeBuff(buffcrc);
+
+                        buffdiff -= value;
+
 		}
 	}
 
-	Reference<Buff*> buff = new Buff(patient, buffcrc, duration, BuffType::MEDICAL);
+	Reference<Buff*> buff = new Buff(patient, buffcrc, 86400, BuffType::MEDICAL);
 
 	Locker locker(buff);
 
@@ -2888,8 +2920,64 @@ int PlayerManagerImplementation::healEnhance(CreatureObject* enhancer, CreatureO
 		buff->setAttributeModifier(attribute, buffvalue);
 		buff->setFillAttributesOnBuff(true);
 	}
+        // =====================================================
+        // Returns Phase 6C
+        // =====================================================
 
-	patient->addBuff(buff);
+        buff->setSkillModifier("healing_ability",15);
+        buff->setSkillModifier("combat_healing_ability",15);
+        buff->setSkillModifier("combat_medic_effectiveness",20);
+
+        buff->setSkillModifier("bleeding_defense",35);
+        buff->setSkillModifier("disease_defense",35);
+        buff->setSkillModifier("poison_defense",35);
+
+        buff->setSkillModifier("blind_defense",25);
+        buff->setSkillModifier("dizzy_defense",25);
+        buff->setSkillModifier("knockdown_defense",25);
+        buff->setSkillModifier("stun_defense",25);
+
+        buff->setSkillModifier("melee_defense",5);
+        buff->setSkillModifier("ranged_defense",5);
+
+        buff->setSkillModifier("healing_wound_treatment",25);
+        buff->setSkillModifier("healing_injury_treatment",25);
+
+        buff->setSkillModifier("healing_wound_speed",20);
+        buff->setSkillModifier("healing_injury_speed",20);
+
+        buff->setSkillModifier("healing_range",15);
+        buff->setSkillModifier("healing_range_speed",15);
+
+
+
+	
+        // ==========================================
+        // Doctor QoL Improvements
+        // ==========================================
+
+        buff->setSkillModifier("healing_ability",10);
+        buff->setSkillModifier("combat_healing_ability",10);
+        buff->setSkillModifier("combat_medic_effectiveness",10);
+
+        buff->setSkillModifier("healing_wound_treatment",15);
+        buff->setSkillModifier("healing_injury_treatment",15);
+
+        buff->setSkillModifier("healing_wound_speed",10);
+        buff->setSkillModifier("healing_injury_speed",10);
+
+        buff->setSkillModifier("healing_range",10);
+        buff->setSkillModifier("healing_range_speed",10);
+
+        buff->setSkillModifier("bleeding_defense",15);
+        buff->setSkillModifier("disease_defense",15);
+        buff->setSkillModifier("poison_defense",15);
+
+        buff->setSkillModifier("melee_defense",5);
+        buff->setSkillModifier("ranged_defense",5);
+
+        patient->addBuff(buff);
+
 
 	enhancer->notifyObservers(ObserverEventType::ENHANCINGPERFORMED, patient, buffdiff);
 
@@ -3155,6 +3243,8 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 
 	entertainingSession->sendEntertainmentUpdate(creature, entertainerID, "entertained");
 	entertainingSession->addPatron(creature);
+	entertainingSession->activateEntertainerBuff(creature, PerformanceType::DANCE);
+	entertainingSession->removePatron(creature);
 
 	entertainer->notifyObservers(ObserverEventType::WASWATCHED, creature);
 
@@ -3285,6 +3375,8 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 
 	entertainingSession->sendEntertainmentUpdate(creature, entertainerID, "entertained");
 	entertainingSession->addPatron(creature);
+	entertainingSession->activateEntertainerBuff(creature, PerformanceType::MUSIC);
+	entertainingSession->removePatron(creature);
 
 	entertainer->notifyObservers(ObserverEventType::WASLISTENEDTO, creature);
 
@@ -3442,6 +3534,10 @@ void PlayerManagerImplementation::updatePermissionLevel(CreatureObject* targetPl
 				skillManager->awardSkill(skill, targetPlayer, false, true, true);
 			}
 		}
+
+		// admin_base grants the "admin" ability (god mode) as a side effect of awarding
+		// staff skills. God mode should default to off; staff opt in via /setGodMode self on.
+		skillManager->removeAbility(ghost, "admin", false);
 	}
 
 	updatePermissionName(targetPlayer, permissionLevel);

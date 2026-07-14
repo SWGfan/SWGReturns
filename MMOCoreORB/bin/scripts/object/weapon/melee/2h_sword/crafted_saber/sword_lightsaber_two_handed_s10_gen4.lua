@@ -62,17 +62,38 @@ object_weapon_melee_2h_sword_crafted_saber_sword_lightsaber_two_handed_s10_gen4 
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff" },
+				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/aqualish_male.iff",
+				"object/creature/player/aqualish_female.iff",
+				"object/creature/player/bith_male.iff",
+				"object/creature/player/bith_female.iff",
+				"object/creature/player/chiss_male.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/devaronian_male.iff",
+				"object/creature/player/gotal_male.iff",
+				"object/creature/player/gran_male.iff",
+				"object/creature/player/hutt_male.iff",
+				"object/creature/player/hutt_female.iff",
+				"object/creature/player/ishi_tib_male.iff",
+				"object/creature/player/nautolan_male.iff",
+				"object/creature/player/nightsister_female.iff",
+				"object/creature/player/nikto_male.iff",
+				"object/creature/player/quarren_male.iff",
+				"object/creature/player/smc_female.iff",
+				"object/creature/player/talz_male.iff",
+				"object/creature/player/togruta_female.iff",
+				"object/creature/player/weequay_male.iff"
+},
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK, 
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
 	attackType = MELEEATTACK,
 
-	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
+	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, LIGHTSABER
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = LIGHT,
+	armorPiercing = MEDIUM,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -132,9 +153,9 @@ object_weapon_melee_2h_sword_crafted_saber_sword_lightsaber_two_handed_s10_gen4 
 	experimentalWeights = {1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
 	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "forcecost", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 185, 265, 3, 25, 55, 0, 300, 0},
-	experimentalMax = {0, 0, 260, 370, 3, 50, 12, 0, 300, 0},
-	experimentalPrecision = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+	experimentalMin = {0, 0, 225, 305, 5.1, 25, 55, 95, 60, 45},
+	experimentalMax = {0, 0, 235, 325, 4.8, 50, 48, 65, 45, 40},
+	experimentalPrecision = {0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 

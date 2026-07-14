@@ -5,9 +5,16 @@ rarelootsystem  = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "rareloot1", weight = 6000000},
-		{itemTemplate = "rareloot2", weight = 3000000},
-		{itemTemplate = "rareloot3", weight = 1000000},
+		{groupTemplate = "lootcollectiontierthree", weight = 2000000},
+		{groupTemplate = "lootcollectiontierdiamond", weight = 1500000},
+		{groupTemplate = "legendary_comp_group", weight = 1250000},
+		{groupTemplate = "boss_rare", weight = 1000000},
+		{groupTemplate = "weapon_component_advanced", weight = 1000000},
+		{groupTemplate = "chemistry_component_advanced", weight = 1000000},
+		{groupTemplate = "resource_deed_loot", weight = 750000},
+		{groupTemplate = "resource_crate_loot", weight = 750000},
+		{groupTemplate = "armor_attachments", weight = 375000},
+		{groupTemplate = "clothing_attachments", weight = 375000},
 	}
 }
 

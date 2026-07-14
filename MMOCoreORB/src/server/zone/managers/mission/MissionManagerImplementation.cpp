@@ -2113,9 +2113,8 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 		return false;
 
 	auto targetGhost = creature->getPlayerObject();
-	float terminalVisibilityThreshold = VisibilityManager::instance()->getTerminalVisThreshold();
 
-	if (targetGhost == nullptr || targetGhost->getVisibility() < terminalVisibilityThreshold)
+	if (targetGhost == nullptr)
 		return false;
 
 	auto playerGhost = player->getPlayerObject();

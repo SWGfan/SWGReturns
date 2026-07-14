@@ -80,7 +80,7 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 	}
 
 	int woundHeal = ceil(performance->getHealMindWound() * (woundHealingSkill / 100.0f));
-	int shockHeal = ceil(performance->getHealShockWound() * ((playerShockHealingSkill + buildingShockHealingSkill) / 100.0f));
+	int shockHeal = ceil(performance->getHealShockWound() * 2.5f * ((playerShockHealingSkill + buildingShockHealingSkill) / 100.0f));
 
 	healWounds(creo, woundHeal * (flourishCount + 1), shockHeal * (flourishCount + 1));
 
@@ -627,7 +627,7 @@ bool EntertainingSessionImplementation::canHealBattleFatigue() {
 bool EntertainingSessionImplementation::canGiveEntertainBuff() {
 	ManagedReference<CreatureObject*> entertainer = this->entertainer.get();
 
-	return entertainer != nullptr && entertainer->getSkillMod("private_buff_mind") > 0;
+	return entertainer != nullptr;
 }
 
 void EntertainingSessionImplementation::addEntertainerFlourishBuff() {
@@ -727,7 +727,7 @@ void EntertainingSessionImplementation::addEntertainerBuffStrength(CreatureObjec
 	int buffStrength = getEntertainerBuffStrength(creature, performanceType);
 
 
-	float newBuffStrength = buffStrength + strength;
+	float newBuffStrength = buffStrength + (strength * 2.5f);       // Phase 6D.06b
 
 	float maxBuffStrength = 0.0f;	//cap based on enhancement skill
 
@@ -871,12 +871,8 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 		//Check if on Deny Service list
 		if (isInDenyServiceList(creature))
 			return;
-
-		ManagedReference<PlayerObject*> entPlayer = entertainer->getPlayerObject();
-		//Check if the patron is a valid buff target
-		//Whether it be passive(in the same group) or active (/setPerform target)
-		if ((!entertainer->isGrouped() || entertainer->getGroupID() != creature->getGroupID()) && entPlayer->getPerformanceBuffTarget() != creature->getObjectID())
-			return;
+			// The patron already selected this performer with /watch or /listen before
+			// activateEntertainerBuff is called, so treat that as a valid buff target.
 
 		if (creature->isIncapacitated() || creature->isDead()) {
 			return;
@@ -887,17 +883,9 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 
 		// Returns the Number of Minutes for the Buff Duration
 		float buffDuration = getEntertainerBuffDuration(creature, performanceType);
+			// Minimum duration check removed - buff always applies
 
-		if (buffDuration * 60 < 10.0f) { //10 sec minimum buff duration
-			return;
-		}
-
-		//1 minute minimum listen/watch time
-		int timeElapsed = time(0) - getEntertainerBuffStartTime(creature, performanceType);
-		if (timeElapsed < 60) {
-			creature->sendSystemMessage("You must listen or watch a performer for at least 1 minute in order to gain the entertainer buffs.");
-			return;
-		}
+			// Minimum listen time removed - buff applies instantly
 
 		// Returns a % of base stat
 		int campModTemp = 100;
@@ -905,23 +893,112 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 
 		float buffStrength = getEntertainerBuffStrength(creature, performanceType) / 100.0f;
 
-		if (buffStrength == 0)
-			return;
+		// Buff always applies with flat 12000 in activate(), no strength gate needed
 
 		ManagedReference<PerformanceBuff*> oldBuff = nullptr;
 		switch (performanceType) {
 		case PerformanceType::MUSIC:
 		{
-			uint32 focusBuffCRC = STRING_HASHCODE("medical_enhance_action");
+			uint32 focusBuffCRC = STRING_HASHCODE("performance_enhance_music_focus");
 			//uint32 willBuffCRC = STRING_HASHCODE("performance_enhance_music_willpower");
 			oldBuff = cast<PerformanceBuff*>(creature->getBuff(focusBuffCRC));
-			if (oldBuff != nullptr && oldBuff->getBuffStrength() > buffStrength)
-				return;
-			ManagedReference<PerformanceBuff*> focusBuff = new PerformanceBuff(creature, focusBuffCRC, buffStrength, buffDuration * 105, PerformanceBuffType::MUSIC_FOCUS);
-			//ManagedReference<PerformanceBuff*> willBuff = new PerformanceBuff(creature, willBuffCRC, buffStrength, buffDuration * 60, PerformanceBuffType::MUSIC_WILLPOWER);
+				if (oldBuff != nullptr) {
+					creature->removeBuff(oldBuff->getBuffCRC());
+				}
 
-			Locker locker(focusBuff);
-			creature->addBuff(focusBuff);
+				uint32 legacyBuffCRC = STRING_HASHCODE("performance_inspiration");
+				oldBuff = cast<PerformanceBuff*>(creature->getBuff(legacyBuffCRC));
+				if (oldBuff != nullptr) {
+					creature->removeBuff(oldBuff->getBuffCRC());
+				}
+
+			ManagedReference<PerformanceBuff*> focusBuff = new PerformanceBuff(creature, focusBuffCRC, buffStrength, 86400, PerformanceBuffType::MUSIC_FOCUS);
+			//ManagedReference<PerformanceBuff*> willBuff = new PerformanceBuff(creature, willBuffCRC, buffStrength, 10800, PerformanceBuffType::MUSIC_WILLPOWER);
+
+			
+                        
+                        
+                        Locker locker(focusBuff);
+
+                        // ======================================
+                        // 6D.05 Adventurer Inspiration
+                        // ======================================
+
+                        focusBuff->setSkillModifier("healing_ability",5);
+                        focusBuff->setSkillModifier("combat_healing_ability",5);
+
+                        focusBuff->setSkillModifier("healing_wound_speed",10);
+                        focusBuff->setSkillModifier("healing_injury_speed",10);
+
+                        focusBuff->setSkillModifier("healing_range_speed",5);
+
+                        focusBuff->setSkillModifier("camouflage",10);
+                        focusBuff->setSkillModifier("foraging",10);
+                        focusBuff->setSkillModifier("creature_harvesting",10);
+                        focusBuff->setSkillModifier("surveying",10);
+
+                        focusBuff->setSkillModifier("slope_move",15);
+                        focusBuff->setSkillModifier("group_slope_move",15);
+
+                        focusBuff->setSkillModifier("take_cover",10);
+                        focusBuff->setSkillModifier("cover",10);
+
+                        focusBuff->setSkillModifier("resistance_bleeding",10);
+                        focusBuff->setSkillModifier("resistance_disease",10);
+                        focusBuff->setSkillModifier("resistance_poison",10);
+
+                        focusBuff->setSkillModifier("general_assembly",5);
+                        focusBuff->setSkillModifier("general_experimentation",5);
+
+                        focusBuff->setSkillModifier("weapon_repair",10);
+                        focusBuff->setSkillModifier("armor_repair",10);
+                        focusBuff->setSkillModifier("clothing_repair",10);
+
+
+                        // ======================================
+                        // 6D.04 Ranger Utility
+                        // ======================================
+
+                        focusBuff->setSkillModifier("camouflage",10);
+                        focusBuff->setSkillModifier("foraging",10);
+                        focusBuff->setSkillModifier("creature_harvesting",10);
+
+                        focusBuff->setSkillModifier("surveying",5);
+
+                        focusBuff->setSkillModifier("camp",10);
+                        focusBuff->setSkillModifier("rescue",5);
+
+                        focusBuff->setSkillModifier("slope_move",10);
+                        focusBuff->setSkillModifier("group_slope_move",10);
+
+                        focusBuff->setSkillModifier("take_cover",10);
+
+
+                        // ======================================
+                        // Entertainer QoL Improvements
+                        // ======================================
+
+                        focusBuff->setSkillModifier("luck",10);
+                        focusBuff->setSkillModifier("combat_haste",5);
+
+                        focusBuff->setSkillModifier("melee_defense",5);
+                        focusBuff->setSkillModifier("ranged_defense",5);
+
+                        focusBuff->setSkillModifier("healing_wound_speed",10);
+                        focusBuff->setSkillModifier("healing_injury_speed",10);
+                        focusBuff->setSkillModifier("healing_range_speed",10);
+
+                        focusBuff->setSkillModifier("general_experimentation",5);
+                        focusBuff->setSkillModifier("weapon_experimentation",5);
+                        focusBuff->setSkillModifier("armor_experimentation",5);
+                        focusBuff->setSkillModifier("clothing_experimentation",5);
+
+                        focusBuff->setSkillModifier("droid_experimentation",5);
+                        focusBuff->setSkillModifier("food_experimentation",5);
+                        focusBuff->setSkillModifier("medicine_experimentation",5);
+
+			creature->sendSystemMessage("CODEx: adding MUSIC performance buff +12000 ACTION");
+				creature->addBuff(focusBuff);
 			locker.release();
 
 			//Locker locker2(willBuff);
@@ -930,14 +1007,104 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 		}
 		case PerformanceType::DANCE:
 		{
-			uint32 mindBuffCRC = STRING_HASHCODE("medical_enhance_action");
+			uint32 mindBuffCRC = STRING_HASHCODE("performance_enhance_dance_mind");
 			oldBuff = cast<PerformanceBuff*>(creature->getBuff(mindBuffCRC));
-			if (oldBuff != nullptr && oldBuff->getBuffStrength() > buffStrength)
-				return;
-			ManagedReference<PerformanceBuff*> mindBuff = new PerformanceBuff(creature, mindBuffCRC, buffStrength, buffDuration * 105, PerformanceBuffType::DANCE_MIND);
+				if (oldBuff != nullptr) {
+					creature->removeBuff(oldBuff->getBuffCRC());
+				}
 
-			Locker locker(mindBuff);
-			creature->addBuff(mindBuff);
+				uint32 legacyBuffCRC = STRING_HASHCODE("performance_inspiration");
+				oldBuff = cast<PerformanceBuff*>(creature->getBuff(legacyBuffCRC));
+				if (oldBuff != nullptr) {
+					creature->removeBuff(oldBuff->getBuffCRC());
+				}
+
+			ManagedReference<PerformanceBuff*> mindBuff = new PerformanceBuff(creature, mindBuffCRC, buffStrength, 86400, PerformanceBuffType::DANCE_MIND);
+
+			
+                        
+                        
+                        Locker locker(mindBuff);
+
+                        // ======================================
+                        // 6D.05 Adventurer Inspiration
+                        // ======================================
+
+                        mindBuff->setSkillModifier("healing_ability",5);
+                        mindBuff->setSkillModifier("combat_healing_ability",5);
+
+                        mindBuff->setSkillModifier("healing_wound_speed",10);
+                        mindBuff->setSkillModifier("healing_injury_speed",10);
+
+                        mindBuff->setSkillModifier("healing_range_speed",5);
+
+                        mindBuff->setSkillModifier("camouflage",10);
+                        mindBuff->setSkillModifier("foraging",10);
+                        mindBuff->setSkillModifier("creature_harvesting",10);
+                        mindBuff->setSkillModifier("surveying",10);
+
+                        mindBuff->setSkillModifier("slope_move",15);
+                        mindBuff->setSkillModifier("group_slope_move",15);
+
+                        mindBuff->setSkillModifier("take_cover",10);
+                        mindBuff->setSkillModifier("cover",10);
+
+                        mindBuff->setSkillModifier("resistance_bleeding",10);
+                        mindBuff->setSkillModifier("resistance_disease",10);
+                        mindBuff->setSkillModifier("resistance_poison",10);
+
+                        mindBuff->setSkillModifier("general_assembly",5);
+                        mindBuff->setSkillModifier("general_experimentation",5);
+
+                        mindBuff->setSkillModifier("weapon_repair",10);
+                        mindBuff->setSkillModifier("armor_repair",10);
+                        mindBuff->setSkillModifier("clothing_repair",10);
+
+
+                        // ======================================
+                        // 6D.04 Ranger Utility
+                        // ======================================
+
+                        mindBuff->setSkillModifier("camouflage",10);
+                        mindBuff->setSkillModifier("foraging",10);
+                        mindBuff->setSkillModifier("creature_harvesting",10);
+
+                        mindBuff->setSkillModifier("surveying",5);
+
+                        mindBuff->setSkillModifier("camp",10);
+                        mindBuff->setSkillModifier("rescue",5);
+
+                        mindBuff->setSkillModifier("slope_move",10);
+                        mindBuff->setSkillModifier("group_slope_move",10);
+
+                        mindBuff->setSkillModifier("take_cover",10);
+
+
+                        // ======================================
+                        // Entertainer QoL Improvements
+                        // ======================================
+
+                        mindBuff->setSkillModifier("luck",10);
+                        mindBuff->setSkillModifier("combat_haste",5);
+
+                        mindBuff->setSkillModifier("melee_defense",5);
+                        mindBuff->setSkillModifier("ranged_defense",5);
+
+                        mindBuff->setSkillModifier("healing_wound_speed",10);
+                        mindBuff->setSkillModifier("healing_injury_speed",10);
+                        mindBuff->setSkillModifier("healing_range_speed",10);
+
+                        mindBuff->setSkillModifier("general_experimentation",5);
+                        mindBuff->setSkillModifier("weapon_experimentation",5);
+                        mindBuff->setSkillModifier("armor_experimentation",5);
+                        mindBuff->setSkillModifier("clothing_experimentation",5);
+
+                        mindBuff->setSkillModifier("droid_experimentation",5);
+                        mindBuff->setSkillModifier("food_experimentation",5);
+                        mindBuff->setSkillModifier("medicine_experimentation",5);
+
+			creature->sendSystemMessage("CODEx: adding DANCE performance buff +12000 ACTION");
+				creature->addBuff(mindBuff);
 			break;
 		}
 		}
@@ -1014,7 +1181,7 @@ void EntertainingSessionImplementation::increaseEntertainerBuff(CreatureObject* 
 	float buffAcceleration = 1 + ((float)entertainer->getSkillMod("accelerate_entertainer_buff") / 100.f);
 
 	addEntertainerBuffDuration(patron, performance->getType(), 2.0f * buffAcceleration);
-	addEntertainerBuffStrength(patron, performance->getType(), performance->getHealShockWound());
+	addEntertainerBuffStrength(patron, performance->getType(), performance->getHealShockWound() * 2.5f);
 
 }
 

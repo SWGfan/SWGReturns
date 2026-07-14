@@ -285,22 +285,6 @@ void LootManagerImplementation::initialize() {
 	info("Loaded " + String::valueOf(lootGroupMap->countLootItemTemplates()) + " loot items.");
 	info("Loaded " + String::valueOf(lootGroupMap->countLootGroupTemplates()) + " loot groups.");
 
-	const char* crateGroups[] = {
-		"rare_chest_rewards",
-		"exceptional_chest_rewards",
-		"diamond_chest_rewards",
-		"legendary_chest_rewards",
-		"worldboss_chest_rewards",
-		"legendary_chest_rewards_core",
-		"diamond_chest_rewards_core"
-	};
-
-	for (int i = 0; i < 7; ++i) {
-		if (lootGroupMap->getLootGroupTemplate(crateGroups[i]) == nullptr)
-			warning("Crate loot group missing after load: " + String(crateGroups[i]));
-		else
-			info("Crate loot group registered: " + String(crateGroups[i]));
-	}
 
 	info("Initialized.", true);
 }
@@ -950,8 +934,65 @@ void LootManagerImplementation::setSockets(TangibleObject* object, CraftingValue
 
 bool LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature) {
 
-	//Creature Loot System based on creature level
-	int creatureLevel = Math::min(300, creature->getLevel());
+        // ==========================================================
+        int creatureLevel = Math::min(300, creature->getLevel());
+
+        // ==========================================================
+        // Phase 7.03 Boss Reward Engine
+        // ==========================================================
+
+        if (creatureLevel >= 250) {
+
+                createLoot(trx, container, "resource_crate", creatureLevel);
+
+                if (System::random(99) < 35)
+                        createLoot(trx, container, "lootcollectiontierthree", creatureLevel);
+
+                if (System::random(99) < 15)
+                        createLoot(trx, container, "lootcollectiontierdiamonds", creatureLevel);
+
+                if (System::random(99) < 20)
+                        createLoot(trx, container, "rarelootsystem", creatureLevel);
+
+                if (System::random(99) < 15)
+                        createLoot(trx, container, "legendary_comp_group", creatureLevel);
+
+        } else if (creatureLevel >= 150) {
+
+                if (System::random(99) < 35)
+                        createLoot(trx, container, "resource_crate", creatureLevel);
+
+                if (System::random(99) < 20)
+                        createLoot(trx, container, "lootcollectiontierthree", creatureLevel);
+
+                if (System::random(99) < 5)
+                        createLoot(trx, container, "lootcollectiontierdiamonds", creatureLevel);
+
+                if (System::random(99) < 10)
+                        createLoot(trx, container, "rarelootsystem", creatureLevel);
+
+        } else if (creatureLevel >= 80) {
+
+                if (System::random(99) < 20)
+                        createLoot(trx, container, "resource_crate", creatureLevel);
+
+                if (System::random(99) < 10)
+                        createLoot(trx, container, "lootcollectiontiertwo", creatureLevel);
+
+                if (System::random(99) < 5)
+                        createLoot(trx, container, "rarelootsystem", creatureLevel);
+
+        } else {
+
+                if (System::random(99) < 10)
+                        createLoot(trx, container, "resource_crate", creatureLevel);
+
+                if (System::random(99) < 5)
+                        createLoot(trx, container, "lootcollectiontierone", creatureLevel);
+
+        }
+
+
 	//Rare Loot System
 	if (creatureLevel >= 75){
 		if (System::random(1000) < 195) { //19.5% Rare Loot System

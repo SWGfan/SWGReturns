@@ -29,8 +29,15 @@ function EventLewtBoxMenuComponent:handleObjectMenuSelect(pSceneObject, pPlayer,
     local LewtChest = getContainerObjectByTemplate(inventory, "object/tangible/loot/lewt_chests/lewt_chest_event.iff", false)
     
     if (inventory ~= nil) then
-            createLoot(inventory, "janta_common", 350, true)
-            createLoot(inventory, "kunga_common", 400, true)
+            createLoot(inventory, "rarelootsystem", 400, true)
+            createLoot(inventory, "legendary_comp_group", 500, true)
+            createLoot(inventory, "boss_rare", 500, true)
+            createLoot(inventory, "g_rifle_t21_legendary", 550, true)
+            createLoot(inventory, "g_pistol_fwg5_legendary", 550, true)
+            createLoot(inventory, "g_baton_stun_legendary", 550, true)
+            createLoot(inventory, "g_lance_nightsister_legendary", 550, true)
+            createLoot(inventory, "resource_deed_loot", 500, true)
+            createLoot(inventory, "resource_crate_loot", 500, true)
         end
 
         CreatureObject(pPlayer):sendSystemMessage("Lewt Chest Opened.")

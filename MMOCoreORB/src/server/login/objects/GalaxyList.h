@@ -6,6 +6,7 @@
 #define GALAXYLIST_H_
 
 #include "server/db/ServerDatabase.h"
+#include "server/db/AccountDatabase.h"
 #include "conf/ConfigManager.h"
 
 // #define USE_RANDOM_EXTRA_PORTS
@@ -139,7 +140,7 @@ public:
 		StringBuffer query;
 		query << "SELECT * FROM galaxy";
 
-		UniqueReference<ResultSet*> results(ServerDatabase::instance()->executeQuery(query));
+		UniqueReference<ResultSet*> results(AccountDatabase::instance()->executeQuery(query));
 
 		if (results == nullptr)
 			return;

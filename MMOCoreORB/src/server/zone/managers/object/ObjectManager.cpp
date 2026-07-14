@@ -9,6 +9,7 @@
 #include "objects.h"
 
 #include "server/db/ServerDatabase.h"
+#include "server/db/AccountDatabase.h"
 #include "server/zone/objects/tangible/misc/VendorToken.h"
 #include "server/zone/ZoneProcessServer.h"
 #include "templates/manager/TemplateManager.h"
@@ -827,7 +828,15 @@ SceneObject* ObjectManager::createObject(uint32 objectCRC, int persistenceLevel,
 	object = instantiateSceneObject(objectCRC, oid, true);
 
 	if (object == nullptr) {
-		error() << "could not create object CRC = 0x" << hex << objectCRC << " template:" << templateManager->getTemplateFile(objectCRC);
+		// getTemplateFile() throws on an unregistered CRC; guard it so a persisted object with a
+		// missing template is logged and skipped instead of throwing and crashing server boot.
+		String failedTemplate;
+		try {
+			failedTemplate = templateManager->getTemplateFile(objectCRC);
+		} catch (...) {
+			failedTemplate = "<unregistered>";
+		}
+		error() << "could not create object CRC = 0x" << hex << objectCRC << " template:" << failedTemplate;
 		return nullptr;
 	}
 
@@ -983,7 +992,7 @@ void ObjectManager::onUpdateModifiedObjectsToDatabase(int flags) {
 		try {
 			const static auto query = "SELECT * FROM characters_dirty WHERE galaxy_id = " + String::valueOf(galaxyId);
 
-			charactersSaved = ServerDatabase::instance()->executeQuery(query);
+			charactersSaved = AccountDatabase::instance()->executeQuery(query);
 		} catch (const Exception& e) {
 			error(e.getMessage());
 		}
@@ -1021,8 +1030,8 @@ void ObjectManager::onCommitData() {
 			}
 
 			if (count > 0) {
-				ServerDatabase::instance()->executeStatement(query.toString());
-				ServerDatabase::instance()->executeStatement(deleteQuery.toString());
+				AccountDatabase::instance()->executeStatement(query.toString());
+				AccountDatabase::instance()->executeStatement(deleteQuery.toString());
 			}
 		} catch (Exception& e) {
 			System::out << e.getMessage();

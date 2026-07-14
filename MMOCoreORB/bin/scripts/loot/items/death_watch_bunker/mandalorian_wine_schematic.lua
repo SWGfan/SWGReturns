@@ -4,7 +4,6 @@ mandalorian_wine_schematic = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/tangible/loot/loot_schematic/death_watch_drink_mandalorian_wine_schematic.iff",
 	craftingValues = {
 	},
 	customizationStringNames = {},

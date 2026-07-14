@@ -3,8 +3,7 @@ weequay_common = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "elegant_cabinet_schematic", weight = 9000000},
-		{itemTemplate = "painting_travel_ad_ord_mantell", weight = 1000000},
+		{itemTemplate = "elegant_cabinet_schematic", weight = 10000000}
 	}
 }
 

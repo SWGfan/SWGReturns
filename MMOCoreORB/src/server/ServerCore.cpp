@@ -8,6 +8,7 @@
 
 #include "db/MySqlDatabase.h"
 #include "db/ServerDatabase.h"
+#include "db/AccountDatabase.h"
 #include "db/MantisDatabase.h"
 
 #include "server/chat/ChatManager.h"
@@ -657,6 +658,8 @@ void ServerCore::initialize() {
 		ObjectManager* objectManager = ObjectManager::instance();
 
 		database = new ServerDatabase(configManager);
+
+		accountDatabase = new AccountDatabase(configManager);
 
 		mantisDatabase = new MantisDatabase(configManager);
 

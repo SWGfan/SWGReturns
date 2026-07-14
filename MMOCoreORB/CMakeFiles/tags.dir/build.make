@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # Utility rule file for tags.
 
@@ -85,6 +85,6 @@ CMakeFiles/tags.dir/clean:
 .PHONY : CMakeFiles/tags.dir/clean
 
 CMakeFiles/tags.dir/depend:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/tags.dir/DependInfo.cmake "--color=$(COLOR)" tags
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles/tags.dir/DependInfo.cmake "--color=$(COLOR)" tags
 .PHONY : CMakeFiles/tags.dir/depend
 

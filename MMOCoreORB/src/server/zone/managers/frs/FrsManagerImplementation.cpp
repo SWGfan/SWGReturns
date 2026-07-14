@@ -365,6 +365,46 @@ void FrsManagerImplementation::verifyRoomAccess(CreatureObject* player, int play
 }
 
 void FrsManagerImplementation::playerLoggedIn(CreatureObject* player) {
+
+        // =====================================================
+        // PHASE719_LOGIN_ENROLL
+        // Auto-enroll Jedi Knights into FRS
+        // =====================================================
+
+        PlayerObject* ghost = player->getPlayerObject();
+
+        if (ghost != nullptr) {
+
+                FrsData* playerData = ghost->getFrsData();
+
+                if (playerData != nullptr &&
+                    playerData->getCouncilType() == 0 &&
+                    player->hasSkill("force_title_jedi_rank_03")) {
+
+                        if (player->getFaction() == Factions::FACTIONIMPERIAL) {
+
+                                playerData->setCouncilType(COUNCIL_DARK);
+                                setPlayerRank(player, 0);
+
+                                info("Phase719: Auto-enrolled " +
+                                        player->getFirstName() +
+                                        " into Dark Council.", true);
+
+                        } else if (player->getFaction() == Factions::FACTIONREBEL) {
+
+                                playerData->setCouncilType(COUNCIL_LIGHT);
+                                setPlayerRank(player, 0);
+
+                                info("Phase719: Auto-enrolled " +
+                                        player->getFirstName() +
+                                        " into Light Council.", true);
+                        }
+                }
+        }
+
+        // =====================================================
+
+
 	if (!frsEnabled || player == nullptr)
 		return;
 

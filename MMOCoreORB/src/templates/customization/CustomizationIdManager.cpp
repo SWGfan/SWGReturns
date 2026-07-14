@@ -25,7 +25,7 @@ void CustomizationIdManager::loadHairAssetsSkillMods(IffStream* iffStream) {
 		debug() << "adding " << data->getServerTemplate();
 	}
 
-	info() << "loaded " << paletteColumns.size() << " hair assets";
+	info() << "loaded " << hairAssetSkillMods.size() << " hair assets";
 }
 
 void CustomizationIdManager::loadAllowBald(IffStream* iffStream) {

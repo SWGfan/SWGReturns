@@ -5,10 +5,10 @@ ewok_tooth = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "ewok_tooth", weight = 2500000},
-		{itemTemplate = "ewok_tooth", weight = 2500000},
-		{itemTemplate = "ewok_tooth", weight = 2500000},
-		{itemTemplate = "ewok_tooth", weight = 2500000}
+		{groupTemplate = "ewok_tooth", weight = 2500000},
+		{groupTemplate = "ewok_tooth", weight = 2500000},
+		{groupTemplate = "ewok_tooth", weight = 2500000},
+		{groupTemplate = "ewok_tooth", weight = 2500000}
 	}
 }
 

@@ -850,6 +850,9 @@ includeFile("custom_content/building/tatooine/objects.lua")
 
 
 includeFile("custom_content/intangible/vehicle/objects.lua")
+includeFile("custom_content/intangible/pet/objects.lua")
+includeFile("custom_content/intangible/pet/beast_master/objects.lua")
+includeFile("custom_content/intangible/pet/som/objects.lua")
 
 includeFile("custom_content/static/base/objects.lua")
 includeFile("custom_content/static/christmas/objects.lua")
@@ -888,6 +891,7 @@ includeFile("custom_content/static/worldbuilding/vegitation/objects.lua")
 includeFile("custom_content/static/worldbuilding/vehicles/objects.lua")
 
 includeFile("custom_content/tangible/deed/vehicle_deed/objects.lua")
+includeFile("custom_content/tangible/deed/pet_deed/objects.lua")
 
 includeFile("custom_content/tangible/furniture/all/objects.lua")
 includeFile("custom_content/tangible/furniture/cheap/objects.lua")
@@ -1077,6 +1081,8 @@ includeFile("tangible/wearables/armor/scout_trooper/objects.lua")
 includeFile("tangible/wearables/armor/snowtrooper/objects.lua")
 includeFile("tangible/wearables/armor/veers/objects.lua")
 includeFile("custom_content/draft_schematic/weapon/objects.lua")
+includeFile("custom_content/draft_schematic/weapon/component/objects.lua")
+includeFile("custom_content/draft_schematic/weapon/core/objects.lua")
 includeFile("custom_content/weapon/melee/objects.lua")
 includeFile("custom_content/weapon/ranged/objects.lua")
 

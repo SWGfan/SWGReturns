@@ -70,7 +70,8 @@ int SkillBuffObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObjec
 
 	// Submit buff
 	if (buff != nullptr){
-		player->addBuff(buff);
+		player->// Phase6A Refresh
+removeBuff(buff->getBuffCRC());
 	}
 
 	// Send message to player

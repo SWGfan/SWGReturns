@@ -28,6 +28,7 @@ namespace conf {
 }
 
 class ServerDatabase;
+class AccountDatabase;
 class MantisDatabase;
 class StatusServer;
 
@@ -49,6 +50,7 @@ class ServerCore : public Core, public Logger {
 	Pipe consoleCommandPipe;
 	conf::ConfigManager* configManager;
 	ServerDatabase* database;
+	AccountDatabase* accountDatabase;
 	MantisDatabase* mantisDatabase;
 	DistributedObjectBroker* orb;
 	Reference<server::login::LoginServer*> loginServer;

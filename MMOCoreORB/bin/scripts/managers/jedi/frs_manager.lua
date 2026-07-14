@@ -4,18 +4,18 @@ frsEnabled = 1
 lightEnclaveID = 8525417
 darkEnclaveID = 3435626
 
-petitionInterval = 86400000 -- 1 day
-votingInterval = 86400000 -- 1 day
-acceptanceInterval = 86400000 -- 1 day
-maintenanceInterval = 86400000 -- 1 day
+petitionInterval = 1 *  60 * 60 * 1000	--
+votingInterval = 1 *  60 * 60 * 1000	--
+acceptanceInterval = 1 *  60 * 60 * 1000	--86400000 -- 1 day
+maintenanceInterval = 604800000 -- 7 days
 
-requestDemotionDuration = 604800000 -- 7 days
-voteChallengeDuration = 604800000 -- 7 days
+requestDemotionDuration = 86400000 -- 1 day
+voteChallengeDuration = 86400000 -- 1 day
 
 arenaOpenInterval = 5400000 -- 90 mins
-arenaClosedInterval = 5400000 --  108000000 -- 30 hours
-arenaChallengeDuration = 3600000 -- 60 mins
-arenaChallengeCooldown = 2400000 -- 30 mins // Doesnt work because negative count resets before CD resets, needs to be shorter than duration.
+arenaClosedInterval = 1800000 -- 30m
+arenaChallengeDuration = 1800000 -- 30m
+arenaChallengeCooldown = 1800000 -- 30m
 
 -- Costs are in FRS experience
 baseMaintCost = 100

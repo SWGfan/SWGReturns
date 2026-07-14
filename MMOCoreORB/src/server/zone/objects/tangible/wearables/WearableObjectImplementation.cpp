@@ -103,12 +103,13 @@ void WearableObjectImplementation::generateSockets(CraftingValues* craftingValue
 
 	int skill = 0;
 	int luck = 0;
+	ManagedReference<CreatureObject*> player = nullptr;
 
 	if (craftingValues != nullptr) {
 		ManagedReference<ManufactureSchematic*> manuSchematic = craftingValues->getManufactureSchematic();
 		if(manuSchematic != nullptr) {
 			ManagedReference<DraftSchematic*> draftSchematic = manuSchematic->getDraftSchematic();
-			ManagedReference<CreatureObject*> player = manuSchematic->getCrafter().get();
+			player = manuSchematic->getCrafter().get();
 
 			if (player != nullptr && draftSchematic != nullptr) {
 				String assemblySkill = draftSchematic->getAssemblySkill();
@@ -121,20 +122,19 @@ void WearableObjectImplementation::generateSockets(CraftingValues* craftingValue
 
 	int random = (System::random(750)) - 250; // -250 to 500
 
-	float roll = System::random(skill + luck + random);
+	int rollRange = skill + luck + random;
+	if (rollRange < 0)
+		rollRange = 0;
+
+	float roll = System::random(rollRange);
 
 	int generatedCount = int(float(MAXSOCKETS * roll) / float(MAXSOCKETS * 100));
-	ManagedReference<ManufactureSchematic*> manuSchematic = craftingValues->getManufactureSchematic();
-	ManagedReference<CreatureObject*> player = manuSchematic->getCrafter().get();
 	if (generatedCount > MAXSOCKETS)
 		generatedCount = MAXSOCKETS;
 	if (generatedCount < 0)
 		generatedCount = 0;
-	if (player->hasSkill("crafting_tailor_master")) {
-		generatedCount = 4;
-	}
-	if (player->hasSkill("crafting_armorsmith_master")) {
-		generatedCount = 4;
+	if (player != nullptr && (player->hasSkill("crafting_tailor_master") || player->hasSkill("crafting_armorsmith_master"))) {
+		generatedCount = MAXSOCKETS;
 	}
 	// TODO: remove this backwards compatibility fix at next wipe. Only usedSocketCount variable should be used.
 	objectCreatedPreUsedSocketCountFix = false;
@@ -158,7 +158,7 @@ void WearableObjectImplementation::applyAttachment(CreatureObject* player, Attac
 	if (!isASubChildOf(player))
 		return;
 
-	if (socketsLeft() > 0 && wearableSkillMods.size() < 6) {
+	if (socketsLeft() > 0 && wearableSkillMods.size() < MAXSOCKETS) {
 		Locker locker(player);
 
 		if (isEquipped()) {

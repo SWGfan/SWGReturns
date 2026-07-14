@@ -300,7 +300,14 @@ int CombatManager::doCombatAction(CreatureObject* attacker, WeaponObject* weapon
 		}
 	}
 
-	return damage;
+	
+        // Returns Damage Clamp
+
+        if (damage > weapon->getMaxDamage() * 2.50f)
+                damage = weapon->getMaxDamage() * 2.50f;
+
+        return damage;
+
 }
 
 /*
@@ -1099,7 +1106,24 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	damage = applyDamageModifiers(attacker, weapon, damage, data);
 
+        //
+        // Returns Combat 2.0
+        //
+        
+if (attacker->isPlayerCreature() && defender->isPlayerCreature()) {
+
+        float weaponCap = weapon->getMaxDamage() * 2.5f;
+
+        if (damage > weaponCap)
+                damage = weaponCap;
+}
+
+
 	damage += defender->getSkillMod("private_damage_susceptibility");
+
+        // Returns Combat 2.0
+        if (defender->isPlayerCreature())
+                damage *= 0.90f;
 
 	if (attacker->isPlayerCreature()) {
 		if (data.isForceAttack() && !defender->isPlayerCreature()) {
@@ -1116,7 +1140,7 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 	}
 
 	if (!data.isForceAttack() && weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK)
-		damage *= 1.25;
+		damage *= 1.35f;
 
 	if (defender->isKnockedDown()) {
 		damage *= 1.5f;
@@ -1132,6 +1156,19 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 		damage = getDefenderToughnessModifier(defender, SharedWeaponObjectTemplate::FORCEATTACK, data.getDamageType(), damage);
 	else
 		damage = getDefenderToughnessModifier(defender, weapon->getAttackType(), weapon->getDamageType(), damage);
+
+        // Returns Passive Deflection
+
+        if (defender->getWeapon() != nullptr &&
+            defender->getWeapon()->isJediWeapon() &&
+            weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) {
+
+                damage *= 0.85f;
+        }
+
+        if (damage < 50.f)
+                damage = 50.f;
+
 
 	// Force Defense skillmod damage reduction
 	if (data.isForceAttack()) {
@@ -1189,8 +1226,9 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	damage = applyDamageModifiers(attacker, weapon, damage, data);
 // Curious statements.  Maybe a place to change down the road.
-	if (attacker->isPlayerCreature())
-		damage *= 1.5;
+	// Returns combat rebalance
+        if (attacker->isPlayerCreature())
+                damage *= 1.10f;
 
 	if (!data.isForceAttack() && weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK)
 		damage *= 1.25;
@@ -1207,7 +1245,7 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 	}
 
 	if (lairObserver && lairObserver->getSpawnNumber() > 2)
-		damage *= 3.5;
+		damage *= 1.50f;
 
 	return damage;
 }
@@ -1229,6 +1267,19 @@ float CombatManager::calculateDamage(TangibleObject* attacker, WeaponObject* wea
 
 	// Toughness reduction
 	damage = getDefenderToughnessModifier(defender, weapon->getAttackType(), weapon->getDamageType(), damage);
+
+        // Returns Passive Deflection
+
+        if (defender->getWeapon() != nullptr &&
+            defender->getWeapon()->isJediWeapon() &&
+            weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK) {
+
+                damage *= 0.85f;
+        }
+
+        if (damage < 50.f)
+                damage = 50.f;
+
 
 	return damage;
 }
@@ -1289,17 +1340,53 @@ float CombatManager::applyDamageModifiers(CreatureObject* attacker, WeaponObject
 		}
 
 		if (weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK)
-			damage += attacker->getSkillMod("private_melee_damage_bonus");
+			{
+                int meleeBonus = attacker->getSkillMod("private_melee_damage_bonus");
+
+                if (meleeBonus > 250)
+                        meleeBonus = 250;
+
+                damage += meleeBonus;
+        }
 		if (weapon->getAttackType() == SharedWeaponObjectTemplate::RANGEDATTACK)
-			damage += attacker->getSkillMod("private_ranged_damage_bonus");
+			{
+                int rangedBonus = attacker->getSkillMod("private_ranged_damage_bonus");
+
+                if (rangedBonus > 250)
+                        rangedBonus = 250;
+
+                damage += rangedBonus;
+        }
 	}
 
-	damage += attacker->getSkillMod("private_damage_bonus");
+	{
+                int bonus = attacker->getSkillMod("private_damage_bonus");
 
-	int damageMultiplier = attacker->getSkillMod("private_damage_multiplier");
+                if (bonus > 300)
+                        bonus = 300;
 
-	if (damageMultiplier != 0)
-		damage *= damageMultiplier;
+                damage += bonus;
+        }
+
+	
+int damageMultiplier = attacker->getSkillMod("private_damage_multiplier");
+
+if (damageMultiplier > 0) {
+
+        //
+        // Returns Combat 2.1
+        // Convert skill modifier into a percentage bonus instead
+        // of a literal multiplier.
+        //
+
+        float mult = 1.0f + (damageMultiplier * 0.10f);
+
+        if (mult > 1.75f)
+                mult = 1.75f;
+
+        damage *= mult;
+}
+
 
 	int damageDivisor = attacker->getSkillMod("private_damage_divisor");
 
@@ -1881,6 +1968,14 @@ int CombatManager::getDefenderDefenseModifier(CreatureObject* defender, WeaponOb
 
 	// food bonus goes on top as well
 	targetDefense += defender->getSkillMod("dodge_attack");
+
+        // Returns Jedi Defense Bonus
+
+        if (defender->getPlayerObject() != nullptr &&
+            defender->getPlayerObject()->isJedi())
+
+                targetDefense += 10;
+
 	targetDefense += defender->getSkillMod("private_dodge_attack");
 
 	debug() << "Target defense after state affects and cap is " << targetDefense;
@@ -2112,6 +2207,18 @@ float CombatManager::getDefenderToughnessModifier(CreatureObject* defender, int 
 	int forceArmor = defender->getSkillMod("force_armor");
 	int saberToughness = defender->getSkillMod("lightsaber_toughness");
 
+        // Returns Force Armor
+        if (forceArmor > 0 && !isWearingArmor(defender)) {
+
+                float reduction = 0.12f + (forceArmor * 0.0035f);
+
+                if (reduction > 0.45f)
+                        reduction = 0.45f;
+
+                damage *= (1.0f - reduction);
+        }
+
+
 	if (attackType == weapon->getAttackType()) {
 		for (int i = 0; i < defenseToughMods->size(); ++i) {
 			int toughMod = defender->getSkillMod(defenseToughMods->get(i));
@@ -2121,11 +2228,11 @@ float CombatManager::getDefenderToughnessModifier(CreatureObject* defender, int 
 	}
 		
 	if (damType != SharedWeaponObjectTemplate::LIGHTSABER && jediToughness > 0 && forceArmor <= 0 && isWearingArmor(defender)){
-        damage *= 1.f - (jediToughness / 500.f);
+        damage *= 1.f - (jediToughness / 325.f);
         //Damage is not LS, but player is wearing armour, full damage.
 
     } else if (damType != SharedWeaponObjectTemplate::LIGHTSABER && jediToughness > 0 && forceArmor <= 0){
-        int maxReduction = 81;
+        int maxReduction = 90;
         int curvePlacement = 2.5;
         float growthRate = -0.085;
            float growthCurve = 2.5;
@@ -2134,11 +2241,11 @@ float CombatManager::getDefenderToughnessModifier(CreatureObject* defender, int 
     }    //Damage type is not LS, JT is greater than 0 and FA is off, use mitigating code.
     
     if (attackType != SharedWeaponObjectTemplate::FORCEATTACK && damType == SharedWeaponObjectTemplate::LIGHTSABER && saberToughness > 0 && forceArmor <= 0 && isWearingArmor(defender)){
-        damage *= 1.f - (saberToughness / 500.f);
+        damage *= 1.f - (saberToughness / 325.f);
         //defender->sendSystemMessage("You have armor on, your Lightsaber Toughness has been disabled for this attack!!");
 
     } else if (attackType != SharedWeaponObjectTemplate::FORCEATTACK && damType == SharedWeaponObjectTemplate::LIGHTSABER && saberToughness > 0 && forceArmor <= 0){
-        int maxReduction = 80;
+        int maxReduction = 90;
         int curvePlacement = 5;
         float growthRate = -0.085;
            float growthCurve = 1;
@@ -2730,8 +2837,8 @@ bool CombatManager::applySpecialAttackCost(CreatureObject* attacker, WeaponObjec
 				return false;
 			} else {
 				playerObject->setForcePower(playerObject->getForcePower() - force);
-				if (attacker->hasSkill("force_title_jedi_rank_03"))
-				VisibilityManager::instance()->increaseVisibility(attacker, data.getCommand()->getVisMod()); // Give visibility
+				if (playerObject != nullptr && playerObject->isJedi())
+                                VisibilityManager::instance()->increaseVisibility(attacker, data.getCommand()->getVisMod()); // Give visibility
 			}
 		}
 	}

@@ -1,14 +1,14 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNode.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNode.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
  /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \

@@ -1,5 +1,5 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMeshBuilder.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMeshBuilder.cpp \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -67,11 +67,11 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
  /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/c++/15/bits/cpp_type_traits.h \
@@ -86,5 +86,5 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMeshBuilder.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAssert.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMeshBuilder.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAssert.h

@@ -45,7 +45,7 @@ function JediTrials:isEligibleForKnightTrials(pPlayer)
 		return false
 	end
 
-	if (CreatureObject(pPlayer):hasSkill("force_rank_light_novice") or CreatureObject(pPlayer):hasSkill("force_rank_dark_novice")) or tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 then
+	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) or tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 then
 		return false
 	end
 

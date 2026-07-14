@@ -3260,31 +3260,54 @@ bool CreatureObjectImplementation::isAttackableBy(CreatureObject* object, bool b
 	if (object->isAiAgent()) {
 
 		if (object->isPet()) {
-			ManagedReference<PetControlDevice*> pcd = object->getControlDevice().get().castTo<PetControlDevice*>();
-			if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral()) {
-				return false;
-			}
 
-			ManagedReference<CreatureObject*> owner = object->getLinkedCreature().get();
+                        // ====================================================
+                        // Phase 7.09a
+                        // Pets may attack any AI creature.
+                        // PvP against players still follows owner's rules.
+                        // ====================================================
 
-			if (owner == nullptr)
-				return false;
+                        if (!isPlayerCreature())
+                                return true;
 
-			ManagedReference<PetControlDevice*> controlDevice = object->getControlDevice().get().castTo<PetControlDevice*>();
+                        ManagedReference<CreatureObject*> owner = object->getLinkedCreature().get();
 
-			if (controlDevice != nullptr) {
-				ManagedReference<SceneObject*> lastCommander = controlDevice->getLastCommander().get();
+                        if (owner == nullptr)
+                                return false;
 
-				if (lastCommander != nullptr && lastCommander != owner && lastCommander->isCreatureObject()) {
-					return isAttackableBy(lastCommander->asCreatureObject());
-				}
-			}
+                        ManagedReference<PetControlDevice*> controlDevice =
+                                object->getControlDevice().get().castTo<PetControlDevice*>();
 
-			return isAttackableBy(owner);
-		}
+                        if (controlDevice != nullptr) {
+                                ManagedReference<SceneObject*> lastCommander =
+                                        controlDevice->getLastCommander().get();
 
-		if(!object->isRebel() && !object->isImperial())
-			return true;
+                                if (lastCommander != nullptr &&
+                                    lastCommander != owner &&
+                                    lastCommander->isCreatureObject()) {
+
+                                        return isAttackableBy(lastCommander->asCreatureObject());
+                                }
+                        }
+
+                        return isAttackableBy(owner);
+                }
+
+		
+        
+        // ==========================================================
+        // Phase 7.10a World Boss Override
+        // ==========================================================
+
+        if (object->getLevel() >= 120) {
+                return true;
+        }
+
+        if (!object->isRebel() && !object->isImperial()) {
+                return true;
+        }
+
+
 
 		if(getFaction() == 0 || getFaction() == object->getFaction())
 			return false;

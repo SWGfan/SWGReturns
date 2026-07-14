@@ -618,21 +618,20 @@ void SlicingSessionImplementation::handleArmorSlice() {
 	if (tangibleObject == nullptr || player == nullptr)
 		return;
 
-	uint8 sliceType = System::random(1);
+	// Custom: this server does not use armor encumbrance, so armor slicing only affects effectiveness.
 	int sliceSkill = getSlicingSkill(player);
 	uint8 min = 0;
 	uint8 max = 0;
 
 	switch (sliceSkill) {
 	case 5:
-		min += (sliceType == 0) ? 6 : 5;
+		min += 6;
 		max += 5;
 	case 4:
-		min += (sliceType == 0) ? 0 : 10;
 		max += 5;
 	case 3:
 		min += 5;
-		max += (sliceType == 0) ? 20 : 30;
+		max += 20;
 		break;
 	default:
 		return;
@@ -640,14 +639,7 @@ void SlicingSessionImplementation::handleArmorSlice() {
 
 	uint8 percent = System::random(max - min) + min;
 
-	switch (sliceType) {
-	case 0:
-		handleSliceEffectiveness(percent);
-		break;
-	case 1:
-		handleSliceEncumbrance(percent);
-		break;
-	}
+	handleSliceEffectiveness(percent);
 }
 
 void SlicingSessionImplementation::handleSliceEncumbrance(uint8 percent) {

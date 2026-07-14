@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ps -o pid,etime,time,%cpu,%mem,rss,cmd -p 373057)",
+      "Bash(git config *)"
+    ]
+  }
+}

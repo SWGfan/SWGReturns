@@ -11,6 +11,7 @@
 #include "server/zone/ZoneServer.h"
 #include "server/zone/packets/MessageCallback.h"
 #include "server/db/ServerDatabase.h"
+#include "server/db/AccountDatabase.h"
 #include "server/login/packets/ErrorMessage.h"
 #include "server/login/account/Account.h"
 #include "server/login/objects/CharacterList.h"
@@ -53,7 +54,7 @@ public:
 		query << "SELECT session_id FROM sessions WHERE account_id = " << accountID;
 		query << " AND  ip = '"<< client->getSession()->getIPAddress() <<"' AND expires > NOW();";
 
-		UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
+		UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
 
 		if (result != nullptr && result->next()) {
 			String sesskey = result->getString(0);
@@ -71,7 +72,7 @@ public:
 				delQuery << "DELETE FROM sessions WHERE account_id = " << accountID << ";";
 
 				try {
-					ServerDatabase::instance()->executeStatement(delQuery);
+					AccountDatabase::instance()->executeStatement(delQuery);
 				} catch (const DatabaseException& e) {
 					client->info(e.getMessage(), true);
 				}

@@ -1,5 +1,5 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/15/stdlib.h \
  /usr/include/c++/15/cstdlib \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
@@ -52,4 +52,4 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/15/bits/std_abs.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h

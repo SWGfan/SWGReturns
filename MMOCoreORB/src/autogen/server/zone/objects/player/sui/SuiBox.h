@@ -134,6 +134,15 @@ public:
 
 	void initialize();
 
+	/**
+	 * Assigns a fresh boxID from the owning ghost. Used both on initial
+	 * creation and whenever a box is redisplayed after being handled (see
+	 * SuiManager::handleCharacterBuilderSelectItem), so a stale/duplicate
+	 * client packet referencing the just-consumed boxID can no longer be
+	 * replayed against the redisplayed box.
+	 */
+	void regenerateBoxID();
+
 	void initializeTransientMembers();
 
 	/**
@@ -355,6 +364,15 @@ public:
 
 	void initialize();
 
+	/**
+	 * Assigns a fresh boxID from the owning ghost. Used both on initial
+	 * creation and whenever a box is redisplayed after being handled (see
+	 * SuiManager::handleCharacterBuilderSelectItem), so a stale/duplicate
+	 * client packet referencing the just-consumed boxID can no longer be
+	 * replayed against the redisplayed box.
+	 */
+	void regenerateBoxID();
+
 	void finalize();
 
 	void initializeTransientMembers();
@@ -522,6 +540,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initialize();
+
+	void regenerateBoxID();
 
 	void finalize();
 

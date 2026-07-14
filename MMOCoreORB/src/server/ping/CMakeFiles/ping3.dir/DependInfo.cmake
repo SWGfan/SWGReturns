@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ubuntu/StarDust-2/MMOCoreORB/src/server/ping/PingServer.cpp" "src/server/ping/CMakeFiles/ping3.dir/PingServer.cpp.o" "gcc" "src/server/ping/CMakeFiles/ping3.dir/PingServer.cpp.o.d"
+  "/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/ping/PingServer.cpp" "src/server/ping/CMakeFiles/ping3.dir/PingServer.cpp.o" "gcc" "src/server/ping/CMakeFiles/ping3.dir/PingServer.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

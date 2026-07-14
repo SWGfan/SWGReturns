@@ -62,17 +62,38 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen4 = objec
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff" },
+				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/aqualish_male.iff",
+				"object/creature/player/aqualish_female.iff",
+				"object/creature/player/bith_male.iff",
+				"object/creature/player/bith_female.iff",
+				"object/creature/player/chiss_male.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/devaronian_male.iff",
+				"object/creature/player/gotal_male.iff",
+				"object/creature/player/gran_male.iff",
+				"object/creature/player/hutt_male.iff",
+				"object/creature/player/hutt_female.iff",
+				"object/creature/player/ishi_tib_male.iff",
+				"object/creature/player/nautolan_male.iff",
+				"object/creature/player/nightsister_female.iff",
+				"object/creature/player/nikto_male.iff",
+				"object/creature/player/quarren_male.iff",
+				"object/creature/player/smc_female.iff",
+				"object/creature/player/talz_male.iff",
+				"object/creature/player/togruta_female.iff",
+				"object/creature/player/weequay_male.iff"
+},
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
 	attackType = MELEEATTACK,
 
-	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
+	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, LIGHTSABER
 	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = LIGHT,
+	armorPiercing = MEDIUM,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -98,10 +119,10 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen4 = objec
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 0,
-	actionAttackCost = 300,
-	mindAttackCost = 0,
-	forceCost = 12,
+	healthAttackCost = 20,
+	actionAttackCost = 35,
+	mindAttackCost = 40,
+	forceCost = 40,
 
 	pointBlankRange = 0,
 	pointBlankAccuracy = 20,
@@ -112,7 +133,7 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen4 = objec
 	maxRange = 5,
 	maxRangeAccuracy = 5,
 
-	attackSpeed = 1.0,	
+	attackSpeed = 4.5,	
 
 	woundsRatio = 37,
 
@@ -129,9 +150,9 @@ object_weapon_melee_sword_crafted_saber_sword_lightsaber_one_handed_gen4 = objec
 	experimentalWeights = {1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1},
 	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "forcecost", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 240, 330, 2.0, 25, 12, 0, 300, 0},
-	experimentalMax = {0, 0, 260, 370, 2.0, 50, 12, 0, 300, 0},
-	experimentalPrecision = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+	experimentalMin = {0, 0, 225, 305, 5.1, 25, 55, 45, 60, 95},
+	experimentalMax = {0, 0, 235, 325, 4.8, 50, 48, 40, 45, 65},
+	experimentalPrecision = {0, 0, 0, 0, 1, 0, 1, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 

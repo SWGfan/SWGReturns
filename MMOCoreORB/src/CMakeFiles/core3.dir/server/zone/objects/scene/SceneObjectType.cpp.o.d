@@ -1,9 +1,9 @@
 src/CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectType.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/String.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/platform.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/SceneObjectType.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/String.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/platform.h \
  /usr/include/boost/lockfree/queue.hpp /usr/include/boost/config.hpp \
  /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/detail/select_compiler_config.hpp \
@@ -691,6 +691,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/scene/SceneObjectType.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
  /usr/include/c++/15/cfloat \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Variable.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ConstString.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Variable.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ConstString.h \
  /usr/include/c++/15/cstdarg

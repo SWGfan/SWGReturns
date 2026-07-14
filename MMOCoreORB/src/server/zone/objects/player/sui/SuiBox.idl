@@ -92,15 +92,7 @@ class SuiBox extends ManagedObject implements Logger {
 	public void initialize() {
 		Logger.setLoggingName("SuiBox");
 
-		CreatureObject strongRef = player;
-
-		if (strongRef) {
-			PlayerObject ghost = strongRef.getPlayerObject();
-
-			if (ghost) {
-				boxID = ghost.getNewSuiBoxID(windowType);
-			}
-		}
+		regenerateBoxID();
 
 		handlerStr = "msgSelected";
 
@@ -117,6 +109,25 @@ class SuiBox extends ManagedObject implements Logger {
 		hasGenerated = false;
 
 		suiCallback = null;
+	}
+
+	/**
+	 * Assigns a fresh boxID from the owning ghost. Used both on initial
+	 * creation and whenever a box is redisplayed after being handled (see
+	 * SuiManager::handleCharacterBuilderSelectItem), so a stale/duplicate
+	 * client packet referencing the just-consumed boxID can no longer be
+	 * replayed against the redisplayed box.
+	 */
+	public void regenerateBoxID() {
+		CreatureObject strongRef = player;
+
+		if (strongRef) {
+			PlayerObject ghost = strongRef.getPlayerObject();
+
+			if (ghost) {
+				boxID = ghost.getNewSuiBoxID(windowType);
+			}
+		}
 	}
 
 	public void finalize() {

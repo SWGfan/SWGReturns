@@ -3,7 +3,7 @@ object_tangible_loot_loot_schematic_weapon_schematic_pistol_mandalorian_schemati
 	templateType = LOOTSCHEMATIC,
 	objectMenuComponent = "LootSchematicMenuComponent",
 	attributeListComponent = "LootSchematicAttributeListComponent",
-	requiredSkill = "crafting_weaponsmith_master", 
+	requiredSkill = "master_armorsmith", 
 	targetDraftSchematic = "object/draft_schematic/weapon/pistol_mandalorian.iff",
 	targetUseCount = 1
 }

@@ -6854,8 +6854,8 @@ float CreatureObjectImplementation::getSpeedMultiplierBase() const{
 }
 
 float CreatureObjectImplementation::getSpeedMultiplierMod() const{
-	// server/zone/objects/creature/CreatureObject.idl():  		return speedMultiplierMod * 1.5;
-	return speedMultiplierMod * 1.5;
+	// server/zone/objects/creature/CreatureObject.idl():  		return speedMultiplierMod * 1.25;
+	return speedMultiplierMod * 1.25;
 }
 
 float CreatureObjectImplementation::getCurrentSpeed() const{
@@ -6904,8 +6904,8 @@ unsigned int CreatureObjectImplementation::getLastActionCounter() const{
 }
 
 float CreatureObjectImplementation::getRunSpeed() const{
-	// server/zone/objects/creature/CreatureObject.idl():  		return runSpeed * 1.5;
-	return runSpeed * 1.5;
+	// server/zone/objects/creature/CreatureObject.idl():  		return runSpeed * 1.25;
+	return runSpeed * 1.25;
 }
 
 float CreatureObjectImplementation::getWalkSpeed() const{

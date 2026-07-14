@@ -374,6 +374,28 @@ namespace conf {
 			return getString("Core3.DBPass", "Gemeni1");
 		}
 
+		// Account/session/character/galaxy database. Defaults to the local DB* values above
+		// when not explicitly set, so single-server deployments are unaffected.
+		inline const String& getAccountDBHost() {
+			return getString("Core3.AccountDBHost", getDBHost());
+		}
+
+		inline int getAccountDBPort() {
+			return getInt("Core3.AccountDBPort", getDBPort());
+		}
+
+		inline const String& getAccountDBName() {
+			return getString("Core3.AccountDBName", getDBName());
+		}
+
+		inline const String& getAccountDBUser() {
+			return getString("Core3.AccountDBUser", getDBUser());
+		}
+
+		inline const String& getAccountDBPass() {
+			return getString("Core3.AccountDBPass", getDBPass());
+		}
+
 		inline const String& getDBSecret() {
 			return getString("Core3.DBSecret", "swgemusecret");
 		}

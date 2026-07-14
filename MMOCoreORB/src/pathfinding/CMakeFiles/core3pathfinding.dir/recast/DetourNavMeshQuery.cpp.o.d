@@ -1,5 +1,5 @@
 src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMeshQuery.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMeshQuery.cpp \
  /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
@@ -16,13 +16,13 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.o:
  /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMeshQuery.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMeshQuery.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNode.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourCommon.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourMath.h \
  /usr/include/c++/15/math.h /usr/include/c++/15/cmath \
  /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
@@ -75,5 +75,5 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.o:
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAssert.h \
  /usr/include/c++/15/new /usr/include/c++/15/bits/exception.h

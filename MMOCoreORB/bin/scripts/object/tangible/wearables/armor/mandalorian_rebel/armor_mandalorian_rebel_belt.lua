@@ -112,7 +112,7 @@ object_tangible_wearables_armor_mandalorian_rebel_armor_mandalorian_rebel_belt =
 	mindEncumbrance = 1,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = LIGHT,
+	rating = HEAVY,
 
 	kinetic = 15,
 	energy = 15,

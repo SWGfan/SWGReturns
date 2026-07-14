@@ -1,0 +1,15 @@
+high_frequency_vibro_motor = {
+	minimumLevel = 0,
+	maximumLevel = -1,
+	customObjectName = "",
+	directObjectTemplate = "object/tangible/component/weapon/vibro_unit_enhancement_wounding.iff",
+	craftingValues = {
+		{"mindamage",1000,1000,1},
+		{"maxdamage",1000,1000,1},
+		{"woundchance",25,35,10},
+		{"useCount",1,5,0},
+	},
+	customizationStringNames = {},
+	customizationValues = {}
+}
+addLootItemTemplate("high_frequency_vibro_motor", high_frequency_vibro_motor)

@@ -44,10 +44,10 @@
 StrafeShot1Command = {
         name = "strafeshot1",
 
-	damageMultiplier = 2.0,
+	damageMultiplier = 1.40,
 	speedMultiplier = 2.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 1.5,
+	actionCostMultiplier = 1.75,
 	mindCostMultiplier = 0,
 	accuracyBonus = 5,
   coneAngle = 45,

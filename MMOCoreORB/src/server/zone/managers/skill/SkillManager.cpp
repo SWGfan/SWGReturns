@@ -334,7 +334,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -356,7 +356,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		MissionManager* missionManager = creature->getZoneServer()->getMissionManager();
 
-		if (skill->getSkillName() == "force_title_jedi_rank_02") {
+		if (ghost->isJedi()) {
 			if (missionManager != nullptr)
 				missionManager->addPlayerToBountyList(creature->getObjectID(), ghost->calculateBhReward());
 		} else if (skill->getSkillName().contains("force_discipline")) {
@@ -387,7 +387,24 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 	msg4->close();
 	creature->sendMessage(msg4);
 
-	SkillModManager::instance()->verifySkillBoxSkillMods(creature);
+	
+
+        // =====================================================
+        // PHASE719_FRS_SKILL_UPDATE
+        // Synchronize FRS whenever a skill is awarded.
+        // =====================================================
+
+        {
+                ManagedReference<FrsManager*> frsManager =
+                        creature->getZoneServer()->getFrsManager();
+
+                if (frsManager != nullptr)
+                        frsManager->updatePlayerSkills(creature);
+        }
+
+        // =====================================================
+
+SkillModManager::instance()->verifySkillBoxSkillMods(creature);
 
 	return true;
 }
@@ -491,7 +508,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -511,7 +528,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 		MissionManager* missionManager = creature->getZoneServer()->getMissionManager();
 
-		if (skill->getSkillName() == "force_title_jedi_rank_02") {
+		if (ghost->isJedi()) {
 			if (missionManager != nullptr)
 				missionManager->removePlayerFromBountyList(creature->getObjectID());
 		} else if (skill->getSkillName().contains("force_discipline")) {
@@ -814,34 +831,20 @@ int SkillManager::getForceSensitiveSkillCount(CreatureObject* creature, bool inc
 }
 
 bool SkillManager::villageKnightPrereqsMet(CreatureObject* creature, const String& skillToDrop) {
-	const SkillList* skillList = creature->getSkillList();
+    const SkillList* skillList = creature->getSkillList();
 
-	int fullTrees = 0;
-	int totalJediPoints = 0;
 
-	for (int i = 0; i < skillList->size(); ++i) {
-		Skill* skill = skillList->get(i);
+    for (int i = 0; i < skillList->size(); ++i) {
+        Skill* skill = skillList->get(i);
 
-		String skillName = skill->getSkillName();
-		if (skillName.contains("force_discipline_") &&
-			(skillName.indexOf("0") != -1 || skillName.contains("novice") || skillName.contains("master") )) {
-			totalJediPoints += skill->getSkillPointsRequired();
+        String skillName = skill->getSkillName();
+        if (skillName.contains("jedi_") &&
+            (skillName.contains("_journeyman_master"))) {
+            return true;
 
-			if (skillName.indexOf("4") != -1) {
-				fullTrees++;
-			}
-		}
-	}
+        }
+    }
 
-	if (!skillToDrop.isEmpty()) {
-		Skill* skillBeingDropped = skillMap.get(skillToDrop.hashCode());
 
-		if (skillToDrop.indexOf("4") != -1) {
-			fullTrees--;
-		}
-
-		totalJediPoints -= skillBeingDropped->getSkillPointsRequired();
-	}
-
-	return fullTrees >= 2 && totalJediPoints >= 206;
+    return false;
 }

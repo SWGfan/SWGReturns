@@ -9,6 +9,7 @@
 #include "server/zone/Zone.h"
 
 #include "server/db/ServerDatabase.h"
+#include "server/db/AccountDatabase.h"
 
 #include "conf/ConfigManager.h"
 
@@ -103,7 +104,7 @@ void ZoneServerImplementation::loadGalaxyName() {
 	try {
 		const String query = "SELECT name FROM galaxy WHERE galaxy_id = " + String::valueOf(galaxyID);
 
-		UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
+		UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
 
 		if (result->next())
 			galaxyName = result->getString(0);

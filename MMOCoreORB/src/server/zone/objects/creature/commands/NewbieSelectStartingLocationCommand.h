@@ -58,6 +58,12 @@ public:
 			return GENERALERROR;
 		}
 
+		StringBuffer newbieSpawnLog;
+		newbieSpawnLog << "Newbie spawn: player=" << player->getFirstName() << " zone=" << startingLocation->getZoneName()
+			<< " x=" << startingLocation->getX() << " y=" << startingLocation->getY() << " z=" << startingLocation->getZ()
+			<< " cell=" << startingLocation->getCell();
+		player->info(newbieSpawnLog.toString(), true);
+
 		player->switchZone(startingLocation->getZoneName(), startingLocation->getX(), startingLocation->getZ(), startingLocation->getY(), startingLocation->getCell());
 		player->setDirection(startingLocation->getHeading());
 

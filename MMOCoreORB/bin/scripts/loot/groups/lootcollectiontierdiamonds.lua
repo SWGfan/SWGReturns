@@ -5,7 +5,7 @@ lootcollectiontierdiamonds  = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{groupTemplate = "collectiondiamond", weight = 10000000},
+		{groupTemplate = "lootcollectiontierdiamond", weight = 10000000},
 	}
 }
 

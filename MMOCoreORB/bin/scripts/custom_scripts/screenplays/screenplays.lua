@@ -7,3 +7,4 @@ includeFile("../custom_scripts/screenplays/respec_counselor/convohelpers/experie
 includeFile("../custom_scripts/tools/CommonLewtBoxMenuComponent.lua")
 includeFile("../custom_scripts/tools/RareLewtBoxMenuComponent.lua")
 includeFile("../custom_scripts/tools/EventLewtBoxMenuComponent.lua")
+includeFile("../custom_scripts/tools/RareLootCrateMenuComponents.lua")

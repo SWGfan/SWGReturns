@@ -44,7 +44,8 @@
 object_building_player_vipbunker_house = object_building_player_shared_vipbunker_house:new {
 	lotSize = 2,
 	baseMaintenanceRate = 10,
-	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir"},
+	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir",
+    "yavin4"},
 	publicStructure = 0,
 	skillMods = {
 		{"private_medical_rating", 100},

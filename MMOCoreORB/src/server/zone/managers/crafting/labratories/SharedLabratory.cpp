@@ -184,25 +184,10 @@ int SharedLabratory::calculateAssemblySuccess(CreatureObject* player,DraftSchema
 	luckRoll += System::random(player->getSkillMod("luck") + player->getSkillMod("force_luck"));
 
 	int assemblyRoll = (toolModifier * (luckRoll + (assemblyPoints * 5)));
+	(void) assemblyRoll;
 
-	if (assemblyRoll > 70)
-		return CraftingManager::GREATSUCCESS;
-
-	if (assemblyRoll > 60)
-		return CraftingManager::GOODSUCCESS;
-
-	if (assemblyRoll > 50)
-		return CraftingManager::MODERATESUCCESS;
-
-	if (assemblyRoll > 40)
-		return CraftingManager::SUCCESS;
-
-	if (assemblyRoll > 30)
-		return CraftingManager::MARGINALSUCCESS;
-
-	if (assemblyRoll > 20)
-		return CraftingManager::OK;
-
-	return CraftingManager::BARELYSUCCESSFUL;
+	// Custom: crafting yields only Great or Amazing results. Amazing is handled by the luck roll
+	// above; every lesser outcome is floored to Great Success.
+	return CraftingManager::GREATSUCCESS;
 }
 

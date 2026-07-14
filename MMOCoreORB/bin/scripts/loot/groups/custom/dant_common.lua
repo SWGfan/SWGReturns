@@ -3,10 +3,10 @@ dant_common = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	lootItems = {
-		{itemTemplate = "janta_common", weight = 2500000},
-		{itemTemplate = "mokk_common", weight = 2500000},
-		{itemTemplate = "kunga_common", weight = 2500000},
-		{itemTemplate = "dantari_common", weight = 2500000},
+		{groupTemplate = "janta_common", weight = 2500000},
+		{groupTemplate = "mokk_common", weight = 2500000},
+		{groupTemplate = "kunga_common", weight = 2500000},
+		{groupTemplate = "dantari_common", weight = 2500000},
 	}
 }
 

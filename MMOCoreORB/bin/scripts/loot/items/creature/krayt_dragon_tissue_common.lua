@@ -9,7 +9,7 @@ krayt_dragon_tissue_common = {
 		{"maxdamage",225,350,0},
     		{"mindamage",175,225,0},		
 		{"attackspeed",0,-2.2,1},
-		{"useCount",5,13,0},
+		{"useCount",25,75,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {}

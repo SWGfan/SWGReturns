@@ -28,7 +28,9 @@ som_dark_jedi_boss = Creature:new {
 	templates = {"object/mobile/som/som_dark_jedi_boss.iff"},
 	lootGroups = {
 		{
-			groups = {},
+			groups = {
+				{group = "rare_lewt_box_01", chance = 10000000}
+			},
 			lootChance = 2100000
 		}
 	},

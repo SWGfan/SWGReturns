@@ -1,0 +1,13 @@
+includeFile("draft_schematic/clothing/custom/objects.lua")
+
+includeFile("draft_schematic/clothing/custom/bandolier_tusken_raider_bag_s01.lua")
+includeFile("draft_schematic/clothing/custom/bandolier_tusken_raider_bag_s02.lua")
+includeFile("draft_schematic/clothing/custom/bandolier_tusken_raider_bag_s03.lua")
+includeFile("draft_schematic/clothing/custom/bracer_l_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/bracer_r_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/belt_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/boots_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/gloves_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/hat_tusken_raider_crafted.lua")
+includeFile("draft_schematic/clothing/custom/robe_tusken_raider_s01_crafted.lua")
+includeFile("draft_schematic/clothing/custom/robe_tusken_raider_s02_crafted.lua")

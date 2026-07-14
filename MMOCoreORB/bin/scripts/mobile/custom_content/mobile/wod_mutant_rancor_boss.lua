@@ -3,9 +3,9 @@ wod_mutant_rancor_boss = Creature:new {
 	socialGroup = "nightsister",
   faction = "nightsister",
 	level = 400,
-	chanceHit = 0.24,
-	damageMin = 1400,
-	damageMax = 2250,
+	chanceHit = 0.13,
+	damageMin = 735,
+	damageMax = 1182,
 	baseXp = 62000,
 	baseHAM = 200000,
 	baseHAMmax = 200000,
@@ -26,7 +26,14 @@ wod_mutant_rancor_boss = Creature:new {
   diet = HERBIVORE,
 
 	templates = {"object/mobile/wod_mutant_rancor_boss.iff"},
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "rare_lewt_box_01", chance = 10000000}
+			},
+			lootChance = 5000000
+		}
+	},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {

@@ -27,7 +27,12 @@ Yavin4StaticSpawnsScreenPlay = ScreenPlay:new {
 
 		-- Imp base camp outside Massassi Temple POI
 		{"stormtrooper", 360, -3196.7, 69.6, -3139.5, -100, 0},
-		{"stormtrooper", 360, -3195.8, 69.8, -3130.7, -104, 0}
+		{"stormtrooper", 360, -3195.8, 69.8, -3130.7, -104, 0},
+
+                -- Jedi Enclaves
+                {"trainer_light_sentinel", 300, -5579.0, 87.7, 4908.5, -179, 0},
+                {"trainer_dark_sentinel", 300, 5074.2, 78.8, 313.9, 90, 0},
+
 	}
 }
 

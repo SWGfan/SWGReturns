@@ -28,7 +28,9 @@ boss_uruli = Creature:new {
 	templates = {"object/mobile/som/mustafarian_m_02.iff"},
 	lootGroups = {
 		{
-			groups = {},
+			groups = {
+				{group = "rare_lewt_box_01", chance = 10000000}
+			},
 			lootChance = 2100000
 		}
 	},

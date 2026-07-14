@@ -1,4 +1,4 @@
 src/CMakeFiles/core3.dir/server/zone/objects/resource/simplexnoise/SimplexNoise.cpp.o: \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/server/zone/objects/resource/simplexnoise/SimplexNoise.cpp \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/resource/simplexnoise/SimplexNoise.cpp \
  /usr/include/stdc-predef.h \
- /home/ubuntu/StarDust-2/MMOCoreORB/src/server/zone/objects/resource/simplexnoise/SimplexNoise.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/resource/simplexnoise/SimplexNoise.h

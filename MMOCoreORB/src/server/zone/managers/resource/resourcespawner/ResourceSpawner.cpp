@@ -722,48 +722,27 @@ String ResourceSpawner::makeResourceName(const String& randomNameClass) {
 	return randname;
 }
 
+
+// =====================================================
+// Phase 7 Resource Overhaul
+// Every generated resource attribute = 1000
+// =====================================================
 int ResourceSpawner::randomizeValue(int min, int max) {
-	if (min == 0 && max == 0)
-		return 1000;
-
-	if (min < lowerGateOverride)
-		min = Math::min(lowerGateOverride, max);
-
-	// High quality floor: always roll in top 15% of stat range
-	int qualityFloor = min + (int)((max - min) * 0.85f);
-	if (qualityFloor < max)
-		min = qualityFloor;
-
-	int randomStat = System::random(max - min) + min;
-
-	if (spawnThrottling < 90) {
-		int breakpoint = ((spawnThrottling * (max - min)) / 100) + min;
-		bool aboveBreakpoint = System::random(9) == 7;
-
-		if ((aboveBreakpoint && randomStat < breakpoint) || (!aboveBreakpoint && randomStat > breakpoint)) {
-			if (aboveBreakpoint) {
-				while (randomStat < breakpoint)
-					randomStat = System::random(max - min) + min;
-			} else {
-				while (randomStat > breakpoint)
-					randomStat = System::random(max - min) + min;
-			}
-		}
-	}
-
-	return randomStat;
+        return 1000;
 }
+
+
 
 long ResourceSpawner::getRandomExpirationTime(const ResourceTreeEntry* resourceEntry) {
-	if (resourceEntry->isOrganic())
-		return getRandomUnixTimestamp(6, 22);
 
-	else if (resourceEntry->isJTL())
-		return getRandomUnixTimestamp(13, 22);
+        // Longer resource lifetimes
 
-	else
-		return getRandomUnixTimestamp(6, 11);
+        if (resourceEntry->isOrganic())
+                return getRandomUnixTimestamp(14, 30);
+
+        return getRandomUnixTimestamp(21, 45);
 }
+
 
 long ResourceSpawner::getRandomUnixTimestamp(int min, int max) const {
 	return time(0) + (System::random((max * shiftDuration) - (min

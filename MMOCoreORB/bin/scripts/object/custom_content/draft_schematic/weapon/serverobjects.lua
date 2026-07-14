@@ -15,3 +15,6 @@ includeFile("custom_content/draft_schematic/weapon/quest_pistol_launcher.lua")
 includeFile("custom_content/draft_schematic/weapon/rifle_bowcaster_master.lua")
 includeFile("custom_content/draft_schematic/weapon/rifle_lightning_heavy.lua")
 includeFile("custom_content/draft_schematic/weapon/rifle_odararissl.lua")
+
+includeFile("custom_content/draft_schematic/weapon/component/serverobjects.lua")
+includeFile("custom_content/draft_schematic/weapon/core/serverobjects.lua")

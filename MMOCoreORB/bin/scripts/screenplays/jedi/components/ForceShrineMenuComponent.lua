@@ -32,6 +32,16 @@ function ForceShrineMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selec
 end
 
 function ForceShrineMenuComponent:doMeditate(pObject, pPlayer)
+
+        -- ==========================================================
+        -- PHASE720 KNIGHT FIX
+        -- Never restart Knight Trials for completed Jedi Knights.
+        -- ==========================================================
+        if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
+                CreatureObject(pPlayer):sendSystemMessage("@jedi_trials:force_shrine_wisdom_" .. getRandomNumber(1, 15))
+                return
+        end
+
 	if (tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
 		KnightTrials:resetCompletedTrialsToStart(pPlayer)
 	end

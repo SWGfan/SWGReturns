@@ -1445,10 +1445,9 @@ void PlayerObjectImplementation::notifyOnline() {
 	if (missionManager != nullptr) {
 		uint64 id = playerCreature->getObjectID();
 		if (!missionManager->hasPlayerBountyTargetInList(id)) {
-			if (playerCreature->hasSkill("force_title_jedi_rank_02")) {
-				missionManager->addPlayerToBountyList(id, calculateBhReward());
-				missionManager->updatePlayerBountyOnlineStatus(id, true);
-			}
+			// Any player (not just Jedi) is a potential bounty hunter target.
+			missionManager->addPlayerToBountyList(id, calculateBhReward());
+			missionManager->updatePlayerBountyOnlineStatus(id, true);
 		}
 		else {
 			missionManager->updatePlayerBountyOnlineStatus(id, true);
@@ -1753,12 +1752,7 @@ void PlayerObjectImplementation::increaseFactionStanding(const String& factionNa
 	//Ensure that the new amount is not greater than 5000.
 	float newAmount = currentAmount + amount;
 
-	if (!factionStandingList.isPvpFaction(factionName))
-		newAmount = newAmount;
-	else if (player->getFaction() == factionName.hashCode())
-		newAmount = newAmount; // Faction cap removed - limitless points
-	else
-		newAmount = newAmount;
+	// Unlimited faction points (cap removed)
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -1816,12 +1810,7 @@ void PlayerObjectImplementation::decreaseFactionStanding(const String& factionNa
 	//Ensure that the new amount is not less than -5000.
 	float newAmount = currentAmount - amount;
 
-	if (factionStandingList.isPvpFaction(factionName)) {
-		if (player->getFaction() == factionName.hashCode())
-			newAmount = newAmount; // Faction cap removed - limitless points
-		else
-			newAmount = newAmount;
-	}
+	// Unlimited faction points (cap removed)
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -1848,12 +1837,7 @@ void PlayerObjectImplementation::setFactionStanding(const String& factionName, f
 
 	newAmount = newAmount;
 
-	if (factionStandingList.isPvpFaction(factionName)) {
-		if (player->getFaction() == factionName.hashCode())
-			newAmount = newAmount; // Faction cap removed - limitless points
-		else
-			newAmount = newAmount;
-	}
+	// Unlimited faction points (cap removed)
 
 	factionStandingList.put(factionName, newAmount);
 }
@@ -2176,6 +2160,21 @@ void PlayerObjectImplementation::setLinkDead(bool isSafeLogout) {
 
 	logoutTimeStamp.updateToCurrentTime();
 	if(!isSafeLogout) {
+		String crashZone = "unknown";
+		float crashX = 0.f, crashY = 0.f, crashZ = 0.f;
+
+		if (creature->getZone() != nullptr) {
+			crashZone = creature->getZone()->getZoneName();
+			crashX = creature->getPositionX();
+			crashY = creature->getPositionY();
+			crashZ = creature->getPositionZ();
+		}
+
+		StringBuffer crashLog;
+		crashLog << "CRASH/DISCONNECT player=" << creature->getFirstName() << " oid=" << creature->getObjectID()
+			<< " zone=" << crashZone << " x=" << crashX << " y=" << crashY << " z=" << crashZ;
+		info(crashLog.toString(), true);
+
 		info("went link dead");
 		logoutTimeStamp.addMiliTime(ConfigManager::instance()->getInt("Core3.Tweaks.PlayerObject.LinkDeadDelay", 3 * 60) * 1000); // 3 minutes if unsafe
 	}
@@ -2397,7 +2396,7 @@ void PlayerObjectImplementation::doForceRegen() {
 	if (creature == nullptr || creature->isIncapacitated() || creature->isDead())
 		return;
 
-	const static uint32 tick = 5;
+	const static uint32 tick = 8;
 
 	uint32 modifier = 1;
 
@@ -2405,7 +2404,7 @@ void PlayerObjectImplementation::doForceRegen() {
 		Reference<ForceMeditateTask*> medTask = creature->getPendingTask("forcemeditate").castTo<ForceMeditateTask*>();
 
 		if (medTask != nullptr)
-			modifier = 10;
+			modifier = 15;
 	}
 
 	uint32 forceTick = tick * modifier;
@@ -3074,7 +3073,7 @@ void PlayerObjectImplementation::recalculateForcePower() {
 		forceControlMod = player->getSkillMod("force_control_dark");
 	}
 
-	maxForce += (forcePowerMod + forceControlMod) * 10;
+	maxForce += (forcePowerMod + forceControlMod) * 15;
 
 	setForcePowerMax(maxForce, true);
 }

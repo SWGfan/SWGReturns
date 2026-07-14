@@ -1,0 +1,147 @@
+======================================================================
+Phase 7.22B Crafting Audit
+======================================================================
+
+blaster_pistol_barrel_advanced
+------------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+blaster_rifle_barrel_advanced
+-----------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+blaster_power_handler_advanced
+------------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+projectile_pistol_barrel_advanced
+---------------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+projectile_rifle_barrel_advanced
+--------------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+projectile_feed_mechanism_advanced
+----------------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+scope_weapon_advanced
+---------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+stock_advanced
+--------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... OK
+Schematics...... OK
+ServerObjects... OK
+
+reinforcement_core_advanced
+---------------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... OK
+
+sword_core_advanced
+-------------------
+Tangible........ OK
+Draft........... OK
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... OK
+
+vibro_unit_advanced
+-------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... OK
+
+biologic_effect_controller_advanced
+-----------------------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... MISSING
+
+release_mechanism_duration_advanced
+-----------------------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... MISSING
+
+liquid_delivery_suspension_advanced
+-----------------------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... MISSING
+
+solid_delivery_shell_advanced
+-----------------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... OK
+Loot Items...... MISSING
+Schematics...... OK
+ServerObjects... MISSING
+
+vibro_unit_nightsister
+----------------------
+Tangible........ OK
+Draft........... MISSING
+Loot Template... MISSING
+Loot Items...... MISSING
+Schematics...... MISSING
+ServerObjects... MISSING

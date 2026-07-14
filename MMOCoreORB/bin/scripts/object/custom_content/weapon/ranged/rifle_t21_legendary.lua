@@ -276,7 +276,7 @@ object_weapon_ranged_rifle_rifle_t21_legendary = object_weapon_ranged_rifle_shar
 	maxRangeAccuracy = -10,
 
 	minDamage = 125,
-	maxDamage = 400,
+	maxDamage = 340,
 
 	attackSpeed = 7.5,
 

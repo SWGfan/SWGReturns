@@ -4,6 +4,7 @@
 */
 
 #include "server/db/ServerDatabase.h"
+#include "server/db/AccountDatabase.h"
 #include "PlayerCreationManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/login/packets/ErrorMessage.h"
@@ -362,10 +363,10 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			dynamic_cast<PlayerCreatureTemplate*>(templateManager->getTemplate(
 					serverObjectCRC));
 
-	if (playerTemplate == nullptr) {
+	/*if (playerTemplate == nullptr) {
 		error("Unknown player template selected: " + raceFile);
 		return false;
-	}
+	}*/
 
 	String fileName = playerTemplate->getTemplateFileName();
 	String clientTemplate = templateManager->getTemplateFile(
@@ -379,8 +380,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	String profession, customization, hairTemplate, hairCustomization;
 	callback->getSkill(profession);
 
-	if (profession.contains("jedi"))
-		profession = "crafting_artisan";
+	//if (profession.contains("jedi"))
+	//	profession = "crafting_artisan";
 
 	callback->getCustomizationString(customization);
 	callback->getHairObject(hairTemplate);
@@ -400,10 +401,10 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			zoneServer.get()->createObject(
 					serverObjectCRC, 2).castTo<CreatureObject*>();
 
-	if (playerCreature == nullptr) {
+	/*if (playerCreature == nullptr) {
 		error("Could not create player with template: " + raceFile);
 		return false;
-	}
+	}*/
 
 	Locker playerLocker(playerCreature);
 
@@ -481,14 +482,14 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 						uint32 accountId = client->getAccountID();
 						query << "(SELECT UNIX_TIMESTAMP(c.creation_date) as t FROM characters as c WHERE c.account_id = " << accountId << " AND c.galaxy_id = " << galaxyId << " ORDER BY c.creation_date DESC) UNION (SELECT UNIX_TIMESTAMP(d.creation_date) FROM deleted_characters as d WHERE d.account_id = " << accountId << " AND d.galaxy_id = " << galaxyId << " ORDER BY d.creation_date DESC) ORDER BY t DESC LIMIT 1";
 
-						UniqueReference<ResultSet*> res(ServerDatabase::instance()->executeQuery(query));
+						UniqueReference<ResultSet*> res(AccountDatabase::instance()->executeQuery(query));
 
 						if (res != nullptr && res->next()) {
 							uint32 sec = res->getUnsignedInt(0);
 
 							Time timeVal(sec);
 
-							if (timeVal.miliDifference() < 3600000) {
+							if (timeVal.miliDifference() < 0000000) {
 								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
@@ -505,7 +506,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 					if (lastCreatedCharacter.containsKey(accID)) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
-						if (lastCreatedTime.miliDifference() < 3600000) {
+						if (lastCreatedTime.miliDifference() < 0000000) {
 							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
@@ -563,7 +564,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 				<< lastName.escapeString() << "'," << raceID << "," << 0 << ",'"
 				<< raceFile.escapeString() << "')";
 
-		ServerDatabase::instance()->executeStatement(query);
+		AccountDatabase::instance()->executeStatement(query);
 	} catch (const DatabaseException& e) {
 		error(e.getMessage());
 	}
@@ -574,7 +575,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	JediManager::instance()->onPlayerCreated(playerCreature);
 
-	chatManager->sendMail("system", "@newbie_tutorial/newbie_mail:welcome_subject", "@newbie_tutorial/newbie_mail:welcome_body", playerCreature->getFirstName());
+	chatManager->sendMail("SWG Returns Admin", "Welcome to SWG Returns", "Welcome to SWG Returns, from SWG Returns Admin.", playerCreature->getFirstName());
 
 	//Join auction chat room
 	ghost->addChatRoom(chatManager->getAuctionRoom()->getRoomID());
@@ -795,10 +796,10 @@ void PlayerCreationManager::addHair(CreatureObject* creature,
 	HairAssetData* hairAssetData =
 			CustomizationIdManager::instance()->getHairAssetData(hairTemplate);
 
-	if (hairAssetData == nullptr) {
+	/*if (hairAssetData == nullptr) {
 		error("no hair asset data detected for " + hairTemplate);
 		return;
-	}
+	}*/
 
 	if (hairAssetData->getServerPlayerTemplate()
 			!= creature->getObjectTemplate()->getFullTemplateString()) {

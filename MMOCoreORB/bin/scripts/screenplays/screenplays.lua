@@ -651,6 +651,7 @@ includeFile("static_spawns/talus_static_spawns_north.lua")
 includeFile("static_spawns/talus_static_spawns_south.lua")
 includeFile("static_spawns/tatooine_static_spawns_north.lua")
 includeFile("static_spawns/tatooine_static_spawns_south.lua")
+includeFile("static_spawns/tatooine_welcome_vader.lua")
 
 --Yavin4
 includeFile("static_spawns/yavin4_static_spawns.lua")

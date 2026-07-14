@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
+CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB/src/client//CMakeFiles/progress.marks
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles /home/ubuntu/SWGReturns01/MMOCoreORB/src/client//CMakeFiles/progress.marks
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/clean
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/preinstall
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/preinstall
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/client/CMakeFiles/core3client.dir/rule:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/CMakeFiles/core3client.dir/rule
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/client/CMakeFiles/core3client.dir/rule
 .PHONY : src/client/CMakeFiles/core3client.dir/rule
 
 # Convenience name for target.
@@ -182,7 +182,7 @@ core3client: src/client/CMakeFiles/core3client.dir/rule
 
 # fast build rule for target.
 core3client/fast:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/build
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/build
 .PHONY : core3client/fast
 
 ClientCore.o: ClientCore.cpp.o
@@ -190,7 +190,7 @@ ClientCore.o: ClientCore.cpp.o
 
 # target to build an object file
 ClientCore.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.o
 .PHONY : ClientCore.cpp.o
 
 ClientCore.i: ClientCore.cpp.i
@@ -198,7 +198,7 @@ ClientCore.i: ClientCore.cpp.i
 
 # target to preprocess a source file
 ClientCore.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.i
 .PHONY : ClientCore.cpp.i
 
 ClientCore.s: ClientCore.cpp.s
@@ -206,7 +206,7 @@ ClientCore.s: ClientCore.cpp.s
 
 # target to generate assembly for a file
 ClientCore.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/ClientCore.cpp.s
 .PHONY : ClientCore.cpp.s
 
 login/LoginClient.o: login/LoginClient.cpp.o
@@ -214,7 +214,7 @@ login/LoginClient.o: login/LoginClient.cpp.o
 
 # target to build an object file
 login/LoginClient.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.o
 .PHONY : login/LoginClient.cpp.o
 
 login/LoginClient.i: login/LoginClient.cpp.i
@@ -222,7 +222,7 @@ login/LoginClient.i: login/LoginClient.cpp.i
 
 # target to preprocess a source file
 login/LoginClient.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.i
 .PHONY : login/LoginClient.cpp.i
 
 login/LoginClient.s: login/LoginClient.cpp.s
@@ -230,7 +230,7 @@ login/LoginClient.s: login/LoginClient.cpp.s
 
 # target to generate assembly for a file
 login/LoginClient.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginClient.cpp.s
 .PHONY : login/LoginClient.cpp.s
 
 login/LoginPacketHandler.o: login/LoginPacketHandler.cpp.o
@@ -238,7 +238,7 @@ login/LoginPacketHandler.o: login/LoginPacketHandler.cpp.o
 
 # target to build an object file
 login/LoginPacketHandler.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.o
 .PHONY : login/LoginPacketHandler.cpp.o
 
 login/LoginPacketHandler.i: login/LoginPacketHandler.cpp.i
@@ -246,7 +246,7 @@ login/LoginPacketHandler.i: login/LoginPacketHandler.cpp.i
 
 # target to preprocess a source file
 login/LoginPacketHandler.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.i
 .PHONY : login/LoginPacketHandler.cpp.i
 
 login/LoginPacketHandler.s: login/LoginPacketHandler.cpp.s
@@ -254,7 +254,7 @@ login/LoginPacketHandler.s: login/LoginPacketHandler.cpp.s
 
 # target to generate assembly for a file
 login/LoginPacketHandler.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginPacketHandler.cpp.s
 .PHONY : login/LoginPacketHandler.cpp.s
 
 login/LoginSession.o: login/LoginSession.cpp.o
@@ -262,7 +262,7 @@ login/LoginSession.o: login/LoginSession.cpp.o
 
 # target to build an object file
 login/LoginSession.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.o
 .PHONY : login/LoginSession.cpp.o
 
 login/LoginSession.i: login/LoginSession.cpp.i
@@ -270,7 +270,7 @@ login/LoginSession.i: login/LoginSession.cpp.i
 
 # target to preprocess a source file
 login/LoginSession.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.i
 .PHONY : login/LoginSession.cpp.i
 
 login/LoginSession.s: login/LoginSession.cpp.s
@@ -278,7 +278,7 @@ login/LoginSession.s: login/LoginSession.cpp.s
 
 # target to generate assembly for a file
 login/LoginSession.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/login/LoginSession.cpp.s
 .PHONY : login/LoginSession.cpp.s
 
 zone/Zone.o: zone/Zone.cpp.o
@@ -286,7 +286,7 @@ zone/Zone.o: zone/Zone.cpp.o
 
 # target to build an object file
 zone/Zone.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.o
 .PHONY : zone/Zone.cpp.o
 
 zone/Zone.i: zone/Zone.cpp.i
@@ -294,7 +294,7 @@ zone/Zone.i: zone/Zone.cpp.i
 
 # target to preprocess a source file
 zone/Zone.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.i
 .PHONY : zone/Zone.cpp.i
 
 zone/Zone.s: zone/Zone.cpp.s
@@ -302,7 +302,7 @@ zone/Zone.s: zone/Zone.cpp.s
 
 # target to generate assembly for a file
 zone/Zone.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/Zone.cpp.s
 .PHONY : zone/Zone.cpp.s
 
 zone/ZoneClient.o: zone/ZoneClient.cpp.o
@@ -310,7 +310,7 @@ zone/ZoneClient.o: zone/ZoneClient.cpp.o
 
 # target to build an object file
 zone/ZoneClient.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.o
 .PHONY : zone/ZoneClient.cpp.o
 
 zone/ZoneClient.i: zone/ZoneClient.cpp.i
@@ -318,7 +318,7 @@ zone/ZoneClient.i: zone/ZoneClient.cpp.i
 
 # target to preprocess a source file
 zone/ZoneClient.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.i
 .PHONY : zone/ZoneClient.cpp.i
 
 zone/ZoneClient.s: zone/ZoneClient.cpp.s
@@ -326,7 +326,7 @@ zone/ZoneClient.s: zone/ZoneClient.cpp.s
 
 # target to generate assembly for a file
 zone/ZoneClient.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClient.cpp.s
 .PHONY : zone/ZoneClient.cpp.s
 
 zone/ZoneClientThread.o: zone/ZoneClientThread.cpp.o
@@ -334,7 +334,7 @@ zone/ZoneClientThread.o: zone/ZoneClientThread.cpp.o
 
 # target to build an object file
 zone/ZoneClientThread.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.o
 .PHONY : zone/ZoneClientThread.cpp.o
 
 zone/ZoneClientThread.i: zone/ZoneClientThread.cpp.i
@@ -342,7 +342,7 @@ zone/ZoneClientThread.i: zone/ZoneClientThread.cpp.i
 
 # target to preprocess a source file
 zone/ZoneClientThread.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.i
 .PHONY : zone/ZoneClientThread.cpp.i
 
 zone/ZoneClientThread.s: zone/ZoneClientThread.cpp.s
@@ -350,7 +350,7 @@ zone/ZoneClientThread.s: zone/ZoneClientThread.cpp.s
 
 # target to generate assembly for a file
 zone/ZoneClientThread.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZoneClientThread.cpp.s
 .PHONY : zone/ZoneClientThread.cpp.s
 
 zone/ZonePacketHandler.o: zone/ZonePacketHandler.cpp.o
@@ -358,7 +358,7 @@ zone/ZonePacketHandler.o: zone/ZonePacketHandler.cpp.o
 
 # target to build an object file
 zone/ZonePacketHandler.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.o
 .PHONY : zone/ZonePacketHandler.cpp.o
 
 zone/ZonePacketHandler.i: zone/ZonePacketHandler.cpp.i
@@ -366,7 +366,7 @@ zone/ZonePacketHandler.i: zone/ZonePacketHandler.cpp.i
 
 # target to preprocess a source file
 zone/ZonePacketHandler.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.i
 .PHONY : zone/ZonePacketHandler.cpp.i
 
 zone/ZonePacketHandler.s: zone/ZonePacketHandler.cpp.s
@@ -374,7 +374,7 @@ zone/ZonePacketHandler.s: zone/ZonePacketHandler.cpp.s
 
 # target to generate assembly for a file
 zone/ZonePacketHandler.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/ZonePacketHandler.cpp.s
 .PHONY : zone/ZonePacketHandler.cpp.s
 
 zone/managers/object/ObjectManager.o: zone/managers/object/ObjectManager.cpp.o
@@ -382,7 +382,7 @@ zone/managers/object/ObjectManager.o: zone/managers/object/ObjectManager.cpp.o
 
 # target to build an object file
 zone/managers/object/ObjectManager.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.o
 .PHONY : zone/managers/object/ObjectManager.cpp.o
 
 zone/managers/object/ObjectManager.i: zone/managers/object/ObjectManager.cpp.i
@@ -390,7 +390,7 @@ zone/managers/object/ObjectManager.i: zone/managers/object/ObjectManager.cpp.i
 
 # target to preprocess a source file
 zone/managers/object/ObjectManager.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.i
 .PHONY : zone/managers/object/ObjectManager.cpp.i
 
 zone/managers/object/ObjectManager.s: zone/managers/object/ObjectManager.cpp.s
@@ -398,7 +398,7 @@ zone/managers/object/ObjectManager.s: zone/managers/object/ObjectManager.cpp.s
 
 # target to generate assembly for a file
 zone/managers/object/ObjectManager.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/object/ObjectManager.cpp.s
 .PHONY : zone/managers/object/ObjectManager.cpp.s
 
 zone/managers/objectcontroller/ObjectController.o: zone/managers/objectcontroller/ObjectController.cpp.o
@@ -406,7 +406,7 @@ zone/managers/objectcontroller/ObjectController.o: zone/managers/objectcontrolle
 
 # target to build an object file
 zone/managers/objectcontroller/ObjectController.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.o
 .PHONY : zone/managers/objectcontroller/ObjectController.cpp.o
 
 zone/managers/objectcontroller/ObjectController.i: zone/managers/objectcontroller/ObjectController.cpp.i
@@ -414,7 +414,7 @@ zone/managers/objectcontroller/ObjectController.i: zone/managers/objectcontrolle
 
 # target to preprocess a source file
 zone/managers/objectcontroller/ObjectController.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.i
 .PHONY : zone/managers/objectcontroller/ObjectController.cpp.i
 
 zone/managers/objectcontroller/ObjectController.s: zone/managers/objectcontroller/ObjectController.cpp.s
@@ -422,7 +422,7 @@ zone/managers/objectcontroller/ObjectController.s: zone/managers/objectcontrolle
 
 # target to generate assembly for a file
 zone/managers/objectcontroller/ObjectController.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/managers/objectcontroller/ObjectController.cpp.s
 .PHONY : zone/managers/objectcontroller/ObjectController.cpp.s
 
 zone/objects/creature/CreatureObject.o: zone/objects/creature/CreatureObject.cpp.o
@@ -430,7 +430,7 @@ zone/objects/creature/CreatureObject.o: zone/objects/creature/CreatureObject.cpp
 
 # target to build an object file
 zone/objects/creature/CreatureObject.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.o
 .PHONY : zone/objects/creature/CreatureObject.cpp.o
 
 zone/objects/creature/CreatureObject.i: zone/objects/creature/CreatureObject.cpp.i
@@ -438,7 +438,7 @@ zone/objects/creature/CreatureObject.i: zone/objects/creature/CreatureObject.cpp
 
 # target to preprocess a source file
 zone/objects/creature/CreatureObject.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.i
 .PHONY : zone/objects/creature/CreatureObject.cpp.i
 
 zone/objects/creature/CreatureObject.s: zone/objects/creature/CreatureObject.cpp.s
@@ -446,7 +446,7 @@ zone/objects/creature/CreatureObject.s: zone/objects/creature/CreatureObject.cpp
 
 # target to generate assembly for a file
 zone/objects/creature/CreatureObject.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/creature/CreatureObject.cpp.s
 .PHONY : zone/objects/creature/CreatureObject.cpp.s
 
 zone/objects/intangible/IntangibleObject.o: zone/objects/intangible/IntangibleObject.cpp.o
@@ -454,7 +454,7 @@ zone/objects/intangible/IntangibleObject.o: zone/objects/intangible/IntangibleOb
 
 # target to build an object file
 zone/objects/intangible/IntangibleObject.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.o
 .PHONY : zone/objects/intangible/IntangibleObject.cpp.o
 
 zone/objects/intangible/IntangibleObject.i: zone/objects/intangible/IntangibleObject.cpp.i
@@ -462,7 +462,7 @@ zone/objects/intangible/IntangibleObject.i: zone/objects/intangible/IntangibleOb
 
 # target to preprocess a source file
 zone/objects/intangible/IntangibleObject.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.i
 .PHONY : zone/objects/intangible/IntangibleObject.cpp.i
 
 zone/objects/intangible/IntangibleObject.s: zone/objects/intangible/IntangibleObject.cpp.s
@@ -470,7 +470,7 @@ zone/objects/intangible/IntangibleObject.s: zone/objects/intangible/IntangibleOb
 
 # target to generate assembly for a file
 zone/objects/intangible/IntangibleObject.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/intangible/IntangibleObject.cpp.s
 .PHONY : zone/objects/intangible/IntangibleObject.cpp.s
 
 zone/objects/player/PlayerCreature.o: zone/objects/player/PlayerCreature.cpp.o
@@ -478,7 +478,7 @@ zone/objects/player/PlayerCreature.o: zone/objects/player/PlayerCreature.cpp.o
 
 # target to build an object file
 zone/objects/player/PlayerCreature.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.o
 .PHONY : zone/objects/player/PlayerCreature.cpp.o
 
 zone/objects/player/PlayerCreature.i: zone/objects/player/PlayerCreature.cpp.i
@@ -486,7 +486,7 @@ zone/objects/player/PlayerCreature.i: zone/objects/player/PlayerCreature.cpp.i
 
 # target to preprocess a source file
 zone/objects/player/PlayerCreature.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.i
 .PHONY : zone/objects/player/PlayerCreature.cpp.i
 
 zone/objects/player/PlayerCreature.s: zone/objects/player/PlayerCreature.cpp.s
@@ -494,7 +494,7 @@ zone/objects/player/PlayerCreature.s: zone/objects/player/PlayerCreature.cpp.s
 
 # target to generate assembly for a file
 zone/objects/player/PlayerCreature.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerCreature.cpp.s
 .PHONY : zone/objects/player/PlayerCreature.cpp.s
 
 zone/objects/player/PlayerObject.o: zone/objects/player/PlayerObject.cpp.o
@@ -502,7 +502,7 @@ zone/objects/player/PlayerObject.o: zone/objects/player/PlayerObject.cpp.o
 
 # target to build an object file
 zone/objects/player/PlayerObject.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.o
 .PHONY : zone/objects/player/PlayerObject.cpp.o
 
 zone/objects/player/PlayerObject.i: zone/objects/player/PlayerObject.cpp.i
@@ -510,7 +510,7 @@ zone/objects/player/PlayerObject.i: zone/objects/player/PlayerObject.cpp.i
 
 # target to preprocess a source file
 zone/objects/player/PlayerObject.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.i
 .PHONY : zone/objects/player/PlayerObject.cpp.i
 
 zone/objects/player/PlayerObject.s: zone/objects/player/PlayerObject.cpp.s
@@ -518,7 +518,7 @@ zone/objects/player/PlayerObject.s: zone/objects/player/PlayerObject.cpp.s
 
 # target to generate assembly for a file
 zone/objects/player/PlayerObject.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/player/PlayerObject.cpp.s
 .PHONY : zone/objects/player/PlayerObject.cpp.s
 
 zone/objects/scene/SceneObject.o: zone/objects/scene/SceneObject.cpp.o
@@ -526,7 +526,7 @@ zone/objects/scene/SceneObject.o: zone/objects/scene/SceneObject.cpp.o
 
 # target to build an object file
 zone/objects/scene/SceneObject.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o
 .PHONY : zone/objects/scene/SceneObject.cpp.o
 
 zone/objects/scene/SceneObject.i: zone/objects/scene/SceneObject.cpp.i
@@ -534,7 +534,7 @@ zone/objects/scene/SceneObject.i: zone/objects/scene/SceneObject.cpp.i
 
 # target to preprocess a source file
 zone/objects/scene/SceneObject.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.i
 .PHONY : zone/objects/scene/SceneObject.cpp.i
 
 zone/objects/scene/SceneObject.s: zone/objects/scene/SceneObject.cpp.s
@@ -542,7 +542,7 @@ zone/objects/scene/SceneObject.s: zone/objects/scene/SceneObject.cpp.s
 
 # target to generate assembly for a file
 zone/objects/scene/SceneObject.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.s
 .PHONY : zone/objects/scene/SceneObject.cpp.s
 
 zone/objects/scene/variables/StringId.o: zone/objects/scene/variables/StringId.cpp.o
@@ -550,7 +550,7 @@ zone/objects/scene/variables/StringId.o: zone/objects/scene/variables/StringId.c
 
 # target to build an object file
 zone/objects/scene/variables/StringId.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o
 .PHONY : zone/objects/scene/variables/StringId.cpp.o
 
 zone/objects/scene/variables/StringId.i: zone/objects/scene/variables/StringId.cpp.i
@@ -558,7 +558,7 @@ zone/objects/scene/variables/StringId.i: zone/objects/scene/variables/StringId.c
 
 # target to preprocess a source file
 zone/objects/scene/variables/StringId.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.i
 .PHONY : zone/objects/scene/variables/StringId.cpp.i
 
 zone/objects/scene/variables/StringId.s: zone/objects/scene/variables/StringId.cpp.s
@@ -566,7 +566,7 @@ zone/objects/scene/variables/StringId.s: zone/objects/scene/variables/StringId.c
 
 # target to generate assembly for a file
 zone/objects/scene/variables/StringId.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.s
 .PHONY : zone/objects/scene/variables/StringId.cpp.s
 
 zone/objects/tangible/TangibleObject.o: zone/objects/tangible/TangibleObject.cpp.o
@@ -574,7 +574,7 @@ zone/objects/tangible/TangibleObject.o: zone/objects/tangible/TangibleObject.cpp
 
 # target to build an object file
 zone/objects/tangible/TangibleObject.cpp.o:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o
 .PHONY : zone/objects/tangible/TangibleObject.cpp.o
 
 zone/objects/tangible/TangibleObject.i: zone/objects/tangible/TangibleObject.cpp.i
@@ -582,7 +582,7 @@ zone/objects/tangible/TangibleObject.i: zone/objects/tangible/TangibleObject.cpp
 
 # target to preprocess a source file
 zone/objects/tangible/TangibleObject.cpp.i:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.i
 .PHONY : zone/objects/tangible/TangibleObject.cpp.i
 
 zone/objects/tangible/TangibleObject.s: zone/objects/tangible/TangibleObject.cpp.s
@@ -590,7 +590,7 @@ zone/objects/tangible/TangibleObject.s: zone/objects/tangible/TangibleObject.cpp
 
 # target to generate assembly for a file
 zone/objects/tangible/TangibleObject.cpp.s:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.s
 .PHONY : zone/objects/tangible/TangibleObject.cpp.s
 
 # Help Target
@@ -669,6 +669,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

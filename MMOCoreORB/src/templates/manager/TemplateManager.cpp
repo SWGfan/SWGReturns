@@ -1037,7 +1037,14 @@ int TemplateManager::addTemplateCRC(lua_State* L) {
 
 	uint32 crc = (uint32) ascii.hashCode();
 
-	TemplateManager::instance()->addTemplate(crc, ascii, &obj);
+	// A single malformed template (e.g. an IFF form-type mismatch in a .tre add-on) must not throw
+	// out through the Lua boundary and abort loading of every remaining template / crash boot.
+	// Log it and skip so the rest — including valid armor templates — still load.
+	try {
+		TemplateManager::instance()->addTemplate(crc, ascii, &obj);
+	} catch (...) {
+		TemplateManager::instance()->error() << "skipping malformed template: " << ascii;
+	}
 
 //	uint64 seconds = Logger::getElapsedTime();
 

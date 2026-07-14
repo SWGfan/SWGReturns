@@ -5,9 +5,9 @@ ranged_weapons = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "master_carbines", weight = 4000000},
-		{itemTemplate = "master_rifles", weight = 3000000},
-		{itemTemplate = "master_pistols", weight = 3000000}
+		{groupTemplate = "master_carbines", weight = 4000000},
+		{groupTemplate = "master_rifles", weight = 3000000},
+		{groupTemplate = "master_pistols", weight = 3000000}
 		
 	}
 }

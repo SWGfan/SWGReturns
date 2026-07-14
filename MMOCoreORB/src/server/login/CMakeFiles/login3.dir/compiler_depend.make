@@ -5,6 +5,7 @@ src/server/login/CMakeFiles/login3.dir/LoginPacketHandler.cpp.o: src/server/logi
   src/autogen/server/login/LoginServer.h \
   src/autogen/server/login/account/Account.h \
   src/conf/ConfigManager.h \
+  src/server/db/AccountDatabase.h \
   src/server/db/ServerDatabase.h \
   src/server/login/LoginClient.h \
   src/server/login/LoginPacketHandler.h \
@@ -2342,6 +2343,7 @@ src/server/login/CMakeFiles/login3.dir/LoginServerImplementation.cpp.o: src/serv
   src/autogen/server/login/LoginServer.h \
   src/autogen/server/login/account/Account.h \
   src/conf/ConfigManager.h \
+  src/server/db/AccountDatabase.h \
   src/server/db/ServerDatabase.h \
   src/server/login/LoginClient.h \
   src/server/login/LoginHandler.h \
@@ -3524,6 +3526,7 @@ src/server/login/CMakeFiles/login3.dir/SessionAPIClient.cpp.o: src/server/login/
 src/server/login/CMakeFiles/login3.dir/account/AccountImplementation.cpp.o: src/server/login/account/AccountImplementation.cpp \
   src/autogen/server/login/account/Account.h \
   src/conf/ConfigManager.h \
+  src/server/db/AccountDatabase.h \
   src/server/db/ServerDatabase.h \
   src/server/login/objects.h \
   src/server/login/objects/CharacterList.h \
@@ -4702,6 +4705,7 @@ src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o: src/server/
   src/autogen/server/zone/objects/scene/SceneObject.h \
   src/conf/ConfigManager.h \
   src/server/ServerCore.h \
+  src/server/db/AccountDatabase.h \
   src/server/db/ServerDatabase.h \
   src/server/features/Features.h \
   src/server/login/LoginClient.h \
@@ -8284,6 +8288,8 @@ utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
+
 /usr/include/boost/parameter/aux_/tag.hpp:
 
 /usr/include/boost/config/user.hpp:
@@ -8303,8 +8309,6 @@ utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h:
 src/server/zone/objects/scene/components/DataObjectComponent.h:
 
 /usr/include/boost/parameter/aux_/pack/make_items.hpp:
-
-/usr/include/boost/preprocessor/array/elem.hpp:
 
 /usr/include/boost/parameter/aux_/pack/deduced_item.hpp:
 
@@ -8704,6 +8708,8 @@ utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h:
 
 /usr/include/boost/preprocessor/identity.hpp:
 
+utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h:
+
 utils/engine3/MMOEngine/src/engine/lua/Luna.h:
 
 /usr/include/boost/mpl/aux_/config/intel.hpp:
@@ -8846,10 +8852,6 @@ utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h:
 
 utils/engine3/MMOEngine/src/system/lang/Long.h:
 
-/usr/include/boost/parameter/aux_/pack/make_deduced_items.hpp:
-
-src/server/login/packets/LoginClientToken.h:
-
 utils/engine3/MMOEngine/src/engine/core/ManagedReference.h:
 
 /usr/include/boost/predef/compiler/sunpro.h:
@@ -8936,21 +8938,9 @@ utils/engine3/MMOEngine/src/system/platform.h:
 
 /usr/include/boost/predef/compiler/compaq.h:
 
-utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h:
+/usr/include/linux/errno.h:
 
-/usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp:
-
-utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h:
-
-utils/engine3/MMOEngine/src/system/io/BufferedReader.h:
-
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
-
-utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h:
-
-utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h:
 
 src/server/login/packets/LoginEnumCluster.h:
 
@@ -9035,6 +9025,14 @@ utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h:
 utils/engine3/MMOEngine/src/engine/lua/LuaObject.h:
 
 /usr/include/boost/mpl/count_fwd.hpp:
+
+/usr/include/boost/mpl/aux_/integral_wrapper.hpp:
+
+/usr/include/boost/type_traits/is_scalar.hpp:
+
+src/server/login/objects/GalaxyList.h:
+
+/usr/include/boost/predef/architecture/x86/32.h:
 
 /usr/include/boost/mpl/aux_/config/bind.hpp:
 
@@ -9122,13 +9120,19 @@ utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp:
 
 /usr/include/boost/preprocessor/logical/compl.hpp:
 
-/usr/include/boost/mpl/aux_/integral_wrapper.hpp:
+src/server/login/packets/LoginClientToken.h:
 
-/usr/include/boost/type_traits/is_scalar.hpp:
+/usr/include/boost/parameter/aux_/pack/make_deduced_items.hpp:
 
-src/server/login/objects/GalaxyList.h:
+/usr/include/boost/preprocessor/array/elem.hpp:
 
-/usr/include/boost/predef/architecture/x86/32.h:
+utils/engine3/MMOEngine/src/engine/stm/orb/LocalObjectManager.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+utils/engine3/MMOEngine/src/system/io/BufferedReader.h:
+
+utils/engine3/MMOEngine/src/engine/util/u3d/Vector3.h:
 
 /usr/include/boost/mpl/aux_/arg_typedef.hpp:
 
@@ -9168,14 +9172,6 @@ utils/engine3/MMOEngine/src/system/lang/Time.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
-/usr/include/boost/mpl/begin_end_fwd.hpp:
-
-/usr/include/boost/preprocessor/comparison/limits/not_equal_256.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h:
-
 /usr/include/boost/preprocessor/stringize.hpp:
 
 /usr/include/boost/cstdint.hpp:
@@ -9193,6 +9189,22 @@ src/server/login/LoginPacketHandler.cpp:
 utils/engine3/MMOEngine/src/engine/service/proto/BaseFragmentedPacket.h:
 
 utils/engine3/MMOEngine/src/engine/core/TimedTaskQueue.h:
+
+/usr/include/boost/mpl/begin_end_fwd.hpp:
+
+/usr/include/boost/preprocessor/comparison/limits/not_equal_256.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+utils/engine3/MMOEngine/src/engine/service/proto/StandaloneBaseMessage.h:
+
+utils/engine3/MMOEngine/src/engine/core/ManagedWeakReference.h:
+
+/usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+utils/engine3/MMOEngine/src/engine/db/LocalDatabase.h:
 
 /usr/include/boost/parameter/aux_/pack/tag_type.hpp:
 
@@ -9230,10 +9242,6 @@ utils/engine3/MMOEngine/src/engine/service/DatagramServiceClient.h:
 
 utils/engine3/MMOEngine/src/engine/db/Database.h:
 
-/usr/include/linux/errno.h:
-
-utils/engine3/MMOEngine/src/engine/lua/LuaCallbackException.h:
-
 utils/engine3/MMOEngine/src/engine/core/TaskQueue.h:
 
 utils/engine3/MMOEngine/src/engine/service/ServiceException.h:
@@ -9253,8 +9261,6 @@ utils/engine3/MMOEngine/src/engine/util/u3d/Triangle.h:
 /usr/include/boost/mpl/apply_fwd.hpp:
 
 utils/engine3/MMOEngine/src/system/net/Packet.h:
-
-utils/engine3/MMOEngine/src/system/util/SynchronizedHashTable.h:
 
 utils/engine3/MMOEngine/src/engine/service/proto/packets/PingMessage.h:
 
@@ -10016,8 +10022,6 @@ utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h:
 
 /usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
 /usr/include/boost/preprocessor/array/data.hpp:
 
 /usr/include/boost/type_traits/remove_reference.hpp:
@@ -10218,9 +10222,9 @@ utils/engine3/MMOEngine/src/system/net/UDPServerSocket.h:
 
 /usr/include/c++/15/bits/atomic_lockfree_defines.h:
 
-utils/engine3/MMOEngine/src/system/lang/StringBuffer.h:
-
 /usr/include/x86_64-linux-gnu/bits/sched.h:
+
+utils/engine3/MMOEngine/src/system/lang/StringBuffer.h:
 
 /usr/include/c++/15/bits/char_traits.h:
 
@@ -10491,6 +10495,8 @@ utils/engine3/MMOEngine/src/system/io/Pipe.h:
 /usr/include/db.h:
 
 /usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_impl.hpp:
+
+src/server/db/AccountDatabase.h:
 
 /usr/include/endian.h:
 
