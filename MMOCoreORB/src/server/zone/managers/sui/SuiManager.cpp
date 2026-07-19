@@ -238,7 +238,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 		cbSui->setCurrentNode(parentNode);
 
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 		return;
@@ -248,7 +247,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 	//Node doesn't exist or the index was out of bounds. Should probably resend the menu here.
 	if (node == nullptr) {
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 		return;
@@ -257,7 +255,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 	if (node->hasChildNodes()) {
 		//If it has child nodes, display them.
 		cbSui->setCurrentNode(node);
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 	} else {
@@ -366,8 +363,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 				if (apron == nullptr) {
 					player->sendSystemMessage("There was an error creating the requested item. Please report this issue.");
-					cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+					ghost->addSuiBox(cbSui);
 					player->sendMessage(cbSui->generateMessage());
 
 					error("could not create frog crafting apron");
@@ -529,8 +525,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				}
 			}
 
-			cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+			ghost->addSuiBox(cbSui);
 			player->sendMessage(cbSui->generateMessage());
 
 		} else { // Items
@@ -543,8 +538,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 			if (templatePath.contains("event_perk")) {
 				if (!ghost->hasGodMode() && ghost->getEventPerkCount() >= 5) {
 					player->sendSystemMessage("@event_perk:pro_too_many_perks"); // You cannot rent any more items right now.
-					cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+					ghost->addSuiBox(cbSui);
 					player->sendMessage(cbSui->generateMessage());
 					return;
 				}
@@ -554,8 +548,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 			if (item == nullptr) {
 				player->sendSystemMessage("There was an error creating the requested item. Please report this issue.");
-				cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+				ghost->addSuiBox(cbSui);
 				player->sendMessage(cbSui->generateMessage());
 
 				error("could not create frog item: " + node->getDisplayName());
@@ -606,8 +599,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				return;
 			}
 
-			cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+			ghost->addSuiBox(cbSui);
 			player->sendMessage(cbSui->generateMessage());
 		}
 

@@ -1,5 +1,6 @@
 object_draft_schematic_dance_prop_shared_prop_2011_flowers_s01_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_2011_flowers_s01_l, "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_l.iff")
@@ -7,7 +8,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_2011_flowers_s01_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_2011_flowers_s01_r, "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s01_r.iff")
@@ -15,7 +17,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_2011_flowers_s02_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_2011_flowers_s02_l, "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_l.iff")
@@ -23,7 +26,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_2011_flowers_s02_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_2011_flowers_s02_r, "object/draft_schematic/dance_prop/shared_prop_2011_flowers_s02_r.iff")
@@ -31,7 +35,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_base = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_base.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_base.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_base, "object/draft_schematic/dance_prop/shared_prop_base.iff")
@@ -39,7 +44,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_combat_fan_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_combat_fan_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_combat_fan_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_combat_fan_l, "object/draft_schematic/dance_prop/shared_prop_combat_fan_l.iff")
@@ -47,7 +53,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_combat_fan_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_combat_fan_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_combat_fan_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_combat_fan_r, "object/draft_schematic/dance_prop/shared_prop_combat_fan_r.iff")
@@ -55,7 +62,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_l, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l.iff")
@@ -63,7 +71,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s02.iff")
@@ -71,7 +80,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s03.iff")
@@ -79,7 +89,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s04.iff")
@@ -87,7 +98,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_l_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_l_s05.iff")
@@ -95,7 +107,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l.iff")
@@ -103,7 +116,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s02.iff")
@@ -111,7 +125,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s03.iff")
@@ -119,7 +134,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s04.iff")
@@ -127,7 +143,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_l_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_l_s05.iff")
@@ -135,7 +152,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r.iff")
@@ -143,7 +161,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s02.iff")
@@ -151,7 +170,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s03.iff")
@@ -159,7 +179,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s04.iff")
@@ -167,7 +188,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_magic_r_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_magic_r_s05.iff")
@@ -175,7 +197,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_r, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r.iff")
@@ -183,7 +206,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s02.iff")
@@ -191,7 +215,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s03.iff")
@@ -199,7 +224,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s04.iff")
@@ -207,7 +233,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_r_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_r_s05.iff")
@@ -215,7 +242,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l.iff")
@@ -223,7 +251,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s02.iff")
@@ -231,7 +260,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s03.iff")
@@ -239,7 +269,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s04.iff")
@@ -247,7 +278,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_l_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_l_s05.iff")
@@ -255,7 +287,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r.iff")
@@ -263,7 +296,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s02, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s02.iff")
@@ -271,7 +305,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s03, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s03.iff")
@@ -279,7 +314,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s04, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s04.iff")
@@ -287,7 +323,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_double_ribbon_spark_r_s05, "object/draft_schematic/dance_prop/shared_prop_double_ribbon_spark_r_s05.iff")
@@ -295,7 +332,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_l, "object/draft_schematic/dance_prop/shared_prop_glowstick_l.iff")
@@ -303,7 +341,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_l_s02, "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s02.iff")
@@ -311,7 +350,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_l_s03, "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s03.iff")
@@ -319,7 +359,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_l_s04, "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s04.iff")
@@ -327,7 +368,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_l_s05, "object/draft_schematic/dance_prop/shared_prop_glowstick_l_s05.iff")
@@ -335,7 +377,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_r, "object/draft_schematic/dance_prop/shared_prop_glowstick_r.iff")
@@ -343,7 +386,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_r_s02, "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s02.iff")
@@ -351,7 +395,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_r_s03, "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s03.iff")
@@ -359,7 +404,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_r_s04, "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s04.iff")
@@ -367,7 +413,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_glowstick_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_glowstick_r_s05, "object/draft_schematic/dance_prop/shared_prop_glowstick_r_s05.iff")
@@ -375,7 +422,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l, "object/draft_schematic/dance_prop/shared_prop_ribbon_l.iff")
@@ -383,7 +431,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s02.iff")
@@ -391,7 +440,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s03.iff")
@@ -399,7 +449,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s04.iff")
@@ -407,7 +458,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s05.iff")
@@ -415,7 +467,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s06.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s06.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s06, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s06.iff")
@@ -423,7 +476,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s07.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s07.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s07, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s07.iff")
@@ -431,7 +485,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_l_s08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s08.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s08.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_l_s08, "object/draft_schematic/dance_prop/shared_prop_ribbon_l_s08.iff")
@@ -439,7 +494,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_efol_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_efol_l, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_l.iff")
@@ -447,7 +503,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_efol_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_efol_r, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_efol_r.iff")
@@ -455,7 +512,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l.iff")
@@ -463,7 +521,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s02.iff")
@@ -471,7 +530,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s03.iff")
@@ -479,7 +539,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s04.iff")
@@ -487,7 +548,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_l_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_l_s05.iff")
@@ -495,7 +557,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r.iff")
@@ -503,7 +566,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s02.iff")
@@ -511,7 +575,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s03.iff")
@@ -519,7 +584,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s04.iff")
@@ -527,7 +593,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_magic_r_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_magic_r_s05.iff")
@@ -535,7 +602,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r, "object/draft_schematic/dance_prop/shared_prop_ribbon_r.iff")
@@ -543,7 +611,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s02.iff")
@@ -551,7 +620,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s03.iff")
@@ -559,7 +629,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s04.iff")
@@ -567,7 +638,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s05.iff")
@@ -575,7 +647,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s06.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s06.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s06, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s06.iff")
@@ -583,7 +656,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s07.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s07.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s07, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s07.iff")
@@ -591,7 +665,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_r_s08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s08.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s08.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_r_s08, "object/draft_schematic/dance_prop/shared_prop_ribbon_r_s08.iff")
@@ -599,7 +674,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l.iff")
@@ -607,7 +683,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s02.iff")
@@ -615,7 +692,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s03.iff")
@@ -623,7 +701,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s04.iff")
@@ -631,7 +710,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_l_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_l_s05.iff")
@@ -639,7 +719,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r.iff")
@@ -647,7 +728,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s02, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s02.iff")
@@ -655,7 +737,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s03, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s03.iff")
@@ -663,7 +746,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s04, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s04.iff")
@@ -671,7 +755,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_ribbon_spark_r_s05, "object/draft_schematic/dance_prop/shared_prop_ribbon_spark_r_s05.iff")
@@ -679,7 +764,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_efol_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_efol_l, "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_l.iff")
@@ -687,7 +773,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_efol_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_efol_r, "object/draft_schematic/dance_prop/shared_prop_sparkler_efol_r.iff")
@@ -695,7 +782,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_l, "object/draft_schematic/dance_prop/shared_prop_sparkler_l.iff")
@@ -703,7 +791,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_l_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_l_s02, "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s02.iff")
@@ -711,7 +800,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_l_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_l_s03, "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s03.iff")
@@ -719,7 +809,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_l_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_l_s04, "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s04.iff")
@@ -727,7 +818,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_l_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_l_s05, "object/draft_schematic/dance_prop/shared_prop_sparkler_l_s05.iff")
@@ -735,7 +827,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_r, "object/draft_schematic/dance_prop/shared_prop_sparkler_r.iff")
@@ -743,7 +836,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_r_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s02.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_r_s02, "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s02.iff")
@@ -751,7 +845,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_r_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s03.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_r_s03, "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s03.iff")
@@ -759,7 +854,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_r_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s04.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_r_s04, "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s04.iff")
@@ -767,7 +863,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sparkler_r_s05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s05.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s05.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sparkler_r_s05, "object/draft_schematic/dance_prop/shared_prop_sparkler_r_s05.iff")
@@ -775,7 +872,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_staff_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_staff_l, "object/draft_schematic/dance_prop/shared_prop_staff_l.iff")
@@ -783,7 +881,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_staff_l_hue = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_l_hue.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_l_hue.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_staff_l_hue, "object/draft_schematic/dance_prop/shared_prop_staff_l_hue.iff")
@@ -791,7 +890,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_staff_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_staff_r, "object/draft_schematic/dance_prop/shared_prop_staff_r.iff")
@@ -799,7 +899,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_staff_r_hue = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_r_hue.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_staff_r_hue.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_staff_r_hue, "object/draft_schematic/dance_prop/shared_prop_staff_r_hue.iff")
@@ -807,7 +908,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sword_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sword_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sword_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sword_l, "object/draft_schematic/dance_prop/shared_prop_sword_l.iff")
@@ -815,7 +917,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_sword_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sword_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_sword_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_sword_r, "object/draft_schematic/dance_prop/shared_prop_sword_r.iff")
@@ -823,7 +926,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_torch_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_torch_l.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_torch_l.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_torch_l, "object/draft_schematic/dance_prop/shared_prop_torch_l.iff")
@@ -831,7 +935,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_
 
 
 object_draft_schematic_dance_prop_shared_prop_torch_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_torch_r.iff"
+	clientTemplateFileName = "object/draft_schematic/dance_prop/shared_prop_torch_r.iff",
+	gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_dance_prop_shared_prop_torch_r, "object/draft_schematic/dance_prop/shared_prop_torch_r.iff")

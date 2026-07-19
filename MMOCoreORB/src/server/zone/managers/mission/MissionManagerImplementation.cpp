@@ -2114,6 +2114,8 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 
 	auto targetGhost = creature->getPlayerObject();
 
+	// Any player (not just Jedi) is a valid bounty target; the legacy Jedi-only
+	// visibility gate previously blocked non-Jedi players from ever appearing here.
 	if (targetGhost == nullptr)
 		return false;
 

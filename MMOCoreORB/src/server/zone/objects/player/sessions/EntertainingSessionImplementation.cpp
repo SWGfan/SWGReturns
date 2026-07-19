@@ -715,8 +715,7 @@ void EntertainingSessionImplementation::addEntertainerBuffDuration(CreatureObjec
 
 	buffDuration += duration;
 
-	if (buffDuration > (120.0f + (10.0f / 60.0f)) ) // 2 hrs 10 seconds
-		buffDuration = (120.0f + (10.0f / 60.0f)); // 2hrs 10 seconds
+	// No cap - buff duration stacks freely for 24hr buff
 
 	setEntertainerBuffDuration(creature, performanceType, buffDuration);
 }
@@ -871,8 +870,9 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 		//Check if on Deny Service list
 		if (isInDenyServiceList(creature))
 			return;
-			// The patron already selected this performer with /watch or /listen before
-			// activateEntertainerBuff is called, so treat that as a valid buff target.
+
+		// The patron already selected this performer with /watch or /listen before
+		// activateEntertainerBuff is called, so treat that as a valid buff target.
 
 		if (creature->isIncapacitated() || creature->isDead()) {
 			return;
@@ -883,9 +883,10 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
 
 		// Returns the Number of Minutes for the Buff Duration
 		float buffDuration = getEntertainerBuffDuration(creature, performanceType);
-			// Minimum duration check removed - buff always applies
 
-			// Minimum listen time removed - buff applies instantly
+		// Minimum duration check removed - buff always applies
+
+		// Minimum listen time removed - buff applies instantly
 
 		// Returns a % of base stat
 		int campModTemp = 100;
@@ -996,8 +997,6 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
                         focusBuff->setSkillModifier("droid_experimentation",5);
                         focusBuff->setSkillModifier("food_experimentation",5);
                         focusBuff->setSkillModifier("medicine_experimentation",5);
-
-			creature->sendSystemMessage("CODEx: adding MUSIC performance buff +12000 ACTION");
 				creature->addBuff(focusBuff);
 			locker.release();
 
@@ -1102,8 +1101,6 @@ void EntertainingSessionImplementation::activateEntertainerBuff(CreatureObject* 
                         mindBuff->setSkillModifier("droid_experimentation",5);
                         mindBuff->setSkillModifier("food_experimentation",5);
                         mindBuff->setSkillModifier("medicine_experimentation",5);
-
-			creature->sendSystemMessage("CODEx: adding DANCE performance buff +12000 ACTION");
 				creature->addBuff(mindBuff);
 			break;
 		}

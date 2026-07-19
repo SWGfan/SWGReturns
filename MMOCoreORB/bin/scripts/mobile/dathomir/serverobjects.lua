@@ -142,3 +142,5 @@ includeFile("dathomir/suin_chalo.lua")
 includeFile("dathomir/mother_talzin.lua")
 includeFile("dathomir/dath_disciple.lua")
 includeFile("dathomir/nightsister_ascendant.lua")
+
+includeFile("dathomir/nightsister_elder_npc.lua")

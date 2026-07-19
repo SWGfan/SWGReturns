@@ -9,7 +9,7 @@ VillageJediManagerTownship = ScreenPlay:new {
 	VILLAGE_TOTAL_NUMBER_OF_PHASES = 4,
 	phaseChangeTimeOfDay = { hour = 18, min = 0 }, -- Hour of day, server military time, to change the phase. Comment out to disable
 
-	VILLAGE_PHASE_DURATION = 24 * 60 * 60 * 1000 -- 24 hours
+	VILLAGE_PHASE_DURATION = 3 * 24 * 60 * 60 * 1000 -- 3 days per phase
 }
 
 -- Set the current Village Phase for the first time.
@@ -35,6 +35,17 @@ function VillageJediManagerTownship.setCurrentPhaseInit()
 		end
 
 		if (eventTimeLeft < 0) then
+			return
+		end
+
+		-- If the remaining time is longer than the configured phase duration, the
+		-- duration was changed while an old schedule was still persisted. Reset the
+		-- phase clock and reschedule so the new VILLAGE_PHASE_DURATION takes effect.
+		-- (Self-clears: once rescheduled, eventTimeLeft <= duration and this is skipped.)
+		if (eventTimeLeft > VillageJediManagerTownship.getVillagePhaseDuration()) then
+			VillageJediManagerTownship.setLastPhaseChangeTime(os.time())
+			local timeToSchedule = (VillageJediManagerTownship.getNextPhaseChangeTime(false) - os.time()) * 1000
+			rescheduleServerEvent("VillagePhaseChange", timeToSchedule)
 			return
 		end
 

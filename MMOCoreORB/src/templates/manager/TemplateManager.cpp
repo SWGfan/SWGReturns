@@ -459,6 +459,12 @@ void TemplateManager::addTemplate(uint32 key, const String& fullName, LuaObject*
 
 	templateObject->readObject(templateData);
 
+	// Default gameObjectType to DRAFTSCHEMATIC when missing from both .iff and Lua data.
+	// Prevents createObject failures for templates whose .iff files were never authored.
+	if (templateObject->getGameObjectType() == 0) {
+		templateObject->setGameObjectType(2049);
+	}
+
 	if (!clientTemplateFile.isEmpty())
 		templateObject->addDerivedFile(clientTemplateFile);
 

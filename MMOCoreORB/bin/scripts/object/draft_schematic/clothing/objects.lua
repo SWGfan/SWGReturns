@@ -1,6 +1,7 @@
 
 object_draft_schematic_clothing_shared_stardust_backpack_schematic = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_stardust_backpack_schematic.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_stardust_backpack_schematic.iff",
+	gameObjectType = 2049,
 	
 }
 
@@ -8,567 +9,647 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_stardus
 
 
 object_draft_schematic_clothing_shared_clothing_apron_chef_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_chef_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_chef_01.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_chef_01, "object/draft_schematic/clothing/shared_clothing_apron_chef_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_apron_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_field_01, "object/draft_schematic/clothing/shared_clothing_apron_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_01.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_01, "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_02.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_02, "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_03.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_03, "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_04.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_apron_field_01_quest_04, "object/draft_schematic/clothing/shared_clothing_apron_field_01_quest_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_bone_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_boots, "object/draft_schematic/clothing/shared_clothing_armor_bone_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_bone_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_chest, "object/draft_schematic/clothing/shared_clothing_armor_bone_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_gloves, "object/draft_schematic/clothing/shared_clothing_armor_bone_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_helmet, "object/draft_schematic/clothing/shared_clothing_armor_bone_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bone_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bone_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bone_leggings, "object/draft_schematic/clothing/shared_clothing_armor_bone_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_belt = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_belt.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_belt.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_belt, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_belt.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_boots, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_chest_plate = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_chest_plate.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_chest_plate.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_chest_plate, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_chest_plate.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_gloves, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_helmet, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_bounty_hunter_leggings, "object/draft_schematic/clothing/shared_clothing_armor_bounty_hunter_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_chitin_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_boots, "object/draft_schematic/clothing/shared_clothing_armor_chitin_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_chitin_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_chest, "object/draft_schematic/clothing/shared_clothing_armor_chitin_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_gloves, "object/draft_schematic/clothing/shared_clothing_armor_chitin_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_helmet, "object/draft_schematic/clothing/shared_clothing_armor_chitin_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_chitin_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_chitin_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_chitin_leggings, "object/draft_schematic/clothing/shared_clothing_armor_chitin_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_composite_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_boots, "object/draft_schematic/clothing/shared_clothing_armor_composite_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_composite_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_chest, "object/draft_schematic/clothing/shared_clothing_armor_composite_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_gloves.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_gloves, "object/draft_schematic/clothing/shared_clothing_armor_composite_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_helmet, "object/draft_schematic/clothing/shared_clothing_armor_composite_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_composite_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_composite_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_composite_leggings, "object/draft_schematic/clothing/shared_clothing_armor_composite_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_boots, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_chest, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_gloves, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_helmet, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_defender_leggings, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_defender_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_r.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_boots.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_boots, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_chest.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_chest, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_gloves, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_helmet, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_guardian_leggings, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_guardian_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_boots.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_boots, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_l.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_r.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_chest.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_chest, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_gloves.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_gloves, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_helmet.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_helmet, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_leggings.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ithorian_sentinel_leggings, "object/draft_schematic/clothing/shared_clothing_armor_ithorian_sentinel_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_chest, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_black_mtn_leggings, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_black_mtn_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_chest.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_chest, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_leggings.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_ceremonial_leggings, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_ceremonial_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_l.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_r.iff",
+	gameObjectType = 2049,
 	
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_chest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -617,7 +698,7 @@ object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_chest 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_chest, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_leggings.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -666,7 +747,7 @@ object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_leggin
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_kashyyykian_hunting_leggings, "object/draft_schematic/clothing/shared_clothing_armor_kashyyykian_hunting_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_belt = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_belt.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_belt.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -715,7 +796,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_belt = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_belt, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_belt.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -764,7 +845,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_l = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -813,7 +894,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_r = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_shoes = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_shoes.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_shoes.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -862,7 +943,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_shoes = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_shoes, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_shoes.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -911,7 +992,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_l = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -960,7 +1041,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_r = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_chest_plate = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_chest_plate.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_chest_plate.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1009,7 +1090,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_chest_plate = 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_chest_plate, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_chest_plate.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_gloves.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1058,7 +1139,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_gloves = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_gloves, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1107,7 +1188,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_helmet = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_helmet, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_mandalorian_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_leggings.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1156,7 +1237,7 @@ object_draft_schematic_clothing_shared_clothing_armor_mandalorian_leggings = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_leggings, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_belt = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_belt.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_belt.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1205,7 +1286,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_belt = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_belt, "object/draft_schematic/clothing/shared_clothing_armor_padded_belt.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1254,7 +1335,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_l = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1303,7 +1384,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_r = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_padded_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_boots.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1352,7 +1433,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_boots = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_boots, "object/draft_schematic/clothing/shared_clothing_armor_padded_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1401,7 +1482,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_l = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1450,7 +1531,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_r = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_padded_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_chest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1499,7 +1580,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_chest = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_chest, "object/draft_schematic/clothing/shared_clothing_armor_padded_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_gloves.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1548,7 +1629,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_gloves = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_gloves, "object/draft_schematic/clothing/shared_clothing_armor_padded_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1597,7 +1678,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_helmet = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_helmet, "object/draft_schematic/clothing/shared_clothing_armor_padded_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_padded_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_padded_leggings.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1646,7 +1727,7 @@ object_draft_schematic_clothing_shared_clothing_armor_padded_leggings = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_padded_leggings, "object/draft_schematic/clothing/shared_clothing_armor_padded_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1695,7 +1776,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_l = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1744,7 +1825,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_r = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_ris_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_boots.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1793,7 +1874,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_boots = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_boots, "object/draft_schematic/clothing/shared_clothing_armor_ris_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1842,7 +1923,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_l = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1891,7 +1972,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_r = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_ris_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_chest_plate = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_chest_plate.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_chest_plate.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1940,7 +2021,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_chest_plate = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_chest_plate, "object/draft_schematic/clothing/shared_clothing_armor_ris_chest_plate.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_gloves.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1989,7 +2070,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_gloves = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_gloves, "object/draft_schematic/clothing/shared_clothing_armor_ris_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2038,7 +2119,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_helmet = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_helmet, "object/draft_schematic/clothing/shared_clothing_armor_ris_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ris_leggings = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_leggings.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ris_leggings.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2087,7 +2168,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ris_leggings = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ris_leggings, "object/draft_schematic/clothing/shared_clothing_armor_ris_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_tantel_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_boots.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2136,7 +2217,7 @@ object_draft_schematic_clothing_shared_clothing_armor_tantel_boots = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_tantel_boots, "object/draft_schematic/clothing/shared_clothing_armor_tantel_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_tantel_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_chest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2185,7 +2266,7 @@ object_draft_schematic_clothing_shared_clothing_armor_tantel_chest = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_tantel_chest, "object/draft_schematic/clothing/shared_clothing_armor_tantel_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_tantel_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_tantel_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2234,7 +2315,7 @@ object_draft_schematic_clothing_shared_clothing_armor_tantel_helmet = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_tantel_helmet, "object/draft_schematic/clothing/shared_clothing_armor_tantel_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_bandolier = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bandolier.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bandolier.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2283,7 +2364,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_bandolier = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_bandolier, "object/draft_schematic/clothing/shared_clothing_armor_ubese_bandolier.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_boots.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2332,7 +2413,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_boots = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_boots, "object/draft_schematic/clothing/shared_clothing_armor_ubese_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_l = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_l.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_l.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2381,7 +2462,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_l = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_r = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_r.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_r.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2430,7 +2511,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_r = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_ubese_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_gloves.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2479,7 +2560,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_gloves = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_gloves, "object/draft_schematic/clothing/shared_clothing_armor_ubese_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2528,7 +2609,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_helmet = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_helmet, "object/draft_schematic/clothing/shared_clothing_armor_ubese_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_jacket = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_jacket.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_jacket.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2577,7 +2658,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_jacket = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_jacket, "object/draft_schematic/clothing/shared_clothing_armor_ubese_jacket.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_pants = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_pants.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_pants.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2626,7 +2707,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_pants = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_pants, "object/draft_schematic/clothing/shared_clothing_armor_ubese_pants.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_ubese_shirt = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_shirt.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_ubese_shirt.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2675,7 +2756,7 @@ object_draft_schematic_clothing_shared_clothing_armor_ubese_shirt = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_ubese_shirt, "object/draft_schematic/clothing/shared_clothing_armor_ubese_shirt.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_belt = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_belt.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_belt.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2724,7 +2805,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_belt = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_belt, "object/draft_schematic/clothing/shared_clothing_armor_zam_belt.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_boots.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_boots.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2773,7 +2854,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_boots = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_boots, "object/draft_schematic/clothing/shared_clothing_armor_zam_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_chest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_chest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_chest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2822,7 +2903,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_chest = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_chest, "object/draft_schematic/clothing/shared_clothing_armor_zam_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_gloves = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_gloves.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_gloves.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2871,7 +2952,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_gloves = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_gloves, "object/draft_schematic/clothing/shared_clothing_armor_zam_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_helmet = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_helmet.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_helmet.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2920,7 +3001,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_helmet = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_helmet, "object/draft_schematic/clothing/shared_clothing_armor_zam_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_zam_pants = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_pants.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_zam_pants.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2969,7 +3050,7 @@ object_draft_schematic_clothing_shared_clothing_armor_zam_pants = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_zam_pants, "object/draft_schematic/clothing/shared_clothing_armor_zam_pants.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3018,7 +3099,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_01, "object/draft_schematic/clothing/shared_clothing_backpack_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3067,7 +3148,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_03 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_03, "object/draft_schematic/clothing/shared_clothing_backpack_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_03_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_03_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_03_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3116,7 +3197,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_03_quest = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_03_quest, "object/draft_schematic/clothing/shared_clothing_backpack_field_03_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3165,7 +3246,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_04 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_04, "object/draft_schematic/clothing/shared_clothing_backpack_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3214,7 +3295,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_05 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_05, "object/draft_schematic/clothing/shared_clothing_backpack_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3263,7 +3344,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_06 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_06, "object/draft_schematic/clothing/shared_clothing_backpack_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_backpack_field_06_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_06_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_backpack_field_06_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3312,7 +3393,7 @@ object_draft_schematic_clothing_shared_clothing_backpack_field_06_quest = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_backpack_field_06_quest, "object/draft_schematic/clothing/shared_clothing_backpack_field_06_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3361,7 +3442,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_02 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_02, "object/draft_schematic/clothing/shared_clothing_bandolier_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_02_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_02_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_02_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3410,7 +3491,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_02_quest = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_02_quest, "object/draft_schematic/clothing/shared_clothing_bandolier_field_02_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3459,7 +3540,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_03 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_03, "object/draft_schematic/clothing/shared_clothing_bandolier_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3508,7 +3589,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_04 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_04, "object/draft_schematic/clothing/shared_clothing_bandolier_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_04_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_04_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_04_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3557,7 +3638,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_04_quest = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_04_quest, "object/draft_schematic/clothing/shared_clothing_bandolier_field_04_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3606,7 +3687,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_05 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_05, "object/draft_schematic/clothing/shared_clothing_bandolier_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3655,7 +3736,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_06 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_06, "object/draft_schematic/clothing/shared_clothing_bandolier_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3704,7 +3785,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_07 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_07, "object/draft_schematic/clothing/shared_clothing_bandolier_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_bandolier_field_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bandolier_field_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3753,7 +3834,7 @@ object_draft_schematic_clothing_shared_clothing_bandolier_field_08 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bandolier_field_08, "object/draft_schematic/clothing/shared_clothing_bandolier_field_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_base = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_base.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_base.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3802,7 +3883,7 @@ object_draft_schematic_clothing_shared_clothing_base = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_base, "object/draft_schematic/clothing/shared_clothing_base.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3851,7 +3932,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_01 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_01, "object/draft_schematic/clothing/shared_clothing_belt_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3900,7 +3981,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_02 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_02, "object/draft_schematic/clothing/shared_clothing_belt_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3949,7 +4030,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_03 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_03, "object/draft_schematic/clothing/shared_clothing_belt_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3998,7 +4079,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_04 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_04, "object/draft_schematic/clothing/shared_clothing_belt_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4047,7 +4128,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_05 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_05, "object/draft_schematic/clothing/shared_clothing_belt_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_05_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_05_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_05_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4096,7 +4177,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_05_quest = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_05_quest, "object/draft_schematic/clothing/shared_clothing_belt_field_05_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4145,7 +4226,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_07 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_07, "object/draft_schematic/clothing/shared_clothing_belt_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4194,7 +4275,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_09 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_09, "object/draft_schematic/clothing/shared_clothing_belt_field_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_field_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_field_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4243,7 +4324,7 @@ object_draft_schematic_clothing_shared_clothing_belt_field_11 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_field_11, "object/draft_schematic/clothing/shared_clothing_belt_field_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4292,7 +4373,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_12 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_12, "object/draft_schematic/clothing/shared_clothing_belt_formal_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4341,7 +4422,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_13 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_13, "object/draft_schematic/clothing/shared_clothing_belt_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4390,7 +4471,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_14 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_14, "object/draft_schematic/clothing/shared_clothing_belt_formal_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4439,7 +4520,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_15 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_15, "object/draft_schematic/clothing/shared_clothing_belt_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4488,7 +4569,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_16 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_16, "object/draft_schematic/clothing/shared_clothing_belt_formal_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_17.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4537,7 +4618,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_17 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_17, "object/draft_schematic/clothing/shared_clothing_belt_formal_17.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4586,7 +4667,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_18 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_18, "object/draft_schematic/clothing/shared_clothing_belt_formal_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4635,7 +4716,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_19 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_19, "object/draft_schematic/clothing/shared_clothing_belt_formal_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_belt_formal_20 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_20.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_belt_formal_20.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4684,7 +4765,7 @@ object_draft_schematic_clothing_shared_clothing_belt_formal_20 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_belt_formal_20, "object/draft_schematic/clothing/shared_clothing_belt_formal_20.iff")
 
 object_draft_schematic_clothing_shared_clothing_bikini_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4733,7 +4814,7 @@ object_draft_schematic_clothing_shared_clothing_bikini_casual_01 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bikini_casual_01, "object/draft_schematic/clothing/shared_clothing_bikini_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_bikini_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4782,7 +4863,7 @@ object_draft_schematic_clothing_shared_clothing_bikini_casual_02 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bikini_casual_02, "object/draft_schematic/clothing/shared_clothing_bikini_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_bikini_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4831,7 +4912,7 @@ object_draft_schematic_clothing_shared_clothing_bikini_casual_03 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bikini_casual_03, "object/draft_schematic/clothing/shared_clothing_bikini_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_bikini_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4880,7 +4961,7 @@ object_draft_schematic_clothing_shared_clothing_bikini_casual_04 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bikini_casual_04, "object/draft_schematic/clothing/shared_clothing_bikini_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_bikini_leggings_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_leggings_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bikini_leggings_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4929,7 +5010,7 @@ object_draft_schematic_clothing_shared_clothing_bikini_leggings_casual_01 = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bikini_leggings_casual_01, "object/draft_schematic/clothing/shared_clothing_bikini_leggings_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_casual_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4978,7 +5059,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_casual_08 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_casual_08, "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5027,7 +5108,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_casual_12 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_casual_12, "object/draft_schematic/clothing/shared_clothing_bodysuit_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5076,7 +5157,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_field_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_field_01, "object/draft_schematic/clothing/shared_clothing_bodysuit_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_field_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5125,7 +5206,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_field_13 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_field_13, "object/draft_schematic/clothing/shared_clothing_bodysuit_field_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_field_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5174,7 +5255,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_field_14 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_field_14, "object/draft_schematic/clothing/shared_clothing_bodysuit_field_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_field_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5223,7 +5304,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_field_15 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_field_15, "object/draft_schematic/clothing/shared_clothing_bodysuit_field_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_field_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_field_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5272,7 +5353,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_field_16 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_field_16, "object/draft_schematic/clothing/shared_clothing_bodysuit_field_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_bodysuit_formal_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_formal_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bodysuit_formal_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5321,7 +5402,7 @@ object_draft_schematic_clothing_shared_clothing_bodysuit_formal_06 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bodysuit_formal_06, "object/draft_schematic/clothing/shared_clothing_bodysuit_formal_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5370,7 +5451,7 @@ object_draft_schematic_clothing_shared_clothing_boots_casual_04 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_casual_04, "object/draft_schematic/clothing/shared_clothing_boots_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5419,7 +5500,7 @@ object_draft_schematic_clothing_shared_clothing_boots_casual_12 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_casual_12, "object/draft_schematic/clothing/shared_clothing_boots_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_casual_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5468,7 +5549,7 @@ object_draft_schematic_clothing_shared_clothing_boots_casual_15 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_casual_15, "object/draft_schematic/clothing/shared_clothing_boots_casual_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_casual_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5517,7 +5598,7 @@ object_draft_schematic_clothing_shared_clothing_boots_casual_19 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_casual_19, "object/draft_schematic/clothing/shared_clothing_boots_casual_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_casual_21 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_21.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_casual_21.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5566,7 +5647,7 @@ object_draft_schematic_clothing_shared_clothing_boots_casual_21 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_casual_21, "object/draft_schematic/clothing/shared_clothing_boots_casual_21.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5615,7 +5696,7 @@ object_draft_schematic_clothing_shared_clothing_boots_field_03 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_field_03, "object/draft_schematic/clothing/shared_clothing_boots_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5664,7 +5745,7 @@ object_draft_schematic_clothing_shared_clothing_boots_field_05 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_field_05, "object/draft_schematic/clothing/shared_clothing_boots_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_field_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5713,7 +5794,7 @@ object_draft_schematic_clothing_shared_clothing_boots_field_14 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_field_14, "object/draft_schematic/clothing/shared_clothing_boots_field_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_field_22 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_22.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_22.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5762,7 +5843,7 @@ object_draft_schematic_clothing_shared_clothing_boots_field_22 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_field_22, "object/draft_schematic/clothing/shared_clothing_boots_field_22.iff")
 
 object_draft_schematic_clothing_shared_clothing_boots_field_34 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_34.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_field_34.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5811,7 +5892,7 @@ object_draft_schematic_clothing_shared_clothing_boots_field_34 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_boots_field_34, "object/draft_schematic/clothing/shared_clothing_boots_field_34.iff")
 
 object_draft_schematic_clothing_shared_clothing_bustier_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5860,7 +5941,7 @@ object_draft_schematic_clothing_shared_clothing_bustier_casual_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bustier_casual_01, "object/draft_schematic/clothing/shared_clothing_bustier_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_bustier_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5909,7 +5990,7 @@ object_draft_schematic_clothing_shared_clothing_bustier_casual_02 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bustier_casual_02, "object/draft_schematic/clothing/shared_clothing_bustier_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_bustier_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_bustier_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -5958,7 +6039,7 @@ object_draft_schematic_clothing_shared_clothing_bustier_casual_03 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_bustier_casual_03, "object/draft_schematic/clothing/shared_clothing_bustier_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6007,7 +6088,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_05 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_05, "object/draft_schematic/clothing/shared_clothing_dress_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6056,7 +6137,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_06 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_06, "object/draft_schematic/clothing/shared_clothing_dress_casual_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6105,7 +6186,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_07 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_07, "object/draft_schematic/clothing/shared_clothing_dress_casual_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6154,7 +6235,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_09 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_09, "object/draft_schematic/clothing/shared_clothing_dress_casual_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6203,7 +6284,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_10 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_10, "object/draft_schematic/clothing/shared_clothing_dress_casual_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6252,7 +6333,7 @@ object_draft_schematic_clothing_shared_clothing_dress_casual_12 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_casual_12, "object/draft_schematic/clothing/shared_clothing_dress_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6301,7 +6382,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_08 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_08, "object/draft_schematic/clothing/shared_clothing_dress_formal_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_08_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_08_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_08_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6350,7 +6431,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_08_quest = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_08_quest, "object/draft_schematic/clothing/shared_clothing_dress_formal_08_quest.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6399,7 +6480,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_11 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_11, "object/draft_schematic/clothing/shared_clothing_dress_formal_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6448,7 +6529,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_13, "object/draft_schematic/clothing/shared_clothing_dress_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6497,7 +6578,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_14 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_14, "object/draft_schematic/clothing/shared_clothing_dress_formal_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6546,7 +6627,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_15 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_15, "object/draft_schematic/clothing/shared_clothing_dress_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6595,7 +6676,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_16 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_16, "object/draft_schematic/clothing/shared_clothing_dress_formal_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6644,7 +6725,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_18 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_18, "object/draft_schematic/clothing/shared_clothing_dress_formal_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6693,7 +6774,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_19 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_19, "object/draft_schematic/clothing/shared_clothing_dress_formal_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_23 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_23.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_23.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6742,7 +6823,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_23 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_23, "object/draft_schematic/clothing/shared_clothing_dress_formal_23.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_26 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_26.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_26.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6791,7 +6872,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_26 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_26, "object/draft_schematic/clothing/shared_clothing_dress_formal_26.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_27 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_27.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_27.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6840,7 +6921,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_27 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_27, "object/draft_schematic/clothing/shared_clothing_dress_formal_27.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_29 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_29.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_29.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6889,7 +6970,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_29 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_29, "object/draft_schematic/clothing/shared_clothing_dress_formal_29.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_30 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_30.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_30.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6938,7 +7019,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_30 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_30, "object/draft_schematic/clothing/shared_clothing_dress_formal_30.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_31 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_31.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_31.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -6987,7 +7068,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_31 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_31, "object/draft_schematic/clothing/shared_clothing_dress_formal_31.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_32 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_32.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_32.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7036,7 +7117,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_32 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_32, "object/draft_schematic/clothing/shared_clothing_dress_formal_32.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_33 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_33.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_33.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7085,7 +7166,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_33 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_33, "object/draft_schematic/clothing/shared_clothing_dress_formal_33.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_34 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_34.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_34.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7134,7 +7215,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_34 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_34, "object/draft_schematic/clothing/shared_clothing_dress_formal_34.iff")
 
 object_draft_schematic_clothing_shared_clothing_dress_formal_35 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_35.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_formal_35.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7183,7 +7264,7 @@ object_draft_schematic_clothing_shared_clothing_dress_formal_35 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_dress_formal_35, "object/draft_schematic/clothing/shared_clothing_dress_formal_35.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7232,7 +7313,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_casual_03 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_casual_03, "object/draft_schematic/clothing/shared_clothing_gloves_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_casual_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_casual_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_casual_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7281,7 +7362,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_casual_06 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_casual_06, "object/draft_schematic/clothing/shared_clothing_gloves_casual_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7330,7 +7411,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_02 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_02, "object/draft_schematic/clothing/shared_clothing_gloves_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7379,7 +7460,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_07 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_07, "object/draft_schematic/clothing/shared_clothing_gloves_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7428,7 +7509,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_10 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_10, "object/draft_schematic/clothing/shared_clothing_gloves_field_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7477,7 +7558,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_11 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_11, "object/draft_schematic/clothing/shared_clothing_gloves_field_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7526,7 +7607,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_12 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_12, "object/draft_schematic/clothing/shared_clothing_gloves_field_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7575,7 +7656,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_13, "object/draft_schematic/clothing/shared_clothing_gloves_field_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_gloves_field_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_gloves_field_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7624,7 +7705,7 @@ object_draft_schematic_clothing_shared_clothing_gloves_field_14 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_gloves_field_14, "object/draft_schematic/clothing/shared_clothing_gloves_field_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7673,7 +7754,7 @@ object_draft_schematic_clothing_shared_clothing_hat_casual_02 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_casual_02, "object/draft_schematic/clothing/shared_clothing_hat_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_casual_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7722,7 +7803,7 @@ object_draft_schematic_clothing_shared_clothing_hat_casual_10 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_casual_10, "object/draft_schematic/clothing/shared_clothing_hat_casual_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7771,7 +7852,7 @@ object_draft_schematic_clothing_shared_clothing_hat_casual_12 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_casual_12, "object/draft_schematic/clothing/shared_clothing_hat_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_casual_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_casual_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7820,7 +7901,7 @@ object_draft_schematic_clothing_shared_clothing_hat_casual_14 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_casual_14, "object/draft_schematic/clothing/shared_clothing_hat_casual_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_chef_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_chef_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_chef_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7869,7 +7950,7 @@ object_draft_schematic_clothing_shared_clothing_hat_chef_01 = SharedDraftSchemat
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_chef_01, "object/draft_schematic/clothing/shared_clothing_hat_chef_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_chef_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_chef_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_chef_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7918,7 +7999,7 @@ object_draft_schematic_clothing_shared_clothing_hat_chef_02 = SharedDraftSchemat
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_chef_02, "object/draft_schematic/clothing/shared_clothing_hat_chef_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -7967,7 +8048,7 @@ object_draft_schematic_clothing_shared_clothing_hat_field_04 = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_field_04, "object/draft_schematic/clothing/shared_clothing_hat_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8016,7 +8097,7 @@ object_draft_schematic_clothing_shared_clothing_hat_formal_13 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_formal_13, "object/draft_schematic/clothing/shared_clothing_hat_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8065,7 +8146,7 @@ object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_01 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_01, "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8114,7 +8195,7 @@ object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_02 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_twilek_casual_02, "object/draft_schematic/clothing/shared_clothing_hat_twilek_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8163,7 +8244,7 @@ object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_03 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_03, "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8212,7 +8293,7 @@ object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_04 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_04, "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8261,7 +8342,7 @@ object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_05 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_twilek_formal_05, "object/draft_schematic/clothing/shared_clothing_hat_twilek_formal_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_apron_chef_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_apron_chef_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_apron_chef_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8310,7 +8391,7 @@ object_draft_schematic_clothing_shared_clothing_ith_apron_chef_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_apron_chef_01, "object/draft_schematic/clothing/shared_clothing_ith_apron_chef_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_backpack_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8359,7 +8440,7 @@ object_draft_schematic_clothing_shared_clothing_ith_backpack_field_01 = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_backpack_field_01, "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_backpack_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8408,7 +8489,7 @@ object_draft_schematic_clothing_shared_clothing_ith_backpack_field_03 = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_backpack_field_03, "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_backpack_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8457,7 +8538,7 @@ object_draft_schematic_clothing_shared_clothing_ith_backpack_field_05 = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_backpack_field_05, "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_backpack_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8506,7 +8587,7 @@ object_draft_schematic_clothing_shared_clothing_ith_backpack_field_06 = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_backpack_field_06, "object/draft_schematic/clothing/shared_clothing_ith_backpack_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8555,7 +8636,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_02 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_02, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8604,7 +8685,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_03 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_03, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8653,7 +8734,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_04 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_04, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8702,7 +8783,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_05 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_05, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8751,7 +8832,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_06 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_06, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8800,7 +8881,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_07 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_07, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8849,7 +8930,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_08 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bandolier_field_08, "object/draft_schematic/clothing/shared_clothing_ith_bandolier_field_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8898,7 +8979,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_01, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8947,7 +9028,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_02 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_02, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -8996,7 +9077,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_03 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_03, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9045,7 +9126,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_04 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_04, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9094,7 +9175,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_05 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_05, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9143,7 +9224,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_07 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_07, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9192,7 +9273,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_09 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_09, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_field_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_field_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9241,7 +9322,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_field_11 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_field_11, "object/draft_schematic/clothing/shared_clothing_ith_belt_field_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9290,7 +9371,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_12 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_12, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9339,7 +9420,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_13 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_13, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9388,7 +9469,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_14 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_14, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9437,7 +9518,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_15 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_15, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9486,7 +9567,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_16 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_16, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_17.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9535,7 +9616,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_17 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_17, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_17.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9584,7 +9665,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_18 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_18, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9633,7 +9714,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_19 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_19, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_belt_formal_20 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_20.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_20.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9682,7 +9763,7 @@ object_draft_schematic_clothing_shared_clothing_ith_belt_formal_20 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_belt_formal_20, "object/draft_schematic/clothing/shared_clothing_ith_belt_formal_20.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9731,7 +9812,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_01 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_01, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9780,7 +9861,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_03 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_03, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9829,7 +9910,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_04 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_04, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9878,7 +9959,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_05 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_casual_05, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9927,7 +10008,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_field_02 = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_field_02, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_bodysuit_formal_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_formal_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_formal_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -9976,7 +10057,7 @@ object_draft_schematic_clothing_shared_clothing_ith_bodysuit_formal_06 = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_bodysuit_formal_06, "object/draft_schematic/clothing/shared_clothing_ith_bodysuit_formal_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_dress_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10025,7 +10106,7 @@ object_draft_schematic_clothing_shared_clothing_ith_dress_casual_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_dress_casual_02, "object/draft_schematic/clothing/shared_clothing_ith_dress_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_dress_formal_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10074,7 +10155,7 @@ object_draft_schematic_clothing_shared_clothing_ith_dress_formal_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_dress_formal_03, "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_dress_formal_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10123,7 +10204,7 @@ object_draft_schematic_clothing_shared_clothing_ith_dress_formal_04 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_dress_formal_04, "object/draft_schematic/clothing/shared_clothing_ith_dress_formal_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_gloves_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_gloves_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_gloves_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10172,7 +10253,7 @@ object_draft_schematic_clothing_shared_clothing_ith_gloves_field_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_gloves_field_02, "object/draft_schematic/clothing/shared_clothing_ith_gloves_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10221,7 +10302,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_casual_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_casual_01, "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10270,7 +10351,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_casual_03 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_casual_03, "object/draft_schematic/clothing/shared_clothing_ith_hat_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_chef_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10319,7 +10400,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_chef_01 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_chef_01, "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_chef_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10368,7 +10449,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_chef_02 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_chef_02, "object/draft_schematic/clothing/shared_clothing_ith_hat_chef_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_formal_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10417,7 +10498,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_formal_02 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_formal_02, "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_hat_formal_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10466,7 +10547,7 @@ object_draft_schematic_clothing_shared_clothing_ith_hat_formal_04 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_hat_formal_04, "object/draft_schematic/clothing/shared_clothing_ith_hat_formal_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10515,7 +10596,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_01 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_01, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10564,7 +10645,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_03 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_03, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10613,7 +10694,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_06 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_06, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10662,7 +10743,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_09 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_09, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10711,7 +10792,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_12 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_12, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10760,7 +10841,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_14 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_casual_14, "object/draft_schematic/clothing/shared_clothing_ith_jacket_casual_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_field_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10809,7 +10890,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_field_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_field_02, "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10858,7 +10939,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_field_05 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_field_05, "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10907,7 +10988,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_field_07 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_field_07, "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_field_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -10956,7 +11037,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_field_11 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_field_11, "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_field_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11005,7 +11086,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_field_13 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_field_13, "object/draft_schematic/clothing/shared_clothing_ith_jacket_field_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11054,7 +11135,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_04 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_04, "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11103,7 +11184,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_08 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_08, "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11152,7 +11233,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_10 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_10, "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11201,7 +11282,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_15 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jacket_formal_15, "object/draft_schematic/clothing/shared_clothing_ith_jacket_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11250,7 +11331,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_01 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_01, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11299,7 +11380,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_02 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_02, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11348,7 +11429,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_03 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_03, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11397,7 +11478,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_04 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_04, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11446,7 +11527,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_05 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_05, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11495,7 +11576,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_06 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_06, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11544,7 +11625,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_07 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_07, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11593,7 +11674,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_08 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_08, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11642,7 +11723,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_09 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_09, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11691,7 +11772,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_10 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_10, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11740,7 +11821,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_11 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_11, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11789,7 +11870,7 @@ object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_12 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_jewelry_necklace_12, "object/draft_schematic/clothing/shared_clothing_ith_jewelry_necklace_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11838,7 +11919,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_01 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_01, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11887,7 +11968,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_02, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11936,7 +12017,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_03, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -11985,7 +12066,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_08 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_08, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12034,7 +12115,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_09 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_09, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12083,7 +12164,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_16 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_16, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_17.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12132,7 +12213,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_17 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_17, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_17.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12181,7 +12262,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_18 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_18, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_casual_21 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_21.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_21.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12230,7 +12311,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_casual_21 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_casual_21, "object/draft_schematic/clothing/shared_clothing_ith_pants_casual_21.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12279,7 +12360,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_04 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_04, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12328,7 +12409,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_05 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_05, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12377,7 +12458,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_06 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_06, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12426,7 +12507,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_07 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_07, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12475,7 +12556,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_12 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_12, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12524,7 +12605,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_13 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_13, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12573,7 +12654,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_15 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_15, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12622,7 +12703,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_19 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_19, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_field_20 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_20.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_field_20.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12671,7 +12752,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_field_20 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_field_20, "object/draft_schematic/clothing/shared_clothing_ith_pants_field_20.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_formal_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12720,7 +12801,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_formal_10 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_formal_10, "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_formal_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12769,7 +12850,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_formal_11 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_formal_11, "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_pants_formal_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12818,7 +12899,7 @@ object_draft_schematic_clothing_shared_clothing_ith_pants_formal_14 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_pants_formal_14, "object/draft_schematic/clothing/shared_clothing_ith_pants_formal_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_robe_formal_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12867,7 +12948,7 @@ object_draft_schematic_clothing_shared_clothing_ith_robe_formal_01 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_robe_formal_01, "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_robe_formal_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12916,7 +12997,7 @@ object_draft_schematic_clothing_shared_clothing_ith_robe_formal_02 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_robe_formal_02, "object/draft_schematic/clothing/shared_clothing_ith_robe_formal_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -12965,7 +13046,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_01 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_01, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13014,7 +13095,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_03, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13063,7 +13144,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_04 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_04, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13112,7 +13193,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_06 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_06, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13161,7 +13242,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_07 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_07, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13210,7 +13291,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_08 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_08, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13259,7 +13340,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_09 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_09, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13308,7 +13389,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_12 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_12, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13357,7 +13438,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_13 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_13, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13406,7 +13487,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_14 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_casual_14, "object/draft_schematic/clothing/shared_clothing_ith_shirt_casual_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_field_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13455,7 +13536,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_field_05 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_field_05, "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_field_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13504,7 +13585,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_field_11 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_field_11, "object/draft_schematic/clothing/shared_clothing_ith_shirt_field_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13553,7 +13634,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_02, "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13602,7 +13683,7 @@ object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_10 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_shirt_formal_10, "object/draft_schematic/clothing/shared_clothing_ith_shirt_formal_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13651,7 +13732,7 @@ object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_01 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_01, "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13700,7 +13781,7 @@ object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_02, "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13749,7 +13830,7 @@ object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_skirt_formal_03, "object/draft_schematic/clothing/shared_clothing_ith_skirt_formal_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ith_vest_field_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_vest_field_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ith_vest_field_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13798,7 +13879,7 @@ object_draft_schematic_clothing_shared_clothing_ith_vest_field_01 = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ith_vest_field_01, "object/draft_schematic/clothing/shared_clothing_ith_vest_field_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13847,7 +13928,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_02 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_02, "object/draft_schematic/clothing/shared_clothing_jacket_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13896,7 +13977,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_05 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_05, "object/draft_schematic/clothing/shared_clothing_jacket_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13945,7 +14026,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_07 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_07, "object/draft_schematic/clothing/shared_clothing_jacket_casual_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -13994,7 +14075,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_12 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_12, "object/draft_schematic/clothing/shared_clothing_jacket_casual_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14043,7 +14124,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_14 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_14, "object/draft_schematic/clothing/shared_clothing_jacket_casual_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_17.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14092,7 +14173,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_17 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_17, "object/draft_schematic/clothing/shared_clothing_jacket_casual_17.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14141,7 +14222,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_18 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_18, "object/draft_schematic/clothing/shared_clothing_jacket_casual_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_19 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_19.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_19.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14190,7 +14271,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_19 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_19, "object/draft_schematic/clothing/shared_clothing_jacket_casual_19.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_24 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_24.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_24.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14239,7 +14320,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_24 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_24, "object/draft_schematic/clothing/shared_clothing_jacket_casual_24.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_casual_36 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_36.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_casual_36.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14288,7 +14369,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_casual_36 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_casual_36, "object/draft_schematic/clothing/shared_clothing_jacket_casual_36.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14337,7 +14418,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_08 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_08, "object/draft_schematic/clothing/shared_clothing_jacket_field_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14386,7 +14467,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_10 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_10, "object/draft_schematic/clothing/shared_clothing_jacket_field_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14435,7 +14516,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_13, "object/draft_schematic/clothing/shared_clothing_jacket_field_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14484,7 +14565,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_15 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_15, "object/draft_schematic/clothing/shared_clothing_jacket_field_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14533,7 +14614,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_16 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_16, "object/draft_schematic/clothing/shared_clothing_jacket_field_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14582,7 +14663,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_18 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_18, "object/draft_schematic/clothing/shared_clothing_jacket_field_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_21 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_21.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_21.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14631,7 +14712,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_21 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_21, "object/draft_schematic/clothing/shared_clothing_jacket_field_21.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_field_35 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_35.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_field_35.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14680,7 +14761,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_field_35 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_field_35, "object/draft_schematic/clothing/shared_clothing_jacket_field_35.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14729,7 +14810,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_03 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_03, "object/draft_schematic/clothing/shared_clothing_jacket_formal_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14778,7 +14859,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_06 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_06, "object/draft_schematic/clothing/shared_clothing_jacket_formal_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14827,7 +14908,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_11 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_11, "object/draft_schematic/clothing/shared_clothing_jacket_formal_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_22 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_22.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_22.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14876,7 +14957,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_22 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_22, "object/draft_schematic/clothing/shared_clothing_jacket_formal_22.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_25 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_25.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_25.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14925,7 +15006,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_25 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_25, "object/draft_schematic/clothing/shared_clothing_jacket_formal_25.iff")
 
 object_draft_schematic_clothing_shared_clothing_jacket_formal_26 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_26.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jacket_formal_26.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -14974,7 +15055,7 @@ object_draft_schematic_clothing_shared_clothing_jacket_formal_26 = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jacket_formal_26, "object/draft_schematic/clothing/shared_clothing_jacket_formal_26.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15023,7 +15104,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_02, "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15072,7 +15153,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_03, "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15121,7 +15202,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_04 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_04, "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15170,7 +15251,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_05 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_05, "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15219,7 +15300,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_06 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_bracelet_06, "object/draft_schematic/clothing/shared_clothing_jewelry_bracelet_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15268,7 +15349,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_01 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_01, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15317,7 +15398,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_02, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15366,7 +15447,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_03 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_03, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15415,7 +15496,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_04 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_04, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15464,7 +15545,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_05 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_05, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15513,7 +15594,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_06 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_06, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15562,7 +15643,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_07 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_07, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15611,7 +15692,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_08 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_08, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15660,7 +15741,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_09 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_09, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15709,7 +15790,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_10 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_10, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15758,7 +15839,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_11 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_11, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_necklace_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15807,7 +15888,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_necklace_12 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_necklace_12, "object/draft_schematic/clothing/shared_clothing_jewelry_necklace_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_ring_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15856,7 +15937,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_ring_01 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_ring_01, "object/draft_schematic/clothing/shared_clothing_jewelry_ring_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_ring_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15905,7 +15986,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_ring_02 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_ring_02, "object/draft_schematic/clothing/shared_clothing_jewelry_ring_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_ring_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -15954,7 +16035,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_ring_03 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_ring_03, "object/draft_schematic/clothing/shared_clothing_jewelry_ring_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_jewelry_ring_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_jewelry_ring_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16003,7 +16084,7 @@ object_draft_schematic_clothing_shared_clothing_jewelry_ring_04 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_jewelry_ring_04, "object/draft_schematic/clothing/shared_clothing_jewelry_ring_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16052,7 +16133,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_01 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_01, "object/draft_schematic/clothing/shared_clothing_pants_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16101,7 +16182,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_02 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_02, "object/draft_schematic/clothing/shared_clothing_pants_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16150,7 +16231,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_05 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_05, "object/draft_schematic/clothing/shared_clothing_pants_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16199,7 +16280,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_06 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_06, "object/draft_schematic/clothing/shared_clothing_pants_casual_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16248,7 +16329,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_08 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_08, "object/draft_schematic/clothing/shared_clothing_pants_casual_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16297,7 +16378,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_09 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_09, "object/draft_schematic/clothing/shared_clothing_pants_casual_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16346,7 +16427,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_10 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_10, "object/draft_schematic/clothing/shared_clothing_pants_casual_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16395,7 +16476,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_11 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_11, "object/draft_schematic/clothing/shared_clothing_pants_casual_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_17.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16444,7 +16525,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_17 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_17, "object/draft_schematic/clothing/shared_clothing_pants_casual_17.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16493,7 +16574,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_18 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_18, "object/draft_schematic/clothing/shared_clothing_pants_casual_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_24 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_24.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_24.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16542,7 +16623,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_24 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_24, "object/draft_schematic/clothing/shared_clothing_pants_casual_24.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_25 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_25.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_25.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16591,7 +16672,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_25 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_25, "object/draft_schematic/clothing/shared_clothing_pants_casual_25.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_casual_26 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_26.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_casual_26.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -16640,7 +16721,7 @@ object_draft_schematic_clothing_shared_clothing_pants_casual_26 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_casual_26, "object/draft_schematic/clothing/shared_clothing_pants_casual_26.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16689,7 +16770,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_04 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_04, "object/draft_schematic/clothing/shared_clothing_pants_field_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s28_m.sat",
@@ -16738,7 +16819,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_07 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_07, "object/draft_schematic/clothing/shared_clothing_pants_field_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16787,7 +16868,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_12 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_12, "object/draft_schematic/clothing/shared_clothing_pants_field_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16836,7 +16917,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_14 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_14, "object/draft_schematic/clothing/shared_clothing_pants_field_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_21 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_21.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_21.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16885,7 +16966,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_21 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_21, "object/draft_schematic/clothing/shared_clothing_pants_field_21.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_22 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_22.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_22.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16934,7 +17015,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_22 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_22, "object/draft_schematic/clothing/shared_clothing_pants_field_22.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_27 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_27.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_27.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -16983,7 +17064,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_27 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_27, "object/draft_schematic/clothing/shared_clothing_pants_field_27.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_28 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_28.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_28.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s28_m.sat",
@@ -17032,7 +17113,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_28 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_28, "object/draft_schematic/clothing/shared_clothing_pants_field_28.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_29 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_29.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_29.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s28_m.sat",
@@ -17081,7 +17162,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_29 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_29, "object/draft_schematic/clothing/shared_clothing_pants_field_29.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_field_30 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_30.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_field_30.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s28_m.sat",
@@ -17130,7 +17211,7 @@ object_draft_schematic_clothing_shared_clothing_pants_field_30 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_field_30, "object/draft_schematic/clothing/shared_clothing_pants_field_30.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17179,7 +17260,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_13, "object/draft_schematic/clothing/shared_clothing_pants_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17228,7 +17309,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_15 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_15, "object/draft_schematic/clothing/shared_clothing_pants_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_31 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_31.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_31.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17277,7 +17358,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_31 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_31, "object/draft_schematic/clothing/shared_clothing_pants_formal_31.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_32 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_32.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_32.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17326,7 +17407,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_32 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_32, "object/draft_schematic/clothing/shared_clothing_pants_formal_32.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_33 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_33.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_33.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17375,7 +17456,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_33 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_33, "object/draft_schematic/clothing/shared_clothing_pants_formal_33.iff")
 
 object_draft_schematic_clothing_shared_clothing_pants_formal_38 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_38.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_formal_38.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17424,7 +17505,7 @@ object_draft_schematic_clothing_shared_clothing_pants_formal_38 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_pants_formal_38, "object/draft_schematic/clothing/shared_clothing_pants_formal_38.iff")
 
 object_draft_schematic_clothing_shared_clothing_quest_jacket_rebel_pilot = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_jacket_rebel_pilot.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_jacket_rebel_pilot.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17473,7 +17554,7 @@ object_draft_schematic_clothing_shared_clothing_quest_jacket_rebel_pilot = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_quest_jacket_rebel_pilot, "object/draft_schematic/clothing/shared_clothing_quest_jacket_rebel_pilot.iff")
 
 object_draft_schematic_clothing_shared_clothing_quest_robe_imperial = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_robe_imperial.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_robe_imperial.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17522,7 +17603,7 @@ object_draft_schematic_clothing_shared_clothing_quest_robe_imperial = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_quest_robe_imperial, "object/draft_schematic/clothing/shared_clothing_quest_robe_imperial.iff")
 
 object_draft_schematic_clothing_shared_clothing_quest_vest_smuggler_pilot = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_vest_smuggler_pilot.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_quest_vest_smuggler_pilot.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17571,7 +17652,7 @@ object_draft_schematic_clothing_shared_clothing_quest_vest_smuggler_pilot = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_quest_vest_smuggler_pilot, "object/draft_schematic/clothing/shared_clothing_quest_vest_smuggler_pilot.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/robe_s04_f.sat",
@@ -17620,7 +17701,7 @@ object_draft_schematic_clothing_shared_clothing_robe_casual_04 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_casual_04, "object/draft_schematic/clothing/shared_clothing_robe_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/robe_s04_f.sat",
@@ -17669,7 +17750,7 @@ object_draft_schematic_clothing_shared_clothing_robe_casual_05 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_casual_05, "object/draft_schematic/clothing/shared_clothing_robe_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_casual_05b = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_05b.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_05b.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/robe_s04_f.sat",
@@ -17718,7 +17799,7 @@ object_draft_schematic_clothing_shared_clothing_robe_casual_05b = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_casual_05b, "object/draft_schematic/clothing/shared_clothing_robe_casual_05b.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_casual_18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_18.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_casual_18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/robe_s04_f.sat",
@@ -17767,7 +17848,7 @@ object_draft_schematic_clothing_shared_clothing_robe_casual_18 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_casual_18, "object/draft_schematic/clothing/shared_clothing_robe_casual_18.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_field_27 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_field_27.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_field_27.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17816,7 +17897,7 @@ object_draft_schematic_clothing_shared_clothing_robe_field_27 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_field_27, "object/draft_schematic/clothing/shared_clothing_robe_field_27.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_formal_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_formal_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_formal_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17865,7 +17946,7 @@ object_draft_schematic_clothing_shared_clothing_robe_formal_01 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_formal_01, "object/draft_schematic/clothing/shared_clothing_robe_formal_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_formal_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_formal_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_formal_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17914,7 +17995,7 @@ object_draft_schematic_clothing_shared_clothing_robe_formal_12 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_formal_12, "object/draft_schematic/clothing/shared_clothing_robe_formal_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -17963,7 +18044,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_03 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_03, "object/draft_schematic/clothing/shared_clothing_shirt_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18012,7 +18093,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_04 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_04, "object/draft_schematic/clothing/shared_clothing_shirt_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18061,7 +18142,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_07 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_07, "object/draft_schematic/clothing/shared_clothing_shirt_casual_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18110,7 +18191,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_11 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_11, "object/draft_schematic/clothing/shared_clothing_shirt_casual_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_16 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_16.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_16.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18159,7 +18240,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_16 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_16, "object/draft_schematic/clothing/shared_clothing_shirt_casual_16.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_24 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_24.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_24.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18208,7 +18289,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_24 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_24, "object/draft_schematic/clothing/shared_clothing_shirt_casual_24.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_27 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_27.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_27.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18257,7 +18338,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_27 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_27, "object/draft_schematic/clothing/shared_clothing_shirt_casual_27.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_30 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_30.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_30.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18306,7 +18387,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_30 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_30, "object/draft_schematic/clothing/shared_clothing_shirt_casual_30.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_34 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_34.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_34.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18355,7 +18436,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_34 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_34, "object/draft_schematic/clothing/shared_clothing_shirt_casual_34.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_38 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_38.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_38.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18404,7 +18485,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_38 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_38, "object/draft_schematic/clothing/shared_clothing_shirt_casual_38.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_casual_42 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_42.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_casual_42.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18453,7 +18534,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_casual_42 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_casual_42, "object/draft_schematic/clothing/shared_clothing_shirt_casual_42.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_field_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18502,7 +18583,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_field_09 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_field_09, "object/draft_schematic/clothing/shared_clothing_shirt_field_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_field_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18551,7 +18632,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_field_10 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_field_10, "object/draft_schematic/clothing/shared_clothing_shirt_field_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_field_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18600,7 +18681,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_field_14 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_field_14, "object/draft_schematic/clothing/shared_clothing_shirt_field_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_field_26 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_26.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_field_26.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18649,7 +18730,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_field_26 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_field_26, "object/draft_schematic/clothing/shared_clothing_shirt_field_26.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18698,7 +18779,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_05 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_05, "object/draft_schematic/clothing/shared_clothing_shirt_formal_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18747,7 +18828,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_08 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_08, "object/draft_schematic/clothing/shared_clothing_shirt_formal_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18796,7 +18877,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_12 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_12, "object/draft_schematic/clothing/shared_clothing_shirt_formal_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18845,7 +18926,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_13, "object/draft_schematic/clothing/shared_clothing_shirt_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18894,7 +18975,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_15 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_15, "object/draft_schematic/clothing/shared_clothing_shirt_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_28 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_28.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_28.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18943,7 +19024,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_28 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_28, "object/draft_schematic/clothing/shared_clothing_shirt_formal_28.iff")
 
 object_draft_schematic_clothing_shared_clothing_shirt_formal_32 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_32.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_formal_32.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -18992,7 +19073,7 @@ object_draft_schematic_clothing_shared_clothing_shirt_formal_32 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shirt_formal_32, "object/draft_schematic/clothing/shared_clothing_shirt_formal_32.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19041,7 +19122,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_casual_02 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_casual_02, "object/draft_schematic/clothing/shared_clothing_shoes_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19090,7 +19171,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_casual_03 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_casual_03, "object/draft_schematic/clothing/shared_clothing_shoes_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_casual_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19139,7 +19220,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_casual_07 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_casual_07, "object/draft_schematic/clothing/shared_clothing_shoes_casual_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_casual_08 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_08.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_casual_08.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19188,7 +19269,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_casual_08 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_casual_08, "object/draft_schematic/clothing/shared_clothing_shoes_casual_08.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_formal_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_formal_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_formal_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19237,7 +19318,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_formal_01 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_formal_01, "object/draft_schematic/clothing/shared_clothing_shoes_formal_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_shoes_formal_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_formal_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shoes_formal_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19286,7 +19367,7 @@ object_draft_schematic_clothing_shared_clothing_shoes_formal_09 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_shoes_formal_09, "object/draft_schematic/clothing/shared_clothing_shoes_formal_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19335,7 +19416,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_casual_03 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_casual_03, "object/draft_schematic/clothing/shared_clothing_skirt_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19384,7 +19465,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_casual_04 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_casual_04, "object/draft_schematic/clothing/shared_clothing_skirt_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19433,7 +19514,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_casual_05 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_casual_05, "object/draft_schematic/clothing/shared_clothing_skirt_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_casual_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_casual_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19482,7 +19563,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_casual_10 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_casual_10, "object/draft_schematic/clothing/shared_clothing_skirt_casual_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19531,7 +19612,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_06 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_06, "object/draft_schematic/clothing/shared_clothing_skirt_formal_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_07 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_07.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_07.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19580,7 +19661,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_07 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_07, "object/draft_schematic/clothing/shared_clothing_skirt_formal_07.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19629,7 +19710,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_09 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_09, "object/draft_schematic/clothing/shared_clothing_skirt_formal_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19678,7 +19759,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_11 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_11, "object/draft_schematic/clothing/shared_clothing_skirt_formal_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_12 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_12.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_12.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19727,7 +19808,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_12 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_12, "object/draft_schematic/clothing/shared_clothing_skirt_formal_12.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_13 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_13.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_13.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19776,7 +19857,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_13 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_13, "object/draft_schematic/clothing/shared_clothing_skirt_formal_13.iff")
 
 object_draft_schematic_clothing_shared_clothing_skirt_formal_14 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_14.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_skirt_formal_14.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19825,7 +19906,7 @@ object_draft_schematic_clothing_shared_clothing_skirt_formal_14 = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_skirt_formal_14, "object/draft_schematic/clothing/shared_clothing_skirt_formal_14.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19874,7 +19955,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_01 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_01, "object/draft_schematic/clothing/shared_clothing_vest_casual_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19923,7 +20004,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_02 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_02, "object/draft_schematic/clothing/shared_clothing_vest_casual_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -19972,7 +20053,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_03 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_03, "object/draft_schematic/clothing/shared_clothing_vest_casual_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20021,7 +20102,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_04 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_04, "object/draft_schematic/clothing/shared_clothing_vest_casual_04.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_05 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_05.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_05.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20070,7 +20151,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_05 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_05, "object/draft_schematic/clothing/shared_clothing_vest_casual_05.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_10.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20119,7 +20200,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_10 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_10, "object/draft_schematic/clothing/shared_clothing_vest_casual_10.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_casual_11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_11.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_casual_11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20168,7 +20249,7 @@ object_draft_schematic_clothing_shared_clothing_vest_casual_11 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_casual_11, "object/draft_schematic/clothing/shared_clothing_vest_casual_11.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_field_06 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_06.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_06.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20217,7 +20298,7 @@ object_draft_schematic_clothing_shared_clothing_vest_field_06 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_field_06, "object/draft_schematic/clothing/shared_clothing_vest_field_06.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_field_09 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_09.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_09.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20266,7 +20347,7 @@ object_draft_schematic_clothing_shared_clothing_vest_field_09 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_field_09, "object/draft_schematic/clothing/shared_clothing_vest_field_09.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_field_hutt_01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20315,7 +20396,7 @@ object_draft_schematic_clothing_shared_clothing_vest_field_hutt_01 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_field_hutt_01, "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_01.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_field_hutt_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20364,7 +20445,7 @@ object_draft_schematic_clothing_shared_clothing_vest_field_hutt_02 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_field_hutt_02, "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_02.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_field_hutt_03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20413,7 +20494,7 @@ object_draft_schematic_clothing_shared_clothing_vest_field_hutt_03 = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_field_hutt_03, "object/draft_schematic/clothing/shared_clothing_vest_field_hutt_03.iff")
 
 object_draft_schematic_clothing_shared_clothing_vest_formal_15 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_formal_15.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_vest_formal_15.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20462,7 +20543,7 @@ object_draft_schematic_clothing_shared_clothing_vest_formal_15 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_vest_formal_15, "object/draft_schematic/clothing/shared_clothing_vest_formal_15.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_gloves_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20511,7 +20592,7 @@ object_draft_schematic_clothing_shared_clothing_wke_gloves_s01 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_gloves_s01, "object/draft_schematic/clothing/shared_clothing_wke_gloves_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_gloves_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20560,7 +20641,7 @@ object_draft_schematic_clothing_shared_clothing_wke_gloves_s02 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_gloves_s02, "object/draft_schematic/clothing/shared_clothing_wke_gloves_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_gloves_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20609,7 +20690,7 @@ object_draft_schematic_clothing_shared_clothing_wke_gloves_s03 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_gloves_s03, "object/draft_schematic/clothing/shared_clothing_wke_gloves_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_gloves_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_gloves_s04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20658,7 +20739,7 @@ object_draft_schematic_clothing_shared_clothing_wke_gloves_s04 = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_gloves_s04, "object/draft_schematic/clothing/shared_clothing_wke_gloves_s04.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_hat_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hat_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hat_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20707,7 +20788,7 @@ object_draft_schematic_clothing_shared_clothing_wke_hat_s01 = SharedDraftSchemat
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_hat_s01, "object/draft_schematic/clothing/shared_clothing_wke_hat_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_hood_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20756,7 +20837,7 @@ object_draft_schematic_clothing_shared_clothing_wke_hood_s01 = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_hood_s01, "object/draft_schematic/clothing/shared_clothing_wke_hood_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_hood_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20805,7 +20886,7 @@ object_draft_schematic_clothing_shared_clothing_wke_hood_s02 = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_hood_s02, "object/draft_schematic/clothing/shared_clothing_wke_hood_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_hood_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_hood_s03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20854,7 +20935,7 @@ object_draft_schematic_clothing_shared_clothing_wke_hood_s03 = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_hood_s03, "object/draft_schematic/clothing/shared_clothing_wke_hood_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shirt_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20903,7 +20984,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shirt_s01 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shirt_s01, "object/draft_schematic/clothing/shared_clothing_wke_shirt_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shirt_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -20952,7 +21033,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shirt_s02 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shirt_s02, "object/draft_schematic/clothing/shared_clothing_wke_shirt_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shirt_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21001,7 +21082,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shirt_s03 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shirt_s03, "object/draft_schematic/clothing/shared_clothing_wke_shirt_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shirt_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shirt_s04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21050,7 +21131,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shirt_s04 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shirt_s04, "object/draft_schematic/clothing/shared_clothing_wke_shirt_s04.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21099,7 +21180,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s01 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s01, "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21148,7 +21229,7 @@ object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s02 = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_shoulder_pad_s02, "object/draft_schematic/clothing/shared_clothing_wke_shoulder_pad_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_skirt_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s01.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21197,7 +21278,7 @@ object_draft_schematic_clothing_shared_clothing_wke_skirt_s01 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_skirt_s01, "object/draft_schematic/clothing/shared_clothing_wke_skirt_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_skirt_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s02.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -21246,7 +21327,7 @@ object_draft_schematic_clothing_shared_clothing_wke_skirt_s02 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_skirt_s02, "object/draft_schematic/clothing/shared_clothing_wke_skirt_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_skirt_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s03.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -21295,7 +21376,7 @@ object_draft_schematic_clothing_shared_clothing_wke_skirt_s03 = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_wke_skirt_s03, "object/draft_schematic/clothing/shared_clothing_wke_skirt_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_wke_skirt_s04 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s04.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_wke_skirt_s04.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "appearance/pants_s12_m.sat",
@@ -21345,207 +21426,239 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothin
 
 
 object_draft_schematic_clothing_shared_clothing_ns_hat_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s01.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_hat_s01, "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_hat_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s02.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_hat_s02, "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_hat_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s03.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_hat_s03, "object/draft_schematic/clothing/shared_clothing_hat_nightsister_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_shirt_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s01.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_shirt_s01, "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_shirt_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s02.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_shirt_s02, "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_shirt_s03 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s03.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s03.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_shirt_s03, "object/draft_schematic/clothing/shared_clothing_shirt_nightsister_s03.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_dress = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_nightsister.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_dress_nightsister.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_dress, "object/draft_schematic/clothing/shared_clothing_dress_nightsister.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_boots = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_nightsister.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_boots_nightsister.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_boots, "object/draft_schematic/clothing/shared_clothing_boots_nightsister.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_pants_s01 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s01.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s01.iff",
+	gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_pants_s01, "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s01.iff")
 
 object_draft_schematic_clothing_shared_clothing_ns_pants_s02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s02.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s02.iff",
+	gameObjectType = 2049,
 
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ns_pants_s02, "object/draft_schematic/clothing/shared_clothing_pants_nightsister_s02.iff")
 
 object_draft_schematic_clothing_shared_clothing_robe_jedi_padawan_crafted = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_padawan_crafted.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_padawan_crafted.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_jedi_padawan_crafted, "object/draft_schematic/clothing/shared_clothing_robe_jedi_padawan_crafted.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_jedi_dark_s01_crafted = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_dark_s01_crafted.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_dark_s01_crafted.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_jedi_dark_s01_crafted, "object/draft_schematic/clothing/shared_clothing_robe_jedi_dark_s01_crafted.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_jedi_light_s01_crafted = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_light_s01_crafted.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_jedi_light_s01_crafted.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_jedi_light_s01_crafted, "object/draft_schematic/clothing/shared_clothing_robe_jedi_light_s01_crafted.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_s32 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s32.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s32.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_s32, "object/draft_schematic/clothing/shared_clothing_robe_jedi_s32.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_s32_h1 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s32_h1.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s32_h1.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_s32_h1, "object/draft_schematic/clothing/shared_clothing_robe_jedi_s32_h1.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_s33 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s33.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s33.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_s33, "object/draft_schematic/clothing/shared_clothing_robe_jedi_s33.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_robe_s33_h1 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s33_h1.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_robe_s33_h1.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_robe_s33_h1, "object/draft_schematic/clothing/shared_clothing_robe_jedi_s33_h1.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_exar_cultist_hood_down = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_down.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_down.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_exar_cultist_hood_down, "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_down.iff")
 
 
 object_draft_schematic_clothing_shared_clothing_exar_cultist_hood_up = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_up.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_up.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_exar_cultist_hood_up, "object/draft_schematic/clothing/shared_clothing_exar_cultist_hood_up.iff")
 
 object_draft_schematic_clothing_shared_clothing_ep3_chiss_poacher_backpack = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ep3_chiss_poacher_backpack.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_ep3_chiss_poacher_backpack.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_ep3_chiss_poacher_backpack, "object/draft_schematic/clothing/shared_clothing_ep3_chiss_poacher_backpack.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_covert = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_covert.iff"
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_covert.iff",
+	gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_covert, "object/draft_schematic/clothing/shared_clothing_hat_covert.iff")
 
 object_draft_schematic_clothing_shared_clothing_hat_invis = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_invis.iff"
+  clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_hat_invis.iff",
+  gameObjectType = 2049,
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_hat_invis, "object/draft_schematic/clothing/shared_clothing_hat_invis.iff")
 
 --
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bicep_l = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_l.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_l.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bicep_l, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bicep_r = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_r.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_r.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bicep_r, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_boots = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_boots.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_boots.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_boots, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bracer_l = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_l.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_l.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bracer_l, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bracer_r = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_r.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_r.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_bracer_r, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_chest = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_chest.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_chest.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_chest, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_gloves = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_gloves.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_gloves.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_gloves, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_helmet = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_helmet.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_helmet.iff",
+  gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_helmet, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_leggings = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_leggings.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_leggings.iff",
+  gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_leggings, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_leggings.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_utility_belt = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_utility_belt.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_utility_belt.iff",
+  gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_stormtrooper_utility_belt, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_utility_belt.iff")
@@ -21554,64 +21667,154 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothin
 
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_bicep_l = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_l.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_l.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_bicep_l, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_bicep_r = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_r.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_r.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_bicep_r, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bicep_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_boots = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_boots.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_boots.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_boots, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_boots.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_bracer_l = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_l.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_l.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_bracer_l, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_l.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_bracer_r = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_r.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_r.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_bracer_r, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_bracer_r.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_chest = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_chest.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_chest.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_chest, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_chest.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_gloves = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_gloves.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_gloves.iff",
+  gameObjectType = 2049,
 
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_gloves, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_gloves.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_helmet = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_helmet.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_helmet.iff",
+  gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_helmet, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_helmet.iff")
 
 object_draft_schematic_clothing_shared_clothing_armor_marine_leggings = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_leggings.iff"
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_leggings.iff",
+  gameObjectType = 2049,
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_marine_leggings, "object/draft_schematic/armor/shared_armor_appearance_rebel_marine_leggings.iff")
 
+
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_belt = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_belt.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_belt, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_belt.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bicep_l = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bicep_l.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bicep_l, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bicep_l.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bicep_r = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bicep_r.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bicep_r, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bicep_r.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bracer_l = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bracer_l.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bracer_l, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bracer_l.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bracer_r = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bracer_r.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_bracer_r, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_bracer_r.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_chest_plate = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_chest_plate.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_chest_plate, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_chest_plate.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_gloves = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_gloves.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_gloves, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_gloves.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_helmet = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_helmet.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_helmet, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_helmet.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_leggings = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_leggings.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_leggings, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_leggings.iff")
+------------------------------------------------------------------------------------------------------------------------------------
+
+object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_boots = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_boots.iff",
+	gameObjectType = 2049,
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_clothing_shared_clothing_armor_mandalorian_imperial_boots, "object/draft_schematic/clothing/shared_clothing_armor_mandalorian_imperial_boots.iff")
+------------------------------------------------------------------------------------------------------------------------------------
 

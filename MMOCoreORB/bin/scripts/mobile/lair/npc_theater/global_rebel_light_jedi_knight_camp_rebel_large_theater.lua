@@ -1,13 +1,20 @@
 global_rebel_light_jedi_knight_camp_rebel_large_theater = Lair:new {
-	mobiles = {		
+	mobiles = {
 		{"rebel_droideka",1},
 		{"fbase_rebel_elite_heavy_trooper_hard",2},
-		{"specforce_marine",4},
-		{"specforce_heavy_weapons_specialist",2},
+		{"specforce_marine",3},
+		{"specforce_heavy_weapons_specialist",1},
 		{"senior_specforce_heavy_weapons_specialist",1},
 		{"senior_specforce_marine",1},
+		{"light_jedi_youngling",3},
+		{"light_jedi_padawan_b",2},
+		{"light_jedi_padawan_g",2},
+		{"light_jedi_knight",2},
+		{"light_jedi_consular",1},
+		{"light_jedi_master",1},
+		{"light_jedi_sentinel",1},
 	},
-	
+
 	spawnLimit = 20,
 	buildingsVeryEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/anywhere_rebel_base_large_1.iff"},

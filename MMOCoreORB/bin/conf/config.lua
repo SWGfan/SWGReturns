@@ -158,6 +158,7 @@ Core3 = {
     "species.tre",
     "returns_species_fix.tre",
     "returns_gen5_saber_variants.tre",
+    "returns_patch12.tre",
     "stardust_s.tre",
     "stardust_03.tre",
     "stardust_02.tre",

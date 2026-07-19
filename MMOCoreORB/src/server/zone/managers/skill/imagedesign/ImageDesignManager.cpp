@@ -223,10 +223,10 @@ void ImageDesignManager::updateColorCustomization(CreatureObject* imageDesigner,
 
 	const Vector<CustomizationData>* data = getCustomizationData(speciesGender, customizationName);
 
-	/*if (data == nullptr) {
+	if (data == nullptr) {
 		error("Unable to get CustomizationData for " + speciesGender + "_" + customizationName);
 		return;
-	}*/
+	}
 
 	for (int i = 0; i < data->size(); ++i) {
 		CustomizationData* customData = &data->get(i);

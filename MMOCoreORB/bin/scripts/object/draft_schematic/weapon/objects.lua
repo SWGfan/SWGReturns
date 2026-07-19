@@ -42,7 +42,7 @@
 
 
 object_draft_schematic_weapon_shared_2h_sword_scythe = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_scythe.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_scythe.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -91,7 +91,7 @@ object_draft_schematic_weapon_shared_2h_sword_scythe = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_2h_sword_scythe, "object/draft_schematic/weapon/shared_2h_sword_scythe.iff")
 
 object_draft_schematic_weapon_shared_axe = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_axe.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_axe.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -140,7 +140,7 @@ object_draft_schematic_weapon_shared_axe = SharedDraftSchematicObjectTemplate:ne
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_axe, "object/draft_schematic/weapon/shared_axe.iff")
 
 object_draft_schematic_weapon_shared_axe_vibro = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_axe_vibro.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_axe_vibro.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -189,7 +189,7 @@ object_draft_schematic_weapon_shared_axe_vibro = SharedDraftSchematicObjectTempl
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_axe_vibro, "object/draft_schematic/weapon/shared_axe_vibro.iff")
 
 object_draft_schematic_weapon_shared_baton_gaderiffi = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_baton_gaderiffi.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_baton_gaderiffi.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -238,7 +238,7 @@ object_draft_schematic_weapon_shared_baton_gaderiffi = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_baton_gaderiffi, "object/draft_schematic/weapon/shared_baton_gaderiffi.iff")
 
 object_draft_schematic_weapon_shared_baton_stun = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_baton_stun.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_baton_stun.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -287,7 +287,7 @@ object_draft_schematic_weapon_shared_baton_stun = SharedDraftSchematicObjectTemp
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_baton_stun, "object/draft_schematic/weapon/shared_baton_stun.iff")
 
 object_draft_schematic_weapon_shared_battleaxe = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_battleaxe.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_battleaxe.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -336,7 +336,7 @@ object_draft_schematic_weapon_shared_battleaxe = SharedDraftSchematicObjectTempl
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_battleaxe, "object/draft_schematic/weapon/shared_battleaxe.iff")
 
 object_draft_schematic_weapon_shared_blaster_cannon = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_blaster_cannon.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_blaster_cannon.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -385,7 +385,7 @@ object_draft_schematic_weapon_shared_blaster_cannon = SharedDraftSchematicObject
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_blaster_cannon, "object/draft_schematic/weapon/shared_blaster_cannon.iff")
 
 object_draft_schematic_weapon_shared_carbine_blaster_cdef = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_blaster_cdef.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_blaster_cdef.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -434,7 +434,7 @@ object_draft_schematic_weapon_shared_carbine_blaster_cdef = SharedDraftSchematic
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_blaster_cdef, "object/draft_schematic/weapon/shared_carbine_blaster_cdef.iff")
 
 object_draft_schematic_weapon_shared_carbine_quest_smuggler_underslung = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_quest_smuggler_underslung.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_quest_smuggler_underslung.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -483,7 +483,7 @@ object_draft_schematic_weapon_shared_carbine_quest_smuggler_underslung = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_quest_smuggler_underslung, "object/draft_schematic/weapon/shared_carbine_quest_smuggler_underslung.iff")
 
 object_draft_schematic_weapon_shared_cleaver = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_cleaver.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_cleaver.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -532,7 +532,7 @@ object_draft_schematic_weapon_shared_cleaver = SharedDraftSchematicObjectTemplat
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_cleaver, "object/draft_schematic/weapon/shared_cleaver.iff")
 
 object_draft_schematic_weapon_shared_executioners_hack = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_executioners_hack.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_executioners_hack.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -581,7 +581,7 @@ object_draft_schematic_weapon_shared_executioners_hack = SharedDraftSchematicObj
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_executioners_hack, "object/draft_schematic/weapon/shared_executioners_hack.iff")
 
 object_draft_schematic_weapon_shared_heavy_acid_beam = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_acid_beam.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_acid_beam.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -630,7 +630,7 @@ object_draft_schematic_weapon_shared_heavy_acid_beam = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_heavy_acid_beam, "object/draft_schematic/weapon/shared_heavy_acid_beam.iff")
 
 object_draft_schematic_weapon_shared_heavy_lightning_beam = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_lightning_beam.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_lightning_beam.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -679,7 +679,7 @@ object_draft_schematic_weapon_shared_heavy_lightning_beam = SharedDraftSchematic
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_heavy_lightning_beam, "object/draft_schematic/weapon/shared_heavy_lightning_beam.iff")
 
 object_draft_schematic_weapon_shared_heavy_particle_beam = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_particle_beam.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_particle_beam.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -728,7 +728,7 @@ object_draft_schematic_weapon_shared_heavy_particle_beam = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_heavy_particle_beam, "object/draft_schematic/weapon/shared_heavy_particle_beam.iff")
 
 object_draft_schematic_weapon_shared_heavy_rocket_launcher = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_rocket_launcher.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_heavy_rocket_launcher.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -777,7 +777,7 @@ object_draft_schematic_weapon_shared_heavy_rocket_launcher = SharedDraftSchemati
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_heavy_rocket_launcher, "object/draft_schematic/weapon/shared_heavy_rocket_launcher.iff")
 
 object_draft_schematic_weapon_shared_ion_cannon = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_ion_cannon.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_ion_cannon.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -826,7 +826,7 @@ object_draft_schematic_weapon_shared_ion_cannon = SharedDraftSchematicObjectTemp
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_ion_cannon, "object/draft_schematic/weapon/shared_ion_cannon.iff")
 
 object_draft_schematic_weapon_shared_katana = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_katana.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_katana.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -875,7 +875,7 @@ object_draft_schematic_weapon_shared_katana = SharedDraftSchematicObjectTemplate
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_katana, "object/draft_schematic/weapon/shared_katana.iff")
 
 object_draft_schematic_weapon_shared_knife_stone = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_stone.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_stone.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -924,7 +924,7 @@ object_draft_schematic_weapon_shared_knife_stone = SharedDraftSchematicObjectTem
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_knife_stone, "object/draft_schematic/weapon/shared_knife_stone.iff")
 
 object_draft_schematic_weapon_shared_knife_survival = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_survival.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_survival.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -973,7 +973,7 @@ object_draft_schematic_weapon_shared_knife_survival = SharedDraftSchematicObject
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_knife_survival, "object/draft_schematic/weapon/shared_knife_survival.iff")
 
 object_draft_schematic_weapon_shared_knife_twilek_dagger = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_twilek_dagger.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_twilek_dagger.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1022,7 +1022,7 @@ object_draft_schematic_weapon_shared_knife_twilek_dagger = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_knife_twilek_dagger, "object/draft_schematic/weapon/shared_knife_twilek_dagger.iff")
 
 object_draft_schematic_weapon_shared_knife_vibroblade = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_vibroblade.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_knife_vibroblade.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1071,7 +1071,7 @@ object_draft_schematic_weapon_shared_knife_vibroblade = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_knife_vibroblade, "object/draft_schematic/weapon/shared_knife_vibroblade.iff")
 
 object_draft_schematic_weapon_shared_knuckler_vibro = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_knuckler_vibro.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_knuckler_vibro.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1120,7 +1120,7 @@ object_draft_schematic_weapon_shared_knuckler_vibro = SharedDraftSchematicObject
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_knuckler_vibro, "object/draft_schematic/weapon/shared_knuckler_vibro.iff")
 
 object_draft_schematic_weapon_shared_lance_nightsister = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_nightsister.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_nightsister.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1169,7 +1169,7 @@ object_draft_schematic_weapon_shared_lance_nightsister = SharedDraftSchematicObj
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_nightsister, "object/draft_schematic/weapon/shared_lance_nightsister.iff")
 
 object_draft_schematic_weapon_shared_lance_vibro = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_vibro.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_vibro.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1218,7 +1218,7 @@ object_draft_schematic_weapon_shared_lance_vibro = SharedDraftSchematicObjectTem
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_vibro, "object/draft_schematic/weapon/shared_lance_vibro.iff")
 
 object_draft_schematic_weapon_shared_lance_vibro_controller_fp = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_vibro_controller_fp.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_vibro_controller_fp.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1267,7 +1267,7 @@ object_draft_schematic_weapon_shared_lance_vibro_controller_fp = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_vibro_controller_fp, "object/draft_schematic/weapon/shared_lance_vibro_controller_fp.iff")
 
 object_draft_schematic_weapon_shared_laser_cannon = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_laser_cannon.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_laser_cannon.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1316,7 +1316,7 @@ object_draft_schematic_weapon_shared_laser_cannon = SharedDraftSchematicObjectTe
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_laser_cannon, "object/draft_schematic/weapon/shared_laser_cannon.iff")
 
 object_draft_schematic_weapon_shared_lightsaber_basic = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_lightsaber_basic.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_lightsaber_basic.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1365,7 +1365,7 @@ object_draft_schematic_weapon_shared_lightsaber_basic = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lightsaber_basic, "object/draft_schematic/weapon/shared_lightsaber_basic.iff")
 
 object_draft_schematic_weapon_shared_maul = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_maul.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_maul.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1414,7 +1414,7 @@ object_draft_schematic_weapon_shared_maul = SharedDraftSchematicObjectTemplate:n
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_maul, "object/draft_schematic/weapon/shared_maul.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_cdef = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_cdef.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_cdef.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1463,7 +1463,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_cdef = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_cdef, "object/draft_schematic/weapon/shared_pistol_blaster_cdef.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_d18 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_d18.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_d18.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1512,7 +1512,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_d18 = SharedDraftSchematicOb
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_d18, "object/draft_schematic/weapon/shared_pistol_blaster_d18.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_dh17 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dh17.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dh17.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1561,7 +1561,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_dh17 = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_dh17, "object/draft_schematic/weapon/shared_pistol_blaster_dh17.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_dl44 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dl44.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dl44.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1610,7 +1610,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_dl44 = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_dl44, "object/draft_schematic/weapon/shared_pistol_blaster_dl44.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_dl44_metal = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dl44_metal.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_dl44_metal.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1659,7 +1659,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_dl44_metal = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_dl44_metal, "object/draft_schematic/weapon/shared_pistol_blaster_dl44_metal.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_power5 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_power5.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_power5.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1708,7 +1708,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_power5 = SharedDraftSchemati
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_power5, "object/draft_schematic/weapon/shared_pistol_blaster_power5.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_scout_trooper = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_scout_trooper.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_scout_trooper.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1757,7 +1757,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_scout_trooper = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_scout_trooper, "object/draft_schematic/weapon/shared_pistol_blaster_scout_trooper.iff")
 
 object_draft_schematic_weapon_shared_pistol_blaster_short_range_combat = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_short_range_combat.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_blaster_short_range_combat.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1806,7 +1806,7 @@ object_draft_schematic_weapon_shared_pistol_blaster_short_range_combat = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_blaster_short_range_combat, "object/draft_schematic/weapon/shared_pistol_blaster_short_range_combat.iff")
 
 object_draft_schematic_weapon_shared_pistol_de_10 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_de_10.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_de_10.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1855,7 +1855,7 @@ object_draft_schematic_weapon_shared_pistol_de_10 = SharedDraftSchematicObjectTe
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_de_10, "object/draft_schematic/weapon/shared_pistol_de_10.iff")
 
 object_draft_schematic_weapon_shared_pistol_disrupter_dx2 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_disrupter_dx2.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_disrupter_dx2.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1904,7 +1904,7 @@ object_draft_schematic_weapon_shared_pistol_disrupter_dx2 = SharedDraftSchematic
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_disrupter_dx2, "object/draft_schematic/weapon/shared_pistol_disrupter_dx2.iff")
 
 object_draft_schematic_weapon_shared_pistol_flechette_fwg5 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_flechette_fwg5.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_flechette_fwg5.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1953,7 +1953,7 @@ object_draft_schematic_weapon_shared_pistol_flechette_fwg5 = SharedDraftSchemati
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_flechette_fwg5, "object/draft_schematic/weapon/shared_pistol_flechette_fwg5.iff")
 
 object_draft_schematic_weapon_shared_pistol_flechette_fwg5_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_flechette_fwg5_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_flechette_fwg5_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2002,7 +2002,7 @@ object_draft_schematic_weapon_shared_pistol_flechette_fwg5_quest = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_flechette_fwg5_quest, "object/draft_schematic/weapon/shared_pistol_flechette_fwg5_quest.iff")
 
 object_draft_schematic_weapon_shared_pistol_geo_sonic_blaster = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_geo_sonic_blaster.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_geo_sonic_blaster.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2051,7 +2051,7 @@ object_draft_schematic_weapon_shared_pistol_geo_sonic_blaster = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_geo_sonic_blaster, "object/draft_schematic/weapon/shared_pistol_geo_sonic_blaster.iff")
 
 object_draft_schematic_weapon_shared_pistol_launcher = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_launcher.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_launcher.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2100,7 +2100,7 @@ object_draft_schematic_weapon_shared_pistol_launcher = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_launcher, "object/draft_schematic/weapon/shared_pistol_launcher.iff")
 
 object_draft_schematic_weapon_shared_pistol_projectile_striker = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_projectile_striker.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_projectile_striker.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2149,7 +2149,7 @@ object_draft_schematic_weapon_shared_pistol_projectile_striker = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_projectile_striker, "object/draft_schematic/weapon/shared_pistol_projectile_striker.iff")
 
 object_draft_schematic_weapon_shared_pistol_quest_imperial_navy_formal = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_quest_imperial_navy_formal.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_quest_imperial_navy_formal.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2198,7 +2198,7 @@ object_draft_schematic_weapon_shared_pistol_quest_imperial_navy_formal = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_quest_imperial_navy_formal, "object/draft_schematic/weapon/shared_pistol_quest_imperial_navy_formal.iff")
 
 object_draft_schematic_weapon_shared_pistol_republic_blaster = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_republic_blaster.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_republic_blaster.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2247,7 +2247,7 @@ object_draft_schematic_weapon_shared_pistol_republic_blaster = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_republic_blaster, "object/draft_schematic/weapon/shared_pistol_republic_blaster.iff")
 
 object_draft_schematic_weapon_shared_pistol_republic_blaster_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_republic_blaster_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_republic_blaster_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2296,7 +2296,7 @@ object_draft_schematic_weapon_shared_pistol_republic_blaster_quest = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_republic_blaster_quest, "object/draft_schematic/weapon/shared_pistol_republic_blaster_quest.iff")
 
 object_draft_schematic_weapon_shared_pistol_scatter = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_scatter.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_scatter.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2345,7 +2345,7 @@ object_draft_schematic_weapon_shared_pistol_scatter = SharedDraftSchematicObject
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_scatter, "object/draft_schematic/weapon/shared_pistol_scatter.iff")
 
 object_draft_schematic_weapon_shared_poleaxe_vibro = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_poleaxe_vibro.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_poleaxe_vibro.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2394,7 +2394,7 @@ object_draft_schematic_weapon_shared_poleaxe_vibro = SharedDraftSchematicObjectT
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_poleaxe_vibro, "object/draft_schematic/weapon/shared_poleaxe_vibro.iff")
 
 object_draft_schematic_weapon_shared_razor_knuckler = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_razor_knuckler.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_razor_knuckler.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2443,7 +2443,7 @@ object_draft_schematic_weapon_shared_razor_knuckler = SharedDraftSchematicObject
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_razor_knuckler, "object/draft_schematic/weapon/shared_razor_knuckler.iff")
 
 object_draft_schematic_weapon_shared_rifle_acid_beam = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_acid_beam.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_acid_beam.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2492,7 +2492,7 @@ object_draft_schematic_weapon_shared_rifle_acid_beam = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_acid_beam, "object/draft_schematic/weapon/shared_rifle_acid_beam.iff")
 
 object_draft_schematic_weapon_shared_rifle_beam = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_beam.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_beam.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2541,7 +2541,7 @@ object_draft_schematic_weapon_shared_rifle_beam = SharedDraftSchematicObjectTemp
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_beam, "object/draft_schematic/weapon/shared_rifle_beam.iff")
 
 object_draft_schematic_weapon_shared_rifle_berserker = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_berserker.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_berserker.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2590,7 +2590,7 @@ object_draft_schematic_weapon_shared_rifle_berserker = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_berserker, "object/draft_schematic/weapon/shared_rifle_berserker.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_cdef = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_cdef.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_cdef.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2639,7 +2639,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_cdef = SharedDraftSchematicOb
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_cdef, "object/draft_schematic/weapon/shared_rifle_blaster_cdef.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_dlt20 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_dlt20.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_dlt20.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2688,7 +2688,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_dlt20 = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_dlt20, "object/draft_schematic/weapon/shared_rifle_blaster_dlt20.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_dlt20a = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_dlt20a.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_dlt20a.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2737,7 +2737,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_dlt20a = SharedDraftSchematic
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_dlt20a, "object/draft_schematic/weapon/shared_rifle_blaster_dlt20a.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_e11 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_e11.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_e11.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2786,7 +2786,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_e11 = SharedDraftSchematicObj
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_e11, "object/draft_schematic/weapon/shared_rifle_blaster_e11.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_ionization_jawa = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_ionization_jawa.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_ionization_jawa.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2835,7 +2835,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_ionization_jawa = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_ionization_jawa, "object/draft_schematic/weapon/shared_rifle_blaster_ionization_jawa.iff")
 
 object_draft_schematic_weapon_shared_rifle_blaster_laser_rifle = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_laser_rifle.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_blaster_laser_rifle.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2884,7 +2884,7 @@ object_draft_schematic_weapon_shared_rifle_blaster_laser_rifle = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_blaster_laser_rifle, "object/draft_schematic/weapon/shared_rifle_blaster_laser_rifle.iff")
 
 object_draft_schematic_weapon_shared_rifle_bowcaster = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_bowcaster.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_bowcaster.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2933,7 +2933,7 @@ object_draft_schematic_weapon_shared_rifle_bowcaster = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_bowcaster, "object/draft_schematic/weapon/shared_rifle_bowcaster.iff")
 
 object_draft_schematic_weapon_shared_rifle_disrupter_dxr6 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_disrupter_dxr6.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_disrupter_dxr6.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2982,7 +2982,7 @@ object_draft_schematic_weapon_shared_rifle_disrupter_dxr6 = SharedDraftSchematic
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_disrupter_dxr6, "object/draft_schematic/weapon/shared_rifle_disrupter_dxr6.iff")
 
 object_draft_schematic_weapon_shared_rifle_flame_thrower = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_flame_thrower.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_flame_thrower.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3031,7 +3031,7 @@ object_draft_schematic_weapon_shared_rifle_flame_thrower = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_flame_thrower, "object/draft_schematic/weapon/shared_rifle_flame_thrower.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3080,7 +3080,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine, "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine_snubnose = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine_snubnose.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine_snubnose.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3129,7 +3129,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine_snubnose =
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_dh17_carbine_snubnose, "object/draft_schematic/weapon/shared_rifle_light_blaster_dh17_carbine_snubnose.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3178,7 +3178,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine, "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine_quest = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine_quest.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine_quest.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3227,7 +3227,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine_quest = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_e11_carbine_quest, "object/draft_schematic/weapon/shared_rifle_light_blaster_e11_carbine_quest.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_ee3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_ee3.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_ee3.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3276,7 +3276,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_ee3 = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_ee3, "object/draft_schematic/weapon/shared_rifle_light_blaster_ee3.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_imperial_scout_carbine = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_imperial_scout_carbine.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_imperial_scout_carbine.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3325,7 +3325,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_imperial_scout_carbine 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_imperial_scout_carbine, "object/draft_schematic/weapon/shared_rifle_light_blaster_imperial_scout_carbine.iff")
 
 object_draft_schematic_weapon_shared_rifle_light_blaster_laser_carbine = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_laser_carbine.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_light_blaster_laser_carbine.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3374,7 +3374,7 @@ object_draft_schematic_weapon_shared_rifle_light_blaster_laser_carbine = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_light_blaster_laser_carbine, "object/draft_schematic/weapon/shared_rifle_light_blaster_laser_carbine.iff")
 
 object_draft_schematic_weapon_shared_rifle_lightning = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_lightning.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_lightning.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3423,7 +3423,7 @@ object_draft_schematic_weapon_shared_rifle_lightning = SharedDraftSchematicObjec
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_lightning, "object/draft_schematic/weapon/shared_rifle_lightning.iff")
 
 object_draft_schematic_weapon_shared_rifle_projectile_tusken = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_projectile_tusken.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_projectile_tusken.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3472,7 +3472,7 @@ object_draft_schematic_weapon_shared_rifle_projectile_tusken = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_projectile_tusken, "object/draft_schematic/weapon/shared_rifle_projectile_tusken.iff")
 
 object_draft_schematic_weapon_shared_rifle_quest_rebel_longrifle = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_quest_rebel_longrifle.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_quest_rebel_longrifle.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3521,7 +3521,7 @@ object_draft_schematic_weapon_shared_rifle_quest_rebel_longrifle = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_quest_rebel_longrifle, "object/draft_schematic/weapon/shared_rifle_quest_rebel_longrifle.iff")
 
 object_draft_schematic_weapon_shared_rifle_sonic_sg82 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_sonic_sg82.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_sonic_sg82.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3570,7 +3570,7 @@ object_draft_schematic_weapon_shared_rifle_sonic_sg82 = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_sonic_sg82, "object/draft_schematic/weapon/shared_rifle_sonic_sg82.iff")
 
 object_draft_schematic_weapon_shared_rifle_spray_stick_stohli = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_spray_stick_stohli.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_spray_stick_stohli.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3619,7 +3619,7 @@ object_draft_schematic_weapon_shared_rifle_spray_stick_stohli = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_spray_stick_stohli, "object/draft_schematic/weapon/shared_rifle_spray_stick_stohli.iff")
 
 object_draft_schematic_weapon_shared_rifle_t21 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_t21.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_t21.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3668,7 +3668,7 @@ object_draft_schematic_weapon_shared_rifle_t21 = SharedDraftSchematicObjectTempl
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_t21, "object/draft_schematic/weapon/shared_rifle_t21.iff")
 
 object_draft_schematic_weapon_shared_rifle_tangle_gun7 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tangle_gun7.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tangle_gun7.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3717,7 +3717,7 @@ object_draft_schematic_weapon_shared_rifle_tangle_gun7 = SharedDraftSchematicObj
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_tangle_gun7, "object/draft_schematic/weapon/shared_rifle_tangle_gun7.iff")
 
 object_draft_schematic_weapon_shared_rifle_tenloss_disrupter = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tenloss_disrupter.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tenloss_disrupter.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3766,7 +3766,7 @@ object_draft_schematic_weapon_shared_rifle_tenloss_disrupter = SharedDraftSchema
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_tenloss_disrupter, "object/draft_schematic/weapon/shared_rifle_tenloss_disrupter.iff")
 
 object_draft_schematic_weapon_shared_staff = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3815,7 +3815,7 @@ object_draft_schematic_weapon_shared_staff = SharedDraftSchematicObjectTemplate:
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_staff, "object/draft_schematic/weapon/shared_staff.iff")
 
 object_draft_schematic_weapon_shared_staff_metal = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff_metal.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff_metal.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3864,7 +3864,7 @@ object_draft_schematic_weapon_shared_staff_metal = SharedDraftSchematicObjectTem
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_staff_metal, "object/draft_schematic/weapon/shared_staff_metal.iff")
 
 object_draft_schematic_weapon_shared_staff_reinforced = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff_reinforced.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_staff_reinforced.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3913,7 +3913,7 @@ object_draft_schematic_weapon_shared_staff_reinforced = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_staff_reinforced, "object/draft_schematic/weapon/shared_staff_reinforced.iff")
 
 object_draft_schematic_weapon_shared_sword = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -3962,7 +3962,7 @@ object_draft_schematic_weapon_shared_sword = SharedDraftSchematicObjectTemplate:
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword, "object/draft_schematic/weapon/shared_sword.iff")
 
 object_draft_schematic_weapon_shared_sword_curved = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_curved.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_curved.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4011,7 +4011,7 @@ object_draft_schematic_weapon_shared_sword_curved = SharedDraftSchematicObjectTe
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_curved, "object/draft_schematic/weapon/shared_sword_curved.iff")
 
 object_draft_schematic_weapon_shared_sword_ryyk_blade = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_ryyk_blade.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_ryyk_blade.iff",
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -4060,7 +4060,8 @@ object_draft_schematic_weapon_shared_sword_ryyk_blade = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_ryyk_blade, "object/draft_schematic/weapon/shared_sword_ryyk_blade.iff")
 
 object_draft_schematic_weapon_shared_turbo_laser = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_turbo_laser.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_turbo_laser.iff",
+	gameObjectType = 2049,
 	
 }
 
@@ -4071,7 +4072,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_turbo_las
 
 -------------------------------------
 object_draft_schematic_weapon_shared_blasterfist = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_blasterfist.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_blasterfist.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4079,7 +4081,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_blasterfi
 -----------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_carbine_alliance_needler = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_alliance_needler.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_alliance_needler.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4087,14 +4090,16 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_a
 -----------------------------------------
 -------------------------------------------
 object_draft_schematic_weapon_shared_carbine_bothan_bola = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_bothan_bola.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_bothan_bola.iff",
+  gameObjectType = 2049,
   
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_bothan_bola, "object/draft_schematic/weapon/shared_carbine_bothan_bola.iff")
 -------------------------------------
 object_draft_schematic_weapon_shared_carbine_charric = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_charric.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_charric.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4102,7 +4107,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_c
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_carbine_czerka_dart = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_czerka_dart.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_czerka_dart.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4110,7 +4116,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_c
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_carbine_geo = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_geo.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_geo.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4118,7 +4125,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_g
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_carbine_kun_massassi = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_kun_massassi.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_kun_massassi.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4126,14 +4134,16 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_k
 -------------------------------------
 -------------------------------------------
 object_draft_schematic_weapon_shared_carbine_republic_sfor = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_republic_sfor.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_republic_sfor.iff",
+  gameObjectType = 2049,
   
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_republic_sfor, "object/draft_schematic/weapon/shared_carbine_republic_sfor.iff")
 -------------------------------------
 object_draft_schematic_weapon_shared_carbine_proton = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_proton.iff"
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_proton.iff",
+	gameObjectType = 2049,
 	
   }
   
@@ -4142,7 +4152,8 @@ object_draft_schematic_weapon_shared_carbine_proton = SharedDraftSchematicObject
   -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_lance_shock = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_shock.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_shock.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4151,7 +4162,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_sho
 -------------------------------------
 ---------------------------------------
 object_draft_schematic_weapon_shared_lance_obsidian = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_obsidian.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_obsidian.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4160,7 +4172,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_obs
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_lance_xandank = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_xandank.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_xandank.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4168,7 +4181,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_xan
 
 -------------------------------------
 object_draft_schematic_weapon_shared_loot_soulstinger = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_loot_soulstinger.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_loot_soulstinger.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4176,7 +4190,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_loot_soul
 
 -------------------------------------
 object_draft_schematic_weapon_shared_pistol_renegade = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_renegade.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_renegade.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4185,7 +4200,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_re
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_pistol_heroic_sd = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_heroic_sd.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_heroic_sd.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4194,7 +4210,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_he
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_pistol_intimidator = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_intimidator.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_intimidator.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4204,7 +4221,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_in
 --
 ---------------------------------------
 object_draft_schematic_weapon_shared_polearm_heroic_sd = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_heroic_sd.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_heroic_sd.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4213,7 +4231,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_polearm_h
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_polearm_electric = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_electric.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_electric.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4222,7 +4241,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_polearm_e
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_polearm_kashyyk_bladestick = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_kashyyk_bladestick.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_polearm_kashyyk_bladestick.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4231,7 +4251,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_polearm_k
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_lance_kaminoan = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_kaminoan.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_kaminoan.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4240,7 +4261,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_kam
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_lance_massassi = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_massassi.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_lance_massassi.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4249,7 +4271,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_lance_mas
 -------------------------------------
 
 object_draft_schematic_weapon_shared_rifle_ld1 = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_ld1.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_ld1.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4260,7 +4283,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_ld1
 ---------------------------------------
 
 object_draft_schematic_weapon_shared_rifle_adventurer_hv_sniper = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_adventurer_hv_sniper.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_adventurer_hv_sniper.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4268,7 +4292,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_adv
 
 -------------------------------------
 object_draft_schematic_weapon_shared_rifle_tc22_blaster = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tc22_blaster.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_tc22_blaster.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4277,7 +4302,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_tc2
 -------------------------------------
 ---------------------------------------
 object_draft_schematic_weapon_shared_rifle_dc15 = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_dc15.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_dc15.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4286,7 +4312,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_dc1
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_rifle_dp23 = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_dp23.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_dp23.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4295,7 +4322,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_dp2
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_rifle_geo_drill = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_geo_drill.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_geo_drill.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4304,7 +4332,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_geo
 -------------------------------------
 -------------------------------------------
 object_draft_schematic_weapon_shared_rifle_massassi_ink = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_massassi_ink.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_massassi_ink.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4313,7 +4342,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_mas
 -------------------------------------
 ---------------------------------------------
 object_draft_schematic_weapon_shared_rifle_proton = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_proton.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_proton.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4321,7 +4351,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_pro
 
 -------------------------------------
 object_draft_schematic_weapon_shared_sword_marauder = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_marauder.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_marauder.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4329,7 +4360,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_mar
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_sword_bandit = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_bandit.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_bandit.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4338,7 +4370,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_ban
 --
 -------------------------------------
 object_draft_schematic_weapon_shared_sword_obsidian = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_obsidian.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_obsidian.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4346,7 +4379,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_obs
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_2h_sword_obsidian = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_obsidian.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_obsidian.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4354,7 +4388,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_2h_sword_
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_2h_sword_tulrus = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_tulrus.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_tulrus.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4362,7 +4397,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_2h_sword_
 -------------------------------------
 -------------------------------------
 object_draft_schematic_weapon_shared_sword_acid = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_acid.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_acid.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4370,7 +4406,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_aci
 -------------------------------------
 ---------------------------------------
 object_draft_schematic_weapon_shared_sword_junti_mace = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_junti_mace.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_junti_mace.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4378,7 +4415,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_jun
 -------------------------------------
 
 object_draft_schematic_weapon_shared_sword_massassi = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_massassi.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_massassi.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4387,7 +4425,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_mas
 -------------------------------------
 
 object_draft_schematic_weapon_shared_sword_rsf = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_rsf.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_sword_rsf.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4395,7 +4434,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_sword_rsf
 -------------------------------------
 ---------------------------------------
 object_draft_schematic_weapon_shared_2h_sword_kashyyk = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_kashyyk.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_kashyyk.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4403,7 +4443,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_2h_sword_
 -------------------------------------
 -----------------------------------------
 object_draft_schematic_weapon_shared_2h_sword_kun_massassi = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_kun_massassi.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_kun_massassi.iff",
+  gameObjectType = 2049,
   
 }
 
@@ -4411,7 +4452,8 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_2h_sword_
 -------------------------------------
 -------------------------------------------
 object_draft_schematic_weapon_shared_2h_sword_sith = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_sith.iff"
+  clientTemplateFileName = "object/draft_schematic/weapon/shared_2h_sword_sith.iff",
+  gameObjectType = 2049,
   
 }
 
