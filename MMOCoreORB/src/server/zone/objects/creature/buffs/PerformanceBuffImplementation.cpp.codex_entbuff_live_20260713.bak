@@ -1,0 +1,43 @@
+/*
+ * PerformanceBuffImplementation.cpp
+ *
+ *  Created on: 04/03/2011
+ *      Author: Itac
+ *
+ *  Modified: buff strength set to flat 12000 (guaranteed, not stat-scaled)
+ *            fixed attribute target: MIND for dance, FOCUS/WILLPOWER for music
+ */
+
+#include "server/zone/objects/creature/buffs/PerformanceBuff.h"
+#include "server/zone/objects/creature/CreatureObject.h"
+#include "templates/params/creature/CreatureAttribute.h"
+#include "server/zone/objects/creature/buffs/PerformanceBuffType.h"
+
+void PerformanceBuffImplementation::activate(bool applyModifiers) {
+
+	if(type == PerformanceBuffType::DANCE_MIND) {
+		// Flat 12000 MIND buff, regardless of target base stats or entertainer skill.
+		int mindStrength = 12000;
+		setAttributeModifier(CreatureAttribute::MIND, mindStrength);
+		creature.get()->sendSystemMessage("@healing:performance_enhance_dance_mind_d");
+
+	}
+	else if(type == PerformanceBuffType::MUSIC_FOCUS) {
+		int focusStrength = 12000;
+		setAttributeModifier(CreatureAttribute::FOCUS, focusStrength);
+		creature.get()->sendSystemMessage("@healing:performance_enhance_music_focus_d");
+
+	}
+	else if(type == PerformanceBuffType::MUSIC_WILLPOWER) {
+		int willStrength = 12000;
+		setAttributeModifier(CreatureAttribute::WILLPOWER, willStrength);
+		creature.get()->sendSystemMessage("@healing:performance_enhance_music_willpower_d");
+	}
+
+	BuffImplementation::activate(true);
+
+}
+
+void PerformanceBuffImplementation::deactivate(bool removeModifiers) {
+	BuffImplementation::deactivate(true);
+}

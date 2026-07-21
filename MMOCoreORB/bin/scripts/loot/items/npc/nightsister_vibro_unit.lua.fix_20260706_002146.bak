@@ -1,0 +1,23 @@
+nightsister_vibro_unit = {
+	minimumLevel = 0,
+	maximumLevel = -1,
+	customObjectName = "",
+	directObjectTemplate = "object/tangible/component/weapon/vibro_unit_nightsister.iff",
+	craftingValues = {
+		{"mindamage",999,1000,0},
+		{"maxdamage",999,1000,0},
+		{"attackspeed",-0.2,-0.4,1},
+		{"woundchance",99,100,10},
+		{"hitpoints",500,1000,0},
+		{"zerorangemod",10,25,0},
+		{"maxrangemod",10,25,0},
+		{"midrangemod",10,25,0},
+		{"attackhealthcost",0,0,0},
+		{"attackactioncost",30,0,0},
+		{"attackmindcost",0,0,0},
+		{"useCount",1,5,0},
+	},
+	customizationStringNames = {},
+	customizationValues = {}
+}
+addLootItemTemplate("nightsister_vibro_unit", nightsister_vibro_unit)

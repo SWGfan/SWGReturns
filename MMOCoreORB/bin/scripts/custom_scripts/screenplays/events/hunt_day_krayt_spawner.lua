@@ -1,6 +1,6 @@
 HuntDayKraytSpawner = ScreenPlay:new {
 	numberOfActs = 1,
-	enabled = true,
+	enabled = false, -- Disabled until next week.
 	interval = 10 * 60 * 1000,
 	mobileTemplate = "krayt_dragon_ancient",
 	respawnTimer = 10 * 60,
