@@ -3,16 +3,16 @@ axkva_min = Creature:new {
 	socialGroup = "nightsister",
 	faction = "nightsister",
 	mobType = MOB_NPC,
-	level = 302,
-	chanceHit = 16.8,
-	damageMin = 864,
-	damageMax = 1575,
-	specialDamageMult = 7.5,
-	baseXp = 28549,
-	baseHAM = 385000,
-	baseHAMmax = 471000,
+	level = 400,
+	chanceHit = 25.0,
+	damageMin = 6000,
+	damageMax = 12000,
+	specialDamageMult = 25.0,
+	baseXp = 50000,
+	baseHAM = 15000000,
+	baseHAMmax = 20000000,
 	armor = 3,
-	resists = {100,135,135,100,100,100,100,100,-1},
+	resists = {150,150,150,150,150,150,150,150,150},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,7 +21,7 @@ axkva_min = Creature:new {
 	boneAmount = 0,
 	milk = 0,
 	tamingChance = 0,
-	ferocity = 0,
+	ferocity = 15,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + HEALER,
 	optionsBitmask = AIENABLED,
@@ -31,22 +31,28 @@ axkva_min = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 900000},
-				{group = "nightsister_common", chance = 2600000},
-				{group = "pistols", chance = 1000000},
-				{group = "rifles", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "melee_weapons", chance = 2000000},
-				{group = "armor_attachments", chance = 500000},
-				{group = "clothing_attachments", chance = 500000},
-				{group = "wearables_rare", chance = 500000}
+				{group = "power_crystals", chance = 1800000},
+				{group = "nightsister_common", chance = 5200000},
+				{group = "pistols", chance = 2000000},
+				{group = "rifles", chance = 2000000},
+				{group = "carbines", chance = 2000000},
+				{group = "melee_weapons", chance = 4000000},
+				{group = "armor_attachments", chance = 1000000},
+				{group = "clothing_attachments", chance = 1000000},
+				{group = "wearables_rare", chance = 1000000}
 			}
 		},
 		{
 			groups = {
 				{group = "axkva_min", chance = 10000000},
 			},
-			lootChance = 5000000
+			lootChance = 10000000
+		},
+		{
+			groups = {
+				{group = "rare_lewt_box_01", chance = 10000000},
+			},
+			lootChance = 7000000,
 		}
 	},
 

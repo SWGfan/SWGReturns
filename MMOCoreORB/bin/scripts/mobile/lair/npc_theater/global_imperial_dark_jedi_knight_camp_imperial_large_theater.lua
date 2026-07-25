@@ -3,14 +3,11 @@ global_imperial_dark_jedi_knight_camp_imperial_large_theater = Lair:new {
 		{"at_st", 1},
 		{"fbase_elite_dark_trooper_hard", 2},
 		{"stormtrooper_captain",1},
+		{"stormtrooper_colonel",1},
 		{"stormtrooper_groupleader",2},
-		{"stormtrooper",3},
-		{"dark_jedi_knight",3},
-		{"fdark_jedi_knight",2},
-		{"dark_jedi_master",1},
-		{"dark_jedi_sentinel",1}
+		{"stormtrooper",4}
 	},
-
+	
 	spawnLimit = 20,
 	buildingsVeryEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},
 	buildingsEasy = {"object/building/poi/lok_imperial_large2.iff","object/building/poi/anywhere_imperial_base_large_1.iff"},

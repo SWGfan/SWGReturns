@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Include any dependencies generated for this target.
 include src/terrain/CMakeFiles/core3terrain.dir/depend.make
@@ -73,158 +73,158 @@ src/terrain/CMakeFiles/core3terrain.dir/codegen:
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/codegen
 
 src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o: src/terrain/MapFractal.cpp
+src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp
 src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o -MF CMakeFiles/core3terrain.dir/MapFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/MapFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.o -MF CMakeFiles/core3terrain.dir/MapFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/MapFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/MapFractal.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp > CMakeFiles/core3terrain.dir/MapFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp > CMakeFiles/core3terrain.dir/MapFractal.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/MapFractal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/MapFractal.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp -o CMakeFiles/core3terrain.dir/MapFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/MapFractal.cpp -o CMakeFiles/core3terrain.dir/MapFractal.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o: src/terrain/ProceduralTerrainAppearance.cpp
+src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp
 src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o -MF CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o.d -o CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o -MF CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o.d -o CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp > CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp > CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp -o CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/ProceduralTerrainAppearance.cpp -o CMakeFiles/core3terrain.dir/ProceduralTerrainAppearance.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o: src/terrain/SpaceTerrainAppearance.cpp
+src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp
 src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o -MF CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o.d -o CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o -MF CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o.d -o CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp > CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp > CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp -o CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/SpaceTerrainAppearance.cpp -o CMakeFiles/core3terrain.dir/SpaceTerrainAppearance.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o: src/terrain/TargaBitmap.cpp
+src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp
 src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o -MF CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o.d -o CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o -MF CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o.d -o CMakeFiles/core3terrain.dir/TargaBitmap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp > CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp > CMakeFiles/core3terrain.dir/TargaBitmap.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp -o CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TargaBitmap.cpp -o CMakeFiles/core3terrain.dir/TargaBitmap.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o: src/terrain/TerrainGenerator.cpp
+src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp
 src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o -MF CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o.d -o CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o -MF CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o.d -o CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp > CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp > CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp -o CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/TerrainGenerator.cpp -o CMakeFiles/core3terrain.dir/TerrainGenerator.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o: src/terrain/layer/Layer.cpp
+src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp
 src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o -MF CMakeFiles/core3terrain.dir/layer/Layer.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/Layer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.o -MF CMakeFiles/core3terrain.dir/layer/Layer.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/Layer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/layer/Layer.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp > CMakeFiles/core3terrain.dir/layer/Layer.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp > CMakeFiles/core3terrain.dir/layer/Layer.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/Layer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/layer/Layer.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp -o CMakeFiles/core3terrain.dir/layer/Layer.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/Layer.cpp -o CMakeFiles/core3terrain.dir/layer/Layer.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o: src/terrain/layer/affectors/AffectorHeightFractal.cpp
+src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp
 src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o -MF CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o -MF CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp > CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp > CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp -o CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/affectors/AffectorHeightFractal.cpp -o CMakeFiles/core3terrain.dir/layer/affectors/AffectorHeightFractal.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o: src/terrain/layer/filters/FilterBitmap.cpp
+src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o -MF CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o -MF CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp > CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp > CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp -o CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterBitmap.cpp -o CMakeFiles/core3terrain.dir/layer/filters/FilterBitmap.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o: src/terrain/layer/filters/FilterFractal.cpp
+src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o -MF CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o -MF CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o.d -o CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp > CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp > CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp -o CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/layer/filters/FilterFractal.cpp -o CMakeFiles/core3terrain.dir/layer/filters/FilterFractal.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o: src/terrain/manager/TerrainCache.cpp
+src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o -MF CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o.d -o CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o -MF CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o.d -o CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp > CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp > CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp -o CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainCache.cpp -o CMakeFiles/core3terrain.dir/manager/TerrainCache.cpp.s
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/flags.make
-src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o: src/terrain/manager/TerrainManager.cpp
+src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o: src/terrain/CMakeFiles/core3terrain.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o -MF CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o.d -o CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o -MF CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o.d -o CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp > CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp > CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.i
 
 src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp -o CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/manager/TerrainManager.cpp -o CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.s
 
 # Object files for target core3terrain
 core3terrain_OBJECTS = \
@@ -256,19 +256,19 @@ src/terrain/libcore3terrain.a: src/terrain/CMakeFiles/core3terrain.dir/manager/T
 src/terrain/libcore3terrain.a: src/terrain/CMakeFiles/core3terrain.dir/manager/TerrainManager.cpp.o
 src/terrain/libcore3terrain.a: src/terrain/CMakeFiles/core3terrain.dir/build.make
 src/terrain/libcore3terrain.a: src/terrain/CMakeFiles/core3terrain.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library libcore3terrain.a"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -P CMakeFiles/core3terrain.dir/cmake_clean_target.cmake
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core3terrain.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library libcore3terrain.a"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -P CMakeFiles/core3terrain.dir/cmake_clean_target.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/core3terrain.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/terrain/CMakeFiles/core3terrain.dir/build: src/terrain/libcore3terrain.a
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/build
 
 src/terrain/CMakeFiles/core3terrain.dir/clean:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -P CMakeFiles/core3terrain.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain && $(CMAKE_COMMAND) -P CMakeFiles/core3terrain.dir/cmake_clean.cmake
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/clean
 
 src/terrain/CMakeFiles/core3terrain.dir/depend:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/CMakeFiles/core3terrain.dir/DependInfo.cmake "--color=$(COLOR)" core3terrain
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain /home/ubuntu/StarDust-2/MMOCoreORB/src/terrain/CMakeFiles/core3terrain.dir/DependInfo.cmake "--color=$(COLOR)" core3terrain
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/depend
 

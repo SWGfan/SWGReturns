@@ -8,5 +8,3 @@ includeFile("../custom_scripts/tools/CommonLewtBoxMenuComponent.lua")
 includeFile("../custom_scripts/tools/RareLewtBoxMenuComponent.lua")
 includeFile("../custom_scripts/tools/EventLewtBoxMenuComponent.lua")
 includeFile("../custom_scripts/tools/RareLootCrateMenuComponents.lua")
--- Disabled until next week.
--- includeFile("../custom_scripts/screenplays/events/hunt_day_krayt_spawner.lua")

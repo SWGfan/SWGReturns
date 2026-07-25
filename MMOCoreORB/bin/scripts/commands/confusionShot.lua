@@ -44,7 +44,7 @@
 ConfusionShotCommand = {
         name = "confusionshot",
 
-	damageMultiplier = 1,
+	damageMultiplier = 3,
   speedMultiplier = 1,
   healthCostMultiplier = 0,
   actionCostMultiplier = 1,

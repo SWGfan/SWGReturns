@@ -1401,9 +1401,6 @@ schematics = {
 	{path="object/draft_schematic/weapon/lightsaber/lightsaber_polearm_gen2.iff"},
 	{path="object/draft_schematic/weapon/lightsaber/lightsaber_polearm_gen3.iff"},
 	{path="object/draft_schematic/weapon/lightsaber/lightsaber_polearm_gen4.iff"},
-	{path="object/draft_schematic/weapon/lightsaber/lightsaber_one_hand_gen5.iff"},
-	{path="object/draft_schematic/weapon/lightsaber/lightsaber_two_hand_gen5.iff"},
-	{path="object/draft_schematic/weapon/lightsaber/lightsaber_polearm_gen5.iff"},
 	{path="object/draft_schematic/weapon/lightsaber/lightsaber_one_hand_gen4.iff"},
 	{path="object/draft_schematic/weapon/lightsaber/lightsaber_two_hand_gen4.iff"},
 	{path="object/draft_schematic/structure/city/bank_corellia.iff"},
@@ -2249,15 +2246,4 @@ schematics = {
   {path="object/draft_schematic/armor/armor_appearance_rebel_marine_leggings.iff"},
 
   {path="object/draft_schematic/clothing/stardust_backpack_schematic.iff"},
-
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_belt.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_bicep_l.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_bicep_r.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_bracer_l.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_bracer_r.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_chest_plate.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_gloves.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_helmet.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_leggings.iff"},
-  {path="object/draft_schematic/clothing/clothing_armor_mandalorian_imperial_boots.iff"},
 };

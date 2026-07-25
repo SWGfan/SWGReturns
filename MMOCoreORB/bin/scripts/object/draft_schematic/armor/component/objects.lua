@@ -42,7 +42,7 @@
 
 
 object_draft_schematic_armor_component_shared_armor_layer_acid = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_acid.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_acid.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -91,7 +91,7 @@ object_draft_schematic_armor_component_shared_armor_layer_acid = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_acid, "object/draft_schematic/armor/component/shared_armor_layer_acid.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_blast = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_blast.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_blast.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -140,7 +140,7 @@ object_draft_schematic_armor_component_shared_armor_layer_blast = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_blast, "object/draft_schematic/armor/component/shared_armor_layer_blast.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_cold = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_cold.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_cold.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -189,7 +189,7 @@ object_draft_schematic_armor_component_shared_armor_layer_cold = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_cold, "object/draft_schematic/armor/component/shared_armor_layer_cold.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_electrical = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_electrical.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_electrical.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -238,7 +238,7 @@ object_draft_schematic_armor_component_shared_armor_layer_electrical = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_electrical, "object/draft_schematic/armor/component/shared_armor_layer_electrical.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_energy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_energy.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_energy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -287,7 +287,7 @@ object_draft_schematic_armor_component_shared_armor_layer_energy = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_energy, "object/draft_schematic/armor/component/shared_armor_layer_energy.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_environmental = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_environmental.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_environmental.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -336,7 +336,7 @@ object_draft_schematic_armor_component_shared_armor_layer_environmental = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_environmental, "object/draft_schematic/armor/component/shared_armor_layer_environmental.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_heat = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_heat.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_heat.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -385,7 +385,7 @@ object_draft_schematic_armor_component_shared_armor_layer_heat = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_heat, "object/draft_schematic/armor/component/shared_armor_layer_heat.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_kinetic = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_kinetic.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_kinetic.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -434,7 +434,7 @@ object_draft_schematic_armor_component_shared_armor_layer_kinetic = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_kinetic, "object/draft_schematic/armor/component/shared_armor_layer_kinetic.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_restraint = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_restraint.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_restraint.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -483,7 +483,7 @@ object_draft_schematic_armor_component_shared_armor_layer_restraint = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_restraint, "object/draft_schematic/armor/component/shared_armor_layer_restraint.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_ris = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_ris.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_ris.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -532,7 +532,7 @@ object_draft_schematic_armor_component_shared_armor_layer_ris = SharedDraftSchem
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_ris, "object/draft_schematic/armor/component/shared_armor_layer_ris.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_stun = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_stun.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_stun.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -581,7 +581,7 @@ object_draft_schematic_armor_component_shared_armor_layer_stun = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_stun, "object/draft_schematic/armor/component/shared_armor_layer_stun.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_emitter_assembly = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_emitter_assembly.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_emitter_assembly.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -630,7 +630,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_emitter_assembly 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_emitter_assembly, "object/draft_schematic/armor/component/shared_deflector_shield_emitter_assembly.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_generator_energy_ray = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_generator_energy_ray.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_generator_energy_ray.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -679,7 +679,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_generator_energy_
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_generator_energy_ray, "object/draft_schematic/armor/component/shared_deflector_shield_generator_energy_ray.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_generator_particle = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_generator_particle.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_generator_particle.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -728,7 +728,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_generator_particl
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_generator_particle, "object/draft_schematic/armor/component/shared_deflector_shield_generator_particle.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_ion_feed_unit = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_ion_feed_unit.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_ion_feed_unit.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -777,7 +777,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_ion_feed_unit = S
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_ion_feed_unit, "object/draft_schematic/armor/component/shared_deflector_shield_ion_feed_unit.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_overload_discharge_unit = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_overload_discharge_unit.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_overload_discharge_unit.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -826,7 +826,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_overload_discharg
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_overload_discharge_unit, "object/draft_schematic/armor/component/shared_deflector_shield_overload_discharge_unit.iff")
 
 object_draft_schematic_armor_component_shared_deflector_shield_projector_plate = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_projector_plate.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_deflector_shield_projector_plate.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -875,7 +875,7 @@ object_draft_schematic_armor_component_shared_deflector_shield_projector_plate =
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_deflector_shield_projector_plate, "object/draft_schematic/armor/component/shared_deflector_shield_projector_plate.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_acid = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_acid.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_acid.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -924,7 +924,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_acid = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_acid, "object/draft_schematic/armor/component/shared_heavy_armor_layer_acid.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_blast = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_blast.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_blast.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -973,7 +973,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_blast = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_blast, "object/draft_schematic/armor/component/shared_heavy_armor_layer_blast.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_cold = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_cold.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_cold.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1022,7 +1022,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_cold = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_cold, "object/draft_schematic/armor/component/shared_heavy_armor_layer_cold.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_electrical = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_electrical.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_electrical.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1071,7 +1071,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_electrical = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_electrical, "object/draft_schematic/armor/component/shared_heavy_armor_layer_electrical.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_energy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_energy.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_energy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1120,7 +1120,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_energy = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_energy, "object/draft_schematic/armor/component/shared_heavy_armor_layer_energy.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_environmental = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_environmental.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_environmental.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1169,7 +1169,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_environmental = 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_environmental, "object/draft_schematic/armor/component/shared_heavy_armor_layer_environmental.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_heat = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_heat.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_heat.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1218,7 +1218,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_heat = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_heat, "object/draft_schematic/armor/component/shared_heavy_armor_layer_heat.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_kinetic = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_kinetic.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_kinetic.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1267,7 +1267,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_kinetic = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_kinetic, "object/draft_schematic/armor/component/shared_heavy_armor_layer_kinetic.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_restraint = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_restraint.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_restraint.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1316,7 +1316,7 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_restraint = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_restraint, "object/draft_schematic/armor/component/shared_heavy_armor_layer_restraint.iff")
 
 object_draft_schematic_armor_component_shared_heavy_armor_layer_stun = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_stun.iff",
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_heavy_armor_layer_stun.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1366,8 +1366,7 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_
 
 
 object_draft_schematic_armor_component_shared_armor_layer_lightsaber = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_lightsaber.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_lightsaber.iff"
   --Data below here is deprecated and loaded from the tres, keeping for easy lookups
 
 }

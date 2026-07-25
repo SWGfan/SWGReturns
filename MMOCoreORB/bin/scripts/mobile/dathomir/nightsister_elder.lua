@@ -32,42 +32,12 @@ nightsister_elder = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 800000},
-				{group = "nightsister_rare", chance = 2200000},
-				{group = "junk", chance = 1700000},
-				{group = "armor_attachments", chance = 1600000},
-				{group = "clothing_attachments", chance = 1600000},
-				{group = "ranged_weapons", chance = 800000},
-				{group = "melee_weapons", chance = 800000},
-				{group = "wearables_scarce", chance = 500000}
+				{group = "nightsister_rare", chance = 3000000},
+				{group = "power_crystals", chance = 2500000},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2500000},
 			},
-				lootChance = 10000000,
-		},
-		{
-			groups = {
-				{group = "power_crystals", chance = 800000},
-				{group = "nightsister_rare", chance = 2200000},
-				{group = "junk", chance = 1700000},
-				{group = "armor_attachments", chance = 1600000},
-				{group = "clothing_attachments", chance = 1600000},
-				{group = "ranged_weapons", chance = 800000},
-				{group = "melee_weapons", chance = 800000},
-				{group = "wearables_scarce", chance = 500000}
-			},
-				lootChance = 7500000,
-		},
-		{
-			groups = {
-				{group = "power_crystals", chance = 800000},
-				{group = "nightsister_rare", chance = 2200000},
-				{group = "junk", chance = 1700000},
-				{group = "armor_attachments", chance = 1600000},
-				{group = "clothing_attachments", chance = 1600000},
-				{group = "ranged_weapons", chance = 800000},
-				{group = "melee_weapons", chance = 800000},
-				{group = "wearables_scarce", chance = 500000}
-			},
-				lootChance = 3500000,
+				lootChance = 6000000,
 		},
 	},
 

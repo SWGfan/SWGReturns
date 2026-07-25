@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Utility rule file for idl.
 
@@ -67,8 +67,8 @@ include src/CMakeFiles/idl.dir/compiler_depend.make
 include src/CMakeFiles/idl.dir/progress.make
 
 src/CMakeFiles/idl:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building idl sources"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -sd src anyadEclipse
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building idl sources"
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && /usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -sd src anyadEclipse
 
 src/CMakeFiles/idl.dir/codegen:
 .PHONY : src/CMakeFiles/idl.dir/codegen
@@ -82,10 +82,10 @@ src/CMakeFiles/idl.dir/build: idl
 .PHONY : src/CMakeFiles/idl.dir/build
 
 src/CMakeFiles/idl.dir/clean:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && $(CMAKE_COMMAND) -P CMakeFiles/idl.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src && $(CMAKE_COMMAND) -P CMakeFiles/idl.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/idl.dir/clean
 
 src/CMakeFiles/idl.dir/depend:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/idl.dir/DependInfo.cmake "--color=$(COLOR)" idl
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src /home/ubuntu/StarDust-2/MMOCoreORB/src/CMakeFiles/idl.dir/DependInfo.cmake "--color=$(COLOR)" idl
 .PHONY : src/CMakeFiles/idl.dir/depend
 

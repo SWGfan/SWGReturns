@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles /home/ubuntu/SWGReturns01/MMOCoreORB//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -287,32 +287,6 @@ testsuite3: cmake_check_build_system
 testsuite3/fast:
 	$(MAKE) $(MAKESILENT) -f utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/build.make utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/build
 .PHONY : testsuite3/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock.dir/build.make utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock_main.dir/build.make utils/googletest-release-1.10.0/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
 
 #=============================================================================
 # Target rules for targets named gtest
@@ -566,8 +540,6 @@ help:
 	@echo "... core3terrain"
 	@echo "... db3"
 	@echo "... engine3"
-	@echo "... gmock"
-	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... idlobjects"

@@ -3,7 +3,7 @@ object_tangible_loot_loot_schematic_lightsaber_lightsaber_polearm_unstable_gen3_
 	templateType = LOOTSCHEMATIC,
 	objectMenuComponent = "LootSchematicMenuComponent",
 	attributeListComponent = "LootSchematicAttributeListComponent",
-	requiredSkill = "jedi_padawan_novice", 
+	requiredSkill = "force_discipline_light_saber_polearm_04", 
 	targetDraftSchematic = "object/draft_schematic/weapon/lightsaber/lightsaber_polearm_unstable_gen3.iff",
 	targetUseCount = 1
 }

@@ -1697,14 +1697,11 @@ src/CMakeFiles/core3.dir/server/zone/managers/objectcontroller/command/CommandCo
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CombatCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CombatEscapeCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CombatModeCheckCommand.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/GCWManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/TerminalSpawn.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/building/components/DestructibleBuildingDataComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/building/components/BuildingDataComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/installation/components/TurretDataComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/installation/SharedInstallationObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/TurretControlTerminalDataComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/faction/Factions.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/GCWManager.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/GCWStealthManager.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/GCWFactionGuildManager.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/GCWBaseManager.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/gcw/ATATWalkerManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CombatSpamCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CombatTargetCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CompleteQuestCommand.h \
@@ -1770,6 +1767,7 @@ src/CMakeFiles/core3.dir/server/zone/managers/objectcontroller/command/CommandCo
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CreatePrototypeCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/commands/CreateSpawningElementCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/mobile/LairTemplate.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/faction/Factions.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/CreatureTemplateManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/conversation/ConversationTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/conversation/ConversationScreen.h \

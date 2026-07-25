@@ -5,15 +5,15 @@ nightsister_spell_weaver = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	level = 107,
-	chanceHit = 1,
-	damageMin = 645,
-	damageMax = 1000,
-	baseXp = 10174,
-	baseHAM = 24000,
-	baseHAMmax = 30000,
-	armor = 1,
-	resists = {5,90,5,80,80,80,80,80,-1},
+	level = 250,
+	chanceHit = 4.0,
+	damageMin = 900,
+	damageMax = 1400,
+	baseXp = 25000,
+	baseHAM = 60000,
+	baseHAMmax = 72000,
+	armor = 4,
+	resists = {50,90,50,85,85,85,85,85,45},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,28 +32,19 @@ nightsister_spell_weaver = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2300000},
-				{group = "armor_attachments", chance = 300000},
-				{group = "clothing_attachments", chance = 300000},
-				{group = "melee_weapons", chance = 2100000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "nightsister_rare", chance = 2300000},
-			}
-		}
+				{group = "nightsister_rare", chance = 2500000},
+				{group = "nightsister_common", chance = 2500000},
+				{group = "power_crystals", chance = 2500000},
+				{group = "melee_weapons", chance = 2500000},
+			},
+			lootChance = 4000000,
+		},
 	},
 
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
 	primaryWeapon = "force_sword",
 	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
 	primaryAttacks = merge(fencermid,swordsmanmid,pikemanmaster,brawlermaster,forcewielder),
 	secondaryAttacks = forcewielder
 }

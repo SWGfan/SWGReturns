@@ -45,6 +45,6 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "/home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/install_local_manifest.txt"
+  file(WRITE "/home/ubuntu/StarDust-2/MMOCoreORB/src/terrain/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

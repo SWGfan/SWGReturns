@@ -59,19 +59,24 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 
 		if (!creature->isInRange(c, 32) || !CollisionManager::checkLineOfSight(creature, c))
 			continue;
-		if (creature->hasSkill("force_title_jedi_rank_03")) {
+
+		ManagedReference<PlayerObject*> ghost = creature->getSlottedObject("ghost").castTo<PlayerObject*>();
+		bool isJedi = (ghost != nullptr && ghost->isJedi());
+		bool isFrs = (ghost != nullptr && ghost->getFrsData()->getRank() > 0);
+		bool isBountyHunter = creature->hasSkill("combat_bountyhunter_novice") || creature->hasSkill("combat_meleebountyhunter_novice");
+
+		if (isJedi && !isFrs) {
+			continue;
+		}
+
 		if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
 			visibilityIncrease += 0.5;
-			//info(c->getCreatureName().toString() + " generating a 0.5 visibility modifier", true);
 		} else {
 			if (creature->getFaction() == c->getFaction()) {
 				visibilityIncrease += 0.25;
-				//info(c->getCreatureName().toString() + " generating a 0.25 visibility modifier", true);
 			} else {
 				visibilityIncrease += 1;
-				//info( c->getCreatureName().toString() + " generating a 1.0 visibility modifier", true);
 			}
-		}
 		}
 	}
 

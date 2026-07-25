@@ -1927,7 +1927,7 @@ void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC, unsign
 		}
 	}
 
-	if (commandQueue->size() > 1 && priority != QueueCommand::FRONT) {
+	if (commandQueue->size() > 9 && priority != QueueCommand::FRONT) {
 		clearQueueAction(actionCount);
 		sendSystemMessage("You can not activate another combat ability while one is in progress!");
 		playMusicMessage("sound/ui_negative.snd");

@@ -3534,6 +3534,10 @@ void PlayerManagerImplementation::updatePermissionLevel(CreatureObject* targetPl
 				skillManager->awardSkill(skill, targetPlayer, false, true, true);
 			}
 		}
+
+		// admin_base grants the "admin" ability (god mode) as a side effect of awarding
+		// staff skills. God mode should default to off; staff opt in via /setGodMode self on.
+		skillManager->removeAbility(ghost, "admin", false);
 	}
 
 	updatePermissionName(targetPlayer, permissionLevel);

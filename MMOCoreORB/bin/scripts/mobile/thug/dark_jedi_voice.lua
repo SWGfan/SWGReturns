@@ -1,20 +1,18 @@
 dark_jedi_voice = Creature:new {
 	objectName = "@mob/creature_names:dark_jedi_knight",
-	--randomNameType = NAME_GENERIC,
-	--randomNameTag = true,
 	customName = "Varyn Kai - Voice of the Sith Emperor",
 	socialGroup = "dark_jedi",
 	mobType = MOB_NPC,
 	faction = "",
-	level = 265,
-	chanceHit = 14.1,
-	damageMin = 926,
-	damageMax = 1688,
-	baseXp = 25266,
-	baseHAM = 30000,
-	baseHAMmax = 30000,
-	armor = 1,
-	resists = {90,90,90,90,90,90,90,90,50},
+	level = 380,
+	chanceHit = 1.0,
+	damageMin = 2200,
+	damageMax = 3000,
+	baseXp = 45000,
+	baseHAM = 1000000,
+	baseHAMmax = 1200000,
+	armor = 3,
+	resists = {130,130,130,130,130,130,130,130,100},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -48,19 +46,16 @@ dark_jedi_voice = Creature:new {
 		}
 	},
 	
-	
 	outfit = "prophet_outfit",
 	reactionStf = "@npc_reaction/sith_shadow",
-	 -- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-  -- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-  primaryWeapon = "dark_jedi_weapons_gen4",
-  secondaryWeapon = "unarmed",
-  conversationTemplate = "",
+	primaryWeapon = "dark_jedi_weapons_gen4",
+	secondaryWeapon = "unarmed",
+	conversationTemplate = "",
 
-  -- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-  -- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-  primaryAttacks = lightsabermaster,
-  secondaryAttacks = forcepowermaster
+	primaryAttacks = lightsabermaster,
+	secondaryAttacks = forcepowermaster,
+	
+	specialDamageMult = 2.0
 }
 
 CreatureTemplates:addCreatureTemplate(dark_jedi_voice, "dark_jedi_voice")

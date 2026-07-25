@@ -4,14 +4,15 @@ mother_talzin = Creature:new {
 	socialGroup = "nightsister",
 	faction = "nightsister",
 	level = 400,
-	chanceHit = 0.56,
-	damageMin = 578,
-	damageMax = 997,
+	chanceHit = 25.0,
+	damageMin = 5000,
+	damageMax = 10000,
+	specialDamageMult = 20.0,
 	baseXp = 94290,
-	baseHAM = 1500000,
-	baseHAMmax = 1500000,
-	armor = 3,
-	resists = {60,60,60,60,60,60,60,60,60},
+	baseHAM = 8000000,
+	baseHAMmax = 8000000,
+	armor = 400,
+	resists = {150,150,150,150,150,150,150,150,150},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -26,98 +27,26 @@ mother_talzin = Creature:new {
   optionsBitmask = AIENABLED,
   diet = HERBIVORE,
 
-	templates = {"object/mobile/gethzerion.iff"},
+	templates = {"object/mobile/dressed_dathomir_nightsister_elder.iff"},
 	lootGroups = {
     {
       groups = {
-        {group = "crystal_mauls_vengeance", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
+        {group = "crystal_mauls_vengeance", chance = 2500000},
+        {group = "nightsister_common", chance = 2500000},
+        {group = "clothing_attachments", chance = 2500000},
+        {group = "armor_attachments", chance = 2500000},
       },
       lootChance = 10000000,
     },
     {
       groups = {
-        {group = "crystal_mauls_vengeance", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
+        {group = "nge_jedi_cloaks", chance = 2500000},
+        {group = "power_crystals", chance = 2500000},
+        {group = "holocron_dark", chance = 2500000},
+        {group = "nightsister_common", chance = 2500000},
       },
       lootChance = 10000000,
     },
-    {
-      groups = {
-        {group = "crystal_mauls_vengeance", chance = 2000000},
-        {group = "nge_jedi_cloaks", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    },
-    {
-      groups = {
-        {group = "crystal_mauls_vengeance", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    },
-    {
-      groups = {
-        {group = "crystal_mauls_vengence", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    }, 
-    {
-      groups = {
-        {group = "holocron", chance = 2000000},
-        {group = "power_crystals", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    }, 
-    {
-      groups = {
-        {group = "holocron_dark", chance = 2000000},
-        {group = "power_crystals", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    }, 
-    {
-      groups = {
-        {group = "holocron_dark", chance = 2000000},
-        {group = "power_crystals", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    }, 
-    {
-      groups = {
-        {group = "holocron_dark", chance = 2000000},
-        {group = "power_crystals", chance = 2000000},
-        {group = "nightsister_common", chance = 2000000},
-        {group = "clothing_attachments", chance = 2000000},
-        {group = "armor_attachments", chance = 2000000},
-      },
-      lootChance = 10000000,
-    },     
     {
       groups = {
         {group = "nightsister_bicep_r_s01", chance = 10000000},       
@@ -128,13 +57,19 @@ mother_talzin = Creature:new {
       groups = {
         {group = "ns_clothing", chance = 10000000},       
       },
-      lootChance = 2000000,
+      lootChance = 1500000,
     }, 
     {
       groups = {
         {group = "jedi_house_deeds", chance = 10000000},       
       },
-      lootChance = 1000000,
+      lootChance = 500000,
+    },
+    {
+      groups = {
+        {group = "rare_lewt_box_01", chance = 10000000},
+      },
+      lootChance = 6000000,
     },       
   },
 	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)

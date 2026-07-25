@@ -52,16 +52,13 @@ function KnightTrials:startNextKnightTrial(pPlayer)
 		return
 	end
 
-	local shrinePrompt = ""
-
-	if (trialsCompleted > 0) then
-		shrinePrompt = getStringId("@jedi_trials:knight_trials_current_trial_complete") .. " "
-	else
-		self:unsetTrialShrine(pPlayer)
+	-- Defensive check: ensure trial index is valid
+	local currentTrial = trialsCompleted + 1
+	if (currentTrial > #knightTrialQuests) then
+		currentTrial = #knightTrialQuests
 	end
 
-	local currentTrial = trialsCompleted + 1
-	JediTrials:setCurrentTrial(pPlayer, currentTrial)
+	local shrinePrompt = ""
 
 	local trialData = knightTrialQuests[currentTrial]
 
@@ -87,7 +84,10 @@ function KnightTrials:startNextKnightTrial(pPlayer)
 	shrinePrompt = shrinePrompt .. trialString
 
 	if (trialData.huntGoal ~= nil and trialData.huntGoal > 1) then
-		shrinePrompt = shrinePrompt .. " 0 of " .. trialData.huntGoal
+		-- Don't show "0 of X" if this would be an invalid trial index
+		if (currentTrial <= #knightTrialQuests) then
+			shrinePrompt = shrinePrompt .. " 0 of " .. trialData.huntGoal
+		end
 	end
 
 	local sui = SuiMessageBox.new("KnightTrials", "noCallback")
@@ -321,6 +321,12 @@ function KnightTrials:showCurrentTrial(pPlayer)
 	local trialsCompleted = JediTrials:getTrialsCompleted(pPlayer)
 
 	if (trialsCompleted == trialNumber) then
+		return
+	end
+
+	-- Defensive check: ensure trial number is valid
+	if (trialNumber <= 0 or trialNumber > #knightTrialQuests) then
+		printLuaError("KnightTrials:showCurrentTrial, invalid trial number " .. trialNumber .. " for player " .. SceneObject(pPlayer):getCustomObjectName())
 		return
 	end
 

@@ -42,7 +42,7 @@
 
 
 object_draft_schematic_structure_shared_corellia_house_guild_hall = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_guild_hall.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_guild_hall.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -91,7 +91,7 @@ object_draft_schematic_structure_shared_corellia_house_guild_hall = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_guild_hall, "object/draft_schematic/structure/shared_corellia_house_guild_hall.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_large = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_large.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_large.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -140,7 +140,7 @@ object_draft_schematic_structure_shared_corellia_house_player_large = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_large, "object/draft_schematic/structure/shared_corellia_house_player_large.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_large_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_large_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_large_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -189,7 +189,7 @@ object_draft_schematic_structure_shared_corellia_house_player_large_style_02 = S
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_large_style_02, "object/draft_schematic/structure/shared_corellia_house_player_large_style_02.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_medium = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_medium.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_medium.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -238,7 +238,7 @@ object_draft_schematic_structure_shared_corellia_house_player_medium = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_medium, "object/draft_schematic/structure/shared_corellia_house_player_medium.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_medium_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_medium_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_medium_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -287,7 +287,7 @@ object_draft_schematic_structure_shared_corellia_house_player_medium_style_02 = 
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_medium_style_02, "object/draft_schematic/structure/shared_corellia_house_player_medium_style_02.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_small = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -336,7 +336,7 @@ object_draft_schematic_structure_shared_corellia_house_player_small = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_small, "object/draft_schematic/structure/shared_corellia_house_player_small.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_small_floorplan_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_floorplan_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_floorplan_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -385,7 +385,7 @@ object_draft_schematic_structure_shared_corellia_house_player_small_floorplan_02
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_small_floorplan_02, "object/draft_schematic/structure/shared_corellia_house_player_small_floorplan_02.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_small_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -434,7 +434,7 @@ object_draft_schematic_structure_shared_corellia_house_player_small_style_02 = S
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_small_style_02, "object/draft_schematic/structure/shared_corellia_house_player_small_style_02.iff")
 
 object_draft_schematic_structure_shared_corellia_house_player_small_style_02_floorplan_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_style_02_floorplan_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_corellia_house_player_small_style_02_floorplan_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -483,7 +483,7 @@ object_draft_schematic_structure_shared_corellia_house_player_small_style_02_flo
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_corellia_house_player_small_style_02_floorplan_02, "object/draft_schematic/structure/shared_corellia_house_player_small_style_02_floorplan_02.iff")
 
 object_draft_schematic_structure_shared_generic_house_guild_hall = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_guild_hall.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_guild_hall.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -532,7 +532,7 @@ object_draft_schematic_structure_shared_generic_house_guild_hall = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_guild_hall, "object/draft_schematic/structure/shared_generic_house_guild_hall.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_large = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_large.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_large.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -581,7 +581,7 @@ object_draft_schematic_structure_shared_generic_house_player_large = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_large, "object/draft_schematic/structure/shared_generic_house_player_large.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_large_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_large_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_large_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -630,7 +630,7 @@ object_draft_schematic_structure_shared_generic_house_player_large_style_02 = Sh
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_large_style_02, "object/draft_schematic/structure/shared_generic_house_player_large_style_02.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_medium = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_medium.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_medium.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -679,7 +679,7 @@ object_draft_schematic_structure_shared_generic_house_player_medium = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_medium, "object/draft_schematic/structure/shared_generic_house_player_medium.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_medium_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_medium_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_medium_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -728,7 +728,7 @@ object_draft_schematic_structure_shared_generic_house_player_medium_style_02 = S
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_medium_style_02, "object/draft_schematic/structure/shared_generic_house_player_medium_style_02.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_small = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -777,7 +777,7 @@ object_draft_schematic_structure_shared_generic_house_player_small = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_small, "object/draft_schematic/structure/shared_generic_house_player_small.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_small_floorplan_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_floorplan_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_floorplan_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -826,7 +826,7 @@ object_draft_schematic_structure_shared_generic_house_player_small_floorplan_02 
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_small_floorplan_02, "object/draft_schematic/structure/shared_generic_house_player_small_floorplan_02.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_small_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -875,7 +875,7 @@ object_draft_schematic_structure_shared_generic_house_player_small_style_02 = Sh
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_small_style_02, "object/draft_schematic/structure/shared_generic_house_player_small_style_02.iff")
 
 object_draft_schematic_structure_shared_generic_house_player_small_style_02_floorplan_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_style_02_floorplan_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_generic_house_player_small_style_02_floorplan_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -924,7 +924,7 @@ object_draft_schematic_structure_shared_generic_house_player_small_style_02_floo
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_generic_house_player_small_style_02_floorplan_02, "object/draft_schematic/structure/shared_generic_house_player_small_style_02_floorplan_02.iff")
 
 object_draft_schematic_structure_shared_house_guild_hall = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_house_guild_hall.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_house_guild_hall.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -973,7 +973,7 @@ object_draft_schematic_structure_shared_house_guild_hall = SharedDraftSchematicO
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_house_guild_hall, "object/draft_schematic/structure/shared_house_guild_hall.iff")
 
 object_draft_schematic_structure_shared_house_player_large = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_large.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_large.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1022,7 +1022,7 @@ object_draft_schematic_structure_shared_house_player_large = SharedDraftSchemati
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_house_player_large, "object/draft_schematic/structure/shared_house_player_large.iff")
 
 object_draft_schematic_structure_shared_house_player_medium = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_medium.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_medium.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1071,7 +1071,7 @@ object_draft_schematic_structure_shared_house_player_medium = SharedDraftSchemat
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_house_player_medium, "object/draft_schematic/structure/shared_house_player_medium.iff")
 
 object_draft_schematic_structure_shared_house_player_small = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_small.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_small.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1120,7 +1120,7 @@ object_draft_schematic_structure_shared_house_player_small = SharedDraftSchemati
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_house_player_small, "object/draft_schematic/structure/shared_house_player_small.iff")
 
 object_draft_schematic_structure_shared_house_player_small_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_small_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_house_player_small_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1169,7 +1169,7 @@ object_draft_schematic_structure_shared_house_player_small_style_02 = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_house_player_small_style_02, "object/draft_schematic/structure/shared_house_player_small_style_02.iff")
 
 object_draft_schematic_structure_shared_installation_factory_clothing = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_clothing.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_clothing.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1218,7 +1218,7 @@ object_draft_schematic_structure_shared_installation_factory_clothing = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_factory_clothing, "object/draft_schematic/structure/shared_installation_factory_clothing.iff")
 
 object_draft_schematic_structure_shared_installation_factory_food = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_food.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_food.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1267,7 +1267,7 @@ object_draft_schematic_structure_shared_installation_factory_food = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_factory_food, "object/draft_schematic/structure/shared_installation_factory_food.iff")
 
 object_draft_schematic_structure_shared_installation_factory_structure = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_structure.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_structure.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1316,7 +1316,7 @@ object_draft_schematic_structure_shared_installation_factory_structure = SharedD
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_factory_structure, "object/draft_schematic/structure/shared_installation_factory_structure.iff")
 
 object_draft_schematic_structure_shared_installation_factory_weapon = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_weapon.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_factory_weapon.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1365,7 +1365,7 @@ object_draft_schematic_structure_shared_installation_factory_weapon = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_factory_weapon, "object/draft_schematic/structure/shared_installation_factory_weapon.iff")
 
 object_draft_schematic_structure_shared_installation_generator_fusion = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_fusion.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_fusion.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1414,7 +1414,7 @@ object_draft_schematic_structure_shared_installation_generator_fusion = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_generator_fusion, "object/draft_schematic/structure/shared_installation_generator_fusion.iff")
 
 object_draft_schematic_structure_shared_installation_generator_solar = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_solar.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_solar.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1463,7 +1463,7 @@ object_draft_schematic_structure_shared_installation_generator_solar = SharedDra
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_generator_solar, "object/draft_schematic/structure/shared_installation_generator_solar.iff")
 
 object_draft_schematic_structure_shared_installation_generator_wind = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_wind.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_generator_wind.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1512,7 +1512,7 @@ object_draft_schematic_structure_shared_installation_generator_wind = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_generator_wind, "object/draft_schematic/structure/shared_installation_generator_wind.iff")
 
 object_draft_schematic_structure_shared_installation_mining_gas = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1561,7 +1561,7 @@ object_draft_schematic_structure_shared_installation_mining_gas = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_gas, "object/draft_schematic/structure/shared_installation_mining_gas.iff")
 
 object_draft_schematic_structure_shared_installation_mining_gas_heavy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas_heavy.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas_heavy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1610,7 +1610,7 @@ object_draft_schematic_structure_shared_installation_mining_gas_heavy = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_gas_heavy, "object/draft_schematic/structure/shared_installation_mining_gas_heavy.iff")
 
 object_draft_schematic_structure_shared_installation_mining_gas_light = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas_light.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_gas_light.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1659,7 +1659,7 @@ object_draft_schematic_structure_shared_installation_mining_gas_light = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_gas_light, "object/draft_schematic/structure/shared_installation_mining_gas_light.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1708,7 +1708,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid = SharedDraft
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid, "object/draft_schematic/structure/shared_installation_mining_liquid.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid_heavy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_heavy.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_heavy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1757,7 +1757,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid_heavy = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid_heavy, "object/draft_schematic/structure/shared_installation_mining_liquid_heavy.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid_light = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_light.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_light.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1806,7 +1806,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid_light = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid_light, "object/draft_schematic/structure/shared_installation_mining_liquid_light.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid_vapor = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1855,7 +1855,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid_vapor = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid_vapor, "object/draft_schematic/structure/shared_installation_mining_liquid_vapor.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid_vapor_heavy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_heavy.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_heavy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1904,7 +1904,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid_vapor_heavy =
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid_vapor_heavy, "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_heavy.iff")
 
 object_draft_schematic_structure_shared_installation_mining_liquid_vapor_light = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_light.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_light.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -1953,7 +1953,7 @@ object_draft_schematic_structure_shared_installation_mining_liquid_vapor_light =
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_liquid_vapor_light, "object/draft_schematic/structure/shared_installation_mining_liquid_vapor_light.iff")
 
 object_draft_schematic_structure_shared_installation_mining_ore = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2002,7 +2002,7 @@ object_draft_schematic_structure_shared_installation_mining_ore = SharedDraftSch
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_ore, "object/draft_schematic/structure/shared_installation_mining_ore.iff")
 
 object_draft_schematic_structure_shared_installation_mining_ore_heavy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore_heavy.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore_heavy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2051,7 +2051,7 @@ object_draft_schematic_structure_shared_installation_mining_ore_heavy = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_ore_heavy, "object/draft_schematic/structure/shared_installation_mining_ore_heavy.iff")
 
 object_draft_schematic_structure_shared_installation_mining_ore_light = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore_light.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_ore_light.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2100,7 +2100,7 @@ object_draft_schematic_structure_shared_installation_mining_ore_light = SharedDr
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_ore_light, "object/draft_schematic/structure/shared_installation_mining_ore_light.iff")
 
 object_draft_schematic_structure_shared_installation_mining_organic_creature = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_creature.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_creature.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2149,7 +2149,7 @@ object_draft_schematic_structure_shared_installation_mining_organic_creature = S
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_organic_creature, "object/draft_schematic/structure/shared_installation_mining_organic_creature.iff")
 
 object_draft_schematic_structure_shared_installation_mining_organic_flora = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2198,7 +2198,7 @@ object_draft_schematic_structure_shared_installation_mining_organic_flora = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_organic_flora, "object/draft_schematic/structure/shared_installation_mining_organic_flora.iff")
 
 object_draft_schematic_structure_shared_installation_mining_organic_flora_heavy = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora_heavy.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora_heavy.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2247,7 +2247,7 @@ object_draft_schematic_structure_shared_installation_mining_organic_flora_heavy 
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_organic_flora_heavy, "object/draft_schematic/structure/shared_installation_mining_organic_flora_heavy.iff")
 
 object_draft_schematic_structure_shared_installation_mining_organic_flora_light = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora_light.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_installation_mining_organic_flora_light.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2296,7 +2296,7 @@ object_draft_schematic_structure_shared_installation_mining_organic_flora_light 
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_installation_mining_organic_flora_light, "object/draft_schematic/structure/shared_installation_mining_organic_flora_light.iff")
 
 object_draft_schematic_structure_shared_merchant_tent = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_merchant_tent.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_merchant_tent.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2345,7 +2345,7 @@ object_draft_schematic_structure_shared_merchant_tent = SharedDraftSchematicObje
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_merchant_tent, "object/draft_schematic/structure/shared_merchant_tent.iff")
 
 object_draft_schematic_structure_shared_naboo_house_guild_hall = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_guild_hall.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_guild_hall.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2394,7 +2394,7 @@ object_draft_schematic_structure_shared_naboo_house_guild_hall = SharedDraftSche
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_naboo_house_guild_hall, "object/draft_schematic/structure/shared_naboo_house_guild_hall.iff")
 
 object_draft_schematic_structure_shared_naboo_house_player_large = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_large.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_large.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2443,7 +2443,7 @@ object_draft_schematic_structure_shared_naboo_house_player_large = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_naboo_house_player_large, "object/draft_schematic/structure/shared_naboo_house_player_large.iff")
 
 object_draft_schematic_structure_shared_naboo_house_player_medium = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_medium.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_medium.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2492,7 +2492,7 @@ object_draft_schematic_structure_shared_naboo_house_player_medium = SharedDraftS
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_naboo_house_player_medium, "object/draft_schematic/structure/shared_naboo_house_player_medium.iff")
 
 object_draft_schematic_structure_shared_naboo_house_player_small = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_small.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_small.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2541,7 +2541,7 @@ object_draft_schematic_structure_shared_naboo_house_player_small = SharedDraftSc
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_naboo_house_player_small, "object/draft_schematic/structure/shared_naboo_house_player_small.iff")
 
 object_draft_schematic_structure_shared_naboo_house_player_small_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_small_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_naboo_house_player_small_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2590,7 +2590,7 @@ object_draft_schematic_structure_shared_naboo_house_player_small_style_02 = Shar
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_naboo_house_player_small_style_02, "object/draft_schematic/structure/shared_naboo_house_player_small_style_02.iff")
 
 object_draft_schematic_structure_shared_tatooine_house_guild_hall_style_02 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/structure/shared_tatooine_house_guild_hall_style_02.iff",
+	clientTemplateFileName = "object/draft_schematic/structure/shared_tatooine_house_guild_hall_style_02.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -2640,112 +2640,97 @@ ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_tatooi
 
 --bespin Schem
 object_draft_schematic_structure_shared_bespin_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_bespin_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_bespin_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_bespin_house_schem, "object/draft_schematic/structure/shared_bespin_house_schem.iff")
 
 
 --emperors Schem
 object_draft_schematic_structure_shared_emperors_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_emperors_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_emperors_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_emperors_house_schem, "object/draft_schematic/structure/shared_emperors_house_schem.iff")
 
 --hangar Schem
 object_draft_schematic_structure_shared_hangar_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_hangar_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_hangar_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_hangar_house_schem, "object/draft_schematic/structure/shared_hangar_house_schem.iff")
 
 
 --jedi Schem
 object_draft_schematic_structure_shared_jedi_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_jedi_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_jedi_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_jedi_house_schem, "object/draft_schematic/structure/shared_jedi_house_schem.iff")
 
 --musty Schem
 object_draft_schematic_structure_shared_musty_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_musty_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_musty_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_musty_house_schem, "object/draft_schematic/structure/shared_musty_house_schem.iff")
 
 
 --rebel Schem
 object_draft_schematic_structure_shared_rebel_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_rebel_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_rebel_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_rebel_house_schem, "object/draft_schematic/structure/shared_rebel_house_schem.iff")
 
 --relaxation Schem
 object_draft_schematic_structure_shared_relaxation_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_relaxation_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_relaxation_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_relaxation_house_schem, "object/draft_schematic/structure/shared_relaxation_house_schem.iff")
 
 
 --sith Schem
 object_draft_schematic_structure_shared_sith_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_sith_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_sith_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_sith_house_schem, "object/draft_schematic/structure/shared_sith_house_schem.iff")
 
 
 --vehicle Schem
 object_draft_schematic_structure_shared_vehicle_house_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_vehicle_house_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_vehicle_house_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_vehicle_house_schem, "object/draft_schematic/structure/shared_vehicle_house_schem.iff")
 
 
 --gen_lg_win_01_schem Schem
 object_draft_schematic_structure_shared_gen_lg_win_01_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_lg_win_01_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_lg_win_01_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_lg_win_01_schem, "object/draft_schematic/structure/shared_gen_lg_win_01_schem.iff")
 
 --gen_lg_win_02_schem Schem
 object_draft_schematic_structure_shared_gen_lg_win_02_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_lg_win_02_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_lg_win_02_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_lg_win_02_schem, "object/draft_schematic/structure/shared_gen_lg_win_02_schem.iff")
 
 --gen_md_win_01_schem Schem
 object_draft_schematic_structure_shared_gen_md_win_01_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_md_win_01_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_md_win_01_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_md_win_01_schem, "object/draft_schematic/structure/shared_gen_md_win_01_schem.iff")
 
 --gen_md_win_02_schem Schem
 object_draft_schematic_structure_shared_gen_md_win_02_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_md_win_02_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_md_win_02_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_md_win_02_schem, "object/draft_schematic/structure/shared_gen_md_win_02_schem.iff")
 
 --gen_sm_win_01_schem Schem
 object_draft_schematic_structure_shared_gen_sm_win_01_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_sm_win_01_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_sm_win_01_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_sm_win_01_schem, "object/draft_schematic/structure/shared_gen_sm_win_01_schem.iff")
 
 --gen_sm_win_02_schem Schem
 object_draft_schematic_structure_shared_gen_sm_win_02_schem = SharedDraftSchematicObjectTemplate:new {
-  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_sm_win_02_schem.iff",
-  gameObjectType = 2049,
+  clientTemplateFileName = "object/draft_schematic/structure/shared_gen_sm_win_02_schem.iff"
 }
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_gen_sm_win_02_schem, "object/draft_schematic/structure/shared_gen_sm_win_02_schem.iff")
 

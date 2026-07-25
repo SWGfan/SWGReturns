@@ -75,6 +75,13 @@ void DraftSchematicImplementation::sendResourceWeightsTo(CreatureObject* player)
 	msg->insertInt(clientObjectCRC);
 	msg->insertInt(clientObjectCRC);
 
+	if (resourceWeights == nullptr) {
+		msg->insertByte(0);
+		msg->insertByte(0);
+		player->sendMessage(msg);
+		return;
+	}
+
 	msg->insertByte(resourceWeights->size());
 
 	//Send all the resource batch property data
@@ -117,11 +124,17 @@ DraftSlot* DraftSchematicImplementation::getDraftSlot(int i) {
 }
 
 int DraftSchematicImplementation::getResourceWeightCount() {
-	return schematicTemplate->getResourceWeights()->size();
+	const Vector<Reference<ResourceWeight* > >* resourceWeights = schematicTemplate->getResourceWeights();
+	if (resourceWeights == nullptr)
+		return 0;
+	return resourceWeights->size();
 }
 
 ResourceWeight* DraftSchematicImplementation::getResourceWeight(int i) {
-	return schematicTemplate->getResourceWeights()->get(i);
+	const Vector<Reference<ResourceWeight* > >* resourceWeights = schematicTemplate->getResourceWeights();
+	if (resourceWeights == nullptr)
+		return nullptr;
+	return resourceWeights->get(i);
 }
 
 

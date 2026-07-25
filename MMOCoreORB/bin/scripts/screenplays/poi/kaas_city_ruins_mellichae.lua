@@ -82,7 +82,7 @@ function kaas_city_ruins_mellichae:boss_damage(pBoss, pPlayer)
         local y2 = boss:getPositionY()
    
         local distance = ((x2 - x1)*(x2 - x1)) + ((y2 - y1)*(y2 - y1))
-        local maxDistance = 45
+        local maxDistance = 150
    
         if distance > (maxDistance * maxDistance) then
           spatialChat(pBoss, "Do not fear death...") 

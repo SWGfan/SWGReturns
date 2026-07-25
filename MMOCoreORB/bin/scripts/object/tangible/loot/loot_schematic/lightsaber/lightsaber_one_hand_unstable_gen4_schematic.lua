@@ -3,7 +3,7 @@ object_tangible_loot_loot_schematic_lightsaber_lightsaber_one_hand_unstable_gen4
 	templateType = LOOTSCHEMATIC,
 	objectMenuComponent = "LootSchematicMenuComponent",
 	attributeListComponent = "LootSchematicAttributeListComponent",
-	requiredSkill = "jedi_padawan_novice", 
+	requiredSkill = "force_discipline_light_saber_master", 
 	targetDraftSchematic = "object/draft_schematic/weapon/lightsaber/lightsaber_one_hand_unstable_gen4.iff",
 	targetUseCount = 1
 }

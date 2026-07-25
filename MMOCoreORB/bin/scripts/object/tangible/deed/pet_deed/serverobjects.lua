@@ -148,6 +148,3 @@ includeFile("tangible/deed/pet_deed/zucca_boar_deed.lua")
 -- Flurry custom pet deeds (migrated)
 includeFile("custom_content/tangible/deed/pet_deed/nerf_deed.lua")
 includeFile("custom_content/tangible/deed/pet_deed/tauntaun_deed.lua")
-
--- disabled: missing shared_super_battle_droid_deed template on this Core3 tree
--- includeFile("tangible/deed/pet_deed/super_battle_droid_deed.lua")

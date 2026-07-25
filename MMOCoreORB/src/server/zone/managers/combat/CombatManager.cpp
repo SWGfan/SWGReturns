@@ -90,8 +90,9 @@ bool CombatManager::startCombat(CreatureObject* attacker, TangibleObject* defend
 
 	if (attacker->isPlayerCreature() && !attacker->hasDefender(defender)) {
 		ManagedReference<WeaponObject*> weapon = attacker->getWeapon();
+		ManagedReference<PlayerObject*> ghost = attacker->getPlayerObject();
 
-		if (weapon != nullptr && weapon->isJediWeapon() && attacker->hasSkill("force_title_jedi_rank_03")) {
+		if (weapon != nullptr && weapon->isJediWeapon() && ghost != nullptr && ghost->getFrsData()->getRank() > 0) {
 			VisibilityManager::instance()->increaseVisibility(attacker, 25);
 		}
 	}
@@ -100,8 +101,9 @@ bool CombatManager::startCombat(CreatureObject* attacker, TangibleObject* defend
 
 	if (creo != nullptr && creo->isPlayerCreature() && !creo->hasDefender(attacker)) {
 		ManagedReference<WeaponObject*> weapon = creo->getWeapon();
+		ManagedReference<PlayerObject*> ghost = creo->getPlayerObject();
 
-		if (weapon != nullptr && weapon->isJediWeapon() && creo->hasSkill("force_title_jedi_rank_03")) {
+		if (weapon != nullptr && weapon->isJediWeapon() && ghost != nullptr && ghost->getFrsData()->getRank() > 0) {
 			VisibilityManager::instance()->increaseVisibility(creo, 25);
 		}
 	}
@@ -2835,10 +2837,10 @@ bool CombatManager::applySpecialAttackCost(CreatureObject* attacker, WeaponObjec
 			if (playerObject->getForcePower() <= force) {
 				attacker->sendSystemMessage("@jedi_spam:no_force_power");
 				return false;
-			} else {
+} else {
 				playerObject->setForcePower(playerObject->getForcePower() - force);
-				if (playerObject != nullptr && playerObject->isJedi())
-                                VisibilityManager::instance()->increaseVisibility(attacker, data.getCommand()->getVisMod()); // Give visibility
+				if (playerObject != nullptr && playerObject->isJedi() && playerObject->getFrsData()->getRank() > 0)
+					VisibilityManager::instance()->increaseVisibility(attacker, data.getCommand()->getVisMod()); // Give visibility
 			}
 		}
 	}

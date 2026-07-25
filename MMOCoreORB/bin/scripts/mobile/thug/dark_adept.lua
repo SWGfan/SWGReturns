@@ -5,15 +5,15 @@ dark_adept = Creature:new {
 	mobType = MOB_NPC,
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow",
-	level = 140,
-	chanceHit = 4.75,
-	damageMin = 945,
-	damageMax = 1600,
-	baseXp = 13178,
-	baseHAM = 50000,
-	baseHAMmax = 61000,
-	armor = 1,
-	resists = {80,80,80,80,80,80,80,80,40},
+	level = 360,
+	chanceHit = 1.0,
+	damageMin = 1800,
+	damageMax = 2500,
+	baseXp = 40000,
+	baseHAM = 800000,
+	baseHAMmax = 1000000,
+	armor = 2,
+	resists = {120,120,120,120,120,120,120,120,90},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -47,16 +47,14 @@ dark_adept = Creature:new {
 		}
 	},
 
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "dark_jedi_weapons_gen2",
+	primaryWeapon = "dark_jedi_weapons_gen4",
 	secondaryWeapon = "unarmed",
 	conversationTemplate = "",
 
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
 	primaryAttacks = lightsabermaster,
-	secondaryAttacks = forcepowermaster
+	secondaryAttacks = forcepowermaster,
+	
+	specialDamageMult = 1.5
 }
 
 CreatureTemplates:addCreatureTemplate(dark_adept, "dark_adept")

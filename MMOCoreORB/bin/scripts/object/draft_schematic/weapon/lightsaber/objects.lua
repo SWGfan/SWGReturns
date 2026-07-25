@@ -40,44 +40,9 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_unstable_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_unstable_gen3.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_unstable_gen3, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_unstable_gen3.iff")
-
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_unstable_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_unstable_gen3.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_unstable_gen3, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_unstable_gen3.iff")
-
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_unstable_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_unstable_gen3.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_unstable_gen3, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_unstable_gen3.iff")
-
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_unstable_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_unstable_gen4.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_unstable_gen4, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_unstable_gen4.iff")
-
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_unstable_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_unstable_gen4.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_unstable_gen4, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_unstable_gen4.iff")
-
-object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_unstable_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_unstable_gen4.iff"}
-	gameObjectType = 2049,
-ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_unstable_gen4, 
-"object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_unstable_gen4.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen1 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen1.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen1.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -126,7 +91,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen1 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen1, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen1.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen2 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen2.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen2.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -175,7 +140,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen2 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen2, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen2.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen3.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen3.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -224,7 +189,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen3 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen3, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen3.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen4.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen4.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -273,7 +238,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen4 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen4, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen4.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen5 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen5.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen5.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -322,7 +287,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen5 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_one_hand_gen5, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_one_hand_gen5.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen1 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen1.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen1.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -371,7 +336,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen1 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen1, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen1.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen2 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen2.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen2.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -420,7 +385,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen2 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen2, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen2.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen3.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen3.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -469,7 +434,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen3 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen3, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen3.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen4.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen4.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -518,7 +483,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen4 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen4, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen4.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen5 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen5.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen5.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -567,7 +532,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen5 = Shared
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_polearm_gen5, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_polearm_gen5.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_refined_crystal_pack = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -616,7 +581,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_refined_crystal_pack 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_refined_crystal_pack, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_training = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_training.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_training.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -665,7 +630,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_training = SharedDraf
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_training, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_training.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen1 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen1.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen1.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -714,7 +679,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen1 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen1, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen1.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen2 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen2.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen2.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -763,7 +728,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen2 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen2, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen2.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen3 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen3.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen3.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -812,7 +777,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen3 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen3, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen3.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen4 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen4.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen4.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -861,7 +826,7 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen4 = Share
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen4, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen4.iff")
 
 object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen5 = SharedDraftSchematicObjectTemplate:new {
-	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen5.iff",
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen5.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
 --[[
 	appearanceFilename = "",
@@ -908,3 +873,9 @@ object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen5 = Share
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_lightsaber_two_hand_gen5, "object/draft_schematic/weapon/lightsaber/shared_lightsaber_two_hand_gen5.iff")
+
+object_draft_schematic_weapon_lightsaber_shared_sword_lightsaber_polearm_s1 = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/lightsaber/shared_sword_lightsaber_polearm_s1.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_lightsaber_shared_sword_lightsaber_polearm_s1, "object/draft_schematic/weapon/lightsaber/shared_sword_lightsaber_polearm_s1.iff")

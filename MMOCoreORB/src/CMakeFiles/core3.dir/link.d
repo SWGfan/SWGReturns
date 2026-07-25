@@ -230,6 +230,7 @@ core3: \
   CMakeFiles/core3.dir/server/zone/objects/intangible/PetControlDeviceImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/ShipControlDeviceImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o \
+  CMakeFiles/core3.dir/server/zone/objects/intangible/components/WarrenDiskContainerComponent.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/ManufactureSchematicImplementation.cpp.o \
   CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.cpp.o \
@@ -518,8 +519,8 @@ core3: \
   templates/libcore3templates.a \
   pathfinding/libcore3pathfinding.a \
   libidlobjects.a \
-  ../utils/engine3/MMOEngine/lib/unix/libengine3.a \
-  ../lib/libgmock.a \
+  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a \
+  /home/ubuntu/SWGReturns01/MMOCoreORB/lib/libgmock.a \
   /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libatomic.so.1 \
   /usr/lib/x86_64-linux-gnu/libmysqlclient.so \
@@ -1031,6 +1032,8 @@ CMakeFiles/core3.dir/server/zone/objects/intangible/PetControlDeviceImplementati
 CMakeFiles/core3.dir/server/zone/objects/intangible/ShipControlDeviceImplementation.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o:
+
+CMakeFiles/core3.dir/server/zone/objects/intangible/components/WarrenDiskContainerComponent.cpp.o:
 
 CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o:
 
@@ -1608,9 +1611,9 @@ pathfinding/libcore3pathfinding.a:
 
 libidlobjects.a:
 
-../utils/engine3/MMOEngine/lib/unix/libengine3.a:
+/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a:
 
-../lib/libgmock.a:
+/home/ubuntu/SWGReturns01/MMOCoreORB/lib/libgmock.a:
 
 /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0:
 

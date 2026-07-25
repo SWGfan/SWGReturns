@@ -426,6 +426,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/core3.dir/server/zone/objects/intangible/ShipControlDeviceImplementation.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o"
   "CMakeFiles/core3.dir/server/zone/objects/intangible/VehicleControlDeviceImplementation.cpp.o.d"
+  "CMakeFiles/core3.dir/server/zone/objects/intangible/components/WarrenDiskContainerComponent.cpp.o"
+  "CMakeFiles/core3.dir/server/zone/objects/intangible/components/WarrenDiskContainerComponent.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o"
   "CMakeFiles/core3.dir/server/zone/objects/intangible/tasks/StorePetTask.cpp.o.d"
   "CMakeFiles/core3.dir/server/zone/objects/manufactureschematic/ManufactureSchematicImplementation.cpp.o"

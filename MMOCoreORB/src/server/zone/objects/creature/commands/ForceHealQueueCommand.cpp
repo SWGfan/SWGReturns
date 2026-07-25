@@ -312,7 +312,10 @@ int ForceHealQueueCommand::runCommand(CreatureObject* creature, CreatureObject* 
 			return GENERALERROR;
 		}
 
-		VisibilityManager::instance()->increaseVisibility(creature, visMod);
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+		if (ghost != nullptr && ghost->getFrsData()->getRank() > 0) {
+			VisibilityManager::instance()->increaseVisibility(creature, visMod);
+		}
 		return SUCCESS;
 	} else {
 		if (selfHeal) {

@@ -5,6 +5,8 @@
 #ifndef DECLAREOVERTCOMMAND_H_
 #define DECLAREOVERTCOMMAND_H_
 
+#include "server/zone/objects/player/FactionStatus.h"
+
 class DeclareOvertCommand : public QueueCommand {
 public:
 
@@ -20,6 +22,22 @@ public:
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
+
+		if (!creature->isPlayerCreature())
+			return GENERALERROR;
+
+		if (!creature->isRebel() && !creature->isImperial()) {
+			creature->sendSystemMessage("You must be Rebel or Imperial to declare overt.");
+			return GENERALERROR;
+		}
+
+		if (creature->getFactionStatus() == FactionStatus::OVERT) {
+			creature->sendSystemMessage("You are already overt.");
+			return SUCCESS;
+		}
+
+		creature->setFactionStatus(FactionStatus::OVERT);
+		creature->sendSystemMessage("You are now overt and may be attacked by enemy faction players.");
 
 		return SUCCESS;
 	}

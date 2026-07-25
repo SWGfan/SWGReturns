@@ -97,9 +97,6 @@ void SchematicMap::loadDraftSchematicDatabase() {
 }
 
 void SchematicMap::loadDraftSchematicFile() {
-	// Load object template definitions so that schematic data files can reference their globals.
-	runFile("scripts/object/allobjects.lua");
-
 	runFile("scripts/managers/crafting/schematics.lua");
 
 	// Read and create all the items in the config unless they
@@ -177,58 +174,6 @@ void SchematicMap::buildSchematicGroups() {
 			if(!group->contains(schematic))
 				group->add(schematic);
 		}
-	}
-
-	// Auto-assign any schematics not in schematic_group.iff to groups based on their template path.
-	for (int i = 0; i < schematicCrcMap.size(); ++i) {
-		DraftSchematic* schematic = schematicCrcMap.elementAt(i).getValue();
-
-		if (schematic == nullptr)
-			continue;
-
-		Locker locker(schematic);
-
-		if (!schematic->getGroupName().isEmpty())
-			continue;
-
-		DraftSchematicObjectTemplate* tmplt = schematic->getDraftSchematicTemplate();
-
-		if (tmplt == nullptr)
-			continue;
-
-		const String& templateFile = tmplt->getTemplateFileName();
-		String groupName;
-
-		if (templateFile.contains("/armor/"))
-			groupName = "armor";
-		else if (templateFile.contains("/clothing/"))
-			groupName = "clothing";
-		else if (templateFile.contains("/weapon/"))
-			groupName = "weapon";
-		else if (templateFile.contains("/food/"))
-			groupName = "food";
-		else if (templateFile.contains("/furniture/"))
-			groupName = "furniture";
-		else if (templateFile.contains("/dance_prop/"))
-			groupName = "dance_prop";
-		else if (templateFile.contains("/community_crafting/"))
-			groupName = "community_crafting";
-		else
-			groupName = "armor";
-
-		schematic->setGroupName(groupName);
-
-		DraftSchematicGroup* group = groupMap.get(groupName);
-
-		if (group == nullptr) {
-			group = new DraftSchematicGroup();
-			groupMap.put(groupName, group);
-		}
-
-		if (!group->contains(schematic))
-			group->add(schematic);
-
-		info("Auto-assigned schematic to group: " + groupName + " (" + templateFile + ")");
 	}
 }
 

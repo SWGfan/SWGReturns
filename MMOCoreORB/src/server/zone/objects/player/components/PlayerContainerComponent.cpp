@@ -156,7 +156,7 @@ int PlayerContainerComponent::notifyObjectInserted(SceneObject* sceneObject, Sce
 	// Jedi stuff below.
 	PlayerObject* ghost = creo->getPlayerObject();
 
-	if (ghost && ghost->isJedi()) {
+	if (ghost && ghost->isJedi() && ghost->getFrsData()->getRank() > 0) {
 
 		if (object->isRobeObject()) {
 			ghost->recalculateForcePower();

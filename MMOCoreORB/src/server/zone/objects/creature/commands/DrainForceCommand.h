@@ -116,7 +116,9 @@ public:
 				creature->doCombatAnimation(targetCreature, animCRC, 0x1, 0xFF);
 				manager->broadcastCombatSpam(creature, targetCreature, NULL, forceDrain, "cbt_spam", combatSpam, 1);
 
-				VisibilityManager::instance()->increaseVisibility(creature, visMod);
+				if (playerGhost->getFrsData()->getRank() > 0) {
+					VisibilityManager::instance()->increaseVisibility(creature, visMod);
+				}
 
 				creature->updateCooldownTimer(skillName, cooldown * 1000);
 

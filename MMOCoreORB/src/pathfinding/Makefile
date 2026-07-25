@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,14 +142,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding//CMakeFiles/progress.marks
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles /home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding//CMakeFiles/progress.marks
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/clean
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/clean
 .PHONY : clean
 
 # The main clean target
@@ -158,22 +158,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/preinstall
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/pathfinding/CMakeFiles/core3pathfinding.dir/rule:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/CMakeFiles/core3pathfinding.dir/rule
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/pathfinding/CMakeFiles/core3pathfinding.dir/rule
 .PHONY : src/pathfinding/CMakeFiles/core3pathfinding.dir/rule
 
 # Convenience name for target.
@@ -182,7 +182,7 @@ core3pathfinding: src/pathfinding/CMakeFiles/core3pathfinding.dir/rule
 
 # fast build rule for target.
 core3pathfinding/fast:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/build
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/build
 .PHONY : core3pathfinding/fast
 
 ChunkyTriMesh.o: ChunkyTriMesh.cpp.o
@@ -190,7 +190,7 @@ ChunkyTriMesh.o: ChunkyTriMesh.cpp.o
 
 # target to build an object file
 ChunkyTriMesh.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.o
 .PHONY : ChunkyTriMesh.cpp.o
 
 ChunkyTriMesh.i: ChunkyTriMesh.cpp.i
@@ -198,7 +198,7 @@ ChunkyTriMesh.i: ChunkyTriMesh.cpp.i
 
 # target to preprocess a source file
 ChunkyTriMesh.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.i
 .PHONY : ChunkyTriMesh.cpp.i
 
 ChunkyTriMesh.s: ChunkyTriMesh.cpp.s
@@ -206,7 +206,7 @@ ChunkyTriMesh.s: ChunkyTriMesh.cpp.s
 
 # target to generate assembly for a file
 ChunkyTriMesh.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/ChunkyTriMesh.cpp.s
 .PHONY : ChunkyTriMesh.cpp.s
 
 RecastNavMesh.o: RecastNavMesh.cpp.o
@@ -214,7 +214,7 @@ RecastNavMesh.o: RecastNavMesh.cpp.o
 
 # target to build an object file
 RecastNavMesh.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.o
 .PHONY : RecastNavMesh.cpp.o
 
 RecastNavMesh.i: RecastNavMesh.cpp.i
@@ -222,7 +222,7 @@ RecastNavMesh.i: RecastNavMesh.cpp.i
 
 # target to preprocess a source file
 RecastNavMesh.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.i
 .PHONY : RecastNavMesh.cpp.i
 
 RecastNavMesh.s: RecastNavMesh.cpp.s
@@ -230,7 +230,7 @@ RecastNavMesh.s: RecastNavMesh.cpp.s
 
 # target to generate assembly for a file
 RecastNavMesh.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMesh.cpp.s
 .PHONY : RecastNavMesh.cpp.s
 
 RecastNavMeshBuilder.o: RecastNavMeshBuilder.cpp.o
@@ -238,7 +238,7 @@ RecastNavMeshBuilder.o: RecastNavMeshBuilder.cpp.o
 
 # target to build an object file
 RecastNavMeshBuilder.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.o
 .PHONY : RecastNavMeshBuilder.cpp.o
 
 RecastNavMeshBuilder.i: RecastNavMeshBuilder.cpp.i
@@ -246,7 +246,7 @@ RecastNavMeshBuilder.i: RecastNavMeshBuilder.cpp.i
 
 # target to preprocess a source file
 RecastNavMeshBuilder.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.i
 .PHONY : RecastNavMeshBuilder.cpp.i
 
 RecastNavMeshBuilder.s: RecastNavMeshBuilder.cpp.s
@@ -254,7 +254,7 @@ RecastNavMeshBuilder.s: RecastNavMeshBuilder.cpp.s
 
 # target to generate assembly for a file
 RecastNavMeshBuilder.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.s
 .PHONY : RecastNavMeshBuilder.cpp.s
 
 RecastTileBuilder.o: RecastTileBuilder.cpp.o
@@ -262,7 +262,7 @@ RecastTileBuilder.o: RecastTileBuilder.cpp.o
 
 # target to build an object file
 RecastTileBuilder.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.o
 .PHONY : RecastTileBuilder.cpp.o
 
 RecastTileBuilder.i: RecastTileBuilder.cpp.i
@@ -270,7 +270,7 @@ RecastTileBuilder.i: RecastTileBuilder.cpp.i
 
 # target to preprocess a source file
 RecastTileBuilder.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.i
 .PHONY : RecastTileBuilder.cpp.i
 
 RecastTileBuilder.s: RecastTileBuilder.cpp.s
@@ -278,7 +278,7 @@ RecastTileBuilder.s: RecastTileBuilder.cpp.s
 
 # target to generate assembly for a file
 RecastTileBuilder.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastTileBuilder.cpp.s
 .PHONY : RecastTileBuilder.cpp.s
 
 recast/DetourAlloc.o: recast/DetourAlloc.cpp.o
@@ -286,7 +286,7 @@ recast/DetourAlloc.o: recast/DetourAlloc.cpp.o
 
 # target to build an object file
 recast/DetourAlloc.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.o
 .PHONY : recast/DetourAlloc.cpp.o
 
 recast/DetourAlloc.i: recast/DetourAlloc.cpp.i
@@ -294,7 +294,7 @@ recast/DetourAlloc.i: recast/DetourAlloc.cpp.i
 
 # target to preprocess a source file
 recast/DetourAlloc.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.i
 .PHONY : recast/DetourAlloc.cpp.i
 
 recast/DetourAlloc.s: recast/DetourAlloc.cpp.s
@@ -302,7 +302,7 @@ recast/DetourAlloc.s: recast/DetourAlloc.cpp.s
 
 # target to generate assembly for a file
 recast/DetourAlloc.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAlloc.cpp.s
 .PHONY : recast/DetourAlloc.cpp.s
 
 recast/DetourAssert.o: recast/DetourAssert.cpp.o
@@ -310,7 +310,7 @@ recast/DetourAssert.o: recast/DetourAssert.cpp.o
 
 # target to build an object file
 recast/DetourAssert.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.o
 .PHONY : recast/DetourAssert.cpp.o
 
 recast/DetourAssert.i: recast/DetourAssert.cpp.i
@@ -318,7 +318,7 @@ recast/DetourAssert.i: recast/DetourAssert.cpp.i
 
 # target to preprocess a source file
 recast/DetourAssert.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.i
 .PHONY : recast/DetourAssert.cpp.i
 
 recast/DetourAssert.s: recast/DetourAssert.cpp.s
@@ -326,7 +326,7 @@ recast/DetourAssert.s: recast/DetourAssert.cpp.s
 
 # target to generate assembly for a file
 recast/DetourAssert.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourAssert.cpp.s
 .PHONY : recast/DetourAssert.cpp.s
 
 recast/DetourCommon.o: recast/DetourCommon.cpp.o
@@ -334,7 +334,7 @@ recast/DetourCommon.o: recast/DetourCommon.cpp.o
 
 # target to build an object file
 recast/DetourCommon.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.o
 .PHONY : recast/DetourCommon.cpp.o
 
 recast/DetourCommon.i: recast/DetourCommon.cpp.i
@@ -342,7 +342,7 @@ recast/DetourCommon.i: recast/DetourCommon.cpp.i
 
 # target to preprocess a source file
 recast/DetourCommon.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.i
 .PHONY : recast/DetourCommon.cpp.i
 
 recast/DetourCommon.s: recast/DetourCommon.cpp.s
@@ -350,7 +350,7 @@ recast/DetourCommon.s: recast/DetourCommon.cpp.s
 
 # target to generate assembly for a file
 recast/DetourCommon.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourCommon.cpp.s
 .PHONY : recast/DetourCommon.cpp.s
 
 recast/DetourNavMesh.o: recast/DetourNavMesh.cpp.o
@@ -358,7 +358,7 @@ recast/DetourNavMesh.o: recast/DetourNavMesh.cpp.o
 
 # target to build an object file
 recast/DetourNavMesh.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.o
 .PHONY : recast/DetourNavMesh.cpp.o
 
 recast/DetourNavMesh.i: recast/DetourNavMesh.cpp.i
@@ -366,7 +366,7 @@ recast/DetourNavMesh.i: recast/DetourNavMesh.cpp.i
 
 # target to preprocess a source file
 recast/DetourNavMesh.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.i
 .PHONY : recast/DetourNavMesh.cpp.i
 
 recast/DetourNavMesh.s: recast/DetourNavMesh.cpp.s
@@ -374,7 +374,7 @@ recast/DetourNavMesh.s: recast/DetourNavMesh.cpp.s
 
 # target to generate assembly for a file
 recast/DetourNavMesh.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMesh.cpp.s
 .PHONY : recast/DetourNavMesh.cpp.s
 
 recast/DetourNavMeshBuilder.o: recast/DetourNavMeshBuilder.cpp.o
@@ -382,7 +382,7 @@ recast/DetourNavMeshBuilder.o: recast/DetourNavMeshBuilder.cpp.o
 
 # target to build an object file
 recast/DetourNavMeshBuilder.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.o
 .PHONY : recast/DetourNavMeshBuilder.cpp.o
 
 recast/DetourNavMeshBuilder.i: recast/DetourNavMeshBuilder.cpp.i
@@ -390,7 +390,7 @@ recast/DetourNavMeshBuilder.i: recast/DetourNavMeshBuilder.cpp.i
 
 # target to preprocess a source file
 recast/DetourNavMeshBuilder.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.i
 .PHONY : recast/DetourNavMeshBuilder.cpp.i
 
 recast/DetourNavMeshBuilder.s: recast/DetourNavMeshBuilder.cpp.s
@@ -398,7 +398,7 @@ recast/DetourNavMeshBuilder.s: recast/DetourNavMeshBuilder.cpp.s
 
 # target to generate assembly for a file
 recast/DetourNavMeshBuilder.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshBuilder.cpp.s
 .PHONY : recast/DetourNavMeshBuilder.cpp.s
 
 recast/DetourNavMeshQuery.o: recast/DetourNavMeshQuery.cpp.o
@@ -406,7 +406,7 @@ recast/DetourNavMeshQuery.o: recast/DetourNavMeshQuery.cpp.o
 
 # target to build an object file
 recast/DetourNavMeshQuery.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.o
 .PHONY : recast/DetourNavMeshQuery.cpp.o
 
 recast/DetourNavMeshQuery.i: recast/DetourNavMeshQuery.cpp.i
@@ -414,7 +414,7 @@ recast/DetourNavMeshQuery.i: recast/DetourNavMeshQuery.cpp.i
 
 # target to preprocess a source file
 recast/DetourNavMeshQuery.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.i
 .PHONY : recast/DetourNavMeshQuery.cpp.i
 
 recast/DetourNavMeshQuery.s: recast/DetourNavMeshQuery.cpp.s
@@ -422,7 +422,7 @@ recast/DetourNavMeshQuery.s: recast/DetourNavMeshQuery.cpp.s
 
 # target to generate assembly for a file
 recast/DetourNavMeshQuery.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNavMeshQuery.cpp.s
 .PHONY : recast/DetourNavMeshQuery.cpp.s
 
 recast/DetourNode.o: recast/DetourNode.cpp.o
@@ -430,7 +430,7 @@ recast/DetourNode.o: recast/DetourNode.cpp.o
 
 # target to build an object file
 recast/DetourNode.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.o
 .PHONY : recast/DetourNode.cpp.o
 
 recast/DetourNode.i: recast/DetourNode.cpp.i
@@ -438,7 +438,7 @@ recast/DetourNode.i: recast/DetourNode.cpp.i
 
 # target to preprocess a source file
 recast/DetourNode.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.i
 .PHONY : recast/DetourNode.cpp.i
 
 recast/DetourNode.s: recast/DetourNode.cpp.s
@@ -446,7 +446,7 @@ recast/DetourNode.s: recast/DetourNode.cpp.s
 
 # target to generate assembly for a file
 recast/DetourNode.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/DetourNode.cpp.s
 .PHONY : recast/DetourNode.cpp.s
 
 recast/Recast.o: recast/Recast.cpp.o
@@ -454,7 +454,7 @@ recast/Recast.o: recast/Recast.cpp.o
 
 # target to build an object file
 recast/Recast.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.o
 .PHONY : recast/Recast.cpp.o
 
 recast/Recast.i: recast/Recast.cpp.i
@@ -462,7 +462,7 @@ recast/Recast.i: recast/Recast.cpp.i
 
 # target to preprocess a source file
 recast/Recast.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.i
 .PHONY : recast/Recast.cpp.i
 
 recast/Recast.s: recast/Recast.cpp.s
@@ -470,7 +470,7 @@ recast/Recast.s: recast/Recast.cpp.s
 
 # target to generate assembly for a file
 recast/Recast.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/Recast.cpp.s
 .PHONY : recast/Recast.cpp.s
 
 recast/RecastAlloc.o: recast/RecastAlloc.cpp.o
@@ -478,7 +478,7 @@ recast/RecastAlloc.o: recast/RecastAlloc.cpp.o
 
 # target to build an object file
 recast/RecastAlloc.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.o
 .PHONY : recast/RecastAlloc.cpp.o
 
 recast/RecastAlloc.i: recast/RecastAlloc.cpp.i
@@ -486,7 +486,7 @@ recast/RecastAlloc.i: recast/RecastAlloc.cpp.i
 
 # target to preprocess a source file
 recast/RecastAlloc.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.i
 .PHONY : recast/RecastAlloc.cpp.i
 
 recast/RecastAlloc.s: recast/RecastAlloc.cpp.s
@@ -494,7 +494,7 @@ recast/RecastAlloc.s: recast/RecastAlloc.cpp.s
 
 # target to generate assembly for a file
 recast/RecastAlloc.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAlloc.cpp.s
 .PHONY : recast/RecastAlloc.cpp.s
 
 recast/RecastArea.o: recast/RecastArea.cpp.o
@@ -502,7 +502,7 @@ recast/RecastArea.o: recast/RecastArea.cpp.o
 
 # target to build an object file
 recast/RecastArea.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.o
 .PHONY : recast/RecastArea.cpp.o
 
 recast/RecastArea.i: recast/RecastArea.cpp.i
@@ -510,7 +510,7 @@ recast/RecastArea.i: recast/RecastArea.cpp.i
 
 # target to preprocess a source file
 recast/RecastArea.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.i
 .PHONY : recast/RecastArea.cpp.i
 
 recast/RecastArea.s: recast/RecastArea.cpp.s
@@ -518,7 +518,7 @@ recast/RecastArea.s: recast/RecastArea.cpp.s
 
 # target to generate assembly for a file
 recast/RecastArea.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastArea.cpp.s
 .PHONY : recast/RecastArea.cpp.s
 
 recast/RecastAssert.o: recast/RecastAssert.cpp.o
@@ -526,7 +526,7 @@ recast/RecastAssert.o: recast/RecastAssert.cpp.o
 
 # target to build an object file
 recast/RecastAssert.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.o
 .PHONY : recast/RecastAssert.cpp.o
 
 recast/RecastAssert.i: recast/RecastAssert.cpp.i
@@ -534,7 +534,7 @@ recast/RecastAssert.i: recast/RecastAssert.cpp.i
 
 # target to preprocess a source file
 recast/RecastAssert.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.i
 .PHONY : recast/RecastAssert.cpp.i
 
 recast/RecastAssert.s: recast/RecastAssert.cpp.s
@@ -542,7 +542,7 @@ recast/RecastAssert.s: recast/RecastAssert.cpp.s
 
 # target to generate assembly for a file
 recast/RecastAssert.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastAssert.cpp.s
 .PHONY : recast/RecastAssert.cpp.s
 
 recast/RecastContour.o: recast/RecastContour.cpp.o
@@ -550,7 +550,7 @@ recast/RecastContour.o: recast/RecastContour.cpp.o
 
 # target to build an object file
 recast/RecastContour.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.o
 .PHONY : recast/RecastContour.cpp.o
 
 recast/RecastContour.i: recast/RecastContour.cpp.i
@@ -558,7 +558,7 @@ recast/RecastContour.i: recast/RecastContour.cpp.i
 
 # target to preprocess a source file
 recast/RecastContour.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.i
 .PHONY : recast/RecastContour.cpp.i
 
 recast/RecastContour.s: recast/RecastContour.cpp.s
@@ -566,7 +566,7 @@ recast/RecastContour.s: recast/RecastContour.cpp.s
 
 # target to generate assembly for a file
 recast/RecastContour.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastContour.cpp.s
 .PHONY : recast/RecastContour.cpp.s
 
 recast/RecastFilter.o: recast/RecastFilter.cpp.o
@@ -574,7 +574,7 @@ recast/RecastFilter.o: recast/RecastFilter.cpp.o
 
 # target to build an object file
 recast/RecastFilter.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.o
 .PHONY : recast/RecastFilter.cpp.o
 
 recast/RecastFilter.i: recast/RecastFilter.cpp.i
@@ -582,7 +582,7 @@ recast/RecastFilter.i: recast/RecastFilter.cpp.i
 
 # target to preprocess a source file
 recast/RecastFilter.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.i
 .PHONY : recast/RecastFilter.cpp.i
 
 recast/RecastFilter.s: recast/RecastFilter.cpp.s
@@ -590,7 +590,7 @@ recast/RecastFilter.s: recast/RecastFilter.cpp.s
 
 # target to generate assembly for a file
 recast/RecastFilter.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastFilter.cpp.s
 .PHONY : recast/RecastFilter.cpp.s
 
 recast/RecastLayers.o: recast/RecastLayers.cpp.o
@@ -598,7 +598,7 @@ recast/RecastLayers.o: recast/RecastLayers.cpp.o
 
 # target to build an object file
 recast/RecastLayers.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.o
 .PHONY : recast/RecastLayers.cpp.o
 
 recast/RecastLayers.i: recast/RecastLayers.cpp.i
@@ -606,7 +606,7 @@ recast/RecastLayers.i: recast/RecastLayers.cpp.i
 
 # target to preprocess a source file
 recast/RecastLayers.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.i
 .PHONY : recast/RecastLayers.cpp.i
 
 recast/RecastLayers.s: recast/RecastLayers.cpp.s
@@ -614,7 +614,7 @@ recast/RecastLayers.s: recast/RecastLayers.cpp.s
 
 # target to generate assembly for a file
 recast/RecastLayers.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastLayers.cpp.s
 .PHONY : recast/RecastLayers.cpp.s
 
 recast/RecastMesh.o: recast/RecastMesh.cpp.o
@@ -622,7 +622,7 @@ recast/RecastMesh.o: recast/RecastMesh.cpp.o
 
 # target to build an object file
 recast/RecastMesh.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.o
 .PHONY : recast/RecastMesh.cpp.o
 
 recast/RecastMesh.i: recast/RecastMesh.cpp.i
@@ -630,7 +630,7 @@ recast/RecastMesh.i: recast/RecastMesh.cpp.i
 
 # target to preprocess a source file
 recast/RecastMesh.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.i
 .PHONY : recast/RecastMesh.cpp.i
 
 recast/RecastMesh.s: recast/RecastMesh.cpp.s
@@ -638,7 +638,7 @@ recast/RecastMesh.s: recast/RecastMesh.cpp.s
 
 # target to generate assembly for a file
 recast/RecastMesh.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMesh.cpp.s
 .PHONY : recast/RecastMesh.cpp.s
 
 recast/RecastMeshDetail.o: recast/RecastMeshDetail.cpp.o
@@ -646,7 +646,7 @@ recast/RecastMeshDetail.o: recast/RecastMeshDetail.cpp.o
 
 # target to build an object file
 recast/RecastMeshDetail.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.o
 .PHONY : recast/RecastMeshDetail.cpp.o
 
 recast/RecastMeshDetail.i: recast/RecastMeshDetail.cpp.i
@@ -654,7 +654,7 @@ recast/RecastMeshDetail.i: recast/RecastMeshDetail.cpp.i
 
 # target to preprocess a source file
 recast/RecastMeshDetail.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.i
 .PHONY : recast/RecastMeshDetail.cpp.i
 
 recast/RecastMeshDetail.s: recast/RecastMeshDetail.cpp.s
@@ -662,7 +662,7 @@ recast/RecastMeshDetail.s: recast/RecastMeshDetail.cpp.s
 
 # target to generate assembly for a file
 recast/RecastMeshDetail.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastMeshDetail.cpp.s
 .PHONY : recast/RecastMeshDetail.cpp.s
 
 recast/RecastRasterization.o: recast/RecastRasterization.cpp.o
@@ -670,7 +670,7 @@ recast/RecastRasterization.o: recast/RecastRasterization.cpp.o
 
 # target to build an object file
 recast/RecastRasterization.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.o
 .PHONY : recast/RecastRasterization.cpp.o
 
 recast/RecastRasterization.i: recast/RecastRasterization.cpp.i
@@ -678,7 +678,7 @@ recast/RecastRasterization.i: recast/RecastRasterization.cpp.i
 
 # target to preprocess a source file
 recast/RecastRasterization.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.i
 .PHONY : recast/RecastRasterization.cpp.i
 
 recast/RecastRasterization.s: recast/RecastRasterization.cpp.s
@@ -686,7 +686,7 @@ recast/RecastRasterization.s: recast/RecastRasterization.cpp.s
 
 # target to generate assembly for a file
 recast/RecastRasterization.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRasterization.cpp.s
 .PHONY : recast/RecastRasterization.cpp.s
 
 recast/RecastRegion.o: recast/RecastRegion.cpp.o
@@ -694,7 +694,7 @@ recast/RecastRegion.o: recast/RecastRegion.cpp.o
 
 # target to build an object file
 recast/RecastRegion.cpp.o:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.o
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.o
 .PHONY : recast/RecastRegion.cpp.o
 
 recast/RecastRegion.i: recast/RecastRegion.cpp.i
@@ -702,7 +702,7 @@ recast/RecastRegion.i: recast/RecastRegion.cpp.i
 
 # target to preprocess a source file
 recast/RecastRegion.cpp.i:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.i
 .PHONY : recast/RecastRegion.cpp.i
 
 recast/RecastRegion.s: recast/RecastRegion.cpp.s
@@ -710,7 +710,7 @@ recast/RecastRegion.s: recast/RecastRegion.cpp.s
 
 # target to generate assembly for a file
 recast/RecastRegion.cpp.s:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/recast/RecastRegion.cpp.s
 .PHONY : recast/RecastRegion.cpp.s
 
 # Help Target
@@ -804,6 +804,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

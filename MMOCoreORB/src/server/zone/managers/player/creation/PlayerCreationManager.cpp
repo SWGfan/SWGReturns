@@ -363,10 +363,10 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			dynamic_cast<PlayerCreatureTemplate*>(templateManager->getTemplate(
 					serverObjectCRC));
 
-	if (playerTemplate == nullptr) {
+	/*if (playerTemplate == nullptr) {
 		error("Unknown player template selected: " + raceFile);
 		return false;
-	}
+	}*/
 
 	String fileName = playerTemplate->getTemplateFileName();
 	String clientTemplate = templateManager->getTemplateFile(
@@ -380,8 +380,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	String profession, customization, hairTemplate, hairCustomization;
 	callback->getSkill(profession);
 
-	if (profession.contains("jedi"))
-		profession = "crafting_artisan";
+	//if (profession.contains("jedi"))
+	//	profession = "crafting_artisan";
 
 	callback->getCustomizationString(customization);
 	callback->getHairObject(hairTemplate);
@@ -401,10 +401,10 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			zoneServer.get()->createObject(
 					serverObjectCRC, 2).castTo<CreatureObject*>();
 
-	if (playerCreature == nullptr) {
+	/*if (playerCreature == nullptr) {
 		error("Could not create player with template: " + raceFile);
 		return false;
-	}
+	}*/
 
 	Locker playerLocker(playerCreature);
 
@@ -489,7 +489,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 							Time timeVal(sec);
 
-							if (timeVal.miliDifference() < 3600000) {
+							if (timeVal.miliDifference() < 0000000) {
 								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
@@ -506,7 +506,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 					if (lastCreatedCharacter.containsKey(accID)) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
-						if (lastCreatedTime.miliDifference() < 3600000) {
+						if (lastCreatedTime.miliDifference() < 0000000) {
 							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
@@ -654,13 +654,8 @@ void PlayerCreationManager::addStartingItems(CreatureObject* creature,
 		const String& clientTemplate, bool equipmentOnly) const {
 	const SortedVector < String >* items = nullptr;
 
-	if (!defaultCharacterEquipment.contains(clientTemplate)) {
-		// Custom species not in default_pc_equipment.iff - fall back to human_male starting gear
-		if (defaultCharacterEquipment.contains("object/creature/player/shared_human_male.iff"))
-			items = &defaultCharacterEquipment.get("object/creature/player/shared_human_male.iff");
-		else
-			items = &defaultCharacterEquipment.get(0);
-	}
+	if (!defaultCharacterEquipment.contains(clientTemplate))
+		items = &defaultCharacterEquipment.get(0);
 	else
 		items = &defaultCharacterEquipment.get(clientTemplate);
 
@@ -801,10 +796,10 @@ void PlayerCreationManager::addHair(CreatureObject* creature,
 	HairAssetData* hairAssetData =
 			CustomizationIdManager::instance()->getHairAssetData(hairTemplate);
 
-	if (hairAssetData == nullptr) {
+	/*if (hairAssetData == nullptr) {
 		error("no hair asset data detected for " + hairTemplate);
 		return;
-	}
+	}*/
 
 	if (hairAssetData->getServerPlayerTemplate()
 			!= creature->getObjectTemplate()->getFullTemplateString()) {

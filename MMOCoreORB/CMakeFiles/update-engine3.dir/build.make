@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Utility rule file for update-engine3.
 
@@ -67,7 +67,7 @@ include CMakeFiles/update-engine3.dir/compiler_depend.make
 include CMakeFiles/update-engine3.dir/progress.make
 
 CMakeFiles/update-engine3:
-	/usr/bin/git submodule update --recursive --remote
+	cd /home/ubuntu/SWGReturns01/MMOCoreORB && /usr/bin/git submodule update --recursive --remote
 
 CMakeFiles/update-engine3.dir/codegen:
 .PHONY : CMakeFiles/update-engine3.dir/codegen
@@ -85,6 +85,6 @@ CMakeFiles/update-engine3.dir/clean:
 .PHONY : CMakeFiles/update-engine3.dir/clean
 
 CMakeFiles/update-engine3.dir/depend:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles/update-engine3.dir/DependInfo.cmake "--color=$(COLOR)" update-engine3
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles/update-engine3.dir/DependInfo.cmake "--color=$(COLOR)" update-engine3
 .PHONY : CMakeFiles/update-engine3.dir/depend
 

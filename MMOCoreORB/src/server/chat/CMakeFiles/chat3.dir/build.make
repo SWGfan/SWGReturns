@@ -56,7 +56,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ubuntu/SWGReturns01/MMOCoreORB
+CMAKE_BINARY_DIR = /home/ubuntu/StarDust-2/MMOCoreORB
 
 # Include any dependencies generated for this target.
 include src/server/chat/CMakeFiles/chat3.dir/depend.make
@@ -73,102 +73,102 @@ src/server/chat/CMakeFiles/chat3.dir/codegen:
 .PHONY : src/server/chat/CMakeFiles/chat3.dir/codegen
 
 src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server/chat/ChatManagerImplementation.cpp
+src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp
 src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o -MF CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o.d -o CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o -MF CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o.d -o CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp > CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp > CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp -o CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatManagerImplementation.cpp -o CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/ChatParameter.cpp
+src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp
 src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o -MF CMakeFiles/chat3.dir/ChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/ChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.o -MF CMakeFiles/chat3.dir/ChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/ChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/ChatParameter.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp > CMakeFiles/chat3.dir/ChatParameter.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp > CMakeFiles/chat3.dir/ChatParameter.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/ChatParameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/ChatParameter.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp -o CMakeFiles/chat3.dir/ChatParameter.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.cpp -o CMakeFiles/chat3.dir/ChatParameter.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/chat/LuaStringIdChatParameter.cpp
+src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp
 src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o -MF CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o -MF CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp > CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp > CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp -o CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/LuaStringIdChatParameter.cpp -o CMakeFiles/chat3.dir/LuaStringIdChatParameter.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/server/chat/PersistentMessageImplementation.cpp
+src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp
 src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o -MF CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o.d -o CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o -MF CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o.d -o CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp > CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp > CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp -o CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/PersistentMessageImplementation.cpp -o CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/chat/StringIdChatParameter.cpp
+src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp
 src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o -MF CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o -MF CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/StringIdChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/StringIdChatParameter.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp > CMakeFiles/chat3.dir/StringIdChatParameter.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp > CMakeFiles/chat3.dir/StringIdChatParameter.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/StringIdChatParameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/StringIdChatParameter.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp -o CMakeFiles/chat3.dir/StringIdChatParameter.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.cpp -o CMakeFiles/chat3.dir/StringIdChatParameter.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/chat/WaypointChatParameter.cpp
+src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp
 src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o -MF CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o -MF CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o.d -o CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/WaypointChatParameter.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp > CMakeFiles/chat3.dir/WaypointChatParameter.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp > CMakeFiles/chat3.dir/WaypointChatParameter.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/WaypointChatParameter.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp -o CMakeFiles/chat3.dir/WaypointChatParameter.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/WaypointChatParameter.cpp -o CMakeFiles/chat3.dir/WaypointChatParameter.cpp.s
 
 src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/flags.make
-src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/server/chat/room/ChatRoomImplementation.cpp
+src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp
 src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/server/chat/CMakeFiles/chat3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o -MF CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o.d -o CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o -MF CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o.d -o CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp
 
 src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp > CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.i
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp > CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.i
 
 src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp -o CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.s
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/room/ChatRoomImplementation.cpp -o CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.s
 
 # Object files for target chat3
 chat3_OBJECTS = \
@@ -192,19 +192,19 @@ src/server/chat/libchat3.a: src/server/chat/CMakeFiles/chat3.dir/WaypointChatPar
 src/server/chat/libchat3.a: src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o
 src/server/chat/libchat3.a: src/server/chat/CMakeFiles/chat3.dir/build.make
 src/server/chat/libchat3.a: src/server/chat/CMakeFiles/chat3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libchat3.a"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -P CMakeFiles/chat3.dir/cmake_clean_target.cmake
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chat3.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/StarDust-2/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libchat3.a"
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -P CMakeFiles/chat3.dir/cmake_clean_target.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chat3.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/server/chat/CMakeFiles/chat3.dir/build: src/server/chat/libchat3.a
 .PHONY : src/server/chat/CMakeFiles/chat3.dir/build
 
 src/server/chat/CMakeFiles/chat3.dir/clean:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -P CMakeFiles/chat3.dir/cmake_clean.cmake
+	cd /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat && $(CMAKE_COMMAND) -P CMakeFiles/chat3.dir/cmake_clean.cmake
 .PHONY : src/server/chat/CMakeFiles/chat3.dir/clean
 
 src/server/chat/CMakeFiles/chat3.dir/depend:
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/CMakeFiles/chat3.dir/DependInfo.cmake "--color=$(COLOR)" chat3
+	cd /home/ubuntu/StarDust-2/MMOCoreORB && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/SWGReturns01/MMOCoreORB /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat /home/ubuntu/StarDust-2/MMOCoreORB /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat /home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat/CMakeFiles/chat3.dir/DependInfo.cmake "--color=$(COLOR)" chat3
 .PHONY : src/server/chat/CMakeFiles/chat3.dir/depend
 

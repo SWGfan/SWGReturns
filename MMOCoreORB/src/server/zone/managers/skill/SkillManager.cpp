@@ -334,7 +334,7 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);
@@ -372,6 +372,12 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 					group->removeGroupModifiers();
 					group->addGroupModifiers();
 				}, "UpdateGroupModsLambda");
+			}
+		} else if (skill->getSkillName().contains("combat_bountyhunter_novice") || skill->getSkillName().contains("combat_meleebountyhunter_novice")) {
+			// Grant BH visibility when training first box
+			if (ghost->getVisibility() < 2500) {
+				ghost->setVisibility(2500);
+				VisibilityManager::instance()->addToVisibilityList(creature);
 			}
 		}
 	}
@@ -508,7 +514,7 @@ bool SkillManager::surrenderSkill(const String& skillName, CreatureObject* creat
 
 		const SkillList* list = creature->getSkillList();
 
-		int totalSkillPointsWasted = 500;
+		int totalSkillPointsWasted = 250;
 
 		for (int i = 0; i < list->size(); ++i) {
 			Skill* skill = list->get(i);

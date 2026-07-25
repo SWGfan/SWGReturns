@@ -103,7 +103,7 @@ public:
 		}
 
 		// Increase Visibility for Force Power.
-		if (ghost != nullptr)
+		if (ghost != nullptr && ghost->getFrsData()->getRank() > 0)
 			VisibilityManager::instance()->increaseVisibility(creature, visMod);
 
 		return SUCCESS;

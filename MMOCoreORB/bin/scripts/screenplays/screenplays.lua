@@ -73,6 +73,11 @@ includeFile("gcw/recruiters/recruiterConvoHandler.lua")
 includeFile("gcw/recruiters/recruiterScreenplay.lua")
 includeFile("crackdown/cantina.lua")
 
+-- Custom GCW redesign (rewritten to use available Core3 APIs)
+includeFile("gcw/gcw_main_manager.lua")
+includeFile("gcw/base_connection_manager.lua")
+includeFile("gcw/atat_walker_manager.lua")
+
 -- Quest Tasks
 includeFile("quest_tasks/task.lua")
 includeFile("quest_tasks/persistent_event.lua")
