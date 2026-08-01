@@ -19,7 +19,7 @@ core3client: \
   CMakeFiles/core3client.dir/zone/objects/scene/SceneObject.cpp.o \
   CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o \
   CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o \
-  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a \
+  ../../utils/engine3/MMOEngine/lib/unix/libengine3.a \
   /usr/lib/x86_64-linux-gnu/libz.so \
   /usr/lib/x86_64-linux-gnu/libatomic.so.1 \
   /usr/lib/x86_64-linux-gnu/libmysqlclient.so \
@@ -102,7 +102,7 @@ CMakeFiles/core3client.dir/zone/objects/scene/variables/StringId.cpp.o:
 
 CMakeFiles/core3client.dir/zone/objects/tangible/TangibleObject.cpp.o:
 
-/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a:
+../../utils/engine3/MMOEngine/lib/unix/libengine3.a:
 
 /usr/lib/x86_64-linux-gnu/libz.so:
 

@@ -27,6 +27,12 @@ public:
 			StringBuffer cond;
 			cond << maxCondition << "/" << maxCondition;
 
+			auto config = ConfigManager::instance();
+
+			if (robe->isForceNoTrade()) {
+				cond << config->getForceNoTradeMessage();
+			}
+
 			alm->insertAttribute("condition", cond);
 		}
 
@@ -53,62 +59,6 @@ public:
 			int mod = skills->get("jedi_force_power_max");
 			alm->insertAttribute("jedi_robe_power", "+" + String::valueOf(mod));
 		}
-
-		if (skills->contains("lightsaber_toughness")) {
-					int mod = skills->get("lightsaber_toughness");
-					alm->insertAttribute("lightsaber_toughness", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("forcelightning_accuracy")) {
-					int mod = skills->get("forcelightning_accuracy");
-					alm->insertAttribute("forcelightning_accuracy", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("forceintimidate_accuracy")) {
-					int mod = skills->get("forceintimidate_accuracy");
-					alm->insertAttribute("forceintimidate_accuracy", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_power_light")) {
-					int mod = skills->get("force_power_light");
-					alm->insertAttribute("force_power_light", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_power_dark")) {
-					int mod = skills->get("force_power_dark");
-					alm->insertAttribute("force_power_dark", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_control_light")) {
-					int mod = skills->get("force_control_light");
-					alm->insertAttribute("force_control_light", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_control_dark")) {
-					int mod = skills->get("force_control_dark");
-					alm->insertAttribute("force_control_dark", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_manipulation_light")) {
-					int mod = skills->get("force_manipulation_light");
-					alm->insertAttribute("force_manipulation_light", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("force_manipulation_dark")) {
-					int mod = skills->get("force_manipulation_dark");
-					alm->insertAttribute("force_manipulation_dark", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("melee_defense")) {
-					int mod = skills->get("melee_defense");
-					alm->insertAttribute("melee_defense", "+" + String::valueOf(mod));
-				}
-
-				if (skills->contains("ranged_defense")) {
-					int mod = skills->get("ranged_defense");
-					alm->insertAttribute("ranged_defense", "+" + String::valueOf(mod));
-				}
-
 	}
 };
 

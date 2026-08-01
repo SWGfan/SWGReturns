@@ -29,6 +29,8 @@ class RingAreaShape extends AreaShape {
 		outerRadius = 0;
 		innerRadius2 = 0;
 		outerRadius2 = 0;
+
+		Logger.setLoggingName("RingAreaShape");
 	}
 
 	/**

@@ -10,13 +10,13 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 
-#include "server/zone/QuadTreeEntry.h"
+#include "server/zone/TreeEntry.h"
 
 /*
  *	LairObjectStub
  */
 
-enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 764880985,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_NOTIFYINSERT__QUADTREEENTRY_,RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISLAIROBJECT__};
+enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 764880985,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_NOTIFYINSERT__TREEENTRY_,RPC_NOTIFYDISSAPEAR__TREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISLAIROBJECT__};
 
 LairObject::LairObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	LairObjectImplementation* _implementation = new LairObjectImplementation();
@@ -78,13 +78,13 @@ void LairObject::setDespawnOnNoPlayersInRange(bool b) {
 	}
 }
 
-void LairObject::notifyInsert(QuadTreeEntry* entry) {
+void LairObject::notifyInsert(TreeEntry* entry) {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYINSERT__QUADTREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYINSERT__TREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -93,13 +93,13 @@ void LairObject::notifyInsert(QuadTreeEntry* entry) {
 	}
 }
 
-void LairObject::notifyDissapear(QuadTreeEntry* entry) {
+void LairObject::notifyDissapear(TreeEntry* entry) {
 	LairObjectImplementation* _implementation = static_cast<LairObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__TREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -332,7 +332,7 @@ void LairObjectImplementation::setDespawnOnNoPlayersInRange(bool b) {
 	despawnOnNoPlayersInRange = b;
 }
 
-void LairObjectImplementation::notifyInsert(QuadTreeEntry* entry) {
+void LairObjectImplementation::notifyInsert(TreeEntry* entry) {
 	// server/zone/objects/tangible/LairObject.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/tangible/LairObject.idl():  		if 
@@ -352,7 +352,7 @@ void LairObjectImplementation::notifyInsert(QuadTreeEntry* entry) {
 }
 }
 
-void LairObjectImplementation::notifyDissapear(QuadTreeEntry* entry) {
+void LairObjectImplementation::notifyDissapear(TreeEntry* entry) {
 	// server/zone/objects/tangible/LairObject.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/tangible/LairObject.idl():  		if 
@@ -436,17 +436,17 @@ void LairObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_NOTIFYINSERT__QUADTREEENTRY_:
+	case RPC_NOTIFYINSERT__TREEENTRY_:
 		{
-			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
+			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
 			
 			notifyInsert(entry);
 			
 		}
 		break;
-	case RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_:
+	case RPC_NOTIFYDISSAPEAR__TREEENTRY_:
 		{
-			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
+			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
 			
 			notifyDissapear(entry);
 			
@@ -490,11 +490,11 @@ void LairObjectAdapter::setDespawnOnNoPlayersInRange(bool b) {
 	(static_cast<LairObject*>(stub))->setDespawnOnNoPlayersInRange(b);
 }
 
-void LairObjectAdapter::notifyInsert(QuadTreeEntry* entry) {
+void LairObjectAdapter::notifyInsert(TreeEntry* entry) {
 	(static_cast<LairObject*>(stub))->notifyInsert(entry);
 }
 
-void LairObjectAdapter::notifyDissapear(QuadTreeEntry* entry) {
+void LairObjectAdapter::notifyDissapear(TreeEntry* entry) {
 	(static_cast<LairObject*>(stub))->notifyDissapear(entry);
 }
 

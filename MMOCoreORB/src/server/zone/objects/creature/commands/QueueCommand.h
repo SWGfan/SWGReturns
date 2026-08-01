@@ -50,6 +50,7 @@ protected:
 public:
 	QueueCommand(const String& skillname, ZoneProcessServer* serv);
 
+	const static int NOCOMBATQUEUE = -1;
 	const static int IMMEDIATE = 0;
 	const static int FRONT = 1;
 	const static int NORMAL = 2;
@@ -342,5 +343,4 @@ public:
 using namespace server::zone::objects::creature::commands;
 
 #endif //SLASHCOMMAND_H_
-
 

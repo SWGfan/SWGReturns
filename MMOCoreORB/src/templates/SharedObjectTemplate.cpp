@@ -45,6 +45,7 @@ SharedObjectTemplate::SharedObjectTemplate() : Logger("SharedObjectTemplate") {
 	inheritPermissionsFromParent = false;
 
 	noTrade = false;
+	forceNoTrade = false;
 	delayedContainerLoad = false;
 }
 
@@ -138,7 +139,7 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 	} else if (varName == "planetMapCategory") {
 		planetMapCategory = templateManager->getPlanetMapCategoryByName(Lua::getStringParameter(state));
 	} else if (varName == "planetMapSubCategory") {
-		planetMapSubCategory = templateManager->getPlanetMapCategoryByName(Lua::getStringParameter(state));
+		planetMapSubCategory = templateManager->getPlanetMapSubCategoryByName(Lua::getStringParameter(state));
 	} else if (varName == "autoRegisterWithPlanetMap") {
 		autoRegisterWithPlanetMap = (bool) Lua::getByteParameter(state);
 	} else if (varName == "childObjects") {
@@ -161,8 +162,10 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 		}
 
 		luaItemList.pop();
-	} else if (varName == "zoneComponent") {
-		zoneComponent = Lua::getStringParameter(state);
+	} else if (varName == "groundZoneComponent") {
+		groundZoneComponent = Lua::getStringParameter(state);
+	} else if (varName == "spaceZoneComponent") {
+		spaceZoneComponent = Lua::getStringParameter(state);
 	} else if (varName == "objectMenuComponent") {
 		objectMenuComponent = Lua::getStringParameter(state);
 	} else if (varName == "attributeListComponent") {
@@ -179,6 +182,8 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 		inheritPermissionsFromParent = Lua::getBooleanParameter(state);
 	} else if (varName == "noTrade") {
 		noTrade = (bool) Lua::getByteParameter(state);
+	} else if (varName == "forceNoTrade") {
+		forceNoTrade = (bool) Lua::getByteParameter(state);
 	} else if (varName == "groupPermissions") {
 		groupPermissions.removeAll();
 

@@ -58,6 +58,8 @@ function KnightTrials:startNextKnightTrial(pPlayer)
 		currentTrial = #knightTrialQuests
 	end
 
+	JediTrials:setCurrentTrial(pPlayer, currentTrial)
+
 	local shrinePrompt = ""
 
 	local trialData = knightTrialQuests[currentTrial]
@@ -441,6 +443,8 @@ function KnightTrials:onPlayerLoggedIn(pPlayer)
 		local trialNumber = JediTrials:getCurrentTrial(pPlayer)
 
 		if (trialNumber <= 0) then
+			-- Self-heal characters left with an unset current trial (e.g. by a prior bug).
+			self:startNextKnightTrial(pPlayer)
 			return
 		end
 

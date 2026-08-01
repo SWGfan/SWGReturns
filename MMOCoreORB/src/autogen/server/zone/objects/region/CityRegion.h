@@ -168,7 +168,11 @@ public:
 
 	void notifyExit(SceneObject* object);
 
+	Region* createNewRegion(float x, float y, float radius, bool persistent);
+
 	Region* addRegion(float x, float y, float radius, bool persistent);
+
+	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -229,6 +233,8 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
+
+	String getCityRegionName();
 
 	String getRegionName();
 
@@ -596,7 +602,11 @@ public:
 
 	void notifyExit(SceneObject* object);
 
+	Region* createNewRegion(float x, float y, float radius, bool persistent);
+
 	Region* addRegion(float x, float y, float radius, bool persistent);
+
+	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -657,6 +667,8 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
+
+	String getCityRegionName();
 
 	String getRegionName();
 
@@ -931,7 +943,11 @@ public:
 
 	void notifyExit(SceneObject* object);
 
+	Region* createNewRegion(float x, float y, float radius, bool persistent);
+
 	Region* addRegion(float x, float y, float radius, bool persistent);
+
+	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -984,6 +1000,8 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
+
+	String getCityRegionName();
 
 	String getRegionName();
 

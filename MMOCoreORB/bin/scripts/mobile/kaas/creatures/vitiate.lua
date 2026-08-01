@@ -27,8 +27,8 @@ vitiate = Creature:new {
 	diet = HERBIVORE,
 	scale = 1.2,
 
-	-- Use proper NPC model instead of hologram (fixes black HAM bars)
-	templates = {"object/mobile/mara_jade.iff"},
+	-- Use dark jedi male model (mara_jade was female, caused black HAM bars)
+	templates = {"object/mobile/dressed_dark_jedi_human_male_01.iff"},
 	
 	lootGroups = {
 		{

@@ -235,6 +235,8 @@ public:
 
 	void loadFrsData();
 
+	void stop();
+
 	void setupEnclaves();
 
 	void setupEnclaveRooms(BuildingObject* enclaveBuilding, const String& groupName);
@@ -563,6 +565,8 @@ public:
 
 	void loadFrsData();
 
+	void stop();
+
 	void setupEnclaves();
 
 	void setupEnclaveRooms(BuildingObject* enclaveBuilding, const String& groupName);
@@ -791,6 +795,8 @@ public:
 	void loadLuaConfig();
 
 	void loadFrsData();
+
+	void stop();
 
 	void setupEnclaves();
 

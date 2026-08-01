@@ -177,30 +177,20 @@ void VehicleObjectImplementation::repairVehicle(CreatureObject* player) {
 
 			ManagedReference<CityRegion*> gb = region->getCityRegion().get();
 
-			if (gb == nullptr)
-				return;
-
-			if (gb->isBanned(player->getObjectID()))  {
+			if (gb != nullptr && gb->isBanned(player->getObjectID()))  {
 				player->sendSystemMessage("@city/city:garage_banned"); //You are city banned and cannot use this garage.
 				return;
 			}
-
+		}
 
 		if (getConditionDamage() == 0) {
 			player->sendSystemMessage("@pet/pet_menu:undamaged_vehicle"); //The targeted vehicle does not require any repairs at the moment.
 			return;
 		}
 
-
-		if (isDisabled()) {
-			//player->sendSystemMessage("@pet/pet_menu:cannot_repair_disabled"); //You may not repair a disabled vehicle.
-			sendRepairConfirmTo(player);
-		}
-
 		if (!checkInRangeGarage()) {
 			player->sendSystemMessage("@pet/pet_menu:repair_unrecognized_garages"); //Your vehicle does not recognize any local garages. Try again in a garage repair zone.
 			return;
-			}
 		}
 	}
 	sendRepairConfirmTo(player);

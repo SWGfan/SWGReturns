@@ -45,11 +45,11 @@ namespace server {
 namespace zone {
 
 class QuadTree;
-class QuadTreeEntry;
+class TreeEntry;
 class QuadTreeEntryImplementation;
 
 class QuadTreeNode: public Object {
-	SortedVector<Reference<QuadTreeEntry*> > objects;
+	SortedVector<Reference<TreeEntry*> > objects;
 
 	WeakReference<QuadTreeNode*> parentNode;
 	Reference<QuadTreeNode*> nwNode;
@@ -82,14 +82,14 @@ public:
 	}
 
 	// Add a object to this node
-	void addObject(QuadTreeEntry *obj);
+	void addObject(TreeEntry *obj);
 
-	QuadTreeEntry* getObject(int index) {
+	TreeEntry* getObject(int index) {
 		return objects.get(index);
 	}
 
 	// Remove a object by GUID
-	void removeObject(QuadTreeEntry *obj);
+	void removeObject(TreeEntry *obj);
 
 	void removeObject(int index);
 
@@ -124,7 +124,7 @@ public:
 	}
 
 	// Test if the object is inside this node
-	bool testInside(QuadTreeEntry* obj) const;
+	bool testInside(TreeEntry* obj) const;
 
 	String toStringData() const;
 

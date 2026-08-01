@@ -62,7 +62,7 @@ globalExpMultiplier = 8.0
 --Sets the base number of control devices of each type that a player can have in their datapad at once
 --For creature pets, A Creature Handler will have the base number + their stored pets skill mod as limit
 baseStoredCreaturePets = 2
-baseStoredFactionPets = 3
+baseStoredFactionPets = 999
 baseStoredDroids = 5
 baseStoredVehicles = 10
 baseStoredShips = 3
@@ -70,11 +70,14 @@ baseStoredShips = 3
 -----------------------------------
 --VETERAN REWARDS CONFIG
 -----------------------------------
-veteranRewardMilestones = {90, 180, 270, 360, 450, 540, 630, 720, 810, 900, 990, 1080} --days, must be sorted low to high
+veteranRewardMilestones = {0, 90, 180, 270, 360, 450, 540, 630, 720, 810, 900, 990, 1080} --days, must be sorted low to high
 
 veteranRewardAdditionalMilestones = 360 --frequency, in days, of additional milestones (beyond the established ones)
 
 veteranRewards = {
+
+		-- Instant Reward (all new and existing accounts, no account age required)
+		{templateFile = "object/tangible/space/veteran_reward/sorosuub_space_yacht_deed.iff", milestone=0, oneTime=true, description="Sorosuub Luxury Yacht"},
 
 		-- 90 Day Rewards
 		{templateFile = "object/tangible/veteran_reward/harvester.iff", milestone=90, oneTime=true, description="@veteran_new:poweredharvester"},

@@ -1754,6 +1754,9 @@ void CityManagerImplementation::registerCity(CityRegion* city, CreatureObject* m
 
 	city->setRegistered(true);
 
+	if (city->getRegionsCount() == 0)
+		return;
+
 	ManagedReference<Region*> aa = city->getRegion(0);
 	aa->setPlanetMapCategory(cityCat);
 	aa->getZone()->getPlanetManager()->addRegion(city);

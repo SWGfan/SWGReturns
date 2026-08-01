@@ -313,7 +313,7 @@ void CreatureObjectImplementation::sendToOwner(bool doClose) {
 
 	fatal(vec != nullptr) << "close objects vector in creo::sendToOwner null";
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	vec->safeCopyTo(closeObjects);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -826,7 +826,7 @@ bool CreatureObjectImplementation::setState(uint64 state, bool notifyClient) {
 				setPosture(CreaturePosture::SITTING, false);
 
 				if (thisZone != nullptr) {
-					SortedVector<QuadTreeEntry*> closeSceneObjects;
+					SortedVector<TreeEntry*> closeSceneObjects;
 					int maxInRangeObjects = 0;
 
 					if (closeobjects == nullptr) {
@@ -1022,6 +1022,21 @@ bool CreatureObjectImplementation::clearState(uint64 state, bool notifyClient) {
 		return true;
 	} else {
 		return false;
+	}
+}
+
+void CreatureObjectImplementation::clearSpaceStates() {
+	const uint64 spaceStates[] = {
+		CreatureState::PILOTINGSHIP,
+		CreatureState::SHIPOPERATIONS,
+		CreatureState::SHIPGUNNER,
+		CreatureState::SHIPINTERIOR,
+		CreatureState::PILOTINGPOBSHIP
+	};
+
+	for (uint64 state : spaceStates) {
+		if (hasState(state))
+			clearState(state);
 	}
 }
 
@@ -1918,21 +1933,27 @@ void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC, unsign
 
 				return;
 			} else {
-				objectController->activateCommand(creo, actionCRC, actionCount, targetID, arguments);
+				try {
+					objectController->activateCommand(creo, actionCRC, actionCount, targetID, arguments);
+				} catch (const Exception& e) {
+					error() << "Unhandled Exception in enqueueCommand() -- Command CRC: " << actionCRC << " Issue: " << e.getMessage();
+					e.printStackTrace();
+				} catch (...) {
+					error() << "Unreported exception caught in enqueueCommand() -- Command CRC: " << actionCRC;
+				}
 				return;
 			}
 		} else {
-			objectController->activateCommand(creo, actionCRC, actionCount, targetID, arguments);
+			try {
+				objectController->activateCommand(creo, actionCRC, actionCount, targetID, arguments);
+			} catch (const Exception& e) {
+				error() << "Unhandled Exception in enqueueCommand() -- Command CRC: " << actionCRC << " Issue: " << e.getMessage();
+				e.printStackTrace();
+			} catch (...) {
+				error() << "Unreported exception caught in enqueueCommand() -- Command CRC: " << actionCRC;
+			}
 			return;
 		}
-	}
-
-	if (commandQueue->size() > 9 && priority != QueueCommand::FRONT) {
-		clearQueueAction(actionCount);
-		sendSystemMessage("You can not activate another combat ability while one is in progress!");
-		playMusicMessage("sound/ui_negative.snd");
-
-		return;
 	}
 
 	action = new CommandQueueAction(asCreatureObject(), targetID, actionCRC, actionCount, arguments);
@@ -1991,9 +2012,17 @@ void CreatureObjectImplementation::activateImmediateAction() {
 	Reference<CommandQueueAction*> action = immediateQueue->get(0);
 	ManagedReference<ObjectController*> objectController = getZoneServer()->getObjectController();
 
-	objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	try {
+		objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	} catch (const Exception& e) {
+		error() << "Unhandled Exception in activateImmediateAction() -- Command: " << action->getCommand() << " Issue: " << e.getMessage();
+		e.printStackTrace();
+	} catch (...) {
+		error() << "Unreported exception caught in activateImmediateAction() -- Command: " << action->getCommand();
+	}
 
 	// Remove element from queue after it has been executed in order to ensure that other commands are enqueued and not activated at immediately.
+	// This must happen even if activateCommand() threw, otherwise the same broken action would be retried forever.
 	immediateQueue->remove(0);
 
 	if (immediateQueue->size() > 0) {
@@ -2022,7 +2051,16 @@ void CreatureObjectImplementation::activateQueueAction() {
 	nextAction.updateToCurrentTime();
 	nextAction.addMiliTime(100);
 
-	float time = objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	float time = 0.f;
+
+	try {
+		time = objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	} catch (const Exception& e) {
+		error() << "Unhandled Exception in activateQueueAction() -- Command: " << action->getCommand() << " Issue: " << e.getMessage();
+		e.printStackTrace();
+	} catch (...) {
+		error() << "Unreported exception caught in activateQueueAction() -- Command: " << action->getCommand();
+	}
 
 	if (time > 0) {
 		nextAction.addMiliTime((uint32)(time * 1000));
@@ -2078,7 +2116,16 @@ void CreatureObjectImplementation::removeAttackDelay() {
 	Reference<ObjectController*> objectController = getZoneServer()->getObjectController();
 	Reference<CommandQueueAction*> action = commandQueue->get(0);
 
-	float time = objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	float time = 0.f;
+
+	try {
+		time = objectController->activateCommand(creo, action->getCommand(), action->getActionCounter(), action->getTarget(), action->getArguments());
+	} catch (const Exception& e) {
+		error() << "Unhandled Exception in removeAttackDelay() -- Command: " << action->getCommand() << " Issue: " << e.getMessage();
+		e.printStackTrace();
+	} catch (...) {
+		error() << "Unreported exception caught in removeAttackDelay() -- Command: " << action->getCommand();
+	}
 
 	if (creo->hasPostureChangeDelay()) {
 		const Time* postureDelay = creo->getCooldownTime("postureChangeDelay");
@@ -2251,6 +2298,11 @@ void CreatureObjectImplementation::notifyLoadFromDatabase() {
 
 		skillManager->awardDraftSchematics(skill, ghost, false);
 
+		//Catch up existing Jedi Master / Dark Jedi Master characters with Force Run 2.
+		if (skill->getSkillName() == "force_rank_light_master" || skill->getSkillName() == "force_rank_dark_master") {
+			skillManager->addAbility(ghost, "forceRun2", false);
+		}
+
 		totalSkillPointsWasted -= skill->getSkillPointsRequired();
 	}
 
@@ -2268,7 +2320,7 @@ void CreatureObjectImplementation::notifyLoadFromDatabase() {
 		ghost->setLinkDead();
 }
 
-void CreatureObjectImplementation::notifyInsert(QuadTreeEntry* obj) {
+void CreatureObjectImplementation::notifyInsert(TreeEntry* obj) {
 	auto linkedCreature = getLinkedCreature().get();
 
 	if (linkedCreature != nullptr && linkedCreature->getParent() == asCreatureObject()) {
@@ -2286,7 +2338,7 @@ void CreatureObjectImplementation::notifyInsert(QuadTreeEntry* obj) {
 	TangibleObjectImplementation::notifyInsert(obj);
 }
 
-void CreatureObjectImplementation::notifyDissapear(QuadTreeEntry* obj) {
+void CreatureObjectImplementation::notifyDissapear(TreeEntry* obj) {
 	auto linkedCreature = getLinkedCreature().get();
 
 	if (linkedCreature != nullptr && linkedCreature->getParent() == asCreatureObject()) {
@@ -2303,7 +2355,7 @@ void CreatureObjectImplementation::notifyDissapear(QuadTreeEntry* obj) {
 	TangibleObjectImplementation::notifyDissapear(obj);
 }
 
-void CreatureObjectImplementation::notifyPositionUpdate(QuadTreeEntry* entry) {
+void CreatureObjectImplementation::notifyPositionUpdate(TreeEntry* entry) {
 	auto linkedCreature = getLinkedCreature().get();
 
 	if (linkedCreature != nullptr && linkedCreature->getParent() == asCreatureObject()) {
@@ -2356,7 +2408,14 @@ void CreatureObjectImplementation::executeObjectControllerAction(
 	ManagedReference<ObjectController*> objectController =
 			getZoneServer()->getObjectController();
 
-	objectController->activateCommand(asCreatureObject(), actionCRC, 0, 0, "");
+	try {
+		objectController->activateCommand(asCreatureObject(), actionCRC, 0, 0, "");
+	} catch (const Exception& e) {
+		error() << "Unhandled Exception in executeObjectControllerAction() -- Command CRC: " << actionCRC << " Issue: " << e.getMessage();
+		e.printStackTrace();
+	} catch (...) {
+		error() << "Unreported exception caught in executeObjectControllerAction() -- Command CRC: " << actionCRC;
+	}
 }
 
 void CreatureObjectImplementation::executeObjectControllerAction(
@@ -2364,7 +2423,14 @@ void CreatureObjectImplementation::executeObjectControllerAction(
 	ManagedReference<ObjectController*> objectController =
 			getZoneServer()->getObjectController();
 
-	objectController->activateCommand(asCreatureObject(), actionCRC, 0, targetID, args);
+	try {
+		objectController->activateCommand(asCreatureObject(), actionCRC, 0, targetID, args);
+	} catch (const Exception& e) {
+		error() << "Unhandled Exception in executeObjectControllerAction() -- Command CRC: " << actionCRC << " Issue: " << e.getMessage();
+		e.printStackTrace();
+	} catch (...) {
+		error() << "Unreported exception caught in executeObjectControllerAction() -- Command CRC: " << actionCRC;
+	}
 }
 
 void CreatureObjectImplementation::doCombatAnimation(TangibleObject* defender,
@@ -3853,7 +3919,7 @@ void CreatureObjectImplementation::removeOutOfRangeObjects() {
 	if (parent != nullptr && (parent->isVehicleObject() || parent->isMount()))
 		creature = parent;
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	auto closeObjectsVector = creature->getCloseObjects();
 
 	if (closeObjectsVector == nullptr)
@@ -3944,10 +4010,10 @@ void CreatureObjectImplementation::synchronizeCloseObjects() {
 	if (parentCloseObjectsVector == nullptr)
 		return;
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	closeObjectsVector->safeCopyTo(closeObjects);
 
-	SortedVector<QuadTreeEntry*> parentCloseObjects;
+	SortedVector<TreeEntry*> parentCloseObjects;
 	parentCloseObjectsVector->safeCopyTo(parentCloseObjects);
 
 	VectorMap<ManagedReference<SceneObject*>, uint8> diff;

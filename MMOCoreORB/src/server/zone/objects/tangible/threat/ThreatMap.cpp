@@ -12,8 +12,74 @@
 #include "server/zone/objects/tangible/tasks/ClearThreatStateTask.h"
 #include "server/zone/objects/tangible/tasks/RemoveAggroTask.h"
 #include "server/zone/objects/group/GroupObject.h"
+#include "server/zone/objects/ship/ShipObject.h"
 #include "ThreatMapClearObserversTask.h"
 #include "server/zone/Zone.h"
+
+ShipObject* ThreatMap::getHighestDamagePlayerShip() {
+	Locker locker(&lockMutex);
+
+	uint32 highestDamage = 0;
+	ShipObject* highestShip = nullptr;
+
+	for (int i = 0; i < size(); ++i) {
+		ThreatMapEntry* entry = &elementAt(i).getValue();
+		TangibleObject* attacker = elementAt(i).getKey();
+
+		if (entry == nullptr || attacker == nullptr || !attacker->isPlayerShip())
+			continue;
+
+		uint32 damage = entry->getTotalDamage();
+
+		if (damage > highestDamage) {
+			highestDamage = damage;
+			highestShip = attacker->asShipObject();
+		}
+	}
+
+	return highestShip;
+}
+
+ShipObject* ThreatMap::getHighestDamageGroupShip() {
+	Locker locker(&lockMutex);
+
+	VectorMap<uint64, uint32> damageByGroup;
+	VectorMap<uint64, ManagedReference<ShipObject*>> shipByGroup;
+	uint64 highestKey = 0;
+	uint32 highestDamage = 0;
+
+	for (int i = 0; i < size(); ++i) {
+		ThreatMapEntry* entry = &elementAt(i).getValue();
+		TangibleObject* attacker = elementAt(i).getKey();
+
+		if (entry == nullptr || attacker == nullptr || !attacker->isPlayerShip())
+			continue;
+
+		ShipObject* ship = attacker->asShipObject();
+		CreatureObject* pilot = ship != nullptr ? ship->getPilot() : nullptr;
+
+		if (ship == nullptr || pilot == nullptr)
+			continue;
+
+		GroupObject* group = pilot->getGroup();
+		uint64 key = group != nullptr ? group->getObjectID() : ship->getObjectID();
+		uint32 damage = entry->getTotalDamage();
+
+		if (!damageByGroup.contains(key)) {
+			damageByGroup.put(key, damage);
+			shipByGroup.put(key, ship);
+		} else {
+			damageByGroup.get(key) += damage;
+		}
+
+		if (damageByGroup.get(key) > highestDamage) {
+			highestDamage = damageByGroup.get(key);
+			highestKey = key;
+		}
+	}
+
+	return highestKey != 0 && shipByGroup.contains(highestKey) ? shipByGroup.get(highestKey).get() : nullptr;
+}
 
 void ThreatMapEntry::addDamage(WeaponObject* weapon, uint32 damage) {
 	addDamage(weapon->getXpType(), damage);

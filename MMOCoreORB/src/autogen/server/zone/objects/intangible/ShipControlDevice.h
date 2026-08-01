@@ -70,7 +70,41 @@ class SceneObjectPOD;
 
 using namespace server::zone::objects::scene;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+
+class ShipObject;
+
+class ShipObjectPOD;
+
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship;
+
+namespace server {
+namespace zone {
+namespace packets {
+namespace scene {
+
+class AttributeListMessage;
+
+} // namespace scene
+} // namespace packets
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::packets::scene;
+
 #include "server/zone/managers/radial/RadialOptions.h"
+
+#include "engine/util/u3d/Vector3.h"
+
+#include "system/util/Vector.h"
 
 #include "server/zone/objects/intangible/ControlDevice.h"
 
@@ -81,25 +115,59 @@ namespace intangible {
 
 class ShipControlDevice : public ControlDevice {
 public:
+	static const int LANDSHIP = 1;
+
+	static const int LAUNCHSHIP = 128;
+
 	ShipControlDevice();
 
-	void storeObject(CreatureObject* player, bool force = false);
+	ShipObject* launchShip(CreatureObject* player, const String& zoneName, const Vector3& position);
 
 	void generateObject(CreatureObject* player);
 
+	void storeObject(CreatureObject* player, bool force = false);
+
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	/**
-	 * Fills the radial options, needs to be overriden
-	 * @pre { this object is locked }
-	 * @post { this object is locked, menuResponse is complete}
-	 * @param menuResponse ObjectMenuResponse that will be sent to the client
-	 */
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
+
+	void fillAttributeList(AttributeListMessage* alm, CreatureObject* object);
 
 	bool canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade);
 
+	Vector3 getStoredPosition(bool randomPosition = true);
+
+	void setStoredLocationData(CreatureObject* player);
+
+	/**
+	 * Checks if the object can be destroyed
+	 * @pre { this is locked }
+	 * @post { this is locked }
+	 * @returns 0 on success, != 0 on error
+	 */
+	int canBeDestroyed(CreatureObject* player);
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
+
+	bool isShipLaunched();
+
 	bool isShipControlDevice();
+
+	String getParkingLocation();
+
+	String getStoredZoneName();
+
+	int getShipType();
+
+	int getTotalSkillsRequired();
+
+	String getSkillRequired(int index);
+
+	void setShipType(int type);
+
+	void setParkingLocation(const String& cityName);
+
+	void addSkillRequired(String& skill);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -127,29 +195,75 @@ namespace objects {
 namespace intangible {
 
 class ShipControlDeviceImplementation : public ControlDeviceImplementation {
+public:
+	static const int LANDSHIP = 1;
+
+	static const int LAUNCHSHIP = 128;
+
+protected:
+	int shipType;
+
+	String parkingLocation;
+
+	String storedZoneName;
+
+	Vector3 storedPosition;
+
+private:
+	Vector<String> skillsRequired;
 
 public:
 	ShipControlDeviceImplementation();
 
 	ShipControlDeviceImplementation(DummyConstructorParameter* param);
 
-	void storeObject(CreatureObject* player, bool force = false);
+	ShipObject* launchShip(CreatureObject* player, const String& zoneName, const Vector3& position);
 
 	void generateObject(CreatureObject* player);
 
+	void storeObject(CreatureObject* player, bool force = false);
+
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	/**
-	 * Fills the radial options, needs to be overriden
-	 * @pre { this object is locked }
-	 * @post { this object is locked, menuResponse is complete}
-	 * @param menuResponse ObjectMenuResponse that will be sent to the client
-	 */
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
+
+	void fillAttributeList(AttributeListMessage* alm, CreatureObject* object);
 
 	bool canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade);
 
+	Vector3 getStoredPosition(bool randomPosition = true);
+
+	void setStoredLocationData(CreatureObject* player);
+
+	/**
+	 * Checks if the object can be destroyed
+	 * @pre { this is locked }
+	 * @post { this is locked }
+	 * @returns 0 on success, != 0 on error
+	 */
+	int canBeDestroyed(CreatureObject* player);
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
+
+	bool isShipLaunched();
+
 	bool isShipControlDevice();
+
+	String getParkingLocation();
+
+	String getStoredZoneName();
+
+	int getShipType();
+
+	int getTotalSkillsRequired();
+
+	String getSkillRequired(int index);
+
+	void setShipType(int type);
+
+	void setParkingLocation(const String& cityName);
+
+	void addSkillRequired(String& skill);
 
 	WeakReference<ShipControlDevice*> _this;
 
@@ -195,15 +309,39 @@ public:
 
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
-	void storeObject(CreatureObject* player, bool force);
+	ShipObject* launchShip(CreatureObject* player, const String& zoneName, const Vector3& position);
 
 	void generateObject(CreatureObject* player);
+
+	void storeObject(CreatureObject* player, bool force);
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
 	bool canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade);
 
+	void setStoredLocationData(CreatureObject* player);
+
+	int canBeDestroyed(CreatureObject* player);
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects);
+
+	bool isShipLaunched();
+
 	bool isShipControlDevice();
+
+	String getParkingLocation();
+
+	String getStoredZoneName();
+
+	int getShipType();
+
+	int getTotalSkillsRequired();
+
+	String getSkillRequired(int index);
+
+	void setParkingLocation(const String& cityName);
+
+	void addSkillRequired(String& skill);
 
 };
 
@@ -240,7 +378,17 @@ namespace intangible {
 
 class ShipControlDevicePOD : public ControlDevicePOD {
 public:
+	Optional<int> shipType;
 
+	Optional<String> parkingLocation;
+
+	Optional<String> storedZoneName;
+
+	Optional<Vector3> storedPosition;
+
+	Optional<Vector<String>> skillsRequired;
+
+	String _className;
 	ShipControlDevicePOD();
 	virtual void writeJSON(nlohmann::json& j);
 	virtual void readObject(ObjectInputStream* stream);

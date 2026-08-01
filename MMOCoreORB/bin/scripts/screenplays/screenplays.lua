@@ -73,11 +73,6 @@ includeFile("gcw/recruiters/recruiterConvoHandler.lua")
 includeFile("gcw/recruiters/recruiterScreenplay.lua")
 includeFile("crackdown/cantina.lua")
 
--- Custom GCW redesign (rewritten to use available Core3 APIs)
-includeFile("gcw/gcw_main_manager.lua")
-includeFile("gcw/base_connection_manager.lua")
-includeFile("gcw/atat_walker_manager.lua")
-
 -- Quest Tasks
 includeFile("quest_tasks/task.lua")
 includeFile("quest_tasks/persistent_event.lua")
@@ -657,6 +652,7 @@ includeFile("static_spawns/talus_static_spawns_south.lua")
 includeFile("static_spawns/tatooine_static_spawns_north.lua")
 includeFile("static_spawns/tatooine_static_spawns_south.lua")
 includeFile("static_spawns/tatooine_welcome_vader.lua")
+includeFile("static_spawns/dd_drop_offs.lua")
 
 --Yavin4
 includeFile("static_spawns/yavin4_static_spawns.lua")

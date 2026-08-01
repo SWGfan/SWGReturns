@@ -108,8 +108,6 @@ class ThreatMap;
 
 using namespace server::zone::objects::tangible::threat;
 
-#include "gmock/gmock.h"
-
 #include "server/zone/packets/scene/AttributeListMessage.h"
 
 #include "templates/params/OptionBitmask.h"
@@ -336,7 +334,7 @@ public:
 	 * @post { }
 	 * @return returns true if the creature object can attack this
 	 */
-	virtual bool isAttackableBy(CreatureObject* object);
+	bool isAttackableBy(CreatureObject* object);
 
 	bool isAttackableBy(TangibleObject* object);
 
@@ -446,7 +444,7 @@ public:
 
 	void removeMagicBit(bool notifyClient = true);
 
-	virtual int getLevel() const;
+	int getLevel() const;
 
 	bool getIsCraftedEnhancedItem() const;
 
@@ -462,7 +460,7 @@ public:
 
 	SceneObject* getMainDefender() const;
 
-	virtual bool isDestroyed() const;
+	bool isDestroyed() const;
 
 	void setFaction(unsigned int crc);
 
@@ -530,7 +528,7 @@ public:
 
 	String getSerialNumber();
 
-	virtual ThreatMap* getThreatMap();
+	ThreatMap* getThreatMap();
 
 	Reference<FactoryCrate* > createFactoryCrate(int maxSize, String& type, bool insertSelf = false);
 
@@ -1478,33 +1476,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<TangibleObjectHelper>;
-};
-
-class MockTangibleObject : public TangibleObject {
-public:
-
-	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
-	MOCK_METHOD0(getLevel,int());
-	MOCK_METHOD0(isDestroyed,bool());
-	MOCK_METHOD0(getThreatMap,ThreatMap*());
-	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
-	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
-	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
-	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
-	MOCK_METHOD0(getZone,Zone*());
-	MOCK_METHOD0(getZoneUnsafe,Zone*());
-	MOCK_METHOD0(getWorldPositionX,float());
-	MOCK_METHOD0(getWorldPositionY,float());
-	MOCK_METHOD0(getWorldPositionZ,float());
-	MOCK_METHOD0(getWorldPosition,Vector3());
-	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
-	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
-	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
-	MOCK_METHOD0(asCreatureObject,CreatureObject*());
-	MOCK_METHOD0(asAiAgent,AiAgent*());
-	MOCK_METHOD0(asTangibleObject,TangibleObject*());
-	MOCK_METHOD0(getTemplateRadius,float());
-
 };
 
 } // namespace tangible

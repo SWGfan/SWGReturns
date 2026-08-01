@@ -46,12 +46,14 @@
 includeFile("draft_schematic/armor/component/serverobjects.lua")
 --AS New
 includeFile("draft_schematic/armor/armor_segment_armor_advanced.lua")
-includeFile("draft_schematic/armor/armor_segment_armor_energy.lua")
+-- Disabled: missing shared client template.
+-- includeFile("draft_schematic/armor/armor_segment_armor_energy.lua")
 includeFile("draft_schematic/armor/armor_segment_armor_electric.lua")
 includeFile("draft_schematic/armor/armor_segment_armor_stun.lua")
 includeFile("draft_schematic/armor/armor_segment_armor_blast.lua")
 includeFile("draft_schematic/armor/armor_segment_armor_heat.lua")
-includeFile("draft_schematic/armor/armor_segment_armor_cold.lua")
+-- Disabled: missing shared client template.
+-- includeFile("draft_schematic/armor/armor_segment_armor_cold.lua")
 includeFile("draft_schematic/armor/armor_segment_armor_acid.lua")
 -- Server Objects
 includeFile("draft_schematic/armor/armor_module_heavy.lua")
@@ -86,6 +88,7 @@ includeFile("draft_schematic/armor/shield_generator_personal_c.lua")
 includeFile("draft_schematic/armor/shield_generator_personal_imperial_test.lua")
 includeFile("draft_schematic/armor/shield_generator_vehicular.lua")
 includeFile("draft_schematic/armor/armor_segment_mandalorian.lua")
+includeFile("draft_schematic/armor/armor_segment_bh.lua")
 
 -- New Objects
 
@@ -227,9 +230,10 @@ includeFile("draft_schematic/armor/armor_marauder_s01_gloves.lua")
 includeFile("draft_schematic/armor/armor_marauder_s02_gloves.lua")
 includeFile("draft_schematic/armor/armor_marauder_s03_gloves.lua")
 --[[   -- There are no marauder belts.
-includeFile("draft_schematic/armor/armor_marauder_s01_belt.lua")
-includeFile("draft_schematic/armor/armor_marauder_s02_belt.lua")
-includeFile("draft_schematic/armor/armor_marauder_s03_belt.lua")
+-- Disabled: missing shared client templates.
+-- includeFile("draft_schematic/armor/armor_marauder_s01_belt.lua")
+-- includeFile("draft_schematic/armor/armor_marauder_s02_belt.lua")
+-- includeFile("draft_schematic/armor/armor_marauder_s03_belt.lua")
 --]]
 
 includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bicep_l_gcw.lua")
@@ -252,16 +256,17 @@ includeFile("draft_schematic/armor/armor_appearance_rebel_assault_chest.lua")
 includeFile("draft_schematic/armor/armor_appearance_rebel_assault_gloves.lua")
 includeFile("draft_schematic/armor/armor_appearance_rebel_assault_helmet.lua")
 includeFile("draft_schematic/armor/armor_appearance_rebel_assault_leggings.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bicep_l_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bicep_r_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_boots_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bracer_l_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bracer_r_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_chest_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_gloves_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_helmet_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_leggings_camo.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_assault_utility_belt_camo.lua")
+-- Disabled: missing shared client templates.
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bicep_l_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bicep_r_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_boots_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bracer_l_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_bracer_r_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_chest_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_gloves_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_helmet_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_leggings_camo.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_assault_utility_belt_camo.lua")
 --includeFile("draft_schematic/armor/armor_appearance_rebel_assault_utility_belt.lua")   -- No IFF
 
 includeFile("draft_schematic/armor/armor_appearance_rebel_battle_bicep_l_gcw.lua")
@@ -276,14 +281,15 @@ includeFile("draft_schematic/armor/armor_appearance_rebel_battle_leggings_gcw.lu
 includeFile("draft_schematic/armor/armor_appearance_rebel_battle_utility_belt_gcw.lua")
 
 includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bicep_l.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bicep_r.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_boots.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bracer_l.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bracer_r.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_chest_plate.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_gloves.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_helmet.lua")
-includeFile("draft_schematic/armor/armor_appearance_rebel_marine_leggings.lua")
+-- Disabled: missing shared client templates.
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bicep_r.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_boots.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bracer_l.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bracer_r.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_chest_plate.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_gloves.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_helmet.lua")
+-- includeFile("draft_schematic/armor/armor_appearance_rebel_marine_leggings.lua")
 --includeFile("draft_schematic/armor/armor_appearance_rebel_marine_utility_belt.lua")
 
 includeFile("draft_schematic/armor/armor_appearance_rebel_marine_bicep_l_gcw.lua")

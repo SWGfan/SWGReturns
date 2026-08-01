@@ -1,7 +1,6 @@
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/ZoneServer.h"
-#include "server/zone/Zone.h"
 #include "server/zone/managers/frs/RankMaintenanceTask.h"
 #include "server/zone/managers/frs/VoteStatusTask.h"
 #include "server/zone/managers/frs/FrsRankingData.h"
@@ -66,6 +65,22 @@ void FrsManagerImplementation::initialize() {
 		voteStatusTask->schedule(VOTE_STATUS_TICK - miliDiff);
 }
 
+void FrsManagerImplementation::stop() {
+	cancelTasks();
+
+	rankMaintenanceTask = nullptr;
+	voteStatusTask = nullptr;
+
+	managerData = nullptr;
+	lightEnclave = nullptr;
+	darkEnclave = nullptr;
+
+	lightRankingData.removeAll();
+	darkRankingData.removeAll();
+	roomRequirements.removeAll();
+	experienceValues.removeAll();
+}
+
 void FrsManagerImplementation::cancelTasks() {
 	if (voteStatusTask) {
 		voteStatusTask->cancel();
@@ -77,7 +92,7 @@ void FrsManagerImplementation::cancelTasks() {
 }
 
 void FrsManagerImplementation::loadFrsData() {
-	info("Loading frs manager data from frsmanager.db");
+	info("Loading FRS Manager Data from frsmanager.db");
 
 	ObjectDatabaseManager* dbManager = ObjectDatabaseManager::instance();
 	ObjectDatabase* rankDatabase = ObjectDatabaseManager::instance()->loadObjectDatabase("frsmanager", true);
@@ -365,53 +380,16 @@ void FrsManagerImplementation::verifyRoomAccess(CreatureObject* player, int play
 }
 
 void FrsManagerImplementation::playerLoggedIn(CreatureObject* player) {
-
-        // =====================================================
-        // PHASE719_LOGIN_ENROLL
-        // Auto-enroll Jedi Knights into FRS
-        // =====================================================
-
-        PlayerObject* ghost = player->getPlayerObject();
-
-        if (ghost != nullptr) {
-
-                FrsData* playerData = ghost->getFrsData();
-
-                if (playerData != nullptr &&
-                    playerData->getCouncilType() == 0 &&
-                    player->hasSkill("force_title_jedi_rank_03")) {
-
-                        if (player->getFaction() == Factions::FACTIONIMPERIAL) {
-
-                                playerData->setCouncilType(COUNCIL_DARK);
-                                setPlayerRank(player, 0);
-
-                                info("Phase719: Auto-enrolled " +
-                                        player->getFirstName() +
-                                        " into Dark Council.", true);
-
-                        } else if (player->getFaction() == Factions::FACTIONREBEL) {
-
-                                playerData->setCouncilType(COUNCIL_LIGHT);
-                                setPlayerRank(player, 0);
-
-                                info("Phase719: Auto-enrolled " +
-                                        player->getFirstName() +
-                                        " into Light Council.", true);
-                        }
-                }
-        }
-
-        // =====================================================
-
-
 	if (!frsEnabled || player == nullptr)
 		return;
 
 	Locker lock(player);
 
 	validatePlayerData(player);
-	deductDebtExperience(player);
+
+	if (!ConfigManager::instance()->getBool("Core3.FrsManager.ImmediateMaintXpDeduction", false)) {
+		deductDebtExperience(player);
+	}
 }
 
 bool FrsManagerImplementation::isBanned(CreatureObject* player) {
@@ -511,13 +489,10 @@ void FrsManagerImplementation::validatePlayerData(CreatureObject* player, bool v
 			player->setFaction(Factions::FACTIONREBEL);
 		else if (councilType == COUNCIL_DARK && player->getFaction() != Factions::FACTIONIMPERIAL)
 			player->setFaction(Factions::FACTIONIMPERIAL);
-/*
-		if (player->getZone()->getZoneName() != "elysium" && player->getFactionStatus() != FactionStatus::OVERT)
+
+		if (player->getFactionStatus() != FactionStatus::OVERT)
 			player->setFactionStatus(FactionStatus::OVERT);
 
-		if (player->getZone()->getZoneName() == "elysium" && player->getFactionStatus() != FactionStatus::ONLEAVE)
-			player->setFactionStatus(FactionStatus::ONLEAVE);
-*/
 		if (realPlayerRank >= 4 && !player->hasSkill("force_title_jedi_rank_04"))
 			player->addSkill("force_title_jedi_rank_04", true);
 		if (realPlayerRank >= 8 && !player->hasSkill("force_title_jedi_master"))
@@ -576,6 +551,9 @@ void FrsManagerImplementation::setPlayerRank(CreatureObject* player, int rank) {
 		groupName = "DarkEnclaveRank";
 
 	int curRank = playerData->getRank();
+	int curExperience = ghost->getExperience("force_rank_xp");
+
+	log(true) << "setPlayerRank for " << player->getFirstName() << " ID: " << player->getObjectID() << " Current FRS Rank = " << curRank << " New FRS Rank = " << rank << " Current FRS XP = " << curExperience;
 
 	if (isFrsEnabled() && curRank > 0 && (councilType == COUNCIL_LIGHT || councilType == COUNCIL_DARK)) {
 		ghost->removePermissionGroup(groupName + String::valueOf(curRank), true);
@@ -892,24 +870,25 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
 	if (ghost == nullptr)
 		return;
 
-	TransactionLog trx(TrxCode::EXPERIENCE, player);
+	if (!player->isOnline())
+		sendSystemMessage = false;
 
 	if (amount > 0) {
+		if (ghost->hasCappedExperience("force_rank_xp")) {
+			if (sendSystemMessage) {
+				StringIdChatParameter message("base_player", "prose_hit_xp_cap"); //You have achieved your current limit for %TO experience.
+				message.setTO("exp_n", "force_rank_xp");
+				player->sendSystemMessage(message);
+			}
+			return;
+		}
 
-          	if (ghost->hasCappedExperience("force_rank_xp"))
-                {
-                	StringIdChatParameter message("base_player", "prose_hit_xp_cap"); //You have achieved your current limit for %TO experience.
-                	message.setTO("exp_n", "force_rank_xp");
-                	player->sendSystemMessage(message);
-                	return;
-                }
-
+		TransactionLog trx(TrxCode::EXPERIENCE, player);
 		ghost->addExperience(trx, "force_rank_xp", amount, true);
 
 		if (sendSystemMessage) {
 			StringIdChatParameter param("@force_rank:experience_granted"); // You have gained %DI Force Rank experience.
 			param.setDI(amount);
-
 			player->sendSystemMessage(param);
 		}
 	} else {
@@ -923,6 +902,7 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
 		if ((amount * -1) > curExperience)
 			amount = curExperience * -1;
 
+		TransactionLog trx(TrxCode::EXPERIENCE, player);
 		ghost->addExperience(trx, "force_rank_xp", amount, true);
 
 		if (sendSystemMessage) {
@@ -945,8 +925,13 @@ void FrsManagerImplementation::adjustFrsExperience(CreatureObject* player, int a
 
 		int reqXp = rankingData->getRequiredExperience();
 
-		if (reqXp > curExperience)
+		if (reqXp > curExperience) {
+			auto zoneServer = this->zoneServer.get();
+			ChatManager* chatManager = zoneServer->getChatManager();
+
+			chatManager->sendMail("Enclave Records", "@force_rank:demote_xp_debt_sub", "@force_rank:demote_xp_debt_body", player->getFirstName());
 			demotePlayer(player);
+		}
 	}
 }
 
@@ -1020,11 +1005,28 @@ void FrsManagerImplementation::deductMaintenanceXp(CreatureObject* player) {
 	ChatManager* chatManager = zoneServer->getChatManager();
 
 	StringIdChatParameter mailBody("@force_rank:xp_maintenance_body"); // You have lost %DI Force Rank experience. All members of Rank 1 or higher must pay experience each day to remain in their current positions. (Note: This loss may not take effect until your next login.)
-	mailBody.setDI(maintXp);
 
-	chatManager->sendMail("Enclave Records", "@force_rank:xp_maintenace_sub", mailBody, player->getFirstName(), nullptr);
+	if (ConfigManager::instance()->getBool("Core3.FrsManager.ImmediateMaintXpDeduction", false)) {
+		Locker clocker(managerData, player);
+		uint64 playerID = player->getObjectID();
+		int curDebt = managerData->getExperienceDebt(playerID);
 
-	addExperienceDebt(player, maintXp);
+		String msg = "You have lost " + String::valueOf(maintXp) + " Force Rank experience. All members of Rank 1 or higher must pay experience each day to remain in their current positions.";
+
+		if (curDebt > 0) {
+			maintXp += curDebt;
+			msg = "You have lost " + String::valueOf(maintXp) + " Force Rank experience. This includes " + String::valueOf(curDebt) + " previously banked experience debt. All members of Rank 1 or higher must pay experience each day to remain in their current positions.";
+			managerData->removeExperienceDebt(playerID);
+		}
+		chatManager->sendMail("Enclave Records", "@force_rank:xp_maintenace_sub", msg, player->getFirstName());
+		adjustFrsExperience(player, maintXp * -1);
+	} else {
+		addExperienceDebt(player, maintXp);
+		StringIdChatParameter mailBody("@force_rank:xp_maintenance_body"); // You have lost %DI Force Rank experience. All members of Rank 1 or higher must pay experience each day to remain in their current positions. (Note: This loss may not take effect until your next login.)
+		mailBody.setDI(maintXp);
+
+		chatManager->sendMail("Enclave Records", "@force_rank:xp_maintenace_sub", mailBody, player->getFirstName(), nullptr);
+	}
 }
 
 void FrsManagerImplementation::addExperienceDebt(CreatureObject* player, int amount) {
@@ -2902,15 +2904,17 @@ void FrsManagerImplementation::sendRankPlayerList(CreatureObject* player, int co
 	if (ghost == nullptr)
 		return;
 
-	FrsData* playerData = ghost->getFrsData();
-	int playerCouncil = playerData->getCouncilType();
-	int curPlayerRank = playerData->getRank();
+	if (!ghost->isPrivileged()) {
+		FrsData* playerData = ghost->getFrsData();
+		int playerCouncil = playerData->getCouncilType();
+		int curPlayerRank = playerData->getRank();
 
-	if (curPlayerRank < 0)
-		return;
+		if (curPlayerRank < 0)
+			return;
 
-	if (playerCouncil != councilType)
-		return;
+		if (playerCouncil != councilType)
+			return;
+	}
 
 	ManagedReference<FrsRank*> rankData = getFrsRank(councilType, rank);
 

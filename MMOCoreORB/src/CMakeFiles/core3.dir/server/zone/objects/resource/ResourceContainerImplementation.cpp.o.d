@@ -5,24 +5,25 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/Core.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/platform.h \
- /usr/include/boost/lockfree/queue.hpp /usr/include/boost/config.hpp \
- /usr/include/boost/config/user.hpp \
- /usr/include/boost/config/detail/select_compiler_config.hpp \
- /usr/include/boost/config/compiler/gcc.hpp /usr/include/c++/15/cstddef \
- /usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
- /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/boost/lockfree/queue.hpp /usr/include/boost/assert.hpp \
+ /usr/include/assert.h /usr/include/features.h \
+ /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/cpu_defines.h \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
- /usr/include/c++/15/bits/version.h \
+ /usr/include/boost/static_assert.hpp /usr/include/boost/config.hpp \
+ /usr/include/boost/config/user.hpp \
+ /usr/include/boost/config/detail/select_compiler_config.hpp \
+ /usr/include/boost/config/compiler/gcc.hpp /usr/include/c++/13/cstddef \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
  /usr/include/boost/config/detail/select_stdlib_config.hpp \
- /usr/include/c++/15/version \
+ /usr/include/c++/13/version \
  /usr/include/boost/config/stdlib/libstdcpp3.hpp /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -37,7 +38,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
  /usr/include/linux/close_range.h \
  /usr/include/boost/config/detail/select_platform_config.hpp \
- /usr/include/boost/config/platform/linux.hpp /usr/include/c++/15/cstdlib \
+ /usr/include/boost/config/platform/linux.hpp /usr/include/c++/13/cstdlib \
  /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
@@ -73,93 +74,77 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /usr/include/c++/15/bits/std_abs.h \
+ /usr/include/c++/13/bits/std_abs.h \
  /usr/include/boost/config/detail/posix_features.hpp \
  /usr/include/boost/config/detail/suffix.hpp \
  /usr/include/boost/config/helper_macros.hpp \
  /usr/include/boost/config/detail/cxx_composite.hpp \
- /usr/include/boost/assert.hpp /usr/include/assert.h \
+ /usr/include/boost/detail/workaround.hpp \
+ /usr/include/boost/config/workaround.hpp \
  /usr/include/boost/core/allocator_access.hpp \
  /usr/include/boost/core/pointer_traits.hpp \
- /usr/include/boost/core/addressof.hpp /usr/include/c++/15/limits \
- /usr/include/c++/15/new /usr/include/c++/15/bits/exception.h \
- /usr/include/c++/15/type_traits /usr/include/c++/15/utility \
- /usr/include/c++/15/bits/stl_relops.h \
- /usr/include/c++/15/bits/stl_pair.h /usr/include/c++/15/bits/move.h \
- /usr/include/c++/15/bits/utility.h /usr/include/c++/15/initializer_list \
- /usr/include/boost/parameter/optional.hpp \
- /usr/include/boost/parameter/aux_/use_default.hpp \
- /usr/include/boost/parameter/config.hpp \
- /usr/include/boost/config/workaround.hpp \
- /usr/include/boost/mpl/limits/vector.hpp \
- /usr/include/boost/mp11/integral.hpp /usr/include/boost/mp11/version.hpp \
- /usr/include/boost/mp11/detail/mp_value.hpp \
- /usr/include/boost/mp11/detail/config.hpp \
- /usr/include/boost/parameter/parameters.hpp \
- /usr/include/boost/parameter/aux_/arg_list.hpp \
- /usr/include/boost/parameter/aux_/void.hpp \
- /usr/include/boost/parameter/aux_/yesno.hpp \
- /usr/include/boost/mpl/bool.hpp /usr/include/boost/mpl/bool_fwd.hpp \
- /usr/include/boost/mpl/aux_/adl_barrier.hpp \
- /usr/include/boost/mpl/aux_/config/adl.hpp \
- /usr/include/boost/mpl/aux_/config/msvc.hpp \
- /usr/include/boost/mpl/aux_/config/intel.hpp \
- /usr/include/boost/mpl/aux_/config/gcc.hpp \
- /usr/include/boost/mpl/aux_/config/workaround.hpp \
- /usr/include/boost/detail/workaround.hpp \
- /usr/include/boost/mpl/integral_c_tag.hpp \
- /usr/include/boost/mpl/aux_/config/static_constant.hpp \
- /usr/include/boost/parameter/aux_/result_of0.hpp \
- /usr/include/boost/parameter/aux_/use_default_tag.hpp \
- /usr/include/boost/utility/result_of.hpp \
- /usr/include/boost/type_traits/is_class.hpp \
+ /usr/include/boost/core/addressof.hpp /usr/include/c++/13/limits \
+ /usr/include/c++/13/new /usr/include/c++/13/bits/exception.h \
+ /usr/include/c++/13/type_traits /usr/include/c++/13/utility \
+ /usr/include/c++/13/bits/stl_relops.h \
+ /usr/include/c++/13/bits/stl_pair.h /usr/include/c++/13/bits/move.h \
+ /usr/include/c++/13/bits/utility.h /usr/include/c++/13/initializer_list \
+ /usr/include/boost/type_traits/has_trivial_assign.hpp \
  /usr/include/boost/type_traits/detail/config.hpp \
  /usr/include/boost/version.hpp \
  /usr/include/boost/type_traits/intrinsics.hpp \
  /usr/include/boost/type_traits/integral_constant.hpp \
+ /usr/include/boost/type_traits/is_pod.hpp \
+ /usr/include/boost/type_traits/is_void.hpp \
+ /usr/include/boost/type_traits/is_scalar.hpp \
+ /usr/include/boost/type_traits/is_arithmetic.hpp \
+ /usr/include/boost/type_traits/is_integral.hpp \
+ /usr/include/boost/type_traits/is_floating_point.hpp \
+ /usr/include/boost/type_traits/is_enum.hpp \
  /usr/include/boost/type_traits/is_pointer.hpp \
+ /usr/include/boost/type_traits/is_member_pointer.hpp \
  /usr/include/boost/type_traits/is_member_function_pointer.hpp \
  /usr/include/boost/type_traits/detail/is_member_function_pointer_cxx_11.hpp \
- /usr/include/boost/type_traits/remove_cv.hpp \
- /usr/include/boost/type_traits/remove_reference.hpp \
+ /usr/include/boost/type_traits/is_const.hpp \
+ /usr/include/boost/type_traits/is_volatile.hpp \
+ /usr/include/boost/type_traits/is_assignable.hpp \
+ /usr/include/boost/type_traits/is_complete.hpp \
  /usr/include/boost/type_traits/declval.hpp \
  /usr/include/boost/type_traits/add_rvalue_reference.hpp \
- /usr/include/boost/type_traits/is_void.hpp \
  /usr/include/boost/type_traits/is_reference.hpp \
  /usr/include/boost/type_traits/is_lvalue_reference.hpp \
  /usr/include/boost/type_traits/is_rvalue_reference.hpp \
- /usr/include/boost/type_traits/conditional.hpp \
- /usr/include/boost/type_traits/type_identity.hpp \
- /usr/include/boost/core/enable_if.hpp \
- /usr/include/boost/utility/detail/result_of_variadic.hpp \
- /usr/include/boost/mp11/utility.hpp \
- /usr/include/boost/mp11/detail/mp_list.hpp \
- /usr/include/boost/mp11/detail/mp_fold.hpp \
- /usr/include/boost/mp11/detail/mp_defer.hpp \
- /usr/include/boost/mp11/detail/mp_rename.hpp \
- /usr/include/boost/mp11/detail/mp_front.hpp \
- /usr/include/boost/parameter/aux_/default.hpp \
- /usr/include/boost/mp11/list.hpp \
- /usr/include/boost/mp11/detail/mp_list_v.hpp \
- /usr/include/boost/mp11/detail/mp_is_list.hpp \
- /usr/include/boost/mp11/detail/mp_is_value_list.hpp \
- /usr/include/boost/mp11/detail/mp_append.hpp \
- /usr/include/boost/mp11/detail/mp_count.hpp \
- /usr/include/boost/mp11/detail/mp_plus.hpp \
- /usr/include/boost/parameter/aux_/preprocessor/nullptr.hpp \
- /usr/include/boost/parameter/aux_/is_maybe.hpp \
- /usr/include/boost/parameter/aux_/tagged_argument_fwd.hpp \
- /usr/include/boost/parameter/aux_/parameter_requirements.hpp \
- /usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp \
- /usr/include/boost/parameter/aux_/augment_predicate.hpp \
- /usr/include/boost/parameter/keyword_fwd.hpp \
+ /usr/include/boost/type_traits/remove_reference.hpp \
+ /usr/include/boost/type_traits/is_function.hpp \
+ /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp \
+ /usr/include/boost/type_traits/detail/yes_no_type.hpp \
+ /usr/include/boost/type_traits/has_trivial_destructor.hpp \
+ /usr/include/boost/type_traits/is_destructible.hpp \
+ /usr/include/boost/lockfree/detail/atomic.hpp /usr/include/c++/13/atomic \
+ /usr/include/c++/13/bits/atomic_base.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /usr/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/include/boost/lockfree/detail/copy_payload.hpp \
  /usr/include/boost/mpl/if.hpp /usr/include/boost/mpl/aux_/value_wknd.hpp \
  /usr/include/boost/mpl/aux_/static_cast.hpp \
+ /usr/include/boost/mpl/aux_/config/workaround.hpp \
  /usr/include/boost/mpl/aux_/config/integral.hpp \
+ /usr/include/boost/mpl/aux_/config/msvc.hpp \
  /usr/include/boost/mpl/aux_/config/eti.hpp \
  /usr/include/boost/mpl/aux_/na_spec.hpp \
  /usr/include/boost/mpl/lambda_fwd.hpp \
- /usr/include/boost/mpl/void_fwd.hpp /usr/include/boost/mpl/aux_/na.hpp \
+ /usr/include/boost/mpl/void_fwd.hpp \
+ /usr/include/boost/mpl/aux_/adl_barrier.hpp \
+ /usr/include/boost/mpl/aux_/config/adl.hpp \
+ /usr/include/boost/mpl/aux_/config/intel.hpp \
+ /usr/include/boost/mpl/aux_/config/gcc.hpp \
+ /usr/include/boost/mpl/aux_/na.hpp /usr/include/boost/mpl/bool.hpp \
+ /usr/include/boost/mpl/bool_fwd.hpp \
+ /usr/include/boost/mpl/integral_c_tag.hpp \
+ /usr/include/boost/mpl/aux_/config/static_constant.hpp \
  /usr/include/boost/mpl/aux_/na_fwd.hpp \
  /usr/include/boost/mpl/aux_/config/ctps.hpp \
  /usr/include/boost/mpl/aux_/config/lambda.hpp \
@@ -245,207 +230,51 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/preprocessor/arithmetic/sub.hpp \
  /usr/include/boost/mpl/aux_/config/overload_resolution.hpp \
  /usr/include/boost/mpl/aux_/lambda_support.hpp \
- /usr/include/boost/mpl/eval_if.hpp \
- /usr/include/boost/type_traits/is_scalar.hpp \
- /usr/include/boost/type_traits/is_arithmetic.hpp \
- /usr/include/boost/type_traits/is_integral.hpp \
- /usr/include/boost/type_traits/is_floating_point.hpp \
- /usr/include/boost/type_traits/is_enum.hpp \
- /usr/include/boost/type_traits/is_member_pointer.hpp \
- /usr/include/boost/type_traits/is_same.hpp \
- /usr/include/boost/type_traits/is_const.hpp \
- /usr/include/boost/parameter/aux_/lambda_tag.hpp \
- /usr/include/boost/mpl/apply_wrap.hpp \
- /usr/include/boost/mpl/aux_/has_apply.hpp \
- /usr/include/boost/mpl/has_xxx.hpp \
- /usr/include/boost/mpl/aux_/type_wrapper.hpp \
- /usr/include/boost/mpl/aux_/yes_no.hpp \
- /usr/include/boost/mpl/aux_/config/arrays.hpp \
- /usr/include/boost/mpl/aux_/config/has_xxx.hpp \
- /usr/include/boost/mpl/aux_/config/msvc_typename.hpp \
- /usr/include/boost/preprocessor/array/elem.hpp \
- /usr/include/boost/preprocessor/array/data.hpp \
- /usr/include/boost/preprocessor/array/size.hpp \
- /usr/include/boost/preprocessor/repetition/enum_params.hpp \
- /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp \
- /usr/include/boost/mpl/aux_/config/has_apply.hpp \
- /usr/include/boost/mpl/aux_/msvc_never_true.hpp \
- /usr/include/boost/mpl/aux_/config/use_preprocessed.hpp \
- /usr/include/boost/mpl/aux_/include_preprocessed.hpp \
- /usr/include/boost/mpl/aux_/config/compiler.hpp \
- /usr/include/boost/preprocessor/stringize.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp \
- /usr/include/boost/mpl/lambda.hpp /usr/include/boost/mpl/bind.hpp \
- /usr/include/boost/mpl/bind_fwd.hpp \
- /usr/include/boost/mpl/aux_/config/bind.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/bind_fwd.hpp \
- /usr/include/boost/mpl/placeholders.hpp /usr/include/boost/mpl/arg.hpp \
- /usr/include/boost/mpl/arg_fwd.hpp \
- /usr/include/boost/mpl/aux_/na_assert.hpp \
- /usr/include/boost/mpl/assert.hpp /usr/include/boost/mpl/not.hpp \
- /usr/include/boost/mpl/aux_/nested_type_wknd.hpp \
- /usr/include/boost/mpl/aux_/config/gpu.hpp \
- /usr/include/boost/mpl/aux_/config/pp_counter.hpp \
- /usr/include/boost/mpl/aux_/arity_spec.hpp \
- /usr/include/boost/mpl/aux_/arg_typedef.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/arg.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/placeholders.hpp \
- /usr/include/boost/mpl/next.hpp /usr/include/boost/mpl/next_prior.hpp \
- /usr/include/boost/mpl/aux_/common_name_wknd.hpp \
- /usr/include/boost/mpl/protect.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/bind.hpp \
- /usr/include/boost/mpl/aux_/full_lambda.hpp \
- /usr/include/boost/mpl/quote.hpp /usr/include/boost/mpl/void.hpp \
- /usr/include/boost/mpl/aux_/has_type.hpp \
- /usr/include/boost/mpl/aux_/config/bcc.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp \
- /usr/include/boost/mpl/aux_/template_arity.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/full_lambda.hpp \
- /usr/include/boost/parameter/aux_/has_nested_template_fn.hpp \
- /usr/include/boost/mpl/iterator_tags.hpp \
- /usr/include/boost/mpl/begin_end_fwd.hpp \
- /usr/include/boost/parameter/value_type.hpp \
- /usr/include/boost/parameter/aux_/is_placeholder.hpp \
- /usr/include/boost/mp11/bind.hpp /usr/include/boost/mp11/algorithm.hpp \
- /usr/include/boost/mp11/set.hpp /usr/include/boost/mp11/function.hpp \
- /usr/include/boost/mp11/detail/mp_min_element.hpp \
- /usr/include/boost/mp11/detail/mp_void.hpp \
- /usr/include/boost/mp11/detail/mp_copy_if.hpp \
- /usr/include/boost/mp11/detail/mp_remove_if.hpp \
- /usr/include/boost/mp11/detail/mp_map_find.hpp \
- /usr/include/boost/mp11/detail/mp_with_index.hpp \
- /usr/include/c++/15/cassert /usr/include/boost/mp11/integer_sequence.hpp \
- /usr/include/boost/mpl/has_key_fwd.hpp \
- /usr/include/boost/mpl/count_fwd.hpp \
- /usr/include/boost/mpl/key_type_fwd.hpp \
- /usr/include/boost/mpl/identity.hpp \
- /usr/include/boost/mpl/value_type_fwd.hpp \
- /usr/include/boost/mpl/at_fwd.hpp /usr/include/boost/mpl/order_fwd.hpp \
- /usr/include/boost/mpl/find.hpp /usr/include/boost/mpl/find_if.hpp \
- /usr/include/boost/mpl/aux_/find_if_pred.hpp \
- /usr/include/boost/mpl/aux_/iter_apply.hpp \
- /usr/include/boost/mpl/apply.hpp /usr/include/boost/mpl/apply_fwd.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/apply.hpp \
- /usr/include/boost/mpl/deref.hpp \
- /usr/include/boost/mpl/aux_/msvc_type.hpp \
- /usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp \
- /usr/include/boost/mpl/iter_fold_if.hpp \
- /usr/include/boost/mpl/begin_end.hpp \
- /usr/include/boost/mpl/aux_/begin_end_impl.hpp \
- /usr/include/boost/mpl/sequence_tag_fwd.hpp \
- /usr/include/boost/mpl/aux_/has_begin.hpp \
- /usr/include/boost/mpl/aux_/traits_lambda_spec.hpp \
- /usr/include/boost/mpl/sequence_tag.hpp \
- /usr/include/boost/mpl/aux_/has_tag.hpp \
- /usr/include/boost/mpl/logical.hpp /usr/include/boost/mpl/or.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp \
- /usr/include/boost/mpl/and.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp \
- /usr/include/boost/mpl/always.hpp \
- /usr/include/boost/mpl/aux_/preprocessor/default_params.hpp \
- /usr/include/boost/mpl/pair.hpp \
- /usr/include/boost/mpl/aux_/msvc_eti_base.hpp \
- /usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp \
- /usr/include/boost/mpl/aux_/config/forwarding.hpp \
- /usr/include/boost/mpl/same_as.hpp \
- /usr/include/boost/mpl/aux_/lambda_spec.hpp \
- /usr/include/boost/mpl/distance.hpp \
- /usr/include/boost/mpl/distance_fwd.hpp \
- /usr/include/boost/mpl/iter_fold.hpp /usr/include/boost/mpl/O1_size.hpp \
- /usr/include/boost/mpl/O1_size_fwd.hpp \
- /usr/include/boost/mpl/aux_/O1_size_impl.hpp \
- /usr/include/boost/mpl/long.hpp /usr/include/boost/mpl/long_fwd.hpp \
- /usr/include/boost/mpl/aux_/has_size.hpp \
- /usr/include/boost/mpl/aux_/iter_fold_impl.hpp \
- /usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_impl.hpp \
- /usr/include/boost/mpl/iterator_range.hpp /usr/include/boost/mpl/tag.hpp \
- /usr/include/boost/parameter/aux_/pack/make_arg_list.hpp \
- /usr/include/boost/parameter/aux_/pack/unmatched_argument.hpp \
- /usr/include/boost/parameter/aux_/pack/tag_type.hpp \
- /usr/include/boost/parameter/deduced.hpp \
- /usr/include/boost/parameter/required.hpp \
- /usr/include/boost/parameter/aux_/pack/is_named_argument.hpp \
- /usr/include/boost/parameter/aux_/template_keyword.hpp \
- /usr/include/boost/parameter/aux_/is_tagged_argument.hpp \
- /usr/include/boost/type_traits/is_base_of.hpp \
- /usr/include/boost/type_traits/is_base_and_derived.hpp \
- /usr/include/boost/type_traits/remove_const.hpp \
- /usr/include/boost/parameter/aux_/pack/insert_tagged.hpp \
- /usr/include/boost/parameter/aux_/set.hpp \
- /usr/include/boost/parameter/aux_/pack/deduce_tag.hpp \
- /usr/include/boost/parameter/aux_/pack/tag_deduced.hpp \
- /usr/include/boost/parameter/aux_/pack/make_parameter_spec_items.hpp \
- /usr/include/boost/parameter/aux_/pack/make_deduced_items.hpp \
- /usr/include/boost/parameter/aux_/pack/deduced_item.hpp \
- /usr/include/boost/parameter/aux_/pack/satisfies.hpp \
- /usr/include/boost/parameter/aux_/pack/as_parameter_requirements.hpp \
- /usr/include/boost/parameter/aux_/pack/predicate.hpp \
- /usr/include/boost/parameter/aux_/always_true_predicate.hpp \
- /usr/include/boost/parameter/aux_/pack/make_items.hpp \
- /usr/include/boost/parameter/aux_/pack/item.hpp \
- /usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp \
- /usr/include/boost/parameter/aux_/tag.hpp \
- /usr/include/boost/parameter/aux_/unwrap_cv_reference.hpp \
- /usr/include/c++/15/functional /usr/include/c++/15/bits/stl_function.h \
- /usr/include/c++/15/backward/binders.h /usr/include/c++/15/tuple \
- /usr/include/c++/15/bits/uses_allocator.h \
- /usr/include/c++/15/bits/invoke.h \
- /usr/include/c++/15/bits/functional_hash.h \
- /usr/include/c++/15/bits/hash_bytes.h /usr/include/c++/15/bits/refwrap.h \
- /usr/include/c++/15/bits/std_function.h /usr/include/c++/15/typeinfo \
- /usr/include/c++/15/bits/functexcept.h \
- /usr/include/c++/15/bits/exception_defines.h \
- /usr/include/boost/parameter/aux_/tagged_argument.hpp \
- /usr/include/boost/type_traits/is_function.hpp \
- /usr/include/boost/type_traits/detail/is_function_cxx_11.hpp \
- /usr/include/boost/parameter/aux_/pack/tag_template_keyword_arg.hpp \
- /usr/include/boost/parameter/template_keyword.hpp \
- /usr/include/boost/static_assert.hpp \
- /usr/include/boost/lockfree/detail/atomic.hpp /usr/include/c++/15/atomic \
- /usr/include/c++/15/bits/atomic_base.h \
- /usr/include/c++/15/bits/atomic_lockfree_defines.h \
- /usr/include/c++/15/cstdint \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /usr/include/boost/lockfree/detail/copy_payload.hpp \
+ /usr/include/boost/type_traits/is_convertible.hpp \
+ /usr/include/boost/type_traits/is_array.hpp \
+ /usr/include/boost/type_traits/is_abstract.hpp \
+ /usr/include/boost/type_traits/add_lvalue_reference.hpp \
+ /usr/include/boost/type_traits/add_reference.hpp \
  /usr/include/boost/lockfree/detail/freelist.hpp \
- /usr/include/c++/15/array /usr/include/c++/15/compare \
- /usr/include/c++/15/bits/stl_algobase.h \
- /usr/include/c++/15/bits/cpp_type_traits.h \
- /usr/include/c++/15/ext/type_traits.h \
- /usr/include/c++/15/ext/numeric_traits.h \
- /usr/include/c++/15/bits/stl_iterator_base_types.h \
- /usr/include/c++/15/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/15/bits/concept_check.h \
- /usr/include/c++/15/debug/assertions.h \
- /usr/include/c++/15/bits/stl_iterator.h \
- /usr/include/c++/15/bits/ptr_traits.h /usr/include/c++/15/debug/debug.h \
- /usr/include/c++/15/bits/predefined_ops.h /usr/include/c++/15/bit \
- /usr/include/c++/15/concepts /usr/include/c++/15/bits/range_access.h \
- /usr/include/c++/15/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
- /usr/include/c++/15/memory /usr/include/c++/15/bits/memoryfwd.h \
- /usr/include/c++/15/bits/allocator.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/c++allocator.h \
- /usr/include/c++/15/bits/new_allocator.h \
- /usr/include/c++/15/bits/stl_tempbuf.h \
- /usr/include/c++/15/bits/stl_construct.h \
- /usr/include/c++/15/bits/stl_uninitialized.h \
- /usr/include/c++/15/ext/alloc_traits.h \
- /usr/include/c++/15/bits/alloc_traits.h \
- /usr/include/c++/15/bits/stl_raw_storage_iter.h \
- /usr/include/c++/15/bits/align.h /usr/include/c++/15/bits/unique_ptr.h \
- /usr/include/c++/15/bits/shared_ptr.h /usr/include/c++/15/iosfwd \
- /usr/include/c++/15/bits/requires_hosted.h \
- /usr/include/c++/15/bits/stringfwd.h /usr/include/c++/15/bits/postypes.h \
- /usr/include/c++/15/cwchar /usr/include/wchar.h \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
+ /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
+ /usr/include/c++/13/bits/allocator.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
+ /usr/include/c++/13/bits/new_allocator.h \
+ /usr/include/c++/13/bits/functexcept.h \
+ /usr/include/c++/13/bits/exception_defines.h \
+ /usr/include/c++/13/bits/stl_tempbuf.h \
+ /usr/include/c++/13/bits/stl_construct.h \
+ /usr/include/c++/13/bits/stl_iterator_base_types.h \
+ /usr/include/c++/13/bits/stl_iterator_base_funcs.h \
+ /usr/include/c++/13/bits/concept_check.h \
+ /usr/include/c++/13/debug/assertions.h \
+ /usr/include/c++/13/ext/numeric_traits.h \
+ /usr/include/c++/13/bits/cpp_type_traits.h \
+ /usr/include/c++/13/ext/type_traits.h \
+ /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/stl_algobase.h \
+ /usr/include/c++/13/bits/stl_iterator.h \
+ /usr/include/c++/13/bits/ptr_traits.h /usr/include/c++/13/debug/debug.h \
+ /usr/include/c++/13/bits/predefined_ops.h /usr/include/c++/13/bit \
+ /usr/include/c++/13/ext/alloc_traits.h \
+ /usr/include/c++/13/bits/alloc_traits.h \
+ /usr/include/c++/13/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/13/bits/align.h \
+ /usr/include/c++/13/bits/uses_allocator.h \
+ /usr/include/c++/13/bits/unique_ptr.h /usr/include/c++/13/tuple \
+ /usr/include/c++/13/bits/invoke.h \
+ /usr/include/c++/13/bits/stl_function.h \
+ /usr/include/c++/13/backward/binders.h \
+ /usr/include/c++/13/bits/functional_hash.h \
+ /usr/include/c++/13/bits/hash_bytes.h \
+ /usr/include/c++/13/bits/shared_ptr.h /usr/include/c++/13/iosfwd \
+ /usr/include/c++/13/bits/requires_hosted.h \
+ /usr/include/c++/13/bits/stringfwd.h /usr/include/c++/13/bits/postypes.h \
+ /usr/include/c++/13/cwchar /usr/include/wchar.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
@@ -453,23 +282,15 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2-decl.h \
  /usr/include/x86_64-linux-gnu/bits/wchar2.h \
- /usr/include/c++/15/bits/shared_ptr_base.h \
- /usr/include/c++/15/bits/allocated_ptr.h \
- /usr/include/c++/15/ext/aligned_buffer.h \
- /usr/include/c++/15/ext/atomicity.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/gthr.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/gthr-default.h \
+ /usr/include/c++/13/bits/shared_ptr_base.h /usr/include/c++/13/typeinfo \
+ /usr/include/c++/13/bits/allocated_ptr.h \
+ /usr/include/c++/13/bits/refwrap.h \
+ /usr/include/c++/13/ext/aligned_buffer.h \
+ /usr/include/c++/13/ext/atomicity.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
- /usr/include/linux/sched/types.h /usr/include/linux/types.h \
- /usr/include/x86_64-linux-gnu/asm/types.h \
- /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
- /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
- /usr/include/asm-generic/posix_types.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
  /usr/include/x86_64-linux-gnu/bits/cpu-set.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
@@ -479,23 +300,28 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/atomic_word.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
  /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
- /usr/include/c++/15/ext/concurrence.h /usr/include/c++/15/exception \
- /usr/include/c++/15/bits/exception_ptr.h \
- /usr/include/c++/15/bits/cxxabi_init_exception.h \
- /usr/include/c++/15/bits/nested_exception.h \
- /usr/include/c++/15/bits/shared_ptr_atomic.h \
- /usr/include/c++/15/backward/auto_ptr.h /usr/include/c++/15/stdexcept \
- /usr/include/c++/15/string /usr/include/c++/15/bits/char_traits.h \
- /usr/include/c++/15/bits/localefwd.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/c++locale.h \
- /usr/include/c++/15/clocale /usr/include/locale.h \
- /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/15/cctype \
- /usr/include/ctype.h /usr/include/c++/15/bits/ostream_insert.h \
- /usr/include/c++/15/bits/cxxabi_forced.h \
- /usr/include/c++/15/bits/basic_string.h \
- /usr/include/c++/15/ext/string_conversions.h /usr/include/c++/15/cstdio \
+ /usr/include/c++/13/ext/concurrence.h /usr/include/c++/13/exception \
+ /usr/include/c++/13/bits/exception_ptr.h \
+ /usr/include/c++/13/bits/cxxabi_init_exception.h \
+ /usr/include/c++/13/bits/nested_exception.h \
+ /usr/include/c++/13/bits/shared_ptr_atomic.h \
+ /usr/include/c++/13/backward/auto_ptr.h /usr/include/boost/array.hpp \
+ /usr/include/c++/13/iterator /usr/include/c++/13/bits/stream_iterator.h \
+ /usr/include/c++/13/bits/streambuf_iterator.h \
+ /usr/include/c++/13/streambuf /usr/include/c++/13/bits/localefwd.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
+ /usr/include/c++/13/clocale /usr/include/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/13/cctype \
+ /usr/include/ctype.h /usr/include/c++/13/bits/ios_base.h \
+ /usr/include/c++/13/bits/locale_classes.h /usr/include/c++/13/string \
+ /usr/include/c++/13/bits/char_traits.h \
+ /usr/include/c++/13/bits/ostream_insert.h \
+ /usr/include/c++/13/bits/cxxabi_forced.h \
+ /usr/include/c++/13/bits/range_access.h \
+ /usr/include/c++/13/bits/basic_string.h \
+ /usr/include/c++/13/ext/string_conversions.h /usr/include/c++/13/cstdio \
  /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
@@ -503,13 +329,28 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h \
  /usr/include/x86_64-linux-gnu/bits/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/15/cerrno \
+ /usr/include/x86_64-linux-gnu/bits/stdio2.h /usr/include/c++/13/cerrno \
  /usr/include/errno.h /usr/include/x86_64-linux-gnu/bits/errno.h \
  /usr/include/linux/errno.h /usr/include/x86_64-linux-gnu/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
  /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
- /usr/include/c++/15/bits/charconv.h \
- /usr/include/c++/15/bits/basic_string.tcc \
+ /usr/include/c++/13/bits/charconv.h \
+ /usr/include/c++/13/bits/basic_string.tcc \
+ /usr/include/c++/13/bits/locale_classes.tcc \
+ /usr/include/c++/13/system_error \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
+ /usr/include/c++/13/stdexcept /usr/include/c++/13/bits/streambuf.tcc \
+ /usr/include/boost/core/swap.hpp /usr/include/boost/core/enable_if.hpp \
+ /usr/include/boost/throw_exception.hpp \
+ /usr/include/boost/exception/exception.hpp \
+ /usr/include/boost/assert/source_location.hpp \
+ /usr/include/boost/current_function.hpp /usr/include/boost/cstdint.hpp \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/include/boost/noncopyable.hpp \
+ /usr/include/boost/core/noncopyable.hpp \
  /usr/include/boost/align/align_up.hpp \
  /usr/include/boost/align/detail/align_up.hpp \
  /usr/include/boost/align/detail/is_alignment.hpp \
@@ -526,10 +367,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/align/align.hpp \
  /usr/include/boost/align/detail/align.hpp \
  /usr/include/boost/align/aligned_allocator_adaptor_forward.hpp \
- /usr/include/boost/throw_exception.hpp \
- /usr/include/boost/exception/exception.hpp \
- /usr/include/boost/assert/source_location.hpp \
- /usr/include/boost/cstdint.hpp \
  /usr/include/boost/lockfree/detail/parameter.hpp \
  /usr/include/boost/align/aligned_allocator.hpp \
  /usr/include/boost/align/detail/add_reference.hpp \
@@ -537,7 +374,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/align/detail/throw_exception.hpp \
  /usr/include/boost/align/aligned_alloc.hpp \
  /usr/include/boost/align/detail/aligned_alloc_posix.hpp \
- /usr/include/c++/15/stdlib.h \
+ /usr/include/c++/13/stdlib.h \
  /usr/include/boost/align/aligned_allocator_forward.hpp \
  /usr/include/boost/lockfree/detail/prefix.hpp \
  /usr/include/boost/predef.h /usr/include/boost/predef/language.h \
@@ -606,7 +443,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/predef/library.h \
  /usr/include/boost/predef/library/c.h \
  /usr/include/boost/predef/library/c/_prefix.h \
- /usr/include/boost/predef/detail/_cassert.h \
+ /usr/include/boost/predef/detail/_cassert.h /usr/include/c++/13/cassert \
  /usr/include/boost/predef/library/c/cloudabi.h \
  /usr/include/boost/predef/library/c/gnu.h \
  /usr/include/boost/predef/library/c/uc.h \
@@ -620,7 +457,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/predef/library/std/libcomo.h \
  /usr/include/boost/predef/library/std/modena.h \
  /usr/include/boost/predef/library/std/msl.h \
- /usr/include/boost/predef/library/std/msvc.h \
  /usr/include/boost/predef/library/std/roguewave.h \
  /usr/include/boost/predef/library/std/sgi.h \
  /usr/include/boost/predef/library/std/stdcpp3.h \
@@ -673,32 +509,212 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/boost/predef/hardware/simd/ppc/versions.h \
  /usr/include/boost/predef/version.h \
  /usr/include/boost/lockfree/policies.hpp \
+ /usr/include/boost/parameter/template_keyword.hpp \
+ /usr/include/boost/parameter/aux_/template_keyword.hpp \
+ /usr/include/boost/parameter/config.hpp \
+ /usr/include/boost/mpl/limits/vector.hpp \
+ /usr/include/boost/mp11/integral.hpp /usr/include/boost/mp11/version.hpp \
+ /usr/include/boost/mp11/detail/mp_value.hpp \
+ /usr/include/boost/mp11/detail/config.hpp \
+ /usr/include/boost/mp11/utility.hpp \
+ /usr/include/boost/mp11/detail/mp_list.hpp \
+ /usr/include/boost/mp11/detail/mp_fold.hpp \
+ /usr/include/boost/mp11/detail/mp_defer.hpp \
+ /usr/include/boost/mp11/detail/mp_front.hpp \
+ /usr/include/boost/mp11/detail/mp_rename.hpp \
+ /usr/include/boost/mpl/size_t.hpp /usr/include/boost/mpl/size_t_fwd.hpp \
  /usr/include/boost/parameter/binding.hpp \
+ /usr/include/boost/parameter/aux_/void.hpp \
+ /usr/include/boost/mp11/list.hpp \
+ /usr/include/boost/mp11/detail/mp_list_v.hpp \
+ /usr/include/boost/mp11/detail/mp_is_list.hpp \
+ /usr/include/boost/mp11/detail/mp_is_value_list.hpp \
+ /usr/include/boost/mp11/detail/mp_append.hpp \
+ /usr/include/boost/mp11/detail/mp_count.hpp \
+ /usr/include/boost/mp11/detail/mp_plus.hpp \
+ /usr/include/boost/parameter/aux_/is_placeholder.hpp \
+ /usr/include/boost/mpl/arg_fwd.hpp /usr/include/boost/mp11/bind.hpp \
+ /usr/include/boost/mp11/algorithm.hpp /usr/include/boost/mp11/set.hpp \
+ /usr/include/boost/mp11/function.hpp \
+ /usr/include/boost/mp11/detail/mp_min_element.hpp \
+ /usr/include/boost/mp11/detail/mp_void.hpp \
+ /usr/include/boost/mp11/detail/mp_copy_if.hpp \
+ /usr/include/boost/mp11/detail/mp_remove_if.hpp \
+ /usr/include/boost/mp11/detail/mp_map_find.hpp \
+ /usr/include/boost/mp11/detail/mp_with_index.hpp \
+ /usr/include/boost/mp11/integer_sequence.hpp \
+ /usr/include/boost/parameter/aux_/result_of0.hpp \
+ /usr/include/boost/parameter/aux_/use_default_tag.hpp \
+ /usr/include/boost/utility/result_of.hpp \
+ /usr/include/boost/type_traits/is_class.hpp \
+ /usr/include/boost/type_traits/remove_cv.hpp \
+ /usr/include/boost/type_traits/conditional.hpp \
+ /usr/include/boost/type_traits/type_identity.hpp \
+ /usr/include/boost/utility/detail/result_of_variadic.hpp \
+ /usr/include/boost/parameter/parameters.hpp \
+ /usr/include/boost/parameter/aux_/arg_list.hpp \
+ /usr/include/boost/parameter/aux_/yesno.hpp \
+ /usr/include/boost/parameter/aux_/default.hpp \
+ /usr/include/boost/parameter/aux_/preprocessor/nullptr.hpp \
+ /usr/include/boost/parameter/aux_/is_maybe.hpp \
+ /usr/include/boost/parameter/aux_/tagged_argument_fwd.hpp \
+ /usr/include/boost/parameter/aux_/parameter_requirements.hpp \
+ /usr/include/boost/parameter/aux_/pack/parameter_requirements.hpp \
+ /usr/include/boost/parameter/aux_/augment_predicate.hpp \
+ /usr/include/boost/parameter/keyword_fwd.hpp \
+ /usr/include/boost/mpl/eval_if.hpp \
+ /usr/include/boost/type_traits/is_same.hpp \
+ /usr/include/boost/parameter/aux_/lambda_tag.hpp \
+ /usr/include/boost/mpl/apply_wrap.hpp \
+ /usr/include/boost/mpl/aux_/has_apply.hpp \
+ /usr/include/boost/mpl/has_xxx.hpp \
+ /usr/include/boost/mpl/aux_/type_wrapper.hpp \
+ /usr/include/boost/mpl/aux_/yes_no.hpp \
+ /usr/include/boost/mpl/aux_/config/arrays.hpp \
+ /usr/include/boost/mpl/aux_/config/has_xxx.hpp \
+ /usr/include/boost/mpl/aux_/config/msvc_typename.hpp \
+ /usr/include/boost/preprocessor/array/elem.hpp \
+ /usr/include/boost/preprocessor/array/data.hpp \
+ /usr/include/boost/preprocessor/array/size.hpp \
+ /usr/include/boost/preprocessor/repetition/enum_params.hpp \
+ /usr/include/boost/preprocessor/repetition/enum_trailing_params.hpp \
+ /usr/include/boost/mpl/aux_/config/has_apply.hpp \
+ /usr/include/boost/mpl/aux_/msvc_never_true.hpp \
+ /usr/include/boost/mpl/aux_/config/use_preprocessed.hpp \
+ /usr/include/boost/mpl/aux_/include_preprocessed.hpp \
+ /usr/include/boost/mpl/aux_/config/compiler.hpp \
+ /usr/include/boost/preprocessor/stringize.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_wrap.hpp \
+ /usr/include/boost/mpl/lambda.hpp /usr/include/boost/mpl/bind.hpp \
+ /usr/include/boost/mpl/bind_fwd.hpp \
+ /usr/include/boost/mpl/aux_/config/bind.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/bind_fwd.hpp \
+ /usr/include/boost/mpl/placeholders.hpp /usr/include/boost/mpl/arg.hpp \
+ /usr/include/boost/mpl/aux_/na_assert.hpp \
+ /usr/include/boost/mpl/assert.hpp /usr/include/boost/mpl/not.hpp \
+ /usr/include/boost/mpl/aux_/nested_type_wknd.hpp \
+ /usr/include/boost/mpl/aux_/config/gpu.hpp \
+ /usr/include/boost/mpl/aux_/config/pp_counter.hpp \
+ /usr/include/boost/mpl/aux_/arity_spec.hpp \
+ /usr/include/boost/mpl/aux_/arg_typedef.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/arg.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/placeholders.hpp \
+ /usr/include/boost/mpl/next.hpp /usr/include/boost/mpl/next_prior.hpp \
+ /usr/include/boost/mpl/aux_/common_name_wknd.hpp \
+ /usr/include/boost/mpl/protect.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/bind.hpp \
+ /usr/include/boost/mpl/aux_/full_lambda.hpp \
+ /usr/include/boost/mpl/quote.hpp /usr/include/boost/mpl/void.hpp \
+ /usr/include/boost/mpl/aux_/has_type.hpp \
+ /usr/include/boost/mpl/aux_/config/bcc.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/quote.hpp \
+ /usr/include/boost/mpl/aux_/template_arity.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/full_lambda.hpp \
+ /usr/include/boost/parameter/aux_/has_nested_template_fn.hpp \
+ /usr/include/boost/mpl/iterator_tags.hpp \
+ /usr/include/boost/mpl/begin_end_fwd.hpp \
+ /usr/include/boost/parameter/value_type.hpp \
+ /usr/include/boost/mpl/has_key_fwd.hpp \
+ /usr/include/boost/mpl/count_fwd.hpp \
+ /usr/include/boost/mpl/key_type_fwd.hpp \
+ /usr/include/boost/mpl/identity.hpp \
+ /usr/include/boost/mpl/value_type_fwd.hpp \
+ /usr/include/boost/mpl/at_fwd.hpp /usr/include/boost/mpl/order_fwd.hpp \
+ /usr/include/boost/mpl/find.hpp /usr/include/boost/mpl/find_if.hpp \
+ /usr/include/boost/mpl/aux_/find_if_pred.hpp \
+ /usr/include/boost/mpl/aux_/iter_apply.hpp \
+ /usr/include/boost/mpl/apply.hpp /usr/include/boost/mpl/apply_fwd.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/apply_fwd.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/apply.hpp \
+ /usr/include/boost/mpl/deref.hpp \
+ /usr/include/boost/mpl/aux_/msvc_type.hpp \
+ /usr/include/boost/mpl/aux_/is_msvc_eti_arg.hpp \
+ /usr/include/boost/mpl/iter_fold_if.hpp \
+ /usr/include/boost/mpl/begin_end.hpp \
+ /usr/include/boost/mpl/aux_/begin_end_impl.hpp \
+ /usr/include/boost/mpl/sequence_tag_fwd.hpp \
+ /usr/include/boost/mpl/aux_/has_begin.hpp \
+ /usr/include/boost/mpl/aux_/traits_lambda_spec.hpp \
+ /usr/include/boost/mpl/sequence_tag.hpp \
+ /usr/include/boost/mpl/aux_/has_tag.hpp \
+ /usr/include/boost/mpl/logical.hpp /usr/include/boost/mpl/or.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp \
+ /usr/include/boost/mpl/and.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/and.hpp \
+ /usr/include/boost/mpl/always.hpp \
+ /usr/include/boost/mpl/aux_/preprocessor/default_params.hpp \
+ /usr/include/boost/mpl/pair.hpp \
+ /usr/include/boost/mpl/aux_/msvc_eti_base.hpp \
+ /usr/include/boost/mpl/aux_/iter_fold_if_impl.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_if_impl.hpp \
+ /usr/include/boost/mpl/aux_/config/forwarding.hpp \
+ /usr/include/boost/mpl/same_as.hpp \
+ /usr/include/boost/mpl/aux_/lambda_spec.hpp \
+ /usr/include/boost/mpl/distance.hpp \
+ /usr/include/boost/mpl/distance_fwd.hpp \
+ /usr/include/boost/mpl/iter_fold.hpp /usr/include/boost/mpl/O1_size.hpp \
+ /usr/include/boost/mpl/O1_size_fwd.hpp \
+ /usr/include/boost/mpl/aux_/O1_size_impl.hpp \
+ /usr/include/boost/mpl/long.hpp /usr/include/boost/mpl/long_fwd.hpp \
+ /usr/include/boost/mpl/aux_/has_size.hpp \
+ /usr/include/boost/mpl/aux_/iter_fold_impl.hpp \
+ /usr/include/boost/mpl/aux_/preprocessed/gcc/iter_fold_impl.hpp \
+ /usr/include/boost/mpl/iterator_range.hpp /usr/include/boost/mpl/tag.hpp \
+ /usr/include/boost/parameter/aux_/pack/make_arg_list.hpp \
+ /usr/include/boost/parameter/aux_/pack/unmatched_argument.hpp \
+ /usr/include/boost/parameter/aux_/pack/tag_type.hpp \
+ /usr/include/boost/parameter/deduced.hpp \
+ /usr/include/boost/parameter/aux_/use_default.hpp \
+ /usr/include/boost/parameter/required.hpp \
+ /usr/include/boost/parameter/optional.hpp \
+ /usr/include/boost/parameter/aux_/pack/is_named_argument.hpp \
+ /usr/include/boost/parameter/aux_/is_tagged_argument.hpp \
+ /usr/include/boost/type_traits/is_base_of.hpp \
+ /usr/include/boost/type_traits/is_base_and_derived.hpp \
+ /usr/include/boost/type_traits/remove_const.hpp \
+ /usr/include/boost/parameter/aux_/pack/insert_tagged.hpp \
+ /usr/include/boost/parameter/aux_/set.hpp \
+ /usr/include/boost/parameter/aux_/pack/deduce_tag.hpp \
+ /usr/include/boost/parameter/aux_/pack/tag_deduced.hpp \
+ /usr/include/boost/parameter/aux_/pack/make_parameter_spec_items.hpp \
+ /usr/include/boost/parameter/aux_/pack/make_deduced_items.hpp \
+ /usr/include/boost/parameter/aux_/pack/deduced_item.hpp \
+ /usr/include/boost/parameter/aux_/pack/satisfies.hpp \
+ /usr/include/boost/parameter/aux_/pack/as_parameter_requirements.hpp \
+ /usr/include/boost/parameter/aux_/pack/predicate.hpp \
+ /usr/include/boost/parameter/aux_/always_true_predicate.hpp \
+ /usr/include/boost/parameter/aux_/pack/make_items.hpp \
+ /usr/include/boost/parameter/aux_/pack/item.hpp \
+ /usr/include/boost/parameter/aux_/pack/tag_keyword_arg.hpp \
+ /usr/include/boost/parameter/aux_/tag.hpp \
+ /usr/include/boost/parameter/aux_/unwrap_cv_reference.hpp \
+ /usr/include/c++/13/functional /usr/include/c++/13/bits/std_function.h \
+ /usr/include/boost/parameter/aux_/tagged_argument.hpp \
+ /usr/include/boost/parameter/aux_/pack/tag_template_keyword_arg.hpp \
  /usr/include/boost/lockfree/detail/tagged_ptr.hpp \
  /usr/include/boost/lockfree/detail/tagged_ptr_ptrcompression.hpp \
- /usr/include/boost/lockfree/detail/uses_optional.hpp \
  /usr/include/boost/lockfree/lockfree_forward.hpp \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/15/ctime \
- /usr/include/c++/15/cmath /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/13/ctime \
+ /usr/include/c++/13/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
- /usr/include/x86_64-linux-gnu/bits/mathcalls-macros.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/c++/15/cfloat \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
+ /usr/include/c++/13/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/types.h \
- /usr/include/c++/15/cxxabi.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/cxxabi_tweaks.h \
+ /usr/include/c++/13/cxxabi.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/cxxabi_tweaks.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/String.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Variable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ConstString.h \
- /usr/include/c++/15/cstdarg \
+ /usr/include/c++/13/cstdarg \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Object.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
  /usr/include/signal.h \
@@ -725,9 +741,9 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/System.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/mersenne/MersenneTwister.h \
- /usr/include/c++/15/math.h \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h \
+ /usr/include/c++/13/math.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
@@ -736,32 +752,24 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/TextStream.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/StringBuffer.h \
- /usr/include/c++/15/iostream /usr/include/c++/15/ostream \
- /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/ios \
- /usr/include/c++/15/bits/ios_base.h \
- /usr/include/c++/15/bits/locale_classes.h \
- /usr/include/c++/15/bits/locale_classes.tcc \
- /usr/include/c++/15/system_error \
- /usr/include/x86_64-linux-gnu/c++/15/bits/error_constants.h \
- /usr/include/c++/15/streambuf /usr/include/c++/15/bits/streambuf.tcc \
- /usr/include/c++/15/bits/basic_ios.h \
- /usr/include/c++/15/bits/locale_facets.h /usr/include/c++/15/cwctype \
+ /usr/include/c++/13/iostream /usr/include/c++/13/ostream \
+ /usr/include/c++/13/ios /usr/include/c++/13/bits/basic_ios.h \
+ /usr/include/c++/13/bits/locale_facets.h /usr/include/c++/13/cwctype \
  /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/ctype_base.h \
- /usr/include/c++/15/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/ctype_inline.h \
- /usr/include/c++/15/bits/locale_facets.tcc \
- /usr/include/c++/15/bits/basic_ios.tcc \
- /usr/include/c++/15/bits/ostream.tcc /usr/include/c++/15/istream \
- /usr/include/c++/15/bits/istream.tcc \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h \
+ /usr/include/c++/13/bits/locale_facets.tcc \
+ /usr/include/c++/13/bits/basic_ios.tcc \
+ /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
+ /usr/include/c++/13/bits/istream.tcc \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/UnicodeString.h \
- /usr/include/c++/15/locale \
- /usr/include/c++/15/bits/locale_facets_nonio.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/time_members.h \
- /usr/include/x86_64-linux-gnu/c++/15/bits/messages_members.h \
- /usr/include/libintl.h /usr/include/c++/15/bits/codecvt.h \
- /usr/include/c++/15/bits/locale_facets_nonio.tcc \
- /usr/include/c++/15/bits/locale_conv.h /usr/include/c++/15/codecvt \
+ /usr/include/c++/13/locale \
+ /usr/include/c++/13/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/c++/13/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13/bits/locale_conv.h /usr/include/c++/13/codecvt \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/ArrayList.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Math.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ArrayIndexOutOfBoundsException.h \
@@ -774,15 +782,11 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Function.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/Optional.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/optional.hpp \
- /usr/include/c++/15/algorithm /usr/include/c++/15/bits/stl_algo.h \
- /usr/include/c++/15/bits/algorithmfwd.h \
- /usr/include/c++/15/bits/stl_heap.h \
- /usr/include/c++/15/bits/uniform_int_dist.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
- /usr/include/c++/15/thread /usr/include/c++/15/bits/std_thread.h \
- /usr/include/c++/15/bits/this_thread_sleep.h \
- /usr/include/c++/15/bits/chrono.h /usr/include/c++/15/ratio \
- /usr/include/c++/15/bits/parse_numbers.h \
+ /usr/include/c++/13/thread /usr/include/c++/13/bits/std_thread.h \
+ /usr/include/c++/13/bits/this_thread_sleep.h \
+ /usr/include/c++/13/bits/chrono.h /usr/include/c++/13/ratio \
+ /usr/include/c++/13/cstdint /usr/include/c++/13/bits/parse_numbers.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/StrongAndWeakReferenceCount.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/ReferenceCounter.h \
@@ -803,15 +807,18 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
  /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/socket2.h \
- /usr/include/x86_64-linux-gnu/bits/in.h \
- /usr/include/x86_64-linux-gnu/bits/inet-fortified.h \
- /usr/include/x86_64-linux-gnu/bits/inet-fortified-decl.h \
- /usr/include/c++/15/chrono \
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/13/chrono \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicInteger.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicReference.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Thread.h \
@@ -819,11 +826,11 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/UniqueReference.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/bytell_hash_map.hpp \
- /usr/include/c++/15/iterator /usr/include/c++/15/bits/stream_iterator.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/flat_hash_map.hpp \
- /usr/include/c++/15/vector /usr/include/c++/15/bits/stl_vector.h \
- /usr/include/c++/15/bits/stl_bvector.h \
- /usr/include/c++/15/bits/vector.tcc \
+ /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_vector.h \
+ /usr/include/c++/13/bits/stl_bvector.h \
+ /usr/include/c++/13/bits/vector.tcc /usr/include/c++/13/array \
+ /usr/include/c++/13/compare \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/atomic/AtomicBoolean.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/mm/MemoryManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/mm/ObjectCloner.h \
@@ -869,8 +876,8 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileLogWriter.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/FileWriter.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/Reference.h \
- /usr/include/c++/15/mutex /usr/include/c++/15/bits/std_mutex.h \
- /usr/include/c++/15/bits/unique_lock.h \
+ /usr/include/c++/13/mutex /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/BufferedReader.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/UnicodeTokenizer.h \
@@ -927,26 +934,26 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectPOD.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/json.hpp \
- /usr/include/c++/15/ciso646 /usr/include/c++/15/numeric \
- /usr/include/c++/15/bits/stl_numeric.h /usr/include/c++/15/forward_list \
- /usr/include/c++/15/bits/forward_list.h \
- /usr/include/c++/15/bits/forward_list.tcc /usr/include/c++/15/map \
- /usr/include/c++/15/bits/stl_tree.h /usr/include/c++/15/bits/stl_map.h \
- /usr/include/c++/15/bits/stl_multimap.h \
- /usr/include/c++/15/bits/erase_if.h /usr/include/c++/15/unordered_map \
- /usr/include/c++/15/bits/unordered_map.h \
- /usr/include/c++/15/bits/hashtable.h \
- /usr/include/c++/15/bits/hashtable_policy.h \
- /usr/include/c++/15/bits/enable_special_members.h \
- /usr/include/c++/15/valarray /usr/include/c++/15/bits/valarray_array.h \
- /usr/include/c++/15/bits/valarray_array.tcc \
- /usr/include/c++/15/bits/valarray_before.h \
- /usr/include/c++/15/bits/slice_array.h \
- /usr/include/c++/15/bits/valarray_after.h \
- /usr/include/c++/15/bits/gslice.h \
- /usr/include/c++/15/bits/gslice_array.h \
- /usr/include/c++/15/bits/mask_array.h \
- /usr/include/c++/15/bits/indirect_array.h \
+ /usr/include/c++/13/ciso646 /usr/include/c++/13/numeric \
+ /usr/include/c++/13/bits/stl_numeric.h /usr/include/c++/13/forward_list \
+ /usr/include/c++/13/bits/forward_list.h \
+ /usr/include/c++/13/bits/forward_list.tcc /usr/include/c++/13/map \
+ /usr/include/c++/13/bits/stl_tree.h /usr/include/c++/13/bits/stl_map.h \
+ /usr/include/c++/13/bits/stl_multimap.h \
+ /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/unordered_map \
+ /usr/include/c++/13/bits/unordered_map.h \
+ /usr/include/c++/13/bits/hashtable.h \
+ /usr/include/c++/13/bits/hashtable_policy.h \
+ /usr/include/c++/13/bits/enable_special_members.h \
+ /usr/include/c++/13/valarray /usr/include/c++/13/bits/valarray_array.h \
+ /usr/include/c++/13/bits/valarray_array.tcc \
+ /usr/include/c++/13/bits/valarray_before.h \
+ /usr/include/c++/13/bits/slice_array.h \
+ /usr/include/c++/13/bits/valarray_after.h \
+ /usr/include/c++/13/bits/gslice.h \
+ /usr/include/c++/13/bits/gslice_array.h \
+ /usr/include/c++/13/bits/mask_array.h \
+ /usr/include/c++/13/bits/indirect_array.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/ObjectAlreadyDeployedException.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectStub.h \
@@ -965,7 +972,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/io/StringTokenizer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/Pair.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/Task.h \
- /usr/include/c++/15/csignal \
+ /usr/include/c++/13/csignal \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/Timer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/LambdaFunction.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/task/LocalTaskManager.h \
@@ -1148,58 +1155,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/sui/SuiCommand.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/c++/15/sstream /usr/include/c++/15/bits/sstream.tcc \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
- /usr/include/regex.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
- /usr/include/x86_64-linux-gnu/sys/wait.h \
- /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /usr/include/c++/15/iomanip /usr/include/c++/15/bits/quoted_string.h \
- /usr/include/c++/15/set /usr/include/c++/15/bits/stl_set.h \
- /usr/include/c++/15/bits/stl_multiset.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/group/GroupObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/group/GroupList.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
@@ -1213,10 +1168,12 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StringIdParameter.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/QuadTreeEntry.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/TreeEntry.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SortedVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/CloseObjectsVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/Coordinate.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/TreeNode.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/stm/TransactionalReference.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
@@ -1234,6 +1191,8 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/datatables/DataTableRow.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/datatables/DataTableCell.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/iffstream/chunks/Chunk.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/PlanetMapSubCategory.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/planet/MapLocationType.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/TemplateManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/SharedObjectTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/LuaTemplate.h \
@@ -1254,6 +1213,7 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/footprint/StructureFootprint.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/slots/SlotId.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/PlanetMapCategoryList.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/PlanetMapSubCategoryList.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/PortalLayoutMap.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/appearance/PortalLayout.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/appearance/CellProperty.h \
@@ -1267,8 +1227,10 @@ src/CMakeFiles/core3.dir/server/zone/objects/resource/ResourceContainerImplement
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/collision/BaseBoundingVolume.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/appearance/MeshData.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/building/InteriorLayoutTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ZoneComponent.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \

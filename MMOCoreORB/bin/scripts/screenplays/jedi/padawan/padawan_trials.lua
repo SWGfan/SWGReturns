@@ -26,13 +26,8 @@ function PadawanTrials:startPadawanTrials(pObject, pPlayer)
 		return
 	end
 
-	local sui = SuiMessageBox.new("PadawanTrials", "jediPadawanTrialsStartCallback")
-	sui.setTargetNetworkId(SceneObject(pObject):getObjectID())
-	sui.setTitle("@jedi_trials:force_shrine_title")
-	sui.setPrompt("@jedi_trials:padawan_trials_start_query")
-	sui.setOkButtonText("@jedi_trials:button_yes") -- Yes
-	sui.setCancelButtonText("@jedi_trials:button_no") -- No
-	sui.sendTo(pPlayer)
+	-- Trials removed: meditating (or completing the Village storyline) instantly grants Jedi Padawan.
+	JediTrials:unlockJediPadawan(pPlayer)
 end
 
 function PadawanTrials:jediPadawanTrialsStartCallback(pPlayer, pSui, eventIndex, args)

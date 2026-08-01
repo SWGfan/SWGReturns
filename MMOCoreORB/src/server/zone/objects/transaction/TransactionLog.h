@@ -69,6 +69,8 @@ enum class TrxCode {
 	CITYSALESTAX,               // City Sales taxes
 	CITYTREASURY,               // City Treasury
 	COMBATSTATS,                // Combat Stats
+	CREDITCHIP,                 // Space credit chip looted
+	CREDITCHIPCLAIM,            // Space credit chip claimed
 	CRAFTINGSESSION,            // Crafting Session
 	DATABASECOMMIT,             // Database Commit
 	DESTROYSTRUCTURE,           // Structure destroyed by system (maintenance etc)
@@ -95,6 +97,8 @@ enum class TrxCode {
 	PLAYERONLINE,               // Player Online
 	RECYCLED,                   // Recycled Items
 	SERVERDESTROYOBJECT,        // /serverDestroyObject command
+	SHIPDEEDPURCHASE,           // Purchase of a ship deed from chassis dealer
+	SHIPREDEED,                 // Re-deeding a ship from datapad
 	SLICECONTAINER,             // Slicing session on a container
 	STRUCTUREDEED,              // Structure deed trxs
 	TRANSFERITEMMISC,           // /transferitemmisc command

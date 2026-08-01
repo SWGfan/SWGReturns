@@ -3646,3 +3646,8 @@ object_draft_schematic_armor_shared_armor_appearance_stormtrooper_leggings = Sha
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_appearance_stormtrooper_leggings, "object/draft_schematic/armor/shared_armor_appearance_stormtrooper_leggings.iff")
 ------------------------------------------------------------------------------------------------------------------------------------
 
+
+object_draft_schematic_armor_shared_armor_segment_bh = SharedDraftSchematicObjectTemplate:new {
+  clientTemplateFileName = "object/draft_schematic/armor/shared_armor_segment_bh.iff"
+}
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_segment_bh, "object/draft_schematic/armor/shared_armor_segment_bh.iff")

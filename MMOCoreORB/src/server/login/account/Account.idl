@@ -18,6 +18,8 @@ class Account extends ManagedObject implements Logger {
 
 	protected transient string salt;
 
+	protected unsigned int hasUnlockedJediSlot;
+
 	protected transient unsigned int accountID;
 	protected transient unsigned int stationID;
 	protected transient unsigned int adminLevel;
@@ -87,6 +89,21 @@ class Account extends ManagedObject implements Logger {
 	@dirty
 	public unsigned int getBanAdmin() {
 		return banAdmin;
+	}
+
+	@preLocked
+	public void setHasUnlockedJediSlot(unsigned int value) {
+		hasUnlockedJediSlot = value;
+	}
+
+	@read
+	public unsigned int getHasUnlockedJediSlot() {
+		return hasUnlockedJediSlot;
+	}
+
+	@preLocked
+	public void grantJediSlot() {
+		hasUnlockedJediSlot = 1;
 	}
 
 	@preLocked

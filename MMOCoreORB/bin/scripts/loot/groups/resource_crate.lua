@@ -3,7 +3,7 @@ resource_crate = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "resource_deed", weight = 3500000},
+		{itemTemplate = "resource_deed", weight = 150000},
 		{groupTemplate = "krayt_pearls", weight = 1500000},
 		{groupTemplate = "weapon_component_advanced", weight = 1500000},
 		{groupTemplate = "chemistry_component_advanced", weight = 1500000},

@@ -10,6 +10,7 @@
 
 AccountImplementation::AccountImplementation() {
 	created = 0;
+	hasUnlockedJediSlot = 0;
 	initializeTransientMembers();
 }
 
@@ -51,7 +52,8 @@ void AccountImplementation::updateAccount() {
 	query << "SELECT a.active, a.admin_level, "
 			<< "IFNULL((SELECT b.reason FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), ''), "
 			<< "IFNULL((SELECT b.expires FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0), "
-			<< "IFNULL((SELECT b.issuer_id FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0) "
+			<< "IFNULL((SELECT b.issuer_id FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0), "
+			<< "IFNULL(a.has_unlocked_jedi_slot, 0) "
 			<< "FROM accounts a WHERE a.account_id = '" << accountID << "' LIMIT 1;";
 
 	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
@@ -63,6 +65,7 @@ void AccountImplementation::updateAccount() {
 		setBanReason(result->getString(2));
 		setBanExpires(result->getUnsignedInt(3));
 		setBanAdmin(result->getUnsignedInt(4));
+		setHasUnlockedJediSlot(result->getUnsignedInt(5));
 	}
 }
 

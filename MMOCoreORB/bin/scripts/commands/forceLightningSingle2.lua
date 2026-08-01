@@ -65,6 +65,21 @@ ForceLightningSingle2Command = {
     ),   
   },
 
+	dotEffects = {
+		DotEffect(
+			ONFIRE,
+			{"resistance_fire", "fire_resist"},
+			HEALTH,
+			true,
+			0,
+			40,
+			100,
+			20,
+			10,
+			8
+		)
+	},
+
 	animation = "force_lightning_1_particle_level_3",
 	animType = GENERATE_INTENSITY,
 

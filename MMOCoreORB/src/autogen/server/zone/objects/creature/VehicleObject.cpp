@@ -18,7 +18,7 @@
  *	VehicleObjectStub
  */
 
-enum {RPC_CHECKINRANGEGARAGE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_SETPOSTURE__INT_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_HEALDAMAGE__TANGIBLEOBJECT_INT_INT_BOOL_,RPC_HEALWOUND__TANGIBLEOBJECT_INT_INT_BOOL_BOOL_,RPC_ADDWOUNDS__INT_INT_BOOL_BOOL_,RPC_SETWOUNDS__INT_INT_BOOL_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_REPAIRVEHICLE__CREATUREOBJECT_,RPC_CALCULATEREPAIRCOST__CREATUREOBJECT_,RPC_SENDREPAIRCONFIRMTO__CREATUREOBJECT_,RPC_REFRESHPAINT__,RPC_GETPAINTCOUNT__,RPC_GETARMOR__,RPC_GETKINETIC__,RPC_GETENERGY__,RPC_GETELECTRICITY__,RPC_GETSTUN__,RPC_GETBLAST__,RPC_GETHEAT__,RPC_GETCOLD__,RPC_GETACID__,RPC_GETLIGHTSABER__};
+enum {RPC_CHECKINRANGEGARAGE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_SETPOSTURE__INT_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_HEALDAMAGE__TANGIBLEOBJECT_INT_INT_BOOL_,RPC_HEALWOUND__TANGIBLEOBJECT_INT_INT_BOOL_BOOL_,RPC_ADDWOUNDS__INT_INT_BOOL_BOOL_,RPC_SETWOUNDS__INT_INT_BOOL_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_REPAIRVEHICLE__CREATUREOBJECT_,RPC_CALCULATEREPAIRCOST__CREATUREOBJECT_,RPC_SENDREPAIRCONFIRMTO__CREATUREOBJECT_,RPC_REFRESHPAINT__,RPC_GETPAINTCOUNT__,RPC_SETRENTALVEHICLE__BOOL_,RPC_ISRENTALVEHICLE__,RPC_SETUSES__INT_,RPC_GETUSES__,RPC_GETARMOR__,RPC_GETKINETIC__,RPC_GETENERGY__,RPC_GETELECTRICITY__,RPC_GETSTUN__,RPC_GETBLAST__,RPC_GETHEAT__,RPC_GETCOLD__,RPC_GETACID__,RPC_GETLIGHTSABER__};
 
 VehicleObject::VehicleObject() : CreatureObject(DummyConstructorParameter::instance()) {
 	VehicleObjectImplementation* _implementation = new VehicleObjectImplementation();
@@ -412,6 +412,64 @@ int VehicleObject::getPaintCount() const {
 	}
 }
 
+void VehicleObject::setRentalVehicle(bool value) {
+	VehicleObjectImplementation* _implementation = static_cast<VehicleObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETRENTALVEHICLE__BOOL_);
+		method.addBooleanParameter(value);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setRentalVehicle(value);
+	}
+}
+
+bool VehicleObject::isRentalVehicle() const {
+	VehicleObjectImplementation* _implementation = static_cast<VehicleObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISRENTALVEHICLE__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isRentalVehicle();
+	}
+}
+
+void VehicleObject::setUses(int value) {
+	VehicleObjectImplementation* _implementation = static_cast<VehicleObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETUSES__INT_);
+		method.addSignedIntParameter(value);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->setUses(value);
+	}
+}
+
+int VehicleObject::getUses() const {
+	VehicleObjectImplementation* _implementation = static_cast<VehicleObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETUSES__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getUses();
+	}
+}
+
 bool VehicleObject::__isVehicleObject() {
 	VehicleObjectImplementation* _implementation = static_cast<VehicleObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -680,6 +738,14 @@ bool VehicleObjectImplementation::readObjectMember(ObjectInputStream* stream, co
 		TypeInfo<int >::parseFromBinaryStream(&paintCount, stream);
 		return true;
 
+	case 0xa8e6637e: //VehicleObject.rentalVehicle
+		TypeInfo<bool >::parseFromBinaryStream(&rentalVehicle, stream);
+		return true;
+
+	case 0x5d6327ac: //VehicleObject.uses
+		TypeInfo<int >::parseFromBinaryStream(&uses, stream);
+		return true;
+
 	}
 
 	return false;
@@ -716,6 +782,24 @@ int VehicleObjectImplementation::writeObjectMembers(ObjectOutputStream* stream) 
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xa8e6637e; //VehicleObject.rentalVehicle
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&rentalVehicle, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x5d6327ac; //VehicleObject.uses
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&uses, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -728,6 +812,10 @@ void VehicleObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["paintCount"] = paintCount;
 
+	thisObject["rentalVehicle"] = rentalVehicle;
+
+	thisObject["uses"] = uses;
+
 	j["VehicleObject"] = thisObject;
 }
 
@@ -737,6 +825,10 @@ VehicleObjectImplementation::VehicleObjectImplementation() {
 	vehicleType = SceneObjectType::HOVERVEHICLE;
 	// server/zone/objects/creature/VehicleObject.idl():  		paintCount = 0;
 	paintCount = 0;
+	// server/zone/objects/creature/VehicleObject.idl():  		rentalVehicle = false;
+	rentalVehicle = false;
+	// server/zone/objects/creature/VehicleObject.idl():  		uses = 0;
+	uses = 0;
 	// server/zone/objects/creature/VehicleObject.idl():  		Logger.setLoggingName("VehicleObject");
 	Logger::setLoggingName("VehicleObject");
 	// server/zone/objects/creature/VehicleObject.idl():  		Logger.setLogging(false);
@@ -802,6 +894,26 @@ void VehicleObjectImplementation::refreshPaint() {
 int VehicleObjectImplementation::getPaintCount() const{
 	// server/zone/objects/creature/VehicleObject.idl():  		return paintCount;
 	return paintCount;
+}
+
+void VehicleObjectImplementation::setRentalVehicle(bool value) {
+	// server/zone/objects/creature/VehicleObject.idl():  		rentalVehicle = value;
+	rentalVehicle = value;
+}
+
+bool VehicleObjectImplementation::isRentalVehicle() const{
+	// server/zone/objects/creature/VehicleObject.idl():  		return rentalVehicle;
+	return rentalVehicle;
+}
+
+void VehicleObjectImplementation::setUses(int value) {
+	// server/zone/objects/creature/VehicleObject.idl():  		uses = value;
+	uses = value;
+}
+
+int VehicleObjectImplementation::getUses() const{
+	// server/zone/objects/creature/VehicleObject.idl():  		return uses;
+	return uses;
 }
 
 unsigned int VehicleObjectImplementation::getArmor() {
@@ -1053,6 +1165,36 @@ void VehicleObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_SETRENTALVEHICLE__BOOL_:
+		{
+			bool value = inv->getBooleanParameter();
+			
+			setRentalVehicle(value);
+			
+		}
+		break;
+	case RPC_ISRENTALVEHICLE__:
+		{
+			
+			bool _m_res = isRentalVehicle();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_SETUSES__INT_:
+		{
+			int value = inv->getSignedIntParameter();
+			
+			setUses(value);
+			
+		}
+		break;
+	case RPC_GETUSES__:
+		{
+			
+			int _m_res = getUses();
+			resp->insertSignedInt(_m_res);
+		}
+		break;
 	case RPC_GETARMOR__:
 		{
 			
@@ -1208,6 +1350,22 @@ int VehicleObjectAdapter::getPaintCount() const {
 	return (static_cast<VehicleObject*>(stub))->getPaintCount();
 }
 
+void VehicleObjectAdapter::setRentalVehicle(bool value) {
+	(static_cast<VehicleObject*>(stub))->setRentalVehicle(value);
+}
+
+bool VehicleObjectAdapter::isRentalVehicle() const {
+	return (static_cast<VehicleObject*>(stub))->isRentalVehicle();
+}
+
+void VehicleObjectAdapter::setUses(int value) {
+	(static_cast<VehicleObject*>(stub))->setUses(value);
+}
+
+int VehicleObjectAdapter::getUses() const {
+	return (static_cast<VehicleObject*>(stub))->getUses();
+}
+
 unsigned int VehicleObjectAdapter::getArmor() {
 	return (static_cast<VehicleObject*>(stub))->getArmor();
 }
@@ -1310,6 +1468,12 @@ void VehicleObjectPOD::writeJSON(nlohmann::json& j) {
 	if (paintCount)
 		thisObject["paintCount"] = paintCount.value();
 
+	if (rentalVehicle)
+		thisObject["rentalVehicle"] = rentalVehicle.value();
+
+	if (uses)
+		thisObject["uses"] = uses.value();
+
 	j["VehicleObject"] = thisObject;
 }
 
@@ -1349,6 +1513,28 @@ int VehicleObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (rentalVehicle) {
+	_nameHashCode = 0xa8e6637e; //VehicleObject.rentalVehicle
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<bool >::toBinaryStream(&rentalVehicle.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (uses) {
+	_nameHashCode = 0x5d6327ac; //VehicleObject.uses
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&uses.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -1371,6 +1557,22 @@ bool VehicleObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32&
 			int _mnpaintCount;
 			TypeInfo<int >::parseFromBinaryStream(&_mnpaintCount, stream);
 			paintCount = std::move(_mnpaintCount);
+		}
+		return true;
+
+	case 0xa8e6637e: //VehicleObject.rentalVehicle
+		{
+			bool _mnrentalVehicle;
+			TypeInfo<bool >::parseFromBinaryStream(&_mnrentalVehicle, stream);
+			rentalVehicle = std::move(_mnrentalVehicle);
+		}
+		return true;
+
+	case 0x5d6327ac: //VehicleObject.uses
+		{
+			int _mnuses;
+			TypeInfo<int >::parseFromBinaryStream(&_mnuses, stream);
+			uses = std::move(_mnuses);
 		}
 		return true;
 
@@ -1403,6 +1605,10 @@ void VehicleObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<int >::toBinaryStream(&vehicleType.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&paintCount.value(), stream);
+
+	TypeInfo<bool >::toBinaryStream(&rentalVehicle.value(), stream);
+
+	TypeInfo<int >::toBinaryStream(&uses.value(), stream);
 
 
 }

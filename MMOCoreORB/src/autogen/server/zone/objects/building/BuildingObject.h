@@ -86,7 +86,7 @@ class ZonePOD;
 
 using namespace server::zone;
 
-#include "server/zone/QuadTreeEntry.h"
+#include "server/zone/TreeEntry.h"
 
 #include "templates/SharedObjectTemplate.h"
 
@@ -211,23 +211,23 @@ public:
 
 	void notifyRemoveFromZone();
 
-	void notifyInsert(QuadTreeEntry* obj);
+	void notifyInsert(TreeEntry* obj);
 
 	void notifyInsertToZone(Zone* zone);
 
-	void notifyDissapear(QuadTreeEntry* obj);
+	void notifyDissapear(TreeEntry* obj);
 
-	void notifyPositionUpdate(QuadTreeEntry* entry);
+	void notifyPositionUpdate(TreeEntry* entry);
 
 	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void insert(QuadTreeEntry* obj);
+	void insert(TreeEntry* obj);
 
-	void remove(QuadTreeEntry* obj);
+	void remove(TreeEntry* obj);
 
-	void update(QuadTreeEntry* obj);
+	void update(TreeEntry* obj);
 
-	void inRange(QuadTreeEntry* obj, float range);
+	void inRange(TreeEntry* obj, float range);
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
@@ -522,23 +522,23 @@ public:
 
 	void notifyRemoveFromZone();
 
-	void notifyInsert(QuadTreeEntry* obj);
+	void notifyInsert(TreeEntry* obj);
 
 	void notifyInsertToZone(Zone* zone);
 
-	void notifyDissapear(QuadTreeEntry* obj);
+	void notifyDissapear(TreeEntry* obj);
 
-	void notifyPositionUpdate(QuadTreeEntry* entry);
+	void notifyPositionUpdate(TreeEntry* entry);
 
 	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void insert(QuadTreeEntry* obj);
+	void insert(TreeEntry* obj);
 
-	void remove(QuadTreeEntry* obj);
+	void remove(TreeEntry* obj);
 
-	void update(QuadTreeEntry* obj);
+	void update(TreeEntry* obj);
 
-	void inRange(QuadTreeEntry* obj, float range);
+	void inRange(TreeEntry* obj, float range);
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 

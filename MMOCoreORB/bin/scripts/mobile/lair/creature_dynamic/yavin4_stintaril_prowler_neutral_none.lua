@@ -1,7 +1,7 @@
 yavin4_stintaril_prowler_neutral_none = Lair:new {
 	mobiles = {{"giant_stintaril", 1}},
 	bossMobiles = {{"stintaril_prowler",1}},
-	spawnLimit = 25,
+	spawnLimit = 50,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_garbage_large_fog_gray.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_garbage_large_fog_gray.iff"},
 	buildingsMedium = {"object/tangible/lair/base/poi_all_lair_garbage_large_fog_gray.iff"},

@@ -368,7 +368,7 @@ trainerSkills = {
 		"outdoors_creaturehandler_support_04"
 	},
 
-	trainer_dancer = {
+trainer_dancer = {
 		"social_dancer_novice",
 		"social_dancer_master",
 		"social_dancer_ability_01",
@@ -386,7 +386,11 @@ trainerSkills = {
 		"social_dancer_shock_01",
 		"social_dancer_shock_02",
 		"social_dancer_shock_03",
-		"social_dancer_shock_04"
+		"social_dancer_shock_04",
+		"social_entertainer_healing_01",
+		"social_entertainer_healing_02",
+		"social_entertainer_healing_03",
+		"social_entertainer_healing_04"
 	},
 
 	trainer_doctor = {
@@ -473,7 +477,7 @@ trainerSkills = {
 		"crafting_merchant_management_04"
 	},
 
-	trainer_musician = {
+trainer_musician = {
 		"social_musician_novice",
 		"social_musician_master",
 		"social_musician_ability_01",
@@ -491,7 +495,11 @@ trainerSkills = {
 		"social_musician_shock_01",
 		"social_musician_shock_02",
 		"social_musician_shock_03",
-		"social_musician_shock_04"
+		"social_musician_shock_04",
+		"social_entertainer_healing_01",
+		"social_entertainer_healing_02",
+		"social_entertainer_healing_03",
+		"social_entertainer_healing_04"
 	},
 
 	trainer_pistol = {
@@ -534,6 +542,27 @@ trainerSkills = {
 		"combat_polearm_support_02",
 		"combat_polearm_support_03",
 		"combat_polearm_support_04"
+	},
+
+	trainer_prospector = {
+		"crafting_artisan_novice",
+		"crafting_artisan_master",
+		"crafting_artisan_engineering_01",
+		"crafting_artisan_engineering_02",
+		"crafting_artisan_engineering_03",
+		"crafting_artisan_engineering_04",
+		"crafting_artisan_domestic_01",
+		"crafting_artisan_domestic_02",
+		"crafting_artisan_domestic_03",
+		"crafting_artisan_domestic_04",
+		"crafting_artisan_business_01",
+		"crafting_artisan_business_02",
+		"crafting_artisan_business_03",
+		"crafting_artisan_business_04",
+		"crafting_artisan_survey_01",
+		"crafting_artisan_survey_02",
+		"crafting_artisan_survey_03",
+		"crafting_artisan_survey_04"
 	},
 
 	trainer_politician = {

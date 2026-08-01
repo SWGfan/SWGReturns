@@ -267,7 +267,7 @@ int LuaSceneObject::isInRange(lua_State* L) {
 	float y = lua_tonumber(L, -2);
 	float x = lua_tonumber(L, -3);
 
-	bool res = (static_cast<QuadTreeEntry*>(realObject))->isInRange(x, y, range);
+	bool res = (static_cast<TreeEntry*>(realObject))->isInRange(x, y, range);
 
 	lua_pushnumber(L, res);
 
@@ -823,7 +823,7 @@ int LuaSceneObject::getPlayersInRange(lua_State *L) {
 
 	lua_newtable(L);
 
-	Reference<SortedVector<ManagedReference<QuadTreeEntry*> >*> closeObjects = new SortedVector<ManagedReference<QuadTreeEntry*> >();
+	Reference<SortedVector<ManagedReference<TreeEntry*> >*> closeObjects = new SortedVector<ManagedReference<TreeEntry*> >();
 	thisZone->getInRangeObjects(realObject->getWorldPositionX(), realObject->getWorldPositionY(), range, closeObjects, true);
 	int numPlayers = 0;
 

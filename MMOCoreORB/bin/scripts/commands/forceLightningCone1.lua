@@ -63,7 +63,22 @@ ForceLightningCone1Command = {
 	forceAttack = true,
 	damageType = ELECTRICITY_DAMAGE,
 
-	range = 32
+	range = 32,
+
+	dotEffects = {
+		DotEffect(
+			ONFIRE,
+			{"resistance_fire", "fire_resist"},
+			HEALTH,
+			true,
+			0,
+			30,
+			100,
+			15,
+			10,
+			8
+		)
+	}
 }
 
 AddCommand(ForceLightningCone1Command)

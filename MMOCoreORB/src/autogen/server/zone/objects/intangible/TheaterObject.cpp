@@ -10,13 +10,13 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 
-#include "server/zone/QuadTreeEntry.h"
+#include "server/zone/TreeEntry.h"
 
 /*
  *	TheaterObjectStub
  */
 
-enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 1917931802,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_SHOULDFLATTENTHEATER__,RPC_SETSHOULDFLATTEN__BOOL_,RPC_NOTIFYINSERT__QUADTREEENTRY_,RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISTHEATEROBJECT__};
+enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 1917931802,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_SHOULDFLATTENTHEATER__,RPC_SETSHOULDFLATTEN__BOOL_,RPC_NOTIFYINSERT__TREEENTRY_,RPC_NOTIFYDISSAPEAR__TREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISTHEATEROBJECT__};
 
 TheaterObject::TheaterObject() : IntangibleObject(DummyConstructorParameter::instance()) {
 	TheaterObjectImplementation* _implementation = new TheaterObjectImplementation();
@@ -108,13 +108,13 @@ void TheaterObject::setShouldFlatten(bool b) {
 	}
 }
 
-void TheaterObject::notifyInsert(QuadTreeEntry* entry) {
+void TheaterObject::notifyInsert(TreeEntry* entry) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYINSERT__QUADTREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYINSERT__TREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -123,13 +123,13 @@ void TheaterObject::notifyInsert(QuadTreeEntry* entry) {
 	}
 }
 
-void TheaterObject::notifyDissapear(QuadTreeEntry* entry) {
+void TheaterObject::notifyDissapear(TreeEntry* entry) {
 	TheaterObjectImplementation* _implementation = static_cast<TheaterObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__TREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -389,7 +389,7 @@ void TheaterObjectImplementation::setShouldFlatten(bool b) {
 	shouldFlatten = b;
 }
 
-void TheaterObjectImplementation::notifyInsert(QuadTreeEntry* entry) {
+void TheaterObjectImplementation::notifyInsert(TreeEntry* entry) {
 	// server/zone/objects/intangible/TheaterObject.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/intangible/TheaterObject.idl():  		if 
@@ -409,7 +409,7 @@ void TheaterObjectImplementation::notifyInsert(QuadTreeEntry* entry) {
 }
 }
 
-void TheaterObjectImplementation::notifyDissapear(QuadTreeEntry* entry) {
+void TheaterObjectImplementation::notifyDissapear(TreeEntry* entry) {
 	// server/zone/objects/intangible/TheaterObject.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/intangible/TheaterObject.idl():  		if 
@@ -508,17 +508,17 @@ void TheaterObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_NOTIFYINSERT__QUADTREEENTRY_:
+	case RPC_NOTIFYINSERT__TREEENTRY_:
 		{
-			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
+			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
 			
 			notifyInsert(entry);
 			
 		}
 		break;
-	case RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_:
+	case RPC_NOTIFYDISSAPEAR__TREEENTRY_:
 		{
-			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
+			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
 			
 			notifyDissapear(entry);
 			
@@ -570,11 +570,11 @@ void TheaterObjectAdapter::setShouldFlatten(bool b) {
 	(static_cast<TheaterObject*>(stub))->setShouldFlatten(b);
 }
 
-void TheaterObjectAdapter::notifyInsert(QuadTreeEntry* entry) {
+void TheaterObjectAdapter::notifyInsert(TreeEntry* entry) {
 	(static_cast<TheaterObject*>(stub))->notifyInsert(entry);
 }
 
-void TheaterObjectAdapter::notifyDissapear(QuadTreeEntry* entry) {
+void TheaterObjectAdapter::notifyDissapear(TreeEntry* entry) {
 	(static_cast<TheaterObject*>(stub))->notifyDissapear(entry);
 }
 

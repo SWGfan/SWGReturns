@@ -2117,6 +2117,15 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 	if (targetGhost == nullptr)
 		return false;
 
+	// Jedi are always at risk. Non-Jedi consent by declaring Special Forces
+	// and must have reached combat level 50.
+	bool targetEligible = targetGhost->isJedi() ||
+		(creature->getFactionStatus() == FactionStatus::OVERT &&
+		 creature->getLevel() >= 50);
+
+	if (!targetEligible)
+		return false;
+
 	auto playerGhost = player->getPlayerObject();
 
 	if (playerGhost == nullptr)
@@ -2147,7 +2156,7 @@ bool MissionManagerImplementation::isBountyValidForPlayer(CreatureObject* player
 	}
 
 	if (ConfigManager::instance()->getBool("Core3.MissionManager.PlayerBountyCooldown", true)) {
-		int cooldownTime = ConfigManager::instance()->getInt("Core3.MissionManager.PlayerBountyCooldownTime", 3600000); // 1 Hour.
+		int cooldownTime = ConfigManager::instance()->getInt("Core3.MissionManager.PlayerBountyCooldownTime", 86400000); // 24 Hours.
 
 		if (!bounty->canTakeMission(player->getObjectID(), cooldownTime)) {
 			return false;

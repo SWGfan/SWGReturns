@@ -7,6 +7,7 @@ package server.zone.objects.cell;
 import server.zone.objects.scene.SceneObject;
 import server.zone.objects.creature.CreatureObject;
 import server.zone.objects.building.BuildingObject;
+import server.zone.objects.ship.PobShipObject;
 include server.zone.objects.scene.variables.ContainerPermissions;
 include templates.SharedObjectTemplate;
 include system.thread.atomic.AtomicInteger;
@@ -20,10 +21,13 @@ class CellObject extends SceneObject {
 	@dereferenced
 	protected AtomicInteger forceLoadObjectCount;
 
+	protected float cellFireVariable;
+
 	public CellObject() {
 		Logger.setLoggingName("CellObject");
 
 		cellNumber = 0;
+		cellFireVariable = 0;
 
 		forceLoadObjectCount.set(0);
 	}
@@ -54,6 +58,8 @@ class CellObject extends SceneObject {
 	}
 
 	public native void onBuildingInsertedToZone(BuildingObject building);
+
+	public native void onShipInsertedToZone(PobShipObject pobShip);
 	/**
 	 * Sends the contained non slotted objects to the specified player
 	 * @pre { this object is locked }
@@ -121,6 +127,14 @@ class CellObject extends SceneObject {
 	public void setCellNumber(int number) {
 		cellNumber = number;
 	}
+
+	@read
+	public float getCellFireVariable() {
+		return cellFireVariable;
+	}
+
+	@preLocked
+	public native void setCellFireVariable(float damageVar);
 
 	@dirty
 	public boolean isCellObject() {

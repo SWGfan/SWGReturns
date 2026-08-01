@@ -27,9 +27,16 @@ function JediTrials:isEligibleForPadawanTrials(pPlayer)
 		return false
 	end
 
+	local pGhost = CreatureObject(pPlayer):getPlayerObject()
+	if (pGhost == nil) then
+		return false
+	end
+
+	local hasState32 = CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression")
+	local isHologrind = PlayerObject(pGhost):getJediState() == 1
 	local learnedBranches = VillageJediManagerCommon.getLearnedForceSensitiveBranches(pPlayer)
 
-	return CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression") and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and learnedBranches >= 4 and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
+	return (hasState32 or isHologrind) and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and (learnedBranches >= 4 or isHologrind) and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
 end
 
 function JediTrials:isOnPadawanTrials(pPlayer)

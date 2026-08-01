@@ -1,7 +1,7 @@
 lok_kimogilla_pack2_neutral_none = Lair:new {
 	mobiles = {{"kimogila",1}},
 	bossMobiles = {{"enraged_kimogila",1}},
-	spawnLimit = 6,
+	spawnLimit = 25,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_bones_large_evil_fire_green.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_bones_large_evil_fire_green.iff"},
 	buildingsMedium = {"object/tangible/lair/base/poi_all_lair_bones_large_evil_fire_green.iff"},

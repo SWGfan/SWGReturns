@@ -24,15 +24,131 @@
 #endif
 #include "engine/util/json_utils.h"
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+namespace components {
+
+class ShipComponent;
+
+class ShipComponentPOD;
+
+} // namespace components
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship::components;
+
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+namespace events {
+
+class ShipRecoveryEvent;
+
+} // namespace events
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship::events;
+
+namespace server {
+namespace zone {
+
+class Zone;
+
+class ZonePOD;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+namespace ai {
+
+class ShipAiAgent;
+
+class ShipAiAgentPOD;
+
+} // namespace ai
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship::ai;
+
+#include "server/zone/TreeEntry.h"
+
 #include "server/zone/objects/scene/SceneObject.h"
+
+#include "server/zone/objects/creature/CreatureObject.h"
 
 #include "server/zone/CloseObjectsVector.h"
 
-#include "server/zone/objects/scene/variables/DeltaFloatVariable.h"
+#include "engine/log/Logger.h"
+
+#include "system/lang/UnicodeString.h"
+
+#include "server/zone/packets/DeltaMessage.h"
+
+#include "server/zone/objects/scene/variables/DeltaAutoVariable.h"
+
+#include "server/zone/objects/scene/variables/DeltaAutoMap.h"
+
+#include "server/zone/objects/scene/variables/DeltaAutoPackedMap.h"
+
+#include "server/zone/objects/scene/variables/DeltaAutoBitArray.h"
 
 #include "server/zone/objects/scene/variables/DeltaVectorMap.h"
 
+#include "server/zone/objects/scene/variables/DeltaBitArray.h"
+
+#include "server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h"
+
+#include "templates/SharedObjectTemplate.h"
+
+#include "templates/tangible/ship/SharedShipObjectTemplate.h"
+
+#include "system/util/VectorMap.h"
+
+#include "system/lang/ref/Reference.h"
+
+#include "server/zone/objects/ship/ShipDeltaVector.h"
+
+#include "server/zone/objects/ship/ShipTargetVector.h"
+
+#include "engine/util/u3d/Quaternion.h"
+
+#include "engine/util/u3d/Matrix4.h"
+
+#include "server/zone/objects/player/variables/SpaceLaunchPoint.h"
+
+#include "system/util/Vector.h"
+
+#include "engine/util/u3d/Vector3.h"
+
+#include "server/chat/StringIdChatParameter.h"
+
+#include "system/lang/Time.h"
+
 #include "server/zone/objects/tangible/TangibleObject.h"
+
+#include "engine/service/proto/BaseMessage.h"
+
+#include "system/util/SortedVector.h"
+
+#include "system/lang/String.h"
 
 namespace server {
 namespace zone {
@@ -41,39 +157,609 @@ namespace ship {
 
 class ShipObject : public TangibleObject {
 public:
+	static const int HYPERSPACE_DELAY = 40;
+
+	static const int NAVIGATOR_DELAY = 20;
+
+	static const int COMM_MAX_DISTANCE = 500;
+
+	static const int SPACESTATION_COMM_MAX_DISTANCE = 1000;
+
+	static const int CONVO_DELAY = 60;
+
+	static const int WEAPON_COMPONENT_START = 12;
+
 	ShipObject();
 
-	unsigned short getUniqueID();
+	void notifyLoadFromDatabase();
+
+	void sendSlottedObjectsTo(SceneObject* player);
 
 	void initializeTransientMembers();
+
+	void doRecovery(int latency);
+
+	float getTotalShipDamage();
+
+	void repairShip(float repairAmount, bool decay = true);
+
+	void scheduleRecovery();
+
+	void cancelRecovery();
+
+	ShipObject* asShipObject();
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
 	void sendBaselinesTo(SceneObject* player);
 
-	void setMaxYawAcceleration(float radians, bool notifyClient = true);
+	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void setCurrentYawAcceleration(float scale, bool notifyClient = true);
+	int notifyObjectInserted(SceneObject* object);
 
-	void setMaxPitchAcceleration(float radians, bool notifyClient = true);
+	void notifyInsert(TreeEntry* obj);
 
-	void setCurrentPitchAcceleration(float scale, bool notifyClient = true);
+	void notifyDissapear(TreeEntry* obj);
 
-	void setMaxRollAcceleration(float radians, bool notifyClient = true);
+	void notifyDespawn(Zone* zone);
 
-	void setCurrentRollAcceleration(float scale, bool notifyClient = true);
+	void sendDestroyTo(SceneObject* player);
 
-	float getMaxYawAcceleration() const;
+	void notifyInsertToZone(Zone* zone);
 
-	float getMaxRollAcceleration() const;
+	void updateZone(bool lightUpdate, bool sendPackets = true);
 
-	float getMaxPitchAcceleration() const;
+	void updatePlayersInShip(bool lightUpdate, bool sendPackets = true);
 
-	float getTotalMass() const;
+	void setChassisMaxMass(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
 
-	float getMaxSpeed() const;
+	void setShieldRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorMaxEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineDecelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEnginePitchAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineYawAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineRollAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEnginePitchRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineYawRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineRollRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineMaxSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setReactorGenerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterMaxEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterEnergyConsumptionRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterAcceleration(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterMaxSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setDroidCommandSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipDroidID(unsigned long long value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setSlipRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCurrentChassisHealth(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisMaxHealth(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipNameCRC(unsigned int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setFrontShieldMax(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setRearShieldMax(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisMass(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setUniqueID(unsigned short value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualAccelerationRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualDecelerationRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualPitchAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualYawAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualRollAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualPitchRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualYawRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualRollRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualMaxSpeed(float speed, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipTargetID(unsigned long long value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipTargetSlot(int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipType(const String& value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipDifficulty(const String& value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipFactionString(const String& factionString, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipFaction(unsigned int value);
+
+	void setFrontShield(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setRearShield(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipGuildID(unsigned int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyCost(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMass(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentName(int slot, const UnicodeString& value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentCreator(int slot, unsigned long long value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMaxDamage(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMinDamage(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setShieldEffectiveness(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setArmorEffectiveness(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyPerShot(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setRefireRate(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setCurrentAmmo(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMaxAmmo(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setAmmoClass(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMaxArmor(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentArmor(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentHitpoints(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMaxHitpoints(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentOptions(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setRefireEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentTargetable(int slot, bool value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setComponentCRC(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setOwner(CreatureObject* object);
+
+	void setPilotChair(SceneObject* object);
+
+	void setOperationsChair(SceneObject* object);
+
+	void setTurretLadder(SceneObject* object);
+
+	void setHyperspacing(bool value);
+
+	void setHyperspaceDelay();
+
+	void setHasWings(bool value);
+
+	void setDroidFeedback(bool value);
+
+	void setShipName(const String& name, bool notifyClient = true);
+
+	void setChassisCategory(const String& value);
+
+	void setChassisLevel(int value);
+
+	void setControlDeviceID(unsigned long long oid);
+
+	void setRotationMatrix(const Quaternion& value);
+
+	void setCurrentSpeed(float value);
+
+	void setSpeedRotationFactorMax(float value);
+
+	void setSpeedRotationFactorMin(float value);
+
+	void setSpeedRotationFactorOptimal(float value);
+
+	void setStaffShipSpeed(float speed);
+
+	void updateLastDamageReceived();
+
+	void addPlayerOnBoard(CreatureObject* player);
+
+	void removePlayerOnBoard(CreatureObject* player);
+
+	void clearPlayersOnBoard();
+
+	void resetDroidCommands();
+
+	void populateDroidCommands(CreatureObject* player);
+
+	bool hasDroidCommand(unsigned int commandNameHash);
+
+	bool sendDroidMessageStartTo(SceneObject* player, SceneObject* droid);
+
+	void droidChatter(CreatureObject* player, StringIdChatParameter& message);
+
+	void setDroidCommandDelay(float delay);
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEfficiencyMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEnergyEfficiencyMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEnergyCostMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMassMap() const;
+
+	const DeltaVectorMap<unsigned int, UnicodeString>* getComponentNameMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned long long>* getComponentCreatorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMaxDamageMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMinDamageMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getShieldEffectivenessMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getArmorEffectivenessMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getEnergyPerShotMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentRefireRate() const;
+
+	const DeltaVectorMap<unsigned int, int>* getCurrentAmmoMap() const;
+
+	const DeltaVectorMap<unsigned int, int>* getMaxAmmoMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getAmmoClassMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getMaxArmorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getCurrentArmorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getCurrentHitpointsMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getMaxHitpointsMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getComponentOptionsMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentRefireEfficiency() const;
+
+	const DeltaBitArray* getTargetableBitfield() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getShipComponentMap() const;
+
+	float getChassisMaxMass();
+
+	float getShieldRechargeRate();
+
+	float getCapacitorMaxEnergy();
+
+	float getCapacitorRechargeRate();
+
+	float getEngineAccelerationRate();
+
+	float getEngineDecelerationRate();
+
+	float getEnginePitchAccelerationRate();
+
+	float getEngineYawAccelerationRate();
+
+	float getEngineRollAccelerationRate();
+
+	float getEnginePitchRate();
+
+	float getEngineYawRate();
+
+	float getEngineRollRate();
+
+	float getEngineMaxSpeed();
+
+	float getReactorGenerationRate();
+
+	float getBoosterMaxEnergy();
+
+	float getBoosterRechargeRate();
+
+	float getBoosterConsumptionRate();
+
+	float getBoosterAcceleration();
+
+	float getBoosterMaxSpeed();
+
+	float getDroidCommandSpeed();
+
+	unsigned long long getShipDroidID();
+
+	float getSlip();
+
+	float getChassisCurrentHealth();
+
+	float getChassisMaxHealth();
+
+	unsigned int getShipNameCRC();
+
+	float getMaxFrontShield();
+
+	float getMaxRearShield();
+
+	float getChassisMass();
+
+	float getChassisSpeed();
+
+	float getCapacitorEnergy();
+
+	float getBoosterEnergy();
+
+	unsigned short getUniqueID();
+
+	float getActualAccelerationRate();
+
+	float getActualDecelerationRate();
+
+	float getActualPitchAccelerationRate();
+
+	float getActualYawAccelerationRate();
+
+	float getActualRollAccelerationRate();
+
+	float getActualPitchRate();
+
+	float getActualYawRate();
+
+	float getActualRollRate();
+
+	float getActualMaxSpeed();
+
+	unsigned long long getShipTargetID();
+
+	int getShipTargetSlot();
+
+	String getShipType() const;
+
+	String getShipDifficulty() const;
+
+	String getShipFactionString() const;
+
+	float getFrontShield();
+
+	float getRearShield();
+
+	unsigned int getShipGuildID();
+
+	DeltaBitArray* getTargetableBitfield();
+
+	String getShipChassisName();
+
+	String getShipName();
+
+	String getShipLaunchedName();
+
+	float getComponentEnergyEfficiency(int slot);
+
+	float getComponentEfficiency(int slot);
+
+	ManagedWeakReference<CreatureObject* > getOwner();
+
+	unsigned long long getOwnerID();
+
+	ManagedWeakReference<SceneObject* > getPilotChair();
+
+	ManagedWeakReference<SceneObject* > getOperationsChair();
+
+	ManagedWeakReference<SceneObject* > getTurretLadder();
+
+	unsigned int getShipFaction();
+
+	void installAmmo(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient = false);
+
+	void uninstallAmmo(CreatureObject* owner, int slot, bool notifyClient = false);
+
+	void install(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient = false);
+
+	void uninstall(CreatureObject* owner, int slot, bool notifyClient);
+
+	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
+
+	void loadTemplateData(SharedObjectTemplate* templateData);
 
 	bool isShipObject();
+
+	bool isHyperspacing();
+
+	bool hasShipWings();
+
+	bool isBoosterActive();
+
+	bool isDroidMuted();
+
+	const String getChassisCategory();
+
+	int getChassisLevel();
+
+	bool checkInConversationRange(SceneObject* object);
+
+	int getHyperspaceDelay();
+
+	unsigned long long getControlDeviceID();
+
+	ShipComponent* getComponentObject(unsigned int slot);
+
+	bool isReadyToBoost();
+
+	bool isReadyForDroidCommand();
+
+	int timeUntilNextDroidCommand();
+
+	bool hasComponentFlag(unsigned int slot, unsigned int flag);
+
+	void addComponentFlag(unsigned int slot, unsigned int flag, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void removeComponentFlag(unsigned int slot, unsigned int flag, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void resetComponentFlag(unsigned int slot, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void setComponentDemolished(unsigned int slot, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void restartBooster();
+
+	float calculateCurrentMass();
+
+	float calculateCurrentEnergyCost();
+
+	void sendPvpStatusTo(CreatureObject* player);
+
+	ShipDeltaVector* getDeltaVector();
+
+	ShipTargetVector* getTargetVector();
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects = false);
+
+	CreatureObject* getPilot();
+
+	CreatureObject* getShipOperator();
+
+	CreatureObject* getTurretOperatorTop();
+
+	CreatureObject* getTurretOperatorBottom();
+
+	/**
+	 * Evaluates if this can be attacked by object
+	 * @pre { }
+	 * @post { }
+	 * @return returns true if object can attack this
+	 */
+	bool isAttackableBy(TangibleObject* object);
+
+	bool isAttackableBy(CreatureObject* object);
+
+	bool isAggressiveTo(TangibleObject* object);
+
+	const Matrix4* getRotationMatrix();
+
+	const Matrix4* getConjugateMatrix();
+
+	float getCurrentSpeed();
+
+	float getSpeedRotationFactorMax();
+
+	float getSpeedRotationFactorMin();
+
+	float getSpeedRotationFactorOptimal();
+
+	unsigned long long getLastDamageReceivedMili();
+
+	float getComponentCondition(unsigned int slot);
+
+	int getTotalPlayersOnBoard();
+
+	CreatureObject* getPlayerOnBoard(int index);
+
+	Vector<unsigned long long> getPlayersOnBoard();
+
+	void sendShipMembersMessage(const String& message);
+
+	void sendShipMembersMusicMessage(const String& message);
+
+	void sendMembersHyperspaceBeginMessage(const String& zoneName, const Vector3& location);
+
+	void sendMembersHyperspaceOrientMessage(const String& zoneName, const Vector3& location);
+
+	void sendMembersBaseMessage(BaseMessage* message, bool sendSelf = true);
+
+	void awardLootItems(ShipAiAgent* destructedShip, int payout);
+
+	bool isShipLaunched();
+
+	int getReceiverFlags() const;
+
+	bool isComponentInstalled(unsigned int slot);
+
+	bool isComponentFunctional(unsigned int slot);
+
+	float calculateActualComponentEfficiency(unsigned int slot);
+
+	float calculateSpeedRotationFactor();
+
+	float calculateActualAccelerationRate();
+
+	float calculateActualDecelerationRate();
+
+	float calculateActualMaxSpeed();
+
+	float getOutOfRangeDistance(unsigned long long specialRangeObjectID = 0);
+
+	void updateSpeedRotationValues(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateActualEngineValues(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateComponentFlags(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateComponentTargetableBitfield(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	bool isSlotTargetable(int slot);
+
+	bool isComponentTargetable(int slot);
+
+	bool getComponentTargetable(int slot);
+
+	void resetEfficiency();
+
+	void initializeUniqueID(bool notifyClient = true);
+
+	bool canBePilotedBy(CreatureObject* player);
+
+	bool hasComponentsInstalled();
+
+	bool isStarterShip();
+
+	bool isSorosuubSpaceYacht();
+
+	void setSpaceLaunchZone(String& zoneName);
+
+	void setSpaceLaunchCityName(String& cityName);
+
+	void setSpaceLaunchLocation(Vector3& location);
+
+	String getSpaceLaunchZone();
+
+	String getSpaceLaunchCityName();
+
+	Vector3 getSpaceLaunchLocation();
+
+	String getCertificationRequired() const;
+
+	void setCertificationRequired(const String& cert);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -84,6 +770,10 @@ protected:
 	ShipObject(DummyConstructorParameter* param);
 
 	virtual ~ShipObject();
+
+	ShipObject* __asShipObject();
+
+	bool __isShipObject();
 
 	friend class ShipObjectHelper;
 };
@@ -101,84 +791,834 @@ namespace objects {
 namespace ship {
 
 class ShipObjectImplementation : public TangibleObjectImplementation {
+public:
+	static const int HYPERSPACE_DELAY = 40;
+
+	static const int NAVIGATOR_DELAY = 20;
+
+	static const int COMM_MAX_DISTANCE = 500;
+
+	static const int SPACESTATION_COMM_MAX_DISTANCE = 1000;
+
+	static const int CONVO_DELAY = 60;
+
+	static const int WEAPON_COMPONENT_START = 12;
+
 protected:
-	float totalMass;
+	bool hyperspacing;
 
-	float currentMass;
+public:
+	unsigned long long controlDeviceID;
 
-	/**
-	 * stored in radians
-	 */
-	DeltaFloatVariable<'SHIP', 6, 6 > maxYawAcceleration;
+protected:
+	Reference<ShipRecoveryEvent*> shipRecoveryEvent;
 
-	/**
-	 * stored in radians
-	 */
-	DeltaFloatVariable<'SHIP', 6, 7 > maxPitchAcceleration;
+	Reference<ShipDeltaVector*> shipDeltaVector;
 
-	/**
-	 * stored in radians
-	 */
-	DeltaFloatVariable<'SHIP', 6, 8 > maxRollAcceleration;
+	Reference<ShipTargetVector*> shipTargetVector;
 
-	/**
-	 * scale factor between 0 and 1
-	 */
-	DeltaFloatVariable<'SHIP', 6, 9 > currentYawAcceleration;
+	int totalCellNumber;
 
-	/**
-	 * scale factor between 0 and 1
-	 */
-	DeltaFloatVariable<'SHIP', 6, 10 > currentPitchAcceleration;
+	ManagedWeakReference<CreatureObject* > owner;
 
-	/**
-	 * scale factor between 0 and 1
-	 */
-	DeltaFloatVariable<'SHIP', 6, 11 > currentRollAcceleration;
+private:
+	unsigned long long ownerID;
 
-	float maxSpeed;
+protected:
+	SpaceLaunchPoint launchPoint;
 
-	/**
-	 * Maps installed components to slots
-	 */
-	DeltaVectorMap<unsigned int, unsigned int> shipComponents;
+	ManagedWeakReference<SceneObject* > pilotChair;
+
+	ManagedWeakReference<SceneObject* > operationsChair;
+
+	ManagedWeakReference<SceneObject* > turretLadder;
+
+	VectorMap<unsigned int, ManagedReference<ShipComponent* > > components;
+
+	Time boostTimer;
+
+	Time droidTimer;
+
+	Time hyperspaceTime;
+
+	Time lastDamageReceived;
+
+	bool hasWings;
+
+	String chassisDataName;
+
+	String shipName;
+
+	String chassisCategory;
+
+	int chassisLevel;
+
+	float currentSpeed;
+
+	float speedRotationFactorMax;
+
+	float speedRotationFactorMin;
+
+	float speedRotationFactorOptimal;
+
+	Matrix4 rotationMatrix;
+
+	Matrix4 conjugateMatrix;
+
+	float staffModifiedSpeed;
+
+	unsigned int shipFaction;
+
+	bool droidFeedback;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 17 > chassisMaxMass;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 18 > shieldRechargeRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 19 > capacitorMaxEnergy;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 20 > capacitorRechargeRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 21 > engineAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 22 > engineDecelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 23 > enginePitchAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 24 > engineYawAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 25 > engineRollAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 26 > enginePitchRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 27 > engineYawRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 28 > engineRollRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 29 > engineMaxSpeed;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 30 > reactorGenerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 31 > boosterMaxEnergy;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 32 > boosterRechargeRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 33 > boosterConsumptionRate;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 34 > boosterAcceleration;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 35 > boosterMaxSpeed;
+
+	DeltaAutoVariable<float, 'SHIP', 1, 36 > droidCommandSpeed;
+
+	DeltaAutoVariable<uint64, 'SHIP', 1, 37 > shipDroidID;
+
+	DeltaAutoVariable<float, 'SHIP', 3, 11 > slip;
+
+	DeltaAutoVariable<float, 'SHIP', 3, 12 > chassisCurrentHealth;
+
+	DeltaAutoVariable<float, 'SHIP', 3, 13 > chassisMaxHealth;
+
+	DeltaAutoVariable<uint32, 'SHIP', 3, 14 > shipNameCRC;
+
+	DeltaAutoVariable<float, 'SHIP', 3, 20 > frontShieldMax;
+
+	DeltaAutoVariable<float, 'SHIP', 3, 21 > rearShieldMax;
+
+	DeltaAutoVariable<float, 'SHIP', 4, 0 > chassisMass;
+
+	DeltaAutoVariable<float, 'SHIP', 4, 1 > chassisSpeed;
+
+	DeltaAutoVariable<float, 'SHIP', 4, 2 > capacitorEnergy;
+
+	DeltaAutoVariable<float, 'SHIP', 4, 3 > boosterEnergy;
+
+	DeltaAutoVariable<uint16, 'SHIP', 6, 2 > uniqueID;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 3 > actualAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 4 > actualDecelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 5 > actualPitchAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 6 > actualYawAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 7 > actualRollAccelerationRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 8 > actualPitchRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 9 > actualYawRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 10 > actualRollRate;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 11 > actualMaxSpeed;
+
+	DeltaAutoVariable<uint64, 'SHIP', 6, 12 > shipTargetID;
+
+	DeltaAutoVariable<uint32, 'SHIP', 6, 13 > shipTargetSlot;
+
+	DeltaAutoVariable<String, 'SHIP', 6, 17 > shipType;
+
+	DeltaAutoVariable<String, 'SHIP', 6, 18 > shipDifficulty;
+
+	DeltaAutoVariable<String, 'SHIP', 6, 19 > shipFactionString;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 20 > frontShield;
+
+	DeltaAutoVariable<float, 'SHIP', 6, 21 > rearShield;
+
+	DeltaAutoVariable<uint32, 'SHIP', 6, 22 > shipGuildID;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 2 > componentEfficiency;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 3 > componentEnergyEfficiency;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 4 > componentEnergyCost;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 5 > componentMass;
+
+	DeltaAutoPackedMap<uint32, UnicodeString, 'SHIP', 1, 6 > componentNames;
+
+	DeltaAutoPackedMap<uint32, uint64, 'SHIP', 1, 7 > componentCreator;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 8 > componentMaxDamage;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 9 > componentMinDamage;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 10 > componentShieldEffectiveness;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 11 > componentArmorEffectiveness;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 12 > componentEnergyPerShot;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 13 > componentRefire;
+
+	DeltaAutoPackedMap<uint32, int, 'SHIP', 1, 14 > componentAmmoCurrent;
+
+	DeltaAutoPackedMap<uint32, int, 'SHIP', 1, 15 > componentAmmoMax;
+
+	DeltaAutoPackedMap<uint32, uint32, 'SHIP', 1, 16 > componentAmmoClass;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 15 > componentMaxArmor;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 16 > componentCurrentArmor;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 17 > componentCurrentHitpoints;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 18 > componentMaxHitpoints;
+
+	DeltaAutoPackedMap<uint32, uint32, 'SHIP', 3, 19 > componentOptions;
+
+	DeltaAutoPackedMap<uint32, float, 'SHIP', 4, 4 > componentRefireEfficiency;
+
+	DeltaAutoBitArray<uint32, bool, 'SHIP', 6, 14 > componentTargetableBitfield;
+
+	DeltaAutoMap<uint32, uint32, 'SHIP', 6, 15 > componentCRCs;
+
+	Vector<unsigned long long> playersOnBoard;
+
+	String certificationRequired;
+
+private:
+	float wingsOpenSpeed;
+
+protected:
+	VectorMap<unsigned int, String> availableDroidCommands;
 
 public:
 	ShipObjectImplementation();
 
 	ShipObjectImplementation(DummyConstructorParameter* param);
 
-	unsigned short getUniqueID();
+	void notifyLoadFromDatabase();
+
+	virtual void sendSlottedObjectsTo(SceneObject* player);
 
 	void initializeTransientMembers();
 
-	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
+	void doRecovery(int latency);
+
+	float getTotalShipDamage();
+
+	void repairShip(float repairAmount, bool decay = true);
+
+	void scheduleRecovery();
+
+	void cancelRecovery();
+
+	ShipObject* asShipObject();
+
+	virtual void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
 	void sendBaselinesTo(SceneObject* player);
 
-	void setMaxYawAcceleration(float radians, bool notifyClient = true);
+	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void setCurrentYawAcceleration(float scale, bool notifyClient = true);
+	virtual int notifyObjectInserted(SceneObject* object);
 
-	void setMaxPitchAcceleration(float radians, bool notifyClient = true);
+	virtual void notifyInsert(TreeEntry* obj);
 
-	void setCurrentPitchAcceleration(float scale, bool notifyClient = true);
+	virtual void notifyDissapear(TreeEntry* obj);
 
-	void setMaxRollAcceleration(float radians, bool notifyClient = true);
+	virtual void notifyDespawn(Zone* zone);
 
-	void setCurrentRollAcceleration(float scale, bool notifyClient = true);
+	void sendDestroyTo(SceneObject* player);
 
-	float getMaxYawAcceleration() const;
+	void notifyInsertToZone(Zone* zone);
 
-	float getMaxRollAcceleration() const;
+	virtual void updateZone(bool lightUpdate, bool sendPackets = true);
 
-	float getMaxPitchAcceleration() const;
+	virtual void updatePlayersInShip(bool lightUpdate, bool sendPackets = true);
 
-	float getTotalMass() const;
+	void setChassisMaxMass(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
 
-	float getMaxSpeed() const;
+	void setShieldRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorMaxEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineDecelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEnginePitchAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineYawAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineRollAccelerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEnginePitchRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineYawRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineRollRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEngineMaxSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setReactorGenerationRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterMaxEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterRechargeRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterEnergyConsumptionRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterAcceleration(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterMaxSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setDroidCommandSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipDroidID(unsigned long long value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setSlipRate(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCurrentChassisHealth(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisMaxHealth(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipNameCRC(unsigned int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setFrontShieldMax(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setRearShieldMax(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisMass(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setChassisSpeed(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setCapacitorEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setBoosterEnergy(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setUniqueID(unsigned short value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualAccelerationRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualDecelerationRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualPitchAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualYawAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualRollAccelerationRate(float scale, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualPitchRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualYawRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualRollRate(float radians, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setActualMaxSpeed(float speed, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipTargetID(unsigned long long value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipTargetSlot(int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipType(const String& value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipDifficulty(const String& value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipFactionString(const String& factionString, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipFaction(unsigned int value);
+
+	void setFrontShield(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setRearShield(float value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setShipGuildID(unsigned int value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyCost(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMass(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentName(int slot, const UnicodeString& value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentCreator(int slot, unsigned long long value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMaxDamage(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMinDamage(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setShieldEffectiveness(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setArmorEffectiveness(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setEnergyPerShot(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setRefireRate(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setCurrentAmmo(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setMaxAmmo(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setAmmoClass(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMaxArmor(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentArmor(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentHitpoints(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentMaxHitpoints(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentOptions(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setRefireEfficiency(int slot, float value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setComponentTargetable(int slot, bool value, bool notifyClient = true, DeltaMessage* delta = NULL, ShipDeltaVector* vector = NULL);
+
+	void setComponentCRC(int slot, unsigned int value, DeltaMessage* message = NULL, byte command = 0, ShipDeltaVector* vector = NULL);
+
+	void setOwner(CreatureObject* object);
+
+	void setPilotChair(SceneObject* object);
+
+	void setOperationsChair(SceneObject* object);
+
+	void setTurretLadder(SceneObject* object);
+
+	void setHyperspacing(bool value);
+
+	void setHyperspaceDelay();
+
+	void setHasWings(bool value);
+
+	void setDroidFeedback(bool value);
+
+	void setShipName(const String& name, bool notifyClient = true);
+
+	void setChassisCategory(const String& value);
+
+	void setChassisLevel(int value);
+
+	void setControlDeviceID(unsigned long long oid);
+
+	void setRotationMatrix(const Quaternion& value);
+
+	void setCurrentSpeed(float value);
+
+	void setSpeedRotationFactorMax(float value);
+
+	void setSpeedRotationFactorMin(float value);
+
+	void setSpeedRotationFactorOptimal(float value);
+
+	void setStaffShipSpeed(float speed);
+
+	void updateLastDamageReceived();
+
+	void addPlayerOnBoard(CreatureObject* player);
+
+	void removePlayerOnBoard(CreatureObject* player);
+
+	void clearPlayersOnBoard();
+
+	void resetDroidCommands();
+
+	void populateDroidCommands(CreatureObject* player);
+
+	bool hasDroidCommand(unsigned int commandNameHash);
+
+	bool sendDroidMessageStartTo(SceneObject* player, SceneObject* droid);
+
+	void droidChatter(CreatureObject* player, StringIdChatParameter& message);
+
+	void setDroidCommandDelay(float delay);
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEfficiencyMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEnergyEfficiencyMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentEnergyCostMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMassMap() const;
+
+	const DeltaVectorMap<unsigned int, UnicodeString>* getComponentNameMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned long long>* getComponentCreatorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMaxDamageMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentMinDamageMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getShieldEffectivenessMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getArmorEffectivenessMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getEnergyPerShotMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentRefireRate() const;
+
+	const DeltaVectorMap<unsigned int, int>* getCurrentAmmoMap() const;
+
+	const DeltaVectorMap<unsigned int, int>* getMaxAmmoMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getAmmoClassMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getMaxArmorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getCurrentArmorMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getCurrentHitpointsMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getMaxHitpointsMap() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getComponentOptionsMap() const;
+
+	const DeltaVectorMap<unsigned int, float>* getComponentRefireEfficiency() const;
+
+	const DeltaBitArray* getTargetableBitfield() const;
+
+	const DeltaVectorMap<unsigned int, unsigned int>* getShipComponentMap() const;
+
+	float getChassisMaxMass();
+
+	float getShieldRechargeRate();
+
+	float getCapacitorMaxEnergy();
+
+	float getCapacitorRechargeRate();
+
+	float getEngineAccelerationRate();
+
+	float getEngineDecelerationRate();
+
+	float getEnginePitchAccelerationRate();
+
+	float getEngineYawAccelerationRate();
+
+	float getEngineRollAccelerationRate();
+
+	float getEnginePitchRate();
+
+	float getEngineYawRate();
+
+	float getEngineRollRate();
+
+	float getEngineMaxSpeed();
+
+	float getReactorGenerationRate();
+
+	float getBoosterMaxEnergy();
+
+	float getBoosterRechargeRate();
+
+	float getBoosterConsumptionRate();
+
+	float getBoosterAcceleration();
+
+	float getBoosterMaxSpeed();
+
+	float getDroidCommandSpeed();
+
+	unsigned long long getShipDroidID();
+
+	float getSlip();
+
+	float getChassisCurrentHealth();
+
+	float getChassisMaxHealth();
+
+	unsigned int getShipNameCRC();
+
+	float getMaxFrontShield();
+
+	float getMaxRearShield();
+
+	float getChassisMass();
+
+	float getChassisSpeed();
+
+	float getCapacitorEnergy();
+
+	float getBoosterEnergy();
+
+	unsigned short getUniqueID();
+
+	float getActualAccelerationRate();
+
+	float getActualDecelerationRate();
+
+	float getActualPitchAccelerationRate();
+
+	float getActualYawAccelerationRate();
+
+	float getActualRollAccelerationRate();
+
+	float getActualPitchRate();
+
+	float getActualYawRate();
+
+	float getActualRollRate();
+
+	float getActualMaxSpeed();
+
+	unsigned long long getShipTargetID();
+
+	int getShipTargetSlot();
+
+	String getShipType() const;
+
+	String getShipDifficulty() const;
+
+	String getShipFactionString() const;
+
+	float getFrontShield();
+
+	float getRearShield();
+
+	unsigned int getShipGuildID();
+
+	DeltaBitArray* getTargetableBitfield();
+
+	String getShipChassisName();
+
+	String getShipName();
+
+	String getShipLaunchedName();
+
+	float getComponentEnergyEfficiency(int slot);
+
+	float getComponentEfficiency(int slot);
+
+	ManagedWeakReference<CreatureObject* > getOwner();
+
+	unsigned long long getOwnerID();
+
+	ManagedWeakReference<SceneObject* > getPilotChair();
+
+	ManagedWeakReference<SceneObject* > getOperationsChair();
+
+	ManagedWeakReference<SceneObject* > getTurretLadder();
+
+	unsigned int getShipFaction();
+
+	void installAmmo(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient = false);
+
+	void uninstallAmmo(CreatureObject* owner, int slot, bool notifyClient = false);
+
+	void install(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient = false);
+
+	void uninstall(CreatureObject* owner, int slot, bool notifyClient);
+
+	virtual void updateCraftingValues(CraftingValues* values, bool firstUpdate);
+
+	virtual void loadTemplateData(SharedObjectTemplate* templateData);
 
 	bool isShipObject();
+
+	bool isHyperspacing();
+
+	bool hasShipWings();
+
+	bool isBoosterActive();
+
+	bool isDroidMuted();
+
+	const String getChassisCategory();
+
+	int getChassisLevel();
+
+	bool checkInConversationRange(SceneObject* object);
+
+	int getHyperspaceDelay();
+
+	unsigned long long getControlDeviceID();
+
+	ShipComponent* getComponentObject(unsigned int slot);
+
+	bool isReadyToBoost();
+
+	bool isReadyForDroidCommand();
+
+	int timeUntilNextDroidCommand();
+
+	bool hasComponentFlag(unsigned int slot, unsigned int flag);
+
+	void addComponentFlag(unsigned int slot, unsigned int flag, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void removeComponentFlag(unsigned int slot, unsigned int flag, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void resetComponentFlag(unsigned int slot, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void setComponentDemolished(unsigned int slot, bool notify = true, ShipDeltaVector* vector = NULL);
+
+	void restartBooster();
+
+	float calculateCurrentMass();
+
+	float calculateCurrentEnergyCost();
+
+	void sendPvpStatusTo(CreatureObject* player);
+
+	ShipDeltaVector* getDeltaVector();
+
+	ShipTargetVector* getTargetVector();
+
+	virtual void destroyObjectFromDatabase(bool destroyContainedObjects = false);
+
+	CreatureObject* getPilot();
+
+	CreatureObject* getShipOperator();
+
+	CreatureObject* getTurretOperatorTop();
+
+	CreatureObject* getTurretOperatorBottom();
+
+	/**
+	 * Evaluates if this can be attacked by object
+	 * @pre { }
+	 * @post { }
+	 * @return returns true if object can attack this
+	 */
+	virtual bool isAttackableBy(TangibleObject* object);
+
+	bool isAttackableBy(CreatureObject* object);
+
+	virtual bool isAggressiveTo(TangibleObject* object);
+
+	const Matrix4* getRotationMatrix();
+
+	const Matrix4* getConjugateMatrix();
+
+	float getCurrentSpeed();
+
+	float getSpeedRotationFactorMax();
+
+	float getSpeedRotationFactorMin();
+
+	float getSpeedRotationFactorOptimal();
+
+	unsigned long long getLastDamageReceivedMili();
+
+	float getComponentCondition(unsigned int slot);
+
+	int getTotalPlayersOnBoard();
+
+	CreatureObject* getPlayerOnBoard(int index);
+
+	Vector<unsigned long long> getPlayersOnBoard();
+
+	void sendShipMembersMessage(const String& message);
+
+	void sendShipMembersMusicMessage(const String& message);
+
+	void sendMembersHyperspaceBeginMessage(const String& zoneName, const Vector3& location);
+
+	void sendMembersHyperspaceOrientMessage(const String& zoneName, const Vector3& location);
+
+	void sendMembersBaseMessage(BaseMessage* message, bool sendSelf = true);
+
+	virtual void awardLootItems(ShipAiAgent* destructedShip, int payout);
+
+	bool isShipLaunched();
+
+	int getReceiverFlags() const;
+
+	bool isComponentInstalled(unsigned int slot);
+
+	bool isComponentFunctional(unsigned int slot);
+
+	float calculateActualComponentEfficiency(unsigned int slot);
+
+	float calculateSpeedRotationFactor();
+
+	float calculateActualAccelerationRate();
+
+	float calculateActualDecelerationRate();
+
+	float calculateActualMaxSpeed();
+
+	virtual float getOutOfRangeDistance(unsigned long long specialRangeObjectID = 0);
+
+	void updateSpeedRotationValues(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateActualEngineValues(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateComponentFlags(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	void updateComponentTargetableBitfield(bool notifyClient = true, ShipDeltaVector* vector = NULL);
+
+	bool isSlotTargetable(int slot);
+
+	bool isComponentTargetable(int slot);
+
+	bool getComponentTargetable(int slot);
+
+	void resetEfficiency();
+
+	void initializeUniqueID(bool notifyClient = true);
+
+	bool canBePilotedBy(CreatureObject* player);
+
+	bool hasComponentsInstalled();
+
+	bool isStarterShip();
+
+	bool isSorosuubSpaceYacht();
+
+	void setSpaceLaunchZone(String& zoneName);
+
+	void setSpaceLaunchCityName(String& cityName);
+
+	void setSpaceLaunchLocation(Vector3& location);
+
+	String getSpaceLaunchZone();
+
+	String getSpaceLaunchCityName();
+
+	Vector3 getSpaceLaunchLocation();
+
+	String getCertificationRequired() const;
+
+	void setCertificationRequired(const String& cert);
 
 	WeakReference<ShipObject*> _this;
 
@@ -223,37 +1663,341 @@ public:
 
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
-	unsigned short getUniqueID();
+	void notifyLoadFromDatabase();
+
+	void sendSlottedObjectsTo(SceneObject* player);
 
 	void initializeTransientMembers();
+
+	void doRecovery(int latency);
+
+	float getTotalShipDamage();
+
+	void repairShip(float repairAmount, bool decay);
+
+	void scheduleRecovery();
+
+	void cancelRecovery();
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer);
 
 	void sendBaselinesTo(SceneObject* player);
 
-	void setMaxYawAcceleration(float radians, bool notifyClient);
+	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void setCurrentYawAcceleration(float scale, bool notifyClient);
+	int notifyObjectInserted(SceneObject* object);
 
-	void setMaxPitchAcceleration(float radians, bool notifyClient);
+	void notifyDespawn(Zone* zone);
 
-	void setCurrentPitchAcceleration(float scale, bool notifyClient);
+	void sendDestroyTo(SceneObject* player);
 
-	void setMaxRollAcceleration(float radians, bool notifyClient);
+	void notifyInsertToZone(Zone* zone);
 
-	void setCurrentRollAcceleration(float scale, bool notifyClient);
+	void updatePlayersInShip(bool lightUpdate, bool sendPackets);
 
-	float getMaxYawAcceleration() const;
+	void setShipFaction(unsigned int value);
 
-	float getMaxRollAcceleration() const;
+	void setOwner(CreatureObject* object);
 
-	float getMaxPitchAcceleration() const;
+	void setPilotChair(SceneObject* object);
 
-	float getTotalMass() const;
+	void setOperationsChair(SceneObject* object);
 
-	float getMaxSpeed() const;
+	void setTurretLadder(SceneObject* object);
 
-	bool isShipObject();
+	void setHyperspacing(bool value);
+
+	void setHyperspaceDelay();
+
+	void setDroidFeedback(bool value);
+
+	void setShipName(const String& name, bool notifyClient);
+
+	void setControlDeviceID(unsigned long long oid);
+
+	void setCurrentSpeed(float value);
+
+	void setSpeedRotationFactorMax(float value);
+
+	void setSpeedRotationFactorMin(float value);
+
+	void setSpeedRotationFactorOptimal(float value);
+
+	void setStaffShipSpeed(float speed);
+
+	void updateLastDamageReceived();
+
+	void addPlayerOnBoard(CreatureObject* player);
+
+	void removePlayerOnBoard(CreatureObject* player);
+
+	void clearPlayersOnBoard();
+
+	void resetDroidCommands();
+
+	void populateDroidCommands(CreatureObject* player);
+
+	bool hasDroidCommand(unsigned int commandNameHash);
+
+	bool sendDroidMessageStartTo(SceneObject* player, SceneObject* droid);
+
+	void droidChatter(CreatureObject* player, StringIdChatParameter& message);
+
+	void setDroidCommandDelay(float delay);
+
+	float getChassisMaxMass();
+
+	float getShieldRechargeRate();
+
+	float getCapacitorMaxEnergy();
+
+	float getCapacitorRechargeRate();
+
+	float getEngineAccelerationRate();
+
+	float getEngineDecelerationRate();
+
+	float getEnginePitchAccelerationRate();
+
+	float getEngineYawAccelerationRate();
+
+	float getEngineRollAccelerationRate();
+
+	float getEnginePitchRate();
+
+	float getEngineYawRate();
+
+	float getEngineRollRate();
+
+	float getEngineMaxSpeed();
+
+	float getReactorGenerationRate();
+
+	float getBoosterMaxEnergy();
+
+	float getBoosterRechargeRate();
+
+	float getBoosterConsumptionRate();
+
+	float getBoosterAcceleration();
+
+	float getBoosterMaxSpeed();
+
+	float getDroidCommandSpeed();
+
+	unsigned long long getShipDroidID();
+
+	float getSlip();
+
+	float getChassisCurrentHealth();
+
+	float getChassisMaxHealth();
+
+	unsigned int getShipNameCRC();
+
+	float getMaxFrontShield();
+
+	float getMaxRearShield();
+
+	float getChassisMass();
+
+	float getChassisSpeed();
+
+	float getCapacitorEnergy();
+
+	float getBoosterEnergy();
+
+	unsigned short getUniqueID();
+
+	float getActualAccelerationRate();
+
+	float getActualDecelerationRate();
+
+	float getActualPitchAccelerationRate();
+
+	float getActualYawAccelerationRate();
+
+	float getActualRollAccelerationRate();
+
+	float getActualPitchRate();
+
+	float getActualYawRate();
+
+	float getActualRollRate();
+
+	float getActualMaxSpeed();
+
+	unsigned long long getShipTargetID();
+
+	int getShipTargetSlot();
+
+	String getShipType() const;
+
+	String getShipDifficulty() const;
+
+	String getShipFactionString() const;
+
+	float getFrontShield();
+
+	float getRearShield();
+
+	unsigned int getShipGuildID();
+
+	String getShipChassisName();
+
+	String getShipName();
+
+	String getShipLaunchedName();
+
+	float getComponentEnergyEfficiency(int slot);
+
+	float getComponentEfficiency(int slot);
+
+	ManagedWeakReference<CreatureObject* > getOwner();
+
+	unsigned long long getOwnerID();
+
+	ManagedWeakReference<SceneObject* > getPilotChair();
+
+	ManagedWeakReference<SceneObject* > getOperationsChair();
+
+	ManagedWeakReference<SceneObject* > getTurretLadder();
+
+	unsigned int getShipFaction();
+
+	void installAmmo(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient);
+
+	void uninstallAmmo(CreatureObject* owner, int slot, bool notifyClient);
+
+	void install(CreatureObject* owner, SceneObject* component, int slot, bool notifyClient);
+
+	void uninstall(CreatureObject* owner, int slot, bool notifyClient);
+
+	bool isHyperspacing();
+
+	bool hasShipWings();
+
+	bool isBoosterActive();
+
+	bool isDroidMuted();
+
+	const String getChassisCategory();
+
+	int getChassisLevel();
+
+	int getHyperspaceDelay();
+
+	unsigned long long getControlDeviceID();
+
+	ShipComponent* getComponentObject(unsigned int slot);
+
+	bool isReadyToBoost();
+
+	bool isReadyForDroidCommand();
+
+	int timeUntilNextDroidCommand();
+
+	bool hasComponentFlag(unsigned int slot, unsigned int flag);
+
+	void restartBooster();
+
+	float calculateCurrentMass();
+
+	float calculateCurrentEnergyCost();
+
+	void destroyObjectFromDatabase(bool destroyContainedObjects);
+
+	CreatureObject* getPilot();
+
+	CreatureObject* getShipOperator();
+
+	CreatureObject* getTurretOperatorTop();
+
+	CreatureObject* getTurretOperatorBottom();
+
+	bool isAttackableBy(TangibleObject* object);
+
+	bool isAttackableBy(CreatureObject* object);
+
+	bool isAggressiveTo(TangibleObject* object);
+
+	float getCurrentSpeed();
+
+	float getSpeedRotationFactorMax();
+
+	float getSpeedRotationFactorMin();
+
+	float getSpeedRotationFactorOptimal();
+
+	unsigned long long getLastDamageReceivedMili();
+
+	float getComponentCondition(unsigned int slot);
+
+	int getTotalPlayersOnBoard();
+
+	CreatureObject* getPlayerOnBoard(int index);
+
+	void sendShipMembersMessage(const String& message);
+
+	void sendShipMembersMusicMessage(const String& message);
+
+	void sendMembersHyperspaceBeginMessage(const String& zoneName, const Vector3& location);
+
+	void sendMembersHyperspaceOrientMessage(const String& zoneName, const Vector3& location);
+
+	void awardLootItems(ShipAiAgent* destructedShip, int payout);
+
+	bool isShipLaunched();
+
+	int getReceiverFlags() const;
+
+	bool isComponentInstalled(unsigned int slot);
+
+	bool isComponentFunctional(unsigned int slot);
+
+	float calculateActualComponentEfficiency(unsigned int slot);
+
+	float calculateSpeedRotationFactor();
+
+	float calculateActualAccelerationRate();
+
+	float calculateActualDecelerationRate();
+
+	float calculateActualMaxSpeed();
+
+	float getOutOfRangeDistance(unsigned long long specialRangeObjectID);
+
+	bool isSlotTargetable(int slot);
+
+	bool isComponentTargetable(int slot);
+
+	bool getComponentTargetable(int slot);
+
+	void resetEfficiency();
+
+	void initializeUniqueID(bool notifyClient);
+
+	bool canBePilotedBy(CreatureObject* player);
+
+	bool hasComponentsInstalled();
+
+	bool isStarterShip();
+
+	bool isSorosuubSpaceYacht();
+
+	void setSpaceLaunchZone(String& zoneName);
+
+	void setSpaceLaunchCityName(String& cityName);
+
+	void setSpaceLaunchLocation(Vector3& location);
+
+	String getSpaceLaunchZone();
+
+	String getSpaceLaunchCityName();
+
+	String getCertificationRequired() const;
+
+	void setCertificationRequired(const String& cert);
 
 };
 
@@ -290,25 +2034,205 @@ namespace ship {
 
 class ShipObjectPOD : public TangibleObjectPOD {
 public:
-	Optional<float> totalMass;
+	Optional<unsigned long long> controlDeviceID;
 
-	Optional<float> currentMass;
+	Optional<int> totalCellNumber;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 6 >> maxYawAcceleration;
+	Optional<ManagedWeakReference<CreatureObjectPOD* >> owner;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 7 >> maxPitchAcceleration;
+	Optional<unsigned long long> ownerID;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 8 >> maxRollAcceleration;
+	Optional<SpaceLaunchPoint> launchPoint;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 9 >> currentYawAcceleration;
+	Optional<ManagedWeakReference<SceneObjectPOD* >> pilotChair;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 10 >> currentPitchAcceleration;
+	Optional<ManagedWeakReference<SceneObjectPOD* >> operationsChair;
 
-	Optional<DeltaFloatVariable<'SHIP', 6, 11 >> currentRollAcceleration;
+	Optional<ManagedWeakReference<SceneObjectPOD* >> turretLadder;
 
-	Optional<float> maxSpeed;
+	Optional<VectorMap<unsigned int, ManagedReference<ShipComponentPOD* > >> components;
 
-	Optional<DeltaVectorMap<unsigned int, unsigned int>> shipComponents;
+	Optional<Time> boostTimer;
+
+	Optional<Time> droidTimer;
+
+	Optional<Time> hyperspaceTime;
+
+	Optional<bool> hasWings;
+
+	Optional<String> chassisDataName;
+
+	Optional<String> shipName;
+
+	Optional<String> chassisCategory;
+
+	Optional<int> chassisLevel;
+
+	Optional<float> currentSpeed;
+
+	Optional<float> speedRotationFactorMax;
+
+	Optional<float> speedRotationFactorMin;
+
+	Optional<float> speedRotationFactorOptimal;
+
+	Optional<Matrix4> rotationMatrix;
+
+	Optional<Matrix4> conjugateMatrix;
+
+	Optional<unsigned int> shipFaction;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 17 >> chassisMaxMass;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 18 >> shieldRechargeRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 19 >> capacitorMaxEnergy;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 20 >> capacitorRechargeRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 21 >> engineAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 22 >> engineDecelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 23 >> enginePitchAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 24 >> engineYawAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 25 >> engineRollAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 26 >> enginePitchRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 27 >> engineYawRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 28 >> engineRollRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 29 >> engineMaxSpeed;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 30 >> reactorGenerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 31 >> boosterMaxEnergy;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 32 >> boosterRechargeRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 33 >> boosterConsumptionRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 34 >> boosterAcceleration;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 35 >> boosterMaxSpeed;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 1, 36 >> droidCommandSpeed;
+
+	Optional<DeltaAutoVariable<uint64, 'SHIP', 1, 37 >> shipDroidID;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 3, 11 >> slip;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 3, 12 >> chassisCurrentHealth;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 3, 13 >> chassisMaxHealth;
+
+	Optional<DeltaAutoVariable<uint32, 'SHIP', 3, 14 >> shipNameCRC;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 3, 20 >> frontShieldMax;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 3, 21 >> rearShieldMax;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 4, 0 >> chassisMass;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 4, 1 >> chassisSpeed;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 4, 2 >> capacitorEnergy;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 4, 3 >> boosterEnergy;
+
+	Optional<DeltaAutoVariable<uint16, 'SHIP', 6, 2 >> uniqueID;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 3 >> actualAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 4 >> actualDecelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 5 >> actualPitchAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 6 >> actualYawAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 7 >> actualRollAccelerationRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 8 >> actualPitchRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 9 >> actualYawRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 10 >> actualRollRate;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 11 >> actualMaxSpeed;
+
+	Optional<DeltaAutoVariable<uint64, 'SHIP', 6, 12 >> shipTargetID;
+
+	Optional<DeltaAutoVariable<uint32, 'SHIP', 6, 13 >> shipTargetSlot;
+
+	Optional<DeltaAutoVariable<String, 'SHIP', 6, 17 >> shipType;
+
+	Optional<DeltaAutoVariable<String, 'SHIP', 6, 18 >> shipDifficulty;
+
+	Optional<DeltaAutoVariable<String, 'SHIP', 6, 19 >> shipFactionString;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 20 >> frontShield;
+
+	Optional<DeltaAutoVariable<float, 'SHIP', 6, 21 >> rearShield;
+
+	Optional<DeltaAutoVariable<uint32, 'SHIP', 6, 22 >> shipGuildID;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 2 >> componentEfficiency;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 3 >> componentEnergyEfficiency;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 4 >> componentEnergyCost;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 5 >> componentMass;
+
+	Optional<DeltaAutoPackedMap<uint32, UnicodeString, 'SHIP', 1, 6 >> componentNames;
+
+	Optional<DeltaAutoPackedMap<uint32, uint64, 'SHIP', 1, 7 >> componentCreator;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 8 >> componentMaxDamage;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 9 >> componentMinDamage;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 10 >> componentShieldEffectiveness;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 11 >> componentArmorEffectiveness;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 12 >> componentEnergyPerShot;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 1, 13 >> componentRefire;
+
+	Optional<DeltaAutoPackedMap<uint32, int, 'SHIP', 1, 14 >> componentAmmoCurrent;
+
+	Optional<DeltaAutoPackedMap<uint32, int, 'SHIP', 1, 15 >> componentAmmoMax;
+
+	Optional<DeltaAutoPackedMap<uint32, uint32, 'SHIP', 1, 16 >> componentAmmoClass;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 15 >> componentMaxArmor;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 16 >> componentCurrentArmor;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 17 >> componentCurrentHitpoints;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 3, 18 >> componentMaxHitpoints;
+
+	Optional<DeltaAutoPackedMap<uint32, uint32, 'SHIP', 3, 19 >> componentOptions;
+
+	Optional<DeltaAutoPackedMap<uint32, float, 'SHIP', 4, 4 >> componentRefireEfficiency;
+
+	Optional<DeltaAutoBitArray<uint32, bool, 'SHIP', 6, 14 >> componentTargetableBitfield;
+
+	Optional<DeltaAutoMap<uint32, uint32, 'SHIP', 6, 15 >> componentCRCs;
+
+	Optional<Vector<unsigned long long>> playersOnBoard;
+
+	Optional<String> certificationRequired;
+
+	Optional<float> wingsOpenSpeed;
+
+	Optional<VectorMap<unsigned int, String>> availableDroidCommands;
 
 	String _className;
 	ShipObjectPOD();

@@ -87,6 +87,30 @@ class ZonePOD;
 using namespace server::zone;
 
 namespace server {
+namespace zone {
+
+class GroundZone;
+
+class GroundZonePOD;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
+namespace zone {
+
+class SpaceZone;
+
+class SpaceZonePOD;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
 namespace chat {
 
 class ChatManager;
@@ -325,6 +349,20 @@ using namespace server::zone::managers::creature;
 namespace server {
 namespace zone {
 namespace managers {
+namespace ship {
+
+class ShipAgentTemplateManager;
+
+} // namespace ship
+} // namespace managers
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::managers::ship;
+
+namespace server {
+namespace zone {
+namespace managers {
 namespace creature {
 
 class DnaManager;
@@ -439,6 +477,12 @@ public:
 
 	static const float CLOSEOBJECTRANGE;
 
+	static const float SPACECLOSEOBJECTRANGE;
+
+	static const float CAPITALSHIPRANGE;
+
+	static const float SPACESTATIONRANGE;
+
 	ZoneServer(ConfigManager* config);
 
 	void initializeTransientMembers();
@@ -451,7 +495,9 @@ public:
 
 	void startManagers();
 
-	void startZones();
+	void startGroundZones();
+
+	void startSpaceZones();
 
 	void stopManagers();
 
@@ -469,9 +515,9 @@ public:
 
 	bool handleError(ZoneClientSession* client, Exception& e);
 
-	void addTotalSentPacket(int count);
+	void addTotalSentPacket(unsigned int count);
 
-	void addTotalResentPacket(int count);
+	void addTotalResentPacket(unsigned int count);
 
 	void printInfo();
 
@@ -539,6 +585,10 @@ public:
 	Zone* getZone(int idx);
 
 	int getZoneCount() const;
+
+	SpaceZone* getSpaceZone(int idx);
+
+	int getSpaceZoneCount() const;
 
 	int getMaxPlayers() const;
 
@@ -634,7 +684,9 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 
 	ManagedReference<ZoneProcessServer* > processor;
 
-	Reference<VectorMap<String, ManagedReference<Zone* > >* > zones;
+	Reference<VectorMap<String, ManagedReference<GroundZone* > >* > zones;
+
+	Reference<VectorMap<String, ManagedReference<SpaceZone* > >* > spaceZones;
 
 	Reference<ObjectManager* > objectManager;
 
@@ -670,13 +722,15 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 
 	Reference<CreatureTemplateManager* > creatureTemplateManager;
 
+	Reference<ShipAgentTemplateManager* > shipAgentTemplateManager;
+
 	Reference<DnaManager* > dnaManager;
 
-	int totalSentPackets;
+	unsigned long long totalSentPackets;
 
 	int serverCap;
 
-	int totalResentPackets;
+	unsigned long long totalResentPackets;
 
 	AtomicInteger currentPlayers;
 
@@ -709,6 +763,12 @@ public:
 
 	static const float CLOSEOBJECTRANGE;
 
+	static const float SPACECLOSEOBJECTRANGE;
+
+	static const float CAPITALSHIPRANGE;
+
+	static const float SPACESTATIONRANGE;
+
 	ZoneServerImplementation(ConfigManager* config);
 
 	ZoneServerImplementation(DummyConstructorParameter* param);
@@ -727,7 +787,9 @@ public:
 
 	void startManagers();
 
-	void startZones();
+	void startGroundZones();
+
+	void startSpaceZones();
 
 	void stopManagers();
 
@@ -745,9 +807,9 @@ public:
 
 	bool handleError(ZoneClientSession* client, Exception& e);
 
-	void addTotalSentPacket(int count);
+	void addTotalSentPacket(unsigned int count);
 
-	void addTotalResentPacket(int count);
+	void addTotalResentPacket(unsigned int count);
 
 	void printInfo();
 
@@ -815,6 +877,10 @@ public:
 	Zone* getZone(int idx);
 
 	int getZoneCount() const;
+
+	SpaceZone* getSpaceZone(int idx);
+
+	int getSpaceZoneCount() const;
 
 	int getMaxPlayers() const;
 
@@ -923,7 +989,9 @@ public:
 
 	void startManagers();
 
-	void startZones();
+	void startGroundZones();
+
+	void startSpaceZones();
 
 	void stopManagers();
 
@@ -935,9 +1003,9 @@ public:
 
 	void timedShutdown(int minutes, int flags);
 
-	void addTotalSentPacket(int count);
+	void addTotalSentPacket(unsigned int count);
 
-	void addTotalResentPacket(int count);
+	void addTotalResentPacket(unsigned int count);
 
 	void printInfo();
 
@@ -1000,6 +1068,10 @@ public:
 	Zone* getZone(int idx);
 
 	int getZoneCount() const;
+
+	SpaceZone* getSpaceZone(int idx);
+
+	int getSpaceZoneCount() const;
 
 	int getMaxPlayers() const;
 
@@ -1112,11 +1184,11 @@ public:
 
 	Optional<ManagedReference<PetManagerPOD* >> petManager;
 
-	Optional<int> totalSentPackets;
+	Optional<unsigned long long> totalSentPackets;
 
 	Optional<int> serverCap;
 
-	Optional<int> totalResentPackets;
+	Optional<unsigned long long> totalResentPackets;
 
 	Optional<AtomicInteger> currentPlayers;
 

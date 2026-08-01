@@ -433,7 +433,7 @@ void BuildingObjectImplementation::notifyObjectInsertedToZone(SceneObject* objec
 	debug("BuildingObjectImplementation::notifyInsertToZone");
 
 	auto closeObjectsVector = getCloseObjects();
-	Vector<QuadTreeEntry*> closeObjects(closeObjectsVector->size(), 10);
+	Vector<TreeEntry*> closeObjects(closeObjectsVector->size(), 10);
 	closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -476,7 +476,7 @@ void BuildingObjectImplementation::notifyObjectInsertedToZone(SceneObject* objec
 	//this->sendTo(object, true);
 }
 
-void BuildingObjectImplementation::notifyInsert(QuadTreeEntry* obj) {
+void BuildingObjectImplementation::notifyInsert(TreeEntry* obj) {
 #if DEBUG_COV
 	if (getObjectID() == 88) { // Theed Cantina
 		info("BuildingObjectImplementation::notifyInsert(" + String::valueOf(obj->getObjectID()) + ")", true);
@@ -531,7 +531,7 @@ void BuildingObjectImplementation::notifyInsert(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObjectImplementation::notifyDissapear(QuadTreeEntry* obj) {
+void BuildingObjectImplementation::notifyDissapear(TreeEntry* obj) {
 #if DEBUG_COV
 	if (getObjectID() == 88) { // Theed Cantina
 		info("BuildingObjectImplementation::notifyDissapear(" + String::valueOf(obj->getObjectID()) + ")", true);
@@ -575,7 +575,7 @@ void BuildingObjectImplementation::notifyDissapear(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObjectImplementation::notifyPositionUpdate(QuadTreeEntry* entry) {
+void BuildingObjectImplementation::notifyPositionUpdate(TreeEntry* entry) {
 #if ! COV_BUILDING_QUAD_RANGE
 	StructureObjectImplementation::notifyPositionUpdate(entry);
 	return;
@@ -630,17 +630,17 @@ void BuildingObjectImplementation::notifyPositionUpdate(QuadTreeEntry* entry) {
 #endif // COV_BUILDING_QUAD_RANGE
 }
 
-void BuildingObjectImplementation::insert(QuadTreeEntry* entry) {
+void BuildingObjectImplementation::insert(TreeEntry* entry) {
 	//return;
 }
 
-void BuildingObjectImplementation::remove(QuadTreeEntry* entry) {
+void BuildingObjectImplementation::remove(TreeEntry* entry) {
 }
 
-void BuildingObjectImplementation::update(QuadTreeEntry* entry) {
+void BuildingObjectImplementation::update(TreeEntry* entry) {
 }
 
-void BuildingObjectImplementation::inRange(QuadTreeEntry* entry, float range) {
+void BuildingObjectImplementation::inRange(TreeEntry* entry, float range) {
 }
 
 void BuildingObjectImplementation::addCell(CellObject* cell, uint32 cellNumber) {
@@ -745,7 +745,7 @@ void BuildingObjectImplementation::destroyObjectFromDatabase(
 void BuildingObjectImplementation::broadcastCellPermissions() {
 	CloseObjectsVector* closeObjectsVector = (CloseObjectsVector*) getCloseObjects();
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -773,7 +773,7 @@ void BuildingObjectImplementation::broadcastCellPermissions(uint64 objectid) {
 
 	CloseObjectsVector* closeObjectsVector = getCloseObjects();
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -1059,15 +1059,13 @@ bool BuildingObjectImplementation::isInPlayerCity() {
 }
 
 bool BuildingObjectImplementation::canPlayerRegisterWithin() {
-	const PlanetMapCategory* pmc = getPlanetMapSubCategory();
+	const PlanetMapSubCategory* subCategory = getPlanetMapSubCategory();
+	const PlanetMapCategory* category = getPlanetMapCategory();
 
-	if (pmc == nullptr)
-		pmc = getPlanetMapCategory();
-
-	if (pmc == nullptr)
+	if (subCategory == nullptr && category == nullptr)
 		return false;
 
-	String categoryName = pmc->getName();
+	String categoryName = subCategory != nullptr ? subCategory->getName() : category->getName();
 	if (categoryName == "medicalcenter" || categoryName == "hotel" || categoryName == "cantina" || categoryName == "theater" || categoryName == "guild_theater" || categoryName == "tavern")
 		return true;
 
@@ -1383,12 +1381,12 @@ void BuildingObjectImplementation::createChildObjects() {
 				}
 
 			} else {
-				if ((obj->isTurret() || obj->isMinefield() || obj->isDetector()) && gcwMan != nullptr && !gcwMan->shouldSpawnDefenses()) {
+				if ((obj->isTurret() || obj->isMinefield() || obj->isScanner()) && gcwMan != nullptr && !gcwMan->shouldSpawnDefenses()) {
 					if (obj->isTurret())
 						gcwMan->addTurret(asBuildingObject(), nullptr);
 					else if (obj->isMinefield())
 						gcwMan->addMinefield(asBuildingObject(), nullptr);
-					else if (obj->isDetector())
+					else if (obj->isScanner())
 						gcwMan->addScanner(asBuildingObject(), nullptr);
 
 					obj->destroyObjectFromDatabase(true);
@@ -1432,7 +1430,7 @@ void BuildingObjectImplementation::createChildObjects() {
 			permissions->setDefaultDenyPermission(ContainerPermissions::MOVECONTAINER);
 			permissions->setDenyPermission("owner", ContainerPermissions::MOVECONTAINER);
 
-			if (obj->isTurret() || obj->isMinefield() || obj->isDetector()) {
+			if (obj->isTurret() || obj->isMinefield() || obj->isScanner()) {
 				TangibleObject* tano = cast<TangibleObject*>(obj.get());
 				if (tano != nullptr) {
 					tano->setFaction(getFaction());
@@ -1450,7 +1448,7 @@ void BuildingObjectImplementation::createChildObjects() {
 						gcwMan->addTurret(asBuildingObject(), obj);
 					else if (obj->isMinefield())
 						gcwMan->addMinefield(asBuildingObject(), obj);
-					else if (obj->isDetector())
+					else if (obj->isScanner())
 						gcwMan->addScanner(asBuildingObject(), obj);
 
 				} else {

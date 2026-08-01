@@ -14,11 +14,13 @@ class EntertainingData : public Serializable {
 	int duration;
 	int strength;
 	int timeStarted;
+	bool buffApplied;
 public:
 	EntertainingData() {
 		duration = 0;
 		strength = 0;
 		timeStarted = time(0);
+		buffApplied = false;
 		addSerializableVariables();
 	}
 
@@ -26,6 +28,7 @@ public:
 		duration = d.duration;
 		strength = d.strength;
 		timeStarted = d.timeStarted;
+		buffApplied = d.buffApplied;
 
 		addSerializableVariables();
 	}
@@ -37,6 +40,7 @@ public:
 		duration = d.duration;
 		strength = d.strength;
 		timeStarted = d.timeStarted;
+		buffApplied = d.buffApplied;
 
 		return *this;
 	}
@@ -44,6 +48,8 @@ public:
 	inline void addSerializableVariables() {
 		addSerializableVariable("duration", &duration);
 		addSerializableVariable("strength", &strength);
+		addSerializableVariable("timeStarted", &timeStarted);
+		addSerializableVariable("buffApplied", &buffApplied);
 	}
 
 	inline int getDuration() {
@@ -55,6 +61,9 @@ public:
 	}
 	inline int getTimeStarted() {
 		return timeStarted;
+	}
+	inline bool getBuffApplied() {
+		return buffApplied;
 	}
 	inline void setStrength(int str) {
 		strength = str;
@@ -70,6 +79,10 @@ public:
 
 	inline void incrementDuration(int incr) {
 		duration += incr;
+	}
+
+	inline void setBuffApplied(bool applied) {
+		buffApplied = applied;
 	}
 };
 

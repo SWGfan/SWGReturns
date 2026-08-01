@@ -1,2 +1,2 @@
-/usr/bin/ar qc libweb3.a CMakeFiles/web3.dir/APIProxyChatManager.cpp.o CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o CMakeFiles/web3.dir/APIRequest.cpp.o CMakeFiles/web3.dir/RESTEndpoint.cpp.o CMakeFiles/web3.dir/RESTServer.cpp.o
-/usr/bin/ranlib libweb3.a
+ccache /usr/bin/ar qc libweb3.a CMakeFiles/web3.dir/APIProxyChatManager.cpp.o CMakeFiles/web3.dir/APIProxyConfigManager.cpp.o CMakeFiles/web3.dir/APIProxyGuildManager.cpp.o CMakeFiles/web3.dir/APIProxyObjectManager.cpp.o CMakeFiles/web3.dir/APIProxyPlayerManager.cpp.o CMakeFiles/web3.dir/APIRequest.cpp.o CMakeFiles/web3.dir/RESTEndpoint.cpp.o CMakeFiles/web3.dir/RESTServer.cpp.o
+ccache /usr/bin/ranlib libweb3.a

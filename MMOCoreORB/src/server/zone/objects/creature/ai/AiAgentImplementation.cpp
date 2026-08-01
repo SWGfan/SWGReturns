@@ -800,7 +800,7 @@ void AiAgentImplementation::notifyLoadFromDatabase() {
 	}
 }
 
-void AiAgentImplementation::notifyPositionUpdate(QuadTreeEntry* entry) {
+void AiAgentImplementation::notifyPositionUpdate(TreeEntry* entry) {
 	CreatureObjectImplementation::notifyPositionUpdate(entry);
 
 	SceneObject* object = static_cast<SceneObject*>(entry);
@@ -1514,7 +1514,7 @@ void AiAgentImplementation::clearCombatState(bool clearDefenders) {
 	sendReactionChat(nullptr, ReactionManager::CALM);
 }
 
-void AiAgentImplementation::notifyInsert(QuadTreeEntry* entry) {
+void AiAgentImplementation::notifyInsert(TreeEntry* entry) {
 	CreatureObjectImplementation::notifyInsert(entry);
 
 	SceneObject* scno = static_cast<SceneObject*>( entry);
@@ -1699,7 +1699,7 @@ void AiAgentImplementation::scheduleDespawn(int timeToDespawn) {
 	addPendingTask("despawn", despawn, timeToDespawn * 1000);
 }
 
-void AiAgentImplementation::notifyDissapear(QuadTreeEntry* entry) {
+void AiAgentImplementation::notifyDissapear(TreeEntry* entry) {
 	CreatureObjectImplementation::notifyDissapear(entry);
 
 	SceneObject* scno = static_cast<SceneObject*>( entry);
@@ -2240,14 +2240,14 @@ float AiAgentImplementation::getWorldZ(const Vector3& position) {
 	IntersectionResults intersections;
 
 	if (closeobjects != nullptr) {
-		Vector<QuadTreeEntry*> closeObjects(closeobjects->size(), 10);
+		Vector<TreeEntry*> closeObjects(closeobjects->size(), 10);
 
 		closeobjects->safeCopyReceiversTo(closeObjects, CloseObjectsVector::COLLIDABLETYPE);
 		CollisionManager::getWorldFloorCollisions(position.getX(), position.getY(), zone, &intersections, closeObjects);
 
 		zCoord = zone->getPlanetManager()->findClosestWorldFloor(position.getX(), position.getY(), position.getZ(), getSwimHeight(), &intersections, nullptr);
 	} else {
-		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
+		SortedVector<ManagedReference<TreeEntry*> > closeObjects;
 
 #ifdef COV_DEBUG
 		zone->info("Null closeobjects vector in AiAgentImplementation::getWorldZ", true);
@@ -2461,7 +2461,7 @@ bool AiAgentImplementation::generatePatrol(int num, float dist) {
 			}
 		}
 	} else {
-		SortedVector<QuadTreeEntry*> closeObjects;
+		SortedVector<TreeEntry*> closeObjects;
 
 		if (closeobjects != nullptr) {
 			closeobjects->safeCopyReceiversTo(closeObjects, CloseObjectsVector::COLLIDABLETYPE);
@@ -3072,7 +3072,7 @@ void AiAgentImplementation::notifyPackMobs(SceneObject* attacker) {
 		return;
 
 	auto closeObjectsVector = getCloseObjects();
-	Vector<QuadTreeEntry*> closeObjects(closeObjectsVector->size(), 10);
+	Vector<TreeEntry*> closeObjects(closeObjectsVector->size(), 10);
 	closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 	uint32 socialGroup = getSocialGroup().toLowerCase().hashCode();
 
@@ -3358,7 +3358,7 @@ bool AiAgentImplementation::sendConversationStartTo(SceneObject* player) {
 		}
 	}
 
-	StartNpcConversation* conv = new StartNpcConversation(playerCreature, getObjectID(), "");
+	StartNpcConversation* conv = new StartNpcConversation(playerCreature, getObjectID(), 0, "");
 	player->sendMessage(conv);
 
 	SortedVector<ManagedReference<Observer*> > observers = getObservers(ObserverEventType::STARTCONVERSATION);

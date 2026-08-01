@@ -210,8 +210,6 @@ class InstrumentPOD;
 
 using namespace server::zone::objects::tangible;
 
-#include "gmock/gmock.h"
-
 #include "server/zone/objects/group/GroupObject.h"
 
 #include "server/zone/objects/intangible/ControlDevice.h"
@@ -252,7 +250,7 @@ using namespace server::zone::objects::tangible;
 
 #include "server/zone/CloseObjectsVector.h"
 
-#include "server/zone/QuadTreeEntry.h"
+#include "server/zone/TreeEntry.h"
 
 #include "server/zone/objects/tangible/TangibleObject.h"
 
@@ -312,6 +310,8 @@ public:
 	 * @param templateData templateData points to the SharedCreatureObjectTemplate LuaObject that is used to initialize CreatureObject members
 	 */
 	CreatureObject();
+
+	Time* getNextActionTime();
 
 	void initializeMembers();
 
@@ -933,6 +933,8 @@ public:
 	 */
 	bool clearState(unsigned long long state, bool notifyClient = true);
 
+	void clearSpaceStates();
+
 	void setControlDevice(ControlDevice* device);
 
 	/**
@@ -1052,11 +1054,11 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	void notifyInsert(QuadTreeEntry* obj);
+	void notifyInsert(TreeEntry* obj);
 
-	void notifyDissapear(QuadTreeEntry* obj);
+	void notifyDissapear(TreeEntry* obj);
 
-	void notifyPositionUpdate(QuadTreeEntry* entry);
+	void notifyPositionUpdate(TreeEntry* entry);
 
 	/**
 	 * Destroys this object from database
@@ -1241,9 +1243,9 @@ public:
 
 	const DeltaVector<int>* getEncumbrances() const;
 
-	virtual byte getPosture() const;
+	byte getPosture() const;
 
-	virtual byte getLocomotion() const;
+	byte getLocomotion() const;
 
 	byte getFactionRank() const;
 
@@ -1257,7 +1259,9 @@ public:
 
 	unsigned long long getStateBitmask() const;
 
-	virtual bool hasState(unsigned long long state) const;
+	bool hasState(unsigned long long state) const;
+
+	bool isPilotingShip() const;
 
 	bool hasStates() const;
 
@@ -1271,7 +1275,7 @@ public:
 
 	float getSpeedMultiplierMod() const;
 
-	virtual float getCurrentSpeed() const;
+	float getCurrentSpeed() const;
 
 	SpeedMultiplierModChanges* getSpeedMultiplierModChanges();
 
@@ -1307,7 +1311,7 @@ public:
 
 	Reference<WeaponObject* > getWeapon();
 
-	virtual WeaponObject* getDefaultWeapon();
+	WeaponObject* getDefaultWeapon();
 
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
@@ -1385,9 +1389,9 @@ public:
 
 	float getSwimHeight() const;
 
-	virtual bool isIncapacitated() const;
+	bool isIncapacitated() const;
 
-	virtual bool isDead() const;
+	bool isDead() const;
 
 	bool isKnockedDown() const;
 
@@ -1403,7 +1407,7 @@ public:
 
 	bool isRallied() const;
 
-	virtual bool isInCombat() const;
+	bool isInCombat() const;
 
 	bool isDizzied() const;
 
@@ -1736,6 +1740,8 @@ public:
 	CreatureObjectImplementation();
 
 	CreatureObjectImplementation(DummyConstructorParameter* param);
+
+	Time* getNextActionTime();
 
 	void initializeMembers();
 
@@ -2359,6 +2365,8 @@ public:
 	 */
 	bool clearState(unsigned long long state, bool notifyClient = true);
 
+	void clearSpaceStates();
+
 	void setControlDevice(ControlDevice* device);
 
 	/**
@@ -2478,11 +2486,11 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	void notifyInsert(QuadTreeEntry* obj);
+	void notifyInsert(TreeEntry* obj);
 
-	void notifyDissapear(QuadTreeEntry* obj);
+	void notifyDissapear(TreeEntry* obj);
 
-	void notifyPositionUpdate(QuadTreeEntry* entry);
+	void notifyPositionUpdate(TreeEntry* entry);
 
 	/**
 	 * Destroys this object from database
@@ -2669,7 +2677,7 @@ public:
 
 	virtual byte getPosture() const;
 
-	virtual byte getLocomotion() const;
+	byte getLocomotion() const;
 
 	byte getFactionRank() const;
 
@@ -2684,6 +2692,8 @@ public:
 	unsigned long long getStateBitmask() const;
 
 	virtual bool hasState(unsigned long long state) const;
+
+	bool isPilotingShip() const;
 
 	bool hasStates() const;
 
@@ -3207,6 +3217,8 @@ public:
 
 	bool clearState(unsigned long long state, bool notifyClient);
 
+	void clearSpaceStates();
+
 	void setControlDevice(ControlDevice* device);
 
 	void setCreatureLink(CreatureObject* object, bool notifyClient);
@@ -3418,6 +3430,8 @@ public:
 	unsigned long long getStateBitmask() const;
 
 	bool hasState(unsigned long long state) const;
+
+	bool isPilotingShip() const;
 
 	bool hasStates() const;
 
@@ -3668,41 +3682,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<CreatureObjectHelper>;
-};
-
-class MockCreatureObject : public CreatureObject {
-public:
-
-	MOCK_METHOD0(getPosture,byte());
-	MOCK_METHOD0(getLocomotion,byte());
-	MOCK_METHOD1(hasState,bool(unsigned long long state));
-	MOCK_METHOD0(getCurrentSpeed,float());
-	MOCK_METHOD0(getDefaultWeapon,WeaponObject*());
-	MOCK_METHOD0(isIncapacitated,bool());
-	MOCK_METHOD0(isDead,bool());
-	MOCK_METHOD0(isInCombat,bool());
-	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
-	MOCK_METHOD0(getLevel,int());
-	MOCK_METHOD0(isDestroyed,bool());
-	MOCK_METHOD0(getThreatMap,ThreatMap*());
-	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
-	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
-	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
-	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
-	MOCK_METHOD0(getZone,Zone*());
-	MOCK_METHOD0(getZoneUnsafe,Zone*());
-	MOCK_METHOD0(getWorldPositionX,float());
-	MOCK_METHOD0(getWorldPositionY,float());
-	MOCK_METHOD0(getWorldPositionZ,float());
-	MOCK_METHOD0(getWorldPosition,Vector3());
-	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
-	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
-	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
-	MOCK_METHOD0(asCreatureObject,CreatureObject*());
-	MOCK_METHOD0(asAiAgent,AiAgent*());
-	MOCK_METHOD0(asTangibleObject,TangibleObject*());
-	MOCK_METHOD0(getTemplateRadius,float());
-
 };
 
 } // namespace creature

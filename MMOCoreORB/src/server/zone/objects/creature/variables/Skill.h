@@ -101,17 +101,6 @@ public:
 		row->getValue(7, moneyRequired);
 		row->getValue(8, pointsRequired);
 
-		// Custom: reduce skill-point costs so players can master more professions with the fixed 250 pool.
-		// Starter professions (brawler/marksman/medic/artisan) are free; all other boxes cost ~1/3 less.
-		if (pointsRequired > 0) {
-			if (skillName.beginsWith("combat_brawler") || skillName.beginsWith("combat_marksman")
-					|| skillName.beginsWith("science_medic") || skillName.beginsWith("crafting_artisan")) {
-				pointsRequired = 0;
-			} else {
-				pointsRequired = (pointsRequired * 2) / 3;
-			}
-		}
-
 		row->getValue(9, skillsRequiredCount);
 		row->getValue(10, skillsRequired);
 		row->getValue(11, preclusionSkills);

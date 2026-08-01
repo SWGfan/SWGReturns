@@ -10,48 +10,64 @@
 #define COLORWITHKITSUICALLBACK_H
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
-
+#include "server/zone/objects/creature/ai/DroidObject.h"
+#include "server/zone/objects/creature/VehicleObject.h"
 
 class ColorWithKitSuiCallback : public SuiCallback {
 	TangibleObject* customizationKit;
 
 public:
-	ColorWithKitSuiCallback(ZoneServer* serv, TangibleObject* kitTano ):
-		SuiCallback(serv), customizationKit( kitTano ) {
+	ColorWithKitSuiCallback(ZoneServer* serv, TangibleObject* kitTano) : SuiCallback(serv), customizationKit(kitTano) {
 	}
 
 	void run(CreatureObject* creature, SuiBox* sui, uint32 eventIndex, Vector<UnicodeString>* args) {
 		bool cancelPressed = (eventIndex == 1);
 
-		SuiColorBox* cBox = cast<SuiColorBox*>( sui);
-
-		if (cBox == nullptr)
+		if (cancelPressed) {
 			return;
+		}
 
-		if(!creature->isPlayerCreature())
+		if (creature == nullptr || sui == nullptr || customizationKit == nullptr) {
 			return;
+		}
 
-		if(!cancelPressed) {
+		if (!creature->isPlayerCreature()) {
+			return;
+		}
 
-			int index = Integer::valueOf(args->get(0).toString());
+		SuiColorBox* colorBox = cast<SuiColorBox*>(sui);
 
-			String palette = cBox->getColorPalette();
+		if (colorBox == nullptr) {
+			return;
+		}
 
-			ManagedReference<TangibleObject*> target = cBox->getUsingObject().get().castTo<TangibleObject*>();
+		ManagedReference<TangibleObject*> target = colorBox->getUsingObject().get().castTo<TangibleObject*>();
 
-			if (target == nullptr)
-				return;
+		if (target == nullptr) {
+			return;
+		}
 
-			Locker clocker(target, creature);
+		Locker kitLock(customizationKit, creature);
 
-			target->setCustomizationVariable(palette, index, true);
+		customizationKit->decreaseUseCount();
 
-			clocker.release();
+		int index = Integer::valueOf(args->get(0).toString());
+		String palette = colorBox->getColorPalette();
 
-			if (customizationKit != nullptr) {
-				Locker clocker2(customizationKit, creature);
-				customizationKit->decreaseUseCount();
-			}
+		Locker targetLocker(target, creature);
+
+		target->setCustomizationVariable(palette, index, true);
+
+		if (target->isDroidObject()) {
+			auto droid = target.castTo<DroidObject*>();
+
+			if (droid != nullptr)
+				droid->refreshPaint();
+		} else if (target->isVehicleObject()) {
+			auto vehicle = target.castTo<VehicleObject*>();
+
+			if (vehicle != nullptr)
+				vehicle->refreshPaint();
 		}
 	}
 };

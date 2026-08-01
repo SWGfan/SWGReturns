@@ -6,6 +6,8 @@ package server.zone.objects.area.areashapes;
 
 import server.zone.objects.area.areashapes.AreaShape;
 include engine.util.u3d.Vector3;
+include engine.util.u3d.Vector4;
+import engine.log.Logger;
 
 class RectangularAreaShape extends AreaShape {
 
@@ -24,6 +26,8 @@ class RectangularAreaShape extends AreaShape {
 		blY = 0;
 		urX = 0;
 		urY = 0;
+
+		Logger.setLoggingName("RectangularAreaShape");
 	}
 
 	/**
@@ -38,6 +42,15 @@ class RectangularAreaShape extends AreaShape {
 		urX = x2;
 		urY = y2;
 	}
+
+	public void logDimensions() {
+		Logger.info(true) << "Lower Left: X = " << blX <<  " Y = " << blY << " Upper Right: X = " << urX << " Y = " << urY << " Height = " << getHeight() << " With = " << getWidth();
+	}
+
+	@dereferenced
+	@local
+	@read
+	public native Vector4 getRectangularDimensions();
 
 	/**
 	 * Get the height of the rectangle.

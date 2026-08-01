@@ -11,6 +11,7 @@
 #include "server/db/ServerDatabase.h"
 #include "server/db/AccountDatabase.h"
 #include "server/zone/objects/tangible/misc/VendorToken.h"
+#include "server/zone/objects/tangible/item/CreditChipObject.h"
 #include "server/zone/ZoneProcessServer.h"
 #include "templates/manager/TemplateManager.h"
 #include "ObjectVersionUpdateManager.h"
@@ -233,6 +234,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<ResourceDeed>(SceneObjectType::RESOURCEDEED);
 	objectFactory.registerObject<EventPerkDeed>(SceneObjectType::EVENTPERKDEED);
 	objectFactory.registerObject<VetHarvesterDeed>(SceneObjectType::VETHARVESTERDEED);
+	objectFactory.registerObject<ShipDeed>(SceneObjectType::SHIPDEED);
 	objectFactory.registerObject<GroupObject>(SceneObjectType::GROUPOBJECT);
 	objectFactory.registerObject<GuildObject>(SceneObjectType::GUILDOBJECT);
 	objectFactory.registerObject<StimPack>(SceneObjectType::STIMPACK);
@@ -339,6 +341,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<SpaceStationObject>(SceneObjectType::SHIPSTATION);
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::CRYSTAL);
 	objectFactory.registerObject<VendorToken>(SceneObjectType::VENDORTOKEN);
+	objectFactory.registerObject<CreditChipObject>(SceneObjectType::CREDITCHIP);
 }
 
 void ObjectManager::updateObjectVersion() {

@@ -113,21 +113,21 @@ Core3 = {
   --"runtimerules",
   --"simple",
   --"space_09",
-  --"space_corellia",
+  "space_corellia",
   --"space_corellia_2",
-  --"space_dantooine",
-  --"space_dathomir",
-  --"space_endor",
+  "space_dantooine",
+  "space_dathomir",
+  "space_endor",
   --"space_env",
   --"space_halos",
   --"space_heavy1",
   --"space_light1",
-  --"space_lok",
-  --"space_naboo",
+  "space_lok",
+  "space_naboo",
   --"space_naboo_2",
-  --"space_tatooine",
+  "space_tatooine",
   --"space_tatooine_2",
-  --"space_yavin4",
+  "space_yavin4",
   "taanab",
   "talus",
   "tatooine",
@@ -151,11 +151,11 @@ Core3 = {
 
 
 	-- Where tre files are stored
-	TrePath = "/home/ubuntu/SWGEmu",
+	TrePath = "/var/www/html/tre",
 
 	-- Each tre file (order is important!)
 	TreFiles = {
-    "species.tre",
+    "returns_patch12.tre",
     "returns_species_fix.tre",
     "returns_gen5_saber_variants.tre",
     "stardust_s.tre",
@@ -222,7 +222,7 @@ Core3 = {
 	InactiveAccountTitle = "Account Disabled",
 	InactiveAccountText = "The server administrators have disabled your account.",
 
-	CharacterBuilderEnabled = "true", -- Enable character builder terminals by default
+	CharacterBuilderEnabled = "false", -- Enable character builder terminals by default
 
 	PlayerLogLevel = 4, -- -1 NONE, 0 FATAL, 1 ERROR, 2 WARNING, 3 LOG, 4 INFO, 5 DEBUG
 	MaxLogLines = 1000000, -- how often to rotate log (currently only log/player.log rotates)

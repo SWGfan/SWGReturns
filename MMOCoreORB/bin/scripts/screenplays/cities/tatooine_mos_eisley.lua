@@ -105,6 +105,7 @@ TatooineMosEisleyScreenPlay = CityScreenPlay:new {
 		{"chassis_dealer",60,2.32807,0.639422,67.8972,165.339,1106372, "neutral"},
 		{"ecik",60,1.1,0.639421,66.3,101.522,1106372, "neutral"},
 		{"trainer_shipwright",60,-3.2,0.6,67.6,160,1106372, "neutral"},
+		{"trainer_prospector",0,-6.2,0.6,66.5,130,1106372, "neutral"},
 
 		--Cantina
 		{"commoner_old",60,36,0.1,0.7,310,1082876, "npc_sitting_chair"},

@@ -25,5 +25,5 @@ function Yavin4LaborOutpostScreenPlay:start()
 end
 
 function Yavin4LaborOutpostScreenPlay:spawnMobiles()
-  spawnMobile("yavin4", "stintaril_prowler",600,-7621,17,7218,-10,0)
+  spawnMobile("yavin4", "stintaril_prowler",120,-7621,17,7218,-10,0)
 end

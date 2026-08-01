@@ -654,9 +654,9 @@ dantooine_world = {
 			spawnLimit = -1,
 			minDifficulty = 140,
 			maxDifficulty = 200,
-			numberToSpawn = 0,
-			weighting = 9,
-			size = 35
+			numberToSpawn = 3,
+			weighting = 25,
+			size = 50
 		},
 		{
 			lairTemplateName = "dantooine_voritor_hunter_neutral_none",

@@ -865,6 +865,8 @@ const String TransactionLog::trxCodeToString(TrxCode code) {
 	case TrxCode::TIPSURCHARGE:             return "tipsurcharge";              // Tip Surcharge
 	case TrxCode::VENDORMAINTANENCE:        return "vendormaintanence";         // Vendor Wages
 	case TrxCode::NPCLOOT:                  return "npcloot";                   // NPC Loot
+	case TrxCode::CREDITCHIP:               return "creditchip";                // Space credit chip looted
+	case TrxCode::CREDITCHIPCLAIM:          return "creditchipclaim";           // Space credit chip claimed
 	case TrxCode::JUNKDEALER:               return "junkdealer";                // Junk Dealer
 	case TrxCode::CANTINADRINK:             return "cantinadrink";              // Cantina Drink
 	case TrxCode::BETATEST:                 return "betatest";                  // Beta Test Fund
@@ -921,6 +923,8 @@ const String TransactionLog::trxCodeToString(TrxCode code) {
 	case TrxCode::SERVERDESTROYOBJECT:      return "serverdestroyobject";       // /serverDestroyObject command
 	case TrxCode::SLICECONTAINER:           return "slicecontainer";            // Slicing session on a container
 	case TrxCode::STRUCTUREDEED:            return "structuredeed";             // Structure deed trxs
+	case TrxCode::SHIPDEEDPURCHASE:         return "shipdeedpurchase";          // Purchase ship deed
+	case TrxCode::SHIPREDEED:               return "shipredeed";                // Re-deed ship
 	case TrxCode::TRANSFERITEMMISC:         return "transferitemmisc";          // /transferitemmisc command
 	case TrxCode::TRANSFERSTRUCT:           return "transferstruct";            // Transfer Structure
 	case TrxCode::VENDORLIFECYCLE:          return "vendorlifecycle";           // Vendor lifecycle (create/destroy)

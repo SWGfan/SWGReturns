@@ -10,6 +10,8 @@
 
 #include "engine/log/Logger.h"
 #include "engine/util/Singleton.h"
+#include "engine/lua/Lua.h"
+#include "engine/lua/LuaObject.h"
 #include "templates/customization/PaletteData.h"
 #include "templates/customization/HairAssetData.h"
 
@@ -26,6 +28,8 @@ public:
 	void loadPaletteColumns(IffStream* iffStream);
 	void loadHairAssetsSkillMods(IffStream* iffStream);
 	void loadAllowBald(IffStream* iffStream);
+	void loadHairAssetsFromLua();
+	void loadAllowBaldFromLua();
 	void readObject(IffStream* iffStream);
 
 	int getCustomizationId(const String& var) {
@@ -40,8 +44,8 @@ public:
 		return paletteColumns.get(palette);
 	}
 
-	HairAssetData* getHairAssetData(const String& hairServerTemplate) {
-		return hairAssetSkillMods.get(hairServerTemplate);
+	HairAssetData* getHairAssetData(const String& hairServerTemplate, const String& playerServerTemplate) {
+		return hairAssetSkillMods.get(hairServerTemplate + "|" + playerServerTemplate);
 	}
 
 	bool canBeBald(const String& speciesSubString) {

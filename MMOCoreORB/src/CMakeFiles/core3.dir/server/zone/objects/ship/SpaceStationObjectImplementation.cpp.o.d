@@ -1055,58 +1055,6 @@ src/CMakeFiles/core3.dir/server/zone/objects/ship/SpaceStationObjectImplementati
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ShipObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-internal-utils.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-port.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
- /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
- /usr/include/c++/15/sstream /usr/include/c++/15/bits/sstream.tcc \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-port-arch.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-port.h \
- /usr/include/regex.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-port.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-internal.h \
- /usr/include/x86_64-linux-gnu/sys/wait.h \
- /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /usr/include/c++/15/iomanip /usr/include/c++/15/bits/quoted_string.h \
- /usr/include/c++/15/set /usr/include/c++/15/bits/stl_set.h \
- /usr/include/c++/15/bits/stl_multiset.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-message.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-filepath.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-string.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-type-util.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-death-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-death-test-internal.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-printers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/custom/gtest-printers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-param-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/internal/gtest-param-util.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_prod.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-test-part.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest-typed-test.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googletest/include/gtest/gtest_pred_impl.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-cardinalities.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-function-mocker.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-function-mockers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-spec-builders.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/gmock-pp.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/internal/custom/gmock-generated-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-generated-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-actions.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-more-matchers.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/googletest-release-1.10.0/googlemock/include/gmock/gmock-nice-strict.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/QuadTreeEntry.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SortedVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/CloseObjectsVector.h \

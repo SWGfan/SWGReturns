@@ -265,6 +265,8 @@ public:
 
 	bool areOpposingFactions(int faction1, int faction2);
 
+	bool isProperFactionStatus(CreatureObject* creature);
+
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
@@ -630,6 +632,8 @@ public:
 
 	bool areOpposingFactions(int faction1, int faction2);
 
+	bool isProperFactionStatus(CreatureObject* creature);
+
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
@@ -950,6 +954,8 @@ public:
 	bool canUseTerminals(CreatureObject* creature, BuildingObject* building, SceneObject* terminal);
 
 	bool areOpposingFactions(int faction1, int faction2);
+
+	bool isProperFactionStatus(CreatureObject* creature);
 
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 

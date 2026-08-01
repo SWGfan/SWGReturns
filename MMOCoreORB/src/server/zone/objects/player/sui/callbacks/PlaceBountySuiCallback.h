@@ -7,65 +7,50 @@
 
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/objects/player/sui/SuiCallback.h"
-#include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/objects/player/sui/inputbox/SuiInputBox.h"
-#include "server/zone/objects/player/sui/callbacks/PlaceBountySuiCallback.h"
 #include "server/chat/ChatManager.h"
 
-class PlaceBountySuiCallback: public SuiCallback {
+class PlaceBountySuiCallback : public SuiCallback {
 private:
 	ManagedReference<CreatureObject*> killerPlayer;
 
 public:
 	PlaceBountySuiCallback(ZoneServer* server, CreatureObject* killer) :
-		SuiCallback(server) {
-		this->killerPlayer = killer;
+			SuiCallback(server), killerPlayer(killer) {
 	}
 
 	void run(CreatureObject* player, SuiBox* suiBox, uint32 eventIndex, Vector<UnicodeString>* args) {
-		bool cancelPressed = (eventIndex == 1);
+		if (!suiBox->isInputBox() || eventIndex == 1 || args == nullptr || args->isEmpty())
+			return;
 
 		int reward = Integer::valueOf(args->get(0).toString());
-		int minBounty = 100000;
-		int maxBounty = 500000;
+		const int minBounty = 100000;
+		const int maxBounty = 500000;
 
-		if (!suiBox->isInputBox() || cancelPressed)
-			return;
+		reward = Math::max(minBounty, Math::min(maxBounty, reward));
 
 		MissionManager* missionManager = server->getMissionManager();
-		if (missionManager == nullptr)
+		PlayerObject* killerGhost = killerPlayer != nullptr ? killerPlayer->getPlayerObject() : nullptr;
+
+		if (missionManager == nullptr || killerGhost == nullptr)
 			return;
 
-		if (reward <= minBounty)
-				reward = minBounty;
-			else if (reward >= maxBounty)
-				reward = maxBounty;
-
-		PlayerObject* killerGhost = killerPlayer->getPlayerObject();
-		if (killerGhost == nullptr)
-			return;
-
-		ChatManager* chatManager = player->getZoneServer()->getChatManager();
-
-		int bank = player->getBankCredits();
-
-		if (reward > bank) {
+		if (reward > player->getBankCredits()) {
 			player->sendSystemMessage("You have insufficient credits to place a bounty on " + killerPlayer->getFirstName() + ".");
 			return;
 		}
 
 		player->subtractBankCredits(reward);
-
-		//killerGhost->updatePlayerBountyTimestamp(3600000); Cooldown
 		killerGhost->setBountyReward(reward);
 		missionManager->addPlayerToBountyList(killerPlayer->getObjectID(), reward);
 		killerGhost->setVisibility(8000);
+
 		player->sendSystemMessage("You have successfully placed a bounty on " + killerPlayer->getFirstName() + ".");
 		killerPlayer->sendSystemMessage("Warning!! " + player->getFirstName() + " has placed a bounty on you.");
-		
-		StringBuffer zBroadcast;
-		zBroadcast << "\\#66B3FF" << "[Spynet Alert] " << "\\#FFFFFF" << "The Guild has posted a new target.";
-		killerPlayer->getZoneServer()->getChatManager()->broadcastGalaxy(nullptr, zBroadcast.toString());
+
+		StringBuffer broadcast;
+		broadcast << "\\#66B3FF[Spynet Alert] \\#FFFFFFThe Guild has posted a new target.";
+		killerPlayer->getZoneServer()->getChatManager()->broadcastGalaxy(nullptr, broadcast.toString());
 	}
 };
 

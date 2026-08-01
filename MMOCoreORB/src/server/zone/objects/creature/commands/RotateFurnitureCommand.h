@@ -121,9 +121,9 @@ public:
  		else if(dir == "yaw")
  			obj->rotate(degrees);
  		else if(dir == "pitch")
- 			obj->rotateYaxis(degrees);
+ 			obj->rotatePitch(degrees);
  		else if(dir == "roll")
- 			obj->rotateXaxis(degrees);
+ 			obj->rotateRoll(degrees);
  		else if(dir == "reset")
  			obj->setDirection(1, 0, 0, 0);
  		else

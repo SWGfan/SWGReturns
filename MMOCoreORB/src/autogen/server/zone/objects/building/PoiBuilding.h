@@ -59,9 +59,9 @@ using namespace server::zone::objects::scene;
 namespace server {
 namespace zone {
 
-class QuadTreeEntry;
+class TreeEntry;
 
-class QuadTreeEntryPOD;
+class TreeEntryPOD;
 
 } // namespace zone
 } // namespace server
@@ -93,9 +93,9 @@ public:
 
 	void setDespawnOnNoPlayersInRange(bool b);
 
-	void notifyInsert(QuadTreeEntry* entry);
+	void notifyInsert(TreeEntry* entry);
 
-	void notifyDissapear(QuadTreeEntry* entry);
+	void notifyDissapear(TreeEntry* entry);
 
 	void activateDespawnEvent();
 
@@ -147,9 +147,9 @@ public:
 
 	void setDespawnOnNoPlayersInRange(bool b);
 
-	void notifyInsert(QuadTreeEntry* entry);
+	void notifyInsert(TreeEntry* entry);
 
-	void notifyDissapear(QuadTreeEntry* entry);
+	void notifyDissapear(TreeEntry* entry);
 
 	void activateDespawnEvent();
 
@@ -206,9 +206,9 @@ public:
 
 	void setDespawnOnNoPlayersInRange(bool b);
 
-	void notifyInsert(QuadTreeEntry* entry);
+	void notifyInsert(TreeEntry* entry);
 
-	void notifyDissapear(QuadTreeEntry* entry);
+	void notifyDissapear(TreeEntry* entry);
 
 	void activateDespawnEvent();
 

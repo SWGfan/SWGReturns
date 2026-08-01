@@ -96,6 +96,12 @@ function GeonosianLab:start()
 			self:spawnMobiles()
 			self:setupPermissionGroups()
 			self:setupLootContainers()
+		elseif (self.buildingRetries == nil or self.buildingRetries < 10) then
+			self.buildingRetries = (self.buildingRetries or 0) + 1
+			print("GeonosianLab: Geo lab building (1627780) not loaded yet, retrying setup in 10s (attempt " .. self.buildingRetries .. ")")
+			createEvent(10 * 1000, "GeonosianLab", "start", nil, "")
+		else
+			print("GeonosianLab: Geo lab building (1627780) still not found after 10 retries, giving up. Dungeon will be inaccessible until next restart.")
 		end
 	end
 end
@@ -229,6 +235,8 @@ function GeonosianLab:spawnSceneObjects()
 			writeData(SceneObject(pSceneObject):getObjectID() .. ":geonosianLab:keypadIndex", i)
 			SceneObject(pSceneObject):setObjectMenuComponent("GeoLabKeypadMenuComponent")
 			createObserver(SLICED, "GeonosianLab", "notifyKeypadSliced", pSceneObject)
+		else
+			print("GeonosianLab: keypad terminal " .. i .. " (cell " .. kp.cell .. ") failed to spawn. Door to cell " .. kp.locked .. " will be unopenable.")
 		end
 
 		local aa = self.doorActiveAreas[i]
@@ -237,6 +245,8 @@ function GeonosianLab:spawnSceneObjects()
 		if pActiveArea ~= nil then
 			writeData(SceneObject(pActiveArea):getObjectID() .. ":geonosianLab:keypadIndex", i)
 			createObserver(ENTEREDAREA, "GeonosianLab", "notifyLockedDoorArea", pActiveArea)
+		else
+			print("GeonosianLab: door active area " .. i .. " (cell " .. aa.cell .. ") failed to spawn.")
 		end
 	end
 
@@ -799,6 +809,8 @@ function GeonosianLab:notifyKeypadSliced(pKeypad, pPlayer, success)
 end
 
 function GeonosianLab:setupPermissionGroups()
+	local allResolved = true
+
 	for i = 1, #self.lockedCells, 1 do
 		local pCell = getSceneObject(self.lockedCells[i])
 		if pCell ~= nil then
@@ -807,7 +819,18 @@ function GeonosianLab:setupPermissionGroups()
 			SceneObject(pCell):clearContainerDefaultAllowPermission(WALKIN)
 			SceneObject(pCell):setContainerAllowPermission("GeoLabKeypad" .. i, WALKIN)
 			SceneObject(pCell):setContainerDenyPermission("GeoLabKeypad" .. i, MOVEIN)
+		else
+			allResolved = false
+			print("GeonosianLab: locked cell " .. self.lockedCells[i] .. " (index " .. i .. ") not found, permissions not set. Door will stay locked.")
 		end
+	end
+
+	if not allResolved and (self.permissionRetries == nil or self.permissionRetries < 10) then
+		self.permissionRetries = (self.permissionRetries or 0) + 1
+		print("GeonosianLab: one or more locked cells unresolved, retrying setupPermissionGroups in 10s (attempt " .. self.permissionRetries .. ")")
+		createEvent(10 * 1000, "GeonosianLab", "setupPermissionGroups", nil, "")
+	elseif not allResolved then
+		print("GeonosianLab: one or more locked cells still unresolved after 10 retries, giving up. Those doors will be permanently locked until next restart.")
 	end
 end
 

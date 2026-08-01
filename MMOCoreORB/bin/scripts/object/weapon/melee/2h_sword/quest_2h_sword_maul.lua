@@ -49,8 +49,8 @@ object_weapon_melee_2h_sword_quest_2h_sword_maul = object_weapon_melee_2h_sword_
 	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
 	damageType = KINETIC,
 
-	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = NONE,
+-- NONE, LIGHT, MEDIUM, HEAVY
+  armorPiercing = MEDIUM,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,

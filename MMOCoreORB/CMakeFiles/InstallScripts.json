@@ -1,24 +1,22 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/ubuntu/StarDust-2/MMOCoreORB/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/utils/engine3/MMOEngine/src/testsuite3/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/utils/googletest-release-1.10.0/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/utils/googletest-release-1.10.0/googletest/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/conf/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/terrain/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/templates/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/pathfinding/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/db/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/status/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/web/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/ping/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/login/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/server/chat/cmake_install.cmake",
-		"/home/ubuntu/StarDust-2/MMOCoreORB/src/client/cmake_install.cmake"
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/testsuite3/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/conf/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/terrain/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/db/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/status/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/web/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/ping/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/login/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/cmake_install.cmake",
+		"/home/ubuntu/SWGReturns01/MMOCoreORB/src/client/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

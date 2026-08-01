@@ -19,7 +19,7 @@ BaseMessage* SuiColorBoxImplementation::generateMessage() {
 
 	//Set Body Options:
 	addSetting("3", "bg.caption.lblTitle", "Text", "@base_player:swg");
-	addSetting("3", "ColorPicker", "TargetRangeMax", "500");
+	addSetting("3", "ColorPicker", "TargetRangeMax", String::valueOf(skillMod));
 	addSetting("3", "ColorPicker", "TargetNetworkId", id.toString().toCharArray());
 	addSetting("3", "ColorPicker", "TargetVariable", variable.toCharArray());
 
@@ -33,4 +33,3 @@ BaseMessage* SuiColorBoxImplementation::generateMessage() {
 
 	return message;
 }
-

@@ -26,7 +26,11 @@
 
 #include "engine/util/u3d/Vector3.h"
 
+#include "engine/util/u3d/Vector4.h"
+
 #include "server/zone/objects/area/areashapes/AreaShape.h"
+
+#include "engine/log/Logger.h"
 
 namespace server {
 namespace zone {
@@ -45,6 +49,10 @@ public:
 	 * @param w the width of the rectangle.
 	 */
 	void setDimensions(float x1, float y1, float x2, float y2);
+
+	void logDimensions();
+
+	Vector4 getRectangularDimensions() const;
 
 	/**
 	 * Get the height of the rectangle.
@@ -159,6 +167,10 @@ public:
 	 * @param w the width of the rectangle.
 	 */
 	void setDimensions(float x1, float y1, float x2, float y2);
+
+	void logDimensions();
+
+	Vector4 getRectangularDimensions() const;
 
 	/**
 	 * Get the height of the rectangle.
@@ -285,6 +297,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void setDimensions(float x1, float y1, float x2, float y2);
+
+	void logDimensions();
 
 	float getHeight() const;
 

@@ -718,7 +718,7 @@ void CombatManager::finalCombatSpam(TangibleObject* attacker, WeaponObject* weap
 	}
 
 	CloseObjectsVector* vec = (CloseObjectsVector*)attacker->getCloseObjects();
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 
 	if (vec != nullptr) {
 		closeObjects.removeAll(vec->size(), 10);
@@ -822,7 +822,7 @@ void CombatManager::broadcastCombatSpam(TangibleObject* attacker, TangibleObject
 		return;
 
 	CloseObjectsVector* vec = (CloseObjectsVector*)attacker->getCloseObjects();
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 
 	if (vec != nullptr) {
 		closeObjects.removeAll(vec->size(), 10);
@@ -955,7 +955,7 @@ Reference<SortedVector<ManagedReference<TangibleObject*>>*> CombatManager::getAr
 
 		CloseObjectsVector* vec = (CloseObjectsVector*)attacker->getCloseObjects();
 
-		SortedVector<QuadTreeEntry*> closeObjects;
+		SortedVector<TreeEntry*> closeObjects;
 
 		if (vec != nullptr) {
 			closeObjects.removeAll(vec->size(), 10);
@@ -1129,28 +1129,28 @@ if (attacker->isPlayerCreature() && defender->isPlayerCreature()) {
 
 	if (attacker->isPlayerCreature()) {
 		if (data.isForceAttack() && !defender->isPlayerCreature()) {
-			// Force attacks vs NPC: fixed 3x (was random 2-3x)
-			damage *= 3.0f;
+			// Force attacks vs NPC: 2x (reduced from 3x to prevent one-shots)
+			damage *= 2.0f;
 		} else if (!data.isForceAttack()) {
-			damage *= 1.5;
+			damage *= 1.25f;
 			// Extra bonus for jedi weapons vs NPCs
 			ManagedReference<WeaponObject*> atkWeapon = attacker->getWeapon();
 			if (!defender->isPlayerCreature() && atkWeapon != nullptr && atkWeapon->isJediWeapon()) {
-				damage *= 1.5f;
+				damage *= 1.25f;
 			}
 		}
 	}
 
 	if (!data.isForceAttack() && weapon->getAttackType() == SharedWeaponObjectTemplate::MELEEATTACK)
-		damage *= 1.35f;
+		damage *= 1.15f;
 
 	if (defender->isKnockedDown()) {
-		damage *= 1.5f;
+		damage *= 1.25f;
 	} else if (data.isForceAttack() && data.getCommandName().hashCode() == STRING_HASHCODE("forcechoke")) {
 		if (defender->isProne())
-			damage *= 1.5f;
-		else if (defender->isKneeling())
 			damage *= 1.25f;
+		else if (defender->isKneeling())
+			damage *= 1.15f;
 	}
 
 	// Toughness reduction

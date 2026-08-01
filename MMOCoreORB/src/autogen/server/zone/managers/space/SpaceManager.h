@@ -27,6 +27,30 @@
 namespace server {
 namespace zone {
 
+class Zone;
+
+class ZonePOD;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
+namespace zone {
+
+class SpaceZone;
+
+class SpaceZonePOD;
+
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
+namespace zone {
+
 class ZoneProcessServer;
 
 class ZoneProcessServerPOD;
@@ -38,30 +62,100 @@ using namespace server::zone;
 
 namespace server {
 namespace zone {
+namespace objects {
+namespace scene {
 
-class Zone;
+class SceneObject;
 
-class ZonePOD;
+class SceneObjectPOD;
+
+} // namespace scene
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::scene;
+
+namespace server {
+namespace zone {
+
+class CloseObjectsVector;
 
 } // namespace zone
 } // namespace server
 
 using namespace server::zone;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+
+class ShipObject;
+
+class ShipObjectPOD;
+
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship;
+
+#include "engine/lua/LuaObject.h"
+
+#include "engine/util/u3d/Vector3.h"
+
+#include "server/zone/managers/space/SpaceRegionMap.h"
+
+#include "server/zone/managers/ship/SpaceSpawn.h"
+
+#include "server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.h"
+
+#include "engine/core/ManagedService.h"
+
 #include "engine/log/Logger.h"
 
-#include "server/zone/managers/planet/PlanetManager.h"
+#include "system/util/VectorMap.h"
 
 namespace server {
 namespace zone {
 namespace managers {
 namespace space {
 
-class SpaceManager : public PlanetManager {
+class SpaceManager : public ManagedService {
 public:
-	SpaceManager(Zone* planet, ZoneProcessServer* srv);
+	SpaceManager(SpaceZone* sz, ZoneProcessServer* srv);
+
+	Vector3 getJtlLaunchLocationss();
+
+	void loadLuaConfig();
+
+	void loadRegions();
+
+	void readRegionObject(LuaObject& luaObject);
+
+	void loadNebulaAreas();
+
+	void initializeTransientMembers();
 
 	void initialize();
+
+	void start();
+
+	void broadcastNebulaLightning(ShipObject* ship, const Vector3& nebulaCenter, unsigned short lightningCount, int nebulaID, int startMili, int endMili, const Vector3& startPoint, const Vector3& endPoint);
+
+	SceneObject* spaceDynamicSpawn(unsigned int shipCRC, Zone* zone, SpaceSpawner* spaceSpawner);
+
+	bool isSpawningPermittedAt(float x, float z, float y, float distance);
+
+	bool findNearbySpawner(float x, float z, float y, float distance);
+
+	unsigned long long getClosestSpaceStationObjectID(const Vector3& position, unsigned int factionHash);
+
+	Vector3 getClosestSpaceStationPosition(const Vector3& position, const String& faction);
+
+	String getJtlZoneName();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -88,14 +182,60 @@ namespace zone {
 namespace managers {
 namespace space {
 
-class SpaceManagerImplementation : public PlanetManagerImplementation {
+class SpaceManagerImplementation : public ManagedServiceImplementation, public Logger {
+protected:
+	ManagedReference<SpaceZone* > spaceZone;
+
+	ManagedReference<ZoneProcessServer* > server;
+
+	SpaceRegionMap regionMap;
+
+	VectorMap<unsigned int, VectorMap<uint64, Vector3> > spaceStationMap;
+
+	String jtlZoneName;
+
+	Vector3 jtlLaunchLocation;
 
 public:
-	SpaceManagerImplementation(Zone* planet, ZoneProcessServer* srv);
+	SpaceManagerImplementation(SpaceZone* sz, ZoneProcessServer* srv);
 
 	SpaceManagerImplementation(DummyConstructorParameter* param);
 
-	void initialize();
+	Vector3 getJtlLaunchLocationss();
+
+	void loadLuaConfig();
+
+	void loadRegions();
+
+	void readRegionObject(LuaObject& luaObject);
+
+	void loadNebulaAreas();
+
+private:
+	void loadJTLData(LuaObject* lua);
+
+public:
+	void initializeTransientMembers();
+
+	void finalize();
+
+	virtual void initialize();
+
+	void start();
+
+	void broadcastNebulaLightning(ShipObject* ship, const Vector3& nebulaCenter, unsigned short lightningCount, int nebulaID, int startMili, int endMili, const Vector3& startPoint, const Vector3& endPoint);
+
+	SceneObject* spaceDynamicSpawn(unsigned int shipCRC, Zone* zone, SpaceSpawner* spaceSpawner);
+
+	bool isSpawningPermittedAt(float x, float z, float y, float distance);
+
+	bool findNearbySpawner(float x, float z, float y, float distance);
+
+	unsigned long long getClosestSpaceStationObjectID(const Vector3& position, unsigned int factionHash);
+
+	Vector3 getClosestSpaceStationPosition(const Vector3& position, const String& faction);
+
+	String getJtlZoneName();
 
 	WeakReference<SpaceManager*> _this;
 
@@ -106,8 +246,6 @@ public:
 	virtual void writeObject(ObjectOutputStream* stream);
 protected:
 	virtual ~SpaceManagerImplementation();
-
-	void finalize();
 
 	void _initializeImplementation();
 
@@ -134,13 +272,29 @@ protected:
 	friend class SpaceManager;
 };
 
-class SpaceManagerAdapter : public PlanetManagerAdapter {
+class SpaceManagerAdapter : public ManagedServiceAdapter {
 public:
 	SpaceManagerAdapter(SpaceManager* impl);
 
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
+	void initializeTransientMembers();
+
+	void finalize();
+
 	void initialize();
+
+	void start();
+
+	void broadcastNebulaLightning(ShipObject* ship, const Vector3& nebulaCenter, unsigned short lightningCount, int nebulaID, int startMili, int endMili, const Vector3& startPoint, const Vector3& endPoint);
+
+	SceneObject* spaceDynamicSpawn(unsigned int shipCRC, Zone* zone, SpaceSpawner* spaceSpawner);
+
+	bool isSpawningPermittedAt(float x, float z, float y, float distance);
+
+	bool findNearbySpawner(float x, float z, float y, float distance);
+
+	String getJtlZoneName();
 
 };
 
@@ -175,9 +329,13 @@ namespace zone {
 namespace managers {
 namespace space {
 
-class SpaceManagerPOD : public PlanetManagerPOD {
+class SpaceManagerPOD : public ManagedServicePOD {
 public:
+	Optional<ManagedReference<SpaceZonePOD* >> spaceZone;
 
+	Optional<SpaceRegionMap> regionMap;
+
+	String _className;
 	SpaceManagerPOD();
 	virtual void readObject(ObjectInputStream* stream);
 	virtual void writeObject(ObjectOutputStream* stream);

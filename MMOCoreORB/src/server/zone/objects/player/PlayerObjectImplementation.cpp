@@ -220,13 +220,21 @@ void PlayerObjectImplementation::notifyLoadFromDatabase() {
 
 	serverLastMovementStamp.updateToCurrentTime();
 
-	lastValidatedPosition.update(getParent().get());
+	SceneObject* loadParent = getParent().get();
+
+	if (loadParent != nullptr)
+		lastValidatedPosition.update(loadParent);
 
 	clientLastMovementStamp = 0;
 }
 
 void PlayerObjectImplementation::unloadSpawnedChildren() {
-	ManagedReference<SceneObject*> datapad = getParent().get()->getSlottedObject("datapad");
+	SceneObject* unloadParent = getParent().get();
+
+	if (unloadParent == nullptr)
+		return;
+
+	ManagedReference<SceneObject*> datapad = unloadParent->getSlottedObject("datapad");
 	ManagedReference<CreatureObject*> creo = dynamic_cast<CreatureObject*>(parent.get().get());
 
 	if (datapad == nullptr)
@@ -1444,14 +1452,22 @@ void PlayerObjectImplementation::notifyOnline() {
 
 	if (missionManager != nullptr) {
 		uint64 id = playerCreature->getObjectID();
-		if (!missionManager->hasPlayerBountyTargetInList(id)) {
-			// Any player (not just Jedi) is a potential bounty hunter target.
+		// Jedi are always bounty eligible. Non-Jedi explicitly opt in by
+		// becoming Special Forces and must be an established combatant.
+		bool bountyEligible = isJedi() ||
+			(playerCreature->getFactionStatus() == FactionStatus::OVERT &&
+			 playerCreature->getLevel() >= 50);
+
+		if (bountyEligible && !missionManager->hasPlayerBountyTargetInList(id)) {
 			missionManager->addPlayerToBountyList(id, calculateBhReward());
 			missionManager->updatePlayerBountyOnlineStatus(id, true);
-		}
-		else {
+		} else if (bountyEligible) {
 			missionManager->updatePlayerBountyOnlineStatus(id, true);
 			//VisibilityManager::instance()->increaseVisibility(playerCreature, 8000); - Disable.
+		} else if (missionManager->hasPlayerBountyTargetInList(id)) {
+			// Remove legacy entries created when every login was added,
+			// protecting low-level, crafting-only and entertainer characters.
+			missionManager->removePlayerFromBountyList(id);
 		}
 
 	}
@@ -2593,7 +2609,7 @@ void PlayerObjectImplementation::updateInRangeBuildingPermissions() {
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) parent->getCloseObjects();
 
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::STRUCTURETYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {

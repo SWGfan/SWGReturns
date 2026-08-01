@@ -157,7 +157,7 @@ lok_destroy_missions = {
 			lairTemplateName = "lok_kimogilla_pack2_neutral_none",
 			minDifficulty = 38,
 			maxDifficulty = 44,
-			size = 25,
+			size = 60,
 		},
 	}
 }

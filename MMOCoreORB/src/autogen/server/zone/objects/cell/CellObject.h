@@ -56,6 +56,22 @@ class BuildingObjectPOD;
 
 using namespace server::zone::objects::building;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace ship {
+
+class PobShipObject;
+
+class PobShipObjectPOD;
+
+} // namespace ship
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::ship;
+
 #include "engine/lua/Luna.h"
 
 #include "server/zone/objects/scene/variables/ContainerPermissions.h"
@@ -94,6 +110,8 @@ public:
 
 	void onBuildingInsertedToZone(BuildingObject* building);
 
+	void onShipInsertedToZone(PobShipObject* pobShip);
+
 	/**
 	 * Sends the contained non slotted objects to the specified player
 	 * @pre { this object is locked }
@@ -150,6 +168,10 @@ public:
 	int getCellNumber() const;
 
 	void setCellNumber(int number);
+
+	float getCellFireVariable() const;
+
+	void setCellFireVariable(float damageVar);
 
 	bool isCellObject();
 
@@ -184,6 +206,8 @@ protected:
 
 	AtomicInteger forceLoadObjectCount;
 
+	float cellFireVariable;
+
 public:
 	CellObjectImplementation();
 
@@ -205,6 +229,8 @@ public:
 	bool hasForceLoadObject() const;
 
 	void onBuildingInsertedToZone(BuildingObject* building);
+
+	void onShipInsertedToZone(PobShipObject* pobShip);
 
 	/**
 	 * Sends the contained non slotted objects to the specified player
@@ -262,6 +288,10 @@ public:
 	int getCellNumber() const;
 
 	void setCellNumber(int number);
+
+	float getCellFireVariable() const;
+
+	void setCellFireVariable(float damageVar);
 
 	bool isCellObject();
 
@@ -319,6 +349,8 @@ public:
 
 	void onBuildingInsertedToZone(BuildingObject* building);
 
+	void onShipInsertedToZone(PobShipObject* pobShip);
+
 	void sendContainerObjectsTo(SceneObject* player, bool forceLoad);
 
 	void sendPermissionsTo(CreatureObject* object, bool allowEntry);
@@ -340,6 +372,10 @@ public:
 	int getCellNumber() const;
 
 	void setCellNumber(int number);
+
+	float getCellFireVariable() const;
+
+	void setCellFireVariable(float damageVar);
 
 	bool isCellObject();
 
@@ -380,6 +416,7 @@ public:
 	int onContainerLoaded(lua_State *L);
 	int hasForceLoadObject(lua_State *L);
 	int onBuildingInsertedToZone(lua_State *L);
+	int onShipInsertedToZone(lua_State *L);
 	int sendContainerObjectsTo(lua_State *L);
 	int sendPermissionsTo(lua_State *L);
 	int canAddObject(lua_State *L);
@@ -391,6 +428,8 @@ public:
 	int destroyAllPlayerItems(lua_State *L);
 	int getCellNumber(lua_State *L);
 	int setCellNumber(lua_State *L);
+	int getCellFireVariable(lua_State *L);
+	int setCellFireVariable(lua_State *L);
 	int isCellObject(lua_State *L);
 
 	Reference<CellObject*> realObject;
@@ -413,6 +452,8 @@ public:
 	Optional<int> cellNumber;
 
 	Optional<AtomicInteger> forceLoadObjectCount;
+
+	Optional<float> cellFireVariable;
 
 	String _className;
 	CellObjectPOD();

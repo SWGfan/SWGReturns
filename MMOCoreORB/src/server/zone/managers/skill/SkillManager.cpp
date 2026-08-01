@@ -18,6 +18,7 @@
 #include "templates/datatables/DataTableRow.h"
 #include "server/zone/managers/crafting/schematicmap/SchematicMap.h"
 #include "server/zone/packets/creature/CreatureObjectDeltaMessage4.h"
+#include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/managers/frs/FrsManager.h"
 
@@ -303,6 +304,11 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 
 				creature->sendSystemMessage(params);
 			}
+		}
+
+		//Jedi Master / Dark Jedi Master (FRS council master rank) also grants Force Run 2.
+		if (skill->getSkillName() == "force_rank_light_master" || skill->getSkillName() == "force_rank_dark_master") {
+			addAbility(ghost, "forceRun2", notifyClient);
 		}
 
 		//Add draft schematic groups

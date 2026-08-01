@@ -14,7 +14,7 @@
 #include "server/zone/Zone.h"
 
 
-void DetectorZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, QuadTreeEntry* entry) const {
+void DetectorZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, TreeEntry* entry) const {
 	ManagedReference<SceneObject*> target = cast<SceneObject*>(entry);
 	if(!sceneObject->isTangibleObject() || target == nullptr){
 		return;
@@ -33,7 +33,7 @@ void DetectorZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, QuadT
 	if(scannerData == nullptr || !scannerData->canScan())
 		return;
 
-	if(sceneObject->isDetector() && target->isPlayerCreature() && sceneObject->isInRange(target,65)){
+	if(sceneObject->isScanner() && target->isPlayerCreature() && sceneObject->isInRange(target,65)){
 		ManagedReference<CreatureObject*> player = cast<CreatureObject*>(entry);
 		if(player == nullptr)
 			return;

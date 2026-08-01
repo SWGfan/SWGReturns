@@ -72,6 +72,12 @@ public:
 
 	unsigned int getBanAdmin();
 
+	void setHasUnlockedJediSlot(unsigned int value);
+
+	unsigned int getHasUnlockedJediSlot() const;
+
+	void grantJediSlot();
+
 	void setTimeCreated(unsigned int seconds);
 
 	bool isActive();
@@ -155,6 +161,8 @@ protected:
 
 	String salt;
 
+	unsigned int hasUnlockedJediSlot;
+
 	unsigned int accountID;
 
 	unsigned int stationID;
@@ -201,6 +209,12 @@ public:
 	void setBanAdmin(unsigned int value);
 
 	unsigned int getBanAdmin();
+
+	void setHasUnlockedJediSlot(unsigned int value);
+
+	unsigned int getHasUnlockedJediSlot() const;
+
+	void grantJediSlot();
 
 	void setTimeCreated(unsigned int seconds);
 
@@ -320,6 +334,12 @@ public:
 
 	unsigned int getBanAdmin();
 
+	void setHasUnlockedJediSlot(unsigned int value);
+
+	unsigned int getHasUnlockedJediSlot() const;
+
+	void grantJediSlot();
+
 	void setTimeCreated(unsigned int seconds);
 
 	bool isActive();
@@ -387,6 +407,8 @@ namespace account {
 
 class AccountPOD : public ManagedObjectPOD {
 public:
+	Optional<unsigned int> hasUnlockedJediSlot;
+
 	Optional<unsigned int> created;
 
 	Optional<GalaxyAccountInfoMap> galaxyAccountInfo;

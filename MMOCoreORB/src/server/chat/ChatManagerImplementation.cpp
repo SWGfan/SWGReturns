@@ -840,7 +840,7 @@ void ChatManagerImplementation::handleSocialInternalMessage(CreatureObject* send
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) sender->getCloseObjects();
 
-	SortedVector<QuadTreeEntry* > closeEntryObjects(200, 50);
+	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
 
 	if (vec != nullptr) {
 		vec->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::PLAYERTYPE);
@@ -848,13 +848,14 @@ void ChatManagerImplementation::handleSocialInternalMessage(CreatureObject* send
 #ifdef COV_DEBUG
 		sender->info("Null closeobjects vector in ChatManager::handleSocialInternalMessage", true);
 #endif
-		zone->getInRangeObjects(sender->getWorldPositionX(), sender->getWorldPositionX(), 128, &closeEntryObjects, true);
+		Vector3 worldPosition = sender->getWorldPosition();
+		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
 	}
 
 	float range = defaultSpatialChatDistance;
 
 	for (int i = 0; i < closeEntryObjects.size(); ++i) {
-		SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i));
+		SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i).get());
 
 		if (object->isPlayerCreature()) {
 			CreatureObject* creature = object->asCreatureObject();
@@ -1059,7 +1060,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	CloseObjectsVector* closeObjects = (CloseObjectsVector*) sourceCreature->getCloseObjects();
 
-	SortedVector<QuadTreeEntry*> closeEntryObjects(200, 50);
+	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
 
 	if (closeObjects != nullptr) {
 		closeObjects->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::CREOTYPE);
@@ -1067,7 +1068,8 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 #ifdef COV_DEBUG
 		sourceCreature->info("Null closeobjects vector in ChatManager::broadcastChatMessage", true);
 #endif
-		zone->getInRangeObjects(sourceCreature->getWorldPositionX(), sourceCreature->getWorldPositionY(), 128, &closeEntryObjects, true);
+		Vector3 worldPosition = sourceCreature->getWorldPosition();
+		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
 	}
 
 	short range = defaultSpatialChatDistance;
@@ -1079,7 +1081,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	try {
 		for (int i = 0; i < closeEntryObjects.size(); ++i) {
-			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.get(i));
+			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.get(i).get());
 
 			if (object == nullptr)
 				continue;
@@ -1196,7 +1198,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	CloseObjectsVector* closeObjects = (CloseObjectsVector*) sourceCreature->getCloseObjects();
 
-	SortedVector<QuadTreeEntry*> closeEntryObjects(200, 50);
+	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
 
 	if (closeObjects != nullptr) {
 		closeObjects->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::PLAYERTYPE);
@@ -1204,7 +1206,8 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 #ifdef COV_DEBUG
 		sourceCreature->info("Null closeobjects vector in ChatManager::broadcastChatMessage(StringId)", true);
 #endif
-		zone->getInRangeObjects(sourceCreature->getWorldPositionX(), sourceCreature->getWorldPositionY(), ZoneServer::CLOSEOBJECTRANGE, &closeEntryObjects, true);
+		Vector3 worldPosition = sourceCreature->getWorldPosition();
+		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
 	}
 
 	short range = defaultSpatialChatDistance;
@@ -1216,7 +1219,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	try {
 		for (int i = 0; i < closeEntryObjects.size(); ++i) {
-			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i));
+			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i).get());
 
 			if (object == nullptr)
 				continue;

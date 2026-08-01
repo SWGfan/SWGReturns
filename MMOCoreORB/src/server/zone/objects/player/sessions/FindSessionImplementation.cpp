@@ -119,7 +119,7 @@ void FindSessionImplementation::findPlanetaryObject(String& maplocationtype) {
 		return;
 	}
 
-	ManagedReference<SceneObject*> object = zone->getNearestPlanetaryObject(player, maplocationtype);
+	ManagedReference<SceneObject*> object = zone->getNearestPlanetaryObject(player, maplocationtype, "");
 	Zone* objectZone = nullptr;
 
 	if (object == nullptr || ((objectZone = object->getZone()) == nullptr)) {

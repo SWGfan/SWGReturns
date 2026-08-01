@@ -18,6 +18,8 @@ include templates.SharedObjectTemplate;
 class VehicleObject extends CreatureObject {
 	protected int vehicleType;
 	protected int paintCount;
+	protected boolean rentalVehicle;
+	protected int uses;
 
 	/*
 	In October 21, 2004 :Jump to Lightspeed Expansion Publish Part 1:
@@ -28,6 +30,8 @@ class VehicleObject extends CreatureObject {
 	public VehicleObject() {
 		vehicleType = SceneObjectType.HOVERVEHICLE;
 		paintCount = 0;
+		rentalVehicle = false;
+		uses = 0;
 		Logger.setLoggingName("VehicleObject");
 		Logger.setLogging(false);
 		Logger.setGlobalLogging(true);
@@ -240,6 +244,24 @@ class VehicleObject extends CreatureObject {
 	@read
 	public int getPaintCount() {
 		return paintCount;
+	}
+
+	public void setRentalVehicle(boolean value) {
+		rentalVehicle = value;
+	}
+
+	@read
+	public boolean isRentalVehicle() {
+		return rentalVehicle;
+	}
+
+	public void setUses(int value) {
+		uses = value;
+	}
+
+	@read
+	public int getUses() {
+		return uses;
 	}
 
 	@dirty

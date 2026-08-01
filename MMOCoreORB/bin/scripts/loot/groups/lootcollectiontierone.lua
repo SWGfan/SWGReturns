@@ -10,7 +10,7 @@ lootcollectiontierone  = {
 		{groupTemplate = "skill_buffs", weight = 1000000},
 		{groupTemplate = "loot_kit_parts", weight = 1000000},
 		{groupTemplate = "tailor_components", weight = 2000000},
-		{groupTemplate = "color_crystals", weight = 1000000},
+		{groupTemplate = "color_crystals", weight = 400000},
 		{groupTemplate = "lootcollectiontiertwo", weight = 1000000},
 		{groupTemplate = "junk", weight = 1000000},
 		{groupTemplate = "janta_common", weight = 1000000},

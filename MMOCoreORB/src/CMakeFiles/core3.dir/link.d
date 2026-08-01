@@ -4,20 +4,6 @@ core3: \
   /usr/lib/gcc/x86_64-linux-gnu/15/crtbeginS.o \
   CMakeFiles/core3.dir/main.cpp.o \
   CMakeFiles/core3.dir/server/ServerCore.cpp.o \
-  CMakeFiles/core3.dir/tests/BasicScreenPlayTest.cpp.o \
-  CMakeFiles/core3.dir/tests/BasicTerrainTest.cpp.o \
-  CMakeFiles/core3.dir/tests/CircularAreaShapeTest.cpp.o \
-  CMakeFiles/core3.dir/tests/CommandLuaTest.cpp.o \
-  CMakeFiles/core3.dir/tests/ConfigManagerTest.cpp.o \
-  CMakeFiles/core3.dir/tests/CreatureObjectTest.cpp.o \
-  CMakeFiles/core3.dir/tests/CreditObjectTest.cpp.o \
-  CMakeFiles/core3.dir/tests/DeadlockTestBase.cpp.o \
-  CMakeFiles/core3.dir/tests/JediManagerTest.cpp.o \
-  CMakeFiles/core3.dir/tests/LuaMobileTest.cpp.o \
-  CMakeFiles/core3.dir/tests/RectangularAreaShapeTest.cpp.o \
-  CMakeFiles/core3.dir/tests/RingAreaShapeTest.cpp.o \
-  CMakeFiles/core3.dir/tests/TerrainManagerTest.cpp.o \
-  CMakeFiles/core3.dir/tests/ZoneTest.cpp.o \
   CMakeFiles/core3.dir/tre3/TreeFile.cpp.o \
   CMakeFiles/core3.dir/server/zone/ActiveAreaQuadTree.cpp.o \
   CMakeFiles/core3.dir/server/zone/CloseObjectsVector.cpp.o \
@@ -519,8 +505,7 @@ core3: \
   templates/libcore3templates.a \
   pathfinding/libcore3pathfinding.a \
   libidlobjects.a \
-  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a \
-  /home/ubuntu/SWGReturns01/MMOCoreORB/lib/libgmock.a \
+  ../utils/engine3/MMOEngine/lib/unix/libengine3.a \
   /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libatomic.so.1 \
   /usr/lib/x86_64-linux-gnu/libmysqlclient.so \
@@ -536,7 +521,6 @@ core3: \
   /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0 \
-  ../lib/libgtest.a \
   /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_chrono.so.1.90.0 \
   /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0 \
@@ -580,34 +564,6 @@ core3: \
 CMakeFiles/core3.dir/main.cpp.o:
 
 CMakeFiles/core3.dir/server/ServerCore.cpp.o:
-
-CMakeFiles/core3.dir/tests/BasicScreenPlayTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/BasicTerrainTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/CircularAreaShapeTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/CommandLuaTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/ConfigManagerTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/CreatureObjectTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/CreditObjectTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/DeadlockTestBase.cpp.o:
-
-CMakeFiles/core3.dir/tests/JediManagerTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/LuaMobileTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/RectangularAreaShapeTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/RingAreaShapeTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/TerrainManagerTest.cpp.o:
-
-CMakeFiles/core3.dir/tests/ZoneTest.cpp.o:
 
 CMakeFiles/core3.dir/tre3/TreeFile.cpp.o:
 
@@ -1611,9 +1567,7 @@ pathfinding/libcore3pathfinding.a:
 
 libidlobjects.a:
 
-/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/unix/libengine3.a:
-
-/home/ubuntu/SWGReturns01/MMOCoreORB/lib/libgmock.a:
+../utils/engine3/MMOEngine/lib/unix/libengine3.a:
 
 /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.90.0:
 
@@ -1644,8 +1598,6 @@ libidlobjects.a:
 /usr/lib/x86_64-linux-gnu/libboost_container.so.1.90.0:
 
 /usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.90.0:
-
-../lib/libgtest.a:
 
 /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.90.0:
 

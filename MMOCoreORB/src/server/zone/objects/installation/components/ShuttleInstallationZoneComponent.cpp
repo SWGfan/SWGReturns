@@ -63,5 +63,5 @@ void ShuttleInstallationZoneComponent::destroyObjectFromWorld(SceneObject* scene
 		}
 	}
 
-	ZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
+	StructureZoneComponent::destroyObjectFromWorld(sceneObject, sendSelfDestroy);
 }

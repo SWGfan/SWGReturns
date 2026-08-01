@@ -17,6 +17,7 @@
 #include "templates/manager/TemplateManager.h"
 #include "server/zone/managers/object/ObjectManager.h"
 #include "server/zone/managers/faction/FactionManager.h"
+#include "templates/faction/Factions.h"
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/db/ServerDatabase.h"
 #include "server/chat/ChatManager.h"
@@ -566,7 +567,12 @@ void PlayerManagerImplementation::writePlayerLog(PlayerObject* ghost, const Stri
 	if (ghost == nullptr)
 		return;
 
-	Reference<CreatureObject*> creature = ghost->getParent().get()->asCreatureObject();
+	SceneObject* parent = ghost->getParent().get();
+
+	if (parent == nullptr)
+		return;
+
+	Reference<CreatureObject*> creature = parent->asCreatureObject();
 
 	if (creature == nullptr)
 		return;
@@ -1399,7 +1405,7 @@ void PlayerManagerImplementation::sendActivateCloneRequest(CreatureObject* playe
 
 	SortedVector<ManagedReference<SceneObject*> > locations = zone->getPlanetaryObjectList("cloningfacility");
 
-	ManagedReference<SceneObject*> closestCloning = zone->getNearestPlanetaryObject(player, "cloningfacility");
+	ManagedReference<SceneObject*> closestCloning = zone->getNearestPlanetaryObject(player, "cloningfacility", "");
 	if (closestCloning == nullptr) {
 		warning("nearest cloning facility for player is nullptr");
 		return;
@@ -3054,7 +3060,10 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 			esession = dynamic_cast<EntertainingSession*>(session.get());
 
 			if (esession != nullptr) {
-				esession->activateEntertainerBuff(creature, PerformanceType::MUSIC);
+				// Buff activation happens on the periodic tick in
+				// EntertainingSessionImplementation::doEntertainerPatronEffects() once the
+				// patron has watched/listened long enough. Activating it again here
+				// unconditionally on stop would grant it instantly regardless of elapsed time.
 
 				esession->removePatron(creature);
 			}
@@ -3141,7 +3150,10 @@ void PlayerManagerImplementation::stopWatch(CreatureObject* creature, uint64 ent
 			esession = dynamic_cast<EntertainingSession*>(session.get());
 
 			if (esession != nullptr) {
-				esession->activateEntertainerBuff(creature, PerformanceType::DANCE);
+				// Buff activation happens on the periodic tick in
+				// EntertainingSessionImplementation::doEntertainerPatronEffects() once the
+				// patron has watched/listened long enough. Activating it again here
+				// unconditionally on stop would grant it instantly regardless of elapsed time.
 
 				esession->removePatron(creature);
 			}
@@ -3243,8 +3255,7 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 
 	entertainingSession->sendEntertainmentUpdate(creature, entertainerID, "entertained");
 	entertainingSession->addPatron(creature);
-	entertainingSession->activateEntertainerBuff(creature, PerformanceType::DANCE);
-	entertainingSession->removePatron(creature);
+	// Buff is now applied after 2 minutes via doEntertainerPatronEffects tick
 
 	entertainer->notifyObservers(ObserverEventType::WASWATCHED, creature);
 
@@ -3375,8 +3386,7 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 
 	entertainingSession->sendEntertainmentUpdate(creature, entertainerID, "entertained");
 	entertainingSession->addPatron(creature);
-	entertainingSession->activateEntertainerBuff(creature, PerformanceType::MUSIC);
-	entertainingSession->removePatron(creature);
+	// Buff is now applied after 2 minutes via doEntertainerPatronEffects tick
 
 	entertainer->notifyObservers(ObserverEventType::WASLISTENEDTO, creature);
 
@@ -3433,7 +3443,7 @@ SceneObject* PlayerManagerImplementation::getInRangeStructureWithAdminRights(Cre
 	Locker _locker(zone);
 
 	CloseObjectsVector* closeObjs = (CloseObjectsVector*)creature->getCloseObjects();
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<TreeEntry*> closeObjects;
 	closeObjs->safeCopyReceiversTo(closeObjects, CloseObjectsVector::STRUCTURETYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -4046,7 +4056,7 @@ CraftingStation* PlayerManagerImplementation::getNearbyCraftingStation(CreatureO
 	//Locker locker(zone);
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) player->getCloseObjects();
-	SortedVector<QuadTreeEntry*> closeObjects(vec->size(), 10);
+	SortedVector<TreeEntry*> closeObjects(vec->size(), 10);
 	vec->safeCopyTo(closeObjects);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -4102,14 +4112,16 @@ void PlayerManagerImplementation::finishHologrind(CreatureObject* player) {
 
 	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(player, SuiWindowType::NONE);
 	box->setPromptTitle("@quest/force_sensitive/intro:force_sensitive"); // You feel a tingle in the Force.
-	box->setPromptText("Perhaps you should meditate somewhere alone...");
+	box->setPromptText("You have mastered the required professions. Return to the Character Selection screen to create a new Jedi character.");
 
 	ghost->addSuiBox(box);
 	player->sendMessage(box->generateMessage());
 
-	SkillManager::instance()->awardSkill("force_title_jedi_novice", player, true, false, true);
-
-	ghost->setJediState(1);
+	ManagedReference<Account*> account = ghost->getAccount();
+	if (account != nullptr) {
+		Locker alocker(account);
+		account->grantJediSlot();
+	}
 
 }
 
@@ -6850,4 +6862,3 @@ void PlayerManagerImplementation::offerPlayerBounty(CreatureObject* attacker, Cr
 	defenderGhost->addSuiBox(suibox);
 	defender->sendMessage(suibox->generateMessage());
 }
-

@@ -3,12 +3,12 @@ peko_albatross = {
 	lairSpawns = {
 		{
 			lairTemplateName = "naboo_peko_peko_albatross_neutral_none",
-			spawnLimit = 3,
+			spawnLimit = 10,
 			minDifficulty = 155,
 			maxDifficulty = 195,
 			numberToSpawn = 0,
-			weighting = 1,
-			size = 25
+			weighting = 15,
+			size = 50
 		}
 	}
 }

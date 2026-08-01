@@ -187,7 +187,7 @@ dantooine_destroy_missions = {
 			lairTemplateName = "dantooine_graul_frenzied_pack_neutral_none",
 			minDifficulty = 27,
 			maxDifficulty = 31,
-			size = 25,
+			size = 60,
 		},
 	}
 }

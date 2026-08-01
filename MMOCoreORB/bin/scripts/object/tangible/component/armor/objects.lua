@@ -5279,3 +5279,12 @@ object_tangible_component_armor_shared_armor_layer_lightsaber = SharedTangibleOb
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_layer_lightsaber, "object/tangible/component/armor/shared_armor_layer_lightsaber.iff")
+object_tangible_component_armor_shared_armor_segment_bh = SharedTangibleObjectTemplate:new {
+  clientTemplateFileName = "object/tangible/component/armor/shared_armor_segment_bh.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_segment_bh, "object/tangible/component/armor/shared_armor_segment_bh.iff")
+
+object_tangible_component_armor_shared_armor_segment_mandalorian = SharedTangibleObjectTemplate:new {
+  clientTemplateFileName = "object/tangible/component/armor/shared_armor_segment_mandalorian.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_segment_mandalorian, "object/tangible/component/armor/shared_armor_segment_mandalorian.iff")

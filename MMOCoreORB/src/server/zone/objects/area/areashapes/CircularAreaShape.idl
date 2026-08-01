@@ -7,7 +7,7 @@ package server.zone.objects.area.areashapes;
 import server.zone.objects.area.areashapes.AreaShape;
 include engine.util.u3d.Vector3;
 
-class CircularAreaShape extends AreaShape {
+class CircularAreaShape extends AreaShape  {
 
 	/** The radius of the circle. */
 	protected float radius;
@@ -20,6 +20,8 @@ class CircularAreaShape extends AreaShape {
 		super();
 		radius = 0;
 		radius2 = 0;
+
+		Logger.setLoggingName("CircularAreaShape");
 	}
 
 	/**

@@ -100,6 +100,18 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 
 		try {
 			if (creo->isInRange(patron, PerformanceManager::HEAL_RANGE)) {
+
+				// Apply buff after patron has been watching/listening for 2 minutes.
+				EntertainingData& data = patronDataMap.get(patron);
+				if (!data.getBuffApplied()) {
+					int elapsed = time(0) - data.getTimeStarted();
+					if (elapsed >= 120) {
+						int perfType = isDancing() ? PerformanceType::DANCE : PerformanceType::MUSIC;
+						activateEntertainerBuff(patron, perfType);
+						data.setBuffApplied(true);
+					}
+				}
+
 				healWounds(patron, woundHeal * (flourishCount + 1), shockHeal * (flourishCount + 1));
 				increaseEntertainerBuff(patron);
 
@@ -155,7 +167,7 @@ void EntertainingSessionImplementation::healWounds(CreatureObject* creature, flo
 	if (isInDenyServiceList(creature))
 		return;
 
-	if (shockHeal > 0 && creature->getShockWounds() > 0 && canHealBattleFatigue()) {
+	if (shockHeal > 0 && creature->getShockWounds() > 0) {
 		creature->addShockWounds(-shockHeal, true, false);
 		amountHealed += shockHeal;
 	}
@@ -830,10 +842,16 @@ void EntertainingSessionImplementation::sendEntertainmentUpdate(CreatureObject* 
 	if (entertainer == nullptr)
 		return;
 
-	if (entertainer->isPlayingMusic()) {
-		creature->setListenToID(entid, true);
-	} else if (entertainer->isDancing()) {
-		creature->setWatchToID(entid);
+	if (entid > 0) {
+		if (entertainer->isPlayingMusic()) {
+			creature->setListenToID(entid, true);
+		} else if (entertainer->isDancing()) {
+			creature->setWatchToID(entid);
+		}
+	} else {
+		// Clear watch/listen when entid is 0 (entertainer stopped)
+		creature->setListenToID(0, true);
+		creature->setWatchToID(0);
 	}
 
 	String moodString = creature->getZoneServer()->getChatManager()->getMoodAnimation(mood);

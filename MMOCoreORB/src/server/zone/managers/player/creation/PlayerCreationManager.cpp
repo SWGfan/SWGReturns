@@ -233,7 +233,8 @@ void PlayerCreationManager::loadHairStyleInfo() {
 			"creation/default_pc_hairstyles.iff");
 
 	if (iffStream == nullptr) {
-		error("Couldn't load creation hair styles.");
+		warning("Couldn't load creation hair styles from IFF - loading from Lua fallback.");
+		loadHairStyleInfoFromLua();
 		return;
 	}
 
@@ -261,6 +262,70 @@ void PlayerCreationManager::loadHairStyleInfo() {
 	delete iffStream;
 
 	info() << "Loaded " << totalHairStyles << " total creation hair styles.";
+}
+
+void PlayerCreationManager::loadHairStyleInfoFromLua() {
+	Lua* lua = new Lua();
+	lua->init();
+
+	lua->runFile("scripts/managers/hair_config.lua");
+
+	LuaObject hairConfig = lua->getGlobalObject("hairConfig");
+
+	if (hairConfig.getLuaState() == nullptr) {
+		warning("hairConfig Lua not found - no Lua hair fallback.");
+		delete lua;
+		return;
+	}
+
+	LuaObject stylesTable = hairConfig.getObjectField("hairStyles");
+
+	if (stylesTable.getLuaState() == nullptr) {
+		warning("hairConfig.hairStyles not found.");
+		delete lua;
+		return;
+	}
+
+	int totalStyles = 0;
+	int totalEntries = 0;
+
+	// Use raw Lua C API to iterate the hash table keys
+	lua_State* L = stylesTable.getLuaState();
+	lua_pushnil(L);  // first key
+	while (lua_next(L, -2) != 0) {
+		// key is at index -2, value at index -1
+		String templateName = lua_tostring(L, -2);
+
+		if (!templateName.isEmpty()) {
+			// Get the 'styles' array from the value
+			LuaObject valObj(stylesTable.getLuaState());
+			valObj = stylesTable.getObjectField(templateName);
+
+			if (valObj.getLuaState() != nullptr) {
+				LuaObject stylesArray = valObj.getObjectField("styles");
+
+				if (stylesArray.getLuaState() != nullptr) {
+					Reference<HairStyleInfo*> hsi = new HairStyleInfo();
+					hsi->readObjectFromLua(templateName, stylesArray);
+					hairStyleInfo.put(hsi->getPlayerTemplate(), hsi);
+					totalStyles += hsi->getTotalStyles();
+					totalEntries++;
+					stylesArray.pop();
+				}
+				valObj.pop();
+			}
+		}
+
+		lua_pop(L, 1);  // pop value, keep key for next iteration
+	}
+
+	stylesTable.pop();
+	hairConfig.pop();
+
+	delete lua;
+	lua = nullptr;
+
+	info() << "Loaded " << totalStyles << " hair styles across " << totalEntries << " templates from Lua fallback.";
 }
 
 void PlayerCreationManager::loadLuaConfig() {
@@ -379,9 +444,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	String profession, customization, hairTemplate, hairCustomization;
 	callback->getSkill(profession);
-
-	//if (profession.contains("jedi"))
-	//	profession = "crafting_artisan";
 
 	callback->getCustomizationString(customization);
 	callback->getHairObject(hairTemplate);
@@ -785,38 +847,84 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 
 void PlayerCreationManager::addHair(CreatureObject* creature,
 		const String& hairTemplate, const String& hairCustomization) const {
-	if (hairTemplate.isEmpty())
-		return;
 
-	HairStyleInfo* hairInfo = hairStyleInfo.get(hairTemplate);
+	String actualHairTemplate = hairTemplate;
+
+	// If client sent no hair, try to assign a default based on species
+	if (actualHairTemplate.isEmpty()) {
+		String playerTemplateStr = creature->getObjectTemplate()->getFullTemplateString();
+		HairStyleInfo* hairInfo = hairStyleInfo.get(playerTemplateStr);
+
+		if (hairInfo != nullptr && hairInfo->getTotalStyles() > 0) {
+			// Use the first available style as default
+			actualHairTemplate = hairInfo->getFirstStyle();
+			creature->info() << "No hair provided at creation - assigning default: " << actualHairTemplate;
+		} else {
+			// No hair info available for this species (e.g. wookiee, mon cal)
+			return;
+		}
+	}
+
+	HairStyleInfo* hairInfo = hairStyleInfo.get(actualHairTemplate);
 
 	if (hairInfo == nullptr)
 		hairInfo = hairStyleInfo.get(0);
 
 	HairAssetData* hairAssetData =
-			CustomizationIdManager::instance()->getHairAssetData(hairTemplate);
+			CustomizationIdManager::instance()->getHairAssetData(actualHairTemplate, creature->getObjectTemplate()->getFullTemplateString());
 
-	/*if (hairAssetData == nullptr) {
-		error("no hair asset data detected for " + hairTemplate);
+	if (hairAssetData == nullptr) {
+		// Hair asset data not loaded (missing IFF) - skip validation and create hair directly
+		ManagedReference<SceneObject*> hair = zoneServer->createObject(
+				actualHairTemplate.hashCode(), 1);
+
+		if (hair == nullptr) {
+			return;
+		}
+
+		Locker locker(hair);
+
+		if (!hair->isTangibleObject()) {
+			hair->destroyObjectFromDatabase(true);
+			return;
+		}
+
+		TangibleObject* tanoHair = cast<TangibleObject*>(hair.get());
+		tanoHair->setContainerDenyPermission("owner",
+				ContainerPermissions::MOVECONTAINER);
+		tanoHair->setContainerDefaultDenyPermission(
+				ContainerPermissions::MOVECONTAINER);
+
+		String appearanceFilename =
+				tanoHair->getObjectTemplate()->getAppearanceFilename();
+
+		CustomizationVariables data;
+		data.parseFromClientString(hairCustomization);
+
+		if (ImageDesignManager::validateCustomizationString(&data,
+				appearanceFilename, -1))
+			tanoHair->setCustomizationString(hairCustomization);
+
+		creature->transferObject(tanoHair, 4);
 		return;
-	}*/
+	}
 
 	if (hairAssetData->getServerPlayerTemplate()
 			!= creature->getObjectTemplate()->getFullTemplateString()) {
 		error(
-				"hair " + hairTemplate
+				"hair " + actualHairTemplate
 						+ " is not compatible with this creature player "
 						+ creature->getObjectTemplate()->getFullTemplateString());
 		return;
 	}
 
 	if (!hairAssetData->isAvailableAtCreation()) {
-		error("hair " + hairTemplate + " not available at creation");
+		error("hair " + actualHairTemplate + " not available at creation");
 		return;
 	}
 
 	ManagedReference<SceneObject*> hair = zoneServer->createObject(
-			hairTemplate.hashCode(), 1);
+			actualHairTemplate.hashCode(), 1);
 
 	//TODO: Validate hairCustomization
 	if (hair == nullptr) {

@@ -943,7 +943,8 @@ bool LootManagerImplementation::createLoot(TransactionLog& trx, SceneObject* con
 
         if (creatureLevel >= 250) {
 
-                createLoot(trx, container, "resource_crate", creatureLevel);
+                if (System::random(99) < 50)
+                        createLoot(trx, container, "resource_crate", creatureLevel);
 
                 if (System::random(99) < 35)
                         createLoot(trx, container, "lootcollectiontierthree", creatureLevel);

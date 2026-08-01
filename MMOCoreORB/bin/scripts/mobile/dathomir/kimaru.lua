@@ -13,7 +13,7 @@ kimaru = Creature:new {
 	baseHAMmax = 3000000,
 	armor = 300,
 	-- {kinetic,energy,blast,heat,cold,electricity,acid,stun,ls}
-	resists = {150,150,150,150,150,150,150,150,150},
+	resists = {90,90,90,100,80,100,100,100,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",

@@ -304,7 +304,7 @@ void BuildingObject::notifyRemoveFromZone() {
 	}
 }
 
-void BuildingObject::notifyInsert(QuadTreeEntry* obj) {
+void BuildingObject::notifyInsert(TreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -329,7 +329,7 @@ void BuildingObject::notifyInsertToZone(Zone* zone) {
 	}
 }
 
-void BuildingObject::notifyDissapear(QuadTreeEntry* obj) {
+void BuildingObject::notifyDissapear(TreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -339,7 +339,7 @@ void BuildingObject::notifyDissapear(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObject::notifyPositionUpdate(QuadTreeEntry* entry) {
+void BuildingObject::notifyPositionUpdate(TreeEntry* entry) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -364,7 +364,7 @@ void BuildingObject::notifyObjectInsertedToZone(SceneObject* object) {
 	}
 }
 
-void BuildingObject::insert(QuadTreeEntry* obj) {
+void BuildingObject::insert(TreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -374,7 +374,7 @@ void BuildingObject::insert(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObject::remove(QuadTreeEntry* obj) {
+void BuildingObject::remove(TreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -384,7 +384,7 @@ void BuildingObject::remove(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObject::update(QuadTreeEntry* obj) {
+void BuildingObject::update(TreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -394,7 +394,7 @@ void BuildingObject::update(QuadTreeEntry* obj) {
 	}
 }
 
-void BuildingObject::inRange(QuadTreeEntry* obj, float range) {
+void BuildingObject::inRange(TreeEntry* obj, float range) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
