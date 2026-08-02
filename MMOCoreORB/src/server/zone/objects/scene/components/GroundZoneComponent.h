@@ -5,8 +5,8 @@
  *      Author: victor
  */
 
-#ifndef ZONECOMPONENT_H_
-#define ZONECOMPONENT_H_
+#ifndef GROUNDZONECOMPONENT_H_
+#define GROUNDZONECOMPONENT_H_
 
 #include "engine/engine.h"
 
@@ -112,4 +112,4 @@ public:
 };
 
 
-#endif /* ZONECOMPONENT_H_ */
+#endif /* GROUNDZONECOMPONENT_H_ */

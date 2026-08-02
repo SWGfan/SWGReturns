@@ -340,6 +340,8 @@ class CapitalShipObjectPOD;
 
 using namespace server::zone::objects::ship::ai;
 
+#include "gmock/gmock.h"
+
 #include "server/zone/TreeEntry.h"
 
 #include "engine/log/LoggerHelperStream.h"
@@ -534,7 +536,7 @@ public:
 	 * @param range range to check
 	 * @return returns true if this object is in range with obj
 	 */
-	bool isInRange(SceneObject* obj, float range);
+	virtual bool isInRange(SceneObject* obj, float range);
 
 	/**
 	 * Evaluates if the object is in range without checking zone
@@ -904,7 +906,7 @@ public:
 	 * @post { this object is locked, objects is a vector map with the contained objects and their occupied slots }
 	 * @param objects the vector map that will contain the objects and their occupied slots
 	 */
-	void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
+	virtual void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
 
 	void getContainerObjects(VectorMap<unsigned long long, ManagedReference<SceneObject* > >& objects);
 
@@ -997,13 +999,13 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	float getDistanceTo(SceneObject* object);
+	virtual float getDistanceTo(SceneObject* object);
 
-	float getDistanceTo3d(SceneObject* object);
+	virtual float getDistanceTo3d(SceneObject* object);
 
-	float getDistanceTo(Coordinate* coordinate);
+	virtual float getDistanceTo(Coordinate* coordinate);
 
-	float getDistanceTo3d(Coordinate* coordinate);
+	virtual float getDistanceTo3d(Coordinate* coordinate);
 
 	void updateVehiclePosition(bool sendPackets);
 
@@ -1027,9 +1029,9 @@ public:
 
 	void setCityRegion(CityRegion* region);
 
-	Zone* getZone();
+	virtual Zone* getZone();
 
-	Zone* getZoneUnsafe() const;
+	virtual Zone* getZoneUnsafe() const;
 
 	Zone* getLocalZone() const;
 
@@ -1079,11 +1081,11 @@ public:
 
 	const VectorMap<String, ManagedReference<SceneObject* > >* getSlottedObjects() const;
 
-	Reference<SceneObject* > getSlottedObject(const String& slot);
+	virtual Reference<SceneObject* > getSlottedObject(const String& slot);
 
-	Reference<SceneObject* > getInventory();
+	virtual Reference<SceneObject* > getInventory();
 
-	Reference<SceneObject* > getDatapad();
+	virtual Reference<SceneObject* > getDatapad();
 
 	int getSlotDescriptorSize() const;
 
@@ -1169,7 +1171,7 @@ public:
 	 */
 	void faceObject(SceneObject* obj, bool notifyClient = false);
 
-	bool isFacingObject(SceneObject* obj) const;
+	virtual bool isFacingObject(SceneObject* obj) const;
 
 	void notifySelfPositionUpdate();
 
@@ -1182,7 +1184,7 @@ public:
 
 	unsigned int getMovementCounter() const;
 
-	ManagedWeakReference<SceneObject* > getParent();
+	virtual ManagedWeakReference<SceneObject* > getParent();
 
 	void setParent(TreeEntry* entry);
 
@@ -1356,7 +1358,7 @@ public:
 
 	bool isTangibleObject();
 
-	TangibleObject* asTangibleObject();
+	virtual TangibleObject* asTangibleObject();
 
 	SceneObject* asSceneObject();
 
@@ -1618,7 +1620,7 @@ public:
 
 	bool isDataPad() const;
 
-	float getTemplateRadius();
+	virtual float getTemplateRadius();
 
 	Vector<Reference<MeshData*> > getTransformedMeshData(const Matrix4* parentTransform) const;
 
@@ -2587,7 +2589,7 @@ public:
 
 	unsigned int getMovementCounter() const;
 
-	ManagedWeakReference<SceneObject* > getParent();
+	virtual ManagedWeakReference<SceneObject* > getParent();
 
 	void setParent(TreeEntry* entry);
 
@@ -3720,6 +3722,36 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<SceneObjectHelper>;
+};
+
+class MockSceneObject : public SceneObject {
+public:
+
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo3d,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD1(getDistanceTo3d,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD0(getInventory,Reference<SceneObject* >());
+	MOCK_METHOD0(getDatapad,Reference<SceneObject* >());
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asShipAiAgent,ShipAiAgent*());
+	MOCK_METHOD0(asShipObject,ShipObject*());
+	MOCK_METHOD0(asSpaceStationObject,SpaceStationObject*());
+	MOCK_METHOD0(asCapitalShipObject,CapitalShipObject*());
+	MOCK_METHOD0(asPobShip,PobShipObject*());
+	MOCK_METHOD0(asMultiPassengerShip,MultiPassengerShipObject*());
+	MOCK_METHOD0(asFighterShip,FighterShipObject*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
+
 };
 
 } // namespace scene

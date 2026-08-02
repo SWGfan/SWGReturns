@@ -88,6 +88,8 @@ class PowerupObjectPOD;
 
 using namespace server::zone::objects::tangible::powerup;
 
+#include "gmock/gmock.h"
+
 #include "server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h"
 
 #include "server/zone/objects/scene/SceneObjectType.h"
@@ -176,19 +178,19 @@ public:
 
 	void setPointBlankAccuracy(int value);
 
-	int getPointBlankRange(bool withPup) const;
+	virtual int getPointBlankRange(bool withPup) const;
 
-	int getPointBlankRange() const;
+	virtual int getPointBlankRange() const;
 
-	int getIdealRange(bool withPup) const;
+	virtual int getIdealRange(bool withPup) const;
 
-	int getIdealRange() const;
+	virtual int getIdealRange() const;
 
 	void setIdealRange(int value);
 
-	int getMaxRange(bool withPup) const;
+	virtual int getMaxRange(bool withPup) const;
 
-	int getMaxRange() const;
+	virtual int getMaxRange() const;
 
 	void setMaxRange(int value);
 
@@ -931,6 +933,46 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<WeaponObjectHelper>;
+};
+
+class MockWeaponObject : public WeaponObject {
+public:
+
+	MOCK_METHOD1(getPointBlankRange,int(bool withPup));
+	MOCK_METHOD0(getPointBlankRange,int());
+	MOCK_METHOD1(getIdealRange,int(bool withPup));
+	MOCK_METHOD0(getIdealRange,int());
+	MOCK_METHOD1(getMaxRange,int(bool withPup));
+	MOCK_METHOD0(getMaxRange,int());
+	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
+	MOCK_METHOD0(getLevel,int());
+	MOCK_METHOD0(isDestroyed,bool());
+	MOCK_METHOD0(getThreatMap,ThreatMap*());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo3d,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD1(getDistanceTo3d,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD0(getInventory,Reference<SceneObject* >());
+	MOCK_METHOD0(getDatapad,Reference<SceneObject* >());
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asShipAiAgent,ShipAiAgent*());
+	MOCK_METHOD0(asShipObject,ShipObject*());
+	MOCK_METHOD0(asSpaceStationObject,SpaceStationObject*());
+	MOCK_METHOD0(asCapitalShipObject,CapitalShipObject*());
+	MOCK_METHOD0(asPobShip,PobShipObject*());
+	MOCK_METHOD0(asMultiPassengerShip,MultiPassengerShipObject*());
+	MOCK_METHOD0(asFighterShip,FighterShipObject*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
+
 };
 
 } // namespace weapon

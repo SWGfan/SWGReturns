@@ -4,7 +4,6 @@
  *  Created on: 03/09/2011
  *      Author: TheAnswer
  */
-
 #include "ZoneContainerComponent.h"
 
 #include "server/zone/Zone.h"
@@ -13,6 +12,7 @@
 #include "templates/building/SharedBuildingObjectTemplate.h"
 #include "server/zone/objects/intangible/TheaterObject.h"
 #include "server/zone/ActiveAreaQuadTree.h"
+#include "server/zone/objects/scene/components/ZoneComponent.h"
 
 bool ZoneContainerComponent::insertActiveArea(Zone* newZone, ActiveArea* activeArea) const {
 	if (newZone == nullptr)
@@ -44,7 +44,7 @@ bool ZoneContainerComponent::insertActiveArea(Zone* newZone, ActiveArea* activeA
 	//regionTree->inRange(activeArea, 512);
 
 	// lets update area to the in range players
-	SortedVector<QuadTreeEntry*> objects;
+	SortedVector<TreeEntry*> objects;
 	float range = activeArea->getRadius() + 64;
 
 	newZone->getInRangeObjects(activeArea->getPositionX(), activeArea->getPositionY(), range, &objects, false);
@@ -105,7 +105,7 @@ bool ZoneContainerComponent::removeActiveArea(Zone* zone, ActiveArea* activeArea
 	areaTree->remove(activeArea);
 
 	// lets remove the in range active areas of players
-	SortedVector<QuadTreeEntry*> objects;
+	SortedVector<TreeEntry*> objects;
 	float range = activeArea->getRadius() + 64;
 
 	zone->getInRangeObjects(activeArea->getPositionX(), activeArea->getPositionY(), range, &objects, false);
@@ -284,19 +284,19 @@ bool ZoneContainerComponent::removeObject(SceneObject* sceneObject, SceneObject*
 		auto closeObjects = object->getCloseObjects();
 
 		if (closeObjects != nullptr) {
-			SortedVector<ManagedReference<QuadTreeEntry*> > closeSceneObjects;
+			SortedVector<ManagedReference<TreeEntry*> > closeSceneObjects;
 
 			ZoneComponent::removeAllObjectsFromCOV(closeObjects, closeSceneObjects, sceneObject, object);
 		} else {
 #ifdef COV_DEBUG
 			object->info("Null closeobjects vector in ZoneContainerComponent::removeObject", true);
 #endif
-			SortedVector<ManagedReference<QuadTreeEntry*> > closeSceneObjects;
+			SortedVector<ManagedReference<TreeEntry*> > closeSceneObjects;
 
 			zone->getInRangeObjects(object->getPositionX(), object->getPositionY(), 512, &closeSceneObjects, false);
 
 			for (int i = 0; i < closeSceneObjects.size(); ++i) {
-				QuadTreeEntry* obj = closeSceneObjects.get(i);
+				TreeEntry* obj = closeSceneObjects.get(i);
 
 				if (obj != nullptr && obj != object && obj->getCloseObjects() != nullptr)
 					obj->removeInRangeObject(object);

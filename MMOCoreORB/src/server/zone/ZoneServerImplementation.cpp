@@ -757,6 +757,7 @@ Reference<SceneObject*> ZoneServerImplementation::createClientObject(uint32 temp
         //lock(); ObjectManager has its own mutex
 
         obj = objectManager->createObject(templateCRC, 1, "clientobjects", oid, false);
+        if (obj == nullptr) { error("createClientObject: objectManager returned null for oid " + String::valueOf(oid)); return nullptr; }
         obj->setClientObject(true);
         obj->initializeTransientMembers();
 

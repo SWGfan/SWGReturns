@@ -230,6 +230,8 @@ class BlackboardData;
 
 using namespace server::zone::objects::creature::ai::bt;
 
+#include "gmock/gmock.h"
+
 #include "server/zone/objects/creature/ai/PatrolPointsVector.h"
 
 #include "server/zone/objects/creature/ai/PatrolPoint.h"
@@ -442,11 +444,11 @@ public:
 
 	bool validateTarget(SceneObject* target);
 
-	bool isCamouflaged(CreatureObject* target);
+	virtual bool isCamouflaged(CreatureObject* target);
 
-	bool findNextPosition(float maxDistance, bool walk);
+	virtual bool findNextPosition(float maxDistance, bool walk);
 
-	bool checkLineOfSight(SceneObject* obj);
+	virtual bool checkLineOfSight(SceneObject* obj);
 
 	float getWorldZ(const Vector3& position);
 
@@ -484,7 +486,7 @@ public:
 
 	PatrolPoint getNextPosition();
 
-	int getPatrolPointSize();
+	virtual int getPatrolPointSize();
 
 	void notifyInsert(TreeEntry* entry);
 
@@ -580,7 +582,7 @@ public:
 	 * @post { this object is locked, this object is not in a combat state }
 	 * @param clearDefenders if true the defender vector willl be emptied
 	 */
-	void clearCombatState(bool clearDefenders);
+	virtual void clearCombatState(bool clearDefenders);
 
 	/**
 	 * Sets the active defender
@@ -596,7 +598,7 @@ public:
 	 * @post { this object is locked, defender is in the defender vector }
 	 * @param defender SceneObject to add to the defender vector
 	 */
-	void addDefender(SceneObject* defender);
+	virtual void addDefender(SceneObject* defender);
 
 	/**
 	 * Removes the specified defender from the defender vector
@@ -604,7 +606,7 @@ public:
 	 * @post { this object is locked, defender is not in the defender vector }
 	 * @param defender SceneObject to remove from the defender vector
 	 */
-	void removeDefender(SceneObject* defender);
+	virtual void removeDefender(SceneObject* defender);
 
 	bool killPlayer(SceneObject* player);
 
@@ -658,7 +660,7 @@ public:
 	 * @post { }
 	 * @return returns true if its aggressive
 	 */
-	bool isAggressiveTo(CreatureObject* object);
+	virtual bool isAggressiveTo(CreatureObject* object);
 
 	void setOblivious();
 
@@ -672,9 +674,9 @@ public:
 
 	void runAway(CreatureObject* target, float range, bool random);
 
-	void leash();
+	virtual void leash();
 
-	bool generatePatrol(int num, float dist);
+	virtual bool generatePatrol(int num, float dist);
 
 	ManagedWeakReference<SceneObject* > getFollowObject();
 
@@ -686,9 +688,9 @@ public:
 
 	void setMovementState(int state);
 
-	float getMaxDistance();
+	virtual float getMaxDistance();
 
-	int setDestination();
+	virtual int setDestination();
 
 	/**
 	 * Set the wait time in milliseconds
@@ -707,21 +709,21 @@ public:
 	 **/
 	bool isWaiting() const;
 
-	bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
+	virtual bool validateStateAttack(CreatureObject* target, unsigned int actionCRC);
 
-	bool selectSpecialAttack();
+	virtual bool selectSpecialAttack();
 
-	bool selectSpecialAttack(int attackNum);
+	virtual bool selectSpecialAttack(int attackNum);
 
-	bool selectDefaultAttack();
+	virtual bool selectDefaultAttack();
 
-	const QueueCommand* getNextAction();
+	virtual const QueueCommand* getNextAction();
 
-	bool validateStateAttack();
+	virtual bool validateStateAttack();
 
 	int enqueueAttack(int priority = -1);
 
-	bool isRetreating();
+	virtual bool isRetreating();
 
 	bool isFleeing();
 
@@ -761,7 +763,7 @@ public:
 
 	bool getDespawnOnNoPlayerInRange() const;
 
-	int getNumberOfPlayersInRange();
+	virtual int getNumberOfPlayersInRange();
 
 	String getFactionString();
 
@@ -795,7 +797,7 @@ public:
 
 	int getRespawnCounter() const;
 
-	PatrolPoint* getHomeLocation();
+	virtual PatrolPoint* getHomeLocation();
 
 	bool isAiAgent();
 
@@ -1266,7 +1268,7 @@ public:
 
 	bool validateTarget(SceneObject* target);
 
-	bool isCamouflaged(CreatureObject* target);
+	virtual bool isCamouflaged(CreatureObject* target);
 
 	virtual bool findNextPosition(float maxDistance, bool walk);
 
@@ -1308,7 +1310,7 @@ public:
 
 	PatrolPoint getNextPosition();
 
-	int getPatrolPointSize();
+	virtual int getPatrolPointSize();
 
 	void notifyInsert(TreeEntry* entry);
 
@@ -2213,6 +2215,69 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<AiAgentHelper>;
+};
+
+class MockAiAgent : public AiAgent {
+public:
+
+	MOCK_METHOD1(isCamouflaged,bool(CreatureObject* target));
+	MOCK_METHOD2(findNextPosition,bool(float maxDistance, bool walk));
+	MOCK_METHOD1(checkLineOfSight,bool(SceneObject* obj));
+	MOCK_METHOD0(getPatrolPointSize,int());
+	MOCK_METHOD1(clearCombatState,void(bool clearDefenders));
+	MOCK_METHOD1(addDefender,void(SceneObject* defender));
+	MOCK_METHOD1(removeDefender,void(SceneObject* defender));
+	MOCK_METHOD1(isAggressiveTo,bool(CreatureObject* object));
+	MOCK_METHOD0(leash,void());
+	MOCK_METHOD2(generatePatrol,bool(int num, float dist));
+	MOCK_METHOD0(getMaxDistance,float());
+	MOCK_METHOD0(setDestination,int());
+	MOCK_METHOD2(validateStateAttack,bool(CreatureObject* target, unsigned int actionCRC));
+	MOCK_METHOD0(selectSpecialAttack,bool());
+	MOCK_METHOD1(selectSpecialAttack,bool(int attackNum));
+	MOCK_METHOD0(selectDefaultAttack,bool());
+	MOCK_METHOD0(getNextAction,const QueueCommand*());
+	MOCK_METHOD0(validateStateAttack,bool());
+	MOCK_METHOD0(isRetreating,bool());
+	MOCK_METHOD0(getNumberOfPlayersInRange,int());
+	MOCK_METHOD0(getHomeLocation,PatrolPoint*());
+	MOCK_METHOD0(getPosture,byte());
+	MOCK_METHOD0(getLocomotion,byte());
+	MOCK_METHOD1(hasState,bool(unsigned long long state));
+	MOCK_METHOD0(getCurrentSpeed,float());
+	MOCK_METHOD0(getDefaultWeapon,WeaponObject*());
+	MOCK_METHOD0(isIncapacitated,bool());
+	MOCK_METHOD0(isDead,bool());
+	MOCK_METHOD0(isInCombat,bool());
+	MOCK_METHOD1(isAttackableBy,bool(CreatureObject* object));
+	MOCK_METHOD0(getLevel,int());
+	MOCK_METHOD0(isDestroyed,bool());
+	MOCK_METHOD0(getThreatMap,ThreatMap*());
+	MOCK_METHOD2(isInRange,bool(SceneObject* obj, float range));
+	MOCK_METHOD1(getSlottedObjects,void(VectorMap<String, ManagedReference<SceneObject* > >& objects));
+	MOCK_METHOD1(getDistanceTo,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo3d,float(SceneObject* object));
+	MOCK_METHOD1(getDistanceTo,float(Coordinate* coordinate));
+	MOCK_METHOD1(getDistanceTo3d,float(Coordinate* coordinate));
+	MOCK_METHOD0(getZone,Zone*());
+	MOCK_METHOD0(getZoneUnsafe,Zone*());
+	MOCK_METHOD1(getSlottedObject,Reference<SceneObject* >(const String& slot));
+	MOCK_METHOD0(getInventory,Reference<SceneObject* >());
+	MOCK_METHOD0(getDatapad,Reference<SceneObject* >());
+	MOCK_METHOD1(isFacingObject,bool(SceneObject* obj));
+	MOCK_METHOD0(getParent,ManagedWeakReference<SceneObject* >());
+	MOCK_METHOD0(asCreatureObject,CreatureObject*());
+	MOCK_METHOD0(asAiAgent,AiAgent*());
+	MOCK_METHOD0(asShipAiAgent,ShipAiAgent*());
+	MOCK_METHOD0(asShipObject,ShipObject*());
+	MOCK_METHOD0(asSpaceStationObject,SpaceStationObject*());
+	MOCK_METHOD0(asCapitalShipObject,CapitalShipObject*());
+	MOCK_METHOD0(asPobShip,PobShipObject*());
+	MOCK_METHOD0(asMultiPassengerShip,MultiPassengerShipObject*());
+	MOCK_METHOD0(asFighterShip,FighterShipObject*());
+	MOCK_METHOD0(asTangibleObject,TangibleObject*());
+	MOCK_METHOD0(getTemplateRadius,float());
+
 };
 
 } // namespace ai

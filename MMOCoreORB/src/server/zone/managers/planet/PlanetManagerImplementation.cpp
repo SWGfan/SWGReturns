@@ -496,6 +496,7 @@ Reference<SceneObject*> PlanetManagerImplementation::loadSnapshotObject(WorldSna
 	Vector3 position = node->getPosition();
 
 	object = zoneServer->createClientObject(serverTemplate.hashCode(), objectID);
+        if (object == nullptr) { error("loadSnapshotObject: could not create " + templateName + " oid " + String::valueOf(objectID)); return nullptr; }
 
 	Locker locker(object);
 
