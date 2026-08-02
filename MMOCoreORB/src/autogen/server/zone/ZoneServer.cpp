@@ -16,8 +16,6 @@
 
 #include "server/zone/GroundZone.h"
 
-#include "server/zone/SpaceZone.h"
-
 #include "server/chat/ChatManager.h"
 
 #include "conf/ConfigManager.h"
@@ -50,8 +48,6 @@
 
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
 
-#include "server/zone/managers/ship/ShipAgentTemplateManager.h"
-
 #include "server/zone/managers/creature/DnaManager.h"
 
 #include "server/zone/managers/creature/PetManager.h"
@@ -74,7 +70,7 @@ const float ZoneServer::CAPITALSHIPRANGE = 8192;
 
 const float ZoneServer::SPACESTATIONRANGE = 32768;
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTGROUNDZONES__,RPC_STARTSPACEZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETSPACEZONE__INT_,RPC_GETSPACEZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTGROUNDZONES__,RPC_STARTSPACEZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
 
 ZoneServer::ZoneServer(ConfigManager* config) : ManagedService(DummyConstructorParameter::instance()) {
 	ZoneServerImplementation* _implementation = new ZoneServerImplementation(config);
@@ -775,35 +771,6 @@ int ZoneServer::getZoneCount() const {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getZoneCount();
-	}
-}
-
-SpaceZone* ZoneServer::getSpaceZone(int idx) {
-	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSPACEZONE__INT_);
-		method.addSignedIntParameter(idx);
-
-		return static_cast<SpaceZone*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->getSpaceZone(idx);
-	}
-}
-
-int ZoneServer::getSpaceZoneCount() const {
-	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSPACEZONECOUNT__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getSpaceZoneCount();
 	}
 }
 
@@ -1737,22 +1704,6 @@ int ZoneServerImplementation::getZoneCount() const{
 	return zones->size();
 }
 
-SpaceZone* ZoneServerImplementation::getSpaceZone(int idx) {
-	// server/zone/ZoneServer.idl():  		return 
-	if (!spaceZones)	// server/zone/ZoneServer.idl():  			return null;
-	return NULL;
-	// server/zone/ZoneServer.idl():  		return spaceZones.get(idx);
-	return spaceZones->get(idx);
-}
-
-int ZoneServerImplementation::getSpaceZoneCount() const{
-	// server/zone/ZoneServer.idl():  		return 
-	if (!spaceZones)	// server/zone/ZoneServer.idl():  			return 0;
-	return 0;
-	// server/zone/ZoneServer.idl():  		return spaceZones.size();
-	return spaceZones->size();
-}
-
 int ZoneServerImplementation::getMaxPlayers() const{
 	// server/zone/ZoneServer.idl():  		return maximumPlayers.get();
 	return (&maximumPlayers)->get();
@@ -2226,21 +2177,6 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_GETSPACEZONE__INT_:
-		{
-			int idx = inv->getSignedIntParameter();
-			
-			DistributedObject* _m_res = getSpaceZone(idx);
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
-		}
-		break;
-	case RPC_GETSPACEZONECOUNT__:
-		{
-			
-			int _m_res = getSpaceZoneCount();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
 	case RPC_GETMAXPLAYERS__:
 		{
 			
@@ -2613,14 +2549,6 @@ Zone* ZoneServerAdapter::getZone(int idx) {
 
 int ZoneServerAdapter::getZoneCount() const {
 	return (static_cast<ZoneServer*>(stub))->getZoneCount();
-}
-
-SpaceZone* ZoneServerAdapter::getSpaceZone(int idx) {
-	return (static_cast<ZoneServer*>(stub))->getSpaceZone(idx);
-}
-
-int ZoneServerAdapter::getSpaceZoneCount() const {
-	return (static_cast<ZoneServer*>(stub))->getSpaceZoneCount();
 }
 
 int ZoneServerAdapter::getMaxPlayers() const {

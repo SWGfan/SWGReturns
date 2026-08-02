@@ -1344,7 +1344,6 @@ src/pathfinding/CMakeFiles/core3pathfinding.dir/RecastNavMeshBuilder.cpp.o: src/
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/AutoDeltaSet.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
@@ -5363,8 +5362,6 @@ src/server/zone/objects/scene/variables/DeltaVectorMap.h:
 src/server/zone/objects/scene/variables/ContainerPermissions.h:
 
 src/server/zone/objects/scene/variables/ContainerObjectsMap.h:
-
-src/server/zone/objects/scene/components/SpaceZoneComponent.h:
 
 src/server/zone/objects/scene/components/SceneObjectComponent.h:
 

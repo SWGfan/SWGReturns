@@ -34748,14 +34748,12 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/PendingTasksMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StdFunction.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ComponentSlots.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/ChildCreatureObject.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/ChildObject.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/IffTemplate.h
@@ -34879,7 +34877,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/LootSchematicTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/LootkitObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/MissionTerminalTemplate.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/NavicomputerDeedTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PetDeedTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PowerupStat.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PowerupTemplate.h
@@ -34889,6 +34886,7 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedCountingObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedFactoryObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedResourceContainerObjectTemplate.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedShipObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedStructureObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedWeaponObjectTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SkillBuffTemplate.h
@@ -34900,10 +34898,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/VehicleDeedTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/WoundPackTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/XpPurchaseTemplate.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/SharedShipObjectTemplate.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipChassisTemplate.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipComponentTemplate.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipDeedTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/tool/CraftingStationTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/tool/CraftingToolTemplate.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/tool/RecycleToolTemplate.h

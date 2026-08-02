@@ -1249,7 +1249,6 @@ src/CMakeFiles/core3.dir/server/zone/managers/creature/PetManagerImplementation.
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \

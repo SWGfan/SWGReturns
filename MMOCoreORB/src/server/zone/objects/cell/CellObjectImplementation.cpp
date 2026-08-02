@@ -7,7 +7,6 @@
 
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/objects/building/BuildingObject.h"
-#include "server/zone/objects/ship/PobShipObject.h"
 #include "server/zone/packets/cell/CellObjectMessage3.h"
 #include "server/zone/packets/cell/CellObjectMessage6.h"
 #include "server/zone/packets/cell/UpdateCellPermissionsMessage.h"
@@ -75,18 +74,6 @@ void CellObjectImplementation::onBuildingInsertedToZone(BuildingObject* building
 		SceneObject* child = getContainerObject(j);
 
 		building->notifyObjectInsertedToZone(child);
-	}
-}
-
-void CellObjectImplementation::onShipInsertedToZone(PobShipObject* pobShip) {
-	if (pobShip == nullptr)
-		return;
-
-	for (int i = 0; i < getContainerObjectsSize(); ++i) {
-		SceneObject* child = getContainerObject(i);
-
-		if (child != nullptr)
-			pobShip->notifyObjectInsertedToZone(child);
 	}
 }
 

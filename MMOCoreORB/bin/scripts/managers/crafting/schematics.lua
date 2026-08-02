@@ -1444,6 +1444,7 @@ schematics = {
 	{path="object/draft_schematic/vehicle/civilian/speeder_bike_swoop.iff"},
 	{path="object/draft_schematic/vehicle/civilian/speeder_bike.iff"},
 	{path="object/draft_schematic/vehicle/vehicle_customization_kit.iff"},
+	--[[ JTL disabled on this server; ship-related draft schematics commented out below.
 	{path="object/draft_schematic/space/chassis/z95.iff"},
 	{path="object/draft_schematic/space/chassis/tie_light_duty.iff"},
 	{path="object/draft_schematic/space/chassis/hutt_light_s01.iff"},
@@ -1721,6 +1722,7 @@ schematics = {
 	{path="object/draft_schematic/space/droid_interface/maintenance_reduction_kit_mk5.iff"},
 	{path="object/draft_schematic/space/weapon/missile/wpn_launcher_spacebomb_mk2.iff"},
 	{path="object/draft_schematic/space/weapon/missile/wpn_spacebomb_missile_mk2.iff"},
+	]]
 	{path="object/draft_schematic/armor/armor_segment_ris.iff"},
 	{path="object/draft_schematic/armor/armor_segment_ris_acklay.iff"},
 	{path="object/draft_schematic/armor/armor_segment_bone_acklay.iff"},

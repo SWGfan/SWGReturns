@@ -2192,9 +2192,24 @@ int DirectorManager::spawnMobile(lua_State* L) {
 
 	CreatureObject* creature = creatureManager->spawnCreature(mobile.hashCode(), 0, x, z, y, parentID, false, heading);
 
+	bool jtlFiltered = false;
+
+	if (creature != nullptr && (creature->getOptionsBitmask() & OptionBitmask::JTLINTERESTING) != 0) {
+		//JTL content is disabled on this server; silently skip spawning JTL-flagged NPCs (shipwrights, chassis dealers, etc).
+		Locker locker(creature);
+
+		creature->destroyObjectFromWorld(false);
+		creature->destroyObjectFromDatabase(true);
+
+		creature = nullptr;
+		jtlFiltered = true;
+	}
+
 	if (creature == nullptr) {
-		String err = "could not spawn mobile " + mobile;
-		printTraceError(L, err);
+		if (!jtlFiltered) {
+			String err = "could not spawn mobile " + mobile;
+			printTraceError(L, err);
+		}
 
 		lua_pushnil(L);
 	} else {

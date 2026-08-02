@@ -1214,7 +1214,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
@@ -1315,9 +1314,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/GroundZone.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/SpaceZone.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/OctreeReference.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/Octree.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/ChatManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/player/PlayerMap.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameterVector.h \
@@ -1524,10 +1520,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/SpawnGroup.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/LairSpawn.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/AiSpeciesData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/ShipAgentTemplateManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/ShipAgentTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/ship/ShipFlag.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPoint.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/DnaManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/ai/Creature.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/PetManager.h \

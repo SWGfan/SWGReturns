@@ -4771,7 +4771,6 @@ src/server/login/CMakeFiles/login3.dir/account/AccountManager.cpp.o: src/server/
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
   src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
@@ -8084,8 +8083,6 @@ src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h:
 src/server/zone/objects/scene/variables/ContainerPermissions.h:
 
 src/server/zone/objects/scene/variables/ContainerObjectsMap.h:
-
-src/server/zone/objects/scene/components/SpaceZoneComponent.h:
 
 src/server/zone/objects/scene/components/SceneObjectComponent.h:
 

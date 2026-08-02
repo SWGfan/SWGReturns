@@ -1,8 +1,20 @@
 # CMake generated Testfile for 
-# Source directory: /home/ubuntu/SWGReturns01/MMOCoreORB/src
+# Source directory: /home/ubuntu/SWGReturns01/MMOCoreORB
 # Build directory: /home/ubuntu/SWGReturns01/MMOCoreORB/src
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
-add_test(core3 "COMMAND" "$<TARGET_FILE:core3>" "runUnitTests" "WORKING_DIRECTORY" "/home/ubuntu/SWGReturns01/MMOCoreORB/bin/")
-set_tests_properties(core3 PROPERTIES  _BACKTRACE_TRIPLES "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeLists.txt;184;add_test;/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeLists.txt;0;")
+subdirs("utils/engine3/MMOEngine")
+subdirs("utils/googletest-release-1.10.0")
+subdirs("src")
+subdirs("src/conf")
+subdirs("src/terrain")
+subdirs("src/templates")
+subdirs("src/pathfinding")
+subdirs("src/server/db")
+subdirs("src/server/status")
+subdirs("src/server/web")
+subdirs("src/server/ping")
+subdirs("src/server/login")
+subdirs("src/server/chat")
+subdirs("src/client")

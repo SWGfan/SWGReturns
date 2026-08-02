@@ -75,18 +75,6 @@ using namespace server::zone;
 namespace server {
 namespace zone {
 
-class SpaceZone;
-
-class SpaceZonePOD;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
-namespace server {
-namespace zone {
-
 class ZoneServer;
 
 class ZoneServerPOD;
@@ -243,38 +231,6 @@ namespace zone {
 namespace objects {
 namespace ship {
 
-class PobShipObject;
-
-class PobShipObjectPOD;
-
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-
-class MultiPassengerShipObject;
-
-class MultiPassengerShipObjectPOD;
-
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-
 class FighterShipObject;
 
 class FighterShipObjectPOD;
@@ -285,60 +241,6 @@ class FighterShipObjectPOD;
 } // namespace server
 
 using namespace server::zone::objects::ship;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-namespace ai {
-
-class ShipAiAgent;
-
-class ShipAiAgentPOD;
-
-} // namespace ai
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship::ai;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-namespace ai {
-
-class SpaceStationObject;
-
-class SpaceStationObjectPOD;
-
-} // namespace ai
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship::ai;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-namespace ai {
-
-class CapitalShipObject;
-
-class CapitalShipObjectPOD;
-
-} // namespace ai
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship::ai;
 
 #include "server/zone/TreeEntry.h"
 
@@ -371,8 +273,6 @@ using namespace server::zone::objects::ship::ai;
 #include "templates/SharedObjectTemplate.h"
 
 #include "server/zone/objects/scene/components/GroundZoneComponent.h"
-
-#include "server/zone/objects/scene/components/SpaceZoneComponent.h"
 
 #include "server/zone/objects/scene/components/ObjectMenuComponent.h"
 
@@ -1033,8 +933,6 @@ public:
 
 	Zone* getLocalZone() const;
 
-	virtual SpaceZone* asSpaceZone();
-
 	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
@@ -1242,8 +1140,6 @@ public:
 
 	GroundZoneComponent* getGroundZoneComponent() const;
 
-	SpaceZoneComponent* getSpaceZoneComponent() const;
-
 	ObjectMenuComponent* getObjectMenuComponent() const;
 
 	const AttributeListComponent* getAttributeListComponent() const;
@@ -1257,8 +1153,6 @@ public:
 	void setContainerComponent(const String& name);
 
 	void setGroundZoneComponent(const String& name);
-
-	void setSpaceZoneComponent(const String& name);
 
 	void setForceNoTrade(bool newForceNoTrade);
 
@@ -1286,29 +1180,11 @@ public:
 
 	virtual AiAgent* asAiAgent();
 
-	virtual bool isShipAiAgent();
-
 	bool isPlayerShip();
-
-	virtual ShipAiAgent* asShipAiAgent();
 
 	virtual bool isShipObject();
 
 	virtual ShipObject* asShipObject();
-
-	virtual bool isSpaceStation();
-
-	virtual SpaceStationObject* asSpaceStationObject();
-
-	virtual CapitalShipObject* asCapitalShipObject();
-
-	virtual bool isPobShip();
-
-	virtual PobShipObject* asPobShip();
-
-	virtual bool isMultiPassengerShip();
-
-	virtual MultiPassengerShipObject* asMultiPassengerShip();
 
 	virtual bool isFighterShip();
 
@@ -1453,8 +1329,6 @@ public:
 	bool isShipInteriorComponent() const;
 
 	bool isShipPlasmaConduit() const;
-
-	bool isValidJtlParent();
 
 	bool isInShipStation() const;
 
@@ -1670,8 +1544,6 @@ protected:
 
 	int __compareTo(SceneObject* obj);
 
-	SpaceZone* __asSpaceZone();
-
 	bool __isPlayerCreature();
 
 	bool __isCreatureObject();
@@ -1684,27 +1556,9 @@ protected:
 
 	AiAgent* __asAiAgent();
 
-	bool __isShipAiAgent();
-
-	ShipAiAgent* __asShipAiAgent();
-
 	bool __isShipObject();
 
 	ShipObject* __asShipObject();
-
-	bool __isSpaceStation();
-
-	SpaceStationObject* __asSpaceStationObject();
-
-	CapitalShipObject* __asCapitalShipObject();
-
-	bool __isPobShip();
-
-	PobShipObject* __asPobShip();
-
-	bool __isMultiPassengerShip();
-
-	MultiPassengerShipObject* __asMultiPassengerShip();
 
 	bool __isFighterShip();
 
@@ -1738,8 +1592,6 @@ protected:
 	ManagedReference<ZoneProcessServer* > server;
 
 	Reference<GroundZoneComponent* > groundZoneComponent;
-
-	Reference<SpaceZoneComponent* > spaceZoneComponent;
 
 	Reference<ObjectMenuComponent* > objectMenuComponent;
 
@@ -2438,8 +2290,6 @@ public:
 
 	Zone* getLocalZone() const;
 
-	virtual SpaceZone* asSpaceZone();
-
 	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
@@ -2647,8 +2497,6 @@ public:
 
 	GroundZoneComponent* getGroundZoneComponent() const;
 
-	SpaceZoneComponent* getSpaceZoneComponent() const;
-
 	ObjectMenuComponent* getObjectMenuComponent() const;
 
 	const AttributeListComponent* getAttributeListComponent() const;
@@ -2662,8 +2510,6 @@ public:
 	void setContainerComponent(const String& name);
 
 	void setGroundZoneComponent(const String& name);
-
-	void setSpaceZoneComponent(const String& name);
 
 	void setForceNoTrade(bool newForceNoTrade);
 
@@ -2691,29 +2537,11 @@ public:
 
 	virtual AiAgent* asAiAgent();
 
-	virtual bool isShipAiAgent();
-
 	virtual bool isPlayerShip();
-
-	virtual ShipAiAgent* asShipAiAgent();
 
 	virtual bool isShipObject();
 
 	virtual ShipObject* asShipObject();
-
-	virtual bool isSpaceStation();
-
-	virtual SpaceStationObject* asSpaceStationObject();
-
-	virtual CapitalShipObject* asCapitalShipObject();
-
-	virtual bool isPobShip();
-
-	virtual PobShipObject* asPobShip();
-
-	virtual bool isMultiPassengerShip();
-
-	virtual MultiPassengerShipObject* asMultiPassengerShip();
 
 	virtual bool isFighterShip();
 
@@ -2858,8 +2686,6 @@ public:
 	bool isShipInteriorComponent() const;
 
 	bool isShipPlasmaConduit() const;
-
-	bool isValidJtlParent();
 
 	virtual bool isInShipStation() const;
 
@@ -3407,8 +3233,6 @@ public:
 
 	void setGroundZoneComponent(const String& name);
 
-	void setSpaceZoneComponent(const String& name);
-
 	void setForceNoTrade(bool newForceNoTrade);
 
 	bool isNoTrade() const;
@@ -3552,8 +3376,6 @@ public:
 	bool isShipInteriorComponent() const;
 
 	bool isShipPlasmaConduit() const;
-
-	bool isValidJtlParent();
 
 	bool isInShipStation() const;
 

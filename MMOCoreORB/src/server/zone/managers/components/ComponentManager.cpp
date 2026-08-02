@@ -11,7 +11,6 @@
 #include "server/zone/objects/scene/components/ContainerComponent.h"
 #include "server/zone/objects/tangible/components/LootContainerComponent.h"
 #include "server/zone/objects/scene/components/GroundZoneComponent.h"
-#include "server/zone/objects/scene/components/SpaceZoneComponent.h"
 #include "server/zone/objects/scene/components/ObjectMenuComponent.h"
 #include "server/zone/objects/scene/components/AttributeListComponent.h"
 #include "server/zone/objects/tangible/components/vendor/VendorContainerComponent.h"
@@ -33,7 +32,6 @@
 #include "server/zone/objects/intangible/components/WarrenDiskContainerComponent.h"
 #include "server/zone/objects/tangible/components/vendor/AuctionTerminalDataComponent.h"
 #include "server/zone/objects/player/components/PlayerZoneComponent.h"
-#include "server/zone/objects/player/components/PlayerSpaceZoneComponent.h"
 #include "server/zone/objects/building/components/BuildingDataComponent.h"
 #include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 #include "server/zone/objects/building/components/ShuttleZoneComponent.h"
@@ -80,7 +78,6 @@
 #include "server/zone/objects/tangible/terminal/components/EnclaveTerminalMenuComponent.h"
 #include "server/zone/objects/tangible/terminal/components/DestructibleBuildingMenuComponent.h"
 #include "server/zone/objects/tangible/terminal/components/StructureTerminalMenuComponent.h"
-#include "server/zone/objects/tangible/terminal/components/ShipPermissionTerminalMenuComponent.h"
 #include "server/zone/objects/tangible/terminal/components/HQMenuComponent.h"
 #include "server/zone/objects/tangible/terminal/components/UplinkTerminalMenuComponent.h"
 #include "server/zone/objects/tangible/terminal/components/SecurityTerminalMenuComponent.h"
@@ -91,9 +88,6 @@
 #include "server/zone/objects/installation/components/FactoryObjectMenuComponent.h"
 #include "server/zone/objects/installation/components/MinefieldMenuComponent.h"
 #include "server/zone/GroundZoneContainerComponent.h"
-#include "server/zone/SpaceZoneContainerComponent.h"
-#include "server/zone/objects/ship/components/ShipContainerComponent.h"
-#include "server/zone/objects/ship/components/PobShipContainerComponent.h"
 #include "server/zone/objects/structure/components/StructureContainerComponent.h"
 #include "server/zone/objects/tangible/components/ElevatorMenuComponent.h"
 #include "server/zone/objects/tangible/components/ElevatorUpMenuComponent.h"
@@ -160,9 +154,6 @@
 #include "server/zone/objects/tangible/components/droid/DroidTrapModuleDataComponent.h"
 #include "server/zone/objects/tangible/components/droid/DroidHarvestModuleDataComponent.h"
 #include "server/zone/objects/tangible/components/droid/DroidPersonalityModuleDataComponent.h"
-#include "server/zone/objects/tangible/components/PobShipObjectMenuComponent.h"
-#include "server/zone/objects/tangible/components/StarshipPaintKitObjectMenuComponent.h"
-#include "server/zone/objects/tangible/components/StarshipTextureKitObjectMenuComponent.h"
 
 ComponentManager::ComponentManager() {
 	components.put("ContainerComponent", new ContainerComponent());
@@ -171,9 +162,7 @@ ComponentManager::ComponentManager() {
 	components.put("RecycleToolContainerComponent", new RecycleToolContainerComponent());
 
 	components.put("GroundZoneComponent", new GroundZoneComponent());
-	components.put("SpaceZoneComponent", new SpaceZoneComponent());
 	components.put("PlayerZoneComponent", new PlayerZoneComponent());
-	components.put("PlayerSpaceZoneComponent", new PlayerSpaceZoneComponent());
 	components.put("StructureZoneComponent", new StructureZoneComponent());
 	components.put("ShuttleZoneComponent", new ShuttleZoneComponent());
 	components.put("ShuttleInstallationZoneComponent", new ShuttleInstallationZoneComponent());
@@ -203,7 +192,6 @@ ComponentManager::ComponentManager() {
 	components.put("ArtCrateMenuComponent", new ArtCrateMenuComponent());
 
 	components.put("GroundZoneContainerComponent", new GroundZoneContainerComponent());
-	components.put("SpaceZoneContainerComponent", new SpaceZoneContainerComponent());
 
 	components.put("HolocronMenuComponent", new HolocronMenuComponent());
 	components.put("WaypointDatapadMenuComponent", new WaypointDatapadMenuComponent());
@@ -232,14 +220,9 @@ ComponentManager::ComponentManager() {
 	components.put("MinefieldMenuComponent", new MinefieldMenuComponent());
 	components.put("InstallationObjectMenuComponent", new InstallationObjectMenuComponent());
 
-	components.put("ShipPermissionTerminalMenuComponent", new ShipPermissionTerminalMenuComponent());
-
 	components.put("HQMenuComponent", new HQMenuComponent());
 	components.put("ContainerObjectComponent", new ContainerObjectComponent());
 	components.put("StructureContainerComponent", new StructureContainerComponent());
-
-	components.put("ShipContainerComponent", new ShipContainerComponent());
-	components.put("PobShipContainerComponent", new PobShipContainerComponent());
 
 	components.put("VendorContainerComponent", new VendorContainerComponent());
 	components.put("DroidContainerComponent", new DroidContainerComponent());
@@ -373,9 +356,4 @@ ComponentManager::ComponentManager() {
 
 	// Warren Disks
 	components.put("WarrenDiskContainerComponent", new WarrenDiskContainerComponent());
-
-	//JtL components
-	components.put("PobShipObjectMenuComponent", new PobShipObjectMenuComponent());
-	components.put("StarshipPaintKitObjectMenuComponent", new StarshipPaintKitObjectMenuComponent());
-	components.put("StarshipTextureKitObjectMenuComponent", new StarshipTextureKitObjectMenuComponent());
 }

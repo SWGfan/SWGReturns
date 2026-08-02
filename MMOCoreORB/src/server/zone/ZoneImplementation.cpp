@@ -8,7 +8,6 @@
 #include "server/zone/ZoneProcessServer.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/planet/PlanetManager.h"
-#include "server/zone/managers/space/SpaceManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/managers/components/ComponentManager.h"
 #include "server/zone/packets/player/GetMapLocationsResponseMessage.h"

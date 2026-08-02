@@ -1278,7 +1278,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/LootkitObjectTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/LootSchematicTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/MissionTerminalTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/NavicomputerDeedTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PetDeedTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PowerupTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/PowerupStat.h \
@@ -1299,11 +1298,7 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/VehicleDeedTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/WoundPackTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/XpPurchaseTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/SharedShipObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ComponentSlots.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipChassisTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipComponentTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipDeedTemplate.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/SharedShipObjectTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/universe/SharedGroupObjectTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/SharedUniverseObjectTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/universe/SharedGuildObjectTemplate.h \
@@ -1344,7 +1339,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/SessionFacadeType.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/ObserverType.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \

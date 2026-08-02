@@ -24,46 +24,6 @@ FighterShipObject::~FighterShipObject() {
 
 
 
-void FighterShipObject::loadTemplateData(SharedObjectTemplate* templateData) {
-	FighterShipObjectImplementation* _implementation = static_cast<FighterShipObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->loadTemplateData(templateData);
-	}
-}
-
-void FighterShipObject::loadTemplateData(SharedShipObjectTemplate* shipTemp) {
-	FighterShipObjectImplementation* _implementation = static_cast<FighterShipObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->loadTemplateData(shipTemp);
-	}
-}
-
-bool FighterShipObject::__isFighterShipObject() {
-	FighterShipObjectImplementation* _implementation = static_cast<FighterShipObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->isFighterShipObject();
-	}
-}
-
-FighterShipObject* FighterShipObject::__asFighterShipObject() {
-	FighterShipObjectImplementation* _implementation = static_cast<FighterShipObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->asFighterShipObject();
-	}
-}
-
 DistributedObjectServant* FighterShipObject::_getImplementation() {
 
 	 if (!_updated) _updated = true;

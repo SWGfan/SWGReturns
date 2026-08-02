@@ -1216,7 +1216,6 @@ src/CMakeFiles/core3.dir/server/zone/GroundZoneContainerComponent.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/appearance/MeshData.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/building/InteriorLayoutTemplate.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/DataObjectComponentReference.h \

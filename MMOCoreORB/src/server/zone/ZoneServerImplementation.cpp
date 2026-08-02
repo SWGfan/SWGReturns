@@ -8,7 +8,6 @@
 
 #include "server/zone/Zone.h"
 #include "server/zone/GroundZone.h"
-#include "server/zone/SpaceZone.h"
 
 #include "server/db/ServerDatabase.h"
 #ifdef WITH_SWGREALMS_API
@@ -27,9 +26,7 @@
 #include "server/zone/managers/auction/AuctionManager.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/managers/creature/AiMap.h"
-#include "server/zone/managers/space/SpaceAiMap.h"
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
-#include "server/zone/managers/ship/ShipAgentTemplateManager.h"
 #include "server/zone/managers/creature/DnaManager.h"
 #include "server/zone/managers/creature/PetManager.h"
 #include "server/zone/managers/guild/GuildManager.h"
@@ -46,7 +43,6 @@
 #include "ZonePacketHandler.h"
 #include "ZoneHandler.h"
 
-#include "SpaceZoneLoadManagersTask.h"
 #include "ZoneLoadManagersTask.h"
 #include "ShutdownTask.h"
 
@@ -79,7 +75,6 @@ ZoneServerImplementation::ZoneServerImplementation(ConfigManager* config) :
 
     stringIdManager = nullptr;
     creatureTemplateManager = nullptr;
-    shipAgentTemplateManager = nullptr;
     guildManager = nullptr;
     cityManager = nullptr;
     petManager = nullptr;
@@ -158,7 +153,6 @@ void ZoneServerImplementation::initialize() {
     processor->initialize();
 
     zones = new VectorMap<String, ManagedReference<GroundZone*> >();
-    spaceZones = new VectorMap<String, ManagedReference<SpaceZone*> >();
 
     objectManager = ObjectManager::instance();
     objectManager->setZoneProcessor(processor);
@@ -172,12 +166,7 @@ void ZoneServerImplementation::initialize() {
     creatureTemplateManager = CreatureTemplateManager::instance();
     creatureTemplateManager->loadTemplates();
 
-    shipAgentTemplateManager = ShipAgentTemplateManager::instance();
-    shipAgentTemplateManager->loadTemplates();
-    shipAgentTemplateManager->loadSpacePatrolPoints();
-
     AiMap::instance()->loadTemplates();
-    SpaceAiMap::instance()->loadTemplates();
 
     dnaManager = DnaManager::instance();
     dnaManager->loadSampleData();
@@ -220,9 +209,6 @@ void ZoneServerImplementation::initialize() {
 
     petManager = new PetManager(_this.getReferenceUnsafeStaticCast());
     petManager->initialize();
-
-    // Load ship data
-    ShipManager::instance()->initialize();
 
     startGroundZones();
     startSpaceZones();
@@ -295,45 +281,7 @@ void ZoneServerImplementation::startGroundZones() {
 }
 
 void ZoneServerImplementation::startSpaceZones() {
-    info(true) << "Loading Space Zones...";
-
-    auto enabledSpaceZones = configManager->getEnabledSpaceZones();
-
-    int totalZones = enabledSpaceZones.size();
-
-    info(true) << "Total Enabled Space Zones: " << totalZones;
-
-    for (int i = 0; i < totalZones; ++i) {
-        String zoneName = enabledSpaceZones.get(i);
-
-        SpaceZone* spaceZone = new SpaceZone(processor, zoneName);
-
-        spaceZone->createContainerComponent();
-        spaceZone->initializePrivateData();
-        spaceZone->deploy("SpaceZone " + zoneName);
-
-        info(true) << "Space Zone: " + zoneName + " deployed.";
-
-        spaceZones->put(zoneName, spaceZone);
-    }
-
-    for (int i = 0; i < spaceZones->size(); ++i) {
-        SpaceZone* zone = spaceZones->get(i);
-
-        if (zone != nullptr) {
-            SpaceZoneLoadManagersTask* task = new SpaceZoneLoadManagersTask(_this.getReferenceUnsafeStaticCast(), zone);
-            task->execute();
-        }
-    }
-
-    for (int i = 0; i < spaceZones->size(); ++i) {
-        SpaceZone* spaceZone = spaceZones->get(i);
-
-        if (spaceZone != nullptr) {
-            while (!spaceZone->hasManagersStarted())
-                Thread::sleep(500);
-        }
-    }
+    info(true) << "Space Zones disabled.";
 }
 
 void ZoneServerImplementation::startManagers() {
@@ -442,22 +390,6 @@ void ZoneServerImplementation::shutdown() {
 
     info("Ground Zones Shut Down", true);
 
-    info("Shutting Down Space Zones", true);
-
-    for (int i = 0; i < spaceZones->size(); ++i) {
-        ManagedReference<SpaceZone*> spaceZone = spaceZones->get(i);
-
-        if (spaceZone != nullptr) {
-            spaceZone->stopManagers();
-
-            debug() << "zone references " << spaceZone->getReferenceCount();
-        }
-    }
-
-    spaceZones->removeAll();
-
-    info("Space Zones Shut Down", true);
-
     printInfo();
 
     datagramService = nullptr;
@@ -480,7 +412,6 @@ void ZoneServerImplementation::stopManagers() {
     }
 
     creatureTemplateManager = nullptr;
-    shipAgentTemplateManager = nullptr;
 
     dnaManager = nullptr;
     stringIdManager = nullptr;
@@ -533,8 +464,6 @@ void ZoneServerImplementation::stopManagers() {
         objectManager = nullptr;
     }
 
-    ShipManager::instance()->stop();
-
     info(true) << "ZoneServerImplementation -- Managers Stopped";
 }
 
@@ -561,35 +490,9 @@ void ZoneServerImplementation::clearZones() {
     }
 
     info("Ground zones cleared...", true);
-
-    //Clear Space Zones
-    for (int i = 0; i < spaceZones->size(); ++i) {
-        ManagedReference<SpaceZone*> szone = spaceZones->get(i);
-
-        if (szone != nullptr) {
-            Core::getTaskManager()->executeTask([=] () {
-                szone->clearZone();
-            }, "ClearZoneLambda");
-        }
-    }
-
-    for (int i = 0; i < spaceZones->size(); ++i) {
-        SpaceZone* szone = spaceZones->get(i);
-
-        if (szone != nullptr) {
-            while (!szone->isZoneCleared())
-                Thread::sleep(500);
-        }
-    }
-
-    info("Space zones cleared...", true);
 }
 
 Zone* ZoneServerImplementation::getZone(const String& zoneName) const {
-    if (zoneName.beginsWith("space")) {
-        return spaceZones->get(zoneName);
-    }
-
     return zones->get(zoneName);
 }
 
@@ -757,8 +660,11 @@ Reference<SceneObject*> ZoneServerImplementation::createClientObject(uint32 temp
         //lock(); ObjectManager has its own mutex
 
         obj = objectManager->createObject(templateCRC, 1, "clientobjects", oid, false);
-        obj->setClientObject(true);
-        obj->initializeTransientMembers();
+
+        if (obj != nullptr) {
+            obj->setClientObject(true);
+            obj->initializeTransientMembers();
+        }
 
         //unlock();
     } catch (Exception& e) {

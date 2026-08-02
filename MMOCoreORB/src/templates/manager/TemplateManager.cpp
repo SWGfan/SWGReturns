@@ -97,7 +97,6 @@
 #include "templates/tangible/LootkitObjectTemplate.h"
 #include "templates/tangible/LootSchematicTemplate.h"
 #include "templates/tangible/MissionTerminalTemplate.h"
-#include "templates/tangible/NavicomputerDeedTemplate.h"
 #include "templates/tangible/PetDeedTemplate.h"
 #include "templates/tangible/PowerupTemplate.h"
 #include "templates/tangible/RangedStimPackTemplate.h"
@@ -117,10 +116,7 @@
 #include "templates/tangible/WoundPackTemplate.h"
 #include "templates/tangible/XpPurchaseTemplate.h"
 
-#include "templates/tangible/ship/SharedShipObjectTemplate.h"
-#include "templates/tangible/ship/ShipChassisTemplate.h"
-#include "templates/tangible/ship/ShipComponentTemplate.h"
-#include "templates/tangible/ship/ShipDeedTemplate.h"
+#include "templates/tangible/SharedShipObjectTemplate.h"
 
 #include "templates/universe/SharedGroupObjectTemplate.h"
 #include "templates/universe/SharedGuildObjectTemplate.h"
@@ -531,8 +527,6 @@ void TemplateManager::registerTemplateObjects() {
 	templateFactory.registerObject<VehicleDeedTemplate>(SharedObjectTemplate::VEHICLEDEED);
 	templateFactory.registerObject<DroidDeedTemplate>(SharedObjectTemplate::DROIDDEED);
 	templateFactory.registerObject<EventPerkDeedTemplate>(SharedObjectTemplate::EVENTPERKDEED);
-	templateFactory.registerObject<ShipDeedTemplate>(SharedObjectTemplate::SHIPDEED);
-	templateFactory.registerObject<NavicomputerDeedTemplate>(SharedObjectTemplate::NAVICOMPUTERDEED);
 	templateFactory.registerObject<MissionTerminalTemplate>(SharedObjectTemplate::MISSIONTERMINAL);
 	templateFactory.registerObject<CloningBuildingObjectTemplate>(SharedObjectTemplate::CLONINGBUILDING);
 	templateFactory.registerObject<HospitalBuildingObjectTemplate>(SharedObjectTemplate::HOSPITALBUILDING);
@@ -573,8 +567,6 @@ void TemplateManager::registerTemplateObjects() {
 	templateFactory.registerObject<DroidPersonalityModuleTemplate>(SharedObjectTemplate::DROIDMODULEPERSONALITY);
 	templateFactory.registerObject<VehicleObjectTemplate>(SharedObjectTemplate::VEHICLE);
 	templateFactory.registerObject<XpPurchaseTemplate>(SharedObjectTemplate::XPPURCHASE);
-	templateFactory.registerObject<ShipComponentTemplate>(SharedObjectTemplate::SHIPCOMPONENT);
-	templateFactory.registerObject<ShipChassisTemplate>(SharedObjectTemplate::SHIPCHASSIS);
 	templateFactory.registerObject<SchematicFragmentTemplate>(SharedObjectTemplate::SCHEMATICFRAGMENT);
 }
 

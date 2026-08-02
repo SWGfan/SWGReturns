@@ -51,9 +51,6 @@
 
 #include "packets/ship/ShipUpdateTransformCallback.h"
 #include "packets/object/JtlShipListRequestCallback.h"
-#include "packets/object/GroupMemberSendSpaceInviteCallback.h"
-#include "packets/object/GroupMemberSpaceInviteResponseCallback.h"
-#include "packets/object/UpdateShipTargetSlot.h"
 
 #include "packets/jtl/CreateProjectileMessage.h"
 
@@ -182,7 +179,6 @@ void ZonePacketHandler::registerMessages() {
 	messageCallbackFactory.registerObject<ChatBanFromRoomCallback>(0xD9FA0194);
 	messageCallbackFactory.registerObject<ChatUnbanFromRoomCallback>(0x4C8F94A9);
 	messageCallbackFactory.registerObject<ChatDeleteAllPersistentMessagesCallback>(0x8B1E8E72);
-	messageCallbackFactory.registerObject<CreateProjectileMessageCallback>(STRING_HASHCODE("CreateProjectileMessage"));
 }
 
 void ZonePacketHandler::registerObjectControllerMessages() {
@@ -212,10 +208,7 @@ void ZonePacketHandler::registerObjectControllerMessages() {
 	objectMessageControllerFactory->registerObject<LotteryWindowCallback>(0x43f);
 
 	// Space Callbacks
-	objectMessageControllerFactory->registerObject<UpdateShipTargetSlotCallback>(0x3FA);
 	objectMessageControllerFactory->registerObject<JtlShipListRequestCallback>(0x41C);
-	objectMessageControllerFactory->registerObject<GroupMemberSendSpaceInviteCallback>(0x436);
-	objectMessageControllerFactory->registerObject<GroupMemberSpaceInviteResponseCallback>(0x438);
 }
 
 Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message* pack) const {

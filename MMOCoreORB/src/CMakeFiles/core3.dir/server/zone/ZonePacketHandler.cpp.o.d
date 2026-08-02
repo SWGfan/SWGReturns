@@ -1247,7 +1247,6 @@ src/CMakeFiles/core3.dir/server/zone/ZonePacketHandler.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
@@ -1582,81 +1581,19 @@ src/CMakeFiles/core3.dir/server/zone/ZonePacketHandler.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/LootLotterySession.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/sessions/LootLotteryBallot.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/ShipUpdateTransformCallback.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/PlayClientEffectObjectMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/ShipUpdateTransformCollisionMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/ShipUpdateTransformMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ShipObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoVariable.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaFloatVariable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBasicVariable.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipDeltaVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVectorMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoPackedMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoBitArray.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBitArray.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/SharedShipObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ComponentSlots.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipTargetVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/variables/SpaceLaunchPoint.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedVelocity.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedUnitVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedPosition.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedRotationRate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedVelocity.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedRotationRate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/transform/Transform.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/PlayClientEffectObjectMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/JtlShipListRequestCallback.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/JtlShipListResponse.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/ShipControlDevice.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/GroupMemberSendSpaceInviteCallback.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/GroupMemberSendSpaceInviteMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/GroupMemberSpaceInviteResponseCallback.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/GroupMemberSpaceInviteResponseMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/UpdateShipTargetSlot.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/object/ObjectControllerMessageCallback.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/jtl/CreateProjectileMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ship/PackedPosition.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/ShipManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipComponentData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipProjectileData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/ShipAiAgent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPointsVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorTreeSlotSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorTreeSlotSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataMapSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipMissileData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipTurretData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/FighterShipObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipAppearanceData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/manager/DataArchiveStore.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipCollisionData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipChassisData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ComponentSlots.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipCollisionHardpoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipCountermeasureData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipChassisComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipComponentTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/Component.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/DroidCommandData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/ShipUniqueIdMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/SpaceSpawnGroup.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/SpaceSpawn.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/ShipAiAgentPilotData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/SpaceCombatManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/projectile/ShipProjectileMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/projectile/ShipProjectile.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/projectile/ShipProjectile.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/projectile/ShipMissile.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/jtl/UpdateMissileMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecombat/projectile/ShipCountermeasure.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/spacecollision/SpaceCollisionResult.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/ui/RequestCategoriesResponseMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/holocron/HolocronManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/holocron/BugCategory.h \

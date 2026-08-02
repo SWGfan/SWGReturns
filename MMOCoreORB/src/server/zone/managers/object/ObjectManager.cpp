@@ -234,7 +234,6 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<ResourceDeed>(SceneObjectType::RESOURCEDEED);
 	objectFactory.registerObject<EventPerkDeed>(SceneObjectType::EVENTPERKDEED);
 	objectFactory.registerObject<VetHarvesterDeed>(SceneObjectType::VETHARVESTERDEED);
-	objectFactory.registerObject<ShipDeed>(SceneObjectType::SHIPDEED);
 	objectFactory.registerObject<GroupObject>(SceneObjectType::GROUPOBJECT);
 	objectFactory.registerObject<GuildObject>(SceneObjectType::GUILDOBJECT);
 	objectFactory.registerObject<StimPack>(SceneObjectType::STIMPACK);
@@ -339,6 +338,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<FactoryCrate>(SceneObjectType::FACTORYCRATE);
 	objectFactory.registerObject<FighterShipObject>(SceneObjectType::SHIPFIGHTER);
 	objectFactory.registerObject<SpaceStationObject>(SceneObjectType::SHIPSTATION);
+	objectFactory.registerObject<StaticObject>(SceneObjectType::SPACEOBJECT);
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::CRYSTAL);
 	objectFactory.registerObject<VendorToken>(SceneObjectType::VENDORTOKEN);
 	objectFactory.registerObject<CreditChipObject>(SceneObjectType::CREDITCHIP);

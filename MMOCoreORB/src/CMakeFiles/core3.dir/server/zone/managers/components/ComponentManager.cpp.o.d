@@ -1162,7 +1162,6 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/vendor/VendorContainerComponent.h \
@@ -1353,7 +1352,6 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/intangible/components/WarrenDiskContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/vendor/AuctionTerminalDataComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/components/PlayerZoneComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/components/PlayerSpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/building/components/BuildingDataComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/building/components/DestructibleBuildingDataComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/building/components/ShuttleZoneComponent.h \
@@ -1418,7 +1416,6 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/EnclaveTerminalMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/DestructibleBuildingMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/StructureTerminalMenuComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/ShipPermissionTerminalMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/HQMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/UplinkTerminalMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/terminal/components/SecurityTerminalMenuComponent.h \
@@ -1429,13 +1426,6 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/installation/components/FactoryObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/installation/components/MinefieldMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/GroundZoneContainerComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/SpaceZoneContainerComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/SpaceZone.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneProcessServer.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/OctreeReference.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/Octree.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/components/ShipContainerComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/components/PobShipContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/ElevatorMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/ElevatorUpMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/ElevatorMenuComponent.h \
@@ -1471,6 +1461,7 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/tool/recycle/RecycleResourceTask.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/resource/ResourceManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/resource/resourcespawner/ResourceSpawner.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneProcessServer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/name/NameManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/name/NameData.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/name/NameRules.h \
@@ -1653,7 +1644,4 @@ src/CMakeFiles/core3.dir/server/zone/managers/components/ComponentManager.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/droid/DroidHarvestModuleDataComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/droid/DroidPersonalityModuleDataComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/PobShipObjectMenuComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/StarshipPaintKitObjectMenuComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/tangible/components/StarshipTextureKitObjectMenuComponent.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.h

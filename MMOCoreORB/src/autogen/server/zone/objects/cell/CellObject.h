@@ -56,22 +56,6 @@ class BuildingObjectPOD;
 
 using namespace server::zone::objects::building;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-
-class PobShipObject;
-
-class PobShipObjectPOD;
-
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship;
-
 #include "engine/lua/Luna.h"
 
 #include "server/zone/objects/scene/variables/ContainerPermissions.h"
@@ -109,8 +93,6 @@ public:
 	bool hasForceLoadObject() const;
 
 	void onBuildingInsertedToZone(BuildingObject* building);
-
-	void onShipInsertedToZone(PobShipObject* pobShip);
 
 	/**
 	 * Sends the contained non slotted objects to the specified player
@@ -230,8 +212,6 @@ public:
 
 	void onBuildingInsertedToZone(BuildingObject* building);
 
-	void onShipInsertedToZone(PobShipObject* pobShip);
-
 	/**
 	 * Sends the contained non slotted objects to the specified player
 	 * @pre { this object is locked }
@@ -349,8 +329,6 @@ public:
 
 	void onBuildingInsertedToZone(BuildingObject* building);
 
-	void onShipInsertedToZone(PobShipObject* pobShip);
-
 	void sendContainerObjectsTo(SceneObject* player, bool forceLoad);
 
 	void sendPermissionsTo(CreatureObject* object, bool allowEntry);
@@ -416,7 +394,6 @@ public:
 	int onContainerLoaded(lua_State *L);
 	int hasForceLoadObject(lua_State *L);
 	int onBuildingInsertedToZone(lua_State *L);
-	int onShipInsertedToZone(lua_State *L);
 	int sendContainerObjectsTo(lua_State *L);
 	int sendPermissionsTo(lua_State *L);
 	int canAddObject(lua_State *L);

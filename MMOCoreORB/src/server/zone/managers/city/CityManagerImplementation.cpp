@@ -1752,10 +1752,10 @@ void CityManagerImplementation::registerCity(CityRegion* city, CreatureObject* m
 	if (cityCat == nullptr)
 		return;
 
-	city->setRegistered(true);
-
 	if (city->getRegionsCount() == 0)
 		return;
+
+	city->setRegistered(true);
 
 	ManagedReference<Region*> aa = city->getRegion(0);
 	aa->setPlanetMapCategory(cityCat);

@@ -8,13 +8,11 @@
 
 #include "server/zone/objects/building/BuildingObject.h"
 
-#include "server/zone/objects/ship/PobShipObject.h"
-
 /*
  *	CellObjectStub
  */
 
-enum {RPC_SETALLOWENTRYPERMISSIONGROUP__STRING_,RPC_NOTIFYLOADFROMDATABASE__,RPC_ONCONTAINERLOADED__,RPC_HASFORCELOADOBJECT__,RPC_ONBUILDINGINSERTEDTOZONE__BUILDINGOBJECT_,RPC_ONSHIPINSERTEDTOZONE__POBSHIPOBJECT_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_SENDPERMISSIONSTO__CREATUREOBJECT_BOOL_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_TRANSFEROBJECT__SCENEOBJECT_INT_BOOL_BOOL_BOOL_,RPC_REMOVEOBJECT__SCENEOBJECT_SCENEOBJECT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_DESTROYALLPLAYERITEMS__,RPC_GETCELLNUMBER__,RPC_SETCELLNUMBER__INT_,RPC_GETCELLFIREVARIABLE__,RPC_SETCELLFIREVARIABLE__FLOAT_,RPC_ISCELLOBJECT__};
+enum {RPC_SETALLOWENTRYPERMISSIONGROUP__STRING_,RPC_NOTIFYLOADFROMDATABASE__,RPC_ONCONTAINERLOADED__,RPC_HASFORCELOADOBJECT__,RPC_ONBUILDINGINSERTEDTOZONE__BUILDINGOBJECT_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_SENDPERMISSIONSTO__CREATUREOBJECT_BOOL_,RPC_CANADDOBJECT__SCENEOBJECT_INT_STRING_,RPC_TRANSFEROBJECT__SCENEOBJECT_INT_BOOL_BOOL_BOOL_,RPC_REMOVEOBJECT__SCENEOBJECT_SCENEOBJECT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_DESTROYALLPLAYERITEMS__,RPC_GETCELLNUMBER__,RPC_SETCELLNUMBER__INT_,RPC_GETCELLFIREVARIABLE__,RPC_SETCELLFIREVARIABLE__FLOAT_,RPC_ISCELLOBJECT__};
 
 CellObject::CellObject() : SceneObject(DummyConstructorParameter::instance()) {
 	CellObjectImplementation* _implementation = new CellObjectImplementation();
@@ -112,21 +110,6 @@ void CellObject::onBuildingInsertedToZone(BuildingObject* building) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->onBuildingInsertedToZone(building);
-	}
-}
-
-void CellObject::onShipInsertedToZone(PobShipObject* pobShip) {
-	CellObjectImplementation* _implementation = static_cast<CellObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ONSHIPINSERTEDTOZONE__POBSHIPOBJECT_);
-		method.addObjectParameter(pobShip);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->onShipInsertedToZone(pobShip);
 	}
 }
 
@@ -628,14 +611,6 @@ void CellObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_ONSHIPINSERTEDTOZONE__POBSHIPOBJECT_:
-		{
-			PobShipObject* pobShip = static_cast<PobShipObject*>(inv->getObjectParameter());
-			
-			onShipInsertedToZone(pobShip);
-			
-		}
-		break;
 	case RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_:
 		{
 			SceneObject* player = static_cast<SceneObject*>(inv->getObjectParameter());
@@ -777,10 +752,6 @@ void CellObjectAdapter::onBuildingInsertedToZone(BuildingObject* building) {
 	(static_cast<CellObject*>(stub))->onBuildingInsertedToZone(building);
 }
 
-void CellObjectAdapter::onShipInsertedToZone(PobShipObject* pobShip) {
-	(static_cast<CellObject*>(stub))->onShipInsertedToZone(pobShip);
-}
-
 void CellObjectAdapter::sendContainerObjectsTo(SceneObject* player, bool forceLoad) {
 	(static_cast<CellObject*>(stub))->sendContainerObjectsTo(player, forceLoad);
 }
@@ -887,7 +858,6 @@ Luna<LuaCellObject>::RegType LuaCellObject::Register[] = {
 	{ "onContainerLoaded", &LuaCellObject::onContainerLoaded },
 	{ "hasForceLoadObject", &LuaCellObject::hasForceLoadObject },
 	{ "onBuildingInsertedToZone", &LuaCellObject::onBuildingInsertedToZone },
-	{ "onShipInsertedToZone", &LuaCellObject::onShipInsertedToZone },
 	{ "sendContainerObjectsTo", &LuaCellObject::sendContainerObjectsTo },
 	{ "sendPermissionsTo", &LuaCellObject::sendPermissionsTo },
 	{ "canAddObject", &LuaCellObject::canAddObject },
@@ -1019,25 +989,6 @@ int LuaCellObject::onBuildingInsertedToZone(lua_State *L) {
 		}
 	} else {
 		throw LuaCallbackException(L, "invalid argument at 0 for lua method 'CellObject:onBuildingInsertedToZone(userdata)'");
-	}
-	return 0;
-}
-
-int LuaCellObject::onShipInsertedToZone(lua_State *L) {
-	int parameterCount = lua_gettop(L) - 1;
-	
-	if (lua_isuserdata(L, -1)) {
-		if (parameterCount == 1) {
-			PobShipObject* pobShip = static_cast<PobShipObject*>(lua_touserdata(L, -1));
-
-			realObject->onShipInsertedToZone(pobShip);
-
-			return 0;
-		} else {
-			throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'CellObject:onShipInsertedToZone(userdata)'");
-		}
-	} else {
-		throw LuaCallbackException(L, "invalid argument at 0 for lua method 'CellObject:onShipInsertedToZone(userdata)'");
 	}
 	return 0;
 }

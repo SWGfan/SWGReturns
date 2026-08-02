@@ -1060,6 +1060,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/thread/Lockable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/orb/object/DistributedObjectServant.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/JSONSerializationType.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/TreeEntry.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/util/SortedVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/CloseObjectsVector.h \
@@ -1074,7 +1075,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Observer.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/ObserverEventMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/log/LoggerHelperStream.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/log/Logger.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/Facade.h \
@@ -1209,7 +1209,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
@@ -1225,124 +1224,16 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o:
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BasePacket.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BaseMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/group/GroupObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/group/GroupList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaFloatVariable.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBasicVariable.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/DeltaMessage.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/group/GroupMember.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/group/GroupManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/StringIdChatParameter.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/chat/ChatParameter.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StringIdParameter.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/StringId.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/ControlDevice.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/lua/Luna.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/IntangibleObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/CooldownTimerMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/Buff.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffType.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/buffs/../BuffAttribute.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/buffs/BuffCRC.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTimeList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/damageovertime/DamageOverTime.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueActionVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/CommandQueueAction.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/SkillList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/SkillModEntry.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVectorMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/skill/SkillModManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/CreaturePosture.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/datatables/DataTableIff.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/CreatureLocomotion.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/CreatureState.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/SpeedMultiplierModChanges.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/Skill.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/creature/variables/WearablesDeltaVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/packets/scene/AttributeListMessage.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/OptionBitmask.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/CustomizationVariables.h \
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/crafting/ValuesMap.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/crafting/ValuesClasses.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/ArmorObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/WearableObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/attachment/Attachment.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ArmorObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/SharedTangibleObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/crafting/resourceweight/ResourceWeight.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/lang/ref/WeakReference.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoVariable.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBasicVariable.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipDeltaVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVectorMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoPackedMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaAutoBitArray.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBitArray.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/DeltaBitArray.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/SharedShipObjectTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ComponentSlots.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipTargetVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/player/variables/SpaceLaunchPoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipComponent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipComponentData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/tangible/ship/ShipComponentTemplate.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/Component.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/events/ShipRecoveryEvent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ShipObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/Zone.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/room/ChatRoom.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneServer.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/service/proto/BasePacketHandler.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/core/ManagedService.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/Socket.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/SocketAddress.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/system/net/Packet.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/InRangeObjectsVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/ActiveAreasVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/ActiveArea.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/AreaShape.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/object/ObjectMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/planet/MapLocationTable.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/planet/MapLocationEntry.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/QuadTreeReference.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/QuadTree.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/TreeNode.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/CityRegion.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/Region.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/region/CitizenList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/region/events/CityUpdateEvent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/region/events/CitizenAssessmentEvent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/RecastNavMesh.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/RecastTileBuilder.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourNavMesh.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourAlloc.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/DetourStatus.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/recast/Recast.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/pathfinding/RecastPolygon.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/structure/StructureObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/structure/StructurePermissionList.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src/engine/util/u3d/AABB.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/ShipAiAgent.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPointsVector.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/WorldCoordinates.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/cell/CellObject.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/SpacePatrolPoint.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorTreeSlotSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BehaviorTreeSlotSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataMapSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ai/btspace/BlackboardDataSpace.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipProjectileData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipMissileData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/ship/ShipTurretData.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/FighterShipObject.h
+ /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h

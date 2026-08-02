@@ -165,7 +165,6 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o: src/server
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/AutoDeltaSet.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
@@ -3810,7 +3809,6 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o: src/
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/AutoDeltaSet.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
@@ -6226,7 +6224,6 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o: src/server/cha
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
   src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
@@ -7589,7 +7586,6 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o: src/serv
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/AutoDeltaSet.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
@@ -9235,7 +9231,7 @@ src/server/zone/packets/chat/ChatPersistentMessageToClient.h:
 
 /usr/include/c++/13/bits/localefwd.h:
 
-/usr/include/c++/13/bits/locale_facets_nonio.tcc:
+/usr/include/boost/align/detail/throw_exception.hpp:
 
 /usr/include/boost/align/detail/max_align.hpp:
 
@@ -9805,9 +9801,7 @@ utils/engine3/MMOEngine/src/system/lang/Float.h:
 
 /usr/include/boost/preprocessor/arithmetic/add.hpp:
 
-src/server/zone/managers/player/JukeboxSong.h:
-
-/usr/include/boost/core/addressof.hpp:
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
 src/server/zone/managers/player/BadgeList.h:
 
@@ -10495,10 +10489,6 @@ src/server/zone/objects/scene/components/ContainerComponent.h:
 
 utils/engine3/MMOEngine/src/engine/log/Logger.h:
 
-src/server/zone/objects/scene/components/SpaceZoneComponent.h:
-
-/usr/include/boost/type_traits/is_const.hpp:
-
 /usr/include/boost/parameter/aux_/arg_list.hpp:
 
 src/server/zone/objects/scene/variables/DeltaBitArray.h:
@@ -10717,7 +10707,9 @@ src/templates/params/primitives/StringParam.h:
 
 /usr/include/boost/preprocessor/comparison/equal.hpp:
 
-/usr/include/boost/align/detail/throw_exception.hpp:
+src/server/zone/managers/player/JukeboxSong.h:
+
+/usr/include/boost/core/addressof.hpp:
 
 /usr/include/boost/type_traits/is_void.hpp:
 
@@ -11614,6 +11606,8 @@ utils/engine3/MMOEngine/src/engine/db/IndexDatabase.h:
 /usr/include/boost/predef/compiler/gcc.h:
 
 /usr/include/boost/type_traits/is_assignable.hpp:
+
+/usr/include/boost/type_traits/is_const.hpp:
 
 /usr/include/boost/parameter/aux_/parameter_requirements.hpp:
 

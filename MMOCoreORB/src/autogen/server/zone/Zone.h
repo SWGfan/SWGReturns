@@ -99,22 +99,6 @@ using namespace server::zone::managers::planet;
 namespace server {
 namespace zone {
 namespace managers {
-namespace space {
-
-class SpaceManager;
-
-class SpaceManagerPOD;
-
-} // namespace space
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::space;
-
-namespace server {
-namespace zone {
-namespace managers {
 namespace creature {
 
 class CreatureManager;
@@ -332,8 +316,6 @@ public:
 
 	PlanetManager* getPlanetManager();
 
-	SpaceManager* getSpaceManager();
-
 	ActiveAreaQuadTree* getActiveAreaTree();
 
 	void addCityRegionToUpdate(CityRegion* city);
@@ -525,8 +507,6 @@ public:
 
 	virtual PlanetManager* getPlanetManager();
 
-	virtual SpaceManager* getSpaceManager();
-
 	virtual ActiveAreaQuadTree* getActiveAreaTree();
 
 	virtual void addCityRegionToUpdate(CityRegion* city);
@@ -669,8 +649,6 @@ public:
 	CreatureManager* getCreatureManager();
 
 	PlanetManager* getPlanetManager();
-
-	SpaceManager* getSpaceManager();
 
 	void addCityRegionToUpdate(CityRegion* city);
 

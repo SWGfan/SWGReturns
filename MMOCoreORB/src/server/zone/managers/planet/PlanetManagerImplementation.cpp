@@ -497,6 +497,9 @@ Reference<SceneObject*> PlanetManagerImplementation::loadSnapshotObject(WorldSna
 
 	object = zoneServer->createClientObject(serverTemplate.hashCode(), objectID);
 
+	if (object == nullptr)
+		return nullptr;
+
 	Locker locker(object);
 
 	object->initializePosition(position.getX(), position.getZ(), position.getY());

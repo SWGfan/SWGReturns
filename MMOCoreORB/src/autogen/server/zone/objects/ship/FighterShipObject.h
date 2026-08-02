@@ -24,13 +24,7 @@
 #endif
 #include "engine/util/json_utils.h"
 
-#include "templates/SharedObjectTemplate.h"
-
-#include "templates/tangible/ship/SharedShipObjectTemplate.h"
-
 #include "server/zone/objects/ship/ShipObject.h"
-
-#include "engine/log/Logger.h"
 
 namespace server {
 namespace zone {
@@ -41,14 +35,6 @@ class FighterShipObject : public ShipObject {
 public:
 	FighterShipObject();
 
-	void loadTemplateData(SharedObjectTemplate* templateData);
-
-	void loadTemplateData(SharedShipObjectTemplate* shipTemp);
-
-	bool isFighterShipObject();
-
-	FighterShipObject* asFighterShipObject();
-
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -58,10 +44,6 @@ protected:
 	FighterShipObject(DummyConstructorParameter* param);
 
 	virtual ~FighterShipObject();
-
-	bool __isFighterShipObject();
-
-	FighterShipObject* __asFighterShipObject();
 
 	friend class FighterShipObjectHelper;
 };
@@ -84,14 +66,6 @@ public:
 	FighterShipObjectImplementation();
 
 	FighterShipObjectImplementation(DummyConstructorParameter* param);
-
-	virtual void loadTemplateData(SharedObjectTemplate* templateData);
-
-	virtual void loadTemplateData(SharedShipObjectTemplate* shipTemp);
-
-	bool isFighterShipObject();
-
-	FighterShipObject* asFighterShipObject();
 
 	WeakReference<FighterShipObject*> _this;
 

@@ -24,7 +24,6 @@ import server.zone.ZoneClientSession;
 import server.zone.ZoneHandler;
 import server.zone.Zone;
 import server.zone.GroundZone;
-import server.zone.SpaceZone;
 import server.chat.ChatManager;
 import conf.ConfigManager;
 import server.zone.managers.object.ObjectManager;
@@ -41,7 +40,6 @@ import server.zone.managers.auction.AuctionManager;
 import server.zone.managers.mission.MissionManager;
 import server.zone.managers.stringid.StringIdManager;
 import server.zone.managers.creature.CreatureTemplateManager;
-import server.zone.managers.ship.ShipAgentTemplateManager;
 import server.zone.managers.creature.DnaManager;
 import server.zone.managers.creature.PetManager;
 import server.zone.managers.guild.GuildManager;
@@ -61,7 +59,6 @@ class ZoneServer extends ManagedService implements Logger {
 	private transient ZoneProcessServer processor;
 
 	private transient VectorMap<string, GroundZone> zones;
-	private transient VectorMap<string, SpaceZone> spaceZones;
 
 	private transient ObjectManager objectManager;
 	private PlayerManager playerManager;
@@ -85,7 +82,6 @@ class ZoneServer extends ManagedService implements Logger {
 
 	private transient CreatureTemplateManager creatureTemplateManager;
 
-	private transient ShipAgentTemplateManager shipAgentTemplateManager;
 
 	private transient DnaManager dnaManager;
 
@@ -307,22 +303,6 @@ class ZoneServer extends ManagedService implements Logger {
 			return 0;
 
 		return zones.size();
-	}
-
-	@dirty
-	public SpaceZone getSpaceZone(int idx) {
-		if (!spaceZones)
-			return null;
-
-		return spaceZones.get(idx);
-	}
-
-	@read
-	public int getSpaceZoneCount() {
-		if (!spaceZones)
-			return 0;
-
-		return spaceZones.size();
 	}
 
 	@read

@@ -99,18 +99,6 @@ class GroundZonePOD;
 using namespace server::zone;
 
 namespace server {
-namespace zone {
-
-class SpaceZone;
-
-class SpaceZonePOD;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
-namespace server {
 namespace chat {
 
 class ChatManager;
@@ -349,20 +337,6 @@ using namespace server::zone::managers::creature;
 namespace server {
 namespace zone {
 namespace managers {
-namespace ship {
-
-class ShipAgentTemplateManager;
-
-} // namespace ship
-} // namespace managers
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::managers::ship;
-
-namespace server {
-namespace zone {
-namespace managers {
 namespace creature {
 
 class DnaManager;
@@ -586,10 +560,6 @@ public:
 
 	int getZoneCount() const;
 
-	SpaceZone* getSpaceZone(int idx);
-
-	int getSpaceZoneCount() const;
-
 	int getMaxPlayers() const;
 
 	int getTotalPlayers() const;
@@ -686,8 +656,6 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 
 	Reference<VectorMap<String, ManagedReference<GroundZone* > >* > zones;
 
-	Reference<VectorMap<String, ManagedReference<SpaceZone* > >* > spaceZones;
-
 	Reference<ObjectManager* > objectManager;
 
 	ManagedReference<PlayerManager* > playerManager;
@@ -721,8 +689,6 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 	Reference<StringIdManager* > stringIdManager;
 
 	Reference<CreatureTemplateManager* > creatureTemplateManager;
-
-	Reference<ShipAgentTemplateManager* > shipAgentTemplateManager;
 
 	Reference<DnaManager* > dnaManager;
 
@@ -877,10 +843,6 @@ public:
 	Zone* getZone(int idx);
 
 	int getZoneCount() const;
-
-	SpaceZone* getSpaceZone(int idx);
-
-	int getSpaceZoneCount() const;
 
 	int getMaxPlayers() const;
 
@@ -1068,10 +1030,6 @@ public:
 	Zone* getZone(int idx);
 
 	int getZoneCount() const;
-
-	SpaceZone* getSpaceZone(int idx);
-
-	int getSpaceZoneCount() const;
 
 	int getMaxPlayers() const;
 

@@ -1220,7 +1220,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/templates/params/creature/PlayerArrangement.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ContainerComponent.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/AttributeListComponent.h \
@@ -1335,12 +1334,6 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o: \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/planet/TravelFare.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/collision/IntersectionResults.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/pathfinding/NavArea.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/space/SpaceManager.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/space/SpaceRegionMap.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceRegion.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/SpaceActiveArea.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/ship/SpaceSpawn.h \
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/CreatureManager.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/managers/creature/SpawnAreaMap.h \
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/SpawnArea.h \

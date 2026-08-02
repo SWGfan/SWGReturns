@@ -11,7 +11,6 @@
 #include "server/zone/objects/player/sui/SuiCallback.h"
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
-#include "server/zone/objects/ship/PobShipObject.h"
 
 class DeleteAllItemsConfirmSuiCallback : public SuiCallback {
 public:
@@ -26,7 +25,7 @@ public:
 
 		ManagedReference<SceneObject*> sceneO = sui->getUsingObject().get();
 
-		if (sceneO == nullptr || (!sceneO->isBuildingObject() && !sceneO->isPobShip()))
+		//if (sceneO == nullptr || (!sceneO->isBuildingObject() && !sceneO->isPobShip()))
 			return;
 
 		Locker _lock(sceneO, creature);

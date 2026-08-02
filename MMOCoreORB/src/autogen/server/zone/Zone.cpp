@@ -14,8 +14,6 @@
 
 #include "server/zone/managers/planet/PlanetManager.h"
 
-#include "server/zone/managers/space/SpaceManager.h"
-
 #include "server/zone/managers/creature/CreatureManager.h"
 
 #include "server/zone/managers/gcw/GCWManager.h"
@@ -32,7 +30,7 @@
  *	ZoneStub
  */
 
-enum {RPC_CREATECONTAINERCOMPONENT__ = 2833757774,RPC_INITIALIZEPRIVATEDATA__,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_FINALIZE__,RPC_STARTMANAGERS__,RPC_STOPMANAGERS__,RPC_CLEARZONE__,RPC_UPDATEACTIVEAREAS__TANGIBLEOBJECT_,RPC_ADDSCENEOBJECT__SCENEOBJECT_,RPC_DROPSCENEOBJECT__SCENEOBJECT_,RPC_GETHEIGHT__FLOAT_FLOAT_,RPC_GETHEIGHTNOCACHE__FLOAT_FLOAT_,RPC_GETNEARESTPLANETARYOBJECT__SCENEOBJECT_STRING_STRING_,RPC_REGISTEROBJECTWITHPLANETARYMAP__SCENEOBJECT_,RPC_UNREGISTEROBJECTWITHPLANETARYMAP__SCENEOBJECT_,RPC_OBJECTISVALIDPLANETARYMAPPERFORMANCELOCATION__SCENEOBJECT_,RPC_ISOBJECTREGISTEREDWITHPLANETARYMAP__SCENEOBJECT_,RPC_UPDATEPLANETARYMAPICON__SCENEOBJECT_BYTE_,RPC_SENDMAPLOCATIONSTO__CREATUREOBJECT_,RPC_GETMINX__,RPC_GETMAXX__,RPC_GETMINY__,RPC_GETMAXY__,RPC_UPDATECITYREGIONS__,RPC_GETCREATUREMANAGER__,RPC_GETPLANETMANAGER__,RPC_GETSPACEMANAGER__,RPC_ADDCITYREGIONTOUPDATE__CITYREGION_,RPC_GETBOUNDINGRADIUS__,RPC_GETZONEOBJECTRANGE__,RPC_INCREMENTSPAWNEDAGENTS__,RPC_DECREMENTSPAWNEDAGENTS__,RPC_GETZONENAME__,RPC_GETZONECRC__,RPC_GETZONESERVER__,RPC_GETGCWMANAGER__,RPC_GETGALACTICTIME__,RPC_HASMANAGERSSTARTED__,RPC_ISZONECLEARED__,RPC_GETSPAWNEDAIAGENTS__,RPC_SETPLANETCHATROOM__CHATROOM_,RPC_GETPLANETCHATROOM__,RPC_ISGROUNDZONE__,RPC_ISSPACEZONE__};
+enum {RPC_CREATECONTAINERCOMPONENT__ = 2833757774,RPC_INITIALIZEPRIVATEDATA__,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_FINALIZE__,RPC_STARTMANAGERS__,RPC_STOPMANAGERS__,RPC_CLEARZONE__,RPC_UPDATEACTIVEAREAS__TANGIBLEOBJECT_,RPC_ADDSCENEOBJECT__SCENEOBJECT_,RPC_DROPSCENEOBJECT__SCENEOBJECT_,RPC_GETHEIGHT__FLOAT_FLOAT_,RPC_GETHEIGHTNOCACHE__FLOAT_FLOAT_,RPC_GETNEARESTPLANETARYOBJECT__SCENEOBJECT_STRING_STRING_,RPC_REGISTEROBJECTWITHPLANETARYMAP__SCENEOBJECT_,RPC_UNREGISTEROBJECTWITHPLANETARYMAP__SCENEOBJECT_,RPC_OBJECTISVALIDPLANETARYMAPPERFORMANCELOCATION__SCENEOBJECT_,RPC_ISOBJECTREGISTEREDWITHPLANETARYMAP__SCENEOBJECT_,RPC_UPDATEPLANETARYMAPICON__SCENEOBJECT_BYTE_,RPC_SENDMAPLOCATIONSTO__CREATUREOBJECT_,RPC_GETMINX__,RPC_GETMAXX__,RPC_GETMINY__,RPC_GETMAXY__,RPC_UPDATECITYREGIONS__,RPC_GETCREATUREMANAGER__,RPC_GETPLANETMANAGER__,RPC_ADDCITYREGIONTOUPDATE__CITYREGION_,RPC_GETBOUNDINGRADIUS__,RPC_GETZONEOBJECTRANGE__,RPC_INCREMENTSPAWNEDAGENTS__,RPC_DECREMENTSPAWNEDAGENTS__,RPC_GETZONENAME__,RPC_GETZONECRC__,RPC_GETZONESERVER__,RPC_GETGCWMANAGER__,RPC_GETGALACTICTIME__,RPC_HASMANAGERSSTARTED__,RPC_ISZONECLEARED__,RPC_GETSPAWNEDAIAGENTS__,RPC_SETPLANETCHATROOM__CHATROOM_,RPC_GETPLANETCHATROOM__,RPC_ISGROUNDZONE__,RPC_ISSPACEZONE__};
 
 Zone::Zone(ZoneProcessServer* processor, const String& zoneName) : SceneObject(DummyConstructorParameter::instance()) {
 	ZoneImplementation* _implementation = new ZoneImplementation(processor, zoneName);
@@ -602,20 +600,6 @@ PlanetManager* Zone::getPlanetManager() {
 	}
 }
 
-SpaceManager* Zone::getSpaceManager() {
-	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSPACEMANAGER__);
-
-		return static_cast<SpaceManager*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->getSpaceManager();
-	}
-}
-
 ActiveAreaQuadTree* Zone::getActiveAreaTree() {
 	ZoneImplementation* _implementation = static_cast<ZoneImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
@@ -1097,11 +1081,6 @@ PlanetManager* ZoneImplementation::getPlanetManager() {
 	return NULL;
 }
 
-SpaceManager* ZoneImplementation::getSpaceManager() {
-	// server/zone/Zone.idl():  		return null;
-	return NULL;
-}
-
 ActiveAreaQuadTree* ZoneImplementation::getActiveAreaTree() {
 	// server/zone/Zone.idl():  		return null;
 	return NULL;
@@ -1409,13 +1388,6 @@ void ZoneAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
-	case RPC_GETSPACEMANAGER__:
-		{
-			
-			DistributedObject* _m_res = getSpaceManager();
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
-		}
-		break;
 	case RPC_ADDCITYREGIONTOUPDATE__CITYREGION_:
 		{
 			CityRegion* city = static_cast<CityRegion*>(inv->getObjectParameter());
@@ -1644,10 +1616,6 @@ CreatureManager* ZoneAdapter::getCreatureManager() {
 
 PlanetManager* ZoneAdapter::getPlanetManager() {
 	return (static_cast<Zone*>(stub))->getPlanetManager();
-}
-
-SpaceManager* ZoneAdapter::getSpaceManager() {
-	return (static_cast<Zone*>(stub))->getSpaceManager();
 }
 
 void ZoneAdapter::addCityRegionToUpdate(CityRegion* city) {

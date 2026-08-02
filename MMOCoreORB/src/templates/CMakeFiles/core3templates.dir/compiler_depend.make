@@ -34716,14 +34716,12 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: src/t
   src/server/zone/objects/scene/components/GroundZoneComponent.h \
   src/server/zone/objects/scene/components/ObjectMenuComponent.h \
   src/server/zone/objects/scene/components/SceneObjectComponent.h \
-  src/server/zone/objects/scene/components/SpaceZoneComponent.h \
   src/server/zone/objects/scene/variables/ContainerObjectsMap.h \
   src/server/zone/objects/scene/variables/ContainerPermissions.h \
   src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h \
   src/server/zone/objects/scene/variables/PendingTasksMap.h \
   src/server/zone/objects/scene/variables/StdFunction.h \
   src/server/zone/objects/scene/variables/StringId.h \
-  src/server/zone/objects/ship/ComponentSlots.h \
   src/templates/ChildCreatureObject.h \
   src/templates/ChildObject.h \
   src/templates/IffTemplate.h \
@@ -34847,7 +34845,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: src/t
   src/templates/tangible/LootSchematicTemplate.h \
   src/templates/tangible/LootkitObjectTemplate.h \
   src/templates/tangible/MissionTerminalTemplate.h \
-  src/templates/tangible/NavicomputerDeedTemplate.h \
   src/templates/tangible/PetDeedTemplate.h \
   src/templates/tangible/PowerupStat.h \
   src/templates/tangible/PowerupTemplate.h \
@@ -34857,6 +34854,7 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: src/t
   src/templates/tangible/SharedCountingObjectTemplate.h \
   src/templates/tangible/SharedFactoryObjectTemplate.h \
   src/templates/tangible/SharedResourceContainerObjectTemplate.h \
+  src/templates/tangible/SharedShipObjectTemplate.h \
   src/templates/tangible/SharedStructureObjectTemplate.h \
   src/templates/tangible/SharedWeaponObjectTemplate.h \
   src/templates/tangible/SkillBuffTemplate.h \
@@ -34868,10 +34866,6 @@ src/templates/CMakeFiles/core3templates.dir/manager/TemplateManager.cpp.o: src/t
   src/templates/tangible/VehicleDeedTemplate.h \
   src/templates/tangible/WoundPackTemplate.h \
   src/templates/tangible/XpPurchaseTemplate.h \
-  src/templates/tangible/ship/SharedShipObjectTemplate.h \
-  src/templates/tangible/ship/ShipChassisTemplate.h \
-  src/templates/tangible/ship/ShipComponentTemplate.h \
-  src/templates/tangible/ship/ShipDeedTemplate.h \
   src/templates/tangible/tool/CraftingStationTemplate.h \
   src/templates/tangible/tool/CraftingToolTemplate.h \
   src/templates/tangible/tool/RecycleToolTemplate.h \
@@ -43182,8 +43176,6 @@ src/templates/tangible/tool/SlicingToolTemplate.h:
 
 src/templates/tangible/tool/RepairToolTemplate.h:
 
-src/templates/tangible/ship/ShipDeedTemplate.h:
-
 src/templates/tangible/XpPurchaseTemplate.h:
 
 src/templates/tangible/WoundPackTemplate.h:
@@ -43215,8 +43207,6 @@ src/templates/tangible/SchematicFragmentTemplate.h:
 src/templates/tangible/PowerupStat.h:
 
 src/templates/tangible/PetDeedTemplate.h:
-
-src/templates/tangible/NavicomputerDeedTemplate.h:
 
 src/templates/tangible/MissionTerminalTemplate.h:
 
@@ -43290,8 +43280,6 @@ src/templates/SharedUniverseObjectTemplate.h:
 
 src/templates/SharedStaticObjectTemplate.h:
 
-src/server/zone/objects/ship/ComponentSlots.h:
-
 src/server/zone/objects/scene/variables/StringId.h:
 
 src/server/zone/objects/scene/variables/PendingTasksMap.h:
@@ -43301,8 +43289,6 @@ src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h:
 src/server/zone/objects/scene/variables/ContainerPermissions.h:
 
 src/server/zone/objects/scene/variables/ContainerObjectsMap.h:
-
-src/server/zone/objects/scene/components/SpaceZoneComponent.h:
 
 src/server/zone/objects/scene/components/SceneObjectComponent.h:
 
@@ -43868,8 +43854,6 @@ utils/engine3/MMOEngine/src/system/lang/Pair.h:
 
 /usr/include/boost/align/detail/max_size.hpp:
 
-src/templates/tangible/ship/ShipComponentTemplate.h:
-
 /usr/include/boost/align/detail/alignment_of_cxx11.hpp:
 
 /usr/include/boost/predef/hardware/simd/x86_amd.h:
@@ -43929,8 +43913,6 @@ utils/engine3/MMOEngine/src/engine/util/u3d/AStarAlgorithm.h:
 /usr/include/boost/mpl/aux_/preprocessed/gcc/or.hpp:
 
 /usr/include/asm-generic/bitsperlong.h:
-
-src/templates/tangible/ship/ShipChassisTemplate.h:
 
 /usr/include/boost/mpl/eval_if.hpp:
 
@@ -45244,8 +45226,6 @@ utils/engine3/MMOEngine/src/system/thread/ThreadLocal.h:
 
 /usr/include/boost/predef/language/objc.h:
 
-src/templates/tangible/ship/SharedShipObjectTemplate.h:
-
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
@@ -45589,6 +45569,8 @@ utils/engine3/MMOEngine/src/engine/core/ManagedReference.h:
 /usr/include/boost/utility/detail/result_of_variadic.hpp:
 
 /usr/include/boost/utility/result_of.hpp:
+
+src/templates/tangible/SharedShipObjectTemplate.h:
 
 /usr/include/c++/13/bits/stl_vector.h:
 

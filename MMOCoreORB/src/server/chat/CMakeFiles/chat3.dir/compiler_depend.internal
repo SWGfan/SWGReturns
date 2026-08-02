@@ -166,7 +166,6 @@ src/server/chat/CMakeFiles/chat3.dir/ChatManagerImplementation.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h
@@ -3814,7 +3813,6 @@ src/server/chat/CMakeFiles/chat3.dir/PersistentMessageImplementation.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h
@@ -6232,7 +6230,6 @@ src/server/chat/CMakeFiles/chat3.dir/WaypointChatParameter.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/OrderedTaskExecutioner.h
@@ -7596,7 +7593,6 @@ src/server/chat/CMakeFiles/chat3.dir/room/ChatRoomImplementation.cpp.o
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/GroundZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/ObjectMenuComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SceneObjectComponent.h
- /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/components/SpaceZoneComponent.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/AutoDeltaSet.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerObjectsMap.h
  /home/ubuntu/SWGReturns01/MMOCoreORB/src/server/zone/objects/scene/variables/ContainerPermissions.h

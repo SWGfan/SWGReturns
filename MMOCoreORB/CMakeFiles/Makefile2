@@ -465,7 +465,7 @@ utils/engine3/MMOEngine/CMakeFiles/engine3compdb.dir/all: utils/engine3/MMOEngin
 
 # Build rule for subdir invocation for target.
 utils/engine3/MMOEngine/CMakeFiles/engine3compdb.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/engine3/MMOEngine/CMakeFiles/engine3compdb.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : utils/engine3/MMOEngine/CMakeFiles/engine3compdb.dir/rule
@@ -486,12 +486,12 @@ utils/engine3/MMOEngine/CMakeFiles/engine3compdb.dir/clean:
 utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/all: utils/engine3/MMOEngine/src/CMakeFiles/engine3idl.dir/all
 	$(MAKE) $(MAKESILENT) -f utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/build.make utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/depend
 	$(MAKE) $(MAKESILENT) -f utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/build.make utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=46,47,48,49,50,51,52,53,54,55 "Built target engine3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=46,47,48,49,50,51,52,53,54,55,56 "Built target engine3"
 .PHONY : utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/all
 
 # Build rule for subdir invocation for target.
 utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/rule
@@ -569,7 +569,7 @@ utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/all: utils/engi
 
 # Build rule for subdir invocation for target.
 utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/rule
@@ -590,12 +590,12 @@ utils/engine3/MMOEngine/src/testsuite3/CMakeFiles/testsuite3.dir/clean:
 src/CMakeFiles/idlobjects.dir/all: utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/idlobjects.dir/build.make src/CMakeFiles/idlobjects.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/idlobjects.dir/build.make src/CMakeFiles/idlobjects.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98 "Built target idlobjects"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97 "Built target idlobjects"
 .PHONY : src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/idlobjects.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/idlobjects.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/CMakeFiles/idlobjects.dir/rule
@@ -632,7 +632,7 @@ src/CMakeFiles/core3.dir/all: src/server/chat/CMakeFiles/chat3.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/core3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 98
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 99
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/core3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/CMakeFiles/core3.dir/rule
@@ -710,7 +710,7 @@ src/conf/CMakeFiles/conf3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/conf/CMakeFiles/conf3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/conf/CMakeFiles/conf3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/conf/CMakeFiles/conf3.dir/rule
@@ -736,7 +736,7 @@ src/terrain/CMakeFiles/core3terrain.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/terrain/CMakeFiles/core3terrain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 54
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/terrain/CMakeFiles/core3terrain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/terrain/CMakeFiles/core3terrain.dir/rule
@@ -762,7 +762,7 @@ src/templates/CMakeFiles/core3templates.dir/all: src/CMakeFiles/idlobjects.dir/a
 
 # Build rule for subdir invocation for target.
 src/templates/CMakeFiles/core3templates.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 56
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 55
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/templates/CMakeFiles/core3templates.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/templates/CMakeFiles/core3templates.dir/rule
@@ -783,7 +783,7 @@ src/templates/CMakeFiles/core3templates.dir/clean:
 src/pathfinding/CMakeFiles/core3pathfinding.dir/all: src/CMakeFiles/idlobjects.dir/all
 	$(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/pathfinding/CMakeFiles/core3pathfinding.dir/build.make src/pathfinding/CMakeFiles/core3pathfinding.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=41 "Built target core3pathfinding"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=40,41 "Built target core3pathfinding"
 .PHONY : src/pathfinding/CMakeFiles/core3pathfinding.dir/all
 
 # Build rule for subdir invocation for target.
@@ -814,7 +814,7 @@ src/server/db/CMakeFiles/db3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/db/CMakeFiles/db3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/db/CMakeFiles/db3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/server/db/CMakeFiles/db3.dir/rule
@@ -840,7 +840,7 @@ src/server/status/CMakeFiles/status3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/status/CMakeFiles/status3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 54
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/status/CMakeFiles/status3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/server/status/CMakeFiles/status3.dir/rule
@@ -866,7 +866,7 @@ src/server/web/CMakeFiles/web3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/web/CMakeFiles/web3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 54
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/web/CMakeFiles/web3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/server/web/CMakeFiles/web3.dir/rule
@@ -892,7 +892,7 @@ src/server/ping/CMakeFiles/ping3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/ping/CMakeFiles/ping3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/ping/CMakeFiles/ping3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/server/ping/CMakeFiles/ping3.dir/rule
@@ -913,7 +913,7 @@ src/server/ping/CMakeFiles/ping3.dir/clean:
 src/server/login/CMakeFiles/login3.dir/all: src/CMakeFiles/idlobjects.dir/all
 	$(MAKE) $(MAKESILENT) -f src/server/login/CMakeFiles/login3.dir/build.make src/server/login/CMakeFiles/login3.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/server/login/CMakeFiles/login3.dir/build.make src/server/login/CMakeFiles/login3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num= "Built target login3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=98 "Built target login3"
 .PHONY : src/server/login/CMakeFiles/login3.dir/all
 
 # Build rule for subdir invocation for target.
@@ -944,7 +944,7 @@ src/server/chat/CMakeFiles/chat3.dir/all: src/CMakeFiles/idlobjects.dir/all
 
 # Build rule for subdir invocation for target.
 src/server/chat/CMakeFiles/chat3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 53
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 52
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/server/chat/CMakeFiles/chat3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles 0
 .PHONY : src/server/chat/CMakeFiles/chat3.dir/rule
@@ -965,7 +965,7 @@ src/server/chat/CMakeFiles/chat3.dir/clean:
 src/client/CMakeFiles/core3client.dir/all: utils/engine3/MMOEngine/src/CMakeFiles/engine3.dir/all
 	$(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/core3client.dir/build.make src/client/CMakeFiles/core3client.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=39,40 "Built target core3client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=39 "Built target core3client"
 .PHONY : src/client/CMakeFiles/core3client.dir/all
 
 # Build rule for subdir invocation for target.

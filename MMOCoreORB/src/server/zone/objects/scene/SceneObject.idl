@@ -25,7 +25,6 @@ import server.zone.ZoneProcessServer;
 import server.zone.ZoneClientSession;
 import server.zone.Zone;
 import server.zone.GroundZone;
-import server.zone.SpaceZone;
 import server.zone.ZoneServer;
 import server.zone.objects.building.BuildingObject;
 import server.zone.packets.object.ObjectMenuResponse;
@@ -43,7 +42,6 @@ include templates.manager.PlanetMapSubCategory;
 include templates.manager.TemplateManager;
 include templates.SharedObjectTemplate;
 include server.zone.objects.scene.components.GroundZoneComponent;
-include server.zone.objects.scene.components.SpaceZoneComponent;
 include server.zone.objects.scene.components.ObjectMenuComponent;
 include server.zone.objects.scene.components.ContainerComponent;
 include server.zone.objects.scene.components.AttributeListComponent;
@@ -64,12 +62,7 @@ include server.metrics.Metrics;
 include engine.util.JSONSerializationType;
 include server.zone.objects.scene.variables.OrderedTaskExecutioner;
 import server.zone.objects.ship.ShipObject;
-import server.zone.objects.ship.PobShipObject;
-import server.zone.objects.ship.MultiPassengerShipObject;
 import server.zone.objects.ship.FighterShipObject;
-import server.zone.objects.ship.ai.ShipAiAgent;
-import server.zone.objects.ship.ai.SpaceStationObject;
-import server.zone.objects.ship.ai.CapitalShipObject;
 
 @mock
 @json
@@ -77,7 +70,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	protected transient ZoneProcessServer server;
 
 	protected transient GroundZoneComponent groundZoneComponent;
-	protected transient SpaceZoneComponent spaceZoneComponent;
 
 	protected transient ObjectMenuComponent objectMenuComponent;
 	protected transient AttributeListComponent attributeListComponent;
@@ -1018,12 +1010,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return zone.get();
 	}
 
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract SpaceZone asSpaceZone();
-
 	@local
 	@dereferenced
 	@read
@@ -1471,12 +1457,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	@read
-	public SpaceZoneComponent getSpaceZoneComponent() {
-		return spaceZoneComponent;
-	}
-
-	@local
-	@read
 	public ObjectMenuComponent getObjectMenuComponent() {
 		return objectMenuComponent;
 	}
@@ -1503,7 +1483,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	public native void setContainerComponent(final string name);
 
 	public native void setGroundZoneComponent(final string name);
-	public native void setSpaceZoneComponent(final string name);
 
 	public void setForceNoTrade(boolean newForceNoTrade) {
 		forceNoTrade = newForceNoTrade;
@@ -1578,20 +1557,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@dirty
 	@local
-	@nativeStub
-	@virtualStub
-	public native abstract boolean isShipAiAgent();
-
-	@dirty
-	@local
 	public native abstract boolean isPlayerShip();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract ShipAiAgent asShipAiAgent();
 
 	@dirty
 	@local
@@ -1605,52 +1571,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@nativeStub
 	@virtualStub
 	public native abstract ShipObject asShipObject();
-
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public abstract native boolean isSpaceStation();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract SpaceStationObject asSpaceStationObject();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract CapitalShipObject asCapitalShipObject();
-
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public abstract native boolean isPobShip();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract PobShipObject asPobShip();
-
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public abstract native boolean isMultiPassengerShip();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract MultiPassengerShipObject asMultiPassengerShip();
 
 	@dirty
 	@local
@@ -2019,11 +1939,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@read
 	public native boolean isShipPlasmaConduit() {
 		return gameObjectType == SceneObjectType.SHIPPLASMACONDUIT;
-	}
-
-	@dirty
-	public boolean isValidJtlParent() {
-		return (isPilotChair() || isOperationsChair() || isShipTurret() || (isShipObject() && !isPobShip()));
 	}
 
 	@read

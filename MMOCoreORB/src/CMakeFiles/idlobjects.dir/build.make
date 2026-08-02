@@ -105,1218 +105,1082 @@ src/autogen/server/zone/GroundZone.cpp: src/server/zone/GroundZone.idl
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building IDL object src/server/zone/GroundZone.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/GroundZone.idl
 
-src/autogen/server/zone/SpaceZone.cpp: src/server/zone/SpaceZone.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building IDL object src/server/zone/SpaceZone.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/SpaceZone.idl
-
 src/autogen/server/zone/TreeEntry.cpp: src/server/zone/TreeEntry.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building IDL object src/server/zone/TreeEntry.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building IDL object src/server/zone/TreeEntry.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/TreeEntry.idl
 
 src/autogen/server/zone/Zone.cpp: src/server/zone/Zone.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building IDL object src/server/zone/Zone.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building IDL object src/server/zone/Zone.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/Zone.idl
 
 src/autogen/server/zone/ZoneClientSession.cpp: src/server/zone/ZoneClientSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building IDL object src/server/zone/ZoneClientSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building IDL object src/server/zone/ZoneClientSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/ZoneClientSession.idl
 
 src/autogen/server/zone/ZoneProcessServer.cpp: src/server/zone/ZoneProcessServer.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building IDL object src/server/zone/ZoneProcessServer.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building IDL object src/server/zone/ZoneProcessServer.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/ZoneProcessServer.idl
 
 src/autogen/server/zone/ZoneServer.cpp: src/server/zone/ZoneServer.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building IDL object src/server/zone/ZoneServer.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building IDL object src/server/zone/ZoneServer.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/ZoneServer.idl
 
 src/autogen/server/zone/managers/ZoneManager.cpp: src/server/zone/managers/ZoneManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building IDL object src/server/zone/managers/ZoneManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building IDL object src/server/zone/managers/ZoneManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/ZoneManager.idl
 
 src/autogen/server/zone/managers/auction/AuctionManager.cpp: src/server/zone/managers/auction/AuctionManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building IDL object src/server/zone/managers/auction/AuctionManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building IDL object src/server/zone/managers/auction/AuctionManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/auction/AuctionManager.idl
 
 src/autogen/server/zone/managers/auction/AuctionsMap.cpp: src/server/zone/managers/auction/AuctionsMap.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building IDL object src/server/zone/managers/auction/AuctionsMap.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building IDL object src/server/zone/managers/auction/AuctionsMap.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/auction/AuctionsMap.idl
 
 src/autogen/server/zone/managers/city/CityManager.cpp: src/server/zone/managers/city/CityManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building IDL object src/server/zone/managers/city/CityManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building IDL object src/server/zone/managers/city/CityManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/city/CityManager.idl
 
 src/autogen/server/zone/managers/crafting/CraftingManager.cpp: src/server/zone/managers/crafting/CraftingManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building IDL object src/server/zone/managers/crafting/CraftingManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building IDL object src/server/zone/managers/crafting/CraftingManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/crafting/CraftingManager.idl
 
 src/autogen/server/zone/managers/creature/CreatureManager.cpp: src/server/zone/managers/creature/CreatureManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building IDL object src/server/zone/managers/creature/CreatureManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building IDL object src/server/zone/managers/creature/CreatureManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/creature/CreatureManager.idl
 
 src/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp: src/server/zone/managers/creature/DynamicSpawnObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building IDL object src/server/zone/managers/creature/DynamicSpawnObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building IDL object src/server/zone/managers/creature/DynamicSpawnObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/creature/DynamicSpawnObserver.idl
 
 src/autogen/server/zone/managers/creature/LairObserver.cpp: src/server/zone/managers/creature/LairObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building IDL object src/server/zone/managers/creature/LairObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building IDL object src/server/zone/managers/creature/LairObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/creature/LairObserver.idl
 
 src/autogen/server/zone/managers/creature/PetManager.cpp: src/server/zone/managers/creature/PetManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building IDL object src/server/zone/managers/creature/PetManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building IDL object src/server/zone/managers/creature/PetManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/creature/PetManager.idl
 
 src/autogen/server/zone/managers/creature/SpawnObserver.cpp: src/server/zone/managers/creature/SpawnObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building IDL object src/server/zone/managers/creature/SpawnObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building IDL object src/server/zone/managers/creature/SpawnObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/creature/SpawnObserver.idl
 
 src/autogen/server/zone/managers/director/PersistentEvent.cpp: src/server/zone/managers/director/PersistentEvent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building IDL object src/server/zone/managers/director/PersistentEvent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building IDL object src/server/zone/managers/director/PersistentEvent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/director/PersistentEvent.idl
 
 src/autogen/server/zone/managers/director/QuestStatus.cpp: src/server/zone/managers/director/QuestStatus.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building IDL object src/server/zone/managers/director/QuestStatus.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building IDL object src/server/zone/managers/director/QuestStatus.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/director/QuestStatus.idl
 
 src/autogen/server/zone/managers/director/QuestVectorMap.cpp: src/server/zone/managers/director/QuestVectorMap.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building IDL object src/server/zone/managers/director/QuestVectorMap.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building IDL object src/server/zone/managers/director/QuestVectorMap.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/director/QuestVectorMap.idl
 
 src/autogen/server/zone/managers/director/ScreenPlayObserver.cpp: src/server/zone/managers/director/ScreenPlayObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building IDL object src/server/zone/managers/director/ScreenPlayObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building IDL object src/server/zone/managers/director/ScreenPlayObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/director/ScreenPlayObserver.idl
 
 src/autogen/server/zone/managers/frs/ArenaChallengeData.cpp: src/server/zone/managers/frs/ArenaChallengeData.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building IDL object src/server/zone/managers/frs/ArenaChallengeData.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building IDL object src/server/zone/managers/frs/ArenaChallengeData.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/frs/ArenaChallengeData.idl
 
 src/autogen/server/zone/managers/frs/ChallengeVoteData.cpp: src/server/zone/managers/frs/ChallengeVoteData.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building IDL object src/server/zone/managers/frs/ChallengeVoteData.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building IDL object src/server/zone/managers/frs/ChallengeVoteData.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/frs/ChallengeVoteData.idl
 
 src/autogen/server/zone/managers/frs/FrsManager.cpp: src/server/zone/managers/frs/FrsManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building IDL object src/server/zone/managers/frs/FrsManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building IDL object src/server/zone/managers/frs/FrsManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/frs/FrsManager.idl
 
 src/autogen/server/zone/managers/frs/FrsManagerData.cpp: src/server/zone/managers/frs/FrsManagerData.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building IDL object src/server/zone/managers/frs/FrsManagerData.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building IDL object src/server/zone/managers/frs/FrsManagerData.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/frs/FrsManagerData.idl
 
 src/autogen/server/zone/managers/frs/FrsRank.cpp: src/server/zone/managers/frs/FrsRank.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building IDL object src/server/zone/managers/frs/FrsRank.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building IDL object src/server/zone/managers/frs/FrsRank.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/frs/FrsRank.idl
 
 src/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp: src/server/zone/managers/gcw/GCWBaseShutdownObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building IDL object src/server/zone/managers/gcw/GCWBaseShutdownObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building IDL object src/server/zone/managers/gcw/GCWBaseShutdownObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/GCWBaseShutdownObserver.idl
 
 src/autogen/server/zone/managers/gcw/GCWManager.cpp: src/server/zone/managers/gcw/GCWManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building IDL object src/server/zone/managers/gcw/GCWManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building IDL object src/server/zone/managers/gcw/GCWManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/GCWManager.idl
 
 src/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp: src/server/zone/managers/gcw/observers/ContainmentTeamObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building IDL object src/server/zone/managers/gcw/observers/ContainmentTeamObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building IDL object src/server/zone/managers/gcw/observers/ContainmentTeamObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/observers/ContainmentTeamObserver.idl
 
 src/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp: src/server/zone/managers/gcw/observers/ProbotObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building IDL object src/server/zone/managers/gcw/observers/ProbotObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building IDL object src/server/zone/managers/gcw/observers/ProbotObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/observers/ProbotObserver.idl
 
 src/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp: src/server/zone/managers/gcw/sessions/ContrabandScanSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building IDL object src/server/zone/managers/gcw/sessions/ContrabandScanSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building IDL object src/server/zone/managers/gcw/sessions/ContrabandScanSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/sessions/ContrabandScanSession.idl
 
 src/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp: src/server/zone/managers/gcw/sessions/WildContrabandScanSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building IDL object src/server/zone/managers/gcw/sessions/WildContrabandScanSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building IDL object src/server/zone/managers/gcw/sessions/WildContrabandScanSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/gcw/sessions/WildContrabandScanSession.idl
 
 src/autogen/server/zone/managers/guild/GuildManager.cpp: src/server/zone/managers/guild/GuildManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building IDL object src/server/zone/managers/guild/GuildManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building IDL object src/server/zone/managers/guild/GuildManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/guild/GuildManager.idl
 
 src/autogen/server/zone/managers/loot/LootManager.cpp: src/server/zone/managers/loot/LootManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building IDL object src/server/zone/managers/loot/LootManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building IDL object src/server/zone/managers/loot/LootManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/loot/LootManager.idl
 
 src/autogen/server/zone/managers/minigames/FishingManager.cpp: src/server/zone/managers/minigames/FishingManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building IDL object src/server/zone/managers/minigames/FishingManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building IDL object src/server/zone/managers/minigames/FishingManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/minigames/FishingManager.idl
 
 src/autogen/server/zone/managers/minigames/FishingSession.cpp: src/server/zone/managers/minigames/FishingSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building IDL object src/server/zone/managers/minigames/FishingSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building IDL object src/server/zone/managers/minigames/FishingSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/minigames/FishingSession.idl
 
 src/autogen/server/zone/managers/minigames/ForageManager.cpp: src/server/zone/managers/minigames/ForageManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building IDL object src/server/zone/managers/minigames/ForageManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building IDL object src/server/zone/managers/minigames/ForageManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/minigames/ForageManager.idl
 
 src/autogen/server/zone/managers/minigames/GamblingManager.cpp: src/server/zone/managers/minigames/GamblingManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building IDL object src/server/zone/managers/minigames/GamblingManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building IDL object src/server/zone/managers/minigames/GamblingManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/minigames/GamblingManager.idl
 
 src/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp: src/server/zone/managers/mission/DestroyMissionLairObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building IDL object src/server/zone/managers/mission/DestroyMissionLairObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building IDL object src/server/zone/managers/mission/DestroyMissionLairObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/mission/DestroyMissionLairObserver.idl
 
 src/autogen/server/zone/managers/mission/MissionManager.cpp: src/server/zone/managers/mission/MissionManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building IDL object src/server/zone/managers/mission/MissionManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building IDL object src/server/zone/managers/mission/MissionManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/mission/MissionManager.idl
 
 src/autogen/server/zone/managers/objectcontroller/ObjectController.cpp: src/server/zone/managers/objectcontroller/ObjectController.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building IDL object src/server/zone/managers/objectcontroller/ObjectController.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building IDL object src/server/zone/managers/objectcontroller/ObjectController.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/objectcontroller/ObjectController.idl
 
 src/autogen/server/zone/managers/planet/PlanetManager.cpp: src/server/zone/managers/planet/PlanetManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building IDL object src/server/zone/managers/planet/PlanetManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building IDL object src/server/zone/managers/planet/PlanetManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/planet/PlanetManager.idl
 
 src/autogen/server/zone/managers/player/PlayerManager.cpp: src/server/zone/managers/player/PlayerManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building IDL object src/server/zone/managers/player/PlayerManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building IDL object src/server/zone/managers/player/PlayerManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/player/PlayerManager.idl
 
 src/autogen/server/zone/managers/radial/RadialManager.cpp: src/server/zone/managers/radial/RadialManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building IDL object src/server/zone/managers/radial/RadialManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building IDL object src/server/zone/managers/radial/RadialManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/radial/RadialManager.idl
 
 src/autogen/server/zone/managers/reaction/ReactionManager.cpp: src/server/zone/managers/reaction/ReactionManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building IDL object src/server/zone/managers/reaction/ReactionManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building IDL object src/server/zone/managers/reaction/ReactionManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/reaction/ReactionManager.idl
 
 src/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp: src/server/zone/managers/resource/InterplanetarySurvey.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building IDL object src/server/zone/managers/resource/InterplanetarySurvey.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building IDL object src/server/zone/managers/resource/InterplanetarySurvey.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/resource/InterplanetarySurvey.idl
 
 src/autogen/server/zone/managers/resource/ResourceManager.cpp: src/server/zone/managers/resource/ResourceManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building IDL object src/server/zone/managers/resource/ResourceManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building IDL object src/server/zone/managers/resource/ResourceManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/resource/ResourceManager.idl
 
-src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp: src/server/zone/managers/ship/SpaceSpawnObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building IDL object src/server/zone/managers/ship/SpaceSpawnObserver.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/ship/SpaceSpawnObserver.idl
-
-src/autogen/server/zone/managers/space/SpaceManager.cpp: src/server/zone/managers/space/SpaceManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building IDL object src/server/zone/managers/space/SpaceManager.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/space/SpaceManager.idl
-
 src/autogen/server/zone/managers/weather/WeatherManager.cpp: src/server/zone/managers/weather/WeatherManager.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building IDL object src/server/zone/managers/weather/WeatherManager.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building IDL object src/server/zone/managers/weather/WeatherManager.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/managers/weather/WeatherManager.idl
 
 src/autogen/server/zone/objects/area/ActiveArea.cpp: src/server/zone/objects/area/ActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building IDL object src/server/zone/objects/area/ActiveArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building IDL object src/server/zone/objects/area/ActiveArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/ActiveArea.idl
 
 src/autogen/server/zone/objects/area/BadgeActiveArea.cpp: src/server/zone/objects/area/BadgeActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building IDL object src/server/zone/objects/area/BadgeActiveArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building IDL object src/server/zone/objects/area/BadgeActiveArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/BadgeActiveArea.idl
 
 src/autogen/server/zone/objects/area/CampSiteActiveArea.cpp: src/server/zone/objects/area/CampSiteActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building IDL object src/server/zone/objects/area/CampSiteActiveArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building IDL object src/server/zone/objects/area/CampSiteActiveArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/CampSiteActiveArea.idl
 
 src/autogen/server/zone/objects/area/CampSiteObserver.cpp: src/server/zone/objects/area/CampSiteObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building IDL object src/server/zone/objects/area/CampSiteObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building IDL object src/server/zone/objects/area/CampSiteObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/CampSiteObserver.idl
 
 src/autogen/server/zone/objects/area/FsVillageArea.cpp: src/server/zone/objects/area/FsVillageArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building IDL object src/server/zone/objects/area/FsVillageArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building IDL object src/server/zone/objects/area/FsVillageArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/FsVillageArea.idl
 
 src/autogen/server/zone/objects/area/MissionReconActiveArea.cpp: src/server/zone/objects/area/MissionReconActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building IDL object src/server/zone/objects/area/MissionReconActiveArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building IDL object src/server/zone/objects/area/MissionReconActiveArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/MissionReconActiveArea.idl
 
 src/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp: src/server/zone/objects/area/MissionSpawnActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building IDL object src/server/zone/objects/area/MissionSpawnActiveArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building IDL object src/server/zone/objects/area/MissionSpawnActiveArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/MissionSpawnActiveArea.idl
 
 src/autogen/server/zone/objects/area/SarlaccArea.cpp: src/server/zone/objects/area/SarlaccArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building IDL object src/server/zone/objects/area/SarlaccArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building IDL object src/server/zone/objects/area/SarlaccArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/SarlaccArea.idl
 
 src/autogen/server/zone/objects/area/SpawnArea.cpp: src/server/zone/objects/area/SpawnArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building IDL object src/server/zone/objects/area/SpawnArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building IDL object src/server/zone/objects/area/SpawnArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/SpawnArea.idl
 
 src/autogen/server/zone/objects/area/SpawnAreaObserver.cpp: src/server/zone/objects/area/SpawnAreaObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building IDL object src/server/zone/objects/area/SpawnAreaObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building IDL object src/server/zone/objects/area/SpawnAreaObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/SpawnAreaObserver.idl
 
 src/autogen/server/zone/objects/area/areashapes/AreaShape.cpp: src/server/zone/objects/area/areashapes/AreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building IDL object src/server/zone/objects/area/areashapes/AreaShape.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building IDL object src/server/zone/objects/area/areashapes/AreaShape.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/AreaShape.idl
 
 src/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp: src/server/zone/objects/area/areashapes/CircularAreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building IDL object src/server/zone/objects/area/areashapes/CircularAreaShape.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building IDL object src/server/zone/objects/area/areashapes/CircularAreaShape.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/CircularAreaShape.idl
 
-src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp: src/server/zone/objects/area/areashapes/CuboidAreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building IDL object src/server/zone/objects/area/areashapes/CuboidAreaShape.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/CuboidAreaShape.idl
-
 src/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp: src/server/zone/objects/area/areashapes/RectangularAreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building IDL object src/server/zone/objects/area/areashapes/RectangularAreaShape.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building IDL object src/server/zone/objects/area/areashapes/RectangularAreaShape.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/RectangularAreaShape.idl
 
 src/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp: src/server/zone/objects/area/areashapes/RingAreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building IDL object src/server/zone/objects/area/areashapes/RingAreaShape.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building IDL object src/server/zone/objects/area/areashapes/RingAreaShape.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/RingAreaShape.idl
 
-src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp: src/server/zone/objects/area/areashapes/SphereAreaShape.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building IDL object src/server/zone/objects/area/areashapes/SphereAreaShape.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/areashapes/SphereAreaShape.idl
-
-src/autogen/server/zone/objects/area/space/NebulaArea.cpp: src/server/zone/objects/area/space/NebulaArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building IDL object src/server/zone/objects/area/space/NebulaArea.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/space/NebulaArea.idl
-
-src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp: src/server/zone/objects/area/space/SpaceActiveArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building IDL object src/server/zone/objects/area/space/SpaceActiveArea.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/area/space/SpaceActiveArea.idl
-
 src/autogen/server/zone/objects/auction/AuctionItem.cpp: src/server/zone/objects/auction/AuctionItem.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building IDL object src/server/zone/objects/auction/AuctionItem.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building IDL object src/server/zone/objects/auction/AuctionItem.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/auction/AuctionItem.idl
 
 src/autogen/server/zone/objects/building/BuildingObject.cpp: src/server/zone/objects/building/BuildingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building IDL object src/server/zone/objects/building/BuildingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building IDL object src/server/zone/objects/building/BuildingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/BuildingObject.idl
 
 src/autogen/server/zone/objects/building/PoiBuilding.cpp: src/server/zone/objects/building/PoiBuilding.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building IDL object src/server/zone/objects/building/PoiBuilding.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building IDL object src/server/zone/objects/building/PoiBuilding.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/PoiBuilding.idl
 
 src/autogen/server/zone/objects/building/TutorialBuildingObject.cpp: src/server/zone/objects/building/TutorialBuildingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building IDL object src/server/zone/objects/building/TutorialBuildingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building IDL object src/server/zone/objects/building/TutorialBuildingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/TutorialBuildingObject.idl
 
 src/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp: src/server/zone/objects/building/hospital/HospitalBuildingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building IDL object src/server/zone/objects/building/hospital/HospitalBuildingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building IDL object src/server/zone/objects/building/hospital/HospitalBuildingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/hospital/HospitalBuildingObject.idl
 
 src/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp: src/server/zone/objects/building/recreation/RecreationBuildingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building IDL object src/server/zone/objects/building/recreation/RecreationBuildingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building IDL object src/server/zone/objects/building/recreation/RecreationBuildingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/recreation/RecreationBuildingObject.idl
 
 src/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp: src/server/zone/objects/building/travel/TravelBuildingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building IDL object src/server/zone/objects/building/travel/TravelBuildingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building IDL object src/server/zone/objects/building/travel/TravelBuildingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/building/travel/TravelBuildingObject.idl
 
 src/autogen/server/zone/objects/cell/CellObject.cpp: src/server/zone/objects/cell/CellObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building IDL object src/server/zone/objects/cell/CellObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building IDL object src/server/zone/objects/cell/CellObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/cell/CellObject.idl
 
 src/autogen/server/zone/objects/creature/CreatureObject.cpp: src/server/zone/objects/creature/CreatureObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building IDL object src/server/zone/objects/creature/CreatureObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building IDL object src/server/zone/objects/creature/CreatureObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/CreatureObject.idl
 
 src/autogen/server/zone/objects/creature/VehicleObject.cpp: src/server/zone/objects/creature/VehicleObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building IDL object src/server/zone/objects/creature/VehicleObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building IDL object src/server/zone/objects/creature/VehicleObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/VehicleObject.idl
 
 src/autogen/server/zone/objects/creature/ai/AiAgent.cpp: src/server/zone/objects/creature/ai/AiAgent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building IDL object src/server/zone/objects/creature/ai/AiAgent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building IDL object src/server/zone/objects/creature/ai/AiAgent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/ai/AiAgent.idl
 
 src/autogen/server/zone/objects/creature/ai/Creature.cpp: src/server/zone/objects/creature/ai/Creature.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building IDL object src/server/zone/objects/creature/ai/Creature.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building IDL object src/server/zone/objects/creature/ai/Creature.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/ai/Creature.idl
 
 src/autogen/server/zone/objects/creature/ai/DroidObject.cpp: src/server/zone/objects/creature/ai/DroidObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building IDL object src/server/zone/objects/creature/ai/DroidObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building IDL object src/server/zone/objects/creature/ai/DroidObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/ai/DroidObject.idl
 
 src/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp: src/server/zone/objects/creature/ai/NonPlayerCreatureObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building IDL object src/server/zone/objects/creature/ai/NonPlayerCreatureObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building IDL object src/server/zone/objects/creature/ai/NonPlayerCreatureObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/ai/NonPlayerCreatureObject.idl
 
 src/autogen/server/zone/objects/creature/buffs/Buff.cpp: src/server/zone/objects/creature/buffs/Buff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building IDL object src/server/zone/objects/creature/buffs/Buff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building IDL object src/server/zone/objects/creature/buffs/Buff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/Buff.idl
 
 src/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp: src/server/zone/objects/creature/buffs/ChannelForceBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building IDL object src/server/zone/objects/creature/buffs/ChannelForceBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building IDL object src/server/zone/objects/creature/buffs/ChannelForceBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/ChannelForceBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp: src/server/zone/objects/creature/buffs/ConcealBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building IDL object src/server/zone/objects/creature/buffs/ConcealBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building IDL object src/server/zone/objects/creature/buffs/ConcealBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/ConcealBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp: src/server/zone/objects/creature/buffs/DelayedBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building IDL object src/server/zone/objects/creature/buffs/DelayedBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building IDL object src/server/zone/objects/creature/buffs/DelayedBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/DelayedBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp: src/server/zone/objects/creature/buffs/DurationBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building IDL object src/server/zone/objects/creature/buffs/DurationBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building IDL object src/server/zone/objects/creature/buffs/DurationBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/DurationBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp: src/server/zone/objects/creature/buffs/ForceWeakenDebuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building IDL object src/server/zone/objects/creature/buffs/ForceWeakenDebuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building IDL object src/server/zone/objects/creature/buffs/ForceWeakenDebuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/ForceWeakenDebuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp: src/server/zone/objects/creature/buffs/GallopBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building IDL object src/server/zone/objects/creature/buffs/GallopBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building IDL object src/server/zone/objects/creature/buffs/GallopBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/GallopBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp: src/server/zone/objects/creature/buffs/PerformanceBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building IDL object src/server/zone/objects/creature/buffs/PerformanceBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building IDL object src/server/zone/objects/creature/buffs/PerformanceBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/PerformanceBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp: src/server/zone/objects/creature/buffs/PlayerVehicleBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building IDL object src/server/zone/objects/creature/buffs/PlayerVehicleBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building IDL object src/server/zone/objects/creature/buffs/PlayerVehicleBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/PlayerVehicleBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp: src/server/zone/objects/creature/buffs/PowerBoostBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building IDL object src/server/zone/objects/creature/buffs/PowerBoostBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building IDL object src/server/zone/objects/creature/buffs/PowerBoostBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/PowerBoostBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp: src/server/zone/objects/creature/buffs/PrivateBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building IDL object src/server/zone/objects/creature/buffs/PrivateBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building IDL object src/server/zone/objects/creature/buffs/PrivateBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/PrivateBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp: src/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building IDL object src/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building IDL object src/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp: src/server/zone/objects/creature/buffs/SingleUseBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building IDL object src/server/zone/objects/creature/buffs/SingleUseBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building IDL object src/server/zone/objects/creature/buffs/SingleUseBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SingleUseBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp: src/server/zone/objects/creature/buffs/SingleUseBuffObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building IDL object src/server/zone/objects/creature/buffs/SingleUseBuffObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building IDL object src/server/zone/objects/creature/buffs/SingleUseBuffObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SingleUseBuffObserver.idl
 
 src/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp: src/server/zone/objects/creature/buffs/SpiceBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building IDL object src/server/zone/objects/creature/buffs/SpiceBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building IDL object src/server/zone/objects/creature/buffs/SpiceBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SpiceBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp: src/server/zone/objects/creature/buffs/SpiceDownerBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building IDL object src/server/zone/objects/creature/buffs/SpiceDownerBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building IDL object src/server/zone/objects/creature/buffs/SpiceDownerBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SpiceDownerBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp: src/server/zone/objects/creature/buffs/SquadLeaderBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building IDL object src/server/zone/objects/creature/buffs/SquadLeaderBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building IDL object src/server/zone/objects/creature/buffs/SquadLeaderBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SquadLeaderBuff.idl
 
 src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp: src/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building IDL object src/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building IDL object src/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/SquadLeaderBuffObserver.idl
 
 src/autogen/server/zone/objects/creature/buffs/StateBuff.cpp: src/server/zone/objects/creature/buffs/StateBuff.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building IDL object src/server/zone/objects/creature/buffs/StateBuff.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building IDL object src/server/zone/objects/creature/buffs/StateBuff.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/buffs/StateBuff.idl
 
 src/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp: src/server/zone/objects/creature/conversation/ConversationObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building IDL object src/server/zone/objects/creature/conversation/ConversationObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building IDL object src/server/zone/objects/creature/conversation/ConversationObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/conversation/ConversationObserver.idl
 
 src/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp: src/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building IDL object src/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building IDL object src/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/conversation/DeliverMissionConversationObserver.idl
 
 src/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp: src/server/zone/objects/creature/conversation/InformantMissionConversationObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building IDL object src/server/zone/objects/creature/conversation/InformantMissionConversationObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building IDL object src/server/zone/objects/creature/conversation/InformantMissionConversationObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/conversation/InformantMissionConversationObserver.idl
 
 src/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp: src/server/zone/objects/creature/conversation/LuaConversationObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building IDL object src/server/zone/objects/creature/conversation/LuaConversationObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building IDL object src/server/zone/objects/creature/conversation/LuaConversationObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/conversation/LuaConversationObserver.idl
 
 src/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp: src/server/zone/objects/creature/conversation/PetTrainingConversationObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building IDL object src/server/zone/objects/creature/conversation/PetTrainingConversationObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building IDL object src/server/zone/objects/creature/conversation/PetTrainingConversationObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/conversation/PetTrainingConversationObserver.idl
 
 src/autogen/server/zone/objects/creature/credits/CreditObject.cpp: src/server/zone/objects/creature/credits/CreditObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building IDL object src/server/zone/objects/creature/credits/CreditObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building IDL object src/server/zone/objects/creature/credits/CreditObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/creature/credits/CreditObject.idl
 
 src/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp: src/server/zone/objects/draftschematic/DraftSchematic.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building IDL object src/server/zone/objects/draftschematic/DraftSchematic.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building IDL object src/server/zone/objects/draftschematic/DraftSchematic.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/draftschematic/DraftSchematic.idl
 
 src/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp: src/server/zone/objects/factorycrate/FactoryCrate.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building IDL object src/server/zone/objects/factorycrate/FactoryCrate.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building IDL object src/server/zone/objects/factorycrate/FactoryCrate.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/factorycrate/FactoryCrate.idl
 
 src/autogen/server/zone/objects/group/GroupObject.cpp: src/server/zone/objects/group/GroupObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building IDL object src/server/zone/objects/group/GroupObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building IDL object src/server/zone/objects/group/GroupObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/group/GroupObject.idl
 
 src/autogen/server/zone/objects/guild/GuildObject.cpp: src/server/zone/objects/guild/GuildObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building IDL object src/server/zone/objects/guild/GuildObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building IDL object src/server/zone/objects/guild/GuildObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/guild/GuildObject.idl
 
 src/autogen/server/zone/objects/installation/InstallationObject.cpp: src/server/zone/objects/installation/InstallationObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building IDL object src/server/zone/objects/installation/InstallationObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building IDL object src/server/zone/objects/installation/InstallationObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/InstallationObject.idl
 
 src/autogen/server/zone/objects/installation/components/TurretObserver.cpp: src/server/zone/objects/installation/components/TurretObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building IDL object src/server/zone/objects/installation/components/TurretObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building IDL object src/server/zone/objects/installation/components/TurretObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/components/TurretObserver.idl
 
 src/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp: src/server/zone/objects/installation/factory/FactoryHopperObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building IDL object src/server/zone/objects/installation/factory/FactoryHopperObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building IDL object src/server/zone/objects/installation/factory/FactoryHopperObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/factory/FactoryHopperObserver.idl
 
 src/autogen/server/zone/objects/installation/factory/FactoryObject.cpp: src/server/zone/objects/installation/factory/FactoryObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building IDL object src/server/zone/objects/installation/factory/FactoryObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building IDL object src/server/zone/objects/installation/factory/FactoryObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/factory/FactoryObject.idl
 
 src/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp: src/server/zone/objects/installation/garage/GarageInstallation.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building IDL object src/server/zone/objects/installation/garage/GarageInstallation.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building IDL object src/server/zone/objects/installation/garage/GarageInstallation.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/garage/GarageInstallation.idl
 
 src/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp: src/server/zone/objects/installation/generator/GeneratorObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Building IDL object src/server/zone/objects/installation/generator/GeneratorObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building IDL object src/server/zone/objects/installation/generator/GeneratorObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/generator/GeneratorObject.idl
 
 src/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp: src/server/zone/objects/installation/harvester/HarvesterObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_126) "Building IDL object src/server/zone/objects/installation/harvester/HarvesterObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building IDL object src/server/zone/objects/installation/harvester/HarvesterObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/harvester/HarvesterObject.idl
 
 src/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp: src/server/zone/objects/installation/shuttle/ShuttleInstallation.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_127) "Building IDL object src/server/zone/objects/installation/shuttle/ShuttleInstallation.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building IDL object src/server/zone/objects/installation/shuttle/ShuttleInstallation.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/installation/shuttle/ShuttleInstallation.idl
 
 src/autogen/server/zone/objects/intangible/ControlDevice.cpp: src/server/zone/objects/intangible/ControlDevice.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_128) "Building IDL object src/server/zone/objects/intangible/ControlDevice.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building IDL object src/server/zone/objects/intangible/ControlDevice.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/ControlDevice.idl
 
 src/autogen/server/zone/objects/intangible/IntangibleObject.cpp: src/server/zone/objects/intangible/IntangibleObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_129) "Building IDL object src/server/zone/objects/intangible/IntangibleObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building IDL object src/server/zone/objects/intangible/IntangibleObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/IntangibleObject.idl
 
 src/autogen/server/zone/objects/intangible/PetControlDevice.cpp: src/server/zone/objects/intangible/PetControlDevice.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_130) "Building IDL object src/server/zone/objects/intangible/PetControlDevice.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building IDL object src/server/zone/objects/intangible/PetControlDevice.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/PetControlDevice.idl
 
 src/autogen/server/zone/objects/intangible/PetControlObserver.cpp: src/server/zone/objects/intangible/PetControlObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_131) "Building IDL object src/server/zone/objects/intangible/PetControlObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building IDL object src/server/zone/objects/intangible/PetControlObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/PetControlObserver.idl
 
 src/autogen/server/zone/objects/intangible/ShipControlDevice.cpp: src/server/zone/objects/intangible/ShipControlDevice.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_132) "Building IDL object src/server/zone/objects/intangible/ShipControlDevice.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Building IDL object src/server/zone/objects/intangible/ShipControlDevice.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/ShipControlDevice.idl
 
 src/autogen/server/zone/objects/intangible/TheaterObject.cpp: src/server/zone/objects/intangible/TheaterObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_133) "Building IDL object src/server/zone/objects/intangible/TheaterObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_126) "Building IDL object src/server/zone/objects/intangible/TheaterObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/TheaterObject.idl
 
 src/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp: src/server/zone/objects/intangible/VehicleControlDevice.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_134) "Building IDL object src/server/zone/objects/intangible/VehicleControlDevice.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_127) "Building IDL object src/server/zone/objects/intangible/VehicleControlDevice.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/VehicleControlDevice.idl
 
 src/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp: src/server/zone/objects/intangible/VehicleControlObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_135) "Building IDL object src/server/zone/objects/intangible/VehicleControlObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_128) "Building IDL object src/server/zone/objects/intangible/VehicleControlObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/intangible/VehicleControlObserver.idl
 
 src/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp: src/server/zone/objects/manufactureschematic/ManufactureSchematic.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_136) "Building IDL object src/server/zone/objects/manufactureschematic/ManufactureSchematic.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_129) "Building IDL object src/server/zone/objects/manufactureschematic/ManufactureSchematic.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/manufactureschematic/ManufactureSchematic.idl
 
 src/autogen/server/zone/objects/mission/BountyMissionObjective.cpp: src/server/zone/objects/mission/BountyMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_137) "Building IDL object src/server/zone/objects/mission/BountyMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_130) "Building IDL object src/server/zone/objects/mission/BountyMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/BountyMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp: src/server/zone/objects/mission/CraftingMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_138) "Building IDL object src/server/zone/objects/mission/CraftingMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_131) "Building IDL object src/server/zone/objects/mission/CraftingMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/CraftingMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp: src/server/zone/objects/mission/DeliverMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_139) "Building IDL object src/server/zone/objects/mission/DeliverMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_132) "Building IDL object src/server/zone/objects/mission/DeliverMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/DeliverMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp: src/server/zone/objects/mission/DestroyMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_140) "Building IDL object src/server/zone/objects/mission/DestroyMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_133) "Building IDL object src/server/zone/objects/mission/DestroyMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/DestroyMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp: src/server/zone/objects/mission/EntertainerMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_141) "Building IDL object src/server/zone/objects/mission/EntertainerMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_134) "Building IDL object src/server/zone/objects/mission/EntertainerMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/EntertainerMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp: src/server/zone/objects/mission/HuntingMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_142) "Building IDL object src/server/zone/objects/mission/HuntingMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_135) "Building IDL object src/server/zone/objects/mission/HuntingMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/HuntingMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/MissionObject.cpp: src/server/zone/objects/mission/MissionObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_143) "Building IDL object src/server/zone/objects/mission/MissionObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_136) "Building IDL object src/server/zone/objects/mission/MissionObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/MissionObject.idl
 
 src/autogen/server/zone/objects/mission/MissionObjective.cpp: src/server/zone/objects/mission/MissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_144) "Building IDL object src/server/zone/objects/mission/MissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_137) "Building IDL object src/server/zone/objects/mission/MissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/MissionObjective.idl
 
 src/autogen/server/zone/objects/mission/MissionObserver.cpp: src/server/zone/objects/mission/MissionObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_145) "Building IDL object src/server/zone/objects/mission/MissionObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_138) "Building IDL object src/server/zone/objects/mission/MissionObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/MissionObserver.idl
 
 src/autogen/server/zone/objects/mission/PlayerBounty.cpp: src/server/zone/objects/mission/PlayerBounty.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_146) "Building IDL object src/server/zone/objects/mission/PlayerBounty.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_139) "Building IDL object src/server/zone/objects/mission/PlayerBounty.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/PlayerBounty.idl
 
 src/autogen/server/zone/objects/mission/ReconMissionObjective.cpp: src/server/zone/objects/mission/ReconMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_147) "Building IDL object src/server/zone/objects/mission/ReconMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_140) "Building IDL object src/server/zone/objects/mission/ReconMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/ReconMissionObjective.idl
 
 src/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp: src/server/zone/objects/mission/SurveyMissionObjective.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_148) "Building IDL object src/server/zone/objects/mission/SurveyMissionObjective.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_141) "Building IDL object src/server/zone/objects/mission/SurveyMissionObjective.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/mission/SurveyMissionObjective.idl
 
 src/autogen/server/zone/objects/pathfinding/NavArea.cpp: src/server/zone/objects/pathfinding/NavArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_149) "Building IDL object src/server/zone/objects/pathfinding/NavArea.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_142) "Building IDL object src/server/zone/objects/pathfinding/NavArea.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/pathfinding/NavArea.idl
 
 src/autogen/server/zone/objects/player/EntertainingObserver.cpp: src/server/zone/objects/player/EntertainingObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_150) "Building IDL object src/server/zone/objects/player/EntertainingObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_143) "Building IDL object src/server/zone/objects/player/EntertainingObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/EntertainingObserver.idl
 
 src/autogen/server/zone/objects/player/PlayerObject.cpp: src/server/zone/objects/player/PlayerObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_151) "Building IDL object src/server/zone/objects/player/PlayerObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_144) "Building IDL object src/server/zone/objects/player/PlayerObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/PlayerObject.idl
 
 src/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp: src/server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_152) "Building IDL object src/server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_145) "Building IDL object src/server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/CityRemoveMilitiaSession.idl
 
 src/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp: src/server/zone/objects/player/sessions/CitySpecializationSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_153) "Building IDL object src/server/zone/objects/player/sessions/CitySpecializationSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_146) "Building IDL object src/server/zone/objects/player/sessions/CitySpecializationSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/CitySpecializationSession.idl
 
 src/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp: src/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_154) "Building IDL object src/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_147) "Building IDL object src/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.idl
 
 src/autogen/server/zone/objects/player/sessions/ConversationSession.cpp: src/server/zone/objects/player/sessions/ConversationSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_155) "Building IDL object src/server/zone/objects/player/sessions/ConversationSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_148) "Building IDL object src/server/zone/objects/player/sessions/ConversationSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/ConversationSession.idl
 
 src/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp: src/server/zone/objects/player/sessions/DestroyStructureSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_156) "Building IDL object src/server/zone/objects/player/sessions/DestroyStructureSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_149) "Building IDL object src/server/zone/objects/player/sessions/DestroyStructureSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/DestroyStructureSession.idl
 
 src/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp: src/server/zone/objects/player/sessions/DroidMaintenanceSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_157) "Building IDL object src/server/zone/objects/player/sessions/DroidMaintenanceSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_150) "Building IDL object src/server/zone/objects/player/sessions/DroidMaintenanceSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/DroidMaintenanceSession.idl
 
 src/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp: src/server/zone/objects/player/sessions/EntertainingSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_158) "Building IDL object src/server/zone/objects/player/sessions/EntertainingSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_151) "Building IDL object src/server/zone/objects/player/sessions/EntertainingSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/EntertainingSession.idl
 
 src/autogen/server/zone/objects/player/sessions/FindSession.cpp: src/server/zone/objects/player/sessions/FindSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_159) "Building IDL object src/server/zone/objects/player/sessions/FindSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_152) "Building IDL object src/server/zone/objects/player/sessions/FindSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/FindSession.idl
 
 src/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp: src/server/zone/objects/player/sessions/ImageDesignPositionObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_160) "Building IDL object src/server/zone/objects/player/sessions/ImageDesignPositionObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_153) "Building IDL object src/server/zone/objects/player/sessions/ImageDesignPositionObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/ImageDesignPositionObserver.idl
 
 src/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp: src/server/zone/objects/player/sessions/ImageDesignSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_161) "Building IDL object src/server/zone/objects/player/sessions/ImageDesignSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_154) "Building IDL object src/server/zone/objects/player/sessions/ImageDesignSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/ImageDesignSession.idl
 
 src/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp: src/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_162) "Building IDL object src/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_155) "Building IDL object src/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.idl
 
 src/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp: src/server/zone/objects/player/sessions/LootLotterySession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_163) "Building IDL object src/server/zone/objects/player/sessions/LootLotterySession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_156) "Building IDL object src/server/zone/objects/player/sessions/LootLotterySession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/LootLotterySession.idl
 
 src/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp: src/server/zone/objects/player/sessions/MigrateStatsSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_164) "Building IDL object src/server/zone/objects/player/sessions/MigrateStatsSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_157) "Building IDL object src/server/zone/objects/player/sessions/MigrateStatsSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/MigrateStatsSession.idl
 
 src/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp: src/server/zone/objects/player/sessions/PlaceStructureSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_165) "Building IDL object src/server/zone/objects/player/sessions/PlaceStructureSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_158) "Building IDL object src/server/zone/objects/player/sessions/PlaceStructureSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/PlaceStructureSession.idl
 
 src/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp: src/server/zone/objects/player/sessions/ProposeUnitySession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_166) "Building IDL object src/server/zone/objects/player/sessions/ProposeUnitySession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_159) "Building IDL object src/server/zone/objects/player/sessions/ProposeUnitySession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/ProposeUnitySession.idl
 
 src/autogen/server/zone/objects/player/sessions/SlicingSession.cpp: src/server/zone/objects/player/sessions/SlicingSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_167) "Building IDL object src/server/zone/objects/player/sessions/SlicingSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_160) "Building IDL object src/server/zone/objects/player/sessions/SlicingSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/SlicingSession.idl
 
 src/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp: src/server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_168) "Building IDL object src/server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_161) "Building IDL object src/server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/StructureSetAccessFeeSession.idl
 
 src/autogen/server/zone/objects/player/sessions/TradeSession.cpp: src/server/zone/objects/player/sessions/TradeSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_169) "Building IDL object src/server/zone/objects/player/sessions/TradeSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_162) "Building IDL object src/server/zone/objects/player/sessions/TradeSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/TradeSession.idl
 
 src/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp: src/server/zone/objects/player/sessions/VeteranRewardSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_170) "Building IDL object src/server/zone/objects/player/sessions/VeteranRewardSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_163) "Building IDL object src/server/zone/objects/player/sessions/VeteranRewardSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/VeteranRewardSession.idl
 
 src/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp: src/server/zone/objects/player/sessions/admin/PlayerManagementSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_171) "Building IDL object src/server/zone/objects/player/sessions/admin/PlayerManagementSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_164) "Building IDL object src/server/zone/objects/player/sessions/admin/PlayerManagementSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/admin/PlayerManagementSession.idl
 
 src/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp: src/server/zone/objects/player/sessions/crafting/CraftingSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_172) "Building IDL object src/server/zone/objects/player/sessions/crafting/CraftingSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_165) "Building IDL object src/server/zone/objects/player/sessions/crafting/CraftingSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/crafting/CraftingSession.idl
 
 src/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp: src/server/zone/objects/player/sessions/survey/SurveySession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_173) "Building IDL object src/server/zone/objects/player/sessions/survey/SurveySession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_166) "Building IDL object src/server/zone/objects/player/sessions/survey/SurveySession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/survey/SurveySession.idl
 
 src/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp: src/server/zone/objects/player/sessions/vendor/CreateVendorSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_174) "Building IDL object src/server/zone/objects/player/sessions/vendor/CreateVendorSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_167) "Building IDL object src/server/zone/objects/player/sessions/vendor/CreateVendorSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/vendor/CreateVendorSession.idl
 
 src/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp: src/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_175) "Building IDL object src/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_168) "Building IDL object src/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.idl
 
 src/autogen/server/zone/objects/player/sui/SuiBox.cpp: src/server/zone/objects/player/sui/SuiBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_176) "Building IDL object src/server/zone/objects/player/sui/SuiBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_169) "Building IDL object src/server/zone/objects/player/sui/SuiBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/SuiBox.idl
 
 src/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp: src/server/zone/objects/player/sui/SuiBoxPage.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_177) "Building IDL object src/server/zone/objects/player/sui/SuiBoxPage.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_170) "Building IDL object src/server/zone/objects/player/sui/SuiBoxPage.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/SuiBoxPage.idl
 
 src/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp: src/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_178) "Building IDL object src/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_171) "Building IDL object src/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.idl
 
 src/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp: src/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_179) "Building IDL object src/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_172) "Building IDL object src/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.idl
 
 src/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp: src/server/zone/objects/player/sui/colorbox/SuiColorBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_180) "Building IDL object src/server/zone/objects/player/sui/colorbox/SuiColorBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_173) "Building IDL object src/server/zone/objects/player/sui/colorbox/SuiColorBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/colorbox/SuiColorBox.idl
 
 src/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp: src/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_181) "Building IDL object src/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_174) "Building IDL object src/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.idl
 
 src/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp: src/server/zone/objects/player/sui/inputbox/SuiInputBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_182) "Building IDL object src/server/zone/objects/player/sui/inputbox/SuiInputBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_175) "Building IDL object src/server/zone/objects/player/sui/inputbox/SuiInputBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/inputbox/SuiInputBox.idl
 
 src/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp: src/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_183) "Building IDL object src/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_176) "Building IDL object src/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/keypadbox/SuiKeypadBox.idl
 
 src/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp: src/server/zone/objects/player/sui/listbox/SuiListBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_184) "Building IDL object src/server/zone/objects/player/sui/listbox/SuiListBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_177) "Building IDL object src/server/zone/objects/player/sui/listbox/SuiListBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/listbox/SuiListBox.idl
 
 src/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp: src/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_185) "Building IDL object src/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_178) "Building IDL object src/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.idl
 
 src/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp: src/server/zone/objects/player/sui/messagebox/SuiMessageBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_186) "Building IDL object src/server/zone/objects/player/sui/messagebox/SuiMessageBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_179) "Building IDL object src/server/zone/objects/player/sui/messagebox/SuiMessageBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/messagebox/SuiMessageBox.idl
 
 src/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp: src/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_187) "Building IDL object src/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_180) "Building IDL object src/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.idl
 
 src/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp: src/server/zone/objects/player/sui/transferbox/SuiTransferBox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_188) "Building IDL object src/server/zone/objects/player/sui/transferbox/SuiTransferBox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_181) "Building IDL object src/server/zone/objects/player/sui/transferbox/SuiTransferBox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/player/sui/transferbox/SuiTransferBox.idl
 
 src/autogen/server/zone/objects/region/CityRegion.cpp: src/server/zone/objects/region/CityRegion.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_189) "Building IDL object src/server/zone/objects/region/CityRegion.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_182) "Building IDL object src/server/zone/objects/region/CityRegion.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/region/CityRegion.idl
 
 src/autogen/server/zone/objects/region/Region.cpp: src/server/zone/objects/region/Region.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_190) "Building IDL object src/server/zone/objects/region/Region.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_183) "Building IDL object src/server/zone/objects/region/Region.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/region/Region.idl
 
-src/autogen/server/zone/objects/region/space/SpaceRegion.cpp: src/server/zone/objects/region/space/SpaceRegion.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_191) "Building IDL object src/server/zone/objects/region/space/SpaceRegion.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/region/space/SpaceRegion.idl
-
-src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp: src/server/zone/objects/region/space/SpaceSpawnArea.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_192) "Building IDL object src/server/zone/objects/region/space/SpaceSpawnArea.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/region/space/SpaceSpawnArea.idl
-
-src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp: src/server/zone/objects/region/space/SpaceSpawnAreaObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_193) "Building IDL object src/server/zone/objects/region/space/SpaceSpawnAreaObserver.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/region/space/SpaceSpawnAreaObserver.idl
-
 src/autogen/server/zone/objects/resource/ResourceContainer.cpp: src/server/zone/objects/resource/ResourceContainer.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_194) "Building IDL object src/server/zone/objects/resource/ResourceContainer.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_184) "Building IDL object src/server/zone/objects/resource/ResourceContainer.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/resource/ResourceContainer.idl
 
 src/autogen/server/zone/objects/resource/ResourceSpawn.cpp: src/server/zone/objects/resource/ResourceSpawn.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_195) "Building IDL object src/server/zone/objects/resource/ResourceSpawn.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_185) "Building IDL object src/server/zone/objects/resource/ResourceSpawn.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/resource/ResourceSpawn.idl
 
 src/autogen/server/zone/objects/scene/SceneObject.cpp: src/server/zone/objects/scene/SceneObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_196) "Building IDL object src/server/zone/objects/scene/SceneObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_186) "Building IDL object src/server/zone/objects/scene/SceneObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/scene/SceneObject.idl
 
 src/autogen/server/zone/objects/ship/FighterShipObject.cpp: src/server/zone/objects/ship/FighterShipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_197) "Building IDL object src/server/zone/objects/ship/FighterShipObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_187) "Building IDL object src/server/zone/objects/ship/FighterShipObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/FighterShipObject.idl
 
-src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp: src/server/zone/objects/ship/MultiPassengerShipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_198) "Building IDL object src/server/zone/objects/ship/MultiPassengerShipObject.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/MultiPassengerShipObject.idl
-
-src/autogen/server/zone/objects/ship/PobShipObject.cpp: src/server/zone/objects/ship/PobShipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_199) "Building IDL object src/server/zone/objects/ship/PobShipObject.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/PobShipObject.idl
-
 src/autogen/server/zone/objects/ship/ShipObject.cpp: src/server/zone/objects/ship/ShipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_200) "Building IDL object src/server/zone/objects/ship/ShipObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_188) "Building IDL object src/server/zone/objects/ship/ShipObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/ShipObject.idl
 
-src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp: src/server/zone/objects/ship/ai/CapitalShipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_201) "Building IDL object src/server/zone/objects/ship/ai/CapitalShipObject.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/ai/CapitalShipObject.idl
-
-src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp: src/server/zone/objects/ship/ai/ShipAiAgent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_202) "Building IDL object src/server/zone/objects/ship/ai/ShipAiAgent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/ai/ShipAiAgent.idl
-
-src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp: src/server/zone/objects/ship/ai/SpaceStationObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_203) "Building IDL object src/server/zone/objects/ship/ai/SpaceStationObject.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/ai/SpaceStationObject.idl
-
-src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp: src/server/zone/objects/ship/components/ShipArmorComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_204) "Building IDL object src/server/zone/objects/ship/components/ShipArmorComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipArmorComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp: src/server/zone/objects/ship/components/ShipBoosterComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_205) "Building IDL object src/server/zone/objects/ship/components/ShipBoosterComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipBoosterComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp: src/server/zone/objects/ship/components/ShipCapacitorComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_206) "Building IDL object src/server/zone/objects/ship/components/ShipCapacitorComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipCapacitorComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp: src/server/zone/objects/ship/components/ShipChassisComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_207) "Building IDL object src/server/zone/objects/ship/components/ShipChassisComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipChassisComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipComponent.cpp: src/server/zone/objects/ship/components/ShipComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_208) "Building IDL object src/server/zone/objects/ship/components/ShipComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp: src/server/zone/objects/ship/components/ShipCounterMeasureComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_209) "Building IDL object src/server/zone/objects/ship/components/ShipCounterMeasureComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipCounterMeasureComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp: src/server/zone/objects/ship/components/ShipDroidInterfaceComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_210) "Building IDL object src/server/zone/objects/ship/components/ShipDroidInterfaceComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipDroidInterfaceComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp: src/server/zone/objects/ship/components/ShipEngineComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_211) "Building IDL object src/server/zone/objects/ship/components/ShipEngineComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipEngineComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp: src/server/zone/objects/ship/components/ShipMissileComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_212) "Building IDL object src/server/zone/objects/ship/components/ShipMissileComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipMissileComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp: src/server/zone/objects/ship/components/ShipReactorComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_213) "Building IDL object src/server/zone/objects/ship/components/ShipReactorComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipReactorComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp: src/server/zone/objects/ship/components/ShipShieldComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_214) "Building IDL object src/server/zone/objects/ship/components/ShipShieldComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipShieldComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp: src/server/zone/objects/ship/components/ShipSubComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_215) "Building IDL object src/server/zone/objects/ship/components/ShipSubComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipSubComponent.idl
-
-src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp: src/server/zone/objects/ship/components/ShipWeaponComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_216) "Building IDL object src/server/zone/objects/ship/components/ShipWeaponComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/ship/components/ShipWeaponComponent.idl
-
 src/autogen/server/zone/objects/staticobject/StaticObject.cpp: src/server/zone/objects/staticobject/StaticObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_217) "Building IDL object src/server/zone/objects/staticobject/StaticObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_189) "Building IDL object src/server/zone/objects/staticobject/StaticObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/staticobject/StaticObject.idl
 
 src/autogen/server/zone/objects/structure/StructureObject.cpp: src/server/zone/objects/structure/StructureObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_218) "Building IDL object src/server/zone/objects/structure/StructureObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_190) "Building IDL object src/server/zone/objects/structure/StructureObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/structure/StructureObject.idl
 
 src/autogen/server/zone/objects/tangible/Container.cpp: src/server/zone/objects/tangible/Container.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_219) "Building IDL object src/server/zone/objects/tangible/Container.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_191) "Building IDL object src/server/zone/objects/tangible/Container.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/Container.idl
 
 src/autogen/server/zone/objects/tangible/Instrument.cpp: src/server/zone/objects/tangible/Instrument.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_220) "Building IDL object src/server/zone/objects/tangible/Instrument.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_192) "Building IDL object src/server/zone/objects/tangible/Instrument.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/Instrument.idl
 
 src/autogen/server/zone/objects/tangible/LairObject.cpp: src/server/zone/objects/tangible/LairObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_221) "Building IDL object src/server/zone/objects/tangible/LairObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_193) "Building IDL object src/server/zone/objects/tangible/LairObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/LairObject.idl
 
 src/autogen/server/zone/objects/tangible/TangibleObject.cpp: src/server/zone/objects/tangible/TangibleObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_222) "Building IDL object src/server/zone/objects/tangible/TangibleObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_194) "Building IDL object src/server/zone/objects/tangible/TangibleObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/TangibleObject.idl
 
 src/autogen/server/zone/objects/tangible/attachment/Attachment.cpp: src/server/zone/objects/tangible/attachment/Attachment.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_223) "Building IDL object src/server/zone/objects/tangible/attachment/Attachment.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_195) "Building IDL object src/server/zone/objects/tangible/attachment/Attachment.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/attachment/Attachment.idl
 
 src/autogen/server/zone/objects/tangible/component/Component.cpp: src/server/zone/objects/tangible/component/Component.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_224) "Building IDL object src/server/zone/objects/tangible/component/Component.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_196) "Building IDL object src/server/zone/objects/tangible/component/Component.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/Component.idl
 
 src/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp: src/server/zone/objects/tangible/component/armor/ArmorComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_225) "Building IDL object src/server/zone/objects/tangible/component/armor/ArmorComponent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_197) "Building IDL object src/server/zone/objects/tangible/component/armor/ArmorComponent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/armor/ArmorComponent.idl
 
 src/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp: src/server/zone/objects/tangible/component/dna/DnaComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_226) "Building IDL object src/server/zone/objects/tangible/component/dna/DnaComponent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_198) "Building IDL object src/server/zone/objects/tangible/component/dna/DnaComponent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/dna/DnaComponent.idl
 
 src/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp: src/server/zone/objects/tangible/component/droid/DroidComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_227) "Building IDL object src/server/zone/objects/tangible/component/droid/DroidComponent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_199) "Building IDL object src/server/zone/objects/tangible/component/droid/DroidComponent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/droid/DroidComponent.idl
 
 src/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp: src/server/zone/objects/tangible/component/genetic/GeneticComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_228) "Building IDL object src/server/zone/objects/tangible/component/genetic/GeneticComponent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_200) "Building IDL object src/server/zone/objects/tangible/component/genetic/GeneticComponent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/genetic/GeneticComponent.idl
 
 src/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp: src/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_229) "Building IDL object src/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_201) "Building IDL object src/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.idl
 
-src/autogen/server/zone/objects/tangible/components/LightObserver.cpp: src/server/zone/objects/tangible/components/LightObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_230) "Building IDL object src/server/zone/objects/tangible/components/LightObserver.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/components/LightObserver.idl
-
 src/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp: src/server/zone/objects/tangible/components/droid/DroidHarvestObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_231) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidHarvestObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_202) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidHarvestObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/components/droid/DroidHarvestObserver.idl
 
 src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp: src/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_232) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_203) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/components/droid/DroidPersonalityObserver.idl
 
 src/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp: src/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_233) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_204) "Building IDL object src/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/components/droid/DroidPlaybackObserver.idl
 
 src/autogen/server/zone/objects/tangible/consumable/Consumable.cpp: src/server/zone/objects/tangible/consumable/Consumable.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_234) "Building IDL object src/server/zone/objects/tangible/consumable/Consumable.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_205) "Building IDL object src/server/zone/objects/tangible/consumable/Consumable.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/consumable/Consumable.idl
 
 src/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp: src/server/zone/objects/tangible/consumable/DelayedBuffObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_235) "Building IDL object src/server/zone/objects/tangible/consumable/DelayedBuffObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_206) "Building IDL object src/server/zone/objects/tangible/consumable/DelayedBuffObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/consumable/DelayedBuffObserver.idl
 
 src/autogen/server/zone/objects/tangible/consumable/Drink.cpp: src/server/zone/objects/tangible/consumable/Drink.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_236) "Building IDL object src/server/zone/objects/tangible/consumable/Drink.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_207) "Building IDL object src/server/zone/objects/tangible/consumable/Drink.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/consumable/Drink.idl
 
 src/autogen/server/zone/objects/tangible/consumable/Food.cpp: src/server/zone/objects/tangible/consumable/Food.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_237) "Building IDL object src/server/zone/objects/tangible/consumable/Food.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_208) "Building IDL object src/server/zone/objects/tangible/consumable/Food.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/consumable/Food.idl
 
 src/autogen/server/zone/objects/tangible/deed/Deed.cpp: src/server/zone/objects/tangible/deed/Deed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_238) "Building IDL object src/server/zone/objects/tangible/deed/Deed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_209) "Building IDL object src/server/zone/objects/tangible/deed/Deed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/Deed.idl
 
 src/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp: src/server/zone/objects/tangible/deed/droid/DroidDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_239) "Building IDL object src/server/zone/objects/tangible/deed/droid/DroidDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_210) "Building IDL object src/server/zone/objects/tangible/deed/droid/DroidDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/droid/DroidDeed.idl
 
 src/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp: src/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_240) "Building IDL object src/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_211) "Building IDL object src/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/eventperk/EventPerkDeed.idl
 
 src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp: src/server/zone/objects/tangible/deed/pet/PetDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_241) "Building IDL object src/server/zone/objects/tangible/deed/pet/PetDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_212) "Building IDL object src/server/zone/objects/tangible/deed/pet/PetDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/pet/PetDeed.idl
 
 src/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp: src/server/zone/objects/tangible/deed/resource/ResourceDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_242) "Building IDL object src/server/zone/objects/tangible/deed/resource/ResourceDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_213) "Building IDL object src/server/zone/objects/tangible/deed/resource/ResourceDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/resource/ResourceDeed.idl
 
-src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp: src/server/zone/objects/tangible/deed/ship/ShipDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_243) "Building IDL object src/server/zone/objects/tangible/deed/ship/ShipDeed.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/ship/ShipDeed.idl
-
 src/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp: src/server/zone/objects/tangible/deed/structure/StructureDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_244) "Building IDL object src/server/zone/objects/tangible/deed/structure/StructureDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_214) "Building IDL object src/server/zone/objects/tangible/deed/structure/StructureDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/structure/StructureDeed.idl
 
 src/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp: src/server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_245) "Building IDL object src/server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_215) "Building IDL object src/server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/vehicle/VehicleDeed.idl
 
 src/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp: src/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_246) "Building IDL object src/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_216) "Building IDL object src/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp: src/server/zone/objects/tangible/eventperk/FlagGame.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_247) "Building IDL object src/server/zone/objects/tangible/eventperk/FlagGame.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_217) "Building IDL object src/server/zone/objects/tangible/eventperk/FlagGame.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/FlagGame.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp: src/server/zone/objects/tangible/eventperk/Jukebox.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_248) "Building IDL object src/server/zone/objects/tangible/eventperk/Jukebox.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_218) "Building IDL object src/server/zone/objects/tangible/eventperk/Jukebox.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/Jukebox.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp: src/server/zone/objects/tangible/eventperk/JukeboxObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_249) "Building IDL object src/server/zone/objects/tangible/eventperk/JukeboxObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_219) "Building IDL object src/server/zone/objects/tangible/eventperk/JukeboxObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/JukeboxObserver.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp: src/server/zone/objects/tangible/eventperk/LotteryDroid.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_250) "Building IDL object src/server/zone/objects/tangible/eventperk/LotteryDroid.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_220) "Building IDL object src/server/zone/objects/tangible/eventperk/LotteryDroid.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/LotteryDroid.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp: src/server/zone/objects/tangible/eventperk/ScavengerChest.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_251) "Building IDL object src/server/zone/objects/tangible/eventperk/ScavengerChest.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_221) "Building IDL object src/server/zone/objects/tangible/eventperk/ScavengerChest.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/ScavengerChest.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp: src/server/zone/objects/tangible/eventperk/ScavengerDroid.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_252) "Building IDL object src/server/zone/objects/tangible/eventperk/ScavengerDroid.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_222) "Building IDL object src/server/zone/objects/tangible/eventperk/ScavengerDroid.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/ScavengerDroid.idl
 
 src/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp: src/server/zone/objects/tangible/eventperk/ShuttleBeacon.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_253) "Building IDL object src/server/zone/objects/tangible/eventperk/ShuttleBeacon.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_223) "Building IDL object src/server/zone/objects/tangible/eventperk/ShuttleBeacon.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/eventperk/ShuttleBeacon.idl
 
 src/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp: src/server/zone/objects/tangible/firework/FireworkObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_254) "Building IDL object src/server/zone/objects/tangible/firework/FireworkObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_224) "Building IDL object src/server/zone/objects/tangible/firework/FireworkObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/firework/FireworkObject.idl
 
 src/autogen/server/zone/objects/tangible/fishing/FishObject.cpp: src/server/zone/objects/tangible/fishing/FishObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_255) "Building IDL object src/server/zone/objects/tangible/fishing/FishObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_225) "Building IDL object src/server/zone/objects/tangible/fishing/FishObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/fishing/FishObject.idl
 
 src/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp: src/server/zone/objects/tangible/fishing/FishingBaitObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_256) "Building IDL object src/server/zone/objects/tangible/fishing/FishingBaitObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_226) "Building IDL object src/server/zone/objects/tangible/fishing/FishingBaitObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/fishing/FishingBaitObject.idl
 
 src/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp: src/server/zone/objects/tangible/fishing/FishingPoleObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_257) "Building IDL object src/server/zone/objects/tangible/fishing/FishingPoleObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_227) "Building IDL object src/server/zone/objects/tangible/fishing/FishingPoleObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/fishing/FishingPoleObject.idl
 
 src/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp: src/server/zone/objects/tangible/item/CreditChipObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_258) "Building IDL object src/server/zone/objects/tangible/item/CreditChipObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_228) "Building IDL object src/server/zone/objects/tangible/item/CreditChipObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/item/CreditChipObject.idl
 
 src/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp: src/server/zone/objects/tangible/loot/LootkitObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_259) "Building IDL object src/server/zone/objects/tangible/loot/LootkitObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_229) "Building IDL object src/server/zone/objects/tangible/loot/LootkitObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/loot/LootkitObject.idl
 
 src/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp: src/server/zone/objects/tangible/misc/ContractCrate.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_260) "Building IDL object src/server/zone/objects/tangible/misc/ContractCrate.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_230) "Building IDL object src/server/zone/objects/tangible/misc/ContractCrate.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/ContractCrate.idl
 
 src/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp: src/server/zone/objects/tangible/misc/CustomIngredient.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_261) "Building IDL object src/server/zone/objects/tangible/misc/CustomIngredient.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_231) "Building IDL object src/server/zone/objects/tangible/misc/CustomIngredient.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/CustomIngredient.idl
 
 src/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp: src/server/zone/objects/tangible/misc/FsBuffItem.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_262) "Building IDL object src/server/zone/objects/tangible/misc/FsBuffItem.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_232) "Building IDL object src/server/zone/objects/tangible/misc/FsBuffItem.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/FsBuffItem.idl
 
 src/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp: src/server/zone/objects/tangible/misc/FsCraftingComponentObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_263) "Building IDL object src/server/zone/objects/tangible/misc/FsCraftingComponentObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_233) "Building IDL object src/server/zone/objects/tangible/misc/FsCraftingComponentObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/FsCraftingComponentObject.idl
 
 src/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp: src/server/zone/objects/tangible/misc/FsCsObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_264) "Building IDL object src/server/zone/objects/tangible/misc/FsCsObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_234) "Building IDL object src/server/zone/objects/tangible/misc/FsCsObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/FsCsObject.idl
 
 src/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp: src/server/zone/objects/tangible/misc/FsPuzzlePack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_265) "Building IDL object src/server/zone/objects/tangible/misc/FsPuzzlePack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_235) "Building IDL object src/server/zone/objects/tangible/misc/FsPuzzlePack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/FsPuzzlePack.idl
 
 src/autogen/server/zone/objects/tangible/misc/PlantObject.cpp: src/server/zone/objects/tangible/misc/PlantObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_266) "Building IDL object src/server/zone/objects/tangible/misc/PlantObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_236) "Building IDL object src/server/zone/objects/tangible/misc/PlantObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/PlantObject.idl
 
 src/autogen/server/zone/objects/tangible/misc/VendorToken.cpp: src/server/zone/objects/tangible/misc/VendorToken.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_267) "Building IDL object src/server/zone/objects/tangible/misc/VendorToken.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_237) "Building IDL object src/server/zone/objects/tangible/misc/VendorToken.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/misc/VendorToken.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp: src/server/zone/objects/tangible/pharmaceutical/CurePack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_268) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/CurePack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_238) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/CurePack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/CurePack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp: src/server/zone/objects/tangible/pharmaceutical/DotPack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_269) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/DotPack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_239) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/DotPack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/DotPack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp: src/server/zone/objects/tangible/pharmaceutical/EnhancePack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_270) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/EnhancePack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_240) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/EnhancePack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/EnhancePack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp: src/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_271) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_241) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp: src/server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_272) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_242) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/RangedStimPack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp: src/server/zone/objects/tangible/pharmaceutical/RevivePack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_273) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/RevivePack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_243) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/RevivePack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/RevivePack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp: src/server/zone/objects/tangible/pharmaceutical/StatePack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_274) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/StatePack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_244) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/StatePack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/StatePack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp: src/server/zone/objects/tangible/pharmaceutical/StimPack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_275) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/StimPack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_245) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/StimPack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/StimPack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp: src/server/zone/objects/tangible/pharmaceutical/VitalityPack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_276) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/VitalityPack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_246) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/VitalityPack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/VitalityPack.idl
 
 src/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp: src/server/zone/objects/tangible/pharmaceutical/WoundPack.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_277) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/WoundPack.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_247) "Building IDL object src/server/zone/objects/tangible/pharmaceutical/WoundPack.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/pharmaceutical/WoundPack.idl
 
 src/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp: src/server/zone/objects/tangible/powerup/PowerupObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_278) "Building IDL object src/server/zone/objects/tangible/powerup/PowerupObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_248) "Building IDL object src/server/zone/objects/tangible/powerup/PowerupObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/powerup/PowerupObject.idl
 
-src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp: src/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_279) "Building IDL object src/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.idl
-
-src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp: src/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_280) "Building IDL object src/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.idl
-
-src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp: src/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_281) "Building IDL object src/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.idl
-
 src/autogen/server/zone/objects/tangible/sign/SignObject.cpp: src/server/zone/objects/tangible/sign/SignObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_282) "Building IDL object src/server/zone/objects/tangible/sign/SignObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_249) "Building IDL object src/server/zone/objects/tangible/sign/SignObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/sign/SignObject.idl
 
-src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp: src/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_283) "Building IDL object src/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.idl"
-	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.idl
-
 src/autogen/server/zone/objects/tangible/terminal/Terminal.cpp: src/server/zone/objects/tangible/terminal/Terminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_284) "Building IDL object src/server/zone/objects/tangible/terminal/Terminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_250) "Building IDL object src/server/zone/objects/tangible/terminal/Terminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/Terminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp: src/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_285) "Building IDL object src/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_251) "Building IDL object src/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp: src/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_286) "Building IDL object src/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_252) "Building IDL object src/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp: src/server/zone/objects/tangible/terminal/guild/GuildTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_287) "Building IDL object src/server/zone/objects/tangible/terminal/guild/GuildTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_253) "Building IDL object src/server/zone/objects/tangible/terminal/guild/GuildTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/guild/GuildTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp: src/server/zone/objects/tangible/terminal/mission/MissionTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_288) "Building IDL object src/server/zone/objects/tangible/terminal/mission/MissionTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_254) "Building IDL object src/server/zone/objects/tangible/terminal/mission/MissionTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/mission/MissionTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp: src/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_289) "Building IDL object src/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_255) "Building IDL object src/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp: src/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_290) "Building IDL object src/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_256) "Building IDL object src/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.idl
 
 src/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp: src/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_291) "Building IDL object src/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_257) "Building IDL object src/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.idl
 
 src/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp: src/server/zone/objects/tangible/terminal/travel/TravelTerminal.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_292) "Building IDL object src/server/zone/objects/tangible/terminal/travel/TravelTerminal.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_258) "Building IDL object src/server/zone/objects/tangible/terminal/travel/TravelTerminal.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/terminal/travel/TravelTerminal.idl
 
 src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp: src/server/zone/objects/tangible/threat/ThreatMapObserver.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_293) "Building IDL object src/server/zone/objects/tangible/threat/ThreatMapObserver.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_259) "Building IDL object src/server/zone/objects/tangible/threat/ThreatMapObserver.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/threat/ThreatMapObserver.idl
 
 src/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp: src/server/zone/objects/tangible/ticket/TicketObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_294) "Building IDL object src/server/zone/objects/tangible/ticket/TicketObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_260) "Building IDL object src/server/zone/objects/tangible/ticket/TicketObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/ticket/TicketObject.idl
 
 src/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp: src/server/zone/objects/tangible/tool/CraftingStation.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_295) "Building IDL object src/server/zone/objects/tangible/tool/CraftingStation.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_261) "Building IDL object src/server/zone/objects/tangible/tool/CraftingStation.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/CraftingStation.idl
 
 src/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp: src/server/zone/objects/tangible/tool/CraftingTool.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_296) "Building IDL object src/server/zone/objects/tangible/tool/CraftingTool.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_262) "Building IDL object src/server/zone/objects/tangible/tool/CraftingTool.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/CraftingTool.idl
 
 src/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp: src/server/zone/objects/tangible/tool/SurveyTool.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_297) "Building IDL object src/server/zone/objects/tangible/tool/SurveyTool.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_263) "Building IDL object src/server/zone/objects/tangible/tool/SurveyTool.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/SurveyTool.idl
 
 src/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp: src/server/zone/objects/tangible/tool/ToolTangibleObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_298) "Building IDL object src/server/zone/objects/tangible/tool/ToolTangibleObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_264) "Building IDL object src/server/zone/objects/tangible/tool/ToolTangibleObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/ToolTangibleObject.idl
 
 src/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp: src/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_299) "Building IDL object src/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_265) "Building IDL object src/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/antidecay/AntiDecayKit.idl
 
 src/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp: src/server/zone/objects/tangible/tool/recycle/RecycleTool.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_300) "Building IDL object src/server/zone/objects/tangible/tool/recycle/RecycleTool.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_266) "Building IDL object src/server/zone/objects/tangible/tool/recycle/RecycleTool.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/recycle/RecycleTool.idl
 
 src/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp: src/server/zone/objects/tangible/tool/repair/RepairTool.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_301) "Building IDL object src/server/zone/objects/tangible/tool/repair/RepairTool.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_267) "Building IDL object src/server/zone/objects/tangible/tool/repair/RepairTool.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/repair/RepairTool.idl
 
 src/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp: src/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_302) "Building IDL object src/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_268) "Building IDL object src/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.idl
 
 src/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp: src/server/zone/objects/tangible/tool/smuggler/SlicingTool.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_303) "Building IDL object src/server/zone/objects/tangible/tool/smuggler/SlicingTool.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_269) "Building IDL object src/server/zone/objects/tangible/tool/smuggler/SlicingTool.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/tool/smuggler/SlicingTool.idl
 
 src/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp: src/server/zone/objects/tangible/weapon/WeaponObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_304) "Building IDL object src/server/zone/objects/tangible/weapon/WeaponObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_270) "Building IDL object src/server/zone/objects/tangible/weapon/WeaponObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/weapon/WeaponObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp: src/server/zone/objects/tangible/wearables/ArmorObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_305) "Building IDL object src/server/zone/objects/tangible/wearables/ArmorObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_271) "Building IDL object src/server/zone/objects/tangible/wearables/ArmorObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/ArmorObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp: src/server/zone/objects/tangible/wearables/ClothingObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_306) "Building IDL object src/server/zone/objects/tangible/wearables/ClothingObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_272) "Building IDL object src/server/zone/objects/tangible/wearables/ClothingObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/ClothingObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp: src/server/zone/objects/tangible/wearables/PsgArmorObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_307) "Building IDL object src/server/zone/objects/tangible/wearables/PsgArmorObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_273) "Building IDL object src/server/zone/objects/tangible/wearables/PsgArmorObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/PsgArmorObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp: src/server/zone/objects/tangible/wearables/RobeObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_308) "Building IDL object src/server/zone/objects/tangible/wearables/RobeObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_274) "Building IDL object src/server/zone/objects/tangible/wearables/RobeObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/RobeObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp: src/server/zone/objects/tangible/wearables/WearableContainerObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_309) "Building IDL object src/server/zone/objects/tangible/wearables/WearableContainerObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_275) "Building IDL object src/server/zone/objects/tangible/wearables/WearableContainerObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/WearableContainerObject.idl
 
 src/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp: src/server/zone/objects/tangible/wearables/WearableObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_310) "Building IDL object src/server/zone/objects/tangible/wearables/WearableObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_276) "Building IDL object src/server/zone/objects/tangible/wearables/WearableObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/tangible/wearables/WearableObject.idl
 
 src/autogen/server/zone/objects/waypoint/WaypointObject.cpp: src/server/zone/objects/waypoint/WaypointObject.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_311) "Building IDL object src/server/zone/objects/waypoint/WaypointObject.idl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_277) "Building IDL object src/server/zone/objects/waypoint/WaypointObject.idl"
 	/usr/bin/java -XX:TieredStopAtLevel=1 -client -Xmx128M -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/lib/idlc.jar org.sr.idlc.compiler.Compiler -outdir autogen -cp /home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/src -nomocks -silence -rbcpp -sd src server/zone/objects/waypoint/WaypointObject.idl
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o: src/autogen/server/chat/ChatManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_312) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_278) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/ChatManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.i: cmake_force
@@ -1330,7 +1194,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatManager.cpp.s: cmake_force
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o: src/autogen/server/chat/ChatMessage.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_313) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_279) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/ChatMessage.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.i: cmake_force
@@ -1344,7 +1208,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/chat/ChatMessage.cpp.s: cmake_force
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o: src/autogen/server/chat/PendingMessageList.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_314) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_280) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/PendingMessageList.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.i: cmake_force
@@ -1358,7 +1222,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/chat/PendingMessageList.cpp.s: cmak
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o: src/autogen/server/chat/PersistentMessage.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_315) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_281) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/PersistentMessage.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.i: cmake_force
@@ -1372,7 +1236,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/chat/PersistentMessage.cpp.s: cmake
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o: src/autogen/server/chat/room/ChatRoom.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_316) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_282) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/chat/room/ChatRoom.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.i: cmake_force
@@ -1386,7 +1250,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/chat/room/ChatRoom.cpp.s: cmake_for
 src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o: src/autogen/server/login/LoginServer.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_317) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_283) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/login/LoginServer.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.i: cmake_force
@@ -1400,7 +1264,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginServer.cpp.s: cmake_forc
 src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o: src/autogen/server/login/account/Account.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_318) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_284) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/login/account/Account.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.i: cmake_force
@@ -1414,7 +1278,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.s: cmake_
 src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o: src/autogen/server/utils/LambdaObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_319) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_285) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/utils/LambdaObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.i: cmake_force
@@ -1428,7 +1292,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.s: cmake_f
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o: src/autogen/server/zone/GroundZone.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_320) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_286) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/GroundZone.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.i: cmake_force
@@ -1439,24 +1303,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/GroundZone.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o: src/autogen/server/zone/SpaceZone.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_321) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/SpaceZone.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/SpaceZone.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/SpaceZone.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o: src/autogen/server/zone/TreeEntry.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_322) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_287) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/TreeEntry.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.i: cmake_force
@@ -1470,7 +1320,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.s: cmake_force
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o: src/autogen/server/zone/Zone.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_323) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_288) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/Zone.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.i: cmake_force
@@ -1484,7 +1334,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.s: cmake_force
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o: src/autogen/server/zone/ZoneClientSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_324) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_289) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneClientSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.i: cmake_force
@@ -1498,7 +1348,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.s: cmake
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o: src/autogen/server/zone/ZoneProcessServer.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_325) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_290) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneProcessServer.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.i: cmake_force
@@ -1512,7 +1362,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneProcessServer.cpp.s: cmake
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: src/autogen/server/zone/ZoneServer.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_326) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_291) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/ZoneServer.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.i: cmake_force
@@ -1526,7 +1376,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneServer.cpp.s: cmake_force
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o: src/autogen/server/zone/managers/ZoneManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_327) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_292) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/ZoneManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.i: cmake_force
@@ -1540,7 +1390,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ZoneManager.cpp.s: cm
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o: src/autogen/server/zone/managers/auction/AuctionManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_328) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_293) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/auction/AuctionManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManager.cpp.i: cmake_force
@@ -1554,7 +1404,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionManage
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o: src/autogen/server/zone/managers/auction/AuctionsMap.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_329) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_294) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/auction/AuctionsMap.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.cpp.i: cmake_force
@@ -1568,7 +1418,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/auction/AuctionsMap.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o: src/autogen/server/zone/managers/city/CityManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_330) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_295) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/city/CityManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.i: cmake_force
@@ -1582,7 +1432,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/city/CityManager.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o: src/autogen/server/zone/managers/crafting/CraftingManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_331) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_296) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/crafting/CraftingManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingManager.cpp.i: cmake_force
@@ -1596,7 +1446,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/crafting/CraftingMana
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o: src/autogen/server/zone/managers/creature/CreatureManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_332) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_297) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/CreatureManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureManager.cpp.i: cmake_force
@@ -1610,7 +1460,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/CreatureMana
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o: src/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_333) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_298) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawnObserver.cpp.i: cmake_force
@@ -1624,7 +1474,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/DynamicSpawn
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o: src/autogen/server/zone/managers/creature/LairObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_334) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_299) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/LairObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver.cpp.i: cmake_force
@@ -1638,7 +1488,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/LairObserver
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o: src/autogen/server/zone/managers/creature/PetManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_335) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_300) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/PetManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.cpp.i: cmake_force
@@ -1652,7 +1502,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/PetManager.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o: src/autogen/server/zone/managers/creature/SpawnObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_336) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_301) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/creature/SpawnObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserver.cpp.i: cmake_force
@@ -1666,7 +1516,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/creature/SpawnObserve
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o: src/autogen/server/zone/managers/director/PersistentEvent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_337) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_302) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/director/PersistentEvent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEvent.cpp.i: cmake_force
@@ -1680,7 +1530,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/PersistentEv
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o: src/autogen/server/zone/managers/director/QuestStatus.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_338) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_303) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/director/QuestStatus.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.cpp.i: cmake_force
@@ -1694,7 +1544,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestStatus.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o: src/autogen/server/zone/managers/director/QuestVectorMap.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_339) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_304) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/director/QuestVectorMap.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorMap.cpp.i: cmake_force
@@ -1708,7 +1558,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/QuestVectorM
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o: src/autogen/server/zone/managers/director/ScreenPlayObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_340) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_305) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/director/ScreenPlayObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayObserver.cpp.i: cmake_force
@@ -1722,7 +1572,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/director/ScreenPlayOb
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o: src/autogen/server/zone/managers/frs/ArenaChallengeData.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_341) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_306) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/frs/ArenaChallengeData.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeData.cpp.i: cmake_force
@@ -1736,7 +1586,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ArenaChallengeDat
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o: src/autogen/server/zone/managers/frs/ChallengeVoteData.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_342) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_307) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/frs/ChallengeVoteData.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData.cpp.i: cmake_force
@@ -1750,7 +1600,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/ChallengeVoteData
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o: src/autogen/server/zone/managers/frs/FrsManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_343) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_308) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/frs/FrsManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.i: cmake_force
@@ -1764,7 +1614,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManager.cpp.s:
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o: src/autogen/server/zone/managers/frs/FrsManagerData.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_344) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_309) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/frs/FrsManagerData.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cpp.i: cmake_force
@@ -1778,7 +1628,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsManagerData.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o: src/autogen/server/zone/managers/frs/FrsRank.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_345) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_310) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/frs/FrsRank.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.i: cmake_force
@@ -1792,7 +1642,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/frs/FrsRank.cpp.s: cm
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o: src/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_346) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_311) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownObserver.cpp.i: cmake_force
@@ -1806,7 +1656,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWBaseShutdownOb
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o: src/autogen/server/zone/managers/gcw/GCWManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_347) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_312) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/GCWManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.i: cmake_force
@@ -1820,7 +1670,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/GCWManager.cpp.s:
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o: src/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_348) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_313) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ContainmentTeamObserver.cpp.i: cmake_force
@@ -1834,7 +1684,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/Contain
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o: src/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_349) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_314) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotObserver.cpp.i: cmake_force
@@ -1848,7 +1698,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/observers/ProbotO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o: src/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_350) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_315) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/ContrabandScanSession.cpp.i: cmake_force
@@ -1862,7 +1712,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/Contraba
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o: src/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_351) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_316) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildContrabandScanSession.cpp.i: cmake_force
@@ -1876,7 +1726,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/gcw/sessions/WildCont
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o: src/autogen/server/zone/managers/guild/GuildManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_352) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_317) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/guild/GuildManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cpp.i: cmake_force
@@ -1890,7 +1740,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/guild/GuildManager.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o: src/autogen/server/zone/managers/loot/LootManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_353) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_318) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/loot/LootManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.i: cmake_force
@@ -1904,7 +1754,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/loot/LootManager.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o: src/autogen/server/zone/managers/minigames/FishingManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_354) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_319) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/minigames/FishingManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingManager.cpp.i: cmake_force
@@ -1918,7 +1768,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingMana
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o: src/autogen/server/zone/managers/minigames/FishingSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_355) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_320) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/minigames/FishingSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSession.cpp.i: cmake_force
@@ -1932,7 +1782,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/FishingSess
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o: src/autogen/server/zone/managers/minigames/ForageManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_356) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_321) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/minigames/ForageManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManager.cpp.i: cmake_force
@@ -1946,7 +1796,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/ForageManag
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o: src/autogen/server/zone/managers/minigames/GamblingManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_357) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_322) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/minigames/GamblingManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingManager.cpp.i: cmake_force
@@ -1960,7 +1810,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/minigames/GamblingMan
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o: src/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_358) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_323) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissionLairObserver.cpp.i: cmake_force
@@ -1974,7 +1824,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/DestroyMissio
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o: src/autogen/server/zone/managers/mission/MissionManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_359) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_324) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/mission/MissionManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManager.cpp.i: cmake_force
@@ -1988,7 +1838,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/mission/MissionManage
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o: src/autogen/server/zone/managers/objectcontroller/ObjectController.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_360) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_325) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/objectcontroller/ObjectController.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/ObjectController.cpp.i: cmake_force
@@ -2002,7 +1852,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/objectcontroller/Obje
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o: src/autogen/server/zone/managers/planet/PlanetManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_361) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_326) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/planet/PlanetManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.cpp.i: cmake_force
@@ -2016,7 +1866,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/planet/PlanetManager.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o: src/autogen/server/zone/managers/player/PlayerManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_362) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_327) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/player/PlayerManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.cpp.i: cmake_force
@@ -2030,7 +1880,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/player/PlayerManager.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o: src/autogen/server/zone/managers/radial/RadialManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_363) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_328) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/radial/RadialManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.cpp.i: cmake_force
@@ -2044,7 +1894,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/radial/RadialManager.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o: src/autogen/server/zone/managers/reaction/ReactionManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_364) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_329) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/reaction/ReactionManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.i: cmake_force
@@ -2058,7 +1908,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionMana
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o: src/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_365) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_330) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.i: cmake_force
@@ -2072,7 +1922,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/Interplaneta
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o: src/autogen/server/zone/managers/resource/ResourceManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_366) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_331) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/resource/ResourceManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.i: cmake_force
@@ -2083,38 +1933,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceMana
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/resource/ResourceManager.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o: src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_367) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o: src/autogen/server/zone/managers/space/SpaceManager.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_368) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/space/SpaceManager.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/space/SpaceManager.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/space/SpaceManager.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o: src/autogen/server/zone/managers/weather/WeatherManager.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_369) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_332) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/managers/weather/WeatherManager.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.i: cmake_force
@@ -2128,7 +1950,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManage
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o: src/autogen/server/zone/objects/area/ActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_370) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_333) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/ActiveArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.i: cmake_force
@@ -2142,7 +1964,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.s:
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o: src/autogen/server/zone/objects/area/BadgeActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_371) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_334) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/BadgeActiveArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.i: cmake_force
@@ -2156,7 +1978,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o: src/autogen/server/zone/objects/area/CampSiteActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_372) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_335) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/CampSiteActiveArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveArea.cpp.i: cmake_force
@@ -2170,7 +1992,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteActiveAre
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o: src/autogen/server/zone/objects/area/CampSiteObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_373) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_336) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/CampSiteObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.cpp.i: cmake_force
@@ -2184,7 +2006,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/CampSiteObserver.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o: src/autogen/server/zone/objects/area/FsVillageArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_374) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_337) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/FsVillageArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp.i: cmake_force
@@ -2198,7 +2020,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/FsVillageArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o: src/autogen/server/zone/objects/area/MissionReconActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_375) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_338) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/MissionReconActiveArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiveArea.cpp.i: cmake_force
@@ -2212,7 +2034,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionReconActiv
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o: src/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_376) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_339) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiveArea.cpp.i: cmake_force
@@ -2226,7 +2048,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/MissionSpawnActiv
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o: src/autogen/server/zone/objects/area/SarlaccArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_377) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_340) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/SarlaccArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.i: cmake_force
@@ -2240,7 +2062,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SarlaccArea.cpp.s
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o: src/autogen/server/zone/objects/area/SpawnArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_378) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_341) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/SpawnArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.i: cmake_force
@@ -2254,7 +2076,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnArea.cpp.s: 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o: src/autogen/server/zone/objects/area/SpawnAreaObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_379) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_342) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/SpawnAreaObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.i: cmake_force
@@ -2268,7 +2090,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/AreaShape.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_380) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_343) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/AreaShape.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.i: cmake_force
@@ -2282,7 +2104,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaSh
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_381) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_344) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.i: cmake_force
@@ -2293,24 +2115,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/Circul
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_382) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_383) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_345) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.i: cmake_force
@@ -2324,7 +2132,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/Rectan
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_384) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_346) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.i: cmake_force
@@ -2335,52 +2143,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAr
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o: src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_385) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o: src/autogen/server/zone/objects/area/space/NebulaArea.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_386) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/NebulaArea.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/NebulaArea.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/NebulaArea.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o: src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_387) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o: src/autogen/server/zone/objects/auction/AuctionItem.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_388) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_347) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/auction/AuctionItem.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.i: cmake_force
@@ -2394,7 +2160,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o: src/autogen/server/zone/objects/building/BuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_389) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_348) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/BuildingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.i: cmake_force
@@ -2408,7 +2174,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObjec
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o: src/autogen/server/zone/objects/building/PoiBuilding.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_390) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_349) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/PoiBuilding.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.i: cmake_force
@@ -2422,7 +2188,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o: src/autogen/server/zone/objects/building/TutorialBuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_391) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_350) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/TutorialBuildingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuildingObject.cpp.i: cmake_force
@@ -2436,7 +2202,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/TutorialBuild
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o: src/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_392) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_351) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/HospitalBuildingObject.cpp.i: cmake_force
@@ -2450,7 +2216,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/hospital/Hosp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o: src/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_393) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_352) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/RecreationBuildingObject.cpp.i: cmake_force
@@ -2464,7 +2230,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/recreation/Re
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o: src/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_394) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_353) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/TravelBuildingObject.cpp.i: cmake_force
@@ -2478,7 +2244,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/travel/Travel
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o: src/autogen/server/zone/objects/cell/CellObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_395) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_354) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/cell/CellObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.i: cmake_force
@@ -2492,7 +2258,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/cell/CellObject.cpp.s:
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o: src/autogen/server/zone/objects/creature/CreatureObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_396) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_355) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/CreatureObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObject.cpp.i: cmake_force
@@ -2506,7 +2272,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/CreatureObjec
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o: src/autogen/server/zone/objects/creature/VehicleObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_397) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_356) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/VehicleObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject.cpp.i: cmake_force
@@ -2520,7 +2286,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/VehicleObject
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o: src/autogen/server/zone/objects/creature/ai/AiAgent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_398) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_357) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/ai/AiAgent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cpp.i: cmake_force
@@ -2534,7 +2300,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/AiAgent.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o: src/autogen/server/zone/objects/creature/ai/Creature.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_399) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_358) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/ai/Creature.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.cpp.i: cmake_force
@@ -2548,7 +2314,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/Creature.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o: src/autogen/server/zone/objects/creature/ai/DroidObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_400) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_359) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/ai/DroidObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObject.cpp.i: cmake_force
@@ -2562,7 +2328,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/DroidObjec
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o: src/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_401) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_360) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerCreatureObject.cpp.i: cmake_force
@@ -2576,7 +2342,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/ai/NonPlayerC
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o: src/autogen/server/zone/objects/creature/buffs/Buff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_402) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_361) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/Buff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cpp.i: cmake_force
@@ -2590,7 +2356,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Buff.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_403) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_362) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ChannelForceBuff.cpp.i: cmake_force
@@ -2604,7 +2370,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Channel
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_404) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_363) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ConcealBuff.cpp.i: cmake_force
@@ -2618,7 +2384,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Conceal
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_405) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_364) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DelayedBuff.cpp.i: cmake_force
@@ -2632,7 +2398,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Delayed
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_406) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_365) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/DurationBuff.cpp.i: cmake_force
@@ -2646,7 +2412,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Duratio
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_407) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_366) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWeakenDebuff.cpp.i: cmake_force
@@ -2660,7 +2426,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/ForceWe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_408) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_367) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopBuff.cpp.i: cmake_force
@@ -2674,7 +2440,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/GallopB
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_409) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_368) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PerformanceBuff.cpp.i: cmake_force
@@ -2688,7 +2454,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Perform
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_410) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_369) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerVehicleBuff.cpp.i: cmake_force
@@ -2702,7 +2468,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PlayerV
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_411) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_370) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBoostBuff.cpp.i: cmake_force
@@ -2716,7 +2482,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PowerBo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_412) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_371) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateBuff.cpp.i: cmake_force
@@ -2730,7 +2496,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Private
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_413) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_372) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.cpp.i: cmake_force
@@ -2744,7 +2510,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/Private
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_414) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_373) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuff.cpp.i: cmake_force
@@ -2758,7 +2524,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleU
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o: src/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_415) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_374) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleUseBuffObserver.cpp.i: cmake_force
@@ -2772,7 +2538,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SingleU
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_416) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_375) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBuff.cpp.i: cmake_force
@@ -2786,7 +2552,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceBu
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_417) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_376) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDownerBuff.cpp.i: cmake_force
@@ -2800,7 +2566,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SpiceDo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_418) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_377) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuff.cpp.i: cmake_force
@@ -2814,7 +2580,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o: src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_419) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_378) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLeaderBuffObserver.cpp.i: cmake_force
@@ -2828,7 +2594,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/SquadLe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o: src/autogen/server/zone/objects/creature/buffs/StateBuff.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_420) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_379) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/buffs/StateBuff.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBuff.cpp.i: cmake_force
@@ -2842,7 +2608,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/buffs/StateBu
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o: src/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_421) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_380) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/ConversationObserver.cpp.i: cmake_force
@@ -2856,7 +2622,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o: src/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_422) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_381) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/DeliverMissionConversationObserver.cpp.i: cmake_force
@@ -2870,7 +2636,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o: src/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_423) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_382) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/InformantMissionConversationObserver.cpp.i: cmake_force
@@ -2884,7 +2650,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o: src/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_424) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_383) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/LuaConversationObserver.cpp.i: cmake_force
@@ -2898,7 +2664,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o: src/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_425) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_384) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp.i: cmake_force
@@ -2912,7 +2678,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/conversation/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o: src/autogen/server/zone/objects/creature/credits/CreditObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_426) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_385) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/creature/credits/CreditObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/CreditObject.cpp.i: cmake_force
@@ -2926,7 +2692,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/creature/credits/Credi
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o: src/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_427) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_386) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSchematic.cpp.i: cmake_force
@@ -2940,7 +2706,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/draftschematic/DraftSc
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o: src/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_428) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_387) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCrate.cpp.i: cmake_force
@@ -2954,7 +2720,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/factorycrate/FactoryCr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o: src/autogen/server/zone/objects/group/GroupObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_429) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_388) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/group/GroupObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.i: cmake_force
@@ -2968,7 +2734,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/group/GroupObject.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o: src/autogen/server/zone/objects/guild/GuildObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_430) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_389) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/guild/GuildObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.i: cmake_force
@@ -2982,7 +2748,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/guild/GuildObject.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o: src/autogen/server/zone/objects/installation/InstallationObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_431) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_390) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/InstallationObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/InstallationObject.cpp.i: cmake_force
@@ -2996,7 +2762,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/Installat
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o: src/autogen/server/zone/objects/installation/components/TurretObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_432) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_391) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/components/TurretObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/components/TurretObserver.cpp.i: cmake_force
@@ -3010,7 +2776,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/component
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o: src/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_433) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_392) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryHopperObserver.cpp.i: cmake_force
@@ -3024,7 +2790,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/F
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o: src/autogen/server/zone/objects/installation/factory/FactoryObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_434) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_393) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/factory/FactoryObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/FactoryObject.cpp.i: cmake_force
@@ -3038,7 +2804,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/factory/F
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o: src/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_435) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_394) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/GarageInstallation.cpp.i: cmake_force
@@ -3052,7 +2818,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/garage/Ga
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o: src/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_436) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_395) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator/GeneratorObject.cpp.i: cmake_force
@@ -3066,7 +2832,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/generator
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o: src/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_437) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_396) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester/HarvesterObject.cpp.i: cmake_force
@@ -3080,7 +2846,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/harvester
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o: src/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_438) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_397) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/ShuttleInstallation.cpp.i: cmake_force
@@ -3094,7 +2860,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/installation/shuttle/S
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o: src/autogen/server/zone/objects/intangible/ControlDevice.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_439) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_398) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/ControlDevice.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevice.cpp.i: cmake_force
@@ -3108,7 +2874,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ControlDevi
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o: src/autogen/server/zone/objects/intangible/IntangibleObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_440) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_399) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/IntangibleObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleObject.cpp.i: cmake_force
@@ -3122,7 +2888,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/IntangibleO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o: src/autogen/server/zone/objects/intangible/PetControlDevice.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_441) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_400) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/PetControlDevice.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlDevice.cpp.i: cmake_force
@@ -3136,7 +2902,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlD
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o: src/autogen/server/zone/objects/intangible/PetControlObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_442) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_401) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/PetControlObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlObserver.cpp.i: cmake_force
@@ -3150,7 +2916,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/PetControlO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o: src/autogen/server/zone/objects/intangible/ShipControlDevice.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_443) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_402) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/ShipControlDevice.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControlDevice.cpp.i: cmake_force
@@ -3164,7 +2930,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/ShipControl
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o: src/autogen/server/zone/objects/intangible/TheaterObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_444) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_403) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/TheaterObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObject.cpp.i: cmake_force
@@ -3178,7 +2944,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/TheaterObje
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o: src/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_445) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_404) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlDevice.cpp.i: cmake_force
@@ -3192,7 +2958,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleCont
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o: src/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_446) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_405) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleControlObserver.cpp.i: cmake_force
@@ -3206,7 +2972,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/intangible/VehicleCont
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o: src/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_447) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_406) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/ManufactureSchematic.cpp.i: cmake_force
@@ -3220,7 +2986,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/manufactureschematic/M
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/BountyMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_448) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_407) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/BountyMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionObjective.cpp.i: cmake_force
@@ -3234,7 +3000,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/BountyMissionO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_449) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_408) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissionObjective.cpp.i: cmake_force
@@ -3248,7 +3014,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/CraftingMissio
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_450) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_409) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMissionObjective.cpp.i: cmake_force
@@ -3262,7 +3028,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DeliverMission
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_451) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_410) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMissionObjective.cpp.i: cmake_force
@@ -3276,7 +3042,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/DestroyMission
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_452) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_411) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMissionObjective.cpp.i: cmake_force
@@ -3290,7 +3056,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/EntertainerMis
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_453) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_412) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMissionObjective.cpp.i: cmake_force
@@ -3304,7 +3070,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/HuntingMission
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o: src/autogen/server/zone/objects/mission/MissionObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_454) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_413) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/MissionObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.cpp.i: cmake_force
@@ -3318,7 +3084,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObject.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o: src/autogen/server/zone/objects/mission/MissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_455) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_414) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/MissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjective.cpp.i: cmake_force
@@ -3332,7 +3098,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObjecti
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o: src/autogen/server/zone/objects/mission/MissionObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_456) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_415) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/MissionObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserver.cpp.i: cmake_force
@@ -3346,7 +3112,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/MissionObserve
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o: src/autogen/server/zone/objects/mission/PlayerBounty.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_457) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_416) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/PlayerBounty.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.cpp.i: cmake_force
@@ -3360,7 +3126,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/PlayerBounty.c
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/ReconMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_458) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_417) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/ReconMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionObjective.cpp.i: cmake_force
@@ -3374,7 +3140,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/ReconMissionOb
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o: src/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_459) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_418) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionObjective.cpp.i: cmake_force
@@ -3388,7 +3154,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/mission/SurveyMissionO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o: src/autogen/server/zone/objects/pathfinding/NavArea.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_460) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_419) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/pathfinding/NavArea.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cpp.i: cmake_force
@@ -3402,7 +3168,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/pathfinding/NavArea.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o: src/autogen/server/zone/objects/player/EntertainingObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_461) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_420) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/EntertainingObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObserver.cpp.i: cmake_force
@@ -3416,7 +3182,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/EntertainingObs
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o: src/autogen/server/zone/objects/player/PlayerObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_462) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_421) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/PlayerObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cpp.i: cmake_force
@@ -3430,7 +3196,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/PlayerObject.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o: src/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_463) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_422) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRemoveMilitiaSession.cpp.i: cmake_force
@@ -3444,7 +3210,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityRe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o: src/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_464) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_423) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySpecializationSession.cpp.i: cmake_force
@@ -3458,7 +3224,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CitySp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o: src/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_465) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_424) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTreasuryWithdrawalSession.cpp.i: cmake_force
@@ -3472,7 +3238,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/CityTr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o: src/autogen/server/zone/objects/player/sessions/ConversationSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_466) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_425) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/ConversationSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ConversationSession.cpp.i: cmake_force
@@ -3486,7 +3252,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Conver
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o: src/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_467) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_426) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DestroyStructureSession.cpp.i: cmake_force
@@ -3500,7 +3266,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Destro
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o: src/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_468) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_427) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp.i: cmake_force
@@ -3514,7 +3280,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/DroidM
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o: src/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_469) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_428) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/EntertainingSession.cpp.i: cmake_force
@@ -3528,7 +3294,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Entert
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o: src/autogen/server/zone/objects/player/sessions/FindSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_470) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_429) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/FindSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSession.cpp.i: cmake_force
@@ -3542,7 +3308,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/FindSe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o: src/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_471) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_430) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignPositionObserver.cpp.i: cmake_force
@@ -3556,7 +3322,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageD
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o: src/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_472) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_431) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageDesignSession.cpp.i: cmake_force
@@ -3570,7 +3336,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ImageD
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o: src/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_473) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_432) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/InterplanetarySurveyDroidSession.cpp.i: cmake_force
@@ -3584,7 +3350,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Interp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o: src/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_474) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_433) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLotterySession.cpp.i: cmake_force
@@ -3598,7 +3364,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/LootLo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o: src/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_475) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_434) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/MigrateStatsSession.cpp.i: cmake_force
@@ -3612,7 +3378,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Migrat
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o: src/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_476) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_435) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceStructureSession.cpp.i: cmake_force
@@ -3626,7 +3392,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/PlaceS
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o: src/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_477) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_436) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/ProposeUnitySession.cpp.i: cmake_force
@@ -3640,7 +3406,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Propos
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o: src/autogen/server/zone/objects/player/sessions/SlicingSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_478) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_437) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/SlicingSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/SlicingSession.cpp.i: cmake_force
@@ -3654,7 +3420,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Slicin
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o: src/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_479) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_438) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/StructureSetAccessFeeSession.cpp.i: cmake_force
@@ -3668,7 +3434,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Struct
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o: src/autogen/server/zone/objects/player/sessions/TradeSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_480) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_439) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/TradeSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeSession.cpp.i: cmake_force
@@ -3682,7 +3448,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/TradeS
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o: src/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_481) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_440) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/VeteranRewardSession.cpp.i: cmake_force
@@ -3696,7 +3462,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/Vetera
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o: src/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_482) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_441) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/PlayerManagementSession.cpp.i: cmake_force
@@ -3710,7 +3476,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/admin/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o: src/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_483) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_442) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafting/CraftingSession.cpp.i: cmake_force
@@ -3724,7 +3490,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/crafti
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o: src/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_484) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_443) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey/SurveySession.cpp.i: cmake_force
@@ -3738,7 +3504,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/survey
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o: src/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_485) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_444) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/CreateVendorSession.cpp.i: cmake_force
@@ -3752,7 +3518,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o: src/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_486) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_445) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor/VendorAdBarkingSession.cpp.i: cmake_force
@@ -3766,7 +3532,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sessions/vendor
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o: src/autogen/server/zone/objects/player/sui/SuiBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_487) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_446) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/SuiBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.i: cmake_force
@@ -3780,7 +3546,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBox.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o: src/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_488) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_447) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.cpp.i: cmake_force
@@ -3794,7 +3560,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/SuiBoxPage.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o: src/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_489) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_448) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.cpp.i: cmake_force
@@ -3808,7 +3574,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/banktransfe
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o: src/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_490) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_449) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.cpp.i: cmake_force
@@ -3822,7 +3588,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/characterbu
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o: src/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_491) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_450) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/SuiColorBox.cpp.i: cmake_force
@@ -3836,7 +3602,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/colorbox/Su
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o: src/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_492) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_451) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdelaybox/SuiFireworkDelayBox.cpp.i: cmake_force
@@ -3850,7 +3616,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/fireworkdel
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o: src/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_493) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_452) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/SuiInputBox.cpp.i: cmake_force
@@ -3864,7 +3630,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/inputbox/Su
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o: src/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_494) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_453) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/SuiKeypadBox.cpp.i: cmake_force
@@ -3878,7 +3644,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/keypadbox/S
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o: src/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_495) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_454) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBox.cpp.i: cmake_force
@@ -3892,7 +3658,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/Sui
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o: src/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_496) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_455) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/SuiListBoxMenuItem.cpp.i: cmake_force
@@ -3906,7 +3672,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/listbox/Sui
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o: src/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_497) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_456) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/SuiMessageBox.cpp.i: cmake_force
@@ -3920,7 +3686,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/messagebox/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o: src/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_498) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_457) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachinebox/SuiSlotMachineBox.cpp.i: cmake_force
@@ -3934,7 +3700,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/slotmachine
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o: src/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_499) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_458) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.i: cmake_force
@@ -3948,7 +3714,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o: src/autogen/server/zone/objects/region/CityRegion.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_500) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_459) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/CityRegion.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.i: cmake_force
@@ -3962,7 +3728,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o: src/autogen/server/zone/objects/region/Region.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_501) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_460) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/Region.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.i: cmake_force
@@ -3973,52 +3739,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.s: c
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/Region.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o: src/autogen/server/zone/objects/region/space/SpaceRegion.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_502) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceRegion.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceRegion.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceRegion.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o: src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_503) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o: src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_504) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o: src/autogen/server/zone/objects/resource/ResourceContainer.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_505) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_461) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/resource/ResourceContainer.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.i: cmake_force
@@ -4032,7 +3756,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceConta
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o: src/autogen/server/zone/objects/resource/ResourceSpawn.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_506) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_462) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/resource/ResourceSpawn.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.i: cmake_force
@@ -4046,7 +3770,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o: src/autogen/server/zone/objects/scene/SceneObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_507) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_463) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/scene/SceneObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.i: cmake_force
@@ -4060,7 +3784,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o: src/autogen/server/zone/objects/ship/FighterShipObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_508) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_464) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/FighterShipObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.i: cmake_force
@@ -4071,38 +3795,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/FighterShipObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o: src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_509) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o: src/autogen/server/zone/objects/ship/PobShipObject.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_510) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/PobShipObject.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/PobShipObject.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/PobShipObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o: src/autogen/server/zone/objects/ship/ShipObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_511) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_465) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ShipObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.i: cmake_force
@@ -4113,234 +3809,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.s:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ShipObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o: src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_512) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o: src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_513) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o: src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_514) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_515) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_516) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_517) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_518) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_519) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_520) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_521) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_522) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_523) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_524) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_525) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_526) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o: src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_527) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o: src/autogen/server/zone/objects/staticobject/StaticObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_528) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_466) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/staticobject/StaticObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.i: cmake_force
@@ -4354,7 +3826,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObj
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o: src/autogen/server/zone/objects/structure/StructureObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_529) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_467) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/structure/StructureObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.i: cmake_force
@@ -4368,7 +3840,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObj
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o: src/autogen/server/zone/objects/tangible/Container.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_530) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_468) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/Container.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.i: cmake_force
@@ -4382,7 +3854,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o: src/autogen/server/zone/objects/tangible/Instrument.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_531) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_469) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/Instrument.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cpp.i: cmake_force
@@ -4396,7 +3868,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Instrument.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o: src/autogen/server/zone/objects/tangible/LairObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_532) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_470) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/LairObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cpp.i: cmake_force
@@ -4410,7 +3882,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/LairObject.cp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o: src/autogen/server/zone/objects/tangible/TangibleObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_533) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_471) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/TangibleObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObject.cpp.i: cmake_force
@@ -4424,7 +3896,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/TangibleObjec
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o: src/autogen/server/zone/objects/tangible/attachment/Attachment.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_534) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_472) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/attachment/Attachment.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/Attachment.cpp.i: cmake_force
@@ -4438,7 +3910,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/attachment/At
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o: src/autogen/server/zone/objects/tangible/component/Component.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_535) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_473) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/Component.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Component.cpp.i: cmake_force
@@ -4452,7 +3924,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/Com
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o: src/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_536) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_474) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/armor/ArmorComponent.cpp.i: cmake_force
@@ -4466,7 +3938,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/arm
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o: src/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_537) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_475) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna/DnaComponent.cpp.i: cmake_force
@@ -4480,7 +3952,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dna
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o: src/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_538) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_476) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.i: cmake_force
@@ -4494,7 +3966,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/dro
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o: src/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_539) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_477) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.i: cmake_force
@@ -4508,7 +3980,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/gen
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o: src/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_540) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_478) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.i: cmake_force
@@ -4519,24 +3991,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lig
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o: src/autogen/server/zone/objects/tangible/components/LightObserver.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_541) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/LightObserver.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/LightObserver.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/LightObserver.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o: src/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_542) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_479) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.i: cmake_force
@@ -4550,7 +4008,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/dr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o: src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_543) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_480) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.i: cmake_force
@@ -4564,7 +4022,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/dr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o: src/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_544) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_481) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.i: cmake_force
@@ -4578,7 +4036,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/dr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o: src/autogen/server/zone/objects/tangible/consumable/Consumable.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_545) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_482) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/consumable/Consumable.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Consumable.cpp.i: cmake_force
@@ -4592,7 +4050,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Co
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o: src/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_546) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_483) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/DelayedBuffObserver.cpp.i: cmake_force
@@ -4606,7 +4064,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/De
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o: src/autogen/server/zone/objects/tangible/consumable/Drink.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_484) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/consumable/Drink.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Drink.cpp.i: cmake_force
@@ -4620,7 +4078,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Dr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o: src/autogen/server/zone/objects/tangible/consumable/Food.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_548) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_485) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/consumable/Food.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Food.cpp.i: cmake_force
@@ -4634,7 +4092,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/consumable/Fo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o: src/autogen/server/zone/objects/tangible/deed/Deed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_549) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_486) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/Deed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp.i: cmake_force
@@ -4648,7 +4106,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/Deed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_550) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_487) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/DroidDeed.cpp.i: cmake_force
@@ -4662,7 +4120,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/droid/Dr
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_551) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_488) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.i: cmake_force
@@ -4676,7 +4134,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventper
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_552) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_489) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.i: cmake_force
@@ -4690,7 +4148,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetD
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_553) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_490) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.i: cmake_force
@@ -4701,24 +4159,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_554) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_555) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_491) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.i: cmake_force
@@ -4732,7 +4176,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structur
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_556) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_492) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.i: cmake_force
@@ -4746,7 +4190,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o: src/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_557) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_493) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.i: cmake_force
@@ -4760,7 +4204,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharve
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_558) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_494) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/FlagGame.cpp.i: cmake_force
@@ -4774,7 +4218,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Fla
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_559) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_495) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Jukebox.cpp.i: cmake_force
@@ -4788,7 +4232,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Juk
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_560) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_496) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/JukeboxObserver.cpp.i: cmake_force
@@ -4802,7 +4246,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Juk
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_561) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_497) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/LotteryDroid.cpp.i: cmake_force
@@ -4816,7 +4260,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Lot
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_562) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_498) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerChest.cpp.i: cmake_force
@@ -4830,7 +4274,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Sca
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_563) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_499) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ScavengerDroid.cpp.i: cmake_force
@@ -4844,7 +4288,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Sca
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o: src/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_564) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_500) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/ShuttleBeacon.cpp.i: cmake_force
@@ -4858,7 +4302,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/eventperk/Shu
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o: src/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_565) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_501) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/FireworkObject.cpp.i: cmake_force
@@ -4872,7 +4316,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/firework/Fire
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o: src/autogen/server/zone/objects/tangible/fishing/FishObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_566) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_502) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/fishing/FishObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishObject.cpp.i: cmake_force
@@ -4886,7 +4330,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o: src/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_567) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_503) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingBaitObject.cpp.i: cmake_force
@@ -4900,7 +4344,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/Fishi
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o: src/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_568) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_504) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/FishingPoleObject.cpp.i: cmake_force
@@ -4914,7 +4358,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/fishing/Fishi
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o: src/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_569) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_505) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditChipObject.cpp.i: cmake_force
@@ -4928,7 +4372,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/item/CreditCh
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o: src/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_570) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_506) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitObject.cpp.i: cmake_force
@@ -4942,7 +4386,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/loot/LootkitO
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o: src/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_571) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_507) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/ContractCrate.cpp.i: cmake_force
@@ -4956,7 +4400,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/Contract
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o: src/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_572) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_508) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIngredient.cpp.i: cmake_force
@@ -4970,7 +4414,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/CustomIn
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o: src/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_573) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_509) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffItem.cpp.i: cmake_force
@@ -4984,7 +4428,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsBuffIt
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o: src/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_574) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_510) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCraftingComponentObject.cpp.i: cmake_force
@@ -4998,7 +4442,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCrafti
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o: src/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_575) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_511) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObject.cpp.i: cmake_force
@@ -5012,7 +4456,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsCsObje
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o: src/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_576) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_512) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzlePack.cpp.i: cmake_force
@@ -5026,7 +4470,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/FsPuzzle
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o: src/autogen/server/zone/objects/tangible/misc/PlantObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_577) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_513) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/PlantObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObject.cpp.i: cmake_force
@@ -5040,7 +4484,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/PlantObj
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o: src/autogen/server/zone/objects/tangible/misc/VendorToken.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_578) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_514) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/misc/VendorToken.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorToken.cpp.i: cmake_force
@@ -5054,7 +4498,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/misc/VendorTo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_579) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_515) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/CurePack.cpp.i: cmake_force
@@ -5068,7 +4512,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_580) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_516) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/DotPack.cpp.i: cmake_force
@@ -5082,7 +4526,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_581) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_517) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/EnhancePack.cpp.i: cmake_force
@@ -5096,7 +4540,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_582) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_518) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.cpp.i: cmake_force
@@ -5110,7 +4554,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_583) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_519) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RangedStimPack.cpp.i: cmake_force
@@ -5124,7 +4568,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_584) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_520) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/RevivePack.cpp.i: cmake_force
@@ -5138,7 +4582,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_585) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_521) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StatePack.cpp.i: cmake_force
@@ -5152,7 +4596,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_586) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_522) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/StimPack.cpp.i: cmake_force
@@ -5166,7 +4610,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_587) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_523) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.i: cmake_force
@@ -5180,7 +4624,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o: src/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_588) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_524) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.i: cmake_force
@@ -5194,7 +4638,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutica
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o: src/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_589) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_525) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.i: cmake_force
@@ -5205,52 +4649,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/Power
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o: src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_590) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o: src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_591) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.s
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o: src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_592) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o: src/autogen/server/zone/objects/tangible/sign/SignObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_593) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_526) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/sign/SignObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.i: cmake_force
@@ -5261,24 +4663,10 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObje
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.s"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/sign/SignObject.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.s
 
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o: src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_594) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.i"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp > CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.i
-
-src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.s"
-	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.s
-
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/Terminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_595) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_527) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/Terminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.i: cmake_force
@@ -5292,7 +4680,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Term
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_596) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_528) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.i: cmake_force
@@ -5306,7 +4694,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/char
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_597) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_529) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.i: cmake_force
@@ -5320,7 +4708,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gamb
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_598) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_530) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guild/GuildTerminal.cpp.i: cmake_force
@@ -5334,7 +4722,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/guil
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_599) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_531) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/mission/MissionTerminal.cpp.i: cmake_force
@@ -5348,7 +4736,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/miss
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_600) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_532) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spaceship/SpaceshipTerminal.cpp.i: cmake_force
@@ -5362,7 +4750,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/spac
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_601) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_533) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/startinglocation/StartingLocationTerminal.cpp.i: cmake_force
@@ -5376,7 +4764,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/star
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o: src/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_602) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_534) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/ticketcollector/TicketCollector.cpp.i: cmake_force
@@ -5390,7 +4778,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/tick
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o: src/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_603) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_535) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/travel/TravelTerminal.cpp.i: cmake_force
@@ -5404,7 +4792,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/trav
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o: src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_604) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_536) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/ThreatMapObserver.cpp.i: cmake_force
@@ -5418,7 +4806,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/threat/Threat
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o: src/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_605) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_537) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/TicketObject.cpp.i: cmake_force
@@ -5432,7 +4820,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ticket/Ticket
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o: src/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_606) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_538) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingStation.cpp.i: cmake_force
@@ -5446,7 +4834,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/Crafting
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o: src/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_607) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_539) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/CraftingTool.cpp.i: cmake_force
@@ -5460,7 +4848,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/Crafting
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o: src/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_608) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_540) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTool.cpp.i: cmake_force
@@ -5474,7 +4862,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/SurveyTo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o: src/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_609) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_541) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTangibleObject.cpp.i: cmake_force
@@ -5488,7 +4876,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/ToolTang
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o: src/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_610) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_542) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antidecay/AntiDecayKit.cpp.i: cmake_force
@@ -5502,7 +4890,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/antideca
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o: src/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_611) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_543) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/RecycleTool.cpp.i: cmake_force
@@ -5516,7 +4904,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/recycle/
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o: src/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_612) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_544) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/RepairTool.cpp.i: cmake_force
@@ -5530,7 +4918,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/repair/R
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o: src/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_613) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_545) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/PrecisionLaserKnife.cpp.i: cmake_force
@@ -5544,7 +4932,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o: src/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_614) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_546) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler/SlicingTool.cpp.i: cmake_force
@@ -5558,7 +4946,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/tool/smuggler
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o: src/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_615) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_547) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/WeaponObject.cpp.i: cmake_force
@@ -5572,7 +4960,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/weapon/Weapon
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_616) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_548) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ArmorObject.cpp.i: cmake_force
@@ -5586,7 +4974,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Arm
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_617) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_549) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/ClothingObject.cpp.i: cmake_force
@@ -5600,7 +4988,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Clo
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_618) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_550) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/PsgArmorObject.cpp.i: cmake_force
@@ -5614,7 +5002,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Psg
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_619) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_551) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/RobeObject.cpp.i: cmake_force
@@ -5628,7 +5016,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Rob
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_620) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_552) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableContainerObject.cpp.i: cmake_force
@@ -5642,7 +5030,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Wea
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o: src/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_621) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_553) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/WearableObject.cpp.i: cmake_force
@@ -5656,7 +5044,7 @@ src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/wearables/Wea
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o: src/CMakeFiles/idlobjects.dir/flags.make
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o: src/autogen/server/zone/objects/waypoint/WaypointObject.cpp
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o: src/CMakeFiles/idlobjects.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_622) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_554) "Building CXX object src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && ccache /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o -MF CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o.d -o CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/autogen/server/zone/objects/waypoint/WaypointObject.cpp
 
 src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.i: cmake_force
@@ -5678,7 +5066,6 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o" \
@@ -5724,8 +5111,6 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o" \
@@ -5739,12 +5124,8 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o" \
@@ -5859,32 +5240,11 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o" \
@@ -5898,7 +5258,6 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o" \
@@ -5911,7 +5270,6 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o" \
@@ -5947,11 +5305,7 @@ idlobjects_OBJECTS = \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o" \
-"CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o" \
 "CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o" \
@@ -5993,7 +5347,6 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/login/LoginSer
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/login/account/Account.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/utils/LambdaObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/GroundZone.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/SpaceZone.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/TreeEntry.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/Zone.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/ZoneClientSession.cpp.o
@@ -6039,8 +5392,6 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/reaction/ReactionManager.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/resource/ResourceManager.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/space/SpaceManager.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/managers/weather/WeatherManager.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/ActiveArea.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/BadgeActiveArea.cpp.o
@@ -6054,12 +5405,8 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/a
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/SpawnAreaObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/AreaShape.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/NebulaArea.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/auction/AuctionItem.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/BuildingObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/building/PoiBuilding.cpp.o
@@ -6174,32 +5521,11 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/p
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/CityRegion.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/Region.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceRegion.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceContainer.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/resource/ResourceSpawn.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/scene/SceneObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/FighterShipObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/PobShipObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ShipObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/staticobject/StaticObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/structure/StructureObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/Container.cpp.o
@@ -6213,7 +5539,6 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/t
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/LightObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp.o
@@ -6226,7 +5551,6 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/t
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp.o
@@ -6262,11 +5586,7 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/t
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/sign/SignObject.cpp.o
-src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/Terminal.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp.o
@@ -6297,7 +5617,7 @@ src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/t
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/autogen/server/zone/objects/waypoint/WaypointObject.cpp.o
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/build.make
 src/libidlobjects.a: src/CMakeFiles/idlobjects.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_623) "Linking CXX static library libidlobjects.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ubuntu/SWGReturns01/MMOCoreORB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_555) "Linking CXX static library libidlobjects.a"
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && $(CMAKE_COMMAND) -P CMakeFiles/idlobjects.dir/cmake_clean_target.cmake
 	cd /home/ubuntu/SWGReturns01/MMOCoreORB/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/idlobjects.dir/link.txt --verbose=$(VERBOSE)
 
@@ -6318,7 +5638,6 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/login/LoginServer.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/login/account/Account.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/utils/LambdaObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/GroundZone.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/SpaceZone.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/TreeEntry.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/Zone.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/ZoneClientSession.cpp
@@ -6364,8 +5683,6 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/radial/Ra
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/reaction/ReactionManager.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/resource/InterplanetarySurvey.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/resource/ResourceManager.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/ship/SpaceSpawnObserver.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/space/SpaceManager.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/managers/weather/WeatherManager.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/ActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/BadgeActiveArea.cpp
@@ -6379,12 +5696,8 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/Spawn
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/SpawnAreaObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/AreaShape.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/CircularAreaShape.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/CuboidAreaShape.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/RectangularAreaShape.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/RingAreaShape.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/areashapes/SphereAreaShape.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/space/NebulaArea.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/area/space/SpaceActiveArea.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/auction/AuctionItem.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/building/BuildingObject.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/building/PoiBuilding.cpp
@@ -6499,32 +5812,11 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/player/sui
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/player/sui/transferbox/SuiTransferBox.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/region/CityRegion.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/region/Region.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/region/space/SpaceRegion.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/region/space/SpaceSpawnArea.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/region/space/SpaceSpawnAreaObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/resource/ResourceContainer.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/resource/ResourceSpawn.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/scene/SceneObject.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/FighterShipObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/MultiPassengerShipObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/PobShipObject.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/ShipObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/ai/CapitalShipObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/ai/ShipAiAgent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/ai/SpaceStationObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipArmorComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipBoosterComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipCapacitorComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipChassisComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipCounterMeasureComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipDroidInterfaceComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipEngineComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipMissileComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipReactorComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipShieldComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipSubComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/ship/components/ShipWeaponComponent.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/staticobject/StaticObject.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/structure/StructureObject.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/Container.cpp
@@ -6538,7 +5830,6 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/c
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/component/droid/DroidComponent.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/component/genetic/GeneticComponent.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/components/LightObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp
@@ -6551,7 +5842,6 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/d
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/eventperk/EventPerkDeed.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/pet/PetDeed.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/resource/ResourceDeed.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/ship/ShipDeed.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/structure/StructureDeed.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/vehicle/VehicleDeed.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/deed/vetharvester/VetHarvesterDeed.cpp
@@ -6587,11 +5877,7 @@ src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/p
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/pharmaceutical/VitalityPack.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/pharmaceutical/WoundPack.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/powerup/PowerupObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/ship/crafted/repair/ShipComponentRepairKit.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipInteriorComponent.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/ship/interiorComponents/ShipPlasmaConduit.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/sign/SignObject.cpp
-src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/space/content_infrastructure/SpaceSpawner.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/terminal/Terminal.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/terminal/characterbuilder/CharacterBuilderTerminal.cpp
 src/CMakeFiles/idlobjects.dir/depend: src/autogen/server/zone/objects/tangible/terminal/gambling/GamblingTerminal.cpp

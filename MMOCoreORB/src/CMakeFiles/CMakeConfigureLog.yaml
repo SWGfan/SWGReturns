@@ -1,0 +1,1266 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The system is: Linux - 6.8.0-134-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is GNU, found in:
+        /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_140d1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_140d1.dir/build.make CMakeFiles/cmTC_140d1.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze'
+        Building CXX object CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_140d1.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccK3wiyr.s
+        GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/13
+         /usr/include/x86_64-linux-gnu/c++/13
+         /usr/include/c++/13/backward
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: 7896445e4990772fdae9dc0659a99266
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/'
+         as -v --64 -o CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccK3wiyr.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_140d1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_140d1.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_140d1 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_140d1' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_140d1.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRCjFX8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_140d1 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_140d1' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_140d1.'
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/13]
+          add: [/usr/include/x86_64-linux-gnu/c++/13]
+          add: [/usr/include/c++/13/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/13] ==> [/usr/include/c++/13]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/13] ==> [/usr/include/x86_64-linux-gnu/c++/13]
+        collapse include dir [/usr/include/c++/13/backward] ==> [/usr/include/c++/13/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/13;/usr/include/x86_64-linux-gnu/c++/13;/usr/include/c++/13/backward;/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_140d1/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_140d1.dir/build.make CMakeFiles/cmTC_140d1.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GfKUze']
+        ignore line: [Building CXX object CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_140d1.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccK3wiyr.s]
+        ignore line: [GNU C++17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/13"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/13]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/13]
+        ignore line: [ /usr/include/c++/13/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 7896445e4990772fdae9dc0659a99266]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccK3wiyr.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_140d1]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_140d1.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_140d1 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_140d1' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_140d1.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRCjFX8.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_140d1 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccRCjFX8.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_140d1] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_140d1.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b6c66/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b6c66.dir/build.make CMakeFiles/cmTC_b6c66.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD'
+        Building C object CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b6c66.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc8IRT2b.s
+        GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 13.3.0, GMP version 6.3.0, MPFR version 4.2.1, MPC version 1.3.1, isl version isl-0.26-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/gcc/x86_64-linux-gnu/13/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/'
+         as -v --64 -o CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o /tmp/cc8IRT2b.s
+        GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_b6c66
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6c66.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -o cmTC_b6c66 
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/cc
+        COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2
+        Thread model: posix
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 
+        COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b6c66' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b6c66.'
+         /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccE1srgh.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b6c66 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b6c66' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b6c66.'
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/13/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/gcc/x86_64-linux-gnu/13/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b6c66/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_b6c66.dir/build.make CMakeFiles/cmTC_b6c66.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-MMSdiD']
+        ignore line: [Building C object CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/']
+        ignore line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -quiet -v -imultiarch x86_64-linux-gnu /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_b6c66.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/cc8IRT2b.s]
+        ignore line: [GNU C17 (Ubuntu 13.3.0-6ubuntu2~24.04.1) version 13.3.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.3.0  MPFR version 4.2.1  MPC version 1.3.1  isl version isl-0.26-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/13/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: b220a7f1a1f69970d969d254ad9ec166]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o /tmp/cc8IRT2b.s]
+        ignore line: [GNU assembler version 2.42 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.42]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_b6c66]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6c66.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -o cmTC_b6c66 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/cc]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 13.3.0-6ubuntu2~24.04.1' --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c ada c++ go d fortran objc obj-c++ m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-bootstrap --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-nvptx/usr amdgcn-amdhsa=/build/gcc-13-EldibY/gcc-13-13.3.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-build-config=bootstrap-lto-lean --enable-link-serialization=2]
+        ignore line: [Thread model: posix]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) ]
+        ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_b6c66' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_b6c66.']
+        link line: [ /usr/libexec/gcc/x86_64-linux-gnu/13/collect2 -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccE1srgh.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_b6c66 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccE1srgh.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-export-dynamic] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_b6c66] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..]
+          arg [CMakeFiles/cmTC_b6c66.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--push-state] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--pop-state] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/13/../../..] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "/usr/share/cmake-3.28/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:51 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d2307/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d2307.dir/build.make CMakeFiles/cmTC_d2307.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A'
+        Building C object CMakeFiles/cmTC_d2307.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_d2307.dir/src.c.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A/src.c
+        Linking C executable cmTC_d2307
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2307.dir/link.txt --verbose=1
+        /usr/bin/cc -rdynamic CMakeFiles/cmTC_d2307.dir/src.c.o -o cmTC_d2307 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ZgD11A'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:81 (CHECK_CXX_SOURCE_COMPILES)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:95 (check_working_cxx_atomics)"
+    checks:
+      - "Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "HAVE_CXX_ATOMICS_WITHOUT_LIB"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8f7f3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8f7f3.dir/build.make CMakeFiles/cmTC_8f7f3.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34'
+        Building CXX object CMakeFiles/cmTC_8f7f3.dir/src.cxx.o
+        /usr/bin/c++ -DHAVE_CXX_ATOMICS_WITHOUT_LIB  -std=c++11 -o CMakeFiles/cmTC_8f7f3.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34/src.cxx
+        Linking CXX executable cmTC_8f7f3
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f7f3.dir/link.txt --verbose=1
+        /usr/bin/c++  -std=c++11 -rdynamic CMakeFiles/cmTC_8f7f3.dir/src.cxx.o -o cmTC_8f7f3 
+        /usr/bin/ld: CMakeFiles/cmTC_8f7f3.dir/src.cxx.o: in function `std::atomic<test_type>::compare_exchange_strong(test_type&, test_type, std::memory_order, std::memory_order)':
+        src.cxx:(.text._ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_[_ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_]+0x155): undefined reference to `__atomic_compare_exchange'
+        /usr/bin/ld: src.cxx:(.text._ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_[_ZNSt6atomicI9test_typeE23compare_exchange_strongERS0_S0_St12memory_orderS3_]+0x1d1): undefined reference to `__atomic_compare_exchange'
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_8f7f3.dir/build.make:99: cmTC_8f7f3] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-kTxP34'
+        gmake: *** [Makefile:127: cmTC_8f7f3/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wall"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wall"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d57a1/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d57a1.dir/build.make CMakeFiles/cmTC_d57a1.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9'
+        Building CXX object CMakeFiles/cmTC_d57a1.dir/src.cxx.o
+        /usr/bin/c++   -DCxxFlag-Wall -Wall -o CMakeFiles/cmTC_d57a1.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_d57a1
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d57a1.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_d57a1.dir/src.cxx.o -o cmTC_d57a1 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GSzfn9'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wextra"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wextra"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_20ba2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_20ba2.dir/build.make CMakeFiles/cmTC_20ba2.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY'
+        Building CXX object CMakeFiles/cmTC_20ba2.dir/src.cxx.o
+        /usr/bin/c++   -Wall    -DCxxFlag-Wextra -Wextra -o CMakeFiles/cmTC_20ba2.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_20ba2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20ba2.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall  -rdynamic CMakeFiles/cmTC_20ba2.dir/src.cxx.o -o cmTC_20ba2 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-2ktEAY'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-unused"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-unused"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_93704/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_93704.dir/build.make CMakeFiles/cmTC_93704.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC'
+        Building CXX object CMakeFiles/cmTC_93704.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra    -DCxxFlag-Wno-unused -Wno-unused -o CMakeFiles/cmTC_93704.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_93704
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93704.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra  -rdynamic CMakeFiles/cmTC_93704.dir/src.cxx.o -o cmTC_93704 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-e8nJcC'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-sign-compare"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-sign-compare"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0c44f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0c44f.dir/build.make CMakeFiles/cmTC_0c44f.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh'
+        Building CXX object CMakeFiles/cmTC_0c44f.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused    -DCxxFlag-Wno-sign-compare -Wno-sign-compare -o CMakeFiles/cmTC_0c44f.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_0c44f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0c44f.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused  -rdynamic CMakeFiles/cmTC_0c44f.dir/src.cxx.o -o cmTC_0c44f 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-GpuLvh'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-multichar"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-multichar"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8cbd6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8cbd6.dir/build.make CMakeFiles/cmTC_8cbd6.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw'
+        Building CXX object CMakeFiles/cmTC_8cbd6.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare    -DCxxFlag-Wno-multichar -Wno-multichar -o CMakeFiles/cmTC_8cbd6.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_8cbd6
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8cbd6.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare  -rdynamic CMakeFiles/cmTC_8cbd6.dir/src.cxx.o -o cmTC_8cbd6 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-yL3CEw'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-unused-parameter"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-unused-parameter"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_cdf65/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_cdf65.dir/build.make CMakeFiles/cmTC_cdf65.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV'
+        Building CXX object CMakeFiles/cmTC_cdf65.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar    -DCxxFlag-Wno-unused-parameter -Wno-unused-parameter -o CMakeFiles/cmTC_cdf65.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_cdf65
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cdf65.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar  -rdynamic CMakeFiles/cmTC_cdf65.dir/src.cxx.o -o cmTC_cdf65 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-TlSGoV'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-overloaded-virtual"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-overloaded-virtual"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0040c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0040c.dir/build.make CMakeFiles/cmTC_0040c.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY'
+        Building CXX object CMakeFiles/cmTC_0040c.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter    -DCxxFlag-Wno-overloaded-virtual -Wno-overloaded-virtual -o CMakeFiles/cmTC_0040c.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_0040c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0040c.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter  -rdynamic CMakeFiles/cmTC_0040c.dir/src.cxx.o -o cmTC_0040c 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-Vzb7LY'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-missing-declarations"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-missing-declarations"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f5309/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f5309.dir/build.make CMakeFiles/cmTC_f5309.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C'
+        Building CXX object CMakeFiles/cmTC_f5309.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual    -DCxxFlag-Wno-missing-declarations -Wno-missing-declarations -o CMakeFiles/cmTC_f5309.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_f5309
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f5309.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual  -rdynamic CMakeFiles/cmTC_f5309.dir/src.cxx.o -o cmTC_f5309 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-dyHz1C'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-return-std-move"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-return-std-move"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_188f6/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_188f6.dir/build.make CMakeFiles/cmTC_188f6.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7'
+        Building CXX object CMakeFiles/cmTC_188f6.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-return-std-move -Wno-return-std-move -o CMakeFiles/cmTC_188f6.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        cc1plus: note: unrecognized command-line option '-Wno-return-std-move' may have been intended to silence earlier diagnostics
+        Linking CXX executable cmTC_188f6
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_188f6.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  -rdynamic CMakeFiles/cmTC_188f6.dir/src.cxx.o -o cmTC_188f6 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-tEEnf7'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-implicit-fallthrough"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-implicit-fallthrough"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_add34/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_add34.dir/build.make CMakeFiles/cmTC_add34.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5'
+        Building CXX object CMakeFiles/cmTC_add34.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations    -DCxxFlag-Wno-implicit-fallthrough -Wno-implicit-fallthrough -o CMakeFiles/cmTC_add34.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_add34
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_add34.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations  -rdynamic CMakeFiles/cmTC_add34.dir/src.cxx.o -o cmTC_add34 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-KTeby5'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-class-memaccess"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-class-memaccess"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_63eda/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_63eda.dir/build.make CMakeFiles/cmTC_63eda.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ'
+        Building CXX object CMakeFiles/cmTC_63eda.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough    -DCxxFlag-Wno-class-memaccess -Wno-class-memaccess -o CMakeFiles/cmTC_63eda.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_63eda
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63eda.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough  -rdynamic CMakeFiles/cmTC_63eda.dir/src.cxx.o -o cmTC_63eda 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-ToXrZJ'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-fcolor-diagnostics"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-fcolor-diagnostics"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_dba1f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_dba1f.dir/build.make CMakeFiles/cmTC_dba1f.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3'
+        Building CXX object CMakeFiles/cmTC_dba1f.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-fcolor-diagnostics -fcolor-diagnostics -o CMakeFiles/cmTC_dba1f.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3/src.cxx
+        c++: error: unrecognized command-line option '-fcolor-diagnostics'
+        gmake[1]: *** [CMakeFiles/cmTC_dba1f.dir/build.make:78: CMakeFiles/cmTC_dba1f.dir/src.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-7SC2y3'
+        gmake: *** [Makefile:127: cmTC_dba1f/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:120 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlag-Wno-deprecated-copy"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlag-Wno-deprecated-copy"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e3161/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e3161.dir/build.make CMakeFiles/cmTC_e3161.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB'
+        Building CXX object CMakeFiles/cmTC_e3161.dir/src.cxx.o
+        /usr/bin/c++   -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess    -DCxxFlag-Wno-deprecated-copy -Wno-deprecated-copy -o CMakeFiles/cmTC_e3161.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB/src.cxx
+        <command-line>: warning: ISO C++11 requires whitespace after the macro name
+        Linking CXX executable cmTC_e3161
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3161.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess  -rdynamic CMakeFiles/cmTC_e3161.dir/src.cxx.o -o cmTC_e3161 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-XsOqfB'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:149 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlagMnative"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlagMnative"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_4ae78/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_4ae78.dir/build.make CMakeFiles/cmTC_4ae78.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN'
+        Building CXX object CMakeFiles/cmTC_4ae78.dir/src.cxx.o
+        /usr/bin/c++ -DCxxFlagMnative  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy    -march=native -o CMakeFiles/cmTC_4ae78.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN/src.cxx
+        Linking CXX executable cmTC_4ae78
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4ae78.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy  -rdynamic CMakeFiles/cmTC_4ae78.dir/src.cxx.o -o cmTC_4ae78 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-T6hrmN'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "utils/engine3/MMOEngine/CMakeLists.txt:157 (CHECK_CXX_COMPILER_FLAG)"
+    checks:
+      - "Performing Test CxxFlagFramePointer"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: " -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native"
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/;/home/ubuntu/SWGReturns01/MMOCoreORB/utils/engine3/MMOEngine/build/cmake/Modules/"
+    buildResult:
+      variable: "CxxFlagFramePointer"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d9c17/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d9c17.dir/build.make CMakeFiles/cmTC_d9c17.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG'
+        Building CXX object CMakeFiles/cmTC_d9c17.dir/src.cxx.o
+        /usr/bin/c++ -DCxxFlagFramePointer  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native    -fno-omit-frame-pointer -o CMakeFiles/cmTC_d9c17.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG/src.cxx
+        Linking CXX executable cmTC_d9c17
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9c17.dir/link.txt --verbose=1
+        /usr/bin/c++  -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Wno-implicit-fallthrough -Wno-class-memaccess -Wno-deprecated-copy -march=native  -rdynamic CMakeFiles/cmTC_d9c17.dir/src.cxx.o -o cmTC_d9c17 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-pqYFSG'
+        
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:113 (check_cxx_linker_flag)"
+    checks:
+      - "Performing Test LLD_LINKER_SUPPORTED"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/"
+    buildResult:
+      variable: "LLD_LINKER_SUPPORTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d9266/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d9266.dir/build.make CMakeFiles/cmTC_d9266.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za'
+        Building CXX object CMakeFiles/cmTC_d9266.dir/src.cxx.o
+        /usr/bin/c++ -DLLD_LINKER_SUPPORTED  -fuse-ld=lld -o CMakeFiles/cmTC_d9266.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za/src.cxx
+        Linking CXX executable cmTC_d9266
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9266.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_d9266.dir/src.cxx.o -o cmTC_d9266  -fuse-ld=lld 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-c473za'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:114 (check_cxx_linker_flag)"
+    checks:
+      - "Performing Test GOLD_LINKER_SUPPORTED"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/"
+    buildResult:
+      variable: "GOLD_LINKER_SUPPORTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d41aa/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d41aa.dir/build.make CMakeFiles/cmTC_d41aa.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s'
+        Building CXX object CMakeFiles/cmTC_d41aa.dir/src.cxx.o
+        /usr/bin/c++ -DGOLD_LINKER_SUPPORTED  -fuse-ld=gold -o CMakeFiles/cmTC_d41aa.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s/src.cxx
+        Linking CXX executable cmTC_d41aa
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d41aa.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_d41aa.dir/src.cxx.o -o cmTC_d41aa  -fuse-ld=gold 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-NHPN1s'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:115 (check_cxx_compiler_flag)"
+    checks:
+      - "Performing Test WL_ZDEFS_SUPPORTED"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/"
+    buildResult:
+      variable: "WL_ZDEFS_SUPPORTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_72fa2/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_72fa2.dir/build.make CMakeFiles/cmTC_72fa2.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL'
+        Building CXX object CMakeFiles/cmTC_72fa2.dir/src.cxx.o
+        /usr/bin/c++ -DWL_ZDEFS_SUPPORTED  -Wl,-z,defs -o CMakeFiles/cmTC_72fa2.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL/src.cxx
+        Linking CXX executable cmTC_72fa2
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_72fa2.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_72fa2.dir/src.cxx.o -o cmTC_72fa2 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-lKxsUL'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:127 (check_cxx_linker_flag)"
+    checks:
+      - "Performing Test LINKER_THREADS_SUPPORTED"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/"
+    buildResult:
+      variable: "LINKER_THREADS_SUPPORTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_99402/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_99402.dir/build.make CMakeFiles/cmTC_99402.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ'
+        Building CXX object CMakeFiles/cmTC_99402.dir/src.cxx.o
+        /usr/bin/c++ -DLINKER_THREADS_SUPPORTED  -fuse-ld=lld -Wl,--threads -o CMakeFiles/cmTC_99402.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ/src.cxx
+        Linking CXX executable cmTC_99402
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_99402.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_99402.dir/src.cxx.o -o cmTC_99402  -fuse-ld=lld -Wl,--threads 
+        ld.lld: error: --threads: expected a positive integer, but got '-lstdc++'
+        ld.lld: error: --thinlto-jobs: invalid job count: -lstdc++
+        collect2: error: ld returned 1 exit status
+        gmake[1]: *** [CMakeFiles/cmTC_99402.dir/build.make:99: cmTC_99402] Error 1
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-8CR6xJ'
+        gmake: *** [Makefile:127: cmTC_99402/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "CMakeLists.txt:109 (check_cxx_compiler_flag)"
+      - "CMakeLists.txt:128 (check_cxx_linker_flag)"
+    checks:
+      - "Performing Test GDB_INDEX_SUPPORTED"
+    directories:
+      source: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk"
+      binary: "/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/ubuntu/SWGReturns01/MMOCoreORB/cmake/Modules/"
+    buildResult:
+      variable: "GDB_INDEX_SUPPORTED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0acd7/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0acd7.dir/build.make CMakeFiles/cmTC_0acd7.dir/build
+        gmake[1]: Entering directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk'
+        Building CXX object CMakeFiles/cmTC_0acd7.dir/src.cxx.o
+        /usr/bin/c++ -DGDB_INDEX_SUPPORTED  -fuse-ld=lld -Wl,--gdb-index -o CMakeFiles/cmTC_0acd7.dir/src.cxx.o -c /home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk/src.cxx
+        Linking CXX executable cmTC_0acd7
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0acd7.dir/link.txt --verbose=1
+        /usr/bin/c++ -rdynamic CMakeFiles/cmTC_0acd7.dir/src.cxx.o -o cmTC_0acd7  -fuse-ld=lld -Wl,--gdb-index 
+        gmake[1]: Leaving directory '/home/ubuntu/SWGReturns01/MMOCoreORB/src/CMakeFiles/CMakeScratch/TryCompile-b4huWk'
+        
+      exitCode: 0
+...

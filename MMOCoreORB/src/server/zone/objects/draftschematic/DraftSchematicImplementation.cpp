@@ -22,7 +22,16 @@ void DraftSchematicImplementation::initializeTransientMembers() {
 void DraftSchematicImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	IntangibleObjectImplementation::loadTemplateData(templateData);
 
-	schematicTemplate = dynamic_cast<DraftSchematicObjectTemplate*>(templateData);
+	//Guard against a bad/garbage templateData pointer (seen as a crash inside the
+	//dynamic_cast/reference-acquire below); reject anything in the first page of
+	//memory the same way a plain nullptr is already implicitly rejected.
+	if ((uint64)(void*)templateData < 0x1000)
+		return;
+
+	DraftSchematicObjectTemplate* castTemplate = dynamic_cast<DraftSchematicObjectTemplate*>(templateData);
+
+	if (castTemplate != nullptr)
+		schematicTemplate = castTemplate;
 }
 
 void DraftSchematicImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
