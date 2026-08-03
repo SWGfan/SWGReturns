@@ -62,38 +62,17 @@ object_weapon_ranged_pistol_pistol_dh17 = object_weapon_ranged_pistol_shared_pis
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/creature/player/zabrak_female.iff" },
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
 	attackType = RANGEDATTACK,
 
-	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
+	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, LIGHTSABER
 	damageType = ENERGY,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = LIGHT,
+	armorPiercing = NONE,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -121,9 +100,9 @@ object_weapon_ranged_pistol_pistol_dh17 = object_weapon_ranged_pistol_shared_pis
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 0,
-	actionAttackCost = 300,
-	mindAttackCost = 0,
+	healthAttackCost = 18,
+	actionAttackCost = 31,
+	mindAttackCost = 10,
 	forceCost = 0,
 
 	pointBlankRange = 0,
@@ -136,19 +115,19 @@ object_weapon_ranged_pistol_pistol_dh17 = object_weapon_ranged_pistol_shared_pis
 	maxRangeAccuracy = -60,
 
 	minDamage = 50,
-	maxDamage = 175,
+	maxDamage = 75,
 
 	attackSpeed = 3.2,
 
 	woundsRatio = 10,
 
 	numberExperimentalProperties = {1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2},
-	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "XX", "XX", "XX"},
+	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ"},
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "expRange", "null", "null", "expRange", "null", "null", "null"},
+	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "expRange", "null", "null", "expRange", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "roundsused", "hitpoints", "zerorangemod", "maxrangemod", "midrange", "midrangemod", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 35, 153, 2, 7, 10, 750, -5, -60, 15, 7, 0, 300, 0},
-	experimentalMax = {0, 0, 65, 198, 2, 13, 40, 1500, 5, -60, 15, 13, 0, 300, 0},
+	experimentalMin = {0, 0, 35, 53, 4.2, 7, 10, 750, -5, -60, 15, 7, 23, 44, 13},
+	experimentalMax = {0, 0, 65, 98, 2.9, 13, 40, 1500, 5, -60, 15, 13, 13, 22, 7},
 	experimentalPrecision = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }

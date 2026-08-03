@@ -70,22 +70,6 @@ class AiAgentPOD;
 
 using namespace server::zone::objects::creature::ai;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace scene {
-
-class SceneObject;
-
-class SceneObjectPOD;
-
-} // namespace scene
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::scene;
-
 #include "server/zone/managers/reaction/EmoteReactionFine.h"
 
 #include "server/zone/managers/reaction/ReactionRankData.h"
@@ -158,7 +142,7 @@ public:
 	 * @param state: the state of the reaction
 	 * @param force: if true, 100% chance to send the chat
 	 */
-	void sendChatReaction(AiAgent* npc, SceneObject* object, int type, int state = 0, bool force = false);
+	void sendChatReaction(AiAgent* npc, int type, int state = 0, bool force = false);
 
 	EmoteReactionFine* getEmoteReactionFine(CreatureObject* emoteUser, AiAgent* emoteTarget, int reactionLevel);
 
@@ -262,7 +246,7 @@ public:
 	 * @param state: the state of the reaction
 	 * @param force: if true, 100% chance to send the chat
 	 */
-	void sendChatReaction(AiAgent* npc, SceneObject* object, int type, int state = 0, bool force = false);
+	void sendChatReaction(AiAgent* npc, int type, int state = 0, bool force = false);
 
 	EmoteReactionFine* getEmoteReactionFine(CreatureObject* emoteUser, AiAgent* emoteTarget, int reactionLevel);
 
@@ -323,7 +307,7 @@ public:
 
 	void loadLuaConfig();
 
-	void sendChatReaction(AiAgent* npc, SceneObject* object, int type, int state, bool force);
+	void sendChatReaction(AiAgent* npc, int type, int state, bool force);
 
 	String getReactionQuip(int num);
 

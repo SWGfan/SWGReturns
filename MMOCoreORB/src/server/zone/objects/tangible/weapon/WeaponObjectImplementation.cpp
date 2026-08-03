@@ -18,8 +18,6 @@
 #include "server/zone/objects/tangible/component/lightsaber/LightsaberCrystalComponent.h"
 #include "server/zone/packets/object/WeaponRanges.h"
 #include "server/zone/ZoneProcessServer.h"
-#include "server/zone/managers/player/PlayerMap.h"
-#include "server/chat/ChatManager.h"
 
 
 void WeaponObjectImplementation::initializeTransientMembers() {
@@ -338,11 +336,11 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	alm->insertAttribute("cat_wpn_rangemods.wpn_range_max", maxrange);
 
 	//Special Attack Costs
-	//alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
+	alm->insertAttribute("cat_wpn_attack_cost.health", getHealthAttackCost());
 
 	alm->insertAttribute("cat_wpn_attack_cost.action", getActionAttackCost());
 
-	//alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
+	alm->insertAttribute("cat_wpn_attack_cost.mind", getMindAttackCost());
 
 	//Anti Decay Kit
 	if(hasAntiDecayKit()){
@@ -350,8 +348,10 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	}
 
 	// Force Cost
-	if (getForceCost() > 0)
-		alm->insertAttribute("forcecost", (int)getForceCost());
+	if (getForceCost() > 0){
+		float roundedForceCost = floor((float)getForceCost()*100 + 0.5)/100;
+		alm->insertAttribute("forcecost", roundedForceCost);
+	}
 
 	for (int i = 0; i < getNumberOfDots(); i++) {
 
@@ -445,24 +445,6 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	if (sliced == 1)
 		alm->insertAttribute("wpn_attr", "@obj_attr_n:hacked1");
 
-	if (isJediWeapon() && getCraftersID() == 0) {
-		ZoneServer* zoneServer = getZoneServer();
-
-		if (zoneServer != nullptr) {
-			ChatManager* chatMan = zoneServer->getChatManager();
-
-			if (chatMan != nullptr) {
-				PlayerMap* playerMap = chatMan->getPlayerMap();
-
-				if (playerMap != nullptr) {
-					CreatureObject* crafterCreo = playerMap->get(getCraftersName());
-
-					if (crafterCreo != nullptr)
-						setCraftersID(crafterCreo->getObjectID());
-				}
-			}
-		}
-	}
 }
 
 int WeaponObjectImplementation::getPointBlankAccuracy(bool withPup) const {
@@ -739,7 +721,7 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 	int chance = 5;
 
 	if (hasPowerup())
-		chance += 10;
+		chance += 3;
 
 	if (roll < chance) {
 		Locker locker(_this.getReferenceUnsafeStaticCast());

@@ -8,7 +8,7 @@
  *	AreaShapeStub
  */
 
-enum {RPC_SETAREACENTER__FLOAT_FLOAT_ = 2391961143,RPC_SETAREACENTER__FLOAT_FLOAT_FLOAT_,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_CONTAINSPOINT__FLOAT_FLOAT_FLOAT_,RPC_GETRADIUS__,RPC_GETWIDTH__,RPC_GETHEIGHT__,RPC_GETLENGTH__,RPC_ISCIRCULARAREASHAPE__,RPC_ISRECTANGULARAREASHAPE__,RPC_ISRINGAREASHAPE__,RPC_ISCUBOIDAREASHAPE__,RPC_ISSPHEREAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__};
+enum {RPC_SETAREACENTER__FLOAT_FLOAT_ = 2391961143,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_GETRADIUS__,RPC_ISCIRCULARAREASHAPE__,RPC_ISRECTANGULARAREASHAPE__,RPC_ISRINGAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__};
 
 AreaShape::AreaShape() : ManagedObject(DummyConstructorParameter::instance()) {
 	AreaShapeImplementation* _implementation = new AreaShapeImplementation();
@@ -43,24 +43,6 @@ void AreaShape::setAreaCenter(float x, float y) {
 	}
 }
 
-void AreaShape::setAreaCenter(float x, float z, float y) {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETAREACENTER__FLOAT_FLOAT_FLOAT_);
-		method.addFloatParameter(x);
-		method.addFloatParameter(z);
-		method.addFloatParameter(y);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setAreaCenter(x, z, y);
-	}
-}
-
 Vector3 AreaShape::getAreaCenter() const {
 	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -84,23 +66,6 @@ bool AreaShape::containsPoint(float x, float y) const {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->containsPoint(x, y);
-	}
-}
-
-bool AreaShape::containsPoint(float x, float z, float y) const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_CONTAINSPOINT__FLOAT_FLOAT_FLOAT_);
-		method.addFloatParameter(x);
-		method.addFloatParameter(z);
-		method.addFloatParameter(y);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->containsPoint(x, z, y);
 	}
 }
 
@@ -148,48 +113,6 @@ Vector3 AreaShape::getRandomPosition(const Vector3& origin, float minDistance, f
 	}
 }
 
-float AreaShape::getWidth() const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETWIDTH__);
-
-		return method.executeWithFloatReturn();
-	} else {
-		return _implementation->getWidth();
-	}
-}
-
-float AreaShape::getHeight() const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETHEIGHT__);
-
-		return method.executeWithFloatReturn();
-	} else {
-		return _implementation->getHeight();
-	}
-}
-
-float AreaShape::getLength() const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETLENGTH__);
-
-		return method.executeWithFloatReturn();
-	} else {
-		return _implementation->getLength();
-	}
-}
-
 bool AreaShape::isCircularAreaShape() const {
 	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -229,34 +152,6 @@ bool AreaShape::isRingAreaShape() const {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isRingAreaShape();
-	}
-}
-
-bool AreaShape::isCuboidAreaShape() const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISCUBOIDAREASHAPE__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isCuboidAreaShape();
-	}
-}
-
-bool AreaShape::isSphereAreaShape() const {
-	AreaShapeImplementation* _implementation = static_cast<AreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISSPHEREAREASHAPE__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isSphereAreaShape();
 	}
 }
 
@@ -438,8 +333,6 @@ AreaShapeImplementation::AreaShapeImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/area/areashapes/AreaShape.idl():  		areaCenter.set(0, 0, 0);
 	(&areaCenter)->set(0, 0, 0);
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		Logger.setLoggingName("AreaShape");
-	Logger::setLoggingName("AreaShape");
 }
 
 void AreaShapeImplementation::setAreaCenter(float x, float y) {
@@ -447,17 +340,7 @@ void AreaShapeImplementation::setAreaCenter(float x, float y) {
 	(&areaCenter)->set(x, 0, y);
 }
 
-void AreaShapeImplementation::setAreaCenter(float x, float z, float y) {
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		areaCenter.set(x, z, y);
-	(&areaCenter)->set(x, z, y);
-}
-
 bool AreaShapeImplementation::containsPoint(float x, float y) const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return false;
-	return false;
-}
-
-bool AreaShapeImplementation::containsPoint(float x, float z, float y) const{
 	// server/zone/objects/area/areashapes/AreaShape.idl():  		return false;
 	return false;
 }
@@ -468,21 +351,6 @@ bool AreaShapeImplementation::containsPoint(const Vector3& point) const{
 }
 
 float AreaShapeImplementation::getRadius() const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return 0;
-	return 0;
-}
-
-float AreaShapeImplementation::getWidth() const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return 0;
-	return 0;
-}
-
-float AreaShapeImplementation::getHeight() const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return 0;
-	return 0;
-}
-
-float AreaShapeImplementation::getLength() const{
 	// server/zone/objects/area/areashapes/AreaShape.idl():  		return 0;
 	return 0;
 }
@@ -498,16 +366,6 @@ bool AreaShapeImplementation::isRectangularAreaShape() const{
 }
 
 bool AreaShapeImplementation::isRingAreaShape() const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return false;
-	return false;
-}
-
-bool AreaShapeImplementation::isCuboidAreaShape() const{
-	// server/zone/objects/area/areashapes/AreaShape.idl():  		return false;
-	return false;
-}
-
-bool AreaShapeImplementation::isSphereAreaShape() const{
 	// server/zone/objects/area/areashapes/AreaShape.idl():  		return false;
 	return false;
 }
@@ -546,16 +404,6 @@ void AreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_SETAREACENTER__FLOAT_FLOAT_FLOAT_:
-		{
-			float x = inv->getFloatParameter();
-			float z = inv->getFloatParameter();
-			float y = inv->getFloatParameter();
-			
-			setAreaCenter(x, z, y);
-			
-		}
-		break;
 	case RPC_CONTAINSPOINT__FLOAT_FLOAT_:
 		{
 			float x = inv->getFloatParameter();
@@ -565,41 +413,10 @@ void AreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_CONTAINSPOINT__FLOAT_FLOAT_FLOAT_:
-		{
-			float x = inv->getFloatParameter();
-			float z = inv->getFloatParameter();
-			float y = inv->getFloatParameter();
-			
-			bool _m_res = containsPoint(x, z, y);
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_GETRADIUS__:
 		{
 			
 			float _m_res = getRadius();
-			resp->insertFloat(_m_res);
-		}
-		break;
-	case RPC_GETWIDTH__:
-		{
-			
-			float _m_res = getWidth();
-			resp->insertFloat(_m_res);
-		}
-		break;
-	case RPC_GETHEIGHT__:
-		{
-			
-			float _m_res = getHeight();
-			resp->insertFloat(_m_res);
-		}
-		break;
-	case RPC_GETLENGTH__:
-		{
-			
-			float _m_res = getLength();
 			resp->insertFloat(_m_res);
 		}
 		break;
@@ -621,20 +438,6 @@ void AreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			bool _m_res = isRingAreaShape();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_ISCUBOIDAREASHAPE__:
-		{
-			
-			bool _m_res = isCuboidAreaShape();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_ISSPHEREAREASHAPE__:
-		{
-			
-			bool _m_res = isSphereAreaShape();
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -662,32 +465,12 @@ void AreaShapeAdapter::setAreaCenter(float x, float y) {
 	(static_cast<AreaShape*>(stub))->setAreaCenter(x, y);
 }
 
-void AreaShapeAdapter::setAreaCenter(float x, float z, float y) {
-	(static_cast<AreaShape*>(stub))->setAreaCenter(x, z, y);
-}
-
 bool AreaShapeAdapter::containsPoint(float x, float y) const {
 	return (static_cast<AreaShape*>(stub))->containsPoint(x, y);
 }
 
-bool AreaShapeAdapter::containsPoint(float x, float z, float y) const {
-	return (static_cast<AreaShape*>(stub))->containsPoint(x, z, y);
-}
-
 float AreaShapeAdapter::getRadius() const {
 	return (static_cast<AreaShape*>(stub))->getRadius();
-}
-
-float AreaShapeAdapter::getWidth() const {
-	return (static_cast<AreaShape*>(stub))->getWidth();
-}
-
-float AreaShapeAdapter::getHeight() const {
-	return (static_cast<AreaShape*>(stub))->getHeight();
-}
-
-float AreaShapeAdapter::getLength() const {
-	return (static_cast<AreaShape*>(stub))->getLength();
 }
 
 bool AreaShapeAdapter::isCircularAreaShape() const {
@@ -700,14 +483,6 @@ bool AreaShapeAdapter::isRectangularAreaShape() const {
 
 bool AreaShapeAdapter::isRingAreaShape() const {
 	return (static_cast<AreaShape*>(stub))->isRingAreaShape();
-}
-
-bool AreaShapeAdapter::isCuboidAreaShape() const {
-	return (static_cast<AreaShape*>(stub))->isCuboidAreaShape();
-}
-
-bool AreaShapeAdapter::isSphereAreaShape() const {
-	return (static_cast<AreaShape*>(stub))->isSphereAreaShape();
 }
 
 bool AreaShapeAdapter::intersectsWith(AreaShape* areaShape) const {

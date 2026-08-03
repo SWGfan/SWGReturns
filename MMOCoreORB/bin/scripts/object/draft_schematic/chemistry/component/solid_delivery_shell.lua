@@ -50,11 +50,11 @@ object_draft_schematic_chemistry_component_solid_delivery_shell = object_draft_s
 	craftingToolTab = 64, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 18,
 	size = 3,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
 	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 100,
+	xp = 35,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",

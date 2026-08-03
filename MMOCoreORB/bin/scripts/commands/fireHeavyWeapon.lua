@@ -45,17 +45,16 @@ FireHeavyWeaponCommand = {
 	name = "fireheavyweapon",
 
 	damageMultiplier = 1.0,
-  speedMultiplier = 1.0,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.0,
-  mindCostMultiplier = 0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 1.0,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 1.0,
 
-  visMod = 25,
-  range = 64,
-  areaAction = true,
-  areaRange = 10,
+	range = 64,
+	areaAction = true,
+	areaRange = 10,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 }
 
 AddCommand(FireHeavyWeaponCommand)

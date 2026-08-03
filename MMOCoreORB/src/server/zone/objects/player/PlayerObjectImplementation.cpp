@@ -26,7 +26,6 @@
 #include "server/zone/packets/player/PlayerObjectDeltaMessage3.h"
 #include "server/zone/packets/player/PlayerObjectDeltaMessage8.h"
 #include "server/zone/packets/player/PlayerObjectDeltaMessage9.h"
-#include "server/zone/packets/creature/CreatureObjectDeltaMessage6.h"
 #include "server/zone/packets/chat/ChatOnGetFriendsList.h"
 #include "server/zone/packets/chat/ChatOnGetIgnoreList.h"
 #include "server/zone/packets/chat/ChatOnAddFriend.h"
@@ -65,7 +64,6 @@
 #include "server/zone/objects/player/events/ForceRegenerationEvent.h"
 #include "server/login/account/AccountManager.h"
 #include "templates/creature/SharedCreatureObjectTemplate.h"
-#include "server/zone/objects/player/sessions/survey/SurveySession.h"
 
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
 #include "server/zone/managers/player/QuestInfo.h"
@@ -103,7 +101,6 @@ void PlayerObjectImplementation::initializeTransientMembers() {
 	sessionStatsActivityXP = 0;
 	sessionStatsActivityMovement = 0;
 	sessionStatsTotalMovement = 0;
-	sessionStatsTotalCredits = 0;
 	sessionStatsIPAddress = "";
 	miliSecsSession = 0;
 }
@@ -220,21 +217,13 @@ void PlayerObjectImplementation::notifyLoadFromDatabase() {
 
 	serverLastMovementStamp.updateToCurrentTime();
 
-	SceneObject* loadParent = getParent().get();
-
-	if (loadParent != nullptr)
-		lastValidatedPosition.update(loadParent);
+	lastValidatedPosition.update(getParent().get());
 
 	clientLastMovementStamp = 0;
 }
 
 void PlayerObjectImplementation::unloadSpawnedChildren() {
-	SceneObject* unloadParent = getParent().get();
-
-	if (unloadParent == nullptr)
-		return;
-
-	ManagedReference<SceneObject*> datapad = unloadParent->getSlottedObject("datapad");
+	ManagedReference<SceneObject*> datapad = getParent().get()->getSlottedObject("datapad");
 	ManagedReference<CreatureObject*> creo = dynamic_cast<CreatureObject*>(parent.get().get());
 
 	if (datapad == nullptr)
@@ -256,14 +245,6 @@ void PlayerObjectImplementation::unloadSpawnedChildren() {
 
 	StoreSpawnedChildrenTask* task = new StoreSpawnedChildrenTask(creo, std::move(childrenToStore));
 	task->execute();
-}
-
-void PlayerObjectImplementation::setLastLogoutWorldPosition(const Vector3& position) {
-	lastLogoutWorldPosition = position;
-}
-
-Vector3 PlayerObjectImplementation::getLastLogoutWorldPosition() const {
-	return lastLogoutWorldPosition;
 }
 
 void PlayerObjectImplementation::unload() {
@@ -290,9 +271,8 @@ void PlayerObjectImplementation::unload() {
 
 		if (creoParent != nullptr) {
 			savedParentID = creoParent->getObjectID();
-		} else {
+		} else
 			savedParentID = 0;
-		}
 
 		creature->destroyObjectFromWorld(true);
 	}
@@ -339,19 +319,20 @@ void PlayerObjectImplementation::unload() {
 }
 
 int PlayerObjectImplementation::calculateBhReward() {
-	int minReward = 25000; // Minimum reward for a player bounty
+	int minReward = 60000; // Minimum reward for a player bounty
+	int maxReward = 1000000; // Maximum reward for a player bounty
 
 	if (getJediState() >= 4) // Minimum if player is knight
 		minReward = 50000;
 
 	int skillPoints = getSpentJediSkillPoints();
-	int reward = skillPoints * 1000;
+	ManagedReference<CreatureObject*> creature = dynamic_cast<CreatureObject*>(parent.get().get());
 
-	int frsRank = getFrsData()->getRank();
-
-	if (frsRank > 0)
-		reward += frsRank * 100000; // +100k per frs rank
-
+	int reward = skillPoints * 2000;
+	if (creature->getScreenPlayState("deathBounty") > 0){
+		int playerBounty = 100000 + (creature->getScreenPlayState("deathBounty") * 100000);
+		reward += playerBounty;
+	}
 	if (reward < minReward)
 		reward = minReward;
 
@@ -379,7 +360,6 @@ void PlayerObjectImplementation::sendBaselinesTo(SceneObject* player) {
 void PlayerObjectImplementation::notifySceneReady() {
 	teleporting = false;
 	onLoadScreen = false;
-	forcedTransform = false;
 
 	BaseMessage* msg = new CmdSceneReady();
 	sendMessage(msg);
@@ -579,26 +559,22 @@ void PlayerObjectImplementation::awardBadge(uint32 badge) {
 	playerManager->awardBadge(asPlayerObject(), badge);
 }
 
-int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient) {
-	if (xp == 0) {
-		trx.setExperience(xpType, 0, experienceList.contains(xpType) ? experienceList.get(xpType) : 0);
+int PlayerObjectImplementation::addExperience(const String& xpType, int xp, bool notifyClient) {
+	if (xp == 0)
 		return 0;
-	}
 
 	int valueToAdd = xp;
 
 	Locker locker(asPlayerObject());
 
-	if (xp > 0) {
+	if (xp > 0)
 		sessionStatsActivityXP += xp; // Count all xp as we're looking for activity not caps etc.
-		trx.addState("activityXP", xp);
-	}
 
 	if (experienceList.contains(xpType)) {
 		xp += experienceList.get(xpType);
 
 		if (xp <= 0 && xpType != "jedi_general") {
-			removeExperience(trx, xpType, notifyClient);
+			removeExperience(xpType, notifyClient);
 			return 0;
 		// -10 million experience cap for Jedi experience loss
 		} else if(xp < -10000000 && xpType == "jedi_general") {
@@ -630,12 +606,10 @@ int PlayerObjectImplementation::addExperience(TransactionLog& trx, const String&
 		experienceList.set(xpType, xp);
 	}
 
-	trx.setExperience(xpType, valueToAdd, experienceList.get(xpType));
-
 	return valueToAdd;
 }
 
-void PlayerObjectImplementation::removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient) {
+void PlayerObjectImplementation::removeExperience(const String& xpType, bool notifyClient) {
 	if (!experienceList.contains(xpType))
 		return;
 
@@ -649,8 +623,6 @@ void PlayerObjectImplementation::removeExperience(TransactionLog& trx, const Str
 	} else {
 		experienceList.drop(xpType);
 	}
-
-	trx.setExperience(xpType, experienceList.get(xpType) * -1, 0);
 }
 
 bool PlayerObjectImplementation::hasCappedExperience(const String& xpType) const {
@@ -1340,45 +1312,24 @@ void PlayerObjectImplementation::notifyOnline() {
 	ChatManager* chatManager = server->getChatManager();
 	ZoneServer* zoneServer = server->getZoneServer();
 
-	String lowerFirstName = playerCreature->getFirstName();
-	lowerFirstName = lowerFirstName.toLowerCase();
+	String firstName = playerCreature->getFirstName();
+	firstName = firstName.toLowerCase();
 
 	for (int i = 0; i < friendList.reversePlayerCount(); ++i) {
-		auto otherName = friendList.getReversePlayer(i);
-		Reference<CreatureObject*> otherPlayer = chatManager->getPlayer(otherName);
+		ManagedReference<CreatureObject*> player = chatManager->getPlayer(friendList.getReversePlayer(i));
 
-		if (otherPlayer == nullptr) {
-			continue;
-		}
-
-		auto otherGhost = otherPlayer->getPlayerObject();
-
-		if (otherGhost == nullptr) {
-			continue;
-		}
-
-		if (otherGhost->isPrivileged() || !isIgnoring(otherName)) {
-			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(lowerFirstName, zoneServer->getGalaxyName(), true);
-			otherPlayer->sendMessage(notifyStatus);
+		if (player != nullptr) {
+			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(firstName, zoneServer->getGalaxyName(), true);
+			player->sendMessage(notifyStatus);
 		}
 	}
 
 	for (int i = 0; i < friendList.size(); ++i) {
-		auto otherName = friendList.get(i);
-		Reference<CreatureObject*> otherPlayer = chatManager->getPlayer(otherName);
+		const String& name = friendList.get(i);
+		ManagedReference<CreatureObject*> player = chatManager->getPlayer(name);
 
-		if (otherPlayer == nullptr) {
-			continue;
-		}
-
-		auto otherGhost = otherPlayer->getPlayerObject();
-
-		if (otherGhost == nullptr) {
-			continue;
-		}
-
-		if (isPrivileged() || !otherGhost->isIgnoring(lowerFirstName)) {
-			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(otherName, zoneServer->getGalaxyName(), true);
+		if (player != nullptr) {
+			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(name, zoneServer->getGalaxyName(), true);
 			parent->sendMessage(notifyStatus);
 		}
 	}
@@ -1420,56 +1371,51 @@ void PlayerObjectImplementation::notifyOnline() {
 		if (playerTemplate != nullptr) {
 			auto speedTempl = playerTemplate->getSpeed();
 
-			playerCreature->setRunSpeed(speedTempl.get(0));
+			playerCreature->setRunSpeed(speedTempl.get(0) * 1.25f);
 		}
 	}
-
-	if (playerCreature->isInGuild()) {
-		ManagedReference<GuildObject*> guild = playerCreature->getGuildObject().get();
-		uint64 playerId = playerCreature->getObjectID();
-
-		if (guild != nullptr && !guild->hasMember(playerId)) {
-			playerCreature->setGuildObject(nullptr);
-
-			CreatureObjectDeltaMessage6* creod6 = new CreatureObjectDeltaMessage6(playerCreature);
-			creod6->updateGuildID();
-			creod6->close();
-			playerCreature->broadcastMessage(creod6, true);
-
-			updateInRangeBuildingPermissions();
-		}
-	}
-
-	// Checks for DoTs that should have expired during server downtime and removes them
-	playerCreature->getDamageOverTimeList()->validateDots(playerCreature);
 
 	if (getForcePowerMax() > 0 && getForcePower() < getForcePowerMax())
 		activateForcePowerRegen();
 
 	schedulePvpTefRemovalTask();
 
+	playerCreature->sendExecuteConsoleCommand("/chatRoom join SWG.returns.General");
+	playerCreature->sendExecuteConsoleCommand("/chatRoom join SWG.returns.PvP");
+
 	MissionManager* missionManager = zoneServer->getMissionManager();
 
-	if (missionManager != nullptr) {
+	if (missionManager != nullptr && (playerCreature->hasSkill("force_title_jedi_rank_02") || playerCreature->hasSkill("combat_bountyhunter_investigation_03"))) {
 		uint64 id = playerCreature->getObjectID();
-		// Jedi are always bounty eligible. Non-Jedi explicitly opt in by
-		// becoming Special Forces and must be an established combatant.
-		bool bountyEligible = isJedi() ||
-			(playerCreature->getFactionStatus() == FactionStatus::OVERT &&
-			 playerCreature->getLevel() >= 50);
 
-		if (bountyEligible && !missionManager->hasPlayerBountyTargetInList(id)) {
+		if (!missionManager->hasPlayerBountyTargetInList(id))
 			missionManager->addPlayerToBountyList(id, calculateBhReward());
+		else {
+			missionManager->updatePlayerBountyReward(id, calculateBhReward());
 			missionManager->updatePlayerBountyOnlineStatus(id, true);
-		} else if (bountyEligible) {
-			missionManager->updatePlayerBountyOnlineStatus(id, true);
-			//VisibilityManager::instance()->increaseVisibility(playerCreature, 8000); - Disable.
-		} else if (missionManager->hasPlayerBountyTargetInList(id)) {
-			// Remove legacy entries created when every login was added,
-			// protecting low-level, crafting-only and entertainer characters.
-			missionManager->removePlayerFromBountyList(id);
+			missionManager->updatePlayerBountyReward(id, calculateBhReward());
 		}
+	}
 
+	//Remove FR2 from Jedi
+	ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
+	if (ghost != nullptr && playerCreature->hasSkill("force_title_jedi_rank_02") && ghost->hasAbility("forceRun2") && !(playerCreature->hasSkill("frs_post9_light_enhancer_04") || playerCreature->hasSkill("frs_post9_dark_enhancer_04"))){
+		SkillManager::instance()->removeAbility(ghost, "forceRun2", true);
+	}
+
+	//Remove TotalhealSelf from non-frs Jedi
+	if (ghost != nullptr && playerCreature->hasSkill("force_title_jedi_rank_02") && ghost->hasAbility("totalHealSelf") && !(playerCreature->hasSkill("frs_post9_light_healing_04") || playerCreature->hasSkill("frs_post9_dark_healing_04"))){
+		SkillManager::instance()->removeAbility(ghost, "totalHealSelf", true);
+	}
+
+	//Remove TotalhealSelf from non-frs Jedi
+	if (ghost != nullptr && playerCreature->hasSkill("force_title_jedi_rank_02") && ghost->hasAbility("totalHealOther") && !(playerCreature->hasSkill("frs_post9_light_healing_04") || playerCreature->hasSkill("frs_post9_dark_healing_04"))){
+		SkillManager::instance()->removeAbility(ghost, "totalHealOther", true);
+	}
+
+	if (ghost != nullptr && ghost->getRatingReset() != 1){
+		ghost->setPvpRating(1200);
+		ghost->setRatingReset(1);
 	}
 	playerCreature->schedulePersonalEnemyFlagTasks();
 }
@@ -1485,26 +1431,15 @@ void PlayerObjectImplementation::notifyOffline() {
 	if (playerCreature == nullptr)
 		return;
 
-	String lowerFirstName = playerCreature->getFirstName();
-	lowerFirstName = lowerFirstName.toLowerCase();
+	String firstName = playerCreature->getFirstName();
+	firstName = firstName.toLowerCase();
 
 	for (int i = 0; i < friendList.reversePlayerCount(); ++i) {
-		auto otherName = friendList.getReversePlayer(i);
-		Reference<CreatureObject*> otherPlayer = chatManager->getPlayer(friendList.getReversePlayer(i));
+		ManagedReference<CreatureObject*> player = chatManager->getPlayer(friendList.getReversePlayer(i));
 
-		if (otherPlayer == nullptr) {
-			continue;
-		}
-
-		auto otherGhost = otherPlayer->getPlayerObject();
-
-		if (otherGhost == nullptr) {
-			continue;
-		}
-
-		if (otherGhost->isPrivileged() || !isIgnoring(otherName)) {
-			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(lowerFirstName, server->getZoneServer()->getGalaxyName(), false);
-			otherPlayer->sendMessage(notifyStatus);
+		if (player != nullptr) {
+			ChatFriendsListUpdate* notifyStatus = new ChatFriendsListUpdate(firstName, server->getZoneServer()->getGalaxyName(), false);
+			player->sendMessage(notifyStatus);
 		}
 	}
 
@@ -1524,18 +1459,8 @@ void PlayerObjectImplementation::notifyOffline() {
 
 	MissionManager* missionManager = getZoneServer()->getMissionManager();
 
-	if (missionManager != nullptr) {
-		uint64 id = playerCreature->getObjectID();
-		if (missionManager->hasPlayerBountyTargetInList(id)) {
-			missionManager->updatePlayerBountyOnlineStatus(id, false);
-		}
-	}
-
-
-	ManagedReference<SurveySession*> session = playerCreature->getActiveSession(SessionFacadeType::SURVEY).castTo<SurveySession*>();
-
-	if (session != nullptr) {
-		session->cancelSession();
+	if (missionManager != nullptr && (playerCreature->hasSkill("force_title_jedi_rank_02") || playerCreature->hasSkill("combat_bountyhunter_investigation_03"))) {
+		missionManager->updatePlayerBountyOnlineStatus(playerCreature->getObjectID(), false);
 	}
 
 	logSessionStats(true);
@@ -1579,7 +1504,6 @@ void PlayerObjectImplementation::resetSessionStats(bool isSessionStart) {
 
 		logSessionStats(false);
 		sessionStatsTotalMovement = 0;
-		sessionStatsTotalCredits = 0;
 		return;
 	}
 
@@ -1633,14 +1557,11 @@ void PlayerObjectImplementation::logSessionStats(bool isSessionEnd) {
 		error("parent == nullptr in logSessionStats");
 	}
 
-	if (sessionStatsLastCredits == -1) {
+	if (sessionStatsLastCredits == -1)
 		sessionStatsLastCredits = currentCredits;
-		sessionStatsTotalCredits = 0;
-	}
 
 	int skillPointDelta = skillPoints - sessionStatsLastSkillPoints;
 	int64 creditsDelta = (int64)currentCredits - (int64)sessionStatsLastCredits;
-	sessionStatsTotalCredits += creditsDelta;
 
 	int ipAccountCount = 0;
 
@@ -1768,7 +1689,12 @@ void PlayerObjectImplementation::increaseFactionStanding(const String& factionNa
 	//Ensure that the new amount is not greater than 5000.
 	float newAmount = currentAmount + amount;
 
-	// Unlimited faction points (cap removed)
+	if (!factionStandingList.isPvpFaction(factionName))
+		newAmount = Math::min(5000.f, newAmount);
+	else if (player->getFaction() == factionName.hashCode())
+		newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+	else
+		newAmount = Math::min(1000.f, newAmount);
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -1824,9 +1750,14 @@ void PlayerObjectImplementation::decreaseFactionStanding(const String& factionNa
 		return;
 
 	//Ensure that the new amount is not less than -5000.
-	float newAmount = currentAmount - amount;
+	float newAmount = Math::max(-5000.f, currentAmount - amount);
 
-	// Unlimited faction points (cap removed)
+	if (factionStandingList.isPvpFaction(factionName)) {
+		if (player->getFaction() == factionName.hashCode())
+			newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+		else
+			newAmount = Math::min(1000.f, newAmount);
+	}
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -1851,9 +1782,14 @@ void PlayerObjectImplementation::setFactionStanding(const String& factionName, f
 	if (player == nullptr)
 		return;
 
-	newAmount = newAmount;
+	newAmount = Math::max(-5000.f, newAmount);
 
-	// Unlimited faction points (cap removed)
+	if (factionStandingList.isPvpFaction(factionName)) {
+		if (player->getFaction() == factionName.hashCode())
+			newAmount = Math::min((float) FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+		else
+			newAmount = Math::min(1000.f, newAmount);
+	}
 
 	factionStandingList.put(factionName, newAmount);
 }
@@ -1965,22 +1901,20 @@ void PlayerObjectImplementation::doRecovery(int latency) {
 
 	if (isOnline()) {
 		const CommandQueueActionVector* commandQueue = creature->getCommandQueue();
-		const CommandQueueActionVector* immediateQueue = creature->getImmediateQueue();
 
-		if (creature->isInCombat() && creature->getTargetID() != 0 && !creature->isPeaced() && !creature->hasBuff(STRING_HASHCODE("private_feign_buff")) && (commandQueue->size() == 0) && (immediateQueue->size() == 0)
-		&& creature->isNextActionPast() && !creature->isDead() && !creature->isIncapacitated() && cooldownTimerMap->isPast("autoAttackDelay") && !creature->hasAttackDelay() && !creature->hasPostureChangeDelay()) {
+		if (creature->isInCombat() && creature->getTargetID() != 0 && !creature->isPeaced() &&
+			!creature->hasBuff(STRING_HASHCODE("private_feign_buff")) && (commandQueue->size() == 0) &&
+			creature->isNextActionPast() && !creature->isDead() && !creature->isIncapacitated() &&
+			cooldownTimerMap->isPast("autoAttackDelay")) {
 
 			ManagedReference<SceneObject*> targetObject = zoneServer->getObject(creature->getTargetID());
-
 			if (targetObject != nullptr) {
 				if (targetObject->isInRange(creature, Math::max(10, creature->getWeapon()->getMaxRange()) + targetObject->getTemplateRadius() + creature->getTemplateRadius())) {
 					creature->executeObjectControllerAction(STRING_HASHCODE("attack"), creature->getTargetID(), "");
 				}
 
-				float weaponSpeed = ((uint64)(CombatManager::instance()->calculateWeaponAttackSpeed(creature, creature->getWeapon(), 1.f)));
-
 				// as long as the target is still valid, we still want to continue to queue auto attacks
-				cooldownTimerMap->updateToCurrentAndAddMili("autoAttackDelay", (weaponSpeed) * 1000.f);
+				cooldownTimerMap->updateToCurrentAndAddMili("autoAttackDelay", (uint64)(CombatManager::instance()->calculateWeaponAttackSpeed(creature, creature->getWeapon(), 1.f) * 1000.f));
 			} else {
 				creature->setTargetID(0);
 			}
@@ -2157,7 +2091,7 @@ void PlayerObjectImplementation::activateForcePowerRegen() {
 
 		float timer = regen / 5.f;
 
-		float scheduledTime = 10 / timer;
+		float scheduledTime = 5 / timer;
 		uint64 miliTime = static_cast<uint64>(scheduledTime * 1000.f);
 		forceRegenerationEvent->schedule(miliTime);
 	}
@@ -2171,26 +2105,8 @@ void PlayerObjectImplementation::setLinkDead(bool isSafeLogout) {
 
 	onlineStatus = LINKDEAD;
 
-	TransactionLog trx(TrxCode::PLAYERLINKDEAD, getParentRecursively(SceneObjectType::PLAYERCREATURE));
-	trx.addState("isSafeLogout", isSafeLogout);
-
 	logoutTimeStamp.updateToCurrentTime();
 	if(!isSafeLogout) {
-		String crashZone = "unknown";
-		float crashX = 0.f, crashY = 0.f, crashZ = 0.f;
-
-		if (creature->getZone() != nullptr) {
-			crashZone = creature->getZone()->getZoneName();
-			crashX = creature->getPositionX();
-			crashY = creature->getPositionY();
-			crashZ = creature->getPositionZ();
-		}
-
-		StringBuffer crashLog;
-		crashLog << "CRASH/DISCONNECT player=" << creature->getFirstName() << " oid=" << creature->getObjectID()
-			<< " zone=" << crashZone << " x=" << crashX << " y=" << crashY << " z=" << crashZ;
-		info(crashLog.toString(), true);
-
 		info("went link dead");
 		logoutTimeStamp.addMiliTime(ConfigManager::instance()->getInt("Core3.Tweaks.PlayerObject.LinkDeadDelay", 3 * 60) * 1000); // 3 minutes if unsafe
 	}
@@ -2207,25 +2123,11 @@ void PlayerObjectImplementation::setLinkDead(bool isSafeLogout) {
 void PlayerObjectImplementation::setOnline() {
 	onlineStatus = ONLINE;
 
-	TransactionLog trx(TrxCode::PLAYERONLINE, getParentRecursively(SceneObjectType::PLAYERCREATURE));
-
 	clearCharacterBit(PlayerObjectImplementation::LD, true);
 
 	doRecovery(1000);
 
 	activateMissions();
-}
-
-void PlayerObjectImplementation::setOffline() {
-	onlineStatus = OFFLINE;
-
-	TransactionLog trx(TrxCode::PLAYEROFFLINE, getParentRecursively(SceneObjectType::PLAYERCREATURE));
-}
-
-void PlayerObjectImplementation::setLoggingOut() {
-	onlineStatus = LOGGINGOUT;
-
-	TransactionLog trx(TrxCode::PLAYERLOGGINGOUT, getParentRecursively(SceneObjectType::PLAYERCREATURE));
 }
 
 void PlayerObjectImplementation::reload(ZoneClientSession* client) {
@@ -2238,6 +2140,17 @@ void PlayerObjectImplementation::reload(ZoneClientSession* client) {
 
 	if (creature == nullptr)
 		return;
+
+	if (isLoggingIn()) {
+		creature->unlock();
+
+		auto owner = creature->getClient();
+
+		if (owner != nullptr && owner != client)
+			owner->disconnect();
+
+		creature->wlock();
+	}
 
 	setOnline();
 
@@ -2257,9 +2170,6 @@ void PlayerObjectImplementation::disconnect(bool closeClient, bool doLock) {
 
 	if (creature == nullptr)
 		return;
-
-	Vector3 position = getWorldPosition();
-	setLastLogoutWorldPosition(position);
 
 	if (!isOnline()) {
 		auto owner = creature->getClient();
@@ -2299,16 +2209,10 @@ void PlayerObjectImplementation::clearDisconnectEvent() {
 }
 
 void PlayerObjectImplementation::maximizeExperience() {
-	auto player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
-
-	if (player == nullptr)
-		return;
-
 	VectorMap<String, int>* xpCapList = getXpTypeCapList();
 
 	for (int i = 0; i < xpCapList->size(); ++i) {
-		TransactionLog trx(TrxCode::EXPERIENCE, player);
-		addExperience(trx, xpCapList->elementAt(i).getKey(), xpCapList->elementAt(i).getValue(), true);
+		addExperience(xpCapList->elementAt(i).getKey(), xpCapList->elementAt(i).getValue(), true);
 	}
 }
 
@@ -2412,7 +2316,7 @@ void PlayerObjectImplementation::doForceRegen() {
 	if (creature == nullptr || creature->isIncapacitated() || creature->isDead())
 		return;
 
-	const static uint32 tick = 8;
+	const static uint32 tick = 5;
 
 	uint32 modifier = 1;
 
@@ -2420,7 +2324,7 @@ void PlayerObjectImplementation::doForceRegen() {
 		Reference<ForceMeditateTask*> medTask = creature->getPendingTask("forcemeditate").castTo<ForceMeditateTask*>();
 
 		if (medTask != nullptr)
-			modifier = 15;
+			modifier = 3;
 	}
 
 	uint32 forceTick = tick * modifier;
@@ -2451,22 +2355,30 @@ Time PlayerObjectImplementation::getLastGcwPvpCombatActionTimestamp() const {
 	return lastGcwPvpCombatActionTimestamp;
 }
 
-Time PlayerObjectImplementation::getLastGcwCrackdownCombatActionTimestamp() const {
-	return lastCrackdownGcwCombatActionTimestamp;
+Time PlayerObjectImplementation::getLastJediPvpCombatActionTimestamp() {
+	return lastJediPvpCombatActionTimestamp;
+}
+Time PlayerObjectImplementation::getLastJediAttackableTimestamp() {
+	return lastJediAttackableTimestamp;
 }
 
-void PlayerObjectImplementation::updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction) {
+void PlayerObjectImplementation::updateLastJediAttackableTimestamp() {
+	lastJediAttackableTimestamp.updateToCurrentTime();
+	lastJediAttackableTimestamp.addMiliTime(60000);
+}
+
+void PlayerObjectImplementation::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction) {
 	ManagedReference<CreatureObject*> parent = getParent().get().castTo<CreatureObject*>();
 
 	if (parent == nullptr)
 		return;
 
-	bool alreadyHasTef = hasTef();
+	bool alreadyHasTef = hasPvpTef();
 
-	if (updateGcwCrackdownAction) {
+/*	if (updateGcwCrackdownAction) {
 		lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
 		lastCrackdownGcwCombatActionTimestamp.addMiliTime(FactionManager::TEFTIMER);
-	}
+	} */
 
 	if (updateBhAction) {
 		bool alreadyHasBhTef = hasBhTef();
@@ -2482,6 +2394,12 @@ void PlayerObjectImplementation::updateLastCombatActionTimestamp(bool updateGcwC
 		lastGcwPvpCombatActionTimestamp.addMiliTime(FactionManager::TEFTIMER);
 	}
 
+	if (updateJediAction){
+		lastJediPvpCombatActionTimestamp.updateToCurrentTime();
+		lastJediPvpCombatActionTimestamp.addMiliTime(FactionManager::TEFTIMER);
+		info("Updating Jedi TEF");
+	}
+
 	schedulePvpTefRemovalTask();
 
 	if (!alreadyHasTef) {
@@ -2491,41 +2409,33 @@ void PlayerObjectImplementation::updateLastCombatActionTimestamp(bool updateGcwC
 }
 
 void PlayerObjectImplementation::updateLastBhPvpCombatActionTimestamp() {
-	updateLastCombatActionTimestamp(false, false, true);
+	updateLastPvpCombatActionTimestamp(false, true, false);
 }
 
 void PlayerObjectImplementation::updateLastGcwPvpCombatActionTimestamp() {
-	updateLastCombatActionTimestamp(false, true, false);
+	updateLastPvpCombatActionTimestamp(true, false, false);
 }
 
-bool PlayerObjectImplementation::hasTef() const {
-	return hasCrackdownTef() || hasPvpTef();
+void PlayerObjectImplementation::updateLastJediPvpCombatActionTimestamp() {
+	updateLastPvpCombatActionTimestamp(false, false, true);
 }
 
-bool PlayerObjectImplementation::hasPvpTef() const {
-	return !lastGcwPvpCombatActionTimestamp.isPast() || hasBhTef();
+bool PlayerObjectImplementation::hasPvpTef() const{
+	return !lastGcwPvpCombatActionTimestamp.isPast() || hasBhTef() || hasJediTef();
 }
 
 bool PlayerObjectImplementation::hasBhTef() const {
 	return !lastBhPvpCombatActionTimestamp.isPast();
 }
 
-void PlayerObjectImplementation::setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask) {
-	crackdownFactionTefCrc = factionCrc;
-	if (scheduleTefRemovalTask) {
-		updateLastCombatActionTimestamp(true, false, false);
-	}
+bool PlayerObjectImplementation::hasJediTef() const {
+	return !lastJediPvpCombatActionTimestamp.isPast();
+}
+bool PlayerObjectImplementation::isJediAttackable() {
+	return !lastJediAttackableTimestamp.isPast();
 }
 
-bool PlayerObjectImplementation::hasCrackdownTefTowards(unsigned int factionCrc) const {
-	return !lastCrackdownGcwCombatActionTimestamp.isPast() && factionCrc != 0 && crackdownFactionTefCrc == factionCrc;
-}
-
-bool PlayerObjectImplementation::hasCrackdownTef() const {
-	return !lastCrackdownGcwCombatActionTimestamp.isPast() && crackdownFactionTefCrc != 0;
-}
-
-void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow) {
+void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow) {
 	ManagedReference<CreatureObject*> parent = getParent().get().castTo<CreatureObject*>();
 
 	if (parent == nullptr) {
@@ -2536,13 +2446,8 @@ void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownG
 		pvpTefTask = new PvpTefRemovalTask(parent);
 	}
 
-	if (removeCrackdownGcwTefNow || removeGcwTefNow || removeBhTefNow) {
-		if (removeCrackdownGcwTefNow) {
-			crackdownFactionTefCrc = 0;
-			lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
-		}
-
-		if (removeGcwTefNow) {
+	if (removeGcwTefNow || removeBhTefNow || removeJediTefNow) {
+		if (removeGcwTefNow){
 			lastGcwPvpCombatActionTimestamp.updateToCurrentTime();
 		}
 
@@ -2551,19 +2456,24 @@ void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownG
 			parent->notifyObservers(ObserverEventType::BHTEFCHANGED);
 		}
 
+		if (removeJediTefNow){
+			lastJediPvpCombatActionTimestamp.updateToCurrentTime();
+			lastJediAttackableTimestamp.updateToCurrentTime();
+		}
+
 		if (pvpTefTask->isScheduled()) {
 			pvpTefTask->cancel();
 		}
 	}
 
 	if (!pvpTefTask->isScheduled()) {
-		if (hasTef()) {
-			auto gcwCrackdownTefMs = getLastGcwCrackdownCombatActionTimestamp().miliDifference();
+		info("No Tef Scheduled, adding one");
+		if (hasPvpTef()) {
 			auto gcwTefMs = getLastGcwPvpCombatActionTimestamp().miliDifference();
 			auto bhTefMs = getLastBhPvpCombatActionTimestamp().miliDifference();
-			auto scheduleTime = gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs;
-			scheduleTime = gcwCrackdownTefMs < scheduleTime ? gcwCrackdownTefMs : scheduleTime;
-			pvpTefTask->schedule(llabs(scheduleTime));
+			auto jediTefMs = getLastJediPvpCombatActionTimestamp().miliDifference();
+	
+			pvpTefTask->schedule(llabs(jediTefMs < gcwTefMs ? (jediTefMs < bhTefMs ? jediTefMs : bhTefMs) : (gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs)));
 		} else {
 			pvpTefTask->execute();
 		}
@@ -2609,7 +2519,7 @@ void PlayerObjectImplementation::updateInRangeBuildingPermissions() {
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) parent->getCloseObjects();
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	vec->safeCopyReceiversTo(closeObjects, CloseObjectsVector::STRUCTURETYPE);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
@@ -2660,6 +2570,14 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 		ManagedReference<StructureObject*> structure = getZoneServer()->getObject(oid).castTo<StructureObject*>();
 
 		if (structure != nullptr) {
+			//This shouldn't happen but it did. Lets make sure it doesn't ever again.
+			ManagedReference<CreatureObject*> player = getParent().get().castTo<CreatureObject*>();
+
+			if (player != nullptr && player->getObjectID() != structure->getOwnerObjectID()) {
+				error("Tried deleting a structure that does not belong to the player in PlayerObjectImplementation::destroyObjectFromDatabase. Skipping structure.");
+				continue;
+			}
+
 			Zone* zone = structure->getZone();
 
 			if (zone != nullptr) {
@@ -2682,7 +2600,7 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 					continue;
 				}
 
-				StructureManager::instance()->destroyStructure(structure);
+				StructureManager::instance()->destroyStructure(structure, false, "the owners character was deleted.");
 			} else {
 				structure->destroyObjectFromDatabase(true);
 			}
@@ -2797,8 +2715,16 @@ int PlayerObjectImplementation::getSpentJediSkillPoints() {
 	for(int i = 0; i < skillList->size(); ++i) {
 		const Skill* jediSkill = skillList->get(i);
 
-		if (jediSkill->getSkillName().indexOf("force_discipline") != -1)
-			jediSkillPoints += jediSkill->getSkillPointsRequired();
+		if (jediSkill->getSkillName().indexOf("jedi") != -1){
+			if (jediSkill->getSkillName().indexOf("_padawan_") != -1){
+				jediSkillPoints += 4;
+			}else if (jediSkill->getSkillName().indexOf("_journeyman_") != -1) {
+				jediSkillPoints += 6;
+			}else if (jediSkill->getSkillName().indexOf("_master_") != -1){
+				jediSkillPoints += 7;
+			}
+		}
+
 	}
 
 	return jediSkillPoints;
@@ -3030,8 +2956,7 @@ void PlayerObjectImplementation::doFieldFactionChange(int newStatus) {
 }
 
 bool PlayerObjectImplementation::isIgnoring(const String& name) const {
-	String nameLower = name.toLowerCase();
-	return !nameLower.isEmpty() && ignoreList.contains(nameLower);
+	return !name.isEmpty() && ignoreList.contains(name);
 }
 
 void PlayerObjectImplementation::checkAndShowTOS() {
@@ -3089,7 +3014,7 @@ void PlayerObjectImplementation::recalculateForcePower() {
 		forceControlMod = player->getSkillMod("force_control_dark");
 	}
 
-	maxForce += (forcePowerMod + forceControlMod) * 15;
+	maxForce += (forcePowerMod + forceControlMod) * 10;
 
 	setForcePowerMax(maxForce, true);
 }

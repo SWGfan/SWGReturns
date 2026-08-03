@@ -2,7 +2,6 @@ mokk_rockshaper = Creature:new {
 	objectName = "@mob/creature_names:mokk_rockshaper",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "mokk_tribe",
 	faction = "mokk_tribe",
 	level = 71,
@@ -34,27 +33,18 @@ mokk_rockshaper = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "mokk_common", chance = 3500000},
+				{group = "junk", chance = 3500000},
 				{group = "loot_kit_parts", chance = 3000000},
-				{group = "armor_attachments", chance = 500000},
+				{group = "mokk_rare", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_all", chance = 2000000},
-				{group = "color_crystals", chance = 300000},
-				{group = "mokk_elites", chance = 200000}
+				{group = "color_crystals", chance = 500000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "primitive_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"primitive_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,fencermaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(pikemanmaster,fencermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(mokk_rockshaper, "mokk_rockshaper")

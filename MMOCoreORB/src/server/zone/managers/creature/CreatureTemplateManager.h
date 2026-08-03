@@ -37,7 +37,6 @@ protected:
 	HashTable<String, Reference<PatrolPathTemplate*> > patrolPaths;
 	HashTable<String, Reference<MobileOutfitGroup*> > outfits;
 	static AtomicInteger loadedMobileTemplates;
-	float globalAttackSpeedOverride;
 
 public:
 	static int DEBUG_MODE;
@@ -137,10 +136,6 @@ public:
 
 	const Vector<String>& getDressGroup(const String& ascii) {
 		return dressMap.get(ascii.hashCode());
-	}
-
-	float getGlobalAttackSpeedOverride() const {
-		return globalAttackSpeedOverride;
 	}
 
 };

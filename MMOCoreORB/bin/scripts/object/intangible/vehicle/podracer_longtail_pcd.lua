@@ -1,3 +1,0 @@
-object_intangible_vehicle_podracer_longtail_pcd = object_intangible_vehicle_shared_podracer_longtail_pcd:new {
-}
-ObjectTemplates:addTemplate(object_intangible_vehicle_podracer_longtail_pcd, "object/intangible/vehicle/podracer_longtail_pcd.iff")

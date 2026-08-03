@@ -132,6 +132,8 @@ using namespace server::zone::objects::tangible::threat;
 
 #include "system/thread/atomic/AtomicInteger.h"
 
+#include "server/zone/objects/intangible/ControlDevice.h"
+
 #include "server/zone/objects/scene/SceneObject.h"
 
 #include "system/util/SortedVector.h"
@@ -490,12 +492,6 @@ public:
 
 	void setSliced(bool slice);
 
-	bool isJediRobe() const;
-
-	bool isUnionRing() const;
-
-	void setUnionRing(bool val);
-
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -508,11 +504,7 @@ public:
 
 	void setCraftersName(String& name);
 
-	void setCraftersID(unsigned long long crafterOID);
-
 	String getCraftersName();
-
-	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -602,6 +594,10 @@ public:
 
 	bool isInNavMesh();
 
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
+
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -671,8 +667,6 @@ protected:
 
 	String craftersName;
 
-	unsigned long long craftersID;
-
 	int junkDealerNeeded;
 
 	int junkValue;
@@ -691,9 +685,7 @@ protected:
 
 	ManagedReference<SceneObject* > antiDecayKitObject;
 
-	bool jediRobe;
-
-	bool unionRing;
+	ManagedWeakReference<ControlDevice* > controlDevice;
 
 public:
 	TangibleObjectImplementation();
@@ -991,7 +983,7 @@ public:
 
 	void removeMagicBit(bool notifyClient = true);
 
-	virtual int getLevel() const;
+	int getLevel() const;
 
 	bool getIsCraftedEnhancedItem() const;
 
@@ -1007,7 +999,7 @@ public:
 
 	SceneObject* getMainDefender() const;
 
-	virtual bool isDestroyed() const;
+	bool isDestroyed() const;
 
 	virtual void setFaction(unsigned int crc);
 
@@ -1037,12 +1029,6 @@ public:
 
 	void setSliced(bool slice);
 
-	bool isJediRobe() const;
-
-	bool isUnionRing() const;
-
-	void setUnionRing(bool val);
-
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -1055,11 +1041,7 @@ public:
 
 	void setCraftersName(String& name);
 
-	void setCraftersID(unsigned long long crafterOID);
-
 	virtual String getCraftersName();
-
-	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -1075,7 +1057,7 @@ public:
 
 	virtual String getSerialNumber();
 
-	virtual ThreatMap* getThreatMap();
+	ThreatMap* getThreatMap();
 
 	Reference<FactoryCrate* > createFactoryCrate(int maxSize, String& type, bool insertSelf = false);
 
@@ -1152,6 +1134,10 @@ public:
 	bool isDisabled() const;
 
 	bool isInNavMesh();
+
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
 
 	WeakReference<TangibleObject*> _this;
 
@@ -1357,12 +1343,6 @@ public:
 
 	void setSliced(bool slice);
 
-	bool isJediRobe() const;
-
-	bool isUnionRing() const;
-
-	void setUnionRing(bool val);
-
 	void setCustomizationString(const String& vars);
 
 	void setIsCraftedEnhancedItem(bool value);
@@ -1375,11 +1355,7 @@ public:
 
 	void setCraftersName(String& name);
 
-	void setCraftersID(unsigned long long crafterOID);
-
 	String getCraftersName();
-
-	unsigned long long getCraftersID() const;
 
 	void setJunkDealerNeeded(int jdNeeded);
 
@@ -1457,6 +1433,10 @@ public:
 
 	bool isInNavMesh();
 
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
+
 };
 
 class TangibleObjectHelper : public DistributedObjectClassHelper, public Singleton<TangibleObjectHelper> {
@@ -1532,8 +1512,6 @@ public:
 
 	Optional<String> craftersName;
 
-	Optional<unsigned long long> craftersID;
-
 	Optional<int> junkDealerNeeded;
 
 	Optional<int> junkValue;
@@ -1550,9 +1528,7 @@ public:
 
 	Optional<ManagedReference<SceneObjectPOD* >> antiDecayKitObject;
 
-	Optional<bool> jediRobe;
-
-	Optional<bool> unionRing;
+	Optional<ManagedWeakReference<ControlDevicePOD* >> controlDevice;
 
 	String _className;
 	TangibleObjectPOD();

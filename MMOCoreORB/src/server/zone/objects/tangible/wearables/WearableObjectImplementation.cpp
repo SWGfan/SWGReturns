@@ -12,6 +12,7 @@
 #include "server/zone/objects/draftschematic/DraftSchematic.h"
 #include "server/zone/objects/tangible/attachment/Attachment.h"
 #include "server/zone/managers/skill/SkillModManager.h"
+#include "server/zone/objects/scene/SceneObjectType.h"
 
 /**
  * Rename for clarity/convenience
@@ -84,6 +85,41 @@ void WearableObjectImplementation::fillAttributeList(AttributeListMessage* alm,
 
 }
 
+bool WearableObjectImplementation::hasSeaRemovalTool(CreatureObject* player, bool removeItem) {
+
+	uint32 crc;
+
+	if (player == nullptr)
+		return 0;
+
+	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
+
+	if (inventory == nullptr)
+		return false;
+
+	Locker inventoryLocker(inventory);
+
+	for (int i = 0; i < inventory->getContainerObjectsSize(); ++i) {
+		ManagedReference<SceneObject*> sceno = inventory->getContainerObject(i);
+
+		crc = sceno->getServerObjectCRC();
+		if (String::valueOf(crc) == "3905622464") { //Sea Removal Tool
+
+			if (sceno != nullptr) {
+				if (removeItem) {
+					Locker locker(sceno);
+					sceno->destroyObjectFromWorld(true);
+					sceno->destroyObjectFromDatabase(true);
+				}
+
+				return true;
+			}
+		}
+	}
+
+	return 0;
+}
+
 void WearableObjectImplementation::updateCraftingValues(CraftingValues* values, bool initialUpdate) {
 	/*
 	 * Values available:	Range:
@@ -103,13 +139,12 @@ void WearableObjectImplementation::generateSockets(CraftingValues* craftingValue
 
 	int skill = 0;
 	int luck = 0;
-	ManagedReference<CreatureObject*> player = nullptr;
 
 	if (craftingValues != nullptr) {
 		ManagedReference<ManufactureSchematic*> manuSchematic = craftingValues->getManufactureSchematic();
 		if(manuSchematic != nullptr) {
 			ManagedReference<DraftSchematic*> draftSchematic = manuSchematic->getDraftSchematic();
-			player = manuSchematic->getCrafter().get();
+			ManagedReference<CreatureObject*> player = manuSchematic->getCrafter().get();
 
 			if (player != nullptr && draftSchematic != nullptr) {
 				String assemblySkill = draftSchematic->getAssemblySkill();
@@ -122,20 +157,15 @@ void WearableObjectImplementation::generateSockets(CraftingValues* craftingValue
 
 	int random = (System::random(750)) - 250; // -250 to 500
 
-	int rollRange = skill + luck + random;
-	if (rollRange < 0)
-		rollRange = 0;
-
-	float roll = System::random(rollRange);
+	float roll = System::random(skill + luck + random);
 
 	int generatedCount = int(float(MAXSOCKETS * roll) / float(MAXSOCKETS * 100));
+
 	if (generatedCount > MAXSOCKETS)
 		generatedCount = MAXSOCKETS;
 	if (generatedCount < 0)
 		generatedCount = 0;
-	if (player != nullptr && (player->hasSkill("crafting_tailor_master") || player->hasSkill("crafting_armorsmith_master"))) {
-		generatedCount = MAXSOCKETS;
-	}
+
 	// TODO: remove this backwards compatibility fix at next wipe. Only usedSocketCount variable should be used.
 	objectCreatedPreUsedSocketCountFix = false;
 	usedSocketCount = 0;
@@ -154,43 +184,46 @@ int WearableObjectImplementation::socketsUsed() const {
 	}
 }
 
-void WearableObjectImplementation::applyAttachment(CreatureObject* player, Attachment* attachment) {
+void WearableObjectImplementation::applyAttachment(CreatureObject* player,
+		Attachment* attachment) {
 	if (!isASubChildOf(player))
 		return;
 
-	if (socketsLeft() > 0 && wearableSkillMods.size() < MAXSOCKETS) {
+	if (socketsLeft() > 0) {
 		Locker locker(player);
 
 		if (isEquipped()) {
 			removeSkillModsFrom(player);
 		}
 
-		HashTable<String, int>* mods = attachment->getSkillMods();
-		HashTableIterator<String, int> iterator = mods->iterator();
+		if (wearableSkillMods.size() < 6) {
+			HashTable<String, int>* mods = attachment->getSkillMods();
+			HashTableIterator<String, int> iterator = mods->iterator();
 
-		String statName;
-		int newValue;
+			String statName;
+			int newValue;
 
-		SortedVector< ModSortingHelper > sortedMods;
-		for( int i = 0; i < mods->size(); i++){
-			iterator.getNextKeyAndValue(statName, newValue);
-			sortedMods.put( ModSortingHelper( statName, newValue));
-		}
+			SortedVector< ModSortingHelper > sortedMods;
+			for( int i = 0; i < mods->size(); i++){
+				iterator.getNextKeyAndValue(statName, newValue);
+				sortedMods.put( ModSortingHelper( statName, newValue));
+			}
 
-		// Select the next mod in the SEA, sorted high-to-low. If that skill mod is already on the
-		// wearable, with higher or equal value, don't apply and continue. Break once one mod
-		// is applied.
-		for (int i = 0; i < sortedMods.size(); i++ ) {
-			String modName = sortedMods.elementAt(i).getKey();
-			int modValue = sortedMods.elementAt(i).getValue();
+			// Select the next mod in the SEA, sorted high-to-low. If that skill mod is already on the
+			// wearable, with higher or equal value, don't apply and continue. Break once one mod
+			// is applied.
+			for( int i = 0; i < sortedMods.size(); i++ ) {
+				String modName = sortedMods.elementAt(i).getKey();
+				int modValue = sortedMods.elementAt(i).getValue();
 
-			int existingValue = -26;
-			if (wearableSkillMods.contains(modName))
-				existingValue = wearableSkillMods.get(modName);
+				int existingValue = -26;
+				if(wearableSkillMods.contains(modName))
+					existingValue = wearableSkillMods.get(modName);
 
-			if (modValue > existingValue) {
-				wearableSkillMods.put( modName, modValue );
-				break;
+				if( modValue > existingValue) {
+					wearableSkillMods.put( modName, modValue );
+					break;
+				}
 			}
 		}
 

@@ -43,7 +43,7 @@
 
 object_weapon_ranged_creature_creature_spit_large_yellow = object_weapon_ranged_creature_shared_creature_spit_large_yellow:new {
 	
-	playerRaces = { },
+	playerRaces = {},
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK, 
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK

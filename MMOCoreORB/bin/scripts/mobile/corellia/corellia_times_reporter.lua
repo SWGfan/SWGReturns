@@ -2,7 +2,6 @@ corellia_times_reporter = Creature:new {
 	objectName = "@mob/creature_names:corellia_times_reporter",
 	socialGroup = "corellia_times",
 	faction = "",
-	mobType = MOB_NPC,
 	level = 7,
 	chanceHit = 0.26,
 	damageMin = 55,
@@ -28,17 +27,9 @@ corellia_times_reporter = Creature:new {
 
 	templates = {"object/mobile/dressed_fed_dub_investigator_twk_female_01.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlernovice,marksmannovice),
-	secondaryAttacks = { }
+	attacks = merge(brawlernovice,marksmannovice)
 }
 
 CreatureTemplates:addCreatureTemplate(corellia_times_reporter, "corellia_times_reporter")

@@ -62,9 +62,6 @@ public:
 		SessionAPIClient::instance()->notifyDisconnectClient(client->getIPAddress(), ghost->getAccountID(), player->getObjectID(), eventTypeStr);
 #endif // WITH_SESSION_API
 
-		Vector3 position = ghost->getWorldPosition();
-		ghost->setLastLogoutWorldPosition(position);
-
 		switch (eventType) {
 		case DISCONNECT:
 			ghost->disconnect(false, true);

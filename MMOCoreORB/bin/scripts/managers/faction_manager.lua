@@ -9,6 +9,9 @@
 -- allies        - This is a comma delimited list of string key factions that this faction is allies with.
 -- adjustFactor  - This factor affects the amount of faction gained/lost when killing a mobile
 
+--Sets a global faction multiplier
+globalFactionMultiplier = 3.0
+
 factionList = {
 	{ "rebel", true, "imperial", "", 1.0 },
 	{ "imperial", true, "rebel", "", 1.0 },
@@ -79,5 +82,4 @@ factionList = {
 	{ "trade_federation", true, "borvo,naboo_security_force", "", 1.0 },
 	{ "tusken_raider", true, "alkhara,jawa", "", 1.0 },
 	{ "valarian", true, "jabba", "", 1.0 },
-	{ "death_watch", true, "imperial,rebel", "", 1.0 },
 }

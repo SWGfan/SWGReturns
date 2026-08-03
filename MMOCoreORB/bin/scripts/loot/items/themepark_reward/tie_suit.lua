@@ -9,7 +9,7 @@ tie_suit = {
 	},
 	customizationStringNames = {},
 	customizationValues = {},
-	skillMods = {{"slope_move", 25}}
+	skillMods = {{"slope_move", 5}}
 }
 
 addLootItemTemplate("tie_suit", tie_suit)

@@ -2,10 +2,10 @@
 gcwCheckTimer = 3600
 
 --Amount of time in seconds that a base will be vulnerable
-vulnerabilityDuration = 10800
+vulnerabilityDuration = 7200
 
 -- Amount of time in seconds between base vulnerabilities.
-vulnerabilityFrequency = 172800
+vulnerabilityFrequency = 82800
 
 powerSwitchCount = 7
 
@@ -13,7 +13,7 @@ powerSwitchCount = 7
 resetTimer = 1209600
 
 -- amount of time in seconds to wait when a slice fails
-sliceCooldown = 5
+sliceCooldown = 120
 
 dnaNucleotides = { "A", "G", "C", "T" }
 dnaPairs = { "AT", "TA", "GC", "CG" }
@@ -26,7 +26,7 @@ dnaStrandLength = 23
 destructionTimer = 600
 
 -- maximum bases per planet
-maxBases = 25
+maxBases = 15
 
 -- time in seconds that a player must be overt before aborting a facility shutdown
 overtCooldown = 300
@@ -43,44 +43,27 @@ turretAutoFireTimeout = 20
 
 maxBasesPerPlayer = 3
 
--- Enable Alarms on player GCW bases
-spawnBaseAlarms = false
-
 -- xp bonus for faction controlling a planet
-bonusXP = 50
+bonusXP = 15
 
 -- Crackdown settings
 crackdownScansEnabled = false
-
 -- thresholds for scaling crackdown npc's difficulty, first threshold should always be 0.
 difficutlyScalingThresholds = {0, 64}
-
---[[
-	-- TESTING VALUES
-	crackdownScanPrivilegedPlayers = true
-	crackdownPlayerScanCooldown = 15 * 60  -- In seconds
-	crackdownContrabandFineCredits = 10000
-	crackdownContrabandFineFactionPoints = 100
-	crackdownPlanetsWithWildScans = { "corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4"}
-	-- Radius for the area in which all players are retrieved in order to select one of them randomly to be scanned in the wild.
-	-- All objects in the quadtree in that radius will be iterated. Iteration will happen every 10s on each active planet.
-	crackdownPerformanceWildScanPlayerFindRadius = 2560 -- meter radius
-]]
-	-- PRODUCTION SERVER VALUES
-	crackdownScanPrivilegedPlayers = false
-	crackdownScanInterval = 10
-	crackdownPlayerScanCooldown = 2 * 24 * 60 * 60  -- In seconds, 48 hour cooldown
-	crackdownContrabandFineCredits = 10000
-	crackdownContrabandFineFactionPoints = 100
-	crackdownPlanetsWithWildScans = { "corellia", "dantooine", "lok", "naboo", "rori", "talus", "tatooine"}
-	-- Radius for the area in which all players are retrieved in order to select one of them randomly to be scanned in the wild.
-	-- All objects in the quadtree in that radius will be iterated. Iteration will happen every 10 s on each active planet.
-	crackdownPerformanceWildScanPlayerFindRadius = 256 -- 256m radius
+crackdownScanPrivilegedPlayers = false
+--crackdownPlayerScanCooldown = 24 * 60 * 60  -- In seconds
+crackdownPlayerScanCooldown = 2 * 60  -- In seconds, remove this row when testing is completed.
+crackdownContrabandFineCredits = 10000
+crackdownContrabandFineFactionPoints = 100
+crackdownPlanetsWithWildScans = { "corellia", "dantooine", "dathomir", "endor", "lok", "naboo", "rori", "talus", "tatooine", "yavin4"}
+-- Radius for the area in which all players are retrieved in order to select one of them randomly to be scanned in the wild.
+-- All objects in the octree in that radius will be iterated.
+crackdownPerformanceWildScanPlayerFindRadius = 10240  -- Tweak this in order to decrease the load on the server when a wild scan is tried.
 
 -- discount percentage for side losing&winning the gcw.  negative value of increase in price (penality).  positive for a decrease (Bonus)
 
-winnerBonus = 0
-loserBonus = -30
+winnerBonus = 10
+loserBonus = 0
 
 -- Spawn turrets and minefields when base is placed 1=true 0=false
 spawnDefenses = 1
@@ -88,7 +71,7 @@ spawnDefenses = 1
 -- Amount of time to delay vulnerability in seconds afer placing base
 initialVulnerabilityDelay = 0
 
-racialPenaltyEnabled = 0
+racialPenaltyEnabled = 1
 
 -- assign points to each type of base
 -- s01=Forward Outpost, s02 = Field Hospital , s03 = Tactical Center, s04 = Detach HQ
@@ -113,9 +96,6 @@ HQValues = {
 	{"object/building/general/bunker_imperial_weapons_research_facility_01.iff", 2},
 	{"object/building/general/bunker_imperial_detainment_center_01.iff", 2},
 	{"object/building/general/bunker_rebel_weapons_depot.iff", 2},
-	{"object/building/military/military_base_police_station_imperial_style_01.iff", 2},
-	{"object/building/military/military_base_shed_imperial_style_officer_s01.iff", 2},
-	{"object/building/military/military_outpost_guard_house_rebel.iff", 2},
 
 }
 
@@ -124,15 +104,15 @@ HQValues = {
 --HUMAN = 0; RODIAN = 1; TRANDOSHAN = 2; MONCAL = 3; WOOKIE = 4; BOTHAN = 5; TWILEK = 6; ZABRAK = 7; ITHORIAN = 0x21; SULLUSTAN = 0x31;
 imperial_racial_penalty = {
 	{0, 1},
-	{1, 3}, --rodian
-	{2, 2}, -- trando
-	{3, 3}, -- moncal
-	{4, 3}, -- wookie
-	{5, 2},  -- bothan
-	{6, 1.5}, -- twilek
-	{7, 2},  -- zabrack
-	{33, 2}, --ithorian
-	{49, 2}, -- sullustan
+	{1, 1}, --rodian
+	{2, 1}, -- trando
+	{3, 1}, -- moncal
+	{4, 1}, -- wookie
+	{5, 1},  -- bothan
+	{6, 1}, -- twilek
+	{7, 1},  -- zabrack
+	{33, 1}, --ithorian
+	{49, 1}, -- sullustan
 
 }
 

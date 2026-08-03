@@ -100,7 +100,6 @@ public:
 		row->getValue(6, hidden);
 		row->getValue(7, moneyRequired);
 		row->getValue(8, pointsRequired);
-
 		row->getValue(9, skillsRequiredCount);
 		row->getValue(10, skillsRequired);
 		row->getValue(11, preclusionSkills);
@@ -287,6 +286,10 @@ public:
 		return &skillsRequired;
 	}
 
+	inline const Vector<String>* getSkillsPrecluded() const {
+		return &preclusionSkills;
+	}
+
 	inline bool isRequiredSkillOf(Skill* skill) const {
 		return skillsRequired.contains(skill->getSkillName());
 	}
@@ -312,7 +315,7 @@ public:
 	 * @return the credits required for training the skill at a trainer.
 	 */
 	inline int getMoneyRequired() const {
-		return moneyRequired;
+		return moneyRequired/2;
 	}
 
 	/**

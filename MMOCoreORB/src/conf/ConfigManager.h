@@ -183,7 +183,7 @@ namespace conf {
 		ReadWriteLock mutex;
 
 	private:
-		ConfigDataItem* findItem(const String& name, unsigned int accountID = 0) const;
+		ConfigDataItem* findItem(const String& name) const;
 		bool updateItem(const String& name, ConfigDataItem* newItem);
 
 		bool parseConfigData(const String& prefix, bool isGlobal = false, int maxDepth = 5);
@@ -193,17 +193,6 @@ namespace conf {
 
 		void incrementConfigVersion() {
 			configVersion.increment();
-		}
-
-		String withAccount(const String& name, unsigned int accountID) const {
-			if (accountID == 0) {
-				return name;
-			}
-
-			StringBuffer acctFlag;
-			acctFlag << "Core3.AccountFlags." << accountID << "." << name;
-
-			return acctFlag.toString();
 		}
 
 	public:
@@ -227,20 +216,16 @@ namespace conf {
 		}
 
 		// General config functions
-		bool contains(const String& name, unsigned int accountID = 0) const;
+		bool contains(const String& name) const;
 		int getUsageCounter(const String& name) const;
-		int getInt(const String& name, int defaultValue, unsigned int accountID = 0);
-		bool getBool(const String& name, bool defaultValue, unsigned int accountID = 0);
-		float getFloat(const String& name, float defaultValue, unsigned int accountID = 0);
-		const String& getString(const String& name, const String& defaultValue, unsigned int accountID = 0);
-		const Vector<String>& getStringVector(const String& name, unsigned int accountID = 0);
-		const SortedVector<String>& getSortedStringVector(const String& name, unsigned int accountID = 0);
-		const Vector<int>& getIntVector(const String& name, unsigned int accountID = 0);
+		int getInt(const String& name, int defaultValue);
+		bool getBool(const String& name, bool defaultValue);
+		float getFloat(const String& name, float defaultValue);
+		const String& getString(const String& name, const String& defaultValue);
+		const Vector<String>& getStringVector(const String& name);
+		const SortedVector<String>& getSortedStringVector(const String& name);
+		const Vector<int>& getIntVector(const String& name);
 		bool getAsJSON(const String& target, JSONSerializationType& jsonData);
-
-		Logger::LogLevel getLogLevel(const String& name, Logger::LogLevel defaultValue, unsigned int accountID = 0) {
-			return static_cast<Logger::LogLevel>(getInt(name, (int)defaultValue, accountID));
-		}
 
 		bool setNumber(const String& name, lua_Number newValue);
 		bool setInt(const String& name, int newValue);
@@ -344,20 +329,6 @@ namespace conf {
 			return cachedProgressMonitors;
 		}
 
-		inline bool includeFactionPetsForMissionDifficulty() {
-			// Use cached value as this a hot item called in lots of loops
-			static uint32 cachedVersion = 0;
-			static bool cachedValue;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedValue = getBool("Core3.MissionManager.IncludeFactionPets", true);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedValue;
-		}
-
 		inline int getDBPort() {
 			return getInt("Core3.DBPort", 3306);
 		}
@@ -374,28 +345,6 @@ namespace conf {
 			return getString("Core3.DBPass", "Gemeni1");
 		}
 
-		// Account/session/character/galaxy database. Defaults to the local DB* values above
-		// when not explicitly set, so single-server deployments are unaffected.
-		inline const String& getAccountDBHost() {
-			return getString("Core3.AccountDBHost", getDBHost());
-		}
-
-		inline int getAccountDBPort() {
-			return getInt("Core3.AccountDBPort", getDBPort());
-		}
-
-		inline const String& getAccountDBName() {
-			return getString("Core3.AccountDBName", getDBName());
-		}
-
-		inline const String& getAccountDBUser() {
-			return getString("Core3.AccountDBUser", getDBUser());
-		}
-
-		inline const String& getAccountDBPass() {
-			return getString("Core3.AccountDBPass", getDBPass());
-		}
-
 		inline const String& getDBSecret() {
 			return getString("Core3.DBSecret", "swgemusecret");
 		}
@@ -406,10 +355,6 @@ namespace conf {
 
 		inline int getMantisPort() {
 			return getInt("Core3.MantisPort", 3306);
-		}
-
-		inline const String& getLatestTre() {
-			return getString("Core3.TreManager.LatestTre", "default_patch.tre");
 		}
 
 		inline const Vector<String>& getTreFiles() {
@@ -514,10 +459,6 @@ namespace conf {
 
 		const SortedVector<String>& getEnabledZones() {
 			return getSortedStringVector("Core3.ZonesEnabled");
-		}
-
-		const SortedVector<String>& getEnabledSpaceZones() {
-			return getSortedStringVector("Core3.SpaceZonesEnabled");
 		}
 
 		inline int getPurgeDeletedCharacters() {
@@ -634,6 +575,19 @@ namespace conf {
 			return cachedOnlineLogSize;
 		}
 
+		//Structure Packup
+		inline bool getStructurePackupEnabled() {
+			return getBool("Core3.structurePackupEnabled", false);
+		}
+
+		//Inactive Structure Packup
+		inline bool getInactiveStructurePackupEnabled() {
+			return getBool("Core3.inactiveStructurePackupEnabled", false);
+		}
+		inline int getInactiveStructurePackupDays() {
+			return getInt("Core3.inactiveStructurePackupDays", 365);
+		}
+		
 		inline String getNoTradeMessage() {
 			static uint32 cachedVersion = 0;
 			static String cachedNoTradeMessage;
@@ -671,206 +625,6 @@ namespace conf {
 			}
 
 			return cachedForceNoTradeADKMessage;
-		}
-
-		inline uint32 getAiAgentConsoleThrottle() {
-			static uint32 cachedVersion = 0;
-			static uint32 cachedValue;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-#ifdef DEBUG_AI
-				cachedValue = getInt("Core3.AiAgent.ConsoleThrottle", 1);
-#else // !DEBUG_AI
-				cachedValue = getInt("Core3.AiAgent.ConsoleThrottle", 100);
-#endif // DEBUG_AI
-				if (cachedVersion <= 0) {
-					cachedVersion = 1;
-				}
-
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedValue;
-		}
-
-#ifdef DEBUG_AI
-		inline bool getAiAgentLoadTesting() {
-			static uint32 cachedVersion = 0;
-			static bool cachedAiAgentLoadTesting;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedAiAgentLoadTesting = getBool("Core3.AiAgent.AiAgentLoadTesting", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedAiAgentLoadTesting;
-		}
-#endif // DEBUG_AI
-
-		inline bool isPvpBroadcastChannelEnabled() {
-			static uint32 cachedVersion = 0;
-			static bool cachedPvpBroadcastChannel;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedPvpBroadcastChannel = getBool("Core3.ChatManager.PvpBroadcastChannel", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedPvpBroadcastChannel;
-		}
-
-		inline bool useCovertOvertSystem() {
-			static uint32 cachedVersion = 0;
-			static bool cachedCovertOvertSystem;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedCovertOvertSystem = getBool("Core3.GCWManager.useCovertOvertSystem", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedCovertOvertSystem;
-		}
-
-		inline bool getLoginEnableSessionId() {
-			static uint32 cachedVersion = 0;
-			static bool cachedEnableSessionId;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedEnableSessionId = getBool("Core3.Login.EnableSessionId", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedEnableSessionId;
-		}
-
-		inline int getMinLairSpawnInterval() {
-			static uint32 cachedVersion = 0;
-			static int cachedMinSpawnDelay;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedMinSpawnDelay = getInt("Core3.Regions.minimumLairSpawnInterval", 5000);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedMinSpawnDelay;
-		}
-
-		inline int getMinSpaceSpawnInterval() {
-			static uint32 cachedVersion = 0;
-			static int cachedMinSpaceSpawnDelay;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedMinSpaceSpawnDelay = getInt("Core3.Regions.minimumSpaceSpawnInterval", 5000);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedMinSpaceSpawnDelay;
-		}
-
-		inline bool disableWorldSpawns() {
-			static uint32 cachedVersion = 0;
-			static bool cachedDisableWorldSpawns;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedDisableWorldSpawns = getBool("Core3.Regions.DisableWorldSpawns", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedDisableWorldSpawns;
-		}
-
-		inline bool disableSpaceSpawns() {
-			static uint32 cachedVersion = 0;
-			static bool cachedDisableSpaceSpawns;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedDisableSpaceSpawns = getBool("Core3.Regions.DisableSpaceSpawns", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedDisableSpaceSpawns;
-		}
-
-		inline float getSpawnCheckRange() {
-			static uint32 cachedVersion = 0;
-			static float cachedSpawnRange;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedSpawnRange = getFloat("Core3.Regions.spawnCheckRange", 64.f);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedSpawnRange;
-		}
-
-		inline float getSpaceSpawnCheckRange() {
-			static uint32 cachedVersion = 0;
-			static float cachedSpaceSpawnRange;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedSpaceSpawnRange = getFloat("Core3.Regions.spaceSpawnCheckRange", 1024.f);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedSpaceSpawnRange;
-		}
-
-		inline bool getLootDebugAttributes() {
-			static uint32 cachedVersion = 0;
-			static bool cachedValue;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedValue = getBool("Core3.LootManager.DebugAttributes", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedValue;
-		}
-
-
-		/*
-
-			JTL Configs
-
-		*/
-
-
-		inline bool isJtlEnabled() {
-			static uint32 cachedVersion = 1;
-			static bool cachedJtlEnabled;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedJtlEnabled = getBool("Core3.JTL.JTLEnabled", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedJtlEnabled;
-		}
-
-		inline bool launchFromDevice() {
-			static uint32 cachedVersion = 1;
-			static bool cachedLaunchFromDevice;
-
-			if (configVersion.get() > cachedVersion) {
-				Locker guard(&mutex);
-				cachedLaunchFromDevice = getBool("Core3.JTL.LaunchFromDevice", false);
-				cachedVersion = configVersion.get();
-			}
-
-			return cachedLaunchFromDevice;
 		}
 	};
 }

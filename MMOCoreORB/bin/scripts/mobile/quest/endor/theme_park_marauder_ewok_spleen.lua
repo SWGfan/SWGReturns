@@ -1,8 +1,6 @@
 theme_park_marauder_ewok_spleen = Creature:new {
 	objectName = "@mob/creature_names:masterful_ewok_warrior",
-	socialGroup = "gondula_tribe",
-
-	mobType = MOB_NPC,
+	socialGroup = "gondula_tribe",
 	faction = "gondula_tribe",
 	level = 35,
 	chanceHit = 0.41,
@@ -41,17 +39,8 @@ theme_park_marauder_ewok_spleen = Creature:new {
 			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ewok_weapons",
-	secondaryWeapon = "none",
-
+	weapons = {"ewok_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(riflemanmaster,brawlermaster)
 }
 CreatureTemplates:addCreatureTemplate(theme_park_marauder_ewok_spleen, "theme_park_marauder_ewok_spleen")

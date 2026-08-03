@@ -6,21 +6,14 @@
 #include "terrain/ProceduralTerrainAppearance.h"
 
 // Lower thread count, used during runtime
-const String NavMeshManager::TileQueue = "NavMeshWork";
+const String NavMeshManager::TileQueue = "NavMeshWorker";
 
 // Higher thread count, used for building large static cities during initialization
-const String NavMeshManager::MeshQueue = "NavMeshBuild";
+const String NavMeshManager::MeshQueue = "NavMeshBuilder";
 
 //#define NAVMESH_DEBUG
 
 NavMeshManager::NavMeshManager() : Logger("NavMeshManager") {
-	setFileLogger("log/navmesh.log", true, true);
-	setLogToConsole(false);
-	setGlobalLogging(false);
-	setLogSynchronized(true);
-	setRotateLogSizeMB(ConfigManager::instance()->getRotateLogSizeMB());
-	setLogLevel(ConfigManager::instance()->getLogLevel("Core3.NavMeshManager.LogLevel", Logger::INFO));
-
     maxConcurrentJobs = 4;
     stopped = false;
     zoneServer = nullptr;
@@ -159,11 +152,11 @@ void NavMeshManager::startJob(Reference<NavMeshJob*> job) {
 
     String name = area->getMeshName();
 
-    info() << "Starting building navmesh for area: " << name
+    info(true) << "Starting building navmesh for area: " << name
 	    << " on planet: " << zone->getZoneName() << " at: "
 	    << area->getPosition().toString();
 
-    SortedVector <ManagedReference<TreeEntry *>> closeObjects;
+    SortedVector <ManagedReference<QuadTreeEntry *>> closeObjects;
     zone->getInRangeSolidObjects(center.getX(), center.getZ(), range, &closeObjects, true);
 
     Vector <Reference<MeshData *>> meshData;
@@ -249,7 +242,7 @@ void NavMeshManager::startJob(Reference<NavMeshJob*> job) {
     	navmesh->setupDetourNavMeshHeader();
     	area->_setUpdated(true);
 
-	info() <<
+	info(true) <<
 		"Done building and setting navmesh for area: " << name << " on planet: "
 		<< zone->getZoneName() << " at: " << area->getPosition().toString();
     }, "setNavMeshLambda");
@@ -360,7 +353,7 @@ void NavMeshManager::dumpMeshesToFiles() {
 			error("Database exception in NavMeshManager::dumpMeshesToFiles(): " + e.getMessage());
 		}
 
-		info(String::valueOf(i) + " nav meshes saved to file.");
+		info(String::valueOf(i) + " nav meshes saved to file.", true);
 	} else {
 		error("Could not load the navareas database.");
 	}

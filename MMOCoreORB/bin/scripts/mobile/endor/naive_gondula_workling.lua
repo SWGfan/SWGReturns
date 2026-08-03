@@ -2,7 +2,6 @@ naive_gondula_workling = Creature:new {
 	objectName = "@mob/creature_names:naive_gondula_workling",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "gondula_tribe",
 	faction = "gondula_tribe",
 	level = 9,
@@ -39,17 +38,9 @@ naive_gondula_workling = Creature:new {
 			lootChance = 1180000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ewok_ranged",
-	secondaryWeapon = "ewok_melee",
+	weapons = {"ewok_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = marksmannovice,
-	secondaryAttacks = brawlernovice
+	attacks = merge(brawlernovice,marksmannovice)
 }
 
 CreatureTemplates:addCreatureTemplate(naive_gondula_workling, "naive_gondula_workling")

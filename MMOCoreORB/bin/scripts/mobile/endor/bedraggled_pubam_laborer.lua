@@ -2,7 +2,6 @@ bedraggled_pubam_laborer = Creature:new {
 	objectName = "@mob/creature_names:bedraggled_pubam_laborer",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "pubam",
 	faction = "pubam",
 	level = 21,
@@ -41,17 +40,9 @@ bedraggled_pubam_laborer = Creature:new {
 			lootChance = 1420000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "general_unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = brawlermaster,
-	secondaryAttacks = { }
+	attacks = brawlermaster
 }
 
 CreatureTemplates:addCreatureTemplate(bedraggled_pubam_laborer, "bedraggled_pubam_laborer")

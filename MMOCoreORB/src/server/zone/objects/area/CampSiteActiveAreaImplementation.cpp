@@ -23,14 +23,7 @@ void CampSiteActiveAreaImplementation::initializeTransientMembers() {
 
 	startTasks();
 
-	Core::getTaskManager()->executeTask([weakCampSiteArea = WeakReference<CampSiteActiveArea*>(_this.getReferenceUnsafeStaticCast())]() {
-		auto strongCampSiteArea = weakCampSiteArea.get();
-
-		if (strongCampSiteArea != nullptr) {
-			Locker lock(strongCampSiteArea);
-			strongCampSiteArea->setAbandoned(strongCampSiteArea->isAbandoned());
-		}
-	}, "InitCampSiteActiveArea");
+	setAbandoned(abandoned);
 }
 
 void CampSiteActiveAreaImplementation::init(CampStructureTemplate* campData) {
@@ -339,7 +332,7 @@ void CampSiteActiveAreaImplementation::assumeOwnership(CreatureObject* player) {
 	currentXp = 0;
 	visitors.removeAll();
 
-	Reference<SortedVector<ManagedReference<TreeEntry*> >*> closeObjects = new SortedVector<ManagedReference<TreeEntry*> >();
+	Reference<SortedVector<ManagedReference<QuadTreeEntry*> >*> closeObjects = new SortedVector<ManagedReference<QuadTreeEntry*> >();
 	zone->getInRangeObjects(camp->getWorldPositionX(), camp->getWorldPositionY(), campStructureData->getRadius(), closeObjects, true);
 
 	for (int i = 0; i < closeObjects->size(); ++i) {

@@ -72,12 +72,6 @@ public:
 
 	unsigned int getBanAdmin();
 
-	void setHasUnlockedJediSlot(unsigned int value);
-
-	unsigned int getHasUnlockedJediSlot() const;
-
-	void grantJediSlot();
-
 	void setTimeCreated(unsigned int seconds);
 
 	bool isActive();
@@ -129,6 +123,12 @@ public:
 	unsigned int getAgeInDays() const;
 
 	bool isSqlLoaded() const;
+
+	unsigned int getLastLoginInDays();
+
+	void setLastLogin(unsigned int seconds);
+
+	unsigned int getLastLogin();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -161,8 +161,6 @@ protected:
 
 	String salt;
 
-	unsigned int hasUnlockedJediSlot;
-
 	unsigned int accountID;
 
 	unsigned int stationID;
@@ -182,6 +180,8 @@ protected:
 	String banReason;
 
 	unsigned int banAdmin;
+
+	unsigned int lastLogin;
 
 public:
 	AccountImplementation();
@@ -209,12 +209,6 @@ public:
 	void setBanAdmin(unsigned int value);
 
 	unsigned int getBanAdmin();
-
-	void setHasUnlockedJediSlot(unsigned int value);
-
-	unsigned int getHasUnlockedJediSlot() const;
-
-	void grantJediSlot();
 
 	void setTimeCreated(unsigned int seconds);
 
@@ -267,6 +261,12 @@ public:
 	unsigned int getAgeInDays() const;
 
 	bool isSqlLoaded() const;
+
+	unsigned int getLastLoginInDays();
+
+	void setLastLogin(unsigned int seconds);
+
+	unsigned int getLastLogin();
 
 	WeakReference<Account*> _this;
 
@@ -334,12 +334,6 @@ public:
 
 	unsigned int getBanAdmin();
 
-	void setHasUnlockedJediSlot(unsigned int value);
-
-	unsigned int getHasUnlockedJediSlot() const;
-
-	void grantJediSlot();
-
 	void setTimeCreated(unsigned int seconds);
 
 	bool isActive();
@@ -374,6 +368,10 @@ public:
 
 	bool isSqlLoaded() const;
 
+	void setLastLogin(unsigned int seconds);
+
+	unsigned int getLastLogin();
+
 };
 
 class AccountHelper : public DistributedObjectClassHelper, public Singleton<AccountHelper> {
@@ -407,10 +405,6 @@ namespace account {
 
 class AccountPOD : public ManagedObjectPOD {
 public:
-	Optional<unsigned int> hasUnlockedJediSlot;
-
-	Optional<unsigned int> created;
-
 	Optional<GalaxyAccountInfoMap> galaxyAccountInfo;
 
 	String _className;

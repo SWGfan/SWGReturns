@@ -62,38 +62,17 @@ object_weapon_ranged_rifle_rifle_spraystick = object_weapon_ranged_rifle_shared_
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/creature/player/zabrak_female.iff" },
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
 	attackType = RANGEDATTACK,
 
-	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
+	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, LIGHTSABER
 	damageType = ENERGY,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = LIGHT,
+	armorPiercing = NONE,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -143,12 +122,12 @@ object_weapon_ranged_rifle_rifle_spraystick = object_weapon_ranged_rifle_shared_
 	woundsRatio = 17,
 
 	numberExperimentalProperties = {1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2},
-	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "XX", "XX", "XX"},
+	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ"},
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "null", "null", "null", "expRange", "null", "null", "null"},
+	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "null", "null", "null", "expRange", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "roundsused", "hitpoints", "zerorangemod", "maxrangemod", "midrange", "midrangemod", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 7, 177, 4, 12, 5, 750, -20, -60, 30, -5, 0, 300, 0},
-	experimentalMax = {0, 0, 13, 343, 4, 22, 20, 1500, -20, -60, 30, 5, 0, 300, 0},
+	experimentalMin = {0, 0, 7, 77, 3, 12, 5, 750, -20, -60, 30, -5, 16, 47, 47},
+	experimentalMax = {0, 0, 13, 143, 2.1, 22, 20, 1500, -20, -60, 30, 5, 8, 25, 25},
 	experimentalPrecision = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }

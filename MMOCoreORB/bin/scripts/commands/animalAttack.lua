@@ -42,24 +42,9 @@
 --true = 1, false = 0
 
 AnimalAttackCommand = {
-	name = "animalattack",
-
-	damageMultiplier = 0,
-	speed = 4.0,
-	forceCost = 150,
-	accuracySkillMod = "",
-	coneAngle = 0,
-	coneAction = false,
-	forceAttack = true,
-	visMod = 25,
-
-	stateEffects = {},
-
-	animation = "mind_trick_1",
-
-	poolsToDamage = NO_ATTRIBUTE,
-
-	range = 32
+        name = "animalattack",
+        visMod = 25,
 }
 
 AddCommand(AnimalAttackCommand)
+

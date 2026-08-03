@@ -3,42 +3,42 @@
 
 --This File is part of Core3.
 
---This program is free software; you can redistribute 
---it and/or modify it under the terms of the GNU Lesser 
+--This program is free software; you can redistribute
+--it and/or modify it under the terms of the GNU Lesser
 --General Public License as published by the Free Software
---Foundation; either version 2 of the License, 
+--Foundation; either version 2 of the License,
 --or (at your option) any later version.
 
---This program is distributed in the hope that it will be useful, 
---but WITHOUT ANY WARRANTY; without even the implied warranty of 
---MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+--This program is distributed in the hope that it will be useful,
+--but WITHOUT ANY WARRANTY; without even the implied warranty of
+--MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 --See the GNU Lesser General Public License for
 --more details.
 
---You should have received a copy of the GNU Lesser General 
+--You should have received a copy of the GNU Lesser General
 --Public License along with this program; if not, write to
 --the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
---Linking Engine3 statically or dynamically with other modules 
---is making a combined work based on Engine3. 
---Thus, the terms and conditions of the GNU Lesser General Public License 
+--Linking Engine3 statically or dynamically with other modules
+--is making a combined work based on Engine3.
+--Thus, the terms and conditions of the GNU Lesser General Public License
 --cover the whole combination.
 
---In addition, as a special exception, the copyright holders of Engine3 
---give you permission to combine Engine3 program with free software 
---programs or libraries that are released under the GNU LGPL and with 
---code included in the standard release of Core3 under the GNU LGPL 
---license (or modified versions of such code, with unchanged license). 
---You may copy and distribute such a system following the terms of the 
---GNU LGPL for Engine3 and the licenses of the other code concerned, 
---provided that you include the source code of that other code when 
+--In addition, as a special exception, the copyright holders of Engine3
+--give you permission to combine Engine3 program with free software
+--programs or libraries that are released under the GNU LGPL and with
+--code included in the standard release of Core3 under the GNU LGPL
+--license (or modified versions of such code, with unchanged license).
+--You may copy and distribute such a system following the terms of the
+--GNU LGPL for Engine3 and the licenses of the other code concerned,
+--provided that you include the source code of that other code when
 --and as the GNU LGPL requires distribution of source code.
 
---Note that people who make modified versions of Engine3 are not obligated 
---to grant this special exception for their modified versions; 
---it is their choice whether to do so. The GNU Lesser General Public License 
---gives permission to release a modified version without this exception; 
---this exception also makes it possible to release a modified version 
+--Note that people who make modified versions of Engine3 are not obligated
+--to grant this special exception for their modified versions;
+--it is their choice whether to do so. The GNU Lesser General Public License
+--gives permission to release a modified version without this exception;
+--this exception also makes it possible to release a modified version
 
 
 object_weapon_ranged_pistol_pistol_geonosian_sonic_blaster_loot = object_weapon_ranged_pistol_shared_pistol_geonosian_sonic_blaster_loot:new {
@@ -62,34 +62,13 @@ object_weapon_ranged_pistol_pistol_geonosian_sonic_blaster_loot = object_weapon_
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/creature/player/zabrak_female.iff" },
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
 	attackType = RANGEDATTACK,
 
-	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
+	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, LIGHTSABER
 	damageType = STUN,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
@@ -101,7 +80,7 @@ object_weapon_ranged_pistol_pistol_geonosian_sonic_blaster_loot = object_weapon_
 	xpType = "combat_rangedspecialize_pistol",
 
 	-- See http://www.ocdsoft.com/files/certifications.xls
-	certificationsRequired = { "doubleTap" },
+	certificationsRequired = { "pointBlankArea2" },
 	-- See http://www.ocdsoft.com/files/accuracy.xls
 	creatureAccuracyModifiers = { "pistol_accuracy" },
 
@@ -121,9 +100,9 @@ object_weapon_ranged_pistol_pistol_geonosian_sonic_blaster_loot = object_weapon_
 
 
 	-- The values below are the default values.  To be used for blue frog objects primarily
-	healthAttackCost = 0,
-	actionAttackCost = 300,
-	mindAttackCost = 0,
+	healthAttackCost = 18,
+	actionAttackCost = 43,
+	mindAttackCost = 17,
 	forceCost = 0,
 
 	pointBlankAccuracy = 0,
@@ -136,19 +115,19 @@ object_weapon_ranged_pistol_pistol_geonosian_sonic_blaster_loot = object_weapon_
 	maxRangeAccuracy = 5,
 
 	minDamage = 18,
-	maxDamage = 388,
+	maxDamage = 88,
 
-	attackSpeed = 1,
+	attackSpeed = 4,
 
 	woundsRatio = 12,
 
 	numberExperimentalProperties = {1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2},
-	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "XX", "CD", "OQ", "CD", "XX", "XX", "XX"},
+	experimentalProperties = {"XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "CD", "OQ", "XX", "XX", "XX", "CD", "OQ", "CD", "OQ", "CD", "OQ"},
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "expRange", "null", "null", "null", "null", "null", "null"},
+	experimentalGroupTitles = {"null", "null", "expDamage", "expDamage", "expDamage", "expDamage", "expEffeciency", "exp_durability", "expRange", "null", "null", "null", "expEffeciency", "expEffeciency", "expEffeciency"},
 	experimentalSubGroupTitles = {"null", "null", "mindamage", "maxdamage", "attackspeed", "woundchance", "roundsused", "hitpoints", "zerorangemod", "maxrangemod", "midrange", "midrangemod", "attackhealthcost", "attackactioncost", "attackmindcost"},
-	experimentalMin = {0, 0, 33, 65, 2, 8, 15, 500, 18, -90, 15, 35, 0, 300, 0},
-	experimentalMax = {0, 0, 198, 388, 2, 16, 60, 1250, 18, -90, 15, 10, 0, 300, 0},
+	experimentalMin = {0, 0, 33, 65, 5.6, 8, 15, 500, 18, -90, 15, 10, 36, 46, 22},
+	experimentalMax = {0, 0, 98, 191, 3.3, 16, 60, 1250, 18, -90, 15, 35, 14, 21, 8},
 	experimentalPrecision = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }

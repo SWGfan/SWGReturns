@@ -44,14 +44,13 @@
 Melee2hHit1Command = {
 	name = "melee2hhit1",
 
-	damageMultiplier = 1.25,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1,
-  mindCostMultiplier = 0,
-        accuracyBonus = 10,
-
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.5,
+	accuracyBonus = 10,
+	
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 0.5,
 
 	animation = "combo_2c", 
 	animType = GENERATE_INTENSITY,
@@ -60,7 +59,7 @@ Melee2hHit1Command = {
 
 	combatSpam = "terriblestrike",
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Melee2hHit1Command)

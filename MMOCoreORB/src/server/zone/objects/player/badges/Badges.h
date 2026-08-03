@@ -64,12 +64,6 @@ public:
 		addSerializableVariable("badgeBitmask3", &badgeBitmask[2]);
 		addSerializableVariable("badgeBitmask4", &badgeBitmask[3]);
 		addSerializableVariable("badgeBitmask5", &badgeBitmask[4]);
-		addSerializableVariable("badgeBitmask6", &badgeBitmask[5]);
-		addSerializableVariable("badgeBitmask7", &badgeBitmask[6]);
-		addSerializableVariable("badgeBitmask8", &badgeBitmask[7]);
-		addSerializableVariable("badgeBitmask9", &badgeBitmask[8]);
-		addSerializableVariable("badgeBitmask10", &badgeBitmask[9]);
-
 
 		addSerializableVariable("badgeTypeCount1", &badgeTypeCounts[0]);
 		addSerializableVariable("badgeTypeCount2", &badgeTypeCounts[1]);
@@ -77,6 +71,11 @@ public:
 		addSerializableVariable("badgeTypeCount4", &badgeTypeCounts[3]);
 		addSerializableVariable("badgeTypeCount5", &badgeTypeCounts[4]);
 		addSerializableVariable("badgeTypeCount6", &badgeTypeCounts[5]);
+		addSerializableVariable("badgeBitmask6", &badgeBitmask[5]);
+		addSerializableVariable("badgeBitmask7", &badgeBitmask[6]);
+		addSerializableVariable("badgeBitmask8", &badgeBitmask[7]);
+		addSerializableVariable("badgeBitmask9", &badgeBitmask[8]);
+		addSerializableVariable("badgeBitmask10", &badgeBitmask[9]);
 
 		addSerializableVariable("badgeTotal", &badgeTotal);
 	}
@@ -133,7 +132,11 @@ public:
 		}
 	}
 
-	void unsetBadge(Badge* badge) {
+	void unsetBadge(const uint badgeid) {
+		const Badge* badge = BadgeList::instance()->get(badgeid);
+		unsetBadge(badge);
+	}
+	void unsetBadge(const Badge* badge) {
 		if (badge == nullptr) return;
 		Locker locker(this);
 
@@ -155,10 +158,11 @@ public:
 			badgeTypeCounts[badgeType]--;
 			badgeTotal--;
 		}
-
 	}
 
-	bool hasBadge(int badgeindex) const {
+
+
+	bool hasBadge(int badgeindex) const{
 		int bitmaskNumber = badgeindex >> 5;
 
 		if (bitmaskNumber > 9 || bitmaskNumber < 0) {
@@ -189,7 +193,7 @@ public:
 		badgeBitmask[index] = bitmask;
 	}
 
-	uint32 getBitmask(int index) const {
+	uint32 getBitmask(int index) {
 		uint32 res = 0;
 
 		if (index > 9 || index < 0) {
@@ -214,7 +218,7 @@ public:
 		badgeTypeCounts[index] = value;
 	}
 
-	uint8 getTypeCount(uint8 type) const {
+	uint8 getTypeCount(uint8 type) const{
 		ReadLocker locker(this);
 
 		uint8 res = badgeTypeCounts[type];
@@ -222,7 +226,7 @@ public:
 		return res;
 	}
 
-	uint8 getNumBadges() const {
+	uint8 getNumBadges() const{
 		ReadLocker locker(this);
 
 		uint8 res = badgeTotal;

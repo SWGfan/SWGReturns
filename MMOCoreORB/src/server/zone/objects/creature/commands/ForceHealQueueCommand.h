@@ -80,7 +80,6 @@ protected:
 	int diseaseHealIterations;
 	int fireHealIterations;
 
-	int forceCost;
 	int range; // range to heal up to, if <= 0 it heals the user
 
 public:
@@ -101,10 +100,6 @@ public:
 	void setForceCostMultiplier(float fcm) {
 		forceCostMultiplier = fcm;
 	}
-
-	void setForceCost(int fc) {
-			forceCost = fc;
-		}
 
 	void setHealStateCost(unsigned int cost) {
 		healStateCost = cost;

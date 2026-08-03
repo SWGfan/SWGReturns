@@ -59,7 +59,7 @@ AttackCommand = {
 	
 	trails = NOTRAIL,
 
-	poolsToDamage = HEALTH_ATTRIBUTE
+	poolsToDamage = RANDOM_ATTRIBUTE
 }
 
 AddCommand(AttackCommand)

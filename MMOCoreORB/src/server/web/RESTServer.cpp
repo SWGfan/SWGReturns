@@ -98,6 +98,7 @@ void RESTServer::registerEndpoints() {
 		mConfigManagerProxy->handle(apiRequest);
 	}));
 
+
 	addEndpoint(RESTEndpoint("POST:/v1/admin/console/(\\w+)/", {"command"}, [this] (APIRequest& apiRequest) -> void {
 		StringBuffer buf;
 

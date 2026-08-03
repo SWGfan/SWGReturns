@@ -10,7 +10,7 @@
  *	ZoneClientSessionStub
  */
 
-enum {RPC_DISCONNECT__ = 1805730903,RPC_DISCONNECT__BOOL_,RPC_BALANCEPACKETCHECKUPTIME__,RPC_RESETPACKETCHECKUPTIME__,RPC_CLOSECONNECTION__BOOL_BOOL_,RPC_SETUPLOGGING__,RPC_INFO__STRING_BOOL_,RPC_DEBUG__STRING_,RPC_ERROR__STRING_,RPC_GETADDRESS__,RPC_GETIPADDRESS__,RPC_SETPLAYER__CREATUREOBJECT_,RPC_SETSESSIONID__STRING_,RPC_SETACCOUNTID__INT_,RPC_GETCOMMANDCOUNT__,RPC_INCREASECOMMANDCOUNT__,RPC_RESETCOMMANDCOUNT__,RPC_GETPLAYER__,RPC_GETSESSIONID__,RPC_GETACCOUNTID__,RPC_HASCHARACTER__LONG_INT_,RPC_ADDCHARACTER__LONG_INT_,RPC_ADDBANNEDCHARACTER__LONG_INT_,RPC_GETCHARACTERCOUNT__,RPC_GETCHARACTERCOUNT__INT_,RPC_RESETCHARACTERS__};
+enum {RPC_DISCONNECT__ = 1805730903,RPC_DISCONNECT__BOOL_,RPC_BALANCEPACKETCHECKUPTIME__,RPC_RESETPACKETCHECKUPTIME__,RPC_CLOSECONNECTION__BOOL_BOOL_,RPC_INFO__STRING_BOOL_,RPC_DEBUG__STRING_,RPC_ERROR__STRING_,RPC_GETADDRESS__,RPC_GETIPADDRESS__,RPC_SETPLAYER__CREATUREOBJECT_,RPC_SETSESSIONID__STRING_,RPC_SETACCOUNTID__INT_,RPC_GETCOMMANDCOUNT__,RPC_INCREASECOMMANDCOUNT__,RPC_RESETCOMMANDCOUNT__,RPC_GETPLAYER__,RPC_GETSESSIONID__,RPC_GETACCOUNTID__,RPC_HASCHARACTER__LONG_INT_,RPC_ADDCHARACTER__LONG_INT_,RPC_ADDBANNEDCHARACTER__LONG_INT_,RPC_GETCHARACTERCOUNT__,RPC_GETCHARACTERCOUNT__INT_,RPC_RESETCHARACTERS__};
 
 ZoneClientSession::ZoneClientSession(BaseClientProxy* session) : ManagedObject(DummyConstructorParameter::instance()) {
 	ZoneClientSessionImplementation* _implementation = new ZoneClientSessionImplementation(session);
@@ -112,20 +112,6 @@ void ZoneClientSession::closeConnection(bool lockPlayer, bool doLock) {
 	}
 }
 
-void ZoneClientSession::setupLogging() {
-	ZoneClientSessionImplementation* _implementation = static_cast<ZoneClientSessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETUPLOGGING__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->setupLogging();
-	}
-}
-
 void ZoneClientSession::info(const String& msg, bool force) {
 	ZoneClientSessionImplementation* _implementation = static_cast<ZoneClientSessionImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -169,26 +155,6 @@ void ZoneClientSession::error(const String& msg) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->error(msg);
-	}
-}
-
-void ZoneClientSession::executeOrderedTask(Task* task) {
-	ZoneClientSessionImplementation* _implementation = static_cast<ZoneClientSessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->executeOrderedTask(task);
-	}
-}
-
-PendingTasksMap* ZoneClientSession::getPendingTasks() {
-	ZoneClientSessionImplementation* _implementation = static_cast<ZoneClientSessionImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getPendingTasks();
 	}
 }
 
@@ -755,16 +721,6 @@ int ZoneClientSessionImplementation::writeObjectMembers(ObjectOutputStream* stre
 	return _count;
 }
 
-void ZoneClientSessionImplementation::executeOrderedTask(Task* task) {
-	// server/zone/ZoneClientSession.idl():  		pendingTasks.putOrdered(task, this);
-	pendingTasks->putOrdered(task, _this.getReferenceUnsafeStaticCast());
-}
-
-PendingTasksMap* ZoneClientSessionImplementation::getPendingTasks() {
-	// server/zone/ZoneClientSession.idl():  		return pendingTasks;
-	return pendingTasks;
-}
-
 LoggerHelperStream ZoneClientSessionImplementation::info(int forced) const{
 	// server/zone/ZoneClientSession.idl():  		return session.info(forced);
 	return session->info(forced);
@@ -783,6 +739,11 @@ LoggerHelperStream ZoneClientSessionImplementation::debug() const{
 void ZoneClientSessionImplementation::setSessionID(const String& id) {
 	// server/zone/ZoneClientSession.idl():  		sessionID = id;
 	sessionID = id;
+}
+
+void ZoneClientSessionImplementation::setAccountID(unsigned int acc) {
+	// server/zone/ZoneClientSession.idl():  		accountID = acc;
+	accountID = acc;
 }
 
 int ZoneClientSessionImplementation::getCommandCount() const{
@@ -892,13 +853,6 @@ void ZoneClientSessionAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 			bool doLock = inv->getBooleanParameter();
 			
 			closeConnection(lockPlayer, doLock);
-			
-		}
-		break;
-	case RPC_SETUPLOGGING__:
-		{
-			
-			setupLogging();
 			
 		}
 		break;
@@ -1079,10 +1033,6 @@ void ZoneClientSessionAdapter::resetPacketCheckupTime() {
 
 void ZoneClientSessionAdapter::closeConnection(bool lockPlayer, bool doLock) {
 	(static_cast<ZoneClientSession*>(stub))->closeConnection(lockPlayer, doLock);
-}
-
-void ZoneClientSessionAdapter::setupLogging() {
-	(static_cast<ZoneClientSession*>(stub))->setupLogging();
 }
 
 void ZoneClientSessionAdapter::info(const String& msg, bool force) {

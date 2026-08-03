@@ -39,7 +39,7 @@ DraftSchematicObjectTemplate::DraftSchematicObjectTemplate() {
 	skillMods.setNoDuplicateInsertPlan();
 	skillMods.setNullValue(0);
 	labratory = 0;
-	factoryCrateSize = 25;
+	factoryCrateSize = 1000;
 }
 
 DraftSchematicObjectTemplate::~DraftSchematicObjectTemplate() {
@@ -244,14 +244,9 @@ const Vector<Reference<ResourceWeight*> >* DraftSchematicObjectTemplate::getReso
 			tangibleTemplate = dynamic_cast<SharedTangibleObjectTemplate*> (TemplateManager::instance()->getTemplate(tanoCRC));
 
 		if (tangibleTemplate == nullptr) {
-			if (additionalTemplates != nullptr && !additionalTemplates->isEmpty()) {
-				Logger::console.error(
-						"Template not found for server crc: "
-								+ additionalTemplates->get(0));
-			} else {
-				Logger::console.error(
-						"Template not found for server crc (no additional templates available)");
-			}
+			Logger::console.error(
+					"Template not found for server crc: "
+							+ additionalTemplates->get(0));
 			return nullptr;
 		}
 	} catch (...) {

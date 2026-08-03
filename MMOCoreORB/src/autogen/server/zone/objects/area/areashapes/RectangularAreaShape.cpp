@@ -8,7 +8,7 @@
  *	RectangularAreaShapeStub
  */
 
-enum {RPC_SETDIMENSIONS__FLOAT_FLOAT_FLOAT_FLOAT_ = 4141362759,RPC_LOGDIMENSIONS__,RPC_GETHEIGHT__,RPC_GETWIDTH__,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_ISRECTANGULARAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__,RPC_GETRADIUS__};
+enum {RPC_SETDIMENSIONS__FLOAT_FLOAT_FLOAT_FLOAT_ = 4141362759,RPC_GETHEIGHT__,RPC_GETWIDTH__,RPC_CONTAINSPOINT__FLOAT_FLOAT_,RPC_ISRECTANGULARAREASHAPE__,RPC_INTERSECTSWITH__AREASHAPE_,RPC_GETAREA__};
 
 RectangularAreaShape::RectangularAreaShape() : AreaShape(DummyConstructorParameter::instance()) {
 	RectangularAreaShapeImplementation* _implementation = new RectangularAreaShapeImplementation();
@@ -42,30 +42,6 @@ void RectangularAreaShape::setDimensions(float x1, float y1, float x2, float y2)
 	} else {
 		assert(this->isLockedByCurrentThread());
 		_implementation->setDimensions(x1, y1, x2, y2);
-	}
-}
-
-void RectangularAreaShape::logDimensions() {
-	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_LOGDIMENSIONS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->logDimensions();
-	}
-}
-
-Vector4 RectangularAreaShape::getRectangularDimensions() const {
-	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getRectangularDimensions();
 	}
 }
 
@@ -183,20 +159,6 @@ float RectangularAreaShape::getArea() const {
 		return method.executeWithFloatReturn();
 	} else {
 		return _implementation->getArea();
-	}
-}
-
-float RectangularAreaShape::getRadius() const {
-	RectangularAreaShapeImplementation* _implementation = static_cast<RectangularAreaShapeImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETRADIUS__);
-
-		return method.executeWithFloatReturn();
-	} else {
-		return _implementation->getRadius();
 	}
 }
 
@@ -394,8 +356,6 @@ RectangularAreaShapeImplementation::RectangularAreaShapeImplementation() : AreaS
 	urX = 0;
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		urY = 0;
 	urY = 0;
-	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		Logger.setLoggingName("RectangularAreaShape");
-	Logger::setLoggingName("RectangularAreaShape");
 }
 
 void RectangularAreaShapeImplementation::setDimensions(float x1, float y1, float x2, float y2) {
@@ -407,11 +367,6 @@ void RectangularAreaShapeImplementation::setDimensions(float x1, float y1, float
 	urX = x2;
 	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		urY = y2;
 	urY = y2;
-}
-
-void RectangularAreaShapeImplementation::logDimensions() {
-	// server/zone/objects/area/areashapes/RectangularAreaShape.idl():  		Logger.info(true) << "Lower Left: X = " << blX << " Y = " << blY << " Upper Right: X = " << urX << " Y = " << urY << " Height = " << getHeight() << " With = " << getWidth();
-	Logger::info(true) << "Lower Left: X = " << blX << " Y = " << blY << " Upper Right: X = " << urX << " Y = " << urY << " Height = " << getHeight() << " With = " << getWidth();
 }
 
 float RectangularAreaShapeImplementation::getHeight() const{
@@ -460,13 +415,6 @@ void RectangularAreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod*
 			
 		}
 		break;
-	case RPC_LOGDIMENSIONS__:
-		{
-			
-			logDimensions();
-			
-		}
-		break;
 	case RPC_GETHEIGHT__:
 		{
 			
@@ -512,13 +460,6 @@ void RectangularAreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod*
 			resp->insertFloat(_m_res);
 		}
 		break;
-	case RPC_GETRADIUS__:
-		{
-			
-			float _m_res = getRadius();
-			resp->insertFloat(_m_res);
-		}
-		break;
 	default:
 		AreaShapeAdapter::invokeMethod(methid, inv);
 	}
@@ -526,10 +467,6 @@ void RectangularAreaShapeAdapter::invokeMethod(uint32 methid, DistributedMethod*
 
 void RectangularAreaShapeAdapter::setDimensions(float x1, float y1, float x2, float y2) {
 	(static_cast<RectangularAreaShape*>(stub))->setDimensions(x1, y1, x2, y2);
-}
-
-void RectangularAreaShapeAdapter::logDimensions() {
-	(static_cast<RectangularAreaShape*>(stub))->logDimensions();
 }
 
 float RectangularAreaShapeAdapter::getHeight() const {
@@ -554,10 +491,6 @@ bool RectangularAreaShapeAdapter::intersectsWith(AreaShape* areaShape) const {
 
 float RectangularAreaShapeAdapter::getArea() const {
 	return (static_cast<RectangularAreaShape*>(stub))->getArea();
-}
-
-float RectangularAreaShapeAdapter::getRadius() const {
-	return (static_cast<RectangularAreaShape*>(stub))->getRadius();
 }
 
 /*

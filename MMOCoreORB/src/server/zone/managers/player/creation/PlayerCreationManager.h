@@ -82,7 +82,6 @@ class PlayerCreationManager : public Singleton<PlayerCreationManager>, public Lo
 	void loadDefaultCharacterItems();
 	void loadProfessionDefaultsInfo();
 	void loadHairStyleInfo();
-	void loadHairStyleInfoFromLua();
 
 	/**
 	 * Loads all starting items (profession specific, race specific, common) and

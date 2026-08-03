@@ -7,7 +7,6 @@
 
 #include "QueueCommand.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/player/FactionStatus.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
@@ -66,48 +65,6 @@ bool QueueCommand::checkInvalidLocomotions(CreatureObject* creature) const {
 			return false;
 	}
 
-	return true;
-}
-
-/*
-*	Checks cell access for the player creature if the target is in a cell
-*/
-bool QueueCommand::playerEntryCheck(CreatureObject* creature, TangibleObject* target) const {
-	if (creature == nullptr || target == nullptr) {
-		return false;
-	}
-
-	uint64 creoParentID = creature->getParentID();
-	uint64 tarParentID = target->getParentID();
-
-	if (!creature->isPlayerCreature() || tarParentID == 0) {
-		return true;
-	}
-
-	if (creoParentID != tarParentID) {
-		Reference<CellObject*> targetCell = target->getParent().get().castTo<CellObject*>();
-
-		if (targetCell != nullptr) {
-			ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
-
-			if (parentSceneObject != nullptr) {
-				BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
-
-				if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
-					return false;
-				}
-			}
-
-			const ContainerPermissions* perms = targetCell->getContainerPermissions();
-
-			// This portion of the check is specific for locked dungeons doors since they do not inherit perms from parent
-			if (!perms->hasInheritPermissionsFromParent() && (creature->getRootParent() == target->getRootParent())) {
-				if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
-					return false;
-				}
-			}
-		}
-	}
 	return true;
 }
 
@@ -253,9 +210,8 @@ void QueueCommand::onComplete(uint32 actioncntr, CreatureObject* player, float c
 	if (!player->isPlayerCreature())
 		return;
 
-	if (addToQueue) {
+	if (addToQueue)
 		player->clearQueueAction(actioncntr, commandDuration);
-	}
 }
 
 int QueueCommand::doCommonMedicalCommandChecks(CreatureObject* creature) const {
@@ -264,6 +220,9 @@ int QueueCommand::doCommonMedicalCommandChecks(CreatureObject* creature) const {
 
 	if (!checkInvalidLocomotions(creature))
 		return INVALIDLOCOMOTION;
+
+	if (creature->hasAttackDelay() || !creature->checkPostureChangeDelay()) // no message associated with this
+		return GENERALERROR;
 
 	if (creature->isProne() || creature->isMeditating() || creature->isSwimming()) {
 		creature->sendSystemMessage("@error_message:wrong_state"); //You cannot complete that action while in your current state.
@@ -291,30 +250,71 @@ bool QueueCommand::checkForArenaDuel(CreatureObject* target) const {
 }
 
 void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target) const {
-	if (!creature->isPlayerCreature() || creature == target) {
+	if (!creature->isPlayerCreature() || creature == target)
 		return;
-	}
 
 	PlayerObject* ghost = creature->getPlayerObject().get();
-
-	if (ghost == nullptr) {
+	if (ghost == nullptr)
 		return;
-	}
 
 	if (target->isPlayerCreature()) {
 		PlayerObject* targetGhost = target->getPlayerObject().get();
 
-		if (targetGhost != nullptr && !CombatManager::instance()->areInDuel(creature, target) && target->getFactionStatus() == FactionStatus::OVERT && targetGhost->hasPvpTef()) {
-			ghost->updateLastGcwPvpCombatActionTimestamp();
+		if (!CombatManager::instance()->areInDuel(creature, target) && targetGhost != nullptr ) {
+			if ((targetGhost->hasPvpTef() || target->getFactionStatus() == FactionStatus::OVERT) && target->getFaction() != 0 && target->getFaction() != creature->getFaction())
+				ghost->updateLastGcwPvpCombatActionTimestamp();
+			if (targetGhost->isJediAttackable() || (targetGhost->isJedi() && target->getWeapon()->isJediWeapon()) )
+				ghost->updateLastJediAttackableTimestamp();
+			if (targetGhost->hasJediTef()){
+				ghost->updateLastJediPvpCombatActionTimestamp();
+				targetGhost->updateLastJediPvpCombatActionTimestamp();
+			}		
 		}
-
 	} else if (target->isPet()) {
 		ManagedReference<CreatureObject*> owner = target->getLinkedCreature().get();
 
 		if (owner != nullptr && owner->isPlayerCreature()) {
 			PlayerObject* ownerGhost = owner->getPlayerObject().get();
 
-			if (ownerGhost != nullptr && !CombatManager::instance()->areInDuel(creature, owner) && owner->getFactionStatus() == FactionStatus::OVERT && ownerGhost->hasPvpTef()) {
+			if (!CombatManager::instance()->areInDuel(creature, owner)
+					&& ownerGhost != nullptr && owner->getFactionStatus() == FactionStatus::OVERT && ownerGhost->hasPvpTef()) {
+				ghost->updateLastGcwPvpCombatActionTimestamp();
+			}
+		}
+	}
+}
+
+void QueueCommand::checkCmTef(CreatureObject* creature, CreatureObject* target) const {
+	if (!creature->isPlayerCreature() || creature == target)
+		return;
+
+	PlayerObject* ghost = creature->getPlayerObject().get();
+	if (ghost == nullptr)
+		return;
+
+	if (target->isPlayerCreature()){
+		PlayerObject* targetGhost = target->getPlayerObject().get();
+
+		if (!CombatManager::instance()->areInDuel(creature, target) && targetGhost != NULL){
+			if ((targetGhost->hasPvpTef() || target->getFactionStatus() == FactionStatus::OVERT) && target->getFaction() != 0 && target->getFaction() != creature->getFaction())
+				ghost->updateLastGcwPvpCombatActionTimestamp();
+			if (targetGhost->isJediAttackable() || (targetGhost->isJedi() && target->getWeapon()->isJediWeapon())){
+				ghost->updateLastJediAttackableTimestamp();
+				targetGhost->updateLastJediPvpCombatActionTimestamp();
+			}
+			if (targetGhost->hasJediTef()){
+				ghost->updateLastJediAttackableTimestamp();
+				targetGhost->updateLastJediPvpCombatActionTimestamp();
+			}
+		}
+	} else if (target->isPet()) {
+		ManagedReference<CreatureObject*> owner = target->getLinkedCreature().get();
+
+		if (owner != nullptr && owner->isPlayerCreature()) {
+			PlayerObject* ownerGhost = owner->getPlayerObject().get();
+
+			if (!CombatManager::instance()->areInDuel(creature, owner)
+					&& ownerGhost != nullptr && owner->getFactionStatus() == FactionStatus::OVERT && ownerGhost->hasPvpTef()) {
 				ghost->updateLastGcwPvpCombatActionTimestamp();
 			}
 		}

@@ -61,36 +61,10 @@ object_tangible_wearables_robe_robe_jedi_padawan = object_tangible_wearables_rob
 				"object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/creature/player/zabrak_male.iff",
-				"object/creature/player/zabrak_female.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/creature/player/zabrak_female.iff" },
 				
 				skillMods = {
-				    {"jedi_force_power_max", 250},
-				    {"jedi_force_power_regen", 10},
-				    {"melee_defense", 90},
-            {"ranged_defense", 90}
 				},
-
 				noTrade = 1,
 
 				objectMenuComponent = "RobeObjectMenuComponent",

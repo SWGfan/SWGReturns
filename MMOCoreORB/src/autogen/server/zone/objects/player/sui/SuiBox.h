@@ -43,22 +43,6 @@ using namespace server::zone::objects::scene;
 namespace server {
 namespace zone {
 namespace objects {
-namespace structure {
-
-class StructureObject;
-
-class StructureObjectPOD;
-
-} // namespace structure
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::structure;
-
-namespace server {
-namespace zone {
-namespace objects {
 namespace creature {
 
 class CreatureObject;
@@ -133,15 +117,6 @@ public:
 	SuiBox(CreatureObject* play, unsigned int windowtype, unsigned int boxtype);
 
 	void initialize();
-
-	/**
-	 * Assigns a fresh boxID from the owning ghost. Used both on initial
-	 * creation and whenever a box is redisplayed after being handled (see
-	 * SuiManager::handleCharacterBuilderSelectItem), so a stale/duplicate
-	 * client packet referencing the just-consumed boxID can no longer be
-	 * replayed against the redisplayed box.
-	 */
-	void regenerateBoxID();
 
 	void initializeTransientMembers();
 
@@ -256,10 +231,6 @@ public:
 
 	void setUsingObject(SceneObject* object);
 
-	ManagedWeakReference<StructureObject* > getStructureObject();
-
-	void setStructureObject(StructureObject* structure);
-
 	void setCallback(SuiCallback* callback);
 
 	SuiCallback* getCallback();
@@ -302,8 +273,6 @@ protected:
 	unsigned int boxID;
 
 	ManagedWeakReference<SceneObject* > usingObject;
-
-	ManagedWeakReference<StructureObject* > structureObject;
 
 	String handlerStr;
 
@@ -363,15 +332,6 @@ public:
 	SuiBoxImplementation(DummyConstructorParameter* param);
 
 	void initialize();
-
-	/**
-	 * Assigns a fresh boxID from the owning ghost. Used both on initial
-	 * creation and whenever a box is redisplayed after being handled (see
-	 * SuiManager::handleCharacterBuilderSelectItem), so a stale/duplicate
-	 * client packet referencing the just-consumed boxID can no longer be
-	 * replayed against the redisplayed box.
-	 */
-	void regenerateBoxID();
 
 	void finalize();
 
@@ -488,10 +448,6 @@ public:
 
 	void setUsingObject(SceneObject* object);
 
-	ManagedWeakReference<StructureObject* > getStructureObject();
-
-	void setStructureObject(StructureObject* structure);
-
 	void setCallback(SuiCallback* callback);
 
 	SuiCallback* getCallback();
@@ -540,8 +496,6 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initialize();
-
-	void regenerateBoxID();
 
 	void finalize();
 
@@ -607,10 +561,6 @@ public:
 
 	void setUsingObject(SceneObject* object);
 
-	ManagedWeakReference<StructureObject* > getStructureObject();
-
-	void setStructureObject(StructureObject* structure);
-
 	bool isSuiBoxPage();
 
 };
@@ -657,8 +607,6 @@ public:
 	Optional<unsigned int> boxID;
 
 	Optional<ManagedWeakReference<SceneObjectPOD* >> usingObject;
-
-	Optional<ManagedWeakReference<StructureObjectPOD* >> structureObject;
 
 	Optional<String> handlerStr;
 

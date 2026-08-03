@@ -679,11 +679,11 @@ lok_world = {
 		{
 			lairTemplateName = "lok_kimogilla_pack2_neutral_none",
 			spawnLimit = -1,
-			minDifficulty = 85,
-			maxDifficulty = 260,
-			numberToSpawn = 3,
-			weighting = 25,
-			size = 50
+			minDifficulty = 95,
+			maxDifficulty = 139,
+			numberToSpawn = 0,
+			weighting = 3,
+			size = 30
 		},
 		{
 			lairTemplateName = "lok_kimogilla_pack_neutral_none",

@@ -23,15 +23,13 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 		return visibilityIncrease;
 
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	CloseObjectsVector* closeObjectsVector = (CloseObjectsVector*) creature->getCloseObjects();
 	if (closeObjectsVector == nullptr) {
-		zone->getInRangeObjects(creature->getWorldPositionX(), creature->getWorldPositionY(), 32, &closeObjects, true);
+		zone->getInRangeObjects(creature->getWorldPositionX(), creature->getWorldPositionY(), 70, &closeObjects, true);
 	} else {
 		closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 	}
-
-	bool disableGroupVis = ConfigManager::instance()->getBool("Core3.PlayerManager.DisableGroupVisibility", false);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
 		SceneObject* obj = static_cast<SceneObject*>(closeObjects.get(i));
@@ -50,34 +48,22 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 		if (c->isDead() || c->isIncapacitated() || (c->isPlayerCreature() && c->getPlayerObject()->hasGodMode()))
 			continue;
 
-		if (disableGroupVis && creature->isGrouped()) {
-			ManagedReference<GroupObject*> group = creature->getGroup();
-
-			if (group != nullptr && group->hasMember(c))
-				continue;
-		}
-
-		if (!creature->isInRange(c, 32) || !CollisionManager::checkLineOfSight(creature, c))
+		if (!creature->isInRange(c, 70) || !CollisionManager::checkLineOfSight(creature, c))
 			continue;
-
-		ManagedReference<PlayerObject*> ghost = creature->getSlottedObject("ghost").castTo<PlayerObject*>();
-		bool isJedi = (ghost != nullptr && ghost->isJedi());
-		bool isFrs = (ghost != nullptr && ghost->getFrsData()->getRank() > 0);
-		bool isBountyHunter = creature->hasSkill("combat_bountyhunter_novice") || creature->hasSkill("combat_meleebountyhunter_novice");
-
-		if (isJedi && !isFrs) {
-			continue;
-		}
 
 		if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
 			visibilityIncrease += 0.5;
+			//info(c->getCreatureName().toString() + " generating a 0.5 visibility modifier", true);
 		} else {
 			if (creature->getFaction() == c->getFaction()) {
 				visibilityIncrease += 0.25;
+				//info(c->getCreatureName().toString() + " generating a 0.25 visibility modifier", true);
 			} else {
 				visibilityIncrease += 1;
+				//info( c->getCreatureName().toString() + " generating a 1.0 visibility modifier", true);
 			}
 		}
+
 	}
 
 	//info("Increasing visibility for player " + String::valueOf(creature->getObjectID()) + " with " + String::valueOf(visibilityIncrease), true);

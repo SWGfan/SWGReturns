@@ -2,17 +2,16 @@ acklay = Creature:new {
 	objectName = "@mob/creature_names:geonosian_acklay_bunker_boss",
 	customName = "Acklay",
 	socialGroup = "geonosian_creature",
-	mobType = MOB_CARNIVORE,
 	faction = "",
-	level = 157,
-	chanceHit = 92.5,
-	damageMin = 935,
-	damageMax = 1580,
+	level = 300,
+	chanceHit = 150,
+	damageMin = 1100,
+	damageMax = 1800,
 	baseXp = 14884,
-	baseHAM = 96000,
-	baseHAMmax = 118000,
-	armor = 1,
-	resists = {130,145,155,155,145,30,30,30,-1},
+	baseHAM = 496000,
+	baseHAMmax = 518000,
+	armor = 3,
+	resists = {180,180,180,180,180,60,60,60,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,22 +30,17 @@ acklay = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "acklay", chance = 10000000},
+				{group = "acklay", chance = 10000000}
 			},
-			lootChance = 9000000
+			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"posturedownattack","stateAccuracyBonus=50"}, {"creatureareacombo","stateAccuracyBonus=50"} },
-	secondaryAttacks = { }
+	attacks = {
+		{"posturedownattack","stateAccuracyBonus=50"},
+		{"creatureareacombo","stateAccuracyBonus=70"}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(acklay, "acklay")

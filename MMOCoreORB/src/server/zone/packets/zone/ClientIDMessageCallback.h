@@ -11,7 +11,6 @@
 #include "server/zone/ZoneServer.h"
 #include "server/zone/packets/MessageCallback.h"
 #include "server/db/ServerDatabase.h"
-#include "server/db/AccountDatabase.h"
 #include "server/login/packets/ErrorMessage.h"
 #include "server/login/account/Account.h"
 #include "server/login/objects/CharacterList.h"
@@ -20,7 +19,7 @@
 #include "ClientPermissionsMessage.h"
 
 class ClientIDMessageCallback : public MessageCallback {
-	uint32 gameBits{};
+	uint32 gameBits;
 	uint32 dataLen;
 	String sessionID;
 	uint32 accountID;
@@ -54,7 +53,7 @@ public:
 		query << "SELECT session_id FROM sessions WHERE account_id = " << accountID;
 		query << " AND  ip = '"<< client->getSession()->getIPAddress() <<"' AND expires > NOW();";
 
-		UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
+		UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
 
 		if (result != nullptr && result->next()) {
 			String sesskey = result->getString(0);
@@ -72,7 +71,7 @@ public:
 				delQuery << "DELETE FROM sessions WHERE account_id = " << accountID << ";";
 
 				try {
-					AccountDatabase::instance()->executeStatement(delQuery);
+					ServerDatabase::instance()->executeStatement(delQuery);
 				} catch (const DatabaseException& e) {
 					client->info(e.getMessage(), true);
 				}

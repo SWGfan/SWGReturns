@@ -2,7 +2,6 @@ theme_park_commoner_old = Creature:new {
   objectName = "@mob/creature_names:commoner",
   randomNameType = NAME_GENERIC,
   randomNameTag = true,
-	mobType = MOB_NPC,
   socialGroup = "townsperson",
   faction = "townsperson",
   level = 4,
@@ -34,14 +33,9 @@ theme_park_commoner_old = Creature:new {
       },
 
   lootGroups = {},
-  primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
+  weapons = {"pirate_weapons_light"},
   conversationTemplate = "theme_park_smc_zideera_mission_target_convotemplate",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmannovice,brawlernovice),
-	secondaryAttacks = { }
+  attacks = merge(marksmannovice,brawlernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(theme_park_commoner_old, "theme_park_commoner_old")

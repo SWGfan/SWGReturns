@@ -44,29 +44,26 @@
 SuppressionFire2Command = {
         name = "suppressionfire2",
 
-	damageMultiplier = 3,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1,
-  mindCostMultiplier = 0,
-  accuracyBonus = 25,
-    visMod = 25,
-  coneAngle = 180,
-  coneAction = true,
-  
-  stateEffects = {
-    StateEffect( 
-    POSTUREDOWN_EFFECT, 
-    { "postureDownRecovery" }, 
-    { "posture_change_down_defense" }, 
-    {}, 
-    125, 
-    60, 
-    0 
-    )
-  },
+	damageMultiplier = 3.7,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 25,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	stateEffects = {
+	  StateEffect( 
+		POSTUREDOWN_EFFECT, 
+		{ "postureDownRecovery" }, 
+		{ "posture_change_down_defense" }, 
+		{},
+		100, 
+		0, 
+		0 
+	  )
+	},
+
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_defender_posture_change_down",
 

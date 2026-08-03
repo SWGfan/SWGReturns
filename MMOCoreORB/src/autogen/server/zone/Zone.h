@@ -27,9 +27,19 @@
 namespace server {
 namespace zone {
 
-class TreeEntry;
+class QuadTree;
 
-class TreeEntryPOD;
+} // namespace zone
+} // namespace server
+
+using namespace server::zone;
+
+namespace server {
+namespace zone {
+
+class QuadTreeEntry;
+
+class QuadTreeEntryPOD;
 
 } // namespace zone
 } // namespace server
@@ -160,25 +170,7 @@ class NavAreaPOD;
 
 using namespace server::zone::objects::pathfinding;
 
-namespace server {
-namespace zone {
-
-class ActiveAreaQuadTree;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
-namespace server {
-namespace zone {
-
-class ActiveAreaOctree;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
+#include "gmock/gmock.h"
 
 #include "server/chat/room/ChatRoom.h"
 
@@ -208,8 +200,6 @@ using namespace server::zone;
 
 #include "system/util/SynchronizedSortedVector.h"
 
-#include "system/thread/Mutex.h"
-
 #include "system/thread/atomic/AtomicInteger.h"
 
 namespace server {
@@ -219,11 +209,48 @@ class Zone : public SceneObject {
 public:
 	Zone(ZoneProcessServer* processor, const String& zoneName);
 
-	void createContainerComponent();
+protected:
+	Zone() { }
+public:
+	void initializeTransientMembers();
+
+	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapObjectLocationType);
 
 	void initializePrivateData();
 
-	void initializeTransientMembers();
+	QuadTree* getRegionTree();
+
+	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone);
+
+	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
+
+	int getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
+
+	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects);
+
+	void createContainerComponent();
+
+	int getInRangeActiveAreas(float x, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
+
+	int getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone);
+
+	int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
+
+	int getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
+
+	int getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone);
+
+	SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
+
+	void insert(QuadTreeEntry* entry);
+
+	void remove(QuadTreeEntry* entry);
+
+	void update(QuadTreeEntry* entry);
+
+	void inRange(QuadTreeEntry* entry, float range);
+
+	void updateActiveAreas(TangibleObject* tano);
 
 	void startManagers();
 
@@ -231,53 +258,50 @@ public:
 
 	void clearZone();
 
-	void insert(TreeEntry* entry);
+	virtual float getHeight(float x, float y);
 
-	void remove(TreeEntry* entry);
-
-	void update(TreeEntry* entry);
-
-	void inRange(TreeEntry* entry, float range);
-
-	void updateActiveAreas(TangibleObject* tano);
+	virtual float getHeightNoCache(float x, float y);
 
 	void addSceneObject(SceneObject* object);
 
+	void addCityRegionToUpdate(CityRegion* city);
+
+	void updateCityRegions();
+
+	void sendMapLocationsTo(CreatureObject* player);
+
 	void dropSceneObject(SceneObject* object);
 
-	int getInRangeSolidObjects(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone);
+	PlanetManager* getPlanetManager();
 
-	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone);
+	ZoneServer* getZoneServer();
 
-	int getInRangeObjects(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
+	CreatureManager* getCreatureManager();
 
-	int getInRangeObjects(float x, float z, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
+	GCWManager* getGCWManager();
 
-	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
+	unsigned long long getGalacticTime() const;
 
-	int getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
+	bool hasManagersStarted();
 
-	int getInRangePlayers(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects);
+	bool isZoneCleared() const;
 
-	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects);
+	int getSpawnedAiAgents() const;
 
-	int getInRangeActiveAreas(float x, float z, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
+	/**
+	 * These functions return the size of the terrain file for this zone.
+	 */
+	float getMinX();
 
-	int getInRangeActiveAreas(float x, float z, float y, ActiveAreasVector* objects, bool readLockZone);
+	float getMaxX();
 
-	int getInRangeActiveAreas(float x, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
+	float getMinY();
 
-	int getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone);
+	float getMaxY();
 
-	float getHeight(float x, float y);
+	bool isWithinBoundaries(const Vector3& position);
 
-	float getHeightNoCache(float x, float y);
-
-	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapCategory, const String& mapSubCategory);
-
-	int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
-
-	SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
+	float getBoundingRadius();
 
 	/**
 	 * Registers the object to the planetary map. This also makes the object visible to the find command.
@@ -297,64 +321,13 @@ public:
 
 	void updatePlanetaryMapIcon(SceneObject* object, byte icon);
 
-	void sendMapLocationsTo(CreatureObject* player);
-
-	/**
-	 * These functions return the size of the terrain file for this zone.
-	 */
-	float getMinX();
-
-	float getMaxX();
-
-	float getMinY();
-
-	float getMaxY();
-
-	void updateCityRegions();
-
-	CreatureManager* getCreatureManager();
-
-	PlanetManager* getPlanetManager();
-
-	ActiveAreaQuadTree* getActiveAreaTree();
-
-	void addCityRegionToUpdate(CityRegion* city);
-
-	ActiveAreaOctree* getActiveAreaOctree();
-
-	bool isWithinBoundaries(const Vector3& position);
-
-	float getBoundingRadius();
-
-	float getZoneObjectRange();
-
-	void incrementSpawnedAgents();
-
-	void decrementSpawnedAgents();
-
 	String getZoneName();
 
 	unsigned int getZoneCRC();
 
-	ZoneServer* getZoneServer();
-
-	GCWManager* getGCWManager();
-
-	unsigned long long getGalacticTime() const;
-
-	bool hasManagersStarted();
-
-	bool isZoneCleared() const;
-
-	int getSpawnedAiAgents() const;
-
 	void setPlanetChatRoom(ChatRoom* room);
 
 	ChatRoom* getPlanetChatRoom();
-
-	bool isGroundZone();
-
-	bool isSpaceZone();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -378,168 +351,114 @@ namespace server {
 namespace zone {
 
 class ZoneImplementation : public SceneObjectImplementation {
-	ManagedReference<ChatRoom* > planetChatRoom;
-
-protected:
-	Time galacticTime;
-
-	Reference<MapLocationTable* > mapLocations;
-
-	AtomicInteger spawnedAiAgents;
-
-	Mutex spawnCountMutex;
-
-	AtomicBoolean managersStarted;
-
-	bool zoneCleared;
-
-	Reference<ObjectMap* > objectMap;
-
-	ManagedReference<ZoneServer* > server;
-
 	String zoneName;
 
 	unsigned int zoneCRC;
 
 	ManagedReference<ZoneProcessServer* > processor;
 
+	Reference<ObjectMap* > objectMap;
+
+	ManagedReference<PlanetManager* > planetManager;
+
+	ManagedReference<CreatureManager* > creatureManager;
+
+	ManagedReference<ChatRoom* > planetChatRoom;
+
+	SynchronizedSortedVector<ManagedReference<CityRegion* > > cityRegionUpdateVector;
+
+	ManagedReference<ZoneServer* > server;
+
+	QuadTreeReference regionTree;
+
+	QuadTreeReference quadTree;
+
+	Time galacticTime;
+
+	Reference<MapLocationTable* > mapLocations;
+
+protected:
+	AtomicInteger spawnedAiAgents;
+
+private:
+	AtomicBoolean managersStarted;
+
+	bool zoneCleared;
+
 public:
 	ZoneImplementation(ZoneProcessServer* processor, const String& zoneName);
 
 	ZoneImplementation(DummyConstructorParameter* param);
 
-	virtual void createContainerComponent();
+	void initializeTransientMembers();
 
-	virtual void initializePrivateData();
+	void finalize();
 
-	virtual void initializeTransientMembers();
+	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapObjectLocationType);
 
-	virtual void finalize();
+	void initializePrivateData();
 
-	virtual void startManagers();
+	QuadTree* getRegionTree();
 
-	virtual void stopManagers();
+	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone);
 
-	virtual void clearZone();
-
-	virtual void insert(TreeEntry* entry);
-
-	virtual void remove(TreeEntry* entry);
-
-	virtual void update(TreeEntry* entry);
-
-	virtual void inRange(TreeEntry* entry, float range);
-
-	virtual void updateActiveAreas(TangibleObject* tano);
-
-	virtual void addSceneObject(SceneObject* object);
-
-	virtual void dropSceneObject(SceneObject* object);
-
-	virtual int getInRangeSolidObjects(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone);
-
-	int getInRangeSolidObjects(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone);
-
-	virtual int getInRangeObjects(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
-
-	virtual int getInRangeObjects(float x, float z, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
-
-	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
+	int getInRangeObjects(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects, bool readLockZone, bool includeBuildingObjects = true);
 
 	int getInRangeObjects(float x, float y, float range, InRangeObjectsVector* objects, bool readLockZone, bool includeBuildingObjects = true);
 
-	virtual int getInRangePlayers(float x, float z, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects);
+	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry* > >* objects);
 
-	int getInRangePlayers(float x, float y, float range, SortedVector<ManagedReference<TreeEntry* > >* objects);
-
-	virtual int getInRangeActiveAreas(float x, float z, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
-
-	virtual int getInRangeActiveAreas(float x, float z, float y, ActiveAreasVector* objects, bool readLockZone);
+	void createContainerComponent();
 
 	int getInRangeActiveAreas(float x, float y, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
 
 	int getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone);
 
+	int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
+
+	int getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea* > >* objects, bool readLockZone);
+
+	int getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone);
+
+	SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
+
+	void insert(QuadTreeEntry* entry);
+
+	void remove(QuadTreeEntry* entry);
+
+	void update(QuadTreeEntry* entry);
+
+	void inRange(QuadTreeEntry* entry, float range);
+
+	void updateActiveAreas(TangibleObject* tano);
+
+	void startManagers();
+
+	void stopManagers();
+
+	void clearZone();
+
 	virtual float getHeight(float x, float y);
 
 	virtual float getHeightNoCache(float x, float y);
 
-	virtual Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapCategory, const String& mapSubCategory);
+	void addSceneObject(SceneObject* object);
 
-	virtual int getInRangeNavMeshes(float x, float y, SortedVector<ManagedReference<NavArea* > >* objects, bool readLockZone);
+	void addCityRegionToUpdate(CityRegion* city);
 
-	virtual SortedVector<ManagedReference<SceneObject* > > getPlanetaryObjectList(const String& mapObjectLocationType);
+	void updateCityRegions();
 
-	/**
-	 * Registers the object to the planetary map. This also makes the object visible to the find command.
-	 * @param object The object to register to the planetary map.
-	 */
-	virtual void registerObjectWithPlanetaryMap(SceneObject* object);
+	void sendMapLocationsTo(CreatureObject* player);
 
-	/**
-	 * Unregisters the object from the planetary map.
-	 * @param object The object to unregister from the planetary map.
-	 */
-	virtual void unregisterObjectWithPlanetaryMap(SceneObject* object);
+	void dropSceneObject(SceneObject* object);
 
-	virtual bool objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object);
-
-	virtual bool isObjectRegisteredWithPlanetaryMap(SceneObject* object);
-
-	virtual void updatePlanetaryMapIcon(SceneObject* object, byte icon);
-
-	virtual void sendMapLocationsTo(CreatureObject* player);
-
-	/**
-	 * These functions return the size of the terrain file for this zone.
-	 */
-	virtual float getMinX();
-
-	virtual float getMaxX();
-
-	virtual float getMinY();
-
-	virtual float getMaxY();
-
-	virtual void updateCityRegions();
-
-	virtual CreatureManager* getCreatureManager();
-
-	virtual PlanetManager* getPlanetManager();
-
-	virtual ActiveAreaQuadTree* getActiveAreaTree();
-
-	virtual void addCityRegionToUpdate(CityRegion* city);
-
-	virtual ActiveAreaOctree* getActiveAreaOctree();
-
-	virtual bool isWithinBoundaries(const Vector3& position);
-
-	virtual float getBoundingRadius();
-
-	virtual float getZoneObjectRange();
-
-	void incrementSpawnedAgents();
-
-	void decrementSpawnedAgents();
-
-private:
-	void setZoneName(const String& n);
-
-	void setZoneCRC(unsigned int zoneCrc);
-
-	void setZoneProcessServer(ZoneProcessServer* procServer);
-
-	void setZoneServer(ZoneServer* zoneServ);
-
-public:
-	String getZoneName();
-
-	unsigned int getZoneCRC();
+	PlanetManager* getPlanetManager();
 
 	ZoneServer* getZoneServer();
 
-	virtual GCWManager* getGCWManager();
+	CreatureManager* getCreatureManager();
+
+	GCWManager* getGCWManager();
 
 	unsigned long long getGalacticTime() const;
 
@@ -549,13 +468,46 @@ public:
 
 	int getSpawnedAiAgents() const;
 
+	/**
+	 * These functions return the size of the terrain file for this zone.
+	 */
+	float getMinX();
+
+	float getMaxX();
+
+	float getMinY();
+
+	float getMaxY();
+
+	bool isWithinBoundaries(const Vector3& position);
+
+	float getBoundingRadius();
+
+	/**
+	 * Registers the object to the planetary map. This also makes the object visible to the find command.
+	 * @param object The object to register to the planetary map.
+	 */
+	void registerObjectWithPlanetaryMap(SceneObject* object);
+
+	/**
+	 * Unregisters the object from the planetary map.
+	 * @param object The object to unregister from the planetary map.
+	 */
+	void unregisterObjectWithPlanetaryMap(SceneObject* object);
+
+	bool objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object);
+
+	bool isObjectRegisteredWithPlanetaryMap(SceneObject* object);
+
+	void updatePlanetaryMapIcon(SceneObject* object, byte icon);
+
+	String getZoneName();
+
+	unsigned int getZoneCRC();
+
 	void setPlanetChatRoom(ChatRoom* room);
 
 	ChatRoom* getPlanetChatRoom();
-
-	virtual bool isGroundZone();
-
-	virtual bool isSpaceZone();
 
 	WeakReference<Zone*> _this;
 
@@ -598,13 +550,17 @@ public:
 
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
-	void createContainerComponent();
-
-	void initializePrivateData();
-
 	void initializeTransientMembers();
 
 	void finalize();
+
+	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapObjectLocationType);
+
+	void initializePrivateData();
+
+	void createContainerComponent();
+
+	void updateActiveAreas(TangibleObject* tano);
 
 	void startManagers();
 
@@ -612,59 +568,25 @@ public:
 
 	void clearZone();
 
-	void updateActiveAreas(TangibleObject* tano);
-
-	void addSceneObject(SceneObject* object);
-
-	void dropSceneObject(SceneObject* object);
-
 	float getHeight(float x, float y);
 
 	float getHeightNoCache(float x, float y);
 
-	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapCategory, const String& mapSubCategory);
-
-	void registerObjectWithPlanetaryMap(SceneObject* object);
-
-	void unregisterObjectWithPlanetaryMap(SceneObject* object);
-
-	bool objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object);
-
-	bool isObjectRegisteredWithPlanetaryMap(SceneObject* object);
-
-	void updatePlanetaryMapIcon(SceneObject* object, byte icon);
-
-	void sendMapLocationsTo(CreatureObject* player);
-
-	float getMinX();
-
-	float getMaxX();
-
-	float getMinY();
-
-	float getMaxY();
-
-	void updateCityRegions();
-
-	CreatureManager* getCreatureManager();
-
-	PlanetManager* getPlanetManager();
+	void addSceneObject(SceneObject* object);
 
 	void addCityRegionToUpdate(CityRegion* city);
 
-	float getBoundingRadius();
+	void updateCityRegions();
 
-	float getZoneObjectRange();
+	void sendMapLocationsTo(CreatureObject* player);
 
-	void incrementSpawnedAgents();
+	void dropSceneObject(SceneObject* object);
 
-	void decrementSpawnedAgents();
-
-	String getZoneName();
-
-	unsigned int getZoneCRC();
+	PlanetManager* getPlanetManager();
 
 	ZoneServer* getZoneServer();
+
+	CreatureManager* getCreatureManager();
 
 	GCWManager* getGCWManager();
 
@@ -676,13 +598,33 @@ public:
 
 	int getSpawnedAiAgents() const;
 
+	float getMinX();
+
+	float getMaxX();
+
+	float getMinY();
+
+	float getMaxY();
+
+	float getBoundingRadius();
+
+	void registerObjectWithPlanetaryMap(SceneObject* object);
+
+	void unregisterObjectWithPlanetaryMap(SceneObject* object);
+
+	bool objectIsValidPlanetaryMapPerformanceLocation(SceneObject* object);
+
+	bool isObjectRegisteredWithPlanetaryMap(SceneObject* object);
+
+	void updatePlanetaryMapIcon(SceneObject* object, byte icon);
+
+	String getZoneName();
+
+	unsigned int getZoneCRC();
+
 	void setPlanetChatRoom(ChatRoom* room);
 
 	ChatRoom* getPlanetChatRoom();
-
-	bool isGroundZone();
-
-	bool isSpaceZone();
 
 };
 
@@ -705,6 +647,18 @@ public:
 	friend class Singleton<ZoneHelper>;
 };
 
+class MockZone : public Zone {
+public:
+
+	MOCK_METHOD2(getHeight,float(float x, float y));
+	MOCK_METHOD2(getHeightNoCache,float(float x, float y));
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+
+};
+
 } // namespace zone
 } // namespace server
 
@@ -715,11 +669,15 @@ namespace zone {
 
 class ZonePOD : public SceneObjectPOD {
 public:
-	Optional<AtomicInteger> spawnedAiAgents;
-
 	Optional<String> zoneName;
 
 	Optional<unsigned int> zoneCRC;
+
+	Optional<QuadTreeReference> regionTree;
+
+	Optional<QuadTreeReference> quadTree;
+
+	Optional<AtomicInteger> spawnedAiAgents;
 
 	String _className;
 	ZonePOD();

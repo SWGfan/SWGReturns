@@ -44,37 +44,23 @@
 UnarmedLegHit1Command = {
         name = "unarmedleghit1",
 
-	damageMultiplier = 1,
+	damageMultiplier = 2.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 2.75,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1.75,
+	actionCostMultiplier = 1.75,
+	mindCostMultiplier = 1.75,
         accuracyBonus = 15,
-          visMod = 25,
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = ACTION_ATTRIBUTE,
 
 	animation = "attack_special_foot_stomp", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "grondastomp",
 	
-	dotEffects = {
-    DotEffect( 
-    BLEEDING, 
-    { "resistance_bleeding", "bleed_resist" },
-    ACTION,
-    true,
-    0,
-    100,
-    100, 
-    20
-    )
-  },
-	
 	weaponType = UNARMEDWEAPON,
 
-	range = 6
+	range = -1
 }
 
 AddCommand(UnarmedLegHit1Command)

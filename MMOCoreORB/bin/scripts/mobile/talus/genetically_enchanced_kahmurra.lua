@@ -2,7 +2,6 @@ genetically_enchanced_kahmurra = Creature:new {
 	objectName = "@mob/creature_names:genetically_enhanced_kahmurra",
 	socialGroup = "kahmurra",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 30,
 	chanceHit = 0.39,
 	damageMin = 290,
@@ -32,17 +31,12 @@ genetically_enchanced_kahmurra = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/murra_hue.iff",
 	scale = 1.4,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"",""}, {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(genetically_enchanced_kahmurra, "genetically_enchanced_kahmurra")

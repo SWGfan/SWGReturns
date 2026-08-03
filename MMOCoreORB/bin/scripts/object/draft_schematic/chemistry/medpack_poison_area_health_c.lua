@@ -50,11 +50,11 @@ object_draft_schematic_chemistry_medpack_poison_area_health_c = object_draft_sch
 	craftingToolTab = 64, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 40,
 	size = 3,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
 	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 1150,
+	xp = 115,
 
 	assemblySkill = "combat_medicine_assembly",
 	experimentingSkill = "combat_medicine_experimentation",

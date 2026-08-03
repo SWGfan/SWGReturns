@@ -22,9 +22,17 @@ public:
 			if (!checkInvalidLocomotions(creature))
 				return INVALIDLOCOMOTION;
 
-			UnicodeString args = "healthDamageMultiplier=0.33f;actionDamageMultiplier=0.00f;mindDamageMultiplier=0.00f;";
+			//UnicodeString args = "healthDamageMultiplier=0.33f;actionDamageMultiplier=0.33f;mindDamageMultiplier=0.33f;";
+			
+			float mods[3] = {0.f, 0.f, 0.f};
 
-			return doCombatAction(creature, target, args);
+			for (int i = 0; i < 2; i++)
+				mods[System::random(2)] += (1.0f/3.0f);
+		
+			UnicodeString args = "healthDamageMultiplier=" + String::valueOf(mods[0]) + ";actionDamageMultiplier=" + String::valueOf(mods[1]) + ";mindDamageMultiplier=" + String::valueOf(mods[2]) + ";";
+		
+			
+			return doCombatAction(creature, target);
 		}
 
 	};

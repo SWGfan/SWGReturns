@@ -10,7 +10,7 @@
  *	MissionObjectiveStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1042134107,RPC_DESTROYOBJECTFROMDATABASE__,RPC_NOTIFYOBSERVEREVENT__MISSIONOBSERVER_INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_ADDOBSERVER__MISSIONOBSERVER_BOOL_,RPC_DROPOBSERVER__MISSIONOBSERVER_BOOL_,RPC_GETOBSERVERCOUNT__,RPC_REMOVEALLOBSERVERS__,RPC_GETOBSERVER__INT_,RPC_HASOBSERVERS__,RPC_ACTIVATE__,RPC_DEACTIVATE__,RPC_ABORT__,RPC_COMPLETE__,RPC_FAIL__,RPC_GETMISSIONOBJECT__,RPC_GETOBJECTIVETYPE__,RPC_GETPLAYEROWNER__,RPC_AWARDFACTIONPOINTS__,RPC_REMOVEMISSIONFROMPLAYER__,RPC_AWARDREWARD__,RPC_CLEARFAILTASK__,RPC_ISPLAYERBOUNTY__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1042134107,RPC_DESTROYOBJECTFROMDATABASE__,RPC_NOTIFYOBSERVEREVENT__MISSIONOBSERVER_INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_ADDOBSERVER__MISSIONOBSERVER_BOOL_,RPC_DROPOBSERVER__MISSIONOBSERVER_BOOL_,RPC_GETOBSERVERCOUNT__,RPC_REMOVEALLOBSERVERS__,RPC_GETOBSERVER__INT_,RPC_HASOBSERVERS__,RPC_ACTIVATE__,RPC_DEACTIVATE__,RPC_ABORT__,RPC_COMPLETE__,RPC_FAIL__,RPC_GETMISSIONOBJECT__,RPC_GETOBJECTIVETYPE__,RPC_GETPLAYEROWNER__,RPC_AWARDFACTIONPOINTS__,RPC_REMOVEMISSIONFROMPLAYER__,RPC_AWARDREWARD__,RPC_CLEARFAILTASK__};
 
 MissionObjective::MissionObjective(MissionObject* parent) : ManagedObject(DummyConstructorParameter::instance()) {
 	MissionObjectiveImplementation* _implementation = new MissionObjectiveImplementation(parent);
@@ -324,16 +324,6 @@ void MissionObjective::awardReward() {
 	}
 }
 
-void MissionObjective::addMissionStats(TransactionLog& trx) {
-	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->addMissionStats(trx);
-	}
-}
-
 Vector3 MissionObjective::getEndPosition() {
 	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -355,20 +345,6 @@ void MissionObjective::clearFailTask() {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->clearFailTask();
-	}
-}
-
-bool MissionObjective::isPlayerBounty() const {
-	MissionObjectiveImplementation* _implementation = static_cast<MissionObjectiveImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISPLAYERBOUNTY__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isPlayerBounty();
 	}
 }
 
@@ -644,11 +620,6 @@ unsigned int MissionObjectiveImplementation::getObjectiveType() const{
 	return objectiveType;
 }
 
-bool MissionObjectiveImplementation::isPlayerBounty() const{
-	// server/zone/objects/mission/MissionObjective.idl():  		return false;
-	return false;
-}
-
 /*
  *	MissionObjectiveAdapter
  */
@@ -821,13 +792,6 @@ void MissionObjectiveAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 			
 		}
 		break;
-	case RPC_ISPLAYERBOUNTY__:
-		{
-			
-			bool _m_res = isPlayerBounty();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	default:
 		ManagedObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -915,10 +879,6 @@ void MissionObjectiveAdapter::awardReward() {
 
 void MissionObjectiveAdapter::clearFailTask() {
 	(static_cast<MissionObjective*>(stub))->clearFailTask();
-}
-
-bool MissionObjectiveAdapter::isPlayerBounty() const {
-	return (static_cast<MissionObjective*>(stub))->isPlayerBounty();
 }
 
 /*

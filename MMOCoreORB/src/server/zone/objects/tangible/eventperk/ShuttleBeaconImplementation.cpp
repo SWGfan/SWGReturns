@@ -306,7 +306,7 @@ bool ShuttleBeaconImplementation::canSpawnShuttle(CreatureObject* player) {
 	if (vec == nullptr)
 		return false;
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	vec->safeCopyTo(closeObjects);
 
 	for (int i = 0; i < closeObjects.size(); ++i) {

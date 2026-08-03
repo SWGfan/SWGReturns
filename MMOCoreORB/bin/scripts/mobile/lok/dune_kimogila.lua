@@ -2,7 +2,6 @@ dune_kimogila = Creature:new {
 	objectName = "@mob/creature_names:dune_kimogila",
 	socialGroup = "kimogila",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 123,
 	chanceHit = 4,
 	damageMin = 785,
@@ -10,7 +9,7 @@ dune_kimogila = Creature:new {
 	baseXp = 11671,
 	baseHAM = 53000,
 	baseHAMmax = 65000,
-	armor = 1,
+	armor = 2,
 	resists = {140,165,15,200,-1,15,200,-1,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
@@ -18,7 +17,8 @@ dune_kimogila = Creature:new {
 	hideAmount = 1000,
 	boneType = "",
 	boneAmount = 0,
-	milk = 0,
+	milkType = "milk_wild",
+	milk = 800,
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
@@ -33,20 +33,15 @@ dune_kimogila = Creature:new {
 	        groups = {
 				{group = "kimogila_common", chance = 10000000}
 			},
-			lootChance = 9000000
+			lootChance = 3460000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"intimidationattack",""}, {"creatureareacombo",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"intimidationattack",""},
+		{"creatureareacombo",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(dune_kimogila, "dune_kimogila")

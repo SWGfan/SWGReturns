@@ -10,7 +10,7 @@
 
 #include "engine/engine.h"
 
-#include "server/zone/objects/scene/components/GroundZoneComponent.h"
+#include "server/zone/objects/scene/components/ZoneComponent.h"
 
 namespace server {
  namespace zone {
@@ -32,7 +32,7 @@ using namespace server::zone::objects::scene;
 using namespace server::zone::objects::structure;
 using namespace server::zone;
 
-class StructureZoneComponent : public GroundZoneComponent {
+class StructureZoneComponent : public ZoneComponent {
 
 public:
 	void notifyInsertToZone(SceneObject* sceneObject, Zone* zone) const;

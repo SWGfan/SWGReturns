@@ -44,18 +44,18 @@
 UnderHandShotCommand = {
         name = "underhandshot",
 
-	damageMultiplier = 3.0,
+	damageMultiplier = 4.5,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
 
 	stateEffects = {
 	  StateEffect( 
 		KNOCKDOWN_EFFECT, 
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
-		{}, 
+		{},
 		85, 
 		0, 
 		0 
@@ -67,7 +67,7 @@ UnderHandShotCommand = {
 
 	combatSpam = "underhandshot",
 	
-	weaponType = CARBINEWEAPON,
+	weaponType = RANGEDWEAPON,
 
 	range = -1
 }

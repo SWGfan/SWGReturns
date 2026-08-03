@@ -23,7 +23,6 @@ import server.zone.ZoneProcessServer;
 import server.zone.ZoneClientSession;
 import server.zone.ZoneHandler;
 import server.zone.Zone;
-import server.zone.GroundZone;
 import server.chat.ChatManager;
 import conf.ConfigManager;
 import server.zone.managers.object.ObjectManager;
@@ -58,7 +57,7 @@ class ZoneServer extends ManagedService implements Logger {
 
 	private transient ZoneProcessServer processor;
 
-	private transient VectorMap<string, GroundZone> zones;
+	private transient VectorMap<string, Zone> zones;
 
 	private transient ObjectManager objectManager;
 	private PlayerManager playerManager;
@@ -82,14 +81,13 @@ class ZoneServer extends ManagedService implements Logger {
 
 	private transient CreatureTemplateManager creatureTemplateManager;
 
-
 	private transient DnaManager dnaManager;
 
-	private unsigned long totalSentPackets;
+	private int totalSentPackets;
 
 	private int serverCap;
 
-	private unsigned long totalResentPackets;
+	private int totalResentPackets;
 
 	@dereferenced
 	private AtomicInteger currentPlayers;
@@ -123,9 +121,6 @@ class ZoneServer extends ManagedService implements Logger {
 	// The range of objects kept within closeObjects vectors.
 	// Changing this will have a large impact on performance.
 	public static final float CLOSEOBJECTRANGE = 192;
-	public static final float SPACECLOSEOBJECTRANGE = 2048;
-	public static final float CAPITALSHIPRANGE = 8192;
-	public static final float SPACESTATIONRANGE = 32768;
 
 	public native ZoneServer(ConfigManager config);
 
@@ -143,9 +138,7 @@ class ZoneServer extends ManagedService implements Logger {
 
 	public native void startManagers();
 
-	public native void startGroundZones();
-
-	public native void startSpaceZones();
+	public native void startZones();
 
 	public native void stopManagers();
 
@@ -155,7 +148,7 @@ class ZoneServer extends ManagedService implements Logger {
 
 	public native void clearZones();
 
-	public native void timedShutdown(int minutes, int flags = 0);
+	public native void timedShutdown(int minutes);
 
 	@local
 	@dirty
@@ -170,10 +163,10 @@ class ZoneServer extends ManagedService implements Logger {
 	public native boolean handleError(ZoneClientSession client, @dereferenced Exception e);
 
 	@dirty
-	public native void addTotalSentPacket(unsigned int count);
+	public native void addTotalSentPacket(int count);
 
 	@dirty
-	public native void addTotalResentPacket(unsigned int count);
+	public native void addTotalResentPacket(int count);
 
 	@dirty
 	public native void printInfo();
@@ -281,8 +274,9 @@ class ZoneServer extends ManagedService implements Logger {
 	}
 
 	@read
-	public native Zone getZone(final string terrainName);
-
+	public Zone getZone(final string terrainName) {
+		return zones.get(terrainName);
+	}
 
 	/**
 	 * Gets a note based on it's position in the zone map.
@@ -291,17 +285,11 @@ class ZoneServer extends ManagedService implements Logger {
 	 */
 	@dirty
 	public Zone getZone(int idx) {
-		if (!zones)
-			return null;
-
 		return zones.get(idx);
 	}
 
 	@read
 	public int getZoneCount() {
-		if (!zones)
-			return 0;
-
 		return zones.size();
 	}
 

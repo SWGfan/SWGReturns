@@ -2,18 +2,17 @@ nightsister_sentinel = Creature:new {
 	objectName = "@mob/creature_names:nightsister_sentinal",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	level = 250,
-	chanceHit = 3.5,
-	damageMin = 800,
-	damageMax = 1200,
-	baseXp = 22000,
-	baseHAM = 55000,
-	baseHAMmax = 65000,
-	armor = 3,
-	resists = {60,60,60,80,80,80,80,80,40},
+	level = 88,
+	chanceHit = 0.8,
+	damageMin = 545,
+	damageMax = 800,
+	baseXp = 8408,
+	baseHAM = 21000,
+	baseHAMmax = 26000,
+	armor = 1,
+	resists = {35,35,35,200,200,200,200,200,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,22 +31,18 @@ nightsister_sentinel = Creature:new {
 	lootGroups = {
 		{
 			groups = {
+				{group = "power_crystals", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "nightsister_common", chance = 3000000},
-				{group = "melee_weapons", chance = 3000000},
-				{group = "power_crystals", chance = 2000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "armor_attachments", chance = 1000000},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
 			},
-			lootChance = 4000000,
-		},
+			lootChance = 4500000
+		}
 	},
-
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	primaryAttacks = merge(fencermid,swordsmanmid,pikemanmaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(fencermid,swordsmanmid,tkamid,pikemanmaster,brawlermaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_sentinel, "nightsister_sentinel")

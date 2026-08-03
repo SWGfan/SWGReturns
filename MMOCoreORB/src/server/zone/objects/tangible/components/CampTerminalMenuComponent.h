@@ -13,6 +13,7 @@
 
 class CampTerminalMenuComponent : public TangibleObjectMenuComponent {
 public:
+
 	/**
 	 * Fills the radial options, needs to be overriden
 	 * @pre { this object is locked }
@@ -39,5 +40,6 @@ public:
 
 	void awardCampExperience(PlayerObject* ghost, CampSiteActiveArea* campArea) const;
 };
+
 
 #endif /* CAMPTERMINALMENUCOMPONENT_H_ */

@@ -133,7 +133,7 @@ namespace auction {
 
 class AuctionManager : public ManagedService {
 public:
-	static const int MAXBAZAARPRICE = 200000;
+	static const int MAXBAZAARPRICE = 2000000;
 
 	static const int MAXSALES = 100;
 
@@ -145,9 +145,9 @@ public:
 
 	static const int ITEMSPERPAGE = 100;
 
-	static const int VENDOREXPIREPERIOD = 7776000;
+	static const int VENDOREXPIREPERIOD = 10368000;
 
-	static const int COMMODITYEXPIREPERIOD = 604800;
+	static const int COMMODITYEXPIREPERIOD = 2592000;
 
 	static const int LT_GALAXY = 0;
 
@@ -283,7 +283,7 @@ protected:
 	VectorMap<ManagedReference<SceneObject* >, String> pendingOldUIDUpdates;
 
 public:
-	static const int MAXBAZAARPRICE = 200000;
+	static const int MAXBAZAARPRICE = 2000000;
 
 	static const int MAXSALES = 100;
 
@@ -295,9 +295,9 @@ public:
 
 	static const int ITEMSPERPAGE = 100;
 
-	static const int VENDOREXPIREPERIOD = 7776000;
+	static const int VENDOREXPIREPERIOD = 10368000;
 
-	static const int COMMODITYEXPIREPERIOD = 604800;
+	static const int COMMODITYEXPIREPERIOD = 2592000;
 
 	static const int LT_GALAXY = 0;
 

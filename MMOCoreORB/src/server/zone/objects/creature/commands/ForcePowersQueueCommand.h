@@ -7,7 +7,7 @@
 
 #ifndef FORCEPOWERSQUEUECOMMAND_H_
 #define FORCEPOWERSQUEUECOMMAND_H_
-/*
+
 #include"server/zone/ZoneServer.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/combat/CombatManager.h"
@@ -15,26 +15,6 @@
 #include "server/zone/managers/collision/CollisionManager.h"
 #include "CombatQueueCommand.h"
 #include "server/zone/managers/visibility/VisibilityManager.h"
-#include "server/zone/packets/player/PlayMusicMessage.h"
-*/
-#include"server/zone/ZoneServer.h"
-#include "server/zone/objects/scene/SceneObject.h"
-#include "server/zone/managers/combat/CombatManager.h"
-#include "server/zone/managers/player/PlayerManager.h"
-#include "server/zone/objects/player/PlayerObject.h"
-#include "server/zone/managers/combat/CreatureAttackData.h"
-#include "server/zone/managers/collision/CollisionManager.h"
-#include "templates/params/creature/CreatureAttribute.h"
-#include "templates/params/creature/CreatureState.h"
-#include "server/zone/objects/creature/commands/effect/StateEffect.h"
-#include "server/zone/objects/creature/commands/effect/DotEffect.h"
-#include "server/zone/objects/creature/commands/effect/CommandEffect.h"
-#include "server/zone/packets/object/CombatSpam.h"
-#include "QueueCommand.h"
-#include "CombatQueueCommand.h"
-#include "server/zone/managers/collision/PathFinderManager.h"
-#include "server/zone/managers/visibility/VisibilityManager.h"
-#include "server/zone/packets/player/PlayMusicMessage.h"
 
 class ForcePowersQueueCommand : public CombatQueueCommand {
 public:
@@ -62,21 +42,10 @@ public:
 			return GENERALERROR;
 		}
 
-		if (!playerEntryCheck(creature, targetObject->asTangibleObject())) {
-			return GENERALERROR;
-		}
-
 		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
 		if (ghost != nullptr && ghost->getForcePower() < getFrsModifiedForceCost(creature)) {
 			creature->sendSystemMessage("@jedi_spam:no_force_power"); //"You do not have enough Force Power to peform that action.
-			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
-			return GENERALERROR;
-		}
-
-		else if (ghost != nullptr && creature->getHAM(CreatureAttribute::ACTION) < forceCost * 10) {
-			creature->sendSystemMessage("You do not have enough Action Points to use that ability.");
-			creature->playMusicMessage("sound/ui_quest_spawn_escort.snd");
 			return GENERALERROR;
 		}
 
@@ -92,10 +61,9 @@ public:
 				return GENERALERROR;
 			}
 
-			if (ghost != nullptr && creature->getHAM(CreatureAttribute::ACTION) > forceCost * 10){
+			if (ghost != nullptr)
 				ghost->setForcePower(ghost->getForcePower() - getFrsModifiedForceCost(creature));
-				creature->inflictDamage(creature, CreatureAttribute::ACTION, forceCost * 10, true, true, true);
-			}
+
 		} catch (Exception& e) {
 			error("unreported exception caught in ForcePowersQueueCommand::doCombatAction");
 			error(e.getMessage());
@@ -103,7 +71,7 @@ public:
 		}
 
 		// Increase Visibility for Force Power.
-		if (ghost != nullptr && ghost->getFrsData()->getRank() > 0)
+		if (ghost != nullptr)
 			VisibilityManager::instance()->increaseVisibility(creature, visMod);
 
 		return SUCCESS;

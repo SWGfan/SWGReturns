@@ -44,11 +44,11 @@
 WildShot1Command = {
         name = "wildshot1",
 
-	damageMultiplier = 2.25,
+	damageMultiplier = 3.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1.75,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
 	accuracyBonus = 25,
 
 	animation = "fire_7_single", 
@@ -60,15 +60,15 @@ WildShot1Command = {
 	  StateEffect( 
 		STUN_EFFECT, 
 		{}, 
-		{ "stun_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "stun_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		50, 
 		0, 
 		30 
 	  )
 	},
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 	
 	weaponType = CARBINEWEAPON,
 

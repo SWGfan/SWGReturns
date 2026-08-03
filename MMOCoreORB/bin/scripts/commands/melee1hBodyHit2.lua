@@ -44,10 +44,10 @@
 Melee1hBodyHit2Command = {
         name = "melee1hbodyhit2",
 
-	damageMultiplier = 2.25,
+	damageMultiplier = 2.5,
 	speedMultiplier = 2.0,
 	healthCostMultiplier = 0.75,
-	actionCostMultiplier = 1.75,
+	actionCostMultiplier = 0.75,
 	mindCostMultiplier = 1.25,
         accuracyBonus = 25,
 
@@ -59,7 +59,7 @@ Melee1hBodyHit2Command = {
 
 	combatSpam = "saisun",
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Melee1hBodyHit2Command)

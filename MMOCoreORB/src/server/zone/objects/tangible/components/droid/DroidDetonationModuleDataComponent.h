@@ -19,7 +19,7 @@ class DroidDetonationModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
 	bool initialized;
-	float rating;
+	int rating;
 	int moduleCount;
 	bool started;
 	bool mseDroid;
@@ -73,10 +73,6 @@ public:
 	void setSpecies(int i);
 
 	void initialize(DroidObject* droid);
-
-	virtual bool isDetonationModule() {
-		return true;
-	}
 };
 
 } // droid

@@ -12,7 +12,7 @@
  *	AttachmentStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4007443492,RPC_INITIALIZEMEMBERS__,RPC_ISATTACHMENT__,RPC_ISARMORATTACHMENT__,RPC_ISCLOTHINGATTACHMENT__,};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4007443492,RPC_UPDATEATTACHMENTVALUES__STRING_INT_,RPC_INITIALIZEMEMBERS__,RPC_ISATTACHMENT__,RPC_ISARMORATTACHMENT__,RPC_ISCLOTHINGATTACHMENT__,};
 
 Attachment::Attachment() : TangibleObject(DummyConstructorParameter::instance()) {
 	AttachmentImplementation* _implementation = new AttachmentImplementation();
@@ -51,6 +51,22 @@ void Attachment::updateCraftingValues(CraftingValues* values, bool firstUpdate) 
 
 	} else {
 		_implementation->updateCraftingValues(values, firstUpdate);
+	}
+}
+
+void Attachment::updateAttachmentValues(const String& modName, int value) {
+	AttachmentImplementation* _implementation = static_cast<AttachmentImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_UPDATEATTACHMENTVALUES__STRING_INT_);
+		method.addAsciiParameter(modName);
+		method.addSignedIntParameter(value);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->updateAttachmentValues(modName, value);
 	}
 }
 
@@ -366,6 +382,15 @@ void AttachmentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
+	case RPC_UPDATEATTACHMENTVALUES__STRING_INT_:
+		{
+			 String modName; inv->getAsciiParameter(modName);
+			int value = inv->getSignedIntParameter();
+			
+			updateAttachmentValues(modName, value);
+			
+		}
+		break;
 	case RPC_INITIALIZEMEMBERS__:
 		{
 			
@@ -401,6 +426,10 @@ void AttachmentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 
 void AttachmentAdapter::initializeTransientMembers() {
 	(static_cast<Attachment*>(stub))->initializeTransientMembers();
+}
+
+void AttachmentAdapter::updateAttachmentValues(const String& modName, int value) {
+	(static_cast<Attachment*>(stub))->updateAttachmentValues(modName, value);
 }
 
 void AttachmentAdapter::initializeMembers() {

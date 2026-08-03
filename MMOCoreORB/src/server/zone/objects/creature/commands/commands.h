@@ -273,6 +273,7 @@
 #include "GiveMaintenanceToVendorCommand.h"
 #include "GivevendormaintCommand.h"
 #include "GmForceCommandCommand.h"
+#include "GmForceFrsCommand.h"
 #include "GmCreateClassResourceCommand.h"
 #include "GmCreateSpecificResourceCommand.h"
 #include "GmForceRankCommand.h"
@@ -371,6 +372,7 @@
 #include "KillPlayerCommand.h"
 #include "KipUpShotCommand.h"
 #include "KneelCommand.h"
+#include "KnifeJabCommand.h"
 #include "KnockdownAttackCommand.h"
 #include "KnockdownFireCommand.h"
 #include "LagCommand.h"
@@ -837,9 +839,10 @@
 #include "InspacereloadCommand.h"
 #include "InspacerrCommand.h"
 #include "RequestSpaceTrainerCommand.h"
-#include "VillageCommand.h"
-#include "RegrantSKillsCommand.h"
-
+#include "PackupStructureCommand.h"
+#include "DroidRechargeCommand.h"
+#include "DelegateGcwCommand.h"
+#include "RemoveTrainerCommand.h"
 
 
 #endif /* COMMANDSNEW_H_ */

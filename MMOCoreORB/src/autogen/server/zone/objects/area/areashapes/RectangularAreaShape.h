@@ -26,11 +26,7 @@
 
 #include "engine/util/u3d/Vector3.h"
 
-#include "engine/util/u3d/Vector4.h"
-
 #include "server/zone/objects/area/areashapes/AreaShape.h"
-
-#include "engine/log/Logger.h"
 
 namespace server {
 namespace zone {
@@ -49,10 +45,6 @@ public:
 	 * @param w the width of the rectangle.
 	 */
 	void setDimensions(float x1, float y1, float x2, float y2);
-
-	void logDimensions();
-
-	Vector4 getRectangularDimensions() const;
 
 	/**
 	 * Get the height of the rectangle.
@@ -115,8 +107,6 @@ public:
 	 */
 	float getArea() const;
 
-	float getRadius() const;
-
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -167,10 +157,6 @@ public:
 	 * @param w the width of the rectangle.
 	 */
 	void setDimensions(float x1, float y1, float x2, float y2);
-
-	void logDimensions();
-
-	Vector4 getRectangularDimensions() const;
 
 	/**
 	 * Get the height of the rectangle.
@@ -251,8 +237,6 @@ public:
 	 */
 	float getArea() const;
 
-	float getRadius() const;
-
 	WeakReference<RectangularAreaShape*> _this;
 
 	operator const RectangularAreaShape*();
@@ -298,8 +282,6 @@ public:
 
 	void setDimensions(float x1, float y1, float x2, float y2);
 
-	void logDimensions();
-
 	float getHeight() const;
 
 	float getWidth() const;
@@ -311,8 +293,6 @@ public:
 	bool intersectsWith(AreaShape* areaShape) const;
 
 	float getArea() const;
-
-	float getRadius() const;
 
 };
 

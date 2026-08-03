@@ -159,6 +159,8 @@ public:
 
 	String getRandomLootableMod(unsigned int sceneObjectType);
 
+	TangibleObject* createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value);
+
 	int calculateLootCredits(int level);
 
 	bool createLoot(TransactionLog& trx, SceneObject* container, AiAgent* creature);
@@ -225,8 +227,6 @@ class LootManagerImplementation : public ManagedServiceImplementation, public Lo
 
 	float legendaryModifier;
 
-	float globalLootChanceMultiplier;
-
 	AtomicInteger yellowLooted;
 
 	AtomicInteger exceptionalLooted;
@@ -236,6 +236,10 @@ class LootManagerImplementation : public ManagedServiceImplementation, public Lo
 	float skillModChance;
 
 	float junkValueModifier;
+
+	float globalLootChanceMultiplier;
+
+	float globalLootCreditsMultiplier;
 
 	SortedVector<int> randomDotAttribute;
 
@@ -308,13 +312,9 @@ private:
 public:
 	TangibleObject* createLootObject(const LootItemTemplate* templateObject, int level, bool maxCondition = false);
 
-private:
-	TangibleObject* createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value);
-
-	bool createNamedLoot(SceneObject* container, const String& lootGroup, const String& name, int level, bool maxCondition);
-
-public:
 	String getRandomLootableMod(unsigned int sceneObjectType);
+
+	TangibleObject* createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value);
 
 	int calculateLootCredits(int level);
 

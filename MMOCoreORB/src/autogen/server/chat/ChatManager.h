@@ -391,9 +391,7 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType) const;
-
-	const String getSpatialChatType(unsigned int chatType) const;
+	unsigned int getSpatialChatType(const String& spatialChatType);
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -436,8 +434,6 @@ public:
 	ChatRoom* getAuctionRoom();
 
 	ChatRoom* getSystemRoom();
-
-	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 
@@ -487,8 +483,6 @@ private:
 
 	ManagedReference<ChatRoom* > systemRoom;
 
-	ManagedReference<ChatRoom* > generalRoom;
-
 	Reference<ChatRoomMap* > roomMap;
 
 	bool mute;
@@ -499,15 +493,11 @@ private:
 
 	VectorMap<String, unsigned int> spatialChatTypes;
 
-	VectorMap<unsigned int, String> spatialChatTypeNames;
-
 	VectorMap<unsigned int, String> spatialChatTypeSkillNeeded;
 
 	VectorMap<unsigned int, short> spatialChatDistances;
 
 	short defaultSpatialChatDistance;
-
-	short defaultSpatialChatType;
 
 public:
 	unsigned static const int MAXCHATROOMNAMELENGTH;
@@ -818,9 +808,7 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType) const;
-
-	const String getSpatialChatType(unsigned int chatType) const;
+	unsigned int getSpatialChatType(const String& spatialChatType);
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -863,8 +851,6 @@ public:
 	ChatRoom* getAuctionRoom();
 
 	ChatRoom* getSystemRoom();
-
-	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 
@@ -1005,9 +991,7 @@ public:
 
 	void broadcastGalaxy(const String& message, const String& faction);
 
-	unsigned int getSpatialChatType(const String& spatialChatType) const;
-
-	const String getSpatialChatType(unsigned int chatType) const;
+	unsigned int getSpatialChatType(const String& spatialChatType);
 
 	unsigned int getMoodID(const String& moodType);
 
@@ -1044,8 +1028,6 @@ public:
 	ChatRoom* getAuctionRoom();
 
 	ChatRoom* getSystemRoom();
-
-	ChatRoom* getGeneralRoom();
 
 	String getSocialType(unsigned int id) const;
 
@@ -1099,8 +1081,6 @@ public:
 	Optional<ManagedReference<ChatRoomPOD* >> auctionRoom;
 
 	Optional<ManagedReference<ChatRoomPOD* >> systemRoom;
-
-	Optional<ManagedReference<ChatRoomPOD* >> generalRoom;
 
 	Optional<bool> mute;
 

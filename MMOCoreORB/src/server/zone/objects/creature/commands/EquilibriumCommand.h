@@ -24,6 +24,9 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
+		if (creature->hasAttackDelay() || !creature->checkPostureChangeDelay())
+			return GENERALERROR;
+
 		if (creature->getSpecies() != CreatureObject::ZABRAK)
 			return GENERALERROR;
 

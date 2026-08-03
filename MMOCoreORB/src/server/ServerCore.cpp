@@ -8,7 +8,6 @@
 
 #include "db/MySqlDatabase.h"
 #include "db/ServerDatabase.h"
-#include "db/AccountDatabase.h"
 #include "db/MantisDatabase.h"
 
 #include "server/chat/ChatManager.h"
@@ -34,7 +33,6 @@
 
 #include "engine/core/MetricsManager.h"
 #include "engine/service/ServiceThread.h"
-#include "engine/lua/LuaPanicException.h"
 
 ManagedReference<ZoneServer*> ServerCore::zoneServerRef = nullptr;
 SortedVector<String> ServerCore::arguments;
@@ -184,29 +182,9 @@ void ServerCore::registerConsoleCommmands() {
 	});
 
 	addCommand("save", [this](const String& arguments) -> CommandResult {
-		int flags = ObjectManager::SAVE_DELTA;
+		bool forceFull = !arguments.contains("delta");
 
-		if (!arguments.contains("delta") || arguments.contains("full")) {
-			flags = ObjectManager::SAVE_FULL;
-		}
-
-		if (arguments.contains("debug")) {
-			flags |= ObjectManager::SAVE_DEBUG;
-		}
-
-		if (arguments.contains("report")) {
-			flags |= ObjectManager::SAVE_REPORT;
-		}
-
-		if (arguments.contains("dump")) {
-			flags |= ObjectManager::SAVE_DUMP | ObjectManager::SAVE_FULL;
-		}
-
-		if (arguments.contains("json")) {
-			flags |= ObjectManager::SAVE_JSON | ObjectManager::SAVE_FULL;
-		}
-
-		ObjectManager::instance()->createBackup(flags);
+		ObjectManager::instance()->createBackup(forceFull);
 
 		return SUCCESS;
 	});
@@ -303,28 +281,19 @@ void ServerCore::registerConsoleCommmands() {
 	});
 
 	addCommand("shutdown", [this](const String& arguments) -> CommandResult {
-		int flags = ShutdownFlags::DEFAULT;
 		ZoneServer* zoneServer = zoneServerRef.getForUpdate();
 		int minutes = 1;
 
 		try {
 			minutes = UnsignedInteger::valueOf(arguments);
 		} catch (const Exception& e) {
-			System::out << "Usage: shutdown {minutes} {json} {fast}" << endl;
+			System::out << "invalid minutes number expected dec" << endl;
 
 			return ERROR;
 		}
 
-		if (arguments.contains("fast")) {
-			flags |= ShutdownFlags::FAST;
-		}
-
-		if (arguments.contains("json")) {
-			flags |= ShutdownFlags::DUMP_JSON;
-		}
-
 		if (zoneServer != nullptr) {
-			zoneServer->timedShutdown(minutes, flags);
+			zoneServer->timedShutdown(minutes);
 
 			shutdownBlockMutex.lock();
 
@@ -521,75 +490,6 @@ void ServerCore::registerConsoleCommmands() {
 		return SUCCESS;
 	});
 
-	addCommand("runLuaFunction", [this](const String& arguments) -> CommandResult {
-		StringTokenizer argTokenizer(arguments);
-
-		argTokenizer.setDelimiter(":");
-
-		String module;
-		String function;
-
-		if (argTokenizer.hasMoreTokens())
-			argTokenizer.getStringToken(module);
-
-		if (argTokenizer.hasMoreTokens())
-			argTokenizer.getStringToken(function);
-
-		if (module.isEmpty() || function.isEmpty()) {
-			System::out << "Usage: runLuaFunction {module}:{function}" << endl;
-
-			return ERROR;
-		}
-
-		System::out << "Attemping to run " << module << ":" << function << endl;
-
-		Lua* lua = DirectorManager::instance()->getLuaInstance();
-		lua_State* L = lua->getLuaState();
-		CommandResult cmdResult = NOTFOUND;
-
-		try {
-			if (!lua->checkStack(0)) {
-				error() << "Warning Lua Stack is not clean!";
-			}
-
-			UniqueReference<LuaFunction*> func(lua->createFunction(module, function, 1));
-
-			while (argTokenizer.hasMoreTokens()) {
-				String arg;
-				argTokenizer.getStringToken(arg);
-				*func << arg;
-			}
-
-			if (func->callFunction() == nullptr) {
-				String errorMessage = lua_tostring(L, -1);
-
-				lua_pop(L, 1);
-
-				System::out << "Failed to runLuaFunction " << module << ":" << function << ": " << errorMessage << endl;
-
-				cmdResult = ERROR;
-			} else {
-				lua_pop(L, 1);
-
-				String result;
-
-				if (lua_type(L, 0) == LUA_TSTRING) {
-					result = lua_tostring(L, 0);
-				} else {
-					result = "<" + (String)lua_typename(L, lua_type(L, 0)) + ">";
-				}
-
-				System::out << "runLuaFunction " << module << ":" << function << ": result=[" << result << "]" << endl;
-
-				cmdResult = SUCCESS;
-			}
-		} catch (const Exception& e) {
-			System::out << "Exception in runLuaFunction " << module << ":" << function << " - " << e.getMessage() << endl << Lua::dumpStack(L);
-		}
-
-		return cmdResult;
-	});
-
 	debug() << "registered " << consoleCommands.size() << " console commands.";
 }
 
@@ -631,9 +531,7 @@ void ServerCore::initializeCoreContext() {
 	Thread::setThreadInitializer(new ThreadHook());
 }
 
-void ServerCore::signalShutdown(ShutdownFlags flags) {
-	nextShutdownFlags = flags;
-
+void ServerCore::signalShutdown() {
 	shutdownBlockMutex.lock();
 
 	waitCondition.broadcast(&shutdownBlockMutex);
@@ -658,8 +556,6 @@ void ServerCore::initialize() {
 		ObjectManager* objectManager = ObjectManager::instance();
 
 		database = new ServerDatabase(configManager);
-
-		accountDatabase = new AccountDatabase(configManager);
 
 		mantisDatabase = new MantisDatabase(configManager);
 
@@ -742,6 +638,15 @@ void ServerCore::initialize() {
 					}
 				}
 
+				// Flush any characters still pending in the characters_dirty staging
+				// table (created since the last periodic commit cycle) into the
+				// permanent characters table before clearing it, so a restart doesn't
+				// discard characters that were never migrated yet.
+				database->instance()->executeStatement(
+						"REPLACE INTO characters (character_oid, account_id, galaxy_id, firstname, surname, race, gender, template) "
+						"SELECT character_oid, account_id, galaxy_id, firstname, surname, race, gender, template FROM characters_dirty WHERE galaxy_id = "
+						+ String::valueOf(galaxyID));
+
 				database->instance()->executeStatement(
 						"DELETE FROM characters_dirty WHERE galaxy_id = "
 						+ String::valueOf(galaxyID));
@@ -816,11 +721,7 @@ void ServerCore::run() {
 }
 
 void ServerCore::shutdown() {
-	info(true) << "shutting down server.. flags = "
-		<< (nextShutdownFlags == ShutdownFlags::DEFAULT) << " DEFAULT"
-		<< (nextShutdownFlags & ShutdownFlags::FAST) << " FAST"
-		<< (nextShutdownFlags & ShutdownFlags::DUMP_JSON) << " DUMP_JSON"
-		;
+	info(true) << "shutting down server..";
 
 	handleCmds = false;
 
@@ -833,18 +734,10 @@ void ServerCore::shutdown() {
 	}
 #endif // WITH_REST_API
 
-	bool haveSave = false;
-
 	ObjectManager* objectManager = ObjectManager::instance();
 
-	if (objectManager->isObjectUpdateInProgress()) {
-		haveSave = true;
-
-		info(true) << "Shutdown waiting for in-progress save to complete...";
-
-		while (objectManager->isObjectUpdateInProgress())
-			Thread::sleep(500);
-	}
+	while (objectManager->isObjectUpdateInProgress())
+		Thread::sleep(500);
 
 	objectManager->cancelDeleteCharactersTask();
 	objectManager->cancelUpdateModifiedObjectsTask();
@@ -861,24 +754,20 @@ void ServerCore::shutdown() {
 
 		Thread::sleep(2000);
 
-		if (nextShutdownFlags & ShutdownFlags::FAST) {
-			info(true) << "Skip disconnecting players";
-		} else {
-			info(true) << "Disconnecting all players";
+		info("Disconnecting all players", true);
 
-			PlayerManager* playerManager = zoneServer->getPlayerManager();
+		PlayerManager* playerManager = zoneServer->getPlayerManager();
 
-			playerManager->stopOnlinePlayerLogTask();
-			playerManager->disconnectAllPlayers();
+		playerManager->stopOnlinePlayerLogTask();
+		playerManager->disconnectAllPlayers();
 
-			int count = 0;
-			while (zoneServer->getConnectionCount() > 0 && count < 20) {
-				Thread::sleep(500);
-				count++;
-			}
-
-			info("All players disconnected", true);
+		int count = 0;
+		while (zoneServer->getConnectionCount() > 0 && count < 20) {
+			Thread::sleep(500);
+			count++;
 		}
+
+		info("All players disconnected", true);
 
 		auto frsManager = zoneServer->getFrsManager();
 
@@ -901,20 +790,12 @@ void ServerCore::shutdown() {
 
 	Thread::sleep(5000);
 
-	auto backupFlags = ObjectManager::SAVE_FULL | ObjectManager::SAVE_REPORT;
-
-	if (nextShutdownFlags & ShutdownFlags::DUMP_JSON) {
-		info(true) << "Backing up with JSON dump of in-ram objects.";
-
-		backupFlags |= ObjectManager::SAVE_JSON;
-	}
-
-	objectManager->createBackup(backupFlags);
+	objectManager->createBackup(true);
 
 	while (objectManager->isObjectUpdateInProgress())
 		Thread::sleep(500);
 
-	info(true) << "database backup done";
+	info("database backup done", true);
 
 	objectManager->cancelUpdateModifiedObjectsTask();
 
@@ -1147,8 +1028,12 @@ void coredetail::ConsoleReaderService::run() {
 
 		res = fgets(line, sizeof(line), stdin);
 
-		if (!res)
+		if (!res) {
+			// stdin is closed/unavailable (e.g. redirected from /dev/null under nohup/systemd);
+			// select() treats it as always-ready, so without this sleep the loop busy-spins at 100% CPU.
+			Thread::sleep(1000);
 			continue;
+		}
 
 		auto cmd = String(line).trim();
 

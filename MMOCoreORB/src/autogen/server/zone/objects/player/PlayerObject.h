@@ -236,8 +236,6 @@ using namespace server::login::account;
 
 #include "server/zone/objects/scene/variables/DeltaBitArray.h"
 
-#include "server/zone/objects/transaction/TransactionLog.h"
-
 #include "engine/log/Logger.h"
 
 #include "engine/service/proto/BaseMessage.h"
@@ -283,7 +281,11 @@ public:
 
 	static const int LINKDEAD = 3;
 
+	static const int LOGGINGIN = 4;
+
 	static const int LOGGINGOUT = 5;
+
+	static const int LOADING = 6;
 
 	static const int PVP_RATING_FLOOR = 500;
 
@@ -357,7 +359,7 @@ public:
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience gain.
 	 * @return returns total experience awarded
 	 */
-	int addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient = true);
+	int addExperience(const String& xpType, int xp, bool notifyClient = true);
 
 	/**
 	 * Removes experience of a type from the player's experience pool.
@@ -366,7 +368,7 @@ public:
 	 * @param xpType The string value for the type of experience to remove.
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience loss.
 	 */
-	void removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient = true);
+	void removeExperience(const String& xpType, bool notifyClient = true);
 
 	/**
 	 * Checks if the player has capped the experience type.
@@ -782,13 +784,13 @@ public:
 
 	void setBadge(unsigned int badge);
 
+	void unsetBadge(unsigned int badge);
+
 	void awardBadge(unsigned int badge);
 
 	void setTeleporting(bool val);
 
 	void setOnLoadScreen(bool val);
-
-	void setForcedTransform(bool val);
 
 	int getNumBadges() const;
 
@@ -906,8 +908,6 @@ public:
 
 	bool isOnLoadScreen() const;
 
-	bool isForcedTransform() const;
-
 	void addChatRoom(unsigned int roomID);
 
 	void removeChatRoom(unsigned int roomID);
@@ -943,7 +943,11 @@ public:
 
 	bool isOffline() const;
 
+	bool isLoading() const;
+
 	bool isLinkDead() const;
+
+	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -956,10 +960,6 @@ public:
 	void addSkillPoints(int points);
 
 	int getSkillPoints() const;
-
-	void setLastLogoutWorldPosition(const Vector3& position);
-
-	Vector3 getLastLogoutWorldPosition() const;
 
 	ValidatedPosition* getLastValidatedPosition();
 
@@ -987,6 +987,8 @@ public:
 
 	const Vector<byte>* getHologrindProfessions() const;
 
+	int getJediTime() const;
+
 	void setMaximumLots(byte lots);
 
 	byte getMaximumLots() const;
@@ -1013,27 +1015,29 @@ public:
 
 	Time getLastGcwPvpCombatActionTimestamp() const;
 
-	Time getLastGcwCrackdownCombatActionTimestamp() const;
+	Time getLastJediPvpCombatActionTimestamp();
 
-	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
+	Time getLastJediAttackableTimestamp();
+
+	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	bool hasTef() const;
+	void updateLastJediPvpCombatActionTimestamp();
+
+	void updateLastJediAttackableTimestamp();
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask = true);
+	bool hasJediTef() const;
 
-	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
+	bool isJediAttackable();
 
-	bool hasCrackdownTef() const;
-
-	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
+	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow = false);
 
@@ -1129,29 +1133,19 @@ public:
 
 	void setPvpRating(int rating);
 
-	bool isCloning() const;
+	int getRatingReset() const;
+
+	void setRatingReset(int reset);
+
+	bool isCloning();
 
 	void setCloning(bool val);
-
-	void updatePlayerBountyTimestamp(int duration);
-
-	void setBountyReward(int reward);
-
-	unsigned long long getBountyReward();
-
-	void setBountyPlacerId(unsigned long long placerId);
-
-	unsigned long long getBountyPlacerId();
-
-	bool hasPlayerBounty();
 
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
-
-	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose = false) const;
 
@@ -1230,8 +1224,6 @@ protected:
 
 	bool onLoadScreen;
 
-	bool forcedTransform;
-
 	bool muted;
 
 	String mutedReason;
@@ -1308,8 +1300,6 @@ protected:
 
 	Vector3 trainerCoordinates;
 
-	Vector3 lastLogoutWorldPosition;
-
 	String trainerZoneName;
 
 	Reference<PlayerDisconnectEvent*> disconnectEvent;
@@ -1326,11 +1316,15 @@ protected:
 
 	int pvpRating;
 
+	int ratingReset;
+
 	Time lastPvpRatingUpdate;
 
 	Vector<byte> hologrindProfessions;
 
 	unsigned int clientLastMovementStamp;
+
+	int jediDays;
 
 	Time serverLastMovementStamp;
 
@@ -1353,6 +1347,10 @@ protected:
 	Time lastBhPvpCombatActionTimestamp;
 
 	Time lastGcwPvpCombatActionTimestamp;
+
+	Time lastJediPvpCombatActionTimestamp;
+
+	Time lastJediAttackableTimestamp;
 
 	Time lastCrackdownGcwCombatActionTimestamp;
 
@@ -1401,15 +1399,7 @@ protected:
 
 	unsigned long long sessionStatsTotalMovement;
 
-	unsigned long long sessionStatsTotalCredits;
-
 	String sessionStatsIPAddress;
-
-	Time playerBountyTimestamp;
-
-	unsigned long long bountyPlacerId;
-
-	int bountyReward;
 
 public:
 	static const int LFG = 1;
@@ -1432,7 +1422,11 @@ public:
 
 	static const int LINKDEAD = 3;
 
+	static const int LOGGINGIN = 4;
+
 	static const int LOGGINGOUT = 5;
+
+	static const int LOADING = 6;
 
 	static const int PVP_RATING_FLOOR = 500;
 
@@ -1510,7 +1504,7 @@ public:
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience gain.
 	 * @return returns total experience awarded
 	 */
-	int addExperience(TransactionLog& trx, const String& xpType, int xp, bool notifyClient = true);
+	int addExperience(const String& xpType, int xp, bool notifyClient = true);
 
 	/**
 	 * Removes experience of a type from the player's experience pool.
@@ -1519,7 +1513,7 @@ public:
 	 * @param xpType The string value for the type of experience to remove.
 	 * @param notifyClient Boolean to determing whether the client should receive a delta packet for the experience loss.
 	 */
-	void removeExperience(TransactionLog& trx, const String& xpType, bool notifyClient = true);
+	void removeExperience(const String& xpType, bool notifyClient = true);
 
 	/**
 	 * Checks if the player has capped the experience type.
@@ -1939,13 +1933,13 @@ public:
 
 	void setBadge(unsigned int badge);
 
+	void unsetBadge(unsigned int badge);
+
 	void awardBadge(unsigned int badge);
 
 	void setTeleporting(bool val);
 
 	void setOnLoadScreen(bool val);
-
-	void setForcedTransform(bool val);
 
 	int getNumBadges() const;
 
@@ -2063,8 +2057,6 @@ public:
 
 	bool isOnLoadScreen() const;
 
-	bool isForcedTransform() const;
-
 	void addChatRoom(unsigned int roomID);
 
 	void removeChatRoom(unsigned int roomID);
@@ -2100,7 +2092,11 @@ public:
 
 	bool isOffline() const;
 
+	bool isLoading() const;
+
 	bool isLinkDead() const;
+
+	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -2113,10 +2109,6 @@ public:
 	void addSkillPoints(int points);
 
 	int getSkillPoints() const;
-
-	void setLastLogoutWorldPosition(const Vector3& position);
-
-	Vector3 getLastLogoutWorldPosition() const;
 
 	ValidatedPosition* getLastValidatedPosition();
 
@@ -2144,6 +2136,8 @@ public:
 
 	const Vector<byte>* getHologrindProfessions() const;
 
+	int getJediTime() const;
+
 	void setMaximumLots(byte lots);
 
 	byte getMaximumLots() const;
@@ -2170,27 +2164,29 @@ public:
 
 	Time getLastGcwPvpCombatActionTimestamp() const;
 
-	Time getLastGcwCrackdownCombatActionTimestamp() const;
+	Time getLastJediPvpCombatActionTimestamp();
 
-	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
+	Time getLastJediAttackableTimestamp();
+
+	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	bool hasTef() const;
+	void updateLastJediPvpCombatActionTimestamp();
+
+	void updateLastJediAttackableTimestamp();
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask = true);
+	bool hasJediTef() const;
 
-	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
+	bool isJediAttackable();
 
-	bool hasCrackdownTef() const;
-
-	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
+	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow = false);
 
@@ -2294,29 +2290,19 @@ public:
 
 	void setPvpRating(int rating);
 
-	bool isCloning() const;
+	int getRatingReset() const;
+
+	void setRatingReset(int reset);
+
+	bool isCloning();
 
 	void setCloning(bool val);
-
-	void updatePlayerBountyTimestamp(int duration);
-
-	void setBountyReward(int reward);
-
-	unsigned long long getBountyReward();
-
-	void setBountyPlacerId(unsigned long long placerId);
-
-	unsigned long long getBountyPlacerId();
-
-	bool hasPlayerBounty();
 
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
-
-	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose = false) const;
 
@@ -2411,6 +2397,10 @@ public:
 	void notifySceneReady();
 
 	void checkPendingMessages();
+
+	int addExperience(const String& xpType, int xp, bool notifyClient);
+
+	void removeExperience(const String& xpType, bool notifyClient);
 
 	bool hasCappedExperience(const String& xpType) const;
 
@@ -2660,13 +2650,13 @@ public:
 
 	void setBadge(unsigned int badge);
 
+	void unsetBadge(unsigned int badge);
+
 	void awardBadge(unsigned int badge);
 
 	void setTeleporting(bool val);
 
 	void setOnLoadScreen(bool val);
-
-	void setForcedTransform(bool val);
 
 	int getNumBadges() const;
 
@@ -2750,8 +2740,6 @@ public:
 
 	bool isOnLoadScreen() const;
 
-	bool isForcedTransform() const;
-
 	void addChatRoom(unsigned int roomID);
 
 	void removeChatRoom(unsigned int roomID);
@@ -2782,7 +2770,11 @@ public:
 
 	bool isOffline() const;
 
+	bool isLoading() const;
+
 	bool isLinkDead() const;
+
+	bool isLoggingIn() const;
 
 	bool isLoggingOut() const;
 
@@ -2808,6 +2800,8 @@ public:
 
 	void addHologrindProfession(byte prof);
 
+	int getJediTime() const;
+
 	void setMaximumLots(byte lots);
 
 	byte getMaximumLots() const;
@@ -2828,25 +2822,25 @@ public:
 
 	void setVisibility(float value);
 
-	void updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction);
+	void updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction, bool updateJediAction);
 
 	void updateLastBhPvpCombatActionTimestamp();
 
 	void updateLastGcwPvpCombatActionTimestamp();
 
-	bool hasTef() const;
+	void updateLastJediPvpCombatActionTimestamp();
+
+	void updateLastJediAttackableTimestamp();
 
 	bool hasPvpTef() const;
 
 	bool hasBhTef() const;
 
-	void setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask);
+	bool hasJediTef() const;
 
-	bool hasCrackdownTefTowards(unsigned int factionCrc) const;
+	bool isJediAttackable();
 
-	bool hasCrackdownTef() const;
-
-	void schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow);
+	void schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow, bool removeJediTefNow);
 
 	void schedulePvpTefRemovalTask(bool removeNow);
 
@@ -2936,29 +2930,19 @@ public:
 
 	void setPvpRating(int rating);
 
-	bool isCloning() const;
+	int getRatingReset() const;
+
+	void setRatingReset(int reset);
+
+	bool isCloning();
 
 	void setCloning(bool val);
-
-	void updatePlayerBountyTimestamp(int duration);
-
-	void setBountyReward(int reward);
-
-	unsigned long long getBountyReward();
-
-	void setBountyPlacerId(unsigned long long placerId);
-
-	unsigned long long getBountyPlacerId();
-
-	bool hasPlayerBounty();
 
 	unsigned long long getPlayedMiliSecs() const;
 
 	unsigned long long getSessionMiliSecs() const;
 
 	unsigned long long getSessionTotalMovement() const;
-
-	long long getSessionTotalCredits() const;
 
 	String getMiliSecsTimeString(unsigned long long miliSecs, bool verbose) const;
 
@@ -3037,8 +3021,6 @@ public:
 
 	Optional<bool> onLoadScreen;
 
-	Optional<bool> forcedTransform;
-
 	Optional<bool> muted;
 
 	Optional<String> mutedReason;
@@ -3113,8 +3095,6 @@ public:
 
 	Optional<Vector3> trainerCoordinates;
 
-	Optional<Vector3> lastLogoutWorldPosition;
-
 	Optional<String> trainerZoneName;
 
 	Optional<Time> logoutTimeStamp;
@@ -3125,11 +3105,15 @@ public:
 
 	Optional<int> pvpRating;
 
+	Optional<int> ratingReset;
+
 	Optional<Time> lastPvpRatingUpdate;
 
 	Optional<Vector<byte>> hologrindProfessions;
 
 	Optional<unsigned int> clientLastMovementStamp;
+
+	Optional<int> jediDays;
 
 	Optional<Time> serverLastMovementStamp;
 
@@ -3152,6 +3136,10 @@ public:
 	Optional<Time> lastBhPvpCombatActionTimestamp;
 
 	Optional<Time> lastGcwPvpCombatActionTimestamp;
+
+	Optional<Time> lastJediPvpCombatActionTimestamp;
+
+	Optional<Time> lastJediAttackableTimestamp;
 
 	Optional<Time> lastCrackdownGcwCombatActionTimestamp;
 
@@ -3182,12 +3170,6 @@ public:
 	Optional<unsigned long long> miliSecsSession;
 
 	Optional<unsigned long long> sessionStatsMiliSecs;
-
-	Optional<Time> playerBountyTimestamp;
-
-	Optional<unsigned long long> bountyPlacerId;
-
-	Optional<int> bountyReward;
 
 	String _className;
 	PlayerObjectPOD();

@@ -84,7 +84,7 @@ void DroidRepairModuleDataComponent::handlePetCommand(String cmd, CreatureObject
 	if( droid->getLinkedCreature() != speaker )
 		return;
 
-	if (petManager->getTrainedCommandNum( pcd, cmd) == PetManager::REPAIR){
+	if( petManager->isTrainedCommand( pcd, PetManager::REPAIR, cmd ) ){
 		petManager->enqueuePetCommand(speaker, droid, STRING_HASHCODE("petrepair"), "");
 	}
 }

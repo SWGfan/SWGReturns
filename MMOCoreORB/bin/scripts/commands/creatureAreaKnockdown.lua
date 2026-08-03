@@ -58,11 +58,11 @@ CreatureAreaKnockdownCommand = {
 	  StateEffect(
 		DIZZY_EFFECT,
 		{},
-		{ "dizzy_defense", "resistance_states" },
-		{ "jedi_state_defense" },
+		{ "dizzy_defense" },
+		{ "jedi_state_defense", "resistance_states" },
 		75,
 		0,
-		6
+		10
 	  ),
 	  StateEffect(
 		KNOCKDOWN_EFFECT, 

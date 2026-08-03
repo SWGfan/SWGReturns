@@ -12,7 +12,7 @@
  *	DotPackStub
  */
 
-enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CALCULATEPOWER__CREATUREOBJECT_,RPC_ISDOTPACKOBJECT__,RPC_ISPOISONDELIVERYUNIT__,RPC_ISDISEASEDELIVERYUNIT__,RPC_GETEFFECTIVENESS__,RPC_GETRANGE__,RPC_GETAREA__,RPC_GETRANGEMOD__,RPC_GETPOTENCY__,RPC_GETDURATION__,RPC_ISAREA__,RPC_GETPOOL__,RPC_GETDOTTYPE__};
+enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CALCULATEPOWER__CREATUREOBJECT_,RPC_ISPOISONDELIVERYUNIT__,RPC_ISDISEASEDELIVERYUNIT__,RPC_GETEFFECTIVENESS__,RPC_GETRANGE__,RPC_GETAREA__,RPC_GETRANGEMOD__,RPC_GETPOTENCY__,RPC_GETDURATION__,RPC_ISAREA__,RPC_GETPOOL__,RPC_GETDOTTYPE__};
 
 DotPack::DotPack() : PharmaceuticalObject(DummyConstructorParameter::instance()) {
 	DotPackImplementation* _implementation = new DotPackImplementation();
@@ -102,20 +102,6 @@ int DotPack::calculatePower(CreatureObject* creature) {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->calculatePower(creature);
-	}
-}
-
-bool DotPack::isDotPackObject() {
-	DotPackImplementation* _implementation = static_cast<DotPackImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISDOTPACKOBJECT__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isDotPackObject();
 	}
 }
 
@@ -690,8 +676,8 @@ int DotPackImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 }
 
 	else {
-	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			player.sendCommand(commandToExecute, BuffAttribute.getName(pool) + "|" + String.valueOf(super.getObjectID()), player.getTargetID());
-	player->sendCommand(commandToExecute, BuffAttribute::getName(pool) + "|" + String::valueOf(PharmaceuticalObjectImplementation::getObjectID()), player->getTargetID());
+	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			player.sendCommand(commandToExecute, String.valueOf(super.getObjectID()), player.getTargetID());
+	player->sendCommand(commandToExecute, String::valueOf(PharmaceuticalObjectImplementation::getObjectID()), player->getTargetID());
 	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  			return 0;
 	return 0;
 }
@@ -702,11 +688,6 @@ int DotPackImplementation::calculatePower(CreatureObject* creature) {
 	float modSkill = (float) creature->getSkillMod("combat_medic_effectiveness");
 	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  		return ((100 + modSkill) / 100 * effectiveness);
 	return ((100 + modSkill) / 100 * effectiveness);
-}
-
-bool DotPackImplementation::isDotPackObject() {
-	// server/zone/objects/tangible/pharmaceutical/DotPack.idl():  		return true;
-	return true;
 }
 
 bool DotPackImplementation::isPoisonDeliveryUnit() {
@@ -803,13 +784,6 @@ void DotPackAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_ISDOTPACKOBJECT__:
-		{
-			
-			bool _m_res = isDotPackObject();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_ISPOISONDELIVERYUNIT__:
 		{
 			
@@ -902,10 +876,6 @@ void DotPackAdapter::notifyLoadFromDatabase() {
 
 int DotPackAdapter::calculatePower(CreatureObject* creature) {
 	return (static_cast<DotPack*>(stub))->calculatePower(creature);
-}
-
-bool DotPackAdapter::isDotPackObject() {
-	return (static_cast<DotPack*>(stub))->isDotPackObject();
 }
 
 bool DotPackAdapter::isPoisonDeliveryUnit() {

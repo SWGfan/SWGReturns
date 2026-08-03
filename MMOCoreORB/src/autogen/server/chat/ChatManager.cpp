@@ -34,7 +34,7 @@ unsigned const int ChatManager::MAXPERSISTENTNODES = 5;
 
 unsigned const int ChatManager::ROOMEXPIRATIONTIME = 168;
 
-enum {RPC_STOP__ = 3192532258,RPC_INITIATEROOMS__,RPC_INITIATEPLANETROOMS__,RPC_LOADPERSISTENTROOMS__,RPC_ADDPLAYER__CREATUREOBJECT_,RPC_GETPLAYER__STRING_,RPC_REMOVEPLAYER__STRING_,RPC_GETTAGGEDNAME__PLAYEROBJECT_STRING_,RPC_CREATEPERSISTENTROOMBYFULLPATH__CREATUREOBJECT_STRING_STRING_INT_,RPC_DELETEROOM__CHATROOM_,RPC_DISABLEROOM__CHATROOM_,RPC_CREATEROOM__STRING_CHATROOM_,RPC_CREATEPERSISTENTROOM__STRING_CHATROOM_,RPC_DESTROYROOM__CHATROOM_,RPC_DESTROYROOMS__,RPC_CREATEGROUPROOM__LONG_CREATUREOBJECT_,RPC_HANDLECHATCREATEROOM__CREATUREOBJECT_BYTE_BYTE_STRING_STRING_INT_,RPC_SENDCHATONCREATEROOMERROR__CREATUREOBJECT_INT_INT_,RPC_HANDLECHATDESTROYROOM__CREATUREOBJECT_INT_INT_,RPC_ADDROOM__CHATROOM_,RPC_REMOVEROOM__CHATROOM_,RPC_GETCHATROOMBYFULLPATH__STRING_,RPC_GETCHATROOMBYGAMEPATH__CHATROOM_STRING_,RPC_GETROOMNAMEFROMPATH__STRING_,RPC_HANDLECHATLEAVEROOM__CREATUREOBJECT_STRING_,RPC_HANDLECHATENTERROOMBYID__CREATUREOBJECT_INT_INT_BOOL_,RPC_HANDLECHATQUERYROOM__CREATUREOBJECT_STRING_INT_,RPC_SENDROOMLIST__CREATUREOBJECT_,RPC_HANDLECHATINVITEPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATUNINVITEPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATKICKPLAYER__CREATUREOBJECT_STRING_STRING_,RPC_HANDLECHATADDMODERATOR__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATREMOVEMODERATOR__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATBANPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATUNBANPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_BROADCASTCHATMESSAGE__CREATUREOBJECT_STRINGIDCHATPARAMETER_LONG_INT_INT_INT_INT_,RPC_HANDLESPATIALCHATINTERNALMESSAGE__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEGROUPCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEGUILDCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEPLANETCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEAUCTIONCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLECHATROOMMESSAGE__CREATUREOBJECT_UNICODESTRING_INT_INT_,RPC_HANDLESOCIALINTERNALMESSAGE__CREATUREOBJECT_UNICODESTRING_,RPC_BROADCASTCHATMESSAGE__CREATUREOBJECT_UNICODESTRING_LONG_INT_INT_INT_INT_,RPC_BROADCASTGALAXY__CREATUREOBJECT_STRING_,RPC_BROADCASTGALAXY__STRING_STRING_,RPC_GETSPATIALCHATTYPE__STRING_,RPC_GETSPATIALCHATTYPE__INT_,RPC_GETMOODID__STRING_,RPC_GETMOODTYPE__INT_,RPC_GETMOODANIMATION__STRING_,RPC_GETRANDOMMOODID__,RPC_LOADMAIL__CREATUREOBJECT_,RPC_SENDMAIL__STRING_UNICODESTRING_UNICODESTRING_STRING_,RPC_HANDLEREQUESTPERSISTENTMSG__CREATUREOBJECT_INT_,RPC_DELETEPERSISTENTMESSAGE__CREATUREOBJECT_INT_,RPC_FORMATMESSAGE__UNICODESTRING_,RPC_SETPLAYERMANAGER__PLAYERMANAGER_,RPC_GETCHATROOM__INT_,RPC_GETGAMEROOM__STRING_,RPC_GETPLAYERCOUNT__,RPC_GETZONESERVER__,RPC_GETGUILDROOM__,RPC_GETGROUPROOM__,RPC_GETAUCTIONROOM__,RPC_GETSYSTEMROOM__,RPC_GETGENERALROOM__,RPC_GETSOCIALTYPE__INT_,RPC_GETPENDINGMESSAGES__LONG_};
+enum {RPC_STOP__ = 3192532258,RPC_INITIATEROOMS__,RPC_INITIATEPLANETROOMS__,RPC_LOADPERSISTENTROOMS__,RPC_ADDPLAYER__CREATUREOBJECT_,RPC_GETPLAYER__STRING_,RPC_REMOVEPLAYER__STRING_,RPC_GETTAGGEDNAME__PLAYEROBJECT_STRING_,RPC_CREATEPERSISTENTROOMBYFULLPATH__CREATUREOBJECT_STRING_STRING_INT_,RPC_DELETEROOM__CHATROOM_,RPC_DISABLEROOM__CHATROOM_,RPC_CREATEROOM__STRING_CHATROOM_,RPC_CREATEPERSISTENTROOM__STRING_CHATROOM_,RPC_DESTROYROOM__CHATROOM_,RPC_DESTROYROOMS__,RPC_CREATEGROUPROOM__LONG_CREATUREOBJECT_,RPC_HANDLECHATCREATEROOM__CREATUREOBJECT_BYTE_BYTE_STRING_STRING_INT_,RPC_SENDCHATONCREATEROOMERROR__CREATUREOBJECT_INT_INT_,RPC_HANDLECHATDESTROYROOM__CREATUREOBJECT_INT_INT_,RPC_ADDROOM__CHATROOM_,RPC_REMOVEROOM__CHATROOM_,RPC_GETCHATROOMBYFULLPATH__STRING_,RPC_GETCHATROOMBYGAMEPATH__CHATROOM_STRING_,RPC_GETROOMNAMEFROMPATH__STRING_,RPC_HANDLECHATLEAVEROOM__CREATUREOBJECT_STRING_,RPC_HANDLECHATENTERROOMBYID__CREATUREOBJECT_INT_INT_BOOL_,RPC_HANDLECHATQUERYROOM__CREATUREOBJECT_STRING_INT_,RPC_SENDROOMLIST__CREATUREOBJECT_,RPC_HANDLECHATINVITEPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATUNINVITEPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATKICKPLAYER__CREATUREOBJECT_STRING_STRING_,RPC_HANDLECHATADDMODERATOR__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATREMOVEMODERATOR__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATBANPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_HANDLECHATUNBANPLAYER__CREATUREOBJECT_STRING_STRING_INT_,RPC_BROADCASTCHATMESSAGE__CREATUREOBJECT_STRINGIDCHATPARAMETER_LONG_INT_INT_INT_INT_,RPC_HANDLESPATIALCHATINTERNALMESSAGE__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEGROUPCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEGUILDCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEPLANETCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLEAUCTIONCHAT__CREATUREOBJECT_UNICODESTRING_,RPC_HANDLECHATROOMMESSAGE__CREATUREOBJECT_UNICODESTRING_INT_INT_,RPC_HANDLESOCIALINTERNALMESSAGE__CREATUREOBJECT_UNICODESTRING_,RPC_BROADCASTCHATMESSAGE__CREATUREOBJECT_UNICODESTRING_LONG_INT_INT_INT_INT_,RPC_BROADCASTGALAXY__CREATUREOBJECT_STRING_,RPC_BROADCASTGALAXY__STRING_STRING_,RPC_GETSPATIALCHATTYPE__STRING_,RPC_GETMOODID__STRING_,RPC_GETMOODTYPE__INT_,RPC_GETMOODANIMATION__STRING_,RPC_GETRANDOMMOODID__,RPC_LOADMAIL__CREATUREOBJECT_,RPC_SENDMAIL__STRING_UNICODESTRING_UNICODESTRING_STRING_,RPC_HANDLEREQUESTPERSISTENTMSG__CREATUREOBJECT_INT_,RPC_DELETEPERSISTENTMESSAGE__CREATUREOBJECT_INT_,RPC_FORMATMESSAGE__UNICODESTRING_,RPC_SETPLAYERMANAGER__PLAYERMANAGER_,RPC_GETCHATROOM__INT_,RPC_GETGAMEROOM__STRING_,RPC_GETPLAYERCOUNT__,RPC_GETZONESERVER__,RPC_GETGUILDROOM__,RPC_GETGROUPROOM__,RPC_GETAUCTIONROOM__,RPC_GETSYSTEMROOM__,RPC_GETSOCIALTYPE__INT_,RPC_GETPENDINGMESSAGES__LONG_};
 
 ChatManager::ChatManager(ZoneServer* serv, int initsize) : ManagedService(DummyConstructorParameter::instance()) {
 	ChatManagerImplementation* _implementation = new ChatManagerImplementation(serv, initsize);
@@ -830,7 +830,7 @@ void ChatManager::broadcastGalaxy(const String& message, const String& faction) 
 	}
 }
 
-unsigned int ChatManager::getSpatialChatType(const String& spatialChatType) const {
+unsigned int ChatManager::getSpatialChatType(const String& spatialChatType) {
 	ChatManagerImplementation* _implementation = static_cast<ChatManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -842,23 +842,6 @@ unsigned int ChatManager::getSpatialChatType(const String& spatialChatType) cons
 		return method.executeWithUnsignedIntReturn();
 	} else {
 		return _implementation->getSpatialChatType(spatialChatType);
-	}
-}
-
-const String ChatManager::getSpatialChatType(unsigned int chatType) const {
-	ChatManagerImplementation* _implementation = static_cast<ChatManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSPATIALCHATTYPE__INT_);
-		method.addUnsignedIntParameter(chatType);
-
-		String _return_getSpatialChatType;
-		method.executeWithAsciiReturn(_return_getSpatialChatType);
-		return _return_getSpatialChatType;
-	} else {
-		return _implementation->getSpatialChatType(chatType);
 	}
 }
 
@@ -1166,20 +1149,6 @@ ChatRoom* ChatManager::getSystemRoom() {
 	}
 }
 
-ChatRoom* ChatManager::getGeneralRoom() {
-	ChatManagerImplementation* _implementation = static_cast<ChatManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETGENERALROOM__);
-
-		return static_cast<ChatRoom*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->getGeneralRoom();
-	}
-}
-
 String ChatManager::getSocialType(unsigned int id) const {
 	ChatManagerImplementation* _implementation = static_cast<ChatManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -1366,10 +1335,6 @@ bool ChatManagerImplementation::readObjectMember(ObjectInputStream* stream, cons
 		TypeInfo<ManagedReference<ChatRoom* > >::parseFromBinaryStream(&systemRoom, stream);
 		return true;
 
-	case 0xd0af1489: //ChatManager.generalRoom
-		TypeInfo<ManagedReference<ChatRoom* > >::parseFromBinaryStream(&generalRoom, stream);
-		return true;
-
 	case 0xaa079cc4: //ChatManager.mute
 		TypeInfo<bool >::parseFromBinaryStream(&mute, stream);
 		return true;
@@ -1473,15 +1438,6 @@ int ChatManagerImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0xd0af1489; //ChatManager.generalRoom
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedReference<ChatRoom* > >::toBinaryStream(&generalRoom, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0xaa079cc4; //ChatManager.mute
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -1557,11 +1513,6 @@ ChatRoom* ChatManagerImplementation::getAuctionRoom() {
 ChatRoom* ChatManagerImplementation::getSystemRoom() {
 	// server/chat/ChatManager.idl():  		return systemRoom;
 	return systemRoom;
-}
-
-ChatRoom* ChatManagerImplementation::getGeneralRoom() {
-	// server/chat/ChatManager.idl():  		return generalRoom;
-	return generalRoom;
 }
 
 String ChatManagerImplementation::getSocialType(unsigned int id) const{
@@ -2021,14 +1972,6 @@ void ChatManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertInt(_m_res);
 		}
 		break;
-	case RPC_GETSPATIALCHATTYPE__INT_:
-		{
-			unsigned int chatType = inv->getUnsignedIntParameter();
-			
-			const String _m_res = getSpatialChatType(chatType);
-			resp->insertAscii(_m_res);
-		}
-		break;
 	case RPC_GETMOODID__STRING_:
 		{
 			 String moodType; inv->getAsciiParameter(moodType);
@@ -2168,13 +2111,6 @@ void ChatManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			DistributedObject* _m_res = getSystemRoom();
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
-		}
-		break;
-	case RPC_GETGENERALROOM__:
-		{
-			
-			DistributedObject* _m_res = getGeneralRoom();
 			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
@@ -2383,12 +2319,8 @@ void ChatManagerAdapter::broadcastGalaxy(const String& message, const String& fa
 	(static_cast<ChatManager*>(stub))->broadcastGalaxy(message, faction);
 }
 
-unsigned int ChatManagerAdapter::getSpatialChatType(const String& spatialChatType) const {
+unsigned int ChatManagerAdapter::getSpatialChatType(const String& spatialChatType) {
 	return (static_cast<ChatManager*>(stub))->getSpatialChatType(spatialChatType);
-}
-
-const String ChatManagerAdapter::getSpatialChatType(unsigned int chatType) const {
-	return (static_cast<ChatManager*>(stub))->getSpatialChatType(chatType);
 }
 
 unsigned int ChatManagerAdapter::getMoodID(const String& moodType) {
@@ -2461,10 +2393,6 @@ ChatRoom* ChatManagerAdapter::getAuctionRoom() {
 
 ChatRoom* ChatManagerAdapter::getSystemRoom() {
 	return (static_cast<ChatManager*>(stub))->getSystemRoom();
-}
-
-ChatRoom* ChatManagerAdapter::getGeneralRoom() {
-	return (static_cast<ChatManager*>(stub))->getGeneralRoom();
 }
 
 String ChatManagerAdapter::getSocialType(unsigned int id) const {
@@ -2638,17 +2566,6 @@ int ChatManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (generalRoom) {
-	_nameHashCode = 0xd0af1489; //ChatManager.generalRoom
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedReference<ChatRoomPOD* > >::toBinaryStream(&generalRoom.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (mute) {
 	_nameHashCode = 0xaa079cc4; //ChatManager.mute
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -2741,14 +2658,6 @@ bool ChatManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32& n
 		}
 		return true;
 
-	case 0xd0af1489: //ChatManager.generalRoom
-		{
-			ManagedReference<ChatRoomPOD* > _mngeneralRoom;
-			TypeInfo<ManagedReference<ChatRoomPOD* > >::parseFromBinaryStream(&_mngeneralRoom, stream);
-			generalRoom = std::move(_mngeneralRoom);
-		}
-		return true;
-
 	case 0xaa079cc4: //ChatManager.mute
 		{
 			bool _mnmute;
@@ -2800,8 +2709,6 @@ void ChatManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<ManagedReference<ChatRoomPOD* > >::toBinaryStream(&auctionRoom.value(), stream);
 
 	TypeInfo<ManagedReference<ChatRoomPOD* > >::toBinaryStream(&systemRoom.value(), stream);
-
-	TypeInfo<ManagedReference<ChatRoomPOD* > >::toBinaryStream(&generalRoom.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&mute.value(), stream);
 

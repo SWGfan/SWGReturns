@@ -22,7 +22,7 @@
  *	FactoryObjectStub
  */
 
-enum {RPC_NOTIFYLOADFROMDATABASE__,RPC_ISFACTORY__,RPC_CREATECHILDOBJECTS__,RPC_SENDINSERTMANUSUI__CREATUREOBJECT_,RPC_SENDINGREDIENTSNEEDEDSUI__CREATUREOBJECT_,RPC_SENDINGREDIENTHOPPER__CREATUREOBJECT_,RPC_SENDOUTPUTHOPPER__CREATUREOBJECT_,RPC_OPENHOPPER__OBSERVABLE_MANAGEDOBJECT_,RPC_CLOSEHOPPER__OBSERVABLE_MANAGEDOBJECT_,RPC_HANDLEINSERTFACTORYSCHEM__CREATUREOBJECT_MANUFACTURESCHEMATIC_,RPC_HANDLEREMOVEFACTORYSCHEM__CREATUREOBJECT_,RPC_HANDLEOPERATETOGGLE__CREATUREOBJECT_,RPC_STARTFACTORY__,RPC_CREATENEWOBJECT__,RPC_GETREDEEDMESSAGE__};
+enum {RPC_NOTIFYLOADFROMDATABASE__,RPC_ISFACTORY__,RPC_CREATECHILDOBJECTS__,RPC_SENDINSERTMANUSUI__CREATUREOBJECT_,RPC_SENDINGREDIENTSNEEDEDSUI__CREATUREOBJECT_,RPC_SENDINGREDIENTHOPPER__CREATUREOBJECT_,RPC_SENDOUTPUTHOPPER__CREATUREOBJECT_,RPC_OPENHOPPER__OBSERVABLE_MANAGEDOBJECT_,RPC_CLOSEHOPPER__OBSERVABLE_MANAGEDOBJECT_,RPC_HANDLEINSERTFACTORYSCHEM__CREATUREOBJECT_MANUFACTURESCHEMATIC_,RPC_HANDLEREMOVEFACTORYSCHEM__CREATUREOBJECT_,RPC_HANDLEOPERATETOGGLE__CREATUREOBJECT_,RPC_CREATENEWOBJECT__,RPC_GETREDEEDMESSAGE__};
 
 FactoryObject::FactoryObject() : InstallationObject(DummyConstructorParameter::instance()) {
 	FactoryObjectImplementation* _implementation = new FactoryObjectImplementation();
@@ -241,21 +241,6 @@ void FactoryObject::handleOperateToggle(CreatureObject* player) {
 	} else {
 		assert(this->isLockedByCurrentThread());
 		_implementation->handleOperateToggle(player);
-	}
-}
-
-bool FactoryObject::startFactory() {
-	FactoryObjectImplementation* _implementation = static_cast<FactoryObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_STARTFACTORY__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		return _implementation->startFactory();
 	}
 }
 
@@ -613,13 +598,6 @@ void FactoryObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_STARTFACTORY__:
-		{
-			
-			bool _m_res = startFactory();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_CREATENEWOBJECT__:
 		{
 			
@@ -685,10 +663,6 @@ void FactoryObjectAdapter::handleRemoveFactorySchem(CreatureObject* player) {
 
 void FactoryObjectAdapter::handleOperateToggle(CreatureObject* player) {
 	(static_cast<FactoryObject*>(stub))->handleOperateToggle(player);
-}
-
-bool FactoryObjectAdapter::startFactory() {
-	return (static_cast<FactoryObject*>(stub))->startFactory();
 }
 
 void FactoryObjectAdapter::createNewObject() {

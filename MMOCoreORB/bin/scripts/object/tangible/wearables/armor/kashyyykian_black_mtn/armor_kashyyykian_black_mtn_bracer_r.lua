@@ -43,69 +43,48 @@
 
 object_tangible_wearables_armor_kashyyykian_black_mtn_armor_kashyyykian_black_mtn_bracer_r = object_tangible_wearables_armor_kashyyykian_black_mtn_shared_armor_kashyyykian_black_mtn_bracer_r:new {
 	templateType = ARMOROBJECT,
-	
-	objectMenuComponent = "ArmorObjectMenuComponent", 
+
+	objectMenuComponent = "ArmorObjectMenuComponent",
 
 	playerRaces = { "object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/mobile/vendor/wookiee_female.iff",
-				"object/mobile/vendor/wookiee_male.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/mobile/vendor/wookiee_male.iff" },
 
 	-- Damage types in WeaponObject
-	vulnerability = HEAT + LIGHTSABER,
-  
-  specialResists = COLD,
+	vulnerability = STUN + LIGHTSABER,
+
+	specialResists = ELECTRICITY,
 
 	-- These are default Blue Frog stats
-  healthEncumbrance = 0,
-  actionEncumbrance = 0,
-  mindEncumbrance = 0,
+	healthEncumbrance = 80,
+	actionEncumbrance = 80,
+	mindEncumbrance = 80,
 
-  maxCondition = 30000,
+	maxCondition = 30000,
+	
+	-- LIGHT, MEDIUM, HEAVY
+	rating = LIGHT,
 
-  -- LIGHT, MEDIUM, HEAVY
-  rating = LIGHT,
+	kinetic = 80,
+	energy = 80,
+	electricity = 80,
+	stun = 35,
+	blast = 80,
+	heat = 80,
+	cold = 80,
+	acid = 80,
+	lightSaber = 0,
 
-  kinetic = 70,
-  energy = 70,
-  electricity = 70,
-  stun = 70,
-  blast = 70,
-  heat = 70,
-  cold = 70,
-  acid = 70,
-  lightSaber = 0,
-
-  numberExperimentalProperties = {1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1},
-  experimentalProperties = {"XX", "XX", "XX", "OQ", "SR", "OQ", "SR", "OQ", "UT", "MA", "OQ", "MA", "OQ", "XX", "XX", "XX", "XX", "OQ", "SR", "XX"},
-  experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-  experimentalGroupTitles = {"null", "null", "null", "exp_durability", "exp_quality", "exp_resistance", "null", "null", "null", "null", "null", "exp_resistance", "null"},
-  experimentalSubGroupTitles = {"null", "null", "sockets", "hit_points", "armor_effectiveness", "armor_integrity", "armor_health_encumbrance", "armor_action_encumbrance", "armor_mind_encumbrance", "armor_rating", "armor_special_type", "armor_special_effectiveness", "armor_special_integrity"},
-  experimentalMin = {0, 0, 0, 1000, 1, 30000, 0, 0, 0, 1, 0, 0, 0},
-  experimentalMax = {0, 0, 0, 1000, 30, 50000, 0, 0, 0, 1, 0, 0, 0},
-  experimentalPrecision = {0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0},
-  experimentalCombineType = {0, 0, 4, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1},
+	numberExperimentalProperties = {1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1},
+	experimentalProperties = {"XX", "XX", "XX", "OQ", "SR", "OQ", "SR", "OQ", "UT", "MA", "OQ", "MA", "OQ", "MA", "OQ", "XX", "XX", "OQ", "SR", "XX"},
+	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	experimentalGroupTitles = {"null", "null", "null", "exp_durability", "exp_quality", "exp_resistance", "exp_durability", "exp_durability", "exp_durability", "null", "null", "exp_resistance", "null"},
+	experimentalSubGroupTitles = {"null", "null", "sockets", "hit_points", "armor_effectiveness", "armor_integrity", "armor_health_encumbrance", "armor_action_encumbrance", "armor_mind_encumbrance", "armor_rating", "armor_special_type", "armor_special_effectiveness", "armor_special_integrity"},
+	experimentalMin = {0, 0, 0, 1000, 1, 30000, 25, 22, 25, 1, 0, 0, 0},
+	experimentalMax = {0, 0, 0, 1000, 40, 50000, 15, 13, 15, 1, 0, 0, 0},
+	experimentalPrecision = {0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0},
+	experimentalCombineType = {0, 0, 4, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1},
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_kashyyykian_black_mtn_armor_kashyyykian_black_mtn_bracer_r, "object/tangible/wearables/armor/kashyyykian_black_mtn/armor_kashyyykian_black_mtn_bracer_r.iff")

@@ -98,7 +98,7 @@ namespace misc {
 
 class PlantObject : public TangibleObject {
 public:
-	unsigned static const long long PULSERATE;
+	static const int PULSERATE = 21600;
 
 	PlantObject();
 
@@ -202,7 +202,7 @@ namespace misc {
 
 class PlantObjectImplementation : public TangibleObjectImplementation {
 public:
-	unsigned static const long long PULSERATE;
+	static const int PULSERATE = 21600;
 
 protected:
 	int waterLevel;
@@ -241,8 +241,6 @@ public:
 	PlantObjectImplementation(DummyConstructorParameter* param);
 
 	void initializeTransientMembers();
-
-	void finalize();
 
 	/**
 	 * Fills the attribute list message options that are sent to player creature
@@ -324,6 +322,8 @@ public:
 protected:
 	virtual ~PlantObjectImplementation();
 
+	void finalize();
+
 	void _initializeImplementation();
 
 	void _setStub(DistributedObjectStub* stub);
@@ -356,8 +356,6 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	void initializeTransientMembers();
-
-	void finalize();
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 

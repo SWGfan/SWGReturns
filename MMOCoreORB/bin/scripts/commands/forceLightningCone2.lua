@@ -44,62 +44,41 @@
 ForceLightningCone2Command = {
 	name = "forcelightningcone2",
 
-  minDamage = 900,
-  maxDamage = 1650,
-  speed = 2.0,
-  forceCost = 60,
-  forceCostMultiplier = 1,
-  actionCostMultiplier = 1,
+	minDamage = 600,
+	maxDamage = 1200,
+	speed = 4.0,
+	forceCost = 250,
 	accuracySkillMod = "forcelightning_accuracy",
-	coneAngle = 180,
+	coneAngle = 60,
 	coneAction = true,
 	visMod = 25,
 
 	stateEffects = {
-	  StateEffect(
-    STUN_EFFECT,
-    {},
-    {},
-    { "jedi_state_defense" },
-    30,
-    0,
-    10
-    ), 
-	  StateEffect(
-		DIZZY_EFFECT,
-		{},
-		{},
-		{ "jedi_state_defense" },
-		30,
-		0,
-		10
-	  )
-	},
-
-	dotEffects = {
-		DotEffect(
-			ONFIRE,
-			{"resistance_fire", "fire_resist"},
-			HEALTH,
-			true,
+		StateEffect(
+			DIZZY_EFFECT,
+			{},
+			{},
+			{ "jedi_state_defense" },
+			30,
 			0,
-			40,
-			100,
-			20,
-			10,
-			8
+			10
 		)
 	},
 
-	animation = "force_knockdown_1_arc_particle_level_1",
---	animType = GENERATE_INTENSITY,
+	animation = "force_lightning_1_arc_particle_level_3",
+	animType = GENERATE_INTENSITY,
 
 	combatSpam = "forcelightningcone2",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	forceAttack = true,
 	damageType = ELECTRICITY_DAMAGE,
+
+	frsLightMinDamageModifier = 8,
+	frsLightMaxDamageModifier = 8,
+	frsDarkMinDamageModifier = 8,
+	frsDarkMaxDamageModifier = 8,
 
 	range = 32
 }

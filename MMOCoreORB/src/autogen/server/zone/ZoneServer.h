@@ -87,18 +87,6 @@ class ZonePOD;
 using namespace server::zone;
 
 namespace server {
-namespace zone {
-
-class GroundZone;
-
-class GroundZonePOD;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
-namespace server {
 namespace chat {
 
 class ChatManager;
@@ -451,12 +439,6 @@ public:
 
 	static const float CLOSEOBJECTRANGE;
 
-	static const float SPACECLOSEOBJECTRANGE;
-
-	static const float CAPITALSHIPRANGE;
-
-	static const float SPACESTATIONRANGE;
-
 	ZoneServer(ConfigManager* config);
 
 	void initializeTransientMembers();
@@ -469,9 +451,7 @@ public:
 
 	void startManagers();
 
-	void startGroundZones();
-
-	void startSpaceZones();
+	void startZones();
 
 	void stopManagers();
 
@@ -481,7 +461,7 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes, int flags = 0);
+	void timedShutdown(int minutes);
 
 	void handleMessage(ZoneClientSession* client, Packet* message);
 
@@ -489,9 +469,9 @@ public:
 
 	bool handleError(ZoneClientSession* client, Exception& e);
 
-	void addTotalSentPacket(unsigned int count);
+	void addTotalSentPacket(int count);
 
-	void addTotalResentPacket(unsigned int count);
+	void addTotalResentPacket(int count);
 
 	void printInfo();
 
@@ -654,7 +634,7 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 
 	ManagedReference<ZoneProcessServer* > processor;
 
-	Reference<VectorMap<String, ManagedReference<GroundZone* > >* > zones;
+	Reference<VectorMap<String, ManagedReference<Zone* > >* > zones;
 
 	Reference<ObjectManager* > objectManager;
 
@@ -692,11 +672,11 @@ class ZoneServerImplementation : public ManagedServiceImplementation, public Log
 
 	Reference<DnaManager* > dnaManager;
 
-	unsigned long long totalSentPackets;
+	int totalSentPackets;
 
 	int serverCap;
 
-	unsigned long long totalResentPackets;
+	int totalResentPackets;
 
 	AtomicInteger currentPlayers;
 
@@ -729,12 +709,6 @@ public:
 
 	static const float CLOSEOBJECTRANGE;
 
-	static const float SPACECLOSEOBJECTRANGE;
-
-	static const float CAPITALSHIPRANGE;
-
-	static const float SPACESTATIONRANGE;
-
 	ZoneServerImplementation(ConfigManager* config);
 
 	ZoneServerImplementation(DummyConstructorParameter* param);
@@ -753,9 +727,7 @@ public:
 
 	void startManagers();
 
-	void startGroundZones();
-
-	void startSpaceZones();
+	void startZones();
 
 	void stopManagers();
 
@@ -765,7 +737,7 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes, int flags = 0);
+	void timedShutdown(int minutes);
 
 	void handleMessage(ZoneClientSession* client, Packet* message);
 
@@ -773,9 +745,9 @@ public:
 
 	bool handleError(ZoneClientSession* client, Exception& e);
 
-	void addTotalSentPacket(unsigned int count);
+	void addTotalSentPacket(int count);
 
-	void addTotalResentPacket(unsigned int count);
+	void addTotalResentPacket(int count);
 
 	void printInfo();
 
@@ -951,9 +923,7 @@ public:
 
 	void startManagers();
 
-	void startGroundZones();
-
-	void startSpaceZones();
+	void startZones();
 
 	void stopManagers();
 
@@ -963,11 +933,11 @@ public:
 
 	void clearZones();
 
-	void timedShutdown(int minutes, int flags);
+	void timedShutdown(int minutes);
 
-	void addTotalSentPacket(unsigned int count);
+	void addTotalSentPacket(int count);
 
-	void addTotalResentPacket(unsigned int count);
+	void addTotalResentPacket(int count);
 
 	void printInfo();
 
@@ -1142,11 +1112,11 @@ public:
 
 	Optional<ManagedReference<PetManagerPOD* >> petManager;
 
-	Optional<unsigned long long> totalSentPackets;
+	Optional<int> totalSentPackets;
 
 	Optional<int> serverCap;
 
-	Optional<unsigned long long> totalResentPackets;
+	Optional<int> totalResentPackets;
 
 	Optional<AtomicInteger> currentPlayers;
 

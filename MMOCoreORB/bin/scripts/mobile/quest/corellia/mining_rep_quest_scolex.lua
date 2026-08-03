@@ -2,7 +2,6 @@ mining_rep_quest_scolex = Creature:new {
 	objectName = "@mob/creature_names:miner",
 	socialGroup = "townsperson",
 	faction = "townsperson",
-	mobType = MOB_NPC,
 	level = 5,
 	chanceHit = 0.25,
 	damageMin = 45,
@@ -46,16 +45,8 @@ mining_rep_quest_scolex = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	weapons = {"pirate_weapons_light"},
+	attacks = merge(marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(mining_rep_quest_scolex, "mining_rep_quest_scolex")

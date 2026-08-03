@@ -212,15 +212,6 @@ trainerSkills = {
 		"crafting_armorsmith_complexity_04"
 	},
 
-  trainer_armorweaver = {
-    "crafting_armorweaver_novice",
-    "crafting_armorweaver_master",
-    "crafting_armorweaver_combine_01",
-    "crafting_armorweaver_combine_02",
-    "crafting_armorweaver_combine_03",
-    "crafting_armorweaver_combine_04"
-  },
-  
 	trainer_bioengineer = {
 		"outdoors_bio_engineer_novice",
 		"outdoors_bio_engineer_master",
@@ -368,7 +359,7 @@ trainerSkills = {
 		"outdoors_creaturehandler_support_04"
 	},
 
-trainer_dancer = {
+	trainer_dancer = {
 		"social_dancer_novice",
 		"social_dancer_master",
 		"social_dancer_ability_01",
@@ -386,11 +377,7 @@ trainer_dancer = {
 		"social_dancer_shock_01",
 		"social_dancer_shock_02",
 		"social_dancer_shock_03",
-		"social_dancer_shock_04",
-		"social_entertainer_healing_01",
-		"social_entertainer_healing_02",
-		"social_entertainer_healing_03",
-		"social_entertainer_healing_04"
+		"social_dancer_shock_04"
 	},
 
 	trainer_doctor = {
@@ -477,7 +464,7 @@ trainer_dancer = {
 		"crafting_merchant_management_04"
 	},
 
-trainer_musician = {
+	trainer_musician = {
 		"social_musician_novice",
 		"social_musician_master",
 		"social_musician_ability_01",
@@ -495,11 +482,7 @@ trainer_musician = {
 		"social_musician_shock_01",
 		"social_musician_shock_02",
 		"social_musician_shock_03",
-		"social_musician_shock_04",
-		"social_entertainer_healing_01",
-		"social_entertainer_healing_02",
-		"social_entertainer_healing_03",
-		"social_entertainer_healing_04"
+		"social_musician_shock_04"
 	},
 
 	trainer_pistol = {
@@ -542,27 +525,6 @@ trainer_musician = {
 		"combat_polearm_support_02",
 		"combat_polearm_support_03",
 		"combat_polearm_support_04"
-	},
-
-	trainer_prospector = {
-		"crafting_artisan_novice",
-		"crafting_artisan_master",
-		"crafting_artisan_engineering_01",
-		"crafting_artisan_engineering_02",
-		"crafting_artisan_engineering_03",
-		"crafting_artisan_engineering_04",
-		"crafting_artisan_domestic_01",
-		"crafting_artisan_domestic_02",
-		"crafting_artisan_domestic_03",
-		"crafting_artisan_domestic_04",
-		"crafting_artisan_business_01",
-		"crafting_artisan_business_02",
-		"crafting_artisan_business_03",
-		"crafting_artisan_business_04",
-		"crafting_artisan_survey_01",
-		"crafting_artisan_survey_02",
-		"crafting_artisan_survey_03",
-		"crafting_artisan_survey_04"
 	},
 
 	trainer_politician = {
@@ -832,7 +794,7 @@ trainer_musician = {
 	},
 
 	trainer_jedi = {
-	  	"jedi_padawan_novice",
+		"jedi_padawan_novice",
 		"jedi_padawan_master",
 		"jedi_padawan_saber_01",
 		"jedi_padawan_saber_02",
@@ -922,42 +884,49 @@ trainer_musician = {
 		"jedi_dark_side_master_force_manipulation_02",
 		"jedi_dark_side_master_force_manipulation_03",
 		"jedi_dark_side_master_force_manipulation_04",
-		"returns_jedi_elder_light_novice",
-		"returns_jedi_elder_light_master",
-		"returns_jedi_elder_light_lightsaber_01",
-		"returns_jedi_elder_light_lightsaber_02",
-		"returns_jedi_elder_light_lightsaber_03",
-		"returns_jedi_elder_light_lightsaber_04",
-		"returns_jedi_elder_light_healing_01",
-		"returns_jedi_elder_light_healing_02",
-		"returns_jedi_elder_light_healing_03",
-		"returns_jedi_elder_light_healing_04",
-		"returns_jedi_elder_light_enhancer_01",
-		"returns_jedi_elder_light_enhancer_02",
-		"returns_jedi_elder_light_enhancer_03",
-		"returns_jedi_elder_light_enhancer_04",
-		"returns_jedi_elder_light_powers_01",
-		"returns_jedi_elder_light_powers_02",
-		"returns_jedi_elder_light_powers_03",
-		"returns_jedi_elder_light_powers_04",
-		"returns_jedi_elder_dark_novice",
-		"returns_jedi_elder_dark_master",
-		"returns_jedi_elder_dark_lightsaber_01",
-		"returns_jedi_elder_dark_lightsaber_02",
-		"returns_jedi_elder_dark_lightsaber_03",
-		"returns_jedi_elder_dark_lightsaber_04",
-		"returns_jedi_elder_dark_healing_01",
-		"returns_jedi_elder_dark_healing_02",
-		"returns_jedi_elder_dark_healing_03",
-		"returns_jedi_elder_dark_healing_04",
-		"returns_jedi_elder_dark_enhancer_01",
-		"returns_jedi_elder_dark_enhancer_02",
-		"returns_jedi_elder_dark_enhancer_03",
-		"returns_jedi_elder_dark_enhancer_04",
-		"returns_jedi_elder_dark_powers_01",
-		"returns_jedi_elder_dark_powers_02",
-		"returns_jedi_elder_dark_powers_03",
-		"returns_jedi_elder_dark_powers_04"
+		"frs_post9_light_novice",
+		"frs_post9_light_master",
+		"frs_post9_light_lightsaber_01",
+		"frs_post9_light_lightsaber_02",
+		"frs_post9_light_lightsaber_03",
+		"frs_post9_light_lightsaber_04",
+		"frs_post9_light_healing_01",
+		"frs_post9_light_healing_02",
+		"frs_post9_light_healing_03",
+		"frs_post9_light_healing_04",
+		"frs_post9_light_enhancer_01",
+		"frs_post9_light_enhancer_02",
+		"frs_post9_light_enhancer_03",
+		"frs_post9_light_enhancer_04",
+		"frs_post9_light_powers_01",
+		"frs_post9_light_powers_02",
+		"frs_post9_light_powers_03",
+		"frs_post9_light_powers_04",
+		"frs_post9_dark_novice",
+		"frs_post9_dark_master",
+		"frs_post9_dark_lightsaber_01",
+		"frs_post9_dark_lightsaber_02",
+		"frs_post9_dark_lightsaber_03",
+		"frs_post9_dark_lightsaber_04",
+		"frs_post9_dark_healing_01",
+		"frs_post9_dark_healing_02",
+		"frs_post9_dark_healing_03",
+		"frs_post9_dark_healing_04",
+		"frs_post9_dark_enhancer_01",
+		"frs_post9_dark_enhancer_02",
+		"frs_post9_dark_enhancer_03",
+		"frs_post9_dark_enhancer_04",
+		"frs_post9_dark_powers_01",
+		"frs_post9_dark_powers_02",
+		"frs_post9_dark_powers_03",
+		"frs_post9_dark_powers_04"
 	},
-	
+
+	trainer_basebuster = {
+		"base_bust_novice",
+		"base_bust_security_hacker_01",
+		"base_bust_genetic_decrypter_01",
+		"base_bust_power_disruptor_01",
+		"base_bust_destruction_sequencer_01",
+	},
 }

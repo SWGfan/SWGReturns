@@ -50,9 +50,6 @@ function LokStaticSpawnsScreenPlay:spawnMobiles()
 
 	--Abandoned Settlers Camp (-130, -350)
 	spawnMobile("lok", "aged_kimogila", 4200, -252.0, 11.1, -455.0, -6, 0)
-	
-	--Asylum Spynet
-	spawnMobile("lok", "informant_npc_lvl_3", 1, -2963.8, 66.9, 557.1, -89, 0)
 
 	--Abandoned Settlers Camp Ruins (5000, -4100)
 	spawnMobile("lok", "aged_kimogila", 4200, 5086.8, 12.1, -4114.6, 139, 0)

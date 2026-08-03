@@ -79,28 +79,7 @@ object_tangible_wearables_boots_boots_s12 = object_tangible_wearables_boots_shar
 				"object/mobile/vendor/twilek_male.iff",
 				"object/mobile/vendor/weequay_male.iff",
 				"object/mobile/vendor/zabrak_female.iff",
-				"object/mobile/vendor/zabrak_male.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/mobile/vendor/zabrak_male.iff" },
 
 	numberExperimentalProperties = {1, 1, 1, 1},
 	experimentalProperties = {"XX", "XX", "XX", "XX"},
@@ -110,7 +89,7 @@ object_tangible_wearables_boots_boots_s12 = object_tangible_wearables_boots_shar
 	experimentalMin = {0, 0, 0, 1000},
 	experimentalMax = {0, 0, 0, 1000},
 	experimentalPrecision = {0, 0, 0, 0},
-	experimentalCombineType = {0, 0, 4, 4},
+	experimentalCombineType = {0, 0, 16, 4},
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_boots_boots_s12, "object/tangible/wearables/boots/boots_s12.iff")

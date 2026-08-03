@@ -86,7 +86,7 @@ class ZonePOD;
 
 using namespace server::zone;
 
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
 #include "templates/SharedObjectTemplate.h"
 
@@ -127,7 +127,7 @@ namespace building {
 
 class BuildingObject : public StructureObject {
 public:
-	static const int MAXPLAYERITEMS = 1000;
+	static const int MAXPLAYERITEMS = 5000;
 
 	BuildingObject();
 
@@ -211,23 +211,23 @@ public:
 
 	void notifyRemoveFromZone();
 
-	void notifyInsert(TreeEntry* obj);
+	void notifyInsert(QuadTreeEntry* obj);
 
 	void notifyInsertToZone(Zone* zone);
 
-	void notifyDissapear(TreeEntry* obj);
+	void notifyDissapear(QuadTreeEntry* obj);
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void insert(TreeEntry* obj);
+	void insert(QuadTreeEntry* obj);
 
-	void remove(TreeEntry* obj);
+	void remove(QuadTreeEntry* obj);
 
-	void update(TreeEntry* obj);
+	void update(QuadTreeEntry* obj);
 
-	void inRange(TreeEntry* obj, float range);
+	void inRange(QuadTreeEntry* obj, float range);
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
@@ -254,6 +254,8 @@ public:
 	int notifyObjectRemovedFromChild(SceneObject* object, SceneObject* child);
 
 	int getCurrentNumberOfPlayerItems();
+
+	int getCurrentNumberOfPlayerVendors();
 
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
@@ -309,6 +311,8 @@ public:
 	unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
+
+	String getPackupMessage();
 
 	bool hasAccessFee() const;
 
@@ -428,7 +432,7 @@ protected:
 public:
 	bool publicStructure;
 
-	static const int MAXPLAYERITEMS = 1000;
+	static const int MAXPLAYERITEMS = 5000;
 
 protected:
 	UnicodeString signName;
@@ -522,23 +526,23 @@ public:
 
 	void notifyRemoveFromZone();
 
-	void notifyInsert(TreeEntry* obj);
+	void notifyInsert(QuadTreeEntry* obj);
 
 	void notifyInsertToZone(Zone* zone);
 
-	void notifyDissapear(TreeEntry* obj);
+	void notifyDissapear(QuadTreeEntry* obj);
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	void notifyObjectInsertedToZone(SceneObject* object);
 
-	void insert(TreeEntry* obj);
+	void insert(QuadTreeEntry* obj);
 
-	void remove(TreeEntry* obj);
+	void remove(QuadTreeEntry* obj);
 
-	void update(TreeEntry* obj);
+	void update(QuadTreeEntry* obj);
 
-	void inRange(TreeEntry* obj, float range);
+	void inRange(QuadTreeEntry* obj, float range);
 
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
@@ -565,6 +569,8 @@ public:
 	int notifyObjectRemovedFromChild(SceneObject* object, SceneObject* child);
 
 	int getCurrentNumberOfPlayerItems();
+
+	int getCurrentNumberOfPlayerVendors();
 
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
@@ -620,6 +626,8 @@ public:
 	virtual unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
+
+	String getPackupMessage();
 
 	bool hasAccessFee() const;
 
@@ -789,6 +797,8 @@ public:
 
 	int getCurrentNumberOfPlayerItems();
 
+	int getCurrentNumberOfPlayerVendors();
+
 	void destroyAllPlayerItems();
 
 	void onEnter(CreatureObject* player);
@@ -814,6 +824,8 @@ public:
 	unsigned int getMaximumNumberOfPlayerItems();
 
 	String getRedeedMessage();
+
+	String getPackupMessage();
 
 	bool hasAccessFee() const;
 

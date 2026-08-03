@@ -6,7 +6,7 @@
 #include "GarageDataComponent.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 
-void GarageZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, TreeEntry* entry) const {
+void GarageZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, QuadTreeEntry* entry) const {
 
 	ManagedReference<SceneObject*> obj = cast<SceneObject*>(entry);
 
@@ -58,7 +58,7 @@ void GarageZoneComponent::notifyPositionUpdate(SceneObject* sceneObject, TreeEnt
 	}
 }
 
-void GarageZoneComponent::notifyDissapear(SceneObject* sceneObject, TreeEntry* entry) const {
+void GarageZoneComponent::notifyDissapear(SceneObject* sceneObject, QuadTreeEntry* entry) const {
 	StructureZoneComponent::notifyDissapear(sceneObject, entry);
 
 	ManagedReference<SceneObject*> obj = cast<SceneObject*>(entry);

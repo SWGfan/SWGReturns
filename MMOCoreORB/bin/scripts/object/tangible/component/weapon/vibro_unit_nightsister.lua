@@ -41,7 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_tangible_component_weapon_vibro_unit_nightsister = object_tangible_component_weapon_shared_vibro_unit_advanced:new {
+object_tangible_component_weapon_vibro_unit_nightsister = object_tangible_component_weapon_shared_vibro_unit_nightsister:new {
 
 }
 

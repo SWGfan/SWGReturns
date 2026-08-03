@@ -1,3 +1,0 @@
-object_building_player_player_guildhall_tatooine_style_04 = object_building_player_shared_player_guildhall_tatooine_style_04:new {
-}
-ObjectTemplates:addTemplate(object_building_player_player_guildhall_tatooine_style_04, "object/building/player/player_guildhall_tatooine_style_04.iff")

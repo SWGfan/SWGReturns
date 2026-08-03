@@ -58,43 +58,34 @@ public:
 				if (ghost == nullptr)
 					return INVALIDTARGET;
 
-				String questName = args.getStringToken();
-				int questCRC;
+				int quest = args.getIntToken();
 
-				if (questName.contains("quest")) {
-					questCRC = questName.hashCode();
-				} else {
-					questCRC = Integer::valueOf(questName);
-				}
+				ghost->completeQuest(quest);
 
-				if (!args.hasMoreTokens()) {
-					ghost->completeQuest(questCRC);
-					creature->sendSystemMessage("Completed quest.");
-				} else {
-					int active = args.getIntToken();
-					int completed = args.getIntToken();
-					int finished = args.getIntToken();
+			} else if (commandType.beginsWith("spdata")){
+				PlayerObject* ghost = targetCreature->getPlayerObject();
 
-					PlayerQuestData data;
-					data.setOwnerId(ghost->getObjectID());
-					data.setActiveStepBitmask(active);
-					data.setCompletedStepBitmask(completed);
-					data.setCompletedFlag(finished);
+				if (ghost == NULL)
+					return INVALIDTARGET;
 
-					ghost->setPlayerQuestData(questCRC, data, true);
-					creature->sendSystemMessage("Updated quest progress.");
-				}
+				String screenPlayName, screenPlayVariable, value;
+				args.getStringToken(screenPlayName);
+				args.getStringToken(screenPlayVariable);
+				args.getStringToken(value);
+
+				ghost->setScreenPlayData(screenPlayName, screenPlayVariable, value);
+
 			} else {
 				creature->sendSystemMessage("SYNTAX: /completeQuest screenplaystate <screenPlayStateName> <state>");
+				creature->sendSystemMessage("SYNTAX: /completeQuest spdata <screenPlayName> <screenPlayVariable> <data>");
 				creature->sendSystemMessage("SYNTAX: /completeQuest quest <quest>");
-				creature->sendSystemMessage("SYNTAX: /completeQuest quest <questName> <activeQuestBitmask> <completedQuestBitmask> <questCompleted>");
 
 				return INVALIDPARAMETERS;
 			}
 		} catch (Exception& e) {
 			creature->sendSystemMessage("SYNTAX: /completeQuest screenplaystate <screenPlayStateName> <state>");
+			creature->sendSystemMessage("SYNTAX: /completeQuest spdata <screenPlayName> <screenPlayVariable> <data>");
 			creature->sendSystemMessage("SYNTAX: /completeQuest quest <quest>");
-			creature->sendSystemMessage("SYNTAX: /completeQuest quest <questName> <activeQuestBitmask> <completedQuestBitmask> <questCompleted>");
 
 			return INVALIDPARAMETERS;
 		}

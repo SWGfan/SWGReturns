@@ -2,7 +2,6 @@ bh_tusken_carnage_champion = Creature:new {
 	objectName = "@mob/creature_names:tusken_fort_tusken_champion",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
-	mobType = MOB_NPC,
 	level = 116,
 	chanceHit = 3.85,
 	damageMin = 750,
@@ -10,7 +9,7 @@ bh_tusken_carnage_champion = Creature:new {
 	baseXp = 11015,
 	baseHAM = 43000,
 	baseHAMmax = 53000,
-	armor = 1,
+	armor = 2,
 	resists = {85,60,30,100,-1,100,-1,-1,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -75,17 +74,9 @@ bh_tusken_carnage_champion = Creature:new {
 			lootChance = 5320000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "tusken_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"tusken_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster,fencermaster,riflemanmaster),
-	secondaryAttacks = { }
+	attacks = merge(marksmanmaster,brawlermaster,fencermaster,riflemanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_tusken_carnage_champion, "bh_tusken_carnage_champion")

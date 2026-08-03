@@ -44,26 +44,22 @@
 SaberThrow3Command = {
         name = "saberthrow3",
 
-	damageMultiplier = 1.0,
-	speedMultiplier = 2,
+	damageMultiplier = 2.0,
+	speedMultiplier = 4.5,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 3.5,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	coneAngle = 30,
 	coneAction = true,
-	forceCostMultiplier = 1.5,
-	accuracyBonus = 50,
+	forceCostMultiplier = 2.5,
 	visMod = 25,
-
-
-  
 
 	stateEffects = {
 	   StateEffect( 
 		KNOCKDOWN_EFFECT, 
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
-		{}, 
+		{},
 		100, 
 		0, 
 		0
@@ -74,7 +70,7 @@ SaberThrow3Command = {
 
 	combatSpam = "saberthrow3",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	weaponType = JEDIWEAPON,
 

@@ -43,40 +43,23 @@
 
 ForceLightningSingle2Command = {
 	name = "forcelightningsingle2",
-  
-  minDamage = 1400,
-  maxDamage = 2250,
-  speed = 1.75,
-  forceCost = 60,
-  actionCostMultiplier = 1,
-  forceCostMultiplier = 1,
+
+	minDamage = 600,
+	maxDamage = 1200,
+	speed = 2.5,
+	forceCost = 150,
 	visMod = 25,
 	accuracySkillMod = "forcelightning_accuracy",
 
 	stateEffects = {
-    StateEffect(
-    STUN_EFFECT,
-    {},
-    {},
-    { "jedi_state_defense" },
-    30,
-    0,
-    10
-    ),   
-  },
-
-	dotEffects = {
-		DotEffect(
-			ONFIRE,
-			{"resistance_fire", "fire_resist"},
-			HEALTH,
-			true,
+		StateEffect(
+			DIZZY_EFFECT,
+			{},
+			{},
+			{ "jedi_state_defense" },
+			55,
 			0,
-			40,
-			100,
-			20,
-			10,
-			8
+			10
 		)
 	},
 
@@ -85,10 +68,15 @@ ForceLightningSingle2Command = {
 
 	combatSpam = "forcelightningsingle2",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	forceAttack = true,
 	damageType = ELECTRICITY_DAMAGE,
+
+	frsLightMinDamageModifier = 30,
+	frsLightMaxDamageModifier = 40,
+	frsDarkMinDamageModifier = 30,
+	frsDarkMaxDamageModifier = 40,
 
 	range = 32
 }

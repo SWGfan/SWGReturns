@@ -2,7 +2,6 @@ korrkoressk = Creature:new {
 	objectName = "",
 	socialGroup = "jabba",
 	faction = "jabba",
-	mobType = MOB_NPC,
 	level = 9,
 	chanceHit = 0.270000,
 	damageMin = 80,
@@ -25,7 +24,24 @@ korrkoressk = Creature:new {
 	creatureBitmask = STALKER,
 	diet = HERBIVORE,
 
-	templates = {"thug"},
+	templates = {
+		"object/mobile/dressed_criminal_thug_aqualish_male_01.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_male_02.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_female_01.iff",
+		"object/mobile/dressed_criminal_thug_aqualish_female_02.iff",
+		"object/mobile/dressed_criminal_thug_bothan_male_01.iff",
+		"object/mobile/dressed_criminal_thug_bothan_female_01.iff",
+		"object/mobile/dressed_criminal_thug_human_male_01.iff",
+		"object/mobile/dressed_criminal_thug_human_male_02.iff",
+		"object/mobile/dressed_criminal_thug_human_female_01.iff",
+		"object/mobile/dressed_criminal_thug_human_female_02.iff",
+		"object/mobile/dressed_criminal_thug_rodian_male_01.iff",
+		"object/mobile/dressed_criminal_thug_rodian_female_01.iff",
+		"object/mobile/dressed_criminal_thug_trandoshan_male_01.iff",
+		"object/mobile/dressed_criminal_thug_trandoshan_female_01.iff",
+		"object/mobile/dressed_criminal_thug_zabrak_male_01.iff",
+		"object/mobile/dressed_criminal_thug_zabrak_female_01.iff"
+	},
 	lootGroups = {
 		{
 			groups = {
@@ -36,16 +52,8 @@ korrkoressk = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmannovice,brawlernovice),
-	secondaryAttacks = { }
+	weapons = {"pirate_weapons_light"},
+	attacks = merge(marksmannovice,brawlernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(korrkoressk, "korrkoressk")

@@ -12,7 +12,6 @@
 #include "server/zone/packets/cell/UpdateCellPermissionsMessage.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/Zone.h"
-#include "server/zone/objects/tangible/tool/CraftingStation.h"
 
 void CellObjectImplementation::initializeTransientMembers() {
 	SceneObjectImplementation::initializeTransientMembers();
@@ -34,8 +33,8 @@ void CellObjectImplementation::loadTemplateData(SharedObjectTemplate* templateDa
 void CellObjectImplementation::notifyLoadFromDatabase() {
 	SceneObjectImplementation::notifyLoadFromDatabase();
 
-	// Rebuild count to account for transient creos
-	// TODO: modify server shutdown to despawn transient mobs before final db save
+	//Rebuild count to account for transient creos
+	//TODO: modify server shutdown to despawn transient mobs before final db save
 	if (!isClientObject() && (!containerObjects.hasDelayedLoadOperationMode() || hasForceLoadObject())) {
 		containerObjects.setDelayedLoadOperationMode();
 		forceLoadObjectCount.set(0);
@@ -78,6 +77,7 @@ void CellObjectImplementation::onBuildingInsertedToZone(BuildingObject* building
 }
 
 void CellObjectImplementation::sendContainerObjectsTo(SceneObject* player, bool forceLoad) {
+
 }
 
 void CellObjectImplementation::sendBaselinesTo(SceneObject* player) {
@@ -125,14 +125,14 @@ int CellObjectImplementation::canAddObject(SceneObject* object, int containmentT
 }
 
 bool CellObjectImplementation::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow, bool notifyRoot) {
-	// Locker locker(_this);
+	//Locker locker(_this);
 
 	Zone* zone = getZone();
 
 	Locker* locker = nullptr;
 
 	if (zone != nullptr) {
-		// locker = new Locker(zone);
+//		locker = new Locker(zone);
 	}
 
 	bool ret = false;
@@ -151,6 +151,7 @@ bool CellObjectImplementation::transferObject(SceneObject* object, int containme
 			forceLoadObjectCount.increment();
 
 	} catch (...) {
+
 	}
 
 	if (oldParent == nullptr) {
@@ -186,18 +187,30 @@ int CellObjectImplementation::getCurrentNumberOfPlayerItems() {
 			ManagedReference<SceneObject*> containerObject = getContainerObject(j);
 
 			if (!strongParent->containsChildObject(containerObject) && !containerObject->isCreatureObject() && !containerObject->isVendor()) {
-				if (containerObject->isContainerObject()) {
-					count += containerObject->getCountableObjectsRecursive();
-				} else if (containerObject->isCraftingStation()) {
-					ManagedReference<SceneObject*> hopper = containerObject->getSlottedObject("ingredient_hopper");
 
-					if (hopper != nullptr) {
-						count += hopper->getCountableObjectsRecursive();
-					}
-				}
+				if (containerObject->isContainerObject())
+					count += containerObject->getCountableObjectsRecursive();
+
 				++count;
 			}
 		}
+	}
+
+	return count;
+}
+
+int CellObjectImplementation::getCurrentNumberOfPlayerVendors() {
+	int count = 0;
+
+	ManagedReference<SceneObject*> strongParent = getParent().get();
+
+	if (strongParent != nullptr) {
+		for (int j = 0; j < getContainerObjectsSize(); ++j) {
+			ManagedReference<SceneObject*> containerObject = getContainerObject(j);
+
+			if (!strongParent->containsChildObject(containerObject) && containerObject->isVendor())
+				++count;
+			}
 	}
 
 	return count;
@@ -235,11 +248,4 @@ void CellObjectImplementation::sendPermissionsTo(CreatureObject* creature, bool 
 		BaseMessage* perm = new UpdateCellPermissionsMessage(getObjectID(), allowEntry);
 		creature->sendMessage(perm);
 	}
-}
-
-void CellObjectImplementation::setCellFireVariable(float damageVar) {
-	cellFireVariable += damageVar;
-
-	if (cellFireVariable < 0.f)
-		cellFireVariable = 0.f;
 }

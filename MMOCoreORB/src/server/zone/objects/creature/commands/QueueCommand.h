@@ -50,7 +50,6 @@ protected:
 public:
 	QueueCommand(const String& skillname, ZoneProcessServer* serv);
 
-	const static int NOCOMBATQUEUE = -1;
 	const static int IMMEDIATE = 0;
 	const static int FRONT = 1;
 	const static int NORMAL = 2;
@@ -81,11 +80,6 @@ public:
 	 * Checks each invalid locomotion with the player's current locomotion
 	 */
 	bool checkInvalidLocomotions(CreatureObject* creature) const;
-
-	/*
-	*	Checks cell access for the player creature if the target is in a cell
-	*/
-	bool playerEntryCheck(CreatureObject* creature, TangibleObject* target) const;
 
 	void onStateFail(CreatureObject* creature, uint32 actioncntr) const;
 	void onLocomotionFail(CreatureObject* creature, uint32 actioncntr) const;
@@ -244,7 +238,7 @@ public:
 		return nameCRC;
 	}
 
-	inline virtual float getMaxRange() const {
+	inline float getMaxRange() const {
 		return maxRangeToTarget;
 	}
 
@@ -316,11 +310,11 @@ public:
 	}
 
 	bool isWearingArmor(CreatureObject* creo) const {
-	/*	for (int i = 0; i < creo->getSlottedObjectsSize(); ++i) {
+		for (int i = 0; i < creo->getSlottedObjectsSize(); ++i) {
 			SceneObject* item = creo->getSlottedObject(i);
 			if (item != nullptr && item->isArmorObject())
 				return true;
-		}*/
+		}
 
 		return false;
 	}
@@ -331,6 +325,7 @@ public:
 	int doCommonMedicalCommandChecks(CreatureObject* creature) const;
 
 	void checkForTef(CreatureObject* creature, CreatureObject* target) const;
+	void checkCmTef(CreatureObject* creature, CreatureObject* target) const;
 };
 
 
@@ -343,4 +338,5 @@ public:
 using namespace server::zone::objects::creature::commands;
 
 #endif //SLASHCOMMAND_H_
+
 

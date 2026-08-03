@@ -50,11 +50,11 @@ object_draft_schematic_chemistry_medpack_enhance_poison_a = object_draft_schemat
 	craftingToolTab = 64, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 27,
 	size = 1,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
 	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 720,
+	xp = 72,
 
 	assemblySkill = "medicine_assembly",
 	experimentingSkill = "medicine_experimentation",
@@ -68,7 +68,7 @@ object_draft_schematic_chemistry_medpack_enhance_poison_a = object_draft_schemat
 	ingredientTitleNames = {"first_organic_element", "second_organic_element", "first_inorganic_element", "second_inorganic_element", "delivery_medium", "drug_duration_compound", "drug_strength_compound"},
 	ingredientSlotType = {0, 0, 0, 0, 1, 1, 1},
 	resourceTypes = {"organic", "organic", "inorganic", "inorganic", "object/tangible/component/chemistry/shared_solid_delivery_shell.iff", "object/tangible/component/chemistry/shared_release_mechanism_duration.iff", "object/tangible/component/chemistry/shared_biologic_effect_controller.iff"},
-	resourceQuantities = {9, 9, 9, 9, 1, 1, 2},
+	resourceQuantities = {9, 9, 9, 9, 1, 1, 1},
 	contribution = {100, 100, 100, 100, 50, 50, 50},
 
 	targetTemplate = "object/tangible/medicine/crafted/medpack_enhance_poison_a.iff",

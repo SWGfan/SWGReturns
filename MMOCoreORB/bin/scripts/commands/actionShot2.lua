@@ -44,39 +44,51 @@
 ActionShot2Command = {
         name = "actionshot2",
 
-  damageMultiplier = 1.5,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 0.75,
-  mindCostMultiplier = 0,
-  visMod = 25,
+	damageMultiplier = 3.0,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
 
-  --[[coneAngle = 15,
-  coneAction = true,--]]
+	coneAngle = 15,
+	coneAction = true,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = ACTION_ATTRIBUTE,
 
-  animation = "fire_5_special_single", 
-  animType = GENERATE_RANGED,
+	animation = "fire_5_special_single", 
+	animType = GENERATE_RANGED,
 
-  combatSpam = "sapblast",
-      
-  dotEffects = {
-    DotEffect(  
-    BLEEDING,
-    { "resistance_bleeding", "bleed_resist" },
-    ACTION,
-    true,
-    0,
-    100,
-    100, 
-    60
-    ),      
-  },
-  
-  weaponType = CARBINEWEAPON,
+	combatSpam = "sapblast",
+	    
+	stateEffects = {
+	  StateEffect( 
+		POSTUREDOWN_EFFECT, 
+		{ "postureDownRecovery" }, 
+		{ "posture_change_down_defense" }, 
+		{},
+		100, 
+		0, 
+		0 
+	  )
+	},	
 
-  range = -1
+	dotEffects = {
+	  DotEffect( 
+		BLEEDING, 
+		{ "resistance_bleeding", "bleed_resist" },
+		ACTION,
+		true,
+		0,
+		100,
+		60, 
+		60
+	  )
+	},
+	
+	weaponType = CARBINEWEAPON,
+
+	range = -1
 }
 
 AddCommand(ActionShot2Command)
+

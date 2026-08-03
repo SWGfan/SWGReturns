@@ -2,7 +2,6 @@ king_merek_harvester = Creature:new {
 	objectName = "@mob/creature_names:king_merek_harvester",
 	socialGroup = "merek",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 50,
 	chanceHit = 0.5,
 	damageMin = 395,
@@ -30,17 +29,12 @@ king_merek_harvester = Creature:new {
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	scale = 1.1,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_small_toxicgreen.iff",
-	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_small_toxicgreen.iff",
+	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"creatureareapoison",""}, {"blindattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"creatureareapoison",""},
+		{"blindattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(king_merek_harvester, "king_merek_harvester")

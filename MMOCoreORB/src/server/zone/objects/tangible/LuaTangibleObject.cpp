@@ -17,7 +17,6 @@ const char LuaTangibleObject::className[] = "LuaTangibleObject";
 Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "_setObject", &LuaTangibleObject::_setObject },
 		{ "_getObject", &LuaSceneObject::_getObject },
-		{ "getOptionsBitmask", &LuaTangibleObject::getOptionsBitmask },
 		{ "setOptionsBitmask", &LuaTangibleObject::setOptionsBitmask },
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask },
 		{ "setPvpStatusBit", &LuaTangibleObject::setPvpStatusBit },
@@ -51,8 +50,6 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "isBroken", &LuaTangibleObject::isBroken},
 		{ "isSliced", &LuaTangibleObject::isSliced},
 		{ "isNoTrade", &LuaTangibleObject::isNoTrade},
-		{ "getUseCount", &LuaTangibleObject::getUseCount},
-		{ "setUseCount", &LuaTangibleObject::setUseCount},
 		{ 0, 0 }
 };
 
@@ -301,14 +298,6 @@ int LuaTangibleObject::getLuaStringData(lua_State *L) {
 	return 1;
 }
 
-int LuaTangibleObject::getOptionsBitmask(lua_State* L) {
-	uint32 bitmask = realObject->getOptionsBitmask();
-
-	lua_pushinteger(L, bitmask);
-
-	return 1;
-}
-
 int LuaTangibleObject::setOptionBit(lua_State* L) {
 	uint32 bit = lua_tointeger(L, -1);
 
@@ -382,24 +371,6 @@ int LuaTangibleObject::isSliced(lua_State* L){
 	lua_pushboolean(L, sliced);
 
 	return 1;
-}
-
-int LuaTangibleObject::getUseCount(lua_State* L){
-	int useCount = realObject->getUseCount();
-
-	lua_pushinteger(L, useCount);
-
-	return 1;
-}
-
-int LuaTangibleObject::setUseCount(lua_State* L){
-	float useCount = lua_tonumber(L, -1);
-
-	Locker locker(realObject);
-
-	realObject->setUseCount(useCount, true);
-
-	return 0;
 }
 
 int LuaTangibleObject::isNoTrade(lua_State* L){

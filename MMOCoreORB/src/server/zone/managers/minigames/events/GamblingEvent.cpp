@@ -9,9 +9,25 @@ GamblingEvent::GamblingEvent(GamblingTerminal* gamblingTerm, int counter) : Task
 }
 
 void GamblingEvent::run() {
-	Reference<GamblingManager*> manager = gamblingTerminal->getZoneProcessServer()->getGamblingManager();
+	try {
+		//Locker _locker(player);
 
-	if ((gamblingTerminal->getState() != GamblingTerminal::NOGAMERUNNING) && (gamblingTerminal->getGameCount() == gameCount)) {
-		manager->continueGame(gamblingTerminal);
+		//player->info("activating command queue action");
+
+		Reference<GamblingManager*> manager = gamblingTerminal->getZoneProcessServer()->getGamblingManager();
+		//gamblingTerminal->setState(state+1);
+		if ((gamblingTerminal->getState() != GamblingTerminal::NOGAMERUNNING) && (gamblingTerminal->getGameCount() == gameCount)) {
+			manager->continueGame(gamblingTerminal);
+		}
+
+		//player->info("command queue action activated");
+
+
 	}
+	catch (...) {
+		throw;
+	}
+
+	//gamblingTerminal = nullptr; <- ?
+
 }

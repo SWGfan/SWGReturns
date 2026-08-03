@@ -16,7 +16,7 @@
  *	BuildingObjectStub
  */
 
-enum {RPC_CREATECELLOBJECTS__ = 3291165931,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_CREATECONTAINERCOMPONENT__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_UPDATESIGNNAME__BOOL_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_UPDATECELLPERMISSIONSTO__CREATUREOBJECT_,RPC_BROADCASTCELLPERMISSIONS__,RPC_BROADCASTCELLPERMISSIONS__LONG_,RPC_ISALLOWEDENTRY__CREATUREOBJECT_,RPC_ISCITYBANNED__CREATUREOBJECT_,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_HASTEMPLATEEJECTIONPOINT__,RPC_EJECTOBJECT__CREATUREOBJECT_,RPC_NOTIFYREMOVEFROMZONE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_NOTIFYOBJECTINSERTEDTOZONE__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDESTROYTO__SCENEOBJECT_,RPC_ADDCELL__CELLOBJECT_INT_,RPC_ISSTATICBUILDING__,RPC_GETCELL__INT_,RPC_GETCELL__STRING_,RPC_GETTOTALCELLNUMBER__,RPC_NOTIFYOBJECTINSERTEDTOCHILD__SCENEOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_NOTIFYOBJECTREMOVEDFROMCHILD__SCENEOBJECT_SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_DESTROYALLPLAYERITEMS__,RPC_ONENTER__CREATUREOBJECT_,RPC_ONEXIT__CREATUREOBJECT_LONG_,RPC_SETSIGNOBJECT__SIGNOBJECT_,RPC_GETSIGNOBJECT__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISCONDEMNED__,RPC_GETMAPCELLSIZE__,RPC_TOGGLEPRIVACY__,RPC_GETMAXIMUMNUMBEROFPLAYERITEMS__,RPC_GETREDEEDMESSAGE__,RPC_HASACCESSFEE__,RPC_GETACCESSFEE__,RPC_CANCHANGEACCESSFEE__,RPC_SETACCESSFEE__INT_INT_,RPC_REMOVEACCESSFEE__,RPC_GETACCESSFEEDELAY__,RPC_PAYACCESSFEE__CREATUREOBJECT_,RPC_UPDATEPAIDACCESSLIST__,RPC_REGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_UNREGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_ISINPLAYERCITY__,RPC_CANPLAYERREGISTERWITHIN__,RPC_ISPLAYERREGISTEREDWITHIN__LONG_,RPC_CREATECHILDOBJECTS__,RPC_SPAWNCHILDCREATURESFROMTEMPLATE__,RPC_HASTEMPLATECHILDCREATURES__,RPC_DESTROYCHILDOBJECTS__,RPC_ISRESIDENCE__,RPC_SETRESIDENCE__BOOL_,RPC_GETFACTIONBASETYPE__,RPC_GETOUTOFRANGEDISTANCE__,RPC_GETCELLNAME__LONG_};
+enum {RPC_CREATECELLOBJECTS__ = 3291165931,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_CREATECONTAINERCOMPONENT__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_UPDATESIGNNAME__BOOL_,RPC_SENDCONTAINEROBJECTSTO__SCENEOBJECT_BOOL_,RPC_UPDATECELLPERMISSIONSTO__CREATUREOBJECT_,RPC_BROADCASTCELLPERMISSIONS__,RPC_BROADCASTCELLPERMISSIONS__LONG_,RPC_ISALLOWEDENTRY__CREATUREOBJECT_,RPC_ISCITYBANNED__CREATUREOBJECT_,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_HASTEMPLATEEJECTIONPOINT__,RPC_EJECTOBJECT__CREATUREOBJECT_,RPC_NOTIFYREMOVEFROMZONE__,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_NOTIFYOBJECTINSERTEDTOZONE__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDDESTROYTO__SCENEOBJECT_,RPC_ADDCELL__CELLOBJECT_INT_,RPC_ISSTATICBUILDING__,RPC_GETCELL__INT_,RPC_GETCELL__STRING_,RPC_GETTOTALCELLNUMBER__,RPC_NOTIFYOBJECTINSERTEDTOCHILD__SCENEOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_NOTIFYOBJECTREMOVEDFROMCHILD__SCENEOBJECT_SCENEOBJECT_,RPC_GETCURRENTNUMBEROFPLAYERITEMS__,RPC_GETCURRENTNUMBEROFPLAYERVENDORS__,RPC_DESTROYALLPLAYERITEMS__,RPC_ONENTER__CREATUREOBJECT_,RPC_ONEXIT__CREATUREOBJECT_LONG_,RPC_SETSIGNOBJECT__SIGNOBJECT_,RPC_GETSIGNOBJECT__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISCONDEMNED__,RPC_GETMAPCELLSIZE__,RPC_TOGGLEPRIVACY__,RPC_GETMAXIMUMNUMBEROFPLAYERITEMS__,RPC_GETREDEEDMESSAGE__,RPC_GETPACKUPMESSAGE__,RPC_HASACCESSFEE__,RPC_GETACCESSFEE__,RPC_CANCHANGEACCESSFEE__,RPC_SETACCESSFEE__INT_INT_,RPC_REMOVEACCESSFEE__,RPC_GETACCESSFEEDELAY__,RPC_PAYACCESSFEE__CREATUREOBJECT_,RPC_UPDATEPAIDACCESSLIST__,RPC_REGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_UNREGISTERPROFESSIONAL__CREATUREOBJECT_,RPC_ISINPLAYERCITY__,RPC_CANPLAYERREGISTERWITHIN__,RPC_ISPLAYERREGISTEREDWITHIN__LONG_,RPC_CREATECHILDOBJECTS__,RPC_SPAWNCHILDCREATURESFROMTEMPLATE__,RPC_HASTEMPLATECHILDCREATURES__,RPC_DESTROYCHILDOBJECTS__,RPC_ISRESIDENCE__,RPC_SETRESIDENCE__BOOL_,RPC_GETFACTIONBASETYPE__,RPC_GETOUTOFRANGEDISTANCE__,RPC_GETCELLNAME__LONG_};
 
 BuildingObject::BuildingObject() : StructureObject(DummyConstructorParameter::instance()) {
 	BuildingObjectImplementation* _implementation = new BuildingObjectImplementation();
@@ -304,7 +304,7 @@ void BuildingObject::notifyRemoveFromZone() {
 	}
 }
 
-void BuildingObject::notifyInsert(TreeEntry* obj) {
+void BuildingObject::notifyInsert(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -329,7 +329,7 @@ void BuildingObject::notifyInsertToZone(Zone* zone) {
 	}
 }
 
-void BuildingObject::notifyDissapear(TreeEntry* obj) {
+void BuildingObject::notifyDissapear(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -339,7 +339,7 @@ void BuildingObject::notifyDissapear(TreeEntry* obj) {
 	}
 }
 
-void BuildingObject::notifyPositionUpdate(TreeEntry* entry) {
+void BuildingObject::notifyPositionUpdate(QuadTreeEntry* entry) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -364,7 +364,7 @@ void BuildingObject::notifyObjectInsertedToZone(SceneObject* object) {
 	}
 }
 
-void BuildingObject::insert(TreeEntry* obj) {
+void BuildingObject::insert(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -374,7 +374,7 @@ void BuildingObject::insert(TreeEntry* obj) {
 	}
 }
 
-void BuildingObject::remove(TreeEntry* obj) {
+void BuildingObject::remove(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -384,7 +384,7 @@ void BuildingObject::remove(TreeEntry* obj) {
 	}
 }
 
-void BuildingObject::update(TreeEntry* obj) {
+void BuildingObject::update(QuadTreeEntry* obj) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -394,7 +394,7 @@ void BuildingObject::update(TreeEntry* obj) {
 	}
 }
 
-void BuildingObject::inRange(TreeEntry* obj, float range) {
+void BuildingObject::inRange(QuadTreeEntry* obj, float range) {
 	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
@@ -570,6 +570,20 @@ int BuildingObject::getCurrentNumberOfPlayerItems() {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getCurrentNumberOfPlayerItems();
+	}
+}
+
+int BuildingObject::getCurrentNumberOfPlayerVendors() {
+	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETCURRENTNUMBEROFPLAYERVENDORS__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getCurrentNumberOfPlayerVendors();
 	}
 }
 
@@ -772,6 +786,22 @@ String BuildingObject::getRedeedMessage() {
 		return _return_getRedeedMessage;
 	} else {
 		return _implementation->getRedeedMessage();
+	}
+}
+
+String BuildingObject::getPackupMessage() {
+	BuildingObjectImplementation* _implementation = static_cast<BuildingObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETPACKUPMESSAGE__);
+
+		String _return_getPackupMessage;
+		method.executeWithAsciiReturn(_return_getPackupMessage);
+		return _return_getPackupMessage;
+	} else {
+		return _implementation->getPackupMessage();
 	}
 }
 
@@ -1583,8 +1613,22 @@ int BuildingObjectImplementation::getMapCellSize() const{
 
 String BuildingObjectImplementation::getRedeedMessage() {
 	// server/zone/objects/building/BuildingObject.idl():  		return 
-	if (getCurrentNumberOfPlayerItems() > 0)	// server/zone/objects/building/BuildingObject.idl():  			return "clear_building_for_delete";
+	if (getCurrentNumberOfPlayerItems() > 0 || getCurrentNumberOfPlayerVendors() > 0)	// server/zone/objects/building/BuildingObject.idl():  			return "clear_building_for_delete";
 	return "clear_building_for_delete";
+	// server/zone/objects/building/BuildingObject.idl():  		return "";
+	return "";
+}
+
+String BuildingObjectImplementation::getPackupMessage() {
+	// server/zone/objects/building/BuildingObject.idl():  		if 
+	if (isCivicStructure() || isGCWBase())	// server/zone/objects/building/BuildingObject.idl():  			return "packup_not_eligible_02";
+	return "packup_not_eligible_02";
+	// server/zone/objects/building/BuildingObject.idl():  		if 
+	if (getCurrentNumberOfPlayerItems() <= 0)	// server/zone/objects/building/BuildingObject.idl():  			return "packup_not_eligible_03";
+	return "packup_not_eligible_03";
+	// server/zone/objects/building/BuildingObject.idl():  		return 
+	if (getCurrentNumberOfPlayerVendors() > 0)	// server/zone/objects/building/BuildingObject.idl():  			return "packup_not_eligible_04";
+	return "packup_not_eligible_04";
 	// server/zone/objects/building/BuildingObject.idl():  		return "";
 	return "";
 }
@@ -1880,6 +1924,13 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_GETCURRENTNUMBEROFPLAYERVENDORS__:
+		{
+			
+			int _m_res = getCurrentNumberOfPlayerVendors();
+			resp->insertSignedInt(_m_res);
+		}
+		break;
 	case RPC_DESTROYALLPLAYERITEMS__:
 		{
 			
@@ -1973,6 +2024,13 @@ void BuildingObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 		{
 			
 			String _m_res = getRedeedMessage();
+			resp->insertAscii(_m_res);
+		}
+		break;
+	case RPC_GETPACKUPMESSAGE__:
+		{
+			
+			String _m_res = getPackupMessage();
 			resp->insertAscii(_m_res);
 		}
 		break;
@@ -2259,6 +2317,10 @@ int BuildingObjectAdapter::getCurrentNumberOfPlayerItems() {
 	return (static_cast<BuildingObject*>(stub))->getCurrentNumberOfPlayerItems();
 }
 
+int BuildingObjectAdapter::getCurrentNumberOfPlayerVendors() {
+	return (static_cast<BuildingObject*>(stub))->getCurrentNumberOfPlayerVendors();
+}
+
 void BuildingObjectAdapter::destroyAllPlayerItems() {
 	(static_cast<BuildingObject*>(stub))->destroyAllPlayerItems();
 }
@@ -2309,6 +2371,10 @@ unsigned int BuildingObjectAdapter::getMaximumNumberOfPlayerItems() {
 
 String BuildingObjectAdapter::getRedeedMessage() {
 	return (static_cast<BuildingObject*>(stub))->getRedeedMessage();
+}
+
+String BuildingObjectAdapter::getPackupMessage() {
+	return (static_cast<BuildingObject*>(stub))->getPackupMessage();
 }
 
 bool BuildingObjectAdapter::hasAccessFee() const {

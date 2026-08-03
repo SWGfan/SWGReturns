@@ -44,15 +44,14 @@
 FlameSingle2Command = {
        name = "flamesingle2",
 
-	damageMultiplier = 3.5,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 0.6,
-  mindCostMultiplier = 0,
-  accuracyBonus = 0,
-    visMod = 25,
+	damageMultiplier = 8,
+	speedMultiplier = 4,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 0,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_flame_thrower_single_2", 
 	animType = GENERATE_INTENSITY,
@@ -66,15 +65,15 @@ FlameSingle2Command = {
 		0,
 		100,
 		100, 
-		30,
+		60,
 		10,
-		15
+		2
 	  )
 	},
 	
 	weaponType = SPECIALHEAVYWEAPON,
 	
-	range = 32
+	range = 16
 }
 
 AddCommand(FlameSingle2Command)

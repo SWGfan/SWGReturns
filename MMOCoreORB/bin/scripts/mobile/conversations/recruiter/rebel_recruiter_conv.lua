@@ -41,11 +41,8 @@ member_covert_start = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_overt"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_covert"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_covert"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -58,11 +55,8 @@ member_overt_start = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_covert"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_overt"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_overt"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -161,11 +155,8 @@ stay_special_forces = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_covert"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_overt"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_overt"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 	
 	}
 }
 
@@ -209,11 +200,8 @@ stay_covert = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_overt"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_covert"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_covert"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -237,11 +225,8 @@ stay_overt = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_covert"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_covert"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_covert"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -275,11 +260,8 @@ dont_resign_covert = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_overt"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_covert"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_covert"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -303,11 +285,8 @@ dont_resign_overt = ConvoScreen:new {
 	stopConversation = "false",
 	options = {
 		{"@conversation/faction_recruiter_rebel:s_504", "confirm_go_covert"}, -- I need to address my role in the Civil War.
-		{"@conversation/faction_recruiter_rebel:s_526", "leave_time_covert"}, -- I need to go on leave for a time.
 		{"@conversation/faction_recruiter_rebel:s_538", "resign_covert"}, -- This is all too much for me. I would like to resign completely.
 		{"@conversation/faction_recruiter_rebel:s_562", "show_gcw_score"}, -- How are we doing in the war against the Imperial tyrants?
-    {"Where is our war effort concentrated right now?", "first_conv"},
-    {"I need a shuttle to the command ship at once.", "second_conv"}, 
 	}
 }
 
@@ -492,71 +471,5 @@ show_gcw_score = ConvoScreen:new {
 }
 
 rebelRecruiterConvoTemplate:addScreen(show_gcw_score);
-
-first_conv = ConvoScreen:new {
-  id = "first_conv",
-  leftDialog = "",
-  customDialogText = "The battle lines are drawn! Our forces are attacking a key Imperial Research Facility on Jakku, all able bodied personnel are needed to join the battle at once!  Are you prepared?",
-  stopConversation = "false",
-  options = {
-    {"I am ready to join the Battle of Jakku!", "reb_tp"},
-  --  {"Instance 2", "mayor3"},
- --   {"Instance 3", "mayor4"},
-  --  {"Instance 4", "mayor5"},
-    {"Not yet, I need more time to prepare.", "deny"}
-  
-  }
-}
-
-rebelRecruiterConvoTemplate:addScreen(first_conv);
-
-second_conv = ConvoScreen:new {
-  id = "second_conv",
-  leftDialog = "",
-  customDialogText = "We are really spread thin right now, the best I can do is get you a transport onto one of our CR90 Corvettes in orbit of Chandrila.",
-  stopConversation = "false",
-  options = {
-    {"Fine, let's go.", "reb_tp2"},
-  --  {"Instance 2", "mayor3"},
- --   {"Instance 3", "mayor4"},
-  --  {"Instance 4", "mayor5"},
-    --{"Not yet, I need more time to prepare.", "deny"}
-  
-  }
-}
-
-rebelRecruiterConvoTemplate:addScreen(second_conv);
-
-deny = ConvoScreen:new {
-  id = "deny",
-  leftDialog = "",
-  customDialogText = "Alright, come back when you are ready to fight!",
-  stopConversation = "true",
-  options = {
-  }
-}
-rebelRecruiterConvoTemplate:addScreen(deny);
-
-reb_tp = ConvoScreen:new {
-  id = "reb_tp",
-  leftDialog = "",
-  customDialogText = "May the force be with you then!",
-  stopConversation = "true",
-  options = {
-  --   {"I see. What would I have to do?","mayor3"},
-  }
-}
-rebelRecruiterConvoTemplate:addScreen(reb_tp);
-
-reb_tp2 = ConvoScreen:new {
-  id = "reb_tp2",
-  leftDialog = "",
-  customDialogText = "For the New Republic.",
-  stopConversation = "true",
-  options = {
-  --   {"I see. What would I have to do?","mayor3"},
-  }
-}
-rebelRecruiterConvoTemplate:addScreen(reb_tp2);
 
 addConversationTemplate("rebelRecruiterConvoTemplate", rebelRecruiterConvoTemplate);

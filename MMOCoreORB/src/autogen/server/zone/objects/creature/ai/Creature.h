@@ -117,6 +117,8 @@ public:
 
 	void incDnaSampleCount();
 
+	bool isCamouflaged(CreatureObject* target);
+
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
 	/**
@@ -260,6 +262,8 @@ public:
 
 	void incDnaSampleCount();
 
+	bool isCamouflaged(CreatureObject* target);
+
 	void fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player);
 
 	/**
@@ -397,6 +401,8 @@ public:
 	short getDnaSampleCount() const;
 
 	void incDnaSampleCount();
+
+	bool isCamouflaged(CreatureObject* target);
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 

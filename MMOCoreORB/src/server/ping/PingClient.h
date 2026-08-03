@@ -10,9 +10,8 @@
 class PingClient : public BaseClientProxy {
 public:
 	PingClient(DatagramServiceThread* serv, Socket* sock, SocketAddress& addr) : BaseClientProxy(sock, addr) {
-		setLoggingName("PingClient " + ip);
+		setLoggingName("PingClient " + getIPAddress());
 		setLogging(false);
-		setLogLevel(Logger::FATAL);
 
 		init(serv);
 	}
@@ -28,7 +27,7 @@ public:
 		Logger::getTime(time);
 
 		StringBuffer msg;
-		msg << time << " [PingServer] disconnecting client \'" << ip << "\'\n";
+		msg << time << " [PingServer] disconnecting client \'" << getIPAddress() << "\'\n";
 		Logger::console.log(msg);
 
 		BaseClientProxy::disconnect(doLock);

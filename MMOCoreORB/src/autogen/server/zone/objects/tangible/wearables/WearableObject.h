@@ -70,7 +70,7 @@ namespace wearables {
 
 class WearableObject : public TangibleObject {
 public:
-	static const int MAXSOCKETS = 8;
+	static const int MAXSOCKETS = 4;
 
 	WearableObject();
 
@@ -96,6 +96,8 @@ public:
 	bool isWearableObject();
 
 	bool isEquipped();
+
+	bool hasSeaRemovalTool(CreatureObject* player, bool removeItem);
 
 	int getMaxSockets() const;
 
@@ -153,7 +155,7 @@ protected:
 	int modsNotInSockets;
 
 public:
-	static const int MAXSOCKETS = 8;
+	static const int MAXSOCKETS = 4;
 
 protected:
 	VectorMap<String, int> wearableSkillMods;
@@ -185,6 +187,8 @@ public:
 	bool isWearableObject();
 
 	bool isEquipped();
+
+	bool hasSeaRemovalTool(CreatureObject* player, bool removeItem);
 
 	int getMaxSockets() const;
 
@@ -261,6 +265,8 @@ public:
 	bool isWearableObject();
 
 	bool isEquipped();
+
+	bool hasSeaRemovalTool(CreatureObject* player, bool removeItem);
 
 	int getMaxSockets() const;
 

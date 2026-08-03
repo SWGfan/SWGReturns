@@ -49,8 +49,7 @@ object_draft_schematic_food_additive_additive_heavy = object_draft_schematic_foo
 
    craftingToolTab = 4, -- (See DraftSchematicObjectTemplate.h)
    complexity = 9, 
-   size = 1,
-   factoryCrateSize = 1000, 
+   size = 1, 
    factoryCrateType = "object/factory/factory_crate_food.iff",
    
    xpType = "crafting_food_general", 

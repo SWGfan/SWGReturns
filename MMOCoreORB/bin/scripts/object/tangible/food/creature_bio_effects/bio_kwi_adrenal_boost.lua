@@ -45,7 +45,7 @@
 object_tangible_food_creature_bio_effects_bio_kwi_adrenal_boost = object_tangible_food_creature_bio_effects_shared_bio_kwi_adrenal_boost:new  {
 	templateType = CONSUMABLE,
 
-	duration = 3600,
+	duration = 60,
 	filling = 0,
 	nutrition = 0,
 

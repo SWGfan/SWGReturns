@@ -2,7 +2,6 @@ eni_ayka = Creature:new {
 	objectName = "",
 	customName = "Eni A'Yka",
 	socialGroup = "",
-	mobType = MOB_NPC,
 	faction = "",
 	level = 100,
 	chanceHit = 1,
@@ -29,17 +28,10 @@ eni_ayka = Creature:new {
 
 	templates = {"object/mobile/dressed_feral_force_wielder.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "xaan_talmaron_mission_target_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(eni_ayka, "eni_ayka")

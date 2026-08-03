@@ -44,20 +44,19 @@
 UnarmedLunge2Command = {
 	name = "unarmedlunge2",
 
-	damageMultiplier = 2.0,
+	damageMultiplier = 3.0,
 	speedMultiplier = 2.0,
 	accuracyBonus = 15,
-	 visMod = 25,
 	
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 2.5,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1.5,
+	actionCostMultiplier = 1.5,
+	mindCostMultiplier = 1.5,
 
 	animation = "knockdown_unarmed_1",
 
 	combatSpam = "lungeshiak",
 
-	range = 15,
+	range = 20,
 	
 	weaponType = UNARMEDWEAPON,
 
@@ -66,8 +65,8 @@ UnarmedLunge2Command = {
 		KNOCKDOWN_EFFECT, 
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
-		{}, 
-		75, 
+		{},
+		100, 
 		0, 
 		0 
 	  )

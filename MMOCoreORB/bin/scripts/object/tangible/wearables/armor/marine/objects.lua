@@ -40,21 +40,6 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
-object_tangible_wearables_armor_marine_shared_armor_marine_bracer_r = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_bracer_r.iff"}
-ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_bracer_r, 
-"object/tangible/wearables/armor/marine/shared_armor_marine_bracer_r.iff")
-
-object_tangible_wearables_armor_marine_shared_armor_marine_bracer_l = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_bracer_l.iff"}
-ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_bracer_l, 
-"object/tangible/wearables/armor/marine/shared_armor_marine_bracer_l.iff")
-
-object_tangible_wearables_armor_marine_shared_armor_marine_gloves = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_gloves.iff"}
-ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_gloves, 
-"object/tangible/wearables/armor/marine/shared_armor_marine_gloves.iff")
-
 
 object_tangible_wearables_armor_marine_shared_armor_marine_backpack = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_backpack.iff"
@@ -527,3 +512,45 @@ object_tangible_wearables_armor_marine_shared_armor_marine_leggings = SharedTang
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_leggings, "object/tangible/wearables/armor/marine/shared_armor_marine_leggings.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_chest_plate_rebel_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_chest_plate_rebel_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_chest_plate_rebel_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_chest_plate_rebel_crafted.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_boots_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_boots_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_boots_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_boots_crafted.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_helmet_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_helmet_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_helmet_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_helmet_crafted.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_leggings_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_leggings_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_leggings_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_leggings_crafted.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_bicep_l_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_bicep_l_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_bicep_l_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_bicep_l_crafted.iff")
+
+object_tangible_wearables_armor_marine_shared_armor_marine_bicep_r_crafted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/armor/marine/shared_armor_marine_bicep_r_crafted.iff"
+
+	}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_armor_marine_shared_armor_marine_bicep_r_crafted, "object/tangible/wearables/armor/marine/shared_armor_marine_bicep_r_crafted.iff")

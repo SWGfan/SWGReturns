@@ -20,7 +20,7 @@
  *	StructureObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3783376556,RPC_FINALIZE__,RPC_NOTIFYLOADFROMDATABASE__,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_CREATECHILDOBJECTS__,RPC_GETRECEIVERFLAGS__,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_DESTROYORPHANCIVICSTRUCTURE__,RPC_CHECKREQUISITESFORPLACEMENT__CREATUREOBJECT_,RPC_GETTIMESTRING__INT_,RPC_SCHEDULEMAINTENANCEEXPIRATIONEVENT__,RPC_SCHEDULEMAINTENANCETASK__INT_,RPC_UPDATESTRUCTURESTATUS__,RPC_GETDEBUGSTRUCTURESTATUS__,RPC_ISONADMINLIST__CREATUREOBJECT_,RPC_ISONADMINLIST__LONG_,RPC_ISONENTRYLIST__CREATUREOBJECT_,RPC_ISONBANLIST__CREATUREOBJECT_,RPC_ISONBANLIST__LONG_,RPC_ISONHOPPERLIST__CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_LONG_,RPC_ISOWNEROF__SCENEOBJECT_,RPC_ISOWNEROF__LONG_,RPC_ISONACCESSLIST__SCENEOBJECT_,RPC_ISONACCESSLIST__LONG_,RPC_SENDPERMISSIONLISTTO__CREATUREOBJECT_STRING_,RPC_HASPERMISSIONLIST__STRING_,RPC_ISPERMISSIONLISTFULL__STRING_,RPC_TOGGLEPERMISSION__STRING_LONG_,RPC_GRANTPERMISSION__STRING_LONG_,RPC_REVOKEPERMISSION__STRING_LONG_,RPC_REVOKEALLPERMISSIONS__LONG_,RPC_REVOKEALLPERMISSIONS__,RPC_GETREDEEDCOST__,RPC_GETOWNERCREATUREOBJECT__,RPC_GETOWNEROBJECTID__,RPC_GETDEEDOBJECTID__,RPC_GETLOTSIZE__,RPC_SETMAINTENANCEREDUCED__BOOL_,RPC_GETMAINTENANCERATE__,RPC_GETMAINTENANCEMODS__,RPC_GETBASEMAINTENANCERATE__,RPC_GETBASEPOWERRATE__,RPC_GETDELAYDESTROYHOURS__,RPC_GETSURPLUSMAINTENANCE__,RPC_GETSURPLUSPOWER__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETOWNER__LONG_,RPC_SETWAYPOINTID__LONG_,RPC_GETWAYPOINTID__,RPC_SETDEEDOBJECTID__LONG_,RPC_SETSURPLUSMAINTENANCE__INT_,RPC_ADDMAINTENANCE__FLOAT_,RPC_SUBTRACTMAINTENANCE__FLOAT_,RPC_PAYMAINTENANCE__INT_CREDITOBJECT_BOOL_,RPC_SETSURPLUSPOWER__INT_,RPC_ADDPOWER__FLOAT_,RPC_ISDECAYING__,RPC_ISDECAYED__,RPC_GETDECAYPERCENTAGE__,RPC_ISCONDEMNED__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISSTRUCTUREOBJECT__,RPC_ISCAMPSTRUCTURE__,RPC_ISREDEEDABLE__,RPC_GETREDEEDMESSAGE__,RPC_ISCIVICSTRUCTURE__,RPC_ISCITYHALL__,RPC_ISCOMMERCIALSTRUCTURE__,RPC_ISGUILDHALL__,RPC_MIGRATEPERMISSIONS__,RPC_GETNAVAREA__,RPC_HASNAVMESH__,RPC_CREATENAVMESH__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3783376556,RPC_FINALIZE__,RPC_NOTIFYLOADFROMDATABASE__,RPC_DESTROYOBJECTFROMWORLD__BOOL_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_NOTIFYINSERTTOZONE__ZONE_,RPC_CREATECHILDOBJECTS__,RPC_GETRECEIVERFLAGS__,RPC_NOTIFYSTRUCTUREPLACED__CREATUREOBJECT_,RPC_DESTROYORPHANCIVICSTRUCTURE__,RPC_CHECKREQUISITESFORPLACEMENT__CREATUREOBJECT_,RPC_GETTIMESTRING__INT_,RPC_SCHEDULEMAINTENANCEEXPIRATIONEVENT__,RPC_SCHEDULEMAINTENANCETASK__INT_,RPC_UPDATESTRUCTURESTATUS__,RPC_GETDEBUGSTRUCTURESTATUS__,RPC_ISONADMINLIST__CREATUREOBJECT_,RPC_ISONADMINLIST__LONG_,RPC_ISONENTRYLIST__CREATUREOBJECT_,RPC_ISONBANLIST__CREATUREOBJECT_,RPC_ISONBANLIST__LONG_,RPC_ISONHOPPERLIST__CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_CREATUREOBJECT_,RPC_ISONPERMISSIONLIST__STRING_LONG_,RPC_ISOWNEROF__SCENEOBJECT_,RPC_ISOWNEROF__LONG_,RPC_ISONACCESSLIST__SCENEOBJECT_,RPC_ISONACCESSLIST__LONG_,RPC_SENDPERMISSIONLISTTO__CREATUREOBJECT_STRING_,RPC_HASPERMISSIONLIST__STRING_,RPC_ISPERMISSIONLISTFULL__STRING_,RPC_TOGGLEPERMISSION__STRING_LONG_,RPC_GRANTPERMISSION__STRING_LONG_,RPC_REVOKEPERMISSION__STRING_LONG_,RPC_REVOKEALLPERMISSIONS__LONG_,RPC_REVOKEALLPERMISSIONS__,RPC_GETREDEEDCOST__,RPC_GETOWNERCREATUREOBJECT__,RPC_GETOWNEROBJECTID__,RPC_GETDEEDOBJECTID__,RPC_GETLOTSIZE__,RPC_SETMAINTENANCEREDUCED__BOOL_,RPC_GETMAINTENANCERATE__,RPC_GETMAINTENANCEMODS__,RPC_GETBASEMAINTENANCERATE__,RPC_GETBASEPOWERRATE__,RPC_GETDELAYDESTROYHOURS__,RPC_GETSURPLUSMAINTENANCE__,RPC_GETSURPLUSPOWER__,RPC_ISPUBLICSTRUCTURE__,RPC_ISPRIVATESTRUCTURE__,RPC_SETOWNER__LONG_,RPC_SETWAYPOINTID__LONG_,RPC_GETWAYPOINTID__,RPC_SETDEEDOBJECTID__LONG_,RPC_SETSURPLUSMAINTENANCE__INT_,RPC_ADDMAINTENANCE__FLOAT_,RPC_SUBTRACTMAINTENANCE__FLOAT_,RPC_PAYMAINTENANCE__INT_CREDITOBJECT_BOOL_,RPC_SETSURPLUSPOWER__INT_,RPC_ADDPOWER__FLOAT_,RPC_ISDECAYING__,RPC_ISDECAYED__,RPC_GETDECAYPERCENTAGE__,RPC_ISCONDEMNED__,RPC_SETPUBLICSTRUCTURE__BOOL_,RPC_ISSTRUCTUREOBJECT__,RPC_ISCAMPSTRUCTURE__,RPC_ISREDEEDABLE__,RPC_GETREDEEDMESSAGE__,RPC_GETPACKUPMESSAGE__,RPC_ISCIVICSTRUCTURE__,RPC_ISCITYHALL__,RPC_ISCOMMERCIALSTRUCTURE__,RPC_ISGUILDHALL__,RPC_MIGRATEPERMISSIONS__,RPC_GETNAVAREA__,RPC_HASNAVMESH__,RPC_CREATENAVMESH__,RPC_SETCONTROLDEVICE__CONTROLDEVICE_,RPC_GETCONTROLDEVICE__,RPC_ISPACKEDUP__,RPC_UNLOADFROMZONE__BOOL_};
 
 StructureObject::StructureObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	StructureObjectImplementation* _implementation = new StructureObjectImplementation();
@@ -1104,6 +1104,22 @@ String StructureObject::getRedeedMessage() {
 	}
 }
 
+String StructureObject::getPackupMessage() {
+	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETPACKUPMESSAGE__);
+
+		String _return_getPackupMessage;
+		method.executeWithAsciiReturn(_return_getPackupMessage);
+		return _return_getPackupMessage;
+	} else {
+		return _implementation->getPackupMessage();
+	}
+}
+
 bool StructureObject::isCivicStructure() const {
 	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -1215,6 +1231,65 @@ void StructureObject::createNavMesh() {
 	} else {
 		assert(this->isLockedByCurrentThread());
 		_implementation->createNavMesh();
+	}
+}
+
+void StructureObject::setControlDevice(ControlDevice* device) {
+	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETCONTROLDEVICE__CONTROLDEVICE_);
+		method.addObjectParameter(device);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setControlDevice(device);
+	}
+}
+
+ManagedWeakReference<ControlDevice* > StructureObject::getControlDevice() const {
+	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETCONTROLDEVICE__);
+
+		return static_cast<ControlDevice*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getControlDevice();
+	}
+}
+
+bool StructureObject::isPackedUp() {
+	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISPACKEDUP__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isPackedUp();
+	}
+}
+
+bool StructureObject::unloadFromZone(bool sendSelfDestroy) {
+	StructureObjectImplementation* _implementation = static_cast<StructureObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_UNLOADFROMZONE__BOOL_);
+		method.addBooleanParameter(sendSelfDestroy);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->unloadFromZone(sendSelfDestroy);
 	}
 }
 
@@ -1374,6 +1449,10 @@ bool StructureObjectImplementation::readObjectMember(ObjectInputStream* stream, 
 		TypeInfo<bool >::parseFromBinaryStream(&permissionsFixed, stream);
 		return true;
 
+	case 0xee9da35b: //StructureObject.controlDevice
+		TypeInfo<ManagedWeakReference<ControlDevice* > >::parseFromBinaryStream(&controlDevice, stream);
+		return true;
+
 	}
 
 	return false;
@@ -1500,6 +1579,15 @@ int StructureObjectImplementation::writeObjectMembers(ObjectOutputStream* stream
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0xee9da35b; //StructureObject.controlDevice
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedWeakReference<ControlDevice* > >::toBinaryStream(&controlDevice, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 
 	return _count;
 }
@@ -1532,6 +1620,8 @@ void StructureObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["permissionsFixed"] = permissionsFixed;
 
+	thisObject["controlDevice"] = controlDevice;
+
 	j["StructureObject"] = thisObject;
 }
 
@@ -1559,6 +1649,8 @@ StructureObjectImplementation::StructureObjectImplementation() {
 	permissionsFixed = false;
 	// server/zone/objects/structure/StructureObject.idl():  		navArea = null;
 	navArea = NULL;
+	// server/zone/objects/structure/StructureObject.idl():  		controlDevice = null;
+	controlDevice = NULL;
 }
 
 void StructureObjectImplementation::createChildObjects() {
@@ -1769,6 +1861,11 @@ String StructureObjectImplementation::getRedeedMessage() {
 	return "";
 }
 
+String StructureObjectImplementation::getPackupMessage() {
+	// server/zone/objects/structure/StructureObject.idl():  		return "";
+	return "";
+}
+
 void StructureObjectImplementation::migratePermissions() {
 	// server/zone/objects/structure/StructureObject.idl():  		structurePermissionList.migrateLists(super.getZoneServer(), getOwnerObjectID());
 	(&structurePermissionList)->migrateLists(TangibleObjectImplementation::getZoneServer(), getOwnerObjectID());
@@ -1784,6 +1881,21 @@ NavArea* StructureObjectImplementation::getNavArea() const{
 bool StructureObjectImplementation::hasNavmesh() const{
 	// server/zone/objects/structure/StructureObject.idl():  		return navArea;
 	return navArea;
+}
+
+void StructureObjectImplementation::setControlDevice(ControlDevice* device) {
+	// server/zone/objects/structure/StructureObject.idl():  		controlDevice = device;
+	controlDevice = device;
+}
+
+ManagedWeakReference<ControlDevice* > StructureObjectImplementation::getControlDevice() const{
+	// server/zone/objects/structure/StructureObject.idl():  		return controlDevice;
+	return controlDevice;
+}
+
+bool StructureObjectImplementation::isPackedUp() {
+	// server/zone/objects/structure/StructureObject.idl():  		return controlDevice != null;
+	return controlDevice != NULL;
 }
 
 /*
@@ -2336,6 +2448,13 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			resp->insertAscii(_m_res);
 		}
 		break;
+	case RPC_GETPACKUPMESSAGE__:
+		{
+			
+			String _m_res = getPackupMessage();
+			resp->insertAscii(_m_res);
+		}
+		break;
 	case RPC_ISCIVICSTRUCTURE__:
 		{
 			
@@ -2390,6 +2509,36 @@ void StructureObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 			createNavMesh();
 			
+		}
+		break;
+	case RPC_SETCONTROLDEVICE__CONTROLDEVICE_:
+		{
+			ControlDevice* device = static_cast<ControlDevice*>(inv->getObjectParameter());
+			
+			setControlDevice(device);
+			
+		}
+		break;
+	case RPC_GETCONTROLDEVICE__:
+		{
+			
+			DistributedObject* _m_res = getControlDevice().get();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
+	case RPC_ISPACKEDUP__:
+		{
+			
+			bool _m_res = isPackedUp();
+			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_UNLOADFROMZONE__BOOL_:
+		{
+			bool sendSelfDestroy = inv->getBooleanParameter();
+			
+			bool _m_res = unloadFromZone(sendSelfDestroy);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	default:
@@ -2677,6 +2826,10 @@ String StructureObjectAdapter::getRedeedMessage() {
 	return (static_cast<StructureObject*>(stub))->getRedeedMessage();
 }
 
+String StructureObjectAdapter::getPackupMessage() {
+	return (static_cast<StructureObject*>(stub))->getPackupMessage();
+}
+
 bool StructureObjectAdapter::isCivicStructure() const {
 	return (static_cast<StructureObject*>(stub))->isCivicStructure();
 }
@@ -2707,6 +2860,22 @@ bool StructureObjectAdapter::hasNavmesh() const {
 
 void StructureObjectAdapter::createNavMesh() {
 	(static_cast<StructureObject*>(stub))->createNavMesh();
+}
+
+void StructureObjectAdapter::setControlDevice(ControlDevice* device) {
+	(static_cast<StructureObject*>(stub))->setControlDevice(device);
+}
+
+ManagedWeakReference<ControlDevice* > StructureObjectAdapter::getControlDevice() const {
+	return (static_cast<StructureObject*>(stub))->getControlDevice();
+}
+
+bool StructureObjectAdapter::isPackedUp() {
+	return (static_cast<StructureObject*>(stub))->isPackedUp();
+}
+
+bool StructureObjectAdapter::unloadFromZone(bool sendSelfDestroy) {
+	return (static_cast<StructureObject*>(stub))->unloadFromZone(sendSelfDestroy);
 }
 
 /*
@@ -2800,6 +2969,9 @@ void StructureObjectPOD::writeJSON(nlohmann::json& j) {
 
 	if (permissionsFixed)
 		thisObject["permissionsFixed"] = permissionsFixed.value();
+
+	if (controlDevice)
+		thisObject["controlDevice"] = controlDevice.value();
 
 	j["StructureObject"] = thisObject;
 }
@@ -2950,6 +3122,17 @@ int StructureObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
+	if (controlDevice) {
+	_nameHashCode = 0xee9da35b; //StructureObject.controlDevice
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
 
 	return _count;
 }
@@ -3055,6 +3238,14 @@ bool StructureObjectPOD::readObjectMember(ObjectInputStream* stream, const uint3
 		}
 		return true;
 
+	case 0xee9da35b: //StructureObject.controlDevice
+		{
+			ManagedWeakReference<ControlDevicePOD* > _mncontrolDevice;
+			TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::parseFromBinaryStream(&_mncontrolDevice, stream);
+			controlDevice = std::move(_mncontrolDevice);
+		}
+		return true;
+
 	}
 
 	return false;
@@ -3104,6 +3295,8 @@ void StructureObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<bool >::toBinaryStream(&maintenanceReduced.value(), stream);
 
 	TypeInfo<bool >::toBinaryStream(&permissionsFixed.value(), stream);
+
+	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
 
 
 }

@@ -35,9 +35,6 @@ class GCWManager extends ManagedService implements Logger {
 	public static final int PLAYERFACTIONBASE = 1;
 	public static final int STATICFACTIONBASE = 2;
 
-	public static final int HACKALARM = 1;
-	public static final int DESTRUCTALARM = 2;
-
 	private Zone zone;
 
 	@dereferenced
@@ -81,7 +78,6 @@ class GCWManager extends ManagedService implements Logger {
 	private transient int winnerDifficultyScaling;
 	private transient boolean crackdownScansEnabled;
 	private transient boolean crackdownScanPrivilegedPlayers;
-	private transient int crackdownScanInterval;
 	private transient int crackdownPlayerScanCooldown;
 	private transient int crackdownContrabandFineCredits;
 	private transient int crackdownContrabandFineFactionPoints;
@@ -105,7 +101,6 @@ class GCWManager extends ManagedService implements Logger {
 	public transient int winnerBonus;
 	public transient int loserBonus;
 	public transient boolean spawnDefenses;
-	public transient boolean spawnBaseAlarms;
 	public transient int initialVulnerabilityDelay;
 
 	public transient boolean racialPenaltyEnabled;
@@ -149,7 +144,6 @@ class GCWManager extends ManagedService implements Logger {
 		winnerBonus = 30;
 		racialPenaltyEnabled = true;
 		spawnDefenses = true;
-		spawnBaseAlarms = false;
 		initialVulnerabilityDelay = 0;
 
 		Logger.setLoggingName("GCWManager " + zne.getZoneName());
@@ -191,7 +185,6 @@ class GCWManager extends ManagedService implements Logger {
 	public native void addMinefield(BuildingObject building, SceneObject minefield);
 	public native void addScanner(BuildingObject building, SceneObject scanner);
 	public native void addTurret(BuildingObject building, SceneObject turret);
-	public native void addBaseAlarm(BuildingObject building, SceneObject alarm);
 
 	public native void startVulnerability(BuildingObject building);
 	public native void endVulnerability(BuildingObject building);
@@ -216,12 +209,11 @@ class GCWManager extends ManagedService implements Logger {
 	private native DestructibleBuildingDataComponent getDestructibleBuildingData(BuildingObject building);
 	public native boolean canUseTerminals(CreatureObject creature, BuildingObject building, SceneObject terminal);
 	public native boolean areOpposingFactions(int faction1, int faction2);
-	public native boolean isProperFactionStatus(CreatureObject creature);
 	public native void awardSlicingXP(CreatureObject creature, final string xpType, int value);
 
 	public native void sendJamUplinkMenu(CreatureObject creature, BuildingObject building, TangibleObject uplinkTerminal);
 	public native void verifyUplinkBand(CreatureObject creature, BuildingObject building, int band, TangibleObject uplinkTerminal);
-	public native void renewUplinkBand(BuildingObject building);
+	private native void renewUplinkBand(BuildingObject building);
 
 	public native boolean canStartSlice(CreatureObject creature, TangibleObject terminal);
 	public native void completeSecuritySlice(CreatureObject creature, TangibleObject securityTerminal);
@@ -274,7 +266,7 @@ class GCWManager extends ManagedService implements Logger {
 
 	public native float getGCWDiscount(CreatureObject creature);
 
-	public native boolean runCrackdownScan(AiAgent scanner, CreatureObject player);
+	public native void runCrackdownScan(AiAgent scanner, CreatureObject player);
 	public native void startContrabandScanSession(AiAgent scanner, CreatureObject player, boolean enforced);
 	public native void performCheckWildContrabandScanTask();
 	private native boolean isContraband(SceneObject item);
@@ -283,9 +275,6 @@ class GCWManager extends ManagedService implements Logger {
 
 	private native void spawnBaseTerminals(BuildingObject building);
 	private native void despawnBaseTerminals(BuildingObject building);
-
-	public native void activateBaseAlarms(BuildingObject building, int alarmType);
-	public native void deactivateBaseAlarms(BuildingObject building);
 
 	@dirty
 	public native int isStrongholdCity(string city);
@@ -455,12 +444,6 @@ class GCWManager extends ManagedService implements Logger {
 
 	@local
 	@read
-	public int getCrackdownScanInterval() {
-		return crackdownScanInterval;
-	}
-
-	@local
-	@read
 	public int getGCWXPBonus() {
 		return bonusXP;
 	}
@@ -499,12 +482,6 @@ class GCWManager extends ManagedService implements Logger {
 	@read
 	public boolean shouldSpawnDefenses() {
 		return spawnDefenses;
-	}
-
-	@local
-	@read
-	public boolean shouldSpawnBaseAlarms() {
-		return spawnBaseAlarms;
 	}
 
 	@local

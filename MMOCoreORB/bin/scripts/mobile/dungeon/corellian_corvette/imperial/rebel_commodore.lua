@@ -2,7 +2,6 @@ rebel_commodore = Creature:new {
 	objectName = "@mob/creature_names:corvette_rebel_commodore",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 181,
@@ -12,7 +11,7 @@ rebel_commodore = Creature:new {
 	baseXp = 17178,
 	baseHAM = 126000,
 	baseHAMmax = 154000,
-	armor = 1,
+	armor = 2,
 	resists = {65,75,40,40,30,30,80,65,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -34,29 +33,17 @@ rebel_commodore = Creature:new {
 			groups = {
 				{group = "color_crystals", chance = 500000},
 				{group = "junk", chance = 3550000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "clothing_attachments", chance = 500000},
-				{group = "armor_attachments", chance = 500000},
-				{group = "rebel_officer_common", chance = 450000},
-				{group = "wearables_rare", chance = 500000}
+				{group = "clothing_attachments", chance = 1500000},
+				{group = "armor_attachments", chance = 1500000},
+				{group = "rebel_officer_common", chance = 1450000},
+				{group = "wearables_rare", chance = 1500000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(commandomaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_commodore, "rebel_commodore")

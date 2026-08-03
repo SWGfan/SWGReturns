@@ -44,24 +44,33 @@
 EyeShotCommand = {
         name = "eyeshot",
 
-	damageMultiplier = 1.0,
-  speedMultiplier = 2.0,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2.5,
-  mindCostMultiplier = 0,
-    visMod = 25,
+	damageMultiplier = 3.0,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = MIND_ATTRIBUTE,
 
 	stateEffects = {
 	  StateEffect( 
 		BLIND_EFFECT, 
 		{}, 
-		{ "blind_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "blind_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		100, 
 		0, 
 		40 
+	  ),
+	  StateEffect( 
+		--INTIMIDATE_EFFECT, 
+		{},
+		{}, 
+		{}, 
+		{}, 
+		100, 
+		0, 
+		30 
 	  )
 	},
 
@@ -70,7 +79,7 @@ EyeShotCommand = {
 
 	combatSpam = "eyeshot",
 	
-	weaponType = PISTOLWEAPON,
+	weaponType = PISTOLWEAPON + CARBINEWEAPON,
 
 	range = -1
 }

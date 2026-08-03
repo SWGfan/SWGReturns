@@ -2,17 +2,16 @@ rebel_rear_admiral = Creature:new {
 	objectName = "@mob/creature_names:corvette_rebel_rear_admiral",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 200,
-	chanceHit = 11.52,
-	damageMin = 730,
-	damageMax = 1275,
+	chanceHit = 16,
+	damageMin = 1145,
+	damageMax = 2000,
 	baseXp = 19008,
 	baseHAM = 160000,
 	baseHAMmax = 195000,
-	armor = 1,
+	armor = 3,
 	resists = {70,75,0,0,30,30,80,65,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -37,31 +36,19 @@ rebel_rear_admiral = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "color_crystals", chance = 100000},
-				{group = "junk", chance = 4700000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "elite_weapons", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "clothing_attachments", chance = 100000},
-				{group = "armor_attachments", chance = 100000},
-				{group = "wearables_common", chance = 500000},
-				{group = "wearables_uncommon", chance = 500000}
+				{group = "color_crystals", chance = 1100000},
+				{group = "junk", chance = 4250000},
+				{group = "clothing_attachments", chance = 1100000},
+				{group = "armor_attachments", chance = 1100000},
+				{group = "rebel_officer_common", chance = 1450000},
+				{group = "wearables_scarce", chance = 1000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(commandomaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(rebel_rear_admiral, "rebel_rear_admiral")

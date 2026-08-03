@@ -168,11 +168,7 @@ public:
 
 	void notifyExit(SceneObject* object);
 
-	Region* createNewRegion(float x, float y, float radius, bool persistent);
-
 	Region* addRegion(float x, float y, float radius, bool persistent);
-
-	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -220,6 +216,8 @@ public:
 
 	int getTimeToUpdate();
 
+	int getTimeToVote();
+
 	int getCitizenCount();
 
 	byte getCityRank() const;
@@ -233,8 +231,6 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
-
-	String getCityRegionName();
 
 	String getRegionName();
 
@@ -602,11 +598,7 @@ public:
 
 	void notifyExit(SceneObject* object);
 
-	Region* createNewRegion(float x, float y, float radius, bool persistent);
-
 	Region* addRegion(float x, float y, float radius, bool persistent);
-
-	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -654,6 +646,8 @@ public:
 
 	int getTimeToUpdate();
 
+	int getTimeToVote();
+
 	int getCitizenCount();
 
 	byte getCityRank() const;
@@ -667,8 +661,6 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
-
-	String getCityRegionName();
 
 	String getRegionName();
 
@@ -943,11 +935,7 @@ public:
 
 	void notifyExit(SceneObject* object);
 
-	Region* createNewRegion(float x, float y, float radius, bool persistent);
-
 	Region* addRegion(float x, float y, float radius, bool persistent);
-
-	void addRegion(Region* region);
 
 	void rescheduleUpdateEvent(unsigned int seconds);
 
@@ -991,6 +979,8 @@ public:
 
 	int getTimeToUpdate();
 
+	int getTimeToVote();
+
 	int getCitizenCount();
 
 	byte getCityRank() const;
@@ -1000,8 +990,6 @@ public:
 	bool isRegistered() const;
 
 	Zone* getZone();
-
-	String getCityRegionName();
 
 	String getRegionName();
 
@@ -1243,6 +1231,8 @@ public:
 	Optional<CitizenList> citizenList;
 
 	Optional<CitizenList> bannedList;
+
+	Optional<SortedVector<unsigned long long>> completeStructureList;
 
 	Optional<double> cityTreasury;
 

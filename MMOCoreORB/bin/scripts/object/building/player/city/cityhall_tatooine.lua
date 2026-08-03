@@ -44,15 +44,14 @@
 object_building_player_city_cityhall_tatooine = object_building_player_city_shared_cityhall_tatooine:new {
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "lok", "tatooine", "naboo", "rori", "corellia", "talus", "chandrila", "kaas", "moraband", "hutta", "lothal", "endor", "dathomir",
-    "yavin4"},
+	allowedZones = {"dantooine", "lok", "tatooine"},
 	length = 7,
 	width = 9,
 	zoneComponent = "CityHallZoneComponent",
 	cityRankRequired = 0,
 	uniqueStructure = true,
-	cityMaintenanceBase = 12500,
-	cityMaintenanceRate = 8000,
+	cityMaintenanceBase = 35000,
+	cityMaintenanceRate = 25000,
 	abilityRequired = "place_cityhall",
 	skillMods = {
 		{"private_buff_mind", 100},

@@ -4,32 +4,24 @@
 
 #include "SpaceManager.h"
 
-#include "server/zone/Zone.h"
-
-#include "server/zone/SpaceZone.h"
-
 #include "server/zone/ZoneProcessServer.h"
 
-#include "server/zone/objects/scene/SceneObject.h"
-
-#include "server/zone/CloseObjectsVector.h"
-
-#include "server/zone/objects/ship/ShipObject.h"
+#include "server/zone/Zone.h"
 
 /*
  *	SpaceManagerStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_FINALIZE__,RPC_INITIALIZE__,RPC_START__,RPC_BROADCASTNEBULALIGHTNING__SHIPOBJECT_VECTOR3_SHORT_INT_INT_INT_VECTOR3_VECTOR3_,RPC_SPACEDYNAMICSPAWN__INT_ZONE_SPACESPAWNER_,RPC_ISSPAWNINGPERMITTEDAT__FLOAT_FLOAT_FLOAT_FLOAT_,RPC_FINDNEARBYSPAWNER__FLOAT_FLOAT_FLOAT_FLOAT_,RPC_GETJTLZONENAME__};
+enum {RPC_INITIALIZE__ = 2642248795};
 
-SpaceManager::SpaceManager(SpaceZone* sz, ZoneProcessServer* srv) : ManagedService(DummyConstructorParameter::instance()) {
-	SpaceManagerImplementation* _implementation = new SpaceManagerImplementation(sz, srv);
+SpaceManager::SpaceManager(Zone* planet, ZoneProcessServer* srv) : PlanetManager(DummyConstructorParameter::instance()) {
+	SpaceManagerImplementation* _implementation = new SpaceManagerImplementation(planet, srv);
 	_impl = _implementation;
 	_impl->_setStub(this);
 	_setClassName("SpaceManager");
 }
 
-SpaceManager::SpaceManager(DummyConstructorParameter* param) : ManagedService(param) {
+SpaceManager::SpaceManager(DummyConstructorParameter* param) : PlanetManager(param) {
 	_setClassName("SpaceManager");
 }
 
@@ -37,70 +29,6 @@ SpaceManager::~SpaceManager() {
 }
 
 
-
-Vector3 SpaceManager::getJtlLaunchLocationss() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getJtlLaunchLocationss();
-	}
-}
-
-void SpaceManager::loadLuaConfig() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->loadLuaConfig();
-	}
-}
-
-void SpaceManager::loadRegions() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->loadRegions();
-	}
-}
-
-void SpaceManager::readRegionObject(LuaObject& luaObject) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->readRegionObject(luaObject);
-	}
-}
-
-void SpaceManager::loadNebulaAreas() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->loadNebulaAreas();
-	}
-}
-
-void SpaceManager::initializeTransientMembers() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_INITIALIZETRANSIENTMEMBERS__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->initializeTransientMembers();
-	}
-}
 
 void SpaceManager::initialize() {
 	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
@@ -113,131 +41,6 @@ void SpaceManager::initialize() {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->initialize();
-	}
-}
-
-void SpaceManager::start() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_START__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->start();
-	}
-}
-
-void SpaceManager::broadcastNebulaLightning(ShipObject* ship, const Vector3& nebulaCenter, unsigned short lightningCount, int nebulaID, int startMili, int endMili, const Vector3& startPoint, const Vector3& endPoint) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_BROADCASTNEBULALIGHTNING__SHIPOBJECT_VECTOR3_SHORT_INT_INT_INT_VECTOR3_VECTOR3_);
-		method.addObjectParameter(ship);
-		method.addDereferencedSerializableParameter(nebulaCenter);
-		method.addUnsignedShortParameter(lightningCount);
-		method.addSignedIntParameter(nebulaID);
-		method.addSignedIntParameter(startMili);
-		method.addSignedIntParameter(endMili);
-		method.addDereferencedSerializableParameter(startPoint);
-		method.addDereferencedSerializableParameter(endPoint);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->broadcastNebulaLightning(ship, nebulaCenter, lightningCount, nebulaID, startMili, endMili, startPoint, endPoint);
-	}
-}
-
-SceneObject* SpaceManager::spaceDynamicSpawn(unsigned int shipCRC, Zone* zone, SpaceSpawner* spaceSpawner) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SPACEDYNAMICSPAWN__INT_ZONE_SPACESPAWNER_);
-		method.addUnsignedIntParameter(shipCRC);
-		method.addObjectParameter(zone);
-		method.addObjectParameter(spaceSpawner);
-
-		return static_cast<SceneObject*>(method.executeWithObjectReturn());
-	} else {
-		return _implementation->spaceDynamicSpawn(shipCRC, zone, spaceSpawner);
-	}
-}
-
-bool SpaceManager::isSpawningPermittedAt(float x, float z, float y, float distance) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISSPAWNINGPERMITTEDAT__FLOAT_FLOAT_FLOAT_FLOAT_);
-		method.addFloatParameter(x);
-		method.addFloatParameter(z);
-		method.addFloatParameter(y);
-		method.addFloatParameter(distance);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isSpawningPermittedAt(x, z, y, distance);
-	}
-}
-
-bool SpaceManager::findNearbySpawner(float x, float z, float y, float distance) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_FINDNEARBYSPAWNER__FLOAT_FLOAT_FLOAT_FLOAT_);
-		method.addFloatParameter(x);
-		method.addFloatParameter(z);
-		method.addFloatParameter(y);
-		method.addFloatParameter(distance);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->findNearbySpawner(x, z, y, distance);
-	}
-}
-
-unsigned long long SpaceManager::getClosestSpaceStationObjectID(const Vector3& position, unsigned int factionHash) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getClosestSpaceStationObjectID(position, factionHash);
-	}
-}
-
-Vector3 SpaceManager::getClosestSpaceStationPosition(const Vector3& position, const String& faction) {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getClosestSpaceStationPosition(position, faction);
-	}
-}
-
-String SpaceManager::getJtlZoneName() {
-	SpaceManagerImplementation* _implementation = static_cast<SpaceManagerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETJTLZONENAME__);
-
-		String _return_getJtlZoneName;
-		method.executeWithAsciiReturn(_return_getJtlZoneName);
-		return _return_getJtlZoneName;
-	} else {
-		return _implementation->getJtlZoneName();
 	}
 }
 
@@ -259,15 +62,17 @@ void SpaceManager::_setImplementation(DistributedObjectServant* servant) {
  *	SpaceManagerImplementation
  */
 
-SpaceManagerImplementation::SpaceManagerImplementation(DummyConstructorParameter* param) : ManagedServiceImplementation(param) {
+SpaceManagerImplementation::SpaceManagerImplementation(DummyConstructorParameter* param) : PlanetManagerImplementation(param) {
 	_initializeImplementation();
 }
 
 
 SpaceManagerImplementation::~SpaceManagerImplementation() {
-	SpaceManagerImplementation::finalize();
 }
 
+
+void SpaceManagerImplementation::finalize() {
+}
 
 void SpaceManagerImplementation::_initializeImplementation() {
 	_setClassHelper(SpaceManagerHelper::instance());
@@ -279,7 +84,7 @@ void SpaceManagerImplementation::_initializeImplementation() {
 
 void SpaceManagerImplementation::_setStub(DistributedObjectStub* stub) {
 	_this = static_cast<SpaceManager*>(stub);
-	ManagedServiceImplementation::_setStub(stub);
+	PlanetManagerImplementation::_setStub(stub);
 }
 
 DistributedObjectStub* SpaceManagerImplementation::_getStub() {
@@ -319,7 +124,7 @@ void SpaceManagerImplementation::runlock(bool doLock) {
 }
 
 void SpaceManagerImplementation::_serializationHelperMethod() {
-	ManagedServiceImplementation::_serializationHelperMethod();
+	PlanetManagerImplementation::_serializationHelperMethod();
 
 	_setClassName("SpaceManager");
 
@@ -345,18 +150,10 @@ void SpaceManagerImplementation::readObject(ObjectInputStream* stream) {
 }
 
 bool SpaceManagerImplementation::readObjectMember(ObjectInputStream* stream, const uint32& nameHashCode) {
-	if (ManagedServiceImplementation::readObjectMember(stream, nameHashCode))
+	if (PlanetManagerImplementation::readObjectMember(stream, nameHashCode))
 		return true;
 
 	switch(nameHashCode) {
-	case 0xb84e2d8c: //SpaceManager.spaceZone
-		TypeInfo<ManagedReference<SpaceZone* > >::parseFromBinaryStream(&spaceZone, stream);
-		return true;
-
-	case 0xf25f2503: //SpaceManager.regionMap
-		TypeInfo<SpaceRegionMap >::parseFromBinaryStream(&regionMap, stream);
-		return true;
-
 	}
 
 	return false;
@@ -370,50 +167,28 @@ void SpaceManagerImplementation::writeObject(ObjectOutputStream* stream) {
 }
 
 int SpaceManagerImplementation::writeObjectMembers(ObjectOutputStream* stream) {
-	int _count = ManagedServiceImplementation::writeObjectMembers(stream);
+	int _count = PlanetManagerImplementation::writeObjectMembers(stream);
 
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	_nameHashCode = 0xb84e2d8c; //SpaceManager.spaceZone
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedReference<SpaceZone* > >::toBinaryStream(&spaceZone, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xf25f2503; //SpaceManager.regionMap
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<SpaceRegionMap >::toBinaryStream(&regionMap, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 
 	return _count;
 }
 
-SpaceManagerImplementation::SpaceManagerImplementation(SpaceZone* sz, ZoneProcessServer* srv) {
+SpaceManagerImplementation::SpaceManagerImplementation(Zone* planet, ZoneProcessServer* srv) : PlanetManagerImplementation(planet, srv) {
 	_initializeImplementation();
-	// server/zone/managers/space/SpaceManager.idl():  		spaceZone = sz;
-	spaceZone = sz;
-	// server/zone/managers/space/SpaceManager.idl():  		server = srv;
-	server = srv;
-	// server/zone/managers/space/SpaceManager.idl():  		Logger.setLoggingName("SpaceManager-" + spaceZone.getZoneName());
-	Logger::setLoggingName("SpaceManager-" + spaceZone->getZoneName());
+	// server/zone/managers/space/SpaceManager.idl():  		Logger.setLoggingName("SpaceManager " + planet.getZoneName());
+	Logger::setLoggingName("SpaceManager " + planet->getZoneName());
 	// server/zone/managers/space/SpaceManager.idl():  		Logger.setLogging(false);
 	Logger::setLogging(false);
 	// server/zone/managers/space/SpaceManager.idl():  		Logger.setGlobalLogging(true);
 	Logger::setGlobalLogging(true);
 }
 
-String SpaceManagerImplementation::getJtlZoneName() {
-	// server/zone/managers/space/SpaceManager.idl():  		return jtlZoneName;
-	return jtlZoneName;
+void SpaceManagerImplementation::initialize() {
+	// server/zone/managers/space/SpaceManager.idl():  		Logger.info("loading space manager " + super.zone.getZoneName());
+	Logger::info("loading space manager " + PlanetManagerImplementation::zone.getForUpdate()->getZoneName());
 }
 
 /*
@@ -424,27 +199,13 @@ String SpaceManagerImplementation::getJtlZoneName() {
 #include "engine/orb/messages/InvokeMethodMessage.h"
 
 
-SpaceManagerAdapter::SpaceManagerAdapter(SpaceManager* obj) : ManagedServiceAdapter(obj) {
+SpaceManagerAdapter::SpaceManagerAdapter(SpaceManager* obj) : PlanetManagerAdapter(obj) {
 }
 
 void SpaceManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 	DOBMessage* resp = inv->getInvocationMessage();
 
 	switch (methid) {
-	case RPC_INITIALIZETRANSIENTMEMBERS__:
-		{
-			
-			initializeTransientMembers();
-			
-		}
-		break;
-	case RPC_FINALIZE__:
-		{
-			
-			finalize();
-			
-		}
-		break;
 	case RPC_INITIALIZE__:
 		{
 			
@@ -452,106 +213,13 @@ void SpaceManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_START__:
-		{
-			
-			start();
-			
-		}
-		break;
-	case RPC_BROADCASTNEBULALIGHTNING__SHIPOBJECT_VECTOR3_SHORT_INT_INT_INT_VECTOR3_VECTOR3_:
-		{
-			ShipObject* ship = static_cast<ShipObject*>(inv->getObjectParameter());
-			 Vector3 nebulaCenter = inv->getDereferencedSerializableParameter<Vector3 >();
-			unsigned short lightningCount = inv->getUnsignedShortParameter();
-			int nebulaID = inv->getSignedIntParameter();
-			int startMili = inv->getSignedIntParameter();
-			int endMili = inv->getSignedIntParameter();
-			 Vector3 startPoint = inv->getDereferencedSerializableParameter<Vector3 >();
-			 Vector3 endPoint = inv->getDereferencedSerializableParameter<Vector3 >();
-			
-			broadcastNebulaLightning(ship, nebulaCenter, lightningCount, nebulaID, startMili, endMili, startPoint, endPoint);
-			
-		}
-		break;
-	case RPC_SPACEDYNAMICSPAWN__INT_ZONE_SPACESPAWNER_:
-		{
-			unsigned int shipCRC = inv->getUnsignedIntParameter();
-			Zone* zone = static_cast<Zone*>(inv->getObjectParameter());
-			SpaceSpawner* spaceSpawner = static_cast<SpaceSpawner*>(inv->getObjectParameter());
-			
-			DistributedObject* _m_res = spaceDynamicSpawn(shipCRC, zone, spaceSpawner);
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
-		}
-		break;
-	case RPC_ISSPAWNINGPERMITTEDAT__FLOAT_FLOAT_FLOAT_FLOAT_:
-		{
-			float x = inv->getFloatParameter();
-			float z = inv->getFloatParameter();
-			float y = inv->getFloatParameter();
-			float distance = inv->getFloatParameter();
-			
-			bool _m_res = isSpawningPermittedAt(x, z, y, distance);
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_FINDNEARBYSPAWNER__FLOAT_FLOAT_FLOAT_FLOAT_:
-		{
-			float x = inv->getFloatParameter();
-			float z = inv->getFloatParameter();
-			float y = inv->getFloatParameter();
-			float distance = inv->getFloatParameter();
-			
-			bool _m_res = findNearbySpawner(x, z, y, distance);
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_GETJTLZONENAME__:
-		{
-			
-			String _m_res = getJtlZoneName();
-			resp->insertAscii(_m_res);
-		}
-		break;
 	default:
-		ManagedServiceAdapter::invokeMethod(methid, inv);
+		PlanetManagerAdapter::invokeMethod(methid, inv);
 	}
-}
-
-void SpaceManagerAdapter::initializeTransientMembers() {
-	(static_cast<SpaceManager*>(stub))->initializeTransientMembers();
-}
-
-void SpaceManagerAdapter::finalize() {
-	(static_cast<SpaceManager*>(stub))->finalize();
 }
 
 void SpaceManagerAdapter::initialize() {
 	(static_cast<SpaceManager*>(stub))->initialize();
-}
-
-void SpaceManagerAdapter::start() {
-	(static_cast<SpaceManager*>(stub))->start();
-}
-
-void SpaceManagerAdapter::broadcastNebulaLightning(ShipObject* ship, const Vector3& nebulaCenter, unsigned short lightningCount, int nebulaID, int startMili, int endMili, const Vector3& startPoint, const Vector3& endPoint) {
-	(static_cast<SpaceManager*>(stub))->broadcastNebulaLightning(ship, nebulaCenter, lightningCount, nebulaID, startMili, endMili, startPoint, endPoint);
-}
-
-SceneObject* SpaceManagerAdapter::spaceDynamicSpawn(unsigned int shipCRC, Zone* zone, SpaceSpawner* spaceSpawner) {
-	return (static_cast<SpaceManager*>(stub))->spaceDynamicSpawn(shipCRC, zone, spaceSpawner);
-}
-
-bool SpaceManagerAdapter::isSpawningPermittedAt(float x, float z, float y, float distance) {
-	return (static_cast<SpaceManager*>(stub))->isSpawningPermittedAt(x, z, y, distance);
-}
-
-bool SpaceManagerAdapter::findNearbySpawner(float x, float z, float y, float distance) {
-	return (static_cast<SpaceManager*>(stub))->findNearbySpawner(x, z, y, distance);
-}
-
-String SpaceManagerAdapter::getJtlZoneName() {
-	return (static_cast<SpaceManager*>(stub))->getJtlZoneName();
 }
 
 /*
@@ -614,58 +282,20 @@ void SpaceManagerPOD::writeObject(ObjectOutputStream* stream) {
 }
 
 int SpaceManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
-	int _count = ManagedServicePOD::writeObjectMembers(stream);
+	int _count = PlanetManagerPOD::writeObjectMembers(stream);
 
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	if (spaceZone) {
-	_nameHashCode = 0xb84e2d8c; //SpaceManager.spaceZone
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedReference<SpaceZonePOD* > >::toBinaryStream(&spaceZone.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (regionMap) {
-	_nameHashCode = 0xf25f2503; //SpaceManager.regionMap
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<SpaceRegionMap >::toBinaryStream(&regionMap.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 
 	return _count;
 }
 
 bool SpaceManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameHashCode) {
-	if (ManagedServicePOD::readObjectMember(stream, nameHashCode))
+	if (PlanetManagerPOD::readObjectMember(stream, nameHashCode))
 		return true;
 
 	switch(nameHashCode) {
-	case 0xb84e2d8c: //SpaceManager.spaceZone
-		{
-			ManagedReference<SpaceZonePOD* > _mnspaceZone;
-			TypeInfo<ManagedReference<SpaceZonePOD* > >::parseFromBinaryStream(&_mnspaceZone, stream);
-			spaceZone = std::move(_mnspaceZone);
-		}
-		return true;
-
-	case 0xf25f2503: //SpaceManager.regionMap
-		{
-			SpaceRegionMap _mnregionMap;
-			TypeInfo<SpaceRegionMap >::parseFromBinaryStream(&_mnregionMap, stream);
-			regionMap = std::move(_mnregionMap);
-		}
-		return true;
-
 	}
 
 	return false;
@@ -690,11 +320,7 @@ void SpaceManagerPOD::readObject(ObjectInputStream* stream) {
 }
 
 void SpaceManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
-	ManagedServicePOD::writeObjectCompact(stream);
-
-	TypeInfo<ManagedReference<SpaceZonePOD* > >::toBinaryStream(&spaceZone.value(), stream);
-
-	TypeInfo<SpaceRegionMap >::toBinaryStream(&regionMap.value(), stream);
+	PlanetManagerPOD::writeObjectCompact(stream);
 
 
 }

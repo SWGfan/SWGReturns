@@ -10,13 +10,11 @@
 
 #include "server/zone/objects/creature/CreatureObject.h"
 
-#include "server/zone/objects/tangible/tasks/InstrumentPulseTask.h"
-
 /*
  *	InstrumentStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2670500855,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_ISACTIVEINSTRUMENT__CREATUREOBJECT_,RPC_ISEQUIPPED__,RPC_CANBETRANSFERRED__SCENEOBJECT_,RPC_GETINSTRUMENTTYPE__,RPC_GETSPAWNERPLAYER__,RPC_SETSPAWNERPLAYER__CREATUREOBJECT_,RPC_ISUNEQUIPPABLE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2670500855,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SPAWNINADMINCELL__CREATUREOBJECT_,RPC_SPAWNNONADMIN__CREATUREOBJECT_,RPC_CANDROPINSTRUMENT__,RPC_GETINSTRUMENTTYPE__,RPC_GETSPAWNERPLAYER__,RPC_SETSPAWNERPLAYER__CREATUREOBJECT_,RPC_ISBEINGUSED__,RPC_SETBEINGUSED__BOOL_};
 
 Instrument::Instrument() : TangibleObject(DummyConstructorParameter::instance()) {
 	InstrumentImplementation* _implementation = new InstrumentImplementation();
@@ -98,47 +96,47 @@ int Instrument::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 	}
 }
 
-bool Instrument::isActiveInstrument(CreatureObject* player) {
-	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementationForRead());
+void Instrument::spawnInAdminCell(CreatureObject* spawner) {
+	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ISACTIVEINSTRUMENT__CREATUREOBJECT_);
-		method.addObjectParameter(player);
+		DistributedMethod method(this, RPC_SPAWNINADMINCELL__CREATUREOBJECT_);
+		method.addObjectParameter(spawner);
 
-		return method.executeWithBooleanReturn();
+		method.executeWithVoidReturn();
 	} else {
-		return _implementation->isActiveInstrument(player);
+		_implementation->spawnInAdminCell(spawner);
 	}
 }
 
-bool Instrument::isEquipped() {
-	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementationForRead());
+void Instrument::spawnNonAdmin(CreatureObject* spawner) {
+	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ISEQUIPPED__);
+		DistributedMethod method(this, RPC_SPAWNNONADMIN__CREATUREOBJECT_);
+		method.addObjectParameter(spawner);
 
-		return method.executeWithBooleanReturn();
+		method.executeWithVoidReturn();
 	} else {
-		return _implementation->isEquipped();
+		_implementation->spawnNonAdmin(spawner);
 	}
 }
 
-bool Instrument::canBeTransferred(SceneObject* newContainer) {
+bool Instrument::canDropInstrument() {
 	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_CANBETRANSFERRED__SCENEOBJECT_);
-		method.addObjectParameter(newContainer);
+		DistributedMethod method(this, RPC_CANDROPINSTRUMENT__);
 
 		return method.executeWithBooleanReturn();
 	} else {
-		return _implementation->canBeTransferred(newContainer);
+		return _implementation->canDropInstrument();
 	}
 }
 
@@ -185,17 +183,32 @@ void Instrument::setSpawnerPlayer(CreatureObject* pla) {
 	}
 }
 
-bool Instrument::isUnequippable() {
+bool Instrument::isBeingUsed() const {
+	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISBEINGUSED__);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isBeingUsed();
+	}
+}
+
+void Instrument::setBeingUsed(bool val) {
 	InstrumentImplementation* _implementation = static_cast<InstrumentImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ISUNEQUIPPABLE__);
+		DistributedMethod method(this, RPC_SETBEINGUSED__BOOL_);
+		method.addBooleanParameter(val);
 
-		return method.executeWithBooleanReturn();
+		method.executeWithVoidReturn();
 	} else {
-		return _implementation->isUnequippable();
+		_implementation->setBeingUsed(val);
 	}
 }
 
@@ -442,9 +455,14 @@ void InstrumentImplementation::setSpawnerPlayer(CreatureObject* pla) {
 	spawnerPlayer = pla;
 }
 
-bool InstrumentImplementation::isUnequippable() {
-	// server/zone/objects/tangible/Instrument.idl():  		return instrumentType == NALARGON || instrumentType == OMNIBOX;
-	return instrumentType == NALARGON || instrumentType == OMNIBOX;
+bool InstrumentImplementation::isBeingUsed() const{
+	// server/zone/objects/tangible/Instrument.idl():  		return beingUsed;
+	return beingUsed;
+}
+
+void InstrumentImplementation::setBeingUsed(bool val) {
+	// server/zone/objects/tangible/Instrument.idl():  		beingUsed = val;
+	beingUsed = val;
 }
 
 /*
@@ -485,26 +503,26 @@ void InstrumentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_ISACTIVEINSTRUMENT__CREATUREOBJECT_:
+	case RPC_SPAWNINADMINCELL__CREATUREOBJECT_:
 		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			CreatureObject* spawner = static_cast<CreatureObject*>(inv->getObjectParameter());
 			
-			bool _m_res = isActiveInstrument(player);
-			resp->insertBoolean(_m_res);
+			spawnInAdminCell(spawner);
+			
 		}
 		break;
-	case RPC_ISEQUIPPED__:
+	case RPC_SPAWNNONADMIN__CREATUREOBJECT_:
 		{
+			CreatureObject* spawner = static_cast<CreatureObject*>(inv->getObjectParameter());
 			
-			bool _m_res = isEquipped();
-			resp->insertBoolean(_m_res);
+			spawnNonAdmin(spawner);
+			
 		}
 		break;
-	case RPC_CANBETRANSFERRED__SCENEOBJECT_:
+	case RPC_CANDROPINSTRUMENT__:
 		{
-			SceneObject* newContainer = static_cast<SceneObject*>(inv->getObjectParameter());
 			
-			bool _m_res = canBeTransferred(newContainer);
+			bool _m_res = canDropInstrument();
 			resp->insertBoolean(_m_res);
 		}
 		break;
@@ -530,11 +548,19 @@ void InstrumentAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_ISUNEQUIPPABLE__:
+	case RPC_ISBEINGUSED__:
 		{
 			
-			bool _m_res = isUnequippable();
+			bool _m_res = isBeingUsed();
 			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_SETBEINGUSED__BOOL_:
+		{
+			bool val = inv->getBooleanParameter();
+			
+			setBeingUsed(val);
+			
 		}
 		break;
 	default:
@@ -554,16 +580,16 @@ int InstrumentAdapter::handleObjectMenuSelect(CreatureObject* player, byte selec
 	return (static_cast<Instrument*>(stub))->handleObjectMenuSelect(player, selectedID);
 }
 
-bool InstrumentAdapter::isActiveInstrument(CreatureObject* player) {
-	return (static_cast<Instrument*>(stub))->isActiveInstrument(player);
+void InstrumentAdapter::spawnInAdminCell(CreatureObject* spawner) {
+	(static_cast<Instrument*>(stub))->spawnInAdminCell(spawner);
 }
 
-bool InstrumentAdapter::isEquipped() {
-	return (static_cast<Instrument*>(stub))->isEquipped();
+void InstrumentAdapter::spawnNonAdmin(CreatureObject* spawner) {
+	(static_cast<Instrument*>(stub))->spawnNonAdmin(spawner);
 }
 
-bool InstrumentAdapter::canBeTransferred(SceneObject* newContainer) {
-	return (static_cast<Instrument*>(stub))->canBeTransferred(newContainer);
+bool InstrumentAdapter::canDropInstrument() {
+	return (static_cast<Instrument*>(stub))->canDropInstrument();
 }
 
 int InstrumentAdapter::getInstrumentType() const {
@@ -578,8 +604,12 @@ void InstrumentAdapter::setSpawnerPlayer(CreatureObject* pla) {
 	(static_cast<Instrument*>(stub))->setSpawnerPlayer(pla);
 }
 
-bool InstrumentAdapter::isUnequippable() {
-	return (static_cast<Instrument*>(stub))->isUnequippable();
+bool InstrumentAdapter::isBeingUsed() const {
+	return (static_cast<Instrument*>(stub))->isBeingUsed();
+}
+
+void InstrumentAdapter::setBeingUsed(bool val) {
+	(static_cast<Instrument*>(stub))->setBeingUsed(val);
 }
 
 /*

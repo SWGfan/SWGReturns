@@ -12,7 +12,7 @@
  *	WearableObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 775195158,RPC_APPLYATTACHMENT__CREATUREOBJECT_ATTACHMENT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ISWEARABLEOBJECT__,RPC_ISEQUIPPED__,RPC_GETMAXSOCKETS__,RPC_SOCKETSUSED__,RPC_SOCKETSLEFT__,RPC_REPAIRATTEMPT__INT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,RPC_SETMAXSOCKETS__INT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 775195158,RPC_APPLYATTACHMENT__CREATUREOBJECT_ATTACHMENT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ISWEARABLEOBJECT__,RPC_ISEQUIPPED__,RPC_HASSEAREMOVALTOOL__CREATUREOBJECT_BOOL_,RPC_GETMAXSOCKETS__,RPC_SOCKETSUSED__,RPC_SOCKETSLEFT__,RPC_REPAIRATTEMPT__INT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,RPC_SETMAXSOCKETS__INT_};
 
 WearableObject::WearableObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	WearableObjectImplementation* _implementation = new WearableObjectImplementation();
@@ -135,6 +135,22 @@ bool WearableObject::isEquipped() {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isEquipped();
+	}
+}
+
+bool WearableObject::hasSeaRemovalTool(CreatureObject* player, bool removeItem) {
+	WearableObjectImplementation* _implementation = static_cast<WearableObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_HASSEAREMOVALTOOL__CREATUREOBJECT_BOOL_);
+		method.addObjectParameter(player);
+		method.addBooleanParameter(removeItem);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->hasSeaRemovalTool(player, removeItem);
 	}
 }
 
@@ -611,6 +627,15 @@ void WearableObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_HASSEAREMOVALTOOL__CREATUREOBJECT_BOOL_:
+		{
+			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			bool removeItem = inv->getBooleanParameter();
+			
+			bool _m_res = hasSeaRemovalTool(player, removeItem);
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_GETMAXSOCKETS__:
 		{
 			
@@ -686,6 +711,10 @@ bool WearableObjectAdapter::isWearableObject() {
 
 bool WearableObjectAdapter::isEquipped() {
 	return (static_cast<WearableObject*>(stub))->isEquipped();
+}
+
+bool WearableObjectAdapter::hasSeaRemovalTool(CreatureObject* player, bool removeItem) {
+	return (static_cast<WearableObject*>(stub))->hasSeaRemovalTool(player, removeItem);
 }
 
 int WearableObjectAdapter::getMaxSockets() const {

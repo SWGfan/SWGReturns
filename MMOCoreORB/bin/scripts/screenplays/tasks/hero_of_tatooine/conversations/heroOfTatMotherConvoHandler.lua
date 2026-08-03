@@ -28,16 +28,10 @@ function heroOfTatMotherConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, p
 		end
 
 		AiAgent(pDaughter):setFollowObject(pNpc)
-		AiAgent(pDaughter):addCreatureFlag(AI_NOAIAGGRO)
-		AiAgent(pDaughter):addCreatureFlag(AI_ESCORT)
-
+		AiAgent(pDaughter):setAiTemplate("escort")
 		CreatureObject(pNpc):clearOptionBit(CONVERSABLE)
-
-		AiAgent(pNpc):addCreatureFlag(AI_NOAIAGGRO)
-		AiAgent(pNpc):addCreatureFlag(AI_ESCORT)
 		AiAgent(pNpc):setFollowObject(pPlayer)
-		AiAgent(pNpc):setMovementState(AI_FOLLOWING)
-
+		AiAgent(pNpc):setAiTemplate("escort")
 		writeData("hero_of_tat:altruismEscortStatus", 1)
 		writeData("hero_of_tat:altruismEscorterID", SceneObject(pPlayer):getObjectID())
 		createEvent(2000, "HeroOfTatooineScreenPlay", "escortRangeCheckEvent", pPlayer, "")

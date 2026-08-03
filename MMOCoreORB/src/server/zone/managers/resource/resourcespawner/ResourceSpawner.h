@@ -151,13 +151,11 @@ public:
 
 		return "Error Dumping resources";
 	}
-	
 	String ghDump() {
 		if(ghDumpAll())
 			return "Galaxy Harvester Output Dumped";
 		return "Error Dumping Galaxy Harvester Output";
 	}
-
 	String getPlanetByIndex(int index) const;
 private:
 

@@ -2,17 +2,16 @@ axkva_min = Creature:new {
 	objectName = "@mob/creature_names:axkva_min",
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	mobType = MOB_NPC,
-	level = 400,
-	chanceHit = 25.0,
-	damageMin = 6000,
-	damageMax = 12000,
-	specialDamageMult = 25.0,
-	baseXp = 50000,
-	baseHAM = 15000000,
-	baseHAMmax = 20000000,
+	level = 302,
+	chanceHit = 30,
+	damageMin = 1645,
+	damageMax = 3000,
+	specialDamageMult = 6.0,
+	baseXp = 28549,
+	baseHAM = 385000,
+	baseHAMmax = 471000,
 	armor = 3,
-	resists = {150,150,150,150,150,150,150,150,150},
+	resists = {75,135,135,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,7 +20,7 @@ axkva_min = Creature:new {
 	boneAmount = 0,
 	milk = 0,
 	tamingChance = 0,
-	ferocity = 15,
+	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + HEALER,
 	optionsBitmask = AIENABLED,
@@ -31,41 +30,27 @@ axkva_min = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 1800000},
-				{group = "nightsister_common", chance = 5200000},
-				{group = "pistols", chance = 2000000},
-				{group = "rifles", chance = 2000000},
-				{group = "carbines", chance = 2000000},
-				{group = "melee_weapons", chance = 4000000},
-				{group = "armor_attachments", chance = 1000000},
-				{group = "clothing_attachments", chance = 1000000},
-				{group = "wearables_rare", chance = 1000000}
-			}
-		},
-		{
-			groups = {
-				{group = "axkva_min", chance = 10000000},
+				{group = "power_crystals", chance = 2430000},
+				{group = "nightsister_common", chance = 2930000},
+				{group = "armor_attachments", chance = 1430000},
+				{group = "clothing_attachments", chance = 1430000},
+				{group = "weapons_all", chance = 1430000},
+				{group = "house_loot_schems", chance = 50000},
+				{group = "named_color_crystals", chance = 300000}
+
 			},
 			lootChance = 10000000
 		},
 		{
 			groups = {
-				{group = "rare_lewt_box_01", chance = 10000000},
+				{group = "axkva_min", chance = 10000000},
 			},
-			lootChance = 7000000,
+			lootChance = 7500000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(fencermaster,swordsmanmaster,pikemanmaster,brawlermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	attacks = merge(fencermaster,swordsmanmaster,tkamaster,pikemanmaster,brawlermaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(axkva_min, "axkva_min")

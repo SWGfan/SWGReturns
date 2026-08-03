@@ -77,11 +77,6 @@ function BestineMuseumScreenPlay:doPhaseInit()
 	if (not hasServerEvent("MuseumPhaseChange")) then
 		BestineMuseumScreenPlay:createEvent()
 	end
-
-	local phaseChangeTimeLeft = self.getPhaseTimeLeft()
-	if (phaseChangeTimeLeft > PHASE_CHANGE_TIME or phaseChangeTimeLeft < 0) then
-		rescheduleServerEvent("MuseumPhaseChange", PHASE_CHANGE_TIME)
-	end
 end
 
 function BestineMuseumScreenPlay:createEvent()
@@ -121,8 +116,6 @@ function BestineMuseumScreenPlay:doPhaseChange()
 
 	if (not hasServerEvent("MuseumPhaseChange")) then
 		BestineMuseumScreenPlay:createEvent()
-	else
-		rescheduleServerEvent("MuseumPhaseChange", PHASE_CHANGE_TIME)
 	end
 end
 

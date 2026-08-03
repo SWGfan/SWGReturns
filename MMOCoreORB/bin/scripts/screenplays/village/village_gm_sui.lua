@@ -30,6 +30,8 @@ function VillageGmSui:showMainPage(pPlayer)
 	sui.add("Lookup player by name", "playerLookupByName")
 	sui.add("Lookup player by oid", "playerLookupByOID")
 	sui.add("List players in village", "listOnlineVillagePlayers")
+	sui.add("Regrant FRS Light by target", "completeKnightLight")
+	sui.add("Regrant FRS Dark by target", "completeKnightDark")
 
 	if (curPhase == 3) then
 		sui.add("Manage CounterStrike Bases", "manageCounterStrikeBases")
@@ -141,6 +143,59 @@ function VillageGmSui.playerLookupByTarget(pPlayer)
 
 	VillageGmSui.playerInfo(pPlayer, targetID)
 end
+
+function VillageGmSui:completeKnightLight(pPlayer)
+	if (pPlayer == nil) then
+		return
+	end
+
+	local targetID = CreatureObject(pPlayer):getTargetID()
+
+	local pTarget = getCreatureObject(targetID)
+	local pGhost = CreatureObject(pTarget):getPlayerObject()
+
+	if (pTarget == nil or not CreatureObject(pTarget):isPlayerCreature()) then
+		CreatureObject(pPlayer):sendSystemMessage("Invalid target, must be a valid player.")
+		VillageGmSui:showMainPage(pPlayer)
+		return
+	end
+
+	JediTrials:resetTrialData(pGhost, "knight")
+	writeScreenPlayData(pGhost, "KnightTrials", "startedTrials", 1)
+	writeScreenPlayData(pGhost, "JediTrials", "JediCouncil", 1)
+	JediTrials:setTrialsCompleted(pGhost, #knightTrialQuests)
+	JediTrials:unlockJediKnight(pGhost)
+
+
+	CreatureObject(pPlayer):sendSystemMessage("Success! Light FRS regranted")
+end
+
+function VillageGmSui:completeKnightDark(pPlayer)
+	if (pPlayer == nil) then
+		return
+	end
+
+	local targetID = CreatureObject(pPlayer):getTargetID()
+
+	local pTarget = getCreatureObject(targetID)
+	local pGhost = CreatureObject(pTarget):getPlayerObject()
+
+	if (pTarget == nil or not CreatureObject(pTarget):isPlayerCreature()) then
+		CreatureObject(pPlayer):sendSystemMessage("Invalid target, must be a valid player.")
+		VillageGmSui:showMainPage(pPlayer)
+		return
+	end
+
+	JediTrials:resetTrialData(pGhost, "knight")
+	writeScreenPlayData(pGhost, "KnightTrials", "startedTrials", 1)
+	writeScreenPlayData(pGhost, "JediTrials", "JediCouncil", 2)
+	JediTrials:setTrialsCompleted(pGhost, #knightTrialQuests)
+	JediTrials:unlockJediKnight(pGhost)
+
+
+	CreatureObject(pPlayer):sendSystemMessage("Success! Dark FRS regranted")
+end
+
 
 function VillageGmSui.playerLookupByName(pPlayer)
 	if (pPlayer == nil) then

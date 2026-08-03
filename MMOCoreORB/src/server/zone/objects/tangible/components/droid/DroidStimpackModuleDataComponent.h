@@ -20,7 +20,7 @@ class DroidStimpackModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
 	int capacity;
-	float speed;
+	int speed;
 	int loaded;
 public:
 	int rate;

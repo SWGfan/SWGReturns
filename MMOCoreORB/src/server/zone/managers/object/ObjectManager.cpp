@@ -9,9 +9,7 @@
 #include "objects.h"
 
 #include "server/db/ServerDatabase.h"
-#include "server/db/AccountDatabase.h"
-#include "server/zone/objects/tangible/misc/VendorToken.h"
-#include "server/zone/objects/tangible/item/CreditChipObject.h"
+
 #include "server/zone/ZoneProcessServer.h"
 #include "templates/manager/TemplateManager.h"
 #include "ObjectVersionUpdateManager.h"
@@ -279,6 +277,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<PetControlDevice>(SceneObjectType::PETCONTROLDEVICE);
 	objectFactory.registerObject<PetControlDevice>(SceneObjectType::DROIDCONTROLDEVICE);
 	objectFactory.registerObject<ShipControlDevice>(SceneObjectType::SHIPCONTROLDEVICE);
+	objectFactory.registerObject<StructureControlDevice>(SceneObjectType::STRUCTURECONTROLDEVICE);
 	objectFactory.registerObject<VehicleObject>(SceneObjectType::VEHICLE);
 	objectFactory.registerObject<VehicleObject>(SceneObjectType::HOVERVEHICLE);
 	objectFactory.registerObject<DroidObject>(SceneObjectType::DROIDCREATURE);
@@ -338,10 +337,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<FactoryCrate>(SceneObjectType::FACTORYCRATE);
 	objectFactory.registerObject<FighterShipObject>(SceneObjectType::SHIPFIGHTER);
 	objectFactory.registerObject<SpaceStationObject>(SceneObjectType::SHIPSTATION);
-	objectFactory.registerObject<StaticObject>(SceneObjectType::SPACEOBJECT);
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::CRYSTAL);
-	objectFactory.registerObject<VendorToken>(SceneObjectType::VENDORTOKEN);
-	objectFactory.registerObject<CreditChipObject>(SceneObjectType::CREDITCHIP);
 }
 
 void ObjectManager::updateObjectVersion() {
@@ -831,15 +827,7 @@ SceneObject* ObjectManager::createObject(uint32 objectCRC, int persistenceLevel,
 	object = instantiateSceneObject(objectCRC, oid, true);
 
 	if (object == nullptr) {
-		// getTemplateFile() throws on an unregistered CRC; guard it so a persisted object with a
-		// missing template is logged and skipped instead of throwing and crashing server boot.
-		String failedTemplate;
-		try {
-			failedTemplate = templateManager->getTemplateFile(objectCRC);
-		} catch (...) {
-			failedTemplate = "<unregistered>";
-		}
-		error() << "could not create object CRC = 0x" << hex << objectCRC << " template:" << failedTemplate;
+		error() << "could not create object CRC = 0x" << hex << objectCRC << " template:" << templateManager->getTemplateFile(objectCRC);
 		return nullptr;
 	}
 
@@ -985,7 +973,7 @@ String ObjectManager::getInfo() {
 	return msg.toString();
 }
 
-void ObjectManager::onUpdateModifiedObjectsToDatabase(int flags) {
+void ObjectManager::onUpdateModifiedObjectsToDatabase() {
 	galaxyId = -1;
 
 	if (server != nullptr && server->getZoneServer() != nullptr) {
@@ -995,7 +983,7 @@ void ObjectManager::onUpdateModifiedObjectsToDatabase(int flags) {
 		try {
 			const static auto query = "SELECT * FROM characters_dirty WHERE galaxy_id = " + String::valueOf(galaxyId);
 
-			charactersSaved = AccountDatabase::instance()->executeQuery(query);
+			charactersSaved = ServerDatabase::instance()->executeQuery(query);
 		} catch (const Exception& e) {
 			error(e.getMessage());
 		}
@@ -1033,8 +1021,8 @@ void ObjectManager::onCommitData() {
 			}
 
 			if (count > 0) {
-				AccountDatabase::instance()->executeStatement(query.toString());
-				AccountDatabase::instance()->executeStatement(deleteQuery.toString());
+				ServerDatabase::instance()->executeStatement(query.toString());
+				ServerDatabase::instance()->executeStatement(deleteQuery.toString());
 			}
 		} catch (Exception& e) {
 			System::out << e.getMessage();

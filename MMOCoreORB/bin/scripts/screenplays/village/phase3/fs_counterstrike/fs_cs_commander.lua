@@ -105,8 +105,10 @@ function FsCsCommander:setPlayerAsEscorter(pCommander, pPlayer)
 	writeData(theaterID .. ":shouldStopSpawn", 1)
 	self:createCommanderWaypoint(pPlayer, theaterID)
 
+	AiAgent(pCommander):setFollowState(3)
+	AiAgent(pCommander):setAiTemplate("escort")
 	AiAgent(pCommander):setFollowObject(pPlayer)
-	AiAgent(pCommander):setMovementState(AI_FOLLOWING)
+	AiAgent(pCommander):executeBehavior()
 end
 
 function FsCsCommander:createCommander(pTheater)
@@ -174,8 +176,6 @@ function FsCsCommander:createCommander(pTheater)
 		writeData(areaID .. ":theaterID", theaterID)
 	end
 
-	AiAgent(pCommander):addCreatureFlag(AI_ESCORT)
-	AiAgent(pCommander):addCreatureFlag(AI_FOLLOW)
 	createEvent(self.commanderDespawnTime, "FsCsCommander", "killCommander", pCommander, "")
 end
 
@@ -289,6 +289,7 @@ function FsCsCommander:handleCommanderEscorterFailure(pPlayer, pCommander)
 			return
 		end
 
+		AiAgent(pCommander):setAiTemplate("manualescort")
 		createEvent(10, "FsCsCommander", "doRun", pCommander, "")
 		createEvent(self.runAwayTime * 1000, "FsCsCommander", "runAwaySuccessful", pCommander, "")
 		writeData(commanderID .. ":canBeRecaptured", 1)
@@ -347,7 +348,8 @@ function FsCsCommander:killCommander(pCommander)
 	local commanderID = SceneObject(pCommander):getObjectID()
 
 	CreatureObject(pCommander):setPosture(KNOCKEDDOWN)
-	AiAgent(pCommander):setMovementState(AI_OBLIVIOUS)
+	AiAgent(pCommander):setAiTemplate("wait")
+	AiAgent(pCommander):setFollowState(0)
 	AiAgent(pCommander):setFollowObject(nil)
 	writeData(commanderID .. ":deathSequence", 1)
 	createEvent(5000, "FsCsCommander", "doCommanderDeathSequence", pCommander, "")
@@ -551,6 +553,7 @@ function FsCsCommander:setupRescueMob(pMobile)
 		return
 	end
 
+	AiAgent(pMobile):setAiTemplate("villageraider")
 	AiAgent(pMobile):setFollowObject(pEscorter)
 	AiAgent(pMobile):setDefender(pEscorter)
 

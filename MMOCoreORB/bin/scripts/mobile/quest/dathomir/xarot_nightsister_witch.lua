@@ -2,7 +2,6 @@ xarot_nightsister_witch = Creature:new {
 	objectName = "",
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	mobType = MOB_NPC,
 	level = 60,
 	chanceHit = 0.5,
 	damageMin = 445,
@@ -35,17 +34,9 @@ xarot_nightsister_witch = Creature:new {
 			lootChance = 10000000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(brawlermaster,pikemanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(xarot_nightsister_witch, "xarot_nightsister_witch")

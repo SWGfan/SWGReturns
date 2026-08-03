@@ -16,7 +16,7 @@
  *	CreatureStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4015475806,RPC_ISCREATURE__,RPC_GETDNASTATE__,RPC_GETDNASAMPLECOUNT__,RPC_INCDNASAMPLECOUNT__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SCHEDULEDESPAWN__,RPC_HASORGANICS__,RPC_HASMILK__,RPC_HASDNA__,RPC_CANHARVESTME__CREATUREOBJECT_,RPC_CANDROIDHARVESTME__CREATUREOBJECT_CREATUREOBJECT_,RPC_HASSKILLTOHARVESTME__CREATUREOBJECT_,RPC_CANTAMEME__CREATUREOBJECT_,RPC_GETCHANCETOTAME__CREATUREOBJECT_,RPC_CANMILKME__CREATUREOBJECT_,RPC_CANCOLLECTDNA__CREATUREOBJECT_,RPC_HASSKILLTOSAMPLEME__CREATUREOBJECT_,RPC_ADDALREADYHARVESTED__CREATUREOBJECT_,RPC_SETMILKSTATE__SHORT_,RPC_SETDNASTATE__SHORT_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SETPETLEVEL__INT_,RPC_ISVICIOUS__,RPC_ISBABY__,RPC_SETBABY__BOOL_,RPC_GETTAME__,RPC_GETMEATTYPE__,RPC_GETBONETYPE__,RPC_GETHIDETYPE__,RPC_GETMILKTYPE__,RPC_GETMILK__,RPC_GETHIDEMAX__,RPC_GETBONEMAX__,RPC_GETMEATMAX__,RPC_GETBASEXP__,RPC_GETCONTROLDEVICETEMPLATE__,RPC_ISMOUNT__,RPC_GETADULTLEVEL__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4015475806,RPC_ISCREATURE__,RPC_GETDNASTATE__,RPC_GETDNASAMPLECOUNT__,RPC_INCDNASAMPLECOUNT__,RPC_ISCAMOUFLAGED__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SCHEDULEDESPAWN__,RPC_HASORGANICS__,RPC_HASMILK__,RPC_HASDNA__,RPC_CANHARVESTME__CREATUREOBJECT_,RPC_CANDROIDHARVESTME__CREATUREOBJECT_CREATUREOBJECT_,RPC_HASSKILLTOHARVESTME__CREATUREOBJECT_,RPC_CANTAMEME__CREATUREOBJECT_,RPC_GETCHANCETOTAME__CREATUREOBJECT_,RPC_CANMILKME__CREATUREOBJECT_,RPC_CANCOLLECTDNA__CREATUREOBJECT_,RPC_HASSKILLTOSAMPLEME__CREATUREOBJECT_,RPC_ADDALREADYHARVESTED__CREATUREOBJECT_,RPC_SETMILKSTATE__SHORT_,RPC_SETDNASTATE__SHORT_,RPC_NOTIFYDESPAWN__ZONE_,RPC_SETPETLEVEL__INT_,RPC_ISVICIOUS__,RPC_ISBABY__,RPC_SETBABY__BOOL_,RPC_GETTAME__,RPC_GETMEATTYPE__,RPC_GETBONETYPE__,RPC_GETHIDETYPE__,RPC_GETMILKTYPE__,RPC_GETMILK__,RPC_GETHIDEMAX__,RPC_GETBONEMAX__,RPC_GETMEATMAX__,RPC_GETBASEXP__,RPC_GETCONTROLDEVICETEMPLATE__,RPC_ISMOUNT__,RPC_GETADULTLEVEL__};
 
 Creature::Creature() : AiAgent(DummyConstructorParameter::instance()) {
 	CreatureImplementation* _implementation = new CreatureImplementation();
@@ -102,6 +102,21 @@ void Creature::incDnaSampleCount() {
 	} else {
 		assert(this->isLockedByCurrentThread());
 		_implementation->incDnaSampleCount();
+	}
+}
+
+bool Creature::isCamouflaged(CreatureObject* target) {
+	CreatureImplementation* _implementation = static_cast<CreatureImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_ISCAMOUFLAGED__CREATUREOBJECT_);
+		method.addObjectParameter(target);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->isCamouflaged(target);
 	}
 }
 
@@ -887,6 +902,11 @@ void CreatureImplementation::incDnaSampleCount() {
 	dnaSampleCount ++;
 }
 
+bool CreatureImplementation::isCamouflaged(CreatureObject* target) {
+	// server/zone/objects/creature/ai/Creature.idl():  		return isAggressiveTo(target) && (isScentMasked(target) || isConcealed(target));
+	return isAggressiveTo(target) && (isScentMasked(target) || isConcealed(target));
+}
+
 bool CreatureImplementation::isBaby() {
 	// server/zone/objects/creature/ai/Creature.idl():  		return baby;
 	return baby;
@@ -1062,6 +1082,14 @@ void CreatureAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			incDnaSampleCount();
 			
+		}
+		break;
+	case RPC_ISCAMOUFLAGED__CREATUREOBJECT_:
+		{
+			CreatureObject* target = static_cast<CreatureObject*>(inv->getObjectParameter());
+			
+			bool _m_res = isCamouflaged(target);
+			resp->insertBoolean(_m_res);
 		}
 		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
@@ -1342,6 +1370,10 @@ short CreatureAdapter::getDnaSampleCount() const {
 
 void CreatureAdapter::incDnaSampleCount() {
 	(static_cast<Creature*>(stub))->incDnaSampleCount();
+}
+
+bool CreatureAdapter::isCamouflaged(CreatureObject* target) {
+	return (static_cast<Creature*>(stub))->isCamouflaged(target);
 }
 
 int CreatureAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

@@ -52,7 +52,7 @@
 #include "templates/manager/PortalLayoutMap.h"
 
 #include "templates/params/creature/CreatureState.h"
-#include "templates/params/creature/ObjectFlag.h"
+#include "templates/params/creature/CreatureFlag.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "templates/params/OptionBitmask.h"
 #include "templates/params/ObserverEventType.h"
@@ -100,11 +100,11 @@
 #include "templates/tangible/PetDeedTemplate.h"
 #include "templates/tangible/PowerupTemplate.h"
 #include "templates/tangible/RangedStimPackTemplate.h"
-#include "templates/tangible/SchematicFragmentTemplate.h"
 #include "templates/tangible/SharedBattlefieldMarkerObjectTemplate.h"
 #include "templates/tangible/SharedCountingObjectTemplate.h"
 #include "templates/tangible/SharedFactoryObjectTemplate.h"
 #include "templates/tangible/SharedResourceContainerObjectTemplate.h"
+#include "templates/tangible/SharedShipObjectTemplate.h"
 #include "templates/tangible/SharedWeaponObjectTemplate.h"
 #include "templates/tangible/SkillBuffTemplate.h"
 #include "templates/tangible/StatePackTemplate.h"
@@ -115,8 +115,6 @@
 #include "templates/tangible/VehicleDeedTemplate.h"
 #include "templates/tangible/WoundPackTemplate.h"
 #include "templates/tangible/XpPurchaseTemplate.h"
-
-#include "templates/tangible/SharedShipObjectTemplate.h"
 
 #include "templates/universe/SharedGroupObjectTemplate.h"
 #include "templates/universe/SharedGuildObjectTemplate.h"
@@ -129,12 +127,8 @@
 #include "templates/SharedTangibleObjectTemplate.h"
 #include "templates/SharedUniverseObjectTemplate.h"
 
-
 #include "conf/ConfigManager.h"
 #include "tre3/TreeArchive.h"
-
-// Include needed for the INVULNERABLE constant used for Lua globals registration (fixed)
-#include "server/zone/objects/building/components/DestructibleBuildingDataComponent.h"
 
 
 Lua* TemplateManager::luaTemplatesInstance = nullptr;
@@ -271,22 +265,26 @@ void TemplateManager::loadAssetCustomizationManager() {
 	iffStream = openIffFile("datatables/customization/hair_assets_skill_mods.iff");
 
 	if (iffStream == nullptr) {
-		warning("Hair assets data not found - hair mappings will be loaded from Lua.");
-		CustomizationIdManager::instance()->loadHairAssetsFromLua();
-	} else {
-		CustomizationIdManager::instance()->loadHairAssetsSkillMods(iffStream);
-		delete iffStream;
+		error("Hair assets data not found.");
+		ERROR_CODE = HAIR_ASSETS_FILE_NOT_FOUND;
+		return;
 	}
+
+	CustomizationIdManager::instance()->loadHairAssetsSkillMods(iffStream);
+
+	delete iffStream;
 
 	iffStream = openIffFile("datatables/customization/allow_bald.iff");
 
 	if (iffStream == nullptr) {
-		warning("Allow bald data not found - will be loaded from Lua.");
-		CustomizationIdManager::instance()->loadAllowBaldFromLua();
-	} else {
-		CustomizationIdManager::instance()->loadAllowBald(iffStream);
-		delete iffStream;
+		error("allow bald data not found");
+		ERROR_CODE = HAIR_ASSETS_FILE_NOT_FOUND;
+		return;
 	}
+
+	CustomizationIdManager::instance()->loadAllowBald(iffStream);
+
+	delete iffStream;
 }
 
 Reference<SlotDescriptor*> TemplateManager::getSlotDescriptor(const String& filename) {
@@ -368,24 +366,13 @@ void TemplateManager::loadPlanetMapCategories() {
 	for (int i = 0; i < dtiff.getTotalRows(); ++i) {
 		DataTableRow* row = dtiff.getRow(i);
 
-		bool isMainCategory = false;
-		row->getValue(2, isMainCategory);
+		Reference<PlanetMapCategory*> planetMapCategory = new PlanetMapCategory();
+		planetMapCategory->parseFromDataTableRow(row);
 
-		if (isMainCategory) {
-			Reference<PlanetMapCategory*> planetMapCategory = new PlanetMapCategory();
-			planetMapCategory->parseFromDataTableRow(row);
-
-			planetMapCategoryList.put(planetMapCategory->getName(), planetMapCategory);
-		} else {
-			Reference<PlanetMapSubCategory*> planetMapSubCat = new PlanetMapSubCategory();
-			planetMapSubCat->parseFromDataTableRow(row);
-
-			planetMapSubCategoryList.put(planetMapSubCat->getName(), planetMapSubCat);
-		}
+		planetMapCategoryList.put(planetMapCategory->getName(), planetMapCategory);
 	}
 
-	info(true) << "Loaded " << planetMapCategoryList.size() << " planet map primary categories.";
-	info(true) << "Loaded " << planetMapSubCategoryList.size() << " planet map sub categories.";
+	info() << "Loaded " << planetMapCategoryList.size() << " planet map categories.";
 }
 
 void TemplateManager::loadLuaTemplates() {
@@ -567,7 +554,6 @@ void TemplateManager::registerTemplateObjects() {
 	templateFactory.registerObject<DroidPersonalityModuleTemplate>(SharedObjectTemplate::DROIDMODULEPERSONALITY);
 	templateFactory.registerObject<VehicleObjectTemplate>(SharedObjectTemplate::VEHICLE);
 	templateFactory.registerObject<XpPurchaseTemplate>(SharedObjectTemplate::XPPURCHASE);
-	templateFactory.registerObject<SchematicFragmentTemplate>(SharedObjectTemplate::SCHEMATICFRAGMENT);
 }
 
 void TemplateManager::registerFunctions() {
@@ -608,19 +594,18 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("MEDIUM", SharedWeaponObjectTemplate::MEDIUM);
 	luaTemplatesInstance->setGlobalInt("HEAVY", SharedWeaponObjectTemplate::HEAVY);
 
-	luaTemplatesInstance->setGlobalInt("ATTACKABLE", ObjectFlag::ATTACKABLE);
-	luaTemplatesInstance->setGlobalInt("AGGRESSIVE", ObjectFlag::AGGRESSIVE);
-	luaTemplatesInstance->setGlobalInt("OVERT", ObjectFlag::OVERT);
-	luaTemplatesInstance->setGlobalInt("TEF", ObjectFlag::TEF);
-	luaTemplatesInstance->setGlobalInt("PLAYER", ObjectFlag::PLAYER);
-	luaTemplatesInstance->setGlobalInt("ENEMY", ObjectFlag::ENEMY);
-	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", ObjectFlag::WILLBEDECLARED);
-	luaTemplatesInstance->setGlobalInt("WASDECLARED", ObjectFlag::WASDECLARED);
+	luaTemplatesInstance->setGlobalInt("ATTACKABLE", CreatureFlag::ATTACKABLE);
+	luaTemplatesInstance->setGlobalInt("AGGRESSIVE", CreatureFlag::AGGRESSIVE);
+	luaTemplatesInstance->setGlobalInt("OVERT", CreatureFlag::OVERT);
+	luaTemplatesInstance->setGlobalInt("TEF", CreatureFlag::TEF);
+	luaTemplatesInstance->setGlobalInt("PLAYER", CreatureFlag::PLAYER);
+	luaTemplatesInstance->setGlobalInt("ENEMY", CreatureFlag::ENEMY);
+	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", CreatureFlag::WILLBEDECLARED);
+	luaTemplatesInstance->setGlobalInt("WASDECLARED", CreatureFlag::WASDECLARED);
 
 	luaTemplatesInstance->setGlobalInt("CONVERSABLE", OptionBitmask::CONVERSE);
 	luaTemplatesInstance->setGlobalInt("AIENABLED", OptionBitmask::AIENABLED);
-// Core3 compatibility: INVULNERABLE constant comes from DestructibleBuildingDataComponent
-	luaTemplatesInstance->setGlobalInt("INVULNERABLE", DestructibleBuildingDataComponent::INVULNERABLE);
+	luaTemplatesInstance->setGlobalInt("INVULNERABLE", OptionBitmask::INVULNERABLE);
 	luaTemplatesInstance->setGlobalInt("FACTIONAGGRO", OptionBitmask::FACTIONAGGRO);
 	luaTemplatesInstance->setGlobalInt("INTERESTING", OptionBitmask::INTERESTING);
 	luaTemplatesInstance->setGlobalInt("JTLINTERESTING", OptionBitmask::JTLINTERESTING);
@@ -713,8 +698,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("VEHICLEDEED", SharedObjectTemplate::VEHICLEDEED);
 	luaTemplatesInstance->setGlobalInt("PETDEED", SharedObjectTemplate::PETDEED);
 	luaTemplatesInstance->setGlobalInt("DROIDDEED", SharedObjectTemplate::DROIDDEED);
-	luaTemplatesInstance->setGlobalInt("SHIPDEED", SharedObjectTemplate::SHIPDEED);
-	luaTemplatesInstance->setGlobalInt("NAVICOMPUTERDEED", SharedObjectTemplate::NAVICOMPUTERDEED);
 	luaTemplatesInstance->setGlobalInt("EVENTPERKDEED", SharedObjectTemplate::EVENTPERKDEED);
 	luaTemplatesInstance->setGlobalInt("MISSIONTERMINAL", SharedObjectTemplate::MISSIONTERMINAL);
 	luaTemplatesInstance->setGlobalInt("CLONINGBUILDING", SharedObjectTemplate::CLONINGBUILDING);
@@ -757,7 +740,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("DROIDPERSONALITYCHIP", SharedObjectTemplate::DROIDMODULEPERSONALITY);
 	luaTemplatesInstance->setGlobalInt("VEHICLE", SharedObjectTemplate::VEHICLE);
 	luaTemplatesInstance->setGlobalInt("XPPURCHASE", SharedObjectTemplate::XPPURCHASE);
-	luaTemplatesInstance->setGlobalInt("SCHEMATICFRAGMENT", SharedObjectTemplate::SCHEMATICFRAGMENT);
 
 	luaTemplatesInstance->setGlobalInt("NO_HITLOCATION", ArmorObjectTemplate::NOLOCATION);
 	luaTemplatesInstance->setGlobalInt("CHEST_HITLOCATION", ArmorObjectTemplate::CHEST);
@@ -773,7 +755,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("RECRUITER", EventPerkDeedTemplate::RECRUITER);
 	luaTemplatesInstance->setGlobalInt("GAME", EventPerkDeedTemplate::GAME);
 	luaTemplatesInstance->setGlobalInt("HONORGUARD", EventPerkDeedTemplate::HONORGUARD);
-	luaTemplatesInstance->setGlobalInt("NPCACTOR", EventPerkDeedTemplate::NPCACTOR);
 
 	luaTemplatesInstance->setGlobalInt("STIM_A", StimPackTemplate::STIM_A);
 	luaTemplatesInstance->setGlobalInt("STIM_B", StimPackTemplate::STIM_B);
@@ -788,9 +769,6 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("CLONER_DARK_JEDI_ONLY", CloningBuildingObjectTemplate::DARK_JEDI_ONLY);
 	luaTemplatesInstance->setGlobalInt("CLONER_FACTION_REBEL", CloningBuildingObjectTemplate::FACTION_REBEL);
 	luaTemplatesInstance->setGlobalInt("CLONER_FACTION_IMPERIAL", CloningBuildingObjectTemplate::FACTION_IMPERIAL);
-
-	luaTemplatesInstance->setGlobalInt("SHIPCOMPONENT", SharedObjectTemplate::SHIPCOMPONENT);
-	luaTemplatesInstance->setGlobalInt("SHIPCHASSIS", SharedObjectTemplate::SHIPCHASSIS);
 }
 
 const String& TemplateManager::getTemplateFile(uint32 key) const {
@@ -912,8 +890,6 @@ AppearanceTemplate* TemplateManager::instantiateAppearanceTemplate(IffStream* if
 			break;
 		case 'PEFT':
 			break;
-		case 'LSAT':
-			break;
 		case 'APT ': {
 			AppearanceRedirect redirect;
 			redirect.readObject(iffStream);
@@ -922,7 +898,7 @@ AppearanceTemplate* TemplateManager::instantiateAppearanceTemplate(IffStream* if
 			break;
 		}
 		default:
-			error() << "unknown appearance type " << (char)((formType >> 24) & 0xFF) << (char)((formType >> 16) & 0xFF) << (char)((formType >> 8) & 0xFF) << (char)(formType & 0xFF);
+			error("unknown appearance type " + String::hexvalueOf((int)formType));
 			break;
 		}
 

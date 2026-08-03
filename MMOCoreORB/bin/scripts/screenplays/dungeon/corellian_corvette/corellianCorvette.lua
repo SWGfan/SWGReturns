@@ -8,8 +8,8 @@ CorellianCorvette = ScreenPlay:new {
 	},
 
 	escapePoints = {
-		{ faction = "neutral", planet = "chandrila", x = 164, y = -2937 },
-		{ faction = "imperial", planet = "lok", x = -1933, y = -3209 },  --x = -1933.0, z = 12, y = -3209.0
+		{ faction = "neutral", planet = "tatooine", x = -5842, y = -6191 },
+		{ faction = "imperial", planet = "naboo", x = 2445, y = -3913 },
 		{ faction = "rebel", planet = "corellia", x = -6460, y = 5972 },
 	},
 
@@ -418,7 +418,8 @@ function CorellianCorvette:setupBrokenDroid(pDroid)
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "repairDroidDestinationReached", pDroid)
 	SceneObject(pDroid):setContainerComponent("corvetteBrokenDroidContainerComponent")
 
-	AiAgent(pDroid):setMovementState(AI_PATROLLING)
+	AiAgent(pDroid):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
+	AiAgent(pDroid):setFollowState(4) -- Patrolling
 
 	writeData(corvetteID .. ":electricTrapEnabled", 1)
 end
@@ -540,7 +541,8 @@ function CorellianCorvette:setupPrisoner(pPrisoner)
 	end
 
 	createObserver(DESTINATIONREACHED, "CorellianCorvette", "prisonerDestinationReached", pPrisoner)
-	AiAgent(pPrisoner):setMovementState(AI_PATROLLING)
+	AiAgent(pPrisoner):setAiTemplate("idlewait") -- Don't move unless patrol point is added to list
+	AiAgent(pPrisoner):setFollowState(4) -- Patrolling
 
 	if (SceneObject(pPrisoner):getObjectName() == "prisoner") then
 		CreatureObject(pPrisoner):setOptionBit(CONVERSABLE)

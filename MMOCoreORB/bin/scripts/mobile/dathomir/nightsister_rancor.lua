@@ -2,7 +2,6 @@ nightsister_rancor = Creature:new {
 	objectName = "@mob/creature_names:nightsister_rancor",
 	socialGroup = "nightsister",
 	faction = "nightsister",
-	mobType = MOB_CARNIVORE,
 	level = 55,
 	chanceHit = 0.5,
 	damageMin = 395,
@@ -11,7 +10,7 @@ nightsister_rancor = Creature:new {
 	baseHAM = 10000,
 	baseHAMmax = 12000,
 	armor = 1,
-	resists = {30,60,5,20,20,20,5,5,-1},
+	resists = {130,160,5,200,200,200,5,5,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 950,
 	hideType = "hide_leathery",
@@ -40,17 +39,12 @@ nightsister_rancor = Creature:new {
 			lootChance = 2100000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"posturedownattack",""}, {"creatureareaknockdown",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"posturedownattack",""},
+		{"creatureareaknockdown",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_rancor, "nightsister_rancor")

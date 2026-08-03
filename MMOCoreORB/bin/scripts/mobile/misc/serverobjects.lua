@@ -53,12 +53,3 @@ includeFile("misc/record_keeper_rebel.lua")
 includeFile("misc/seeker.lua")
 includeFile("misc/sullustan_male.lua")
 includeFile("misc/trials_gungan_captain.lua")
-
---New
-includeFile("misc/lothalracecoordinator.lua")
-includeFile("misc/coruscantracecoordinator.lua")
-includeFile("misc/huttaracecoordinator.lua")
-includeFile("misc/junk_dealer_mustafar.lua")
-includeFile("misc/naboo_heat_memorial.lua")
-includeFile("misc/stardust_vendor_npc.lua")
-includeFile("misc/stardust_gambling_npc.lua")

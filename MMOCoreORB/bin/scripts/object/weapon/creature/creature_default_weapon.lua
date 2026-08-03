@@ -43,7 +43,7 @@
 
 object_weapon_creature_creature_default_weapon = object_weapon_creature_shared_creature_default_weapon:new {
 
-	playerRaces = { },
+	playerRaces = {},
 	
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK

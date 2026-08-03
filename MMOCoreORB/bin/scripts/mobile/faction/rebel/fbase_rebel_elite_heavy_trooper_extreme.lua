@@ -2,17 +2,16 @@ fbase_rebel_elite_heavy_trooper_extreme = Creature:new {
 	objectName = "@mob/creature_names:fbase_rebel_elite_heavy_trooper_extreme",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_ANDROID,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 270,
-	chanceHit = 10.8,
-	damageMin = 841,
-	damageMax = 1519,
+	chanceHit = 18.0,
+	damageMin = 1495,
+	damageMax = 2700,
 	baseXp = 27000,
 	baseHAM = 254000,
 	baseHAMmax = 345000,
-	armor = 1,
+	armor = 3,
 	resists = {140,30,30,150,150,150,150,-1,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -48,20 +47,10 @@ fbase_rebel_elite_heavy_trooper_extreme = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_carbine",
-	secondaryWeapon = "rebel_pistol",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,carbineermaster),
-	secondaryAttacks = merge(marksmanmaster,pistoleermaster)
+	attacks = merge(brawlermaster,marksmanmaster,riflemanmaster,tkamaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_rebel_elite_heavy_trooper_extreme, "fbase_rebel_elite_heavy_trooper_extreme")

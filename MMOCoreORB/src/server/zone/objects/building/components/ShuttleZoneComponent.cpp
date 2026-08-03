@@ -10,7 +10,7 @@
 #include "server/zone/objects/building/tasks/ScheduleShuttleTask.h"
 
 void ShuttleZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zone) const {
-	GroundZoneComponent::notifyInsertToZone(sceneObject, zone);
+	ZoneComponent::notifyInsertToZone(sceneObject, zone);
 
 	if (sceneObject == nullptr || !sceneObject->isCreatureObject())
 		return;
@@ -22,5 +22,5 @@ void ShuttleZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zo
 }
 
 void ShuttleZoneComponent::notifyRemoveFromZone(SceneObject* sceneObject) const {
-	GroundZoneComponent::notifyRemoveFromZone(sceneObject);
+	ZoneComponent::notifyRemoveFromZone(sceneObject);
 }

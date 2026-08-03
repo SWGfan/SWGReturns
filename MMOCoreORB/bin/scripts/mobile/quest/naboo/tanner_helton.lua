@@ -2,7 +2,6 @@ tanner_helton = Creature:new {
 	objectName = "@mob/creature_names:rebel_specforce_guerrilla",
 	socialGroup = "rebel",
 	faction = "rebel",
-	mobType = MOB_NPC,
 	level = 18,
 	chanceHit = 0.32,
 	damageMin = 170,
@@ -31,19 +30,11 @@ tanner_helton = Creature:new {
 		"object/mobile/dressed_rebel_specforce_guerilla_moncal_male_01.iff",
 		"object/mobile/dressed_rebel_specforce_guerrilla_rodian_male_01.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "ebenn_q3_baobab_mission_target_convotemplate",
 	reactionStf = "@npc_reaction/military",
 	personalityStf = "@hireling/hireling_military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(tanner_helton, "tanner_helton")

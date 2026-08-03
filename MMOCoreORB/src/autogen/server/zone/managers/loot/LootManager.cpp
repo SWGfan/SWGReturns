@@ -86,6 +86,16 @@ String LootManager::getRandomLootableMod(unsigned int sceneObjectType) {
 	}
 }
 
+TangibleObject* LootManager::createLootAttachment(const LootItemTemplate* templateObject, const String& modName, int value) {
+	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->createLootAttachment(templateObject, modName, value);
+	}
+}
+
 int LootManager::calculateLootCredits(int level) {
 	LootManagerImplementation* _implementation = static_cast<LootManagerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -379,6 +389,10 @@ LootManagerImplementation::LootManagerImplementation(CraftingManager* craftman, 
 	legendaryModifier = 0.0;
 	// server/zone/managers/loot/LootManager.idl():  		skillModChance = 0.0;
 	skillModChance = 0.0;
+	// server/zone/managers/loot/LootManager.idl():  		globalLootChanceMultiplier = 1.0;
+	globalLootChanceMultiplier = 1.0;
+	// server/zone/managers/loot/LootManager.idl():  		globalLootCreditsMultiplier = 1.0;
+	globalLootCreditsMultiplier = 1.0;
 	// server/zone/managers/loot/LootManager.idl():  		Logger.setLoggingName("LootManager");
 	Logger::setLoggingName("LootManager");
 	// server/zone/managers/loot/LootManager.idl():  		Logger.setGlobalLogging(true);

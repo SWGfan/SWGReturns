@@ -54,8 +54,6 @@ using namespace server::zone::objects::creature;
 
 #include "server/zone/objects/mission/MissionObject.h"
 
-#include "server/zone/objects/transaction/TransactionLog.h"
-
 #include "engine/util/Observable.h"
 
 #include "system/util/SortedVector.h"
@@ -116,13 +114,9 @@ public:
 
 	void awardReward();
 
-	void addMissionStats(TransactionLog& trx);
-
 	Vector3 getEndPosition();
 
 	void clearFailTask();
-
-	bool isPlayerBounty() const;
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -215,13 +209,9 @@ public:
 
 	void awardReward();
 
-	virtual void addMissionStats(TransactionLog& trx);
-
 	virtual Vector3 getEndPosition();
 
 	void clearFailTask();
-
-	virtual bool isPlayerBounty() const;
 
 	WeakReference<MissionObjective*> _this;
 
@@ -308,8 +298,6 @@ public:
 	void awardReward();
 
 	void clearFailTask();
-
-	bool isPlayerBounty() const;
 
 };
 

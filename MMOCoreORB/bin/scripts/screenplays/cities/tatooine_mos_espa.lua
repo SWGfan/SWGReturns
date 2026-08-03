@@ -6,324 +6,37 @@ TatooineMosEspaScreenPlay = CityScreenPlay:new {
 	planet = "tatooine",
 
 	gcwMobs = {
-		{"comm_operator", "rebel_resistance_dissident", -2960.4,5,1973.9,74,0, "npc_imperial", "angry", true},
-		{"dark_trooper", "rebel_commando", -3028.58,5.11515,2618.21,39.6237,0, "", "", true},
-		{"dark_trooper", "rebel_commando", -2636.4,5,2254.3,81,0, "", "", true},
+		{"comm_operator", "rebel_resistance_dissident", -2960.4,5,1973.9,74,0, "npc_imperial", "angry"},
+		{"dark_trooper", "rebel_commando", -3028.58,5.11515,2618.21,39.6237,0, "", ""},
+		{"dark_trooper", "rebel_commando", -2636.4,5,2254.3,81,0, "", ""},
 		{"dark_trooper", "rebel_commando", -2953.88,5,1933.16,344.533,0, "npc_imperial", "neutral"},
-		{"imperial_master_sergeant", "rebel_master_sergeant", -2954.65,5,1935.93,344.531,0, "npc_imperial", "neutral", true},
-		{"imperial_master_sergeant", "rebel_master_sergeant", -3115,5,2199.8,-75,0, "npc_imperial", "neutral", true},
-		{"imperial_master_sergeant", "rebel_master_sergeant", -3204.52,5,2091.93,204.135,0, "", "", true},
+		{"imperial_master_sergeant", "rebel_master_sergeant", -2954.65,5,1935.93,344.531,0, "npc_imperial", "neutral"},
+		{"imperial_master_sergeant", "rebel_master_sergeant", -3115,5,2199.8,-75,0, "npc_imperial", "neutral"},
+		{"imperial_master_sergeant", "rebel_master_sergeant", -3204.52,5,2091.93,204.135,0, "", ""},
 		{"imperial_master_sergeant", "rebel_master_sergeant", -3029.53,5.07697,2617.06,39.7527,0, "", ""},
-		{"imperial_noncom", "rebel_corporal", -2648.9,5,2290.2,67,0, "npc_imperial", "neutral", true},
+		{"imperial_noncom", "rebel_corporal", -2648.9,5,2290.2,67,0, "npc_imperial", "neutral"},
 		{"imperial_noncom", "rebel_corporal", -3027.01,5.06395,2617.66,289.047,0, "npc_imperial", "neutral"},
 		{"imperial_warrant_officer_ii", "rebel_warrant_officer_ii", -3207,5,2097.52,347.895,0, "", ""},
-		{"sand_trooper", "rebel_trooper", -2985.75,5,1978.7,74.49,0, "npc_imperial", "neutral", true},
+		{"sand_trooper", "rebel_trooper", -2985.75,5,1978.7,74.49,0, "npc_imperial", "neutral"},
 		{"sand_trooper", "rebel_trooper", -2963.4,5,1978.6,75,0, "npc_imperial", "neutral"},
 		{"sand_trooper", "rebel_trooper", -2988.1,5,1978.04,74.4903,0, "npc_imperial", "neutral"},
 		{"sand_trooper", "rebel_trooper", -2960.1,5,1968.6,67,0, "npc_imperial", "neutral"},
-		{"sand_trooper", "rebel_trooper", -2695.6,5,1982.9,122,0, "", "", true},
-		{"sand_trooper", "rebel_trooper", -3170.7,5,2137.7,-30,0, "", "", true},
+		{"sand_trooper", "rebel_trooper", -2695.6,5,1982.9,122,0, "", ""},
+		{"sand_trooper", "rebel_trooper", -3170.7,5,2137.7,-30,0, "", ""},
 		{"sand_trooper", "rebel_trooper", -3028.33,5.01162,2616.08,294.927,0, "", ""},
 		{"scout_trooper", "rebel_scout", -2982.5,5,1956.8,73,0, "", ""},
 		{"scout_trooper", "rebel_scout", -3029.2,5,2614.8,-52,0, "", ""},
 		{"stormtrooper", "rebel_crewman", -3207.39,5,2099.33,347.898,0, "", ""},
 		{"stormtrooper", "rebel_crewman", -3203.5,5,2091.5,-159,0, "", ""},
 		{"stormtrooper_captain", "rebel_army_captain", -3026.34,5.10198,2618.73,289.047,0, "npc_imperial", "conversation"},
-		{"stormtrooper_squad_leader", "rebel_resistance_leader", -2979.8,5,1957.6,67,0, "npc_imperial", "npc_consoling", true},
-		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -3022.29,5.02759,2618.41,268.2,0, "", "", true},
-		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -2976.17,5,2009.31,171.013,0, "", "", true},
+		{"stormtrooper_squad_leader", "rebel_resistance_leader", -2979.8,5,1957.6,67,0, "npc_imperial", "npc_consoling"},
+		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -3022.29,5.02759,2618.41,268.2,0, "", ""},
+		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -2976.17,5,2009.31,171.013,0, "", ""},
 		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -3023.4,5,2618.4,86,0, "", ""},
 		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -2977.32,5,2010.1,171.012,0, "", ""},
 		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -3022.7,5.1,2619.6,-171,0, "", ""},
-		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -2976.54,5,2011.63,171.014,0, "", ""},
+		{"mos_espa_police_officer", "mos_espa_police_officer_rebel", -2976.54,5,2011.63,171.014,0, "", ""},		
 	},
-
-	patrolNpcs = {"commoner_fat_patrol", "commoner_old_patrol", "commoner_tatooine_patrol", "commoner_technician_patrol", "explorer_patrol", "gambler_patrol", "scientist_patrol"},
-
-	patrolMobiles = {
-		--{patrolPoints, template, x, z, y, direction, cell, mood, combatPatrol},
-
-		--Droids
-		{"cll8_1", "cll8_binary_load_lifter", -2922.62, 5, 2143.4, 19.5832, 0, "", false},
-		{"eg6_1", "eg6_power_droid", -2833.22, 5, 1899.71, 245.01, 0, "", false},
-		{"eg6_2", "eg6_power_droid", -2928.04, 5, 1977.68, 330.633, 0, "", false},
-		{"eg6_3", "eg6_power_droid", -2945.98, 5, 2470.9, 186.376, 0, "", false},
-		{"r2_1", "r2", -2928.79, 5, 2111.03, 245.497, 0, "", false},
-		{"r2_2", "r2", -2946.8, 5, 2468.6, 350.917, 0, "", false},
-		{"r4_1", "r4", -2959.44, 5, 2110.92, 112.101, 0, "", false},
-		{"r4_2", "r4", -2873, 5, 1984, 252.493, 0, "", false},
-		{"r5_1", "r5", -2935.94, 5, 2275.75, 205.483, 0, "", false},
-		{"r5_2", "r5", -2915.25, 5, 2163.42, 154.028, 0, "", false},
-		{"r5_3", "r5", -2919.36, 5, 2262.73, 15.6789, 0, "", false},
-
-		--NPCs
-		{"npc_1", "patrolNpc", -2905, 5, 2163, 180, 0, "", false},
-		{"npc_2", "patrolNpc", -2952, 5, 2087, 46, 0, "", false},
-		{"npc_3", "patrolNpc", -2914, 5, 1984, 26, 0, "", false},
-		{"npc_4", "patrolNpc", -2754, 5, 1981, 94, 0, "", false},
-		{"npc_5", "patrolNpc", -2715, 5, 2040, 144, 0, "", false},
-		{"npc_6", "patrolNpc", -3046, 5, 2133, 249, 0, "", false},
-		{"npc_7", "patrolNpc", -3100, 5, 2148, 158, 0, "", false},
-		{"npc_8", "patrolNpc", -2954, 5, 2235, 232, 0, "", false},
-		{"npc_9", "patrolNpc", -2914, 5, 2466, 163, 0, "", false},
-		{"npc_10", "patrolNpc", -2770, 5, 2245, 214, 0, "", false},
-		{"npc_11", "patrolNpc", -2731, 5, 2226, 196, 0, "", false},
-	},
-
-	patrolPoints = {
-		--table_name = {{x, z, y, cell, delayAtNextPoint}}
-		cll8_1 = {{-2922, 5, 2144, 0, false}, {-2912, 5, 2157, 0, false}, {-2856, 5, 2154, 0, false}, {-2902, 5, 2148, 0, false}, {-2922, 5, 2111, 0, false}},
-		eg6_1 = {{-2833, 5, 1899, 0, false}, {-2788, 5, 1875, 0, false}, {-2823, 5, 1924, 0, false}, {-2834, 5, 1958, 0, false}, {-2878, 5, 1955, 0, false}, {-2831, 5, 1954, 0, false}, {-2821, 5, 1913, 0, false}},
-		eg6_2 = {{-2928, 5, 1977, 0, false}, {-2955, 5, 1974, 0, false}, {-2918, 5, 2010, 0, false}, {-2898, 5, 1956, 0, false}},
-		eg6_3 = {{-2945, 5, 2470, 0, false}, {-2924, 5, 2472, 0, false}, {-2919, 5, 2505, 0, false}, {-2898, 5, 2476, 0, false}, {-2912, 5, 2460, 0, false}},
-		r2_1 = {{-2928, 5, 2111, 0, false}, {-2925, 5, 2090, 0, false}, {-2923, 5, 2052, 0, false}, {-2952, 5, 2042, 0, false}},
-		r2_2 = {{-2946, 5, 2468, 0, true}, {-2906, 5, 2447, 0, false}, {-2920, 5, 2428, 0, false}, {-2921, 5, 2400, 0, false}, {-2922, 5, 2422, 0, falses}, {-2944, 5, 2438, 0, false}},
-		r4_1 = {{-2959, 5, 2110, 0, false}, {-2994, 5, 2119, 0, true}, {-3048, 5, 2141, 0, false}, {-2994, 5, 2119, 0, false}},
-		r4_2 = {{-2873, 5, 1984, 0, false}, {-2860, 5, 1987, 0, true}, {-2895, 5, 1981, 0, false}, {-2922, 5, 2044, 0, false}, {-2899, 5, 1983, 0, false}},
-		r5_1 = {{-2935, 5, 2275, 0, false}, {-2910, 5, 2323, 0, false}, {-2923, 5, 2398, 0, false}, {-2910, 5, 2323, 0, false}},
-		r5_2 = {{-2915, 5, 2163, 0, false}, {-2927, 5, 2164, 0, false}, {-2964, 5, 2218, 0, false}, {-2939, 5, 2226, 0, false}, {-2912, 5, 2175, 0, false}},
-		r5_3 = {{-2919, 5, 2262, 0, false}, {-2957, 5, 2244, 0, false}, {-3040, 5, 2230, 0, false}, {-2972, 5, 2237, 0, false}},
-
-		npc_1 = {{-2905, 5, 2163, 0, true}, {-2900, 5, 2136, 0, true}, {-2898, 5, 2125, 0, true}, {-2909, 5, 2123, 0, true}},
-		npc_2 = {{-2952, 5, 2087, 0, true}, {-2930, 5, 2078, 0, true}, {-2953, 5, 2058, 0, true}, {-2966, 5, 2107, 0, true}, {-2947, 5, 2101, 0, true}},
-		npc_3 = {{-2914, 5, 1984, 0, true}, {-2878, 5, 1957, 0, true}, {-2909, 5, 1945, 0, true}, {-2939, 5, 1999, 0, true}},
-		npc_4 = {{-2754, 5, 1981, 0, true}, {-2785, 5, 1983, 0, true}, {-2763, 5, 2016, 0, true}, {-2744, 5, 1991, 0, true}, {-2746, 5, 2008, 0, true}},
-		npc_5 = {{-2715, 5, 2040, 0, true}, {-2732, 5, 2084, 0, true}, {-2747, 5, 2039, 0, true}, {-2707, 5, 2057, 0, true}},
-		npc_6 = {{-3046, 5, 2133, 0, true}, {-3082, 5, 2124, 0, true}, {-3064, 5, 2151, 0, true}, {-3036, 5, 2119, 0, true}},
-		npc_7 = {{-3100, 5, 2148, 0, true}, {-3136, 5, 2136, 0, true}, {-3103, 5, 2155, 0, true}, {-3113, 5, 2181, 0, true}},
-		npc_8 = {{-2954, 5, 2235, 0, true}, {-2967, 5, 2254, 0, true}, {-2945, 5, 2271, 0, true}, {-2941, 5, 2214, 0, true}, {-2953, 5, 2246, 0, true}},
-		npc_9 = {{-2914, 5, 2466, 0, true}, {-2914, 5, 2489, 0, true}, {-2956, 5, 2536, 0, true}, {-2897, 5, 2476, 0, true}},
-		npc_10 = {{-2770, 5, 2245, 0, true}, {-2732, 5, 2254, 0, true}, {-2754, 5, 2219, 0, true}, {-2766, 5, 2281, 0, true}},
-		npc_11 = {{-2731, 5, 2226, 0, true}, {-2693, 5, 2264, 0, true}, {-2729, 5, 2263, 0, true}, {-2705, 5, 2240, 0, true}},
-	},
-
-	stationaryCommoners = {"commoner", "commoner_fat", "commoner_old", "commoner_tatooine"},
-	stationaryNpcs = {"artisan", "brawler", "bodyguard", "bothan_diplomat", "bounty_hunter", "businessman", "commoner_technician", "contractor", "criminal", "entertainer", "explorer", "farmer", "farmer_rancher", "fringer",
-			"gambler", "info_broker", "medic", "mercenary", "miner", "noble", "official", "pilot", "rancher", "scavenger", "scientist", "slicer"},
-
-	--{respawn, x, z, y, direction, cell, mood}
-	stationaryMobiles = {
-		{1, -2918.94, 5, 2169.6, 0, 0, "conversation"}, {1, -2881.87, 5, 2142.69, 18.8035, 0, ""}, {1, -2787.25, 5, 1962.04, 14.8999, 0, ""}, {1, -2939.1, 5, 1962.9, 15.9578, 0, ""},
-		{1, -2912.23, 5, 1928.7, 337.934, 0, ""}, {1, -2881.87, 5, 1974.41, 329.04, 0, ""}, {1, -3019.69, 5, 2114.97, 73.4692, 0, ""}, {1, -2881.8, 5, 2267.4, 180, 0, ""},
-		{1, -2897.39, 5, 2323.06, 54.7434, 0, ""}, {1, -2976.72, 5.52789, 2333.09, 215.86, 0, ""},	{1, -2931.98, 5, 2495.44, 266.081, 0, ""}, {1, -2774.25, 5, 2018.1, 237.899, 0, ""},
-		{1, -2739.74, 5, 2044.75, 99.9046, 0, ""}, {1, -2722.49, 5, 2007.18, 217.488, 0, ""}, {1, -2767.35, 5, 2232.76, 164.701, 0, ""}, {1, -2766.88, 5, 2314.77, 201.13, 0, ""},
-		{1, -2901.2, 5, 2360.3, 241, 0, "npc_sitting_chair"}, {1, -2868.4, 5, 2493.9, 238, 0, "npc_sitting_chair"}, {1, -2877.18, 5, 2473.48, 293.853, 0, ""}, {1, -2886.35, 5, 2377.12, 323.001, 0, ""},
-		{1, -2890.19, 5, 2251.37, 190.438, 0, ""}, {1, -2839.04, 5, 2492.89, 55.3765, 0, ""}, {1, -2874.25, 5, 2546.29, 122.899, 0, ""}, {1, -2881.23, 5, 2004.94, 233.054, 0, ""},
-		{1, -2818.45, 5, 2407.94, 238.346, 0, ""}, {1, -2859.3, 5, 2288.53, 351.513, 0, ""}, {1, -3007.6, 5, 2372.2, -133, 0, ""}, {1, -2860.36, 5, 2212.37, 343.92, 0, ""},
-		{1, -2831.34, 5, 1912.49, 217.51, 0, ""}, {1, -2807.11, 5, 1953.71, 320.134, 0, ""}, {1, -3115.34, 5, 2084.32, 284.484, 0, ""}, {1, -3000.81, 5, 2213.95, 148.773, 0, ""},
-		{1, -2978.76, 5, 2473.24, 5.89742, 0, ""}, {1, -2884.43, 5, 2575.51, 325.132, 0, ""}, {1, -2894.24, 5, 2492.22, 84.423, 0, ""}, {1, -2810.06, 5, 2318.02, 268.996, 0, ""},
-	},
-
-	mobiles = {
-		--Starport
-		{"chassis_dealer",60,2.29774,0.639422,67.5349,157.943,1261655, "neutral"},
-		{"ecoospoo",60,1.1,0.639421,66.3,33.001,1261655, "conversation"},
-		{"poki_wirqi",60,-29.0928,1.63942,52.3406,180.009,1261660, "conversation"},
-		{"awwaschlu_witubrarq",60,-29.0928,1.63942,51.3406,0,1261660, "conversation"},
-		{"farmer",60,-50.0859,2.63942,33.6967,135.008,1261663, "conversation"},
-		{"businessman",300,-48.9859,2.63942,33.6967,180.011,1261663, "conversation"},
-		{"farmer_rancher",60,-49.1,2.6,32.5,-36,1261663, "happy"},
-		{"trainer_shipwright",60,-3.2,0.6,67.7,177,1261655, "neutral"},
-
-		--Tavern -2888 2281
-		{"scientist",60,-2.1,1,9.1,-26,3065452, "calm"},
-		{"r5",60,1.5,1,7.5,-82,3065452, ""},
-		{"info_broker",60,5.7,1,4.2,0,3065450, "happy"},
-		{"patron_chiss",60,9.7,0.4,-3.2,1,3065451, ""},
-		{"patron_devaronian",60,9.6,0.4,-1.4,172,3065451, "conversation"},
-		{"commoner_fat",60,4.3,0.4,-9.8,-12,3065451, "nervous"},
-		{"rancher",60,-2.5,0.4,-9.8,-177,3065451, ""},
-		{"judge",60,-10.6,0.4,-2.1,71,3065451, "npc_accusing"},
-		{"entertainer",60,4.3,-3.4,4.4,-100,3065456, ""},
-		{"patron_ithorian",60,1.5,-4,4.3,86,3065456, "entertained"},
-		{"imperial_recruiter",60,-9.3,-9.5,-3.2,-15,3065458, ""},
-		{"twilek_slave",60,-4.2,-10,-6.5,-94,3065459, "nervous"},
-		{"farmer_rancher",60,-4.3,-10,-8.2,-78,3065459, ""},
-		{"businessman",60,-5.8,-10,-7.1,73,3065459, "npc_consoling"},
-
-		--large Tatooine house with Krayt skull above door
-		{"shadowy_figure",60,0,0.5,-6.9,180,1261454, "angry"},
-		{"r4",60,-1.9,1.0,5.9,130,1261454, ""},
-		{"r4",60,1.9,1.0,5.9,-130,1261454, ""},
-		{"mercenary",300,-6.9,2.0,10,100,1261453, "npc_accusing"},
-		{"mercenary",300,6.9,2.0,10,-100,1261453, "npc_accusing"},
-		{"bounty_hunter", 1, 2.3, 0.5, -10.0, 0, 1261454, ""},
-		{"imperial_exterminator", 300, -2.3, 0.5, -10.0, 0, 1261454, ""},
-
-		--southwest Tavern
-		{"vendor",60,10,0.4,-5.5,85,1261582, "npc_use_terminal_high"},
-		{"scientist",60,4.6,0.4,1.7,0,1261582, ""},
-		{"patron_ishitib",60,-4.5,0.4,-5.5,-40,1261582, ""},
-		{"patron_klaatu",60,-5.1,0.4,-4.3,149,1261582, "conversation"},
-		{"contractor",60,-6.5,-4.0,-6.8,-90,1261586, "worried"},
-		{"commoner_technician",60,-6.3,-4.0,-5.9,-112,1261586, "sad"},
-
-		--west Tavern
-		{"commoner_naboo",60,-3.6,1.0,9.3,0,1261570, ""},
-		{"commoner_tatooine",60,6.9,0.4,-9.1,180,1261569, ""},
-		{"agriculturalist",60,-2.7,0.4,-1.7,75,1261569, "conversation"},
-		{"rancher",60,-1.0,0.4,-1.6,-90,1261569, ""},
-		{"farmer_rancher",60,-2.2,0.4,-0.9,171,1261569, ""},
-		{"farmer",60,-2.0,0.4,-2.3,0,1261569, ""},
-		{"chiss_female",60,9.7,-9.5,-10.0,-45,1261579, ""},
-		{"noble",60,3.8,-9.5,1.4,-100,1261579, ""},
-		{"surgical_droid_21b",60,-1.9,-9.5,-6.5,90,1261579, ""},
-		{"surgical_droid_21b",60,7.5,-9.5,-10.1,102,1261579, ""},
-		{"chiss_male",60,8.8,-9.5,-6.7,145,1261579, "sad"},
-
-		--Guild Hall -2857 1987
-		{"contractor",60,-3.69,1.13306,-6,11.0003,1256306, ""},
-		{"miner",60,3.29,1.13306,-9.58,249.007,1256011, ""},
-		{"trainer_artisan",0,-0.0885271,1.13306,-14.0283,2,1256011, ""},
-		{"coa3_information_rebel",60,14.2091,1.13306,-10.1408,205.638,1256010, ""},
-
-		--Cantina
-		{"bartender",60,-11.1703,-0.894992,1.53149,33.4278,1256058, ""},
-		{"dorn_gestros",60,-6.00754,-0.894992,-5.35219,231.068,1256058, "calm"},
-		{"medic",60,12.1732,-0.894991,3.93609,180.003,1256058, "conversation"},
-		{"sullustan_male",300,12.1732,-0.894992,2.93609,360.011,1256058, "conversation"},
-		{"bounty_hunter",300,2.1656,-0.894992,-15.9672,360.011,1256061, "calm"},
-		{"contractor",60,2.1656,-0.894992,-14.9672,180.001,1256061, "conversation"},
-		{"commoner_tatooine",60,-20.6545,-0.894989,25.0112,0,1256067, "conversation"},
-		{"noble",300,-20.6545,-0.894989,26.0112,180.01,1256067, "conversation"},
-		{"da_la_socuna",60,-29.7168,-0.519991,7.77728,54.7476,1256068, "conversation"},
-
-		--Guild Hall -3063 2079
-		{"trainer_architect",0,11,1.133,-14.5,0,1256021, ""},
-		{"trainer_armorsmith",0,-12.5142,1.13306,3.63893,165,1256020, ""},
-		{"trainer_droidengineer",0,-11.5362,1.13306,-12.6351,1,1256023, ""},
-		{"trainer_weaponsmith",0,-2.95975,1.13306,-8.77207,109,1256022, ""},
-		{"trainer_merchant",0,12,1.13306,6,180,1256019, ""},
-
-		--Med Center
-		{"trainer_combatmedic",0,7.93319,0.184067,5.54261,86,4005424, ""},
-
-		--Hotel
-		{"commoner_technician",60,20.2715,1.28309,-1.14578,360.011,1261018, "conversation"},
-		{"noble",60,20.2715,1.28309,-0.0457823,179.998,1261018, "conversation"},
-		{"medic",300,19.1715,1.28309,-0.0457823,134.998,1261018, "conversation"},
-		{"scientist",60,20.3,1.6,13.7,-5,1261018, ""},
-		{"mercenary",300,7.41432,1.00001,-5.80893,180.003,1261017, "angry"},
-		{"commoner_technician",60,7.41432,1.00001,-6.90893,0,1261017, "conversation"},
-
-		--Junk Shop
-		{"junk_nado", 0, 1.2, -0.5, 5.5, -144, 1255997, ""},
-
-		--Guild Hall -2997 2426
-		{"trainer_brawler",0,-11,1.1,-14,0,1255994, ""},
-		{"trainer_marksman",0,0,1.13306,-13,0,1255993, ""},
-		{"trainer_scout",0,-13,1.1,4.8,180,1255991, ""},
-		{"junk_dealer", 0, -14.3, 1.1, 2.9, 105, 1255991, ""},
-
-		--Outside
-		{"anim_kahn",60,-2907.07,5,2130.14, 75,0, "neutral"},
-		{"criminal",300,-2960.96,5,2163.64,79.2954,0, ""},
-		{"criminal",300,-2856.83,5,2473.55,184.191,0, ""},
-		{"criminal",300,-2976.77,5,2539.28,36.1265,0, ""},
-		{"criminal",300,-2837.3,5,2425.05,254.096,0, ""},
-		{"criminal",300,-2760.75,5,2038.95,263.963,0, ""},
-		{"criminal",300,-2834.04,5,2462.23,193.677,0, ""},
-		{"criminal",300,-2846.59,5,2497.64,332.133,0, ""},
-		{"desert_demon",300,-2821.38,5,2432.95,176.513,0, ""},
-		{"desert_demon",300,-2861.27,5,2393.34,146.859,0, ""},
-		{"desert_demon",300,-2823.03,5,2448.69,64.4102,0, ""},
-		{"informant_npc_lvl_1",0,-2804,5,2237,315,0, ""},
-		{"informant_npc_lvl_1",0,-2836,5,2275,45,0, ""},
-		{"informant_npc_lvl_1",0,-2935,5,2393,90,0, ""},
-		{"informant_npc_lvl_2",0,-2879,5,2555,135,0, ""},
-
-		--Jawa's
-		{"jawa",300,-2930.03,5,2038.02,270.008,0, "conversation"},
-		{"jawa",300,-2932.03,5,2038.02,90.0027,0, "conversation"},
-		{"jawa",300,-2931.03,5,2037.02,0,0, "conversation"},
-		{"jawa",300,-3033.6,5,2245.5,80,0, ""},
-		{"jawa",300,-3028.7,5,2246.4,-99,0, ""},
-		{"jawa",300,-2997.5,5,2246.5,-83,0, ""},
-		{"jawa",300,-2921.8,5,2561,-17,0, ""},
-		{"jawa",300,-2922.7,5,2565.1,167,0, ""},
-		{"jawa",300,-2918.3,5,2587.5,-147,0, ""},
-		{"jawa",300,-2923.6,5,2579.2,24,0, ""},
-		{"jawa",300,-2888,5,2591,90.7367,0, ""},
-		{"jawa",300,-2886.7,5,2591,-90,0, ""},
-		{"jawa",300,-2854.7,5,2461.1,-77,0, ""},
-		{"jawa",300,-2857,5,2461.6,112,0, ""},
-		{"jawa",300,-2820.6,5,2414.3,-6,0, ""},
-		{"jawa",300,-2821,5,2417.3,154,0, ""},
-		{"jawa",300,-2842.4,5,2317.4,-132,0, ""},
-		{"jawa",300,-2844.9,5,2315.3,49,0, ""},
-		{"jawa",300,-2866.7,5,2311.8,-51,0, ""},
-		{"jawa",300,-2869.2,5,2314,140,0, ""},
-		{"jawa",300,-2737.2,5,2179.2,-12,0, ""},
-		{"jawa",300,-2736.3,5,2181.5,-97,0, ""},
-		{"jawa",300,-2737.7,5,2183.6,169,0, ""},
-		{"jawa_engineer",300,-2834.7,5,2399,76,0, ""},
-		{"jawa_engineer",300,-2771.4,5,1934.2,84,0, ""},
-		{"jawa_engineer",300,-2735,5,2189.5,-116,0, ""},
-		{"jawa_engineer",300,-2742.4,5,2175.1,78,0, ""},
-		{"jawa_healer",300,-2866.1,5,2465.9,-33,0, ""},
-		{"jawa_healer",300,-2830.7,5,2400,-111,0, ""},
-		{"jawa_healer",300,-2775.7,5,1925,2,0, ""},
-		{"jawa_healer",300,-2775.8,5,1931.4,54,0, ""},
-		{"jawa_healer",300,-2773.3,5,1932.7,-122,0, ""},
-		{"jawa_healer",300,-2775.5,5,1927.9,-176,0, ""},
-		{"jawa_healer",300,-2766.8,5,1934,-95,0, ""},
-		{"jawa_henchman",300,-2906.1,5,2594.7,103,0, ""},
-		{"jawa_smuggler",300,-3002.1,5,2245.9,77,0, ""},
-		{"jawa_smuggler",300,-2775.8,5,1918.2,152,0, ""},
-		{"jawa_smuggler",300,-2776.8,5,1913.8,78,0, ""},
-		{"jawa_thief",300,-2903,5,2594.2,-80,0, ""},
-		{"jawa_thief",300,-2867.9,5,2468,144,0, ""},
-		{"jawa_thief",300,-2867.6,5,2421.4,-130,0, ""},
-		{"jawa_thief",300,-2848.8,5,2430.5,103,0, ""},
-		{"jawa_thief",300,-2739.1,5,2175.5,-96,0, ""},
-		{"jawa_thief",300,-2736.1,5,2188.86,69.1613,0, ""},
-
-		--More misc outside
-		{"junk_dealer", 0, -2750.9, 5, 2057, 132, 0, ""},
-		{"junk_dealer", 0, -2904.51, 5, 2446.5, -87, 0, ""},
-		{"miner",60,-2918.94,5,2170.6,180.005,0, "conversation"},
-		{"noble",60,-2924.82,5,2143.27,127.261,0, ""},
-		{"noble",60,-3081.03,5,2104.52,341.726,0, ""},
-		{"noble",60,-3064.8,5,2095.01,-130,0, ""},
-		{"noble",60,-2999.41,5.52789,2350.79,244.987,0, ""},
-		{"noble",60,-2847.77,5,2393.35,42.0583,0, ""},
-		{"noble",60,-2810.65,5,2195.86,318.004,0, ""},
-		{"noble",60,-3091.67,5,2165.61,286.75,0, ""},
-		{"noble",60,-3062.85,5,2195.92,156.151,0, ""},
-		{"prost_roberts", 60, -2906.52,5,2128.41, 75, 0, "neutral"},
-		{"rel_keteris", 60, -2905.83, 5, 2127.11, 75, 0, "neutral"},
-		{"scientist",60,-2969.77,5,2194.82,198.34,0, ""},
-		{"scientist",60,-3055.28,5,2098.76,237.173,0, ""},
-		{"scientist",60,-2913.31,5,2566.89,167.24,0, ""},
-		{"scientist",60,-2969.78,5,2469.4,58.2554,0, ""},
-		{"scientist",60,-2860.55,5,2534.77,227.149,0, ""},
-		{"thug",300,-2857.9,5,2250.18,156.767,0, ""},
-		{"thug",300,-2731.61,5,2242.41,339.94,0, ""},
-		{"thug",300,-2748.23,5,2031.47,337.983,0, ""},
-		{"thug",300,-2794.64,5,2327.09,109.693,0, ""},
-		{"thug",300,-2927.54,5,2013.85,322.05,0, ""},
-		{"thug",300,-2994.3,5.5,2331.4,165,0, ""},
-		{"thug",300,-2964.35,5,2536.74,244.766,0, ""},
-		{"thug",300,-3065.25,5,2142.42,155.455,0, ""},
-		{"thug",300,-2919.38,5,2143.08,304.531,0, ""},
-		{"trace_lyson",60,-2909.17,5,2180.03,180,0, "calm"},
-		{"trainer_1hsword",0,-2964,5,2021,33,0, ""},
-		{"trainer_2hsword",0,-2971,5,2032,174,0, ""},
-		{"trainer_architect",0,-2872,5,2159,180,0, ""},
-		{"trainer_artisan",0,-2890,5,2142,19,0, ""},
-		{"trainer_brawler",0,-2933,5,2125,97,0, ""},
-		{"trainer_creaturehandler",0,-2994,5,2530,0,0, ""},
-		{"trainer_doctor",0,-3163.63,5,2122.39,18,0, ""},
-		{"trainer_entertainer",0,-2889,5,2178,161,0, ""},
-		{"trainer_marksman",0,-2931,5,2121,91,0, ""},
-		{"trainer_medic",0,-3158,5,2122,5,0, ""},
-		{"trainer_medic",0,-2931,5,2116,65,0, ""},
-		{"trainer_musician",0,-2882,5,2171,180,0, ""},
-		{"trainer_polearm",0,-2931,5,2386,0,0, ""},
-		{"trainer_scout",0,-2912.86,5,2106.67,174,0, ""},
-		{"trainer_unarmed",0,-2812,5,1973,180,0, ""},
-		{"trainer_weaponsmith",0,-2869,5,2146,8,0, ""}
-	}
 }
 
 registerScreenPlay("TatooineMosEspaScreenPlay", true)
@@ -331,14 +44,13 @@ registerScreenPlay("TatooineMosEspaScreenPlay", true)
 function TatooineMosEspaScreenPlay:start()
 	if (isZoneEnabled(self.planet)) then
 		self:spawnMobiles()
-		self:spawnPatrolMobiles()
-		self:spawnStationaryMobiles()
 		self:spawnSceneObjects()
 		self:spawnGcwMobiles()
 	end
 end
 
 function TatooineMosEspaScreenPlay:spawnSceneObjects()
+
 	--outside starport
 	spawnSceneObject(self.planet, "object/tangible/crafting/station/public_space_station.iff", -2930.39, 5, 2134.35, 0, math.rad(130) )
 	spawnSceneObject(self.planet, "object/tangible/crafting/station/public_space_station.iff", -2879.34, 5, 2164.2, 0, math.rad(-140) )
@@ -357,6 +69,8 @@ function TatooineMosEspaScreenPlay:spawnSceneObjects()
 	spawnSceneObject(self.planet, "object/tangible/painting/painting_leia_wanted.iff", -4.34762, 0.512662, -10.997, 1261454, 0, 0, 0, 0)
 	spawnSceneObject(self.planet, "object/tangible/furniture/imperial/data_terminal_s2.iff", 2.31777, 0.512662, -11.0014, 1261454, 0, 0, 0, 0)
 	spawnSceneObject(self.planet, "object/tangible/furniture/imperial/data_terminal_s2.iff", -2.31777, 0.512662, -11.0014, 1261454, 0, 0, 0, 0)
+	spawnSceneObject(self.planet, "object/mobile/dressed_bounty_hunter_zabrak_female_01.iff", 2.3, 0.512662, -10.0014, 1261454, math.rad(180) )
+	spawnSceneObject(self.planet, "object/mobile/dressed_imperial_exterminator.iff", -2.3, 0.512662, -10.0014, 1261454, math.rad(180) )
 	spawnSceneObject(self.planet, "object/tangible/furniture/all/frn_all_rug_rectangle_large_style_05.iff", -0.0, 0.5, -3.1, 1261454, math.rad(90) )
 	spawnSceneObject(self.planet, "object/tangible/furniture/modern/dining_table_modern_style_01.iff", -0.0, 0.5, -3.1, 1261454, math.rad(0) )
 	spawnSceneObject(self.planet, "object/tangible/furniture/all/frn_all_chair_upholstered_s1.iff", -0.0, 1.0, 7.5, 1261454, math.rad(180) )
@@ -385,30 +99,332 @@ function TatooineMosEspaScreenPlay:spawnSceneObjects()
 	spawnSceneObject(self.planet, "object/tangible/item/quest/force_sensitive/bacta_tank.iff", 9.7, -9.5, -10.0, 1261579, math.rad(-45) )
 	spawnSceneObject(self.planet, "object/mobile/mouse_droid.iff", 8.3, -9.5, -7.3, 1261579, math.rad(135) )
 	spawnSceneObject(self.planet, "object/tangible/furniture/technical/armoire_s01.iff", 5.5, -9.5, -11.0, 1261579, math.rad(0) )
-	spawnSceneObject(self.planet, "object/tangible/terminal/terminal_event_buffs.iff", -13.2, 0.2, 0.0, 4005424, math.rad(90) )
 end
 
 function TatooineMosEspaScreenPlay:spawnMobiles()
-	local mobiles = self.mobiles
 
-	for i = 1, #mobiles, 1 do
-		local mob = mobiles[i]
+	--Starport
+	local pNpc = spawnMobile(self.planet, "chassis_dealer",60,2.29774,0.639422,67.5349,157.943,1261655)
+	self:setMoodString(pNpc, "neutral")
+	pNpc = spawnMobile(self.planet, "ecoospoo",60,1.1,0.639421,66.3,33.001,1261655)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "poki_wirqi",60,-29.0928,1.63942,52.3406,180.009,1261660)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "awwaschlu_witubrarq",60,-29.0928,1.63942,51.3406,0,1261660)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "farmer",60,-50.0859,2.63942,33.6967,135.008,1261663)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "businessman",300,-48.9859,2.63942,33.6967,180.011,1261663)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "farmer_rancher",60,-49.1,2.6,32.5,-36,1261663)
+	self:setMoodString(pNpc, "happy")
+	pNpc = spawnMobile(self.planet, "trainer_shipwright",60,-3.2,0.6,67.7,177,1261655)
+	self:setMoodString(pNpc, "neutral")
 
-		-- {template, respawn, x, z, y, direction, cell, mood}
-		local pMobile = spawnMobile(self.planet, mob[1], mob[2], mob[3], mob[4], mob[5], mob[6], mob[7])
+	--Tavern -2888 2281
+	pNpc = spawnMobile(self.planet, "scientist",60,-2.1,1,9.1,-26,3065452)
+	self:setMoodString(pNpc, "calm")
+	spawnMobile(self.planet, "r5",60,1.5,1,7.5,-82,3065452)
+	pNpc = spawnMobile(self.planet, "info_broker",60,5.7,1,4.2,0,3065450)
+	self:setMoodString(pNpc, "happy")
+	spawnMobile(self.planet, "patron_chiss",60,9.7,0.4,-3.2,1,3065451)
+	pNpc = spawnMobile(self.planet, "patron_devaronian",60,9.6,0.4,-1.4,172,3065451)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "commoner_fat",60,4.3,0.4,-9.8,-12,3065451)
+	self:setMoodString(pNpc, "nervous")
+	spawnMobile(self.planet, "rancher",60,-2.5,0.4,-9.8,-177,3065451)
+	pNpc = spawnMobile(self.planet, "judge",60,-10.6,0.4,-2.1,71,3065451)
+	self:setMoodString(pNpc, "npc_accusing")
+	spawnMobile(self.planet, "entertainer",60,4.3,-3.4,4.4,-100,3065456)
+	pNpc = spawnMobile(self.planet, "patron_ithorian",60,1.5,-4,4.3,86,3065456)
+	self:setMoodString(pNpc, "entertained")
+	spawnMobile(self.planet, "imperial_recruiter",60,-9.3,-9.5,-3.2,-15,3065458)
+	pNpc = spawnMobile(self.planet, "twilek_slave",60,-4.2,-10,-6.5,-94,3065459)
+	self:setMoodString(pNpc, "nervous")
+	spawnMobile(self.planet, "farmer_rancher",60,-4.3,-10,-8.2,-78,3065459)
+	pNpc = spawnMobile(self.planet, "businessman",60,-5.8,-10,-7.1,73,3065459)
+	self:setMoodString(pNpc, "npc_consoling")
 
-		if (pMobile ~= nil) then
-			if mob[8] ~= "" then
-				CreatureObject(pMobile):setMoodString(mob[8])
-			end
+	--large Tatooine house with Krayt skull above door
+	pNpc = spawnMobile(self.planet, "shadowy_figure",60,0,0.5,-6.9,180,1261454)
+	self:setMoodString(pNpc, "angry")
+	spawnMobile(self.planet, "r4",60,-1.9,1.0,5.9,130,1261454)
+	spawnMobile(self.planet, "r4",60,1.9,1.0,5.9,-130,1261454)
+	pNpc = spawnMobile(self.planet, "mercenary",60,-6.9,2.0,10,100,1261453)
+	self:setMoodString(pNpc, "npc_accusing")
+	pNpc = spawnMobile(self.planet, "mercenary",60,6.9,2.0,10,-100,1261453)
+	self:setMoodString(pNpc, "npc_accusing")
 
-			AiAgent(pMobile):addCreatureFlag(AI_STATIC)
+	--southwest Tavern
+	pNpc = spawnMobile(self.planet, "vendor",60,10,0.4,-5.5,85,1261582)
+	self:setMoodString(pNpc, "npc_use_terminal_high")
+	spawnMobile(self.planet, "scientist",60,4.6,0.4,1.7,0,1261582)
+	spawnMobile(self.planet, "patron_ishitib",60,-4.5,0.4,-5.5,-40,1261582)
+	pNpc = spawnMobile(self.planet, "patron_klaatu",60,-5.1,0.4,-4.3,149,1261582)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "contractor",60,-6.5,-4.0,-6.8,-90,1261586)
+	self:setMoodString(pNpc, "worried")
+	pNpc = spawnMobile(self.planet, "commoner_technician",60,-6.3,-4.0,-5.9,-112,1261586)
+	self:setMoodString(pNpc, "sad")
 
-			if CreatureObject(pMobile):getPvpStatusBitmask() == 0 then
-				CreatureObject(pMobile):clearOptionBit(AIENABLED)
-			end
-		end
-	end
+	--west Tavern
+	spawnMobile(self.planet, "commoner_naboo",60,-3.6,1.0,9.3,0,1261570)
+	spawnMobile(self.planet, "commoner_tatooine",60,6.9,0.4,-9.1,180,1261569)
+	pNpc = spawnMobile(self.planet, "agriculturalist",60,-2.7,0.4,-1.7,75,1261569)
+	self:setMoodString(pNpc, "conversation")
+	spawnMobile(self.planet, "rancher",60,-1.0,0.4,-1.6,-90,1261569)
+	spawnMobile(self.planet, "farmer_rancher",60,-2.2,0.4,-0.9,171,1261569)
+	spawnMobile(self.planet, "farmer",60,-2.0,0.4,-2.3,0,1261569)
+	spawnMobile(self.planet, "chiss_female",60,9.7,-9.5,-10.0,-45,1261579)
+	spawnMobile(self.planet, "noble",60,3.8,-9.5,1.4,-100,1261579)
+	spawnMobile(self.planet, "surgical_droid_21b",60,-1.9,-9.5,-6.5,90,1261579)
+	spawnMobile(self.planet, "surgical_droid_21b",60,7.5,-9.5,-10.1,102,1261579)
+	pNpc = spawnMobile(self.planet, "chiss_male",60,8.8,-9.5,-6.7,145,1261579)
+	self:setMoodString(pNpc, "sad")
+
+	--Guild Hall -2857 1987
+	spawnMobile(self.planet, "contractor",60,-3.69,1.13306,-6,11.0003,1256306)
+	spawnMobile(self.planet, "miner",60,3.29,1.13306,-9.58,249.007,1256011)
+	spawnMobile(self.planet, "trainer_artisan",0,-0.0885271,1.13306,-14.0283,2,1256011)
+	spawnMobile(self.planet, "coa3_information_rebel",60,14.2091,1.13306,-10.1408,205.638,1256010)
+
+	--Cantina
+	spawnMobile(self.planet, "bartender",60,-11.1703,-0.894992,1.53149,33.4278,1256058)
+	pNpc = spawnMobile(self.planet, "dorn_gestros",60,-6.00754,-0.894992,-5.35219,231.068,1256058)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "medic",60,12.1732,-0.894991,3.93609,180.003,1256058)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "sullustan_male",300,12.1732,-0.894992,2.93609,360.011,1256058)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "bounty_hunter",300,2.1656,-0.894992,-15.9672,360.011,1256061)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "contractor",60,2.1656,-0.894992,-14.9672,180.001,1256061)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "commoner_tatooine",60,-20.6545,-0.894989,25.0112,0,1256067)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "noble",300,-20.6545,-0.894989,26.0112,180.01,1256067)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "da_la_socuna",60,-29.7168,-0.519991,7.77728,54.7476,1256068)
+	self:setMoodString(pNpc, "conversation")
+
+	--Guild Hall -3063 2079
+	spawnMobile(self.planet, "trainer_architect",0,11,1.133,-14.5,0,1256021)
+	spawnMobile(self.planet, "trainer_armorsmith",0,-12.5142,1.13306,3.63893,165,1256020)
+	spawnMobile(self.planet, "trainer_droidengineer",0,-11.5362,1.13306,-12.6351,1,1256023)
+	spawnMobile(self.planet, "trainer_weaponsmith",0,-2.95975,1.13306,-8.77207,109,1256022)
+	spawnMobile(self.planet, "trainer_merchant",0,12,1.13306,6,180,1256019)
+
+	--Med Center
+	spawnMobile(self.planet, "trainer_combatmedic",0,7.93319,0.184067,5.54261,86,4005424)
+
+	--Hotel
+	pNpc = spawnMobile(self.planet, "commoner_technician",60,20.2715,1.28309,-1.14578,360.011,1261018)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "noble",60,20.2715,1.28309,-0.0457823,179.998,1261018)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "medic",300,19.1715,1.28309,-0.0457823,134.998,1261018)
+	self:setMoodString(pNpc, "conversation")
+	spawnMobile(self.planet, "scientist",60,20.3,1.6,13.7,-5,1261018)
+	pNpc = spawnMobile(self.planet, "mercenary",300,7.41432,1.00001,-5.80893,180.003,1261017)
+	self:setMoodString(pNpc, "angry")
+	pNpc = spawnMobile(self.planet, "commoner_technician",60,7.41432,1.00001,-6.90893,0,1261017)
+	self:setMoodString(pNpc, "conversation")
+
+	--Junk Shop
+	spawnMobile(self.planet, "junk_nado", 0, 1.2, -0.5, 5.5, -144, 1255997)
+
+	--Guild Hall -2997 2426
+	spawnMobile(self.planet, "trainer_brawler",0,-11,1.1,-14,0,1255994)
+	spawnMobile(self.planet, "trainer_marksman",0,0,1.13306,-13,0,1255993)
+	spawnMobile(self.planet, "trainer_scout",0,-13,1.1,4.8,180,1255991)
+	spawnMobile(self.planet, "junk_dealer", 0, -14.3, 1.1, 2.9, 105, 1255991)
+
+	--Outside
+	pNpc = spawnMobile(self.planet, "anim_kahn",60,-2907.07,5,2130.14,71.993,0)
+	self:setMoodString(pNpc, "neutral")
+	pNpc = spawnMobile(self.planet, "brawler",60,-2918.94,5,2169.6,0,0)
+	self:setMoodString(pNpc, "conversation")
+	spawnMobile(self.planet, "businessman",60,-2881.87,5,2142.69,18.8035,0)
+	spawnMobile(self.planet, "businessman",60,-2787.25,5,1962.04,14.8999,0)
+	spawnMobile(self.planet, "businessman",60,-2939.1,5,1962.9,15.9578,0)
+	spawnMobile(self.planet, "businessman",60,-2912.23,5,1928.7,337.934,0)
+	spawnMobile(self.planet, "businessman",60,-2881.87,5,1974.41,329.04,0)
+	spawnMobile(self.planet, "businessman",60,-3019.69,5,2114.97,73.4692,0)
+	spawnMobile(self.planet, "businessman",60,-2881.8,5,2267.4,180,0)
+	spawnMobile(self.planet, "businessman",60,-2897.39,5,2323.06,54.7434,0)
+	spawnMobile(self.planet, "businessman",60,-2976.72,5.52789,2333.09,215.86,0)
+	spawnMobile(self.planet, "businessman",60,-2931.98,5,2495.44,266.081,0)
+	spawnMobile(self.planet, "businessman",60,-2774.25,5,2018.1,237.899,0)
+	spawnMobile(self.planet, "businessman",60,-2739.74,5,2044.75,99.9046,0)
+	spawnMobile(self.planet, "businessman",60,-2722.49,5,2007.18,217.488,0)
+	spawnMobile(self.planet, "businessman",60,-2767.35,5,2232.76,164.701,0)
+	spawnMobile(self.planet, "businessman",60,-2766.88,5,2314.77,201.13,0)
+	pNpc = spawnMobile(self.planet, "businessman",60,-2901.2,5,2360.3,241,0)
+	self:setMoodString(pNpc, "npc_sitting_chair")
+	pNpc = spawnMobile(self.planet, "businessman",60,-2868.4,5,2493.9,238,0)
+	self:setMoodString(pNpc, "npc_sitting_chair")
+	spawnMobile(self.planet, "cll8_binary_load_lifter",60,-2922.62,5,2143.4,19.5832,0)
+	spawnMobile(self.planet, "commoner_fat",60,-2954.74,5,2235.4,232.852,0)
+	spawnMobile(self.planet, "commoner_fat",60,-2877.18,5,2473.48,293.853,0)
+	spawnMobile(self.planet, "commoner_fat",60,-2886.35,5,2377.12,323.001,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-3046.72,5,2133.45,249.763,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-2890.19,5,2251.37,190.438,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-2839.04,5,2492.89,55.3765,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-2874.25,5,2546.29,122.899,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-2881.23,5,2004.94,233.054,0)
+	spawnMobile(self.planet, "commoner_naboo",60,-2818.45,5,2407.94,238.346,0)
+	spawnMobile(self.planet, "commoner_old",60,-2952.26,5,2087.58,46.4769,0)
+	spawnMobile(self.planet, "commoner_old",60,-2859.3,5,2288.53,351.513,0)
+	spawnMobile(self.planet, "commoner_old",60,-3007.6,5,2372.2,-133,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2914.38,5,1984.92,26.6556,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-3100.44,5,2148.76,158.885,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2860.36,5,2212.37,343.92,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2914.09,5,2466.26,163.417,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2715.87,5,2040.78,144.662,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2754.28,5,1981.64,94.3056,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2831.34,5,1912.49,217.51,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2807.11,5,1953.71,320.134,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-3115.34,5,2084.32,284.484,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-3000.81,5,2213.95,148.773,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2978.76,5,2473.24,5.89742,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2884.43,5,2575.51,325.132,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2894.24,5,2492.22,84.423,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2810.06,5,2318.02,268.996,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2770.48,5,2245.4,214.817,0)
+	spawnMobile(self.planet, "commoner_tatooine",60,-2731.39,5,2226.03,196.441,0)
+
+	--More misc outside
+	spawnMobile(self.planet, "criminal",300,-2960.96,5,2163.64,79.2954,0)
+	spawnMobile(self.planet, "criminal",300,-2856.83,5,2473.55,184.191,0)
+	spawnMobile(self.planet, "criminal",300,-2976.77,5,2539.28,36.1265,0)
+	spawnMobile(self.planet, "criminal",300,-2837.3,5,2425.05,254.096,0)
+	spawnMobile(self.planet, "criminal",300,-2760.75,5,2038.95,263.963,0)
+	spawnMobile(self.planet, "criminal",300,-2834.04,5,2462.23,193.677,0)
+	spawnMobile(self.planet, "criminal",300,-2846.59,5,2497.64,332.133,0)
+	spawnMobile(self.planet, "desert_demon",300,-2821.38,5,2432.95,176.513,0)
+	spawnMobile(self.planet, "desert_demon",300,-2861.27,5,2393.34,146.859,0)
+	spawnMobile(self.planet, "desert_demon",300,-2823.03,5,2448.69,64.4102,0)
+	spawnMobile(self.planet, "eg6_power_droid",300,-2833.22,5,1899.71,245.01,0)
+	spawnMobile(self.planet, "eg6_power_droid",300,-2928.04,5,1977.68,330.633,0)
+	spawnMobile(self.planet, "eg6_power_droid",300,-2945.98,5,2470.9,186.376,0)
+	spawnMobile(self.planet, "informant_npc_lvl_1",0,-2804,5,2237,315,0)
+	spawnMobile(self.planet, "informant_npc_lvl_1",0,-2836,5,2275,45,0)
+	spawnMobile(self.planet, "informant_npc_lvl_1",0,-2935,5,2393,90,0)
+	spawnMobile(self.planet, "informant_npc_lvl_2",0,-2879,5,2555,135,0)
+
+	--Jawa's
+	pNpc = spawnMobile(self.planet, "jawa",300,-2930.03,5,2038.02,270.008,0)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "jawa",300,-2932.03,5,2038.02,90.0027,0)
+	self:setMoodString(pNpc, "conversation")
+	pNpc = spawnMobile(self.planet, "jawa",300,-2931.03,5,2037.02,0,0)
+	self:setMoodString(pNpc, "conversation")
+	spawnMobile(self.planet, "jawa",300,-3033.6,5,2245.5,80,0)
+	spawnMobile(self.planet, "jawa",300,-3028.7,5,2246.4,-99,0)
+	spawnMobile(self.planet, "jawa",300,-2997.5,5,2246.5,-83,0)
+	spawnMobile(self.planet, "jawa",300,-2921.8,5,2561,-17,0)
+	spawnMobile(self.planet, "jawa",300,-2922.7,5,2565.1,167,0)
+	spawnMobile(self.planet, "jawa",300,-2918.3,5,2587.5,-147,0)
+	spawnMobile(self.planet, "jawa",300,-2923.6,5,2579.2,24,0)
+	spawnMobile(self.planet, "jawa",300,-2888,5,2591,90.7367,0)
+	spawnMobile(self.planet, "jawa",300,-2886.7,5,2591,-90,0)
+	spawnMobile(self.planet, "jawa",300,-2854.7,5,2461.1,-77,0)
+	spawnMobile(self.planet, "jawa",300,-2857,5,2461.6,112,0)
+	spawnMobile(self.planet, "jawa",300,-2820.6,5,2414.3,-6,0)
+	spawnMobile(self.planet, "jawa",300,-2821,5,2417.3,154,0)
+	spawnMobile(self.planet, "jawa",300,-2842.4,5,2317.4,-132,0)
+	spawnMobile(self.planet, "jawa",300,-2844.9,5,2315.3,49,0)
+	spawnMobile(self.planet, "jawa",300,-2866.7,5,2311.8,-51,0)
+	spawnMobile(self.planet, "jawa",300,-2869.2,5,2314,140,0)
+	spawnMobile(self.planet, "jawa",300,-2737.2,5,2179.2,-12,0)
+	spawnMobile(self.planet, "jawa",300,-2736.3,5,2181.5,-97,0)
+	spawnMobile(self.planet, "jawa",300,-2737.7,5,2183.6,169,0)
+	spawnMobile(self.planet, "jawa_engineer",300,-2834.7,5,2399,76,0)
+	spawnMobile(self.planet, "jawa_engineer",300,-2771.4,5,1934.2,84,0)
+	spawnMobile(self.planet, "jawa_engineer",300,-2735,5,2189.5,-116,0)
+	spawnMobile(self.planet, "jawa_engineer",300,-2742.4,5,2175.1,78,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2866.1,5,2465.9,-33,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2830.7,5,2400,-111,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2775.7,5,1925,2,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2775.8,5,1931.4,54,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2773.3,5,1932.7,-122,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2775.5,5,1927.9,-176,0)
+	spawnMobile(self.planet, "jawa_healer",300,-2766.8,5,1934,-95,0)
+	spawnMobile(self.planet, "jawa_henchman",300,-2906.1,5,2594.7,103,0)
+	spawnMobile(self.planet, "jawa_smuggler",300,-3002.1,5,2245.9,77,0)
+	spawnMobile(self.planet, "jawa_smuggler",300,-2775.8,5,1918.2,152,0)
+	spawnMobile(self.planet, "jawa_smuggler",300,-2776.8,5,1913.8,78,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2903,5,2594.2,-80,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2867.9,5,2468,144,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2867.6,5,2421.4,-130,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2848.8,5,2430.5,103,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2739.1,5,2175.5,-96,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2736.1,5,2188.86,69.1613,0)
+
+	--More misc outside
+	spawnMobile(self.planet, "junk_dealer", 0, -2750.9, 5, 2057, 132, 0)
+	spawnMobile(self.planet, "junk_dealer", 0, -2904.51, 5, 2446.5, -87, 0)
+	pNpc = spawnMobile(self.planet, "miner",60,-2918.94,5,2170.6,180.005,0)
+	self:setMoodString(pNpc, "conversation")
+	spawnMobile(self.planet, "noble",60,-2924.82,5,2143.27,127.261,0)
+	spawnMobile(self.planet, "noble",60,-3081.03,5,2104.52,341.726,0)
+	spawnMobile(self.planet, "noble",60,-3064.8,5,2095.01,-130,0)
+	spawnMobile(self.planet, "noble",60,-2999.41,5.52789,2350.79,244.987,0)
+	spawnMobile(self.planet, "noble",60,-2847.77,5,2393.35,42.0583,0)
+	spawnMobile(self.planet, "noble",60,-2810.65,5,2195.86,318.004,0)
+	spawnMobile(self.planet, "noble",60,-3091.67,5,2165.61,286.75,0)
+	spawnMobile(self.planet, "noble",60,-3062.85,5,2195.92,156.151,0)
+	pNpc = spawnMobile(self.planet, "prost_roberts",60,-2906.52,5,2128.41,75.633,0)
+	self:setMoodString(pNpc, "neutral")
+	pNpc = spawnMobile(self.planet, "r2",60,-2928.79,5,2111.03,245.497,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r2",60,-2946.98,5,2470.9,350.917,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r4",60,-2959.44,5,2110.92,112.101,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r4",60,-2871.38,6.12074,1985.32,252.493,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r5",60,-2935.94,5,2275.75,205.483,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r5",60,-2915.25,5,2163.42,154.028,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "r5",60,-2919.36,5,2262.73,15.6789,0)
+	self:setMoodString(pNpc, "calm")
+	pNpc = spawnMobile(self.planet, "rel_keteris",60,-2905.83,5,2127.11,255.625,0)
+	self:setMoodString(pNpc, "neutral")
+	spawnMobile(self.planet, "scientist",60,-2969.77,5,2194.82,198.34,0)
+	spawnMobile(self.planet, "scientist",60,-3055.28,5,2098.76,237.173,0)
+	spawnMobile(self.planet, "scientist",60,-2913.31,5,2566.89,167.24,0)
+	spawnMobile(self.planet, "scientist",60,-2969.78,5,2469.4,58.2554,0)
+	spawnMobile(self.planet, "scientist",60,-2860.55,5,2534.77,227.149,0)
+	spawnMobile(self.planet, "thug",300,-2857.9,5,2250.18,156.767,0)
+	spawnMobile(self.planet, "thug",300,-2731.61,5,2242.41,339.94,0)
+	spawnMobile(self.planet, "thug",300,-2748.23,5,2031.47,337.983,0)
+	spawnMobile(self.planet, "thug",300,-2794.64,5,2327.09,109.693,0)
+	spawnMobile(self.planet, "thug",300,-2927.54,5,2013.85,322.05,0)
+	spawnMobile(self.planet, "thug",300,-2994.3,5.5,2331.4,165,0)
+	spawnMobile(self.planet, "thug",300,-2964.35,5,2536.74,244.766,0)
+	spawnMobile(self.planet, "thug",300,-3065.25,5,2142.42,155.455,0)
+	spawnMobile(self.planet, "thug",300,-2919.38,5,2143.08,304.531,0)
+	pNpc = spawnMobile(self.planet, "trace_lyson",60,-2909.17,5,2180.03,180,0)
+	self:setMoodString(pNpc, "calm")
+	spawnMobile(self.planet, "trainer_1hsword",0,-2964,5,2021,33,0)
+	spawnMobile(self.planet, "trainer_2hsword",0,-2971,5,2032,174,0)
+	spawnMobile(self.planet, "trainer_architect",0,-2872,5,2159,180,0)
+	spawnMobile(self.planet, "trainer_artisan",0,-2890,5,2142,19,0)
+	spawnMobile(self.planet, "trainer_brawler",0,-2933,5,2125,97,0)
+	spawnMobile(self.planet, "trainer_creaturehandler",0,-2994,5,2530,0,0)
+	spawnMobile(self.planet, "trainer_doctor",0,-3163.63,5,2122.39,18,0)
+	spawnMobile(self.planet, "trainer_entertainer",0,-2889,5,2178,161,0)
+	spawnMobile(self.planet, "trainer_marksman",0,-2931,5,2121,91,0)
+	spawnMobile(self.planet, "trainer_medic",0,-3158,5,2122,5,0)
+	spawnMobile(self.planet, "trainer_medic",0,-2931,5,2116,65,0)
+	spawnMobile(self.planet, "trainer_musician",0,-2882,5,2171,180,0)
+	spawnMobile(self.planet, "trainer_polearm",0,-2931,5,2386,0,0)
+	spawnMobile(self.planet, "trainer_scout",0,-2912.86,5,2106.67,174,0)
+	spawnMobile(self.planet, "trainer_unarmed",0,-2812,5,1973,180,0)
+	spawnMobile(self.planet, "trainer_weaponsmith",0,-2869,5,2146,8,0)
+	spawnMobile(self.planet, "trainer_basebuster",0, -2981.19, 5, 2207.68, 307, 0)
 
 	--Creatures
 	spawnMobile(self.planet, "dwarf_eopie",300,-3217.87,6.7851,2010.86,329.47,0)

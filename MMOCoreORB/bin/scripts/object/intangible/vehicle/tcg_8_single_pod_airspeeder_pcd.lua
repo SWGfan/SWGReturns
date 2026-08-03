@@ -1,3 +1,0 @@
-object_intangible_vehicle_tcg_8_single_pod_airspeeder_pcd = object_intangible_vehicle_shared_tcg_8_single_pod_airspeeder_pcd:new {
-}
-ObjectTemplates:addTemplate(object_intangible_vehicle_tcg_8_single_pod_airspeeder_pcd, "object/intangible/vehicle/tcg_8_single_pod_airspeeder_pcd.iff")

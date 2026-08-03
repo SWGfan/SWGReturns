@@ -12,7 +12,6 @@
 #include "server/zone/objects/area/ForageAreaCollection.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "server/zone/Zone.h"
-#include "server/zone/managers/stringid/StringIdManager.h"
 
 void ForageManagerImplementation::startForaging(CreatureObject* player, int forageType) {
 	if (player == nullptr)
@@ -332,6 +331,7 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 		else if (dice > 39 && dice < 110) { // Eggs
 			resName = "meat_egg";
 			if(forageGiveResource(trx, player, forageX, forageY, planet, resName)) {
+				player->sendSystemMessage("@lair_n:found_eggs");
 				trx.commit(true);
 				return true;
 			} else {
@@ -402,11 +402,7 @@ bool ForageManagerImplementation::forageGiveResource(TransactionLog& trx, Creatu
 		}
 	}
 
-	int quantity = System::random(130) + 10;
-	if (player->hasSkill("outdoors_ranger_master")) {
-			quantity =  quantity * 1.50;
-		}
-	player->sendSystemMessage("You have successfully gathered " + String::valueOf(quantity) + " units.");
+	int quantity = System::random(30) + 10;
 	resourceManager->harvestResourceToPlayer(trx, player, resource, quantity);
 	return true;
 }

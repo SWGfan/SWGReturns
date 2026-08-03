@@ -72,15 +72,11 @@ using namespace server::zone;
 
 #include "engine/log/Logger.h"
 
-#include "system/lang/Time.h"
-
 #include "server/zone/objects/mission/MissionObjective.h"
 
 #include "server/zone/objects/tangible/LairObject.h"
 
 #include "server/zone/objects/area/MissionSpawnActiveArea.h"
-
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 #include "engine/util/Observable.h"
 
@@ -124,8 +120,6 @@ public:
 
 	Vector3 getEndPosition();
 
-	void addMissionStats(TransactionLog& trx);
-
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -164,9 +158,6 @@ private:
 
 	int difficulty;
 
-protected:
-	Time lairSpawnTime;
-
 public:
 	DestroyMissionObjectiveImplementation(MissionObject* mission);
 
@@ -202,8 +193,6 @@ public:
 	void setDifficulty(int diff);
 
 	Vector3 getEndPosition();
-
-	void addMissionStats(TransactionLog& trx);
 
 	WeakReference<DestroyMissionObjective*> _this;
 
@@ -311,8 +300,6 @@ public:
 	Optional<int> difficultyLevel;
 
 	Optional<int> difficulty;
-
-	Optional<Time> lairSpawnTime;
 
 	String _className;
 	DestroyMissionObjectivePOD();

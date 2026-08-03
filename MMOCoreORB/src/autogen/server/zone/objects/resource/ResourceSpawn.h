@@ -146,6 +146,12 @@ public:
 
 	unsigned long long getDespawned() const;
 
+	void setMaxUnitsSpawned(unsigned long long units);
+
+	unsigned long long getMaxUnitsSpawned() const;
+
+	unsigned long long getUnitsInCirculation() const;
+
 	void setContainerCRC(unsigned int crc);
 
 	unsigned int getContainerCRC() const;
@@ -325,6 +331,12 @@ public:
 
 	unsigned long long getDespawned() const;
 
+	void setMaxUnitsSpawned(unsigned long long units);
+
+	unsigned long long getMaxUnitsSpawned() const;
+
+	unsigned long long getUnitsInCirculation() const;
+
 	void setContainerCRC(unsigned int crc);
 
 	unsigned int getContainerCRC() const;
@@ -465,6 +477,12 @@ public:
 
 	unsigned long long getDespawned() const;
 
+	void setMaxUnitsSpawned(unsigned long long units);
+
+	unsigned long long getMaxUnitsSpawned() const;
+
+	unsigned long long getUnitsInCirculation() const;
+
 	void setContainerCRC(unsigned int crc);
 
 	unsigned int getContainerCRC() const;
@@ -561,6 +579,9 @@ public:
 	int setSpawned(lua_State *L);
 	int setDespawned(lua_State *L);
 	int getDespawned(lua_State *L);
+	int setMaxUnitsSpawned(lua_State *L);
+	int getMaxUnitsSpawned(lua_State *L);
+	int getUnitsInCirculation(lua_State *L);
 	int setContainerCRC(lua_State *L);
 	int getContainerCRC(lua_State *L);
 	int getSpawnPool(lua_State *L);

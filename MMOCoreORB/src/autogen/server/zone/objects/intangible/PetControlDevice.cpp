@@ -390,7 +390,7 @@ void PetControlDevice::setLastCommand(unsigned int c) {
 	}
 }
 
-unsigned int PetControlDevice::getLastCommand() {
+unsigned int PetControlDevice::getLastCommand() const {
 	PetControlDeviceImplementation* _implementation = static_cast<PetControlDeviceImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
@@ -401,27 +401,6 @@ unsigned int PetControlDevice::getLastCommand() {
 		return method.executeWithUnsignedIntReturn();
 	} else {
 		return _implementation->getLastCommand();
-	}
-}
-
-void PetControlDevice::setLastCommander(SceneObject* commander) {
-	PetControlDeviceImplementation* _implementation = static_cast<PetControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setLastCommander(commander);
-	}
-}
-
-ManagedWeakReference<SceneObject* > PetControlDevice::getLastCommander() {
-	PetControlDeviceImplementation* _implementation = static_cast<PetControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getLastCommander();
 	}
 }
 
@@ -968,10 +947,6 @@ bool PetControlDeviceImplementation::readObjectMember(ObjectInputStream* stream,
 		TypeInfo<unsigned int >::parseFromBinaryStream(&lastCommand, stream);
 		return true;
 
-	case 0x55bb2dad: //PetControlDevice.lastCommander
-		TypeInfo<ManagedWeakReference<SceneObject* > >::parseFromBinaryStream(&lastCommander, stream);
-		return true;
-
 	case 0x25729aff: //PetControlDevice.lastCommandTarget
 		TypeInfo<ManagedWeakReference<SceneObject* > >::parseFromBinaryStream(&lastCommandTarget, stream);
 		return true;
@@ -1116,15 +1091,6 @@ int PetControlDeviceImplementation::writeObjectMembers(ObjectOutputStream* strea
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x55bb2dad; //PetControlDevice.lastCommander
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedWeakReference<SceneObject* > >::toBinaryStream(&lastCommander, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0x25729aff; //PetControlDevice.lastCommandTarget
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -1234,8 +1200,6 @@ void PetControlDeviceImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["lastCommand"] = lastCommand;
 
-	thisObject["lastCommander"] = lastCommander;
-
 	thisObject["lastCommandTarget"] = lastCommandTarget;
 
 	thisObject["futureName"] = futureName;
@@ -1281,8 +1245,6 @@ PetControlDeviceImplementation::PetControlDeviceImplementation() {
 	trainingCommand = 0;
 	// server/zone/objects/intangible/PetControlDevice.idl():  		lastCommand = 0;
 	lastCommand = 0;
-	// server/zone/objects/intangible/PetControlDevice.idl():  		lastCommander = null;
-	lastCommander = NULL;
 	// server/zone/objects/intangible/PetControlDevice.idl():  		lastCommandTarget = null;
 	lastCommandTarget = NULL;
 	// server/zone/objects/intangible/PetControlDevice.idl():  		namingProgress = 0;
@@ -1355,19 +1317,9 @@ void PetControlDeviceImplementation::setLastCommand(unsigned int c) {
 	lastCommand = c;
 }
 
-unsigned int PetControlDeviceImplementation::getLastCommand() {
+unsigned int PetControlDeviceImplementation::getLastCommand() const{
 	// server/zone/objects/intangible/PetControlDevice.idl():  		return lastCommand;
 	return lastCommand;
-}
-
-void PetControlDeviceImplementation::setLastCommander(SceneObject* commander) {
-	// server/zone/objects/intangible/PetControlDevice.idl():  		lastCommander = commander;
-	lastCommander = commander;
-}
-
-ManagedWeakReference<SceneObject* > PetControlDeviceImplementation::getLastCommander() {
-	// server/zone/objects/intangible/PetControlDevice.idl():  		return lastCommander;
-	return lastCommander;
 }
 
 void PetControlDeviceImplementation::setLastCommandTarget(SceneObject* target) {
@@ -1933,7 +1885,7 @@ void PetControlDeviceAdapter::setLastCommand(unsigned int c) {
 	(static_cast<PetControlDevice*>(stub))->setLastCommand(c);
 }
 
-unsigned int PetControlDeviceAdapter::getLastCommand() {
+unsigned int PetControlDeviceAdapter::getLastCommand() const {
 	return (static_cast<PetControlDevice*>(stub))->getLastCommand();
 }
 
@@ -2111,9 +2063,6 @@ void PetControlDevicePOD::writeJSON(nlohmann::json& j) {
 	if (lastCommand)
 		thisObject["lastCommand"] = lastCommand.value();
 
-	if (lastCommander)
-		thisObject["lastCommander"] = lastCommander.value();
-
 	if (lastCommandTarget)
 		thisObject["lastCommandTarget"] = lastCommandTarget.value();
 
@@ -2263,17 +2212,6 @@ int PetControlDevicePOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<unsigned int >::toBinaryStream(&lastCommand.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (lastCommander) {
-	_nameHashCode = 0x55bb2dad; //PetControlDevice.lastCommander
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<ManagedWeakReference<SceneObjectPOD* > >::toBinaryStream(&lastCommander.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -2467,14 +2405,6 @@ bool PetControlDevicePOD::readObjectMember(ObjectInputStream* stream, const uint
 		}
 		return true;
 
-	case 0x55bb2dad: //PetControlDevice.lastCommander
-		{
-			ManagedWeakReference<SceneObjectPOD* > _mnlastCommander;
-			TypeInfo<ManagedWeakReference<SceneObjectPOD* > >::parseFromBinaryStream(&_mnlastCommander, stream);
-			lastCommander = std::move(_mnlastCommander);
-		}
-		return true;
-
 	case 0x25729aff: //PetControlDevice.lastCommandTarget
 		{
 			ManagedWeakReference<SceneObjectPOD* > _mnlastCommandTarget;
@@ -2592,8 +2522,6 @@ void PetControlDevicePOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<unsigned int >::toBinaryStream(&trainingCommand.value(), stream);
 
 	TypeInfo<unsigned int >::toBinaryStream(&lastCommand.value(), stream);
-
-	TypeInfo<ManagedWeakReference<SceneObjectPOD* > >::toBinaryStream(&lastCommander.value(), stream);
 
 	TypeInfo<ManagedWeakReference<SceneObjectPOD* > >::toBinaryStream(&lastCommandTarget.value(), stream);
 

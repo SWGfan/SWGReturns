@@ -1,9 +1,5 @@
 includeFile("conversation.lua")
 
--- Custom Vendors
-includeFile("conversations/vendor/stardust_vendor_conv.lua")
-includeFile("conversations/vendor/stardust_gambling_conv.lua")
-
 -- ** THEMEPARKS **
 
 -- Tutorial
@@ -282,7 +278,6 @@ includeFile("conversations/pet/pets_conv.lua")
 
 -- Misc
 includeFile("conversations/misc/philosopher_conv.lua")
-includeFile("conversations/misc/character_builder_frog_conv.lua")
 
 -- Junk Dealers
 includeFile("conversations/junk_dealer/junk_dealer_generic_conv.lua")
@@ -300,46 +295,5 @@ includeFile("conversations/junk_dealer/junk_dealer_reggi_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sheani_conv.lua")
 includeFile("conversations/junk_dealer/junk_dealer_sneg_conv.lua")
 
---Stardust New
-includeFile("conversations/dungeon/rebel_chasm_teleporter.lua")
-includeFile("conversations/dungeon/rebel_jakku_teleporter.lua")
-includeFile("conversations/dungeon/jakku_overseer.lua")
-includeFile("conversations/dungeon/retreat_curator.lua")
-includeFile("conversations/dungeon/death_sticks.lua")
-includeFile("conversations/dungeon/dex_diner.lua")
-includeFile("conversations/dungeon/hondo_return_teleporter.lua")
-includeFile("conversations/dungeon/hondo_send_teleporter.lua")
-includeFile("conversations/dungeon/fake_imperial_officer.lua")
-includeFile("conversations/dungeon/herald_of_the_prophets.lua")
-includeFile("conversations/dungeon/prophet_kadann.lua")
-includeFile("conversations/dungeon/prophet_cronal.lua")
-includeFile("conversations/dungeon/imperial_palace_onlooker.lua")
-includeFile("conversations/dungeon/swoop_race_hutt.lua")
-includeFile("conversations/dungeon/chiss_hunter_herald.lua")
-includeFile("conversations/dungeon/chiss_hunter_herald_cave.lua")
-includeFile("conversations/dungeon/chandriltech_greeter.lua")
-includeFile("conversations/dungeon/archaeologist_leader.lua")
-includeFile("conversations/dungeon/moraband_bunker_protocol_droid.lua")
-includeFile("conversations/dungeon/reltha_aiden.lua")
-includeFile("conversations/dungeon/bex_delata.lua")
-includeFile("conversations/dungeon/omor_rikan.lua")
-includeFile("conversations/dungeon/taelan_delar.lua")
-includeFile("conversations/dungeon/bray_terex.lua")
-includeFile("conversations/dungeon/jar_jar_binks.lua")
-includeFile("conversations/dungeon/hutt_slave_auctioneer.lua")
-includeFile("conversations/dungeon/respec_conv.lua")
-includeFile("conversations/dungeon/imperial_isd_teleporter.lua")
-includeFile("conversations/dungeon/rebel_vette_teleporter.lua")
-includeFile("conversations/dungeon/obi_wan_elysium.lua")
-includeFile("conversations/dungeon/oowroora.lua")
-includeFile("conversations/dungeon/tansarii_exit_teleporter.lua")
-includeFile("conversations/dungeon/warren_information_officer.lua")
-includeFile("conversations/racetracks/coruscantconversation.lua")
-includeFile("conversations/racetracks/huttaconversation.lua")
-includeFile("conversations/racetracks/lothalconversation.lua")
-includeFile("conversations/dungeon/imperial_genocide_coordinator.lua")
-includeFile("conversations/dungeon/boba_fett_tusken.lua")
-includeFile("conversations/dungeon/aurilian_teleporter.lua")
-
---Mustafar
-includeFile("conversations/mustafar/som_exploration_marker.lua")
+--item sales aftermath
+includeFile("conversations/merchants/vendor_conv.lua")

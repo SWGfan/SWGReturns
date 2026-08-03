@@ -42,14 +42,7 @@ void FactoryObjectImplementation::notifyLoadFromDatabase() {
 	setLoggingName("FactoryObject");
 
 	if (operating) {
-		Core::getTaskManager()->executeTask([factory = WeakReference<FactoryObject*>(_this.getReferenceUnsafeStaticCast())]() {
-			auto factoryStrong = factory.get();
-
-			if (factoryStrong != nullptr) {
-				Locker lock(factoryStrong);
-				factoryStrong->startFactory();
-			}
-		}, "StartFactoryLambda");
+		startFactory();
 	}
 
 	hopperObserver = new FactoryHopperObserver(_this.getReferenceUnsafeStaticCast());
@@ -376,7 +369,7 @@ void FactoryObjectImplementation::handleRemoveFactorySchem(CreatureObject* playe
 
 		player->sendSystemMessage(message);
 	} else {
-		trx.abort() << "Failed to transfer schematic to factory.";
+		trx.abort() << "transferObject failed.";
 
 		StringIdChatParameter message("manf_station", "schematic_not_removed"); //Schematic %TT was not removed from the station and been placed in your datapad. Have a nice day!
 
@@ -443,14 +436,14 @@ bool FactoryObjectImplementation::startFactory() {
 			return false;
 	}
 
-	timer = ((int)schematic->getComplexity()) * 0;  //default is 8
+	timer = ((int)schematic->getComplexity());
 
 	if(!populateSchematicBlueprint(schematic))
 		return false;
 
 	// Add sampletask
 	Reference<CreateFactoryObjectTask* > createFactoryObjectTask = new CreateFactoryObjectTask(_this.getReferenceUnsafeStaticCast());
-	addPendingTask("createFactoryObject", createFactoryObjectTask, timer * 0);
+	addPendingTask("createFactoryObject", createFactoryObjectTask, timer * 1000);
 
 	operating = true;
 
@@ -583,7 +576,8 @@ void FactoryObjectImplementation::createNewObject() {
 		return;
 	}
 
-	int crateSize = schematic->getFactoryCrateSize();
+	//int crateSize = schematic->getFactoryCrateSize();
+	int crateSize = 1000;
 
 	if (crateSize <= 0) {
 		stopFactory("manf_error", "", "", -1);

@@ -231,6 +231,21 @@ class ResourceSpawn extends SceneObject {
 	}
 
 	@preLocked
+	public void setMaxUnitsSpawned(unsigned long units) {
+		maxUnitsSpawned = units;
+	}
+
+	@read
+	public unsigned long getMaxUnitsSpawned() {
+		return maxUnitsSpawned;
+	}
+
+	@read
+	public unsigned long getUnitsInCirculation() {
+		return unitsInCirculation;
+	}
+
+	@preLocked
 	public void setContainerCRC(unsigned int crc) {
 		containerCRC = crc;
 	}

@@ -205,6 +205,8 @@ public:
 
 	void removePlayerFromBountyList(unsigned long long targetId);
 
+	void clearPlayerBountyMissions(unsigned long long targetId);
+
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
 
 	void updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status);
@@ -411,6 +413,8 @@ public:
 
 	void removePlayerFromBountyList(unsigned long long targetId);
 
+	void clearPlayerBountyMissions(unsigned long long targetId);
+
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
 
 	void updatePlayerBountyOnlineStatus(unsigned long long targetId, bool status);
@@ -509,6 +513,8 @@ public:
 	void addPlayerToBountyList(unsigned long long targetId, int reward);
 
 	void removePlayerFromBountyList(unsigned long long targetId);
+
+	void clearPlayerBountyMissions(unsigned long long targetId);
 
 	void updatePlayerBountyReward(unsigned long long targetId, int reward);
 

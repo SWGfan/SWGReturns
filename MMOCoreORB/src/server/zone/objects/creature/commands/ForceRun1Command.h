@@ -5,7 +5,6 @@
 #ifndef FORCERUN1COMMAND_H_
 #define FORCERUN1COMMAND_H_
 
-#include "server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.h"
 #include "JediQueueCommand.h"
 
 class ForceRun1Command : public JediQueueCommand {
@@ -17,51 +16,39 @@ public:
 		buffCRC = BuffCRC::JEDI_FORCE_RUN_1;
     
         // If these are active they will block buff use
-		blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_2);
+	//	blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_2);
 		blockingCRCs.add(BuffCRC::JEDI_FORCE_RUN_3);
     
     
 		// Skill mods.
 		skillMods.put("force_run", 1);
-		skillMods.put("slope_move", 33);
+		skillMods.put("slope_move", 66);
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
-		int res = creature->hasBuff(buffCRC) ? NOSTACKJEDIBUFF : doJediSelfBuffCommand(creature);
-
-		if (res == NOSTACKJEDIBUFF) {
-			creature->sendSystemMessage("@jedi_spam:already_force_running"); // You are already force running.
+		// Return if Jedi is rooted
+		if (creature->isSnared()){
+			creature->sendSystemMessage("Something is preventing you from using the force to run.");
 			return GENERALERROR;
 		}
+		int res = creature->hasBuff(buffCRC) ? NOSTACKJEDIBUFF : doJediSelfBuffCommand(creature);
+
+        if (creature->hasBuff(BuffCRC::JEDI_FORCE_RUN_2)) {
+        	creature->removeBuff(BuffCRC::JEDI_FORCE_RUN_2);
+        }
+		
 		// Return if something is in error.
 		if (res != SUCCESS) {
 			return res;
 		}
 
-		// need to apply the damage reduction in a separate buff so that the multiplication and division applies right
-		Buff* buff = creature->getBuff(BuffCRC::JEDI_FORCE_RUN_1);
-		if (buff == NULL)
-			return GENERALERROR;
-
-		ManagedReference<PrivateSkillMultiplierBuff*> multBuff = new PrivateSkillMultiplierBuff(creature, name.hashCode(), duration, BuffType::JEDI);
-
-		Locker locker(multBuff);
-
-		multBuff->setSkillModifier("private_damage_divisor", 10);
-
-		creature->addBuff(multBuff);
-
-		locker.release();
-
-		Locker blocker(buff);
-
-		buff->addSecondaryBuffCRC(multBuff->getBuffCRC());
-
+		// SPECIAL - For Force Run.
 		if (creature->hasBuff(STRING_HASHCODE("burstrun")) || creature->hasBuff(STRING_HASHCODE("retreat"))) {
 			creature->removeBuff(STRING_HASHCODE("burstrun"));
 			creature->removeBuff(STRING_HASHCODE("retreat"));
 		}
 
+		// Return.
 		return SUCCESS;
 	}
 

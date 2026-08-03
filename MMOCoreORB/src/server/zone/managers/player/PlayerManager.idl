@@ -75,7 +75,13 @@ class PlayerManager extends Observer implements Logger {
 
 	// Used for frog/gm buffs
 	protected int performanceBuff;
+	protected int cheapPerformanceBuff;
+	protected int expensivePerformanceBuff;
+	protected int expensivePerformanceSubBuff;
 	protected int medicalBuff;
+	protected int cheapMedicalBuff;
+	protected int expensiveMedicalBuff;
+	protected int expensiveMedicalSubBuff;
 	protected int performanceDuration;
 	protected int medicalDuration;
 
@@ -112,9 +118,6 @@ class PlayerManager extends Observer implements Logger {
 
 	@dereferenced
 	protected transient Vector<Reference<QuestInfo> > questInfo;
-	
-	@dereferenced
-	protected transient VectorMap<unsigned int, string> questCrcTable;
 
 	@dereferenced
 	private transient OnlineZoneClientMap onlineZoneClientMap;
@@ -126,7 +129,6 @@ class PlayerManager extends Observer implements Logger {
 	private native void loadStartingLocations();
 	private native void loadPermissionLevels();
 	private native void loadQuestInfo();
-	private native void loadQuestCrcTable();
 
 	public native void finalize();
 
@@ -153,7 +155,7 @@ class PlayerManager extends Observer implements Logger {
 	@local
 	public native boolean checkPlayerName(ClientCreateCharacterCallback callback);
 
-	public native string setFirstName(CreatureObject creature, final string newFirstName, boolean skipVerify = false);
+	public native string setFirstName(CreatureObject creature, final string newFirstName);
 
 	public native string setLastName(CreatureObject creature, final string newLastName, boolean skipVerify = false);
 
@@ -524,8 +526,8 @@ class PlayerManager extends Observer implements Logger {
 	 * @pre { player is locked }
 	 * @post { player is locked }
 	 */
-	public native void enhanceCharacter(CreatureObject player);
-	public native void enhanceCharacterFrog(CreatureObject player);	
+	public native void enhanceCharacter(CreatureObject player, int type);
+
 	/**
 	 * Creates and adds buff to Player
 	 * @pre { player is locked }
@@ -576,19 +578,16 @@ class PlayerManager extends Observer implements Logger {
 		onlineCharactersPerAccount = count;
 	}
 
-	public int getOnlineCharactersPerAccount() {
-	    return onlineCharactersPerAccount;
-	}
-
 	@local
 	@arg1preLocked
 	public native void doPvpDeathRatingUpdate(CreatureObject player, ThreatMap threatMap);
-	public native void offerPlayerBounty(CreatureObject attacker, CreatureObject defender);
 
 	private native void loadXpBonusList();
 	public native float getSpeciesXpModifier(final string species, final string xpType);
 
 	public native void unlockFRSForTesting(CreatureObject player, int councilType);
+
+	public native void grantJediMaster(CreatureObject player);
 
 	@local
 	@dereferenced

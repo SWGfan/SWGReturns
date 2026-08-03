@@ -2,7 +2,6 @@ hirsch_sif = Creature:new {
 	objectName = "@mob/creature_names:hirsch_sif",
 	socialGroup = "sif",
 	faction = "sif",
-	mobType = MOB_NPC,
 	level = 57,
 	chanceHit = 0.570000,
 	damageMin = 430,
@@ -38,17 +37,9 @@ hirsch_sif = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "sif_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"sif_weapons"},
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,fencermaster,swordsmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,fencermaster,swordsmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(hirsch_sif, "hirsch_sif")

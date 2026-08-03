@@ -4,7 +4,6 @@
 
 
 #include "objects.h"
-#include "server/db/AccountDatabase.h"
 
 #include "LoginPacketHandler.h"
 #include "server/login/LoginServer.h"
@@ -67,7 +66,7 @@ void LoginPacketHandler::handleLoginClientID(LoginClient* client, Message* pack)
 
 void LoginPacketHandler::handleDeleteCharacterMessage(LoginClient* client, Message* pack) {
 	if (!client->hasAccount()) {
-		auto* msg = new DeleteCharacterReplyMessage(1); //FAIL
+		Message* msg = new DeleteCharacterReplyMessage(1); //FAIL
 		client->sendMessage(msg);
 		return;
 	}
@@ -94,7 +93,7 @@ void LoginPacketHandler::handleDeleteCharacterMessage(LoginClient* client, Messa
 	int dbDelete = 0;
 
 	try {
-		UniqueReference<ResultSet*> moveResults(AccountDatabase::instance()->executeQuery(moveStatement.toString()));
+		UniqueReference<ResultSet*> moveResults(ServerDatabase::instance()->executeQuery(moveStatement.toString()));
 
 		if (moveResults == nullptr || moveResults.get()->getRowsAffected() == 0) {
 			dbDelete = 1;
@@ -104,7 +103,7 @@ void LoginPacketHandler::handleDeleteCharacterMessage(LoginClient* client, Messa
 
 		}
 
-		UniqueReference<ResultSet*> verifyResults(AccountDatabase::instance()->executeQuery(verifyStatement.toString()));
+		UniqueReference<ResultSet*> verifyResults(ServerDatabase::instance()->executeQuery(verifyStatement.toString()));
 
 		if (verifyResults == nullptr || verifyResults.get()->getRowsAffected() == 0) {
 			dbDelete = 1;
@@ -121,7 +120,7 @@ void LoginPacketHandler::handleDeleteCharacterMessage(LoginClient* client, Messa
 
 	if (!dbDelete) {
 		try {
-			UniqueReference<ResultSet*> deleteResults(AccountDatabase::instance()->executeQuery(deleteStatement));
+			UniqueReference<ResultSet*> deleteResults(ServerDatabase::instance()->executeQuery(deleteStatement));
 
 			if (deleteResults == nullptr || deleteResults.get()->getRowsAffected() == 0) {
 				error() << "Unable to delete character from character table. " << endl
@@ -135,7 +134,7 @@ void LoginPacketHandler::handleDeleteCharacterMessage(LoginClient* client, Messa
 		}
 	}
 
-	auto* msg = new DeleteCharacterReplyMessage(dbDelete);
+	Message* msg = new DeleteCharacterReplyMessage(dbDelete);
 	client->sendMessage(msg);
 }
 

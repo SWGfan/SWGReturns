@@ -26,39 +26,51 @@ public:
 	}
 
 	void run() {
+		// FIXME
 		ManagedReference<CreatureObject*> strong = player.get();
 
-		if (strong == nullptr) {
+		if (strong == nullptr)
 			return;
-		}
 
 		try {
 			Locker _locker(strong);
 
-			ManagedReference<FishingManager*> manager = strong->getZoneProcessServer()->getFishingManager();
+			//player->info("activating command queue action");
 
+			ManagedReference<FishingManager*> manager = strong->getZoneProcessServer()->getFishingManager();
+			//Locker lockerManager(manager);
+			//player->removePendingTask("fishing");
 			if (fishingState != FishingManagerImplementation::NOTFISHING) {
 				manager->fishingStep(strong);
 
-			} else {
+			} /*else if (marker != nullptr) {
+					// new event
+				manager->createFishingEvent(player, nextAction, zoneServer, marker, fish, boxID, fishingState, mood);
+
+			}*/ else {
+
 				manager->stopFishingEvent(strong);
+
 			}
 
+			//player->info("command queue action activated");
+
+
 		} catch (...) {
-			// player = nullptr;
+			//player = nullptr;
 
 			throw;
 		}
 
-		// player = nullptr;
+		//player = nullptr;
 	}
 };
 
-} // namespace events
-} // namespace minigames
-} // namespace managers
-} // namespace zone
-} // namespace server
+}
+}
+}
+}
+}
 
 using namespace server::zone::managers::minigames::events;
 

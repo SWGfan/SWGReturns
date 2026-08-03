@@ -54,7 +54,35 @@ class ObjectMenuResponse;
 
 using namespace server::zone::packets::object;
 
-#include "server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h"
+namespace server {
+namespace zone {
+namespace objects {
+namespace manufactureschematic {
+namespace craftingvalues {
+
+class CraftingValues;
+
+} // namespace craftingvalues
+} // namespace manufactureschematic
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::manufactureschematic::craftingvalues;
+
+namespace server {
+namespace zone {
+namespace packets {
+namespace scene {
+
+class AttributeListMessage;
+
+} // namespace scene
+} // namespace packets
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::packets::scene;
 
 #include "templates/SharedObjectTemplate.h"
 
@@ -106,6 +134,15 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
+	/**
+	 * Fills the attribute list message options that are sent to player creature
+	 * @pre { }
+	 * @post { }
+	 * @param msg attribute list message with the attributes
+	 * @param object player creature to which the message is sent
+	 */
+	void fillAttributeList(AttributeListMessage* msg, CreatureObject* object);
+
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
 	/**
@@ -122,6 +159,8 @@ public:
 	int getPoints();
 
 	int getToolType();
+
+	int getEffectiveness();
 
 	String getSurveyType();
 
@@ -169,6 +208,8 @@ protected:
 	int points;
 
 	int type;
+
+	int effectiveness;
 
 	String surveyType;
 
@@ -219,6 +260,15 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
+	/**
+	 * Fills the attribute list message options that are sent to player creature
+	 * @pre { }
+	 * @post { }
+	 * @param msg attribute list message with the attributes
+	 * @param object player creature to which the message is sent
+	 */
+	void fillAttributeList(AttributeListMessage* msg, CreatureObject* object);
+
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
 	/**
@@ -235,6 +285,8 @@ public:
 	int getPoints();
 
 	int getToolType();
+
+	int getEffectiveness();
 
 	String getSurveyType();
 
@@ -310,6 +362,8 @@ public:
 
 	int getToolType();
 
+	int getEffectiveness();
+
 	String getSurveyType();
 
 	String getSurveyAnimation();
@@ -364,6 +418,8 @@ public:
 	Optional<int> points;
 
 	Optional<int> type;
+
+	Optional<int> effectiveness;
 
 	Optional<String> surveyType;
 

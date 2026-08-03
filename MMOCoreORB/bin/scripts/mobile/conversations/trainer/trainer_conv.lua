@@ -121,7 +121,6 @@ createTrainerConversationTemplate("1hswordTrainerConvoTemplate", "trainer_1hswor
 createTrainerConversationTemplate("2hswordTrainerConvoTemplate", "trainer_2hsword")
 createTrainerConversationTemplate("architectTrainerConvoTemplate", "trainer_architect")
 createTrainerConversationTemplate("armorsmithTrainerConvoTemplate", "trainer_armorsmith")
-createTrainerConversationTemplate("armorweaverTrainerConvoTemplate", "trainer_armorweaver")
 createTrainerConversationTemplate("bioengineerTrainerConvoTemplate", "trainer_bioengineer")
 createTrainerConversationTemplate("bountyhunterTrainerConvoTemplate", "trainer_bountyhunter")
 createTrainerConversationTemplate("carbineTrainerConvoTemplate", "trainer_carbine")
@@ -146,9 +145,7 @@ createTrainerConversationTemplate("squadleaderTrainerConvoTemplate", "trainer_sq
 createTrainerConversationTemplate("tailorTrainerConvoTemplate", "trainer_tailor")
 createTrainerConversationTemplate("unarmedTrainerConvoTemplate", "trainer_unarmed")
 createTrainerConversationTemplate("weaponsmithTrainerConvoTemplate", "trainer_weaponsmith")
-createTrainerConversationTemplate("prospectorTrainerConvoTemplate", "trainer_prospector")
 
 createTrainerConversationTemplate("fsTrainerConvoTemplate", "trainer_fs")
 createTrainerConversationTemplate("jediTrainerConvoTemplate", "trainer_jedi")
-createTrainerConversationTemplate("darkfrsTrainerConvoTemplate", "trainer_frs_dark")
-createTrainerConversationTemplate("lightfrsTrainerConvoTemplate", "trainer_frs_light")
+createTrainerConversationTemplate("basebusterTrainerConvoTemplate", "trainer_basebuster")

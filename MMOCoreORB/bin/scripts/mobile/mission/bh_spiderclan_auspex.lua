@@ -2,7 +2,6 @@ bh_spiderclan_auspex = Creature:new {
 	objectName = "@mob/creature_names:spider_nightsister_spell_weaver",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "spider_nightsister",
 	faction = "spider_nightsister",
 	level = 107,
@@ -12,7 +11,7 @@ bh_spiderclan_auspex = Creature:new {
 	baseXp = 10174,
 	baseHAM = 24000,
 	baseHAMmax = 30000,
-	armor = 1,
+	armor = 2,
 	resists = {55,100,100,75,100,100,90,55,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -77,17 +76,9 @@ bh_spiderclan_auspex = Creature:new {
 			lootChance = 5140000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_spiderclan_auspex, "bh_spiderclan_auspex")

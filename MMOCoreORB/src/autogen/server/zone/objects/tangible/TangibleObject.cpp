@@ -18,7 +18,7 @@
  *	TangibleObjectStub
  */
 
-enum {RPC_INITIALIZEMEMBERS__ = 3335659148,RPC_ADDTEMPLATESKILLMODS__TANGIBLEOBJECT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,RPC_REMOVESKILLMOD__INT_STRING_INT_BOOL_,RPC_REMOVEALLSKILLMODSOFTYPE__INT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_NOTIFYLOADFROMDATABASE__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SYNCHRONIZEDUILISTEN__CREATUREOBJECT_INT_,RPC_SYNCHRONIZEDUISTOPLISTEN__CREATUREOBJECT_INT_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDERS__,RPC_SETCOMBATSTATE__,RPC_SETUSECOUNT__INT_BOOL_,RPC_DECREASEUSECOUNT__INT_BOOL_,RPC_SETCOUNTDOWNTIMER__INT_BOOL_,RPC_CLEARCOMBATSTATE__BOOL_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_ISATTACKABLEBY__TANGIBLEOBJECT_,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_ISHEALABLEBY__CREATUREOBJECT_,RPC_SENDPVPSTATUSTO__CREATUREOBJECT_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_HEALDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_,RPC_SETCONDITIONDAMAGE__FLOAT_BOOL_,RPC_ADDVISIBLECOMPONENT__INT_BOOL_,RPC_REMOVEVISIBLECOMPONENT__INT_BOOL_,RPC_REMOVEALLVISIBLECOMPONENTS__BOOL_,RPC_HASVISIBLECOMPONENT__INT_,RPC_SETCUSTOMIZATIONVARIABLE__BYTE_SHORT_BOOL_,RPC_SETCUSTOMIZATIONVARIABLE__STRING_SHORT_BOOL_,RPC_SETOPTIONSBITMASK__INT_BOOL_,RPC_SETOPTIONBIT__INT_BOOL_,RPC_CLEAROPTIONBIT__INT_BOOL_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_DROPFROMDEFENDERLISTS__,RPC_GETOBJECTVISIBLE__,RPC_ISKILLER__,RPC_ISTICKETCOLLECTOR__,RPC_ISTICKETOBJECT__,RPC_ISFSPUZZLEPACK__,RPC_ISPLANTOBJECT__,RPC_ISCONSUMABLE__,RPC_GETUSECOUNT__,RPC_GETMAXCONDITION__,RPC_SETMAXCONDITION__INT_BOOL_,RPC_GETCONDITIONDAMAGE__,RPC_GETVOLUME__,RPC_SETCOMPLEXITY__FLOAT_,RPC_GETCOMPLEXITY__,RPC_GETOPTIONSBITMASK__,RPC_ADDMAGICBIT__BOOL_,RPC_REMOVEMAGICBIT__BOOL_,RPC_GETLEVEL__,RPC_GETISCRAFTEDENHANCEDITEM__,RPC_GETPVPSTATUSBITMASK__,RPC_ISTANGIBLEOBJECT__,RPC_GETCUSTOMIZATIONSTRING__STRING_,RPC_GETMAINDEFENDER__,RPC_ISDESTROYED__,RPC_SETFACTION__INT_,RPC_GETFACTION__,RPC_ISREBEL__,RPC_ISIMPERIAL__,RPC_ISNEUTRAL__,RPC_GETFACTIONSTATUS__,RPC_SETFACTIONSTATUS__INT_,RPC_GETFUTUREFACTIONSTATUS__,RPC_SETFUTUREFACTIONSTATUS__INT_,RPC_ISSLICEABLE__,RPC_ISSLICED__,RPC_SETSLICEABLE__BOOL_,RPC_SETSLICED__BOOL_,RPC_ISJEDIROBE__,RPC_ISUNIONRING__,RPC_SETUNIONRING__BOOL_,RPC_SETCUSTOMIZATIONSTRING__STRING_,RPC_SETISCRAFTEDENHANCEDITEM__BOOL_,RPC_SETPVPSTATUSBITMASK__INT_BOOL_,RPC_SETPVPSTATUSBIT__INT_BOOL_,RPC_CLEARPVPSTATUSBIT__INT_BOOL_,RPC_SETCRAFTERSNAME__STRING_,RPC_SETCRAFTERSID__LONG_,RPC_GETCRAFTERSNAME__,RPC_GETCRAFTERSID__,RPC_SETJUNKDEALERNEEDED__INT_,RPC_GETJUNKDEALERNEEDED__,RPC_SETJUNKVALUE__INT_,RPC_GETJUNKVALUE__,RPC_SETSERIALNUMBER__STRING_,RPC_SETLEVEL__INT_BOOL_,RPC_GETSERIALNUMBER__,RPC_CREATEFACTORYCRATE__INT_STRING_BOOL_,RPC_CANREPAIR__CREATUREOBJECT_,RPC_REPAIR__CREATUREOBJECT_REPAIRTOOL_,RPC_REPAIRATTEMPT__INT_,RPC_ISBROKEN__,RPC_GETHITCHANCE__,RPC_BROADCASTPVPSTATUSBITMASK__,RPC_ADDACTIVEAREA__ACTIVEAREA_,RPC_DROPACTIVEAREA__ACTIVEAREA_,RPC_HASACTIVEAREA__ACTIVEAREA_,RPC_HASACTIVEAREA__LONG_,RPC_GETACTIVEAREASSIZE__,RPC_GETACTIVEREGION__,RPC_ISNOTRADE__,RPC_HASANTIDECAYKIT__,RPC_GETANTIDECAYKITOBJECTID__,RPC_APPLYANTIDECAYKIT__CREATUREOBJECT_SCENEOBJECT_,RPC_REMOVEANTIDECAYKIT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_ISCITYSTREETLAMP__,RPC_ISCITYSTATUE__,RPC_ISCITYFOUNTAIN__,RPC_ISINVISIBLE__,RPC_SETINVISIBLE__BOOL_,RPC_ISCUSTOMINGREDIENT__,RPC_SETLUASTRINGDATA__STRING_STRING_,RPC_DELETELUASTRINGDATA__STRING_,RPC_GETLUASTRINGDATA__STRING_,RPC_SETDISABLED__BOOL_,RPC_ISDISABLED__,RPC_ISINNAVMESH__};
+enum {RPC_INITIALIZEMEMBERS__ = 3335659148,RPC_ADDTEMPLATESKILLMODS__TANGIBLEOBJECT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,RPC_REMOVESKILLMOD__INT_STRING_INT_BOOL_,RPC_REMOVEALLSKILLMODSOFTYPE__INT_BOOL_,RPC_INITIALIZETRANSIENTMEMBERS__,RPC_NOTIFYLOADFROMDATABASE__,RPC_SETCUSTOMOBJECTNAME__UNICODESTRING_BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDTO__SCENEOBJECT_BOOL_BOOL_,RPC_SYNCHRONIZEDUILISTEN__CREATUREOBJECT_INT_,RPC_SYNCHRONIZEDUISTOPLISTEN__CREATUREOBJECT_INT_,RPC_SETDEFENDER__SCENEOBJECT_,RPC_ADDDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDER__SCENEOBJECT_,RPC_REMOVEDEFENDERS__,RPC_SETCOMBATSTATE__,RPC_SETUSECOUNT__INT_BOOL_,RPC_DECREASEUSECOUNT__INT_BOOL_,RPC_SETCOUNTDOWNTIMER__INT_BOOL_,RPC_CLEARCOMBATSTATE__BOOL_,RPC_ISATTACKABLEBY__CREATUREOBJECT_,RPC_ISATTACKABLEBY__TANGIBLEOBJECT_,RPC_ISAGGRESSIVETO__CREATUREOBJECT_,RPC_ISHEALABLEBY__CREATUREOBJECT_,RPC_SENDPVPSTATUSTO__CREATUREOBJECT_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_BOOL_BOOL_,RPC_INFLICTDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_STRING_BOOL_BOOL_,RPC_HEALDAMAGE__TANGIBLEOBJECT_INT_FLOAT_BOOL_,RPC_SETCONDITIONDAMAGE__FLOAT_BOOL_,RPC_ADDVISIBLECOMPONENT__INT_BOOL_,RPC_REMOVEVISIBLECOMPONENT__INT_BOOL_,RPC_REMOVEALLVISIBLECOMPONENTS__BOOL_,RPC_HASVISIBLECOMPONENT__INT_,RPC_SETCUSTOMIZATIONVARIABLE__BYTE_SHORT_BOOL_,RPC_SETCUSTOMIZATIONVARIABLE__STRING_SHORT_BOOL_,RPC_SETOPTIONSBITMASK__INT_BOOL_,RPC_SETOPTIONBIT__INT_BOOL_,RPC_CLEAROPTIONBIT__INT_BOOL_,RPC_NOTIFYOBJECTDESTRUCTIONOBSERVERS__TANGIBLEOBJECT_INT_BOOL_,RPC_DROPFROMDEFENDERLISTS__,RPC_GETOBJECTVISIBLE__,RPC_ISKILLER__,RPC_ISTICKETCOLLECTOR__,RPC_ISTICKETOBJECT__,RPC_ISFSPUZZLEPACK__,RPC_ISPLANTOBJECT__,RPC_ISCONSUMABLE__,RPC_GETUSECOUNT__,RPC_GETMAXCONDITION__,RPC_SETMAXCONDITION__INT_BOOL_,RPC_GETCONDITIONDAMAGE__,RPC_GETVOLUME__,RPC_SETCOMPLEXITY__FLOAT_,RPC_GETCOMPLEXITY__,RPC_GETOPTIONSBITMASK__,RPC_ADDMAGICBIT__BOOL_,RPC_REMOVEMAGICBIT__BOOL_,RPC_GETLEVEL__,RPC_GETISCRAFTEDENHANCEDITEM__,RPC_GETPVPSTATUSBITMASK__,RPC_ISTANGIBLEOBJECT__,RPC_GETCUSTOMIZATIONSTRING__STRING_,RPC_GETMAINDEFENDER__,RPC_ISDESTROYED__,RPC_SETFACTION__INT_,RPC_GETFACTION__,RPC_ISREBEL__,RPC_ISIMPERIAL__,RPC_ISNEUTRAL__,RPC_GETFACTIONSTATUS__,RPC_SETFACTIONSTATUS__INT_,RPC_GETFUTUREFACTIONSTATUS__,RPC_SETFUTUREFACTIONSTATUS__INT_,RPC_ISSLICEABLE__,RPC_ISSLICED__,RPC_SETSLICEABLE__BOOL_,RPC_SETSLICED__BOOL_,RPC_SETCUSTOMIZATIONSTRING__STRING_,RPC_SETISCRAFTEDENHANCEDITEM__BOOL_,RPC_SETPVPSTATUSBITMASK__INT_BOOL_,RPC_SETPVPSTATUSBIT__INT_BOOL_,RPC_CLEARPVPSTATUSBIT__INT_BOOL_,RPC_SETCRAFTERSNAME__STRING_,RPC_GETCRAFTERSNAME__,RPC_SETJUNKDEALERNEEDED__INT_,RPC_GETJUNKDEALERNEEDED__,RPC_SETJUNKVALUE__INT_,RPC_GETJUNKVALUE__,RPC_SETSERIALNUMBER__STRING_,RPC_SETLEVEL__INT_BOOL_,RPC_GETSERIALNUMBER__,RPC_CREATEFACTORYCRATE__INT_STRING_BOOL_,RPC_CANREPAIR__CREATUREOBJECT_,RPC_REPAIR__CREATUREOBJECT_REPAIRTOOL_,RPC_REPAIRATTEMPT__INT_,RPC_ISBROKEN__,RPC_GETHITCHANCE__,RPC_BROADCASTPVPSTATUSBITMASK__,RPC_ADDACTIVEAREA__ACTIVEAREA_,RPC_DROPACTIVEAREA__ACTIVEAREA_,RPC_HASACTIVEAREA__ACTIVEAREA_,RPC_HASACTIVEAREA__LONG_,RPC_GETACTIVEAREASSIZE__,RPC_GETACTIVEREGION__,RPC_ISNOTRADE__,RPC_HASANTIDECAYKIT__,RPC_GETANTIDECAYKITOBJECTID__,RPC_APPLYANTIDECAYKIT__CREATUREOBJECT_SCENEOBJECT_,RPC_REMOVEANTIDECAYKIT__,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_ISCITYSTREETLAMP__,RPC_ISCITYSTATUE__,RPC_ISCITYFOUNTAIN__,RPC_ISINVISIBLE__,RPC_SETINVISIBLE__BOOL_,RPC_ISCUSTOMINGREDIENT__,RPC_SETLUASTRINGDATA__STRING_STRING_,RPC_DELETELUASTRINGDATA__STRING_,RPC_GETLUASTRINGDATA__STRING_,RPC_SETDISABLED__BOOL_,RPC_ISDISABLED__,RPC_ISINNAVMESH__,RPC_SETCONTROLDEVICE__CONTROLDEVICE_,RPC_GETCONTROLDEVICE__};
 
 TangibleObject::TangibleObject() : SceneObject(DummyConstructorParameter::instance()) {
 	TangibleObjectImplementation* _implementation = new TangibleObjectImplementation();
@@ -1378,49 +1378,6 @@ void TangibleObject::setSliced(bool slice) {
 	}
 }
 
-bool TangibleObject::isJediRobe() const {
-	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISJEDIROBE__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isJediRobe();
-	}
-}
-
-bool TangibleObject::isUnionRing() const {
-	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISUNIONRING__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isUnionRing();
-	}
-}
-
-void TangibleObject::setUnionRing(bool val) {
-	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETUNIONRING__BOOL_);
-		method.addBooleanParameter(val);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->setUnionRing(val);
-	}
-}
-
 void TangibleObject::setCustomizationString(const String& vars) {
 	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
@@ -1514,21 +1471,6 @@ void TangibleObject::setCraftersName(String& name) {
 	}
 }
 
-void TangibleObject::setCraftersID(unsigned long long crafterOID) {
-	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETCRAFTERSID__LONG_);
-		method.addUnsignedLongParameter(crafterOID);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->setCraftersID(crafterOID);
-	}
-}
-
 String TangibleObject::getCraftersName() {
 	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -1542,20 +1484,6 @@ String TangibleObject::getCraftersName() {
 		return _return_getCraftersName;
 	} else {
 		return _implementation->getCraftersName();
-	}
-}
-
-unsigned long long TangibleObject::getCraftersID() const {
-	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETCRAFTERSID__);
-
-		return method.executeWithUnsignedLongReturn();
-	} else {
-		return _implementation->getCraftersID();
 	}
 }
 
@@ -2148,6 +2076,36 @@ bool TangibleObject::isInNavMesh() {
 	}
 }
 
+void TangibleObject::setControlDevice(ControlDevice* device) {
+	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETCONTROLDEVICE__CONTROLDEVICE_);
+		method.addObjectParameter(device);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setControlDevice(device);
+	}
+}
+
+ManagedWeakReference<ControlDevice* > TangibleObject::getControlDevice() const {
+	TangibleObjectImplementation* _implementation = static_cast<TangibleObjectImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETCONTROLDEVICE__);
+
+		return static_cast<ControlDevice*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getControlDevice();
+	}
+}
+
 DistributedObjectServant* TangibleObject::_getImplementation() {
 
 	 if (!_updated) _updated = true;
@@ -2338,10 +2296,6 @@ bool TangibleObjectImplementation::readObjectMember(ObjectInputStream* stream, c
 		TypeInfo<String >::parseFromBinaryStream(&craftersName, stream);
 		return true;
 
-	case 0x2673c744: //TangibleObject.craftersID
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&craftersID, stream);
-		return true;
-
 	case 0xa090b45c: //TangibleObject.junkDealerNeeded
 		TypeInfo<int >::parseFromBinaryStream(&junkDealerNeeded, stream);
 		return true;
@@ -2374,12 +2328,8 @@ bool TangibleObjectImplementation::readObjectMember(ObjectInputStream* stream, c
 		TypeInfo<ManagedReference<SceneObject* > >::parseFromBinaryStream(&antiDecayKitObject, stream);
 		return true;
 
-	case 0x407b9075: //TangibleObject.jediRobe
-		TypeInfo<bool >::parseFromBinaryStream(&jediRobe, stream);
-		return true;
-
-	case 0x3bc3bd92: //TangibleObject.unionRing
-		TypeInfo<bool >::parseFromBinaryStream(&unionRing, stream);
+	case 0xf501a0c3: //TangibleObject.controlDevice
+		TypeInfo<ManagedWeakReference<ControlDevice* > >::parseFromBinaryStream(&controlDevice, stream);
 		return true;
 
 	}
@@ -2580,15 +2530,6 @@ int TangibleObjectImplementation::writeObjectMembers(ObjectOutputStream* stream)
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x2673c744; //TangibleObject.craftersID
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&craftersID, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0xa090b45c; //TangibleObject.junkDealerNeeded
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -2661,20 +2602,11 @@ int TangibleObjectImplementation::writeObjectMembers(ObjectOutputStream* stream)
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x407b9075; //TangibleObject.jediRobe
+	_nameHashCode = 0xf501a0c3; //TangibleObject.controlDevice
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&jediRobe, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x3bc3bd92; //TangibleObject.unionRing
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&unionRing, stream);
+	TypeInfo<ManagedWeakReference<ControlDevice* > >::toBinaryStream(&controlDevice, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -2727,8 +2659,6 @@ void TangibleObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["craftersName"] = craftersName;
 
-	thisObject["craftersID"] = craftersID;
-
 	thisObject["junkDealerNeeded"] = junkDealerNeeded;
 
 	thisObject["junkValue"] = junkValue;
@@ -2745,9 +2675,7 @@ void TangibleObjectImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["antiDecayKitObject"] = antiDecayKitObject;
 
-	thisObject["jediRobe"] = jediRobe;
-
-	thisObject["unionRing"] = unionRing;
+	thisObject["controlDevice"] = controlDevice;
 
 	j["TangibleObject"] = thisObject;
 }
@@ -2762,10 +2690,6 @@ TangibleObjectImplementation::TangibleObjectImplementation() {
 	invisible = false;
 	// server/zone/objects/tangible/TangibleObject.idl():  		antiDecayKitObject = null;
 	antiDecayKitObject = NULL;
-	// server/zone/objects/tangible/TangibleObject.idl():  		jediRobe = false;
-	jediRobe = false;
-	// server/zone/objects/tangible/TangibleObject.idl():  		unionRing = false;
-	unionRing = false;
 	// server/zone/objects/tangible/TangibleObject.idl():  		luaStringData.setAllowOverwriteInsertPlan();
 	(&luaStringData)->setAllowOverwriteInsertPlan();
 }
@@ -2785,8 +2709,6 @@ void TangibleObjectImplementation::initializeMembers() {
 	complexity = 100.f;
 	// server/zone/objects/tangible/TangibleObject.idl():  		volume = 1;
 	volume = 1;
-	// server/zone/objects/tangible/TangibleObject.idl():  		craftersID = 0;
-	craftersID = 0;
 	// server/zone/objects/tangible/TangibleObject.idl():  		objectVisible = 1;
 	objectVisible = 1;
 	// server/zone/objects/tangible/TangibleObject.idl():  		useCount = 1;
@@ -2805,6 +2727,8 @@ void TangibleObjectImplementation::initializeMembers() {
 	junkDealerNeeded = 0;
 	// server/zone/objects/tangible/TangibleObject.idl():  		junkValue = 0;
 	junkValue = 0;
+	// server/zone/objects/tangible/TangibleObject.idl():  		controlDevice = null;
+	controlDevice = NULL;
 }
 
 void TangibleObjectImplementation::applySkillModsTo(CreatureObject* creature) const{
@@ -3064,21 +2988,6 @@ void TangibleObjectImplementation::setSliced(bool slice) {
 	sliced = slice;
 }
 
-bool TangibleObjectImplementation::isJediRobe() const{
-	// server/zone/objects/tangible/TangibleObject.idl():  		return jediRobe;
-	return jediRobe;
-}
-
-bool TangibleObjectImplementation::isUnionRing() const{
-	// server/zone/objects/tangible/TangibleObject.idl():  		return unionRing;
-	return unionRing;
-}
-
-void TangibleObjectImplementation::setUnionRing(bool val) {
-	// server/zone/objects/tangible/TangibleObject.idl():  		unionRing = val;
-	unionRing = val;
-}
-
 void TangibleObjectImplementation::setCustomizationString(const String& vars) {
 	// server/zone/objects/tangible/TangibleObject.idl():  		customizationVariables.parseFromClientString(vars);
 	(&customizationVariables)->parseFromClientString(vars);
@@ -3089,19 +2998,9 @@ void TangibleObjectImplementation::setCraftersName(String& name) {
 	craftersName = name;
 }
 
-void TangibleObjectImplementation::setCraftersID(unsigned long long crafterOID) {
-	// server/zone/objects/tangible/TangibleObject.idl():  		craftersID = crafterOID;
-	craftersID = crafterOID;
-}
-
 String TangibleObjectImplementation::getCraftersName() {
 	// server/zone/objects/tangible/TangibleObject.idl():  		return craftersName;
 	return craftersName;
-}
-
-unsigned long long TangibleObjectImplementation::getCraftersID() const{
-	// server/zone/objects/tangible/TangibleObject.idl():  		return craftersID;
-	return craftersID;
 }
 
 void TangibleObjectImplementation::setJunkDealerNeeded(int jdNeeded) {
@@ -3318,6 +3217,16 @@ void TangibleObjectImplementation::deleteLuaStringData(const String& key) {
 String TangibleObjectImplementation::getLuaStringData(const String& key) const{
 	// server/zone/objects/tangible/TangibleObject.idl():  		return luaStringData.get(key);
 	return (&luaStringData)->get(key);
+}
+
+void TangibleObjectImplementation::setControlDevice(ControlDevice* device) {
+	// server/zone/objects/tangible/TangibleObject.idl():  		controlDevice = device;
+	controlDevice = device;
+}
+
+ManagedWeakReference<ControlDevice* > TangibleObjectImplementation::getControlDevice() const{
+	// server/zone/objects/tangible/TangibleObject.idl():  		return controlDevice;
+	return controlDevice;
 }
 
 /*
@@ -3984,28 +3893,6 @@ void TangibleObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
-	case RPC_ISJEDIROBE__:
-		{
-			
-			bool _m_res = isJediRobe();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_ISUNIONRING__:
-		{
-			
-			bool _m_res = isUnionRing();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_SETUNIONRING__BOOL_:
-		{
-			bool val = inv->getBooleanParameter();
-			
-			setUnionRing(val);
-			
-		}
-		break;
 	case RPC_SETCUSTOMIZATIONSTRING__STRING_:
 		{
 			 String vars; inv->getAsciiParameter(vars);
@@ -4057,26 +3944,11 @@ void TangibleObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
-	case RPC_SETCRAFTERSID__LONG_:
-		{
-			unsigned long long crafterOID = inv->getUnsignedLongParameter();
-			
-			setCraftersID(crafterOID);
-			
-		}
-		break;
 	case RPC_GETCRAFTERSNAME__:
 		{
 			
 			String _m_res = getCraftersName();
 			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_GETCRAFTERSID__:
-		{
-			
-			unsigned long long _m_res = getCraftersID();
-			resp->insertLong(_m_res);
 		}
 		break;
 	case RPC_SETJUNKDEALERNEEDED__INT_:
@@ -4368,6 +4240,21 @@ void TangibleObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 			bool _m_res = isInNavMesh();
 			resp->insertBoolean(_m_res);
+		}
+		break;
+	case RPC_SETCONTROLDEVICE__CONTROLDEVICE_:
+		{
+			ControlDevice* device = static_cast<ControlDevice*>(inv->getObjectParameter());
+			
+			setControlDevice(device);
+			
+		}
+		break;
+	case RPC_GETCONTROLDEVICE__:
+		{
+			
+			DistributedObject* _m_res = getControlDevice().get();
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
 	default:
@@ -4695,18 +4582,6 @@ void TangibleObjectAdapter::setSliced(bool slice) {
 	(static_cast<TangibleObject*>(stub))->setSliced(slice);
 }
 
-bool TangibleObjectAdapter::isJediRobe() const {
-	return (static_cast<TangibleObject*>(stub))->isJediRobe();
-}
-
-bool TangibleObjectAdapter::isUnionRing() const {
-	return (static_cast<TangibleObject*>(stub))->isUnionRing();
-}
-
-void TangibleObjectAdapter::setUnionRing(bool val) {
-	(static_cast<TangibleObject*>(stub))->setUnionRing(val);
-}
-
 void TangibleObjectAdapter::setCustomizationString(const String& vars) {
 	(static_cast<TangibleObject*>(stub))->setCustomizationString(vars);
 }
@@ -4731,16 +4606,8 @@ void TangibleObjectAdapter::setCraftersName(String& name) {
 	(static_cast<TangibleObject*>(stub))->setCraftersName(name);
 }
 
-void TangibleObjectAdapter::setCraftersID(unsigned long long crafterOID) {
-	(static_cast<TangibleObject*>(stub))->setCraftersID(crafterOID);
-}
-
 String TangibleObjectAdapter::getCraftersName() {
 	return (static_cast<TangibleObject*>(stub))->getCraftersName();
-}
-
-unsigned long long TangibleObjectAdapter::getCraftersID() const {
-	return (static_cast<TangibleObject*>(stub))->getCraftersID();
 }
 
 void TangibleObjectAdapter::setJunkDealerNeeded(int jdNeeded) {
@@ -4895,6 +4762,14 @@ bool TangibleObjectAdapter::isInNavMesh() {
 	return (static_cast<TangibleObject*>(stub))->isInNavMesh();
 }
 
+void TangibleObjectAdapter::setControlDevice(ControlDevice* device) {
+	(static_cast<TangibleObject*>(stub))->setControlDevice(device);
+}
+
+ManagedWeakReference<ControlDevice* > TangibleObjectAdapter::getControlDevice() const {
+	return (static_cast<TangibleObject*>(stub))->getControlDevice();
+}
+
 /*
  *	TangibleObjectHelper
  */
@@ -5011,9 +4886,6 @@ void TangibleObjectPOD::writeJSON(nlohmann::json& j) {
 	if (craftersName)
 		thisObject["craftersName"] = craftersName.value();
 
-	if (craftersID)
-		thisObject["craftersID"] = craftersID.value();
-
 	if (junkDealerNeeded)
 		thisObject["junkDealerNeeded"] = junkDealerNeeded.value();
 
@@ -5038,11 +4910,8 @@ void TangibleObjectPOD::writeJSON(nlohmann::json& j) {
 	if (antiDecayKitObject)
 		thisObject["antiDecayKitObject"] = antiDecayKitObject.value();
 
-	if (jediRobe)
-		thisObject["jediRobe"] = jediRobe.value();
-
-	if (unionRing)
-		thisObject["unionRing"] = unionRing.value();
+	if (controlDevice)
+		thisObject["controlDevice"] = controlDevice.value();
 
 	j["TangibleObject"] = thisObject;
 }
@@ -5281,17 +5150,6 @@ int TangibleObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (craftersID) {
-	_nameHashCode = 0x2673c744; //TangibleObject.craftersID
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&craftersID.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (junkDealerNeeded) {
 	_nameHashCode = 0xa090b45c; //TangibleObject.junkDealerNeeded
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -5380,23 +5238,12 @@ int TangibleObjectPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (jediRobe) {
-	_nameHashCode = 0x407b9075; //TangibleObject.jediRobe
+	if (controlDevice) {
+	_nameHashCode = 0xf501a0c3; //TangibleObject.controlDevice
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&jediRobe.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (unionRing) {
-	_nameHashCode = 0x3bc3bd92; //TangibleObject.unionRing
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&unionRing.value(), stream);
+	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -5571,14 +5418,6 @@ bool TangibleObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32
 		}
 		return true;
 
-	case 0x2673c744: //TangibleObject.craftersID
-		{
-			unsigned long long _mncraftersID;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mncraftersID, stream);
-			craftersID = std::move(_mncraftersID);
-		}
-		return true;
-
 	case 0xa090b45c: //TangibleObject.junkDealerNeeded
 		{
 			int _mnjunkDealerNeeded;
@@ -5643,19 +5482,11 @@ bool TangibleObjectPOD::readObjectMember(ObjectInputStream* stream, const uint32
 		}
 		return true;
 
-	case 0x407b9075: //TangibleObject.jediRobe
+	case 0xf501a0c3: //TangibleObject.controlDevice
 		{
-			bool _mnjediRobe;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnjediRobe, stream);
-			jediRobe = std::move(_mnjediRobe);
-		}
-		return true;
-
-	case 0x3bc3bd92: //TangibleObject.unionRing
-		{
-			bool _mnunionRing;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnunionRing, stream);
-			unionRing = std::move(_mnunionRing);
+			ManagedWeakReference<ControlDevicePOD* > _mncontrolDevice;
+			TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::parseFromBinaryStream(&_mncontrolDevice, stream);
+			controlDevice = std::move(_mncontrolDevice);
 		}
 		return true;
 
@@ -5725,8 +5556,6 @@ void TangibleObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<String >::toBinaryStream(&craftersName.value(), stream);
 
-	TypeInfo<unsigned long long >::toBinaryStream(&craftersID.value(), stream);
-
 	TypeInfo<int >::toBinaryStream(&junkDealerNeeded.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&junkValue.value(), stream);
@@ -5743,9 +5572,7 @@ void TangibleObjectPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<ManagedReference<SceneObjectPOD* > >::toBinaryStream(&antiDecayKitObject.value(), stream);
 
-	TypeInfo<bool >::toBinaryStream(&jediRobe.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&unionRing.value(), stream);
+	TypeInfo<ManagedWeakReference<ControlDevicePOD* > >::toBinaryStream(&controlDevice.value(), stream);
 
 
 }

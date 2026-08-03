@@ -44,16 +44,17 @@
 StrafeShot2Command = {
         name = "strafeshot2",
 
-	damageMultiplier = 1.75,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.75,
-  mindCostMultiplier = 0,
-    visMod = 40,
-  coneAngle = 60,
-  coneAction = true,
+	damageMultiplier = 5.0,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 2.0,
+	accuracyBonus = 5,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	coneAngle = 60,
+	coneAction = true,
+
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	stateEffects = {
 	  StateEffect(
@@ -74,7 +75,7 @@ StrafeShot2Command = {
 	
 	weaponType = RIFLEWEAPON,
 
-	range = 65
+	range = -1
 }
 
 AddCommand(StrafeShot2Command)

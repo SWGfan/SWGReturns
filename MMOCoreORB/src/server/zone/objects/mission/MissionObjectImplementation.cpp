@@ -161,13 +161,6 @@ void MissionObjectImplementation::setRewardCredits(int creds, bool notifyClient)
 	ManagedReference<CreatureObject*> player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
 
 	if (player != nullptr) {
-		if (player->isGrouped()) {
-			Reference<GroupObject*> group = player->getGroup();
-
-			rewardCreditsDivisor = group->getNumberOfPlayerMembers();
-		} else {
-			rewardCreditsDivisor = 1;
-		}
 
 		MissionObjectDeltaMessage3* delta = new MissionObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
 		delta->updateRewardCredits(creds);
@@ -334,27 +327,4 @@ void MissionObjectImplementation::setCreatorName(const String& name, bool notify
 
 		player->sendMessage(delta);
 	}
-}
-
-String MissionObjectImplementation::getTypeAsString() const {
-	// clang-format off
-	switch (typeCRC) {
-	case MissionTypes::BOUNTY:          return "bounty";
-	case MissionTypes::CRAFTING:        return "crafting";
-	case MissionTypes::DANCER:          return "dancer";
-	case MissionTypes::DELIVER:         return "deliver";
-	case MissionTypes::DESTROY:         return "destroy";
-	case MissionTypes::ESCORT2ME:       return "escort2me";
-	case MissionTypes::ESCORT:          return "escort";
-	case MissionTypes::ESCORTTOCREATOR: return "escorttocreator";
-	case MissionTypes::HUNTING:         return "hunting";
-	case MissionTypes::MUSICIAN:        return "musician";
-	case MissionTypes::RECON:           return "recon";
-	case MissionTypes::SURVEY:          return "survey";
-	}
-	// clang-format on
-
-	StringBuffer asString;
-	asString << "MissionTypeCRC(" << hex << typeCRC << ")";
-	return asString.toString();
 }

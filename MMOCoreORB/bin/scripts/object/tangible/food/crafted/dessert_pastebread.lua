@@ -61,7 +61,7 @@ object_tangible_food_crafted_dessert_pastebread = object_tangible_food_crafted_s
 
 	speciesRestriction = "pets",
 
-	modifiers = { "quickness", 0 },
+	modifiers = { "action", 0 },
 
 	buffName = "food.dessert_chandad",
 	buffCRC = 0,

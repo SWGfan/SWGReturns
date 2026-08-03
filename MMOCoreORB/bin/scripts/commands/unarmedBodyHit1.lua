@@ -44,13 +44,12 @@
 UnarmedBodyHit1Command = {
         name = "unarmedbodyhit1",
 
-	damageMultiplier = 1,
+	damageMultiplier = 2.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 0,
+	healthCostMultiplier = 1.75,
 	actionCostMultiplier = 1.75,
-	mindCostMultiplier = 0,
+	mindCostMultiplier = 1.75,
         accuracyBonus = 15,
-          visMod = 25,
 
 	poolsToDamage = HEALTH_ATTRIBUTE,
 
@@ -59,22 +58,9 @@ UnarmedBodyHit1Command = {
 
 	combatSpam = "rancorrising",
 	
-	dotEffects = {
-    DotEffect( 
-    BLEEDING, 
-    { "resistance_bleeding", "bleed_resist" },
-    HEALTH,
-    true,
-    0,
-    60,
-    1, 
-    10
-    )
-  },  
-	
 	weaponType = UNARMEDWEAPON,
 
-	range = 6
+	range = -1
 }
 
 AddCommand(UnarmedBodyHit1Command)

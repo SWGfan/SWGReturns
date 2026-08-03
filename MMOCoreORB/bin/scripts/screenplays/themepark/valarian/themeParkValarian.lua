@@ -1,3 +1,5 @@
+THEME_PARK_VALARIAN_BADGE = 146
+
 kavas_missions =
 	{
 		{
@@ -21,7 +23,7 @@ kavas_missions =
 			missionType = "assassinate",
 			primarySpawns =
 			{
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel Enforcer" }
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" }
 			},
 			secondarySpawns =	{},
 			itemSpawns = {},
@@ -39,9 +41,9 @@ kavas_missions =
 			},
 			secondarySpawns =
 			{
-				{ npcTemplate = "jabba_thug", npcName = "Hutt Cartel thug" },
-				{ npcTemplate = "jabba_thug", npcName = "Hutt Cartel thug" },
-				{ npcTemplate = "jabba_thug", npcName = "Hutt Cartel thug" }
+				{ npcTemplate = "jabba_thug", npcName = "Jabba's thug" },
+				{ npcTemplate = "jabba_thug", npcName = "Jabba's thug" },
+				{ npcTemplate = "jabba_thug", npcName = "Jabba's thug" }
 			},
 			itemSpawns =
 			{
@@ -74,7 +76,7 @@ kavas_missions =
 			missionType = "assassinate",
 			primarySpawns =
 			{
-				{ npcTemplate = "jabba_enforcer", npcName = "Rotta the Hutt's Enforcer" }
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" }
 			},
 			secondarySpawns =	{},
 			itemSpawns = {},
@@ -88,7 +90,7 @@ kavas_missions =
 			missionType = "confiscate",
 			primarySpawns =
 			{
-				{ npcTemplate = "kavas_jabba_assassin", npcName = "Hutt Cartel Assassin" }
+				{ npcTemplate = "kavas_jabba_assassin", npcName = "Jabba's assassin" }
 			},
 			secondarySpawns = {},
 			itemSpawns =
@@ -130,7 +132,7 @@ ind_missions =
 			},
 			secondarySpawns =
 			{
-				{ npcTemplate = "jabba_henchman", npcName = "Hutt Cartel Henchman" }
+				{ npcTemplate = "jabba_henchman", npcName = "Jabba's henchman" }
 			},
 			itemSpawns = {},
 			rewards =
@@ -172,12 +174,12 @@ ind_missions =
 			missionType = "confiscate",
 			primarySpawns =
 			{
-				{ npcTemplate = "ind_jabba_enforcer", npcName = "Hutt Cartel Enforcer" },
+				{ npcTemplate = "ind_jabba_enforcer", npcName = "Jabba's enforcer" },
 			},
 			secondarySpawns =
 			{
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel Enforcer" },
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel Enforcer" }
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" },
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" }
 			},
 			itemSpawns =
 			{
@@ -193,14 +195,14 @@ ind_missions =
 			missionType = "confiscate",
 			primarySpawns =
 			{
-				{ npcTemplate = "ind_jabba_henchman", npcName = "Hutt Cartel Delivery Boy" }
+				{ npcTemplate = "ind_jabba_henchman", npcName = "Jabba's Delivery Boy" }
 			},
 			secondarySpawns =
 			{
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel enforcer" },
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel enforcer" },
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel enforcer" },
-				{ npcTemplate = "jabba_enforcer", npcName = "Hutt Cartel enforcer" }
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" },
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" },
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" },
+				{ npcTemplate = "jabba_enforcer", npcName = "Jabba's enforcer" }
 			},
 			itemSpawns =
 			{
@@ -318,6 +320,7 @@ lady_valarian_missions =
 			{
 				{ rewardType = "credits", amount = 14000 },
 				{ rewardType = "faction", faction = "valarian", amount = 300 },
+				{ rewardType = "badge", badge = THEME_PARK_VALARIAN_BADGE },
 				{ rewardType = "loot",  lootGroup = "task_reward_valarian_dagger" }
 			}
 		},

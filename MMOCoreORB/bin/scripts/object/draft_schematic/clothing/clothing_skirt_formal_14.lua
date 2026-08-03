@@ -48,8 +48,9 @@ object_draft_schematic_clothing_clothing_skirt_formal_14 = object_draft_schemati
    customObjectName = "Two-Tone Formal Skirt",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 1, 
+   complexity = 19, 
    size = 4, 
+   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 25, 
@@ -65,7 +66,7 @@ object_draft_schematic_clothing_clothing_skirt_formal_14 = object_draft_schemati
    ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
    ingredientTitleNames = {"skirt", "trim", "extra_trim", "hardware"},
    ingredientSlotType = {1, 1, 1, 0},
-   resourceTypes = {"object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_trim.iff", "object/tangible/component/clothing/shared_trim.iff", "metal"},
+   resourceTypes = {"object/tangible/component/clothing/shared_reinforced_fiber_panels.iff", "object/tangible/component/clothing/shared_trim.iff", "object/tangible/component/clothing/shared_trim.iff", "metal"},
    resourceQuantities = {1, 1, 1, 10},
    contribution = {100, 100, 100, 100},
 

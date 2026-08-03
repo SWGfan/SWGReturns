@@ -11,7 +11,7 @@ class ContrabandScanSession extends Facade {
 
 	private static final int CONTRABANDSCANCOOLDOWN = 90000; // Time should be at least a few seconds longer than the longest time a scan takes. Current maximum scan time is 80 s.
 	private static final int SCANINITIATECHANCE = 8; // 1/8 chance to initiate scan - 12.5 % chance.
-	private static final int TASKDELAY = 2000; // 2s delay.
+	private static final int TASKDELAY = 1000; // 1 s delay.
 	private static final int IMMEDIATELY = 1; // Minimum delay.
 	private static final int SCANTIME = 10; // 10 iterations = 10 s
 	private static final int TIMETORETURNFORSCAN = 10; // 10 iterations = 10 s
@@ -46,7 +46,6 @@ class ContrabandScanSession extends Facade {
 	private transient int currentWinningFaction;
 	private transient int currentWinningFactionDifficultyScaling;
 	private boolean enforcedScan;
-	private transient int scannerFaction;
 
 	private boolean alreadyTriedToAvoidScan;
 
@@ -103,7 +102,7 @@ class ContrabandScanSession extends Facade {
 		acceptedFine = acceptFine;
 	}
 
-	private native string getFactionStringId(CreatureObject player, final string imperial, final string rebel);
+	private native string getFactionStringId(AiAgent scanner, final string imperial, final string rebel);
 	private native void sendScannerChatMessage(Zone zone, AiAgent scanner, CreatureObject player, final string imperial, final string rebel);
 	private native void sendPersonalizedScannerChatMessage(Zone zone, AiAgent scanner, CreatureObject player, final string imperial, final string rebel);
 	private native void sendSystemMessage(AiAgent scanner, CreatureObject player, final string imperial, final string rebel);
@@ -119,10 +118,10 @@ class ContrabandScanSession extends Facade {
 	private native void jediDetect(Zone zone, AiAgent scanner, CreatureObject player);
 	private native void performScan(Zone zone, AiAgent scanner, CreatureObject player);
 	private native void checkIfPlayerHasReturned(Zone zone, AiAgent scanner, CreatureObject player);
-	private native boolean isDarkJedi(CreatureObject player);
+	private native boolean notDarkJedi(CreatureObject player);
 	private native unsigned int jediMindTrickSuccessChance(CreatureObject player);
 	private native unsigned int jediAvoidDetectionSuccessChance(CreatureObject player);
-	private native void addCrackdownTef(CreatureObject player);
+	private native void addCrackdownTef(AiAgent scanner, CreatureObject player);
 	private native void sendContrabandFineSuiWindow(Zone zone, AiAgent scanner, CreatureObject player, int numberOfContrabandItems);
 	private native void waitForPayFineAnswer(Zone zone, AiAgent scanner, CreatureObject player);
 	private native void removeFineSuiWindow(CreatureObject player);

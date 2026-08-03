@@ -44,17 +44,15 @@
 PointBlankArea1Command = {
 	name = "pointblankarea1",
 
-	damageMultiplier = 1.5,
-  speedMultiplier = 0.5,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2,
-  mindCostMultiplier = 0,
-  accuracyBonus = 15,
+	damageMultiplier = 2,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 15,
 
-  coneAngle = 60,
-  coneAction = true,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	areaRange = 15,
+	areaAction = true,
 
 	animation = "fire_area_no_trails", 
 	animType = GENERATE_INTENSITY,
@@ -63,7 +61,7 @@ PointBlankArea1Command = {
 	
 	weaponType = RANGEDWEAPON,
 
-	range = 10
+	range = 12
 }
 
 AddCommand(PointBlankArea1Command)

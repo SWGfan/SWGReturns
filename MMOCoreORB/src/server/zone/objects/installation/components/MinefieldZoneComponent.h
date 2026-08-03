@@ -10,15 +10,14 @@
 
 #include "engine/engine.h"
 #include "server/zone/objects/scene/SceneObject.h"
-#include "server/zone/objects/scene/components/GroundZoneComponent.h"
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
-class MinefieldZoneComponent : public GroundZoneComponent {
+class MinefieldZoneComponent : public ZoneComponent {
 
 public:
-	void notifyPositionUpdate(SceneObject* sceneObject, TreeEntry* entry) const;
+	void notifyPositionUpdate(SceneObject* sceneObject, QuadTreeEntry* entry) const;
 	void notifyInsertToZone(SceneObject* sceneObject, Zone* zne) const;
-	void notifyDissapear(SceneObject* sceneObject, TreeEntry* entry) const;
+	void notifyDissapear(SceneObject* sceneObject, QuadTreeEntry* entry) const;
 };
 
 

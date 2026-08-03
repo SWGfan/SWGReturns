@@ -200,11 +200,7 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	unsigned int getLastCommand();
-
-	void setLastCommander(SceneObject* commander);
-
-	ManagedWeakReference<SceneObject* > getLastCommander();
+	unsigned int getLastCommand() const;
 
 	void setLastCommandTarget(SceneObject* target);
 
@@ -309,8 +305,6 @@ protected:
 
 	unsigned int lastCommand;
 
-	ManagedWeakReference<SceneObject* > lastCommander;
-
 	ManagedWeakReference<SceneObject* > lastCommandTarget;
 
 	String futureName;
@@ -411,15 +405,11 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	virtual unsigned int getLastCommand();
-
-	void setLastCommander(SceneObject* commander);
-
-	ManagedWeakReference<SceneObject* > getLastCommander();
+	unsigned int getLastCommand() const;
 
 	void setLastCommandTarget(SceneObject* target);
 
-	virtual ManagedWeakReference<SceneObject* > getLastCommandTarget();
+	ManagedWeakReference<SceneObject* > getLastCommandTarget();
 
 	String getFutureName() const;
 
@@ -557,7 +547,7 @@ public:
 
 	void setLastCommand(unsigned int c);
 
-	unsigned int getLastCommand();
+	unsigned int getLastCommand() const;
 
 	String getFutureName() const;
 
@@ -657,8 +647,6 @@ public:
 	Optional<unsigned int> trainingCommand;
 
 	Optional<unsigned int> lastCommand;
-
-	Optional<ManagedWeakReference<SceneObjectPOD* >> lastCommander;
 
 	Optional<ManagedWeakReference<SceneObjectPOD* >> lastCommandTarget;
 

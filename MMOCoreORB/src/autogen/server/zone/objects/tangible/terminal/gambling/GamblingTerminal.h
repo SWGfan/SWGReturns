@@ -207,8 +207,6 @@ public:
 
 	bool gameRunning();
 
-	bool bettingAllowed();
-
 	/**
 	 * Notifies other Players
 	 * This method sends the argument text to every Player joined to the Terminal except the Player provided
@@ -487,8 +485,6 @@ public:
 
 	bool gameRunning();
 
-	bool bettingAllowed();
-
 	/**
 	 * Notifies other Players
 	 * This method sends the argument text to every Player joined to the Terminal except the Player provided
@@ -666,8 +662,6 @@ public:
 	String getGamblingRegion();
 
 	bool gameRunning();
-
-	bool bettingAllowed();
 
 	bool checkJoin(CreatureObject* player);
 

@@ -23,33 +23,25 @@ public:
 		if (!sui->isMessageBox() || cancelPressed)
 			return;
 
-		ManagedReference<SceneObject*> sceneO = sui->getUsingObject().get();
+		ManagedReference<SceneObject*> obj = sui->getUsingObject().get();
 
-		//if (sceneO == nullptr || (!sceneO->isBuildingObject() && !sceneO->isPobShip()))
+		if (obj == nullptr || !obj->isBuildingObject())
 			return;
 
-		Locker _lock(sceneO, creature);
+		BuildingObject* building = cast<BuildingObject*>( obj.get());
 
-		TransactionLog trx(TrxCode::PLAYERMISCACTION, creature, sceneO);
+		Locker _lock(building, creature);
+
+		TransactionLog trx(TrxCode::PLAYERMISCACTION, creature, building);
 
 		if (trx.isVerbose()) {
 			// Force a synchronous export because the objects will be deleted before we can export them!
-			trx.addRelatedObject(sceneO, true);
+			trx.addRelatedObject(building, true);
 			trx.setExportRelatedObjects(true);
 			trx.exportRelated();
 		}
 
-		if (sceneO->isPobShip()) {
-			PobShipObject* pobShip = cast<PobShipObject*>(sceneO.get());
-
-			if (pobShip != nullptr)
-				pobShip->destroyAllPlayerItems();
-		} else {
-			BuildingObject* building = cast<BuildingObject*>(sceneO.get());
-
-			if (building != nullptr)
-				building->destroyAllPlayerItems();
-		}
+		building->destroyAllPlayerItems();
 
 		creature->sendSystemMessage("@player_structure:items_deleted"); //All of the objects in your house have been deleted.
 	}

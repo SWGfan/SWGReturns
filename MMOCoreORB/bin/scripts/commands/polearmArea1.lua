@@ -44,26 +44,26 @@
 PolearmArea1Command = {
         name = "polearmarea1",
 
-	damageMultiplier = 1.25,
-  speedMultiplier = 1.25,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2,
-  mindCostMultiplier = 0,
-  accuracyBonus = 10,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.75,
+	healthCostMultiplier = 1.5,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 1.0,
+	accuracyBonus = 10,
 
-  areaRange = 16,
-  areaAction = true,
+	areaRange = 16,
+	areaAction = true,
 
 	animation = "combo_2c", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "whirlwind",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 	
 	weaponType = POLEARMWEAPON,
 
-	range = 10
+	range = -1
 }
 
 AddCommand(PolearmArea1Command)

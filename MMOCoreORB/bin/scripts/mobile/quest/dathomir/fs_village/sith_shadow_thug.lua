@@ -2,16 +2,15 @@ sith_shadow_thug = Creature:new {
 	objectName = "@mob/creature_names:shadow_thug",
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow",
-	mobType = MOB_NPC,
-	level = 250,
-	chanceHit = 0.9,
-	damageMin = 1200,
-	damageMax = 1800,
-	baseXp = 25000,
-	baseHAM = 1200000,
-	baseHAMmax = 1500000,
-	armor = 2,
-	resists = {80,80,80,85,70,85,85,85,60},
+	level = 51,
+	chanceHit = 0.47,
+	damageMin = 395,
+	damageMax = 500,
+	baseXp = 5007,
+	baseHAM = 9700,
+	baseHAMmax = 11900,
+	armor = 1,
+	resists = {45,45,45,45,45,45,45,45,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -22,7 +21,7 @@ sith_shadow_thug = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE + ENEMY + AGGRESSIVE,
-	creatureBitmask = KILLER,
+	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -46,17 +45,9 @@ sith_shadow_thug = Creature:new {
 			lootChance = 7500000
 		},
 	},
-
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "unarmed",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = { },
-	
-	specialDamageMult = 1.5
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(sith_shadow_thug, "sith_shadow_thug")

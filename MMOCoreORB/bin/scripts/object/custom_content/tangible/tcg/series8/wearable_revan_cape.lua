@@ -1,5 +1,0 @@
-
-object_tangible_tcg_series8_wearable_revan_cape = object_tangible_tcg_series8_shared_wearable_revan_cape:new {
-
-}
-ObjectTemplates:addTemplate(object_tangible_tcg_series8_wearable_revan_cape, "object/tangible/tcg/series8/wearable_revan_cape.iff")

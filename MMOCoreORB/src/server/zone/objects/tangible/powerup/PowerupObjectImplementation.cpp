@@ -72,12 +72,12 @@ float PowerupObjectImplementation::getWeaponStat(const String& attrib, WeaponObj
 		return weapon->getWoundsRatio(withPup);
 	else if (attrib == "damageRadius")
 		return weapon->getDamageRadius(withPup);
-	//else if (attrib == "healthAttackCost")
-		//return weapon->getHealthAttackCost(withPup);
+	else if (attrib == "healthAttackCost")
+		return weapon->getHealthAttackCost(withPup);
 	else if (attrib == "actionAttackCost")
 		return weapon->getActionAttackCost(withPup);
-	//else if (attrib == "mindAttackCost")
-		//return weapon->getMindAttackCost(withPup);
+	else if (attrib == "mindAttackCost")
+		return weapon->getMindAttackCost(withPup);
 	else if (attrib == "pointBlankRange")
 		return weapon->getPointBlankRange(withPup);
 
@@ -108,7 +108,7 @@ void PowerupObjectImplementation::updateCraftingValues(CraftingValues* values, b
 		}
 
 		type = pup->getType().toLowerCase();
-		uses = 1000; // Powerups are always 1000 uses
+		uses = 100; // Powerups are always 100 uses
 
 	} else {
 

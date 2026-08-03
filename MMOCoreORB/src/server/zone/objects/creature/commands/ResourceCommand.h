@@ -38,8 +38,8 @@ public:
 			if(command == "list") {
 				listResources(creature, &args);
 
-			/*} else if(command == "health") {
-				healthCheck(creature, &args); */
+			} else if(command == "health") {
+				healthCheck(creature, &args);
 
 			} else if(command == "dump") {
 				dumpResources(creature, &args);
@@ -55,10 +55,10 @@ public:
 
 			} else if(command == "create") {
 				giveResource(creature, &args);
-				
+
 			} else if(command == "ghdump") {
 				ghDump(creature, &args);
-				
+
 			} else {
 				throw Exception();
 			}

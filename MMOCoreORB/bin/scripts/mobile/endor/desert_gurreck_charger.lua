@@ -2,7 +2,6 @@ desert_gurreck_charger = Creature:new {
 	objectName = "@mob/creature_names:desert_gurreck_charger",
 	socialGroup = "gurreck",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 22,
 	chanceHit = 0.33,
 	damageMin = 210,
@@ -31,17 +30,12 @@ desert_gurreck_charger = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/gurreck_hue.iff",
 	scale = 0.9,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"",""}, {"blindattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"",""},
+		{"blindattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(desert_gurreck_charger, "desert_gurreck_charger")

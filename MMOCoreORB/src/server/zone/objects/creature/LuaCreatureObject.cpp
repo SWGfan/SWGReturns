@@ -18,7 +18,6 @@
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/objects/tangible/threat/ThreatMap.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
-#include "server/zone/Zone.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
@@ -71,7 +70,6 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "hasSkill", &LuaCreatureObject::hasSkill},
 		{ "removeSkill", &LuaCreatureObject::removeSkill},
 		{ "surrenderSkill", &LuaCreatureObject::surrenderSkill},
-		{ "addSkillDirect", &LuaCreatureObject::addSkillDirect},
 		{ "getConversationSession", &LuaCreatureObject::getConversationSession},
 		{ "doAnimation", &LuaCreatureObject::doAnimation},
 		{ "engageCombat", &LuaCreatureObject::engageCombat},
@@ -100,11 +98,9 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "isGroupedWith", &LuaCreatureObject::isGroupedWith},
 		{ "getGroupSize", &LuaCreatureObject::getGroupSize},
 		{ "getGroupMember", &LuaCreatureObject::getGroupMember},
-		{ "getOptionsBitmask", &LuaTangibleObject::getOptionsBitmask},
 		{ "setOptionsBitmask", &LuaCreatureObject::setOptionsBitmask},
 		{ "setOptionBit", &LuaTangibleObject::setOptionBit},
 		{ "clearOptionBit", &LuaTangibleObject::clearOptionBit},
-		{ "getPvpStatusBitmask", &LuaTangibleObject::getPvpStatusBitmask},
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask},
 		{ "setPvpStatusBit", &LuaTangibleObject::setPvpStatusBit},
 		{ "isChangingFactionStatus", &LuaTangibleObject::isChangingFactionStatus },
@@ -147,7 +143,6 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getGender", &LuaCreatureObject::getGender },
 		{ "isRidingMount", &LuaCreatureObject::isRidingMount },
 		{ "dismount", &LuaCreatureObject::dismount },
-		{ "setAppearance", &LuaCreatureObject::setAppearance },
 		{ 0, 0 }
 };
 
@@ -455,15 +450,6 @@ int LuaCreatureObject::removeSkill(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->removeSkill(value, true);
-	return 0;
-}
-
-int LuaCreatureObject::addSkillDirect(lua_State* L) {
-	String value = lua_tostring(L, -1);
-
-	Locker locker(realObject);
-
-	realObject->addSkill(value, true);
 	return 0;
 }
 
@@ -1027,7 +1013,8 @@ int LuaCreatureObject::getGroupID(lua_State* L) {
 
 int LuaCreatureObject::enhanceCharacter(lua_State* L) {
 	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
-	playerManager->enhanceCharacter(realObject);
+	int type = lua_tointeger(L, -1);
+	playerManager->enhanceCharacter(realObject, type);
 
 	return 0;
 }
@@ -1080,16 +1067,10 @@ int LuaCreatureObject::getDamageDealerList(lua_State* L) {
 		ThreatMapEntry* entry = &copyThreatMap.elementAt(i).getValue();
 
 		if (entry->getTotalDamage() > 0) {
-			TangibleObject* attacker = copyThreatMap.elementAt(i).getKey();
-
-			if (attacker == nullptr || !attacker->isCreatureObject()) {
-				continue;
-			}
-
-			CreatureObject* creoAttacker = attacker->asCreatureObject();
+			CreatureObject* attacker = copyThreatMap.elementAt(i).getKey();
 
 			count++;
-			lua_pushlightuserdata(L, creoAttacker);
+			lua_pushlightuserdata(L, attacker);
 			lua_rawseti(L, -2, count);
 		}
 	}
@@ -1108,16 +1089,10 @@ int LuaCreatureObject::getHealingThreatList(lua_State* L) {
 		ThreatMapEntry* entry = &copyThreatMap.elementAt(i).getValue();
 
 		if (entry->getHeal() > 0) {
-			TangibleObject* healer = copyThreatMap.elementAt(i).getKey();
-
-			if (healer == nullptr || !healer->isCreatureObject()) {
-				continue;
-			}
-
-			CreatureObject* creoHealer = healer->asCreatureObject();
+			CreatureObject* healer = copyThreatMap.elementAt(i).getKey();
 
 			count++;
-			lua_pushlightuserdata(L, creoHealer);
+			lua_pushlightuserdata(L, healer);
 			lua_rawseti(L, -2, count);
 		}
 	}
@@ -1152,46 +1127,5 @@ int LuaCreatureObject::isRidingMount(lua_State* L) {
 
 int LuaCreatureObject::dismount(lua_State* L) {
 	realObject->dismount();
-	return 0;
-}
-
-int LuaCreatureObject::setAppearance(lua_State* L){
-	String appearanceString = lua_tostring(L, -1);
-
-	Locker pLocker(realObject);
-
-	// Reset Template - Pass empty string
-	if (appearanceString == "") {
-		Zone* zone = realObject->getZone();
-
-		realObject->setAlternateAppearance(appearanceString , true);
-
-		if (zone != nullptr) {
-			realObject->switchZone(zone->getZoneName(), realObject->getPositionX(), realObject->getPositionZ(), realObject->getPositionY(), realObject->getParentID());
-		}
-		return 0;
-	}
-
-	String templateName = "";
-
-	if (appearanceString.indexOf(".iff") == -1 || appearanceString.indexOf("object/mobile/shared_") == -1) {
-		return 0;
-	} else if (appearanceString != "") {
-		TemplateManager* templateManager = TemplateManager::instance();
-		String templateTest = appearanceString.replaceFirst("shared_", "");
-
-		if (templateManager != nullptr) {
-			SharedObjectTemplate* templateData = templateManager->getTemplate(templateTest.hashCode());
-
-			if (templateData == nullptr) {
-				realObject->sendSystemMessage("Unable to find template.");
-				return 0;
-			}
-			templateName = appearanceString;
-
-			realObject->setAlternateAppearance(templateName, true);
-		}
-	}
-
 	return 0;
 }

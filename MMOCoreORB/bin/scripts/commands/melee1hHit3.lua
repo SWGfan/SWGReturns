@@ -44,15 +44,12 @@
 Melee1hHit3Command = {
         name = "melee1hhit3",
 
-	damageMultiplier = 2.5,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.5,
-  mindCostMultiplier = 0,
+	damageMultiplier = 5.0,
+	speedMultiplier = 2.25,
+	healthCostMultiplier = 1.0,
+	actionCostMultiplier = 1.0,
+	mindCostMultiplier = 2.0,
         accuracyBonus = 25,
-          visMod = 25,
-        
-  poolsToDamage = HEALTH_ATTRIBUTE,
 
 	animation = "combo_5a", 
 	animType = GENERATE_INTENSITY,
@@ -61,8 +58,8 @@ Melee1hHit3Command = {
 	  StateEffect( 
 		BLIND_EFFECT, 
 		{}, 
-		{ "blind_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "blind_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		40, 
 		0, 
 		30 
@@ -73,7 +70,7 @@ Melee1hHit3Command = {
 	
 	weaponType = ONEHANDMELEEWEAPON,
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Melee1hHit3Command)

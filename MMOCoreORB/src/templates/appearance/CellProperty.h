@@ -65,7 +65,6 @@ class CellProperty : public IffTemplate, public Logger {
 protected:
 	String name;
 	int numberOfPortals;
-	bool worldPortal = false;
 	FloorMesh* floorMesh;
 	AppearanceTemplate* appearanceTemplate;
 	int cellID;
@@ -116,10 +115,6 @@ public:
 
 	int getNumberOfPortals() const {
 		return numberOfPortals;
-	}
-
-	bool hasWorldPortal() const {
-		return worldPortal;
 	}
 
 	const CellPortal* getPortal(int idx) const {

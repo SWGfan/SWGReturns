@@ -78,52 +78,29 @@ object_tangible_wearables_armor_ubese_armor_ubese_helmet_quest = object_tangible
 				"object/mobile/vendor/twilek_female.iff",
 				"object/mobile/vendor/twilek_male.iff",
 				"object/mobile/vendor/zabrak_female.iff",
-				"object/mobile/vendor/zabrak_male.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/mobile/vendor/zabrak_male.iff" },
 	
 	-- Damage types in WeaponObject
-	vulnerability = STUN + LIGHTSABER,
-
-  specialResists = KINETIC,
+	vulnerability = HEAT + COLD + STUN + LIGHTSABER,
 
 	-- These are default Blue Frog stats
-	healthEncumbrance = 0,
-	actionEncumbrance = 0,
-	mindEncumbrance = 0,
+	healthEncumbrance = 9,
+	actionEncumbrance = 11,
+	mindEncumbrance = 180,
 
 	-- LIGHT, MEDIUM, HEAVY
 	rating = LIGHT,
 
 	maxCondition = 20000,
 
-	kinetic = 70,
-	energy = 70,
-	electricity = 70,
-	stun = 70,
-	blast = 70,
-	heat = 70,
-	cold = 70,
-	acid = 70,
+	kinetic = 20,
+	energy = 15,
+	electricity = 15,
+	stun = 0,
+	blast = 15,
+	heat = 0,
+	cold = 0,
+	acid = 15,
 	lightSaber = 0
 }
 

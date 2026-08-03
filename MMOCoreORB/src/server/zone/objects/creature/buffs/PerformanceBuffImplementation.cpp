@@ -3,9 +3,6 @@
  *
  *  Created on: 04/03/2011
  *      Author: Itac
- *
- *  Modified: buff strength set to flat 12000 (guaranteed, not stat-scaled)
- *            attribute target: ACTION for all performance buffs
  */
 
 #include "server/zone/objects/creature/buffs/PerformanceBuff.h"
@@ -16,21 +13,20 @@
 void PerformanceBuffImplementation::activate(bool applyModifiers) {
 
 	if(type == PerformanceBuffType::DANCE_MIND) {
-		// Flat 12000 ACTION buff, regardless of target base stats or entertainer skill.
-		int mindStrength = 12000;
-		setAttributeModifier(CreatureAttribute::ACTION, mindStrength);
-			creature.get()->sendSystemMessage("CODEx: DANCE performance buff activated, ACTION +12000");
+		int mindStrength = round(strength * (float)creature.get()->getBaseHAM(CreatureAttribute::MIND));
+		setAttributeModifier(CreatureAttribute::MIND, mindStrength);
+		creature.get()->sendSystemMessage("@healing:performance_enhance_dance_mind_d");
 
 	}
 	else if(type == PerformanceBuffType::MUSIC_FOCUS) {
-		int focusStrength = 12000;
-		setAttributeModifier(CreatureAttribute::ACTION, focusStrength);
-			creature.get()->sendSystemMessage("CODEx: MUSIC performance buff activated, ACTION +12000");
+		int focusStrength = round(strength * (float)creature.get()->getBaseHAM(CreatureAttribute::FOCUS));
+		setAttributeModifier(CreatureAttribute::FOCUS, focusStrength);
+		creature.get()->sendSystemMessage("@healing:performance_enhance_music_focus_d");
 
 	}
 	else if(type == PerformanceBuffType::MUSIC_WILLPOWER) {
-		int willStrength = 12000;
-		setAttributeModifier(CreatureAttribute::ACTION, willStrength);
+		int willStrength = round(strength * (float)creature.get()->getBaseHAM(CreatureAttribute::WILLPOWER));
+		setAttributeModifier(CreatureAttribute::WILLPOWER, willStrength);
 		creature.get()->sendSystemMessage("@healing:performance_enhance_music_willpower_d");
 	}
 

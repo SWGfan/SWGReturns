@@ -2,22 +2,21 @@ langlatch_hunter = Creature:new {
 	objectName = "@mob/creature_names:langlatch_hunter",
 	socialGroup = "langlatch",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 15,
 	chanceHit = 0.31,
 	damageMin = 160,
 	damageMax = 170,
 	baseXp = 960,
-	baseHAM = 12400,
-	baseHAMmax = 13000,
+	baseHAM = 2400,
+	baseHAMmax = 3000,
 	armor = 0,
 	resists = {0,0,0,0,0,0,0,-1,-1},
 	meatType = "meat_carnivore",
-	meatAmount = 75,
+	meatAmount = 15,
 	hideType = "hide_wooly",
-	hideAmount = 75,
+	hideAmount = 15,
 	boneType = "bone_mammal",
-	boneAmount = 75,
+	boneAmount = 15,
 	milk = 0,
 	tamingChance = 0.25,
 	ferocity = 0,
@@ -31,17 +30,11 @@ langlatch_hunter = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/langlatch_hue.iff",
 	scale = 1.05,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"dizzyattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"dizzyattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(langlatch_hunter, "langlatch_hunter")

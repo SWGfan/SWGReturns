@@ -48,8 +48,9 @@ object_draft_schematic_clothing_clothing_armor_tantel_boots = object_draft_schem
    customObjectName = "Tantel Armor Boots",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 1, 
+   complexity = 30, 
    size = 3, 
+   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_armor", 
    xp = 180, 
@@ -65,7 +66,7 @@ object_draft_schematic_clothing_clothing_armor_tantel_boots = object_draft_schem
    ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
    ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement"},
    ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 1},
-   resourceTypes = {"bone_avian", "hide", "hide_bristley", "aluminum", "petrochem_inert_polymer", "hide_bristley", "object/tangible/component/armor/shared_armor_segment_armor_advanced.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
+   resourceTypes = {"bone_avian", "hide", "hide_bristley", "aluminum", "petrochem_inert_polymer", "hide_bristley", "object/tangible/component/armor/shared_armor_segment.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
    resourceQuantities = {20, 20, 20, 10, 10, 10, 2, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100},
 

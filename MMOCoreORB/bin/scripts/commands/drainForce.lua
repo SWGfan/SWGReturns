@@ -42,23 +42,16 @@
 --true = 1, false = 0
 
 DrainForceCommand = {
-    name = "drainforce",
-  
-  animation = "force_drain_1",
-
-  combatSpam = "forcedrain_hit",
-  
-  poolsToDamage = NO_ATTRIBUTE,
-
-  maxDamage = 250, --Force drained
-  minDamage = 100,
-  
-  forceCost = 50,
-  
-  visMod = 25,
-  
-  range = 32
-  
+  name = "drainforce",
+	maxDamage = 250,
+	minDamage = 150,
+	forceCost = 50,
+	visMod = 25,
+	animation = "force_drain_1",
+	combatSpam = "forcedrain_hit",
+	poolsToDamage = NO_ATTRIBUTE,
+	range = 32,
 }
 
 AddCommand(DrainForceCommand)
+

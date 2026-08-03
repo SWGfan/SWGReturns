@@ -113,9 +113,7 @@ public:
 
 	void calcGroupLevel();
 
-	int getGroupLevel(bool includeFactionPets = true) const;
-
-	int getFactionPetLevel() const;
+	int getGroupLevel() const;
 
 	ChatRoom* getChatRoom() const;
 
@@ -140,6 +138,10 @@ public:
 	void removeGroupModifiers();
 
 	bool isOtherMemberPlayingMusic(CreatureObject* player);
+
+	String getBandSong() const;
+
+	void setBandSong(const String& song);
 
 	int getLootRule() const;
 
@@ -189,8 +191,10 @@ class GroupObjectImplementation : public SceneObjectImplementation {
 
 	int groupLevel;
 
-	int factionPetLevel;
+protected:
+	String bandSong;
 
+private:
 	int lootRule;
 
 	unsigned long long masterLooterID;
@@ -234,9 +238,7 @@ public:
 
 	void calcGroupLevel();
 
-	int getGroupLevel(bool includeFactionPets = true) const;
-
-	int getFactionPetLevel() const;
+	int getGroupLevel() const;
 
 	ChatRoom* getChatRoom() const;
 
@@ -267,6 +269,10 @@ private:
 
 public:
 	bool isOtherMemberPlayingMusic(CreatureObject* player);
+
+	String getBandSong() const;
+
+	void setBandSong(const String& song);
 
 	int getLootRule() const;
 
@@ -352,9 +358,7 @@ public:
 
 	void calcGroupLevel();
 
-	int getGroupLevel(bool includeFactionPets) const;
-
-	int getFactionPetLevel() const;
+	int getGroupLevel() const;
 
 	ChatRoom* getChatRoom() const;
 
@@ -377,6 +381,10 @@ public:
 	void removeGroupModifiers();
 
 	bool isOtherMemberPlayingMusic(CreatureObject* player);
+
+	String getBandSong() const;
+
+	void setBandSong(const String& song);
 
 	int getLootRule() const;
 
@@ -433,7 +441,7 @@ public:
 
 	Optional<int> groupLevel;
 
-	Optional<int> factionPetLevel;
+	Optional<String> bandSong;
 
 	Optional<int> lootRule;
 

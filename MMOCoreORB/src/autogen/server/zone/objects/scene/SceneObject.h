@@ -63,18 +63,6 @@ using namespace server::zone;
 namespace server {
 namespace zone {
 
-class GroundZone;
-
-class GroundZonePOD;
-
-} // namespace zone
-} // namespace server
-
-using namespace server::zone;
-
-namespace server {
-namespace zone {
-
 class ZoneServer;
 
 class ZoneServerPOD;
@@ -210,39 +198,9 @@ class AiAgentPOD;
 
 using namespace server::zone::objects::creature::ai;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
+#include "gmock/gmock.h"
 
-class ShipObject;
-
-class ShipObjectPOD;
-
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship;
-
-namespace server {
-namespace zone {
-namespace objects {
-namespace ship {
-
-class FighterShipObject;
-
-class FighterShipObjectPOD;
-
-} // namespace ship
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::ship;
-
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
 #include "engine/log/LoggerHelperStream.h"
 
@@ -266,13 +224,11 @@ using namespace server::zone::objects::ship;
 
 #include "templates/manager/PlanetMapCategory.h"
 
-#include "templates/manager/PlanetMapSubCategory.h"
-
 #include "templates/manager/TemplateManager.h"
 
 #include "templates/SharedObjectTemplate.h"
 
-#include "server/zone/objects/scene/components/GroundZoneComponent.h"
+#include "server/zone/objects/scene/components/ZoneComponent.h"
 
 #include "server/zone/objects/scene/components/ObjectMenuComponent.h"
 
@@ -288,8 +244,6 @@ using namespace server::zone::objects::ship;
 
 #include "templates/appearance/MeshData.h"
 
-#include "templates/appearance/AppearanceTemplate.h"
-
 #include "templates/collision/BaseBoundingVolume.h"
 
 #include "server/zone/objects/scene/variables/StdFunction.h"
@@ -297,8 +251,6 @@ using namespace server::zone::objects::ship;
 #include "server/metrics/Metrics.h"
 
 #include "engine/util/JSONSerializationType.h"
-
-#include "server/zone/objects/scene/variables/OrderedTaskExecutioner.h"
 
 #include "engine/log/Logger.h"
 
@@ -335,7 +287,7 @@ namespace zone {
 namespace objects {
 namespace scene {
 
-class SceneObject : public TreeEntry {
+class SceneObject : public QuadTreeEntry {
 public:
 	/**
 	 * SceneObject constructor, used to initialize the object.
@@ -457,16 +409,6 @@ public:
 	bool isInRange3d(SceneObject* obj, float range);
 
 	/**
-	 * Evaluates if the object is in range without checking zone
-	 * @pre { this object is locked, obj is locked}
-	 * @post { thisobject is locked, obj is locked }
-	 * @param obj object that will be checked against
-	 * @param range range to check
-	 * @return returns true if this object is in range with obj
-	 */
-	bool isInRange3dZoneless(SceneObject* obj, float range);
-
-	/**
 	 * Tries to add/link object
 	 * @pre { this object is locked, object is locked }
 	 * @post {this object is locked, object is locked }
@@ -486,7 +428,7 @@ public:
 	 * @param notifyClient not used currently
 	 * @return returns true if the object has been successfully removed
 	 */
-	bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient = false, bool nullifyParent = true);
+	bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient = false);
 
 	/**
 	 * Destroys the object from the world
@@ -582,7 +524,7 @@ public:
 	 * @param containmentType arrangement type?
 	 * @return returns a new valid UpdateContainmentMessage
 	 */
-	BaseMessage* link(unsigned long long objectID, unsigned int containmentType);
+	BaseMessage* link(unsigned long long objectID, unsigned int containmentType = 4);
 
 	/**
 	 * Sends the necessary messages to player in order to create this object
@@ -704,7 +646,7 @@ public:
 	 * @param newPositionZ new position Z
 	 * @param newPositionY new position Y
 	 */
-	void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0, bool toggleInvisibility = false, int playerArrangement = -1);
+	void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0, bool toggleInvisibility = false);
 
 	void teleport(float newPositionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0);
 
@@ -715,9 +657,9 @@ public:
 
 	void updateDirection(float angleHeadingRadians);
 
-	void notifyInsert(TreeEntry* entry);
+	void notifyInsert(QuadTreeEntry* entry);
 
-	void notifyDissapear(TreeEntry* entry);
+	void notifyDissapear(QuadTreeEntry* entry);
 
 	void notifyRemoveFromZone();
 
@@ -899,11 +841,7 @@ public:
 
 	float getDistanceTo(SceneObject* object);
 
-	float getDistanceTo3d(SceneObject* object);
-
 	float getDistanceTo(Coordinate* coordinate);
-
-	float getDistanceTo3d(Coordinate* coordinate);
 
 	void updateVehiclePosition(bool sendPackets);
 
@@ -936,6 +874,14 @@ public:
 	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
+
+	virtual float getWorldPositionX();
+
+	virtual float getWorldPositionY();
+
+	virtual float getWorldPositionZ();
+
+	virtual Vector3 getWorldPosition();
 
 	float getDirectionX() const;
 
@@ -978,10 +924,6 @@ public:
 	const VectorMap<String, ManagedReference<SceneObject* > >* getSlottedObjects() const;
 
 	Reference<SceneObject* > getSlottedObject(const String& slot);
-
-	Reference<SceneObject* > getInventory();
-
-	Reference<SceneObject* > getDatapad();
 
 	int getSlotDescriptorSize() const;
 
@@ -1039,8 +981,6 @@ public:
 
 	unsigned int getGameObjectType() const;
 
-	String getGameObjectTypeStringID();
-
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -1056,9 +996,12 @@ public:
 	 */
 	void rotate(int degrees);
 
-	void rotatePitch(int degrees);
+	/**
+	 * Rotate on the "Roll" X Axis and "Pitch" Y Axis.
+	 */
+	void rotateXaxis(int degrees);
 
-	void rotateRoll(int degrees);
+	void rotateYaxis(int degrees);
 
 	/**
 	 * Sets this objects direction so that the object is facing the specified object.
@@ -1071,7 +1014,7 @@ public:
 
 	void notifySelfPositionUpdate();
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	/**
 	 * @param player player that closed the container
@@ -1082,9 +1025,9 @@ public:
 
 	ManagedWeakReference<SceneObject* > getParent();
 
-	void setParent(TreeEntry* entry);
+	void setParent(QuadTreeEntry* entry);
 
-	void setParent(TreeEntry* entry, bool updateRecursively);
+	void setParent(QuadTreeEntry* entry, bool updateRecursively);
 
 	ZoneServer* getZoneServer() const;
 
@@ -1124,13 +1067,15 @@ public:
 
 	virtual bool isPlayerCreature();
 
+	bool isVendor() const;
+
 	bool isGCWBase() const;
 
 	bool isTurret() const;
 
 	bool isMinefield() const;
 
-	bool isScanner() const;
+	bool isDetector() const;
 
 	bool isSecurityTerminal() const;
 
@@ -1138,7 +1083,7 @@ public:
 
 	bool isEventPerk() const;
 
-	GroundZoneComponent* getGroundZoneComponent() const;
+	ZoneComponent* getZoneComponent() const;
 
 	ObjectMenuComponent* getObjectMenuComponent() const;
 
@@ -1152,7 +1097,7 @@ public:
 
 	void setContainerComponent(const String& name);
 
-	void setGroundZoneComponent(const String& name);
+	void setZoneComponent(const String& name);
 
 	void setForceNoTrade(bool newForceNoTrade);
 
@@ -1168,41 +1113,21 @@ public:
 
 	bool isRegion();
 
-	bool isRidingMount();
-
 	virtual bool isCreatureObject();
 
 	virtual CreatureObject* asCreatureObject();
 
 	virtual bool isAiAgent();
 
-	virtual bool isVendor();
-
 	virtual AiAgent* asAiAgent();
 
-	bool isPlayerShip();
+	bool isCreature();
 
-	virtual bool isShipObject();
-
-	virtual ShipObject* asShipObject();
-
-	virtual bool isFighterShip();
-
-	virtual FighterShipObject* asFighterShip();
-
-	virtual bool isCreature();
+	bool isShipObject();
 
 	virtual bool isVehicleObject();
 
-	bool isShipComponentObject();
-
-	bool isSchematicFragmentObject();
-
 	bool isDroidObject();
-
-	bool isHelperDroidObject();
-
-	bool isHyperspacing();
 
 	virtual bool isBuildingObject();
 
@@ -1266,8 +1191,6 @@ public:
 
 	bool isPharmaceuticalObject();
 
-	bool isDotPackObject();
-
 	bool isFishingPoleObject() const;
 
 	bool isDeedObject();
@@ -1278,11 +1201,7 @@ public:
 
 	bool isBuildingDeed();
 
-	bool isShipDeedObject();
-
 	bool isSignObject();
-
-	bool isSpawnEggObject();
 
 	bool isInstallationDeed();
 
@@ -1318,20 +1237,6 @@ public:
 
 	bool isAntiDecayKitObject();
 
-	bool isPilotChair() const;
-
-	bool isOperationsChair() const;
-
-	bool isShipTurret() const;
-
-	bool isShipComponentRepairKit() const;
-
-	bool isShipInteriorComponent() const;
-
-	bool isShipPlasmaConduit() const;
-
-	bool isInShipStation() const;
-
 	const ContainerPermissions* getContainerPermissions() const;
 
 	ContainerPermissions* getContainerPermissionsForUpdate();
@@ -1362,7 +1267,7 @@ public:
 
 	ZoneProcessServer* getZoneProcessServer() const;
 
-	void setZone(Zone* newZone);
+	void setZone(Zone* zone);
 
 	void setObjectName(const StringId& stringID, bool notifyClient);
 
@@ -1408,6 +1313,8 @@ public:
 
 	bool isShipControlDevice();
 
+	bool isStructureControlDevice();
+
 	bool isMissionTerminal();
 
 	bool isMissionObject();
@@ -1416,19 +1323,15 @@ public:
 
 	int getPlanetMapCategoryCRC() const;
 
-	String getPlanetMapCategoryName() const;
-
 	int getPlanetMapSubCategoryCRC() const;
-
-	String getPlanetMapSubCategoryName() const;
 
 	void setPlanetMapCategory(const PlanetMapCategory* pmc);
 
-	void setPlanetMapSubCategory(const PlanetMapSubCategory* subPmc);
+	void setPlanetMapSubCategory(const PlanetMapCategory* pmc);
 
 	const PlanetMapCategory* getPlanetMapCategory() const;
 
-	const PlanetMapSubCategory* getPlanetMapSubCategory() const;
+	const PlanetMapCategory* getPlanetMapSubCategory() const;
 
 	SortedVector<ManagedReference<SceneObject* > >* getChildObjects();
 
@@ -1448,8 +1351,6 @@ public:
 	void addChildObject(SceneObject* obj);
 
 	void removeChildObject(SceneObject* obj);
-
-	void selectConversationOption(int option, SceneObject* obj);
 
 	Matrix4* getTransformForCollisionMatrix();
 
@@ -1484,8 +1385,6 @@ public:
 
 	bool isTheaterObject();
 
-	bool isSpaceSpawner();
-
 	bool isEventPerkDeed();
 
 	bool isEventPerkItem();
@@ -1496,9 +1395,7 @@ public:
 
 	Vector<Reference<MeshData*> > getTransformedMeshData(const Matrix4* parentTransform) const;
 
-	const BaseBoundingVolume* getBoundingVolume() const;
-
-	const BaseBoundingVolume* getCollisionVolume() const;
+	const BaseBoundingVolume* getBoundingVolume();
 
 	bool isInNavMesh();
 
@@ -1507,30 +1404,6 @@ public:
 	String exportJSON(const String& exportNote, int maxDepth = -1, bool pruneCreo = false, bool pruneCraftedComponents = false);
 
 	void getChildrenRecursive(SortedVector<unsigned long long>& childrenObjectsFound, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false);
-
-	bool canBeTransferred(SceneObject* newContainer);
-
-	bool isNearBank();
-
-	void setDebuggingRegions(bool val);
-
-	bool isDebuggingRegions() const;
-
-	bool checkInConversationRange(SceneObject* target);
-
-	void setSyncStamp(unsigned int value);
-
-	unsigned int getSyncStamp();
-
-	int getCurrentNumberOfPlayerItems();
-
-	unsigned int getMaximumNumberOfPlayerItems();
-
-	const AppearanceTemplate* getAppearanceTemplate() const;
-
-	void setBoundingRadius(float value);
-
-	float getBoundingRadius();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -1552,19 +1425,7 @@ protected:
 
 	bool __isAiAgent();
 
-	bool __isVendor();
-
 	AiAgent* __asAiAgent();
-
-	bool __isShipObject();
-
-	ShipObject* __asShipObject();
-
-	bool __isFighterShip();
-
-	FighterShipObject* __asFighterShip();
-
-	bool __isCreature();
 
 	bool __isVehicleObject();
 
@@ -1587,11 +1448,11 @@ namespace zone {
 namespace objects {
 namespace scene {
 
-class SceneObjectImplementation : public TreeEntryImplementation, public Logger, public Metrics {
+class SceneObjectImplementation : public QuadTreeEntryImplementation, public Logger, public Metrics {
 protected:
 	ManagedReference<ZoneProcessServer* > server;
 
-	Reference<GroundZoneComponent* > groundZoneComponent;
+	Reference<ZoneComponent* > zoneComponent;
 
 	Reference<ObjectMenuComponent* > objectMenuComponent;
 
@@ -1641,11 +1502,7 @@ protected:
 
 	int planetMapCategory;
 
-	String mapCategoryName;
-
 	int planetMapSubCategory;
-
-	String mapSubCategoryName;
 
 	UnicodeString customName;
 
@@ -1666,15 +1523,6 @@ protected:
 	unsigned long long originalObjectID;
 
 	bool forceNoTrade;
-
-	bool debuggingRegions;
-
-	unsigned long long syncTime;
-
-	unsigned long long syncStamp;
-
-private:
-	float boundingRadius;
 
 public:
 	SceneObjectImplementation();
@@ -1772,7 +1620,7 @@ public:
 	 * @param range range to check
 	 * @return returns true if this object is in range with obj
 	 */
-	virtual bool isInRange(SceneObject* obj, float range);
+	bool isInRange(SceneObject* obj, float range);
 
 	/**
 	 * Evaluates if the object is in range without checking zone
@@ -1795,16 +1643,6 @@ public:
 	bool isInRange3d(SceneObject* obj, float range);
 
 	/**
-	 * Evaluates if the object is in range without checking zone
-	 * @pre { this object is locked, obj is locked}
-	 * @post { thisobject is locked, obj is locked }
-	 * @param obj object that will be checked against
-	 * @param range range to check
-	 * @return returns true if this object is in range with obj
-	 */
-	bool isInRange3dZoneless(SceneObject* obj, float range);
-
-	/**
 	 * Tries to add/link object
 	 * @pre { this object is locked, object is locked }
 	 * @post {this object is locked, object is locked }
@@ -1824,7 +1662,7 @@ public:
 	 * @param notifyClient not used currently
 	 * @return returns true if the object has been successfully removed
 	 */
-	virtual bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient = false, bool nullifyParent = true);
+	virtual bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient = false);
 
 	/**
 	 * Destroys the object from the world
@@ -1928,7 +1766,7 @@ protected:
 	 * @param client ZoneClientSession that will receive the message
 	 * @param containmentType arrangement type?
 	 */
-	void link(SceneObject* client, unsigned int containmentType);
+	void link(SceneObject* client, unsigned int containmentType = 4);
 
 public:
 	/**
@@ -1939,7 +1777,7 @@ public:
 	 * @param containmentType arrangement type?
 	 * @return returns a new valid UpdateContainmentMessage
 	 */
-	BaseMessage* link(unsigned long long objectID, unsigned int containmentType);
+	BaseMessage* link(unsigned long long objectID, unsigned int containmentType = 4);
 
 	/**
 	 * Sends the necessary messages to player in order to create this object
@@ -2061,7 +1899,7 @@ public:
 	 * @param newPositionZ new position Z
 	 * @param newPositionY new position Y
 	 */
-	virtual void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0, bool toggleInvisibility = false, int playerArrangement = -1);
+	virtual void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0, bool toggleInvisibility = false);
 
 	virtual void teleport(float newPositionX, float newPositionZ, float newPositionY, unsigned long long parentID = 0);
 
@@ -2072,9 +1910,9 @@ public:
 
 	void updateDirection(float angleHeadingRadians);
 
-	void notifyInsert(TreeEntry* entry);
+	void notifyInsert(QuadTreeEntry* entry);
 
-	virtual void notifyDissapear(TreeEntry* entry);
+	void notifyDissapear(QuadTreeEntry* entry);
 
 	virtual void notifyRemoveFromZone();
 
@@ -2161,7 +1999,7 @@ public:
 	 * @post { this object is locked, objects is a vector map with the contained objects and their occupied slots }
 	 * @param objects the vector map that will contain the objects and their occupied slots
 	 */
-	virtual void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
+	void getSlottedObjects(VectorMap<String, ManagedReference<SceneObject* > >& objects);
 
 	void getContainerObjects(VectorMap<unsigned long long, ManagedReference<SceneObject* > >& objects);
 
@@ -2254,13 +2092,9 @@ public:
 	 */
 	virtual int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	virtual float getDistanceTo(SceneObject* object);
+	float getDistanceTo(SceneObject* object);
 
-	virtual float getDistanceTo3d(SceneObject* object);
-
-	virtual float getDistanceTo(Coordinate* coordinate);
-
-	virtual float getDistanceTo3d(Coordinate* coordinate);
+	float getDistanceTo(Coordinate* coordinate);
 
 	virtual void updateVehiclePosition(bool sendPackets);
 
@@ -2284,15 +2118,23 @@ public:
 
 	void setCityRegion(CityRegion* region);
 
-	virtual Zone* getZone();
+	Zone* getZone();
 
-	virtual Zone* getZoneUnsafe() const;
+	Zone* getZoneUnsafe() const;
 
 	Zone* getLocalZone() const;
 
 	Vector3 getCoordinate(float distance, float angleDegrees, bool includeZ) const;
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
+
+	virtual float getWorldPositionX();
+
+	virtual float getWorldPositionY();
+
+	virtual float getWorldPositionZ();
+
+	virtual Vector3 getWorldPosition();
 
 	float getDirectionX() const;
 
@@ -2334,11 +2176,7 @@ public:
 
 	const VectorMap<String, ManagedReference<SceneObject* > >* getSlottedObjects() const;
 
-	virtual Reference<SceneObject* > getSlottedObject(const String& slot);
-
-	virtual Reference<SceneObject* > getInventory();
-
-	virtual Reference<SceneObject* > getDatapad();
+	Reference<SceneObject* > getSlottedObject(const String& slot);
 
 	int getSlotDescriptorSize() const;
 
@@ -2396,8 +2234,6 @@ public:
 
 	unsigned int getGameObjectType() const;
 
-	String getGameObjectTypeStringID();
-
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -2413,9 +2249,12 @@ public:
 	 */
 	void rotate(int degrees);
 
-	void rotatePitch(int degrees);
+	/**
+	 * Rotate on the "Roll" X Axis and "Pitch" Y Axis.
+	 */
+	void rotateXaxis(int degrees);
 
-	void rotateRoll(int degrees);
+	void rotateYaxis(int degrees);
 
 	/**
 	 * Sets this objects direction so that the object is facing the specified object.
@@ -2424,11 +2263,11 @@ public:
 	 */
 	void faceObject(SceneObject* obj, bool notifyClient = false);
 
-	virtual bool isFacingObject(SceneObject* obj) const;
+	bool isFacingObject(SceneObject* obj) const;
 
 	virtual void notifySelfPositionUpdate();
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	/**
 	 * @param player player that closed the container
@@ -2439,9 +2278,9 @@ public:
 
 	ManagedWeakReference<SceneObject* > getParent();
 
-	void setParent(TreeEntry* entry);
+	void setParent(QuadTreeEntry* entry);
 
-	void setParent(TreeEntry* entry, bool updateRecursively);
+	void setParent(QuadTreeEntry* entry, bool updateRecursively);
 
 	ZoneServer* getZoneServer() const;
 
@@ -2481,13 +2320,15 @@ public:
 
 	virtual bool isPlayerCreature();
 
+	bool isVendor() const;
+
 	bool isGCWBase() const;
 
 	bool isTurret() const;
 
 	bool isMinefield() const;
 
-	bool isScanner() const;
+	bool isDetector() const;
 
 	bool isSecurityTerminal() const;
 
@@ -2495,7 +2336,7 @@ public:
 
 	bool isEventPerk() const;
 
-	GroundZoneComponent* getGroundZoneComponent() const;
+	ZoneComponent* getZoneComponent() const;
 
 	ObjectMenuComponent* getObjectMenuComponent() const;
 
@@ -2509,7 +2350,7 @@ public:
 
 	void setContainerComponent(const String& name);
 
-	void setGroundZoneComponent(const String& name);
+	void setZoneComponent(const String& name);
 
 	void setForceNoTrade(bool newForceNoTrade);
 
@@ -2525,41 +2366,21 @@ public:
 
 	virtual bool isRegion();
 
-	virtual bool isRidingMount();
-
 	virtual bool isCreatureObject();
 
 	virtual CreatureObject* asCreatureObject();
 
 	virtual bool isAiAgent();
 
-	virtual bool isVendor();
-
 	virtual AiAgent* asAiAgent();
-
-	virtual bool isPlayerShip();
-
-	virtual bool isShipObject();
-
-	virtual ShipObject* asShipObject();
-
-	virtual bool isFighterShip();
-
-	virtual FighterShipObject* asFighterShip();
 
 	virtual bool isCreature();
 
+	virtual bool isShipObject();
+
 	virtual bool isVehicleObject();
 
-	virtual bool isShipComponentObject();
-
-	virtual bool isSchematicFragmentObject();
-
 	virtual bool isDroidObject();
-
-	virtual bool isHelperDroidObject();
-
-	virtual bool isHyperspacing();
 
 	virtual bool isBuildingObject();
 
@@ -2623,8 +2444,6 @@ public:
 
 	virtual bool isPharmaceuticalObject();
 
-	virtual bool isDotPackObject();
-
 	bool isFishingPoleObject() const;
 
 	virtual bool isDeedObject();
@@ -2635,11 +2454,7 @@ public:
 
 	virtual bool isBuildingDeed();
 
-	virtual bool isShipDeedObject();
-
 	virtual bool isSignObject();
-
-	virtual bool isSpawnEggObject();
 
 	virtual bool isInstallationDeed();
 
@@ -2675,20 +2490,6 @@ public:
 
 	virtual bool isAntiDecayKitObject();
 
-	bool isPilotChair() const;
-
-	bool isOperationsChair() const;
-
-	bool isShipTurret() const;
-
-	bool isShipComponentRepairKit() const;
-
-	bool isShipInteriorComponent() const;
-
-	bool isShipPlasmaConduit() const;
-
-	virtual bool isInShipStation() const;
-
 	const ContainerPermissions* getContainerPermissions() const;
 
 	ContainerPermissions* getContainerPermissionsForUpdate();
@@ -2719,7 +2520,7 @@ public:
 
 	ZoneProcessServer* getZoneProcessServer() const;
 
-	virtual void setZone(Zone* newZone);
+	virtual void setZone(Zone* zone);
 
 	virtual void setObjectName(const StringId& stringID, bool notifyClient);
 
@@ -2765,6 +2566,8 @@ public:
 
 	virtual bool isShipControlDevice();
 
+	virtual bool isStructureControlDevice();
+
 	virtual bool isMissionTerminal();
 
 	virtual bool isMissionObject();
@@ -2773,19 +2576,15 @@ public:
 
 	int getPlanetMapCategoryCRC() const;
 
-	String getPlanetMapCategoryName() const;
-
 	int getPlanetMapSubCategoryCRC() const;
-
-	String getPlanetMapSubCategoryName() const;
 
 	void setPlanetMapCategory(const PlanetMapCategory* pmc);
 
-	void setPlanetMapSubCategory(const PlanetMapSubCategory* subPmc);
+	void setPlanetMapSubCategory(const PlanetMapCategory* pmc);
 
 	const PlanetMapCategory* getPlanetMapCategory() const;
 
-	const PlanetMapSubCategory* getPlanetMapSubCategory() const;
+	const PlanetMapCategory* getPlanetMapSubCategory() const;
 
 	SortedVector<ManagedReference<SceneObject* > >* getChildObjects();
 
@@ -2805,8 +2604,6 @@ public:
 	void addChildObject(SceneObject* obj);
 
 	void removeChildObject(SceneObject* obj);
-
-	virtual void selectConversationOption(int option, SceneObject* obj);
 
 	Matrix4* getTransformForCollisionMatrix();
 
@@ -2841,8 +2638,6 @@ public:
 
 	virtual bool isTheaterObject();
 
-	virtual bool isSpaceSpawner();
-
 	virtual bool isEventPerkDeed();
 
 	virtual bool isEventPerkItem();
@@ -2853,9 +2648,7 @@ public:
 
 	virtual Vector<Reference<MeshData*> > getTransformedMeshData(const Matrix4* parentTransform) const;
 
-	virtual const BaseBoundingVolume* getBoundingVolume() const;
-
-	virtual const BaseBoundingVolume* getCollisionVolume() const;
+	virtual const BaseBoundingVolume* getBoundingVolume();
 
 	virtual bool isInNavMesh();
 
@@ -2864,30 +2657,6 @@ public:
 	String exportJSON(const String& exportNote, int maxDepth = -1, bool pruneCreo = false, bool pruneCraftedComponents = false);
 
 	virtual void getChildrenRecursive(SortedVector<unsigned long long>& childrenObjectsFound, int maxDepth = 50, bool pruneCreo = false, bool pruneCraftedComponents = false);
-
-	virtual bool canBeTransferred(SceneObject* newContainer);
-
-	bool isNearBank();
-
-	void setDebuggingRegions(bool val);
-
-	bool isDebuggingRegions() const;
-
-	virtual bool checkInConversationRange(SceneObject* target);
-
-	virtual void setSyncStamp(unsigned int value);
-
-	virtual unsigned int getSyncStamp();
-
-	virtual int getCurrentNumberOfPlayerItems();
-
-	virtual unsigned int getMaximumNumberOfPlayerItems();
-
-	const AppearanceTemplate* getAppearanceTemplate() const;
-
-	void setBoundingRadius(float value);
-
-	float getBoundingRadius();
 
 	WeakReference<SceneObject*> _this;
 
@@ -2925,7 +2694,7 @@ protected:
 	friend class SceneObject;
 };
 
-class SceneObjectAdapter : public TreeEntryAdapter {
+class SceneObjectAdapter : public QuadTreeEntryAdapter {
 public:
 	SceneObjectAdapter(SceneObject* impl);
 
@@ -2965,11 +2734,9 @@ public:
 
 	bool isInRange3d(SceneObject* obj, float range);
 
-	bool isInRange3dZoneless(SceneObject* obj, float range);
-
 	bool transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow, bool notifyRoot);
 
-	bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient, bool nullifyParent);
+	bool removeObject(SceneObject* object, SceneObject* destination, bool notifyClient);
 
 	void destroyObjectFromWorld(bool sendSelfDestroy);
 
@@ -3023,7 +2790,7 @@ public:
 
 	void notifyInsertToZone(Zone* zone);
 
-	void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID, bool toggleInvisibility, int playerArrangement);
+	void switchZone(const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long long parentID, bool toggleInvisibility);
 
 	void teleport(float newPositionX, float newPositionZ, float newPositionY, unsigned long long parentID);
 
@@ -3073,8 +2840,6 @@ public:
 
 	float getDistanceTo(SceneObject* object);
 
-	float getDistanceTo3d(SceneObject* object);
-
 	void updateVehiclePosition(bool sendPackets);
 
 	void playEffect(const String& file, const String& aux);
@@ -3090,6 +2855,12 @@ public:
 	Zone* getZoneUnsafe() const;
 
 	Zone* getLocalZone() const;
+
+	float getWorldPositionX();
+
+	float getWorldPositionY();
+
+	float getWorldPositionZ();
 
 	float getDirectionX() const;
 
@@ -3122,10 +2893,6 @@ public:
 	bool hasArrangementDescriptor(const String& descr) const;
 
 	Reference<SceneObject* > getSlottedObject(const String& slot);
-
-	Reference<SceneObject* > getInventory();
-
-	Reference<SceneObject* > getDatapad();
 
 	int getSlotDescriptorSize() const;
 
@@ -3179,8 +2946,6 @@ public:
 
 	unsigned int getGameObjectType() const;
 
-	String getGameObjectTypeStringID();
-
 	unsigned int getClientGameObjectType() const;
 
 	unsigned int getContainmentType() const;
@@ -3191,9 +2956,9 @@ public:
 
 	void rotate(int degrees);
 
-	void rotatePitch(int degrees);
+	void rotateXaxis(int degrees);
 
-	void rotateRoll(int degrees);
+	void rotateYaxis(int degrees);
 
 	void faceObject(SceneObject* obj, bool notifyClient);
 
@@ -3201,7 +2966,7 @@ public:
 
 	void notifySelfPositionUpdate();
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	void notifyCloseContainer(CreatureObject* player);
 
@@ -3209,9 +2974,9 @@ public:
 
 	ManagedWeakReference<SceneObject* > getParent();
 
-	void setParent(TreeEntry* entry);
+	void setParent(QuadTreeEntry* entry);
 
-	void setParent(TreeEntry* entry, bool updateRecursively);
+	void setParent(QuadTreeEntry* entry, bool updateRecursively);
 
 	ZoneServer* getZoneServer() const;
 
@@ -3231,7 +2996,7 @@ public:
 
 	bool isDecoration() const;
 
-	void setGroundZoneComponent(const String& name);
+	void setZoneComponent(const String& name);
 
 	void setForceNoTrade(bool newForceNoTrade);
 
@@ -3247,17 +3012,11 @@ public:
 
 	bool isRegion();
 
-	bool isRidingMount();
+	bool isCreature();
 
-	bool isShipComponentObject();
-
-	bool isSchematicFragmentObject();
+	bool isShipObject();
 
 	bool isDroidObject();
-
-	bool isHelperDroidObject();
-
-	bool isHyperspacing();
 
 	bool isCloningBuildingObject();
 
@@ -3313,8 +3072,6 @@ public:
 
 	bool isPharmaceuticalObject();
 
-	bool isDotPackObject();
-
 	bool isFishingPoleObject() const;
 
 	bool isDeedObject();
@@ -3325,11 +3082,7 @@ public:
 
 	bool isBuildingDeed();
 
-	bool isShipDeedObject();
-
 	bool isSignObject();
-
-	bool isSpawnEggObject();
 
 	bool isInstallationDeed();
 
@@ -3365,20 +3118,6 @@ public:
 
 	bool isAntiDecayKitObject();
 
-	bool isPilotChair() const;
-
-	bool isOperationsChair() const;
-
-	bool isShipTurret() const;
-
-	bool isShipComponentRepairKit() const;
-
-	bool isShipInteriorComponent() const;
-
-	bool isShipPlasmaConduit() const;
-
-	bool isInShipStation() const;
-
 	void setContainerDefaultAllowPermission(unsigned short perm);
 
 	void clearContainerDefaultAllowPermission(unsigned short perm);
@@ -3401,7 +3140,7 @@ public:
 
 	void setServerObjectCRC(unsigned int objCRC);
 
-	void setZone(Zone* newZone);
+	void setZone(Zone* zone);
 
 	void setDirection(float fw, float fx, float fy, float fz);
 
@@ -3441,6 +3180,8 @@ public:
 
 	bool isShipControlDevice();
 
+	bool isStructureControlDevice();
+
 	bool isMissionTerminal();
 
 	bool isMissionObject();
@@ -3449,11 +3190,7 @@ public:
 
 	int getPlanetMapCategoryCRC() const;
 
-	String getPlanetMapCategoryName() const;
-
 	int getPlanetMapSubCategoryCRC() const;
-
-	String getPlanetMapSubCategoryName() const;
 
 	bool containsChildObject(SceneObject* obj) const;
 
@@ -3464,8 +3201,6 @@ public:
 	void addChildObject(SceneObject* obj);
 
 	void removeChildObject(SceneObject* obj);
-
-	void selectConversationOption(int option, SceneObject* obj);
 
 	void initializeChildObject(SceneObject* controllerObject);
 
@@ -3489,8 +3224,6 @@ public:
 
 	bool isTheaterObject();
 
-	bool isSpaceSpawner();
-
 	bool isEventPerkDeed();
 
 	bool isEventPerkItem();
@@ -3502,26 +3235,6 @@ public:
 	bool isInNavMesh();
 
 	String exportJSON(const String& exportNote, int maxDepth, bool pruneCreo, bool pruneCraftedComponents);
-
-	bool canBeTransferred(SceneObject* newContainer);
-
-	bool isNearBank();
-
-	void setDebuggingRegions(bool val);
-
-	bool isDebuggingRegions() const;
-
-	bool checkInConversationRange(SceneObject* target);
-
-	unsigned int getSyncStamp();
-
-	int getCurrentNumberOfPlayerItems();
-
-	unsigned int getMaximumNumberOfPlayerItems();
-
-	void setBoundingRadius(float value);
-
-	float getBoundingRadius();
 
 };
 
@@ -3544,6 +3257,16 @@ public:
 	friend class Singleton<SceneObjectHelper>;
 };
 
+class MockSceneObject : public SceneObject {
+public:
+
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+
+};
+
 } // namespace scene
 } // namespace objects
 } // namespace zone
@@ -3556,7 +3279,7 @@ namespace zone {
 namespace objects {
 namespace scene {
 
-class SceneObjectPOD : public TreeEntryPOD {
+class SceneObjectPOD : public QuadTreeEntryPOD {
 public:
 	Optional<bool> sendToClient;
 
@@ -3592,11 +3315,7 @@ public:
 
 	Optional<int> planetMapCategory;
 
-	Optional<String> mapCategoryName;
-
 	Optional<int> planetMapSubCategory;
-
-	Optional<String> mapSubCategoryName;
 
 	Optional<UnicodeString> customName;
 

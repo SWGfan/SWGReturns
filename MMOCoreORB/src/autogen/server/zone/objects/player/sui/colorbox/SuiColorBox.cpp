@@ -10,7 +10,7 @@
  *	SuiColorBoxStub
  */
 
-enum {RPC_GETCOLORPALETTE__,RPC_SETCOLORPALETTE__STRING_,RPC_GETSKILLMOD__,RPC_SETSKILLMOD__INT_,RPC_ISCOLORPICKER__};
+enum {RPC_GETCOLORPALETTE__,RPC_SETCOLORPALETTE__STRING_,RPC_ISCOLORPICKER__};
 
 SuiColorBox::SuiColorBox(CreatureObject* player, unsigned int windowType) : SuiBox(DummyConstructorParameter::instance()) {
 	SuiColorBoxImplementation* _implementation = new SuiColorBoxImplementation(player, windowType);
@@ -66,35 +66,6 @@ void SuiColorBox::setColorPalette(String& pal) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->setColorPalette(pal);
-	}
-}
-
-int SuiColorBox::getSkillMod() {
-	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSKILLMOD__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getSkillMod();
-	}
-}
-
-void SuiColorBox::setSkillMod(int mod) {
-	SuiColorBoxImplementation* _implementation = static_cast<SuiColorBoxImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETSKILLMOD__INT_);
-		method.addSignedIntParameter(mod);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->setSkillMod(mod);
 	}
 }
 
@@ -226,10 +197,6 @@ bool SuiColorBoxImplementation::readObjectMember(ObjectInputStream* stream, cons
 		TypeInfo<String >::parseFromBinaryStream(&variable, stream);
 		return true;
 
-	case 0x9d85e9c9: //SuiColorBox.skillMod
-		TypeInfo<int >::parseFromBinaryStream(&skillMod, stream);
-		return true;
-
 	}
 
 	return false;
@@ -257,15 +224,6 @@ int SuiColorBoxImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x9d85e9c9; //SuiColorBox.skillMod
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&skillMod, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 
 	return _count;
 }
@@ -282,16 +240,6 @@ String SuiColorBoxImplementation::getColorPalette() {
 void SuiColorBoxImplementation::setColorPalette(String& pal) {
 	// server/zone/objects/player/sui/colorbox/SuiColorBox.idl():  		variable = pal;
 	variable = pal;
-}
-
-int SuiColorBoxImplementation::getSkillMod() {
-	// server/zone/objects/player/sui/colorbox/SuiColorBox.idl():  		return skillMod;
-	return skillMod;
-}
-
-void SuiColorBoxImplementation::setSkillMod(int mod) {
-	// server/zone/objects/player/sui/colorbox/SuiColorBox.idl():  		skillMod = mod;
-	skillMod = mod;
 }
 
 bool SuiColorBoxImplementation::isColorPicker() {
@@ -329,21 +277,6 @@ void SuiColorBoxAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_GETSKILLMOD__:
-		{
-			
-			int _m_res = getSkillMod();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_SETSKILLMOD__INT_:
-		{
-			int mod = inv->getSignedIntParameter();
-			
-			setSkillMod(mod);
-			
-		}
-		break;
 	case RPC_ISCOLORPICKER__:
 		{
 			
@@ -362,14 +295,6 @@ String SuiColorBoxAdapter::getColorPalette() {
 
 void SuiColorBoxAdapter::setColorPalette(String& pal) {
 	(static_cast<SuiColorBox*>(stub))->setColorPalette(pal);
-}
-
-int SuiColorBoxAdapter::getSkillMod() {
-	return (static_cast<SuiColorBox*>(stub))->getSkillMod();
-}
-
-void SuiColorBoxAdapter::setSkillMod(int mod) {
-	(static_cast<SuiColorBox*>(stub))->setSkillMod(mod);
 }
 
 bool SuiColorBoxAdapter::isColorPicker() {
@@ -452,17 +377,6 @@ int SuiColorBoxPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (skillMod) {
-	_nameHashCode = 0x9d85e9c9; //SuiColorBox.skillMod
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&skillMod.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 
 	return _count;
 }
@@ -477,14 +391,6 @@ bool SuiColorBoxPOD::readObjectMember(ObjectInputStream* stream, const uint32& n
 			String _mnvariable;
 			TypeInfo<String >::parseFromBinaryStream(&_mnvariable, stream);
 			variable = std::move(_mnvariable);
-		}
-		return true;
-
-	case 0x9d85e9c9: //SuiColorBox.skillMod
-		{
-			int _mnskillMod;
-			TypeInfo<int >::parseFromBinaryStream(&_mnskillMod, stream);
-			skillMod = std::move(_mnskillMod);
 		}
 		return true;
 
@@ -515,8 +421,6 @@ void SuiColorBoxPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	SuiBoxPOD::writeObjectCompact(stream);
 
 	TypeInfo<String >::toBinaryStream(&variable.value(), stream);
-
-	TypeInfo<int >::toBinaryStream(&skillMod.value(), stream);
 
 
 }

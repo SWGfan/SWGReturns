@@ -79,9 +79,7 @@ public:
 				objectiveRef->setArakydDroid(droid);
 				olocker.release();
 
-				Locker lock(droid);
-				droid->addCreatureFlag(CreatureFlag::STATIC);
-				droid->setAITemplate();
+				droid->activateLoad("stationary");
 				time -= 1;
 				reschedule(300 * 1000);
 		}

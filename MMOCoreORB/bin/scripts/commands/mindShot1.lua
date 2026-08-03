@@ -44,36 +44,36 @@
 MindShot1Command = {
 	name = "mindshot1",
 
-	damageMultiplier = 1.0,
-  speedMultiplier = 1.5,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 3,
-  mindCostMultiplier = 0,
+	damageMultiplier = 1.5,
+	speedMultiplier = 1,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 2,
+	accuracyBonus = 5,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
-  
-	animation = "fire_1_special_single", 
+	poolsToDamage = MIND_ATTRIBUTE,
+
+	animation = "fire_1_special_single",
 	animType = GENERATE_RANGED,
 
-	combatSpam = "head",
-	    
+	combatSpam = "distractshot",
+
 	dotEffects = {
-    DotEffect( 
-    BLEEDING, 
-    { "resistance_bleeding", "bleed_resist" },
-    ACTION,
-    true,
-    0,
-    50,
-    50, 
-    60
-    )
-  },
-	
+	  DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
+		MIND,
+		true,
+		0,
+		100,
+		60,
+		120
+	  )
+	},
+
 	weaponType = RIFLEWEAPON,
 
 	range = -1
 }
 
 AddCommand(MindShot1Command)
-

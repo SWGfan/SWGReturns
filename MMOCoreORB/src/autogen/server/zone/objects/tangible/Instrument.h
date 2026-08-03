@@ -70,29 +70,11 @@ class CreatureObjectPOD;
 
 using namespace server::zone::objects::creature;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-namespace tasks {
-
-class InstrumentPulseTask;
-
-} // namespace tasks
-} // namespace tangible
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::tangible::tasks;
-
 #include "templates/SharedObjectTemplate.h"
 
 #include "templates/tangible/InstrumentObjectTemplate.h"
 
 #include "server/zone/objects/tangible/TangibleObject.h"
-
-#include "system/lang/ref/Reference.h"
 
 namespace server {
 namespace zone {
@@ -147,11 +129,11 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	bool isActiveInstrument(CreatureObject* player);
+	void spawnInAdminCell(CreatureObject* spawner);
 
-	bool isEquipped();
+	void spawnNonAdmin(CreatureObject* spawner);
 
-	bool canBeTransferred(SceneObject* newContainer);
+	bool canDropInstrument();
 
 	int getInstrumentType() const;
 
@@ -159,7 +141,9 @@ public:
 
 	void setSpawnerPlayer(CreatureObject* pla);
 
-	bool isUnequippable();
+	bool isBeingUsed() const;
+
+	void setBeingUsed(bool val);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -195,8 +179,6 @@ protected:
 	ManagedReference<SceneObject* > spawnedObject;
 
 	ManagedWeakReference<CreatureObject* > spawnerPlayer;
-
-	Reference<InstrumentPulseTask*> instrumentPulse;
 
 public:
 	static const int TRAZ = 1;
@@ -247,11 +229,11 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	bool isActiveInstrument(CreatureObject* player);
+	void spawnInAdminCell(CreatureObject* spawner);
 
-	bool isEquipped();
+	void spawnNonAdmin(CreatureObject* spawner);
 
-	bool canBeTransferred(SceneObject* newContainer);
+	bool canDropInstrument();
 
 	int getInstrumentType() const;
 
@@ -259,7 +241,9 @@ public:
 
 	void setSpawnerPlayer(CreatureObject* pla);
 
-	bool isUnequippable();
+	bool isBeingUsed() const;
+
+	void setBeingUsed(bool val);
 
 	WeakReference<Instrument*> _this;
 
@@ -311,11 +295,11 @@ public:
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
-	bool isActiveInstrument(CreatureObject* player);
+	void spawnInAdminCell(CreatureObject* spawner);
 
-	bool isEquipped();
+	void spawnNonAdmin(CreatureObject* spawner);
 
-	bool canBeTransferred(SceneObject* newContainer);
+	bool canDropInstrument();
 
 	int getInstrumentType() const;
 
@@ -323,7 +307,9 @@ public:
 
 	void setSpawnerPlayer(CreatureObject* pla);
 
-	bool isUnequippable();
+	bool isBeingUsed() const;
+
+	void setBeingUsed(bool val);
 
 };
 

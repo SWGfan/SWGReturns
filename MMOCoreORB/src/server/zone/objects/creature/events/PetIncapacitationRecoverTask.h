@@ -52,34 +52,20 @@ public:
 
 			pet->setPosture(CreaturePosture::UPRIGHT);
 
-			PetControlDevice* device = pet->getControlDevice().get().castTo<PetControlDevice*>();
+			CreatureObject* owner = pet->getLinkedCreature().get();
 
-			if (device == nullptr)
-				return;
-
-			pet->setAITemplate();
-
-			Locker locker(device, pet);
-
-			device->setLastCommand(PetManager::FOLLOW);
-
-			ManagedReference<SceneObject*> lastCommander = device->getLastCommander();
-
-			if (lastCommander != nullptr) {
-				Locker clocker(lastCommander, pet);
-
-				device->setLastCommandTarget(lastCommander);
-
-				pet->setFollowObject(lastCommander);
-				pet->storeFollowObject();
-
-				pet->setMovementState(AiAgent::FOLLOWING);
+			if (owner != nullptr) {
+				pet->setFollowObject(owner);
+				pet->activateMovementEvent();
 			}
 
 			if (autostore) {
-				CreatureObject* owner = pet->getLinkedCreature().get();
-				if (owner != nullptr) {
-					Locker olocker(owner, pet);
+				PetControlDevice* device = pet->getControlDevice().get().castTo<PetControlDevice*>();
+
+				if (device != nullptr && owner != nullptr) {
+					Locker clocker(owner, pet);
+					Locker locker(device);
+
 					device->storeObject(owner, true);
 				}
 			}

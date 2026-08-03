@@ -239,7 +239,7 @@ void DroidObjectImplementation::initDroidModules() {
 
 void DroidObjectImplementation::initDroidWeapons() {
 	//Set weapon stats
-	WeaponObject* weapon = asAiAgent()->getDefaultWeapon();
+	WeaponObject* weapon = getSlottedObject("default_weapon").castTo<WeaponObject*>();
 
 	if (weapon != nullptr) {
 		Locker locker(weapon);
@@ -248,11 +248,11 @@ void DroidObjectImplementation::initDroidWeapons() {
 		weapon->setAttackSpeed(getAttackSpeed());
 	}
 
-	if (primaryWeapon != nullptr && primaryWeapon != weapon) {
-		Locker locker(primaryWeapon);
-		primaryWeapon->setMinDamage(getDamageMin());
-		primaryWeapon->setMaxDamage(getDamageMax());
-		primaryWeapon->setAttackSpeed(getAttackSpeed());
+	if (readyWeapon != nullptr) {
+		Locker locker(readyWeapon);
+		readyWeapon->setMinDamage(getDamageMin());
+		readyWeapon->setMaxDamage(getDamageMax());
+		readyWeapon->setAttackSpeed(getAttackSpeed());
 	}
 }
 
@@ -477,7 +477,7 @@ bool DroidObjectImplementation::sendConversationStartTo(SceneObject* player) {
 	broadcastNextPositionUpdate(&current);
 
 	CreatureObject* playerCreature = cast<CreatureObject*>(player);
-	StartNpcConversation* conv = new StartNpcConversation(playerCreature, getObjectID(), 0, "");
+	StartNpcConversation* conv = new StartNpcConversation(playerCreature, getObjectID(), "");
 	player->sendMessage(conv);
 
 	SortedVector<ManagedReference<Observer*> > observers = getObservers(ObserverEventType::STARTCONVERSATION);

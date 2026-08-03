@@ -44,15 +44,14 @@
 BurstShot1Command = {
         name = "burstshot1",
 
-	damageMultiplier = 2,
-  speedMultiplier = 1.25,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2.75,
-  mindCostMultiplier = 0,
+	damageMultiplier = 4.0,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 1.75,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
         accuracyBonus = 25,
-          visMod = 25,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_7_single", 
 	animType = GENERATE_RANGED,

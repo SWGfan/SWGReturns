@@ -43,7 +43,7 @@
 
 object_weapon_ranged_creature_creature_spit_spray_toxicgreen = object_weapon_ranged_creature_shared_creature_spit_spray_toxicgreen:new {
 	
-	playerRaces = { },
+	playerRaces = {},
 
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK, 
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK

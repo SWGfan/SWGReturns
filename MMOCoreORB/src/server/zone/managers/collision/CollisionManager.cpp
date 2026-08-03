@@ -81,7 +81,7 @@ const AppearanceTemplate* CollisionManager::getCollisionAppearance(SceneObject* 
 bool CollisionManager::checkSphereCollision(const Vector3& origin, float radius, Zone* zone) {
 	Vector3 sphereOrigin(origin.getX(), origin.getZ(), origin.getY());
 
-	SortedVector<ManagedReference<TreeEntry*> > objects(512, 512);
+	SortedVector<ManagedReference<QuadTreeEntry*> > objects(512, 512);
 	zone->getInRangeObjects(origin.getX(), origin.getY(), 512, &objects, true);
 
 	for (int i = 0; i < objects.size(); ++i) {
@@ -123,60 +123,32 @@ bool CollisionManager::checkSphereCollision(const Vector3& origin, float radius,
 bool CollisionManager::checkLineOfSightWorldToCell(const Vector3& rayOrigin, const Vector3& rayEnd, float distance, CellObject* cellObject) {
 	ManagedReference<SceneObject*> building = cellObject->getParent().get();
 
-	if (building == nullptr) {
+	if (building == nullptr)
 		return true;
-	}
 
 	SharedObjectTemplate* objectTemplate = building->getObjectTemplate();
 	const PortalLayout* portalLayout = objectTemplate->getPortalLayout();
-	int cellNum = cellObject->getCellNumber();
 
-	if (portalLayout == nullptr) {
+	if (portalLayout == nullptr)
 		return true;
-	}
-
-	const CellProperty* cellProperty = portalLayout->getCellProperty(cellNum);
-
-	if (cellProperty == nullptr) {
-		return true;
-	}
-
-	if (!cellProperty->hasWorldPortal()) {
-		return false;
-	}
 
 	Ray ray = convertToModelSpace(rayOrigin, rayEnd, building);
 
-	if (cellNum >= portalLayout->getAppearanceTemplatesSize()) {
+	if (cellObject->getCellNumber() >= portalLayout->getAppearanceTemplatesSize())
 		return true;
-	}
 
-	const AppearanceTemplate* app = portalLayout->getAppearanceTemplate(cellNum);
+	const AppearanceTemplate* app = portalLayout->getAppearanceTemplate(cellObject->getCellNumber());
 	float intersectionDistance;
 	Triangle* triangle = nullptr;
 
-	if (app->intersects(ray, distance, intersectionDistance, triangle, true)) {
+	if (app->intersects(ray, distance, intersectionDistance, triangle, true))
 		return false;
-	}
-
-	const SortedVector<int>& connectedCells = cellProperty->getConnectedCells();
-
-	for (int i = 0; i < connectedCells.size(); i++) {
-		const AppearanceTemplate* appTemp = portalLayout->getAppearanceTemplate(connectedCells.get(i));
-
-		float intersectDist;
-		Triangle* triangle2 = nullptr;
-
-		if (appTemp->intersects(ray, distance, intersectDist, triangle2, true)) {
-			return false;
-		}
-	}
 
 	return true;
 }
 
 bool CollisionManager::checkMovementCollision(CreatureObject* creature, float x, float z, float y, Zone* zone) {
-	SortedVector<ManagedReference<TreeEntry*> > closeObjects;
+	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 	zone->getInRangeObjects(x, y, 128, &closeObjects, true);
 
 	//Vector3 rayStart(x, z + 0.25, y);
@@ -295,7 +267,7 @@ float CollisionManager::getWorldFloorCollision(float x, float y, float z, Zone* 
 	if (planetManager == nullptr)
 		return 0.f;
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	zone->getInRangeObjects(x, y, 128, &closeObjects, true, false);
 
 	float height = 0;
@@ -345,7 +317,7 @@ float CollisionManager::getWorldFloorCollision(float x, float y, float z, Zone* 
 }
 
 float CollisionManager::getWorldFloorCollision(float x, float y, Zone* zone, bool testWater) {
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	zone->getInRangeObjects(x, y, 128, &closeObjects, true, false);
 
 	PlanetManager* planetManager = zone->getPlanetManager();
@@ -399,7 +371,7 @@ float CollisionManager::getWorldFloorCollision(float x, float y, Zone* zone, boo
 
 void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, SortedVector<IntersectionResult>* result, CloseObjectsVector* closeObjectsVector) {
 	if (closeObjectsVector != nullptr) {
-		Vector<TreeEntry*> closeObjects(closeObjectsVector->size(), 10);
+		Vector<QuadTreeEntry*> closeObjects(closeObjectsVector->size(), 10);
 		closeObjectsVector->safeCopyReceiversTo(closeObjects, CloseObjectsVector::COLLIDABLETYPE);
 
 		getWorldFloorCollisions(x, y, zone, result, closeObjects);
@@ -407,7 +379,7 @@ void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, Sor
 #ifdef COV_DEBUG
 		zone->info("Null closeobjects vector in CollisionManager::getWorldFloorCollisions", true);
 #endif
-		SortedVector<ManagedReference<TreeEntry*> > closeObjects;
+		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
 		zone->getInRangeObjects(x, y, 128, &closeObjects, true);
 
@@ -415,7 +387,7 @@ void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, Sor
 	}
 }
 
-void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, SortedVector<IntersectionResult>* result, const SortedVector<ManagedReference<TreeEntry*> >& inRangeObjects) {
+void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, SortedVector<IntersectionResult>* result, const SortedVector<ManagedReference<QuadTreeEntry*> >& inRangeObjects) {
 	Vector3 rayStart(x, 16384.f, y);
 	Vector3 rayEnd(x, -16384.f, y);
 
@@ -431,7 +403,7 @@ void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, Sor
 	}
 }
 
-void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, SortedVector<IntersectionResult>* result, const Vector<TreeEntry*>& inRangeObjects) {
+void CollisionManager::getWorldFloorCollisions(float x, float y, Zone* zone, SortedVector<IntersectionResult>* result, const Vector<QuadTreeEntry*>& inRangeObjects) {
 	Vector3 rayStart(x, 16384.f, y);
 	Vector3 rayEnd(x, -16384.f, y);
 
@@ -453,18 +425,17 @@ bool CollisionManager::checkLineOfSight(SceneObject* object1, SceneObject* objec
 	if (zone == nullptr)
 		return false;
 
-	if (object2->getZone() != zone) {
+	if (object2->getZone() != zone)
 		return false;
+
+	if (object1->isAiAgent() || object2->isAiAgent()) {
+		//Vector<WorldCoordinates>* path = PathFinderManager::instance()->findPath(object1, object2, zone);
+
+//		if (path == nullptr)
+//			return false;
+//		else
+//			delete path;
 	}
-
-	/*if (object1->isAiAgent() || object2->isAiAgent()) {
-		Vector<WorldCoordinates>* path = PathFinderManager::instance()->findPath(object1, object2, zone);
-
-		if (path == nullptr)
-			return false;
-		else
-			delete path;
-	}*/
 
 	ManagedReference<SceneObject*> rootParent1 = object1->getRootParent();
 	ManagedReference<SceneObject*> rootParent2 = object2->getRootParent();
@@ -482,8 +453,8 @@ bool CollisionManager::checkLineOfSight(SceneObject* object1, SceneObject* objec
 	float heightOrigin = 1.f;
 	float heightEnd = 1.f;
 
-	UniqueReference<SortedVector<TreeEntry*>* > closeObjectsNonReference;/* new SortedVector<TreeEntry* >();*/
-	UniqueReference<SortedVector<ManagedReference<TreeEntry*> >*> closeObjects;/*new SortedVector<ManagedReference<TreeEntry*> >();*/
+	UniqueReference<SortedVector<QuadTreeEntry*>* > closeObjectsNonReference;/* new SortedVector<QuadTreeEntry* >();*/
+	UniqueReference<SortedVector<ManagedReference<QuadTreeEntry*> >*> closeObjects;/*new SortedVector<ManagedReference<QuadTreeEntry*> >();*/
 
 	int maxInRangeObjectCount = 0;
 
@@ -492,10 +463,10 @@ bool CollisionManager::checkLineOfSight(SceneObject* object1, SceneObject* objec
 		object1->info("Null closeobjects vector in CollisionManager::checkLineOfSight for " + object1->getDisplayedName(), true);
 #endif
 
-		closeObjects = new SortedVector<ManagedReference<TreeEntry*> >();
+		closeObjects = new SortedVector<ManagedReference<QuadTreeEntry*> >();
 		zone->getInRangeObjects(object1->getPositionX(), object1->getPositionY(), 512, closeObjects, true);
 	} else {
-		closeObjectsNonReference = new SortedVector<TreeEntry* >();
+		closeObjectsNonReference = new SortedVector<QuadTreeEntry* >();
 
 		CloseObjectsVector* vec = (CloseObjectsVector*) object1->getCloseObjects();
 		vec->safeCopyReceiversTo(*closeObjectsNonReference.get(), CloseObjectsVector::COLLIDABLETYPE);
@@ -701,7 +672,7 @@ bool CollisionManager::checkShipCollision(ShipObject* ship, const Vector3& targe
 	float intersectionDistance;
 	Triangle* triangle = nullptr;
 
-	SortedVector<ManagedReference<TreeEntry*> > objects(512, 512);
+	SortedVector<ManagedReference<QuadTreeEntry*> > objects(512, 512);
 	zone->getInRangeObjects(targetPosition.getX(), targetPosition.getY(), 512, &objects, true, false);
 
 	for (int i = 0; i < objects.size(); ++i) {

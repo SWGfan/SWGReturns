@@ -26,7 +26,7 @@ void VehicleObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* men
 	menuResponse->addRadialMenuItem(205, 1, "@pet/pet_menu:menu_enter_exit");
 	menuResponse->addRadialMenuItem(61, 3, "");
 
-	if (player->getPlayerObject()->isPrivileged() || (checkInRangeGarage()))
+	if (player->getPlayerObject()->isPrivileged() || (checkInRangeGarage() && !isDisabled()))
 		menuResponse->addRadialMenuItem(62, 3, "@pet/pet_menu:menu_repair_vehicle"); //Repair Vehicle
 }
 
@@ -177,20 +177,29 @@ void VehicleObjectImplementation::repairVehicle(CreatureObject* player) {
 
 			ManagedReference<CityRegion*> gb = region->getCityRegion().get();
 
-			if (gb != nullptr && gb->isBanned(player->getObjectID()))  {
+			if (gb == nullptr)
+				return;
+
+			if (gb->isBanned(player->getObjectID()))  {
 				player->sendSystemMessage("@city/city:garage_banned"); //You are city banned and cannot use this garage.
 				return;
 			}
-		}
+
 
 		if (getConditionDamage() == 0) {
 			player->sendSystemMessage("@pet/pet_menu:undamaged_vehicle"); //The targeted vehicle does not require any repairs at the moment.
 			return;
 		}
 
+		if (isDisabled()) {
+			player->sendSystemMessage("@pet/pet_menu:cannot_repair_disabled"); //You may not repair a disabled vehicle.
+			return;
+		}
+
 		if (!checkInRangeGarage()) {
 			player->sendSystemMessage("@pet/pet_menu:repair_unrecognized_garages"); //Your vehicle does not recognize any local garages. Try again in a garage repair zone.
 			return;
+			}
 		}
 	}
 	sendRepairConfirmTo(player);

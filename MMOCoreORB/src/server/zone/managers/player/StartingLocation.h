@@ -118,14 +118,6 @@ public:
 		msg->insertByte(0x01);
 	}
 
-	inline void setX(float newX) {
-		x = newX;
-	}
-
-	inline void setY(float newY) {
-		y = newY;
-	}
-
 	inline float getX() const {
 		return x;
 	}

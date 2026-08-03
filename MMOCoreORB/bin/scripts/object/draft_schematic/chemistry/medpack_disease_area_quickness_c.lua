@@ -50,11 +50,11 @@ object_draft_schematic_chemistry_medpack_disease_area_quickness_c = object_draft
 	craftingToolTab = 64, -- (See DraftSchematicObjectTemplate.h)
 	complexity = 45,
 	size = 3,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
 	factoryCrateType = "object/factory/factory_crate_chemicals.iff",
 
 	xpType = "crafting_medicine_general",
-	xp = 390,
+	xp = 105,
 
 	assemblySkill = "combat_medicine_assembly",
 	experimentingSkill = "combat_medicine_experimentation",

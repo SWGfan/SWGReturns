@@ -138,10 +138,10 @@ function Encounter:setSpawnedObjectsToFollow(spawnedObjects, objectToFollow)
 
 			if self.spawnObjectList[i]["followPlayer"] then
 				if self.spawnObjectList[i]["setNotAttackable"] then
-					AiAgent(spawnedObjects[i]):addCreatureFlag(AI_NOAIAGGRO)
+					AiAgent(spawnedObjects[i]):setAiTemplate("follow")
+				else
+					AiAgent(spawnedObjects[i]):setAiTemplate("stationarynoleash")
 				end
-				AiAgent(spawnedObjects[i]):addCreatureFlag(AI_ESCORT)
-				AiAgent(spawnedObjects[i]):addCreatureFlag(AI_FOLLOW)
 				AiAgent(spawnedObjects[i]):setFollowObject(objectToFollow)
 			end
 		end
@@ -199,6 +199,7 @@ function Encounter:handleDespawnEvent(pPlayer)
 	for i = 1, #spawnedObjects, 1 do
 		if SpawnMobiles.isValidMobile(spawnedObjects[i]) and self.spawnObjectList[i]["runOnDespawn"] then
 			CreatureObject(spawnedObjects[i]):setPvpStatusBitmask(0)
+			AiAgent(spawnedObjects[i]):setAiTemplate("follow")
 			runAway = true
 			mobX = SceneObject(spawnedObjects[i]):getPositionX()
 			mobY = SceneObject(spawnedObjects[i]):getPositionY()
@@ -252,9 +253,12 @@ function Encounter:doRunAway(pAiAgent)
 	local newZ = readData(objectID .. ":encounterNewZ")
 
 	AiAgent(pAiAgent):setFollowObject(nil)
-	AiAgent(pAiAgent):setMovementState(AI_PATROLLING)
+	AiAgent(pAiAgent):setAiTemplate("manualescort")
 
+	AiAgent(pAiAgent):stopWaiting()
+	AiAgent(pAiAgent):setWait(0)
 	AiAgent(pAiAgent):setNextPosition(newX, newZ, newY, 0)
+	AiAgent(pAiAgent):executeBehavior()
 
 	deleteData(objectID .. ":encounterNewX")
 	deleteData(objectID .. ":encounterNewY")

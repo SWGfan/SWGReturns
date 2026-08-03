@@ -44,14 +44,13 @@
 object_tangible_wearables_armor_mandalorian_armor_mandalorian_chest_plate = object_tangible_wearables_armor_mandalorian_shared_armor_mandalorian_chest_plate:new {
 	templateType = ARMOROBJECT,
 
-	certificationsRequired = { 
-		"combat_bountyhunter_novice",
-        "combat_commando_novice",
-		"outdoors_squadleader_master"
-		},
-  
-  objectMenuComponent = "ArmorObjectMenuComponent",
-  
+	objectMenuComponent = "ArmorObjectMenuComponent",
+
+	certificationsRequired = { "combat_bountyhunter_master",
+					"combat_commando_master",
+					"outdoors_squadleader_master",
+					"outdoors_ranger_master" },
+
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
 				"object/creature/player/human_male.iff",
@@ -93,40 +92,19 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_chest_plate = obje
 				"object/mobile/vendor/twilek_male.iff",
 				"object/mobile/vendor/weequay_male.iff",
 				"object/mobile/vendor/zabrak_female.iff",
-				"object/mobile/vendor/zabrak_male.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/mobile/vendor/zabrak_male.iff" },
 	
 	-- Damage types in WeaponObject
-
+	vulnerability = COLD + ELECTRICITY + STUN + LIGHTSABER,
 
 	-- These are default Blue Frog stats, These are also used as temporary DWB crafting stats. Needs to be adjusted to random color, and Blast should be a Special Resist. Encumberance on boots and all arm/hand armor are estimated. Helm/Chest/Leggings are correct. 
-	healthEncumbrance = 0,
-	actionEncumbrance = 0,
-	mindEncumbrance = 0,
+	healthEncumbrance = 233,
+	actionEncumbrance = 96,
+	mindEncumbrance = 50,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = HEAVY,
-	maxCondition = 80000,
+	rating = LIGHT,
+	maxCondition = 40000,
 
 	kinetic = 70,
 	energy = 70,
@@ -136,17 +114,7 @@ object_tangible_wearables_armor_mandalorian_armor_mandalorian_chest_plate = obje
 	heat = 70,
 	cold = 70,
 	acid = 70,
-	lightSaber = 70,
-
-  numberExperimentalProperties = {1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2, 1},
-  experimentalProperties = {"XX", "XX", "XX", "XX", "OQ", "SR", "OQ", "UT", "MA", "OQ", "MA", "OQ", "XX", "XX", "XX", "XX", "OQ", "SR", "XX"},
-  experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-  experimentalGroupTitles = {"null", "null", "null", "exp_durability", "exp_quality", "exp_resistance", "null", "null", "null", "null", "null", "exp_resistance", "null"},
-  experimentalSubGroupTitles = {"null", "null", "sockets", "hit_points", "armor_effectiveness", "armor_integrity", "armor_health_encumbrance", "armor_action_encumbrance", "armor_mind_encumbrance", "armor_rating", "armor_special_type", "armor_special_effectiveness", "armor_special_integrity"},
-  experimentalMin = {0, 0, 0, 1000, 1, 30000, 0, 0, 0, 1, 0, 0, 0},
-  experimentalMax = {0, 0, 0, 1000, 30, 50000, 0, 0, 0, 1, 0, 0, 0},
-  experimentalPrecision = {0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0},
-  experimentalCombineType = {0, 0, 4, 1, 1, 1, 1, 1, 1, 4, 4, 4, 1},
+	lightSaber = 70
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_mandalorian_armor_mandalorian_chest_plate, "object/tangible/wearables/armor/mandalorian/armor_mandalorian_chest_plate.iff")

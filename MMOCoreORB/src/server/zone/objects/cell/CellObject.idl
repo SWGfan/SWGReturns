@@ -20,13 +20,10 @@ class CellObject extends SceneObject {
 	@dereferenced
 	protected AtomicInteger forceLoadObjectCount;
 
-	protected float cellFireVariable;
-
 	public CellObject() {
 		Logger.setLoggingName("CellObject");
 
 		cellNumber = 0;
-		cellFireVariable = 0;
 
 		forceLoadObjectCount.set(0);
 	}
@@ -57,7 +54,6 @@ class CellObject extends SceneObject {
 	}
 
 	public native void onBuildingInsertedToZone(BuildingObject building);
-
 	/**
 	 * Sends the contained non slotted objects to the specified player
 	 * @pre { this object is locked }
@@ -111,6 +107,9 @@ class CellObject extends SceneObject {
 	@dirty
 	public native int getCurrentNumberOfPlayerItems();
 
+	@dirty
+	public native int getCurrentNumberOfPlayerVendors();
+
 	/**
 	 * This method loops through all items in the cell and attempts to destroy them from the database.
 	 */
@@ -125,14 +124,6 @@ class CellObject extends SceneObject {
 	public void setCellNumber(int number) {
 		cellNumber = number;
 	}
-
-	@read
-	public float getCellFireVariable() {
-		return cellFireVariable;
-	}
-
-	@preLocked
-	public native void setCellFireVariable(float damageVar);
 
 	@dirty
 	public boolean isCellObject() {

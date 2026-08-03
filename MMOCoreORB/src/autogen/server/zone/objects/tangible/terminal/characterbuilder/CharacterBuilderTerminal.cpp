@@ -10,7 +10,7 @@
  *	CharacterBuilderTerminalStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINITIALCHOICES__CREATUREOBJECT_,RPC_GIVELANGUAGES__CREATUREOBJECT_,RPC_ENHANCECHARACTER__CREATUREOBJECT_,RPC_GRANTGLOWYBADGES__CREATUREOBJECT_,RPC_GRANTJEDIINITIATE__CREATUREOBJECT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINITIALCHOICES__CREATUREOBJECT_,RPC_GIVELANGUAGES__CREATUREOBJECT_,RPC_ENHANCECHARACTER__CREATUREOBJECT_INT_,RPC_GRANTGLOWYBADGES__CREATUREOBJECT_,RPC_GRANTJEDIINITIATE__CREATUREOBJECT_};
 
 CharacterBuilderTerminal::CharacterBuilderTerminal() : Terminal(DummyConstructorParameter::instance()) {
 	CharacterBuilderTerminalImplementation* _implementation = new CharacterBuilderTerminalImplementation();
@@ -98,18 +98,19 @@ void CharacterBuilderTerminal::giveLanguages(CreatureObject* player) {
 	}
 }
 
-void CharacterBuilderTerminal::enhanceCharacter(CreatureObject* player) {
+void CharacterBuilderTerminal::enhanceCharacter(CreatureObject* player, int type) {
 	CharacterBuilderTerminalImplementation* _implementation = static_cast<CharacterBuilderTerminalImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_ENHANCECHARACTER__CREATUREOBJECT_);
+		DistributedMethod method(this, RPC_ENHANCECHARACTER__CREATUREOBJECT_INT_);
 		method.addObjectParameter(player);
+		method.addSignedIntParameter(type);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->enhanceCharacter(player);
+		_implementation->enhanceCharacter(player, type);
 	}
 }
 
@@ -335,11 +336,12 @@ void CharacterBuilderTerminalAdapter::invokeMethod(uint32 methid, DistributedMet
 			
 		}
 		break;
-	case RPC_ENHANCECHARACTER__CREATUREOBJECT_:
+	case RPC_ENHANCECHARACTER__CREATUREOBJECT_INT_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
+			int type = inv->getSignedIntParameter();
 			
-			enhanceCharacter(player);
+			enhanceCharacter(player, type);
 			
 		}
 		break;
@@ -380,8 +382,8 @@ void CharacterBuilderTerminalAdapter::giveLanguages(CreatureObject* player) {
 	(static_cast<CharacterBuilderTerminal*>(stub))->giveLanguages(player);
 }
 
-void CharacterBuilderTerminalAdapter::enhanceCharacter(CreatureObject* player) {
-	(static_cast<CharacterBuilderTerminal*>(stub))->enhanceCharacter(player);
+void CharacterBuilderTerminalAdapter::enhanceCharacter(CreatureObject* player, int type) {
+	(static_cast<CharacterBuilderTerminal*>(stub))->enhanceCharacter(player, type);
 }
 
 void CharacterBuilderTerminalAdapter::grantGlowyBadges(CreatureObject* player) {

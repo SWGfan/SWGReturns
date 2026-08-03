@@ -25,7 +25,6 @@ public:
 	 */
 	virtual int handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const;
 
-	virtual void destroyEventPerk(SceneObject* sceneObject) const;
 };
 
 #endif /* EVENTPERKMENUCOMPONENT_H_ */

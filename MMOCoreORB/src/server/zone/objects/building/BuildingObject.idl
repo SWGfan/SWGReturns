@@ -5,7 +5,7 @@
 package server.zone.objects.building;
 
 import server.zone.objects.structure.StructureObject;
-include server.zone.TreeEntry;
+include server.zone.QuadTreeEntry;
 import system.util.SortedVector;
 import system.util.SynchronizedSortedVector;
 import system.util.Vector;
@@ -54,8 +54,8 @@ class BuildingObject extends StructureObject {
 	protected transient SynchronizedSortedVector<unsigned long> registeredPlayerIdList;
 
 	public boolean publicStructure;
-
-	public static final int MAXPLAYERITEMS = 1000;
+	
+	public static final int MAXPLAYERITEMS = 5000;
 
 	protected unicode signName;
 
@@ -191,30 +191,30 @@ class BuildingObject extends StructureObject {
 	public native void notifyRemoveFromZone();
 
 	@local
-	public native void notifyInsert(TreeEntry obj);
+	public native void notifyInsert(QuadTreeEntry obj);
 
 	public native void notifyInsertToZone(Zone zone);
 
 	@local
-	public native void notifyDissapear(TreeEntry obj);
+	public native void notifyDissapear(QuadTreeEntry obj);
 
 	@dirty
 	@local
-	public native void notifyPositionUpdate(TreeEntry entry);
+	public native void notifyPositionUpdate(QuadTreeEntry entry);
 
 	public native void notifyObjectInsertedToZone(SceneObject object);
 
 	@local
-	public native void insert(TreeEntry obj);
+	public native void insert(QuadTreeEntry obj);
 
 	@local
-	public native void remove(TreeEntry obj);
+	public native void remove(QuadTreeEntry obj);
 
 	@local
-	public native void update(TreeEntry obj);
+	public native void update(QuadTreeEntry obj);
 
 	@local
-	public native void inRange(TreeEntry obj, float range);
+	public native void inRange(QuadTreeEntry obj, float range);
 
 	@dirty
 	public native void sendTo(SceneObject player, boolean doClose, boolean forceLoadContainer = true);
@@ -259,6 +259,9 @@ class BuildingObject extends StructureObject {
 
 	@dirty
 	public native int getCurrentNumberOfPlayerItems();
+
+	@dirty
+	public native int getCurrentNumberOfPlayerVendors();
 
 	/**
 	 * Loops through all the cells, destroying items from the database that aren't contained in the child objects vector.
@@ -343,8 +346,22 @@ class BuildingObject extends StructureObject {
 
 	@dirty
 	public string getRedeedMessage() {
-		if(getCurrentNumberOfPlayerItems() > 0)
+		if (getCurrentNumberOfPlayerItems() > 0 || getCurrentNumberOfPlayerVendors() > 0)
 			return "clear_building_for_delete";
+
+		return "";
+	}
+
+	@dirty
+	public string getPackupMessage() {
+		if (isCivicStructure() || isGCWBase())
+			return "packup_not_eligible_02";
+
+		if (getCurrentNumberOfPlayerItems() <= 0)
+			return "packup_not_eligible_03";
+
+		if (getCurrentNumberOfPlayerVendors() > 0)
+			return "packup_not_eligible_04";
 
 		return "";
 	}

@@ -26,7 +26,10 @@
 #include "server/zone/objects/tangible/eventperk/Jukebox.h"
 #include "server/zone/objects/tangible/eventperk/ShuttleBeacon.h"
 #include "server/zone/objects/player/sui/SuiBoxPage.h"
-#include "server/zone/managers/loot/LootManager.h"
+#include "server/zone/managers/loot/LootManager.h"		
+#include "server/zone/managers/player/PlayerManager.h"		
+#include "server/zone/managers/gcw/GCWManager.h"		
+#include "server/zone/Zone.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
 
 SuiManager::SuiManager() : Logger("SuiManager") {
@@ -94,6 +97,24 @@ void SuiManager::handleSuiEventNotification(uint32 boxID, CreatureObject* player
 	debug() << "Unknown message callback with SuiWindowType: " << hex << windowType << ". Falling back on old handler system.";
 
 	switch (windowType) {
+	case SuiWindowType::DANCING_START:
+		handleStartDancing(player, suiBox, eventIndex, args);
+		break;
+	case SuiWindowType::DANCING_CHANGE:
+		handleStartDancing(player, suiBox, eventIndex, args);
+		break;
+	case SuiWindowType::MUSIC_START:
+		handleStartMusic(player, suiBox, eventIndex, args);
+		break;
+	case SuiWindowType::MUSIC_CHANGE:
+		handleStartMusic(player, suiBox, eventIndex, args);
+		break;
+	case SuiWindowType::BAND_START:
+		handleStartMusic(player, suiBox, eventIndex, args);
+		break;
+	case SuiWindowType::BAND_CHANGE:
+		handleStartMusic(player, suiBox, eventIndex, args);
+		break;
 	case SuiWindowType::BANK_TRANSFER:
 		handleBankTransfer(player, suiBox, eventIndex, args);
 		break;
@@ -130,6 +151,67 @@ void SuiManager::handleSetObjectName(CreatureObject* player, SuiBox* suiBox, uin
 		params.setTO(objectName);
 
 		player->sendSystemMessage(params);
+	}
+}
+
+void SuiManager::handleStartDancing(CreatureObject* player, SuiBox* suiBox, uint32 cancel, Vector<UnicodeString>* args) {
+	if (!suiBox->isListBox() || cancel != 0)
+		return;
+
+	if (args->size() < 2)
+		return;
+
+	int index = Integer::valueOf(args->get(0).toString());
+
+	uint32 id = suiBox->getBoxID();
+
+	bool change = (uint16)id == SuiWindowType::DANCING_CHANGE;
+
+
+	SuiListBox* listBox = cast<SuiListBox*>( suiBox);
+
+	if (index == -1)
+		return;
+
+	String dance = listBox->getMenuItemName(index);
+
+	if (!change)
+		player->executeObjectControllerAction(STRING_HASHCODE("startdance"), 0, dance);
+	else
+		player->executeObjectControllerAction(STRING_HASHCODE("changedance"), 0, dance);
+}
+
+void SuiManager::handleStartMusic(CreatureObject* player, SuiBox* suiBox, uint32 cancel, Vector<UnicodeString>* args) {
+	if (!suiBox->isListBox() || cancel != 0)
+		return;
+
+	if (args->size() < 2)
+		return;
+
+	int index = Integer::valueOf(args->get(0).toString());
+
+	uint32 id = suiBox->getBoxID();
+
+	SuiListBox* listBox = cast<SuiListBox*>( suiBox);
+
+	if (index == -1)
+		return;
+
+	String dance = listBox->getMenuItemName(index);
+
+	switch ((uint16)id) {
+	case SuiWindowType::MUSIC_START:
+		player->executeObjectControllerAction(STRING_HASHCODE("startmusic"), player->getTargetID(), dance);
+		break;
+	case SuiWindowType::MUSIC_CHANGE:
+		player->executeObjectControllerAction(STRING_HASHCODE("changemusic"), player->getTargetID(), dance);
+		break;
+	case SuiWindowType::BAND_CHANGE:
+		player->executeObjectControllerAction(STRING_HASHCODE("changebandmusic"), player->getTargetID(), dance);
+		break;
+	case SuiWindowType::BAND_START:
+		player->executeObjectControllerAction(STRING_HASHCODE("startband"), player->getTargetID(), dance);
+		break;
 	}
 }
 
@@ -186,6 +268,7 @@ void SuiManager::handleFishingAction(CreatureObject* player, SuiBox* suiBox, uin
 		newBoxID = manager->createWindow(player, suiBox->getBoxID());
 		break;
 	case FishingManager::STOPFISHING:
+		player->sendSystemMessage("@fishing:stop_fishing"); //You reel-in your line and stop fishing...
 		manager->stopFishing(player, suiBox->getBoxID(), true);
 		return;
 		break;
@@ -238,7 +321,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 		cbSui->setCurrentNode(parentNode);
 
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 		return;
@@ -248,7 +330,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 	//Node doesn't exist or the index was out of bounds. Should probably resend the menu here.
 	if (node == nullptr) {
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 		return;
@@ -257,7 +338,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 	if (node->hasChildNodes()) {
 		//If it has child nodes, display them.
 		cbSui->setCurrentNode(node);
-		cbSui->regenerateBoxID();
 		ghost->addSuiBox(cbSui);
 		player->sendMessage(cbSui->generateMessage());
 	} else {
@@ -277,7 +357,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 			if (templatePath == "unlearn_all_skills") {
 
-				SkillManager::instance()->surrenderAllSkills(player, true, false);
+				SkillManager::instance()->surrenderAllSkills(player, true, true);
 				player->sendSystemMessage("All skills unlearned.");
 
 			} else if (templatePath == "cleanse_character") {
@@ -299,41 +379,6 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 						player->sendSystemMessage("You force bar has been filled.");
 
 						ghost->setForcePower(ghost->getForcePowerMax(), true);
-					} else {
-						player->sendSystemMessage("Not within combat.");
-					}
-				}
-		} else if (templatePath == "reset_defense_mods") {
-				int curRangedD = 0, curMeleeD = 0;
-				
-				if (ghost->isJedi()) {
-					if (!player->isInCombat()) {
-						player->sendSystemMessage("You reset your Melee and Ranged Defense Modifiers.");
-	
-						if (player->hasSkill("force_sensitive_enhanced_reflexes_ranged_defense_04")){
-							curRangedD = player->getSkillMod("ranged_defense");
-						if (curRangedD < 0) {
-							player->addSkillMod(SkillModManager::PERMANENTMOD, "ranged_defense", 90, true);
-						} else {
-							if (curRangedD >= 110){
-								player->addSkillMod(SkillModManager::PERMANENTMOD, "ranged_defense", -90, true);
-							} else {
-							player->sendSystemMessage("Your ranged defense has already been normalised.");
-							}
-						}
-						}
-						if (player->hasSkill("force_sensitive_enhanced_reflexes_melee_defense_04")){
-							curMeleeD = player->getSkillMod("melee_defense");
-						if (curMeleeD < 0) {
-							player->addSkillMod(SkillModManager::PERMANENTMOD, "melee_defense", 90, true);
-						} else {
-							if (curMeleeD >= 110) {
-								player->addSkillMod(SkillModManager::PERMANENTMOD, "melee_defense", -90, true);
-							} else{
-							player->sendSystemMessage("Your melee defense has already been normalised.");
-							}
-						}
-						}
 					} else {
 						player->sendSystemMessage("Not within combat.");
 					}
@@ -366,8 +411,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 				if (apron == nullptr) {
 					player->sendSystemMessage("There was an error creating the requested item. Please report this issue.");
-					cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+					ghost->addSuiBox(cbSui);
 					player->sendMessage(cbSui->generateMessage());
 
 					error("could not create frog crafting apron");
@@ -446,8 +490,335 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				stringId.setTO(apron->getObjectID());
 				player->sendSystemMessage(stringId);
 
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);
+
 			} else if (templatePath == "enhance_character") {
-				bluefrog->enhanceCharacter(player);
+				bluefrog->enhanceCharacter(player, 0);
+
+			} else if (templatePath == "cheap_enhance_character") {
+				bluefrog->enhanceCharacter(player, 1);
+
+			} else if (templatePath == "expensive_enhance_character_mind"){
+				bluefrog->enhanceCharacter(player, 3);
+
+			} else if (templatePath == "expensive_enhance_character_body"){
+				bluefrog->enhanceCharacter(player, 2);
+
+			} else if (templatePath == "axkva_roll_rebel") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONREBEL ){		
+					player->sendSystemMessage("This planet is not owned by the Rebels!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_rebel");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 50) {		
+					lootManager->createLoot(trxGCW, inventory, "axkva_min", 302);		
+				}else{		
+					lootManager->createLoot(trxGCW, inventory, "axkva_min_terminal", 302);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Axkva Min");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_rebel", -4000);		
+			} else if (templatePath == "axkva_roll_imperial") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				GCWManager* gcwMan = player->getZone()->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONIMPERIAL ){		
+					player->sendSystemMessage("This planet is not owned by the Imperials!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_imperial");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 50){		
+					lootManager->createLoot(trxGCW, inventory, "axkva_min", 302);		
+				} else {		
+					lootManager->createLoot(trxGCW, inventory, "axkva_min_terminal", 302);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Axkva Min");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_imperial", -4000);		
+			} else if (templatePath == "acklay_roll_rebel") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONREBEL ){		
+					player->sendSystemMessage("This planet is not owned by the Rebels!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_rebel");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 50) {		
+					lootManager->createLoot(trxGCW, inventory, "acklay", 157);					
+				} else if (success < 51 && success > 45){		
+					lootManager->createLoot(trxGCW, inventory, "armor_attachments", 336);		
+				} else if (success < 46 && success > 30){		
+					lootManager->createLoot(trxGCW, inventory, "clothing_attachments", 336);		
+				} else if (success < 31 && success > 20){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_common", 66);		
+				} else if (success < 21){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_hard", 66);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Acklay and Geo Caves!");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_rebel", -4000);		
+			} else if (templatePath == "acklay_roll_imperial") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONIMPERIAL ){		
+					player->sendSystemMessage("This planet is not owned by the Imperials!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_imperial");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 50) {		
+					lootManager->createLoot(trxGCW, inventory, "acklay", 157);					
+				} else if (success < 51 && success > 45){		
+					lootManager->createLoot(trxGCW, inventory, "armor_attachments", 336);		
+				} else if (success < 46 && success > 30){		
+					lootManager->createLoot(trxGCW, inventory, "clothing_attachments", 336);		
+				} else if (success < 31 && success > 20){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_common", 66);		
+				} else if (success < 21){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_hard", 66);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Acklay and Geo Caves!");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_imperial", -4000);		
+			} else if (templatePath == "firespider_roll_imperial") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONIMPERIAL ){		
+					player->sendSystemMessage("This planet is not owned by the Imperials!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_imperial");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 55) {		
+					lootManager->createLoot(trxGCW, inventory, "fire_breathing_spider", 108);					
+				} else if (success < 56 && success > 45){		
+					lootManager->createLoot(trxGCW, inventory, "armor_attachments", 336);		
+				} else if (success < 46 && success > 35){		
+					lootManager->createLoot(trxGCW, inventory, "clothing_attachments", 336);		
+				} else if (success < 36 && success > 15){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_common", 66);		
+				} else if (success < 16){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_hard", 66);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Fire Spider and Geo Caves!");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_imperial", -4000);		
+			} else if (templatePath == "firespider_roll_rebel") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONREBEL ){		
+					player->sendSystemMessage("This planet is not owned by the Rebels!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_rebel");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success > 55) {		
+					lootManager->createLoot(trxGCW, inventory, "fire_breathing_spider", 108);					
+				} else if (success < 56 && success > 45){		
+					lootManager->createLoot(trxGCW, inventory, "armor_attachments", 336);		
+				} else if (success < 46 && success > 35){		
+					lootManager->createLoot(trxGCW, inventory, "clothing_attachments", 336);		
+				} else if (success < 36 && success > 15){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_common", 66);		
+				} else if (success < 16){		
+					lootManager->createLoot(trxGCW, inventory, "geonosian_hard", 66);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from the Fire Spider and Geo Caves");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_rebel", -4000);		
+			} else if (templatePath == "ancient_roll_rebel") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONREBEL ){		
+					player->sendSystemMessage("This planet is not owned by the Rebels!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_rebel");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success < 40) {		
+					lootManager->createLoot(trxGCW, inventory, "krayt_dragon_common", 336);		
+				} else if (success > 41 && success < 69){		
+					lootManager->createLoot(trxGCW, inventory, "krayt_tissue_rare", 336);		
+				} else if (success > 68){		
+					lootManager->createLoot(trxGCW, inventory, "krayt_pearls", 336);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from a Krayt Dragon Ancient!");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_rebel", -4000);		
+			} else if (templatePath == "ancient_roll_imperial") {		
+				Reference<PlayerObject*> ghost = player->getSlottedObject("ghost").castTo<PlayerObject*>();		
+				Zone* zone = player->getZone();		
+				GCWManager* gcwMan = zone->getGCWManager();		
+				if (ghost == nullptr || gcwMan == nullptr)		
+					return;		
+				uint32 winningFaction = gcwMan->getWinningFaction();		
+				if (winningFaction != Factions::FACTIONIMPERIAL ){		
+					player->sendSystemMessage("This planet is not owned by the Imperials!");		
+					return;		
+				}		
+				int gcwCurrency = ghost->getExperience("gcw_currency_imperial");		
+				if (gcwCurrency < 4000){		
+					player->sendSystemMessage("You do not have enough GCW Currency for a loot roll");		
+					return;		
+				}		
+				ManagedReference<LootManager*> lootManager = player->getZoneServer()->getLootManager();		
+				ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");		
+				if (lootManager == nullptr || inventory == nullptr) {		
+					player->sendSystemMessage("Loot roll failed");		
+					return;		
+				}		
+				//Check if inventory is full.		
+				if (inventory->isContainerFullRecursive()) {		
+					player->sendSystemMessage("Loot roll failed because inventory is full"); //"Some foraged items were discarded, because your inventory is full."		
+					return;		
+				}		
+				int success = System::random(100);
+				TransactionLog trxGCW(TrxCode::GCWREWARD, player);		
+				if (success < 40) {		
+					lootManager->createLoot(trxGCW, inventory, "krayt_dragon_common", 336);		
+				} else if (success > 41 && success < 69){		
+					lootManager->createLoot(trxGCW, inventory, "krayt_tissue_rare", 336);		
+				} else if (success > 68){		
+					lootManager->createLoot(trxGCW, inventory, "krayt_pearls", 336);		
+				}		
+				player->sendSystemMessage("Congratulations! You have received loot from a Krayt Dragon Ancient!");		
+				player->getZoneServer()->getPlayerManager()->awardExperience(player, "gcw_currency_imperial", -4000);
 
 			} else if (templatePath == "credits") {
 				{
@@ -516,6 +887,10 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 			} else if (templatePath == "unlock_jedi_initiate") {
 				bluefrog->grantJediInitiate(player);
 
+			} else if (templatePath == "unlock_jedi_master") {
+				PlayerManager* pman = zserv->getPlayerManager();
+				pman->grantJediMaster(player);
+
 			} else {
 				if (templatePath.length() > 0) {
 					SkillManager::instance()->awardSkill(templatePath, player, true, true, true);
@@ -529,8 +904,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				}
 			}
 
-			cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+			ghost->addSuiBox(cbSui);
 			player->sendMessage(cbSui->generateMessage());
 
 		} else { // Items
@@ -543,8 +917,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 			if (templatePath.contains("event_perk")) {
 				if (!ghost->hasGodMode() && ghost->getEventPerkCount() >= 5) {
 					player->sendSystemMessage("@event_perk:pro_too_many_perks"); // You cannot rent any more items right now.
-					cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+					ghost->addSuiBox(cbSui);
 					player->sendMessage(cbSui->generateMessage());
 					return;
 				}
@@ -554,8 +927,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 			if (item == nullptr) {
 				player->sendSystemMessage("There was an error creating the requested item. Please report this issue.");
-				cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+				ghost->addSuiBox(cbSui);
 				player->sendMessage(cbSui->generateMessage());
 
 				error("could not create frog item: " + node->getDisplayName());
@@ -606,8 +978,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 				return;
 			}
 
-			cbSui->regenerateBoxID();
-		ghost->addSuiBox(cbSui);
+			ghost->addSuiBox(cbSui);
 			player->sendMessage(cbSui->generateMessage());
 		}
 

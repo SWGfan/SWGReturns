@@ -1,40 +1,44 @@
-FROM debian:jessie
+# Build from the repo root, e.g.:
+#   docker build -f MMOCoreORB/docker/Dockerfile -t core3 .
+#
+# Verified building on Ubuntu 24.04 (Noble); should carry forward to 26.04 LTS.
+# debian:jessie is EOL and no longer has a usable package set for this project.
+# This image builds and runs THIS repo's own source (previously it cloned
+# unrelated upstream projects instead).
+FROM ubuntu:24.04
 
-RUN echo 'APT::Install-Recommends "0";\nAPT::Install-Suggests "0";' > /etc/apt/apt.conf.d/01norecommends
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+	build-essential \
+	cmake \
+	git \
+	ccache \
+	pkg-config \
+	default-jre \
+	liblua5.3-dev \
+	libdb5.3-dev \
+	libssl-dev \
+	libmariadb-dev \
+	libmariadb-dev-compat \
+	libboost-dev \
+	libboost-thread-dev \
+	supervisor \
+	&& rm -rf /var/lib/apt/lists/*
 
-RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
-RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+ADD . /Core3/
 
-RUN apt-get install -y gcc g++ make autoconf automake autotools-dev git libc6-dev libdb5.3-dev libreadline-dev libmysqlclient-dev libssl-dev git vim openjdk-7-jre-headless gdb gccxml mysql-server
+WORKDIR /Core3/MMOCoreORB/
 
-#RUN find /var/lib/mysql -type f -exec touch {} \; && service mysql start
+RUN mkdir -p build && cd build \
+	&& cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	&& make -j"$(nproc)"
 
-#RUN echo 'CREATE DATABASE swgemu;' | mysql -uroot -proot
-#RUN echo 'GRANT ALL ON *.* TO `swgemu`@`localhost` IDENTIFIED BY "123456";' | mysql -uroot -proot
+RUN sed -i 's#/git/Core3/MMOCoreORB#/Core3/MMOCoreORB#' docker/scripts/supervisord-core3.conf
+RUN mkdir -p /etc/supervisor/conf.d && cp docker/scripts/supervisord-core3.conf /etc/supervisor/conf.d/supervisord-core3.conf
 
-RUN mkdir -p /swgemu/MMOEngine && mkdir -p /swgemu/MMOCoreORB
-#RUN ln -s /swgemu/MMOEngine/bin/idlc /usr/local/bin/idlc
+# The MySQL/MariaDB server the game connects to is expected to run as a
+# separate service/container (e.g. via docker-compose), not inside this image.
+# Configure it in MMOCoreORB/bin/conf/config.lua before starting.
 
-RUN apt-get install -y wget && wget http://www.lua.org/ftp/lua-5.3.3.tar.gz && tar -xvf lua-5.3.3.tar.gz && cd lua-5.3.3 && make linux install && cd .. && rm -R lua-5.3.3 && rm lua-5.3.3.tar.gz && ldconfig
-
-RUN mkdir -p /home/swgemu/workspace/tre
-
-#RUN apt-get install -y clang-3.5
-
-RUN mkdir git && cd git && git clone http://review.swgemu.com/p/Core3.git && git clone http://review.swgemu.com/p/PublicEngine.git && cd PublicEngine/MMOEngine && make && chmod +x bin/idlc && cp bin/idlc /usr/local/bin/idlc && cd ../../Core3 && git checkout unstable && ln -s ../PublicEngine/MMOEngine MMOEngine
-
-ENV CLASSPATH="/git/PublicEngine/MMOEngine/bin/idlc.jar"
-RUN echo 'export CLASSPATH="/git/PublicEngine/MMOEngine/bin/idlc.jar"' >> /root/.profile
-
-RUN cd git/Core3/MMOCoreORB && make config && make build
-
-RUN apt-get install -y supervisor
-
-# copy the supervisor conf file into the image
-ADD scripts/supervisord-core3.conf /etc/supervisor/conf.d/supervisord-core3.conf
-
-ADD scripts/run.sh /tmp/
-RUN /bin/chmod +x /tmp/run.sh
-CMD /tmp/run.sh
+CMD ["supervisord", "-n"]

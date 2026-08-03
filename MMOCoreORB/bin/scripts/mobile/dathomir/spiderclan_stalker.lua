@@ -2,7 +2,6 @@ spiderclan_stalker = Creature:new {
 	objectName = "@mob/creature_names:spider_nightsister_stalker",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "spider_nightsister",
 	faction = "spider_nightsister",
 	level = 100,
@@ -13,7 +12,7 @@ spiderclan_stalker = Creature:new {
 	baseHAM = 20000,
 	baseHAMmax = 25000,
 	armor = 1,
-	resists = {90,10,10,40,10,10,40,40,-1},
+	resists = {90,100,100,40,100,100,40,40,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,31 +31,18 @@ spiderclan_stalker = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "armor_attachments", chance = 400000},
-				{group = "clothing_attachments", chance = 400000},
-				{group = "melee_weapons", chance = 2700000},
-				{group = "pistols", chance = 1000000},
-				{group = "rifles", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "wearables_common", chance = 500000},
-				{group = "wearables_uncommon", chance = 500000}
-			}
+				{group = "power_crystals", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
+				{group = "nightsister_common", chance = 3000000},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "clothing_attachments", chance = 2000000},
+			},
+			lootChance = 4500000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(spiderclan_stalker, "spiderclan_stalker")

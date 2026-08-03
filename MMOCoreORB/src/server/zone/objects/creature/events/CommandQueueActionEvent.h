@@ -6,7 +6,6 @@
 #define COMMANDQUEUEACTIONEVENT_H_
 
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/creature/ai/AiAgent.h"
 
 class CommandQueueActionEvent : public Task {
 	ManagedWeakReference<CreatureObject*> creature;
@@ -14,7 +13,7 @@ class CommandQueueActionEvent : public Task {
 public:
 	const static int IMMEDIATE = 1;
 	const static int NORMAL = 2;
-
+	
 public:
 	CommandQueueActionEvent(CreatureObject* pl, int type = NORMAL) : Task() {
 		creature = pl;
@@ -22,41 +21,40 @@ public:
 	}
 
 	void run() {
+		//TODO: FIXME
+		/*if (creature == nullptr)
+			return;*/
+			
 		ManagedReference<CreatureObject*> creature = this->creature.get();
-
+		
 		if (creature == nullptr)
 			return;
 
-		Locker creatureLocker(creature);
-
 		try {
-
+			Locker creatureLocker(creature);
+			
 			//player->info("activating command queue action");
 
 			if (type == NORMAL)
 				creature->activateQueueAction();
 			else
 				creature->activateImmediateAction();
-
+			
 			//player->info("command queue action activated");
 
-		} catch (const Exception& e) {
-			auto aiAgent = creature->asAiAgent();
-
-			if (aiAgent != nullptr) {
-				aiAgent->handleException(e, "CommandQueueActionEvent");
-			} else {
-				auto trace = e.getStackTrace();
-				creature->error()
-					<< "Unhandled exception in CommandQueueActionEvent: " << e.getMessage()
-					<< " STACK: " << trace.toStringData();
-			}
+		} catch (Exception& e) {
+			creature->error(e.getMessage());
+			e.printStackTrace();
 		} catch (...) {
 			//creature = nullptr;
 
 			throw;
 		}
+		
+		//creature = nullptr;
+		
 	}
+
 };
 
 #endif /*COMMANDQUEUEACTIONEVENT_H_*/

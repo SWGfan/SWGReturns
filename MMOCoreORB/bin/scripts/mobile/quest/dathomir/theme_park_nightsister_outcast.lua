@@ -2,7 +2,6 @@ theme_park_nightsister_outcast = Creature:new {
   objectName = "@mob/creature_names:nightsister_outcast",
   randomNameType = NAME_GENERIC,
   randomNameTag = true,
-	mobType = MOB_NPC,
   socialGroup = "nightsister",
   faction = "nightsister",
   level = 81,
@@ -30,14 +29,9 @@ theme_park_nightsister_outcast = Creature:new {
 
   templates = {"object/mobile/dressed_dathomir_nightsister_outcast.iff"},
   lootGroups = {},
-  primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+  weapons = {},
   conversationTemplate = "theme_park_nightsister_mission_target_convotemplate",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(tkamid,brawlermaster),
-	secondaryAttacks = { }
+  attacks = merge(tkamid,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(theme_park_nightsister_outcast, "theme_park_nightsister_outcast")

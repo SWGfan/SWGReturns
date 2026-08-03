@@ -8,7 +8,6 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
 #include "engine/engine.h"
-#include "server/zone/managers/stringid/StringIdManager.h"
 
 class MilkCreatureTask : public Task {
 
@@ -29,7 +28,7 @@ public:
 
 		Locker _clocker(player, creature);
 
-		if (!creature->isInRange(player, 10.f) || creature->isDead()) {
+		if (!creature->isInRange(player, 5.f) || creature->isDead()) {
 			updateMilkState(CreatureManager::NOTMILKED);
 			player->sendSystemMessage("@skl_use:milk_too_far"); // The creature has moved too far away to continue milking it.
 			return;
@@ -68,6 +67,7 @@ public:
 			break;
 		case ONESUCCESS:
 			if (success) {
+					player->sendSystemMessage("@skl_use:milk_success"); // You have successfully gathered milk from the creature!
 					giveMilkToPlayer();
 			} else {
 					player->sendSystemMessage("@skl_use:milk_continue"); // You continue to milk the creature.
@@ -88,6 +88,7 @@ public:
 			break;
 		case FINAL:
 			if (success) {
+				player->sendSystemMessage("@skl_use:milk_success"); // You have successfully gathered milk from the creature!
 				giveMilkToPlayer();
 			} else {
 				updateMilkState(CreatureManager::NOTMILKED);
@@ -118,22 +119,16 @@ public:
 		float density = resourceSpawn->getDensityAt(player->getZone()->getZoneName(), player->getPositionX(), player->getPositionY());
 
 		if (density > 0.80f) {
-			quantityExtracted = int(quantityExtracted * 5.25f);
+			quantityExtracted = int(quantityExtracted * 1.25f);
 		} else if (density > 0.60f) {
-			quantityExtracted = int(quantityExtracted * 5.00f);
+			quantityExtracted = int(quantityExtracted * 1.00f);
 		} else if (density > 0.40f) {
-			quantityExtracted = int(quantityExtracted * 4.75f);
+			quantityExtracted = int(quantityExtracted * 0.75f);
 		} else {
-			quantityExtracted = int(quantityExtracted * 4.50f);
+			quantityExtracted = int(quantityExtracted * 0.50f);
 		}
-		if (player->hasSkill("outdoors_ranger_master")) {
-			quantityExtracted =  quantityExtracted * 1.50;
-		}
-		
-		player->sendSystemMessage("You have successfully gathered " + String::valueOf(quantityExtracted) + " units of milk."); // You have successfully gathered milk from the creature!
-		
 
-		TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn, quantityExtracted);
+		TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
 		resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
 
 		updateMilkState(CreatureManager::ALREADYMILKED);

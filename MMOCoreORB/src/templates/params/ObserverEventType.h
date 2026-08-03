@@ -90,14 +90,6 @@ public:
 		BHTEFCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		FACTIONCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		SLICED,						// ManagedObject arg1 = player doing slicing, long arg2 = result (1/0)
-		SQUAD,						// ManagedObject arg1 = AiAgent, long arg2 = 0
-		QUESTKILL,					// ManagedObject arg1 = destroyed quest target
-		DESTROYEDSHIP,				// ManagedObject arg1 = destroyed ship
-		DEPLOYEDCAMP,				// ManagedObject arg1 = deployed CampSiteActiveArea
-		SHIPAGENTDESPAWNED,			// ManagedObject arg1 = despawned ShipAiAgent
-		SQUADRON,					// ManagedObject arg1 = ShipAiAgent
-		ENTEREDPOBSHIP,				// ManagedObject arg1 = player entering a POB ship
-		COMBATCOMMANDENQUEUED,		// ManagedObject arg1 = player queuing a combat command
 	};
 };
 

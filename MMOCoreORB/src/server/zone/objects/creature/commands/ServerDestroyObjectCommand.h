@@ -130,6 +130,10 @@ public:
 				}
 			}
 
+			if (object->isStructureControlDevice()) {
+				creature->sendSystemMessage("Error: You cannot delete this control device.");
+				return GENERALERROR;
+			}
 			if (trx.isVerbose()) {
 				// Force a synchronous export because the object will be deleted before we can export it!
 				trx.addRelatedObject(object, true);
@@ -144,17 +148,11 @@ public:
 	}
 
 	void destroyObject(SceneObject* object, CreatureObject* creature) const {
-		if (creature != nullptr) {
-			StringIdChatParameter message("shared", "rsp_object_deleted_prose"); //You have destroyed %TT (%TO).
-
-			message.setTT(object->getDisplayedName());
-			message.setTO(object->getGameObjectTypeStringID());
-			creature->sendSystemMessage(message);
-		}
-
 		object->destroyObjectFromWorld(true);
+
 		object->destroyObjectFromDatabase(true);
 	}
+
 };
 
 #endif //SERVERDESTROYOBJECTCOMMAND_H_

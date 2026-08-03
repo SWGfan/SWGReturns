@@ -21,13 +21,7 @@ admin_intern_01 = {
 	jediStateRequired = 0,
 	skillAbility = {},
 	commands = {
-		"setFirstName",
-		"setLastName",
 		"teleport",
-		"teleportto",
-		"invulnerable",
-		"teleporttarget",
-		"gmfsvillage",
 	},
 	skillModifiers = {},
 	schematicsGranted = {},

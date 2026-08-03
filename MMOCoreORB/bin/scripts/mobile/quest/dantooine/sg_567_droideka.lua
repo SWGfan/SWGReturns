@@ -2,7 +2,6 @@ sg_567_droideka = Creature:new {
 	objectName = "",
 	customName = "(an old Droideka)",	
 	socialGroup = "droideka",
-	mobType = MOB_DROID,
 	faction = "",
 	level = 45,
 	chanceHit = 0.47,

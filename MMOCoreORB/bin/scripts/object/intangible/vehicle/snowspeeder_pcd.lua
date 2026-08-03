@@ -1,3 +1,0 @@
-object_intangible_vehicle_snowspeeder_pcd = object_intangible_vehicle_shared_snowspeeder_pcd:new {
-}
-ObjectTemplates:addTemplate(object_intangible_vehicle_snowspeeder_pcd, "object/intangible/vehicle/snowspeeder_pcd.iff")

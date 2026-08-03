@@ -21,21 +21,13 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (creature->isAiAgent()) {
-			if (creature->isNonPlayerCreatureObject() && creature->isDizzied() && System::random(100) < 85) {
-				creature->queueDizzyFallEvent();
-			} else if (creature->isInCombat()) {
-				creature->setPosture(CreaturePosture::CROUCHED);
-				creature->doCombatAnimation(STRING_HASHCODE("change_posture"));
-			} else {
-				creature->setPosture(CreaturePosture::CROUCHED);
-			}
+		if (creature->hasAttackDelay())
+			return GENERALERROR;
+
+		if (creature->isDizzied() && System::random(100) < 85) {
+			creature->queueDizzyFallEvent();
 		} else {
-			if (creature->isDizzied() && System::random(100) < 85) {
-				creature->queueDizzyFallEvent();
-			} else {
-				creature->setPosture(CreaturePosture::CROUCHED, true, true);
-			}
+			creature->setPosture(CreaturePosture::CROUCHED, true);
 		}
 
 		return SUCCESS;

@@ -497,9 +497,6 @@ Reference<SceneObject*> PlanetManagerImplementation::loadSnapshotObject(WorldSna
 
 	object = zoneServer->createClientObject(serverTemplate.hashCode(), objectID);
 
-	if (object == nullptr)
-		return nullptr;
-
 	Locker locker(object);
 
 	object->initializePosition(position.getX(), position.getZ(), position.getY());
@@ -648,8 +645,7 @@ PlanetTravelPoint* PlanetManagerImplementation::getNearestPlanetTravelPoint(Scen
 			<< object->getObjectNameStringIdName()
 			<< ":" << object->getObjectID()
 			<< ", " << searchrange
-			<< ") @ " << object->getWorldPosition().toString()
-			<< "\n";
+			<< ") @ " << object->getWorldPosition().toString();
 #endif
 
 	Reference<PlanetTravelPoint*> planetTravelPoint = getNearestPlanetTravelPoint(object->getWorldPosition(), searchrange);
@@ -657,9 +653,9 @@ PlanetTravelPoint* PlanetManagerImplementation::getNearestPlanetTravelPoint(Scen
 #if DEBUG_TRAVEL
 
 	if(planetTravelPoint == nullptr)
-		callDesc << ": DID NOT FIND POINT IN RANGE \n";
+		callDesc << ": DID NOT FIND POINT IN RANGE";
 	else
-		callDesc << ": returning: " << planetTravelPoint->toString() << "\n";
+		callDesc << ": returning: " << planetTravelPoint->toString();
 
 	info(callDesc, true);
 #endif
@@ -746,7 +742,7 @@ bool PlanetManagerImplementation::noInterferingObjects(CreatureObject* creature,
 	if (vec == nullptr)
 		return true;
 
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 	vec->safeCopyTo(closeObjects);
 
 	for (int j = 0; j < closeObjects.size(); j++) {
@@ -893,12 +889,6 @@ void PlanetManagerImplementation::loadClientRegions(LuaObject* outposts) {
 					scenery = zone->getZoneServer()->createObject(STRING_HASHCODE("object/static/particle/particle_distant_ships_imperial.iff"), 0);
 				} else if (strongholdFaction == Factions::FACTIONREBEL || regionName.contains("rebel")) {
 					scenery = zone->getZoneServer()->createObject(STRING_HASHCODE("object/static/particle/particle_distant_ships_rebel.iff"), 0);
-				} else if (regionName.contains("hanna")){
-					scenery = zone->getZoneServer()->createObject(STRING_HASHCODE("object/static/particle/particle_distant_ships_rebel.iff"), 0);
-				} else if (regionName.contains("lower_city_1312")){
-					return;
-				} else if (regionName.contains("dark_temple")){
-					return;
 				} else {
 					scenery = zone->getZoneServer()->createObject(STRING_HASHCODE("object/static/particle/particle_distant_ships.iff"), 0);
 				}
@@ -1032,7 +1022,7 @@ bool PlanetManagerImplementation::isInRangeWithPoi(float x, float y, float range
 }
 
 bool PlanetManagerImplementation::isInObjectsNoBuildZone(float x, float y, float extraMargin, bool checkFootprint) {
-	SortedVector<TreeEntry*> closeObjects;
+	SortedVector<QuadTreeEntry*> closeObjects;
 
 	Vector3 targetPos(x, y, zone->getHeight(x, y));
 
@@ -1081,6 +1071,7 @@ bool PlanetManagerImplementation::isSpawningPermittedAt(float x, float y, float 
 	targetPos.setZ(zone->getHeight(x, y));
 
 	zone->getInRangeActiveAreas(x, y, &activeAreas, true);
+	zone->getInRangeActiveAreas(x, y, margin + 64.f, &activeAreas, true);
 
 	for (int i = 0; i < activeAreas.size(); ++i) {
 		ActiveArea* area = activeAreas.get(i);
@@ -1173,7 +1164,7 @@ bool PlanetManagerImplementation::isCampingPermittedAt(float x, float y, float m
 }
 
 Reference<SceneObject*> PlanetManagerImplementation::findObjectTooCloseToDecoration(float x, float y, float margin) {
-	SortedVector<ManagedReference<TreeEntry* > > closeObjects;
+	SortedVector<ManagedReference<QuadTreeEntry* > > closeObjects;
 
 	Vector3 targetPos(x, y,0);
 

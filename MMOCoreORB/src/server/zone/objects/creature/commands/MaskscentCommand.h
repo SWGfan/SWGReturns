@@ -7,10 +7,14 @@
 
 class MaskscentCommand : public QueueCommand {
 public:
-	MaskscentCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
+
+	MaskscentCommand(const String& name, ZoneProcessServer* server)
+		: QueueCommand(name, server) {
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -20,6 +24,7 @@ public:
 		if (!checkMaskScent(creature))
 			return GENERALERROR;
 
+
 		uint32 crc = STRING_HASHCODE("skill_buff_mask_scent_self");
 
 		if (creature->hasBuff(crc)) {
@@ -28,10 +33,12 @@ public:
 		}
 
 		StringIdChatParameter startStringId("skl_use", "sys_scentmask_start"); // Your natural scent has been masked from creatures.
-		StringIdChatParameter endStringId("skl_use", "sys_scentmask_stop");	// Your masked scent has worn off.
+		StringIdChatParameter endStringId("skl_use", "sys_scentmask_stop"); // Your masked scent has worn off.
 
-		int maskScentMod = creature->getSkillMod("mask_scent") / 2;
-		int duration = 12 * maskScentMod;
+
+		int maskScentMod = creature->getSkillMod("mask_scent");
+		int cdReduction = ((float)(maskScentMod / 100.0f)) * 45;
+		int duration = 60 + (((float)(maskScentMod / 100.0f)) * 200);
 
 		ManagedReference<Buff*> buff = new Buff(creature, crc, duration, BuffType::SKILL);
 
@@ -43,21 +50,27 @@ public:
 
 		creature->addBuff(buff);
 
+		int timer = (60 - cdReduction) * 1000;
+		if (timer > 0) {
+			creature->updateCooldownTimer("skill_buff_mask_scent_self", timer);
+		}
+
 		return SUCCESS;
 	}
 
 	bool checkMaskScent(CreatureObject* creature) const {
-		if (creature->getSkillMod("mask_scent") <= 0) {
+
+		if(creature->getSkillMod("mask_scent") <= 0) {
 			creature->sendSystemMessage("@skl_use:sys_scentmask_noskill"); // You might be a very clean person, but you lack the skill to mask your scent from creatures.
 			return false;
 		}
 
-		if (creature->hasBuff(STRING_HASHCODE("skill_buff_mask_scent")) || creature->getSkillModFromBuffs("private_conceal") > 0) {
+		if(creature->hasBuff(STRING_HASHCODE("skill_buff_mask_scent")) || creature->getSkillModFromBuffs("private_conceal") > 0) {
 			creature->sendSystemMessage("@skl_use:sys_scentmask_concealed"); // You can't mask your scent while you are concealed.
 			return false;
 		}
 
-		if (creature->hasBuff(STRING_HASHCODE("skill_buff_mask_scent_self"))) {
+		if(creature->getOptionsBitmask() & CreatureState::MASKSCENT) {
 			creature->sendSystemMessage("@skl_use:sys_scentmask_already"); // You are already masking your scent.
 			return false;
 		}
@@ -73,14 +86,15 @@ public:
 		}
 
 		Zone* zone = creature->getZone();
-
 		if (creature->getZone() == nullptr || creature->isInCombat()) {
 			creature->sendSystemMessage("@skl_use:sys_scentmask_fail"); // You cannot mask your scent now.
 			return false;
 		}
 
 		return true;
+
 	}
+
 };
 
-#endif // MASKSCENTCOMMAND_H_
+#endif //MASKSCENTCOMMAND_H_

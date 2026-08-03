@@ -126,8 +126,6 @@ using namespace server::zone::managers::minigames::events;
 
 #include "engine/core/ManagedObject.h"
 
-#include "engine/util/u3d/Vector3.h"
-
 #include "engine/log/Logger.h"
 
 #include "system/util/VectorMap.h"
@@ -193,21 +191,27 @@ public:
 
 	static const int NOEVENT = 0;
 
-	static const int PROCEED = 20;
+	static const int PROCEED = 17;
 
-	static const int MISHAP = 10;
-
-	static const int STARTFISHING = 0;
-
-	static const int NOFISHING = 1;
-
-	static const int BADCAST = 2;
-
-	static const int NOWATER = 3;
+	static const int MISHAP = 45;
 
 	FishingManager();
 
-	void initialize();
+	void initializeBaitStatus();
+
+	void initializeProperty();
+
+	void initializeAction();
+
+	void initializeState();
+
+	void initializeFishType();
+
+	void initializeFishLength();
+
+	void initializeLoot();
+
+	void initializeColor();
 
 	int notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2);
 
@@ -234,7 +238,7 @@ public:
 	 */
 	int notifyCloseContainer(CreatureObject* player, SceneObject* container);
 
-	/**
+	/** 
 	 * check location of Player and return the marker position
 	 * checkLocation gets the PositionX/Y/Z from Player computing new coordinates based on quality of the fishing pole
 	 * @pre { this object is locked }
@@ -243,11 +247,11 @@ public:
 	 * @param quality Crafted Quality of the Fishing Pole
 	 * @param x x-Coordinate to be filled with marker position
 	 * @param y y-Coordinate to be filled with marker position
-	 * @param z z-Coordinate to be filled with marker position
+	 * @param z z-Coordinate to be filled with marker position 
 	 * @return { 0: everything worked, 1: Exception case, 3: No Water, 4: Water under terrain }
-	 * @TODO { once actually craftable the line range calculation probably needs to be adjusted to affect the outcome less }
+	 * @TODO { once actually craftable the line range calculation probably needs to be adjusted to affect the outcome less } 
 	 */
-	int checkLocation(CreatureObject* player, int quality, Vector3& location);
+	int checkLocation(CreatureObject* player, int quality, float& x, float& y, float& z);
 
 	/**
 	 * Starts Fishing Game
@@ -367,11 +371,10 @@ public:
 	 * based on pole quality, vegetation penalty, fish density bonus, bait status, and a random number
 	 * @pre { this object is locked }
 	 * @post { this object is locked }
-	 * @param player CreatureObject for which to randomize fish
-	 * @param marker SceneObject for vegation calculation
+	 * @param player CreatureObject for which to randomize fish 
 	 * @return { 0-6: Fish, 94-99: Misc Item }
 	 */
-	int getFish(CreatureObject* player, SceneObject* marker);
+	int getFish(CreatureObject* player);
 
 	/**
 	 * Gets Next Action from Event
@@ -518,12 +521,11 @@ public:
 	 * @post { object is locked }
 	 * @param text String to send to Player
 	 * @param player CreatureObject to which send message
-	 * @param marker SceneObject used for getFish function
 	 * @param boxID fishing window to close when calling stopFishing()
 	 * @param losebait If true the bait in the pole will be removed as an outcome of what happened
-	 * @param moodString String taken from player before fishing to return to after fishing
+	 * @param moodString String taken from player before fishing to return to after fishing 
 	 */
-	void mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, unsigned int boxID, bool losebait, String& moodString);
+	void mishapEvent(const String& text, CreatureObject* player, unsigned int boxID, bool losebait, String& moodString);
 
 	/**
 	 * Lose the Bait in the Container
@@ -551,11 +553,13 @@ public:
 	 * createMarker creates a SceneObject for tango/fishing/shared_marker.iff and inserts it at given coordinates
 	 * @pre { object is locked }
 	 * @post { object is locked }
-	 * @param Vector3 for location to create marker
+	 * @param x X-Coordinate of new marker
+	 * @param y Y-Coordinate of new marker
+	 * @param z Z-Coordinate of new marker
 	 * @param zone Zone used to create the marker in
 	 * @return { SceneObject of new marker }
 	 */
-	SceneObject* createMarker(Vector3& location, Zone* zone);
+	SceneObject* createMarker(float x, float y, float z, Zone* zone);
 
 	/**
 	 * Creates a small Splash at the given coordinates
@@ -582,7 +586,7 @@ public:
 	 * @param z Z-Coordinate of the splash
 	 * @return { true if beached, false if water }
 	 */
-	bool checkUpdateMarker(CreatureObject* player, Vector3& location);
+	bool checkUpdateMarker(CreatureObject* player, float& x, float& y, float& z);
 
 	bool isPlaying(CreatureObject* player);
 
@@ -596,7 +600,7 @@ public:
 	 * @param marker Object sent to event as new marker
 	 * @return { SceneObject of new Marker }
 	 */
-	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, unsigned int boxID, bool notifyPlayer);
+	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer);
 
 	/**
 	 * Removes the fishing marker
@@ -668,19 +672,13 @@ public:
 	void stopFishingEvent(CreatureObject* player);
 
 	/**
-	 * FishingEvent
+	 * FishingEvent getter
 	 * getFishingEvent is a readonly method that gets the FishingEvent from the events VectorMap and returns it
 	 * @pre { object is locked }
 	 * @post { object is locked }
 	 * @param player CreatureObject for which to get fishing event
 	 */
 	FishingEvent* getFishingEvent(CreatureObject* player);
-
-	/**
-	 * getPropertyString
-	 * Generates String for Fish Density and Vegetation.
-	 */
-	String getPropertyString(int amount);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -708,18 +706,22 @@ namespace managers {
 namespace minigames {
 
 class FishingManagerImplementation : public ObserverImplementation, public Logger {
-	bool fishingEnabled;
-
 protected:
+	Vector<String> miscLoot;
+
+	Vector<String> rareLoot;
+
+	VectorMap<String, int> color;
+
+	Vector<int> fishLength;
+
 	Vector<String> fishType;
 
-	VectorMap<String, int> fishColors;
+	Vector<String> state;
 
-	VectorMap<String, int> fishLengths;
+	Vector<String> action;
 
-	Vector<String> fishingActions;
-
-	Vector<String> fishingStates;
+	Vector<String> property;
 
 	Vector<String> baitStatus;
 
@@ -774,28 +776,30 @@ public:
 
 	static const int NOEVENT = 0;
 
-	static const int PROCEED = 20;
+	static const int PROCEED = 17;
 
-	static const int MISHAP = 10;
-
-	static const int STARTFISHING = 0;
-
-	static const int NOFISHING = 1;
-
-	static const int BADCAST = 2;
-
-	static const int NOWATER = 3;
+	static const int MISHAP = 45;
 
 	FishingManagerImplementation();
 
 	FishingManagerImplementation(DummyConstructorParameter* param);
 
-	void initialize();
+	void initializeBaitStatus();
 
-private:
-	bool loadConfigData();
+	void initializeProperty();
 
-public:
+	void initializeAction();
+
+	void initializeState();
+
+	void initializeFishType();
+
+	void initializeFishLength();
+
+	void initializeLoot();
+
+	void initializeColor();
+
 	int notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2);
 
 	/**
@@ -821,7 +825,7 @@ public:
 	 */
 	int notifyCloseContainer(CreatureObject* player, SceneObject* container);
 
-	/**
+	/** 
 	 * check location of Player and return the marker position
 	 * checkLocation gets the PositionX/Y/Z from Player computing new coordinates based on quality of the fishing pole
 	 * @pre { this object is locked }
@@ -830,11 +834,11 @@ public:
 	 * @param quality Crafted Quality of the Fishing Pole
 	 * @param x x-Coordinate to be filled with marker position
 	 * @param y y-Coordinate to be filled with marker position
-	 * @param z z-Coordinate to be filled with marker position
+	 * @param z z-Coordinate to be filled with marker position 
 	 * @return { 0: everything worked, 1: Exception case, 3: No Water, 4: Water under terrain }
-	 * @TODO { once actually craftable the line range calculation probably needs to be adjusted to affect the outcome less }
+	 * @TODO { once actually craftable the line range calculation probably needs to be adjusted to affect the outcome less } 
 	 */
-	int checkLocation(CreatureObject* player, int quality, Vector3& location);
+	int checkLocation(CreatureObject* player, int quality, float& x, float& y, float& z);
 
 	/**
 	 * Starts Fishing Game
@@ -954,11 +958,10 @@ public:
 	 * based on pole quality, vegetation penalty, fish density bonus, bait status, and a random number
 	 * @pre { this object is locked }
 	 * @post { this object is locked }
-	 * @param player CreatureObject for which to randomize fish
-	 * @param marker SceneObject for vegation calculation
+	 * @param player CreatureObject for which to randomize fish 
 	 * @return { 0-6: Fish, 94-99: Misc Item }
 	 */
-	int getFish(CreatureObject* player, SceneObject* marker);
+	int getFish(CreatureObject* player);
 
 	/**
 	 * Gets Next Action from Event
@@ -1105,12 +1108,11 @@ public:
 	 * @post { object is locked }
 	 * @param text String to send to Player
 	 * @param player CreatureObject to which send message
-	 * @param marker SceneObject used for getFish function
 	 * @param boxID fishing window to close when calling stopFishing()
 	 * @param losebait If true the bait in the pole will be removed as an outcome of what happened
-	 * @param moodString String taken from player before fishing to return to after fishing
+	 * @param moodString String taken from player before fishing to return to after fishing 
 	 */
-	void mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, unsigned int boxID, bool losebait, String& moodString);
+	void mishapEvent(const String& text, CreatureObject* player, unsigned int boxID, bool losebait, String& moodString);
 
 	/**
 	 * Lose the Bait in the Container
@@ -1138,11 +1140,13 @@ public:
 	 * createMarker creates a SceneObject for tango/fishing/shared_marker.iff and inserts it at given coordinates
 	 * @pre { object is locked }
 	 * @post { object is locked }
-	 * @param Vector3 for location to create marker
+	 * @param x X-Coordinate of new marker
+	 * @param y Y-Coordinate of new marker
+	 * @param z Z-Coordinate of new marker
 	 * @param zone Zone used to create the marker in
 	 * @return { SceneObject of new marker }
 	 */
-	SceneObject* createMarker(Vector3& location, Zone* zone);
+	SceneObject* createMarker(float x, float y, float z, Zone* zone);
 
 	/**
 	 * Creates a small Splash at the given coordinates
@@ -1169,7 +1173,7 @@ public:
 	 * @param z Z-Coordinate of the splash
 	 * @return { true if beached, false if water }
 	 */
-	bool checkUpdateMarker(CreatureObject* player, Vector3& location);
+	bool checkUpdateMarker(CreatureObject* player, float& x, float& y, float& z);
 
 	bool isPlaying(CreatureObject* player);
 
@@ -1183,7 +1187,7 @@ public:
 	 * @param marker Object sent to event as new marker
 	 * @return { SceneObject of new Marker }
 	 */
-	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, unsigned int boxID, bool notifyPlayer);
+	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer);
 
 	/**
 	 * Removes the fishing marker
@@ -1255,19 +1259,13 @@ public:
 	void stopFishingEvent(CreatureObject* player);
 
 	/**
-	 * FishingEvent
+	 * FishingEvent getter
 	 * getFishingEvent is a readonly method that gets the FishingEvent from the events VectorMap and returns it
 	 * @pre { object is locked }
 	 * @post { object is locked }
 	 * @param player CreatureObject for which to get fishing event
 	 */
 	FishingEvent* getFishingEvent(CreatureObject* player);
-
-	/**
-	 * getPropertyString
-	 * Generates String for Fish Density and Vegetation.
-	 */
-	String getPropertyString(int amount);
 
 	WeakReference<FishingManager*> _this;
 
@@ -1312,7 +1310,21 @@ public:
 
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
-	void initialize();
+	void initializeBaitStatus();
+
+	void initializeProperty();
+
+	void initializeAction();
+
+	void initializeState();
+
+	void initializeFishType();
+
+	void initializeFishLength();
+
+	void initializeLoot();
+
+	void initializeColor();
 
 	int notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2);
 
@@ -1340,7 +1352,7 @@ public:
 
 	int density(SceneObject* marker);
 
-	int getFish(CreatureObject* player, SceneObject* marker);
+	int getFish(CreatureObject* player);
 
 	int getNextAction(CreatureObject* player);
 
@@ -1366,19 +1378,19 @@ public:
 
 	void fishingProceed(CreatureObject* player, int nextAction, SceneObject* marker, int fish, unsigned int boxID, int newstate, bool notifyClient, String& moodString);
 
-	void mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, unsigned int boxID, bool losebait, String& moodString);
+	void mishapEvent(const String& text, CreatureObject* player, unsigned int boxID, bool losebait, String& moodString);
 
 	bool loseBait(CreatureObject* player);
 
 	void animate(CreatureObject* player, int nextAction);
 
-	SceneObject* createMarker(Vector3& location, Zone* zone);
+	SceneObject* createMarker(float x, float y, float z, Zone* zone);
 
 	void createSplash(float x, float y, float z, Zone* zone, CreatureObject* player);
 
 	bool isPlaying(CreatureObject* player);
 
-	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, unsigned int boxID, bool notifyPlayer);
+	SceneObject* updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer);
 
 	void removeMarker(CreatureObject* player, SceneObject* container);
 
@@ -1387,8 +1399,6 @@ public:
 	void createFishingSplashEvent(CreatureObject* player, SceneObject* splash);
 
 	void stopFishingEvent(CreatureObject* player);
-
-	String getPropertyString(int amount);
 
 };
 
@@ -1425,9 +1435,21 @@ namespace minigames {
 
 class FishingManagerPOD : public ObserverPOD {
 public:
-	Optional<Vector<String>> fishingActions;
+	Optional<Vector<String>> miscLoot;
 
-	Optional<Vector<String>> fishingStates;
+	Optional<Vector<String>> rareLoot;
+
+	Optional<VectorMap<String, int>> color;
+
+	Optional<Vector<int>> fishLength;
+
+	Optional<Vector<String>> fishType;
+
+	Optional<Vector<String>> state;
+
+	Optional<Vector<String>> action;
+
+	Optional<Vector<String>> property;
 
 	Optional<Vector<String>> baitStatus;
 

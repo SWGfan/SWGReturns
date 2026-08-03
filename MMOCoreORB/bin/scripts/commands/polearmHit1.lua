@@ -44,13 +44,13 @@
 PolearmHit1Command = {
 	name = "polearmhit1",
 
-	damageMultiplier = 1.25,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.5,
-  mindCostMultiplier = 0,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.5,
+	accuracyBonus = 10,
+	
+	healthCostMultiplier = 1.0,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.5,
 
 	animation = "combo_2b", 
 	animType = GENERATE_INTENSITY,
@@ -59,7 +59,7 @@ PolearmHit1Command = {
 	
 	weaponType = POLEARMWEAPON,
 
-	range = 10
+	range = -1
 
 }
 

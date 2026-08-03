@@ -2,7 +2,6 @@ death_watch_black_sun_assassin = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_blksun_assassin",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 107,
@@ -12,7 +11,7 @@ death_watch_black_sun_assassin = Creature:new {
 	baseXp = 10081,
 	baseHAM = 40000,
 	baseHAMmax = 40000,
-	armor = 1,
+	armor = 2,
 	resists = {55,55,70,45,75,80,55,45,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -34,23 +33,14 @@ death_watch_black_sun_assassin = Creature:new {
 		{
 			groups = {
 				{group = "death_watch_bunker_commoners", chance = 9500000},
-				{group = "death_watch_bh_armor_schematics", chance = 250000},				
-				{group = "black_sun_weapons", chance = 250000},
+				{group = "blacksun_rare", chance = 500000}
 			},
-			lootChance = 7000000
+			lootChance = 1000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "deathwatch_ranged",
-	secondaryWeapon = "deathwatch_ranged",
+	weapons = {"battle_droid_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(bountyhuntermaster,marksmanmaster,carbineermaster),
-	secondaryAttacks = merge(bountyhuntermaster,marksmanmaster,carbineermaster),
+	attacks = merge(pistoleermaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(death_watch_black_sun_assassin, "death_watch_black_sun_assassin")

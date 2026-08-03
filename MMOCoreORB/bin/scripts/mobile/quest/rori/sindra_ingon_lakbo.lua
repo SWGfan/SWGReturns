@@ -2,7 +2,6 @@ sindra_ingon_lakbo = Creature:new {
   objectName = "@mob/creature_names:philosopher",
   socialGroup = "townsperson",
   faction = "townsperson",
-	mobType = MOB_NPC,
   level = 4,
   chanceHit = 0.240000,
   damageMin = 40,
@@ -28,14 +27,9 @@ sindra_ingon_lakbo = Creature:new {
 
   templates = {"object/mobile/dressed_philosopher.iff"},
   lootGroups = {},
-  primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+  weapons = {},
   conversationTemplate = "sindra_lintikoor_mission_target_convotemplate",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+  attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(sindra_ingon_lakbo, "sindra_ingon_lakbo")

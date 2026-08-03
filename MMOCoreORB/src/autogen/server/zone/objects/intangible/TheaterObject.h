@@ -73,9 +73,9 @@ using namespace server::zone::objects::scene;
 namespace server {
 namespace zone {
 
-class TreeEntry;
+class QuadTreeEntry;
 
-class TreeEntryPOD;
+class QuadTreeEntryPOD;
 
 } // namespace zone
 } // namespace server
@@ -109,9 +109,9 @@ public:
 
 	void setShouldFlatten(bool b);
 
-	void notifyInsert(TreeEntry* entry);
+	void notifyInsert(QuadTreeEntry* entry);
 
-	void notifyDissapear(TreeEntry* entry);
+	void notifyDissapear(QuadTreeEntry* entry);
 
 	void activateDespawnEvent();
 
@@ -169,9 +169,9 @@ public:
 
 	void setShouldFlatten(bool b);
 
-	void notifyInsert(TreeEntry* entry);
+	void notifyInsert(QuadTreeEntry* entry);
 
-	void notifyDissapear(TreeEntry* entry);
+	void notifyDissapear(QuadTreeEntry* entry);
 
 	void activateDespawnEvent();
 
@@ -233,9 +233,9 @@ public:
 
 	void setShouldFlatten(bool b);
 
-	void notifyInsert(TreeEntry* entry);
+	void notifyInsert(QuadTreeEntry* entry);
 
-	void notifyDissapear(TreeEntry* entry);
+	void notifyDissapear(QuadTreeEntry* entry);
 
 	void activateDespawnEvent();
 

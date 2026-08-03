@@ -41,17 +41,16 @@ include system.util.SortedVector;
 include system.lang.ref.WeakReference;
 include engine.log.Logger;
 include server.zone.CloseObjectsVector;
-include server.zone.TreeEntry;
+include server.zone.QuadTreeEntry;
 import system.util.SynchronizedVectorMap;
 import server.zone.managers.auction.AuctionSearchTask;
-import server.zone.objects.tangible.Instrument;
 
 @mock
 @json
 class CreatureObject extends TangibleObject {
-	@rawTemplate(value = "ZoneClientSession*")
-	@dereferenced
-	protected transient WeakReference owner;
+		@rawTemplate(value = "ZoneClientSession*")	
+		@dereferenced	
+		protected transient WeakReference owner;
 
     	protected CreditObject creditObject;
 
@@ -125,8 +124,8 @@ class CreatureObject extends TangibleObject {
 
 	protected unsigned long targetID;
 	protected byte moodID;
-	protected int performanceStartTime;
-	protected int performanceType;
+	protected int performanceCounter;
+	protected int instrumentID;
 
 	@dereferenced
 	protected DeltaVector<int> hamList;
@@ -158,17 +157,6 @@ class CreatureObject extends TangibleObject {
 
 	@dereferenced
 	protected Time nextAction;
-
-	@local
-	public Time getNextActionTime() {
-		return nextAction;
-	}
-
-	@dereferenced
-	protected Time nextImmediateAction;
-
-	@dereferenced
-	protected Time removeAction;
 
 	@transactional
 	protected transient CooldownTimerMap cooldownTimerMap;
@@ -607,14 +595,14 @@ class CreatureObject extends TangibleObject {
 	public native int notifyObjectRemoved(SceneObject object);
 
 	/**
-	 * Updates the performance type to the specified type
+	 * Updates the instrument id to the specified object id
 	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified index }
-	 * @param type the new performance type
+	 * @post { this object is locked, this object has the specified weapon id }
+	 * @param instrumentid the new instrument id
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
 	@preLocked
-	public native void setPerformanceType(int type, boolean notifyClient = true);
+	public native void setInstrumentID(int instrumentid, boolean notifyClient = true);
 
 	/**
 	 * Updates listen id
@@ -623,14 +611,14 @@ class CreatureObject extends TangibleObject {
 	public native void setListenToID(unsigned long id, boolean notifyClient = true);
 
 	/**
-	 * Updates the preformance start time
+	 * Updates the preformance counter
 	 * @pre { this object is locked }
 	 * @post { this object is locked, this object has the counter updated }
 	 * @param counter new performance counter
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
 	@preLocked
-	public native void setPerformanceStartTime(int counter, boolean notifyClient = true);
+	public native void setPerformanceCounter(int counter, boolean notifyClient = true);
 
 	/**
 	 * Updates the preformance animation string
@@ -1041,9 +1029,6 @@ class CreatureObject extends TangibleObject {
 	public native boolean clearState(unsigned long state, boolean notifyClient = true);
 
 	@preLocked
-	public native void clearSpaceStates();
-
-	@preLocked
 	public void setControlDevice(ControlDevice device) {
 		controlDevice = device;
 	}
@@ -1192,14 +1177,14 @@ class CreatureObject extends TangibleObject {
 	public native void notifyLoadFromDatabase();
 
 	@local
-	public native void notifyInsert(TreeEntry obj);
+	public native void notifyInsert(QuadTreeEntry obj);
 
 	@local
-	public native void notifyDissapear(TreeEntry obj);
+	public native void notifyDissapear(QuadTreeEntry obj);
 
 	@dirty
 	@local
-	public native void notifyPositionUpdate(TreeEntry entry);
+	public native void notifyPositionUpdate(QuadTreeEntry entry);
 
 	/**
 	 * Destroys this object from database
@@ -1219,8 +1204,6 @@ class CreatureObject extends TangibleObject {
 
 	@read
 	public native string getFirstName();
-
-	public native string setFirstName(final string newFirstName, boolean skipVerify);
 
 	public native string setFirstName(final string newFirstName);
 
@@ -1326,7 +1309,7 @@ class CreatureObject extends TangibleObject {
 	@preLocked
 	public native void setRootedState(int durationSeconds = 20);
 
-	public native boolean setNextAttackDelay(CreatureObject attacker, final string command, unsigned int mod, int del);
+	public native boolean setNextAttackDelay(unsigned int mod, int del);
 
 	@preLocked
 	public native void setMeditateState();
@@ -1350,7 +1333,9 @@ class CreatureObject extends TangibleObject {
 		return !cooldownTimerMap.isPast("nextAttackDelay");
 	}
 
-	public native void removeAttackDelay();
+	public void removeAttackDelay() {
+		cooldownTimerMap.updateToCurrentTime("nextAttackDelay");
+	}
 
 	@read
 	public boolean hasIncapTimer() {
@@ -1371,15 +1356,13 @@ class CreatureObject extends TangibleObject {
 		lastSuccessfulCombatAction.updateToCurrentTime();
 	}
 
-	public native void setPostureChangeDelay(unsigned long delay);
-
-	@read
-	public boolean hasPostureChangeDelay() {
-		return !cooldownTimerMap.isPast("postureChangeDelay");
+	public void updatePostureChangeDelay(unsigned long delay) {
+		cooldownTimerMap.updateToCurrentAndAddMili("postureChangeDelay", delay);
 	}
 
-	public void removePostureChangeDelay() {
-		cooldownTimerMap.updateToCurrentTime("postureChangeDelay");
+	@read
+	public boolean checkPostureChangeDelay() {
+		return cooldownTimerMap.isPast("postureChangeDelay");
 	}
 
 	public void updatePostureDownRecovery() {
@@ -1490,8 +1473,6 @@ class CreatureObject extends TangibleObject {
 	@preLocked
 	public native void activateQueueAction();
 
-	public native void removeQueueAction(int action);
-
 	@preLocked
 	public native void activateImmediateAction();
 
@@ -1562,13 +1543,11 @@ class CreatureObject extends TangibleObject {
 		return encumbrances;
 	}
 
-	@mock
 	@read
-	public abstract byte getPosture() {
+	public byte getPosture() {
 		return posture;
 	}
 
-	@mock
 	@read
 	public byte getLocomotion() {
 		return locomotion;
@@ -1610,15 +1589,9 @@ class CreatureObject extends TangibleObject {
 		return stateBitmask;
 	}
 
-	@mock
 	@read
-	public abstract boolean hasState(unsigned long state) {
+	public boolean hasState(unsigned long state) {
 		return stateBitmask & state;
-	}
-
-	@read
-	public boolean isPilotingShip() {
-		return (stateBitmask & CreatureState.PILOTINGSHIP) || (stateBitmask & CreatureState.PILOTINGPOBSHIP);
 	}
 
 	@read
@@ -1648,12 +1621,11 @@ class CreatureObject extends TangibleObject {
 
 	@read
 	public float getSpeedMultiplierMod() {
-		return speedMultiplierMod * 1.25;
+		return speedMultiplierMod;
 	}
 
-	@mock
 	@read
-	public abstract float getCurrentSpeed() {
+	public float getCurrentSpeed() {
 		return currentSpeed;
 	}
 
@@ -1669,13 +1641,6 @@ class CreatureObject extends TangibleObject {
 	@read
 	public final CommandQueueActionVector getCommandQueue() {
 		return commandQueue;
-	}
-
-	@preLocked
-	@local
-	@read
-	public final CommandQueueActionVector getImmediateQueue() {
-		return immediateQueue;
 	}
 
 	@read
@@ -1704,7 +1669,7 @@ class CreatureObject extends TangibleObject {
 
 	@read
 	public float getRunSpeed() {
-		return runSpeed * 1.25;
+		return runSpeed;
 	}
 
 	@read
@@ -1752,10 +1717,6 @@ class CreatureObject extends TangibleObject {
 	@dirty
 	@preLocked
 	public native WeaponObject getWeapon();
-
-	@mock
-	@dirty
-	public abstract native WeaponObject getDefaultWeapon();
 
 	@weakReference
 	@read
@@ -1825,13 +1786,13 @@ class CreatureObject extends TangibleObject {
 	}
 
 	@read
-	public int getPerformanceStartTime() {
-		return performanceStartTime;
+	public int getPerformanceCounter() {
+		return performanceCounter;
 	}
 
 	@read
-	public int getPerformanceType() {
-		return performanceType;
+	public int getInstrumentID() {
+		return instrumentID;
 	}
 
 	@read
@@ -1974,15 +1935,13 @@ class CreatureObject extends TangibleObject {
 		return swimHeight;
 	}
 
-	@mock
 	@read
-	public abstract boolean isIncapacitated() {
+	public boolean isIncapacitated() {
 		return posture == CreaturePosture.INCAPACITATED;
 	}
 
-	@mock
 	@read
-	public abstract boolean isDead() {
+	public boolean isDead() {
 		return posture == CreaturePosture.DEAD;
 	}
 
@@ -2021,9 +1980,8 @@ class CreatureObject extends TangibleObject {
 		return stateBitmask & CreatureState.RALLIED;
 	}
 
-	@mock
 	@read
-	public abstract boolean isInCombat() {
+	public boolean isInCombat() {
 		return stateBitmask & CreatureState.COMBAT;
 	}
 
@@ -2125,11 +2083,6 @@ class CreatureObject extends TangibleObject {
 	@read
 	public boolean isInCover() {
 		return stateBitmask & CreatureState.COVER;
-	}
-
-	@read
-	public boolean isWalking() {
-		return currentSpeed <= walkSpeed;
 	}
 
 	@read
@@ -2268,7 +2221,4 @@ class CreatureObject extends TangibleObject {
 	public void setAuctionSearchTask(AuctionSearchTask task) {
 		auctionSearch = task;
 	}
-
-	@local
-	public native Instrument getPlayableInstrument();
 }

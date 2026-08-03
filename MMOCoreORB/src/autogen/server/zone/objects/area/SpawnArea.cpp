@@ -12,7 +12,7 @@
  *	SpawnAreaStub
  */
 
-enum {RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_SETTIER__INT_,RPC_GETTIER__,RPC_GETTOTALWEIGHTING__,RPC_SETMAXSPAWNLIMIT__INT_,RPC_ADDNOSPAWNAREA__SPAWNAREA_,RPC_TRYTOSPAWN__SCENEOBJECT_,RPC_ISWORLDSPAWNAREA__,RPC_SETWORLDSPAWNAREA__BOOL_};
+enum {RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_SETTIER__INT_,RPC_GETTIER__,RPC_GETTOTALWEIGHTING__,RPC_SETMAXSPAWNLIMIT__INT_,RPC_ADDNOSPAWNAREA__SPAWNAREA_,RPC_TRYTOSPAWN__SCENEOBJECT_};
 
 SpawnArea::SpawnArea() : ActiveArea(DummyConstructorParameter::instance()) {
 	SpawnAreaImplementation* _implementation = new SpawnAreaImplementation();
@@ -170,36 +170,6 @@ void SpawnArea::tryToSpawn(SceneObject* object) {
 	}
 }
 
-bool SpawnArea::isWorldSpawnArea() const {
-	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISWORLDSPAWNAREA__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isWorldSpawnArea();
-	}
-}
-
-void SpawnArea::setWorldSpawnArea(bool val) {
-	SpawnAreaImplementation* _implementation = static_cast<SpawnAreaImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETWORLDSPAWNAREA__BOOL_);
-		method.addBooleanParameter(val);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setWorldSpawnArea(val);
-	}
-}
-
 DistributedObjectServant* SpawnArea::_getImplementation() {
 
 	 if (!_updated) _updated = true;
@@ -342,10 +312,6 @@ bool SpawnAreaImplementation::readObjectMember(ObjectInputStream* stream, const 
 		TypeInfo<Vector<ManagedWeakReference<SpawnArea*> > >::parseFromBinaryStream(&noSpawnAreas, stream);
 		return true;
 
-	case 0xa9200c52: //SpawnArea.worldSpawnArea
-		TypeInfo<bool >::parseFromBinaryStream(&worldSpawnArea, stream);
-		return true;
-
 	case 0x7d230e7e: //SpawnArea.tier
 		TypeInfo<int >::parseFromBinaryStream(&tier, stream);
 		return true;
@@ -440,15 +406,6 @@ int SpawnAreaImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0xa9200c52; //SpawnArea.worldSpawnArea
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&worldSpawnArea, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0x7d230e7e; //SpawnArea.tier
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -482,8 +439,6 @@ void SpawnAreaImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["noSpawnAreas"] = noSpawnAreas;
 
-	thisObject["worldSpawnArea"] = worldSpawnArea;
-
 	thisObject["tier"] = tier;
 
 	j["SpawnArea"] = thisObject;
@@ -501,8 +456,6 @@ SpawnAreaImplementation::SpawnAreaImplementation() {
 	(&spawnTypes)->setNullValue(0);
 	// server/zone/objects/area/SpawnArea.idl():  		exitObserver = null;
 	exitObserver = NULL;
-	// server/zone/objects/area/SpawnArea.idl():  		worldSpawnArea = false;
-	worldSpawnArea = false;
 	// server/zone/objects/area/SpawnArea.idl():  		Logger.setLoggingName("SpawnArea");
 	Logger::setLoggingName("SpawnArea");
 }
@@ -535,16 +488,6 @@ void SpawnAreaImplementation::setMaxSpawnLimit(int n) {
 void SpawnAreaImplementation::addNoSpawnArea(SpawnArea* area) {
 	// server/zone/objects/area/SpawnArea.idl():  		noSpawnAreas.add(area);
 	(&noSpawnAreas)->add(area);
-}
-
-bool SpawnAreaImplementation::isWorldSpawnArea() const{
-	// server/zone/objects/area/SpawnArea.idl():  		return worldSpawnArea;
-	return worldSpawnArea;
-}
-
-void SpawnAreaImplementation::setWorldSpawnArea(bool val) {
-	// server/zone/objects/area/SpawnArea.idl():  		worldSpawnArea = val;
-	worldSpawnArea = val;
 }
 
 /*
@@ -619,21 +562,6 @@ void SpawnAreaAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_ISWORLDSPAWNAREA__:
-		{
-			
-			bool _m_res = isWorldSpawnArea();
-			resp->insertBoolean(_m_res);
-		}
-		break;
-	case RPC_SETWORLDSPAWNAREA__BOOL_:
-		{
-			bool val = inv->getBooleanParameter();
-			
-			setWorldSpawnArea(val);
-			
-		}
-		break;
 	default:
 		ActiveAreaAdapter::invokeMethod(methid, inv);
 	}
@@ -665,14 +593,6 @@ void SpawnAreaAdapter::addNoSpawnArea(SpawnArea* area) {
 
 void SpawnAreaAdapter::tryToSpawn(SceneObject* object) {
 	(static_cast<SpawnArea*>(stub))->tryToSpawn(object);
-}
-
-bool SpawnAreaAdapter::isWorldSpawnArea() const {
-	return (static_cast<SpawnArea*>(stub))->isWorldSpawnArea();
-}
-
-void SpawnAreaAdapter::setWorldSpawnArea(bool val) {
-	(static_cast<SpawnArea*>(stub))->setWorldSpawnArea(val);
 }
 
 /*
@@ -754,9 +674,6 @@ void SpawnAreaPOD::writeJSON(nlohmann::json& j) {
 
 	if (noSpawnAreas)
 		thisObject["noSpawnAreas"] = noSpawnAreas.value();
-
-	if (worldSpawnArea)
-		thisObject["worldSpawnArea"] = worldSpawnArea.value();
 
 	if (tier)
 		thisObject["tier"] = tier.value();
@@ -866,17 +783,6 @@ int SpawnAreaPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_count++;
 	}
 
-	if (worldSpawnArea) {
-	_nameHashCode = 0xa9200c52; //SpawnArea.worldSpawnArea
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<bool >::toBinaryStream(&worldSpawnArea.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (tier) {
 	_nameHashCode = 0x7d230e7e; //SpawnArea.tier
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -961,14 +867,6 @@ bool SpawnAreaPOD::readObjectMember(ObjectInputStream* stream, const uint32& nam
 		}
 		return true;
 
-	case 0xa9200c52: //SpawnArea.worldSpawnArea
-		{
-			bool _mnworldSpawnArea;
-			TypeInfo<bool >::parseFromBinaryStream(&_mnworldSpawnArea, stream);
-			worldSpawnArea = std::move(_mnworldSpawnArea);
-		}
-		return true;
-
 	case 0x7d230e7e: //SpawnArea.tier
 		{
 			int _mntier;
@@ -1018,8 +916,6 @@ void SpawnAreaPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<ManagedReference<SpawnAreaObserverPOD* > >::toBinaryStream(&exitObserver.value(), stream);
 
 	TypeInfo<Vector<ManagedWeakReference<SpawnArea*> > >::toBinaryStream(&noSpawnAreas.value(), stream);
-
-	TypeInfo<bool >::toBinaryStream(&worldSpawnArea.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&tier.value(), stream);
 

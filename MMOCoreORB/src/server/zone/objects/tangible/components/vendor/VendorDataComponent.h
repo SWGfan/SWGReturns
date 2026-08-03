@@ -222,14 +222,14 @@ public:
 		return barkAnimation;
 	}
 
-	bool hasBarkTarget(uint64 targetID) {
+	bool hasBarkTarget(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		return vendorBarks.contains(targetID);
+		return vendorBarks.contains(target->getObjectID());
 	}
 
-	void addBarkTarget(uint64 targetID) {
+	void addBarkTarget(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		vendorBarks.add(targetID);
+		vendorBarks.add(target->getObjectID());
 	}
 
 	bool canBark() {
@@ -242,9 +242,9 @@ public:
 		lastBark = time(0);
 	}
 
-	void removeBarkTarget(uint64 targetID) {
+	void clearVendorBark(SceneObject* target) {
 		Locker locker(&adBarkingMutex);
-		vendorBarks.removeElement(targetID);
+		vendorBarks.removeElement(target->getObjectID());
 	}
 
 	void removeAllVendorBarks() {

@@ -7,7 +7,7 @@ package server.zone.objects.building;
 import server.zone.objects.building.BuildingObject;
 import server.zone.objects.creature.CreatureObject;
 import server.zone.objects.scene.SceneObject;
-import server.zone.TreeEntry;
+import server.zone.QuadTreeEntry;
 
 include system.thread.atomic.AtomicInteger;
 include server.zone.objects.tangible.DespawnLairOnPlayerDisappear;
@@ -45,7 +45,7 @@ class PoiBuilding extends BuildingObject {
 		despawnOnNoPlayersInRange = b;
 	}
 
-	public void notifyInsert(TreeEntry entry) {
+	public void notifyInsert(QuadTreeEntry entry) {
 		SceneObject obj = (SceneObject) entry;
 
 		if (obj == this)
@@ -60,7 +60,7 @@ class PoiBuilding extends BuildingObject {
 		}
 	}
 
-	public void notifyDissapear(TreeEntry entry) {
+	public void notifyDissapear(QuadTreeEntry entry) {
 		SceneObject obj = (SceneObject) entry;
 
 		if (obj == this)

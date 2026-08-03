@@ -2,7 +2,6 @@ bh_singing_mountain_clan_arch_witch = Creature:new {
 	objectName = "@mob/creature_names:singing_mtn_clan_arch_witch",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "mtn_clan",
 	faction = "mtn_clan",
 	level = 107,
@@ -10,9 +9,9 @@ bh_singing_mountain_clan_arch_witch = Creature:new {
 	damageMin = 645,
 	damageMax = 1000,
 	baseXp = 10174,
-	baseHAM = 34000,
-	baseHAMmax = 45000,
-	armor = 1,
+	baseHAM = 24000,
+	baseHAMmax = 30000,
+	armor = 2,
 	resists = {100,35,35,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -32,58 +31,53 @@ bh_singing_mountain_clan_arch_witch = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 8500000
+			lootChance = 5140000
 		},
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 6000000
+			lootChance = 5140000
 		},
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 2000000}, 
+				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 4000000
-		},
+			lootChance = 5140000
+		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_singing_mountain_clan_arch_witch, "bh_singing_mountain_clan_arch_witch")

@@ -44,27 +44,55 @@
 SaberPolearmHit3Command = {
         name = "saberpolearmhit3",
   
-	damageMultiplier = 2.5,
-	speedMultiplier = 2.5,
+	damageMultiplier = 5.5,
+	speedMultiplier = 4.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-	forceCostMultiplier = 2.5,
-	accuracyBonus = 50,
+	accuracyBonus = 25,
+	forceCostMultiplier = 2.0,
 	visMod = 25,
 
-
+	stateEffects = {
+	   StateEffect( 
+		BLIND_EFFECT, 
+		{}, 
+		{ "blind_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		75, 
+		0, 
+		60 
+	  ),
+	  StateEffect( 
+		DIZZY_EFFECT, 
+		{}, 
+		{ "dizzy_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		75, 
+		0, 
+		30 
+	  ),
+	  StateEffect( 
+		STUN_EFFECT, 
+		{}, 
+		{ "stun_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
+		76, 
+		0, 
+		60 
+	  )
+	},
 
 	animation = "combo_4b", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "saberpolearmhit3",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	weaponType = POLEARMJEDIWEAPON,
 
-	range = 10
+	range = -1
 }
 
 AddCommand(SaberPolearmHit3Command)

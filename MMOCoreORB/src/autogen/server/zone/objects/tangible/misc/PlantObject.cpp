@@ -16,9 +16,7 @@
  *	PlantObjectStub
  */
 
-unsigned const long long PlantObject::PULSERATE = 21600000;
-
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 713415823,RPC_FINALIZE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_INITIALIZEPLANT__INT_,RPC_SENDRESOURCESUI__CREATUREOBJECT_INT_,RPC_GETCRITICALATTRIBUTE__INT_,RPC_CHANGESIZE__INT_,RPC_UPDATELASTPULSE__,RPC_GETWATERLEVEL__,RPC_GETIDEALWATERLEVEL__,RPC_GETIDEALNUTRIENTLEVEL__,RPC_GETNUTRIENTLEVEL__,RPC_GETNUTRIENTQUALITY__,RPC_GETWATERQUALITY__,RPC_GETPLANTHEALTH__,RPC_GETGROWTH__,RPC_GETSIZE__,RPC_GETFRUIT__,RPC_GETCRITICALATTRIBUTEONE__,RPC_GETCRITICALATTRIBUTETWO__,RPC_SETNUTRIENTLEVEL__INT_,RPC_SETNUTRIENTQUALITY__INT_,RPC_SETWATERLEVEL__INT_,RPC_SETWATERQUALITY__INT_,RPC_SETPLANTHEALTH__INT_,RPC_SETFRUIT__INT_,RPC_ISPLANTOBJECT__,RPC_SETGROWTHRATE__INT_,RPC_SETGROWTH__INT_,RPC_STARTPULSE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 713415823,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_INITIALIZEPLANT__INT_,RPC_SENDRESOURCESUI__CREATUREOBJECT_INT_,RPC_GETCRITICALATTRIBUTE__INT_,RPC_CHANGESIZE__INT_,RPC_UPDATELASTPULSE__,RPC_GETWATERLEVEL__,RPC_GETIDEALWATERLEVEL__,RPC_GETIDEALNUTRIENTLEVEL__,RPC_GETNUTRIENTLEVEL__,RPC_GETNUTRIENTQUALITY__,RPC_GETWATERQUALITY__,RPC_GETPLANTHEALTH__,RPC_GETGROWTH__,RPC_GETSIZE__,RPC_GETFRUIT__,RPC_GETCRITICALATTRIBUTEONE__,RPC_GETCRITICALATTRIBUTETWO__,RPC_SETNUTRIENTLEVEL__INT_,RPC_SETNUTRIENTQUALITY__INT_,RPC_SETWATERLEVEL__INT_,RPC_SETWATERQUALITY__INT_,RPC_SETPLANTHEALTH__INT_,RPC_SETFRUIT__INT_,RPC_ISPLANTOBJECT__,RPC_SETGROWTHRATE__INT_,RPC_SETGROWTH__INT_,RPC_STARTPULSE__};
 
 PlantObject::PlantObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	PlantObjectImplementation* _implementation = new PlantObjectImplementation();
@@ -519,17 +517,17 @@ void PlantObject::_setImplementation(DistributedObjectServant* servant) {
  *	PlantObjectImplementation
  */
 
-unsigned const long long PlantObjectImplementation::PULSERATE = 21600000;
-
 PlantObjectImplementation::PlantObjectImplementation(DummyConstructorParameter* param) : TangibleObjectImplementation(param) {
 	_initializeImplementation();
 }
 
 
 PlantObjectImplementation::~PlantObjectImplementation() {
-	PlantObjectImplementation::finalize();
 }
 
+
+void PlantObjectImplementation::finalize() {
+}
 
 void PlantObjectImplementation::_initializeImplementation() {
 	_setClassHelper(PlantObjectHelper::instance());
@@ -1028,13 +1026,6 @@ void PlantObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_FINALIZE__:
-		{
-			
-			finalize();
-			
-		}
-		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -1253,10 +1244,6 @@ void PlantObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 
 void PlantObjectAdapter::initializeTransientMembers() {
 	(static_cast<PlantObject*>(stub))->initializeTransientMembers();
-}
-
-void PlantObjectAdapter::finalize() {
-	(static_cast<PlantObject*>(stub))->finalize();
 }
 
 int PlantObjectAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

@@ -37,6 +37,7 @@
 #include "TaxPayMailTask.h"
 #include "templates/tangible/SharedStructureObjectTemplate.h"
 #include "server/zone/objects/player/sui/callbacks/RenameCitySuiCallback.h"
+#include "server/zone/objects/transaction/TransactionLog.h"
 
 #ifndef CITY_DEBUG
 #define CITY_DEBUG
@@ -200,9 +201,9 @@ CityRegion* CityManagerImplementation::createCity(CreatureObject* mayor, const S
 
 	city->setCustomRegionName(cityName);
 	city->setZone(mayor->getZone());
-	city->setCityRank(METROPOLIS);
+	city->setCityRank(OUTPOST);
 	city->setMayorID(mayor->getObjectID());
-	Region* region = city->addRegion(x, y, radiusPerRank.get(METROPOLIS - 1), true);
+	Region* region = city->addRegion(x, y, radiusPerRank.get(OUTPOST - 1), true);
 
 	city->resetVotingPeriod();
 	city->setAssessmentPending(true);
@@ -571,8 +572,12 @@ void CityManagerImplementation::withdrawFromCityTreasury(CityRegion* city, Creat
 		return;
 	}
 
-	mayor->addBankCredits(value, true);
-	city->subtractFromCityTreasury(value);
+	{
+		TransactionLog trx(TrxCode::CITYTREASURY, mayor, value, false);
+		trx.addState("treasury", city->getCityTreasury());
+		mayor->addBankCredits(value, true);
+		city->subtractFromCityTreasury(value);
+	}
 
 	mayor->addCooldown("city_withdrawal", CityManagerImplementation::treasuryWithdrawalCooldown);
 
@@ -595,57 +600,44 @@ void CityManagerImplementation::promptDepositCityTreasury(CityRegion* city, Crea
 
 	if (ghost == nullptr)
 		return;
-	int cash = creature->getCashCredits();
-	int bank = creature->getBankCredits();
-	int totalPlayerCredits = bank + cash;
 
 	ManagedReference<SuiTransferBox*> transfer = new SuiTransferBox(creature, SuiWindowType::CITY_TREASURY_DEPOSIT);
 	transfer->setPromptTitle("@city/city:treasury_deposit"); //Treasury Deposit
 	transfer->setPromptText("@city/city:treasury_deposit_d"); //Enter the amount you would like to transfer to the city treasury.
-	transfer->addFrom("@city/city:funds", String::valueOf(totalPlayerCredits), String::valueOf(totalPlayerCredits), "1");
+	transfer->addFrom("@city/city:funds", String::valueOf(creature->getCashCredits()), String::valueOf(creature->getCashCredits()), "1");
 	transfer->addTo("@city/city:treasury", "0", "0", "1");
 	transfer->setUsingObject(terminal);
 	transfer->setForceCloseDistance(16.f);
 	transfer->setCallback(new CityTreasuryDepositSuiCallback(zoneServer, city));
+
 	ghost->addSuiBox(transfer);
 	creature->sendMessage(transfer->generateMessage());
 }
+
 void CityManagerImplementation::depositToCityTreasury(CityRegion* city, CreatureObject* creature, int amount) {
 	int cash = creature->getCashCredits();
-	int bank = creature->getBankCredits();
-	int totalPlayerCredits = bank + cash;
-	int total = totalPlayerCredits - amount;
 
-	if (total < 1 || total > totalPlayerCredits) {
+	int total = cash - amount;
+
+	if (total < 1 || total > cash) {
 		creature->sendSystemMessage("@city/city:positive_deposit"); //You must select a positive amount to transfer to the treasury.
 		return;
 	}
+
 	double currentTreasury = city->getCityTreasury();
+
 	if ((int)currentTreasury + total > 100000000) {
 		creature->sendSystemMessage("The maximum treasury a city can have is 100.000.000");
 		return;
 	}
+
 	{
-		// If player does not have enough cash on them, but they DO have enough credits in their bank, take the cash they have and the difference from their bank.
-		if (total > cash) {
-			int diff = total - cash;
-			if (bank >= diff) {
-				creature->subtractCashCredits(cash);
-				creature->subtractBankCredits(diff);
-				city->addToCityTreasury(total);
-				return;
-			}
-			// If they don't have enough credits in their cash OR bank then err.
-			// However, this code should never hit if the above logic works. This is just a paranoid safeguard!
-			else {
-				creature->sendSystemMessage("You do not have enough total funds to complete this transaction."); //You must select a positive amount to transfer to the treasury.
-				return;
-			}
-		}
-		// If we have enough cash on-hand then we just do this
+		TransactionLog trx(creature, TrxCode::CITYTREASURY, total, true);
+		trx.addState("treasury", city->getCityTreasury());
 		creature->subtractCashCredits(total);
 		city->addToCityTreasury(total);
 	}
+
 	StringIdChatParameter params("city/city", "deposit_treasury"); //You deposit %DI credits into the treasury.
 	params.setDI(total);
 	creature->sendSystemMessage(params);
@@ -769,7 +761,7 @@ void CityManagerImplementation::processCityUpdate(CityRegion* city) {
 			Reference<PlayerObject*> ghost = mayor->getSlottedObject("ghost").castTo<PlayerObject*> ();
 
 			if (ghost != nullptr) {
-				{ TransactionLog trx(TrxCode::EXPERIENCE, ghost); ghost->addExperience(trx, "political", 3000, true); }
+				ghost->addExperience("political", 750, true);
 			}
 		}
 		updateCityVoting(city);
@@ -1156,7 +1148,7 @@ void CityManagerImplementation::updateCityVoting(CityRegion* city, bool override
 			Reference<PlayerObject*> ghost = mayorObject->getSlottedObject("ghost").castTo<PlayerObject*>();
 
 			if (ghost != nullptr) {
-				{ TransactionLog trx(TrxCode::EXPERIENCE, ghost); ghost->addExperience(trx, "political", votes * 3000, true); }
+				ghost->addExperience("political", votes * 1200, true);
 			}
 
 			if (votes > topVotes || (votes == topVotes && candidateID == incumbentID)) {
@@ -1632,6 +1624,10 @@ void CityManagerImplementation::sendCityAdvancement(CityRegion* city, CreatureOb
 	StringIdChatParameter params("city/city", "city_update_eta"); // Next City Update: %TO
 	params.setTO(getNextUpdateTimeString(city));
 	creature->sendSystemMessage(params);
+	String nextVote = getNextVoteTimeString(city);
+	StringBuffer voteBuffer;
+	voteBuffer << "Next City Vote: " << nextVote;
+	creature->sendSystemMessage(voteBuffer.toString());
 }
 
 String CityManagerImplementation::getNextUpdateTimeString(CityRegion* city) {
@@ -1696,6 +1692,69 @@ String CityManagerImplementation::getNextUpdateTimeString(CityRegion* city) {
 	return updateStr;
 }
 
+String CityManagerImplementation::getNextVoteTimeString(CityRegion* city) {
+	if (city == nullptr)
+		return "";
+
+	int seconds = city->getTimeToVote();
+
+	int days = floor(seconds / 86400);
+	seconds -= days * 86400;
+
+	int hours = floor(seconds / 3600);
+	seconds -= hours * 3600;
+
+	int minutes = floor(seconds / 60);
+	seconds -= minutes * 60;
+
+	StringBuffer buffer;
+
+	if (days > 0) {
+		buffer << days << " day";
+
+		if (days > 1)
+			buffer << "s";
+
+		if (hours > 0 || minutes > 0 || seconds > 0)
+			buffer << ", ";
+	}
+
+	if (hours > 0) {
+		buffer << hours << " hour";
+
+		if (hours > 1)
+			buffer << "s";
+
+		if (minutes > 0 || seconds > 0)
+			buffer << ", ";
+	}
+
+	if (minutes > 0) {
+		buffer << minutes << " minute";
+
+		if (minutes > 1)
+			buffer << "s";
+
+		if (seconds > 0)
+			buffer << ", ";
+	}
+
+	if (seconds > 0) {
+		buffer << seconds << " second";
+
+		if (seconds > 1)
+			buffer << "s";
+	}
+
+	String updateStr = buffer.toString();
+
+	if (updateStr.isEmpty())
+		updateStr = "Now";
+
+	return updateStr;
+}
+
+
 void CityManagerImplementation::promptRegisterCity(CityRegion* city, CreatureObject* creature, SceneObject* terminal) {
 	PlayerObject* ghost = creature->getPlayerObject();
 
@@ -1750,9 +1809,6 @@ void CityManagerImplementation::registerCity(CityRegion* city, CreatureObject* m
 	Reference<const PlanetMapCategory*> cityCat = TemplateManager::instance()->getPlanetMapCategoryByName("city");
 
 	if (cityCat == nullptr)
-		return;
-
-	if (city->getRegionsCount() == 0)
 		return;
 
 	city->setRegistered(true);

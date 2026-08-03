@@ -2,7 +2,6 @@ mauler_lord = Creature:new {
 	objectName = "@mob/creature_names:mauler_lord",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "mauler",
 	faction = "",
 	level = 27,
@@ -37,25 +36,11 @@ mauler_lord = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "mauler_common", chance = 2000000}
 			}
-		},
-		{
-			groups = {
-				{group = "weapon_component_advanced", chance = 10000000}
-			},
-			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_heavy"},
 	reactionStf = "@npc_reaction/fancy",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,bountyhuntermaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster,bountyhuntermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(mauler_lord, "mauler_lord")

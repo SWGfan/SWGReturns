@@ -168,7 +168,7 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 		}
 
 	} else if (petType == PetManager::FACTIONPET){
-		maxPets = 999;
+		maxPets = 3;
 	}
 
 	for (int i = 0; i < ghost->getActivePetsSize(); ++i) {
@@ -177,6 +177,7 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 		if (object != nullptr) {
 			if (object->isCreature() && petType == PetManager::CREATUREPET) {
 				const CreatureTemplate* activePetTemplate = object->getCreatureTemplate();
+				info("Pet: " + String::valueOf(activePetTemplate->getTemplateName()), true);
 
 				if (activePetTemplate == nullptr || activePetTemplate->getTemplateName() == "at_st")
 					continue;
@@ -193,7 +194,7 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 					return;
 				}
 			} else if (object->isNonPlayerCreatureObject() && petType == PetManager::FACTIONPET) {
-				if (false) {
+				if (++currentlySpawned >= maxPets) {
 					player->sendSystemMessage("@pet/pet_menu:at_max"); // You already have the maximum number of pets of this type that you can call.
 					return;
 				}
@@ -201,10 +202,10 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 				const CreatureTemplate* activePetTemplate = object->getCreatureTemplate();
 				const CreatureTemplate* callingPetTemplate = pet->getCreatureTemplate();
 
-				if (activePetTemplate == nullptr || callingPetTemplate == nullptr || activePetTemplate->getTemplateName() != "at_st")
+				if (activePetTemplate == nullptr || callingPetTemplate == nullptr || (activePetTemplate->getTemplateName() != "at_st" && activePetTemplate->getTemplateName() != "at_xt"))
 					continue;
 
-				if (activePetTemplate->getTemplateName() == "at_st" && callingPetTemplate->getTemplateName() == "at_st") {
+				if (++currentlySpawned >= maxPets || ((activePetTemplate->getTemplateName() == "at_st" && callingPetTemplate->getTemplateName() == "at_st") || (activePetTemplate->getTemplateName() == "at_xt" && callingPetTemplate->getTemplateName() == "at_xt"))) {
 					player->sendSystemMessage("@pet/pet_menu:at_max"); // You already have the maximum number of pets of this type that you can call.
 					return;
 				}
@@ -352,7 +353,7 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		server->getZoneServer()->getPlayerManager()->handleAbortTradeMessage(player);
 	}
 
-	controlledObject->initializePosition(player->getPositionX() + System::random(5) - 2, player->getPositionZ(), player->getPositionY() + System::random(5) - 2);
+	controlledObject->initializePosition(player->getPositionX(), player->getPositionZ(), player->getPositionY());
 	ManagedReference<CreatureObject*> creature = nullptr;
 
 	if (controlledObject->isCreatureObject()) {
@@ -421,15 +422,9 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		droid->addPendingTask("droid_skill_mod", droidSkillModTask, 3000); // 3 sec
 	}
 
-	// This will clear the points set by the BT and any stored points on the PCD
+	pet->setHomeLocation(player->getPositionX(), player->getPositionZ(), player->getPositionY(), parent);
+	pet->setNextStepPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), parent);
 	pet->clearPatrolPoints();
-	clearPatrolPoints();
-
-	pet->setHomeLocation(player->getPositionX(), player->getPositionZ(), player->getPositionY(), player->getParent().get().castTo<CellObject*>());
-	pet->setNextPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), player->getParent().get().castTo<CellObject*>());
-
-	pet->setFollowObject(player);
-
 	if (petType == PetManager::CREATUREPET) {
 		pet->setCreatureBitmask(CreatureFlag::PET);
 	}
@@ -443,17 +438,11 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 			pet->setOptionBit(OptionBitmask::CONVERSE,true);
 		**/
 	}
-
-	pet->setAITemplate();
+	pet->activateLoad("");
 	pet->activateRecovery();
 	// Not training any commands
 	trainingCommand = 0;
-
-	pet->faceObject(player, true);
-
-	setLastCommander(player);
-	setLastCommandTarget(nullptr);
-	setLastCommand(PetManager::FOLLOW);
+	clearPatrolPoints();
 }
 
 void PetControlDeviceImplementation::cancelSpawnObject(CreatureObject* player) {
@@ -556,7 +545,7 @@ bool PetControlDeviceImplementation::growPet(CreatureObject* player, bool force,
 
 	Time currentTime;
 	uint32 timeDelta = currentTime.getTime() - lastGrowth.getTime();
-	int stagesToGrow = timeDelta / 10800; // 3 hour
+	int stagesToGrow = timeDelta / 21600; // 6 hour
 
 	if (adult)
 		stagesToGrow = 10;

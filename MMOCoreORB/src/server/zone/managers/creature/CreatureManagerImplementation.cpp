@@ -234,7 +234,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureWithAi(uint32 templa
 	CreatureObject* creature = spawnCreature(templateCRC, 0, x, z, y, parentID, persistent);
 
 	if (creature != nullptr && creature->isAiAgent())
-		creature->asAiAgent()->setAITemplate();
+		cast<AiAgent*>(creature)->activateLoad("");
 	else {
 		error("could not spawn template " + String::valueOf(templateCRC) + " with AI.");
 		creature = nullptr;
@@ -298,7 +298,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureAsBaby(uint32 templa
 	placeCreature(creo, x, z, y, parentID);
 
 	if (creo != nullptr && creo->isAiAgent())
-		creo->asAiAgent()->setAITemplate();
+		cast<AiAgent*>(creo)->activateLoad("");
 	else {
 		error("could not spawn template " + templateToSpawn + " as baby with AI.");
 		creo = nullptr;
@@ -341,7 +341,7 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureAsEventMob(uint32 te
 	placeCreature(creo, x, z, y, parentID);
 
 	if (creo != nullptr && creo->isAiAgent())
-		creo->asAiAgent()->setAITemplate();
+		cast<AiAgent*>(creo)->activateLoad("");
 
 	return creo;
 }
@@ -425,8 +425,7 @@ void CreatureManagerImplementation::placeCreature(CreatureObject* creature, floa
 
 	if (creature->isAiAgent()) {
 		AiAgent* aio = cast<AiAgent*>(creature);
-		aio->setHomeLocation(x, z, y, cellParent, direction);
-		aio->setNextStepPosition(x, z, y, cellParent);
+		aio->setHomeLocation(x, z, y, cellParent);
 	}
 
 	creature->initializePosition(x, z, y);
@@ -472,13 +471,6 @@ bool CreatureManagerImplementation::createCreatureChildrenObjects(CreatureObject
 		Locker clocker(defaultWeapon, creature);
 
 		creature->transferObject(defaultWeapon, 4);
-
-		if (creature->isAiAgent()) {
-			WeaponObject* weap = defaultWeapon.castTo<WeaponObject*>();
-			AiAgent* agent = creature->asAiAgent();
-			agent->setDefaultWeapon(weap);
-			agent->setCurrentWeapon(weap);
-		}
 	}
 
 	if (creature->hasSlotDescriptor("inventory")) {
@@ -514,14 +506,12 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	if (destructedObject->isDead())
 		return 1;
 
-	destructedObject->cancelMovementEvent();
 	destructedObject->clearOptionBit(OptionBitmask::INTERESTING);
 	destructedObject->clearOptionBit(OptionBitmask::JTLINTERESTING);
 
 	destructedObject->setPosture(CreaturePosture::DEAD, !isCombatAction, !isCombatAction);
 
 	destructedObject->updateTimeOfDeath();
-	destructedObject->wipeBlackboard();
 
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
@@ -593,32 +583,6 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 		SceneObject* creatureInventory = destructedObject->getSlottedObject("inventory");
 
-		// Make sure mob weapons are destroyed when the ai dies so they can't be looted
-		destructedObject->unequipWeapons();
-
-		WeaponObject* primaryWeap = destructedObject->getPrimaryWeapon();
-
-		if (primaryWeap != nullptr && primaryWeap != destructedObject->getDefaultWeapon()) {
-			Locker locker(primaryWeap);
-			primaryWeap->destroyObjectFromWorld(true);
-		}
-
-		WeaponObject* secondaryWeap = destructedObject->getSecondaryWeapon();
-
-		if (secondaryWeap != nullptr) {
-			Locker locker(secondaryWeap);
-			secondaryWeap->destroyObjectFromWorld(true);
-		}
-
-		WeaponObject* thrownWeap = destructedObject->getThrownWeapon();
-
-		if (thrownWeap != nullptr) {
-			Locker locker(thrownWeap);
-			thrownWeap->destroyObjectFromWorld(true);
-		}
-
-		destructedObject->nullifyWeapons();
-
 		if (creatureInventory != nullptr && player != nullptr && player->isPlayerCreature()) {
 			LootManager* lootManager = zoneServer->getLootManager();
 
@@ -675,31 +639,8 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 	}
 
 	// now we can safely lock destructor again
-	if (destructedObject != destructor) {
+	if (destructedObject != destructor)
 		destructor->wlock(destructedObject);
-
-		ThreatMap* destructorThreatMap = destructor->getThreatMap();
-
-		if (destructorThreatMap != nullptr) {
-			for (int i = 0; i < destructorThreatMap->size(); i++) {
-				TangibleObject* destructedTano = destructorThreatMap->elementAt(i).getKey();
-
-				if (destructedTano == destructedObject) {
-					destructorThreatMap->remove(i);
-				}
-			}
-		}
-
-		if (destructor->hasDefender(destructedObject)) {
-			destructor->removeDefender(destructedObject);
-		}
-
-		const DeltaVector<ManagedReference<SceneObject*> >* defenderList = destructor->getDefenderList();
-
-		if (defenderList->size() == 0) {
-			destructor->clearCombatState(false);
-		}
-	}
 
 	return 1;
 }
@@ -715,9 +656,8 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	Locker pLock(owner, droid);
 
 	Zone* zone = creature->getZone();
-	Zone* droidZone = droid->getZone();
 
-	if (zone == nullptr || !creature->isCreature() || droidZone == nullptr) {
+	if (zone == nullptr || !creature->isCreature()) {
 		return;
 	}
 
@@ -749,14 +689,14 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 	int quantityExtracted = int(quantity * float(ownerSkill / 100.0f));
 	// add in droid bonus
 	quantityExtracted = Math::max(quantityExtracted, 3);
-	ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, droidZone->getZoneName());
+	ManagedReference<ResourceSpawn*> resourceSpawn = resourceManager->getCurrentSpawn(restype, droid->getZone()->getZoneName());
 
 	if (resourceSpawn == nullptr) {
 		owner->sendSystemMessage("Error: Server cannot locate a current spawn of " + restype);
 		return;
 	}
 
-	float density = resourceSpawn->getDensityAt(droidZone->getZoneName(), droid->getPositionX(), droid->getPositionY());
+	float density = resourceSpawn->getDensityAt(droid->getZone()->getZoneName(), droid->getPositionX(), droid->getPositionY());
 
 	String creatureHealth = "";
 
@@ -781,9 +721,9 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 
 		quantityExtracted = (int)(quantityExtracted * modifier);
 	}
-
+	//Remove cave 1 harvest yield and make it 25% of normal
 	if (creature->getParent().get() != nullptr)
-		quantityExtracted = 1;
+		quantityExtracted *= .25;
 
 	int droidBonus = DroidMechanics::determineDroidSkillBonus(ownerSkill,harvestBonus,quantityExtracted);
 
@@ -991,7 +931,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 
 	ManagedReference<PlayerManager*> playerManager = zoneServer->getPlayerManager();
 
-	int xp = creature->getLevel() * 20 + 19;
+	int xp = creature->getLevel() * 5 + 19;
 
 	if(playerManager != nullptr)
 		playerManager->awardExperience(player, "scout", xp, true);
@@ -1123,14 +1063,8 @@ void CreatureManagerImplementation::tame(Creature* creature, CreatureObject* pla
 	creature->setPvpStatusBitmask(0, true);
 
 	if (creature->isAiAgent()) {
-		AiAgent* agent = creature->asAiAgent();
-
-		if (agent == nullptr)
-			return;
-
-		agent->clearPatrolPoints();
-		agent->addCreatureFlag(CreatureFlag::STATIONARY);
-		agent->setAITemplate();
+		AiAgent* agent = cast<AiAgent*>(creature);
+		agent->activateLoad("wait");
 	}
 
 	Reference<TameCreatureTask*> task = new TameCreatureTask(creature, player, mask, force, adult);

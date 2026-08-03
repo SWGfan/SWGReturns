@@ -74,12 +74,10 @@ public:
 
 		ManagedReference<AiAgent*> strongRef = creature.get();
 
-		if (strongRef != nullptr) {
-			auto zone = strongRef->getZone();
+		auto zone = strongRef->getZone();
 
-			if (zone != nullptr) {
-				setCustomTaskQueue(zone->getZoneName());
-			}
+		if (zone != nullptr) {
+			setCustomTaskQueue(zone->getZoneName());
 		}
 
 		try {

@@ -92,9 +92,10 @@ public:
 		creature->doCombatAnimation(targetCreature, animCRC, 0x1, 0xFF);
 		CombatManager::instance()->broadcastCombatSpam(creature, targetCreature, nullptr, forceTransfer, "cbt_spam", combatSpam, 0);
 
-		if (playerGhost->getFrsData()->getRank() > 0) {
-			VisibilityManager::instance()->increaseVisibility(creature, visMod);
-		}
+		//Jedi Attackable
+		playerGhost->updateLastJediAttackableTimestamp();
+		
+		VisibilityManager::instance()->increaseVisibility(creature, visMod);
 
 		return SUCCESS;
 	}

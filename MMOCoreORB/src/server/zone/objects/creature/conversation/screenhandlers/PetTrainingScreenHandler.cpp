@@ -8,7 +8,6 @@
 #include "server/zone/managers/creature/PetManager.h"
 #include "server/zone/objects/group/GroupObject.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
-#include "server/zone/managers/creature/AiMap.h"
 
 const String PetTrainingScreenHandler::STARTSCREENHANDLERID = "convoscreenpetinfo";
 const String PetTrainingScreenHandler::PETCOMMANDREPAIR = "pet_repair_command";

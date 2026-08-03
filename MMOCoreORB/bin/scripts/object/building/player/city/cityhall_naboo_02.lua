@@ -1,3 +1,0 @@
-object_building_player_city_cityhall_naboo_02 = object_building_player_city_shared_cityhall_naboo_02:new {
-}
-ObjectTemplates:addTemplate(object_building_player_city_cityhall_naboo_02, "object/building/player/city/cityhall_naboo_02.iff")

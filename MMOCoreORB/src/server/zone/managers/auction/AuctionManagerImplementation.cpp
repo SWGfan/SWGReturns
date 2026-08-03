@@ -51,7 +51,7 @@ void AuctionManagerImplementation::initialize() {
 		setLogLevel(static_cast<Logger::LogLevel>(logLevel));
 	}
 
-	Core::getTaskManager()->initializeCustomQueue("AuctionSearch", ConfigManager::instance()->getMaxAuctionSearchJobs(), true);
+	Core::getTaskManager()->initializeCustomQueue("AuctionSearchQueue", ConfigManager::instance()->getMaxAuctionSearchJobs(), true);
 
 	auctionMap = new AuctionsMap();
 
@@ -1103,11 +1103,10 @@ void AuctionManagerImplementation::doInstantBuy(CreatureObject* player, AuctionI
 	seller->addBankCredits(item->getPrice());
 	trx.commit();
 
-	if (city != nullptr && tax > 0) {
+	if (tax > 0) {
 		TransactionLog trxFee(seller, TrxCode::CITYSALESTAX, tax, false);
 		trxFee.groupWith(trx);
-		trxFee.addState("cityRegionID", city->getObjectID());
-		seller->subtractBankCredits(tax);
+		seller->subtractBankCredits(item->getPrice());
 	}
 	slocker.release();
 
@@ -1454,7 +1453,6 @@ void AuctionManagerImplementation::retrieveItem(CreatureObject* player, uint64 o
 		item->setStatus(AuctionItem::RETRIEVED);
 
 		auctionMap->deleteItem(vendor, item);
-		auctionMap->removeFromCommodityLimit(item);
 
 		item->setAuctionedItemObjectID(0);
 

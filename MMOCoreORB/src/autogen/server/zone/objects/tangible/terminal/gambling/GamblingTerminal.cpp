@@ -12,7 +12,7 @@
  *	GamblingTerminalStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3740544218,RPC_RESET__,RPC_GETFIRST__,RPC_GETSECOND__,RPC_GETTHIRD__,RPC_SETFIRST__INT_,RPC_SETSECOND__INT_,RPC_SETTHIRD__INT_,RPC_GETMINBET__,RPC_GETMAXBET__,RPC_GETSTATE__,RPC_SETSTATE__INT_,RPC_GETMACHINETYPE__,RPC_INCGAMECOUNT__,RPC_GETGAMECOUNT__,RPC_ISGONEEMPTY__,RPC_GETMACHINETYPETEXT__,RPC_GETTEXT__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETGAMBLINGREGION__STRING_,RPC_GETGAMBLINGREGION__,RPC_GAMERUNNING__,RPC_BETTINGALLOWED__,RPC_CHECKJOIN__CREATUREOBJECT_,RPC_JOINTERMINAL__CREATUREOBJECT_,RPC_LEAVETERMINAL__CREATUREOBJECT_,RPC_CLOSEMENU__CREATUREOBJECT_BOOL_,RPC_CLOSEALLMENUS__,RPC_STATUSUPDATE__CREATUREOBJECT_INT_,RPC_STATUSUPDATE__INT_,};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 3740544218,RPC_RESET__,RPC_GETFIRST__,RPC_GETSECOND__,RPC_GETTHIRD__,RPC_SETFIRST__INT_,RPC_SETSECOND__INT_,RPC_SETTHIRD__INT_,RPC_GETMINBET__,RPC_GETMAXBET__,RPC_GETSTATE__,RPC_SETSTATE__INT_,RPC_GETMACHINETYPE__,RPC_INCGAMECOUNT__,RPC_GETGAMECOUNT__,RPC_ISGONEEMPTY__,RPC_GETMACHINETYPETEXT__,RPC_GETTEXT__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETGAMBLINGREGION__STRING_,RPC_GETGAMBLINGREGION__,RPC_GAMERUNNING__,RPC_CHECKJOIN__CREATUREOBJECT_,RPC_JOINTERMINAL__CREATUREOBJECT_,RPC_LEAVETERMINAL__CREATUREOBJECT_,RPC_CLOSEMENU__CREATUREOBJECT_BOOL_,RPC_CLOSEALLMENUS__,RPC_STATUSUPDATE__CREATUREOBJECT_INT_,RPC_STATUSUPDATE__INT_,};
 
 GamblingTerminal::GamblingTerminal() : Terminal(DummyConstructorParameter::instance()) {
 	GamblingTerminalImplementation* _implementation = new GamblingTerminalImplementation();
@@ -419,20 +419,6 @@ bool GamblingTerminal::gameRunning() {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->gameRunning();
-	}
-}
-
-bool GamblingTerminal::bettingAllowed() {
-	GamblingTerminalImplementation* _implementation = static_cast<GamblingTerminalImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_BETTINGALLOWED__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->bettingAllowed();
 	}
 }
 
@@ -1067,25 +1053,6 @@ bool GamblingTerminalImplementation::gameRunning() {
 	return state != NOGAMERUNNING;
 }
 
-bool GamblingTerminalImplementation::bettingAllowed() {
-	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  		}
-	if (machineType == ROULETTEMACHINE){
-	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return NOGAMERUNNING < state && state < WHEELSTART;
-	return NOGAMERUNNING < state && state < WHEELSTART;
-}
-
-	else 	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  		}
-	if (machineType == SLOTMACHINE){
-	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return state < GAMESTARTING;
-	return state < GAMESTARTING;
-}
-
-	else {
-	// server/zone/objects/tangible/terminal/gambling/GamblingTerminal.idl():  			return false;
-	return false;
-}
-}
-
 /*
  *	GamblingTerminalAdapter
  */
@@ -1263,13 +1230,6 @@ void GamblingTerminalAdapter::invokeMethod(uint32 methid, DistributedMethod* inv
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_BETTINGALLOWED__:
-		{
-			
-			bool _m_res = bettingAllowed();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_CHECKJOIN__CREATUREOBJECT_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -1418,10 +1378,6 @@ String GamblingTerminalAdapter::getGamblingRegion() {
 
 bool GamblingTerminalAdapter::gameRunning() {
 	return (static_cast<GamblingTerminal*>(stub))->gameRunning();
-}
-
-bool GamblingTerminalAdapter::bettingAllowed() {
-	return (static_cast<GamblingTerminal*>(stub))->bettingAllowed();
 }
 
 bool GamblingTerminalAdapter::checkJoin(CreatureObject* player) {

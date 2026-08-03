@@ -53,7 +53,7 @@ object_draft_schematic_instrument_instrument_slitherhorn = object_draft_schemati
    factoryCrateType = "object/factory/factory_crate_generic_items.iff",
    
    xpType = "music", 
-   xp = 1000, 
+   xp = 90, 
 
    assemblySkill = "instrument_assembly", 
    experimentingSkill = "general_experimentation", 

@@ -84,7 +84,7 @@ public:
 		return false;
 	}
 
-	virtual bool isScannerData(){
+	virtual bool isDetectorData(){
 		return false;
 	}
 

@@ -46,9 +46,9 @@ UnarmedKnockdown1Command = {
 
 	damageMultiplier = 1.0,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
         accuracyBonus = 15,
 
 	stateEffects = {
@@ -56,8 +56,8 @@ UnarmedKnockdown1Command = {
 		KNOCKDOWN_EFFECT, 
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
-		{}, 
-		75, 
+		{},
+		100, 
 		0, 
 		0 
 	  )
@@ -69,7 +69,7 @@ UnarmedKnockdown1Command = {
 	
 	weaponType = UNARMEDWEAPON,
 
-	range = 6
+	range = -1
 }
 
 AddCommand(UnarmedKnockdown1Command)

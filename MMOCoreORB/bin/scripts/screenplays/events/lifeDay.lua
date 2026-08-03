@@ -1,6 +1,6 @@
 local ObjectManager = require("managers.object.object_manager")
 
-LifeDay = ScreenPlay:new {
+lifeDayScreenplay = ScreenPlay:new {
 	numberOfActs = 1,
 
 	mobiles = {
@@ -38,34 +38,25 @@ LifeDay = ScreenPlay:new {
 	robe = "object/tangible/wearables/wookiee/wke_lifeday_robe.iff"
 }
 
-registerScreenPlay("LifeDay", true)
+registerScreenPlay("lifeDayScreenplay", true)
 
-function LifeDay:start(force_start)
-	if force_start or os.date("%m%d%H%M") >= "12010600" and os.date("%m%d%H") < "12312359" then
-		writeStringSharedMemory("LifeDayName", "lifeDay" .. tostring(os.date('%Y')))
+function lifeDayScreenplay:start()
+	if getFormattedTime():find("Dec") ~= nil then
+		writeStringSharedMemory("lifeDayScreenplayName", "lifeDay" .. tostring(os.date('%Y')))
 		self:spawnMobiles()
-
-		print(os.date() .. " : Life Day Event - Starting")
-
-		createEvent(24 * 60 * 60 * 1000, "LifeDay", "despawnEvent", nil, "")
 	end
 end
 
-function LifeDay:spawnMobiles()
+function lifeDayScreenplay:spawnMobiles()
 	local mobs = self.mobiles
 	for i = 1, #mobs, 1 do
 		if isZoneEnabled(mobs[i].planet) then
-			local pMobile = spawnMobile(mobs[i].planet, mobs[i].mobile, 1, mobs[i].x, mobs[i].z, mobs[i].y, mobs[i].angle, 0)
-
-			if (pMobile ~= nil) then
-				local pOID = SceneObject(pMobile):getObjectID()
-				writeData(i .. ":LifeDayMobile", pOID)
-			end
+			spawnMobile(mobs[i].planet, mobs[i].mobile, 1, mobs[i].x, mobs[i].z, mobs[i].y, mobs[i].angle, 0)
 		end
 	end
 end
 
-function LifeDay:getRandomEnabledPlanet()
+function lifeDayScreenplay:getRandomEnabledPlanet()
 	local enabledPlanets = {}
 	for i = 1, #self.waypoints, 1 do
 		if isZoneEnabled(self.waypoints[i].planet) then
@@ -77,7 +68,7 @@ function LifeDay:getRandomEnabledPlanet()
 	return enabledPlanets[rand]
 end
 
-function LifeDay:removeWaypoint(pPlayer)
+function lifeDayScreenplay:removeWaypoint(pPlayer)
 	local playerID = SceneObject(pPlayer):getObjectID()
 	local oldWaypointID = readData(playerID .. "lifeDayWaypointID")
 
@@ -92,7 +83,7 @@ function LifeDay:removeWaypoint(pPlayer)
 	end
 end
 
-function LifeDay:giveWaypoint(pPlayer)
+function lifeDayScreenplay:giveWaypoint(pPlayer)
 	self:removeWaypoint(pPlayer)
 
 	local num = self:getRandomEnabledPlanet()
@@ -112,11 +103,11 @@ function LifeDay:giveWaypoint(pPlayer)
 
 		CreatureObject(pPlayer):sendSystemMessage("@quest/lifeday/lifeday:waypoint_updated") -- A waypoint to a planet holding a Life Day celebration was added to your datapad.
 
-		createEvent(3600000, "LifeDay", "removeWaypoint", pPlayer, "")
+		createEvent(3600000, "lifeDayScreenplay", "removeWaypoint", pPlayer, "")
 	end
 end
 
-function LifeDay:giveRandomGift(pPlayer)
+function lifeDayScreenplay:giveRandomGift(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
@@ -136,12 +127,12 @@ function LifeDay:giveRandomGift(pPlayer)
 	local itemTemplate = self.randomGifts[rand]
 	local pItem = giveItem(pInventory, itemTemplate, -1)
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 
 	self:removeWaypoint(pPlayer)
 end
 
-function LifeDay:giveRobe(pPlayer)
+function lifeDayScreenplay:giveRobe(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
@@ -159,44 +150,16 @@ function LifeDay:giveRobe(pPlayer)
 
 	local pItem = giveItem(pInventory, self.robe, -1)
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 
 	self:removeWaypoint(pPlayer)
 end
 
-function LifeDay:noGift(pPlayer)
+function lifeDayScreenplay:noGift(pPlayer)
 	if (pPlayer == nil) then
 		return
 	end
 
-	writeScreenPlayData(pPlayer, readStringSharedMemory("LifeDayName"), "complete", 1)
+	writeScreenPlayData(pPlayer, readStringSharedMemory("lifeDayScreenplayName"), "complete", 1)
 	self:removeWaypoint(pPlayer)
-end
-
-function LifeDay:despawnEvent(pMobile, args)
-	if pMobile == nil and os.date("%m%d%H%M") < "12312359" then
-		print(os.date() .. ": Life Day - Rescheduling Despawn")
-
-		createEvent(24 * 60 * 60 * 1000, "LifeDay", "despawnEvent", nil, "")
-		return
-	end
-
-	print(os.date() .. ": Life Day Event - Despawning...")
-
-	local mobs = self.mobiles
-
-	for i = 1, #mobs, 1 do
-		local pOID = readData(i .. ":LifeDayMobile")
-		local despawnMob = getSceneObject(pOID)
-
-		if despawnMob ~= nil then
-
-			SceneObject(despawnMob):destroyObjectFromWorld()
-			deleteData(i .. ":LifeDayMobile")
-		end
-	end
-
-	deleteStringSharedMemory("LifeDayName")
-
-	print(os.date() .. " : Life Day Event - Despawn Complete")
 end

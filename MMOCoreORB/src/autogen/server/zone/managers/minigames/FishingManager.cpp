@@ -20,7 +20,7 @@
  *	FishingManagerStub
  */
 
-enum {RPC_INITIALIZE__ = 936445983,RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_CHECKFISHINGONPOSITIONUPDATE__CREATUREOBJECT_,RPC_NOTIFYCLOSECONTAINER__CREATUREOBJECT_SCENEOBJECT_,RPC_STARTFISHING__CREATUREOBJECT_,RPC_STOPFISHING__CREATUREOBJECT_INT_BOOL_,RPC_FISHINGSTEP__CREATUREOBJECT_,RPC_SUCCESS__CREATUREOBJECT_INT_SCENEOBJECT_INT_,RPC_GETTIME__,RPC_SENDREWARD__CREATUREOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_CREATEWINDOW__CREATUREOBJECT_INT_,RPC_CLOSEMENU__CREATUREOBJECT_INT_,RPC_VEGETATION__SCENEOBJECT_,RPC_DENSITY__SCENEOBJECT_,RPC_GETFISH__CREATUREOBJECT_SCENEOBJECT_,RPC_GETNEXTACTION__CREATUREOBJECT_,RPC_SETNEXTACTION__CREATUREOBJECT_INT_,RPC_GETPOLE__CREATUREOBJECT_,RPC_GETBAIT__CREATUREOBJECT_,RPC_GETFISHBOXID__CREATUREOBJECT_,RPC_SETFISHBOXID__CREATUREOBJECT_INT_,RPC_GETFISHINGSTATE__CREATUREOBJECT_,RPC_SETFISHINGSTATE__CREATUREOBJECT_INT_,RPC_GETFISHMARKER__CREATUREOBJECT_,RPC_SETFISHMARKER__CREATUREOBJECT_SCENEOBJECT_,RPC_FREEBAIT__CREATUREOBJECT_,RPC_FISHINGPROCEED__CREATUREOBJECT_INT_SCENEOBJECT_INT_INT_INT_BOOL_STRING_,RPC_MISHAPEVENT__STRING_CREATUREOBJECT_SCENEOBJECT_INT_BOOL_STRING_,RPC_LOSEBAIT__CREATUREOBJECT_,RPC_ANIMATE__CREATUREOBJECT_INT_,RPC_CREATEMARKER__VECTOR3_ZONE_,RPC_CREATESPLASH__FLOAT_FLOAT_FLOAT_ZONE_CREATUREOBJECT_,RPC_ISPLAYING__CREATUREOBJECT_,RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_INT_BOOL_,RPC_REMOVEMARKER__CREATUREOBJECT_SCENEOBJECT_,RPC_REMOVESPLASH__SCENEOBJECT_,RPC_CREATEFISHINGSPLASHEVENT__CREATUREOBJECT_SCENEOBJECT_,RPC_STOPFISHINGEVENT__CREATUREOBJECT_,RPC_GETPROPERTYSTRING__INT_};
+enum {RPC_INITIALIZEBAITSTATUS__ = 936445983,RPC_INITIALIZEPROPERTY__,RPC_INITIALIZEACTION__,RPC_INITIALIZESTATE__,RPC_INITIALIZEFISHTYPE__,RPC_INITIALIZEFISHLENGTH__,RPC_INITIALIZELOOT__,RPC_INITIALIZECOLOR__,RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_CHECKFISHINGONPOSITIONUPDATE__CREATUREOBJECT_,RPC_NOTIFYCLOSECONTAINER__CREATUREOBJECT_SCENEOBJECT_,RPC_STARTFISHING__CREATUREOBJECT_,RPC_STOPFISHING__CREATUREOBJECT_INT_BOOL_,RPC_FISHINGSTEP__CREATUREOBJECT_,RPC_SUCCESS__CREATUREOBJECT_INT_SCENEOBJECT_INT_,RPC_GETTIME__,RPC_SENDREWARD__CREATUREOBJECT_SCENEOBJECT_SCENEOBJECT_,RPC_CREATEWINDOW__CREATUREOBJECT_INT_,RPC_CLOSEMENU__CREATUREOBJECT_INT_,RPC_VEGETATION__SCENEOBJECT_,RPC_DENSITY__SCENEOBJECT_,RPC_GETFISH__CREATUREOBJECT_,RPC_GETNEXTACTION__CREATUREOBJECT_,RPC_SETNEXTACTION__CREATUREOBJECT_INT_,RPC_GETPOLE__CREATUREOBJECT_,RPC_GETBAIT__CREATUREOBJECT_,RPC_GETFISHBOXID__CREATUREOBJECT_,RPC_SETFISHBOXID__CREATUREOBJECT_INT_,RPC_GETFISHINGSTATE__CREATUREOBJECT_,RPC_SETFISHINGSTATE__CREATUREOBJECT_INT_,RPC_GETFISHMARKER__CREATUREOBJECT_,RPC_SETFISHMARKER__CREATUREOBJECT_SCENEOBJECT_,RPC_FREEBAIT__CREATUREOBJECT_,RPC_FISHINGPROCEED__CREATUREOBJECT_INT_SCENEOBJECT_INT_INT_INT_BOOL_STRING_,RPC_MISHAPEVENT__STRING_CREATUREOBJECT_INT_BOOL_STRING_,RPC_LOSEBAIT__CREATUREOBJECT_,RPC_ANIMATE__CREATUREOBJECT_INT_,RPC_CREATEMARKER__FLOAT_FLOAT_FLOAT_ZONE_,RPC_CREATESPLASH__FLOAT_FLOAT_FLOAT_ZONE_CREATUREOBJECT_,RPC_ISPLAYING__CREATUREOBJECT_,RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_BOOL_,RPC_REMOVEMARKER__CREATUREOBJECT_SCENEOBJECT_,RPC_REMOVESPLASH__SCENEOBJECT_,RPC_CREATEFISHINGSPLASHEVENT__CREATUREOBJECT_SCENEOBJECT_,RPC_STOPFISHINGEVENT__CREATUREOBJECT_,};
 
 FishingManager::FishingManager() : Observer(DummyConstructorParameter::instance()) {
 	FishingManagerImplementation* _implementation = new FishingManagerImplementation();
@@ -38,17 +38,115 @@ FishingManager::~FishingManager() {
 
 
 
-void FishingManager::initialize() {
+void FishingManager::initializeBaitStatus() {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_INITIALIZE__);
+		DistributedMethod method(this, RPC_INITIALIZEBAITSTATUS__);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->initialize();
+		_implementation->initializeBaitStatus();
+	}
+}
+
+void FishingManager::initializeProperty() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZEPROPERTY__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeProperty();
+	}
+}
+
+void FishingManager::initializeAction() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZEACTION__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeAction();
+	}
+}
+
+void FishingManager::initializeState() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZESTATE__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeState();
+	}
+}
+
+void FishingManager::initializeFishType() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZEFISHTYPE__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeFishType();
+	}
+}
+
+void FishingManager::initializeFishLength() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZEFISHLENGTH__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeFishLength();
+	}
+}
+
+void FishingManager::initializeLoot() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZELOOT__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeLoot();
+	}
+}
+
+void FishingManager::initializeColor() {
+	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_INITIALIZECOLOR__);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->initializeColor();
 	}
 }
 
@@ -101,13 +199,13 @@ int FishingManager::notifyCloseContainer(CreatureObject* player, SceneObject* co
 	}
 }
 
-int FishingManager::checkLocation(CreatureObject* player, int quality, Vector3& location) {
+int FishingManager::checkLocation(CreatureObject* player, int quality, float& x, float& y, float& z) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->checkLocation(player, quality, location);
+		return _implementation->checkLocation(player, quality, x, y, z);
 	}
 }
 
@@ -271,19 +369,18 @@ int FishingManager::density(SceneObject* marker) {
 	}
 }
 
-int FishingManager::getFish(CreatureObject* player, SceneObject* marker) {
+int FishingManager::getFish(CreatureObject* player) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_GETFISH__CREATUREOBJECT_SCENEOBJECT_);
+		DistributedMethod method(this, RPC_GETFISH__CREATUREOBJECT_);
 		method.addObjectParameter(player);
-		method.addObjectParameter(marker);
 
 		return method.executeWithSignedIntReturn();
 	} else {
-		return _implementation->getFish(player, marker);
+		return _implementation->getFish(player);
 	}
 }
 
@@ -478,23 +575,22 @@ void FishingManager::fishingProceed(CreatureObject* player, int nextAction, Scen
 	}
 }
 
-void FishingManager::mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, unsigned int boxID, bool losebait, String& moodString) {
+void FishingManager::mishapEvent(const String& text, CreatureObject* player, unsigned int boxID, bool losebait, String& moodString) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_MISHAPEVENT__STRING_CREATUREOBJECT_SCENEOBJECT_INT_BOOL_STRING_);
+		DistributedMethod method(this, RPC_MISHAPEVENT__STRING_CREATUREOBJECT_INT_BOOL_STRING_);
 		method.addAsciiParameter(text);
 		method.addObjectParameter(player);
-		method.addObjectParameter(marker);
 		method.addUnsignedIntParameter(boxID);
 		method.addBooleanParameter(losebait);
 		method.addAsciiParameter(moodString);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->mishapEvent(text, player, marker, boxID, losebait, moodString);
+		_implementation->mishapEvent(text, player, boxID, losebait, moodString);
 	}
 }
 
@@ -529,19 +625,21 @@ void FishingManager::animate(CreatureObject* player, int nextAction) {
 	}
 }
 
-SceneObject* FishingManager::createMarker(Vector3& location, Zone* zone) {
+SceneObject* FishingManager::createMarker(float x, float y, float z, Zone* zone) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_CREATEMARKER__VECTOR3_ZONE_);
-		method.addDereferencedSerializableParameter(location);
+		DistributedMethod method(this, RPC_CREATEMARKER__FLOAT_FLOAT_FLOAT_ZONE_);
+		method.addFloatParameter(x);
+		method.addFloatParameter(y);
+		method.addFloatParameter(z);
 		method.addObjectParameter(zone);
 
 		return static_cast<SceneObject*>(method.executeWithObjectReturn());
 	} else {
-		return _implementation->createMarker(location, zone);
+		return _implementation->createMarker(x, y, z, zone);
 	}
 }
 
@@ -564,13 +662,13 @@ void FishingManager::createSplash(float x, float y, float z, Zone* zone, Creatur
 	}
 }
 
-bool FishingManager::checkUpdateMarker(CreatureObject* player, Vector3& location) {
+bool FishingManager::checkUpdateMarker(CreatureObject* player, float& x, float& y, float& z) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		throw ObjectNotLocalException(this);
 
 	} else {
-		return _implementation->checkUpdateMarker(player, location);
+		return _implementation->checkUpdateMarker(player, x, y, z);
 	}
 }
 
@@ -589,21 +687,20 @@ bool FishingManager::isPlaying(CreatureObject* player) {
 	}
 }
 
-SceneObject* FishingManager::updateMarker(CreatureObject* player, SceneObject* marker, unsigned int boxID, bool notifyPlayer) {
+SceneObject* FishingManager::updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer) {
 	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_INT_BOOL_);
+		DistributedMethod method(this, RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_BOOL_);
 		method.addObjectParameter(player);
 		method.addObjectParameter(marker);
-		method.addUnsignedIntParameter(boxID);
 		method.addBooleanParameter(notifyPlayer);
 
 		return static_cast<SceneObject*>(method.executeWithObjectReturn());
 	} else {
-		return _implementation->updateMarker(player, marker, boxID, notifyPlayer);
+		return _implementation->updateMarker(player, marker, notifyPlayer);
 	}
 }
 
@@ -696,23 +793,6 @@ FishingEvent* FishingManager::getFishingEvent(CreatureObject* player) {
 
 	} else {
 		return _implementation->getFishingEvent(player);
-	}
-}
-
-String FishingManager::getPropertyString(int amount) {
-	FishingManagerImplementation* _implementation = static_cast<FishingManagerImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPROPERTYSTRING__INT_);
-		method.addSignedIntParameter(amount);
-
-		String _return_getPropertyString;
-		method.executeWithAsciiReturn(_return_getPropertyString);
-		return _return_getPropertyString;
-	} else {
-		return _implementation->getPropertyString(amount);
 	}
 }
 
@@ -826,12 +906,36 @@ bool FishingManagerImplementation::readObjectMember(ObjectInputStream* stream, c
 		return true;
 
 	switch(nameHashCode) {
-	case 0xfe7549e9: //FishingManager.fishingActions
-		TypeInfo<Vector<String> >::parseFromBinaryStream(&fishingActions, stream);
+	case 0xd907e6c5: //FishingManager.miscLoot
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&miscLoot, stream);
 		return true;
 
-	case 0x2ade8411: //FishingManager.fishingStates
-		TypeInfo<Vector<String> >::parseFromBinaryStream(&fishingStates, stream);
+	case 0xfc08adf6: //FishingManager.rareLoot
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&rareLoot, stream);
+		return true;
+
+	case 0xee64ccda: //FishingManager.color
+		TypeInfo<VectorMap<String, int> >::parseFromBinaryStream(&color, stream);
+		return true;
+
+	case 0x1271894c: //FishingManager.fishLength
+		TypeInfo<Vector<int> >::parseFromBinaryStream(&fishLength, stream);
+		return true;
+
+	case 0x89360703: //FishingManager.fishType
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&fishType, stream);
+		return true;
+
+	case 0xb1e4b355: //FishingManager.state
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&state, stream);
+		return true;
+
+	case 0xec73825f: //FishingManager.action
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&action, stream);
+		return true;
+
+	case 0x8dc6df2e: //FishingManager.property
+		TypeInfo<Vector<String> >::parseFromBinaryStream(&property, stream);
 		return true;
 
 	case 0x5efda278: //FishingManager.baitStatus
@@ -856,20 +960,74 @@ int FishingManagerImplementation::writeObjectMembers(ObjectOutputStream* stream)
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	_nameHashCode = 0xfe7549e9; //FishingManager.fishingActions
+	_nameHashCode = 0xd907e6c5; //FishingManager.miscLoot
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingActions, stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&miscLoot, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
-	_nameHashCode = 0x2ade8411; //FishingManager.fishingStates
+	_nameHashCode = 0xfc08adf6; //FishingManager.rareLoot
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingStates, stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&rareLoot, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xee64ccda; //FishingManager.color
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<VectorMap<String, int> >::toBinaryStream(&color, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x1271894c; //FishingManager.fishLength
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<int> >::toBinaryStream(&fishLength, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x89360703; //FishingManager.fishType
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&fishType, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xb1e4b355; //FishingManager.state
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&state, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0xec73825f; //FishingManager.action
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&action, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
+	_nameHashCode = 0x8dc6df2e; //FishingManager.property
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&property, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -889,10 +1047,150 @@ int FishingManagerImplementation::writeObjectMembers(ObjectOutputStream* stream)
 
 FishingManagerImplementation::FishingManagerImplementation() {
 	_initializeImplementation();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeFishType();
+	initializeFishType();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeFishLength();
+	initializeFishLength();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeLoot();
+	initializeLoot();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeColor();
+	initializeColor();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeBaitStatus();
+	initializeBaitStatus();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeProperty();
+	initializeProperty();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeAction();
+	initializeAction();
+	// server/zone/managers/minigames/FishingManager.idl():  		initializeState();
+	initializeState();
 	// server/zone/managers/minigames/FishingManager.idl():  		Logger.setLoggingName("FishingManager");
 	Logger::setLoggingName("FishingManager");
 	// server/zone/managers/minigames/FishingManager.idl():  		Logger.setLogging(true);
 	Logger::setLogging(true);
+}
+
+void FishingManagerImplementation::initializeBaitStatus() {
+	// server/zone/managers/minigames/FishingManager.idl():  		baitStatus.add("Fresh");
+	(&baitStatus)->add("Fresh");
+	// server/zone/managers/minigames/FishingManager.idl():  		baitStatus.add("Soggy");
+	(&baitStatus)->add("Soggy");
+	// server/zone/managers/minigames/FishingManager.idl():  		baitStatus.add("Mush");
+	(&baitStatus)->add("Mush");
+}
+
+void FishingManagerImplementation::initializeProperty() {
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add(" ");
+	(&property)->add(" ");
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add("*");
+	(&property)->add("*");
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add("**");
+	(&property)->add("**");
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add("***");
+	(&property)->add("***");
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add("****");
+	(&property)->add("****");
+	// server/zone/managers/minigames/FishingManager.idl():  		property.add("*****");
+	(&property)->add("*****");
+}
+
+void FishingManagerImplementation::initializeAction() {
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("None");
+	(&action)->add("None");
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("Tug Up");
+	(&action)->add("Tug Up");
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("Tug Right");
+	(&action)->add("Tug Right");
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("Tug Left");
+	(&action)->add("Tug Left");
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("Small Reel");
+	(&action)->add("Small Reel");
+	// server/zone/managers/minigames/FishingManager.idl():  		action.add("Stop Fishing");
+	(&action)->add("Stop Fishing");
+}
+
+void FishingManagerImplementation::initializeState() {
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("Nothing");
+	(&state)->add("Nothing");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("Waiting...");
+	(&state)->add("Waiting...");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("Snagged!");
+	(&state)->add("Snagged!");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("Nibble...");
+	(&state)->add("Nibble...");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("BITE?");
+	(&state)->add("BITE?");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("CAUGHT SOMETHING?!");
+	(&state)->add("CAUGHT SOMETHING?!");
+	// server/zone/managers/minigames/FishingManager.idl():  		state.add("CAUGHT SOMETHING?!");
+	(&state)->add("CAUGHT SOMETHING?!");
+}
+
+void FishingManagerImplementation::initializeFishType() {
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("blackfish");
+	(&fishType)->add("blackfish");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("blowfish");
+	(&fishType)->add("blowfish");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("bluefish");
+	(&fishType)->add("bluefish");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("faa");
+	(&fishType)->add("faa");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("laa");
+	(&fishType)->add("laa");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("ray");
+	(&fishType)->add("ray");
+	// server/zone/managers/minigames/FishingManager.idl():  		fishType.add("striped");
+	(&fishType)->add("striped");
+}
+
+void FishingManagerImplementation::initializeFishLength() {
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(25);
+	(&fishLength)->add(25);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(15);
+	(&fishLength)->add(15);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(30);
+	(&fishLength)->add(30);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(30);
+	(&fishLength)->add(30);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(30);
+	(&fishLength)->add(30);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(35);
+	(&fishLength)->add(35);
+	// server/zone/managers/minigames/FishingManager.idl():  		fishLength.add(40);
+	(&fishLength)->add(40);
+}
+
+void FishingManagerImplementation::initializeLoot() {
+	// server/zone/managers/minigames/FishingManager.idl():  		miscLoot.add("object/tangible/wearables/shoes/shoes_s07.iff");
+	(&miscLoot)->add("object/tangible/wearables/shoes/shoes_s07.iff");
+	// server/zone/managers/minigames/FishingManager.idl():  		miscLoot.add("object/tangible/wearables/shoes/shoes_s02.iff");
+	(&miscLoot)->add("object/tangible/wearables/shoes/shoes_s02.iff");
+	// server/zone/managers/minigames/FishingManager.idl():  		miscLoot.add("object/tangible/food/foraged/foraged_fruit_s1.iff");
+	(&miscLoot)->add("object/tangible/food/foraged/foraged_fruit_s1.iff");
+	// server/zone/managers/minigames/FishingManager.idl():  		rareLoot.add("object/weapon/ranged/pistol/pistol_cdef.iff");
+	(&rareLoot)->add("object/weapon/ranged/pistol/pistol_cdef.iff");
+}
+
+void FishingManagerImplementation::initializeColor() {
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("corellia", 61);
+	(&color)->put("corellia", 61);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("dantooine", 51);
+	(&color)->put("dantooine", 51);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("dathomir", 21);
+	(&color)->put("dathomir", 21);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("endor", 32);
+	(&color)->put("endor", 32);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("lok", 8);
+	(&color)->put("lok", 8);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("naboo", 14);
+	(&color)->put("naboo", 14);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("rori", 55);
+	(&color)->put("rori", 55);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("talus", 0);
+	(&color)->put("talus", 0);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("tatooine", 7);
+	(&color)->put("tatooine", 7);
+	// server/zone/managers/minigames/FishingManager.idl():  		color.put("yavin4", 41);
+	(&color)->put("yavin4", 41);
 }
 
 int FishingManagerImplementation::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
@@ -928,10 +1226,59 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 	DOBMessage* resp = inv->getInvocationMessage();
 
 	switch (methid) {
-	case RPC_INITIALIZE__:
+	case RPC_INITIALIZEBAITSTATUS__:
 		{
 			
-			initialize();
+			initializeBaitStatus();
+			
+		}
+		break;
+	case RPC_INITIALIZEPROPERTY__:
+		{
+			
+			initializeProperty();
+			
+		}
+		break;
+	case RPC_INITIALIZEACTION__:
+		{
+			
+			initializeAction();
+			
+		}
+		break;
+	case RPC_INITIALIZESTATE__:
+		{
+			
+			initializeState();
+			
+		}
+		break;
+	case RPC_INITIALIZEFISHTYPE__:
+		{
+			
+			initializeFishType();
+			
+		}
+		break;
+	case RPC_INITIALIZEFISHLENGTH__:
+		{
+			
+			initializeFishLength();
+			
+		}
+		break;
+	case RPC_INITIALIZELOOT__:
+		{
+			
+			initializeLoot();
+			
+		}
+		break;
+	case RPC_INITIALIZECOLOR__:
+		{
+			
+			initializeColor();
 			
 		}
 		break;
@@ -1051,12 +1398,11 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_GETFISH__CREATUREOBJECT_SCENEOBJECT_:
+	case RPC_GETFISH__CREATUREOBJECT_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			SceneObject* marker = static_cast<SceneObject*>(inv->getObjectParameter());
 			
-			int _m_res = getFish(player, marker);
+			int _m_res = getFish(player);
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -1167,16 +1513,15 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
-	case RPC_MISHAPEVENT__STRING_CREATUREOBJECT_SCENEOBJECT_INT_BOOL_STRING_:
+	case RPC_MISHAPEVENT__STRING_CREATUREOBJECT_INT_BOOL_STRING_:
 		{
 			 String text; inv->getAsciiParameter(text);
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			SceneObject* marker = static_cast<SceneObject*>(inv->getObjectParameter());
 			unsigned int boxID = inv->getUnsignedIntParameter();
 			bool losebait = inv->getBooleanParameter();
 			String moodString; inv->getAsciiParameter(moodString);
 			
-			mishapEvent(text, player, marker, boxID, losebait, moodString);
+			mishapEvent(text, player, boxID, losebait, moodString);
 			
 		}
 		break;
@@ -1197,12 +1542,14 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
-	case RPC_CREATEMARKER__VECTOR3_ZONE_:
+	case RPC_CREATEMARKER__FLOAT_FLOAT_FLOAT_ZONE_:
 		{
-			Vector3 location = inv->getDereferencedSerializableParameter<Vector3 >();
+			float x = inv->getFloatParameter();
+			float y = inv->getFloatParameter();
+			float z = inv->getFloatParameter();
 			Zone* zone = static_cast<Zone*>(inv->getObjectParameter());
 			
-			DistributedObject* _m_res = createMarker(location, zone);
+			DistributedObject* _m_res = createMarker(x, y, z, zone);
 			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
@@ -1226,14 +1573,13 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_INT_BOOL_:
+	case RPC_UPDATEMARKER__CREATUREOBJECT_SCENEOBJECT_BOOL_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
 			SceneObject* marker = static_cast<SceneObject*>(inv->getObjectParameter());
-			unsigned int boxID = inv->getUnsignedIntParameter();
 			bool notifyPlayer = inv->getBooleanParameter();
 			
-			DistributedObject* _m_res = updateMarker(player, marker, boxID, notifyPlayer);
+			DistributedObject* _m_res = updateMarker(player, marker, notifyPlayer);
 			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
@@ -1271,21 +1617,41 @@ void FishingManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
-	case RPC_GETPROPERTYSTRING__INT_:
-		{
-			int amount = inv->getSignedIntParameter();
-			
-			String _m_res = getPropertyString(amount);
-			resp->insertAscii(_m_res);
-		}
-		break;
 	default:
 		ObserverAdapter::invokeMethod(methid, inv);
 	}
 }
 
-void FishingManagerAdapter::initialize() {
-	(static_cast<FishingManager*>(stub))->initialize();
+void FishingManagerAdapter::initializeBaitStatus() {
+	(static_cast<FishingManager*>(stub))->initializeBaitStatus();
+}
+
+void FishingManagerAdapter::initializeProperty() {
+	(static_cast<FishingManager*>(stub))->initializeProperty();
+}
+
+void FishingManagerAdapter::initializeAction() {
+	(static_cast<FishingManager*>(stub))->initializeAction();
+}
+
+void FishingManagerAdapter::initializeState() {
+	(static_cast<FishingManager*>(stub))->initializeState();
+}
+
+void FishingManagerAdapter::initializeFishType() {
+	(static_cast<FishingManager*>(stub))->initializeFishType();
+}
+
+void FishingManagerAdapter::initializeFishLength() {
+	(static_cast<FishingManager*>(stub))->initializeFishLength();
+}
+
+void FishingManagerAdapter::initializeLoot() {
+	(static_cast<FishingManager*>(stub))->initializeLoot();
+}
+
+void FishingManagerAdapter::initializeColor() {
+	(static_cast<FishingManager*>(stub))->initializeColor();
 }
 
 int FishingManagerAdapter::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, long long arg2) {
@@ -1340,8 +1706,8 @@ int FishingManagerAdapter::density(SceneObject* marker) {
 	return (static_cast<FishingManager*>(stub))->density(marker);
 }
 
-int FishingManagerAdapter::getFish(CreatureObject* player, SceneObject* marker) {
-	return (static_cast<FishingManager*>(stub))->getFish(player, marker);
+int FishingManagerAdapter::getFish(CreatureObject* player) {
+	return (static_cast<FishingManager*>(stub))->getFish(player);
 }
 
 int FishingManagerAdapter::getNextAction(CreatureObject* player) {
@@ -1392,8 +1758,8 @@ void FishingManagerAdapter::fishingProceed(CreatureObject* player, int nextActio
 	(static_cast<FishingManager*>(stub))->fishingProceed(player, nextAction, marker, fish, boxID, newstate, notifyClient, moodString);
 }
 
-void FishingManagerAdapter::mishapEvent(const String& text, CreatureObject* player, SceneObject* marker, unsigned int boxID, bool losebait, String& moodString) {
-	(static_cast<FishingManager*>(stub))->mishapEvent(text, player, marker, boxID, losebait, moodString);
+void FishingManagerAdapter::mishapEvent(const String& text, CreatureObject* player, unsigned int boxID, bool losebait, String& moodString) {
+	(static_cast<FishingManager*>(stub))->mishapEvent(text, player, boxID, losebait, moodString);
 }
 
 bool FishingManagerAdapter::loseBait(CreatureObject* player) {
@@ -1404,8 +1770,8 @@ void FishingManagerAdapter::animate(CreatureObject* player, int nextAction) {
 	(static_cast<FishingManager*>(stub))->animate(player, nextAction);
 }
 
-SceneObject* FishingManagerAdapter::createMarker(Vector3& location, Zone* zone) {
-	return (static_cast<FishingManager*>(stub))->createMarker(location, zone);
+SceneObject* FishingManagerAdapter::createMarker(float x, float y, float z, Zone* zone) {
+	return (static_cast<FishingManager*>(stub))->createMarker(x, y, z, zone);
 }
 
 void FishingManagerAdapter::createSplash(float x, float y, float z, Zone* zone, CreatureObject* player) {
@@ -1416,8 +1782,8 @@ bool FishingManagerAdapter::isPlaying(CreatureObject* player) {
 	return (static_cast<FishingManager*>(stub))->isPlaying(player);
 }
 
-SceneObject* FishingManagerAdapter::updateMarker(CreatureObject* player, SceneObject* marker, unsigned int boxID, bool notifyPlayer) {
-	return (static_cast<FishingManager*>(stub))->updateMarker(player, marker, boxID, notifyPlayer);
+SceneObject* FishingManagerAdapter::updateMarker(CreatureObject* player, SceneObject* marker, bool notifyPlayer) {
+	return (static_cast<FishingManager*>(stub))->updateMarker(player, marker, notifyPlayer);
 }
 
 void FishingManagerAdapter::removeMarker(CreatureObject* player, SceneObject* container) {
@@ -1434,10 +1800,6 @@ void FishingManagerAdapter::createFishingSplashEvent(CreatureObject* player, Sce
 
 void FishingManagerAdapter::stopFishingEvent(CreatureObject* player) {
 	(static_cast<FishingManager*>(stub))->stopFishingEvent(player);
-}
-
-String FishingManagerAdapter::getPropertyString(int amount) {
-	return (static_cast<FishingManager*>(stub))->getPropertyString(amount);
 }
 
 /*
@@ -1504,23 +1866,89 @@ int FishingManagerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	if (fishingActions) {
-	_nameHashCode = 0xfe7549e9; //FishingManager.fishingActions
+	if (miscLoot) {
+	_nameHashCode = 0xd907e6c5; //FishingManager.miscLoot
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingActions.value(), stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&miscLoot.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 	}
 
-	if (fishingStates) {
-	_nameHashCode = 0x2ade8411; //FishingManager.fishingStates
+	if (rareLoot) {
+	_nameHashCode = 0xfc08adf6; //FishingManager.rareLoot
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingStates.value(), stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&rareLoot.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (color) {
+	_nameHashCode = 0xee64ccda; //FishingManager.color
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<VectorMap<String, int> >::toBinaryStream(&color.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (fishLength) {
+	_nameHashCode = 0x1271894c; //FishingManager.fishLength
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<int> >::toBinaryStream(&fishLength.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (fishType) {
+	_nameHashCode = 0x89360703; //FishingManager.fishType
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&fishType.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (state) {
+	_nameHashCode = 0xb1e4b355; //FishingManager.state
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&state.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (action) {
+	_nameHashCode = 0xec73825f; //FishingManager.action
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&action.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (property) {
+	_nameHashCode = 0x8dc6df2e; //FishingManager.property
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<Vector<String> >::toBinaryStream(&property.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -1546,19 +1974,67 @@ bool FishingManagerPOD::readObjectMember(ObjectInputStream* stream, const uint32
 		return true;
 
 	switch(nameHashCode) {
-	case 0xfe7549e9: //FishingManager.fishingActions
+	case 0xd907e6c5: //FishingManager.miscLoot
 		{
-			Vector<String> _mnfishingActions;
-			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnfishingActions, stream);
-			fishingActions = std::move(_mnfishingActions);
+			Vector<String> _mnmiscLoot;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnmiscLoot, stream);
+			miscLoot = std::move(_mnmiscLoot);
 		}
 		return true;
 
-	case 0x2ade8411: //FishingManager.fishingStates
+	case 0xfc08adf6: //FishingManager.rareLoot
 		{
-			Vector<String> _mnfishingStates;
-			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnfishingStates, stream);
-			fishingStates = std::move(_mnfishingStates);
+			Vector<String> _mnrareLoot;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnrareLoot, stream);
+			rareLoot = std::move(_mnrareLoot);
+		}
+		return true;
+
+	case 0xee64ccda: //FishingManager.color
+		{
+			VectorMap<String, int> _mncolor;
+			TypeInfo<VectorMap<String, int> >::parseFromBinaryStream(&_mncolor, stream);
+			color = std::move(_mncolor);
+		}
+		return true;
+
+	case 0x1271894c: //FishingManager.fishLength
+		{
+			Vector<int> _mnfishLength;
+			TypeInfo<Vector<int> >::parseFromBinaryStream(&_mnfishLength, stream);
+			fishLength = std::move(_mnfishLength);
+		}
+		return true;
+
+	case 0x89360703: //FishingManager.fishType
+		{
+			Vector<String> _mnfishType;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnfishType, stream);
+			fishType = std::move(_mnfishType);
+		}
+		return true;
+
+	case 0xb1e4b355: //FishingManager.state
+		{
+			Vector<String> _mnstate;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnstate, stream);
+			state = std::move(_mnstate);
+		}
+		return true;
+
+	case 0xec73825f: //FishingManager.action
+		{
+			Vector<String> _mnaction;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnaction, stream);
+			action = std::move(_mnaction);
+		}
+		return true;
+
+	case 0x8dc6df2e: //FishingManager.property
+		{
+			Vector<String> _mnproperty;
+			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnproperty, stream);
+			property = std::move(_mnproperty);
 		}
 		return true;
 
@@ -1596,9 +2072,21 @@ void FishingManagerPOD::readObject(ObjectInputStream* stream) {
 void FishingManagerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	ObserverPOD::writeObjectCompact(stream);
 
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingActions.value(), stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&miscLoot.value(), stream);
 
-	TypeInfo<Vector<String> >::toBinaryStream(&fishingStates.value(), stream);
+	TypeInfo<Vector<String> >::toBinaryStream(&rareLoot.value(), stream);
+
+	TypeInfo<VectorMap<String, int> >::toBinaryStream(&color.value(), stream);
+
+	TypeInfo<Vector<int> >::toBinaryStream(&fishLength.value(), stream);
+
+	TypeInfo<Vector<String> >::toBinaryStream(&fishType.value(), stream);
+
+	TypeInfo<Vector<String> >::toBinaryStream(&state.value(), stream);
+
+	TypeInfo<Vector<String> >::toBinaryStream(&action.value(), stream);
+
+	TypeInfo<Vector<String> >::toBinaryStream(&property.value(), stream);
 
 	TypeInfo<Vector<String> >::toBinaryStream(&baitStatus.value(), stream);
 

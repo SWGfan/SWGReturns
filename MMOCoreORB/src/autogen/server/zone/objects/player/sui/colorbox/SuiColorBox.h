@@ -61,10 +61,6 @@ public:
 
 	void setColorPalette(String& pal);
 
-	int getSkillMod();
-
-	void setSkillMod(int mod);
-
 	bool isColorPicker();
 
 	DistributedObjectServant* _getImplementation();
@@ -100,8 +96,6 @@ class SuiColorBoxImplementation : public SuiBoxImplementation {
 protected:
 	String variable;
 
-	int skillMod;
-
 public:
 	SuiColorBoxImplementation(CreatureObject* player, unsigned int windowType);
 
@@ -112,10 +106,6 @@ public:
 	String getColorPalette();
 
 	void setColorPalette(String& pal);
-
-	int getSkillMod();
-
-	void setSkillMod(int mod);
 
 	bool isColorPicker();
 
@@ -166,10 +156,6 @@ public:
 
 	void setColorPalette(String& pal);
 
-	int getSkillMod();
-
-	void setSkillMod(int mod);
-
 	bool isColorPicker();
 
 };
@@ -212,8 +198,6 @@ namespace colorbox {
 class SuiColorBoxPOD : public SuiBoxPOD {
 public:
 	Optional<String> variable;
-
-	Optional<int> skillMod;
 
 	String _className;
 	SuiColorBoxPOD();

@@ -9,7 +9,6 @@
 #define HAIRSTYLEINFO_H_
 
 #include "templates/IffTemplate.h"
-#include "engine/lua/LuaObject.h"
 
 namespace server {
 namespace zone {
@@ -85,30 +84,8 @@ public:
 		return styles.size();
 	}
 
-	inline const String& getFirstStyle() const {
-		return styles.get(0);
-	}
-
-	inline const Vector<String>& getStyles() const {
-		return styles;
-	}
-
 	inline const String& getPlayerTemplate() const {
 		return playerTemplate;
-	}
-
-	void readObjectFromLua(const String& templateName, LuaObject& stylesArray) {
-		playerTemplate = templateName;
-
-		if (stylesArray.getLuaState() != nullptr) {
-			int size = stylesArray.getTableSize();
-			for (int i = 1; i <= size; ++i) {
-				String style = stylesArray.getStringAt(i);
-				if (!style.isEmpty()) {
-					styles.add(style);
-				}
-			}
-		}
 	}
 };
 

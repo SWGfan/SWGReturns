@@ -118,6 +118,8 @@ class CreditObjectPOD;
 
 using namespace server::zone::objects::creature::credits;
 
+#include "server/zone/objects/intangible/ControlDevice.h"
+
 #include "templates/SharedObjectTemplate.h"
 
 #include "server/zone/objects/structure/StructurePermissionList.h"
@@ -377,6 +379,8 @@ public:
 
 	String getRedeedMessage();
 
+	String getPackupMessage();
+
 	bool isCivicStructure() const;
 
 	bool isCityHall();
@@ -392,6 +396,14 @@ public:
 	bool hasNavmesh() const;
 
 	void createNavMesh();
+
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
+
+	bool isPackedUp();
+
+	bool unloadFromZone(bool sendSelfDestroy);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -445,6 +457,8 @@ protected:
 	bool maintenanceReduced;
 
 	bool permissionsFixed;
+
+	ManagedWeakReference<ControlDevice* > controlDevice;
 
 public:
 	StructureObjectImplementation();
@@ -693,6 +707,8 @@ public:
 
 	virtual String getRedeedMessage();
 
+	virtual String getPackupMessage();
+
 	bool isCivicStructure() const;
 
 	bool isCityHall();
@@ -708,6 +724,14 @@ public:
 	bool hasNavmesh() const;
 
 	virtual void createNavMesh();
+
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
+
+	bool isPackedUp();
+
+	bool unloadFromZone(bool sendSelfDestroy);
 
 	WeakReference<StructureObject*> _this;
 
@@ -891,6 +915,8 @@ public:
 
 	String getRedeedMessage();
 
+	String getPackupMessage();
+
 	bool isCivicStructure() const;
 
 	bool isCityHall();
@@ -906,6 +932,14 @@ public:
 	bool hasNavmesh() const;
 
 	void createNavMesh();
+
+	void setControlDevice(ControlDevice* device);
+
+	ManagedWeakReference<ControlDevice* > getControlDevice() const;
+
+	bool isPackedUp();
+
+	bool unloadFromZone(bool sendSelfDestroy);
 
 };
 
@@ -965,6 +999,8 @@ public:
 	Optional<bool> maintenanceReduced;
 
 	Optional<bool> permissionsFixed;
+
+	Optional<ManagedWeakReference<ControlDevicePOD* >> controlDevice;
 
 	String _className;
 	StructureObjectPOD();

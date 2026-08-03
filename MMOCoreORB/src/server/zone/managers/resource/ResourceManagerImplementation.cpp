@@ -157,12 +157,6 @@ void ResourceManagerImplementation::loadDefaultConfig() {
 	resourceSpawner->addZone("talus");
 	resourceSpawner->addZone("tatooine");
 	resourceSpawner->addZone("endor");
-	resourceSpawner->addZone("chandrila");
-	resourceSpawner->addZone("kaas");
-	resourceSpawner->addZone("moraband");
-	resourceSpawner->addZone("hutta");
-	resourceSpawner->addZone("florrum");
-	resourceSpawner->addZone("lothal");
 
 	shiftInterval = 7200000;
 	resourceSpawner->setSpawningParameters(1, 86400, 90, 1000, 0);
@@ -216,7 +210,6 @@ ResourceContainer* ResourceManagerImplementation::harvestResource(CreatureObject
 	return resourceSpawner->harvestResource(player, type, quantity);
 }
 bool ResourceManagerImplementation::harvestResourceToPlayer(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity) {
-	trx.addState("resourceID", resourceSpawn->getObjectID());
 	trx.addState("resourceType", resourceSpawn->getType());
 	trx.addState("resourceName", resourceSpawn->getName());
 	trx.addState("resourceQuantity", quantity);
@@ -361,11 +354,6 @@ void ResourceManagerImplementation::removePowerFromPlayer(CreatureObject* player
 
 		if (containerPower > power) {
 			uint32 consumedUnits = (uint64) power / modifier;
-
-			if (consumedUnits < 1) {
-				consumedUnits = 1;
-			}
-
 			rcno->setQuantity(quantity - consumedUnits);
 
 			ResourceContainerObjectDeltaMessage3* drcno3 = new ResourceContainerObjectDeltaMessage3(rcno);
@@ -429,13 +417,6 @@ void ResourceManagerImplementation::addPlanetsToListBox(SuiListBox* sui) {
 String ResourceManagerImplementation::getPlanetByIndex(int idx) {
 	return resourceSpawner->getPlanetByIndex(idx);
 }
-
-String ResourceManagerImplementation::ghDump() {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
-
-	return resourceSpawner->ghDump();
-}
-
 String ResourceManagerImplementation::addParentNodeToListBox(SuiListBox* sui, const String& currentNode) {
 	return resourceSpawner->addParentNodeToListBox(sui, currentNode);
 }
@@ -454,6 +435,12 @@ String ResourceManagerImplementation::dumpResources() {
 	Locker locker(_this.getReferenceUnsafeStaticCast());
 
 	return resourceSpawner->dumpResources();
+}
+
+String ResourceManagerImplementation::ghDump() {
+	Locker locker(_this.getReferenceUnsafeStaticCast());
+
+	return resourceSpawner->ghDump();
 }
 
 String ResourceManagerImplementation::despawnResource(String& resourceName) {

@@ -44,27 +44,55 @@
 Saber2hHit3Command = {
         name = "saber2hhit3",
 
-	damageMultiplier = 2.5,
-	speedMultiplier = 2.5,
+	damageMultiplier = 5.5,
+	speedMultiplier = 4.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 1,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
+	accuracyBonus = 25,
 	forceCostMultiplier = 2.0,
-	accuracyBonus = 50,
 	visMod = 25,
-	
 
+	stateEffects = {
+	   StateEffect( 
+		BLIND_EFFECT, 
+		{}, 
+		{ "blind_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		75, 
+		0, 
+		60 
+	  ),
+	  StateEffect( 
+		DIZZY_EFFECT, 
+		{}, 
+		{ "dizzy_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		75, 
+		0, 
+		30 
+	  ),
+	  StateEffect( 
+		STUN_EFFECT, 
+		{}, 
+		{ "stun_defense", "resistance_states" }, 
+		{ "jedi_state_defense" }, 
+		76, 
+		0, 
+		60 
+	  )
+	},
 
-	animation = "showoff_3", 
+	animation = "combo_jedi_1", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "saber2hhit3",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	weaponType = TWOHANDJEDIWEAPON,
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Saber2hHit3Command)

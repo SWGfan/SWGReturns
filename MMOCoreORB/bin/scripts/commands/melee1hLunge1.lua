@@ -44,19 +44,18 @@
 Melee1hLunge1Command = {
 	name = "melee1hlunge1",
 
-	damageMultiplier = 1,
-  speedMultiplier = 2,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2.5,
-  mindCostMultiplier = 0,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 1.0,
+        accuracyBonus = 25,
 
 	animation = "lower_posture_1hmelee_1",
 
 	combatSpam = "lungestab",
 
-	range = 15,
+	range = 20,
 
 	weaponType = ONEHANDMELEEWEAPON,
 
@@ -66,8 +65,8 @@ Melee1hLunge1Command = {
 		{ "postureDownRecovery" },
 		{ "posture_change_down_defense" },
 		{},
-		75,
-		75,
+		100,
+		0,
 		0
 	  )
 	}

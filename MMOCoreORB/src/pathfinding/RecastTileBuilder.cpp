@@ -51,7 +51,7 @@ inline unsigned int ilog2(unsigned int v) {
 }
 
 RecastSettings::RecastSettings() {
-	m_tileSize = 256.0f; //doubled from 128 to quarter total tile count and stay well under Detour's 16384-tile-per-navmesh cap for large build areas
+	m_tileSize = 128.0f;
 	m_cellSize = 0.15;            //buildSettings->cellSize;
 	m_cellHeight = 0.15;        //buildSettings->cellHeight;
 	m_agentHeight = 1.5f;        //buildSettings->agentHeight;

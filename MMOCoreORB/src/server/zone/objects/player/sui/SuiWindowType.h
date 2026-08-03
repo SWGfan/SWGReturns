@@ -17,7 +17,12 @@ public:
 		CLONE_CONFIRM                      = 10,
 
 		//Entertaining 11 - 20
-		PERFORMANCE_SELECT                 = 11,
+		MUSIC_START                        = 11,
+		MUSIC_CHANGE                       = 12,
+		DANCING_START                      = 13,
+		DANCING_CHANGE                     = 14,
+		BAND_START                         = 15,
+		BAND_CHANGE                        = 16,
 
 		//Guilds 21 - 50
 		GUILD_CREATE_NAME                  = 21,
@@ -269,9 +274,7 @@ public:
 		FIELD_FACTION_CHANGE				= 1040,
 		GOTO_LIST							= 1041,
 		FS_EXP_CONVERT						= 1042,
-		REPAIR_TOOL_DIALOG					= 1043,
-		PLAYER_BOUNTY_OFFER					= 1044,
-		SHIP_TEXTURE_SELECT					= 1045
+		REPAIR_TOOL_DIALOG					= 1043
 	};
 };
 

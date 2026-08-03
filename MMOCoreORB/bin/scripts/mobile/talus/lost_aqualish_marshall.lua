@@ -2,7 +2,6 @@ lost_aqualish_marshall = Creature:new {
 	objectName = "@mob/creature_names:lost_aqualish_marshal",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "lost_aqualish",
 	faction = "lost_aqualish",
 	level = 25,
@@ -43,18 +42,10 @@ lost_aqualish_marshall = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(lost_aqualish_marshall, "lost_aqualish_marshall")

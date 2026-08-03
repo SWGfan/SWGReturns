@@ -24,18 +24,9 @@ void APIProxyConfigManager::handleGET(APIRequest& apiRequest) {
 
 	JSONSerializationType found;
 
-	if (key.beginsWith("Engine3")) {
-		auto engineKey = key.length() > 7 ? key.subString(8) : "";
-
-		if (!Core::getPropertyAsJSON(engineKey, found)) {
-			apiRequest.fail(key + " not found in engine.", key + " not found.", APIRequestStatus::NotFound);
-			return;
-		}
-	} else {
-		if (!ConfigManager::instance()->getAsJSON(key, found)) {
-			apiRequest.fail(key + " not found.", key + " not found.", APIRequestStatus::NotFound);
-			return;
-		}
+	if (!ConfigManager::instance()->getAsJSON(key, found)) {
+		apiRequest.fail(key + " not found.", key + " not found.", APIRequestStatus::NotFound);
+		return;
 	}
 
 	JSONSerializationType metadata;
@@ -53,43 +44,16 @@ void APIProxyConfigManager::handleGET(APIRequest& apiRequest) {
 
 void APIProxyConfigManager::handlePUT(APIRequest& apiRequest) {
 	auto key = apiRequest.getPathFieldString("key").replaceAll("/", ".");
+
 	auto value = apiRequest.getQueryFieldString("value");
-	auto force = apiRequest.getQueryFieldBool("force", false, false);
 
-	JSONSerializationType updatedValue;
+	if (!ConfigManager::instance()->contains(key)) {
+		apiRequest.fail(key + " not found.", key + " not found.", APIRequestStatus::NotFound);
+	}
 
-	if (key.beginsWith("Engine3")) {
-		if (key.length() < 9) {
-			apiRequest.fail(key + " invalid engine property.", key + " invalid engine property.", APIRequestStatus::NotFound);
-			return;
-		}
-
-		auto engineKey = key.subString(8);
-
-		if (engineKey.isEmpty()) {
-			apiRequest.fail("Failed to update empty key " + key + " = [" + engineKey + "]", "Failed to update " + key, APIRequestStatus::NotModified);
-			return;
-		}
-
-		if (!force && !Core::hasProperty(engineKey)) {
-			apiRequest.fail(engineKey + " not found in engine.", key + " not found.", APIRequestStatus::NotFound);
-			return;
-		}
-
-		Core::setProperty(engineKey, value);
-		Core::getPropertyAsJSON(engineKey, updatedValue);
-	} else {
-		if (!force && !ConfigManager::instance()->contains(key)) {
-			apiRequest.fail(key + " not found.", key + " not found.", APIRequestStatus::NotFound);
-			return;
-		}
-
-		if (!ConfigManager::instance()->setString(key, value)) {
-			apiRequest.fail("Failed to update " + key, "Failed to update " + key, APIRequestStatus::NotModified);
-			return;
-		}
-
-		ConfigManager::instance()->getAsJSON(key, updatedValue);
+	if (!ConfigManager::instance()->setString(key, value)) {
+		apiRequest.fail("Failed to update " + key, "Failed to update " + key, APIRequestStatus::NotModified);
+		return;
 	}
 
 	JSONSerializationType metadata;
@@ -100,7 +64,12 @@ void APIProxyConfigManager::handlePUT(APIRequest& apiRequest) {
 	JSONSerializationType result;
 
 	result["metadata"] = metadata;
-	result["result"] = updatedValue;
+
+	JSONSerializationType jsonData;
+
+	ConfigManager::instance()->getAsJSON(key, jsonData);
+
+	result["result"] = jsonData;
 
 	apiRequest.success(result);
 }
@@ -110,11 +79,6 @@ void APIProxyConfigManager::handlePOST(APIRequest& apiRequest) {
 
 	if (!key.isEmpty()) {
 		apiRequest.fail("Invalid request, key cannot be specified for POST operations");
-		return;
-	}
-
-	if (key.beginsWith("Engine3")) {
-		apiRequest.fail("Invalid request, Engine3 does not support JSON updates.");
 		return;
 	}
 

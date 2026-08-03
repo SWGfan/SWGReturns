@@ -2,7 +2,6 @@ nwilla_tharlyat = Creature:new {
 	objectName = "",
 	socialGroup = "",
 	faction = "",
-	mobType = MOB_NPC,
 	level = 16,
 	chanceHit = 0.310000,
 	damageMin = 160,
@@ -38,16 +37,8 @@ nwilla_tharlyat = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	weapons = {"pirate_weapons_light"},
+	attacks = merge(marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(nwilla_tharlyat, "nwilla_tharlyat")

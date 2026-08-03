@@ -2,7 +2,6 @@ dolac_legasi = Creature:new {
 	objectName = "",
 	customName = "Dolac Legasi",
 	socialGroup = "imperial",
-	mobType = MOB_NPC,
 	faction = "imperial",
 	level = 100,
 	chanceHit = 1,
@@ -11,7 +10,7 @@ dolac_legasi = Creature:new {
 	baseXp = 9429,
 	baseHAM = 24000,
 	baseHAMmax = 30000,
-	armor = 1,
+	armor = 2,
 	resists = {0,0,0,0,0,0,0,0,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -29,17 +28,10 @@ dolac_legasi = Creature:new {
 
 	templates = {"object/mobile/dressed_dolac_legasi.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_light"},
 	conversationTemplate = "dolac_legasi_mission_giver_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(dolac_legasi, "dolac_legasi")

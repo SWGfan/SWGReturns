@@ -46,9 +46,9 @@ PistolMeleeDefense1Command = {
 
 	damageMultiplier = 3.0,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 0,
+	healthCostMultiplier = 0.50,
 	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0,
+	mindCostMultiplier = 0.50,
         accuracyBonus = 50,
 
 	stateEffects = {
@@ -56,14 +56,14 @@ PistolMeleeDefense1Command = {
 		KNOCKDOWN_EFFECT, 
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
-		{}, 
-		65, 
+		{},
+		100, 
 		0, 
 		0 
 	  )
 	},
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "ranged_melee", 
 	animType = GENERATE_INTENSITY,
@@ -72,7 +72,7 @@ PistolMeleeDefense1Command = {
 	
 	weaponType = PISTOLWEAPON,
 
-	range = 5
+	range = 10
 }
 
 AddCommand(PistolMeleeDefense1Command)

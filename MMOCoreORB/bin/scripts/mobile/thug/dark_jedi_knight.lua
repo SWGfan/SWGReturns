@@ -2,18 +2,17 @@ dark_jedi_knight = Creature:new {
 	objectName = "@mob/creature_names:dark_jedi_knight",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
-	socialGroup = "sith_shadow",
-	faction = "sith_shadow",
-	level = 400,
-	chanceHit = 1.0,
-	damageMin = 2000,
-	damageMax = 2800,
-	baseXp = 50000,
-	baseHAM = 1200000,
-	baseHAMmax = 1500000,
+	socialGroup = "dark_jedi",
+	faction = "",
+	level = 265,
+	chanceHit = 23.5,
+	damageMin = 1645,
+	damageMax = 3000,
+	baseXp = 25266,
+	baseHAM = 261000,
+	baseHAMmax = 320000,
 	armor = 3,
-	resists = {130,130,130,130,130,130,130,130,100},
+	resists = {90,90,90,90,90,90,90,90,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,53 +31,18 @@ dark_jedi_knight = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_dark", chance = 300000},
-				{group = "holocron_light", chance = 300000},
-				{group = "power_crystals", chance = 1200000},
-				{group = "ranged_weapons", chance = 1300000},
-				{group = "melee_weapons", chance = 1300000},
-				{group = "armor_attachments", chance = 2400000},
-				{group = "clothing_attachments", chance = 2400000},
-				{group = "dark_jedi_common", chance = 800000}
+				{group = "power_crystals", chance = 1500000},
+				{group = "armor_attachments", chance = 2500000},
+				{group = "clothing_attachments", chance = 3900000},
+				{group = "named_color_crystals", chance = 100000},
+				{group = "dark_jedi_common", chance = 2000000}
 			},
-				lootChance = 10000000,
-		},
-		{
-			groups = {
-				{group = "holocron_dark", chance = 300000},
-				{group = "holocron_light", chance = 300000},
-				{group = "power_crystals", chance = 1200000},
-				{group = "ranged_weapons", chance = 1300000},
-				{group = "melee_weapons", chance = 1300000},
-				{group = "armor_attachments", chance = 2400000},
-				{group = "clothing_attachments", chance = 2400000},
-				{group = "dark_jedi_common", chance = 800000}
-			},
-				lootChance = 10000000,
-		},
-		{
-			groups = {
-				{group = "holocron_dark", chance = 300000},
-				{group = "holocron_light", chance = 300000},
-				{group = "power_crystals", chance = 1200000},
-				{group = "ranged_weapons", chance = 1300000},
-				{group = "melee_weapons", chance = 1300000},
-				{group = "armor_attachments", chance = 2400000},
-				{group = "clothing_attachments", chance = 2400000},
-				{group = "dark_jedi_common", chance = 800000}
-			},
-				lootChance = 5500000,
-		},
+			lootChance = 10000000
+		}
 	},
-
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "unarmed",
+	weapons = {"dark_jedi_weapons_gen3"},
 	conversationTemplate = "",
-
-	primaryAttacks = lightsabermaster,
-	secondaryAttacks = forcepowermaster,
-	
-	specialDamageMult = 2.0
+	attacks = merge(lightsabermaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(dark_jedi_knight, "dark_jedi_knight")

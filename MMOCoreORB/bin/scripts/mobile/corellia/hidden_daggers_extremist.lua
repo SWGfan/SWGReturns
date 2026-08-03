@@ -2,7 +2,6 @@ hidden_daggers_extremist = Creature:new {
 	objectName = "@mob/creature_names:hidden_daggers_extremist",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "hidden_daggers",
 	faction = "hidden_daggers",
 	level = 13,
@@ -46,17 +45,9 @@ hidden_daggers_extremist = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_medium"},
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermid,marksmanmid),
-	secondaryAttacks = { }
+	attacks = merge(brawlermid,marksmanmid)
 }
 
 CreatureTemplates:addCreatureTemplate(hidden_daggers_extremist, "hidden_daggers_extremist")

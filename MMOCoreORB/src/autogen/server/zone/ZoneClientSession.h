@@ -44,10 +44,6 @@ using namespace server::zone::objects::creature;
 
 #include "system/util/SynchronizedVectorMap.h"
 
-#include "server/zone/objects/scene/variables/PendingTasksMap.h"
-
-#include "server/zone/objects/scene/variables/OrderedTaskExecutioner.h"
-
 #include "engine/service/proto/BaseClientProxy.h"
 
 #include "engine/service/proto/BasePacket.h"
@@ -57,8 +53,6 @@ using namespace server::zone::objects::creature;
 #include "system/lang/Time.h"
 
 #include "system/util/VectorMap.h"
-
-#include "engine/core/Task.h"
 
 namespace server {
 namespace zone {
@@ -79,17 +73,11 @@ public:
 
 	void closeConnection(bool lockPlayer, bool doLock = true);
 
-	void setupLogging();
-
 	void info(const String& msg, bool force = false);
 
 	void debug(const String& msg);
 
 	void error(const String& msg);
-
-	void executeOrderedTask(Task* task);
-
-	PendingTasksMap* getPendingTasks();
 
 	LoggerHelperStream info(int forced = false) const;
 
@@ -176,8 +164,6 @@ protected:
 
 	unsigned int accountID;
 
-	Reference<PendingTasksMap* > pendingTasks;
-
 private:
 	bool disconnecting;
 
@@ -203,17 +189,11 @@ public:
 
 	void closeConnection(bool lockPlayer, bool doLock = true);
 
-	void setupLogging();
-
 	void info(const String& msg, bool force = false);
 
 	void debug(const String& msg);
 
 	void error(const String& msg);
-
-	void executeOrderedTask(Task* task);
-
-	PendingTasksMap* getPendingTasks();
 
 	LoggerHelperStream info(int forced = false) const;
 
@@ -313,8 +293,6 @@ public:
 	void resetPacketCheckupTime();
 
 	void closeConnection(bool lockPlayer, bool doLock);
-
-	void setupLogging();
 
 	void info(const String& msg, bool force);
 

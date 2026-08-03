@@ -2,7 +2,6 @@ gaping_spider_queen = Creature:new {
 	objectName = "@mob/creature_names:gaping_spider_queen",
 	socialGroup = "spider",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 47,
 	chanceHit = 0.44,
 	damageMin = 345,
@@ -13,7 +12,7 @@ gaping_spider_queen = Creature:new {
 	armor = 0,
 	resists = {165,165,140,125,30,-1,30,30,-1},
 	meatType = "meat_insect",
-	meatAmount = 75,
+	meatAmount = 12,
 	hideType = "",
 	hideAmount = 0,
 	boneType = "",
@@ -31,17 +30,12 @@ gaping_spider_queen = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/gaping_spider_hue.iff",
 	scale = 1.15,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
-	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"knockdownattack",""}, {"mediumpoison",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"knockdownattack",""},
+		{"mediumpoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(gaping_spider_queen, "gaping_spider_queen")

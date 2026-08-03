@@ -163,6 +163,9 @@ public:
 		if(vehicle->getSpeedMultiplierMod() != 0)
 			newSpeed *= vehicle->getSpeedMultiplierMod();
 
+		// global vehicle speed boost
+		newSpeed *= 1.25f;
+
 		// Add our change to the buffer history
 		changeBuffer->add(SpeedModChange(newSpeed / creature->getRunSpeed()));
 

@@ -48,8 +48,9 @@ object_draft_schematic_clothing_clothing_armor_bone_bracer_r = object_draft_sche
    customObjectName = "Bone Armor Right Bracer",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 1, 
+   complexity = 45, 
    size = 3, 
+   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_general", 
    xp = 130, 
@@ -65,8 +66,8 @@ object_draft_schematic_clothing_clothing_armor_bone_bracer_r = object_draft_sche
    ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
    ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement", "auxiliary_coverage_2"},
    ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
-   resourceTypes = {"bone", "hide", "hide", "metal", "petrochem_inert", "hide", "object/tangible/component/armor/shared_armor_segment_bone.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff"},
-   resourceQuantities = {15, 15, 15, 10, 5, 5, 1, 1, 1, 1},
+   resourceTypes = {"bone_mammal_tatooine", "hide_scaley", "hide_leathery_talus", "iron_plumbum", "petrochem_inert", "hide_wooly", "object/tangible/component/armor/shared_armor_segment_bone.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff", "object/tangible/component/clothing/shared_fiberplast_panel.iff"},
+   resourceQuantities = {50, 50, 25, 30, 20, 20, 2, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100},
 
 

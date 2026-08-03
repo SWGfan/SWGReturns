@@ -329,7 +329,7 @@ public:
 
 	bool checkPlayerName(ClientCreateCharacterCallback* callback);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify = false);
+	String setFirstName(CreatureObject* creature, const String& newFirstName);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify = false);
 
@@ -678,9 +678,7 @@ public:
 	 * @pre { player is locked }
 	 * @post { player is locked }
 	 */
-	void enhanceCharacter(CreatureObject* player);
-
-	void enhanceCharacterFrog(CreatureObject* player);
+	void enhanceCharacter(CreatureObject* player, int type);
 
 	int getBaseStoredCreaturePets();
 
@@ -702,15 +700,13 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	int getOnlineCharactersPerAccount();
-
 	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
-
-	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
 
 	float getSpeciesXpModifier(const String& species, const String& xpType);
 
 	void unlockFRSForTesting(CreatureObject* player, int councilType);
+
+	void grantJediMaster(CreatureObject* player);
 
 	Vector<unsigned long long> getOnlinePlayerList();
 
@@ -773,7 +769,19 @@ protected:
 
 	int performanceBuff;
 
+	int cheapPerformanceBuff;
+
+	int expensivePerformanceBuff;
+
+	int expensivePerformanceSubBuff;
+
 	int medicalBuff;
+
+	int cheapMedicalBuff;
+
+	int expensiveMedicalBuff;
+
+	int expensiveMedicalSubBuff;
 
 	int performanceDuration;
 
@@ -817,8 +825,6 @@ protected:
 
 	Vector<Reference<QuestInfo*> > questInfo;
 
-	VectorMap<unsigned int, String> questCrcTable;
-
 private:
 	OnlineZoneClientMap onlineZoneClientMap;
 
@@ -842,8 +848,6 @@ private:
 
 	void loadQuestInfo();
 
-	void loadQuestCrcTable();
-
 public:
 	void finalize();
 
@@ -861,7 +865,7 @@ public:
 
 	bool checkPlayerName(ClientCreateCharacterCallback* callback);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify = false);
+	String setFirstName(CreatureObject* creature, const String& newFirstName);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify = false);
 
@@ -1221,9 +1225,7 @@ public:
 	 * @pre { player is locked }
 	 * @post { player is locked }
 	 */
-	void enhanceCharacter(CreatureObject* player);
-
-	void enhanceCharacterFrog(CreatureObject* player);
+	void enhanceCharacter(CreatureObject* player, int type);
 
 private:
 	/**
@@ -1256,11 +1258,7 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	int getOnlineCharactersPerAccount();
-
 	void doPvpDeathRatingUpdate(CreatureObject* player, ThreatMap* threatMap);
-
-	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
 
 private:
 	void loadXpBonusList();
@@ -1269,6 +1267,8 @@ public:
 	float getSpeciesXpModifier(const String& species, const String& xpType);
 
 	void unlockFRSForTesting(CreatureObject* player, int councilType);
+
+	void grantJediMaster(CreatureObject* player);
 
 	Vector<unsigned long long> getOnlinePlayerList();
 
@@ -1329,7 +1329,7 @@ public:
 
 	bool kickUser(const String& name, const String& admin, String& reason, bool doBan);
 
-	String setFirstName(CreatureObject* creature, const String& newFirstName, bool skipVerify);
+	String setFirstName(CreatureObject* creature, const String& newFirstName);
 
 	String setLastName(CreatureObject* creature, const String& newLastName, bool skipVerify);
 
@@ -1511,9 +1511,7 @@ public:
 
 	bool doBurstRun(CreatureObject* player, float hamModifier, float cooldownModifier);
 
-	void enhanceCharacter(CreatureObject* player);
-
-	void enhanceCharacterFrog(CreatureObject* player);
+	void enhanceCharacter(CreatureObject* player, int type);
 
 	int getBaseStoredCreaturePets();
 
@@ -1533,13 +1531,11 @@ public:
 
 	void setOnlineCharactersPerAccount(int count);
 
-	int getOnlineCharactersPerAccount();
-
-	void offerPlayerBounty(CreatureObject* attacker, CreatureObject* defender);
-
 	float getSpeciesXpModifier(const String& species, const String& xpType);
 
 	void unlockFRSForTesting(CreatureObject* player, int councilType);
+
+	void grantJediMaster(CreatureObject* player);
 
 	void updateOnlinePlayers();
 
@@ -1582,7 +1578,19 @@ class PlayerManagerPOD : public ObserverPOD {
 public:
 	Optional<int> performanceBuff;
 
+	Optional<int> cheapPerformanceBuff;
+
+	Optional<int> expensivePerformanceBuff;
+
+	Optional<int> expensivePerformanceSubBuff;
+
 	Optional<int> medicalBuff;
+
+	Optional<int> cheapMedicalBuff;
+
+	Optional<int> expensiveMedicalBuff;
+
+	Optional<int> expensiveMedicalSubBuff;
 
 	Optional<int> performanceDuration;
 

@@ -26,7 +26,8 @@ class GroupObject extends SceneObject {
 	ChatRoom chatRoom;
 
 	int groupLevel;
-	int factionPetLevel;
+
+	protected string bandSong;
 
 	int lootRule;
 
@@ -34,11 +35,12 @@ class GroupObject extends SceneObject {
 
 	public GroupObject() {
 		groupLevel = 0;
-		factionPetLevel = 0;
 
 		Logger.setLoggingName("GroupObject");
 
 		chatRoom = null;
+
+		bandSong = "";
 
 		lootRule = GroupManager.FREEFORALL;
 		masterLooterID = 0;
@@ -98,16 +100,8 @@ class GroupObject extends SceneObject {
 	public native void calcGroupLevel();
 
 	@read
-	public int getGroupLevel(boolean includeFactionPets = true) {
-		if (includeFactionPets)
-			return groupLevel;
-		else
-			return groupLevel - factionPetLevel;
-	}
-
-	@read
-	public int getFactionPetLevel() {
-	    return factionPetLevel;
+	public int getGroupLevel() {
+		return groupLevel;
 	}
 
 	@read
@@ -171,6 +165,16 @@ class GroupObject extends SceneObject {
 
 	@dirty
 	public native boolean isOtherMemberPlayingMusic(CreatureObject player);
+
+	@read
+	public string getBandSong() {
+		return bandSong;
+	}
+
+	@preLocked
+	public void setBandSong(final string song) {
+		bandSong = song;
+	}
 
 	@read
 	public int getLootRule() {

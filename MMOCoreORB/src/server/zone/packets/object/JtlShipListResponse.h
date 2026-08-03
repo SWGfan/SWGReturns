@@ -10,84 +10,53 @@
 
 #include "ObjectControllerMessage.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/ship/ShipObject.h"
-#include "server/zone/objects/intangible/ShipControlDevice.h"
 
-class JtlShipListResponse: public ObjectControllerMessage {
+//TODO: This is very unsafe still...
+class JtlShipListResponse : public ObjectControllerMessage {
 public:
-	JtlShipListResponse(CreatureObject* player, SceneObject* terminal) : ObjectControllerMessage(player->getObjectID(), 0x1B, 0x41D) {
-		if (player == nullptr)
-			return;
+	JtlShipListResponse(CreatureObject* creo, SceneObject* terminal)
+		: ObjectControllerMessage(creo->getObjectID(), 0x0B, 0x41D) {
 
-		PlayerObject* ghost = player->getPlayerObject();
+		insertInt(0); // size
 
-		if (ghost == nullptr) {
-			return;
-		}
 
-		auto datapad = player->getSlottedObject("datapad");
+		SceneObject* datapad = creo->getSlottedObject("datapad");
 
-		if (datapad == nullptr) {
-			return;
-		}
+		//int offs = getOffset();
 
-		auto zone = player->getZone();
+		//insertInt(2);
 
-		if (zone == nullptr) {
-			return;
-		}
+		//insertLong(terminal->getObjectID());
 
-		auto planetManager = zone->getPlanetManager();
+		/* TODO: Better method of this.
+		ManagedReference<ActiveArea*> region = terminal->getActiveRegion();
 
-		if (planetManager == nullptr) {
-			return;
-		}
+		if (region != nullptr && region->isRegion())
+			insertAscii(region->getDisplayedName());
+		else
+			insertAscii(terminal->getZone()->getZoneName());
+		*/
 
-		auto travelPoint = planetManager->getNearestPlanetTravelPoint(player->getWorldPosition(), 128.f);
+		/*
+		insertAscii("cRush Rocks");
 
-		// If this is a blank string it will just show the ships not at this location
-		auto travelPointName = travelPoint != nullptr ? travelPoint->getPointName() : "";
+		VectorMap<uint64, ManagedReference<SceneObject*> >* datapadObjects = datapad->getContainerObjects();
 
-		VectorMap<uint64, String> shipMap;
-		int datapadSize = datapad->getContainerObjectsSize();
+		for (int i = 0; i < datapadObjects->size(); ++i) {
+			ManagedReference<SceneObject*> datapadObject = datapadObjects->get(i);
 
-		for (int i = 0; i < datapadSize; i++) {
-			ManagedReference<SceneObject*> sceneO = datapad->getContainerObject(i);
+			if (datapadObject->getGameObjectType() == SceneObjectType::SHIPCONTROLDEVICE) {
+				ManagedReference<ShipControlDevice*> shipControlDevice = cast<ShipControlDevice*>( datapadObject.get());
 
-			if (sceneO == nullptr || !sceneO->isShipControlDevice()) {
-				continue;
+				if (shipControlDevice->getControlledObject() != nullptr) {
+					ManagedReference<ShipObject*> ship = cast<ShipObject*>( shipControlDevice->getControlledObject());
+
+					insertLong(ship->getObjectID());
+					insertAscii("cRush Rocks"); //TODO: Fix to retrieve ship->getParkedLocation();
+				}
 			}
-
-			ShipControlDevice* shipDevice = sceneO.castTo<ShipControlDevice*>();
-
-			if (shipDevice == nullptr)
-				continue;
-
-			auto object = shipDevice->getControlledObject();
-
-			if (object == nullptr || !object->isShipObject()) {
-				continue;
-			}
-
-			if (shipDevice->getParkingLocation().isEmpty()) {
-				Locker cLock(shipDevice, player);
-				shipDevice->setParkingLocation(travelPointName);
-			}
-
-			shipMap.put(object->getObjectID(), shipDevice->getParkingLocation());
 		}
-
-		insertInt(shipMap.size() +1); // Number of ships
-		insertLong(terminal->getObjectID()); // Space Terminal ID
-		insertAscii(travelPointName); //Player Location
-
-		for (int i = 0; i < shipMap.size(); i++) {
-			auto shipID = shipMap.elementAt(i).getKey();
-			auto cityName = shipMap.elementAt(i).getValue();
-
-			insertLong(shipID);
-			insertAscii(cityName);
-		}
+		*/
 	}
 };
 

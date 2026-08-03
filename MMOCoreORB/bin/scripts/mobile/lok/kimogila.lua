@@ -2,7 +2,6 @@ kimogila = Creature:new {
 	objectName = "@mob/creature_names:kimogila",
 	socialGroup = "kimogila",
 	faction = "",
-	mobType = MOB_CARNIVORE,
 	level = 95,
 	chanceHit = 0.9,
 	damageMin = 630,
@@ -10,7 +9,7 @@ kimogila = Creature:new {
 	baseXp = 9057,
 	baseHAM = 22000,
 	baseHAMmax = 27000,
-	armor = 1,
+	armor = 2,
 	resists = {145,175,0,175,0,0,200,-1,-1},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
@@ -18,7 +17,8 @@ kimogila = Creature:new {
 	hideAmount = 1000,
 	boneType = "",
 	boneAmount = 0,
-	milk = 0,
+	milkType = "milk_wild",
+	milk = 700,
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
@@ -37,17 +37,12 @@ kimogila = Creature:new {
 			lootChance = 2900000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"blindattack",""}, {"dizzyattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"blindattack",""},
+		{"dizzyattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(kimogila, "kimogila")

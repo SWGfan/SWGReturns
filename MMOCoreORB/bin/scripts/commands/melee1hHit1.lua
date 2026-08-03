@@ -44,14 +44,12 @@
 Melee1hHit1Command = {
 	name = "melee1hhit1",
 
-	damageMultiplier = 1.25,
-  speedMultiplier = 1,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.5,
-  mindCostMultiplier = 0,
+	damageMultiplier = 2.5,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.625,
         accuracyBonus = 25,
-        
-  poolsToDamage = HEALTH_ATTRIBUTE,      
 
 	animation = "counter_high_center", 
 	animType = GENERATE_INTENSITY,
@@ -60,7 +58,7 @@ Melee1hHit1Command = {
 	
 	weaponType = ONEHANDMELEEWEAPON,
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Melee1hHit1Command)

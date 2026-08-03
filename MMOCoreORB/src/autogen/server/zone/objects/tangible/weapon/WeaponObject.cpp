@@ -16,7 +16,7 @@
  *	WeaponObjectStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDCONTAINERTO__CREATUREOBJECT_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CREATECHILDOBJECTS__,RPC_ISCERTIFIEDFOR__CREATUREOBJECT_,RPC_SETCERTIFIED__BOOL_,RPC_GETATTACKTYPE__,RPC_SETATTACKTYPE__INT_,RPC_ISCERTIFIED__,RPC_ISEQUIPPED__,RPC_GETPOINTBLANKACCURACY__BOOL_,RPC_SETPOINTBLANKACCURACY__INT_,RPC_GETPOINTBLANKRANGE__BOOL_,RPC_GETPOINTBLANKRANGE__,RPC_GETIDEALRANGE__BOOL_,RPC_GETIDEALRANGE__,RPC_SETIDEALRANGE__INT_,RPC_GETMAXRANGE__BOOL_,RPC_GETMAXRANGE__,RPC_SETMAXRANGE__INT_,RPC_GETIDEALACCURACY__BOOL_,RPC_SETIDEALACCURACY__INT_,RPC_GETARMORPIERCING__,RPC_GETMAXRANGEACCURACY__BOOL_,RPC_SETMAXRANGEACCURACY__INT_,RPC_GETATTACKSPEED__BOOL_,RPC_SETATTACKSPEED__FLOAT_,RPC_GETMAXDAMAGE__BOOL_,RPC_SETMAXDAMAGE__FLOAT_,RPC_GETMINDAMAGE__BOOL_,RPC_SETMINDAMAGE__FLOAT_,RPC_GETWOUNDSRATIO__BOOL_,RPC_SETWOUNDSRATIO__FLOAT_,RPC_GETDAMAGERADIUS__BOOL_,RPC_SETDAMAGERADIUS__FLOAT_,RPC_GETHEALTHATTACKCOST__BOOL_,RPC_SETHEALTHATTACKCOST__INT_,RPC_GETACTIONATTACKCOST__BOOL_,RPC_SETACTIONATTACKCOST__INT_,RPC_GETMINDATTACKCOST__BOOL_,RPC_SETMINDATTACKCOST__INT_,RPC_GETFORCECOST__,RPC_SETFORCECOST__FLOAT_,RPC_GETBLADECOLOR__,RPC_SETBLADECOLOR__INT_,RPC_GETDAMAGETYPE__,RPC_GETXPTYPE__,RPC_GETNUMBEROFDOTS__,RPC_GETDOTTYPE__INT_,RPC_GETDOTATTRIBUTE__INT_,RPC_GETDOTSTRENGTH__INT_,RPC_GETDOTDURATION__INT_,RPC_GETDOTPOTENCY__INT_,RPC_GETDOTUSES__INT_,RPC_ADDDOTTYPE__INT_,RPC_ADDDOTATTRIBUTE__INT_,RPC_ADDDOTSTRENGTH__INT_,RPC_ADDDOTDURATION__INT_,RPC_ADDDOTPOTENCY__INT_,RPC_ADDDOTUSES__INT_,RPC_SETDOTUSES__INT_INT_,RPC_GETWEAPONTYPE__,RPC_ISUNARMEDWEAPON__,RPC_ISMELEEWEAPON__,RPC_ISRANGEDWEAPON__,RPC_ISRIFLEWEAPON__,RPC_ISTHROWNWEAPON__,RPC_ISHEAVYWEAPON__,RPC_ISSPECIALHEAVYWEAPON__,RPC_ISLIGHTNINGRIFLE__,RPC_ISFLAMETHROWER__,RPC_ISHEAVYACIDRIFLE__,RPC_ISCARBINEWEAPON__,RPC_ISPISTOLWEAPON__,RPC_ISONEHANDMELEEWEAPON__,RPC_ISPOLEARMWEAPONOBJECT__,RPC_ISTWOHANDMELEEWEAPON__,RPC_ISMINEWEAPON__,RPC_ISJEDIWEAPON__,RPC_ISJEDIONEHANDEDWEAPON__,RPC_ISJEDITWOHANDEDWEAPON__,RPC_ISJEDIPOLEARMWEAPON__,RPC_GETWEAPONBITMASK__,RPC_ISWEAPONOBJECT__,RPC_HASPOWERUP__,RPC_APPLYPOWERUP__CREATUREOBJECT_POWERUPOBJECT_,RPC_REMOVEPOWERUP__,RPC_DECREASEPOWERUPUSES__CREATUREOBJECT_,RPC_REPAIRATTEMPT__INT_,RPC_DECAY__CREATUREOBJECT_,RPC_SETDAMAGESLICE__FLOAT_,RPC_SETSPEEDSLICE__FLOAT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SENDCONTAINERTO__CREATUREOBJECT_,RPC_NOTIFYLOADFROMDATABASE__,RPC_CREATECHILDOBJECTS__,RPC_ISCERTIFIEDFOR__CREATUREOBJECT_,RPC_SETCERTIFIED__BOOL_,RPC_GETATTACKTYPE__,RPC_SETATTACKTYPE__INT_,RPC_ISCERTIFIED__,RPC_ISEQUIPPED__,RPC_GETPOINTBLANKACCURACY__BOOL_,RPC_SETPOINTBLANKACCURACY__INT_,RPC_GETPOINTBLANKRANGE__BOOL_,RPC_GETIDEALRANGE__BOOL_,RPC_SETIDEALRANGE__INT_,RPC_GETMAXRANGE__BOOL_,RPC_SETMAXRANGE__INT_,RPC_GETIDEALACCURACY__BOOL_,RPC_SETIDEALACCURACY__INT_,RPC_GETARMORPIERCING__,RPC_GETMAXRANGEACCURACY__BOOL_,RPC_SETMAXRANGEACCURACY__INT_,RPC_GETATTACKSPEED__BOOL_,RPC_SETATTACKSPEED__FLOAT_,RPC_GETMAXDAMAGE__BOOL_,RPC_SETMAXDAMAGE__FLOAT_,RPC_GETMINDAMAGE__BOOL_,RPC_SETMINDAMAGE__FLOAT_,RPC_GETWOUNDSRATIO__BOOL_,RPC_SETWOUNDSRATIO__FLOAT_,RPC_GETDAMAGERADIUS__BOOL_,RPC_SETDAMAGERADIUS__FLOAT_,RPC_GETHEALTHATTACKCOST__BOOL_,RPC_SETHEALTHATTACKCOST__INT_,RPC_GETACTIONATTACKCOST__BOOL_,RPC_SETACTIONATTACKCOST__INT_,RPC_GETMINDATTACKCOST__BOOL_,RPC_SETMINDATTACKCOST__INT_,RPC_GETFORCECOST__,RPC_SETFORCECOST__FLOAT_,RPC_GETBLADECOLOR__,RPC_SETBLADECOLOR__INT_,RPC_GETDAMAGETYPE__,RPC_GETXPTYPE__,RPC_GETNUMBEROFDOTS__,RPC_GETDOTTYPE__INT_,RPC_GETDOTATTRIBUTE__INT_,RPC_GETDOTSTRENGTH__INT_,RPC_GETDOTDURATION__INT_,RPC_GETDOTPOTENCY__INT_,RPC_GETDOTUSES__INT_,RPC_ADDDOTTYPE__INT_,RPC_ADDDOTATTRIBUTE__INT_,RPC_ADDDOTSTRENGTH__INT_,RPC_ADDDOTDURATION__INT_,RPC_ADDDOTPOTENCY__INT_,RPC_ADDDOTUSES__INT_,RPC_SETDOTUSES__INT_INT_,RPC_GETWEAPONTYPE__,RPC_ISUNARMEDWEAPON__,RPC_ISMELEEWEAPON__,RPC_ISRANGEDWEAPON__,RPC_ISRIFLEWEAPON__,RPC_ISTHROWNWEAPON__,RPC_ISHEAVYWEAPON__,RPC_ISSPECIALHEAVYWEAPON__,RPC_ISLIGHTNINGRIFLE__,RPC_ISFLAMETHROWER__,RPC_ISHEAVYACIDRIFLE__,RPC_ISCARBINEWEAPON__,RPC_ISPISTOLWEAPON__,RPC_ISONEHANDMELEEWEAPON__,RPC_ISPOLEARMWEAPONOBJECT__,RPC_ISTWOHANDMELEEWEAPON__,RPC_ISMINEWEAPON__,RPC_ISJEDIWEAPON__,RPC_ISJEDIONEHANDEDWEAPON__,RPC_ISJEDITWOHANDEDWEAPON__,RPC_ISJEDIPOLEARMWEAPON__,RPC_GETWEAPONBITMASK__,RPC_ISWEAPONOBJECT__,RPC_HASPOWERUP__,RPC_APPLYPOWERUP__CREATUREOBJECT_POWERUPOBJECT_,RPC_REMOVEPOWERUP__,RPC_DECREASEPOWERUPUSES__CREATUREOBJECT_,RPC_REPAIRATTEMPT__INT_,RPC_DECAY__CREATUREOBJECT_,RPC_SETDAMAGESLICE__FLOAT_,RPC_SETSPEEDSLICE__FLOAT_,RPC_APPLYSKILLMODSTO__CREATUREOBJECT_,RPC_REMOVESKILLMODSFROM__CREATUREOBJECT_,RPC_ADDSKILLMOD__INT_STRING_INT_BOOL_,};
 
 WeaponObject::WeaponObject() : TangibleObject(DummyConstructorParameter::instance()) {
 	WeaponObjectImplementation* _implementation = new WeaponObjectImplementation();
@@ -339,20 +339,6 @@ int WeaponObject::getPointBlankRange(bool withPup) const {
 	}
 }
 
-int WeaponObject::getPointBlankRange() const {
-	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPOINTBLANKRANGE__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getPointBlankRange();
-	}
-}
-
 int WeaponObject::getIdealRange(bool withPup) const {
 	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -365,20 +351,6 @@ int WeaponObject::getIdealRange(bool withPup) const {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getIdealRange(withPup);
-	}
-}
-
-int WeaponObject::getIdealRange() const {
-	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETIDEALRANGE__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getIdealRange();
 	}
 }
 
@@ -409,20 +381,6 @@ int WeaponObject::getMaxRange(bool withPup) const {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getMaxRange(withPup);
-	}
-}
-
-int WeaponObject::getMaxRange() const {
-	WeaponObjectImplementation* _implementation = static_cast<WeaponObjectImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETMAXRANGE__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getMaxRange();
 	}
 }
 
@@ -2302,24 +2260,9 @@ void WeaponObjectImplementation::setPointBlankAccuracy(int value) {
 	pointBlankAccuracy = value;
 }
 
-int WeaponObjectImplementation::getPointBlankRange() const{
-	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		return getPointBlankRange(true);
-	return getPointBlankRange(true);
-}
-
-int WeaponObjectImplementation::getIdealRange() const{
-	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		return getIdealRange(true);
-	return getIdealRange(true);
-}
-
 void WeaponObjectImplementation::setIdealRange(int value) {
 	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		idealRange = value;
 	idealRange = value;
-}
-
-int WeaponObjectImplementation::getMaxRange() const{
-	// server/zone/objects/tangible/weapon/WeaponObject.idl():  		return getMaxRange(true);
-	return getMaxRange(true);
 }
 
 void WeaponObjectImplementation::setMaxRange(int value) {
@@ -2744,25 +2687,11 @@ void WeaponObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
-	case RPC_GETPOINTBLANKRANGE__:
-		{
-			
-			int _m_res = getPointBlankRange();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
 	case RPC_GETIDEALRANGE__BOOL_:
 		{
 			bool withPup = inv->getBooleanParameter();
 			
 			int _m_res = getIdealRange(withPup);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETIDEALRANGE__:
-		{
-			
-			int _m_res = getIdealRange();
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -2779,13 +2708,6 @@ void WeaponObjectAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			bool withPup = inv->getBooleanParameter();
 			
 			int _m_res = getMaxRange(withPup);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETMAXRANGE__:
-		{
-			
-			int _m_res = getMaxRange();
 			resp->insertSignedInt(_m_res);
 		}
 		break;
@@ -3432,16 +3354,8 @@ int WeaponObjectAdapter::getPointBlankRange(bool withPup) const {
 	return (static_cast<WeaponObject*>(stub))->getPointBlankRange(withPup);
 }
 
-int WeaponObjectAdapter::getPointBlankRange() const {
-	return (static_cast<WeaponObject*>(stub))->getPointBlankRange();
-}
-
 int WeaponObjectAdapter::getIdealRange(bool withPup) const {
 	return (static_cast<WeaponObject*>(stub))->getIdealRange(withPup);
-}
-
-int WeaponObjectAdapter::getIdealRange() const {
-	return (static_cast<WeaponObject*>(stub))->getIdealRange();
 }
 
 void WeaponObjectAdapter::setIdealRange(int value) {
@@ -3450,10 +3364,6 @@ void WeaponObjectAdapter::setIdealRange(int value) {
 
 int WeaponObjectAdapter::getMaxRange(bool withPup) const {
 	return (static_cast<WeaponObject*>(stub))->getMaxRange(withPup);
-}
-
-int WeaponObjectAdapter::getMaxRange() const {
-	return (static_cast<WeaponObject*>(stub))->getMaxRange();
 }
 
 void WeaponObjectAdapter::setMaxRange(int value) {

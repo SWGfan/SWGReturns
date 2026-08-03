@@ -2,7 +2,6 @@ wonderous_cu_pa = Creature:new {
 	objectName = "@mob/creature_names:cu_pa_wonderous",
 	socialGroup = "cu_pa",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 14,
 	chanceHit = 0.3,
 	damageMin = 150,
@@ -31,17 +30,11 @@ wonderous_cu_pa = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/cu_pa_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
-	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_spray_toxicgreen.iff",
+	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(wonderous_cu_pa, "wonderous_cu_pa")

@@ -27,16 +27,9 @@ function JediTrials:isEligibleForPadawanTrials(pPlayer)
 		return false
 	end
 
-	local pGhost = CreatureObject(pPlayer):getPlayerObject()
-	if (pGhost == nil) then
-		return false
-	end
-
-	local hasState32 = CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression")
-	local isHologrind = PlayerObject(pGhost):getJediState() == 1
 	local learnedBranches = VillageJediManagerCommon.getLearnedForceSensitiveBranches(pPlayer)
 
-	return (hasState32 or isHologrind) and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and (learnedBranches >= 4 or isHologrind) and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
+	return CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression") and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and learnedBranches >= 4 and tonumber(readScreenPlayData(pPlayer, "PadawanTrials", "completedTrials")) ~= 1
 end
 
 function JediTrials:isOnPadawanTrials(pPlayer)
@@ -52,7 +45,7 @@ function JediTrials:isEligibleForKnightTrials(pPlayer)
 		return false
 	end
 
-	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) or tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 then
+	if (CreatureObject(pPlayer):hasSkill("force_rank_light_novice") or CreatureObject(pPlayer):hasSkill("force_rank_dark_novice")) or tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 then
 		return false
 	end
 
@@ -139,6 +132,7 @@ function JediTrials:unlockJediPadawan(pPlayer, dontSendSui)
 
 	CreatureObject(pPlayer):playEffect("clienteffect/trap_electric_01.cef", "")
 	CreatureObject(pPlayer):playMusicMessage("sound/music_become_jedi.snd")
+	broadcastGalaxy("\\#00ff00IMPERIAL COMMUNICATION FROM THE REGIONAL GOVERNOR: Lord Vader has detected a vergence in the Force. Be on the lookout for any suspicious persons displaying unique or odd abilities. Lord Vader authorizes all citizens to use deadly force to eliminate this threat from the Empire.")
 
 	PlayerObject(pGhost):setJediState(2)
 
@@ -192,7 +186,7 @@ function JediTrials:unlockJediKnight(pPlayer)
 	awardSkill(pPlayer, "force_title_jedi_rank_03")
 	writeScreenPlayData(pPlayer, "KnightTrials", "completedTrials", 1)
 	CreatureObject(pPlayer):playMusicMessage(unlockMusic)
-	playClientEffectLoc(pPlayer, "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
+	playClientEffectLoc(CreatureObject(pPlayer):getObjectID(), "clienteffect/trap_electric_01.cef", CreatureObject(pPlayer):getZoneName(), CreatureObject(pPlayer):getPositionX(), CreatureObject(pPlayer):getPositionZ(), CreatureObject(pPlayer):getPositionY(), CreatureObject(pPlayer):getParentID())
 
 	PlayerObject(pGhost):addWaypoint(enclaveLoc[3], enclaveName, "", enclaveLoc[1], enclaveLoc[2], WAYPOINTYELLOW, true, true, 0)
 	PlayerObject(pGhost):setJediState(jediState)

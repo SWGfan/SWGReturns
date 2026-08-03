@@ -130,7 +130,7 @@ public:
 
 		if (playerTemplate != nullptr) {
 			Vector<FloatParam> speedTempl = playerTemplate->getSpeed();
-			creature->setRunSpeed(speedTempl.get(0));
+			creature->setRunSpeed(speedTempl.get(0) * 1.25f);
 			creature->updateSpeedAndAccelerationMods(); // Reset Force Sensitive control mods to default.
 		}
 

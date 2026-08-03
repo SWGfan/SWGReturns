@@ -53,7 +53,7 @@ enum class TrxCode {
 	NEWPLAYERQUESTS      = 33, // New Player Quests
 	FINES                = 34, // Contraband Scanning Fines
 	BANK                 = 35, // bank
-	PVPTOKEN             = 36, //PvP Token
+
 	// SWGEmu Specific Codes
 	ACCESSFEE            = 100, // Access Fee
 	ADMINCOMMAND,               // From an admin command
@@ -64,47 +64,32 @@ enum class TrxCode {
 	AUCTIONEXPIRED,             // Never retrieved and expired
 	AUCTIONRETRIEVE,            // retrieveItem()
 	CHARACTERBUILDER,           // Character Builder
-	CHARACTERDELETE,            // Delete Character
 	CITYINCOMETAX,              // City income taxes
 	CITYSALESTAX,               // City Sales taxes
 	CITYTREASURY,               // City Treasury
-	COMBATSTATS,                // Combat Stats
-	CREDITCHIP,                 // Space credit chip looted
-	CREDITCHIPCLAIM,            // Space credit chip claimed
 	CRAFTINGSESSION,            // Crafting Session
-	DATABASECOMMIT,             // Database Commit
-	DESTROYSTRUCTURE,           // Structure destroyed by system (maintenance etc)
-	EXPERIENCE,                 // Player experience change
 	EXTRACTCRATE,               // Extract item from crate
 	FACTORYOPERATION,           // Factory operations
-	FISHING,                    // Fishing Loot
 	FORAGED,                    // Foraged items
 	HARVESTED,                  // Harvested items
 	IMAGEDESIGN,                // Image Design Fees
 	INSTANTBUY,                 // Instant Buy
 	LOTTERYDROID,               // Lottery Droid
 	LUASCRIPT,                  // LUA Script
-	MISSIONCOMPLETE,            // Mission Completed Summary
 	NPCLOOTCLAIM,               // NPC Loot Claimed
 	PERMISSIONLIST,             // Permission List changes
 	PLAYERMISCACTION,           // Misc player action
 	PLAYERTIP,                  // sui Tip
 	PLAYERTRADE,                // Player Trade
-	PLAYERDIED,                 // Player Died
-	PLAYERLINKDEAD,             // Player Link Dead
-	PLAYERLOGGINGOUT,           // Player Logging Out
-	PLAYEROFFLINE,              // Player Offline
-	PLAYERONLINE,               // Player Online
 	RECYCLED,                   // Recycled Items
 	SERVERDESTROYOBJECT,        // /serverDestroyObject command
-	SHIPDEEDPURCHASE,           // Purchase of a ship deed from chassis dealer
-	SHIPREDEED,                 // Re-deeding a ship from datapad
 	SLICECONTAINER,             // Slicing session on a container
 	STRUCTUREDEED,              // Structure deed trxs
 	TRANSFERITEMMISC,           // /transferitemmisc command
 	TRANSFERSTRUCT,             // Transfer Structure
 	VENDORLIFECYCLE,            // Vendor lifecycle (create/destroy)
 	VETERANREWARD,              // /claimveteranreward command
+	GCWREWARD,                  // GCW Reward Terminal
 };
 // clang-format on
 
@@ -135,7 +120,6 @@ class TransactionLog {
 	bool mCommitted = false;
 	bool mAborted = false;
 	bool mExportRelated = false;
-	int mMaxDepth = 4;
 	StringBuffer mError;
 	Vector3 mWorldPosition;
 	String mZoneName;
@@ -166,9 +150,7 @@ public:
 
 	TransactionLog(TrxCode code, SceneObject* dst, CAPTURE_CALLER_DECLARE)
 		: TransactionLog((SceneObject*)nullptr, dst, (SceneObject*)nullptr, code, false, file, function, line) {
-			if (!isStat(code)) {
-				mAutoCommit = false;
-			}
+			mAutoCommit = false;
 	}
 
 	TransactionLog(SceneObject* src, TrxCode code, uint amount, bool isCash = true, CAPTURE_CALLER_DECLARE)
@@ -286,8 +268,6 @@ public:
 
 	void setSubject(SceneObject* subject, bool exportSubject = false);
 
-	void setExperience(const String& xpType, int xpAdd, int xpTotal);
-
 	bool getAutoCommit() const {
 		return mAutoCommit;
 	}
@@ -304,18 +284,7 @@ public:
 		return getVerbose();
 	}
 
-	void setMaxDepth(int maxDepth) {
-		mMaxDepth = maxDepth;
-	}
-
-	int getMaxDepth() const {
-		return mMaxDepth;
-	}
-
 	const String getTrxID() const {
-		if (!isEnabled())
-			return "disabled";
-
 		return String(mTransaction["trxId"].get<std::string>());
 	}
 
@@ -384,28 +353,4 @@ private:
 	void writeLog();
 
 	static const String trxCodeToString(TrxCode code);
-
-	static bool isStat(TrxCode code) {
-		switch (code) {
-			case TrxCode::COMBATSTATS:
-			case TrxCode::CORPSEEXPIRATION:
-			case TrxCode::CRAFTINGSESSION:
-			case TrxCode::DATABASECOMMIT:
-			case TrxCode::EXPERIENCE:
-			case TrxCode::JABBASPALACE:
-			case TrxCode::NEWBIETUTORIAL:
-			case TrxCode::PLAYERDIED:
-			case TrxCode::PLAYERLINKDEAD:
-			case TrxCode::PLAYERLOGGINGOUT:
-			case TrxCode::PLAYEROFFLINE:
-			case TrxCode::PLAYERONLINE:
-			case TrxCode::POISYSTEM:
-			case TrxCode::SKILLTRAININGSYSTEM:
-			case TrxCode::TESTACCOUNT:
-				return true;
-
-			default:
-				return false;
-		}
-	}
 };

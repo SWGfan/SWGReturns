@@ -66,8 +66,8 @@ object_draft_schematic_weapon_lightsaber_lightsaber_one_hand_gen5 = object_draft
    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
    ingredientTitleNames = {"emitter_shroud", "primary_crystal", "activator", "handgrip", "focusing_crystals", "power_field_insulator", "energizers"},
    ingredientSlotType = {0, 1, 0, 0, 1, 0, 0},
-   resourceTypes = {"steel_duralloy", "object/tangible/component/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff", "aluminum_titanium", "petrochem_inert_polymer", "object/tangible/component/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff", "gas_inert_culsion", "copper_polysteel"},
-   resourceQuantities = {40, 1, 22, 28, 1, 28, 28},
+   resourceTypes = {"steel_duralloy", "object/tangible/component/weapon/lightsaber/lightsaber_module_krayt_dragon_pearl.iff", "aluminum_titanium", "petrochem_inert_polymer", "object/tangible/component/weapon/lightsaber/shared_lightsaber_refined_crystal_pack.iff", "gas_inert_culsion", "copper_polysteel"},
+   resourceQuantities = {40, 5, 22, 28, 1, 28, 28},
    contribution = {100, 100, 100, 100, 100, 100, 100},
 
 

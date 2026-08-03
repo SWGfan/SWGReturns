@@ -26,7 +26,7 @@
 
 unsigned const int MissionManager::UNKNOWN_TARGET = 0xB911DA26;
 
-enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_REMOVESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
+enum {RPC_HANDLEMISSIONLISTREQUEST__MISSIONTERMINAL_CREATUREOBJECT_INT_,RPC_HANDLEMISSIONACCEPT__MISSIONTERMINAL_MISSIONOBJECT_CREATUREOBJECT_,RPC_HANDLEMISSIONABORT__MISSIONOBJECT_CREATUREOBJECT_,RPC_REMOVEMISSION__MISSIONOBJECT_CREATUREOBJECT_,RPC_CREATESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_REMOVESPAWNPOINT__CREATUREOBJECT_STRING_,RPC_GETBOUNTYHUNTERMISSION__CREATUREOBJECT_,RPC_GETREALBOUNTYREWARD__CREATUREOBJECT_PLAYERBOUNTY_,RPC_ADDPLAYERTOBOUNTYLIST__LONG_INT_,RPC_REMOVEPLAYERFROMBOUNTYLIST__LONG_,RPC_CLEARPLAYERBOUNTYMISSIONS__LONG_,RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_,RPC_UPDATEPLAYERBOUNTYONLINESTATUS__LONG_BOOL_,RPC_COMPLETEPLAYERBOUNTY__LONG_LONG_,RPC_FAILPLAYERBOUNTYMISSION__LONG_,RPC_HASPLAYERBOUNTYTARGETINLIST__LONG_,RPC_HASBOUNTYHUNTERINPLAYERBOUNTY__LONG_LONG_,RPC_DEACTIVATEMISSIONS__CREATUREOBJECT_,RPC_GETRANDOMBOUNTYPLANET__,RPC_SENDPLAYERBOUNTYDEBUG__CREATUREOBJECT_CREATUREOBJECT_};
 
 MissionManager::MissionManager(ZoneServer* srv, ZoneProcessServer* impl) : Observer(DummyConstructorParameter::instance()) {
 	MissionManagerImplementation* _implementation = new MissionManagerImplementation(srv, impl);
@@ -231,6 +231,21 @@ void MissionManager::removePlayerFromBountyList(unsigned long long targetId) {
 		method.executeWithVoidReturn();
 	} else {
 		_implementation->removePlayerFromBountyList(targetId);
+	}
+}
+
+void MissionManager::clearPlayerBountyMissions(unsigned long long targetId) {
+	MissionManagerImplementation* _implementation = static_cast<MissionManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CLEARPLAYERBOUNTYMISSIONS__LONG_);
+		method.addUnsignedLongParameter(targetId);
+
+		method.executeWithVoidReturn();
+	} else {
+		_implementation->clearPlayerBountyMissions(targetId);
 	}
 }
 
@@ -966,6 +981,14 @@ void MissionManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) 
 			
 		}
 		break;
+	case RPC_CLEARPLAYERBOUNTYMISSIONS__LONG_:
+		{
+			unsigned long long targetId = inv->getUnsignedLongParameter();
+			
+			clearPlayerBountyMissions(targetId);
+			
+		}
+		break;
 	case RPC_UPDATEPLAYERBOUNTYREWARD__LONG_INT_:
 		{
 			unsigned long long targetId = inv->getUnsignedLongParameter();
@@ -1085,6 +1108,10 @@ void MissionManagerAdapter::addPlayerToBountyList(unsigned long long targetId, i
 
 void MissionManagerAdapter::removePlayerFromBountyList(unsigned long long targetId) {
 	(static_cast<MissionManager*>(stub))->removePlayerFromBountyList(targetId);
+}
+
+void MissionManagerAdapter::clearPlayerBountyMissions(unsigned long long targetId) {
+	(static_cast<MissionManager*>(stub))->clearPlayerBountyMissions(targetId);
 }
 
 void MissionManagerAdapter::updatePlayerBountyReward(unsigned long long targetId, int reward) {

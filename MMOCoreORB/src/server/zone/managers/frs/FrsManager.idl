@@ -87,7 +87,6 @@ class FrsManager extends ManagedService implements Logger {
 	protected transient VectorMap experienceValues;
 
 	protected transient boolean frsEnabled;
-	protected transient boolean sameAccountEnclaveRestrictions;
 
 	protected transient unsigned long petitionInterval;
 	protected transient unsigned long votingInterval;
@@ -141,7 +140,6 @@ class FrsManager extends ManagedService implements Logger {
 	public native void initialize();
 	public native void loadLuaConfig();
 	public native void loadFrsData();
-	public native void stop();
 
 	public native void setupEnclaves();
 	public native void setupEnclaveRooms(BuildingObject enclaveBuilding, final string groupName);
@@ -161,7 +159,7 @@ class FrsManager extends ManagedService implements Logger {
 
 	@arg1preLocked
 	public native void validatePlayerData(CreatureObject player, boolean verifyBan = false);
-
+	
 	@arg1preLocked
 	public native boolean isBanned(CreatureObject player);
 
@@ -199,7 +197,7 @@ class FrsManager extends ManagedService implements Logger {
 
 	@arg1preLocked
 	@arg2preLocked
-	public native int calculatePvpExperienceChange(CreatureObject attacker, CreatureObject victim, float contribution, boolean isVictim);
+	public native int calculatePvpExperienceChange(CreatureObject attacker, CreatureObject victim, float contribution, int groupSize, boolean isVictim);
 	public native int getBaseExperienceGain(PlayerObject playerGhost, PlayerObject opponentGhost, boolean playerWon);
 
 	@arg1preLocked

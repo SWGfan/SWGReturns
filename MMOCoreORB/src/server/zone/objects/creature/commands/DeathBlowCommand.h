@@ -46,36 +46,16 @@ public:
 				return GENERALERROR;
 			}
 
-			if (!playerEntryCheck(creature, player)) {
-				return GENERALERROR;
-			}
-
 			if (!player->isIncapacitated() || player->isFeigningDeath()){
 				creature->sendSystemMessage("@error_message:target_not_incapacitated"); //You cannot perform the death blow. Your target is not incapacitated.
 				return GENERALERROR;
 			}
 
-			if (player->isAttackableBy(creature) && checkDistance(player, creature, 5)  && player->getFaction() == Factions::FACTIONREBEL) {
+			if (player->isAttackableBy(creature) && checkDistance(player, creature, 5)) {
 				PlayerManager* playerManager = server->getPlayerManager();
 
-				creature->playEffect("clienteffect/holoemote_imperial.cef", "head");
-				creature->playMusicMessage("sound/music_themequest_victory_imperial.snd");
 				playerManager->killPlayer(creature, player, 1);
 			}
-			if (player->isAttackableBy(creature) && checkDistance(player, creature, 5)  && player->getFaction() == Factions::FACTIONIMPERIAL) {
-							PlayerManager* playerManager = server->getPlayerManager();
-
-							creature->playEffect("clienteffect/holoemote_rebel.cef", "head");
-							creature->playMusicMessage("sound/music_themequest_victory_rebel.snd");
-							playerManager->killPlayer(creature, player, 1);
-			}
-			if (player->isAttackableBy(creature) && checkDistance(player, creature, 5)  && player->getFaction() == Factions::FACTIONNEUTRAL) {
-							PlayerManager* playerManager = server->getPlayerManager();
-
-							creature->playEffect("clienteffect/holoemote_imperial.cef", "head");
-							creature->playMusicMessage("sound/music_combat_bfield_def.snd");
-							playerManager->killPlayer(creature, player, 1);
-						}
 		} else if (targetObject->isPet()) {
 			AiAgent* pet = cast<AiAgent*>( targetObject.get());
 
@@ -83,10 +63,6 @@ public:
 
 			if (!CollisionManager::checkLineOfSight(creature, pet)) {
 				creature->sendSystemMessage("@combat_effects:cansee_fail");// You cannot see your target.
-				return GENERALERROR;
-			}
-
-			if (!playerEntryCheck(creature, pet)) {
 				return GENERALERROR;
 			}
 

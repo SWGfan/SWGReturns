@@ -100,6 +100,9 @@ void PlayerVehicleBuffImplementation::updateRiderSpeeds() {
 		// add speed multiplier mod
 		newSpeed *= vehicle->getSpeedMultiplierMod();
 
+		// global vehicle speed boost
+		newSpeed *= 1.25f;
+
 		// Add a fake "skillmod" change
 		changeBuffer->add(SpeedModChange(newSpeed / rider->getRunSpeed()));
 

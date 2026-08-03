@@ -2,7 +2,6 @@ bh_force_sensitive_crypt_crawler = Creature:new {
 	objectName = "@mob/creature_names:force_sensitive_crypt_crawler",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "kun",
 	faction = "",
 	level = 95,
@@ -12,7 +11,7 @@ bh_force_sensitive_crypt_crawler = Creature:new {
 	baseXp = 9057,
 	baseHAM = 16000,
 	baseHAMmax = 19000,
-	armor = 1,
+	armor = 2,
 	resists = {75,75,40,40,40,40,40,40,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -32,58 +31,54 @@ bh_force_sensitive_crypt_crawler = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 1000000}, 
+				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 8500000
+			lootChance = 4900000
 		},
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 1000000}, 
+				{group = "power_crystals", chance = 1000000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 6000000
+			lootChance = 4900000
 		},
 		{
 			groups = {
-				{group = "junk", chance = 3000000},
+				{group = "junk", chance = 2500000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "death_watch_bh_armor_schematics", chance = 1000000}, 
+				{group = "power_crystals", chance = 500000},
+				{group = "power_crystals", chance = 500000},
 				{group = "wearables_all", chance = 1000000},
-				{group = "weapons_all", chance = 1500000},
+				{group = "weapons_all", chance = 1000000},
+				{group = "armor_all", chance = 1000000},
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "armor_attachments", chance = 1000000}
 			},
-			lootChance = 4000000
+			lootChance = 4900000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcewielder),
-	secondaryAttacks = forcewielder
+	attacks = merge(pikemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(bh_force_sensitive_crypt_crawler, "bh_force_sensitive_crypt_crawler")

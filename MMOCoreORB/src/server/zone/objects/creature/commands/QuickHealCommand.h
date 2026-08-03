@@ -10,8 +10,8 @@
 #include "server/zone/managers/player/PlayerManager.h"
 
 class QuickHealCommand : public QueueCommand {
-	int actionCost;
-	int actionWoundCost;
+	int mindCost;
+	int mindWoundCost;
 
 	int healthHealed;
 	int actionHealed;
@@ -28,8 +28,8 @@ public:
 		actionHealed = 0;
 		mindHealed = 0;
 
-		actionCost = 1000;
-		actionWoundCost = 0;
+		mindCost = 1000;
+		mindWoundCost = 10;
 
 		speed = 1;
 		range = 6;
@@ -44,7 +44,7 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	void sendHealMessage(CreatureObject* creature, CreatureObject* creatureTarget, int healthDamage) const {
+	void sendHealMessage(CreatureObject* creature, CreatureObject* creatureTarget, int healthDamage, int actionDamage) const {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -52,8 +52,12 @@ public:
 
 		StringBuffer msgPlayer, msgTarget, msgBody, msgTail;
 
-		if (healthDamage > 0) {
+		if (healthDamage > 0 && actionDamage > 0) {
+			msgBody << healthDamage << " health and " << actionDamage << " action";
+		} else if (healthDamage > 0) {
 			msgBody << healthDamage << " health";
+		} else if (actionDamage > 0) {
+			msgBody << actionDamage << " action";
 		} else {
 			return; //No damage to heal.
 		}
@@ -119,10 +123,10 @@ public:
 			return GENERALERROR;
 		}
 
-		int actionCostNew = creature->calculateCostAdjustment(CreatureAttribute::STAMINA, actionCost);
+		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		if (creature->getHAM(CreatureAttribute::ACTION) < abs(actionCostNew)) {
-			creature->sendSystemMessage("@healing_response:not_enough_action"); //You do not have enough mind to do that.
+		if (creature->getHAM(CreatureAttribute::MIND) < abs(mindCostNew)) {
+			creature->sendSystemMessage("@healing_response:not_enough_mind"); //You do not have enough mind to do that.
 			return GENERALERROR;
 		}
 
@@ -145,17 +149,18 @@ public:
 		int healPower = (int) round(150 + System::random(600));
 
 		int healedHealth = creatureTarget->healDamage(creature, CreatureAttribute::HEALTH, healPower);
+		int healedAction = creatureTarget->healDamage(creature, CreatureAttribute::ACTION, healPower);
 
 		if (creature->isPlayerCreature()) {
 			PlayerManager* playerManager = server->getZoneServer()->getPlayerManager();
 			playerManager->sendBattleFatigueMessage(creature, creatureTarget);
 		}
 
-		sendHealMessage(creature, creatureTarget, healedHealth);
+		sendHealMessage(creature, creatureTarget, healedHealth, healedAction);
 
-		creature->inflictDamage(creature, CreatureAttribute::ACTION, actionCostNew, false);
-		creature->addWounds(CreatureAttribute::QUICKNESS, actionWoundCost, true);
-		creature->addWounds(CreatureAttribute::STAMINA, actionWoundCost, true);
+		creature->inflictDamage(creature, CreatureAttribute::MIND, mindCostNew, false);
+		creature->addWounds(CreatureAttribute::FOCUS, mindWoundCost, true);
+		creature->addWounds(CreatureAttribute::WILLPOWER, mindWoundCost, true);
 
 		doAnimations(creature, creatureTarget);
 

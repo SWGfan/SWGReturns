@@ -25,8 +25,7 @@
 #include "server/zone/Zone.h"
 
 #include "server/zone/objects/creature/commands/JediQueueCommand.h"
-#include "server/zone/objects/creature/commands/VillageCommand.h"
-#include "server/zone/objects/creature/commands/RegrantSkillsCommand.h"
+
 #include "server/zone/objects/creature/commands/ActionShot1Command.h"
 #include "server/zone/objects/creature/commands/ActionShot2Command.h"
 #include "server/zone/objects/creature/commands/ActivateCloneCommand.h"
@@ -363,6 +362,7 @@
 #include "server/zone/objects/creature/commands/HealthShot1Command.h"
 #include "server/zone/objects/creature/commands/HealthShot2Command.h"
 #include "server/zone/objects/creature/commands/HealWoundCommand.h"
+#include "server/zone/objects/creature/commands/HobbleStrikeCommand.h"
 #include "server/zone/objects/creature/commands/HoloEmoteCommand.h"
 #include "server/zone/objects/creature/commands/ImagedesignCommand.h"
 #include "server/zone/objects/creature/commands/InitializeComponentCommand.h"
@@ -768,6 +768,7 @@ void CommandConfigManager::registerCommands2() {
 	commandFactory.registerCommand<HealthShot1Command>(String("healthShot1").toLowerCase());
 	commandFactory.registerCommand<HealthShot2Command>(String("healthShot2").toLowerCase());
 	commandFactory.registerCommand<HealWoundCommand>(String("healWound").toLowerCase());
+	commandFactory.registerCommand<HobbleStrikeCommand>(String("hobbleStrike").toLowerCase());
 	commandFactory.registerCommand<HoloEmoteCommand>(String("holoEmote").toLowerCase());
 	commandFactory.registerCommand<ImagedesignCommand>(String("imagedesign").toLowerCase());
 	commandFactory.registerCommand<InitializeComponentCommand>(String("initializeComponent").toLowerCase());
@@ -830,6 +831,4 @@ void CommandConfigManager::registerCommands2() {
 	commandFactory.registerCommand<MaxStatsCommand>(String("maxStats").toLowerCase());
 	commandFactory.registerCommand<MedicalForageCommand>(String("medicalForage").toLowerCase());
 	commandFactory.registerCommand<MeditateCommand>(String("meditate").toLowerCase());
-	commandFactory.registerCommand<VillageCommand>(String("village").toLowerCase());
-	commandFactory.registerCommand<RegrantSkillsCommand>(String("regrantSkills").toLowerCase());
 }

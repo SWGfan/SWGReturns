@@ -44,38 +44,37 @@
 FireAcidSingle2Command = {
         name = "fireacidsingle2",
 
-	damageMultiplier = 2.5,
-  speedMultiplier = 1.75,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2,
-  mindCostMultiplier = 0,
-  accuracyBonus = 0,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
-  
-dotEffects = {
-    DotEffect( 
-    POISONED_EFFECT, 
-    { "resistance_poison", "poison_disease_resist" },
-    ATTACK_POOL,
-    true,
-    0,
-    50,
-    50, 
-    120
-    )
-  },
+	damageMultiplier = 8,
+	speedMultiplier = 4,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 0,
 
-  
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_acid_rifle_single_2", 
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "fireacidsingle2",
-	
+	dotEffects = {
+		DotEffect( 
+		  ONFIRE, 
+		  {"resistance_fire", "fire_resist"},
+		  HEALTH,
+		  true,
+		  0,
+		  100,
+		  100, 
+		  60,
+		  10,
+		  2
+		)
+	  },
+	  
 	weaponType = SPECIALHEAVYWEAPON,
 	
-	range = 32
+	range = 16
 }
 
 AddCommand(FireAcidSingle2Command)

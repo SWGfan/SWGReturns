@@ -6,7 +6,6 @@
 #define CHARACTERLIST_H_
 
 #include "server/db/ServerDatabase.h"
-#include "server/db/AccountDatabase.h"
 #include "../objects/GalaxyList.h"
 #include "CharacterListEntry.h"
 
@@ -47,7 +46,7 @@ public:
 			<< "FROM characters_dirty WHERE characters_dirty.account_id = " << accountid << " ORDER BY galaxy_id;";
 
 		try {
-			characters = AccountDatabase::instance()->executeQuery(query);
+			characters = ServerDatabase::instance()->executeQuery(query);
 		} catch (const DatabaseException& e) {
 			System::out << "exception caught in ChracterList query" << endl;
 			System::out << e.getMessage();

@@ -17,7 +17,7 @@ namespace droid {
 class DroidAutoRepairModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
-	float autoRepairPower;
+	int autoRepairPower;
 	bool active;
 
 public:
@@ -35,7 +35,7 @@ public:
 	void onStore();
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 	bool isActive(){ return active; }
-	float getAutoRepairPower() { return autoRepairPower; }
+	int getAutoRepairPower(){ return autoRepairPower; }
 	virtual bool isStackable() { return true; }
 	virtual void addToStack(BaseDroidModuleComponent* other);
 	virtual void copy(BaseDroidModuleComponent* other);

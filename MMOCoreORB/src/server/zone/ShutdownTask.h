@@ -14,13 +14,11 @@
 
 class ShutdownTask : public Task {
 	int minutesRemaining;
-	int shutdownFlags;;
 	ManagedReference<ZoneServer*> zoneServer;
 public:
-	ShutdownTask(ZoneServer* srv, int minutes, int flags = 0) {
+	ShutdownTask(ZoneServer* srv, int minutes) {
 		zoneServer = srv;
 		minutesRemaining = minutes;
-		shutdownFlags = flags;
 	}
 
 	void run() {
@@ -36,7 +34,7 @@ public:
 		zoneServer->getChatManager()->broadcastGalaxy(nullptr, str);
 
 		if (minutesRemaining <= 0) {
-			ServerCore::getInstance()->signalShutdown(static_cast<ServerCore::ShutdownFlags>(shutdownFlags));
+			ServerCore::getInstance()->signalShutdown();
 		} else {
 			schedule(60 * 1000);
 		}

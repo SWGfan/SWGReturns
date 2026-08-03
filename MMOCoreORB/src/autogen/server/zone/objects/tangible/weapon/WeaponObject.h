@@ -176,19 +176,13 @@ public:
 
 	void setPointBlankAccuracy(int value);
 
-	int getPointBlankRange(bool withPup) const;
+	int getPointBlankRange(bool withPup = true) const;
 
-	int getPointBlankRange() const;
-
-	int getIdealRange(bool withPup) const;
-
-	int getIdealRange() const;
+	int getIdealRange(bool withPup = true) const;
 
 	void setIdealRange(int value);
 
-	int getMaxRange(bool withPup) const;
-
-	int getMaxRange() const;
+	int getMaxRange(bool withPup = true) const;
 
 	void setMaxRange(int value);
 
@@ -508,19 +502,13 @@ public:
 
 	void setPointBlankAccuracy(int value);
 
-	virtual int getPointBlankRange(bool withPup) const;
+	int getPointBlankRange(bool withPup = true) const;
 
-	virtual int getPointBlankRange() const;
-
-	virtual int getIdealRange(bool withPup) const;
-
-	virtual int getIdealRange() const;
+	int getIdealRange(bool withPup = true) const;
 
 	void setIdealRange(int value);
 
-	virtual int getMaxRange(bool withPup) const;
-
-	virtual int getMaxRange() const;
+	int getMaxRange(bool withPup = true) const;
 
 	void setMaxRange(int value);
 
@@ -748,17 +736,11 @@ public:
 
 	int getPointBlankRange(bool withPup) const;
 
-	int getPointBlankRange() const;
-
 	int getIdealRange(bool withPup) const;
-
-	int getIdealRange() const;
 
 	void setIdealRange(int value);
 
 	int getMaxRange(bool withPup) const;
-
-	int getMaxRange() const;
 
 	void setMaxRange(int value);
 

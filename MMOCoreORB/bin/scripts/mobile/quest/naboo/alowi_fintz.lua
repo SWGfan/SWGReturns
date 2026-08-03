@@ -3,7 +3,6 @@ alowi_fintz = Creature:new {
   customName = "Alowi Fintz",
   socialGroup = "rebel",
   faction = "rebel",
-  mobType = MOB_NPC,
   level = 20,
   chanceHit = 0.33,
   damageMin = 180,
@@ -29,14 +28,9 @@ alowi_fintz = Creature:new {
 
   templates = {"object/mobile/dressed_criminal_smuggler_human_female_01.iff"},
   lootGroups = {},
-  primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "unarmed",
+  weapons = {"pirate_weapons_heavy"},
   conversationTemplate = "arven_wendik_mission_target_convotemplate",
-  
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster),
-	secondaryAttacks = { }
+  attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(alowi_fintz, "alowi_fintz")

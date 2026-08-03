@@ -76,6 +76,7 @@ includeFile("mobile/arachne_hatchling.lua")
 includeFile("mobile/astromech_waiter.lua")
 includeFile("mobile/atat.lua")
 includeFile("mobile/atst.lua")
+includeFile("mobile/atxt.lua")
 includeFile("mobile/aujante_klee.lua")
 includeFile("mobile/baby_bol.lua")
 includeFile("mobile/bageraset.lua")
@@ -2657,17 +2658,3 @@ includeFile("mobile/zabrak_female.lua")
 includeFile("mobile/zabrak_male.lua")
 includeFile("mobile/zucca_boar.lua")
 includeFile("mobile/zucca_boar_hue.lua")
---
-includeFile("mobile/ep3/serverobjects.lua")
-
---Chiss
-includeFile("mobile/chiss_male.lua")
-includeFile("mobile/chiss_female.lua")
-
--- New Content NPCs
-includeFile("mobile/atxt.lua")
-includeFile("mobile/bm_mobile.lua")
-includeFile("mobile/dressed_jedi_female_togruta_01.lua")
-includeFile("mobile/dressed_sabine_wren.lua")
-includeFile("mobile/dressed_hera_syndulla.lua")
---includeFile("mobile/albino_rancor.lua")

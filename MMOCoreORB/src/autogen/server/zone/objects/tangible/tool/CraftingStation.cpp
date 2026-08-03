@@ -16,7 +16,7 @@
  *	CraftingStationStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2544907394,RPC_NOTIFYLOADFROMDATABASE__,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINPUTHOPPER__CREATUREOBJECT_,RPC_ISCRAFTINGSTATION__,RPC_GETCOMPLEXITYLEVEL__,RPC_GETSTATIONTYPE__,RPC_SETCOMPLEXITYLEVEL__INT_,RPC_FINDCRAFTINGTOOL__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_SETEFFECTIVENESS__FLOAT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2544907394,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SENDINPUTHOPPER__CREATUREOBJECT_,RPC_ISCRAFTINGSTATION__,RPC_GETCOMPLEXITYLEVEL__,RPC_GETSTATIONTYPE__,RPC_SETCOMPLEXITYLEVEL__INT_,RPC_FINDCRAFTINGTOOL__CREATUREOBJECT_,RPC_CREATECHILDOBJECTS__,RPC_SETEFFECTIVENESS__FLOAT_};
 
 CraftingStation::CraftingStation() : ToolTangibleObject(DummyConstructorParameter::instance()) {
 	CraftingStationImplementation* _implementation = new CraftingStationImplementation();
@@ -55,20 +55,6 @@ void CraftingStation::loadTemplateData(SharedObjectTemplate* templateData) {
 
 	} else {
 		_implementation->loadTemplateData(templateData);
-	}
-}
-
-void CraftingStation::notifyLoadFromDatabase() {
-	CraftingStationImplementation* _implementation = static_cast<CraftingStationImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_NOTIFYLOADFROMDATABASE__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->notifyLoadFromDatabase();
 	}
 }
 
@@ -483,13 +469,6 @@ void CraftingStationAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			
 		}
 		break;
-	case RPC_NOTIFYLOADFROMDATABASE__:
-		{
-			
-			notifyLoadFromDatabase();
-			
-		}
-		break;
 	case RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
@@ -566,10 +545,6 @@ void CraftingStationAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 
 void CraftingStationAdapter::initializeTransientMembers() {
 	(static_cast<CraftingStation*>(stub))->initializeTransientMembers();
-}
-
-void CraftingStationAdapter::notifyLoadFromDatabase() {
-	(static_cast<CraftingStation*>(stub))->notifyLoadFromDatabase();
 }
 
 int CraftingStationAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

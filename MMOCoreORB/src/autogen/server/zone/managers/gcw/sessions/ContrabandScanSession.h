@@ -146,7 +146,7 @@ class ContrabandScanSessionImplementation : public FacadeImplementation {
 
 	static const int SCANINITIATECHANCE = 8;
 
-	static const int TASKDELAY = 2000;
+	static const int TASKDELAY = 1000;
 
 	static const int IMMEDIATELY = 1;
 
@@ -206,8 +206,6 @@ class ContrabandScanSessionImplementation : public FacadeImplementation {
 
 	bool enforcedScan;
 
-	int scannerFaction;
-
 	bool alreadyTriedToAvoidScan;
 
 	bool acceptedFine;
@@ -245,7 +243,7 @@ public:
 	void setAcceptFineAnswer(bool acceptFine);
 
 private:
-	String getFactionStringId(CreatureObject* player, const String& imperial, const String& rebel);
+	String getFactionStringId(AiAgent* scanner, const String& imperial, const String& rebel);
 
 	void sendScannerChatMessage(Zone* zone, AiAgent* scanner, CreatureObject* player, const String& imperial, const String& rebel);
 
@@ -277,13 +275,13 @@ private:
 
 	void checkIfPlayerHasReturned(Zone* zone, AiAgent* scanner, CreatureObject* player);
 
-	bool isDarkJedi(CreatureObject* player);
+	bool notDarkJedi(CreatureObject* player);
 
 	unsigned int jediMindTrickSuccessChance(CreatureObject* player);
 
 	unsigned int jediAvoidDetectionSuccessChance(CreatureObject* player);
 
-	void addCrackdownTef(CreatureObject* player);
+	void addCrackdownTef(AiAgent* scanner, CreatureObject* player);
 
 	void sendContrabandFineSuiWindow(Zone* zone, AiAgent* scanner, CreatureObject* player, int numberOfContrabandItems);
 

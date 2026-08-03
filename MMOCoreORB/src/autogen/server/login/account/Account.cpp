@@ -8,7 +8,7 @@
  *	AccountStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2608110191,RPC_SETACTIVE__BOOL_,RPC_SETACCOUNTID__INT_,RPC_SETSTATIONID__INT_,RPC_SETADMINLEVEL__INT_,RPC_SETUSERNAME__STRING_,RPC_SETBANEXPIRES__INT_,RPC_SETBANREASON__STRING_,RPC_SETSALT__STRING_,RPC_SETBANADMIN__INT_,RPC_GETBANADMIN__,RPC_SETHASUNLOCKEDJEDISLOT__INT_,RPC_GETHASUNLOCKEDJEDISLOT__,RPC_GRANTJEDISLOT__,RPC_SETTIMECREATED__INT_,RPC_ISACTIVE__,RPC_GETACCOUNTID__,RPC_GETSTATIONID__,RPC_GETADMINLEVEL__,RPC_GETUSERNAME__,RPC_GETSALT__,RPC_GETTIMECREATED__,RPC_UPDATEFROMDATABASE__,RPC_UPDATEACCOUNT__,RPC_UPDATECHARACTERS__,RPC_UPDATEGALAXYBANS__,RPC_GETBANEXPIRES__,RPC_GETBANREASON__,RPC_ISBANNED__,RPC_REMOVEGALAXYBAN__INT_,RPC_ISSQLLOADED__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 2608110191,RPC_SETACTIVE__BOOL_,RPC_SETACCOUNTID__INT_,RPC_SETSTATIONID__INT_,RPC_SETADMINLEVEL__INT_,RPC_SETUSERNAME__STRING_,RPC_SETBANEXPIRES__INT_,RPC_SETBANREASON__STRING_,RPC_SETSALT__STRING_,RPC_SETBANADMIN__INT_,RPC_GETBANADMIN__,RPC_SETTIMECREATED__INT_,RPC_ISACTIVE__,RPC_GETACCOUNTID__,RPC_GETSTATIONID__,RPC_GETADMINLEVEL__,RPC_GETUSERNAME__,RPC_GETSALT__,RPC_GETTIMECREATED__,RPC_UPDATEFROMDATABASE__,RPC_UPDATEACCOUNT__,RPC_UPDATECHARACTERS__,RPC_UPDATEGALAXYBANS__,RPC_GETBANEXPIRES__,RPC_GETBANREASON__,RPC_ISBANNED__,RPC_REMOVEGALAXYBAN__INT_,RPC_ISSQLLOADED__,RPC_SETLASTLOGIN__INT_,RPC_GETLASTLOGIN__};
 
 Account::Account() : ManagedObject(DummyConstructorParameter::instance()) {
 	AccountImplementation* _implementation = new AccountImplementation();
@@ -196,51 +196,6 @@ unsigned int Account::getBanAdmin() {
 		return method.executeWithUnsignedIntReturn();
 	} else {
 		return _implementation->getBanAdmin();
-	}
-}
-
-void Account::setHasUnlockedJediSlot(unsigned int value) {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETHASUNLOCKEDJEDISLOT__INT_);
-		method.addUnsignedIntParameter(value);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setHasUnlockedJediSlot(value);
-	}
-}
-
-unsigned int Account::getHasUnlockedJediSlot() const {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETHASUNLOCKEDJEDISLOT__);
-
-		return method.executeWithUnsignedIntReturn();
-	} else {
-		return _implementation->getHasUnlockedJediSlot();
-	}
-}
-
-void Account::grantJediSlot() {
-	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GRANTJEDISLOT__);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->grantJediSlot();
 	}
 }
 
@@ -587,6 +542,46 @@ bool Account::isSqlLoaded() const {
 	}
 }
 
+unsigned int Account::getLastLoginInDays() {
+	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getLastLoginInDays();
+	}
+}
+
+void Account::setLastLogin(unsigned int seconds) {
+	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETLASTLOGIN__INT_);
+		method.addUnsignedIntParameter(seconds);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setLastLogin(seconds);
+	}
+}
+
+unsigned int Account::getLastLogin() {
+	AccountImplementation* _implementation = static_cast<AccountImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETLASTLOGIN__);
+
+		return method.executeWithUnsignedIntReturn();
+	} else {
+		return _implementation->getLastLogin();
+	}
+}
+
 DistributedObjectServant* Account::_getImplementation() {
 
 	 if (!_updated) _updated = true;
@@ -697,14 +692,6 @@ bool AccountImplementation::readObjectMember(ObjectInputStream* stream, const ui
 		return true;
 
 	switch(nameHashCode) {
-	case 0x2b1bbdc1: //Account.hasUnlockedJediSlot
-		TypeInfo<unsigned int >::parseFromBinaryStream(&hasUnlockedJediSlot, stream);
-		return true;
-
-	case 0xcc242a49: //Account.created
-		TypeInfo<unsigned int >::parseFromBinaryStream(&created, stream);
-		return true;
-
 	case 0xbcb3362e: //Account.galaxyAccountInfo
 		TypeInfo<GalaxyAccountInfoMap >::parseFromBinaryStream(&galaxyAccountInfo, stream);
 		return true;
@@ -727,24 +714,6 @@ int AccountImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	_nameHashCode = 0x2b1bbdc1; //Account.hasUnlockedJediSlot
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&hasUnlockedJediSlot, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xcc242a49; //Account.created
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&created, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 	_nameHashCode = 0xbcb3362e; //Account.galaxyAccountInfo
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -762,10 +731,6 @@ void AccountImplementation::writeJSON(nlohmann::json& j) {
 	ManagedObjectImplementation::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
-	thisObject["hasUnlockedJediSlot"] = hasUnlockedJediSlot;
-
-	thisObject["created"] = created;
-
 	thisObject["galaxyAccountInfo"] = galaxyAccountInfo;
 
 	j["Account"] = thisObject;
@@ -819,21 +784,6 @@ void AccountImplementation::setBanAdmin(unsigned int value) {
 unsigned int AccountImplementation::getBanAdmin() {
 	// server/login/account/Account.idl():  		return banAdmin;
 	return banAdmin;
-}
-
-void AccountImplementation::setHasUnlockedJediSlot(unsigned int value) {
-	// server/login/account/Account.idl():  		hasUnlockedJediSlot = value;
-	hasUnlockedJediSlot = value;
-}
-
-unsigned int AccountImplementation::getHasUnlockedJediSlot() const{
-	// server/login/account/Account.idl():  		return hasUnlockedJediSlot;
-	return hasUnlockedJediSlot;
-}
-
-void AccountImplementation::grantJediSlot() {
-	// server/login/account/Account.idl():  		hasUnlockedJediSlot = 1;
-	hasUnlockedJediSlot = 1;
 }
 
 void AccountImplementation::setTimeCreated(unsigned int seconds) {
@@ -894,6 +844,16 @@ String AccountImplementation::getBanReason() const{
 void AccountImplementation::removeGalaxyBan(unsigned const int galaxy) {
 	// server/login/account/Account.idl():  		galaxyBans.drop(galaxy);
 	(&galaxyBans)->drop(galaxy);
+}
+
+void AccountImplementation::setLastLogin(unsigned int seconds) {
+	// server/login/account/Account.idl():  		lastLogin = seconds;
+	lastLogin = seconds;
+}
+
+unsigned int AccountImplementation::getLastLogin() {
+	// server/login/account/Account.idl():  		return lastLogin;
+	return lastLogin;
 }
 
 /*
@@ -995,28 +955,6 @@ void AccountAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 			unsigned int _m_res = getBanAdmin();
 			resp->insertInt(_m_res);
-		}
-		break;
-	case RPC_SETHASUNLOCKEDJEDISLOT__INT_:
-		{
-			unsigned int value = inv->getUnsignedIntParameter();
-			
-			setHasUnlockedJediSlot(value);
-			
-		}
-		break;
-	case RPC_GETHASUNLOCKEDJEDISLOT__:
-		{
-			
-			unsigned int _m_res = getHasUnlockedJediSlot();
-			resp->insertInt(_m_res);
-		}
-		break;
-	case RPC_GRANTJEDISLOT__:
-		{
-			
-			grantJediSlot();
-			
 		}
 		break;
 	case RPC_SETTIMECREATED__INT_:
@@ -1140,6 +1078,21 @@ void AccountAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertBoolean(_m_res);
 		}
 		break;
+	case RPC_SETLASTLOGIN__INT_:
+		{
+			unsigned int seconds = inv->getUnsignedIntParameter();
+			
+			setLastLogin(seconds);
+			
+		}
+		break;
+	case RPC_GETLASTLOGIN__:
+		{
+			
+			unsigned int _m_res = getLastLogin();
+			resp->insertInt(_m_res);
+		}
+		break;
 	default:
 		ManagedObjectAdapter::invokeMethod(methid, inv);
 	}
@@ -1187,18 +1140,6 @@ void AccountAdapter::setBanAdmin(unsigned int value) {
 
 unsigned int AccountAdapter::getBanAdmin() {
 	return (static_cast<Account*>(stub))->getBanAdmin();
-}
-
-void AccountAdapter::setHasUnlockedJediSlot(unsigned int value) {
-	(static_cast<Account*>(stub))->setHasUnlockedJediSlot(value);
-}
-
-unsigned int AccountAdapter::getHasUnlockedJediSlot() const {
-	return (static_cast<Account*>(stub))->getHasUnlockedJediSlot();
-}
-
-void AccountAdapter::grantJediSlot() {
-	(static_cast<Account*>(stub))->grantJediSlot();
 }
 
 void AccountAdapter::setTimeCreated(unsigned int seconds) {
@@ -1269,6 +1210,14 @@ bool AccountAdapter::isSqlLoaded() const {
 	return (static_cast<Account*>(stub))->isSqlLoaded();
 }
 
+void AccountAdapter::setLastLogin(unsigned int seconds) {
+	(static_cast<Account*>(stub))->setLastLogin(seconds);
+}
+
+unsigned int AccountAdapter::getLastLogin() {
+	return (static_cast<Account*>(stub))->getLastLogin();
+}
+
 /*
  *	AccountHelper
  */
@@ -1324,12 +1273,6 @@ void AccountPOD::writeJSON(nlohmann::json& j) {
 	ManagedObjectPOD::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
-	if (hasUnlockedJediSlot)
-		thisObject["hasUnlockedJediSlot"] = hasUnlockedJediSlot.value();
-
-	if (created)
-		thisObject["created"] = created.value();
-
 	if (galaxyAccountInfo)
 		thisObject["galaxyAccountInfo"] = galaxyAccountInfo.value();
 
@@ -1350,28 +1293,6 @@ int AccountPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	if (hasUnlockedJediSlot) {
-	_nameHashCode = 0x2b1bbdc1; //Account.hasUnlockedJediSlot
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&hasUnlockedJediSlot.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (created) {
-	_nameHashCode = 0xcc242a49; //Account.created
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<unsigned int >::toBinaryStream(&created.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 	if (galaxyAccountInfo) {
 	_nameHashCode = 0xbcb3362e; //Account.galaxyAccountInfo
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
@@ -1392,22 +1313,6 @@ bool AccountPOD::readObjectMember(ObjectInputStream* stream, const uint32& nameH
 		return true;
 
 	switch(nameHashCode) {
-	case 0x2b1bbdc1: //Account.hasUnlockedJediSlot
-		{
-			unsigned int _mnhasUnlockedJediSlot;
-			TypeInfo<unsigned int >::parseFromBinaryStream(&_mnhasUnlockedJediSlot, stream);
-			hasUnlockedJediSlot = std::move(_mnhasUnlockedJediSlot);
-		}
-		return true;
-
-	case 0xcc242a49: //Account.created
-		{
-			unsigned int _mncreated;
-			TypeInfo<unsigned int >::parseFromBinaryStream(&_mncreated, stream);
-			created = std::move(_mncreated);
-		}
-		return true;
-
 	case 0xbcb3362e: //Account.galaxyAccountInfo
 		{
 			GalaxyAccountInfoMap _mngalaxyAccountInfo;
@@ -1441,10 +1346,6 @@ void AccountPOD::readObject(ObjectInputStream* stream) {
 
 void AccountPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	ManagedObjectPOD::writeObjectCompact(stream);
-
-	TypeInfo<unsigned int >::toBinaryStream(&hasUnlockedJediSlot.value(), stream);
-
-	TypeInfo<unsigned int >::toBinaryStream(&created.value(), stream);
 
 	TypeInfo<GalaxyAccountInfoMap >::toBinaryStream(&galaxyAccountInfo.value(), stream);
 

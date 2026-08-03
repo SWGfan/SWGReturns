@@ -83,13 +83,15 @@ public:
 	}
 
 	bool isInMedicalBuilding(CreatureObject* player, BuildingObject* building) const {
-		const PlanetMapSubCategory* subCategory = building->getPlanetMapSubCategory();
-		const PlanetMapCategory* category = building->getPlanetMapCategory();
+		const PlanetMapCategory* pmc = building->getPlanetMapSubCategory();
 
-		if (subCategory == nullptr && category == nullptr)
+		if (pmc == nullptr)
+			pmc = building->getPlanetMapCategory();
+
+		if (pmc == nullptr)
 			return false;
 
-		String categoryName = subCategory != nullptr ? subCategory->getName() : category->getName();
+		String categoryName = pmc->getName();
 		if (categoryName == "medicalcenter" || categoryName == "tavern")
 			return true;
 
@@ -105,13 +107,15 @@ public:
 	}
 
 	bool isInEntertainingBuilding(CreatureObject* player, BuildingObject* building) const {
-		const PlanetMapSubCategory* subCategory = building->getPlanetMapSubCategory();
-		const PlanetMapCategory* category = building->getPlanetMapCategory();
+		const PlanetMapCategory* pmc = building->getPlanetMapSubCategory();
 
-		if (subCategory == nullptr && category == nullptr)
+		if (pmc == nullptr)
+			pmc = building->getPlanetMapCategory();
+
+		if (pmc == nullptr)
 			return false;
 
-		String categoryName = subCategory != nullptr ? subCategory->getName() : category->getName();
+		String categoryName = pmc->getName();
 		if (categoryName == "hotel" || categoryName == "cantina" || categoryName == "theater" || categoryName == "guild_theater" || categoryName == "tavern")
 			return true;
 

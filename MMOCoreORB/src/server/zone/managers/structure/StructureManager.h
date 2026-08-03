@@ -44,6 +44,10 @@ class StructureManager : public Singleton<StructureManager>, public Logger, publ
 	ZoneServer* server;
 	TemplateManager* templateManager;
 
+	Logger structurePackupLog;
+	Logger systemStructurePackupLog;
+	Logger structureDestroyLog;
+
 public:
 	StructureManager();
 
@@ -69,7 +73,7 @@ public:
 	 * post: structure deleted*
 	 * @param structure The structure that is being destroyed.
 	 */
-	int destroyStructure(StructureObject* structureObject, bool playEffect = false);
+	int destroyStructure(StructureObject* structureObject, bool playEffect = false, String reason = "");
 
 	/**
 	 * Redeeds the structure, returning it to the player in deed form with any surplus maintenance and power attached.
@@ -102,7 +106,7 @@ public:
 	 * @param creature The creature receiving the report.
 	 * @param structure The structure the report is about.
 	 */
-	void reportStructureStatus(CreatureObject* creature, StructureObject* structure, SceneObject* terminal);
+	void reportStructureStatus(CreatureObject* creature, StructureObject* structure);
 
 	/**
 	 * Sends a Sui prompt to the player asking them to enter a name for the structure.
@@ -192,6 +196,12 @@ public:
 	bool isInStructureFootprint(StructureObject* structure, float positionX, float positionY, int extraFootprintMargin);
 
 	void promptMaintenanceDroid(StructureObject* structure, CreatureObject* creature);
+
+	int packupStructure(CreatureObject* creature);
+	void systemPackupStructure(StructureObject* structure, CreatureObject* creature);
+
+	int unpackStructureFromControlDevice(CreatureObject* creature, StructureObject* structure, float x, float y, int angle);
+	bool unpackStructure(CreatureObject* creature, StructureObject* structure, float x, float y, int angle, int persistenceLevel = 1);
 };
 
 #endif /*STRUCTUREMANAGER_H_*/

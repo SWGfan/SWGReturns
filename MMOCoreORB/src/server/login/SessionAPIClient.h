@@ -62,7 +62,7 @@ namespace server {
 				return String("UNKOWN(" + String::valueOf((int)action) + ")");
 			}
 
-			void setAction(const String& stringAction) {
+			inline void setAction(const String& stringAction) {
 				if (stringAction == "TEMPFAIL") {
 					resultAction = ApprovalAction::TEMPFAIL;
 					return;
@@ -257,7 +257,7 @@ namespace server {
 			// Calls in general order of execution
 			void notifyGalaxyStart(uint32 galaxyID);
 			void notifyGalaxyShutdown();
-			void approveNewSession(const String& ip, uint32 accountID, const SessionAPICallback& resultCallback);
+            void approveNewSession(const String& ip, uint32 accountID, const SessionAPICallback& resultCallback);
 			void notifySessionStart(const String& ip, uint32 accountID);
 			void notifyDisconnectClient(const String& ip, uint32 accountID, uint64_t characterID, String eventType);
 			void approvePlayerConnect(const String& ip, uint32 accountID, uint64_t characterID,

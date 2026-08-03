@@ -2,7 +2,6 @@ fenri_dalso = Creature:new {
 	objectName = "",
 	customName = "Fenri Dalso",
 	socialGroup = "death_watch",
-	mobType = MOB_NPC,
 	faction = "",
 	level = 178,
 	chanceHit = 12.25,
@@ -11,7 +10,7 @@ fenri_dalso = Creature:new {
 	baseXp = 16794,
 	baseHAM = 200000,
 	baseHAMmax = 200000,
-	armor = 1,
+	armor = 2,
 	resists = {75,75,90,80,45,45,100,70,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -37,17 +36,9 @@ fenri_dalso = Creature:new {
 			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "death_watch_commander_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"death_watch_commander_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(carbineermaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(carbineermaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fenri_dalso, "fenri_dalso")

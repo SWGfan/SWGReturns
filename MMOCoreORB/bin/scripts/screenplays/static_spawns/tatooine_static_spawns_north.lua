@@ -13,11 +13,6 @@ end
 
 function TatooineStaticSpawnsNorthScreenPlay:spawnMobiles()
 
-	--Sicktopia Spynet
-	spawnMobile("tatooine", "informant_npc_lvl_3", 1, -407.7, 0, 3989, -2, 0)
-	--Scorn Spynet & Droid
-	spawnMobile("tatooine", "informant_npc_lvl_3", 1, 5585.6, 41.6, 4172, 86, 0)
-
 	--Ruins + Bounty Hunter Camp (7045,7042)
 	local pNpc = spawnMobile("tatooine", "bounty_hunter_thug", 360, 7039.0, 72.2, 7051.5, -125, 0)
 	self:setMoodString(pNpc, "neutral")
@@ -129,7 +124,7 @@ function TatooineStaticSpawnsNorthScreenPlay:spawnMobiles()
 
 	--Wreckage (-1480,988)
 	spawnMobile("tatooine", "scavenger", 300, -1493, 26.5, 990.2, 150, 0)
-	
+
 	--3 small Buildings (-170,1930)
 	spawnMobile("tatooine", "tusken_commoner", 300, -169.3, 152.2, 1931.0, -122, 0)
 	spawnMobile("tatooine", "tusken_commoner", 300, -157.1, 155.8, 1930.2, -122, 0)

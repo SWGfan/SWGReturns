@@ -8,11 +8,15 @@
 
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 
+#include "server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h"
+
+#include "server/zone/packets/scene/AttributeListMessage.h"
+
 /*
  *	SurveyToolStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4161626280,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETRANGE__INT_,RPC_SENDRANGESUI__CREATUREOBJECT_,RPC_GETRANGE__CREATUREOBJECT_,RPC_GETPOINTS__,RPC_GETTOOLTYPE__,RPC_GETSURVEYTYPE__,RPC_GETSURVEYANIMATION__,RPC_GETSAMPLEANIMATION__,RPC_CANSAMPLERADIOACTIVE__,RPC_SENDRADIOACTIVEWARNING__CREATUREOBJECT_,RPC_CONSENTRADIOACTIVESAMPLE__CREATUREOBJECT_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 4161626280,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_SETRANGE__INT_,RPC_SENDRANGESUI__CREATUREOBJECT_,RPC_GETRANGE__CREATUREOBJECT_,RPC_GETPOINTS__,RPC_GETTOOLTYPE__,RPC_GETEFFECTIVENESS__,RPC_GETSURVEYTYPE__,RPC_GETSURVEYANIMATION__,RPC_GETSAMPLEANIMATION__,RPC_CANSAMPLERADIOACTIVE__,RPC_SENDRADIOACTIVEWARNING__CREATUREOBJECT_,RPC_CONSENTRADIOACTIVESAMPLE__CREATUREOBJECT_};
 
 SurveyTool::SurveyTool() : ToolTangibleObject(DummyConstructorParameter::instance()) {
 	SurveyToolImplementation* _implementation = new SurveyToolImplementation();
@@ -77,6 +81,16 @@ int SurveyTool::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->handleObjectMenuSelect(player, selectedID);
+	}
+}
+
+void SurveyTool::fillAttributeList(AttributeListMessage* msg, CreatureObject* object) {
+	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		_implementation->fillAttributeList(msg, object);
 	}
 }
 
@@ -160,6 +174,20 @@ int SurveyTool::getToolType() {
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->getToolType();
+	}
+}
+
+int SurveyTool::getEffectiveness() {
+	SurveyToolImplementation* _implementation = static_cast<SurveyToolImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETEFFECTIVENESS__);
+
+		return method.executeWithSignedIntReturn();
+	} else {
+		return _implementation->getEffectiveness();
 	}
 }
 
@@ -377,6 +405,10 @@ bool SurveyToolImplementation::readObjectMember(ObjectInputStream* stream, const
 		TypeInfo<int >::parseFromBinaryStream(&type, stream);
 		return true;
 
+	case 0x8c08338c: //SurveyTool.effectiveness
+		TypeInfo<int >::parseFromBinaryStream(&effectiveness, stream);
+		return true;
+
 	case 0x68ee3022: //SurveyTool.surveyType
 		TypeInfo<String >::parseFromBinaryStream(&surveyType, stream);
 		return true;
@@ -438,6 +470,15 @@ int SurveyToolImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	stream->writeInt(_offset, _totalSize);
 	_count++;
 
+	_nameHashCode = 0x8c08338c; //SurveyTool.effectiveness
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&effectiveness, stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+
 	_nameHashCode = 0x68ee3022; //SurveyTool.surveyType
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
@@ -488,6 +529,8 @@ void SurveyToolImplementation::writeJSON(nlohmann::json& j) {
 
 	thisObject["type"] = type;
 
+	thisObject["effectiveness"] = effectiveness;
+
 	thisObject["surveyType"] = surveyType;
 
 	thisObject["surveyAnimation"] = surveyAnimation;
@@ -511,6 +554,8 @@ SurveyToolImplementation::SurveyToolImplementation() {
 	points = 0;
 	// server/zone/objects/tangible/tool/SurveyTool.idl():  		points = 0;
 	points = 0;
+	// server/zone/objects/tangible/tool/SurveyTool.idl():  		effectiveness = 0;
+	effectiveness = 0;
 }
 
 void SurveyToolImplementation::initializeTransientMembers() {
@@ -518,9 +563,6 @@ void SurveyToolImplementation::initializeTransientMembers() {
 	ToolTangibleObjectImplementation::initializeTransientMembers();
 	// server/zone/objects/tangible/tool/SurveyTool.idl():  		Logger.setLoggingName("SurveyTool");
 	Logger::setLoggingName("SurveyTool");
-}
-
-void SurveyToolImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 }
 
 int SurveyToolImplementation::getPoints() {
@@ -531,6 +573,11 @@ int SurveyToolImplementation::getPoints() {
 int SurveyToolImplementation::getToolType() {
 	// server/zone/objects/tangible/tool/SurveyTool.idl():  		return type;
 	return type;
+}
+
+int SurveyToolImplementation::getEffectiveness() {
+	// server/zone/objects/tangible/tool/SurveyTool.idl():  		return effectiveness;
+	return effectiveness;
 }
 
 String SurveyToolImplementation::getSurveyType() {
@@ -622,6 +669,13 @@ void SurveyToolAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_GETEFFECTIVENESS__:
+		{
+			
+			int _m_res = getEffectiveness();
+			resp->insertSignedInt(_m_res);
+		}
+		break;
 	case RPC_GETSURVEYTYPE__:
 		{
 			
@@ -697,6 +751,10 @@ int SurveyToolAdapter::getPoints() {
 
 int SurveyToolAdapter::getToolType() {
 	return (static_cast<SurveyTool*>(stub))->getToolType();
+}
+
+int SurveyToolAdapter::getEffectiveness() {
+	return (static_cast<SurveyTool*>(stub))->getEffectiveness();
 }
 
 String SurveyToolAdapter::getSurveyType() {
@@ -788,6 +846,9 @@ void SurveyToolPOD::writeJSON(nlohmann::json& j) {
 	if (type)
 		thisObject["type"] = type.value();
 
+	if (effectiveness)
+		thisObject["effectiveness"] = effectiveness.value();
+
 	if (surveyType)
 		thisObject["surveyType"] = surveyType.value();
 
@@ -845,6 +906,17 @@ int SurveyToolPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	_offset = stream->getOffset();
 	stream->writeInt(0);
 	TypeInfo<int >::toBinaryStream(&type.value(), stream);
+	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
+	stream->writeInt(_offset, _totalSize);
+	_count++;
+	}
+
+	if (effectiveness) {
+	_nameHashCode = 0x8c08338c; //SurveyTool.effectiveness
+	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
+	_offset = stream->getOffset();
+	stream->writeInt(0);
+	TypeInfo<int >::toBinaryStream(&effectiveness.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -927,6 +999,14 @@ bool SurveyToolPOD::readObjectMember(ObjectInputStream* stream, const uint32& na
 		}
 		return true;
 
+	case 0x8c08338c: //SurveyTool.effectiveness
+		{
+			int _mneffectiveness;
+			TypeInfo<int >::parseFromBinaryStream(&_mneffectiveness, stream);
+			effectiveness = std::move(_mneffectiveness);
+		}
+		return true;
+
 	case 0x68ee3022: //SurveyTool.surveyType
 		{
 			String _mnsurveyType;
@@ -990,6 +1070,8 @@ void SurveyToolPOD::writeObjectCompact(ObjectOutputStream* stream) {
 	TypeInfo<int >::toBinaryStream(&points.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&type.value(), stream);
+
+	TypeInfo<int >::toBinaryStream(&effectiveness.value(), stream);
 
 	TypeInfo<String >::toBinaryStream(&surveyType.value(), stream);
 

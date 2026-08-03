@@ -8,38 +8,40 @@
 #ifndef THREATMATRIX_H_
 #define THREATMATRIX_H_
 
+
 #include "engine/engine.h"
 
 namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-class TangibleObject;
-}
-}
-}
+ namespace zone {
+  namespace objects {
+   namespace creature {
+    class CreatureObject;
+   }
+  }
+ }
 }
 
-using namespace server::zone::objects::tangible;
+using namespace server::zone::objects::creature;
 
 namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-namespace threat {
+ namespace zone {
+  namespace objects {
+   namespace tangible {
+   	namespace threat {
 
-class ThreatMapEntry;
+   class ThreatMapEntry;
 
 //#define DEBUG
 
 class ThreatMatrix {
 protected:
-	ManagedReference<TangibleObject*> tauntThreat;
-	ManagedReference<TangibleObject*> focusedThreat;
 
-	VectorMap<uint32, ManagedReference<TangibleObject*>> damageMap;
-	VectorMap<int, ManagedReference<TangibleObject*>> aggroMap;
-	VectorMap<int, ManagedReference<TangibleObject*>> healMap;
+	   ManagedReference<CreatureObject*> tauntThreat;
+	   ManagedReference<CreatureObject*> focusedThreat;
+
+	   VectorMap<uint32, ManagedReference<CreatureObject*> > damageMap;
+	   VectorMap<int, ManagedReference<CreatureObject*> > aggroMap;
+	   VectorMap<int, ManagedReference<CreatureObject*> > healMap;
 
 public:
 	ThreatMatrix();
@@ -51,12 +53,15 @@ public:
 
 	void clear();
 
-	void add(TangibleObject* threat, ThreatMapEntry* entry);
+	void add(CreatureObject* creature, ThreatMapEntry* entry);
 
-	TangibleObject* getLargestThreat();
+	CreatureObject* getLargestThreat();
 
 	void print();
+
 };
+
+
 }
 }
 }

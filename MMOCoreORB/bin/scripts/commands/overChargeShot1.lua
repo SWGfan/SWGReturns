@@ -45,13 +45,11 @@ OverChargeShot1Command = {
 	name = "overchargeshot1",
 
 	damageMultiplier = 2.75,
-  speedMultiplier = 1.25,
-  healthCostMultiplier = 0.5,
-  actionCostMultiplier = 1.5,
-  mindCostMultiplier = 0,
-  accuracyBonus = 15,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	speedMultiplier = 1.25,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 15,
 
 	animation = "fire_1_special_single", 
 	animType = GENERATE_RANGED,

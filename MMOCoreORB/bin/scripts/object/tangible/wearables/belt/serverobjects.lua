@@ -46,7 +46,6 @@
 
 -- Server Objects
 includeFile("tangible/wearables/belt/aakuan_belt.lua")
-includeFile("tangible/wearables/belt/belt_tusken_raider_crafted.lua")
 includeFile("tangible/wearables/belt/belt_s01.lua")
 includeFile("tangible/wearables/belt/belt_s02.lua")
 includeFile("tangible/wearables/belt/belt_s03.lua")

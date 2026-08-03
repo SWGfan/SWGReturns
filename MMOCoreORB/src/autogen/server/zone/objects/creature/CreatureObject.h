@@ -194,21 +194,7 @@ class AuctionSearchTask;
 
 using namespace server::zone::managers::auction;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace tangible {
-
-class Instrument;
-
-class InstrumentPOD;
-
-} // namespace tangible
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::tangible;
+#include "gmock/gmock.h"
 
 #include "server/zone/objects/group/GroupObject.h"
 
@@ -250,7 +236,7 @@ using namespace server::zone::objects::tangible;
 
 #include "server/zone/CloseObjectsVector.h"
 
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
 #include "server/zone/objects/tangible/TangibleObject.h"
 
@@ -310,8 +296,6 @@ public:
 	 * @param templateData templateData points to the SharedCreatureObjectTemplate LuaObject that is used to initialize CreatureObject members
 	 */
 	CreatureObject();
-
-	Time* getNextActionTime();
 
 	void initializeMembers();
 
@@ -621,13 +605,13 @@ public:
 	int notifyObjectRemoved(SceneObject* object);
 
 	/**
-	 * Updates the performance type to the specified type
+	 * Updates the instrument id to the specified object id
 	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified index }
-	 * @param type the new performance type
+	 * @post { this object is locked, this object has the specified weapon id }
+	 * @param instrumentid the new instrument id
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceType(int type, bool notifyClient = true);
+	void setInstrumentID(int instrumentid, bool notifyClient = true);
 
 	/**
 	 * Updates listen id
@@ -635,13 +619,13 @@ public:
 	void setListenToID(unsigned long long id, bool notifyClient = true);
 
 	/**
-	 * Updates the preformance start time
+	 * Updates the preformance counter
 	 * @pre { this object is locked }
 	 * @post { this object is locked, this object has the counter updated }
 	 * @param counter new performance counter
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceStartTime(int counter, bool notifyClient = true);
+	void setPerformanceCounter(int counter, bool notifyClient = true);
 
 	/**
 	 * Updates the preformance animation string
@@ -933,8 +917,6 @@ public:
 	 */
 	bool clearState(unsigned long long state, bool notifyClient = true);
 
-	void clearSpaceStates();
-
 	void setControlDevice(ControlDevice* device);
 
 	/**
@@ -1054,11 +1036,11 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	void notifyInsert(TreeEntry* obj);
+	void notifyInsert(QuadTreeEntry* obj);
 
-	void notifyDissapear(TreeEntry* obj);
+	void notifyDissapear(QuadTreeEntry* obj);
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	/**
 	 * Destroys this object from database
@@ -1071,8 +1053,6 @@ public:
 	void setFactionRank(int rank, bool notifyClient = true);
 
 	String getFirstName() const;
-
-	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
@@ -1132,7 +1112,7 @@ public:
 
 	void setRootedState(int durationSeconds = 20);
 
-	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
+	bool setNextAttackDelay(unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -1156,11 +1136,9 @@ public:
 
 	void updateLastSuccessfulCombatAction();
 
-	void setPostureChangeDelay(unsigned long long delay);
+	void updatePostureChangeDelay(unsigned long long delay);
 
-	bool hasPostureChangeDelay() const;
-
-	void removePostureChangeDelay();
+	bool checkPostureChangeDelay() const;
 
 	void updatePostureDownRecovery();
 
@@ -1213,8 +1191,6 @@ public:
 
 	void activateQueueAction();
 
-	void removeQueueAction(int action);
-
 	void activateImmediateAction();
 
 	UnicodeString getCreatureName() const;
@@ -1261,8 +1237,6 @@ public:
 
 	bool hasState(unsigned long long state) const;
 
-	bool isPilotingShip() const;
-
 	bool hasStates() const;
 
 	unsigned long long getListenID() const;
@@ -1280,8 +1254,6 @@ public:
 	SpeedMultiplierModChanges* getSpeedMultiplierModChanges();
 
 	const CommandQueueActionVector* getCommandQueue() const;
-
-	const CommandQueueActionVector* getImmediateQueue() const;
 
 	int getCommandQueueSize() const;
 
@@ -1311,8 +1283,6 @@ public:
 
 	Reference<WeaponObject* > getWeapon();
 
-	WeaponObject* getDefaultWeapon();
-
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
 	int getGuildID() const;
@@ -1335,9 +1305,9 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceStartTime() const;
+	int getPerformanceCounter() const;
 
-	int getPerformanceType() const;
+	int getInstrumentID() const;
 
 	byte getFrozen() const;
 
@@ -1449,8 +1419,6 @@ public:
 
 	bool isInCover() const;
 
-	bool isWalking() const;
-
 	bool isRunning() const;
 
 	bool isNonPlayerCreatureObject();
@@ -1520,8 +1488,6 @@ public:
 	WeakReference<AuctionSearchTask* > getAuctionSearchTask() const;
 
 	void setAuctionSearchTask(AuctionSearchTask* task);
-
-	Instrument* getPlayableInstrument();
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -1640,9 +1606,9 @@ protected:
 
 	byte moodID;
 
-	int performanceStartTime;
+	int performanceCounter;
 
-	int performanceType;
+	int instrumentID;
 
 	DeltaVector<int> hamList;
 
@@ -1665,10 +1631,6 @@ protected:
 	unsigned int lastActionCounter;
 
 	Time nextAction;
-
-	Time nextImmediateAction;
-
-	Time removeAction;
 
 	Reference<CooldownTimerMap* > cooldownTimerMap;
 
@@ -1740,8 +1702,6 @@ public:
 	CreatureObjectImplementation();
 
 	CreatureObjectImplementation(DummyConstructorParameter* param);
-
-	Time* getNextActionTime();
 
 	void initializeMembers();
 
@@ -2053,13 +2013,13 @@ public:
 	int notifyObjectRemoved(SceneObject* object);
 
 	/**
-	 * Updates the performance type to the specified type
+	 * Updates the instrument id to the specified object id
 	 * @pre { this object is locked }
-	 * @post { this object is locked, this object has the specified index }
-	 * @param type the new performance type
+	 * @post { this object is locked, this object has the specified weapon id }
+	 * @param instrumentid the new instrument id
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceType(int type, bool notifyClient = true);
+	void setInstrumentID(int instrumentid, bool notifyClient = true);
 
 	/**
 	 * Updates listen id
@@ -2067,13 +2027,13 @@ public:
 	void setListenToID(unsigned long long id, bool notifyClient = true);
 
 	/**
-	 * Updates the preformance start time
+	 * Updates the preformance counter
 	 * @pre { this object is locked }
 	 * @post { this object is locked, this object has the counter updated }
 	 * @param counter new performance counter
 	 * @param notifyClient if set true the client will be updated with the changes
 	 */
-	void setPerformanceStartTime(int counter, bool notifyClient = true);
+	void setPerformanceCounter(int counter, bool notifyClient = true);
 
 	/**
 	 * Updates the preformance animation string
@@ -2365,8 +2325,6 @@ public:
 	 */
 	bool clearState(unsigned long long state, bool notifyClient = true);
 
-	void clearSpaceStates();
-
 	void setControlDevice(ControlDevice* device);
 
 	/**
@@ -2486,11 +2444,11 @@ public:
 	 */
 	void notifyLoadFromDatabase();
 
-	void notifyInsert(TreeEntry* obj);
+	void notifyInsert(QuadTreeEntry* obj);
 
-	void notifyDissapear(TreeEntry* obj);
+	void notifyDissapear(QuadTreeEntry* obj);
 
-	void notifyPositionUpdate(TreeEntry* entry);
+	void notifyPositionUpdate(QuadTreeEntry* entry);
 
 	/**
 	 * Destroys this object from database
@@ -2503,8 +2461,6 @@ public:
 	void setFactionRank(int rank, bool notifyClient = true);
 
 	String getFirstName() const;
-
-	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
@@ -2564,7 +2520,7 @@ public:
 
 	void setRootedState(int durationSeconds = 20);
 
-	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
+	bool setNextAttackDelay(unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -2588,11 +2544,9 @@ public:
 
 	void updateLastSuccessfulCombatAction();
 
-	void setPostureChangeDelay(unsigned long long delay);
+	void updatePostureChangeDelay(unsigned long long delay);
 
-	bool hasPostureChangeDelay() const;
-
-	void removePostureChangeDelay();
+	bool checkPostureChangeDelay() const;
 
 	void updatePostureDownRecovery();
 
@@ -2645,8 +2599,6 @@ public:
 
 	void activateQueueAction();
 
-	void removeQueueAction(int action);
-
 	void activateImmediateAction();
 
 	UnicodeString getCreatureName() const;
@@ -2675,7 +2627,7 @@ public:
 
 	const DeltaVector<int>* getEncumbrances() const;
 
-	virtual byte getPosture() const;
+	byte getPosture() const;
 
 	byte getLocomotion() const;
 
@@ -2691,9 +2643,7 @@ public:
 
 	unsigned long long getStateBitmask() const;
 
-	virtual bool hasState(unsigned long long state) const;
-
-	bool isPilotingShip() const;
+	bool hasState(unsigned long long state) const;
 
 	bool hasStates() const;
 
@@ -2707,13 +2657,11 @@ public:
 
 	float getSpeedMultiplierMod() const;
 
-	virtual float getCurrentSpeed() const;
+	float getCurrentSpeed() const;
 
 	SpeedMultiplierModChanges* getSpeedMultiplierModChanges();
 
 	const CommandQueueActionVector* getCommandQueue() const;
-
-	const CommandQueueActionVector* getImmediateQueue() const;
 
 	int getCommandQueueSize() const;
 
@@ -2743,8 +2691,6 @@ public:
 
 	Reference<WeaponObject* > getWeapon();
 
-	virtual WeaponObject* getDefaultWeapon();
-
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
 	int getGuildID() const;
@@ -2767,9 +2713,9 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceStartTime() const;
+	int getPerformanceCounter() const;
 
-	int getPerformanceType() const;
+	int getInstrumentID() const;
 
 	byte getFrozen() const;
 
@@ -2821,9 +2767,9 @@ public:
 
 	float getSwimHeight() const;
 
-	virtual bool isIncapacitated() const;
+	bool isIncapacitated() const;
 
-	virtual bool isDead() const;
+	bool isDead() const;
 
 	bool isKnockedDown() const;
 
@@ -2839,7 +2785,7 @@ public:
 
 	bool isRallied() const;
 
-	virtual bool isInCombat() const;
+	bool isInCombat() const;
 
 	bool isDizzied() const;
 
@@ -2880,8 +2826,6 @@ public:
 	bool isAiming() const;
 
 	bool isInCover() const;
-
-	bool isWalking() const;
 
 	bool isRunning() const;
 
@@ -2952,8 +2896,6 @@ public:
 	WeakReference<AuctionSearchTask* > getAuctionSearchTask() const;
 
 	void setAuctionSearchTask(AuctionSearchTask* task);
-
-	Instrument* getPlayableInstrument();
 
 	WeakReference<CreatureObject*> _this;
 
@@ -3093,11 +3035,11 @@ public:
 
 	int notifyObjectRemoved(SceneObject* object);
 
-	void setPerformanceType(int type, bool notifyClient);
+	void setInstrumentID(int instrumentid, bool notifyClient);
 
 	void setListenToID(unsigned long long id, bool notifyClient);
 
-	void setPerformanceStartTime(int counter, bool notifyClient);
+	void setPerformanceCounter(int counter, bool notifyClient);
 
 	void setPerformanceAnimation(const String& animation, bool notifyClient);
 
@@ -3217,8 +3159,6 @@ public:
 
 	bool clearState(unsigned long long state, bool notifyClient);
 
-	void clearSpaceStates();
-
 	void setControlDevice(ControlDevice* device);
 
 	void setCreatureLink(CreatureObject* object, bool notifyClient);
@@ -3264,8 +3204,6 @@ public:
 	void setFactionRank(int rank, bool notifyClient);
 
 	String getFirstName() const;
-
-	String setFirstName(const String& newFirstName, bool skipVerify);
 
 	String setFirstName(const String& newFirstName);
 
@@ -3325,7 +3263,7 @@ public:
 
 	void setRootedState(int durationSeconds);
 
-	bool setNextAttackDelay(CreatureObject* attacker, const String& command, unsigned int mod, int del);
+	bool setNextAttackDelay(unsigned int mod, int del);
 
 	void setMeditateState();
 
@@ -3347,11 +3285,9 @@ public:
 
 	void updateLastSuccessfulCombatAction();
 
-	void setPostureChangeDelay(unsigned long long delay);
+	void updatePostureChangeDelay(unsigned long long delay);
 
-	bool hasPostureChangeDelay() const;
-
-	void removePostureChangeDelay();
+	bool checkPostureChangeDelay() const;
 
 	void updatePostureDownRecovery();
 
@@ -3391,8 +3327,6 @@ public:
 
 	void activateQueueAction();
 
-	void removeQueueAction(int action);
-
 	void activateImmediateAction();
 
 	UnicodeString getCreatureName() const;
@@ -3430,8 +3364,6 @@ public:
 	unsigned long long getStateBitmask() const;
 
 	bool hasState(unsigned long long state) const;
-
-	bool isPilotingShip() const;
 
 	bool hasStates() const;
 
@@ -3475,8 +3407,6 @@ public:
 
 	Reference<WeaponObject* > getWeapon();
 
-	WeaponObject* getDefaultWeapon();
-
 	ManagedWeakReference<GuildObject* > getGuildObject() const;
 
 	int getGuildID() const;
@@ -3499,9 +3429,9 @@ public:
 
 	float getSlopeModPercent() const;
 
-	int getPerformanceStartTime() const;
+	int getPerformanceCounter() const;
 
-	int getPerformanceType() const;
+	int getInstrumentID() const;
 
 	byte getFrozen() const;
 
@@ -3603,8 +3533,6 @@ public:
 
 	bool isInCover() const;
 
-	bool isWalking() const;
-
 	bool isRunning() const;
 
 	bool isNonPlayerCreatureObject();
@@ -3682,6 +3610,16 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<CreatureObjectHelper>;
+};
+
+class MockCreatureObject : public CreatureObject {
+public:
+
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+
 };
 
 } // namespace creature
@@ -3782,9 +3720,9 @@ public:
 
 	Optional<byte> moodID;
 
-	Optional<int> performanceStartTime;
+	Optional<int> performanceCounter;
 
-	Optional<int> performanceType;
+	Optional<int> instrumentID;
 
 	Optional<DeltaVector<int>> hamList;
 
@@ -3799,10 +3737,6 @@ public:
 	Optional<SkillModList> skillModList;
 
 	Optional<Time> nextAction;
-
-	Optional<Time> nextImmediateAction;
-
-	Optional<Time> removeAction;
 
 	Optional<BuffList> creatureBuffs;
 

@@ -61,6 +61,8 @@ public:
 
 	bool isNonPlayerCreatureObject();
 
+	bool isCamouflaged(CreatureObject* target);
+
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -103,6 +105,8 @@ public:
 	void initializeTransientMembers();
 
 	bool isNonPlayerCreatureObject();
+
+	bool isCamouflaged(CreatureObject* target);
 
 	WeakReference<NonPlayerCreatureObject*> _this;
 
@@ -151,6 +155,8 @@ public:
 	void initializeTransientMembers();
 
 	bool isNonPlayerCreatureObject();
+
+	bool isCamouflaged(CreatureObject* target);
 
 };
 

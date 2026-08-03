@@ -1,3 +1,0 @@
-object_building_heroic_hoth_generator_destroyed = object_building_heroic_shared_hoth_generator_destroyed:new {
-}
-ObjectTemplates:addTemplate(object_building_heroic_hoth_generator_destroyed, "object/building/heroic/hoth_generator_destroyed.iff")

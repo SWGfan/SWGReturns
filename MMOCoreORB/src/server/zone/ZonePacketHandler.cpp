@@ -47,12 +47,9 @@
 #include "packets/object/CraftingCustomizationCallback.h"
 #include "packets/object/ImageDesignRejectMessageCallback.h"
 #include "packets/object/ImageDesignChangeMessageCallback.h"
-#include "packets/object/LotteryWindowCallback.h"
-
-#include "packets/ship/ShipUpdateTransformCallback.h"
+#include "packets/object/InsertedAsPilotCallback.h"
 #include "packets/object/JtlShipListRequestCallback.h"
-
-#include "packets/jtl/CreateProjectileMessage.h"
+#include "packets/object/LotteryWindowCallback.h"
 
 #include "packets/ui/RequestCategoriesResponseMessage.h"
 #include "packets/ui/NewTicketActivityResponseMessage.h"
@@ -95,6 +92,8 @@
 #include "packets/trade/AddItemMessageCallback.h"
 #include "packets/trade/GiveMoneyMessageCallback.h"
 #include "packets/trade/DenyTradeMessage.h"
+
+#include "packets/ship/ShipUpdateTransformCallback.h"
 
 #include "packets/auction/IsVendorOwnerMessageCallback.h"
 
@@ -205,10 +204,9 @@ void ZonePacketHandler::registerObjectControllerMessages() {
 	objectMessageControllerFactory->registerObject<CraftingCustomizationCallback>(0x15A);
 	objectMessageControllerFactory->registerObject<ImageDesignChangeMessageCallback>(0x238);
 	objectMessageControllerFactory->registerObject<ImageDesignRejectMessageCallback>(0x239);
-	objectMessageControllerFactory->registerObject<LotteryWindowCallback>(0x43f);
-
-	// Space Callbacks
+	objectMessageControllerFactory->registerObject<InsertedAsPilotCallback>(0x3fa);
 	objectMessageControllerFactory->registerObject<JtlShipListRequestCallback>(0x41C);
+	objectMessageControllerFactory->registerObject<LotteryWindowCallback>(0x43f);
 }
 
 Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message* pack) const {
@@ -245,3 +243,4 @@ Task* ZonePacketHandler::generateMessageTask(ZoneClientSession* client, Message*
 
 	return nullptr;
 }
+

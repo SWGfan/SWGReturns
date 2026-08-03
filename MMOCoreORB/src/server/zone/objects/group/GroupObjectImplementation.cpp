@@ -20,8 +20,6 @@
 #include "server/zone/objects/group/RemovePetsFromGroupTask.h"
 #include "server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h"
 #include "server/zone/objects/waypoint/WaypointObject.h"
-#include "server/zone/objects/intangible/PetControlDevice.h"
-#include "server/zone/managers/creature/PetManager.h"
 
 void GroupObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	auto client = player->getClient();
@@ -86,7 +84,7 @@ void GroupObjectImplementation::broadcastMessage(CreatureObject* player, BaseMes
 
 void GroupObjectImplementation::updatePvPStatusNearCreature(CreatureObject* creature) {
 	CloseObjectsVector* creatureCloseObjects = (CloseObjectsVector*) creature->getCloseObjects();
-	SortedVector<TreeEntry*> closeObjectsVector;
+	SortedVector<QuadTreeEntry*> closeObjectsVector;
 
 	creatureCloseObjects->safeCopyReceiversTo(closeObjectsVector, CloseObjectsVector::CREOTYPE);
 
@@ -411,19 +409,13 @@ float GroupObjectImplementation::getGroupHarvestModifier(CreatureObject* player)
 void GroupObjectImplementation::calcGroupLevel() {
 	int highestPlayer = 0;
 	groupLevel = 0;
-	factionPetLevel = 0;
 
 	for (int i = 0; i < getGroupSize(); i++) {
 		Reference<CreatureObject*> member = getGroupMember(i);
 
 		if (member->isPet()) {
-				ManagedReference<PetControlDevice*> pcd = member->getControlDevice().get().castTo<PetControlDevice*>();
+			groupLevel += member->getLevel() / 5;
 
-				if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET) {
-					factionPetLevel += member->getLevel() / 5;
-				}
-
-				groupLevel += member->getLevel() / 5;
 		} else if (member->isPlayerCreature()) {
 			int memberLevel = member->getLevel();
 
@@ -528,10 +520,10 @@ void GroupObjectImplementation::scheduleUpdateNearestMissionForGroup(unsigned in
 	}
 
 	if (task->isScheduled()) {
-		task->reschedule(10000);
+		task->reschedule(30000);
 	}
 	else {
-		task->schedule(10000);
+		task->schedule(30000);
 	}
 }
 

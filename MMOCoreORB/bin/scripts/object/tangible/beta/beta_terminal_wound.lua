@@ -42,7 +42,30 @@
 
 
 object_tangible_beta_beta_terminal_wound = object_tangible_beta_shared_beta_terminal_wound:new {
+	gameObjectType = 16400,
+	customName = "Enhancement Terminal",
 
+	maxCondition = 0,
+
+
+	templateType = CHARACTERBUILDERTERMINAL,
+
+     suiBoxTitle = "Medical Services", 
+     suiBoxText = "Welcome Citizen! Please enjoy these helpful medical services.",
+
+
+	itemList = {
+			"Cheap Character Buff", "cheap_enhance_character",
+			"Expensive Character Medical Buff", "expensive_enhance_character_body",
+			"Expensive Character Mind Buff", "expensive_enhance_character_mind",
+			"Remove Buffs", "reset_buffs",
+			"Skills",
+			{
+				"Learn Languages", "language",
+				"Master Politician", "social_politician_master",
+			}
+			
+	}
 }
 
 ObjectTemplates:addTemplate(object_tangible_beta_beta_terminal_wound, "object/tangible/beta/beta_terminal_wound.iff")

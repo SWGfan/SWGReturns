@@ -17,7 +17,7 @@ class ResourceContainer extends TangibleObject {
 	protected ResourceSpawn spawnObject;
 	protected int stackQuantity;
 
-	public static final int MAXSIZE = 999999;
+	public static final int MAXSIZE = 10000000;
 
 	public ResourceContainer() {
 		stackQuantity = 0;
@@ -60,7 +60,7 @@ class ResourceContainer extends TangibleObject {
 	@dirty
 	public native void sendBaselinesTo(SceneObject player);
 
-	public native void setQuantity(unsigned int newQuantity, boolean notifyClient = true, boolean ignoreMax = false, boolean destroyEmpty = true);
+	public native void setQuantity(unsigned int newQuantity, boolean notifyClient = true, boolean ignoreMax = false);
 
 	@dirty
 	public boolean isResourceContainer() {

@@ -2,7 +2,6 @@ lian_rebel_specforce_urban_guerrilla = Creature:new {
 	objectName = "@mob/creature_names:rebel_specforce_guerrilla",
 	socialGroup = "rebel",
 	faction = "rebel",
-	mobType = MOB_NPC,
 	level = 18,
 	chanceHit = 0.32,
 	damageMin = 170,
@@ -49,17 +48,9 @@ lian_rebel_specforce_urban_guerrilla = Creature:new {
 			lootChance = 3000000
 		}	
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "rebel_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(marksmanmaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(lian_rebel_specforce_urban_guerrilla, "lian_rebel_specforce_urban_guerrilla")

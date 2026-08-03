@@ -8,36 +8,33 @@
 #ifndef VENDORZONECOMPONENT_H_
 #define VENDORZONECOMPONENT_H_
 
-#include "server/zone/objects/scene/components/GroundZoneComponent.h"
+#include "server/zone/objects/scene/components/ZoneComponent.h"
 #include "server/zone/objects/tangible/components/vendor/VendorDataComponent.h"
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
-class VendorZoneComponent : public GroundZoneComponent {
+class VendorZoneComponent : public ZoneComponent {
 
 public:
-	void notifyPositionUpdate(SceneObject* sceneObject, TreeEntry* entry) const {
+	void notifyPositionUpdate(SceneObject* sceneObject, QuadTreeEntry* entry) const {
 		ManagedReference<SceneObject*> target = cast<SceneObject*>(entry);
 
-		if (target == nullptr || !target->isPlayerCreature()) {
+		if (target == nullptr || !target->isPlayerCreature())
 			return;
-		}
 
 		VendorDataComponent* data = cast<VendorDataComponent*>(sceneObject->getDataObjectComponent()->get());
 
 		if (data == nullptr || !data->isAdBarkingEnabled())
 			return;
 
-		float distanceSq = target->getWorldPosition().squaredDistanceTo(sceneObject->getWorldPosition());
-		float checkSq = VendorDataComponent::BARKRANGE * VendorDataComponent::BARKRANGE;
+		if (data->hasBarkTarget(target))
+			return;
 
-		if (distanceSq < checkSq) {
+		if (target->getDistanceTo(sceneObject) <= VendorDataComponent::BARKRANGE) {
 			if (data->canBark()) {
 				data->performVendorBark(target);
 			} else {
-				data->addBarkTarget(target->getObjectID());
+				data->addBarkTarget(target);
 			}
-		} else if (data->hasBarkTarget(target->getObjectID())) {
-			data->removeBarkTarget(target->getObjectID());
 		}
 	}
 };

@@ -31,15 +31,15 @@ public:
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
-		auto player = cast<CreatureObject*>(creature);
+		CreatureObject* player = cast<CreatureObject*>(creature);
 
-		auto ghost = player->getPlayerObject();
+		PlayerObject* ghost = player->getPlayerObject();
 
 		String name = arguments.toString().toLowerCase();
 
-		auto chatManager = server->getChatManager();
+		ChatManager* chatManager = server->getChatManager();
 
-		auto targetPlayer = chatManager->getPlayer(name);
+		ManagedReference<CreatureObject*> targetPlayer = chatManager->getPlayer(name);
 
 		if (targetPlayer == nullptr) {
 			StringIdChatParameter message("@ui_cmnty:friend_location_failed"); // Unable to locate %TU
@@ -49,10 +49,11 @@ public:
 			return GENERALERROR;
 		}
 
-		auto targetGhost = targetPlayer->getPlayerObject();
+		PlayerObject* targetGhost = targetPlayer->getPlayerObject();
 		String myFirstName = player->getFirstName().toLowerCase();
+		String tarFirstName = targetPlayer->getFirstName().toLowerCase();
 
-		if (!targetGhost->hasFriend(myFirstName)) {
+		if (!targetGhost->hasFriend(myFirstName) || !ghost->hasFriend(tarFirstName)) {
 			StringIdChatParameter message("@ui_cmnty:friend_location_failed"); // Unable to locate %TU
 			message.setTU(name);
 
@@ -60,15 +61,7 @@ public:
 			return GENERALERROR;
 		}
 
-		if (targetGhost->isIgnoring(myFirstName)) {
-			StringIdChatParameter message("@ui_cmnty:friend_location_failed"); // Unable to locate %TU
-			message.setTU(name);
-
-			player->sendSystemMessage(message);
-			return GENERALERROR;
-		}
-
-		auto zone = targetPlayer->getZone();
+		Zone* zone = targetPlayer->getZone();
 
 		if (zone == nullptr) {
 			StringIdChatParameter message("@ui_cmnty:friend_location_failed"); // Unable to locate %TU
@@ -82,7 +75,7 @@ public:
 
 		float x, z = 0, y;
 
-		auto parent = targetPlayer->getParent().get();
+		ManagedReference<SceneObject*> parent = targetPlayer->getParent().get();
 
 		if (parent != nullptr && parent->isCellObject()) {
 			ManagedReference<SceneObject*> building = parent->getParent().get();
@@ -94,7 +87,7 @@ public:
 			y = targetPlayer->getPositionY();
 		}
 
-		auto obj = (server->getZoneServer()->createObject(0xc456e788, 1)).castTo<WaypointObject*>();
+		ManagedReference<WaypointObject*> obj = ( server->getZoneServer()->createObject(0xc456e788, 1)).castTo<WaypointObject*>();
 
 		Locker locker(obj);
 

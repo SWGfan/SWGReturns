@@ -2,7 +2,6 @@ fbase_stormtrooper_medic_extreme = Creature:new {
 	objectName = "@mob/creature_names:fbase_stormtrooper_medic_extreme",
 	randomNameType = NAME_STORMTROOPER,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 144,
@@ -12,7 +11,7 @@ fbase_stormtrooper_medic_extreme = Creature:new {
 	baseXp = 14400,
 	baseHAM = 68000,
 	baseHAMmax = 96000,
-	armor = 1,
+	armor = 2,
 	resists = {110,110,140,35,35,35,35,-1,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -44,18 +43,10 @@ fbase_stormtrooper_medic_extreme = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "stormtrooper_carbine",
-	secondaryWeapon = "stormtrooper_pistol",
+	weapons = {"stormtrooper_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(carbineermaster,marksmanmaster),
-	secondaryAttacks = merge(pistoleermaster,marksmanmaster)
+	attacks = merge(marksmanmaster,brawlermaster,carbineermaster,riflemanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_stormtrooper_medic_extreme, "fbase_stormtrooper_medic_extreme")

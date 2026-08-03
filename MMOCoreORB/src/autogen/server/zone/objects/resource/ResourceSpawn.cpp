@@ -12,7 +12,7 @@
  *	ResourceSpawnStub
  */
 
-enum {RPC_FINALIZE__ = 889586298,RPC_DECREASECONTAINERREFERENCECOUNT__,RPC_ISRESOURCESPAWN__,RPC_SETNAME__STRING_,RPC_SETTYPE__STRING_,RPC_SETSPAWNPOOL__INT_STRING_,RPC_SETZONERESTRICTION__STRING_,RPC_ADDCLASS__STRING_,RPC_ADDSTFCLASS__STRING_,RPC_ADDATTRIBUTE__STRING_INT_,RPC_ISTYPE__STRING_,RPC_SETSURVEYTOOLTYPE__INT_,RPC_SETISENERGY__BOOL_,RPC_GETNAME__,RPC_GETTYPE__,RPC_GETCLASS__INT_,RPC_GETSTFCLASS__INT_,RPC_GETFINALCLASS__,RPC_GETFAMILYNAME__,RPC_GETSURVEYMISSIONSPAWNFAMILYNAME__,RPC_SETSPAWNED__LONG_,RPC_SETDESPAWNED__LONG_,RPC_GETDESPAWNED__,RPC_SETCONTAINERCRC__INT_,RPC_GETCONTAINERCRC__,RPC_GETSPAWNPOOL__,RPC_GETPOOLSLOT__,RPC_ISENERGY__,RPC_GETZONERESTRICTION__,RPC_GETSURVEYTOOLTYPE__,RPC_GETSPAWNMAPSIZE__,RPC_EXTRACTRESOURCE__STRING_INT_,RPC_CREATERESOURCE__INT_,RPC_GETSPAWNMAPZONE__INT_,RPC_ISUNKNOWNTYPE__,RPC_GETPLANETCRC__,RPC_GETDENSITYAT__STRING_FLOAT_FLOAT_,RPC_INSHIFT__,RPC_GETATTRIBUTEANDVALUE__STRING_INT_,RPC_GETATTRIBUTEVALUE__INT_,RPC_GETVALUEOF__INT_,RPC_GETVALUEOF__STRING_,RPC_ADDSTATSTODEEDLISTBOX__SUILISTBOX_,RPC_PRINT__};
+enum {RPC_FINALIZE__ = 889586298,RPC_DECREASECONTAINERREFERENCECOUNT__,RPC_ISRESOURCESPAWN__,RPC_SETNAME__STRING_,RPC_SETTYPE__STRING_,RPC_SETSPAWNPOOL__INT_STRING_,RPC_SETZONERESTRICTION__STRING_,RPC_ADDCLASS__STRING_,RPC_ADDSTFCLASS__STRING_,RPC_ADDATTRIBUTE__STRING_INT_,RPC_ISTYPE__STRING_,RPC_SETSURVEYTOOLTYPE__INT_,RPC_SETISENERGY__BOOL_,RPC_GETNAME__,RPC_GETTYPE__,RPC_GETCLASS__INT_,RPC_GETSTFCLASS__INT_,RPC_GETFINALCLASS__,RPC_GETFAMILYNAME__,RPC_GETSURVEYMISSIONSPAWNFAMILYNAME__,RPC_SETSPAWNED__LONG_,RPC_SETDESPAWNED__LONG_,RPC_GETDESPAWNED__,RPC_SETMAXUNITSSPAWNED__LONG_,RPC_GETMAXUNITSSPAWNED__,RPC_GETUNITSINCIRCULATION__,RPC_SETCONTAINERCRC__INT_,RPC_GETCONTAINERCRC__,RPC_GETSPAWNPOOL__,RPC_GETPOOLSLOT__,RPC_ISENERGY__,RPC_GETZONERESTRICTION__,RPC_GETSURVEYTOOLTYPE__,RPC_GETSPAWNMAPSIZE__,RPC_EXTRACTRESOURCE__STRING_INT_,RPC_CREATERESOURCE__INT_,RPC_GETSPAWNMAPZONE__INT_,RPC_ISUNKNOWNTYPE__,RPC_GETPLANETCRC__,RPC_GETDENSITYAT__STRING_FLOAT_FLOAT_,RPC_INSHIFT__,RPC_GETATTRIBUTEANDVALUE__STRING_INT_,RPC_GETATTRIBUTEVALUE__INT_,RPC_GETVALUEOF__INT_,RPC_GETVALUEOF__STRING_,RPC_ADDSTATSTODEEDLISTBOX__SUILISTBOX_,RPC_PRINT__};
 
 ResourceSpawn::ResourceSpawn() : SceneObject(DummyConstructorParameter::instance()) {
 	ResourceSpawnImplementation* _implementation = new ResourceSpawnImplementation();
@@ -386,6 +386,50 @@ unsigned long long ResourceSpawn::getDespawned() const {
 		return method.executeWithUnsignedLongReturn();
 	} else {
 		return _implementation->getDespawned();
+	}
+}
+
+void ResourceSpawn::setMaxUnitsSpawned(unsigned long long units) {
+	ResourceSpawnImplementation* _implementation = static_cast<ResourceSpawnImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_SETMAXUNITSSPAWNED__LONG_);
+		method.addUnsignedLongParameter(units);
+
+		method.executeWithVoidReturn();
+	} else {
+		assert(this->isLockedByCurrentThread());
+		_implementation->setMaxUnitsSpawned(units);
+	}
+}
+
+unsigned long long ResourceSpawn::getMaxUnitsSpawned() const {
+	ResourceSpawnImplementation* _implementation = static_cast<ResourceSpawnImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETMAXUNITSSPAWNED__);
+
+		return method.executeWithUnsignedLongReturn();
+	} else {
+		return _implementation->getMaxUnitsSpawned();
+	}
+}
+
+unsigned long long ResourceSpawn::getUnitsInCirculation() const {
+	ResourceSpawnImplementation* _implementation = static_cast<ResourceSpawnImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETUNITSINCIRCULATION__);
+
+		return method.executeWithUnsignedLongReturn();
+	} else {
+		return _implementation->getUnitsInCirculation();
 	}
 }
 
@@ -1302,6 +1346,21 @@ unsigned long long ResourceSpawnImplementation::getDespawned() const{
 	return despawned;
 }
 
+void ResourceSpawnImplementation::setMaxUnitsSpawned(unsigned long long units) {
+	// server/zone/objects/resource/ResourceSpawn.idl():  		maxUnitsSpawned = units;
+	maxUnitsSpawned = units;
+}
+
+unsigned long long ResourceSpawnImplementation::getMaxUnitsSpawned() const{
+	// server/zone/objects/resource/ResourceSpawn.idl():  		return maxUnitsSpawned;
+	return maxUnitsSpawned;
+}
+
+unsigned long long ResourceSpawnImplementation::getUnitsInCirculation() const{
+	// server/zone/objects/resource/ResourceSpawn.idl():  		return unitsInCirculation;
+	return unitsInCirculation;
+}
+
 void ResourceSpawnImplementation::setContainerCRC(unsigned int crc) {
 	// server/zone/objects/resource/ResourceSpawn.idl():  		containerCRC = crc;
 	containerCRC = crc;
@@ -1536,6 +1595,28 @@ void ResourceSpawnAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		{
 			
 			unsigned long long _m_res = getDespawned();
+			resp->insertLong(_m_res);
+		}
+		break;
+	case RPC_SETMAXUNITSSPAWNED__LONG_:
+		{
+			unsigned long long units = inv->getUnsignedLongParameter();
+			
+			setMaxUnitsSpawned(units);
+			
+		}
+		break;
+	case RPC_GETMAXUNITSSPAWNED__:
+		{
+			
+			unsigned long long _m_res = getMaxUnitsSpawned();
+			resp->insertLong(_m_res);
+		}
+		break;
+	case RPC_GETUNITSINCIRCULATION__:
+		{
+			
+			unsigned long long _m_res = getUnitsInCirculation();
 			resp->insertLong(_m_res);
 		}
 		break;
@@ -1797,6 +1878,18 @@ unsigned long long ResourceSpawnAdapter::getDespawned() const {
 	return (static_cast<ResourceSpawn*>(stub))->getDespawned();
 }
 
+void ResourceSpawnAdapter::setMaxUnitsSpawned(unsigned long long units) {
+	(static_cast<ResourceSpawn*>(stub))->setMaxUnitsSpawned(units);
+}
+
+unsigned long long ResourceSpawnAdapter::getMaxUnitsSpawned() const {
+	return (static_cast<ResourceSpawn*>(stub))->getMaxUnitsSpawned();
+}
+
+unsigned long long ResourceSpawnAdapter::getUnitsInCirculation() const {
+	return (static_cast<ResourceSpawn*>(stub))->getUnitsInCirculation();
+}
+
 void ResourceSpawnAdapter::setContainerCRC(unsigned int crc) {
 	(static_cast<ResourceSpawn*>(stub))->setContainerCRC(crc);
 }
@@ -1948,6 +2041,9 @@ Luna<LuaResourceSpawn>::RegType LuaResourceSpawn::Register[] = {
 	{ "setSpawned", &LuaResourceSpawn::setSpawned },
 	{ "setDespawned", &LuaResourceSpawn::setDespawned },
 	{ "getDespawned", &LuaResourceSpawn::getDespawned },
+	{ "setMaxUnitsSpawned", &LuaResourceSpawn::setMaxUnitsSpawned },
+	{ "getMaxUnitsSpawned", &LuaResourceSpawn::getMaxUnitsSpawned },
+	{ "getUnitsInCirculation", &LuaResourceSpawn::getUnitsInCirculation },
 	{ "setContainerCRC", &LuaResourceSpawn::setContainerCRC },
 	{ "getContainerCRC", &LuaResourceSpawn::getContainerCRC },
 	{ "getSpawnPool", &LuaResourceSpawn::getSpawnPool },
@@ -2423,6 +2519,55 @@ int LuaResourceSpawn::getDespawned(lua_State *L) {
 		return 1;
 	} else {
 		throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'ResourceSpawn:getDespawned()'");
+	}
+	return 0;
+}
+
+int LuaResourceSpawn::setMaxUnitsSpawned(lua_State *L) {
+	int parameterCount = lua_gettop(L) - 1;
+	
+	if (lua_isnumber(L, -1)) {
+		if (parameterCount == 1) {
+			unsigned long long units = lua_tointeger(L, -1);
+
+			Locker _guard(realObject);
+
+			realObject->setMaxUnitsSpawned(units);
+
+			return 0;
+		} else {
+			throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'ResourceSpawn:setMaxUnitsSpawned(integer)'");
+		}
+	} else {
+		throw LuaCallbackException(L, "invalid argument at 0 for lua method 'ResourceSpawn:setMaxUnitsSpawned(integer)'");
+	}
+	return 0;
+}
+
+int LuaResourceSpawn::getMaxUnitsSpawned(lua_State *L) {
+	int parameterCount = lua_gettop(L) - 1;
+	
+	if (parameterCount == 0) {
+		unsigned long long result = realObject->getMaxUnitsSpawned();
+
+		lua_pushinteger(L, result);
+		return 1;
+	} else {
+		throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'ResourceSpawn:getMaxUnitsSpawned()'");
+	}
+	return 0;
+}
+
+int LuaResourceSpawn::getUnitsInCirculation(lua_State *L) {
+	int parameterCount = lua_gettop(L) - 1;
+	
+	if (parameterCount == 0) {
+		unsigned long long result = realObject->getUnitsInCirculation();
+
+		lua_pushinteger(L, result);
+		return 1;
+	} else {
+		throw LuaCallbackException(L, "invalid argument count " + String::valueOf(parameterCount) + " for lua method 'ResourceSpawn:getUnitsInCirculation()'");
 	}
 	return 0;
 }

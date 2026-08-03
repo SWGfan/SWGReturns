@@ -35,6 +35,7 @@ public:
 
 		String objName = "", tempName = "object/mobile/boba_fett.iff";
 		bool baby = false;
+		String aiTemplate = "";
 		bool event = false;
 		int level = -1;
 		float scale = -1.0;
@@ -48,11 +49,13 @@ public:
 
 			if (!tempName.isEmpty() && tempName == "checkThreads") {
 				creature->sendSystemMessage("Current number of AiMoveEvents: " + String::valueOf(AiMap::instance()->activeMoveEvents.get()));
-				creature->sendSystemMessage("Current number of AiAgent Exceptions: " + String::valueOf(AiMap::instance()->countExceptions.get()));
 				creature->sendSystemMessage("Current number of scheduled AiMoveEvents: " + String::valueOf(AiMap::instance()->scheduledMoveEvents.get()));
 				creature->sendSystemMessage("Current number of scheduled AiMoveEvents with followObject: " + String::valueOf(AiMap::instance()->moveEventsWithFollowObject.get()));
 				creature->sendSystemMessage("Current number of scheduled AiMoveEvents retreating: " + String::valueOf(AiMap::instance()->moveEventsRetreating.get()));
+				creature->sendSystemMessage("Current number of AiAwarenessEvents: " + String::valueOf(AiMap::instance()->activeAwarenessEvents.get()));
+				creature->sendSystemMessage("Current number of scheduled AiAwarenessEvents: " + String::valueOf(AiMap::instance()->scheduledAwarenessEvents.get()));
 				creature->sendSystemMessage("Current number of AiRecoveryEvents: " + String::valueOf(AiMap::instance()->activeRecoveryEvents.get()));
+				creature->sendSystemMessage("Current number of AiWaitEvents: " + String::valueOf(AiMap::instance()->activeWaitEvents.get()));
 
 				ZoneServer* server = creature->getZoneServer();
 
@@ -120,6 +123,8 @@ public:
 			if (!objName.isEmpty() && objName.indexOf("object") == -1 && !baby && !event) {
 				if (objName.length() < 6)
 					posX = Float::valueOf(objName);
+				else
+					aiTemplate = objName;
 
 				objName = "";
 			} else if (tokenizer.hasMoreTokens()) {
@@ -158,12 +163,8 @@ public:
 			npc = cast<AiAgent*>(creatureManager->spawnCreatureWithAi(templ, posX, posZ, posY, parID));
 		else {
 			npc = cast<AiAgent*>(creatureManager->spawnCreature(templ, objTempl, posX, posZ, posY, parID));
-			if (npc != nullptr) {
-				npc->setAITemplate();
-
-				//Locker _nlocker(npc);
-				//npc->setAIDebug(true);
-			}
+			if (npc != nullptr)
+				npc->activateLoad("");
 		}
 
 		if (baby && npc == nullptr) {
@@ -174,12 +175,16 @@ public:
 			return GENERALERROR;
 		}
 
+		Locker clocker(npc, creature);
+
+		if (!aiTemplate.isEmpty()) {
+			npc->activateLoad(aiTemplate);
+		}
+
 		npc->updateDirection(Math::deg2rad(creature->getDirectionAngle()));
 
-		if (scale > 0 && scale != 1.0) {
-			Locker nlocker(npc);
+		if (scale > 0 && scale != 1.0)
 			npc->setHeight(scale);
-		}
 
 		return SUCCESS;
 	}

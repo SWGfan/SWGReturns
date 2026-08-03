@@ -45,14 +45,14 @@ StartleShot2Command = {
         name = "startleshot2",
 
 	damageMultiplier = 4.0,
-  speedMultiplier = 1.0,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1,
-  mindCostMultiplier = 0,
-  accuracyBonus = 5,
-    visMod = 25,
-  coneAngle = 60,
-  coneAction = true,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 2.0,
+	accuracyBonus = 5,
+	
+	coneAngle = 60,
+	coneAction = true,	
 
 	stateEffects = {
 	  StateEffect( 
@@ -66,7 +66,7 @@ StartleShot2Command = {
 	  )
 	},
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_defender_posture_change_up",
 
@@ -74,7 +74,7 @@ StartleShot2Command = {
 	
 	weaponType = RIFLEWEAPON,
 
-	range = 65
+	range = -1
 }
 
 AddCommand(StartleShot2Command)

@@ -40,11 +40,6 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
-object_tangible_item_shared_stardust_pvp_token_generic = SharedTangibleObjectTemplate:new {
-	clientTemplateFileName = "object/tangible/item/shared_stardust_pvp_token_generic.iff"}
-ObjectTemplates:addClientTemplate(object_tangible_item_shared_stardust_pvp_token_generic, 
-"object/tangible/item/shared_stardust_pvp_token_generic.iff")
-
 
 object_tangible_item_shared_con_drinking_glass_01 = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/item/shared_con_drinking_glass_01.iff"
@@ -340,3 +335,8 @@ object_tangible_item_shared_vehicle_customization = SharedTangibleObjectTemplate
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_item_shared_vehicle_customization, "object/tangible/item/shared_vehicle_customization.iff")
+
+object_tangible_shared_clothing_sea_removal_tool = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/item/shared_clothing_sea_removal_tool.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_shared_clothing_sea_removal_tool, "object/tangible/item/shared_clothing_sea_removal_tool.iff")

@@ -43,20 +43,6 @@ public:
 
 			return 0;
 		}
-
-
-		auto targetObject = creature->getZoneServer()->getObject(creature->getTargetID());
-
-		if (targetObject != nullptr) {
-			if (targetObject->isAiAgent()) {
-				Locker clocker(targetObject, creature);
-
-				AiAgent* aiAgent = targetObject->asAiAgent();
-
-				aiAgent->setAIDebug(true);
-			}
-		}
-
 		return 0;
 	}
 

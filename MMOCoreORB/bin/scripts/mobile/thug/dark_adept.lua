@@ -2,18 +2,17 @@ dark_adept = Creature:new {
 	objectName = "@mob/creature_names:dark_adept",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
-	socialGroup = "sith_shadow",
-	faction = "sith_shadow",
-	level = 360,
-	chanceHit = 1.0,
-	damageMin = 1800,
-	damageMax = 2500,
-	baseXp = 40000,
-	baseHAM = 800000,
-	baseHAMmax = 1000000,
+	socialGroup = "dark_jedi",
+	faction = "",
+	level = 140,
+	chanceHit = 4.75,
+	damageMin = 945,
+	damageMax = 1600,
+	baseXp = 13178,
+	baseHAM = 50000,
+	baseHAMmax = 61000,
 	armor = 2,
-	resists = {120,120,120,120,120,120,120,120,90},
+	resists = {80,80,80,80,80,80,80,80,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,29 +31,21 @@ dark_adept = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_dark", chance = 400000},
-				{group = "holocron_light", chance = 400000},
 				{group = "power_crystals", chance = 400000},
-				{group = "color_crystals", chance = 1000000},
-				{group = "rifles", chance = 1300000},
-				{group = "pistols", chance = 1300000},
+				{group = "color_crystals", chance = 1050000},
+				{group = "named_color_crystals", chance = 50000},
+				{group = "pistols", chance = 1600000},
 				{group = "melee_weapons", chance = 1300000},
-				{group = "armor_attachments", chance = 900000},
-				{group = "clothing_attachments", chance = 900000},
+				{group = "armor_attachments", chance = 1300000},
+				{group = "clothing_attachments", chance = 2200000},
 				{group = "carbines", chance = 1300000},
 				{group = "wearables_rare", chance = 800000}
 			}
 		}
 	},
-
-	primaryWeapon = "dark_jedi_weapons_gen4",
-	secondaryWeapon = "unarmed",
+	weapons = {"dark_jedi_weapons_gen2"},
 	conversationTemplate = "",
-
-	primaryAttacks = lightsabermaster,
-	secondaryAttacks = forcepowermaster,
-	
-	specialDamageMult = 1.5
+	attacks = merge(lightsabermaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(dark_adept, "dark_adept")

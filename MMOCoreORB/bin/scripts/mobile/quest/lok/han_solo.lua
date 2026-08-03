@@ -2,7 +2,6 @@ han_solo = Creature:new {
 	objectName = "@mob/creature_names:han_solo",
 	socialGroup = "rebel",
 	faction = "rebel",
-	mobType = MOB_NPC,
 	level = 100,
 	chanceHit = 1,
 	damageMin = 645,
@@ -28,17 +27,10 @@ han_solo = Creature:new {
 
 	templates = {"object/mobile/han_solo.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "han_solo_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"han_solo_weapons"},
 	conversationTemplate = "theme_park_rebel_mission_giver_convotemplate",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(han_solo, "han_solo")

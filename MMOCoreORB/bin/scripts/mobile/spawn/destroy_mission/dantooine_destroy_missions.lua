@@ -182,13 +182,6 @@ dantooine_destroy_missions = {
 			maxDifficulty = 62,
 			size = 25,
 		},
-		-- This is for the 7th Trial!
-		{
-			lairTemplateName = "dantooine_graul_frenzied_pack_neutral_none",
-			minDifficulty = 27,
-			maxDifficulty = 31,
-			size = 60,
-		},
 	}
 }
 

@@ -10,15 +10,11 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 
-#include "server/zone/objects/ship/ShipObject.h"
-
-#include "server/zone/packets/scene/AttributeListMessage.h"
-
 /*
  *	ShipControlDeviceStub
  */
 
-enum {RPC_LAUNCHSHIP__CREATUREOBJECT_STRING_VECTOR3_ = 294561104,RPC_GENERATEOBJECT__CREATUREOBJECT_,RPC_STOREOBJECT__CREATUREOBJECT_BOOL_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CANBETRADEDTO__CREATUREOBJECT_CREATUREOBJECT_INT_,RPC_SETSTOREDLOCATIONDATA__CREATUREOBJECT_,RPC_CANBEDESTROYED__CREATUREOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_ISSHIPLAUNCHED__,RPC_ISSHIPCONTROLDEVICE__,RPC_GETPARKINGLOCATION__,RPC_GETSTOREDZONENAME__,RPC_GETSHIPTYPE__,RPC_GETTOTALSKILLSREQUIRED__,RPC_GETSKILLREQUIRED__INT_,RPC_SETPARKINGLOCATION__STRING_,RPC_ADDSKILLREQUIRED__STRING_};
+enum {RPC_STOREOBJECT__CREATUREOBJECT_BOOL_ = 294561104,RPC_GENERATEOBJECT__CREATUREOBJECT_,RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_,RPC_CANBETRADEDTO__CREATUREOBJECT_CREATUREOBJECT_INT_,RPC_ISSHIPCONTROLDEVICE__};
 
 ShipControlDevice::ShipControlDevice() : ControlDevice(DummyConstructorParameter::instance()) {
 	ShipControlDeviceImplementation* _implementation = new ShipControlDeviceImplementation();
@@ -36,21 +32,21 @@ ShipControlDevice::~ShipControlDevice() {
 
 
 
-ShipObject* ShipControlDevice::launchShip(CreatureObject* player, const String& zoneName, const Vector3& position) {
+void ShipControlDevice::storeObject(CreatureObject* player, bool force) {
 	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_LAUNCHSHIP__CREATUREOBJECT_STRING_VECTOR3_);
+		DistributedMethod method(this, RPC_STOREOBJECT__CREATUREOBJECT_BOOL_);
 		method.addObjectParameter(player);
-		method.addAsciiParameter(zoneName);
-		method.addDereferencedSerializableParameter(position);
+		method.addBooleanParameter(force);
 
-		return static_cast<ShipObject*>(method.executeWithObjectReturn());
+		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
-		return _implementation->launchShip(player, zoneName, position);
+		assert((player == NULL) || player->isLockedByCurrentThread());
+		_implementation->storeObject(player, force);
 	}
 }
 
@@ -66,24 +62,8 @@ void ShipControlDevice::generateObject(CreatureObject* player) {
 		method.executeWithVoidReturn();
 	} else {
 		assert(this->isLockedByCurrentThread());
+		assert((player == NULL) || player->isLockedByCurrentThread());
 		_implementation->generateObject(player);
-	}
-}
-
-void ShipControlDevice::storeObject(CreatureObject* player, bool force) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_STOREOBJECT__CREATUREOBJECT_BOOL_);
-		method.addObjectParameter(player);
-		method.addBooleanParameter(force);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->storeObject(player, force);
 	}
 }
 
@@ -115,16 +95,6 @@ void ShipControlDevice::fillObjectMenuResponse(ObjectMenuResponse* menuResponse,
 	}
 }
 
-void ShipControlDevice::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		_implementation->fillAttributeList(alm, object);
-	}
-}
-
 bool ShipControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject* receiver, int numberInTrade) {
 	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
@@ -142,79 +112,8 @@ bool ShipControlDevice::canBeTradedTo(CreatureObject* player, CreatureObject* re
 	}
 }
 
-Vector3 ShipControlDevice::getStoredPosition(bool randomPosition) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		return _implementation->getStoredPosition(randomPosition);
-	}
-}
-
-void ShipControlDevice::setStoredLocationData(CreatureObject* player) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETSTOREDLOCATIONDATA__CREATUREOBJECT_);
-		method.addObjectParameter(player);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert((player == NULL) || player->isLockedByCurrentThread());
-		_implementation->setStoredLocationData(player);
-	}
-}
-
-int ShipControlDevice::canBeDestroyed(CreatureObject* player) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_CANBEDESTROYED__CREATUREOBJECT_);
-		method.addObjectParameter(player);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->canBeDestroyed(player);
-	}
-}
-
-void ShipControlDevice::destroyObjectFromDatabase(bool destroyContainedObjects) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_DESTROYOBJECTFROMDATABASE__BOOL_);
-		method.addBooleanParameter(destroyContainedObjects);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->destroyObjectFromDatabase(destroyContainedObjects);
-	}
-}
-
-bool ShipControlDevice::isShipLaunched() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ISSHIPLAUNCHED__);
-
-		return method.executeWithBooleanReturn();
-	} else {
-		return _implementation->isShipLaunched();
-	}
-}
-
 bool ShipControlDevice::isShipControlDevice() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
+	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -224,125 +123,6 @@ bool ShipControlDevice::isShipControlDevice() {
 		return method.executeWithBooleanReturn();
 	} else {
 		return _implementation->isShipControlDevice();
-	}
-}
-
-String ShipControlDevice::getParkingLocation() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETPARKINGLOCATION__);
-
-		String _return_getParkingLocation;
-		method.executeWithAsciiReturn(_return_getParkingLocation);
-		return _return_getParkingLocation;
-	} else {
-		return _implementation->getParkingLocation();
-	}
-}
-
-String ShipControlDevice::getStoredZoneName() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSTOREDZONENAME__);
-
-		String _return_getStoredZoneName;
-		method.executeWithAsciiReturn(_return_getStoredZoneName);
-		return _return_getStoredZoneName;
-	} else {
-		return _implementation->getStoredZoneName();
-	}
-}
-
-int ShipControlDevice::getShipType() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSHIPTYPE__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getShipType();
-	}
-}
-
-int ShipControlDevice::getTotalSkillsRequired() {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETTOTALSKILLSREQUIRED__);
-
-		return method.executeWithSignedIntReturn();
-	} else {
-		return _implementation->getTotalSkillsRequired();
-	}
-}
-
-String ShipControlDevice::getSkillRequired(int index) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_GETSKILLREQUIRED__INT_);
-		method.addSignedIntParameter(index);
-
-		String _return_getSkillRequired;
-		method.executeWithAsciiReturn(_return_getSkillRequired);
-		return _return_getSkillRequired;
-	} else {
-		return _implementation->getSkillRequired(index);
-	}
-}
-
-void ShipControlDevice::setShipType(int type) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		throw ObjectNotLocalException(this);
-
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setShipType(type);
-	}
-}
-
-void ShipControlDevice::setParkingLocation(const String& cityName) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_SETPARKINGLOCATION__STRING_);
-		method.addAsciiParameter(cityName);
-
-		method.executeWithVoidReturn();
-	} else {
-		assert(this->isLockedByCurrentThread());
-		_implementation->setParkingLocation(cityName);
-	}
-}
-
-void ShipControlDevice::addSkillRequired(String& skill) {
-	ShipControlDeviceImplementation* _implementation = static_cast<ShipControlDeviceImplementation*>(_getImplementation());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_ADDSKILLREQUIRED__STRING_);
-		method.addAsciiParameter(skill);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->addSkillRequired(skill);
 	}
 }
 
@@ -456,26 +236,6 @@ bool ShipControlDeviceImplementation::readObjectMember(ObjectInputStream* stream
 		return true;
 
 	switch(nameHashCode) {
-	case 0x3d340423: //ShipControlDevice.shipType
-		TypeInfo<int >::parseFromBinaryStream(&shipType, stream);
-		return true;
-
-	case 0xfb4db8b8: //ShipControlDevice.parkingLocation
-		TypeInfo<String >::parseFromBinaryStream(&parkingLocation, stream);
-		return true;
-
-	case 0x408ed1dc: //ShipControlDevice.storedZoneName
-		TypeInfo<String >::parseFromBinaryStream(&storedZoneName, stream);
-		return true;
-
-	case 0x87a4424b: //ShipControlDevice.storedPosition
-		TypeInfo<Vector3 >::parseFromBinaryStream(&storedPosition, stream);
-		return true;
-
-	case 0xe9e02705: //ShipControlDevice.skillsRequired
-		TypeInfo<Vector<String> >::parseFromBinaryStream(&skillsRequired, stream);
-		return true;
-
 	}
 
 	return false;
@@ -494,51 +254,6 @@ int ShipControlDeviceImplementation::writeObjectMembers(ObjectOutputStream* stre
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	_nameHashCode = 0x3d340423; //ShipControlDevice.shipType
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&shipType, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xfb4db8b8; //ShipControlDevice.parkingLocation
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&parkingLocation, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x408ed1dc; //ShipControlDevice.storedZoneName
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&storedZoneName, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0x87a4424b; //ShipControlDevice.storedPosition
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<Vector3 >::toBinaryStream(&storedPosition, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
-	_nameHashCode = 0xe9e02705; //ShipControlDevice.skillsRequired
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&skillsRequired, stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-
 
 	return _count;
 }
@@ -547,70 +262,68 @@ void ShipControlDeviceImplementation::writeJSON(nlohmann::json& j) {
 	ControlDeviceImplementation::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
-	thisObject["shipType"] = shipType;
-
-	thisObject["parkingLocation"] = parkingLocation;
-
-	thisObject["storedZoneName"] = storedZoneName;
-
-	thisObject["storedPosition"] = storedPosition;
-
-	thisObject["skillsRequired"] = skillsRequired;
-
-	j["ShipControlDevice"] = thisObject;
 }
 
 ShipControlDeviceImplementation::ShipControlDeviceImplementation() {
 	_initializeImplementation();
 	// server/zone/objects/intangible/ShipControlDevice.idl():  		Logger.setLoggingName("ShipControlDevice");
 	Logger::setLoggingName("ShipControlDevice");
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		shipType = 0;
-	shipType = 0;
+}
+
+int ShipControlDeviceImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
+	// server/zone/objects/intangible/ShipControlDevice.idl():  		Logger.info("selected call");
+	Logger::info("selected call");
+	// server/zone/objects/intangible/ShipControlDevice.idl():  		return 
+	if (selectedID == RadialOptions::VEHICLE_GENERATE){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  			}
+	if (!ControlDeviceImplementation::controlledObject.getForUpdate()){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				Logger.error("null controlled object in vehicle control device");
+	Logger::error("null controlled object in vehicle control device");
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				return 1;
+	return 1;
+}
+
+	else {
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				SceneObject parent = player.getParent();
+	ManagedReference<SceneObject* > parent = player->getParent();
+	// server/zone/objects/intangible/ShipControlDevice.idl():  			}
+	if (!parent){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  					this.generateObject(player);
+	_this.getReferenceUnsafeStaticCast()->generateObject(player);
+}
+}
+}
+
+	else 	// server/zone/objects/intangible/ShipControlDevice.idl():  		return 
+	if (selectedID == RadialOptions::VEHICLE_STORE){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  			}
+	if (!ControlDeviceImplementation::controlledObject.getForUpdate()){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				Logger.error("null controlled object in vehicle control device");
+	Logger::error("null controlled object in vehicle control device");
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				return 1;
+	return 1;
+}
+
+	else {
+	// server/zone/objects/intangible/ShipControlDevice.idl():  				}
+	if (ControlDeviceImplementation::status == 1 && !ControlDeviceImplementation::controlledObject.getForUpdate().get()->isInQuadTree()){
+	// server/zone/objects/intangible/ShipControlDevice.idl():  					this.generateObject(player);
+	_this.getReferenceUnsafeStaticCast()->generateObject(player);
+}
+
+	else {
+	// server/zone/objects/intangible/ShipControlDevice.idl():  					this.storeObject(player);
+	_this.getReferenceUnsafeStaticCast()->storeObject(player);
+}
+}
+}
+	// server/zone/objects/intangible/ShipControlDevice.idl():  		return 0;
+	return 0;
 }
 
 bool ShipControlDeviceImplementation::isShipControlDevice() {
 	// server/zone/objects/intangible/ShipControlDevice.idl():  		return true;
 	return true;
-}
-
-String ShipControlDeviceImplementation::getParkingLocation() {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		return parkingLocation;
-	return parkingLocation;
-}
-
-String ShipControlDeviceImplementation::getStoredZoneName() {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		return storedZoneName;
-	return storedZoneName;
-}
-
-int ShipControlDeviceImplementation::getShipType() {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		return shipType;
-	return shipType;
-}
-
-int ShipControlDeviceImplementation::getTotalSkillsRequired() {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		return skillsRequired.size();
-	return (&skillsRequired)->size();
-}
-
-String ShipControlDeviceImplementation::getSkillRequired(int index) {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		return skillsRequired.get(index);
-	return (&skillsRequired)->get(index);
-}
-
-void ShipControlDeviceImplementation::setShipType(int type) {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		shipType = type;
-	shipType = type;
-}
-
-void ShipControlDeviceImplementation::setParkingLocation(const String& cityName) {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		parkingLocation = cityName;
-	parkingLocation = cityName;
-}
-
-void ShipControlDeviceImplementation::addSkillRequired(String& skill) {
-	// server/zone/objects/intangible/ShipControlDevice.idl():  		skillsRequired.add(skill);
-	(&skillsRequired)->add(skill);
 }
 
 /*
@@ -628,14 +341,13 @@ void ShipControlDeviceAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 	DOBMessage* resp = inv->getInvocationMessage();
 
 	switch (methid) {
-	case RPC_LAUNCHSHIP__CREATUREOBJECT_STRING_VECTOR3_:
+	case RPC_STOREOBJECT__CREATUREOBJECT_BOOL_:
 		{
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			 String zoneName; inv->getAsciiParameter(zoneName);
-			 Vector3 position = inv->getDereferencedSerializableParameter<Vector3 >();
+			bool force = inv->getBooleanParameter();
 			
-			DistributedObject* _m_res = launchShip(player, zoneName, position);
-			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+			storeObject(player, force);
+			
 		}
 		break;
 	case RPC_GENERATEOBJECT__CREATUREOBJECT_:
@@ -643,15 +355,6 @@ void ShipControlDeviceAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
 			
 			generateObject(player);
-			
-		}
-		break;
-	case RPC_STOREOBJECT__CREATUREOBJECT_BOOL_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			bool force = inv->getBooleanParameter();
-			
-			storeObject(player, force);
 			
 		}
 		break;
@@ -674,37 +377,6 @@ void ShipControlDeviceAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_SETSTOREDLOCATIONDATA__CREATUREOBJECT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			setStoredLocationData(player);
-			
-		}
-		break;
-	case RPC_CANBEDESTROYED__CREATUREOBJECT_:
-		{
-			CreatureObject* player = static_cast<CreatureObject*>(inv->getObjectParameter());
-			
-			int _m_res = canBeDestroyed(player);
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_DESTROYOBJECTFROMDATABASE__BOOL_:
-		{
-			bool destroyContainedObjects = inv->getBooleanParameter();
-			
-			destroyObjectFromDatabase(destroyContainedObjects);
-			
-		}
-		break;
-	case RPC_ISSHIPLAUNCHED__:
-		{
-			
-			bool _m_res = isShipLaunched();
-			resp->insertBoolean(_m_res);
-		}
-		break;
 	case RPC_ISSHIPCONTROLDEVICE__:
 		{
 			
@@ -712,73 +384,17 @@ void ShipControlDeviceAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 			resp->insertBoolean(_m_res);
 		}
 		break;
-	case RPC_GETPARKINGLOCATION__:
-		{
-			
-			String _m_res = getParkingLocation();
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_GETSTOREDZONENAME__:
-		{
-			
-			String _m_res = getStoredZoneName();
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_GETSHIPTYPE__:
-		{
-			
-			int _m_res = getShipType();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETTOTALSKILLSREQUIRED__:
-		{
-			
-			int _m_res = getTotalSkillsRequired();
-			resp->insertSignedInt(_m_res);
-		}
-		break;
-	case RPC_GETSKILLREQUIRED__INT_:
-		{
-			int index = inv->getSignedIntParameter();
-			
-			String _m_res = getSkillRequired(index);
-			resp->insertAscii(_m_res);
-		}
-		break;
-	case RPC_SETPARKINGLOCATION__STRING_:
-		{
-			 String cityName; inv->getAsciiParameter(cityName);
-			
-			setParkingLocation(cityName);
-			
-		}
-		break;
-	case RPC_ADDSKILLREQUIRED__STRING_:
-		{
-			String skill; inv->getAsciiParameter(skill);
-			
-			addSkillRequired(skill);
-			
-		}
-		break;
 	default:
 		ControlDeviceAdapter::invokeMethod(methid, inv);
 	}
 }
 
-ShipObject* ShipControlDeviceAdapter::launchShip(CreatureObject* player, const String& zoneName, const Vector3& position) {
-	return (static_cast<ShipControlDevice*>(stub))->launchShip(player, zoneName, position);
+void ShipControlDeviceAdapter::storeObject(CreatureObject* player, bool force) {
+	(static_cast<ShipControlDevice*>(stub))->storeObject(player, force);
 }
 
 void ShipControlDeviceAdapter::generateObject(CreatureObject* player) {
 	(static_cast<ShipControlDevice*>(stub))->generateObject(player);
-}
-
-void ShipControlDeviceAdapter::storeObject(CreatureObject* player, bool force) {
-	(static_cast<ShipControlDevice*>(stub))->storeObject(player, force);
 }
 
 int ShipControlDeviceAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
@@ -789,52 +405,8 @@ bool ShipControlDeviceAdapter::canBeTradedTo(CreatureObject* player, CreatureObj
 	return (static_cast<ShipControlDevice*>(stub))->canBeTradedTo(player, receiver, numberInTrade);
 }
 
-void ShipControlDeviceAdapter::setStoredLocationData(CreatureObject* player) {
-	(static_cast<ShipControlDevice*>(stub))->setStoredLocationData(player);
-}
-
-int ShipControlDeviceAdapter::canBeDestroyed(CreatureObject* player) {
-	return (static_cast<ShipControlDevice*>(stub))->canBeDestroyed(player);
-}
-
-void ShipControlDeviceAdapter::destroyObjectFromDatabase(bool destroyContainedObjects) {
-	(static_cast<ShipControlDevice*>(stub))->destroyObjectFromDatabase(destroyContainedObjects);
-}
-
-bool ShipControlDeviceAdapter::isShipLaunched() {
-	return (static_cast<ShipControlDevice*>(stub))->isShipLaunched();
-}
-
 bool ShipControlDeviceAdapter::isShipControlDevice() {
 	return (static_cast<ShipControlDevice*>(stub))->isShipControlDevice();
-}
-
-String ShipControlDeviceAdapter::getParkingLocation() {
-	return (static_cast<ShipControlDevice*>(stub))->getParkingLocation();
-}
-
-String ShipControlDeviceAdapter::getStoredZoneName() {
-	return (static_cast<ShipControlDevice*>(stub))->getStoredZoneName();
-}
-
-int ShipControlDeviceAdapter::getShipType() {
-	return (static_cast<ShipControlDevice*>(stub))->getShipType();
-}
-
-int ShipControlDeviceAdapter::getTotalSkillsRequired() {
-	return (static_cast<ShipControlDevice*>(stub))->getTotalSkillsRequired();
-}
-
-String ShipControlDeviceAdapter::getSkillRequired(int index) {
-	return (static_cast<ShipControlDevice*>(stub))->getSkillRequired(index);
-}
-
-void ShipControlDeviceAdapter::setParkingLocation(const String& cityName) {
-	(static_cast<ShipControlDevice*>(stub))->setParkingLocation(cityName);
-}
-
-void ShipControlDeviceAdapter::addSkillRequired(String& skill) {
-	(static_cast<ShipControlDevice*>(stub))->addSkillRequired(skill);
 }
 
 /*
@@ -893,22 +465,6 @@ void ShipControlDevicePOD::writeJSON(nlohmann::json& j) {
 	ControlDevicePOD::writeJSON(j);
 
 	nlohmann::json thisObject = nlohmann::json::object();
-	if (shipType)
-		thisObject["shipType"] = shipType.value();
-
-	if (parkingLocation)
-		thisObject["parkingLocation"] = parkingLocation.value();
-
-	if (storedZoneName)
-		thisObject["storedZoneName"] = storedZoneName.value();
-
-	if (storedPosition)
-		thisObject["storedPosition"] = storedPosition.value();
-
-	if (skillsRequired)
-		thisObject["skillsRequired"] = skillsRequired.value();
-
-	j["ShipControlDevice"] = thisObject;
 }
 
 
@@ -925,61 +481,6 @@ int ShipControlDevicePOD::writeObjectMembers(ObjectOutputStream* stream) {
 	uint32 _nameHashCode;
 	int _offset;
 	uint32 _totalSize;
-	if (shipType) {
-	_nameHashCode = 0x3d340423; //ShipControlDevice.shipType
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<int >::toBinaryStream(&shipType.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (parkingLocation) {
-	_nameHashCode = 0xfb4db8b8; //ShipControlDevice.parkingLocation
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&parkingLocation.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (storedZoneName) {
-	_nameHashCode = 0x408ed1dc; //ShipControlDevice.storedZoneName
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<String >::toBinaryStream(&storedZoneName.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (storedPosition) {
-	_nameHashCode = 0x87a4424b; //ShipControlDevice.storedPosition
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<Vector3 >::toBinaryStream(&storedPosition.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
-	if (skillsRequired) {
-	_nameHashCode = 0xe9e02705; //ShipControlDevice.skillsRequired
-	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
-	_offset = stream->getOffset();
-	stream->writeInt(0);
-	TypeInfo<Vector<String> >::toBinaryStream(&skillsRequired.value(), stream);
-	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
-	stream->writeInt(_offset, _totalSize);
-	_count++;
-	}
-
 
 	return _count;
 }
@@ -989,46 +490,6 @@ bool ShipControlDevicePOD::readObjectMember(ObjectInputStream* stream, const uin
 		return true;
 
 	switch(nameHashCode) {
-	case 0x3d340423: //ShipControlDevice.shipType
-		{
-			int _mnshipType;
-			TypeInfo<int >::parseFromBinaryStream(&_mnshipType, stream);
-			shipType = std::move(_mnshipType);
-		}
-		return true;
-
-	case 0xfb4db8b8: //ShipControlDevice.parkingLocation
-		{
-			String _mnparkingLocation;
-			TypeInfo<String >::parseFromBinaryStream(&_mnparkingLocation, stream);
-			parkingLocation = std::move(_mnparkingLocation);
-		}
-		return true;
-
-	case 0x408ed1dc: //ShipControlDevice.storedZoneName
-		{
-			String _mnstoredZoneName;
-			TypeInfo<String >::parseFromBinaryStream(&_mnstoredZoneName, stream);
-			storedZoneName = std::move(_mnstoredZoneName);
-		}
-		return true;
-
-	case 0x87a4424b: //ShipControlDevice.storedPosition
-		{
-			Vector3 _mnstoredPosition;
-			TypeInfo<Vector3 >::parseFromBinaryStream(&_mnstoredPosition, stream);
-			storedPosition = std::move(_mnstoredPosition);
-		}
-		return true;
-
-	case 0xe9e02705: //ShipControlDevice.skillsRequired
-		{
-			Vector<String> _mnskillsRequired;
-			TypeInfo<Vector<String> >::parseFromBinaryStream(&_mnskillsRequired, stream);
-			skillsRequired = std::move(_mnskillsRequired);
-		}
-		return true;
-
 	}
 
 	return false;
@@ -1054,16 +515,6 @@ void ShipControlDevicePOD::readObject(ObjectInputStream* stream) {
 
 void ShipControlDevicePOD::writeObjectCompact(ObjectOutputStream* stream) {
 	ControlDevicePOD::writeObjectCompact(stream);
-
-	TypeInfo<int >::toBinaryStream(&shipType.value(), stream);
-
-	TypeInfo<String >::toBinaryStream(&parkingLocation.value(), stream);
-
-	TypeInfo<String >::toBinaryStream(&storedZoneName.value(), stream);
-
-	TypeInfo<Vector3 >::toBinaryStream(&storedPosition.value(), stream);
-
-	TypeInfo<Vector<String> >::toBinaryStream(&skillsRequired.value(), stream);
 
 
 }

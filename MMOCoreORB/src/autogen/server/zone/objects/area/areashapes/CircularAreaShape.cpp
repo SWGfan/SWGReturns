@@ -323,8 +323,6 @@ CircularAreaShapeImplementation::CircularAreaShapeImplementation() : AreaShapeIm
 	radius = 0;
 	// server/zone/objects/area/areashapes/CircularAreaShape.idl():  		radius2 = 0;
 	radius2 = 0;
-	// server/zone/objects/area/areashapes/CircularAreaShape.idl():  		Logger.setLoggingName("CircularAreaShape");
-	Logger::setLoggingName("CircularAreaShape");
 }
 
 void CircularAreaShapeImplementation::setRadius(float r) {

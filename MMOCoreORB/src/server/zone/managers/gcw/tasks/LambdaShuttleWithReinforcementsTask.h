@@ -1,8 +1,8 @@
 /*
  * LambdaShuttleWithReinforcementsTask.h
  *
- * Created on: Dec 7, 2016
- * Author: loshult
+ *  Created on: Dec 7, 2016
+ *      Author: loshult
  */
 
 #ifndef LAMBDASHUTTLEWITHREINFORCEMENTSTASK_H_
@@ -13,7 +13,6 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/managers/combat/CombatManager.h"
-#include "server/zone/managers/collision/CollisionManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/managers/gcw/GCWManager.h"
 #include "server/zone/managers/gcw/observers/ContainmentTeamObserver.h"
@@ -22,7 +21,7 @@
 
 class LambdaShuttleWithReinforcementsTask : public Task {
 public:
-	enum ReinforcementType { LAMBDASHUTTLEATTACK, LAMBDASHUTTLESCAN, LAMBDASHUTTLEONLY, CONTAINMENTTEAM };
+	enum ReinforcementType { LAMBDASHUTTLEATTACK, LAMBDASHUTTLESCAN, LAMBDASHUTTLENOTROOPS, NOLAMBDASHUTTLEONLYTROOPS };
 
 private:
 	WeakReference<CreatureObject*> weakPlayer;
@@ -57,33 +56,24 @@ private:
 		bool singleSpawn;
 	};
 
-	LambdaTroop IMPERIALTROOPS[11] = {
-		{"crackdown_stormtrooper_squad_leader", true},
-		{"crackdown_stormtrooper", false},
-		{"crackdown_stormtrooper", false},
-		{"crackdown_stormtrooper_sniper", false},
-		{"crackdown_stormtrooper", false},
-		{"crackdown_stormtrooper_rifleman", false},
-		{"crackdown_stormtrooper_medic", false},
-		{"crackdown_stormtrooper_sniper", false},
-		{"crackdown_stormtrooper_rifleman", false},
-		{"crackdown_stormtrooper", false},
-		{"crackdown_stormtrooper_bombardier", false}
-	};
+	LambdaTroop IMPERIALTROOPS[11] = {{"stormtrooper_squad_leader", true},
+									  {"stormtrooper", false},
+									  {"stormtrooper", false},
+									  {"stormtrooper_sniper", false},
+									  {"stormtrooper", false},
+									  {"stormtrooper_rifleman", false},
+									  {"stormtrooper_medic", false},
+									  {"stormtrooper_sniper", false},
+									  {"stormtrooper_rifleman", false},
+									  {"stormtrooper", false},
+									  {"stormtrooper_bombardier", false}};
 
-	LambdaTroop REBELTROOPS[11] = {
-		{"crackdown_rebel_guard_captain", true},
-		{"crackdown_rebel_cadet", false},
-		{"crackdown_rebel_soldier", false},
-		{"crackdown_rebel_liberator", false},
-		{"crackdown_rebel_soldier", false},
-		{"crackdown_rebel_guardsman", false},
-		{"crackdown_rebel_elite_sand_rat", false},
-		{"crackdown_rebel_command_security_guard", false},
-		{"crackdown_rebel_commando", false},
-		{"crackdown_rebel_comm_operator", false},
-		{"crackdown_rebel_soldier", false}
-	};
+	LambdaTroop REBELTROOPS[11] = {{"crackdown_rebel_guard_captain", true},	  {"crackdown_rebel_cadet", false},
+								   {"crackdown_rebel_soldier", false},		  {"crackdown_rebel_liberator", false},
+								   {"crackdown_rebel_soldier", false},		  {"crackdown_rebel_guardsman", false},
+								   {"crackdown_rebel_elite_sand_rat", false}, {"crackdown_rebel_command_security_guard", false},
+								   {"crackdown_rebel_commando", false},		  {"crackdown_rebel_comm_operator", false},
+								   {"crackdown_rebel_soldier", false}};
 
 	enum LamdaShuttleState {
 		SPAWNSHUTTLE,
@@ -114,33 +104,22 @@ private:
 		float yOffsetRotated = -xOffset * Math::sin(rotationRadians) + yOffset * Math::cos(rotationRadians);
 
 		Zone* zone = player->getZone();
-
-		if (zone == nullptr) {
-			return;
-		}
-
 		float x = spawnPosition.getX() + xOffsetRotated;
 		float y = spawnPosition.getY() + yOffsetRotated;
-		float z = 0.f;
-
 		if (lambdaShuttle != nullptr) {
 			zone = lambdaShuttle->getZone();
 			x = lambdaShuttle->getPositionX() + xOffsetRotated;
 			y = lambdaShuttle->getPositionY() + yOffsetRotated;
 		}
+		float z = zone->getHeight(x, y);
 
-		if (reinforcementType == CONTAINMENTTEAM) {
-			z = player->getPositionZ();
-		} else {
-			z = CollisionManager::getWorldFloorCollision(x, y, zone, false);
-		}
-
-		Reference<AiAgent*> npc = cast<AiAgent*>(zone->getCreatureManager()->spawnCreature(creatureTemplate.hashCode(), 0, x, z, y, 0, false, spawnDirection.getRadians()));
+		Reference<AiAgent*> npc =
+			cast<AiAgent*>(zone->getCreatureManager()->spawnCreature(creatureTemplate.hashCode(), 0, x, z, y, 0, false, spawnDirection.getRadians()));
 
 		if (npc != nullptr) {
-			Locker npcLock(npc, player);
-
-			if (reinforcementType == LAMBDASHUTTLEATTACK || reinforcementType == CONTAINMENTTEAM) {
+			Locker npcLock(npc);
+			npc->activateLoad("");
+			if (reinforcementType == LAMBDASHUTTLEATTACK) {
 				CombatManager::instance()->startCombat(npc, player);
 
 				if (spawnNumber == 0) {
@@ -154,29 +133,23 @@ private:
 						}
 					}
 				}
-			}
-
-			npc->setAITemplate();
-
-			if (spawnNumber != 0) {
-				Vector3 formationOffset;
-				formationOffset.setX(xOffset);
-				formationOffset.setY(spawnNumber * -1);
-
-				npc->writeBlackboard("formationOffset", formationOffset);
 			} else {
-				npc->addCreatureFlag(CreatureFlag::STATIONARY);
+				if (spawnNumber == 0) {
+					npc->setFollowObject(player);
+				} else {
+					npc->setFollowObject(containmentTeamObserver->getMember(Math::max(containmentTeamObserver->size() - 2, 0)));
+				}
+				npc->registerObserver(ObserverEventType::DEFENDERADDED, containmentTeamObserver);
 			}
 
 			containmentTeamObserver->addMember(npc);
-			npc->registerObserver(ObserverEventType::SQUAD, containmentTeamObserver);
 		}
 	}
 
 	void spawnOneSetOfTroops(SceneObject* lambdaShuttle, CreatureObject* player) {
 		auto offset = spawnOffset;
 		float spawnSeparation = 1.0f;
-		if (reinforcementType == CONTAINMENTTEAM) {
+		if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 			offset /= 2;
 			spawnSeparation /= 2;
 		}
@@ -189,49 +162,21 @@ private:
 		spawnNumber++;
 	}
 
-	void setupMovement(CreatureObject* player) {
-		if (containmentTeamObserver == nullptr)
-			return;
-
-		AiAgent* squadLeader = containmentTeamObserver->getMember(0);
-
-		if (squadLeader != nullptr && player != nullptr) {
-			Locker slLock(squadLeader, player);
-
-			for (int i = 1; i <= containmentTeamObserver->size(); ++i) {
-				AiAgent* agent = containmentTeamObserver->getMember(i);
-
-				if (agent == nullptr || agent->isInCombat())
-					continue;
-
-				Locker alock(agent, squadLeader);
-				agent->addCreatureFlag(CreatureFlag::FOLLOW);
-				agent->setFollowObject(squadLeader);
-			}
-
-			squadLeader->setCreatureBitmask(squadLeader->getCreatureBitmask() - CreatureFlag::STATIONARY);
-			squadLeader->addCreatureFlag(CreatureFlag::FOLLOW);
-			squadLeader->setFollowObject(player);
-		}
-
-	}
-
 	void spawnTroops(SceneObject* lambdaShuttle, CreatureObject* player) {
-		if (reinforcementType == LAMBDASHUTTLESCAN && ((faction != player->getFaction() && player->getFaction() != Factions::FACTIONNEUTRAL) || (player->getPlayerObject() != nullptr && player->getPlayerObject()->hasCrackdownTefTowards(faction)))) {
+		if (reinforcementType == LAMBDASHUTTLESCAN && ((faction != player->getFaction() && player->getFaction() != Factions::FACTIONNEUTRAL) ||
+													   (player->getPlayerObject() != nullptr))) {
 			if (player->getFactionStatus() == FactionStatus::OVERT || player->getFactionStatus() == FactionStatus::COVERT) {
 				reinforcementType = LAMBDASHUTTLEATTACK;
 			}
 		}
-		if (reinforcementType != LAMBDASHUTTLEONLY) {
+		if (reinforcementType != LAMBDASHUTTLENOTROOPS) {
 			spawnOneSetOfTroops(lambdaShuttle, player);
 			if (spawnNumber > difficulty * TROOPSSPAWNPERDIFFICULTY) {
-				if (reinforcementType == CONTAINMENTTEAM) {
+				if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 					state = CLOSINGIN;
 				} else {
 					state = TAKEOFF;
 				}
-
-				setupMovement(player);
 			}
 		} else {
 			state = TAKEOFF;
@@ -240,6 +185,7 @@ private:
 	}
 
 	void lambdaShuttleSpawn(SceneObject* lambdaShuttle, CreatureObject* player) {
+		Locker objLocker(lambdaShuttle);
 		lambdaShuttle->initializePosition(spawnPosition.getX(), spawnPosition.getZ(), spawnPosition.getY());
 		lambdaShuttle->setDirection(spawnDirection);
 		lambdaShuttle->createChildObjects();
@@ -247,16 +193,19 @@ private:
 	}
 
 	void lambdaShuttleLanding(SceneObject* lambdaShuttle) {
+		Locker objLocker(lambdaShuttle);
 		CreatureObject* lambdaShuttleCreature = lambdaShuttle->asCreatureObject();
 		lambdaShuttleCreature->setPosture(CreaturePosture::PRONE);
 	}
 
 	void lambdaShuttleUpright(SceneObject* lambdaShuttle) {
+		Locker objLocker(lambdaShuttle);
 		CreatureObject* lambdaShuttleCreature = lambdaShuttle->asCreatureObject();
 		lambdaShuttleCreature->setPosture(CreaturePosture::UPRIGHT);
 	}
 
 	void lambdaShuttleTakeoff(SceneObject* lambdaShuttle) {
+		Locker objLocker(lambdaShuttle);
 		CreatureObject* lambdaShuttleCreature = lambdaShuttle->asCreatureObject();
 		lambdaShuttleCreature->setPosture(CreaturePosture::UPRIGHT);
 		timeToDespawnLambdaShuttle = LAMBDATAKEOFFDESPAWNTIME;
@@ -270,7 +219,7 @@ private:
 			auto npc = containmentTeamObserver->getMember(0);
 			if (npc == nullptr) {
 				state = DELAY;
-			} else if ((npc->getWorldPosition().squaredDistanceTo(player->getWorldPosition()) < 20 * 20) && !npc->isInCombat() && !npc->isDead()) {
+			} else if (npc->getWorldPosition().distanceTo(player->getWorldPosition()) < 16 && !npc->isInCombat() && !npc->isDead()) {
 				auto zone = player->getZone();
 				if (zone != nullptr) {
 					auto gcwManager = zone->getGCWManager();
@@ -289,7 +238,7 @@ private:
 
 	void delay() {
 		if (--delayTime <= 0) {
-			if (reinforcementType == CONTAINMENTTEAM) {
+			if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 				state = DESPAWN;
 			} else {
 				state = PICKUPSPAWN;
@@ -302,7 +251,7 @@ private:
 		--cleanUpTime;
 
 		if (containmentTeamObserver->despawnMembersCloseToLambdaShuttle(spawnPosition, cleanUpTime < 0)) {
-			if (reinforcementType == CONTAINMENTTEAM) {
+			if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 				state = FINISHED;
 			} else {
 				state = PICKUPTAKEOFF;
@@ -316,13 +265,14 @@ private:
 		if (zone == nullptr) {
 			return false;
 		} else {
+			Locker objLocker(lambdaShuttle);
 			zone->transferObject(lambdaShuttle, -1, true);
 			return true;
 		}
 	}
 
 	SceneObject* getLambdaShuttle(CreatureObject* player) {
-		if (reinforcementType == CONTAINMENTTEAM) {
+		if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 			return nullptr;
 		}
 
@@ -367,9 +317,9 @@ public:
 		cleanUpTime = 60;
 		spawnOffset = difficulty * TROOPSSPAWNPERDIFFICULTY;
 		this->faction = faction;
-		delayTime = 90;
+		delayTime = 60;
 		this->reinforcementType = reinforcementType;
-		if (reinforcementType == CONTAINMENTTEAM) {
+		if (reinforcementType == NOLAMBDASHUTTLEONLYTROOPS) {
 			state = SPAWNTROOPS;
 		} else {
 			state = SPAWNSHUTTLE;
@@ -384,42 +334,14 @@ public:
 			return;
 		}
 
-		Locker locker(player);
-
-		if (faction == 0) {
-			if (player->getFactionStatus() == FactionStatus::COVERT || player->getFactionStatus() == FactionStatus::OVERT) {
-				if (player->getFaction() == Factions::FACTIONREBEL) {
-					troops = IMPERIALTROOPS;
-					faction = Factions::FACTIONIMPERIAL;
-				} else {
-					troops = REBELTROOPS;
-					faction = Factions::FACTIONREBEL;
-				}
-			} else {
-				if (player->isPlayerObject()) {
-					PlayerObject* ghost = player->getPlayerObject();
-					if (ghost != nullptr) {
-						if (ghost->hasCrackdownTefTowards(Factions::FACTIONIMPERIAL)) {
-							troops = IMPERIALTROOPS;
-							faction = Factions::FACTIONIMPERIAL;
-						} else if (ghost->hasCrackdownTefTowards(Factions::FACTIONREBEL)) {
-							troops = REBELTROOPS;
-							faction = Factions::FACTIONREBEL;
-						}
-					}
-				}
-			}
-		}
-
 		ManagedReference<SceneObject*> lambdaShuttle = getLambdaShuttle(player);
 
-		if (lambdaShuttle == nullptr && reinforcementType != CONTAINMENTTEAM) {
+		if (lambdaShuttle == nullptr && reinforcementType != NOLAMBDASHUTTLEONLYTROOPS) {
 			return;
 		}
 
-		Locker clocker(lambdaShuttle, player);
-
 		if (--timeToDespawnLambdaShuttle == 0) {
+			Locker objLocker(lambdaShuttle);
 			lambdaShuttle->destroyObjectFromWorld(true);
 			weakLambdaShuttle = nullptr;
 		}
@@ -453,7 +375,7 @@ public:
 			break;
 		case TAKEOFF:
 			lambdaShuttleTakeoff(lambdaShuttle);
-			if (reinforcementType != LAMBDASHUTTLEONLY) {
+			if (reinforcementType != LAMBDASHUTTLENOTROOPS) {
 				state = CLOSINGIN;
 			} else {
 				state = PICKUPDESPAWN;

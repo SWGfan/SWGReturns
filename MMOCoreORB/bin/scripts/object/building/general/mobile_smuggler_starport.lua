@@ -1,3 +1,0 @@
-object_building_general_mobile_smuggler_starport = object_building_general_shared_mobile_smuggler_starport:new {
-}
-ObjectTemplates:addTemplate(object_building_general_mobile_smuggler_starport, "object/building/general/mobile_smuggler_starport.iff")

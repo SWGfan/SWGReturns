@@ -103,10 +103,6 @@ public:
 
 	void tryToSpawn(SceneObject* object);
 
-	bool isWorldSpawnArea() const;
-
-	void setWorldSpawnArea(bool val);
-
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
 
@@ -152,8 +148,6 @@ protected:
 
 	Vector<ManagedWeakReference<SpawnArea*> > noSpawnAreas;
 
-	bool worldSpawnArea;
-
 	int tier;
 
 public:
@@ -182,10 +176,6 @@ public:
 	void addNoSpawnArea(SpawnArea* area);
 
 	void tryToSpawn(SceneObject* object);
-
-	bool isWorldSpawnArea() const;
-
-	void setWorldSpawnArea(bool val);
 
 	WeakReference<SpawnArea*> _this;
 
@@ -245,10 +235,6 @@ public:
 
 	void tryToSpawn(SceneObject* object);
 
-	bool isWorldSpawnArea() const;
-
-	void setWorldSpawnArea(bool val);
-
 };
 
 class SpawnAreaHelper : public DistributedObjectClassHelper, public Singleton<SpawnAreaHelper> {
@@ -299,8 +285,6 @@ public:
 	Optional<ManagedReference<SpawnAreaObserverPOD* >> exitObserver;
 
 	Optional<Vector<ManagedWeakReference<SpawnArea*> >> noSpawnAreas;
-
-	Optional<bool> worldSpawnArea;
 
 	Optional<int> tier;
 

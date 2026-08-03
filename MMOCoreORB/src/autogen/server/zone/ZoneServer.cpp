@@ -14,8 +14,6 @@
 
 #include "server/zone/Zone.h"
 
-#include "server/zone/GroundZone.h"
-
 #include "server/chat/ChatManager.h"
 
 #include "conf/ConfigManager.h"
@@ -64,13 +62,7 @@
 
 const float ZoneServer::CLOSEOBJECTRANGE = 192;
 
-const float ZoneServer::SPACECLOSEOBJECTRANGE = 2048;
-
-const float ZoneServer::CAPITALSHIPRANGE = 8192;
-
-const float ZoneServer::SPACESTATIONRANGE = 32768;
-
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTGROUNDZONES__,RPC_STARTSPACEZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 969596319,RPC_INITIALIZE__,RPC_SHUTDOWN__,RPC_STARTMANAGERS__,RPC_STARTZONES__,RPC_STOPMANAGERS__,RPC_START__INT_INT_,RPC_STOP__,RPC_CLEARZONES__,RPC_TIMEDSHUTDOWN__INT_,RPC_ADDTOTALSENTPACKET__INT_,RPC_ADDTOTALRESENTPACKET__INT_,RPC_PRINTINFO__,RPC_GETINFO__,RPC_PRINTEVENTS__,RPC_GETOBJECT__LONG_BOOL_,RPC_CREATEOBJECT__INT_STRING_INT_,RPC_CREATEOBJECT__INT_INT_LONG_,RPC_CREATECLIENTOBJECT__INT_LONG_,RPC_UPDATEOBJECTTODATABASE__SCENEOBJECT_,RPC_UPDATEOBJECTTOSTATICDATABASE__SCENEOBJECT_,RPC_DESTROYOBJECTFROMDATABASE__LONG_,RPC_LOCK__BOOL_,RPC_UNLOCK__BOOL_,RPC_FIXSCHEDULER__,RPC_CHANGEUSERCAP__INT_,RPC_GETCONNECTIONCOUNT__,RPC_INCREASEONLINEPLAYERS__,RPC_DECREASEONLINEPLAYERS__,RPC_INCREASETOTALDELETEDPLAYERS__,RPC_GETGALAXYID__,RPC_GETGALAXYNAME__,RPC_SETGALAXYNAME__STRING_,RPC_ISSERVERLOCKED__,RPC_ISSERVERONLINE__,RPC_ISSERVEROFFLINE__,RPC_ISSERVERLOADING__,RPC_ISSERVERSHUTTINGDOWN__,RPC_GETSERVERCAP__,RPC_GETSERVERSTATE__,RPC_GETZONE__STRING_,RPC_GETZONE__INT_,RPC_GETZONECOUNT__,RPC_GETMAXPLAYERS__,RPC_GETTOTALPLAYERS__,RPC_GETDELETEDPLAYERS__,RPC_GETPLAYERMANAGER__,RPC_GETREACTIONMANAGER__,RPC_GETFRSMANAGER__,RPC_GETCHATMANAGER__,RPC_GETCITYMANAGER__,RPC_GETOBJECTCONTROLLER__,RPC_GETMISSIONMANAGER__,RPC_GETRADIALMANAGER__,RPC_GETGUILDMANAGER__,RPC_GETRESOURCEMANAGER__,RPC_GETCRAFTINGMANAGER__,RPC_GETLOOTMANAGER__,RPC_GETAUCTIONMANAGER__,RPC_GETPETMANAGER__,RPC_SETGALAXYID__INT_,RPC_SETSERVERSTATE__INT_,RPC_SETSHOULDDELETENAVAREAS__BOOL_,RPC_SHOULDDELETENAVAREAS__,RPC_SETSERVERSTATELOCKED__,RPC_SETSERVERSTATEONLINE__,RPC_SETSERVERSTATESHUTTINGDOWN__,RPC_LOADLOGINMESSAGE__,RPC_CHANGELOGINMESSAGE__STRING_,RPC_GETLOGINMESSAGE__};
 
 ZoneServer::ZoneServer(ConfigManager* config) : ManagedService(DummyConstructorParameter::instance()) {
 	ZoneServerImplementation* _implementation = new ZoneServerImplementation(config);
@@ -155,31 +147,17 @@ void ZoneServer::startManagers() {
 	}
 }
 
-void ZoneServer::startGroundZones() {
+void ZoneServer::startZones() {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_STARTGROUNDZONES__);
+		DistributedMethod method(this, RPC_STARTZONES__);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->startGroundZones();
-	}
-}
-
-void ZoneServer::startSpaceZones() {
-	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
-	if (unlikely(_implementation == NULL)) {
-		if (!deployed)
-			throw ObjectNotDeployedException(this);
-
-		DistributedMethod method(this, RPC_STARTSPACEZONES__);
-
-		method.executeWithVoidReturn();
-	} else {
-		_implementation->startSpaceZones();
+		_implementation->startZones();
 	}
 }
 
@@ -241,19 +219,18 @@ void ZoneServer::clearZones() {
 	}
 }
 
-void ZoneServer::timedShutdown(int minutes, int flags) {
+void ZoneServer::timedShutdown(int minutes) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_TIMEDSHUTDOWN__INT_INT_);
+		DistributedMethod method(this, RPC_TIMEDSHUTDOWN__INT_);
 		method.addSignedIntParameter(minutes);
-		method.addSignedIntParameter(flags);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->timedShutdown(minutes, flags);
+		_implementation->timedShutdown(minutes);
 	}
 }
 
@@ -287,14 +264,14 @@ bool ZoneServer::handleError(ZoneClientSession* client, Exception& e) {
 	}
 }
 
-void ZoneServer::addTotalSentPacket(unsigned int count) {
+void ZoneServer::addTotalSentPacket(int count) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_ADDTOTALSENTPACKET__INT_);
-		method.addUnsignedIntParameter(count);
+		method.addSignedIntParameter(count);
 
 		method.executeWithVoidReturn();
 	} else {
@@ -302,14 +279,14 @@ void ZoneServer::addTotalSentPacket(unsigned int count) {
 	}
 }
 
-void ZoneServer::addTotalResentPacket(unsigned int count) {
+void ZoneServer::addTotalResentPacket(int count) {
 	ZoneServerImplementation* _implementation = static_cast<ZoneServerImplementation*>(_getImplementationForRead());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
 		DistributedMethod method(this, RPC_ADDTOTALRESENTPACKET__INT_);
-		method.addUnsignedIntParameter(count);
+		method.addSignedIntParameter(count);
 
 		method.executeWithVoidReturn();
 	} else {
@@ -1218,12 +1195,6 @@ void ZoneServer::_setImplementation(DistributedObjectServant* servant) {
 
 const float ZoneServerImplementation::CLOSEOBJECTRANGE = 192;
 
-const float ZoneServerImplementation::SPACECLOSEOBJECTRANGE = 2048;
-
-const float ZoneServerImplementation::CAPITALSHIPRANGE = 8192;
-
-const float ZoneServerImplementation::SPACESTATIONRANGE = 32768;
-
 ZoneServerImplementation::ZoneServerImplementation(DummyConstructorParameter* param) : ManagedServiceImplementation(param) {
 	_initializeImplementation();
 }
@@ -1341,7 +1312,7 @@ bool ZoneServerImplementation::readObjectMember(ObjectInputStream* stream, const
 		return true;
 
 	case 0x3b69de8: //ZoneServer.totalSentPackets
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&totalSentPackets, stream);
+		TypeInfo<int >::parseFromBinaryStream(&totalSentPackets, stream);
 		return true;
 
 	case 0x1d75880a: //ZoneServer.serverCap
@@ -1349,7 +1320,7 @@ bool ZoneServerImplementation::readObjectMember(ObjectInputStream* stream, const
 		return true;
 
 	case 0xfc1cc451: //ZoneServer.totalResentPackets
-		TypeInfo<unsigned long long >::parseFromBinaryStream(&totalResentPackets, stream);
+		TypeInfo<int >::parseFromBinaryStream(&totalResentPackets, stream);
 		return true;
 
 	case 0x1124da92: //ZoneServer.currentPlayers
@@ -1527,7 +1498,7 @@ int ZoneServerImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&totalSentPackets, stream);
+	TypeInfo<int >::toBinaryStream(&totalSentPackets, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -1545,7 +1516,7 @@ int ZoneServerImplementation::writeObjectMembers(ObjectOutputStream* stream) {
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&totalResentPackets, stream);
+	TypeInfo<int >::toBinaryStream(&totalResentPackets, stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -1688,18 +1659,17 @@ int ZoneServerImplementation::getServerState() const{
 	return (&serverState)->get();
 }
 
+Zone* ZoneServerImplementation::getZone(const String& terrainName) const{
+	// server/zone/ZoneServer.idl():  		return zones.get(terrainName);
+	return zones->get(terrainName);
+}
+
 Zone* ZoneServerImplementation::getZone(int idx) {
-	// server/zone/ZoneServer.idl():  		return 
-	if (!zones)	// server/zone/ZoneServer.idl():  			return null;
-	return NULL;
 	// server/zone/ZoneServer.idl():  		return zones.get(idx);
 	return zones->get(idx);
 }
 
 int ZoneServerImplementation::getZoneCount() const{
-	// server/zone/ZoneServer.idl():  		return 
-	if (!zones)	// server/zone/ZoneServer.idl():  			return 0;
-	return 0;
 	// server/zone/ZoneServer.idl():  		return zones.size();
 	return zones->size();
 }
@@ -1872,17 +1842,10 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_STARTGROUNDZONES__:
+	case RPC_STARTZONES__:
 		{
 			
-			startGroundZones();
-			
-		}
-		break;
-	case RPC_STARTSPACEZONES__:
-		{
-			
-			startSpaceZones();
+			startZones();
 			
 		}
 		break;
@@ -1916,18 +1879,17 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_TIMEDSHUTDOWN__INT_INT_:
+	case RPC_TIMEDSHUTDOWN__INT_:
 		{
 			int minutes = inv->getSignedIntParameter();
-			int flags = inv->getSignedIntParameter();
 			
-			timedShutdown(minutes, flags);
+			timedShutdown(minutes);
 			
 		}
 		break;
 	case RPC_ADDTOTALSENTPACKET__INT_:
 		{
-			unsigned int count = inv->getUnsignedIntParameter();
+			int count = inv->getSignedIntParameter();
 			
 			addTotalSentPacket(count);
 			
@@ -1935,7 +1897,7 @@ void ZoneServerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 		break;
 	case RPC_ADDTOTALRESENTPACKET__INT_:
 		{
-			unsigned int count = inv->getUnsignedIntParameter();
+			int count = inv->getSignedIntParameter();
 			
 			addTotalResentPacket(count);
 			
@@ -2391,12 +2353,8 @@ void ZoneServerAdapter::startManagers() {
 	(static_cast<ZoneServer*>(stub))->startManagers();
 }
 
-void ZoneServerAdapter::startGroundZones() {
-	(static_cast<ZoneServer*>(stub))->startGroundZones();
-}
-
-void ZoneServerAdapter::startSpaceZones() {
-	(static_cast<ZoneServer*>(stub))->startSpaceZones();
+void ZoneServerAdapter::startZones() {
+	(static_cast<ZoneServer*>(stub))->startZones();
 }
 
 void ZoneServerAdapter::stopManagers() {
@@ -2415,15 +2373,15 @@ void ZoneServerAdapter::clearZones() {
 	(static_cast<ZoneServer*>(stub))->clearZones();
 }
 
-void ZoneServerAdapter::timedShutdown(int minutes, int flags) {
-	(static_cast<ZoneServer*>(stub))->timedShutdown(minutes, flags);
+void ZoneServerAdapter::timedShutdown(int minutes) {
+	(static_cast<ZoneServer*>(stub))->timedShutdown(minutes);
 }
 
-void ZoneServerAdapter::addTotalSentPacket(unsigned int count) {
+void ZoneServerAdapter::addTotalSentPacket(int count) {
 	(static_cast<ZoneServer*>(stub))->addTotalSentPacket(count);
 }
 
-void ZoneServerAdapter::addTotalResentPacket(unsigned int count) {
+void ZoneServerAdapter::addTotalResentPacket(int count) {
 	(static_cast<ZoneServer*>(stub))->addTotalResentPacket(count);
 }
 
@@ -2871,7 +2829,7 @@ int ZoneServerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&totalSentPackets.value(), stream);
+	TypeInfo<int >::toBinaryStream(&totalSentPackets.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -2893,7 +2851,7 @@ int ZoneServerPOD::writeObjectMembers(ObjectOutputStream* stream) {
 	TypeInfo<uint32>::toBinaryStream(&_nameHashCode, stream);
 	_offset = stream->getOffset();
 	stream->writeInt(0);
-	TypeInfo<unsigned long long >::toBinaryStream(&totalResentPackets.value(), stream);
+	TypeInfo<int >::toBinaryStream(&totalResentPackets.value(), stream);
 	_totalSize = (uint32) (stream->getOffset() - (_offset + 4));
 	stream->writeInt(_offset, _totalSize);
 	_count++;
@@ -3113,8 +3071,8 @@ bool ZoneServerPOD::readObjectMember(ObjectInputStream* stream, const uint32& na
 
 	case 0x3b69de8: //ZoneServer.totalSentPackets
 		{
-			unsigned long long _mntotalSentPackets;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mntotalSentPackets, stream);
+			int _mntotalSentPackets;
+			TypeInfo<int >::parseFromBinaryStream(&_mntotalSentPackets, stream);
 			totalSentPackets = std::move(_mntotalSentPackets);
 		}
 		return true;
@@ -3129,8 +3087,8 @@ bool ZoneServerPOD::readObjectMember(ObjectInputStream* stream, const uint32& na
 
 	case 0xfc1cc451: //ZoneServer.totalResentPackets
 		{
-			unsigned long long _mntotalResentPackets;
-			TypeInfo<unsigned long long >::parseFromBinaryStream(&_mntotalResentPackets, stream);
+			int _mntotalResentPackets;
+			TypeInfo<int >::parseFromBinaryStream(&_mntotalResentPackets, stream);
 			totalResentPackets = std::move(_mntotalResentPackets);
 		}
 		return true;
@@ -3259,11 +3217,11 @@ void ZoneServerPOD::writeObjectCompact(ObjectOutputStream* stream) {
 
 	TypeInfo<ManagedReference<PetManagerPOD* > >::toBinaryStream(&petManager.value(), stream);
 
-	TypeInfo<unsigned long long >::toBinaryStream(&totalSentPackets.value(), stream);
+	TypeInfo<int >::toBinaryStream(&totalSentPackets.value(), stream);
 
 	TypeInfo<int >::toBinaryStream(&serverCap.value(), stream);
 
-	TypeInfo<unsigned long long >::toBinaryStream(&totalResentPackets.value(), stream);
+	TypeInfo<int >::toBinaryStream(&totalResentPackets.value(), stream);
 
 	TypeInfo<AtomicInteger >::toBinaryStream(&currentPlayers.value(), stream);
 

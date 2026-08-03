@@ -95,7 +95,7 @@ namespace zone {
 
 		uint64 getNextFreeObjectID();
 
-		void onUpdateModifiedObjectsToDatabase(int flags);
+		void onUpdateModifiedObjectsToDatabase();
 
 		void onCommitData();
 

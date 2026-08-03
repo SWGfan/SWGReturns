@@ -289,9 +289,9 @@ public:
 		// Force Cost.
 		ManagedReference<PlayerObject*> playerObject = creature->getPlayerObject();
 		playerObject->setForcePower(playerObject->getForcePower() - getFrsModifiedForceCost(creature));
-		if (playerObject->getFrsData()->getRank() > 0) {
-			VisibilityManager::instance()->increaseVisibility(creature, visMod);
-		}
+		VisibilityManager::instance()->increaseVisibility(creature, visMod);
+		//Jedi Attackable
+		playerObject->updateLastJediAttackableTimestamp();
 	}
 
 	void setForceCost(int fc) {

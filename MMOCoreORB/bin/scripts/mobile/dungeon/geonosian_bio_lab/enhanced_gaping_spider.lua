@@ -2,17 +2,16 @@ enhanced_gaping_spider = Creature:new {
 	objectName = "@mob/creature_names:geonosian_gaping_spider_fire",
 	customName = "Fire Breathing Spider",
 	socialGroup = "geonosian_creature",
-	mobType = MOB_CARNIVORE,
 	faction = "",
-	level = 108,
-	chanceHit = 2.5,
+	level = 210,
+	chanceHit = 30,
 	damageMin = 715,
 	damageMax = 1140,
 	baseXp = 10267,
-	baseHAM = 32000,
-	baseHAMmax = 39000,
-	armor = 1,
-	resists = {150,10,-1,195,-1,10,10,10,-1},
+	baseHAM = 132000,
+	baseHAMmax = 239000,
+	armor = 2,
+	resists = {150,10,30,195,30,30,30,30,-1},
 	meatType = "meat_insect",
 	meatAmount = 50,
 	hideType = "",
@@ -32,22 +31,17 @@ enhanced_gaping_spider = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "fire_breathing_spider", chance = 10000000}
+				{group = "fire_breathing_spider", chance = 10000000},
 			},
-			lootChance = 6000000,
-		},
+			lootChance = 10000000
+		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "object/weapon/ranged/creature/creature_spit_heavy_flame.iff",
-	secondaryWeapon = "object/weapon/ranged/creature/creature_spit_heavy_flame.iff",
+	weapons = {"creature_spit_heavy_flame"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"strongpoison",""}, {"stunattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"strongpoison",""},
+		{"stunattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(enhanced_gaping_spider, "enhanced_gaping_spider")

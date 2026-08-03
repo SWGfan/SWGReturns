@@ -44,23 +44,22 @@
 SaberPolearmDervishCommand = {
         name = "saberpolearmdervish",
 
-	damageMultiplier = 1.75,
+	damageMultiplier = 3.5,
 	speedMultiplier = 3.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	areaAction = true,
 	areaRange = 16,
 	forceCostMultiplier = 2.5,
-	accuracyBonus = 50,
 	visMod = 25,
 
 		stateEffects = {
 	   StateEffect( 
 		BLIND_EFFECT, 
 		{}, 
-		{ "blind_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "blind_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		75, 
 		0, 
 		60
@@ -68,17 +67,17 @@ SaberPolearmDervishCommand = {
 	  StateEffect( 
 		DIZZY_EFFECT, 
 		{}, 
-		{ "dizzy_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "dizzy_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		75, 
 		0, 
-		10 
+		30 
 	  ),
 	  StateEffect( 
 		STUN_EFFECT, 
 		{}, 
-		{ "stun_defense", "resistance_states" }, 
-		{ "jedi_state_defense" }, 
+		{ "stun_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
 		75, 
 		0, 
 		60 
@@ -90,11 +89,11 @@ SaberPolearmDervishCommand = {
 
 	combatSpam = "saberpolearmdervish",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	weaponType = POLEARMJEDIWEAPON,
 
-	range = 10
+	range = -1
 }
 
 AddCommand(SaberPolearmDervishCommand)

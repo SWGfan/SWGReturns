@@ -13,6 +13,7 @@
 #include "server/zone/packets/tangible/TangibleObjectDeltaMessage3.h"
 #include "server/zone/packets/tangible/TangibleObjectDeltaMessage6.h"
 #include "server/zone/packets/scene/AttributeListMessage.h"
+#include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "templates/SharedTangibleObjectTemplate.h"
 #include "templates/params/creature/CreatureFlag.h"
 #include "server/zone/packets/tangible/UpdatePVPStatusMessage.h"
@@ -67,8 +68,6 @@ void TangibleObjectImplementation::loadTemplateData(SharedObjectTemplate* templa
 	pvpStatusBitmask = tanoData->getPvpStatusBitmask();
 
 	sliceable = tanoData->getSliceable();
-
-	jediRobe = tanoData->isJediRobe();
 
 	faction = tanoData->getFaction();
 
@@ -282,7 +281,7 @@ void TangibleObjectImplementation::broadcastPvpStatusBitmask() {
 
 	CreatureObject* thisCreo = asCreatureObject();
 
-	SortedVector<TreeEntry*> closeObjects(closeobjects->size(), 10);
+	SortedVector<QuadTreeEntry*> closeObjects(closeobjects->size(), 10);
 
 	closeobjects->safeCopyReceiversTo(closeObjects, CloseObjectsVector::CREOTYPE);
 
@@ -532,9 +531,8 @@ void TangibleObjectImplementation::removeDefender(SceneObject* defender) {
 		}
 	}
 
-	if (defenderList.size() == 0) {
+	if (defenderList.size() == 0)
 		clearCombatState(false);
-	}
 
 	debug("finished removing defender");
 }
@@ -559,19 +557,7 @@ void TangibleObjectImplementation::fillAttributeList(AttributeListMessage* alm, 
 		alm->insertAttribute("condition", cond);
 	}
 
-	int volumeLimit = getContainerVolumeLimit();
-
-	if (volumeLimit >= 1 && getContainerType() == ContainerType::VOLUME) {
-		int objectCount = getCountableObjectsRecursive();
-
-		StringBuffer contentsString;
-		contentsString << objectCount << "/" << volumeLimit;
-
-		alm->insertAttribute("volume", volume + objectCount);
-		alm->insertAttribute("contents", contentsString);
-	} else {
-		alm->insertAttribute("volume", volume);
-	}
+	alm->insertAttribute("volume", volume);
 
 	if (!craftersName.isEmpty()) {
 		alm->insertAttribute("crafter", craftersName);
@@ -716,6 +702,21 @@ int TangibleObjectImplementation::inflictDamage(TangibleObject* attacker, int da
 		notifyObjectDestructionObservers(attacker, newConditionDamage, isCombatAction);
 		notifyObservers(ObserverEventType::OBJECTDISABLED, attacker);
 		setDisabled(true);
+
+		WearableObject* wearable = cast<WearableObject*>(asTangibleObject());
+			if(wearable != nullptr) {
+				ManagedReference<SceneObject*> playerParent = getParentRecursively(SceneObjectType::PLAYERCREATURE);
+				if (wearable->isEquipped() && playerParent != nullptr){
+					SceneObject* inventory = playerParent->getSlottedObject("inventory");
+					SceneObject* parentOfWearableParent = wearable->getParent().get();
+					ZoneServer* zoneServer = server->getZoneServer();
+					ObjectController* objectController = zoneServer->getObjectController();
+					if (objectController != nullptr && inventory != nullptr && parentOfWearableParent != nullptr){
+						objectController->transferObject(wearable,inventory,wearable->getContainmentType(), true, true);
+					}
+				}
+					
+			}
 	}
 
 	return 0;
@@ -756,15 +757,12 @@ int TangibleObjectImplementation::notifyObjectDestructionObservers(TangibleObjec
 
 	dropFromDefenderLists();
 
-	attacker->removeDefender(asTangibleObject());
-
 	return 1;
 }
 
 void TangibleObjectImplementation::dropFromDefenderLists() {
-	if (defenderList.size() == 0) {
+	if (defenderList.size() == 0)
 		return;
-	}
 
 	Reference<ClearDefenderListsTask*> task = new ClearDefenderListsTask(defenderList, asTangibleObject());
 	Core::getTaskManager()->executeTask(task);
@@ -1136,9 +1134,7 @@ bool TangibleObjectImplementation::isAttackableBy(TangibleObject* object) {
 bool TangibleObjectImplementation::isAttackableBy(CreatureObject* object) {
 	if (object->isPlayerCreature()) {
 		Reference<PlayerObject*> ghost = object->getPlayerObject();
-		if (ghost != nullptr && ghost->hasCrackdownTefTowards(getFaction())) {
-			return true;
-		}
+		
 		if (isImperial() && (!object->isRebel() || object->getFactionStatus() == 0)) {
 			return false;
 		}

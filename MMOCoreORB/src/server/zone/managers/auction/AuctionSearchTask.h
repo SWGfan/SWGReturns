@@ -36,7 +36,7 @@ public:
 		filterText = filter;
 		includeEntranceFee = entFee;
 
-		setCustomTaskQueue("AuctionSearch");
+		setCustomTaskQueue("AuctionSearchQueue");
 	}
 
 	void run() {

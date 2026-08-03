@@ -54,7 +54,6 @@ option(ENABLE_BUILD_CLIENT "Enables core3client build" ON)
 option(ENABLE_JEMALLOC_LINK "Enables jemalloc linking if found" ON)
 option(ENABLE_MULTITHREADED_LINKER "Enables ld.gold/lld with --threads check and use" ON)
 option(ENABLE_LOCKFREE_BCLIENT_BUFFERS "Enables lock free base client buffers, requires boost thread" OFF) #needs to match engine3
-option(DUMP_ALL_CMAKE_VARIABLES "Prints all cmake variables" OFF)
 
 # Set cmake paths
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
@@ -86,11 +85,6 @@ include_directories(${OPENSSL_INCLUDE_DIR})
 
 find_package(ZLIB REQUIRED)
 include_directories(${ZLIB_INCLUDE_DIRS})
-
-if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-	message(STATUS "Compiling with AI debug enabled")
-	add_definitions(-DDEBUG_AI)
-endif()
 
 if (ENABLE_SESSION_API)
     message(STATUS "Compiling with session API support")
@@ -200,7 +194,7 @@ if(COMPILE_TESTS)
     include_directories(${CMAKE_SOURCE_DIR}/utils/googletest-release-1.10.0/googlemock/include)
 
 	enable_testing()
-
+	
     add_definitions(-DCOMPILE_CORE3_TESTS)
 else(COMPILE_TESTS)
     set(IDL_DIRECTIVES ${IDL_DIRECTIVES} -nomocks)
@@ -219,10 +213,12 @@ if (ENABLE_ODB_REFERENCES)
 endif()
 
 if (ENABLE_LOCKFREE_BCLIENT_BUFFERS)
-	add_definitions(-DLOCKFREE_BCLIENT_BUFFERS)
-endif()
+	find_package(Boost REQUIRED COMPONENTS thread)
 
-find_package(Boost REQUIRED COMPONENTS thread)
+	add_definitions(-DLOCKFREE_BCLIENT_BUFFERS)
+else()
+	find_package(Boost QUIET OPTIONAL_COMPONENTS thread)
+endif()
 
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
@@ -241,6 +237,8 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU
 	-Wno-return-std-move
 	-Wno-implicit-fallthrough
 	-Wno-class-memaccess
+	-Wno-stringop-overflow
+	-Wno-maybe-uninitialized
 	-fcolor-diagnostics)
 
     foreach(flag_comp ${GCCEXTRAFLAGS})
@@ -253,8 +251,6 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU
 
     if (ENABLE_ERROR_ON_WARNINGS)
 	   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror")
-     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=stringop-overflow")
-     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -faligned-new ")
     endif(ENABLE_ERROR_ON_WARNINGS)
 
     if (ENABLE_ASAN)
@@ -342,11 +338,3 @@ endif ()
 #message(STATUS "Compiler cxx min size flags:" ${CMAKE_CXX_FLAGS_MINSIZEREL})
 message(STATUS "Compiler extra cxx flags:" ${CMAKE_CXX_FLAGS})
 message(STATUS "Available targets: tags compdb update-engine3 core3 odb3 idl rebuild-idl")
-
-if (DUMP_ALL_CMAKE_VARIABLES)
-	get_cmake_property(_variableNames VARIABLES)
-
-	foreach (_variableName ${_variableNames})
-	    message(STATUS "${_variableName}=${${_variableName}}")
-	endforeach()
-endif()

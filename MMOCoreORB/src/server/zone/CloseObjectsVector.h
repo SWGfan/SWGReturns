@@ -15,62 +15,56 @@
 #include "engine/core/ManagedReference.h"
 namespace server {
  namespace zone {
-class TreeEntry;
+class QuadTreeEntry;
 
 class CloseObjectsVector : public Object {
 	mutable ReadWriteLock mutex;
-	SortedVector<Reference<server::zone::TreeEntry*> > objects;
+	SortedVector<Reference<server::zone::QuadTreeEntry*> > objects;
 
-	VectorMap<uint32, SortedVector<server::zone::TreeEntry*> > messageReceivers;
+	VectorMap<uint32, SortedVector<server::zone::QuadTreeEntry*> > messageReceivers;
 
-	uint32 count;
+	AtomicInteger count;
 
-#if defined(CXX11_COMPILER) && !defined(TRACE_REFERENCES)
-	static_assert(sizeof(server::zone::TreeEntry*) == sizeof(Reference<server::zone::TreeEntry*>), "Reference<> size is not the size of a pointer");
+#ifdef CXX11_COMPILER
+	static_assert(sizeof(server::zone::QuadTreeEntry*) == sizeof(Reference<server::zone::QuadTreeEntry*>), "Reference<> size is not the size of a pointer");
 #endif
 
 protected:
-	void dropReceiver(server::zone::TreeEntry* entry);
-	void putReceiver(server::zone::TreeEntry* entry, uint32 receiverTypes);
+	void dropReceiver(server::zone::QuadTreeEntry* entry);
+	void putReceiver(server::zone::QuadTreeEntry* entry, uint32 receiverTypes);
 public:
-	enum Types : uint32 {
+	enum {
 		PLAYERTYPE = 1 << 0,
 		CREOTYPE = 1 << 1,
 		COLLIDABLETYPE = 1 << 2,
-		INSTALLATIONTYPE = 1 << 3,
-		STRUCTURETYPE = 1 << 4,
-		SHIPTYPE = 1 << 5,
-		PLAYERSHIPTYPE = 1 << 6,
-		//MAXTYPES = 1 << 31,
-		SIZE = 7
+		STRUCTURETYPE = 1 << 3,
+		MAXTYPES = STRUCTURETYPE
 	};
 
 	CloseObjectsVector();
 
-	Reference<server::zone::TreeEntry*> remove(int index);
+	Reference<server::zone::QuadTreeEntry*> remove(int index);
 
-	bool contains(const Reference<server::zone::TreeEntry*>& o) const;
+	bool contains(const Reference<server::zone::QuadTreeEntry*>& o) const;
 
 	void removeAll(int newSize = 10, int newIncrement = 5);
 
-	bool drop(const Reference<server::zone::TreeEntry*>& o);
+	bool drop(const Reference<server::zone::QuadTreeEntry*>& o);
 
-	void safeCopyTo(Vector<server::zone::TreeEntry*>& vec) const;
-	void safeCopyTo(Vector<ManagedReference<server::zone::TreeEntry*> >& vec) const;
+	void safeCopyTo(Vector<server::zone::QuadTreeEntry*>& vec) const;
+	void safeCopyTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec) const;
 
-	void safeCopyReceiversTo(Vector<server::zone::TreeEntry*>& vec, uint32 receiverType) const;
-	void safeCopyReceiversTo(Vector<ManagedReference<server::zone::TreeEntry*> >& vec, uint32 receiverType) const;
-	void safeAppendReceiversTo(Vector<server::zone::TreeEntry*>& vec, uint32 receiverType) const;
-	void safeAppendReceiversTo(Vector<ManagedReference<server::zone::TreeEntry*> >& vec, uint32 receiverType) const;
+	void safeCopyReceiversTo(Vector<server::zone::QuadTreeEntry*>& vec, uint32 receiverType) const;
+	void safeCopyReceiversTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec, uint32 receiverType) const;
+	void safeAppendReceiversTo(Vector<server::zone::QuadTreeEntry*>& vec, uint32 receiverType) const;
+	void safeAppendReceiversTo(Vector<ManagedReference<server::zone::QuadTreeEntry*> >& vec, uint32 receiverType) const;
 
-	SortedVector<ManagedReference<server::zone::TreeEntry*> > getSafeCopy() const;
+	SortedVector<ManagedReference<server::zone::QuadTreeEntry*> > getSafeCopy() const;
 
-	const Reference<server::zone::TreeEntry*>& get(int idx) const;
+	const Reference<server::zone::QuadTreeEntry*>& get(int idx) const;
 
-	int put(const Reference<server::zone::TreeEntry*>& o);
-	int put(Reference<server::zone::TreeEntry*>&& o);
-
-	void safeRunForEach(const Function<void(TreeEntry* const&)>& lambda, uint32 receiverType) const;
+	int put(const Reference<server::zone::QuadTreeEntry*>& o);
+	int put(Reference<server::zone::QuadTreeEntry*>&& o);
 
 	int size() const NO_THREAD_SAFETY_ANALYSIS {
 		return count;
@@ -105,18 +99,6 @@ public:
 		if (flags & STRUCTURETYPE) {
 			flags = flags & ~STRUCTURETYPE;
 			buf << sep << "STRUCTURE";
-			sep = ", ";
-		}
-
-		if (flags & SHIPTYPE) {
-			flags = flags & ~SHIPTYPE;
-			buf << sep << "SHIP";
-			sep = ", ";
-		}
-
-		if (flags & PLAYERSHIPTYPE) {
-			flags = flags & ~PLAYERSHIPTYPE;
-			buf << sep << "PLAYERSHIP";
 			sep = ", ";
 		}
 

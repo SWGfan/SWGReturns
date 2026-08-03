@@ -31,9 +31,9 @@ TransactionLog::TransactionLog(SceneObject* src, SceneObject* dst, SceneObject* 
 		return;
 	}
 
-	setType("transfer");
-
 	initializeCommon(src, dst, code, file, function, line);
+
+	setType("transfer");
 
 	setSubject(subject, exportSubject);
 }
@@ -43,8 +43,6 @@ TransactionLog::TransactionLog(SceneObject* src, SceneObject* dst, TrxCode code,
 		return;
 	}
 
-	setType("credits");
-
 	initializeCommon(src, dst, code, file, function, line);
 	initializeCreditsCommon(src, dst, code, amount, isCash);
 }
@@ -53,8 +51,6 @@ TransactionLog::TransactionLog(uint64 srcObjectID, TrxCode code, uint amount, bo
 	if (!isEnabled()) {
 		return;
 	}
-
-	setType("credits");
 
 	auto server = ServerCore::getZoneServer();
 
@@ -80,8 +76,6 @@ TransactionLog::TransactionLog(CreditObject* creditObject, SceneObject* dst, Trx
 	if (!isEnabled()) {
 		return;
 	}
-
-	setType("credits");
 
 	initializeCommon(nullptr, dst, code, file, function, line);
 	initializeCreditsCommon(nullptr, dst, code, amount, isCash);
@@ -189,18 +183,6 @@ void TransactionLog::setSubject(SceneObject* subject, bool exportSubject) {
 	}
 }
 
-void TransactionLog::setExperience(const String& xpType, int xpAdd, int xpTotal) {
-	if (mTransaction.contains("xpAdd")) {
-		errorMessage() << "duplicate setExperience call: [" << xpType << "] = [" << xpAdd << "]";
-		Logger::console.error() << errorMessage() << " " << *this;
-		return;
-	}
-
-	mTransaction["xpType"] = xpType;
-	mTransaction["xpAdd"] = xpAdd;
-	mTransaction["xpTotal"] = xpTotal;
-}
-
 void TransactionLog::addRelatedObject(uint64 oid, bool trackChildren) {
 	if (!isEnabled() || oid == 0) {
 		return;
@@ -230,7 +212,7 @@ void TransactionLog::addRelatedObject(uint64 oid, bool trackChildren) {
 		mChildObjects.setAllowOverwriteInsertPlan();
 	}
 
-	scno->getChildrenRecursive(mChildObjects, mMaxDepth, true, true);
+	scno->getChildrenRecursive(mChildObjects, 50, true, true);
 }
 
 void TransactionLog::addRelatedObject(SceneObject* obj, bool trackChildren) {
@@ -265,7 +247,7 @@ void TransactionLog::exportRelated() {
 	}
 
 	Time exportStartTime;
-	auto logMsg = "TransactionLog trxId: " + getTrxID() + "; code: " + String(mTransaction["code"]);
+	auto logMsg = "TransactionLog trxId: " + getTrxID();
 
 	for (int i = 0; i < mRelatedObjects.size(); ++i) {
 		auto oid = mRelatedObjects.get(i);
@@ -278,7 +260,7 @@ void TransactionLog::exportRelated() {
 
 		auto pruneCreo = getPruneCreatureObjects() && obj->isStructureObject();
 
-		exportMap[String::valueOf(oid)] = obj->exportJSON(logMsg, mMaxDepth, pruneCreo, getPruneCraftedComponents());
+		exportMap[String::valueOf(oid)] = obj->exportJSON(logMsg, 50, pruneCreo, getPruneCraftedComponents());
 	}
 
 	mState["exports"] = exportMap;
@@ -472,12 +454,6 @@ void TransactionLog::initializeCommonSceneObject(const String& key, SceneObject*
 
 	if (player != nullptr) {
 		mTransaction[key + "AccountId"] = player->getAccountID();
-
-		mState[key + "PlayedSeconds"] = (int)(player->getPlayedMiliSecs() / 1000);
-		mState[key + "SessionSeconds"] = (int)(player->getSessionMiliSecs() / 1000);
-		mState[key + "SessionMovement"] = player->getSessionTotalMovement();
-		mState[key + "SessionCredits"] = player->getSessionTotalCredits();
-
 		return;
 	}
 
@@ -488,16 +464,6 @@ void TransactionLog::initializeCommon(SceneObject* src, SceneObject* dst, TrxCod
 	mTransaction["trxId"] = getNewTrxID();
 
 	mTransaction["code"] = trxCodeToString(code);
-
-	mMaxDepth = 4;
-
-	if (isStat(code)) {
-		mAutoCommit = true;
-		mMaxDepth = 1;
-		setType("stat");
-	} else if (code == TrxCode::HARVESTED) {
-		mMaxDepth = 1;
-	}
 
 	initializeCommonSceneObject("src", src);
 	initializeCommonSceneObject("dst", dst);
@@ -523,6 +489,7 @@ void TransactionLog::initializeCommon(SceneObject* src, SceneObject* dst, TrxCod
 }
 
 void TransactionLog::initializeCreditsCommon(SceneObject* src, SceneObject* dst, TrxCode code, int amount, bool isCash) {
+	setType("credits");
 	mTransaction["isCash"] = isCash;
 	mTransaction["amount"] = amount;
 
@@ -865,8 +832,6 @@ const String TransactionLog::trxCodeToString(TrxCode code) {
 	case TrxCode::TIPSURCHARGE:             return "tipsurcharge";              // Tip Surcharge
 	case TrxCode::VENDORMAINTANENCE:        return "vendormaintanence";         // Vendor Wages
 	case TrxCode::NPCLOOT:                  return "npcloot";                   // NPC Loot
-	case TrxCode::CREDITCHIP:               return "creditchip";                // Space credit chip looted
-	case TrxCode::CREDITCHIPCLAIM:          return "creditchipclaim";           // Space credit chip claimed
 	case TrxCode::JUNKDEALER:               return "junkdealer";                // Junk Dealer
 	case TrxCode::CANTINADRINK:             return "cantinadrink";              // Cantina Drink
 	case TrxCode::BETATEST:                 return "betatest";                  // Beta Test Fund
@@ -879,7 +844,6 @@ const String TransactionLog::trxCodeToString(TrxCode code) {
 	case TrxCode::NEWPLAYERQUESTS:          return "newplayerquests";           // New Player Quests
 	case TrxCode::FINES:                    return "fines";                     // Contraband Scanning Fines
 	case TrxCode::BANK:                     return "bank";                      // bank
-	case TrxCode::PVPTOKEN:                 return "PvP Token";                 // PvP Token
 	// SWGEmu Specific
 	case TrxCode::ACCESSFEE:                return "accessfee";                 // Access Fee
 	case TrxCode::ADMINCOMMAND:             return "admincommand";              // From an admin command
@@ -890,45 +854,32 @@ const String TransactionLog::trxCodeToString(TrxCode code) {
 	case TrxCode::AUCTIONEXPIRED:           return "auctionexpired";            // Never retrieved and expired
 	case TrxCode::AUCTIONRETRIEVE:          return "auctionretrieve";           // retrieveItem()
 	case TrxCode::CHARACTERBUILDER:         return "characterbuilder";          // Character Builder
-	case TrxCode::CHARACTERDELETE:          return "characterdelete";           // Delete Character
 	case TrxCode::CITYINCOMETAX:            return "cityincometax";             // City income taxes
 	case TrxCode::CITYSALESTAX:             return "citysalestax";              // City Sales taxes
 	case TrxCode::CITYTREASURY:             return "citytreasury";              // City Treasury
-	case TrxCode::COMBATSTATS:              return "combatstats";               // Combat Stats
 	case TrxCode::CRAFTINGSESSION:          return "craftingsession";           // Crafting Session
-	case TrxCode::DATABASECOMMIT:           return "databasecommit";            // Database Commit
-	case TrxCode::DESTROYSTRUCTURE:         return "destroystructure";          // Server destroyed structure (maintenance)
-	case TrxCode::EXPERIENCE:               return "experience";                // Player experience change
 	case TrxCode::EXTRACTCRATE:             return "extractcrate";              // Extract item from crate
 	case TrxCode::FACTORYOPERATION:         return "factoryoperation";          // Factory operations
-	case TrxCode::FISHING:                  return "fishing";                   // Fishing loot
 	case TrxCode::FORAGED:                  return "foraged";                   // Foraged items
 	case TrxCode::HARVESTED:                return "harvested";                 // Harvested items
 	case TrxCode::IMAGEDESIGN:              return "imagedesign";               // Image Design Fees
 	case TrxCode::INSTANTBUY:               return "instantbuy";                // Instant Buy
 	case TrxCode::LOTTERYDROID:             return "lotterydroid";              // Lottery Droid
 	case TrxCode::LUASCRIPT:                return "luascript";                 // LUA Script
-	case TrxCode::MISSIONCOMPLETE:          return "missioncomplete";           // Mission Completed Summary
 	case TrxCode::NPCLOOTCLAIM:             return "npclootclaim";              // NPC Loot Claimed
 	case TrxCode::PERMISSIONLIST:           return "permissionlist";            // Permission List Changes
 	case TrxCode::PLAYERMISCACTION:         return "playermiscaction";          // Misc player action
 	case TrxCode::PLAYERTIP:                return "playertip";                 // sui Tip
 	case TrxCode::PLAYERTRADE:              return "playertrade";               // Player Trade
-	case TrxCode::PLAYERONLINE:             return "playeronline";              // Player Online
-	case TrxCode::PLAYEROFFLINE:            return "playeroffline";             // Player Offline
-	case TrxCode::PLAYERLINKDEAD:           return "playerlinkdead";            // Player Link Dead
-	case TrxCode::PLAYERLOGGINGOUT:         return "playerloggingout";          // Player Logging Out
-	case TrxCode::PLAYERDIED:               return "playerdied";                // Player Died
 	case TrxCode::RECYCLED:                 return "recycled";                  // Recycled Items
 	case TrxCode::SERVERDESTROYOBJECT:      return "serverdestroyobject";       // /serverDestroyObject command
 	case TrxCode::SLICECONTAINER:           return "slicecontainer";            // Slicing session on a container
 	case TrxCode::STRUCTUREDEED:            return "structuredeed";             // Structure deed trxs
-	case TrxCode::SHIPDEEDPURCHASE:         return "shipdeedpurchase";          // Purchase ship deed
-	case TrxCode::SHIPREDEED:               return "shipredeed";                // Re-deed ship
 	case TrxCode::TRANSFERITEMMISC:         return "transferitemmisc";          // /transferitemmisc command
 	case TrxCode::TRANSFERSTRUCT:           return "transferstruct";            // Transfer Structure
 	case TrxCode::VENDORLIFECYCLE:          return "vendorlifecycle";           // Vendor lifecycle (create/destroy)
 	case TrxCode::VETERANREWARD:            return "veteranreward";             // /claimveteranreward command
+	case TrxCode::GCWREWARD:				return "gcwterminalreward";			// GCW Terminal Reward
 	}
 	// clang-format on
 

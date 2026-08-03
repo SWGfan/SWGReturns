@@ -46,13 +46,18 @@
 
 -- Server Objects
 includeFile("tangible/wearables/armor/marine/armor_marine_backpack.lua")
-includeFile("tangible/wearables/armor/marine/armor_marine_bracer_l.lua")
-includeFile("tangible/wearables/armor/marine/armor_marine_bracer_r.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_bicep_l.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_bicep_r.lua")
-includeFile("tangible/wearables/armor/marine/armor_marine_gloves.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_boots.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_chest_plate.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_chest_plate_rebel.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_helmet.lua")
 includeFile("tangible/wearables/armor/marine/armor_marine_leggings.lua")
+
+--crafted
+includeFile("tangible/wearables/armor/marine/armor_marine_chest_plate_rebel_crafted.lua")
+includeFile("tangible/wearables/armor/marine/armor_marine_boots_crafted.lua")
+includeFile("tangible/wearables/armor/marine/armor_marine_helmet_crafted.lua")
+includeFile("tangible/wearables/armor/marine/armor_marine_leggings_crafted.lua")
+includeFile("tangible/wearables/armor/marine/armor_marine_bicep_l_crafted.lua")
+includeFile("tangible/wearables/armor/marine/armor_marine_bicep_r_crafted.lua")

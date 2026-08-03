@@ -44,13 +44,12 @@
 Saber2hBodyHit3Command = {
         name = "saber2hbodyhit3",
         
-    damageMultiplier = 1.5,
-	speedMultiplier = 2.0,
+    damageMultiplier = 2.25,
+	speedMultiplier = 2.25,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 1,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 1.75,
-	accuracyBonus = 50,
 	visMod = 25,
 
 	animation = "combo_4a", 
@@ -60,9 +59,9 @@ Saber2hBodyHit3Command = {
 	
 	poolsToDamage = HEALTH_ATTRIBUTE,
 	
-	weaponType = TWOHANDJEDIWEAPON,
+	weaponType = JEDIWEAPON,
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Saber2hBodyHit3Command)

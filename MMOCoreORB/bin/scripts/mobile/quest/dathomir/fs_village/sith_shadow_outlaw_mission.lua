@@ -2,7 +2,6 @@ sith_shadow_outlaw_mission = Creature:new {
 	objectName = "@mob/creature_names:shadow_outlaw",
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow",
-	mobType = MOB_NPC,
 	level = 8,
 	chanceHit = 0.27,
 	damageMin = 70,
@@ -21,8 +20,8 @@ sith_shadow_outlaw_mission = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER + STALKER,
+	pvpBitmask = ATTACKABLE + AGGRESSIVE + ENEMY,
+	creatureBitmask = PACK + KILLER,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -46,19 +45,9 @@ sith_shadow_outlaw_mission = Creature:new {
 			lootChance = 7500000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "melee_weapons",
-	thrownWeapon = "thrown_weapons",
-
+	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = marksmanmid,
-	secondaryAttacks = brawlermid
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(sith_shadow_outlaw_mission, "sith_shadow_outlaw_mission")

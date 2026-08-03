@@ -14,7 +14,6 @@
 #include "templates/IffTemplate.h"
 #include "templates/ChildObject.h"
 #include "templates/manager/PlanetMapCategory.h"
-#include "templates/manager/PlanetMapSubCategory.h"
 #include "templates/slots/SlotDescriptor.h"
 #include "templates/slots/ArrangementDescriptor.h"
 #include "templates/params/primitives/IntegerParam.h"
@@ -67,7 +66,7 @@ protected:
 	String clientTemplateFileName;
 
 	Reference<const PlanetMapCategory*> planetMapCategory;
-	Reference<const PlanetMapSubCategory*> planetMapSubCategory;
+	Reference<const PlanetMapCategory*> planetMapSubCategory;
 	bool autoRegisterWithPlanetMap;
 
 	String fullTemplateString;
@@ -77,11 +76,10 @@ protected:
 
 	Vector<ChildObject> childObjects;
 
-	AtomicReference<PortalLayout*> portalLayout;
-	AtomicReference<AppearanceTemplate*> appearanceTemplate;
-	AtomicBoolean loadedPortalLayout, loadedAppearanceTemplate;
-	String groundZoneComponent, attributeListComponent;
-	String spaceZoneComponent;
+	PortalLayout* portalLayout;
+	AppearanceTemplate* appearanceTemplate;
+	bool loadedPortalLayout, loadedAppearanceTemplate;
+	String zoneComponent, attributeListComponent;
 	String containerComponent;
 	String objectMenuComponent;
 
@@ -93,7 +91,6 @@ protected:
 	SortedVector<String> loadedDerivedFiles;
 
 	bool noTrade;
-	bool forceNoTrade;
 	bool updatesNavMesh;
 	bool delayedContainerLoad;
 
@@ -200,9 +197,6 @@ public:
 	const static int DROIDMODULEPERSONALITY = 0x4000057;
 	const static int VEHICLE = 0x4000058;
 	const static int XPPURCHASE = 0x4000059;
-	const static int SHIPCOMPONENT = 0x400005A;
-	const static int SCHEMATICFRAGMENT = 0x400005B;
-	const static int NAVICOMPUTERDEED = 0x400005C;
 public:
 	SharedObjectTemplate();
 
@@ -338,10 +332,6 @@ public:
 		return noTrade;
 	}
 
-	inline bool isForceNoTrade() const {
-		return forceNoTrade;
-	}
-
 	inline float getScaleThresholdBeforeExtentTest() const {
 		return scaleThresholdBeforeExtentTest;
 	}
@@ -401,12 +391,8 @@ public:
 		return containerComponent;
 	}
 
-	inline const String& getGroundZoneComponent() const {
-		return groundZoneComponent;
-	}
-
-	inline const String& getSpaceZoneComponent() const {
-		return spaceZoneComponent;
+	inline const String& getZoneComponent() const {
+		return zoneComponent;
 	}
 
 	inline const String& getObjectMenuComponent() const {
@@ -421,7 +407,7 @@ public:
 		return planetMapCategory;
 	}
 
-	inline const PlanetMapSubCategory* getPlanetMapSubCategory() const {
+	inline const PlanetMapCategory* getPlanetMapSubCategory() const {
 		return planetMapSubCategory;
 	}
 
@@ -716,15 +702,15 @@ public:
 	}
 
 	virtual bool isRecycleToolTemplate() const {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isVehicleCustomKitTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDnaSampleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isPetDeedTemplate() {
@@ -732,19 +718,19 @@ public:
 	}
 
 	virtual bool isDroidCustomKitTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidComponentTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidCraftingModuleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isDroidEffectsModuleTemplate() {
-			return false;
+	    	return false;
 	}
 
 	virtual bool isVehicleObjectTemplate() {

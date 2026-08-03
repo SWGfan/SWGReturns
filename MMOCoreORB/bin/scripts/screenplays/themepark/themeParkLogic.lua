@@ -515,6 +515,12 @@ function ThemeParkLogic:handleMissionAccept(npcNumber, missionNumber, pConversin
 	if (areaSpawnPoint == nil) then
 		return false
 	end
+	
+	local areaDist = 100
+	
+	if mission.missionType == "destroy" then
+		areaDist = 350
+	end
 
 	local areaDist = 100
 
@@ -880,8 +886,6 @@ function ThemeParkLogic:spawnMissionNpcs(mission, pConversingPlayer, pActiveArea
 		elseif mission.missionType == "escort" then
 			CreatureObject(pNpc):setPvpStatusBitmask(0)
 			CreatureObject(pNpc):setOptionBit(INTERESTING)
-			CreatureObject(pNpc):setOptionBit(AIENABLED)
-			AiAgent(pNpc):addCreatureFlag(AI_STATIC)
 			self:normalizeNpc(pNpc, 16, 3000)
 		elseif mission.missionType == "retrieve" or mission.missionType == "deliver" then
 			CreatureObject(pNpc):setPvpStatusBitmask(0)
@@ -1606,7 +1610,7 @@ function ThemeParkLogic:getSpawnPoints(numberOfSpawns, x, y, planetName, pConver
 			if currentMissionType == "destroy" then
 				nextSpawnPoint = getSpawnPoint(planetName, firstSpawnPoint[1], firstSpawnPoint[3], 10, 20, true)
 			else
-				nextSpawnPoint = getSpawnPoint(planetName, firstSpawnPoint[1], firstSpawnPoint[3], 5, 15, true)
+				nextSpawnPoint = getSpawnPoint(planetName, firstSpawnPoint[1], firstSpawnPoint[3], 5, 15)
 			end
 			if nextSpawnPoint ~= nil then
 				table.insert(spawnPoints, nextSpawnPoint)
@@ -2107,11 +2111,7 @@ function ThemeParkLogic:followPlayer(pConversingNpc, pConversingPlayer)
 		end
 	end
 
-	AiAgent(pConversingNpc):removeCreatureFlag(AI_STATIC)
-	AiAgent(pConversingNpc):addCreatureFlag(AI_NOAIAGGRO)
-	AiAgent(pConversingNpc):addCreatureFlag(AI_ESCORT)
-	AiAgent(pConversingNpc):setFollowObject(pConversingPlayer)
-	AiAgent(pConversingNpc):setMovementState(AI_FOLLOWING)
+	AiAgent(pConversingNpc):setAiTemplate("escort")
 end
 
 function ThemeParkLogic:getMissionType(activeNpcNumber, pConversingPlayer)
@@ -2141,7 +2141,9 @@ function ThemeParkLogic:escortedNpcCloseEnough(pConversingPlayer)
 	local objectID = readData(CreatureObject(pConversingPlayer):getObjectID() .. ":missionSpawn:no1")
 	local pNpc = getSceneObject(objectID)
 
-	return pNpc ~= nil and SceneObject(pConversingPlayer):getDistanceTo(pNpc) < 64
+	--return pNpc ~= nil and SceneObject(pConversingPlayer):getDistanceTo(pNpc) < 64
+	if pNpc == nil then return end
+	return true
 end
 
 function ThemeParkLogic:resetThemePark(pConversingPlayer)

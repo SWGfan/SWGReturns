@@ -2,15 +2,14 @@ death_watch_s_battle_droid_alt = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_super_battle_droid",
 	socialGroup = "death_watch",
 	faction = "",
-	mobType = MOB_DROID,
-	level = 200,
-	chanceHit = 12.96,
-	damageMin = 765,
-	damageMax = 1339,
+	level = 300,
+	chanceHit = 18,
+	damageMin = 1200,
+	damageMax = 2100,
 	baseXp = 19000,
 	baseHAM = 230000,
 	baseHAMmax = 230000,
-	armor = 1,
+	armor = 2,
 	resists = {85,95,100,60,100,25,40,85,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -31,7 +30,22 @@ death_watch_s_battle_droid_alt = Creature:new {
 		"object/mobile/death_watch_s_battle_droid.iff",
 		"object/mobile/death_watch_s_battle_droid_02.iff",
 		"object/mobile/death_watch_s_battle_droid_03.iff"},
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "death_watch_bunker_commoners", chance = 10000000}
+			},
+			lootChance = 500000
+		},
+		{
+      		groups = {
+        		{group = "armor_attachments", chance = 2000000},
+        		{group = "clothing_attachments", chance = 8000000}
+
+      		},
+      		lootChance = 4000000
+    	},
+	},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 	defaultAttack = "attack"

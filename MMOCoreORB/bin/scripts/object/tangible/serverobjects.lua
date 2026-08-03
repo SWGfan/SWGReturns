@@ -121,5 +121,3 @@ includeFile("tangible/wearables/serverobjects.lua")
 includeFile("tangible/weather_object/serverobjects.lua")
 
 -- Server Objects
-includeFile("tangible/smuggler/serverobjects.lua")
-includeFile("tangible/dance_prop/serverobjects.lua")

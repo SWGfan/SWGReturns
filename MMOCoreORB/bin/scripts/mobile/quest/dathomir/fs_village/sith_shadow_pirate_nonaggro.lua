@@ -2,11 +2,10 @@ sith_shadow_pirate_nonaggro = Creature:new {
 	objectName = "@mob/creature_names:shadow_pirate_nonaggro",
 	socialGroup = "sith_shadow",
 	faction = "sith_shadow_nonaggro",
-	mobType = MOB_NPC,
 	level = 90,
 	chanceHit = 0.85,
-	damageMin = 395,
-  damageMax = 500,
+	damageMin = 570,
+	damageMax = 850,
 	baseXp = 1864,
 	baseHAM = 13300,
 	baseHAMmax = 16300,
@@ -46,17 +45,9 @@ sith_shadow_pirate_nonaggro = Creature:new {
 			lootChance = 1000000
 		},
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_heavy",
-	secondaryWeapon = "none",
+	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster),
-	secondaryAttacks = {}
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,marksmanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(sith_shadow_pirate_nonaggro, "sith_shadow_pirate_nonaggro")

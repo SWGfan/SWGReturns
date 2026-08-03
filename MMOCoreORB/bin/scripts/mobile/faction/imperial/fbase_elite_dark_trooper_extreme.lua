@@ -2,17 +2,16 @@ fbase_elite_dark_trooper_extreme = Creature:new {
 	objectName = "@mob/creature_names:fbase_elite_dark_trooper_extreme",
 	randomNameType = NAME_DARKTROOPER,
 	randomNameTag = true,
-	mobType = MOB_ANDROID,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 270,
-	chanceHit = 10.8,
-	damageMin = 841,
-	damageMax = 1519,
+	chanceHit = 18.0,
+	damageMin = 1495,
+	damageMax = 2700,
 	baseXp = 27000,
 	baseHAM = 254000,
 	baseHAMmax = 345000,
-	armor = 1,
+	armor = 3,
 	resists = {140,125,115,150,150,150,150,125,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -45,18 +44,10 @@ fbase_elite_dark_trooper_extreme = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "imperial_carbine",
-	secondaryWeapon = "stormtrooper_sword",
+	weapons = {"dark_trooper_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(carbineermaster,marksmanmaster),
-	secondaryAttacks = merge(fencermaster,brawlermaster)
+	attacks = merge(riflemanmaster,marksmanmaster,fencermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(fbase_elite_dark_trooper_extreme, "fbase_elite_dark_trooper_extreme")

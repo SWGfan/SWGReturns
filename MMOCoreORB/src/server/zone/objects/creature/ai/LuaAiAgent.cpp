@@ -26,7 +26,7 @@ const char LuaAiAgent::className[] = "LuaAiAgent";
 Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "_setObject", &LuaAiAgent::_setObject },
 		{ "_getObject", &LuaSceneObject::_getObject },
-		{ "setAITemplate", &LuaAiAgent::setAITemplate },
+		{ "setAiTemplate", &LuaAiAgent::setAiTemplate },
 		{ "setFollowObject", &LuaAiAgent::setFollowObject },
 		{ "setOblivious", &LuaAiAgent::setOblivious },
 		{ "setWatchObject", &LuaAiAgent::setWatchObject },
@@ -37,15 +37,18 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "getTargetOfTargetID", &LuaAiAgent::getTargetOfTargetID },
 		{ "getTargetID", &LuaCreatureObject::getTargetID },
 		{ "getObjectID", &LuaSceneObject::getObjectID },
-		{ "getMovementState", &LuaAiAgent::getMovementState },
-		{ "setMovementState", &LuaAiAgent::setMovementState },
+		{ "getFollowState", &LuaAiAgent::getFollowState },
+		{ "setFollowState", &LuaAiAgent::setFollowState },
 		{ "setNextPosition", &LuaAiAgent::setNextPosition },
+		{ "findNextPosition", &LuaAiAgent::findNextPosition },
 		{ "getMaxDistance", &LuaAiAgent::getMaxDistance },
 		{ "generatePatrol", &LuaAiAgent::generatePatrol },
 		{ "setDestination", &LuaAiAgent::setDestination },
+		{ "completeMove", &LuaAiAgent::completeMove },
+		{ "setWait", &LuaAiAgent::setWait },
+		{ "getWait", &LuaAiAgent::getWait },
 		{ "isWaiting", &LuaAiAgent::isWaiting },
 		{ "stopWaiting", &LuaAiAgent::stopWaiting },
-		{ "setWait", &LuaAiAgent::setWait },
 		{ "getCurrentSpeed", &LuaCreatureObject::getCurrentSpeed },
 		{ "setCurrentSpeed", &LuaAiAgent::setCurrentSpeed },
 		{ "getTargetFromMap", &LuaAiAgent::getTargetFromMap },
@@ -54,6 +57,8 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "validateTarget", &LuaAiAgent::validateTarget },
 		{ "validateFollow", &LuaAiAgent::validateFollow },
 		{ "followHasState", &LuaAiAgent::followHasState },
+		{ "selectWeapon", &LuaAiAgent::selectWeapon },
+		{ "selectDefaultWeapon", &LuaAiAgent::selectDefaultWeapon },
 		{ "selectSpecialAttack", &LuaAiAgent::selectSpecialAttack },
 		{ "selectDefaultAttack", &LuaAiAgent::selectDefaultAttack },
 		{ "validateStateAttack", &LuaAiAgent::validateStateAttack },
@@ -98,6 +103,10 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "isInCombat", &LuaCreatureObject::isInCombat },
 		{ "checkLineOfSight", &LuaAiAgent::checkLineOfSight },
 		{ "activateRecovery", &LuaAiAgent::activateRecovery },
+		{ "activateAwareness", &LuaAiAgent::activateAwareness },
+		{ "setBehaviorStatus", &LuaAiAgent::setBehaviorStatus },
+		{ "getBehaviorStatus", &LuaAiAgent::getBehaviorStatus },
+		{ "resetBehaviorList", &LuaAiAgent::resetBehaviorList },
 		{ "executeBehavior", &LuaAiAgent::executeBehavior },
 		{ "info", &LuaAiAgent::info },
 		{ "spatialChat", &LuaAiAgent::spatialChat },
@@ -105,6 +114,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "addDefender", &LuaAiAgent::addDefender },
 		{ "assist", &LuaAiAgent::assist },
 		{ "checkRange", &LuaAiAgent::checkRange },
+		{ "broadcastInterrupt", &LuaAiAgent::broadcastInterrupt },
 		{ "getSocialGroup", &LuaAiAgent::getSocialGroup },
 		{ "getOwner", &LuaCreatureObject::getOwner },
 		{ "getLastCommand", &LuaAiAgent::getLastCommand },
@@ -116,6 +126,8 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "hasReactionChatMessages", &LuaAiAgent::hasReactionChatMessages },
 		{ "sendReactionChat", &LuaAiAgent::sendReactionChat },
 		{ "addPatrolPoint", &LuaAiAgent::addPatrolPoint },
+		{ "runAwarenessLogicCheck", &LuaAiAgent::runAwarenessLogicCheck },
+		{ "runStartAwarenessInterrupt", &LuaAiAgent::runStartAwarenessInterrupt },
 		{ "setConvoTemplate", &LuaAiAgent::setConvoTemplate },
 		{ "setHomeLocation", &LuaAiAgent::setHomeLocation },
 		{ "setNoAiAggro", &LuaAiAgent::setNoAiAggro },
@@ -125,9 +137,6 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "setCreatureBit", &LuaAiAgent::setCreatureBit },
 		{ "isInRangeOfHome", &LuaAiAgent::isInRangeOfHome },
 		{ "getPatrolPointsSize", &LuaAiAgent::getPatrolPointsSize },
-		{ "addCreatureFlag", &LuaAiAgent::addCreatureFlag },
-		{ "removeCreatureFlag", &LuaAiAgent::removeCreatureFlag },
-		{ "setAIDebug", &LuaAiAgent::setAIDebug },
 		{ 0, 0 }
 };
 
@@ -165,9 +174,10 @@ int LuaAiAgent::_setObject(lua_State* L) {
 	return 0;
 }
 
-int LuaAiAgent::setAITemplate(lua_State* L) {
-	Locker locker(realObject);
-	realObject->setAITemplate();
+int LuaAiAgent::setAiTemplate(lua_State* L) {
+	String tempName = lua_tostring(L, -1);
+
+	realObject->activateLoad(tempName);
 
 	return 0;
 }
@@ -236,8 +246,8 @@ int LuaAiAgent::getTargetOfTargetID(lua_State* L) {
 	return 1;
 }
 
-int LuaAiAgent::getMovementState(lua_State* L) {
-	unsigned int state = realObject->getMovementState();
+int LuaAiAgent::getFollowState(lua_State* L) {
+	unsigned int state = realObject->getFollowState();
 
 	lua_pushinteger(L, state);
 
@@ -265,12 +275,27 @@ int LuaAiAgent::setNextPosition(lua_State* L) {
 	return 0;
 }
 
-int LuaAiAgent::setMovementState(lua_State* L) {
+int LuaAiAgent::setFollowState(lua_State* L) {
 	int state = lua_tonumber(L, -1);
 
-	realObject->setMovementState(state);
+	realObject->setFollowState(state);
 
 	return 0;
+}
+
+/**
+ * @param takes a float maxDistance argument
+ * @return bool to lua depending on if a new position was found or not
+ */
+int LuaAiAgent::findNextPosition(lua_State* L) {
+	bool walk = lua_toboolean(L, -1);
+	float maxDistance = lua_tonumber(L, -2);
+
+	bool found = realObject->findNextPosition(maxDistance, walk);
+
+	lua_pushboolean(L, found);
+
+	return 1;
 }
 
 int LuaAiAgent::getMaxDistance(lua_State* L) {
@@ -300,6 +325,16 @@ int LuaAiAgent::setDestination(lua_State* L) {
 	return 1;
 }
 
+int LuaAiAgent::completeMove(lua_State* L) {
+	Locker locker(realObject);
+
+	bool retVal = realObject->completeMove();
+
+	lua_pushboolean(L, retVal);
+
+	return 1;
+}
+
 int LuaAiAgent::setLevel(lua_State* L) {
 	int level = (int) lua_tonumber(L, -1);
 
@@ -308,6 +343,24 @@ int LuaAiAgent::setLevel(lua_State* L) {
 	realObject->setLevel(level);
 
 	return 0;
+}
+
+int LuaAiAgent::setWait(lua_State* L) {
+	float seconds = lua_tonumber(L, -1);
+
+  	Locker locker(realObject);
+
+	realObject->setWait((int)(seconds*1000));
+
+	return 0;
+}
+
+int LuaAiAgent::getWait(lua_State* L) {
+	int waitTime = realObject->getWait();
+
+	lua_pushinteger(L, waitTime);
+
+	return 1;
 }
 
 int LuaAiAgent::isWaiting(lua_State* L) {
@@ -322,16 +375,6 @@ int LuaAiAgent::stopWaiting(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->stopWaiting();
-
-	return 0;
-}
-
-int LuaAiAgent::setWait(lua_State* L) {
-	int wait = (int) lua_tonumber(L, -1);
-
-	Locker locker(realObject);
-
-	realObject->setWait(wait);
 
 	return 0;
 }
@@ -418,6 +461,16 @@ int LuaAiAgent::followHasState(lua_State* L) {
 	return 1;
 }
 
+int LuaAiAgent::selectWeapon(lua_State* L) {
+	realObject->selectWeapon();
+	return 0;
+}
+
+int LuaAiAgent::selectDefaultWeapon(lua_State* L) {
+	realObject->selectDefaultWeapon();
+	return 0;
+}
+
 int LuaAiAgent::selectSpecialAttack(lua_State* L) {
 	int attackNum = lua_tointeger(L, -1);
 
@@ -487,7 +540,7 @@ int LuaAiAgent::runAway(lua_State* L) {
 		Core::getTaskManager()->executeTask([=] () {
 			Locker locker(agentObject);
 
-			agentObject->runAway(target, range, false);
+			agentObject->runAway(target, range);
 		}, "RunAwayLambda");
 	}
 
@@ -700,8 +753,34 @@ int LuaAiAgent::activateRecovery(lua_State* L) {
 	return 0;
 }
 
-int LuaAiAgent::executeBehavior(lua_State* L) {
+int LuaAiAgent::activateAwareness(lua_State* L) {
+	realObject->activateAwarenessEvent();
+
+	return 0;
+}
+
+int LuaAiAgent::setBehaviorStatus(lua_State* L) {
+	uint8 status = (uint8) lua_tointeger(L, -1);
+
+	realObject->setBehaviorStatus(status);
+
+	return 0;
+}
+
+int LuaAiAgent::getBehaviorStatus(lua_State* L) {
+	lua_pushnumber(L, realObject->getBehaviorStatus());
+
+	return 1;
+}
+
+int LuaAiAgent::resetBehaviorList(lua_State* L) {
 	Locker locker(realObject);
+
+	realObject->resetBehaviorList();
+	return 0;
+}
+
+int LuaAiAgent::executeBehavior(lua_State* L) {
 	realObject->activateMovementEvent();
 	return 0;
 }
@@ -773,7 +852,7 @@ int LuaAiAgent::assist(lua_State* L) {
 
 	Locker locker(realObject);
 
-	realObject->sendReactionChat(nullptr, ReactionManager::ASSIST);
+	realObject->sendReactionChat(ReactionManager::ASSIST);
 
 	realObject->setDefender(target);
 
@@ -790,6 +869,14 @@ int LuaAiAgent::checkRange(lua_State* L) {
 
 	lua_pushboolean(L, retVal);
 	return 1;
+}
+
+int LuaAiAgent::broadcastInterrupt(lua_State* L) {
+	int msg = lua_tointeger(L, -1);
+
+	realObject->broadcastInterrupt(msg);
+
+	return 0;
 }
 
 int LuaAiAgent::getSocialGroup(lua_State* L) {
@@ -875,7 +962,7 @@ int LuaAiAgent::sendReactionChat(lua_State* L) {
 
 	Locker locker(realObject);
 
-	realObject->sendReactionChat(nullptr, type, state);
+	realObject->sendReactionChat(type, state);
 
 	return 0;
 }
@@ -889,6 +976,24 @@ int LuaAiAgent::addPatrolPoint(lua_State* L) {
 	PatrolPoint newPoint(x, z, y, cell);
 
 	realObject->addPatrolPoint(newPoint);
+
+	return 0;
+}
+
+int LuaAiAgent::runAwarenessLogicCheck(lua_State* L) {
+	SceneObject* target = static_cast<SceneObject*>(lua_touserdata(L, -1));
+
+	bool ret = realObject->runAwarenessLogicCheck(target);
+
+	lua_pushboolean(L, ret);
+
+	return 1;
+}
+
+int LuaAiAgent::runStartAwarenessInterrupt(lua_State* L) {
+	SceneObject* target = static_cast<SceneObject*>(lua_touserdata(L, -1));
+
+	realObject->runStartAwarenessInterrupt(target);
 
 	return 0;
 }
@@ -980,32 +1085,4 @@ int LuaAiAgent::getPatrolPointsSize(lua_State* L) {
 	lua_pushinteger(L, ret);
 
 	return 1;
-}
-int LuaAiAgent::addCreatureFlag(lua_State* L) {
-	uint32 flag = lua_tointeger(L, -1);
-
-	Locker locker(realObject);
-	realObject->addCreatureFlag(flag);
-	realObject->setAITemplate();
-
-	return 0;
-}
-
-int LuaAiAgent::removeCreatureFlag(lua_State* L) {
-	uint32 flag = lua_tointeger(L, -1);
-
-	Locker locker(realObject);
-	realObject->removeCreatureFlag(flag);
-	realObject->setAITemplate();
-
-	return 0;
-}
-
-int LuaAiAgent::setAIDebug(lua_State* L) {
-	//bool flag = lua_toboolean(L, -1);
-
-	Locker locker(realObject);
-	realObject->setAIDebug(true);
-
-	return 0;
 }

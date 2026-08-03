@@ -154,7 +154,7 @@ public:
 		//Deal area damage if specified
 		if (area) {
 			//Retrieve nearby objects
-			SortedVector<TreeEntry*> closeObjects;
+			SortedVector<QuadTreeEntry*> closeObjects;
 			Zone* zone = creature->getZone();
 
 			if (creature->getCloseObjects() == nullptr) {

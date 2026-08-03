@@ -1596,11 +1596,11 @@ endor_world = {
 		},
 		{
 			lairTemplateName = "endor_gorax_neutral_none",
-			spawnLimit = -1,
+			spawnLimit = 5,
 			minDifficulty = 131,
 			maxDifficulty = 300,
 			numberToSpawn = 0,
-			weighting = 15,
+			weighting = 1,
 			size = 35
 		},
 		{
@@ -1614,12 +1614,12 @@ endor_world = {
 		},
 		{
 			lairTemplateName = "endor_blurrg_raptor_neutral_none",
-			spawnLimit = -1,
-			minDifficulty = 140,
-			maxDifficulty = 200,
-			numberToSpawn = 3,
-			weighting = 25,
-			size = 50
+			spawnLimit = 5,
+			minDifficulty = 141,
+			maxDifficulty = 145,
+			numberToSpawn = 0,
+			weighting = 6,
+			size = 25
 		},
 		{
 			lairTemplateName = "global_black_sun_neutral_none",
@@ -1627,7 +1627,7 @@ endor_world = {
 			minDifficulty = 76,
 			maxDifficulty = 107,
 			numberToSpawn = 0,
-			weighting = 20,
+			weighting = 3,
 			size = 25
 		},
 	}

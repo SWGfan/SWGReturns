@@ -68,8 +68,6 @@ using namespace server::zone::objects::creature;
 
 #include "system/lang/String.h"
 
-#include "server/zone/objects/creature/BuffAttribute.h"
-
 #include "server/zone/objects/tangible/pharmaceutical/PharmaceuticalObject.h"
 
 namespace server {
@@ -119,8 +117,6 @@ public:
 	void notifyLoadFromDatabase();
 
 	int calculatePower(CreatureObject* creature);
-
-	bool isDotPackObject();
 
 	bool isPoisonDeliveryUnit();
 
@@ -236,8 +232,6 @@ public:
 
 	int calculatePower(CreatureObject* creature);
 
-	bool isDotPackObject();
-
 	bool isPoisonDeliveryUnit();
 
 	bool isDiseaseDeliveryUnit();
@@ -309,8 +303,6 @@ public:
 	void notifyLoadFromDatabase();
 
 	int calculatePower(CreatureObject* creature);
-
-	bool isDotPackObject();
 
 	bool isPoisonDeliveryUnit();
 

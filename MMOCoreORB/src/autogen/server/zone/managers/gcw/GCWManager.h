@@ -199,10 +199,6 @@ public:
 
 	static const int STATICFACTIONBASE = 2;
 
-	static const int HACKALARM = 1;
-
-	static const int DESTRUCTALARM = 2;
-
 	GCWManager(Zone* zne);
 
 	Zone* getZone();
@@ -232,8 +228,6 @@ public:
 	void addScanner(BuildingObject* building, SceneObject* scanner);
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
-
-	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
 
 	void startVulnerability(BuildingObject* building);
 
@@ -265,15 +259,11 @@ public:
 
 	bool areOpposingFactions(int faction1, int faction2);
 
-	bool isProperFactionStatus(CreatureObject* creature);
-
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
-
-	void renewUplinkBand(BuildingObject* building);
 
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
@@ -329,17 +319,13 @@ public:
 
 	float getGCWDiscount(CreatureObject* creature);
 
-	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
 
 	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
 
 	void performCheckWildContrabandScanTask();
 
 	int countContrabandItems(CreatureObject* player);
-
-	void activateBaseAlarms(BuildingObject* building, int alarmType);
-
-	void deactivateBaseAlarms(BuildingObject* building);
 
 	int isStrongholdCity(String& city);
 
@@ -369,8 +355,6 @@ public:
 
 	int getCrackdownContrabandFineFactionPoints() const;
 
-	int getCrackdownScanInterval() const;
-
 	int getGCWXPBonus() const;
 
 	int getPointValue(const String& templateString);
@@ -384,8 +368,6 @@ public:
 	bool isRacialPenaltyEnabled() const;
 
 	bool shouldSpawnDefenses() const;
-
-	bool shouldSpawnBaseAlarms() const;
 
 	int getInitialVulnerabilityDelay() const;
 
@@ -434,10 +416,6 @@ public:
 
 	static const int STATICFACTIONBASE = 2;
 
-	static const int HACKALARM = 1;
-
-	static const int DESTRUCTALARM = 2;
-
 private:
 	ManagedReference<Zone* > zone;
 
@@ -480,8 +458,6 @@ private:
 	bool crackdownScansEnabled;
 
 	bool crackdownScanPrivilegedPlayers;
-
-	int crackdownScanInterval;
 
 	int crackdownPlayerScanCooldown;
 
@@ -527,8 +503,6 @@ public:
 	int loserBonus;
 
 	bool spawnDefenses;
-
-	bool spawnBaseAlarms;
 
 	int initialVulnerabilityDelay;
 
@@ -584,8 +558,6 @@ public:
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
 
-	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
-
 	void startVulnerability(BuildingObject* building);
 
 	void endVulnerability(BuildingObject* building);
@@ -632,16 +604,16 @@ public:
 
 	bool areOpposingFactions(int faction1, int faction2);
 
-	bool isProperFactionStatus(CreatureObject* creature);
-
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
 
+private:
 	void renewUplinkBand(BuildingObject* building);
 
+public:
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
 	void completeSecuritySlice(CreatureObject* creature, TangibleObject* securityTerminal);
@@ -724,7 +696,7 @@ private:
 public:
 	float getGCWDiscount(CreatureObject* creature);
 
-	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
 
 	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
 
@@ -744,10 +716,6 @@ private:
 	void despawnBaseTerminals(BuildingObject* building);
 
 public:
-	void activateBaseAlarms(BuildingObject* building, int alarmType);
-
-	void deactivateBaseAlarms(BuildingObject* building);
-
 	int isStrongholdCity(String& city);
 
 protected:
@@ -820,8 +788,6 @@ public:
 
 	int getCrackdownContrabandFineFactionPoints() const;
 
-	int getCrackdownScanInterval() const;
-
 	int getGCWXPBonus() const;
 
 	int getPointValue(const String& templateString);
@@ -835,8 +801,6 @@ public:
 	bool isRacialPenaltyEnabled() const;
 
 	bool shouldSpawnDefenses() const;
-
-	bool shouldSpawnBaseAlarms() const;
 
 	int getInitialVulnerabilityDelay() const;
 
@@ -923,8 +887,6 @@ public:
 
 	void addTurret(BuildingObject* building, SceneObject* turret);
 
-	void addBaseAlarm(BuildingObject* building, SceneObject* alarm);
-
 	void startVulnerability(BuildingObject* building);
 
 	void endVulnerability(BuildingObject* building);
@@ -955,15 +917,11 @@ public:
 
 	bool areOpposingFactions(int faction1, int faction2);
 
-	bool isProperFactionStatus(CreatureObject* creature);
-
 	void awardSlicingXP(CreatureObject* creature, const String& xpType, int value);
 
 	void sendJamUplinkMenu(CreatureObject* creature, BuildingObject* building, TangibleObject* uplinkTerminal);
 
 	void verifyUplinkBand(CreatureObject* creature, BuildingObject* building, int band, TangibleObject* uplinkTerminal);
-
-	void renewUplinkBand(BuildingObject* building);
 
 	bool canStartSlice(CreatureObject* creature, TangibleObject* terminal);
 
@@ -1017,17 +975,13 @@ public:
 
 	float getGCWDiscount(CreatureObject* creature);
 
-	bool runCrackdownScan(AiAgent* scanner, CreatureObject* player);
+	void runCrackdownScan(AiAgent* scanner, CreatureObject* player);
 
 	void startContrabandScanSession(AiAgent* scanner, CreatureObject* player, bool enforced);
 
 	void performCheckWildContrabandScanTask();
 
 	int countContrabandItems(CreatureObject* player);
-
-	void activateBaseAlarms(BuildingObject* building, int alarmType);
-
-	void deactivateBaseAlarms(BuildingObject* building);
 
 	int isStrongholdCity(String& city);
 

@@ -27,7 +27,7 @@ ShipObject::~ShipObject() {
 
 
 unsigned short ShipObject::getUniqueID() {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -182,8 +182,8 @@ void ShipObject::setCurrentRollAcceleration(float scale, bool notifyClient) {
 	}
 }
 
-float ShipObject::getMaxYawAcceleration() const {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+float ShipObject::getMaxYawAcceleration() {
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -196,8 +196,8 @@ float ShipObject::getMaxYawAcceleration() const {
 	}
 }
 
-float ShipObject::getMaxRollAcceleration() const {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+float ShipObject::getMaxRollAcceleration() {
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -210,8 +210,8 @@ float ShipObject::getMaxRollAcceleration() const {
 	}
 }
 
-float ShipObject::getMaxPitchAcceleration() const {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+float ShipObject::getMaxPitchAcceleration() {
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -224,8 +224,8 @@ float ShipObject::getMaxPitchAcceleration() const {
 	}
 }
 
-float ShipObject::getTotalMass() const {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+float ShipObject::getTotalMass() {
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -238,8 +238,8 @@ float ShipObject::getTotalMass() const {
 	}
 }
 
-float ShipObject::getMaxSpeed() const {
-	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementationForRead());
+float ShipObject::getMaxSpeed() {
+	ShipObjectImplementation* _implementation = static_cast<ShipObjectImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
@@ -573,27 +573,27 @@ void ShipObjectImplementation::setCurrentRollAcceleration(float scale, bool noti
 	(&currentRollAcceleration)->update(scale, notifyClient, _this.getReferenceUnsafeStaticCast());
 }
 
-float ShipObjectImplementation::getMaxYawAcceleration() const{
+float ShipObjectImplementation::getMaxYawAcceleration() {
 	// server/zone/objects/ship/ShipObject.idl():  		return maxYawAcceleration.get();
 	return (&maxYawAcceleration)->get();
 }
 
-float ShipObjectImplementation::getMaxRollAcceleration() const{
+float ShipObjectImplementation::getMaxRollAcceleration() {
 	// server/zone/objects/ship/ShipObject.idl():  		return maxRollAcceleration.get();
 	return (&maxRollAcceleration)->get();
 }
 
-float ShipObjectImplementation::getMaxPitchAcceleration() const{
+float ShipObjectImplementation::getMaxPitchAcceleration() {
 	// server/zone/objects/ship/ShipObject.idl():  		return maxPitchAcceleration.get();
 	return (&maxPitchAcceleration)->get();
 }
 
-float ShipObjectImplementation::getTotalMass() const{
+float ShipObjectImplementation::getTotalMass() {
 	// server/zone/objects/ship/ShipObject.idl():  		return totalMass;
 	return totalMass;
 }
 
-float ShipObjectImplementation::getMaxSpeed() const{
+float ShipObjectImplementation::getMaxSpeed() {
 	// server/zone/objects/ship/ShipObject.idl():  		return maxSpeed;
 	return maxSpeed;
 }
@@ -791,23 +791,23 @@ void ShipObjectAdapter::setCurrentRollAcceleration(float scale, bool notifyClien
 	(static_cast<ShipObject*>(stub))->setCurrentRollAcceleration(scale, notifyClient);
 }
 
-float ShipObjectAdapter::getMaxYawAcceleration() const {
+float ShipObjectAdapter::getMaxYawAcceleration() {
 	return (static_cast<ShipObject*>(stub))->getMaxYawAcceleration();
 }
 
-float ShipObjectAdapter::getMaxRollAcceleration() const {
+float ShipObjectAdapter::getMaxRollAcceleration() {
 	return (static_cast<ShipObject*>(stub))->getMaxRollAcceleration();
 }
 
-float ShipObjectAdapter::getMaxPitchAcceleration() const {
+float ShipObjectAdapter::getMaxPitchAcceleration() {
 	return (static_cast<ShipObject*>(stub))->getMaxPitchAcceleration();
 }
 
-float ShipObjectAdapter::getTotalMass() const {
+float ShipObjectAdapter::getTotalMass() {
 	return (static_cast<ShipObject*>(stub))->getTotalMass();
 }
 
-float ShipObjectAdapter::getMaxSpeed() const {
+float ShipObjectAdapter::getMaxSpeed() {
 	return (static_cast<ShipObject*>(stub))->getMaxSpeed();
 }
 

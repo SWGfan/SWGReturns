@@ -44,15 +44,14 @@
 SaberPolearmSpinAttack3Command = {
         name = "saberpolearmspinattack3",
 
-	damageMultiplier = 2.0,
+	damageMultiplier = 3.0,
 	speedMultiplier = 2.0,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	forceCostMultiplier = 2.5,
 	areaAction = true,
 	areaRange = 16,
-	accuracyBonus = 50,
 	visMod = 25,
 
 	stateEffects = {
@@ -60,8 +59,8 @@ SaberPolearmSpinAttack3Command = {
 		POSTUREDOWN_EFFECT, 
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
-		{}, 
-		25, 
+		{},
+		100, 
 		0, 
 		0 
 	  )
@@ -72,11 +71,11 @@ SaberPolearmSpinAttack3Command = {
 
 	combatSpam = "saberpolearmspinattack3",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	weaponType = POLEARMJEDIWEAPON,
 
-	range = 10
+	range = -1
 }
 
 AddCommand(SaberPolearmSpinAttack3Command)

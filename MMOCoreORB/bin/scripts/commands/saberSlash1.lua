@@ -45,25 +45,52 @@ SaberSlash1Command = {
         name = "saberslash1",
 
 	damageMultiplier = 1.0,
-	speedMultiplier = 4,
+	speedMultiplier = 1.25,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 2,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
-	forceCostMultiplier = 1.5,
-	accuracyBonus = 50,
+	forceCostMultiplier = 1.0,
 	visMod = 25,
 
 	dotEffects = {
 	  DotEffect(
 		BLEEDING,
 		{ "resistance_bleeding", "bleed_resist" },
+		HEALTH,
+		true,
+		0,
+		25,
+		50,
+		30,
+      		8.33,
+      		8.33
+	  ),
+
+	  	DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
 		ACTION,
 		true,
 		0,
-    25,
-    25, 
-    60
-	  ),	  	
+		25,
+		50,
+		30,
+		8.33,
+		8.33
+	  ),
+
+	  	DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
+		MIND,
+		true,
+		0,
+		25,
+		50,
+		30,
+		8.33,
+		8.33
+	  ),
 	},
 
 	stateEffects = {

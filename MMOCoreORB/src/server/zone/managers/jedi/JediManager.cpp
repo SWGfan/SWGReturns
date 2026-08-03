@@ -95,12 +95,6 @@ void JediManager::onPlayerLoggedIn(CreatureObject* creature) {
 	*luaOnPlayerLoggedIn << creature;
 
 	luaOnPlayerLoggedIn->callFunction();
-
-	// Update bank safety deposit limit to 500 for existing characters
-	ManagedReference<SceneObject*> bank = creature->getSlottedObject("bank");
-	if (bank != nullptr) {
-		bank->setContainerVolumeLimit(500);
-	}
 }
 
 void JediManager::onPlayerLoggedOut(CreatureObject* creature) {

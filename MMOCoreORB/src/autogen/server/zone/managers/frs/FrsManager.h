@@ -235,8 +235,6 @@ public:
 
 	void loadFrsData();
 
-	void stop();
-
 	void setupEnclaves();
 
 	void setupEnclaveRooms(BuildingObject* enclaveBuilding, const String& groupName);
@@ -275,7 +273,7 @@ public:
 
 	bool isValidFrsBattle(CreatureObject* attacker, CreatureObject* victim);
 
-	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, bool isVictim);
+	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, int groupSize, bool isVictim);
 
 	int getBaseExperienceGain(PlayerObject* playerGhost, PlayerObject* opponentGhost, bool playerWon);
 
@@ -520,8 +518,6 @@ protected:
 
 	bool frsEnabled;
 
-	bool sameAccountEnclaveRestrictions;
-
 	unsigned long long petitionInterval;
 
 	unsigned long long votingInterval;
@@ -565,8 +561,6 @@ public:
 
 	void loadFrsData();
 
-	void stop();
-
 	void setupEnclaves();
 
 	void setupEnclaveRooms(BuildingObject* enclaveBuilding, const String& groupName);
@@ -605,7 +599,7 @@ public:
 
 	bool isValidFrsBattle(CreatureObject* attacker, CreatureObject* victim);
 
-	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, bool isVictim);
+	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, int groupSize, bool isVictim);
 
 	int getBaseExperienceGain(PlayerObject* playerGhost, PlayerObject* opponentGhost, bool playerWon);
 
@@ -796,8 +790,6 @@ public:
 
 	void loadFrsData();
 
-	void stop();
-
 	void setupEnclaves();
 
 	void setupEnclaveRooms(BuildingObject* enclaveBuilding, const String& groupName);
@@ -832,7 +824,7 @@ public:
 
 	bool isValidFrsBattle(CreatureObject* attacker, CreatureObject* victim);
 
-	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, bool isVictim);
+	int calculatePvpExperienceChange(CreatureObject* attacker, CreatureObject* victim, float contribution, int groupSize, bool isVictim);
 
 	int getBaseExperienceGain(PlayerObject* playerGhost, PlayerObject* opponentGhost, bool playerWon);
 

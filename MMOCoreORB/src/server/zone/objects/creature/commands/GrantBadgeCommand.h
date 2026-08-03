@@ -105,7 +105,7 @@ public:
 		}
 
 		if (area) {
-			SortedVector<TreeEntry*> closeObjects;
+			SortedVector<QuadTreeEntry*> closeObjects;
 			Zone* zone = creature->getZone();
 
 			if (creature->getCloseObjects() == nullptr) {

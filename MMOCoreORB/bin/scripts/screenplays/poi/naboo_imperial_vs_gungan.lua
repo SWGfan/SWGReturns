@@ -76,11 +76,17 @@ end
 function ImperialVsGunganScreenPlay:spawnMobiles()
 	local mobileTable = self.gunganMobiles
 	for i = 1, #mobileTable, 1 do
-		spawnMobile("naboo", mobileTable[i][1], mobileTable[i][2], mobileTable[i][3], mobileTable[i][4], mobileTable[i][5], mobileTable[i][6], 0)
+		local pMobile = spawnMobile("naboo", mobileTable[i][1], mobileTable[i][2], mobileTable[i][3], mobileTable[i][4], mobileTable[i][5], mobileTable[i][6], 0)
+		if (pMobile ~= nil and CreatureObject(pMobile):isAiAgent()) then
+			AiAgent(pMobile):setAiTemplate("")
+		end
 	end
-
+	
 	mobileTable = self.imperialMobiles
 	for i = 1, #mobileTable, 1 do
-		spawnMobile("naboo", mobileTable[i][1], mobileTable[i][2], mobileTable[i][3], mobileTable[i][4], mobileTable[i][5], mobileTable[i][6], 0)
+		local pMobile = spawnMobile("naboo", mobileTable[i][1], mobileTable[i][2], mobileTable[i][3], mobileTable[i][4], mobileTable[i][5], mobileTable[i][6], 0)
+		if (pMobile ~= nil and CreatureObject(pMobile):isAiAgent()) then
+			AiAgent(pMobile):setAiTemplate("")
+		end
 	end
 end

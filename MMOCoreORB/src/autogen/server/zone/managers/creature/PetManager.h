@@ -181,8 +181,6 @@ public:
 
 	unsigned static const int CLEARPATROLPOINTS;
 
-	static const int TOTALCOMMANDS = 23;
-
 	PetManager(ZoneServer* server);
 
 	void initialize();
@@ -233,7 +231,7 @@ public:
 	/**
 	 * Returns whether the pet has the given message trained for the command
 	 */
-	int getTrainedCommandNum(PetControlDevice* petControlDevice, const String& msg);
+	bool isTrainedCommand(PetControlDevice* petControlDevice, unsigned int command, const String& msg);
 
 	/**
 	 * @pre { destructor and destructedObject locked }
@@ -347,8 +345,6 @@ public:
 
 	unsigned static const int CLEARPATROLPOINTS;
 
-	static const int TOTALCOMMANDS = 23;
-
 	PetManagerImplementation(ZoneServer* server);
 
 	PetManagerImplementation(DummyConstructorParameter* param);
@@ -414,7 +410,7 @@ public:
 	/**
 	 * Returns whether the pet has the given message trained for the command
 	 */
-	int getTrainedCommandNum(PetControlDevice* petControlDevice, const String& msg);
+	bool isTrainedCommand(PetControlDevice* petControlDevice, unsigned int command, const String& msg);
 
 	/**
 	 * @pre { destructor and destructedObject locked }

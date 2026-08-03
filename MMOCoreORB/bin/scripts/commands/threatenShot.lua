@@ -45,25 +45,11 @@ ThreatenShotCommand = {
         name = "threatenshot",
 
 	damageMultiplier = 0.25,
-  speedMultiplier = 2,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 3,
-  mindCostMultiplier = 0,
-  accuracyBonus = 15,
-  
-  stateEffects = {
-    StateEffect( 
-    INTIMIDATE_EFFECT, 
-    {}, 
-    { "intimidate_defense", "resistance_states" }, 
-    { "jedi_state_defense" }, 
-    100, 
-    0, 
-    120 
-    )
-  },
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	speedMultiplier = 2,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
+	accuracyBonus = 15,
 
 	animation = "fire_1_special_single", 
 	animType = GENERATE_RANGED,

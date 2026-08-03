@@ -38,15 +38,15 @@ Distribution of this file for usage outside of Core3 is prohibited.
  * fast.
  */
 
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
-#include "TreeNode.h"
+#include "QuadTreeNode.h"
 
 namespace server {
   namespace zone {
 
 	class QuadTree : public Object {
-		Reference<TreeNode*> root;
+		Reference<QuadTreeNode*> root;
 
 		static bool logTree;
 
@@ -55,6 +55,7 @@ namespace server {
 	public:
 		QuadTree();
 		QuadTree(float minx, float miny, float maxx, float maxy);
+
 		~QuadTree();
 
 		Object* clone();
@@ -73,12 +74,12 @@ namespace server {
 		/**
 		 * Insert a object into the quad tree.
 		 */
-		void insert(TreeEntry *obj);
+		void insert(QuadTreeEntry *obj);
 
 	 	/**
 		 * Remove the object from the quad tree.
 		 */
-		void remove(TreeEntry *obj);
+		void remove(QuadTreeEntry *obj);
 
 		/**
 		 * Remove all objects from the quad tree
@@ -104,21 +105,21 @@ namespace server {
 		 *   (Object->GetType () & TypeMask). If they are equal, the object
 		 *   will be considered matching.
 		 */
-		void inRange(TreeEntry *obj, float range);
+		void inRange(QuadTreeEntry *obj, float range);
 
 		/**
 		 * Updates COV, adds new in range objects
 		 */
-		void safeInRange(TreeEntry* obj, float range);
+		void safeInRange(QuadTreeEntry* obj, float range);
 
 		/**
 		 * Searches for entries that contain x, y point
 		 */
-		int inRange(float x, float y, SortedVector<ManagedReference<TreeEntry*> >& objects) const;
-		int inRange(float x, float y, SortedVector<TreeEntry*>& objects) const;
+		int inRange(float x, float y, SortedVector<ManagedReference<QuadTreeEntry*> >& objects) const;
+		int inRange(float x, float y, SortedVector<QuadTreeEntry*>& objects) const;
 
-		int inRange(float x, float y, float range, SortedVector<ManagedReference<TreeEntry*> >& objects) const;
-		int inRange(float x, float y, float range, SortedVector<TreeEntry*>& objects) const;
+		int inRange(float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry*> >& objects) const;
+		int inRange(float x, float y, float range, SortedVector<QuadTreeEntry*>& objects) const;
 
 	 	/**
 		 * Update object's position in the quad tree.
@@ -132,20 +133,20 @@ namespace server {
 		 *   true if object is still within the boundaries of the quad tree
 		 *   false if object has moved outside the topmost square.
 		 */
-		bool update(TreeEntry *obj);
+		bool update(QuadTreeEntry *obj);
 
 	private:
-		void _insert(const Reference<TreeNode*>& node, TreeEntry *obj);
-		bool _update(const Reference<TreeNode*>& node, TreeEntry *obj);
+		void _insert(const Reference<QuadTreeNode*>& node, QuadTreeEntry *obj);
+		bool _update(const Reference<QuadTreeNode*>& node, QuadTreeEntry *obj);
 
-		void _inRange(const Reference<TreeNode*>& node, TreeEntry *obj, float range);
-		int _inRange(const Reference<TreeNode*>& node, float x, float y, float range, SortedVector<ManagedReference<TreeEntry*> >& objects) const;
-		int _inRange(const Reference<TreeNode*>& node, float x, float y, float range, SortedVector<TreeEntry* >& objects) const;
-		int _inRange(const Reference<TreeNode*>& node, float x, float y, SortedVector<ManagedReference<TreeEntry*> >& objects) const;
-		int _inRange(const Reference<TreeNode*>& node, float x, float y, SortedVector<TreeEntry*>& objects) const;
+		void _inRange(const Reference<QuadTreeNode*>& node, QuadTreeEntry *obj, float range);
+		int _inRange(const Reference<QuadTreeNode*>& node, float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry*> >& objects) const;
+		int _inRange(const Reference<QuadTreeNode*>& node, float x, float y, float range, SortedVector<QuadTreeEntry* >& objects) const;
+		int _inRange(const Reference<QuadTreeNode*>& node, float x, float y, SortedVector<ManagedReference<QuadTreeEntry*> >& objects) const;
+		int _inRange(const Reference<QuadTreeNode*>& node, float x, float y, SortedVector<QuadTreeEntry*>& objects) const;
 
-		void copyObjects(const Reference<TreeNode*>& node, float x, float y, float range, SortedVector<ManagedReference<TreeEntry*> >& objects);
-		void copyObjects(const Reference<TreeNode*>& node, float x, float y, float range, SortedVector<TreeEntry*>& objects);
+		void copyObjects(const Reference<QuadTreeNode*>& node, float x, float y, float range, SortedVector<ManagedReference<QuadTreeEntry*> >& objects);
+		void copyObjects(const Reference<QuadTreeNode*>& node, float x, float y, float range, SortedVector<QuadTreeEntry*>& objects);
 
 	public:
 		static void setLogging(bool doLog) {

@@ -152,13 +152,13 @@ void InterplanetarySurveyDroidSessionImplementation::handleMenuSelect(CreatureOb
 		float quality = component->getAttributeValue("mechanism_quality");
 		uint64 chosen = droidSuiBox->getMenuObjectID(menuID);
 		this->targetPlanet = pl->getZoneServer()->getResourceManager()->getPlanetByIndex(chosen);
-		int duration = 30000;
-		int minutes = duration/1000;
+		int duration = 1000 * (3600 - (27 * quality));
+		int minutes = duration/60000;
 
 		StringBuffer buffer;
 		buffer << "Droid sent, ETA for the report is ";
 		buffer << minutes;
-		buffer << " seconds.";
+		buffer << " minutes.";
 		pl->sendSystemMessage(buffer.toString());
 
 		// Create a bogus task to run to show the output to the console
@@ -179,13 +179,8 @@ void InterplanetarySurveyDroidSessionImplementation::handleMenuSelect(CreatureOb
 
 		ObjectManager::instance()->persistObject(data, 1, "surveys");
 
-		// Rather than always using a tool per survey droid, simply damage it.
-						tool->setConditionDamage(tool->getConditionDamage() + 40, true);
-						// If the damage is greater than the remaining condition, trash it.
-						if (tool->isDestroyed()) {
-							tool->destroyObjectFromWorld(true);
-							tool->destroyObjectFromDatabase(true);
-						}
+		tool->destroyObjectFromWorld(true);
+		tool->destroyObjectFromDatabase(true);
 
 		tangibleObject->decreaseUseCount();
 		cancelSession();

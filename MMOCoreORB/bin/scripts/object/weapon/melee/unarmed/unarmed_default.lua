@@ -43,7 +43,7 @@
 
 object_weapon_melee_unarmed_unarmed_default = object_weapon_melee_unarmed_shared_unarmed_default:new {
 
-	playerRaces = { },
+	playerRaces = {},
 	
 	-- RANGEDATTACK, MELEEATTACK, FORCEATTACK, TRAPATTACK, GRENADEATTACK, HEAVYACIDBEAMATTACK,
 	-- HEAVYLIGHTNINGBEAMATTACK, HEAVYPARTICLEBEAMATTACK, HEAVYROCKETLAUNCHERATTACK, HEAVYLAUNCHERATTACK
@@ -85,7 +85,7 @@ object_weapon_melee_unarmed_unarmed_default = object_weapon_melee_unarmed_shared
 	
 	-- The values below are the default values.  To be used for blue frog objects primarily
 	healthAttackCost = 0,
-	actionAttackCost = 300,
+	actionAttackCost = 0,
 	mindAttackCost = 0,
 	forceCost = 0,
 	

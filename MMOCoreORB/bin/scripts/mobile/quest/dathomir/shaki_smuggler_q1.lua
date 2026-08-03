@@ -2,7 +2,6 @@ shaki_smuggler_q1 = Creature:new {
 	objectName = "@mob/creature_names:smuggler",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "thug",
 	faction = "thug",
 	level = 14,
@@ -30,11 +29,7 @@ shaki_smuggler_q1 = Creature:new {
 
 	templates = {"object/mobile/dressed_criminal_slicer_human_male_01.iff"},
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "shaki_hamachil_mission_target_convotemplate",	
 }
 

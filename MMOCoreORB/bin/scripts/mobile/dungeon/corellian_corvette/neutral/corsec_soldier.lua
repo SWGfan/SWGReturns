@@ -2,7 +2,6 @@ corsec_soldier = Creature:new {
 	objectName = "@mob/creature_names:corsec_trooper_aggro",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "corsec",
 	faction = "corsec",
 	level = 86,
@@ -35,24 +34,15 @@ corsec_soldier = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 4000000},
-				{group = "corsec_weapons", chance = 2500000},
-				{group = "wearables_uncommon", chance = 2000000},
-				{group = "tailor_components", chance = 1500000}
+				{group = "wearables_uncommon", chance = 3000000},
+				{group = "tailor_components", chance = 3000000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "corsec_police_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"corsec_police_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(corsec_soldier, "corsec_soldier")

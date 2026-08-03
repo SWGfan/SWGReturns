@@ -22,16 +22,7 @@ void DraftSchematicImplementation::initializeTransientMembers() {
 void DraftSchematicImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	IntangibleObjectImplementation::loadTemplateData(templateData);
 
-	//Guard against a bad/garbage templateData pointer (seen as a crash inside the
-	//dynamic_cast/reference-acquire below); reject anything in the first page of
-	//memory the same way a plain nullptr is already implicitly rejected.
-	if ((uint64)(void*)templateData < 0x1000)
-		return;
-
-	DraftSchematicObjectTemplate* castTemplate = dynamic_cast<DraftSchematicObjectTemplate*>(templateData);
-
-	if (castTemplate != nullptr)
-		schematicTemplate = castTemplate;
+	schematicTemplate = dynamic_cast<DraftSchematicObjectTemplate*>(templateData);
 }
 
 void DraftSchematicImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
@@ -84,13 +75,6 @@ void DraftSchematicImplementation::sendResourceWeightsTo(CreatureObject* player)
 	msg->insertInt(clientObjectCRC);
 	msg->insertInt(clientObjectCRC);
 
-	if (resourceWeights == nullptr) {
-		msg->insertByte(0);
-		msg->insertByte(0);
-		player->sendMessage(msg);
-		return;
-	}
-
 	msg->insertByte(resourceWeights->size());
 
 	//Send all the resource batch property data
@@ -133,17 +117,11 @@ DraftSlot* DraftSchematicImplementation::getDraftSlot(int i) {
 }
 
 int DraftSchematicImplementation::getResourceWeightCount() {
-	const Vector<Reference<ResourceWeight* > >* resourceWeights = schematicTemplate->getResourceWeights();
-	if (resourceWeights == nullptr)
-		return 0;
-	return resourceWeights->size();
+	return schematicTemplate->getResourceWeights()->size();
 }
 
 ResourceWeight* DraftSchematicImplementation::getResourceWeight(int i) {
-	const Vector<Reference<ResourceWeight* > >* resourceWeights = schematicTemplate->getResourceWeights();
-	if (resourceWeights == nullptr)
-		return nullptr;
-	return resourceWeights->get(i);
+	return schematicTemplate->getResourceWeights()->get(i);
 }
 
 

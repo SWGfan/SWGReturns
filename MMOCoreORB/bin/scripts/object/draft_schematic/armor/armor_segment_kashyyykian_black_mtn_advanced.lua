@@ -48,9 +48,10 @@ object_draft_schematic_armor_armor_segment_kashyyykian_black_mtn_advanced = obje
 	customObjectName = "Advanced Kashyyykian Black Mountain Armor Segment",
 
 	craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-	complexity = 1,
+	complexity = 30,
 	size = 1,
-	factoryCrateSize = 1000,
+	factoryCrateSize = 50,
+	factoryCrateType = "object/factory/factory_crate_armor.iff",
 
 	xpType = "crafting_clothing_armor",
 	xp = 50,
@@ -64,10 +65,10 @@ object_draft_schematic_armor_armor_segment_kashyyykian_black_mtn_advanced = obje
 	customizationDefaults = {},
 
 	ingredientTemplateNames = {"craft_armor_ingredients_n", "craft_armor_ingredients_n", "craft_armor_ingredients_n", "craft_armor_ingredients_n", "craft_armor_ingredients_n", "craft_armor_ingredients_n", "craft_armor_ingredients_n"},
-	ingredientTitleNames = {"armor_segment_kashyyykian_black_mtn", "armor_layer_track", "segment_mounting_tabs", "defensive_layer", "defensive_layer_2", "defensive_layer_3", "segment_enhancement"},
+	ingredientTitleNames = {"segment_layer_assembly_plate", "armor_layer_weld_tabs", "segment_mounting_tabs", "defensive_layer", "defensive_layer_2", "defensive_layer_3", "segment_enhancement"},
 	ingredientSlotType = {0, 0, 0, 3, 3, 3, 3},
-	resourceTypes = {"hide_leathery", "softwood", "wood_deciduous", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_base_armor_segment_enhancement.iff"},
-	resourceQuantities = {16, 8, 25, 1, 1, 1, 1},
+	resourceTypes = {"iron_colat", "steel_kiirium", "copper_polysteel", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_armor_layer.iff", "object/tangible/component/armor/shared_base_armor_segment_enhancement.iff"},
+	resourceQuantities = {16, 8, 5, 1, 1, 1, 1},
 	contribution = {100, 100, 100, 100, 100, 100, 100},
 
 	targetTemplate = "object/tangible/component/armor/armor_segment_kashyyykian_black_mtn_advanced.iff",

@@ -96,7 +96,7 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 	/// Range 0-100
 	int luckRoll = System::random(100) + cityBonus;
 
-	if(luckRoll > ((85 - expbonus) - forceSkill))
+	if(luckRoll > ((95 - expbonus) - forceSkill))
 		return AMAZINGSUCCESS;
 
 	if(luckRoll < (5 - expbonus - failMitigate))
@@ -107,12 +107,28 @@ int CraftingManagerImplementation::calculateExperimentationSuccess(CreatureObjec
 
 	luckRoll += System::random(player->getSkillMod("luck") + player->getSkillMod("force_luck"));
 
+	///
 	int experimentRoll = (toolModifier * (luckRoll + (experimentingPoints * 4)));
-	(void) experimentRoll;
 
-	// Custom: experimentation yields only Great or Amazing results. Amazing is handled by the luck
-	// roll above; every lesser outcome is floored to Great Success.
-	return GREATSUCCESS;
+	if (experimentRoll > 70)
+		return GREATSUCCESS;
+
+	if (experimentRoll > 60)
+		return GOODSUCCESS;
+
+	if (experimentRoll > 50)
+		return MODERATESUCCESS;
+
+	if (experimentRoll > 40)
+		return SUCCESS;
+
+	if (experimentRoll > 30)
+		return MARGINALSUCCESS;
+
+	if (experimentRoll > 20)
+		return OK;
+
+	return BARELYSUCCESSFUL;
 }
 
 String CraftingManagerImplementation::generateSerial() {

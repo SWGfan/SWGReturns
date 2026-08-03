@@ -49,6 +49,9 @@
 #include "server/chat/room/ChatRoomMap.h"
 #include "templates/string/StringFile.h"
 
+Reference<ChatRoom*> generalRoom;
+Reference<ChatRoom*> pvpRoom;
+
 ChatManagerImplementation::ChatManagerImplementation(ZoneServer* serv, int initsize) : ManagedServiceImplementation() {
 	server = serv;
 	playerManager = nullptr;
@@ -172,7 +175,6 @@ void ChatManagerImplementation::loadSpatialChatTypes() {
 		i++;
 
 		spatialChatTypes.put(key, i);
-		spatialChatTypeNames.put(i, key);
 	}
 
 	iffStream->closeChunk('TYPS');
@@ -221,8 +223,6 @@ void ChatManagerImplementation::loadSpatialChatTypes() {
 
 	iffStream->closeForm('0000');
 	iffStream->closeForm('SPCT');
-
-	defaultSpatialChatType = spatialChatTypes.get("say");
 }
 
 void ChatManagerImplementation::loadMoodTypes() {
@@ -309,10 +309,15 @@ void ChatManagerImplementation::initiateRooms() {
 	guildRoom = createRoom("guild", systemRoom);
 	guildRoom->setPrivate();
 
-	generalRoom = createRoom("Galaxy", galaxyRoom);
+	generalRoom = createRoom("General", galaxyRoom);
 	generalRoom->setCanEnter(true);
 	generalRoom->setAllowSubrooms(true);
-	generalRoom->setTitle("Returns Galaxy General Chat");
+	generalRoom->setTitle("public chat for this server, can create rooms here");
+
+	pvpRoom = createRoom("PvP", galaxyRoom);
+	pvpRoom->setCanEnter(true);
+	pvpRoom->setAllowSubrooms(true);
+	pvpRoom->setTitle("PvP-based chat room");
 
 	auctionRoom = createRoom("Auction", galaxyRoom);
 	auctionRoom->setCanEnter(true);
@@ -497,7 +502,7 @@ int ChatManagerImplementation::checkRoomExpirations() {
 }
 
 Reference<ChatRoom*> ChatManagerImplementation::createRoom(const String& roomName, ChatRoom* parent) {
-	Reference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 0 , ""));
+	ManagedReference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 0 , ""));
 
 	if (parent != nullptr) {
 		room->init(server, parent, roomName);
@@ -518,7 +523,7 @@ Reference<ChatRoom*> ChatManagerImplementation::createPersistentRoom(const Strin
 	if (parent == nullptr)
 		return nullptr;
 
-	Reference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 1 , "chatrooms"));
+	ManagedReference<ChatRoom*> room = cast<ChatRoom*>(ObjectManager::instance()->createObject("ChatRoom", 1 , "chatrooms"));
 
 	room->init(server, parent, roomName);
 	if (parent->isPersistent())
@@ -737,8 +742,18 @@ void ChatManagerImplementation::handleChatRoomMessage(CreatureObject* sender, co
 
 	BaseMessage* msg = new ChatRoomMessage(fullName, server->getGalaxyName(), formattedMessage, roomID);
 
-	// All chat should adhere to player ignore list
-	channel->broadcastMessageCheckIgnore(msg, name);
+	// Auction Chat and Planet Chat should adhere to player ignore list
+	if(auctionRoom != nullptr && auctionRoom->getRoomID() == roomID) {
+		channel->broadcastMessageCheckIgnore(msg, name);
+	} else if (planetRoom != nullptr && planetRoom->getRoomID() == roomID) {
+		channel->broadcastMessageCheckIgnore(msg, name);
+	} else if (generalRoom != nullptr && generalRoom->getRoomID() == roomID) {
+		channel->broadcastMessageCheckIgnore(msg, name); 
+	} else if (pvpRoom != nullptr && pvpRoom->getRoomID() == roomID) {
+		channel->broadcastMessageCheckIgnore(msg, name);
+	} else {
+		channel->broadcastMessage(msg);
+	}
 
 	BaseMessage* amsg = new ChatOnSendRoomMessage(counter);
 	channel->broadcastMessage(amsg);
@@ -840,7 +855,7 @@ void ChatManagerImplementation::handleSocialInternalMessage(CreatureObject* send
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) sender->getCloseObjects();
 
-	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
+	SortedVector<QuadTreeEntry* > closeEntryObjects(200, 50);
 
 	if (vec != nullptr) {
 		vec->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::PLAYERTYPE);
@@ -848,14 +863,13 @@ void ChatManagerImplementation::handleSocialInternalMessage(CreatureObject* send
 #ifdef COV_DEBUG
 		sender->info("Null closeobjects vector in ChatManager::handleSocialInternalMessage", true);
 #endif
-		Vector3 worldPosition = sender->getWorldPosition();
-		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
+		zone->getInRangeObjects(sender->getWorldPositionX(), sender->getWorldPositionX(), 128, &closeEntryObjects, true);
 	}
 
 	float range = defaultSpatialChatDistance;
 
 	for (int i = 0; i < closeEntryObjects.size(); ++i) {
-		SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i).get());
+		SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i));
 
 		if (object->isPlayerCreature()) {
 			CreatureObject* creature = object->asCreatureObject();
@@ -950,7 +964,7 @@ void ChatManagerImplementation::broadcastGalaxy(const String& message, const Str
 }
 
 void ChatManagerImplementation::broadcastGalaxy(CreatureObject* player, const String& message) {
-	String firstName = "Returns-ADMIN";
+	String firstName = "SKYNET";
 
 	if (player != nullptr)
 		firstName = player->getFirstName();
@@ -1009,10 +1023,6 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 	if (zone == nullptr)
 		return;
 
-	if (spatialChatType == 0) {
-		spatialChatType = defaultSpatialChatType;
-	}
-
 	ManagedReference<CreatureObject*> chatTarget = server->getObject(chatTargetID).castTo<CreatureObject*>();
 
 	String firstName;
@@ -1060,7 +1070,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	CloseObjectsVector* closeObjects = (CloseObjectsVector*) sourceCreature->getCloseObjects();
 
-	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
+	SortedVector<QuadTreeEntry*> closeEntryObjects(200, 50);
 
 	if (closeObjects != nullptr) {
 		closeObjects->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::CREOTYPE);
@@ -1068,8 +1078,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 #ifdef COV_DEBUG
 		sourceCreature->info("Null closeobjects vector in ChatManager::broadcastChatMessage", true);
 #endif
-		Vector3 worldPosition = sourceCreature->getWorldPosition();
-		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
+		zone->getInRangeObjects(sourceCreature->getWorldPositionX(), sourceCreature->getWorldPositionY(), 128, &closeEntryObjects, true);
 	}
 
 	short range = defaultSpatialChatDistance;
@@ -1081,7 +1090,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	try {
 		for (int i = 0; i < closeEntryObjects.size(); ++i) {
-			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.get(i).get());
+			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.get(i));
 
 			if (object == nullptr)
 				continue;
@@ -1175,10 +1184,6 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 	if (zone == nullptr)
 		return;
 
-	if (spatialChatType == 0) {
-		spatialChatType = defaultSpatialChatType;
-	}
-
 	String firstName;
 	ManagedReference<CreatureObject*> chatTarget = server->getObject(chatTargetID).castTo<CreatureObject*>();
 
@@ -1198,7 +1203,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	CloseObjectsVector* closeObjects = (CloseObjectsVector*) sourceCreature->getCloseObjects();
 
-	SortedVector<ManagedReference<TreeEntry*> > closeEntryObjects(200, 50);
+	SortedVector<QuadTreeEntry*> closeEntryObjects(200, 50);
 
 	if (closeObjects != nullptr) {
 		closeObjects->safeCopyReceiversTo(closeEntryObjects, CloseObjectsVector::PLAYERTYPE);
@@ -1206,8 +1211,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 #ifdef COV_DEBUG
 		sourceCreature->info("Null closeobjects vector in ChatManager::broadcastChatMessage(StringId)", true);
 #endif
-		Vector3 worldPosition = sourceCreature->getWorldPosition();
-		zone->getInRangeObjects(worldPosition.getX(), worldPosition.getZ(), worldPosition.getY(), zone->getZoneObjectRange(), &closeEntryObjects, true);
+		zone->getInRangeObjects(sourceCreature->getWorldPositionX(), sourceCreature->getWorldPositionY(), ZoneServer::CLOSEOBJECTRANGE, &closeEntryObjects, true);
 	}
 
 	short range = defaultSpatialChatDistance;
@@ -1219,7 +1223,7 @@ void ChatManagerImplementation::broadcastChatMessage(CreatureObject* sourceCreat
 
 	try {
 		for (int i = 0; i < closeEntryObjects.size(); ++i) {
-			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i).get());
+			SceneObject* object = static_cast<SceneObject*>(closeEntryObjects.getUnsafe(i));
 
 			if (object == nullptr)
 				continue;
@@ -1369,6 +1373,8 @@ void ChatManagerImplementation::handleChatInstantMessageToCharacter(ChatInstantM
 		fname = fname.subString(0, spc);
 	}
 
+	ManagedReference<CreatureObject*> receiver = getPlayer(fname);
+
 	uint64 receiverObjectID = server->getPlayerManager()->getObjectID(fname);
 
 	if (receiverObjectID == 0) {
@@ -1381,29 +1387,15 @@ void ChatManagerImplementation::handleChatInstantMessageToCharacter(ChatInstantM
 		sender->sendMessage(amsg);
 
 		return;
-	}
-	
-	Reference<CreatureObject*> receiver = getPlayer(fname);
 
-	if (receiver == nullptr) {
-		// Can't really tell if other player is ignoring if creo isn't loaded
+	} else if (receiver == nullptr || !receiver->isOnline()) {
 		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_OFFLINE);
 		sender->sendMessage(amsg);
 
 		return;
 	}
 
-	auto receiverIgnoring = receiver->getPlayerObject()->isIgnoring(sender->getFirstName()) && !godMode;
-
-	// Avoid telling ignored people about online/offline status
-	if (!receiverIgnoring && !receiver->isOnline()) {
-		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_OFFLINE);
-		sender->sendMessage(amsg);
-
-		return;
-	}
-
-	if (receiverIgnoring) {
+	if (receiver->getPlayerObject()->isIgnoring(sender->getFirstName()) && !godMode) {
 		BaseMessage* amsg = new ChatOnSendInstantMessage(sequence, IM_IGNORED);
 		sender->sendMessage(amsg);
 
@@ -1557,7 +1549,7 @@ void ChatManagerImplementation::handleGuildChat(CreatureObject* sender, const Un
 	ManagedReference<ChatRoom*> room = guild->getChatRoom();
 	if (room != nullptr) {
 		BaseMessage* msg = new ChatRoomMessage(name, server->getGalaxyName(), formattedMessage, room->getRoomID());
-		room->broadcastMessageCheckIgnore(msg, name);
+		room->broadcastMessage(msg);
 	}
 
 }
@@ -2679,25 +2671,13 @@ void ChatManagerImplementation::sendChatOnUnbanResult(CreatureObject* unbanner, 
 	unbanner->sendMessage(notification);
 }
 
-unsigned int ChatManagerImplementation::getSpatialChatType(const String& spatialChatType) const {
+unsigned int ChatManagerImplementation::getSpatialChatType(const String& spatialChatType) {
 	if (spatialChatTypes.contains(spatialChatType)) {
 		return spatialChatTypes.get(spatialChatType);
 	} else {
 		warning("Spatial chat type '" + spatialChatType + "' not found.");
 		return 0;
 	}
-}
-
-const String ChatManagerImplementation::getSpatialChatType(unsigned int chatType) const {
-	String name = spatialChatTypeNames.get(chatType);
-
-	if (!name.isEmpty()) {
-		return name;
-	}
-
-	StringBuffer buf;
-	buf << "unknown#" << chatType;
-	return buf.toString();
 }
 
 unsigned int ChatManagerImplementation::getMoodID(const String& moodType) {

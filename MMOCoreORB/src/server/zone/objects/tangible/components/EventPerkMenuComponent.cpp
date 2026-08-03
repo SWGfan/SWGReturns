@@ -20,56 +20,37 @@ void EventPerkMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, Ob
 		Reference<SceneObject*> owner = Core::getObjectBroker()->lookUp(objectID).castTo<SceneObject*>();
 
 		if (owner == nullptr) {
-			error() << "Event Perk Owner is nullptr, destroying EventPerk ID: " << sceneObject->getObjectID();
-			destroyEventPerk(sceneObject);
-
+			player->sendSystemMessage("Error: perk parent object is nullptr.");
 			return;
 		}
-
 		data = cast<EventPerkDataComponent*>(owner->getDataObjectComponent()->get());
 	}
 
 	if (data == nullptr) {
-		error() << "Event Perk EventPerkDataComponent is nullptr, destroying EventPerk ID: " << sceneObject->getObjectID();
-		destroyEventPerk(sceneObject);
-
+		player->sendSystemMessage("Error: no dataObjectComponent.");
 		return;
 	}
 
 	EventPerkDeed* deed = data->getDeed();
 
 	if (deed == nullptr) {
-		error() << "Event Perk Deed is nullptr, destroying EventPerk ID: " << sceneObject->getObjectID();
-		destroyEventPerk(sceneObject);
-
-		return;
-	}
-
-	auto ghost = player->getPlayerObject();
-
-	if (ghost == nullptr) {
+		player->sendSystemMessage("Error: deed is nullptr.");
 		return;
 	}
 
 	ManagedReference<CreatureObject*> owner = deed->getOwner().get();
 
-	if (owner == nullptr) {
-		return;
-	}
+	if (owner == player) {
+		menuResponse->addRadialMenuItem(132, 3, "@event_perk:mnu_show_exp_time"); // Show Expiration Time
+		menuResponse->addRadialMenuItem(128, 3, "@event_perk:mnu_redeed"); // Reclaim Rental Deed
 
-	bool privilegedAccess = ghost->isPrivileged();
-
-	if (!privilegedAccess && owner->getObjectID() != player->getObjectID()) {
-		return;
-	}
-
-	menuResponse->addRadialMenuItem(RadialOptions::SERVER_MENU1, 3, "@event_perk:mnu_show_exp_time"); // Show Expiration Time
-	menuResponse->addRadialMenuItem(RadialOptions::SERVER_MENU2, 3, "@event_perk:mnu_redeed"); // Reclaim Rental Deed
-
-	if (deed->getPerkType() != EventPerkDeedTemplate::HONORGUARD && deed->getPerkType() != EventPerkDeedTemplate::RECRUITER) {
-		menuResponse->addRadialMenuItem(RadialOptions::ITEM_ROTATE, 1, "@event_perk:mnu_rotate"); // Rotate
-		menuResponse->addRadialMenuItemToRadialID(RadialOptions::ITEM_ROTATE, RadialOptions::ITEM_ROTATE_RIGHT, 3, "@event_perk:mnu_rot_right"); // Rotate Right
-		menuResponse->addRadialMenuItemToRadialID(RadialOptions::ITEM_ROTATE, RadialOptions::ITEM_ROTATE_LEFT, 3, "@event_perk:mnu_rot_left"); // Rotate Left
+		if (deed->getPerkType() != EventPerkDeedTemplate::HONORGUARD && deed->getPerkType() != EventPerkDeedTemplate::RECRUITER) {
+			menuResponse->addRadialMenuItem(51, 1, "@event_perk:mnu_rotate"); // Rotate
+			menuResponse->addRadialMenuItemToRadialID(51, 52, 3, "@event_perk:mnu_rot_left"); // Rotate Left
+			menuResponse->addRadialMenuItemToRadialID(51, 53, 3, "@event_perk:mnu_rot_right"); // Rotate Right
+		}
+	} else if (player->getPlayerObject() != nullptr && player->getPlayerObject()->isPrivileged()) {
+		menuResponse->addRadialMenuItem(132, 3, "@event_perk:mnu_show_exp_time"); // Show Expiration Time
 	}
 }
 
@@ -86,18 +67,14 @@ int EventPerkMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 	}
 
 	if (data == nullptr) {
-		error() << "Event Perk EventPerkDataComponent is nullptr, destroying EventPerk ID: " << sceneObject->getObjectID();
-		destroyEventPerk(sceneObject);
-
+		player->sendSystemMessage("Error: no dataObjectComponent.");
 		return 1;
 	}
 
 	EventPerkDeed* deed = data->getDeed();
 
 	if (deed == nullptr) {
-		error() << "Event Perk Deed is nullptr, destroying EventPerk ID: " << sceneObject->getObjectID();
-		destroyEventPerk(sceneObject);
-
+		player->sendSystemMessage("Error: deed is nullptr.");
 		return 1;
 	}
 
@@ -113,7 +90,7 @@ int EventPerkMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 		return TangibleObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 	}
 
-	if (selectedID == RadialOptions::SERVER_MENU1) {
+	if (selectedID == 132) {
 		Time currentTime;
 		uint32 timeDelta = currentTime.getMiliTime() - deed->getPurchaseTime()->getMiliTime();
 		uint32 minutes = (EventPerkDeedTemplate::TIME_TO_LIVE - timeDelta) / 60000;
@@ -128,8 +105,7 @@ int EventPerkMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 		return TangibleObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 	}
 
-	// Reclaim Deed
-	if (selectedID == RadialOptions::SERVER_MENU2) {
+	if (selectedID == 128) {
 		if (sceneObject->getGameObjectType() == SceneObjectType::SCAVENGERCHEST && sceneObject->getContainerObjectsSize() > 0) {
 			player->sendSystemMessage("@event_perk:redeed_remove_items"); // The chest still contains items. You must empty the chest before it can be redeeded.
 			return 1;
@@ -151,24 +127,17 @@ int EventPerkMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 		inventory->transferObject(deed, -1, true);
 		deed->setGenerated(false);
 
-		ManagedReference<TangibleObject*> perkTano = deed->getGeneratedObject().get();
+		ManagedReference<TangibleObject*> perk = deed->getGeneratedObject().get();
 
-		if (perkTano != nullptr) {
-			Locker perkLock(perkTano);
-
-			perkTano->destroyChildObjects();
-			perkTano->destroyObjectFromWorld(true);
+		if (perk != nullptr) {
+			Locker perkLock(perk);
+			perk->destroyChildObjects();
+			perk->destroyObjectFromWorld(true);
 		}
 
 		player->sendSystemMessage("@event_perk:redeed_success"); // Your Rental has been removed and the deed reclaimed.
-
 		return 0;
 	}
 
 	return TangibleObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
-}
-
-void EventPerkMenuComponent::destroyEventPerk(SceneObject* sceneObject) const {
-	sceneObject->destroyObjectFromWorld(true);
-	sceneObject->destroyObjectFromDatabase(true);
 }

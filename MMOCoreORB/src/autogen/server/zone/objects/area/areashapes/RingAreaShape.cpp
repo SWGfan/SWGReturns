@@ -413,8 +413,6 @@ RingAreaShapeImplementation::RingAreaShapeImplementation() : AreaShapeImplementa
 	innerRadius2 = 0;
 	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		outerRadius2 = 0;
 	outerRadius2 = 0;
-	// server/zone/objects/area/areashapes/RingAreaShape.idl():  		Logger.setLoggingName("RingAreaShape");
-	Logger::setLoggingName("RingAreaShape");
 }
 
 void RingAreaShapeImplementation::setInnerRadius(float r) {

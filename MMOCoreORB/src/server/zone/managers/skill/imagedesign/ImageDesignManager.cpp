@@ -223,10 +223,10 @@ void ImageDesignManager::updateColorCustomization(CreatureObject* imageDesigner,
 
 	const Vector<CustomizationData>* data = getCustomizationData(speciesGender, customizationName);
 
-	/*if (data == nullptr) {
+	if (data == nullptr) {
 		error("Unable to get CustomizationData for " + speciesGender + "_" + customizationName);
 		return;
-	}*/
+	}
 
 	for (int i = 0; i < data->size(); ++i) {
 		CustomizationData* customData = &data->get(i);
@@ -353,7 +353,7 @@ String ImageDesignManager::getSpeciesGenderString(CreatureObject* creo) {
 TangibleObject* ImageDesignManager::createHairObject(CreatureObject* imageDesigner, CreatureObject* targetObject, const String& hairTemplate, const String& hairCustomization) {
 	Reference<TangibleObject*> oldHair = targetObject->getSlottedObject("hair").castTo<TangibleObject*>();
 
-	HairAssetData* hairAssetData = CustomizationIdManager::instance()->getHairAssetData(hairTemplate, targetObject->getObjectTemplate()->getFullTemplateString());
+	HairAssetData* hairAssetData = CustomizationIdManager::instance()->getHairAssetData(hairTemplate);
 
 	if (hairTemplate.isEmpty()) {
 		if (!CustomizationIdManager::instance()->canBeBald(getSpeciesGenderString(targetObject)))

@@ -44,30 +44,29 @@
 Melee1hBlindHit2Command = {
         name = "melee1hblindhit2",
 
-	damageMultiplier = 1.75,
-  speedMultiplier = 1.5,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2.5,
-  mindCostMultiplier = 0,
+	damageMultiplier = 2.5,
+	speedMultiplier = 2.25,
+	healthCostMultiplier = 0.75,
+	actionCostMultiplier = 0.75,
+	mindCostMultiplier = 1.25,
         accuracyBonus = 25,
-          visMod = 25,
 
-  areaRange = 7,
-  areaAction = true,
+	areaRange = 16,
+	areaAction = true,
 
-  stateEffects = {
-    StateEffect( 
-    BLIND_EFFECT, 
-    {}, 
-    { "blind_defense", "resistance_states" }, 
-    { "jedi_state_defense" }, 
-    70, 
-    70, 
-    15 
-    )
-  },
+	stateEffects = {
+	  StateEffect( 
+		BLIND_EFFECT, 
+		{}, 
+		{ "blind_defense" }, 
+		{ "jedi_state_defense", "resistance_states" },
+		100, 
+		0, 
+		50 
+	  )
+	},
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 	weaponType = ONEHANDMELEEWEAPON,
 
 	animation = "combo_2b", 
@@ -75,7 +74,7 @@ Melee1hBlindHit2Command = {
 
 	combatSpam = "blindingslash",
 
-	range = 8
+	range = -1
 }
 
 AddCommand(Melee1hBlindHit2Command)

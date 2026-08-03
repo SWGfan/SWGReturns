@@ -275,7 +275,7 @@ public:
 
 	virtual unsigned long long getObjectID();
 
-	virtual float getRadius() const;
+	float getRadius() const;
 
 	bool isBounding() const;
 

@@ -2,16 +2,15 @@ teraud_loyalist_cyborg = Creature:new {
 	objectName = "@mob/creature_names:warren_teraud_loyalist_cyborg",
 	socialGroup = "warren_cyborg",
 	faction = "",
-	mobType = MOB_NPC,
-	level = 38,
-	chanceHit = 0.43,
-	damageMin = 335,
-	damageMax = 380,
-	baseXp = 3824,
-	baseHAM = 9100,
-	baseHAMmax = 11100,
-	armor = 0,
-	resists = {40,50,0,-1,-1,-1,-1,-1,-1},
+	level = 121,
+	chanceHit = 4,
+	damageMin = 745,
+	damageMax = 1200,
+	baseXp = 11390,
+	baseHAM = 50000,
+	baseHAMmax = 50000,
+	armor = 2,
+	resists = {55,55,70,60,30,30,100,40,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,17 +42,9 @@ teraud_loyalist_cyborg = Creature:new {
 			}
 		}	
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_medium",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster,carbineermaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster,carbineermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(teraud_loyalist_cyborg, "teraud_loyalist_cyborg")

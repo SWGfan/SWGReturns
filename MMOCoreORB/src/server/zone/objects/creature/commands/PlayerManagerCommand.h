@@ -170,7 +170,7 @@ public:
 			return resp.toString();
 		}
 
-		SortedVector<TreeEntry*> closeObjects;
+		SortedVector<QuadTreeEntry*> closeObjects;
 		vec->safeCopyTo(closeObjects);
 		vec = nullptr;
 		locker.release();
@@ -226,7 +226,7 @@ public:
 			auto vec = (CloseObjectsVector*)parent->getCloseObjects();
 
 			if (vec != nullptr) {
-				SortedVector<TreeEntry*> parentCloseObjects;
+				SortedVector<QuadTreeEntry*> parentCloseObjects;
 				vec->safeCopyTo(parentCloseObjects);
 				vec = nullptr;
 				locker.release();

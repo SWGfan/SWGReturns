@@ -213,8 +213,6 @@ public:
 
 	void handleOperateToggle(CreatureObject* player);
 
-	bool startFactory();
-
 	void createNewObject();
 
 	String getRedeedMessage();
@@ -318,9 +316,9 @@ public:
 
 	void handleOperateToggle(CreatureObject* player);
 
+private:
 	bool startFactory();
 
-private:
 	void stopFactory(const String& message, const String& tt, const String& to, const int di);
 
 	void stopFactory(String& type, String& displayedName);
@@ -409,8 +407,6 @@ public:
 	void handleRemoveFactorySchem(CreatureObject* player);
 
 	void handleOperateToggle(CreatureObject* player);
-
-	bool startFactory();
 
 	void createNewObject();
 

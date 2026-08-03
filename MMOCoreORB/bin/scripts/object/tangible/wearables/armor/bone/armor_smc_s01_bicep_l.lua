@@ -85,50 +85,28 @@ object_tangible_wearables_armor_bone_armor_smc_s01_bicep_l = object_tangible_wea
 				"object/mobile/vendor/twilek_male.iff",
 				"object/mobile/vendor/weequay_male.iff",
 				"object/mobile/vendor/zabrak_female.iff",
-				"object/mobile/vendor/zabrak_male.iff",
-				"object/creature/player/aqualish_male.iff",
-				"object/creature/player/aqualish_female.iff",
-				"object/creature/player/bith_male.iff",
-				"object/creature/player/bith_female.iff",
-				"object/creature/player/chiss_male.iff",
-				"object/creature/player/chiss_female.iff",
-				"object/creature/player/devaronian_male.iff",
-				"object/creature/player/gotal_male.iff",
-				"object/creature/player/gran_male.iff",
-				"object/creature/player/hutt_male.iff",
-				"object/creature/player/hutt_female.iff",
-				"object/creature/player/ishi_tib_male.iff",
-				"object/creature/player/nautolan_male.iff",
-				"object/creature/player/nightsister_female.iff",
-				"object/creature/player/nikto_male.iff",
-				"object/creature/player/quarren_male.iff",
-				"object/creature/player/smc_female.iff",
-				"object/creature/player/talz_male.iff",
-				"object/creature/player/togruta_female.iff",
-				"object/creature/player/weequay_male.iff"
-},
+				"object/mobile/vendor/zabrak_male.iff" },
 	
 	-- kineticeffectiveness, energyeffectiveness, electricaleffectiveness, stuneffectiveness, blasteffectiveness, heateffectiveness, coldeffectiveness, acideffectiveness, restraineffectiveness
 	vulnerability = KINETIC + BLAST + STUN + HEAT + COLD + ACID + LIGHTSABER,
 
 	-- These are default Blue Frog stats
-	healthEncumbrance = 0,
-	actionEncumbrance = 0,
-	mindEncumbrance = 0,
+	healthEncumbrance = 6,
+	actionEncumbrance = 15,
+	mindEncumbrance = 4,
 
 	-- LIGHT, MEDIUM, HEAVY
 	rating = LIGHT,
 
-	kinetic = 35,
-  energy = 35,
-  electricity = 35,
-  stun = 35,
-  blast = 35,
-  heat = 35,
-  cold = 35,
-  acid = 35,
-  lightSaber = 0,
-
+	kinetic = 0,
+	energy = 20,
+	electricity = 10,
+	stun = 0,
+	blast = 0,
+	heat = 0,
+	cold = 0,
+	acid = 0,
+	lightSaber = 0
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_armor_bone_armor_smc_s01_bicep_l, "object/tangible/wearables/armor/bone/armor_smc_s01_bicep_l.iff")

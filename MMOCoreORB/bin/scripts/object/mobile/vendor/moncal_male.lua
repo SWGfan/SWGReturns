@@ -44,7 +44,7 @@
 object_mobile_vendor_moncal_male = object_mobile_vendor_shared_moncal_male:new {
 
 	templateType = VENDORCREATURE,
-	optionsBitmask = 258,
+	optionsBitmask = 386,
 	pvpStatusBitmask = 0,
 
 	objectMenuComponent = "VendorMenuComponent",

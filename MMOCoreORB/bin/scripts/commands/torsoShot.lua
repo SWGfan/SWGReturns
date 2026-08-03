@@ -44,14 +44,13 @@
 TorsoShotCommand = {
         name = "torsoshot",
 
-	damageMultiplier = 3.0,
-  speedMultiplier = 2.3,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 3,
-  mindCostMultiplier = 0,
-    visMod = 25,
+	damageMultiplier = 4.0,
+	speedMultiplier = 2.3,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	animation = "fire_3_special_single", 
 	animType = GENERATE_RANGED,
@@ -67,13 +66,13 @@ TorsoShotCommand = {
 		0,
 		100,
 		30, 
-		20,
-		10,
-		4
+		30,
+		50,
+		10
 	  )
 	},
 	
-	weaponType = PISTOLWEAPON,
+	weaponType = PISTOLWEAPON + CARBINEWEAPON,
 
 	range = -1
 }

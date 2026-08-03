@@ -83,4 +83,3 @@ includeFile("draft_schematic/weapon/component/weapon_mount.lua")
 includeFile("draft_schematic/weapon/component/weapon_mount_light.lua")
 includeFile("draft_schematic/weapon/component/weapon_targeting_computer.lua")
 includeFile("draft_schematic/weapon/component/weapon_trajectory_computer.lua")
-

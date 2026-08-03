@@ -2,7 +2,6 @@ igbi_hutt_hotshot = Creature:new {
 	objectName = "",
 	socialGroup = "hutt",
 	faction = "hutt",
-	mobType = MOB_NPC,
 	level = 17,
 	chanceHit = 0.32,
 	damageMin = 160,
@@ -35,17 +34,9 @@ igbi_hutt_hotshot = Creature:new {
 			lootChance = 10000000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "pirate_weapons_light",
-	secondaryWeapon = "unarmed",
+	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(igbi_hutt_hotshot, "igbi_hutt_hotshot")

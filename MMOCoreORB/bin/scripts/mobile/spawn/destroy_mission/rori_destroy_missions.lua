@@ -130,9 +130,9 @@ rori_destroy_missions = {
 		},
 		{
 			lairTemplateName = "rori_chared_krevol_lair_neutral_medium",
-			minDifficulty = 32,
-			maxDifficulty = 36,
-			size = 30,
+			minDifficulty = 13,
+			maxDifficulty = 17,
+			size = 25,
 		},
 		{
 			lairTemplateName = "rori_savage_pugoriss_lair_neutral_medium",

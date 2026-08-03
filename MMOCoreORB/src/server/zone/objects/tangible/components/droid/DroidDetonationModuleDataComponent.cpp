@@ -73,9 +73,9 @@ void DroidDetonationModuleDataComponent::initializeTransientMembers() {
 void DroidDetonationModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
 	if (mseDroid) {
 		int bonus = moduleCount * 10;
-		alm->insertAttribute("bomb_level", (int)rating + bonus);
+		alm->insertAttribute("bomb_level", rating + bonus);
 	} else {
-		alm->insertAttribute("bomb_level", (int)rating);
+		alm->insertAttribute( "bomb_level", rating);
 	}
 }
 

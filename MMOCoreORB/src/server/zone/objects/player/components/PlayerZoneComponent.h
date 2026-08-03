@@ -8,19 +8,15 @@
 #ifndef PLAYERZONECOMPONENT_H_
 #define PLAYERZONECOMPONENT_H_
 
-#include "server/zone/objects/scene/components/GroundZoneComponent.h"
+#include "server/zone/objects/scene/components/ZoneComponent.h"
 
-class PlayerZoneComponent : public GroundZoneComponent {
+class PlayerZoneComponent : public ZoneComponent {
 public:
-	PlayerZoneComponent() {
-		setLoggingName("PlayerZoneComponent");
-	}
+	void notifyInsert(SceneObject* sceneObject, QuadTreeEntry* entry) const;
 
-	void notifyInsert(SceneObject* sceneObject, TreeEntry* entry) const;
+	void notifyDissapear(SceneObject* sceneObject, QuadTreeEntry* entry) const;
 
-	void notifyDissapear(SceneObject* sceneObject, TreeEntry* entry) const;
-
-	void switchZone(SceneObject* sceneObject, const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, uint64 parentID = 0, bool toggleInvisibility = false, int playerArrangement = -1) const;
+	void switchZone(SceneObject* sceneObject, const String& newTerrainName, float newPostionX, float newPositionZ, float newPositionY, uint64 parentID = 0, bool toggleInvisibility = false) const;
 
 	void notifyInsertToZone(SceneObject* sceneObject, Zone* newZone) const;
 

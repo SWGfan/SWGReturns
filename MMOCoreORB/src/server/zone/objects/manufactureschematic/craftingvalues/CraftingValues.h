@@ -108,18 +108,6 @@ public:
 		return experimentalValuesMap.getExperimentalPropertySubtitleSize();
 	}
 
-	int getTotalExperimentalAttributes() const {
-		return experimentalValuesMap.getExperimentalPropertySubtitleSize();
-	}
-
-	const String& getAttribute(int index) const {
-		return experimentalValuesMap.getExperimentalPropertySubtitle(index);
-	}
-
-	const String& getAttributeGroup(const String& attribute) const {
-		return experimentalValuesMap.getExperimentalPropertyTitle(attribute);
-	}
-
 	int getExperimentalPropertySubtitleSize(const String title) const {
 		return experimentalValuesMap.getExperimentalPropertySubtitleSize(title);
 	}

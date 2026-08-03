@@ -50,8 +50,7 @@ object_building_faction_perk_hq_hq_s01_imp = object_building_faction_perk_hq_sha
 	pvpFaction = "imperial",
 	pvpStatusBitmask = 0,
 	dataObjectComponent = "DestructibleBuildingDataComponent",
-	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus", "kaas", "moraband",
-    "yavin4"},
+	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus"},
 	constructionMarker = "object/building/player/construction/construction_player_house_generic_medium_style_01.iff",
 	length = 7,
 	width = 6,
@@ -82,7 +81,7 @@ object_building_faction_perk_hq_hq_s01_imp = object_building_faction_perk_hq_sha
 		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = -17, z = 0, y = 10, ox = 0, oy = -0, oz = 0, ow = 1, cellid = -1, containmentType = -1 }, -- left turret front
 		{ templateFile = "object/installation/faction_perk/turret/tower_lg.iff", x = 17, z = 0, y = 10, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
 
-		{ templateFile = "object/installation/faction_perk/minefield/field_1x1.iff", x = 0, z = 0, y = 15, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
+		{ templateFile = "object/installation/faction_perk/covert_detector/detector_base.iff", x = 0, z = 0, y = 15,  ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1 },
 
 		{ templateFile = "object/tangible/terminal/terminal_hq_turret_control.iff", x = -1.5, z = 0, y = -1.8, ow = .7, ox = 0, oz = 0, oy = .7, cellid = 3, containmentType = -1 },
 		{ templateFile = "object/tangible/terminal/terminal_hq_turret_control.iff", x = -1.5, z = 0, y = -.5, ow = .7, ox = 0, oz = 0, oy = .7, cellid = 3, containmentType = -1 },
@@ -90,12 +89,6 @@ object_building_faction_perk_hq_hq_s01_imp = object_building_faction_perk_hq_sha
 		{ templateFile = "object/tangible/terminal/terminal_mission_imperial.iff", x = 4, z = 0.13, y = -5.89, ox = 0, oy = 0, oz = 0, ow = 1, cellid = 5, containmentType = -1 },
 
 		{ templateFile = "object/tangible/terminal/terminal_hq_imperial.iff", x = 0, z = 0, y = -6, ox = 0, oy = 0, oz = 0, ow = 1, cellid = 3, containmentType = -1 },
-
-		-- Base Alarms
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack.iff", x = -6, z = 2.8, y = 3, ow = 0.005, ox = 0.707, oy = 0.707, oz = 0.005, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_hack_no_sound.iff", x = 0, z = 3.2, y = 2.5, ow = 0.700, ox = -0.700, oy = 0.04, oz = -0.04, cellid = 3, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = -5, z = 3.1, y = 3, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 2, containmentType = -1 },
-		{ templateFile = "object/tangible/faction_perk/faction_base_item/alarm_destruct.iff", x = 0, z = 3.6, y = -2, ow = 0, ox = 0, oy = 0, oz = 1, cellid = 3, containmentType = -1 },
 	},
 
 	childCreatureObjects = {

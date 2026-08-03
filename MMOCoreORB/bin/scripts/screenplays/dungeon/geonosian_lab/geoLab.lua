@@ -96,12 +96,6 @@ function GeonosianLab:start()
 			self:spawnMobiles()
 			self:setupPermissionGroups()
 			self:setupLootContainers()
-		elseif (self.buildingRetries == nil or self.buildingRetries < 10) then
-			self.buildingRetries = (self.buildingRetries or 0) + 1
-			print("GeonosianLab: Geo lab building (1627780) not loaded yet, retrying setup in 10s (attempt " .. self.buildingRetries .. ")")
-			createEvent(10 * 1000, "GeonosianLab", "start", nil, "")
-		else
-			print("GeonosianLab: Geo lab building (1627780) still not found after 10 retries, giving up. Dungeon will be inaccessible until next restart.")
 		end
 	end
 end
@@ -139,7 +133,7 @@ function GeonosianLab:createContainerLoot(pContainer)
 
 	local containerNum = readData(SceneObject(pContainer):getObjectID() .. ":containerNum")
 
-	if (containerNum == 0 or containerNum > #self.lootContainers) then
+	if (containerNum == 0) then
 		return
 	end
 
@@ -156,7 +150,7 @@ function GeonosianLab:createContainerLoot(pContainer)
 end
 
 function GeonosianLab:notifyContainerLooted(pContainer, pLooter)
-	if pContainer == nil or pLooter == nil or not SceneObject(pLooter):isCreatureObject() then
+	if pItem == nil or pLooter == nil or not SceneObject(pLooter):isCreatureObject() then
 		return 1
 	end
 
@@ -235,8 +229,6 @@ function GeonosianLab:spawnSceneObjects()
 			writeData(SceneObject(pSceneObject):getObjectID() .. ":geonosianLab:keypadIndex", i)
 			SceneObject(pSceneObject):setObjectMenuComponent("GeoLabKeypadMenuComponent")
 			createObserver(SLICED, "GeonosianLab", "notifyKeypadSliced", pSceneObject)
-		else
-			print("GeonosianLab: keypad terminal " .. i .. " (cell " .. kp.cell .. ") failed to spawn. Door to cell " .. kp.locked .. " will be unopenable.")
 		end
 
 		local aa = self.doorActiveAreas[i]
@@ -245,8 +237,6 @@ function GeonosianLab:spawnSceneObjects()
 		if pActiveArea ~= nil then
 			writeData(SceneObject(pActiveArea):getObjectID() .. ":geonosianLab:keypadIndex", i)
 			createObserver(ENTEREDAREA, "GeonosianLab", "notifyLockedDoorArea", pActiveArea)
-		else
-			print("GeonosianLab: door active area " .. i .. " (cell " .. aa.cell .. ") failed to spawn.")
 		end
 	end
 
@@ -432,7 +422,7 @@ function GeonosianLab:spawnMobiles()
 	spawnMobile("yavin4", "cavern_spider",180,13.4,-22.0,-337.3,-179,1627822)
 
 	-- largeendcave (1627823)
-	spawnMobile("yavin4", "acklay",7200,101.1,-34.3,-321.6,-136,1627823, true) --Randomized respawn
+	spawnMobile("yavin4", "acklay",3600,101.1,-34.3,-321.6,-136,1627823, true) --Randomized respawn
 	spawnMobile("yavin4", "enhanced_kwi",180,48.0,-34.0,-334.4,0,1627823)
 	spawnMobile("yavin4", "cavern_spider",180,91.2,-33.9,-347.9,5,1627823)
 	spawnMobile("yavin4", "enhanced_kliknik",180,98.0,-34.1,-334.4,-53,1627823)
@@ -455,6 +445,7 @@ function GeonosianLab:spawnMobiles()
 	end
 
 	spawnMobile("yavin4", "herald_biogenic_gardo", 60, -3.8, 0.1, -3.8, 88, 1713374)
+
 end
 
 function GeonosianLab:turnOnTrap(pTrap)
@@ -619,6 +610,7 @@ function GeonosianLab:keypadSuiCallback(pPlayer, pSui, eventIndex, code, pressed
 			local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
 			if (pGhost ~= nil) then
+				printf("starting slicing session on " .. SceneObject(pKeypad):getObjectID() .. "\n")
 				PlayerObject(pGhost):startSlicingSession(pKeypad, true)
 			end
 		end
@@ -685,7 +677,7 @@ function GeonosianLab:notifyExitedBunker(pBuilding, pPlayer)
 	deleteData(playerID .. ":geoEngineerState")
 	deleteData(playerID .. ":geoAssistantState")
 	deleteData(playerID .. ":geo_security_tech_talked")
-	deleteData(playerID .. ":geoHumanScientistState")
+	CreatureObject(pPlayer):removeScreenPlayState(1, "geonosian_lab_tenloss")
 
 	CreatureObject(pPlayer):sendSystemMessage("@dungeon/geonosian_madbio:relock") --Security systems at this facility have been cycled and reset.
 
@@ -731,13 +723,17 @@ function GeonosianLab:giveGeoItem(pPlayer, itemTemplate)
 end
 
 function GeonosianLab:respawnDebris(pDebris, index)
+	if (pDebris == nil) then
+		return
+	end
+
 	local debrisData = self.debrisLocs[tonumber(index)]
 
-	local pNewDebris = spawnSceneObject("yavin4", debrisData.template, debrisData.x, debrisData.z, debrisData.y, debrisData.cell, math.rad(debrisData.rot))
+	pDebris = spawnSceneObject("yavin4", debrisData.template, debrisData.x, debrisData.z, debrisData.y, debrisData.cell, 1, 0, 0, 0)
 
-	if (pNewDebris ~= nil) then
-		writeData(SceneObject(pNewDebris):getObjectID() .. ":geonosianLab:debrisIndex", index)
-		createObserver(OBJECTDESTRUCTION, "GeonosianLab", "notifyDebrisDestroyed", pNewDebris)
+	if (pDebris ~= nil) then
+		writeData(SceneObject(pDebris):getObjectID() .. ":geonosianLab:debrisIndex", index)
+		createObserver(OBJECTDESTRUCTION, "GeonosianLab", "notifyDebrisDestroyed", pDebris)
 	end
 end
 
@@ -749,10 +745,8 @@ function GeonosianLab:notifyDebrisDestroyed(pDebris, pPlayer)
 	local index = readData(SceneObject(pDebris):getObjectID() .. ":geonosianLab:debrisIndex")
 
 	playClientEffectLoc(SceneObject(pPlayer):getObjectID(), "clienteffect/combat_explosion_lair_large.cef", "yavin4", SceneObject(pDebris):getPositionX(), SceneObject(pDebris):getPositionZ(), SceneObject(pDebris):getPositionY(), SceneObject(pDebris):getParentID())
-
-	createEvent(3 * 60 * 1000, "GeonosianLab", "respawnDebris", nil, tostring(index))
-	createEvent(200, "GeonosianLab", "destroySceneObject", pDebris, "")
-
+	createEvent(1000, "Warren", "destroySceneObject", pDebris, "")
+	createEvent(180000, "GeonosianLab", "respawnDebris", pDebris, tostring(index))
 	CreatureObject(pPlayer):clearCombatState(1)
 
 	return 1
@@ -809,8 +803,6 @@ function GeonosianLab:notifyKeypadSliced(pKeypad, pPlayer, success)
 end
 
 function GeonosianLab:setupPermissionGroups()
-	local allResolved = true
-
 	for i = 1, #self.lockedCells, 1 do
 		local pCell = getSceneObject(self.lockedCells[i])
 		if pCell ~= nil then
@@ -819,25 +811,14 @@ function GeonosianLab:setupPermissionGroups()
 			SceneObject(pCell):clearContainerDefaultAllowPermission(WALKIN)
 			SceneObject(pCell):setContainerAllowPermission("GeoLabKeypad" .. i, WALKIN)
 			SceneObject(pCell):setContainerDenyPermission("GeoLabKeypad" .. i, MOVEIN)
-		else
-			allResolved = false
-			print("GeonosianLab: locked cell " .. self.lockedCells[i] .. " (index " .. i .. ") not found, permissions not set. Door will stay locked.")
 		end
-	end
-
-	if not allResolved and (self.permissionRetries == nil or self.permissionRetries < 10) then
-		self.permissionRetries = (self.permissionRetries or 0) + 1
-		print("GeonosianLab: one or more locked cells unresolved, retrying setupPermissionGroups in 10s (attempt " .. self.permissionRetries .. ")")
-		createEvent(10 * 1000, "GeonosianLab", "setupPermissionGroups", nil, "")
-	elseif not allResolved then
-		print("GeonosianLab: one or more locked cells still unresolved after 10 retries, giving up. Those doors will be permanently locked until next restart.")
 	end
 end
 
 function GeonosianLab:givePermission(pPlayer, permissionGroup)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-	if (pGhost ~= nil and not PlayerObject(pGhost):hasPermissionGroup(permissionGroup)) then
+	if (pGhost ~= nil) then
 		PlayerObject(pGhost):addPermissionGroup(permissionGroup, true)
 	end
 end

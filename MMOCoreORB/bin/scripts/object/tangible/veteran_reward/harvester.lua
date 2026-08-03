@@ -42,7 +42,8 @@
 
 
 object_tangible_veteran_reward_harvester = object_tangible_veteran_reward_shared_harvester:new {
-  gameObjectType = 8388616
+  gameObjectType = 8388616,
+  noTrade = 1
 }
 
 ObjectTemplates:addTemplate(object_tangible_veteran_reward_harvester, "object/tangible/veteran_reward/harvester.iff")

@@ -12,7 +12,6 @@
 
 class CampKitMenuComponent : public TangibleObjectMenuComponent {
 public:
-	const static int MAP_REGISTER_MOD = 65;
 
 	/**
 	 * Fills the radial options, needs to be overriden

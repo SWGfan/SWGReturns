@@ -49,7 +49,6 @@ includeFile("tangible/wearables/backpack/serverobjects.lua")
 includeFile("tangible/wearables/bandolier/serverobjects.lua")
 includeFile("tangible/wearables/base/serverobjects.lua")
 includeFile("tangible/wearables/belt/serverobjects.lua")
-includeFile("tangible/wearables/bracer/serverobjects.lua")
 includeFile("tangible/wearables/bikini/serverobjects.lua")
 includeFile("tangible/wearables/bodysuit/serverobjects.lua")
 includeFile("tangible/wearables/boots/serverobjects.lua")
@@ -77,4 +76,3 @@ includeFile("tangible/wearables/vest/serverobjects.lua")
 includeFile("tangible/wearables/wookiee/serverobjects.lua")
 
 -- Server Objects
-includeFile("tangible/wearables/armored_clothing/serverobjects.lua")

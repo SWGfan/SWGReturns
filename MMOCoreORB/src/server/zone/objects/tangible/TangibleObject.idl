@@ -24,9 +24,9 @@ import server.zone.objects.tangible.threat.ThreatMap;
 include server.zone.objects.scene.variables.AutoDeltaSet;
 include server.zone.objects.scene.variables.StringId;
 include system.thread.atomic.AtomicInteger;
+include server.zone.objects.intangible.ControlDevice;
 
 @json
-@mock
 class TangibleObject extends SceneObject {
 	protected boolean targetable;
 
@@ -65,7 +65,6 @@ class TangibleObject extends SceneObject {
 
 	protected byte objectVisible;
 	protected string craftersName;
-	protected unsigned long craftersID;
 
 	protected int junkDealerNeeded;
 	protected int junkValue;
@@ -86,8 +85,8 @@ class TangibleObject extends SceneObject {
 
 	protected SceneObject antiDecayKitObject;
 
-	protected boolean jediRobe;
-	protected boolean unionRing;
+	@weakReference
+	protected ControlDevice controlDevice;
 
 	/**
 	 * TangibleObject constructor, used to initialized the object
@@ -104,9 +103,6 @@ class TangibleObject extends SceneObject {
 
 		antiDecayKitObject = null;
 
-		jediRobe = false;
-		unionRing = false;
-
 		luaStringData.setAllowOverwriteInsertPlan();
 	}
 
@@ -122,7 +118,6 @@ class TangibleObject extends SceneObject {
 		complexity = 100.f;
 
 		volume = 1;
-		craftersID = 0;
 
 		objectVisible = 1;
 
@@ -137,6 +132,8 @@ class TangibleObject extends SceneObject {
 		threatMap = null;
 		junkDealerNeeded = 0;
 		junkValue = 0;
+
+		controlDevice = null;
 	}
 
 	/**
@@ -368,7 +365,6 @@ class TangibleObject extends SceneObject {
 	 * @post { }
 	 * @return returns true if the creature object can attack this
 	 */
-	@mock
 	@dirty
 	public native abstract boolean isAttackableBy(CreatureObject object);
 
@@ -559,10 +555,8 @@ class TangibleObject extends SceneObject {
 			clearOptionBit(OptionBitmask.YELLOW, notifyClient);
 	}
 
-	@mock
-	@dirty
 	@read
-	public abstract int getLevel() {
+	public int getLevel() {
 		return level;
 	}
 
@@ -606,9 +600,8 @@ class TangibleObject extends SceneObject {
 		return null;
 	}
 
-	@mock
 	@read
-	public native abstract boolean isDestroyed() {
+	public boolean isDestroyed() {
 		return conditionDamage >= maxCondition;
 	}
 
@@ -684,20 +677,6 @@ class TangibleObject extends SceneObject {
 		sliced = slice;
 	}
 
-	@read
-	public boolean isJediRobe() {
-		return jediRobe;
-	}
-
-	@read
-	public boolean isUnionRing() {
-		return unionRing;
-	}
-
-	public void setUnionRing(boolean val) {
-		unionRing = val;
-	}
-
 	public void setCustomizationString(final string vars) {
 		customizationVariables.parseFromClientString(vars);
 	}
@@ -712,18 +691,9 @@ class TangibleObject extends SceneObject {
 		craftersName = name;
 	}
 
-	public void setCraftersID(unsigned long crafterOID) {
-		craftersID = crafterOID;
-	}
-
 	@dirty
 	public abstract string getCraftersName() {
 		return craftersName;
-	}
-
-	@read
-	public unsigned long getCraftersID() {
-		return craftersID;
 	}
 
 	public void setJunkDealerNeeded(int jdNeeded) {
@@ -755,10 +725,9 @@ class TangibleObject extends SceneObject {
 		return objectSerial;
 	}
 
-	@mock
 	@local
 	@preLocked
-	public abstract native ThreatMap getThreatMap();
+	public native ThreatMap getThreatMap();
 
 	/*
 	 * Creates a factory crate for this object, can insert this object or a clone
@@ -963,4 +932,16 @@ class TangibleObject extends SceneObject {
 
 	@dirty
 	public native boolean isInNavMesh();
+
+	@preLocked
+	public void setControlDevice(ControlDevice device) {
+		controlDevice = device;
+	}
+
+	@weakReference
+	@read
+	public ControlDevice getControlDevice() {
+		return controlDevice;
+	}
 }
+

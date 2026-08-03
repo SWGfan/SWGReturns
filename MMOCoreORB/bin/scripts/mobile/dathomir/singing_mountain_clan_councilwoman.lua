@@ -2,18 +2,17 @@ singing_mountain_clan_councilwoman = Creature:new {
 	objectName = "@mob/creature_names:singing_mtn_clan_councilwoman",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "mtn_clan",
 	faction = "mtn_clan",
 	level = 253,
-	chanceHit = 14.1,
-	damageMin = 784,
-	damageMax = 844,
+	chanceHit = 23.5,
+	damageMin = 1395,
+	damageMax = 2500,
 	baseXp = 24180,
 	baseHAM = 261000,
 	baseHAMmax = 320000,
-	armor = 1,
-	resists = {10,35,35,10,10,10,10,10,20},
+	armor = 3,
+	resists = {100,35,35,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,55 +31,20 @@ singing_mountain_clan_councilwoman = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "power_crystals", chance = 1500000},
-				{group = "color_crystals", chance = 1500000},
-				{group = "armor_attachments", chance = 1500000},
-				{group = "clothing_attachments", chance = 1500000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "ranged_weapons", chance = 1000000},
-				{group = "wearables_rare", chance = 500000}
-			},
-				lootChance = 10000000,
-		},
-		{
-			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "power_crystals", chance = 1500000},
-				{group = "color_crystals", chance = 1500000},
-				{group = "armor_attachments", chance = 1500000},
-				{group = "clothing_attachments", chance = 1500000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "ranged_weapons", chance = 1000000},
-				{group = "wearables_rare", chance = 500000}
-			},
-				lootChance = 7500000,
-		},
-		{
-			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "power_crystals", chance = 1500000},
-				{group = "color_crystals", chance = 1500000},
-				{group = "armor_attachments", chance = 1500000},
-				{group = "clothing_attachments", chance = 1500000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "ranged_weapons", chance = 1000000},
-				{group = "wearables_rare", chance = 500000}
-			},
-				lootChance = 3500000,
-		},
+				{group = "junk", chance = 2000000},
+				{group = "power_crystals", chance = 2500000},
+				{group = "color_crystals", chance = 2500000},
+				{group = "armor_attachments", chance = 400000},
+				{group = "clothing_attachments", chance = 400000},
+				{group = "wearables_uncommon", chance = 1500000},
+				{group = "wearables_rare", chance = 650000},
+				{group = "named_color_crystals", chance = 50000}
+			}
+		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "force_sword",
-	secondaryWeapon = "unarmed",
+	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,swordsmanmaster,fencermaster,brawlermaster,forcepowermaster),
-	secondaryAttacks = forcepowermaster
+	attacks = merge(brawlermaster,pikemanmaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(singing_mountain_clan_councilwoman, "singing_mountain_clan_councilwoman")

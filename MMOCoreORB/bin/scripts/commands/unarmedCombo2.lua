@@ -44,15 +44,14 @@
 UnarmedCombo2Command = {
 	name = "unarmedcombo2",
 
-	damageMultiplier = 2,
-  speedMultiplier = 2.5,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 4,
-  mindCostMultiplier = 0,
-    visMod = 25,
-    accuracyBonus = 15,
+	damageMultiplier = 3.0,
+	speedMultiplier = 4.0,
+	healthCostMultiplier = 2.0,
+	actionCostMultiplier = 2.0,
+	mindCostMultiplier = 2.0,
+        accuracyBonus = 15,
 
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE + ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
 
 	animation = "combo_4a", 
 	animType = GENERATE_INTENSITY,
@@ -61,7 +60,7 @@ UnarmedCombo2Command = {
 	
 	weaponType = UNARMEDWEAPON,
 
-	range = 10
+	range = -1
 }
 
 AddCommand(UnarmedCombo2Command)

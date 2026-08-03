@@ -65,7 +65,7 @@ int LairObserverImplementation::notifyObserverEvent(unsigned int eventType, Obse
 			if (agent == nullptr)
 				continue;
 
-			agent->notifyObservers(arg2, sourceObject);
+			agent->activateInterrupt(sourceObject, arg2);
 		}
 
 		break;
@@ -167,13 +167,8 @@ void LairObserverImplementation::healLair(TangibleObject* lair, TangibleObject* 
 	for (int i = 0; i < spawnedCreatures.size() ; ++i) {
 		CreatureObject* creo = spawnedCreatures.get(i);
 
-		if (creo->isDead() || creo->getZone() == nullptr) {
+		if (creo->isDead() || creo->getZone() == nullptr)
 			continue;
-		}
-
-		if (lair->getDistanceTo(creo) > 20.0f) {
-			continue;
-		}
 
 		//  TODO: Range check
 		damageToHeal += lairMaxCondition / 100;
@@ -234,7 +229,7 @@ bool LairObserverImplementation::checkForNewSpawns(TangibleObject* lair, Tangibl
 			}
 			break;
 		case 3:
-			if (lairTemplate->hasBossMobs() && conditionDamage > ((maxCondition * 6) / 10)) {
+			if (lairTemplate->hasBossMobs() && conditionDamage > ((maxCondition * 9) / 10)) {
 				spawnNumber.increment();
 			} else {
 				return false;
@@ -249,7 +244,7 @@ bool LairObserverImplementation::checkForNewSpawns(TangibleObject* lair, Tangibl
 	VectorMap<String, int> objectsToSpawn; // String mobileTemplate, int number to spawn
 
 	if (spawnNumber == 4) {
-		if (System::random(100) > 79)
+		if (System::random(100) > 9)
 			return false;
 
 		const VectorMap<String, int>* mobs = lairTemplate->getBossMobiles();

@@ -2,8 +2,7 @@ r5 = Creature:new {
 	objectName = "@mob/creature_names:r5",
 	randomNameType = NAME_R5,
 	socialGroup = "townsperson",
-	mobType = MOB_DROID,
-	faction = "",
+	faction = "townsperson",
 	level = 4,
 	chanceHit = 0.24,
 	damageMin = 40,
@@ -22,27 +21,19 @@ r5 = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = NONE,
-	optionsBitmask = AIENABLED + INVULNERABLE,
+	pvpBitmask = NONE,
+	creatureBitmask = HERD,
+	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
-	customAiMap = "cityPatrol",
 
 	templates = {
 		"object/mobile/r5.iff"
 	},
+	hues = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63 },	
 	lootGroups = {},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = {},
-	secondaryAttacks = { }
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(r5, "r5")

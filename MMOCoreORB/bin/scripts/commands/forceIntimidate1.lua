@@ -45,8 +45,8 @@ ForceIntimidate1Command = {
 	name = "forceintimidate1",
 
 	damageMultiplier = 0,
-	speed = 1.0,
-	forceCost = 40,
+	speed = 2.5,
+	forceCost = 300,
 	accuracySkillMod = "forceintimidate_accuracy",
 	coneAngle = 30,
 	coneAction = true,
@@ -58,10 +58,10 @@ ForceIntimidate1Command = {
 		INTIMIDATE_EFFECT,
 		{},
 		{},
-		{ "force_defense" },
+		{ "jedi_state_defense" },
 		100,
 		0,
-		30
+		60
 	  )
 	},
 

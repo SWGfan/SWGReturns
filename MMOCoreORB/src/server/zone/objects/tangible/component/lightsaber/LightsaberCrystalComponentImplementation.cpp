@@ -297,11 +297,11 @@ void LightsaberCrystalComponentImplementation::fillAttributeList(AttributeListMe
 				alm->insertAttribute("maxdamage", damage);
 				alm->insertAttribute("wpn_attack_speed", attackSpeed);
 				alm->insertAttribute("wpn_wound_chance", woundChance);
-				//alm->insertAttribute("wpn_attack_cost_health", sacHealth);
-				//alm->insertAttribute("wpn_attack_cost_action", sacAction);
-				//alm->insertAttribute("wpn_attack_cost_mind", sacMind);
-				float decimalCost = floor((float)getForceCost()*100 + 0.5)/100;
-				alm->insertAttribute("forcecost", decimalCost);
+				alm->insertAttribute("wpn_attack_cost_health", sacHealth);
+				alm->insertAttribute("wpn_attack_cost_action", sacAction);
+				alm->insertAttribute("wpn_attack_cost_mind", sacMind);
+				float roundedForceCost = floor((float)getForceCost()*100 + 0.5)/100;
+				alm->insertAttribute("forcecost", roundedForceCost);
 
 				// For debugging
 				if (player->isPrivileged()) {
@@ -450,7 +450,7 @@ void LightsaberCrystalComponentImplementation::updateCraftingValues(CraftingValu
 	int color = values->getCurrentValue("color");
 
 	if (colorMax != 31) {
-		int finalColor = Math::min(color, 63);
+		int finalColor = Math::min(color, 30);
 		setColor(finalColor);
 		updateCrystal(finalColor);
 	} else {

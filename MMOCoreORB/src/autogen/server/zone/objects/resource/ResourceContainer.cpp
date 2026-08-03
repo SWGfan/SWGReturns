@@ -12,7 +12,7 @@
  *	ResourceContainerStub
  */
 
-enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1134655640,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SETQUANTITY__INT_BOOL_BOOL_BOOL_,RPC_ISRESOURCECONTAINER__,RPC_GETQUANTITY__,RPC_GETUSECOUNT__,RPC_SETUSECOUNT__INT_BOOL_,RPC_DECREASEUSECOUNT__INT_BOOL_,RPC_SETSPAWNOBJECT__RESOURCESPAWN_,RPC_GETSPAWNNAME__,RPC_GETSPAWNTYPE__,RPC_GETSPAWNID__,RPC_GETSPAWNOBJECT__,RPC_SPLIT__INT_,RPC_SPLIT__INT_CREATUREOBJECT_,RPC_COMBINE__RESOURCECONTAINER_};
+enum {RPC_INITIALIZETRANSIENTMEMBERS__ = 1134655640,RPC_DESTROYOBJECTFROMDATABASE__BOOL_,RPC_SENDBASELINESTO__SCENEOBJECT_,RPC_SETQUANTITY__INT_BOOL_BOOL_,RPC_ISRESOURCECONTAINER__,RPC_GETQUANTITY__,RPC_GETUSECOUNT__,RPC_SETUSECOUNT__INT_BOOL_,RPC_DECREASEUSECOUNT__INT_BOOL_,RPC_SETSPAWNOBJECT__RESOURCESPAWN_,RPC_GETSPAWNNAME__,RPC_GETSPAWNTYPE__,RPC_GETSPAWNID__,RPC_GETSPAWNOBJECT__,RPC_SPLIT__INT_,RPC_SPLIT__INT_CREATUREOBJECT_,RPC_COMBINE__RESOURCECONTAINER_};
 
 ResourceContainer::ResourceContainer() : TangibleObject(DummyConstructorParameter::instance()) {
 	ResourceContainerImplementation* _implementation = new ResourceContainerImplementation();
@@ -85,21 +85,20 @@ void ResourceContainer::sendBaselinesTo(SceneObject* player) {
 	}
 }
 
-void ResourceContainer::setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax, bool destroyEmpty) {
+void ResourceContainer::setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax) {
 	ResourceContainerImplementation* _implementation = static_cast<ResourceContainerImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_SETQUANTITY__INT_BOOL_BOOL_BOOL_);
+		DistributedMethod method(this, RPC_SETQUANTITY__INT_BOOL_BOOL_);
 		method.addUnsignedIntParameter(newQuantity);
 		method.addBooleanParameter(notifyClient);
 		method.addBooleanParameter(ignoreMax);
-		method.addBooleanParameter(destroyEmpty);
 
 		method.executeWithVoidReturn();
 	} else {
-		_implementation->setQuantity(newQuantity, notifyClient, ignoreMax, destroyEmpty);
+		_implementation->setQuantity(newQuantity, notifyClient, ignoreMax);
 	}
 }
 
@@ -587,14 +586,13 @@ void ResourceContainerAdapter::invokeMethod(uint32 methid, DistributedMethod* in
 			
 		}
 		break;
-	case RPC_SETQUANTITY__INT_BOOL_BOOL_BOOL_:
+	case RPC_SETQUANTITY__INT_BOOL_BOOL_:
 		{
 			unsigned int newQuantity = inv->getUnsignedIntParameter();
 			bool notifyClient = inv->getBooleanParameter();
 			bool ignoreMax = inv->getBooleanParameter();
-			bool destroyEmpty = inv->getBooleanParameter();
 			
-			setQuantity(newQuantity, notifyClient, ignoreMax, destroyEmpty);
+			setQuantity(newQuantity, notifyClient, ignoreMax);
 			
 		}
 		break;
@@ -715,8 +713,8 @@ void ResourceContainerAdapter::sendBaselinesTo(SceneObject* player) {
 	(static_cast<ResourceContainer*>(stub))->sendBaselinesTo(player);
 }
 
-void ResourceContainerAdapter::setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax, bool destroyEmpty) {
-	(static_cast<ResourceContainer*>(stub))->setQuantity(newQuantity, notifyClient, ignoreMax, destroyEmpty);
+void ResourceContainerAdapter::setQuantity(unsigned int newQuantity, bool notifyClient, bool ignoreMax) {
+	(static_cast<ResourceContainer*>(stub))->setQuantity(newQuantity, notifyClient, ignoreMax);
 }
 
 bool ResourceContainerAdapter::isResourceContainer() {

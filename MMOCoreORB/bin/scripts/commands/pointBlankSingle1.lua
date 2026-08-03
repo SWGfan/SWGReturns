@@ -44,14 +44,12 @@
 PointBlankSingle1Command = {
 	name = "pointblanksingle1",
 
-	damageMultiplier = 1.5,
-  speedMultiplier = 0.45,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 2,
-  mindCostMultiplier = 0,
-  accuracyBonus = 15,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	damageMultiplier = 2,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 15,
 
 	animation = "fire_3_single", 
 	animType = GENERATE_RANGED,
@@ -60,7 +58,7 @@ PointBlankSingle1Command = {
 	
 	weaponType = RANGEDWEAPON,
 
-	range = 10
+	range = 12
 }
 
 AddCommand(PointBlankSingle1Command)

@@ -2,7 +2,6 @@ kobola_miner = Creature:new {
 	objectName = "@mob/creature_names:kobola_miner",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "kobola",
 	faction = "kobola",
 	level = 8,
@@ -41,18 +40,10 @@ kobola_miner = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "ranged_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"ranged_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlernovice,marksmannovice),
-	secondaryAttacks = { }
+	attacks = merge(brawlernovice,marksmannovice)
 }
 
 CreatureTemplates:addCreatureTemplate(kobola_miner, "kobola_miner")

@@ -44,12 +44,12 @@
 ForceLightningCone1Command = {
 	name = "forcelightningcone1",
 
-	minDamage = 600,
-	maxDamage = 1150,
-	speed = 3.0,
-	forceCost = 55,
+	minDamage = 300,
+	maxDamage = 600,
+	speed = 4.0,
+	forceCost = 125,
 	accuracySkillMod = "forcelightning_accuracy",
-	coneAngle = 180,
+	coneAngle = 40,
 	coneAction = true,
 	visMod = 25,
 
@@ -58,27 +58,17 @@ ForceLightningCone1Command = {
 
 	combatSpam = "forcelightningcone1",
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	forceAttack = true,
 	damageType = ELECTRICITY_DAMAGE,
 
-	range = 32,
+	frsLightMinDamageModifier = 4,
+	frsLightMaxDamageModifier = 4,
+	frsDarkMinDamageModifier = 4,
+	frsDarkMaxDamageModifier = 4,
 
-	dotEffects = {
-		DotEffect(
-			ONFIRE,
-			{"resistance_fire", "fire_resist"},
-			HEALTH,
-			true,
-			0,
-			30,
-			100,
-			15,
-			10,
-			8
-		)
-	}
+	range = 32
 }
 
 AddCommand(ForceLightningCone1Command)

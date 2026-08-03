@@ -2,7 +2,6 @@ dune_stalker_brawler = Creature:new {
 	objectName = "@mob/creature_names:dune_stalker_brawler",
 	socialGroup = "dune_stalker",
 	faction = "",
-	mobType = MOB_NPC,
 	level = 17,
 	chanceHit = 0.32,
 	damageMin = 160,
@@ -39,18 +38,10 @@ dune_stalker_brawler = Creature:new {
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "tusken_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"tusken_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(brawlermaster,marksmanmaster),
-	secondaryAttacks = { }
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(dune_stalker_brawler, "dune_stalker_brawler")

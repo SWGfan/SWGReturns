@@ -2,7 +2,6 @@ woolamander_harrower = Creature:new {
 	objectName = "@mob/creature_names:woolamander_harrower",
 	socialGroup = "woolamander",
 	faction = "",
-	mobType = MOB_HERBIVORE,
 	level = 51,
 	chanceHit = 0.51,
 	damageMin = 400,
@@ -34,20 +33,15 @@ woolamander_harrower = Creature:new {
 			groups = {
 				{group = "harrower_bone", chance = 10000000}
 			},
-			lootChance = 7020000
+			lootChance = 2020000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"knockdownattack",""}, {"creatureareapoison",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"knockdownattack",""},
+		{"creatureareapoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(woolamander_harrower, "woolamander_harrower")

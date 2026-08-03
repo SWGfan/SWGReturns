@@ -46,13 +46,12 @@ StoppingShotCommand = {
 
 	damageMultiplier = 5.0,
 	speedMultiplier = 2.5,
-	healthCostMultiplier = 0,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 0,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 1.25,
+	mindCostMultiplier = 0.5,
 	accuracyBonus = 50,
-	 visMod = 25,
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	animation = "fire_1_special_single", 
 	animType = GENERATE_RANGED,

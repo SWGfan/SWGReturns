@@ -5,12 +5,9 @@
 
 #include "../objects.h"
 #include "server/login/account/Account.h"
-#include "server/db/AccountDatabase.h"
 #include "../objects/GalaxyBanEntry.h"
 
 AccountImplementation::AccountImplementation() {
-	created = 0;
-	hasUnlockedJediSlot = 0;
 	initializeTransientMembers();
 }
 
@@ -19,8 +16,10 @@ void AccountImplementation::initializeTransientMembers() {
 	accountID = 0;
 	stationID = 0;
 	adminLevel = 0;
+	created = 0;
 	banExpires = 0;
 	banAdmin = 0;
+	lastLogin = 0;
 }
 
 void AccountImplementation::updateFromDatabase() {
@@ -52,11 +51,10 @@ void AccountImplementation::updateAccount() {
 	query << "SELECT a.active, a.admin_level, "
 			<< "IFNULL((SELECT b.reason FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), ''), "
 			<< "IFNULL((SELECT b.expires FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0), "
-			<< "IFNULL((SELECT b.issuer_id FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0), "
-			<< "IFNULL(a.has_unlocked_jedi_slot, 0) "
+			<< "IFNULL((SELECT b.issuer_id FROM account_bans b WHERE b.account_id = a.account_id AND b.expires > UNIX_TIMESTAMP() ORDER BY b.expires DESC LIMIT 1), 0) "
 			<< "FROM accounts a WHERE a.account_id = '" << accountID << "' LIMIT 1;";
 
-	UniqueReference<ResultSet*> result(AccountDatabase::instance()->executeQuery(query));
+	UniqueReference<ResultSet*> result(ServerDatabase::instance()->executeQuery(query));
 
 	if (result->next()) {
 		setActive(result->getBoolean(0));
@@ -65,8 +63,15 @@ void AccountImplementation::updateAccount() {
 		setBanReason(result->getString(2));
 		setBanExpires(result->getUnsignedInt(3));
 		setBanAdmin(result->getUnsignedInt(4));
-		setHasUnlockedJediSlot(result->getUnsignedInt(5));
 	}
+
+	StringBuffer query1;
+	query1 << "SELECT UNIX_TIMESTAMP(timestamp) FROM account_log WHERE account_id = '" << accountID << "' ORDER BY UNIX_TIMESTAMP(timestamp) DESC LIMIT 1;";
+
+	Reference<ResultSet*> result1 = ServerDatabase::instance()->executeQuery(query1.toString());
+
+	if (result1->next())
+		setLastLogin(result1->getUnsignedInt(0));
 }
 
 void AccountImplementation::updateCharacters() {
@@ -77,7 +82,7 @@ void AccountImplementation::updateGalaxyBans() {
 	StringBuffer query;
 	query << "SELECT * FROM galaxy_bans as gb WHERE account_id=" << getAccountID() << " and expires > UNIX_TIMESTAMP()";
 
-	UniqueReference<ResultSet*> results(AccountDatabase::instance()->executeQuery(query));
+	UniqueReference<ResultSet*> results(ServerDatabase::instance()->executeQuery(query));
 
 	galaxyBans.removeAll();
 
@@ -157,4 +162,15 @@ uint32 AccountImplementation::getAgeInDays() const {
 
 bool AccountImplementation::isSqlLoaded() const {
 	return (accountID || stationID || adminLevel || created);
+}
+
+uint32 AccountImplementation::getLastLoginInDays() {
+	if (lastLogin == 0) {
+		throw Exception("Account Object has lastLogin set as 0 in getLastLoginInDays");
+	}
+
+	Time currentTime;
+	Time lastLoginTime(getLastLogin());
+	uint32 lastLoginSecs = currentTime.getTime() - lastLoginTime.getTime();
+	return lastLoginSecs / 24 / 60 / 60;
 }

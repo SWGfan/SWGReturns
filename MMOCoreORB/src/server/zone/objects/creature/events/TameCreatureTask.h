@@ -90,15 +90,9 @@ public:
 				resetStatus();
 
 				int ferocity = creature->getFerocity();
-				int aggroChance = System::random(20 - ferocity);
 
-				if (aggroChance == 0 && creature->isAiAgent()) {
-					AiAgent* agent = creature->asAiAgent();
-
-					if (agent != nullptr) {
-						Locker aLock(agent);
-						agent->addDefender(player);
-					}
+				if (System::random(20 - ferocity) == 0) {
+					CombatManager::instance()->startCombat(creature,player,true);
 				}
 			}
 
@@ -209,7 +203,7 @@ public:
 			agent->clearPatrolPoints();
 
 			agent->setCreatureBitmask(CreatureFlag::PET);
-			agent->setAITemplate();
+			agent->activateLoad("");
 		}
 
 		creature->getZone()->broadcastObject(creature, true);
@@ -236,15 +230,9 @@ public:
 			return;
 
 		creature->setPvpStatusBitmask(originalMask, true);
-
 		if (creature->isAiAgent()) {
 			AiAgent* agent = cast<AiAgent*>(creature.get());
-
-			if (agent == nullptr)
-				return;
-
-			agent->clearCreatureBit(CreatureFlag::STATIONARY);
-			agent->setAITemplate();
+			agent->activateLoad("");
 		}
 	}
 };

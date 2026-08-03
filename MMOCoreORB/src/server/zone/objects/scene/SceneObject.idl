@@ -6,7 +6,7 @@ package server.zone.objects.scene;
 
 import engine.log.Logger;
 import engine.util.u3d.Coordinate;
-include server.zone.TreeEntry;
+include server.zone.QuadTreeEntry;
 import system.util.Vector;
 import system.util.VectorMap;
 import engine.util.u3d.Quaternion;
@@ -24,7 +24,6 @@ include server.zone.objects.scene.SceneObjectType;
 import server.zone.ZoneProcessServer;
 import server.zone.ZoneClientSession;
 import server.zone.Zone;
-import server.zone.GroundZone;
 import server.zone.ZoneServer;
 import server.zone.objects.building.BuildingObject;
 import server.zone.packets.object.ObjectMenuResponse;
@@ -38,10 +37,9 @@ include server.zone.objects.scene.variables.PendingTasksMap;
 include server.zone.objects.scene.SessionFacadeType;
 include server.zone.objects.scene.ObserverType;
 include templates.manager.PlanetMapCategory;
-include templates.manager.PlanetMapSubCategory;
 include templates.manager.TemplateManager;
 include templates.SharedObjectTemplate;
-include server.zone.objects.scene.components.GroundZoneComponent;
+include server.zone.objects.scene.components.ZoneComponent;
 include server.zone.objects.scene.components.ObjectMenuComponent;
 include server.zone.objects.scene.components.ContainerComponent;
 include server.zone.objects.scene.components.AttributeListComponent;
@@ -55,22 +53,17 @@ include server.zone.objects.scene.variables.ContainerObjectsMap;
 import server.zone.objects.tangible.TangibleObject;
 import server.zone.objects.creature.ai.AiAgent;
 include templates.appearance.MeshData;
-include templates.appearance.AppearanceTemplate;
 include templates.collision.BaseBoundingVolume;
 include server.zone.objects.scene.variables.StdFunction;
 include server.metrics.Metrics;
 include engine.util.JSONSerializationType;
-include server.zone.objects.scene.variables.OrderedTaskExecutioner;
-import server.zone.objects.ship.ShipObject;
-import server.zone.objects.ship.FighterShipObject;
 
 @mock
 @json
-class SceneObject extends TreeEntry implements Logger, Metrics {
+class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 	protected transient ZoneProcessServer server;
 
-	protected transient GroundZoneComponent groundZoneComponent;
-
+	protected transient ZoneComponent zoneComponent;
 	protected transient ObjectMenuComponent objectMenuComponent;
 	protected transient AttributeListComponent attributeListComponent;
 	protected transient ContainerComponent containerComponent;
@@ -118,10 +111,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	protected unsigned int containmentType;
 
 	protected int planetMapCategory;
-	protected string mapCategoryName;
-
 	protected int planetMapSubCategory;
-	protected string mapSubCategoryName;
 
 	protected unicode customName;
 
@@ -148,14 +138,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	protected unsigned long originalObjectID;
 
 	protected boolean forceNoTrade;
-
-	protected transient boolean debuggingRegions;
-
-	protected transient unsigned long syncTime;
-
-	protected transient unsigned long syncStamp;
-
-	private transient float boundingRadius;
 
 	/**
 	 * SceneObject constructor, used to initialize the object.
@@ -300,10 +282,8 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 * @param range range to check
 	 * @return returns true if this object is in range with obj
 	 */
-	@mock
 	@dirty
-	public abstract native boolean isInRange(SceneObject obj, float range);
-
+	public native boolean isInRange(SceneObject obj, float range);
 	/**
 	 * Evaluates if the object is in range without checking zone
 	 * @pre { this object is locked, obj is locked}
@@ -314,7 +294,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	@dirty
 	public native boolean isInRangeZoneless(SceneObject obj, float range);
-
 	/**
 	 * Evaluates if the object is in range using 3 dimensions
 	 * @pre { this object is locked, obj is locked}
@@ -325,17 +304,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	@dirty
 	public native boolean isInRange3d(SceneObject obj, float range);
-
-		/**
-	 * Evaluates if the object is in range without checking zone
-	 * @pre { this object is locked, obj is locked}
-	 * @post { thisobject is locked, obj is locked }
-	 * @param obj object that will be checked against
-	 * @param range range to check
-	 * @return returns true if this object is in range with obj
-	 */
-	@dirty
-	public native boolean isInRange3dZoneless(SceneObject obj, float range);
 
 	/**
 	 * Tries to add/link object
@@ -357,12 +325,14 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 * @param notifyClient not used currently
 	 * @return returns true if the object has been successfully removed
 	 */
-	public native abstract boolean removeObject(SceneObject object, SceneObject destination, boolean notifyClient = false, boolean nullifyParent = true);
+	public native abstract boolean removeObject(SceneObject object, SceneObject destination, boolean notifyClient = false);
 
 	/**
 	 * Destroys the object from the world
 	 */
-	public native abstract void destroyObjectFromWorld(boolean sendSelfDestroy);
+	public abstract void destroyObjectFromWorld(boolean sendSelfDestroy) {
+		zoneComponent.destroyObjectFromWorld(this, sendSelfDestroy);
+	}
 
 	/**
 	 * Removes object from zone without removing from parent. Should only be used for container unloading.
@@ -485,7 +455,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 * @param containmentType arrangement type?
 	 */
 	@dirty
-	protected native void link(SceneObject client, unsigned int containmentType);
+	protected native void link(SceneObject client, unsigned int containmentType = 4);
 
 	/**
 	 * Creates a new UpdateContainmentMessage that adds/links this object to the specified objectID
@@ -497,7 +467,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	@dirty
 	@local
-	public native BaseMessage link(unsigned long objectID, unsigned int containmentType);
+	public native BaseMessage link(unsigned long objectID, unsigned int containmentType = 4);
 
 	/**
 	 * Sends the necessary messages to player in order to create this object
@@ -644,7 +614,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 * @param newPositionZ new position Z
 	 * @param newPositionY new position Y
 	 */
-	public native abstract void switchZone(final string newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long parentID = 0, boolean  toggleInvisibility = false, int playerArrangement = -1);
+	public native abstract void switchZone(final string newTerrainName, float newPostionX, float newPositionZ, float newPositionY, unsigned long parentID = 0, boolean  toggleInvisibility = false);
 
 	public native abstract void teleport(float newPositionX, float newPositionZ, float newPositionY, unsigned long parentID = 0);
 
@@ -656,10 +626,14 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	public native void updateDirection(float angleHeadingRadians);
 
 	@local
-	public native void notifyInsert(TreeEntry entry);
+	public void notifyInsert(QuadTreeEntry entry) {
+		zoneComponent.notifyInsert(this, entry);
+	}
 
 	@local
-	public abstract native void notifyDissapear(TreeEntry entry);
+	public void notifyDissapear(QuadTreeEntry entry) {
+		zoneComponent.notifyDissapear(this, entry);
+	}
 
 	public native abstract void notifyRemoveFromZone();
 
@@ -762,10 +736,9 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 * @post { this object is locked, objects is a vector map with the contained objects and their occupied slots }
 	 * @param objects the vector map that will contain the objects and their occupied slots
 	 */
-	@mock
 	@local
 	@dirty
-	public abstract native void getSlottedObjects(@dereferenced VectorMap<string, SceneObject> objects);
+	public native void getSlottedObjects(@dereferenced VectorMap<string, SceneObject> objects);
 
 	@local
 	@dirty
@@ -807,7 +780,9 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@local
 	@dirty
 	public void executeOrderedTask(Task task) {
-		getPendingTasks().putOrdered(task, this);
+		synchronized (containerLock) {
+			getPendingTasks().putOrdered(task, this);
+		}
 	}
 
 	/**
@@ -939,23 +914,12 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	public native abstract int handleObjectMenuSelect(CreatureObject player, byte selectedID);
 
-	@mock
 	@dirty
-	public abstract native float getDistanceTo(SceneObject object);
+	public native float getDistanceTo(SceneObject object);
 
-	@mock
-	@dirty
-	public abstract native float getDistanceTo3d(SceneObject object);
-
-	@mock
 	@local
 	@dirty
-	public abstract native float getDistanceTo(Coordinate coordinate);
-
-	@mock
-	@local
-	@dirty
-	public abstract native float getDistanceTo3d(Coordinate coordinate);
+	public native float getDistanceTo(Coordinate coordinate);
 
 	public abstract native void updateVehiclePosition(boolean sendPackets);
 
@@ -997,13 +961,11 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		cityRegion = region;
 	}
 
-	@mock
 	@dirty
-	public abstract native Zone getZone();
+	public native Zone getZone();
 
-	@mock
 	@read
-	public abstract native Zone getZoneUnsafe();
+	public native Zone getZoneUnsafe();
 
 	@read
 	public Zone getLocalZone() {
@@ -1019,6 +981,24 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@dereferenced
 	@dirty
 	public native Vector3 getWorldCoordinate(float distance, float angleDegrees, boolean includeZ);
+
+	@mock
+	@dirty
+	public native float getWorldPositionX();
+
+	@dirty
+	@mock
+	public native float getWorldPositionY();
+
+	@dirty
+	@mock
+	public native float getWorldPositionZ();
+
+	@dirty
+	@local
+	@dereferenced
+	@mock
+	public native Vector3 getWorldPosition();
 
 	@read
 	public float getDirectionX() {
@@ -1124,18 +1104,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@dirty
 	@reference
-	@mock
-	public abstract native SceneObject getSlottedObject(final string slot);
-
-	@dirty
-	@reference
-	@mock
-	public abstract native SceneObject getInventory();
-
-	@dirty
-	@reference
-	@mock
-	public abstract native SceneObject getDatapad();
+	public native SceneObject getSlottedObject(final string slot);
 
 	@read
 	public int getSlotDescriptorSize() {
@@ -1267,9 +1236,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return gameObjectType;
 	}
 
-	@dirty
-	public native string getGameObjectTypeStringID();
-
 	@read
 	public unsigned int getClientGameObjectType() {
 		return templateObject.getClientGameObjectType();
@@ -1297,8 +1263,11 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	public native void rotate(int degrees);
 
-	public native void rotatePitch(int degrees);
-	public native void rotateRoll(int degrees);
+	/**
+	 * Rotate on the "Roll" X Axis and "Pitch" Y Axis.
+	 */
+	public native void rotateXaxis(int degrees);
+	public native void rotateYaxis(int degrees);
 
 	/**
 	 * Sets this objects direction so that the object is facing the specified object.
@@ -1307,14 +1276,13 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	 */
 	public native void faceObject(SceneObject obj, boolean notifyClient = false);
 
-	@mock
 	@read
-	public abstract native boolean isFacingObject(SceneObject obj);
+	public native boolean isFacingObject(SceneObject obj);
 
 	public native abstract void notifySelfPositionUpdate();
 
 	@dirty
-	public native void notifyPositionUpdate(TreeEntry entry);
+	public native void notifyPositionUpdate(QuadTreeEntry entry);
 
 	/**
 	 * @param player player that closed the container
@@ -1326,16 +1294,15 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return movementCounter;
 	}
 
-	@mock
 	@dirty
 	@weakReference
 	public native SceneObject getParent();
 
 	@dirty
-	public native void setParent(TreeEntry entry);
+	public native void setParent(QuadTreeEntry entry);
 
 	@dirty
-	public native void setParent(TreeEntry entry, boolean updateRecursively);
+	public native void setParent(QuadTreeEntry entry, boolean updateRecursively);
 
 	@read
 	public ZoneServer getZoneServer() {
@@ -1402,6 +1369,13 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	@read
+	public boolean isVendor() {
+		return dataObjectComponent.get() != null &&
+		dataObjectComponent.get().isVendorData();
+	}
+
+	@local
+	@read
 	public boolean isGCWBase(){
 		return dataObjectComponent.get() != null &&
 		dataObjectComponent.get().isGCWBaseData();
@@ -1423,9 +1397,9 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	@read
-	public boolean isScanner() {
+	public boolean isDetector() {
 		return dataObjectComponent.get() != null &&
-		dataObjectComponent.get().isScannerData();
+		dataObjectComponent.get().isDetectorData();
 	}
 
 	@local
@@ -1451,8 +1425,8 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	@read
-	public GroundZoneComponent getGroundZoneComponent() {
-		return groundZoneComponent;
+	public ZoneComponent getZoneComponent() {
+		return zoneComponent;
 	}
 
 	@local
@@ -1481,8 +1455,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	public native void setContainerComponent(final string name);
-
-	public native void setGroundZoneComponent(final string name);
+	public native void setZoneComponent(final string name);
 
 	public void setForceNoTrade(boolean newForceNoTrade) {
 		forceNoTrade = newForceNoTrade;
@@ -1495,7 +1468,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@read
 	public boolean isForceNoTrade() {
-		return forceNoTrade || templateObject.isForceNoTrade();
+		return forceNoTrade;
 	}
 
 	@read
@@ -1519,17 +1492,11 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	}
 
 	@dirty
-	public abstract boolean isRidingMount() {
-		return false;
-	}
-
-	@dirty
 	@local
 	@nativeStub
 	@virtualStub
 	public abstract native boolean isCreatureObject();
 
-	@mock
 	@dirty
 	@local
 	@nativeStub
@@ -1546,50 +1513,17 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@local
 	@nativeStub
 	@virtualStub
-	public abstract native boolean isVendor();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
 	public native abstract AiAgent asAiAgent();
 
 	@dirty
-	@local
-	public native abstract boolean isPlayerShip();
+	public abstract boolean isCreature() {
+		return false;
+	}
 
 	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public abstract native boolean isShipObject();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract ShipObject asShipObject();
-
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public abstract native boolean isFighterShip();
-
-	@mock
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract FighterShipObject asFighterShip();
-
-	@dirty
-	@local
-	@nativeStub
-	@virtualStub
-	public native abstract boolean isCreature();
+	public abstract boolean isShipObject() {
+		return false;
+	}
 
 	@dirty
 	@local
@@ -1598,27 +1532,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	public native abstract boolean isVehicleObject();
 
 	@dirty
-	public abstract boolean isShipComponentObject() {
-		return false;
-	}
-
-	@dirty
-	public abstract boolean isSchematicFragmentObject() {
-		return false;
-	}
-
-	@dirty
 	public abstract boolean isDroidObject() {
-		return false;
-	}
-
-	@dirty
-	public abstract boolean isHelperDroidObject() {
-		return false;
-	}
-
-	@dirty
-	public abstract boolean isHyperspacing() {
 		return false;
 	}
 
@@ -1694,7 +1608,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return false;
 	}
 
-	@mock
 	@dirty
 	@local
 	public abstract TangibleObject asTangibleObject() {
@@ -1781,11 +1694,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return false;
 	}
 
-	@dirty
-	public abstract boolean isDotPackObject() {
-		return false;
-	}
-
 	@read
 	public boolean isFishingPoleObject() {
 		return gameObjectType == SceneObjectType.FISHINGPOLE;
@@ -1812,17 +1720,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	}
 
 	@dirty
-	public abstract boolean isShipDeedObject() {
-		return false;
-	}
-
-	@dirty
 	public abstract boolean isSignObject() {
-		return false;
-	}
-
-	@dirty
-	public abstract boolean isSpawnEggObject() {
 		return false;
 	}
 
@@ -1911,41 +1809,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return gameObjectType == SceneObjectType.ANTIDECAYKIT;
 	}
 
-	@read
-	public boolean isPilotChair() {
-		return gameObjectType == SceneObjectType.PILOTCHAIR;
-	}
-
-	@read
-	public boolean isOperationsChair() {
-		return gameObjectType == SceneObjectType.OPERATIONSCHAIR;
-	}
-
-	@read
-	public boolean isShipTurret() {
-		return gameObjectType == SceneObjectType.TURRETACCESSLADDER;
-	}
-
-	@read
-	public boolean isShipComponentRepairKit() {
-		return gameObjectType == SceneObjectType.SHIPCOMPONENTREPAIRITEM;
-	}
-
-	@read
-	public boolean isShipInteriorComponent() {
-		return gameObjectType == SceneObjectType.SHIPINTERIORCOMPONENT || gameObjectType == SceneObjectType.SHIPPLASMACONDUIT;
-	}
-
-	@read
-	public native boolean isShipPlasmaConduit() {
-		return gameObjectType == SceneObjectType.SHIPPLASMACONDUIT;
-	}
-
-	@read
-	public abstract boolean isInShipStation() {
-		return false;
-	}
-
 	@local
 	@read
 	public final ContainerPermissions getContainerPermissions() {
@@ -2024,7 +1887,7 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		return server;
 	}
 
-	public abstract native void setZone(Zone newZone);
+	public abstract native void setZone(Zone zone);
 
 	@local
 	public abstract native void setObjectName(@dereferenced final StringId stringID, boolean notifyClient);
@@ -2125,6 +1988,11 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	}
 
 	@dirty
+	public abstract boolean isStructureControlDevice() {
+		return false;
+	}
+
+	@dirty
 	public abstract boolean isMissionTerminal() {
 		return false;
 	}
@@ -2145,38 +2013,21 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	}
 
 	@read
-	public string getPlanetMapCategoryName() {
-		return mapCategoryName;
-	}
-
-	@read
 	public int getPlanetMapSubCategoryCRC() {
 		return planetMapSubCategory;
 	}
 
-	@read
-	public string getPlanetMapSubCategoryName() {
-		return mapSubCategoryName;
-	}
-
 	@local
 	public void setPlanetMapCategory(final PlanetMapCategory pmc) {
-		if (pmc == null) {
+		if (!pmc)
 			planetMapCategory = 0;
-		} else {
+		else
 			planetMapCategory = pmc.getCrc();
-			mapCategoryName = pmc.getName();
-		}
 	}
 
 	@local
-	public void setPlanetMapSubCategory(final PlanetMapSubCategory subPmc)  {
-		if (subPmc == null) {
-			planetMapSubCategory = 0;
-		} else {
-			planetMapSubCategory = subPmc.getCrc();
-			mapSubCategoryName = subPmc.getName();
-		}
+	public void setPlanetMapSubCategory(final PlanetMapCategory pmc)  {
+		planetMapSubCategory = pmc.getCrc();
 	}
 
 	@local
@@ -2188,9 +2039,9 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 
 	@local
 	@read
-	public final PlanetMapSubCategory getPlanetMapSubCategory() {
+	public final PlanetMapCategory getPlanetMapSubCategory() {
 		TemplateManager templateManager = TemplateManager.instance();
-		return templateManager.getPlanetMapSubCategoryByCrc(planetMapSubCategory);
+		return templateManager.getPlanetMapCategoryByCrc(planetMapSubCategory);
 	}
 
 	@local
@@ -2232,11 +2083,8 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 		childObjects.drop(obj);
 	}
 
-	@dirty
-	public abstract void selectConversationOption(int option, SceneObject obj) {
-	}
-
 	@local
+	@dirty
 	public Matrix4 getTransformForCollisionMatrix() {
 		return transformForCollisionMatrix;
 	}
@@ -2297,11 +2145,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	}
 
 	@dirty
-	public abstract boolean isSpaceSpawner() {
-		return false;
-	}
-
-	@dirty
 	public abstract boolean isEventPerkDeed() {
 		return false;
 	}
@@ -2314,7 +2157,6 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@read
 	public native boolean isDataPad();
 
-	@mock
 	@dirty
 	public native abstract float getTemplateRadius();
 
@@ -2323,14 +2165,9 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@read
 	public abstract native Vector<Reference<MeshData> > getTransformedMeshData(final Matrix4 parentTransform);
 
+	@dirty
 	@local
-	@read
 	public abstract native final BaseBoundingVolume getBoundingVolume();
-
-
-	@local
-	@read
-	public abstract native final BaseBoundingVolume getCollisionVolume();
 
 	@dirty
 	public abstract native boolean isInNavMesh();
@@ -2345,50 +2182,5 @@ class SceneObject extends TreeEntry implements Logger, Metrics {
 	@dirty
 	@local
 	public abstract native void getChildrenRecursive(@dereferenced SortedVector<unsigned long> childrenObjectsFound, int maxDepth = 50, boolean pruneCreo = false, boolean pruneCraftedComponents = false);
-
-	@dirty
-	public abstract boolean canBeTransferred(SceneObject newContainer) {
-		return true;
-	}
-
-	@dirty
-	public native boolean isNearBank();
-
-	@preLocked
-	public void setDebuggingRegions(boolean val) {
-		debuggingRegions = val;
-	}
-
-	@read
-	public boolean isDebuggingRegions() {
-		return debuggingRegions;
-	}
-
-	@dirty
-	public abstract boolean checkInConversationRange(SceneObject target) {
-		return false;
-	}
-
-	@local
-	public native abstract void setSyncStamp(unsigned int value);
-
-	public native abstract unsigned int getSyncStamp();
-
-	@dirty
-	public abstract int getCurrentNumberOfPlayerItems() {
-		return 0;
-	}
-
-	@dirty
-	public abstract unsigned int getMaximumNumberOfPlayerItems() {
-		return 0;
-	}
-
-	@read
-	@local
-	public native final AppearanceTemplate getAppearanceTemplate();
-
-	public native void setBoundingRadius(float value);
-
-	public native float getBoundingRadius();
 }
+

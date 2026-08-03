@@ -8,13 +8,13 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 
-#include "server/zone/TreeEntry.h"
+#include "server/zone/QuadTreeEntry.h"
 
 /*
  *	PoiBuildingStub
  */
 
-enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 577384991,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_NOTIFYINSERT__TREEENTRY_,RPC_NOTIFYDISSAPEAR__TREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISPOIBUILDING__};
+enum {RPC_GETNUMBEROFPLAYERSINRANGE__ = 577384991,RPC_GETDESPAWNONNOPLAYERSINRANGE__,RPC_SETDESPAWNONNOPLAYERSINRANGE__BOOL_,RPC_NOTIFYINSERT__QUADTREEENTRY_,RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_,RPC_ACTIVATEDESPAWNEVENT__,RPC_CLEARDESPAWNEVENT__,RPC_ISPOIBUILDING__};
 
 PoiBuilding::PoiBuilding() : BuildingObject(DummyConstructorParameter::instance()) {
 	PoiBuildingImplementation* _implementation = new PoiBuildingImplementation();
@@ -76,13 +76,13 @@ void PoiBuilding::setDespawnOnNoPlayersInRange(bool b) {
 	}
 }
 
-void PoiBuilding::notifyInsert(TreeEntry* entry) {
+void PoiBuilding::notifyInsert(QuadTreeEntry* entry) {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYINSERT__TREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYINSERT__QUADTREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -91,13 +91,13 @@ void PoiBuilding::notifyInsert(TreeEntry* entry) {
 	}
 }
 
-void PoiBuilding::notifyDissapear(TreeEntry* entry) {
+void PoiBuilding::notifyDissapear(QuadTreeEntry* entry) {
 	PoiBuildingImplementation* _implementation = static_cast<PoiBuildingImplementation*>(_getImplementation());
 	if (unlikely(_implementation == NULL)) {
 		if (!deployed)
 			throw ObjectNotDeployedException(this);
 
-		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__TREEENTRY_);
+		DistributedMethod method(this, RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_);
 		method.addObjectParameter(entry);
 
 		method.executeWithVoidReturn();
@@ -321,7 +321,7 @@ void PoiBuildingImplementation::setDespawnOnNoPlayersInRange(bool b) {
 	despawnOnNoPlayersInRange = b;
 }
 
-void PoiBuildingImplementation::notifyInsert(TreeEntry* entry) {
+void PoiBuildingImplementation::notifyInsert(QuadTreeEntry* entry) {
 	// server/zone/objects/building/PoiBuilding.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/building/PoiBuilding.idl():  		if 
@@ -341,7 +341,7 @@ void PoiBuildingImplementation::notifyInsert(TreeEntry* entry) {
 }
 }
 
-void PoiBuildingImplementation::notifyDissapear(TreeEntry* entry) {
+void PoiBuildingImplementation::notifyDissapear(QuadTreeEntry* entry) {
 	// server/zone/objects/building/PoiBuilding.idl():  		SceneObject obj = (SceneObject) entry;
 	ManagedReference<SceneObject* > obj = dynamic_cast<SceneObject*>(entry);
 	// server/zone/objects/building/PoiBuilding.idl():  		if 
@@ -425,17 +425,17 @@ void PoiBuildingAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			
 		}
 		break;
-	case RPC_NOTIFYINSERT__TREEENTRY_:
+	case RPC_NOTIFYINSERT__QUADTREEENTRY_:
 		{
-			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
+			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
 			
 			notifyInsert(entry);
 			
 		}
 		break;
-	case RPC_NOTIFYDISSAPEAR__TREEENTRY_:
+	case RPC_NOTIFYDISSAPEAR__QUADTREEENTRY_:
 		{
-			TreeEntry* entry = static_cast<TreeEntry*>(inv->getObjectParameter());
+			QuadTreeEntry* entry = static_cast<QuadTreeEntry*>(inv->getObjectParameter());
 			
 			notifyDissapear(entry);
 			
@@ -479,11 +479,11 @@ void PoiBuildingAdapter::setDespawnOnNoPlayersInRange(bool b) {
 	(static_cast<PoiBuilding*>(stub))->setDespawnOnNoPlayersInRange(b);
 }
 
-void PoiBuildingAdapter::notifyInsert(TreeEntry* entry) {
+void PoiBuildingAdapter::notifyInsert(QuadTreeEntry* entry) {
 	(static_cast<PoiBuilding*>(stub))->notifyInsert(entry);
 }
 
-void PoiBuildingAdapter::notifyDissapear(TreeEntry* entry) {
+void PoiBuildingAdapter::notifyDissapear(QuadTreeEntry* entry) {
 	(static_cast<PoiBuilding*>(stub))->notifyDissapear(entry);
 }
 

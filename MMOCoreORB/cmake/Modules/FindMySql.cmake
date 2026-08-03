@@ -39,7 +39,9 @@ ENDIF (MYSQL_LIB)
 #-------------- FIND MYSQL_INCLUDE_DIR ------------------
 FIND_PATH(MYSQL_INCLUDE_DIR mysql.h
         /usr/include/mysql
+        /usr/include/mariadb
         /usr/local/include/mysql
+        /usr/local/include/mariadb
         /opt/mysql/mysql/include
         /opt/mysql/mysql/include/mysql
         /opt/mysql/include

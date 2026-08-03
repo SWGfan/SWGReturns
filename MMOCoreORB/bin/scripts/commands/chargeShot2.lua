@@ -44,13 +44,12 @@
 ChargeShot2Command = {
         name = "chargeshot2",
 
-	damageMultiplier = 1.5,
-  speedMultiplier = 3,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1,
-  mindCostMultiplier = 0,
-  accuracyBonus = 25,
-    visMod = 25,
+	damageMultiplier = 3.7,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0.5,
+	actionCostMultiplier = 1.5,
+	mindCostMultiplier = 0.5,
+	accuracyBonus = 25,
 
 	animation = "charge",
 
@@ -71,7 +70,7 @@ ChargeShot2Command = {
 	  )
 	},
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 	
 	weaponType = CARBINEWEAPON,
 

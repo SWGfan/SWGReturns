@@ -258,14 +258,6 @@ public:
 
 	int getPaintCount() const;
 
-	void setRentalVehicle(bool value);
-
-	bool isRentalVehicle() const;
-
-	void setUses(int value);
-
-	int getUses() const;
-
 	bool isVehicleObject();
 
 	unsigned int getArmor();
@@ -320,10 +312,6 @@ protected:
 	int vehicleType;
 
 	int paintCount;
-
-	bool rentalVehicle;
-
-	int uses;
 
 public:
 	static const int PAINTCHARGES = 999;
@@ -475,14 +463,6 @@ public:
 
 	int getPaintCount() const;
 
-	void setRentalVehicle(bool value);
-
-	bool isRentalVehicle() const;
-
-	void setUses(int value);
-
-	int getUses() const;
-
 	bool isVehicleObject();
 
 	unsigned int getArmor();
@@ -589,14 +569,6 @@ public:
 
 	int getPaintCount() const;
 
-	void setRentalVehicle(bool value);
-
-	bool isRentalVehicle() const;
-
-	void setUses(int value);
-
-	int getUses() const;
-
 	unsigned int getArmor();
 
 	float getKinetic();
@@ -655,10 +627,6 @@ public:
 	Optional<int> vehicleType;
 
 	Optional<int> paintCount;
-
-	Optional<bool> rentalVehicle;
-
-	Optional<int> uses;
 
 	String _className;
 	VehicleObjectPOD();

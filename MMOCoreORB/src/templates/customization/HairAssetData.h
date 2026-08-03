@@ -54,14 +54,6 @@ public:
 		return serverTemplate;
 	}
 
-	void setServerTemplate(const String& serverTemplate) {
-		this->serverTemplate = serverTemplate;
-	}
-
-	void setAvailableAtCreation(bool available) {
-		this->availableAtCreation = available;
-	}
-
 	String getSharedTemplate() const {
 		return sharedTemplate;
 	}

@@ -83,5 +83,3 @@ includeFile("fs_village_area.lua")
 
 -- Custom content - Loads last to allow for overrides
 includeFile("../custom_scripts/object/serverobjects.lua")
-
-includeFile("custom_content/serverobjects.lua")

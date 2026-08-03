@@ -116,11 +116,9 @@ public:
 
 	void addEntertainerFlourishBuff();
 
-	void startDancing(int perfIndex);
+	void startDancing(const String& dance, const String& animation);
 
-	void startPlayingMusic(int perfIndex, Instrument* instrument);
-
-	void joinBand();
+	void startPlayingMusic(const String& song, const String& instrumentAnimation, int instrid);
 
 	void startEntertaining();
 
@@ -146,11 +144,7 @@ public:
 
 	int clearSession();
 
-	void stopPlaying();
-
-	void stopMusic(bool skipOutro, bool bandStop = false, bool isBandLeader = false);
-
-	void clearOutro(bool bandStop, bool isBandLeader);
+	void stopPlayingMusic();
 
 	void stopDancing();
 
@@ -172,17 +166,19 @@ public:
 
 	int getEntertainerBuffStartTime(CreatureObject* creature, int performanceType);
 
-	void sendEntertainingUpdate(CreatureObject* creature, int performanceType, bool startPerformance);
+	void sendEntertainingUpdate(CreatureObject* creature, float entval, const String& performance, unsigned int perfcntr, int instrid);
 
-	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood);
+	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood, bool updateEntValue = false);
 
 	void activateEntertainerBuff(CreatureObject* creature, int performanceType);
 
+	Instrument* getInstrument(CreatureObject* creature);
+
 	String getPerformanceName();
 
-	void addPatron(CreatureObject* creature);
+	void addWatcher(CreatureObject* creature);
 
-	void removePatron(CreatureObject* creature);
+	void addListener(CreatureObject* listener);
 
 	bool isDancing();
 
@@ -192,7 +188,15 @@ public:
 
 	void setAcceptingBandFlourishes(bool val);
 
-	void doPerformEffect(int effectId, int effectLevel);
+	void removeWatcher(CreatureObject* creature);
+
+	void removeListener(CreatureObject* creature);
+
+	void setPerformanceName(const String& name);
+
+	void setDancing(bool val);
+
+	void setTargetInstrument(bool var);
 
 	void updateEntertainerMissionStatus(bool entertaining, const int missionType);
 
@@ -206,25 +210,13 @@ public:
 
 	void awardEntertainerExperience();
 
-	SortedVector<ManagedReference<CreatureObject* > > getPatrons();
-
-	int getAudienceSize();
+	Vector<unsigned long long> getAudience();
 
 	int getBandAudienceSize();
 
 	void incrementApplauseCount();
 
 	int getApplauseCount();
-
-	int getPerformanceIndex();
-
-	bool isPerformingEffect();
-
-	void setPerformingEffect(bool val);
-
-	bool isPerformingOutro();
-
-	void setPerformingOutro(bool val);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -259,7 +251,9 @@ protected:
 
 	ManagedReference<EntertainingObserver* > observer;
 
-	EntertainingDataMap patronDataMap;
+	EntertainingDataMap watchers;
+
+	EntertainingDataMap listeners;
 
 	SortedVector<ManagedReference<CreatureObject* > > denyServiceList;
 
@@ -267,7 +261,11 @@ protected:
 
 	Time nextTick;
 
-	int performanceIndex;
+	String performanceName;
+
+	bool dancing;
+
+	bool playingMusic;
 
 	int flourishXp;
 
@@ -281,9 +279,9 @@ protected:
 
 	bool acceptingBandFlourishes;
 
-	bool performingEffect;
+	bool targetInstrument;
 
-	bool performingOutro;
+	ManagedReference<Instrument* > externalInstrument;
 
 public:
 	EntertainingSessionImplementation(CreatureObject* ent);
@@ -296,11 +294,9 @@ public:
 
 	void addEntertainerFlourishBuff();
 
-	void startDancing(int perfIndex);
+	void startDancing(const String& dance, const String& animation);
 
-	void startPlayingMusic(int perfIndex, Instrument* instrument);
-
-	void joinBand();
+	void startPlayingMusic(const String& song, const String& instrumentAnimation, int instrid);
 
 	void startEntertaining();
 
@@ -328,11 +324,7 @@ public:
 
 	int clearSession();
 
-	void stopPlaying();
-
-	void stopMusic(bool skipOutro, bool bandStop = false, bool isBandLeader = false);
-
-	void clearOutro(bool bandStop, bool isBandLeader);
+	void stopPlayingMusic();
 
 	void stopDancing();
 
@@ -354,17 +346,19 @@ public:
 
 	int getEntertainerBuffStartTime(CreatureObject* creature, int performanceType);
 
-	void sendEntertainingUpdate(CreatureObject* creature, int performanceType, bool startPerformance);
+	void sendEntertainingUpdate(CreatureObject* creature, float entval, const String& performance, unsigned int perfcntr, int instrid);
 
-	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood);
+	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood, bool updateEntValue = false);
 
 	void activateEntertainerBuff(CreatureObject* creature, int performanceType);
 
+	Instrument* getInstrument(CreatureObject* creature);
+
 	String getPerformanceName();
 
-	void addPatron(CreatureObject* creature);
+	void addWatcher(CreatureObject* creature);
 
-	void removePatron(CreatureObject* creature);
+	void addListener(CreatureObject* listener);
 
 	bool isDancing();
 
@@ -374,7 +368,15 @@ public:
 
 	void setAcceptingBandFlourishes(bool val);
 
-	void doPerformEffect(int effectId, int effectLevel);
+	void removeWatcher(CreatureObject* creature);
+
+	void removeListener(CreatureObject* creature);
+
+	void setPerformanceName(const String& name);
+
+	void setDancing(bool val);
+
+	void setTargetInstrument(bool var);
 
 	void updateEntertainerMissionStatus(bool entertaining, const int missionType);
 
@@ -388,25 +390,13 @@ public:
 
 	void awardEntertainerExperience();
 
-	SortedVector<ManagedReference<CreatureObject* > > getPatrons();
-
-	int getAudienceSize();
+	Vector<unsigned long long> getAudience();
 
 	int getBandAudienceSize();
 
 	void incrementApplauseCount();
 
 	int getApplauseCount();
-
-	int getPerformanceIndex();
-
-	bool isPerformingEffect();
-
-	void setPerformingEffect(bool val);
-
-	bool isPerformingOutro();
-
-	void setPerformingOutro(bool val);
 
 	WeakReference<EntertainingSession*> _this;
 
@@ -455,11 +445,9 @@ public:
 
 	void addEntertainerFlourishBuff();
 
-	void startDancing(int perfIndex);
+	void startDancing(const String& dance, const String& animation);
 
-	void startPlayingMusic(int perfIndex, Instrument* instrument);
-
-	void joinBand();
+	void startPlayingMusic(const String& song, const String& instrumentAnimation, int instrid);
 
 	void startEntertaining();
 
@@ -487,11 +475,7 @@ public:
 
 	int clearSession();
 
-	void stopPlaying();
-
-	void stopMusic(bool skipOutro, bool bandStop, bool isBandLeader);
-
-	void clearOutro(bool bandStop, bool isBandLeader);
+	void stopPlayingMusic();
 
 	void stopDancing();
 
@@ -505,17 +489,19 @@ public:
 
 	int getEntertainerBuffStartTime(CreatureObject* creature, int performanceType);
 
-	void sendEntertainingUpdate(CreatureObject* creature, int performanceType, bool startPerformance);
+	void sendEntertainingUpdate(CreatureObject* creature, float entval, const String& performance, unsigned int perfcntr, int instrid);
 
-	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood);
+	void sendEntertainmentUpdate(CreatureObject* creature, unsigned long long entid, const String& mood, bool updateEntValue);
 
 	void activateEntertainerBuff(CreatureObject* creature, int performanceType);
 
+	Instrument* getInstrument(CreatureObject* creature);
+
 	String getPerformanceName();
 
-	void addPatron(CreatureObject* creature);
+	void addWatcher(CreatureObject* creature);
 
-	void removePatron(CreatureObject* creature);
+	void addListener(CreatureObject* listener);
 
 	bool isDancing();
 
@@ -525,7 +511,15 @@ public:
 
 	void setAcceptingBandFlourishes(bool val);
 
-	void doPerformEffect(int effectId, int effectLevel);
+	void removeWatcher(CreatureObject* creature);
+
+	void removeListener(CreatureObject* creature);
+
+	void setPerformanceName(const String& name);
+
+	void setDancing(bool val);
+
+	void setTargetInstrument(bool var);
 
 	void updateEntertainerMissionStatus(bool entertaining, const int missionType);
 
@@ -539,23 +533,11 @@ public:
 
 	void awardEntertainerExperience();
 
-	int getAudienceSize();
-
 	int getBandAudienceSize();
 
 	void incrementApplauseCount();
 
 	int getApplauseCount();
-
-	int getPerformanceIndex();
-
-	bool isPerformingEffect();
-
-	void setPerformingEffect(bool val);
-
-	bool isPerformingOutro();
-
-	void setPerformingOutro(bool val);
 
 };
 
@@ -598,13 +580,19 @@ public:
 
 	Optional<ManagedReference<EntertainingObserverPOD* >> observer;
 
-	Optional<EntertainingDataMap> patronDataMap;
+	Optional<EntertainingDataMap> watchers;
+
+	Optional<EntertainingDataMap> listeners;
 
 	Optional<SortedVector<ManagedReference<CreatureObjectPOD* > >> denyServiceList;
 
 	Optional<Time> nextTick;
 
-	Optional<int> performanceIndex;
+	Optional<String> performanceName;
+
+	Optional<bool> dancing;
+
+	Optional<bool> playingMusic;
 
 	Optional<int> flourishXp;
 
@@ -618,9 +606,9 @@ public:
 
 	Optional<bool> acceptingBandFlourishes;
 
-	Optional<bool> performingEffect;
+	Optional<bool> targetInstrument;
 
-	Optional<bool> performingOutro;
+	Optional<ManagedReference<InstrumentPOD* >> externalInstrument;
 
 	String _className;
 	EntertainingSessionPOD();

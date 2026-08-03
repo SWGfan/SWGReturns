@@ -17,7 +17,7 @@ namespace droid {
 class DroidCombatModuleDataComponent : public BaseDroidModuleComponent {
 
 protected:
-	float rating;
+	int rating;
 
 public:
 	DroidCombatModuleDataComponent();

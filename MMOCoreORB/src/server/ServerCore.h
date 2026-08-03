@@ -28,7 +28,6 @@ namespace conf {
 }
 
 class ServerDatabase;
-class AccountDatabase;
 class MantisDatabase;
 class StatusServer;
 
@@ -50,7 +49,6 @@ class ServerCore : public Core, public Logger {
 	Pipe consoleCommandPipe;
 	conf::ConfigManager* configManager;
 	ServerDatabase* database;
-	AccountDatabase* accountDatabase;
 	MantisDatabase* mantisDatabase;
 	DistributedObjectBroker* orb;
 	Reference<server::login::LoginServer*> loginServer;
@@ -76,15 +74,7 @@ public:
 		NOTFOUND
 	};
 
-	enum ShutdownFlags {
-		DEFAULT   = 0,
-		FAST      = 1<<1,
-		DUMP_JSON = 1<<2,
-	};
-
 private:
-	ShutdownFlags nextShutdownFlags = ShutdownFlags::DEFAULT;
-
 	using CommandFunctionType = Function<CommandResult(const String & arguments)>;
 
 	VectorMap<String, CommandFunctionType> consoleCommands;
@@ -114,7 +104,7 @@ public:
 	void queueConsoleCommand(const String& commandString);
 	void handleCommands();
 	void processConfig();
-	void signalShutdown(ShutdownFlags flags = ShutdownFlags::DEFAULT);
+	void signalShutdown();
 
 	// getters
 	static server::zone::ZoneServer* getZoneServer() {

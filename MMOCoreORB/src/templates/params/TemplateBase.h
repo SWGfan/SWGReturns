@@ -26,14 +26,17 @@ public:
 
 	TemplateBase() = delete;
 
-	TemplateBase& operator=(const TemplateBase& t) {
-		if (this == &t)	{
+	TemplateBase& operator=(const TemplateBase& t)
+	{
+		if (this == &t)
+		{
 			return *this;
 		}
 
 		create(t.value);
 
 		return *this;
+
 	}
 
 	virtual ~TemplateBase() {

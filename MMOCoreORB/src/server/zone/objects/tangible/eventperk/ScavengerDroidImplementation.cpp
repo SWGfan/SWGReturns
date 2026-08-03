@@ -41,7 +41,7 @@ void ScavengerDroidImplementation::updatePlayerScore(CreatureObject* player) {
 }
 
 void ScavengerDroidImplementation::announceToPlayers(const String& message) {
-	SortedVector<ManagedReference<TreeEntry*> > closeObjects;
+	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 	zone->getInRangeObjects(getPositionX(), getPositionY(), 256, &closeObjects,	true);
 
 	for (int i = 0; i < closeObjects.size(); i++) {

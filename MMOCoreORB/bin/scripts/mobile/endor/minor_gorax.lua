@@ -1,8 +1,6 @@
 minor_gorax = Creature:new {
 	objectName = "@mob/creature_names:minor_gorax",
 	socialGroup = "gorax",
-	faction = "",
-	mobType = MOB_CARNIVORE,
 	faction = "gorax",
 	level = 131,
 	chanceHit = 4,
@@ -11,7 +9,7 @@ minor_gorax = Creature:new {
 	baseXp = 12424,
 	baseHAM = 89000,
 	baseHAMmax = 109000,
-	armor = 1,
+	armor = 3,
 	resists = {165,165,150,150,150,0,150,150,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -39,17 +37,11 @@ minor_gorax = Creature:new {
 			lootChance = 3620000
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "unarmed",
-	secondaryWeapon = "none",
+	weapons = {},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = { {"creatureareaattack",""} },
-	secondaryAttacks = { }
+	attacks = {
+		{"creatureareaattack",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(minor_gorax, "minor_gorax")

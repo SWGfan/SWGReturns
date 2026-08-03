@@ -45,8 +45,8 @@ ForceKnockdown2Command = {
 	name = "forceknockdown2",
 
     damageMultiplier = 0,
-	speed = 2.0,
-	forceCost = 55,
+	speed = 3.25,
+	forceCost = 100,
 	visMod = 25,
 	accuracySkillMod = "forceknockdown_accuracy",
 	coneAngle = 40,
@@ -56,15 +56,15 @@ ForceKnockdown2Command = {
 	  StateEffect(
 		KNOCKDOWN_EFFECT,
 		{ "knockdownRecovery", "lastKnockdown" },
-		{ "force_defense" },
 		{},
-		95,
+		{},
+		65,
 		0,
 		0
 	  )
 	},
 
-	animation = "force_mind_blast_1_arc_particle_level_1_light",
+	animation = "force_knockdown_1_arc_particle_level_1",
 
 	combatSpam = "forceknockdown2",
 

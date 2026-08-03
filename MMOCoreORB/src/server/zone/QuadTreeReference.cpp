@@ -11,12 +11,12 @@ using namespace server::zone;
 
 bool QuadTreeReference::toBinaryStream(ObjectOutputStream* stream) {
 	//if ()
-	/*Vector<ManagedReference<TreeEntry*> >* vector = nullptr;
+	/*Vector<ManagedReference<QuadTreeEntry*> >* vector = nullptr;
 
 	if (get() != nullptr)
 		vector = get()->getContainedEntries();
 	else
-		vector = new Vector<ManagedReference<TreeEntry*> >();
+		vector = new Vector<ManagedReference<QuadTreeEntry*> >();
 
 	vector->toBinaryStream(stream);
 
@@ -27,7 +27,7 @@ bool QuadTreeReference::toBinaryStream(ObjectOutputStream* stream) {
 }
 
 bool QuadTreeReference::parseFromBinaryStream(ObjectInputStream* stream) {
-	/*Vector<ManagedReference<TreeEntry*> >* vector = new Vector<ManagedReference<TreeEntry*> >();
+	/*Vector<ManagedReference<QuadTreeEntry*> >* vector = new Vector<ManagedReference<QuadTreeEntry*> >();
 
 	vector->parseFromBinaryStream(stream); //obejcts will get loaded and inserted into zone
 

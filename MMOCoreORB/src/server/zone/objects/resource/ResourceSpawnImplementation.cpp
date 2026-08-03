@@ -223,6 +223,10 @@ uint32 ResourceSpawnImplementation::getPlanetCRC() const {
 void ResourceSpawnImplementation::extractResource(const String& zoneName, int units) {
 	unitsInCirculation += units;
 
+	if (maxUnitsSpawned > 0 && unitsInCirculation >= maxUnitsSpawned && despawned > (uint64) time(0)) {
+		// pool exhausted; force it out of shift so the resource pool sweep despawns and replaces it
+		despawned = time(0);
+	}
 }
 
 Reference<ResourceContainer*> ResourceSpawnImplementation::createResource(int units) {
@@ -244,8 +248,8 @@ Reference<ResourceContainer*> ResourceSpawnImplementation::createResource(int un
    	if (units != 0)
    		newResource->setQuantity(units);
 
-   	String fullName = getFinalClass() + " - " + getName();
-   	newResource->setCustomObjectName(fullName, false);
+   	String resourceName = getFinalClass() + " (" + getName() + ")"; 
+    newResource->setCustomObjectName(resourceName, false);
 
    	++containerReferenceCount;
 

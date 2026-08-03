@@ -80,19 +80,19 @@ public:
 		else if (attribute == "action")
 			return ACTION;
 		else if (attribute == "mind")
-			return ACTION;
+			return MIND;
 		else if (attribute == "strength")
-			return HEALTH;
+			return STRENGTH;
 		else if (attribute == "constitution")
-			return HEALTH;
+			return CONSTITUTION;
 		else if (attribute == "quickness")
-			return ACTION;
+			return QUICKNESS;
 		else if (attribute == "stamina")
-			return ACTION;
+			return STAMINA;
 		else if (attribute == "focus")
-			return ACTION;
+			return FOCUS;
 		else if (attribute == "willpower")
-			return ACTION;
+			return WILLPOWER;
 		else if (attribute == "poison")
 			return POISON;
 		else if (attribute == "disease")
@@ -113,25 +113,25 @@ public:
 			name = "action";
 			break;
 		case MIND:
-			name = "action";
+			name = "mind";
 			break;
 		case STRENGTH:
-			name = "health";
+			name = "strength";
 			break;
 		case CONSTITUTION:
-			name = "health";
+			name = "constitution";
 			break;
 		case QUICKNESS:
-			name = "action";
+			name = "quickness";
 			break;
 		case STAMINA:
-			name = "action";
+			name = "stamina";
 			break;
 		case FOCUS:
-			name = "action";
+			name = "focus";
 			break;
 		case WILLPOWER:
-			name = "action";
+			name = "willpower";
 			break;
 		case POISON:
 			name = "poison";

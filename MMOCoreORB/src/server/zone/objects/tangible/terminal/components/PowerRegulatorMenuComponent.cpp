@@ -14,40 +14,14 @@
 #include "server/zone/managers/gcw/GCWManager.h"
 
 void PowerRegulatorMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
-	if (sceneObject == nullptr || !sceneObject->isTangibleObject()) {
+
+	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
+
+	if (building == nullptr)
 		return;
-	}
 
-	ManagedReference<BuildingObject*> building = nullptr;
-	uint64 terminalID = sceneObject->getObjectID();
-	ZoneServer* zoneServer = sceneObject->getZoneServer();
-
-	if (zoneServer == nullptr) {
+	if (player  == nullptr || player->isDead() || player->isIncapacitated())
 		return;
-	}
-
-	switch (terminalID) {
-		case 367432: // Corellia - Stronghold
-			building = cast<BuildingObject*>(zoneServer->getObject(2715899).get());
-			break;
-		case 923849: // Rori - Imperial Encampment
-			building = cast<BuildingObject*>(zoneServer->getObject(2935404).get());
-			break;
-		case 923861: // Rori - Rebel Military Base
-			building = cast<BuildingObject*>(zoneServer->getObject(7555646).get());
-			break;
-		default:
-			building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
-			break;
-	}
-
-	if (building == nullptr || player == nullptr) {
-		return;
-	}
-
-	if (player->isDead() || player->isIncapacitated()) {
-		return;
-	}
 
 	Zone* zone = building->getZone();
 
@@ -66,42 +40,14 @@ void PowerRegulatorMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 }
 
 int PowerRegulatorMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID) const {
-	if (sceneObject == nullptr || !sceneObject->isTangibleObject()) {
+	if (player->isDead() || player->isIncapacitated() || selectedID != 20)
 		return 1;
-	}
 
-	ManagedReference<BuildingObject*> building = nullptr;
-	uint64 terminalID = sceneObject->getObjectID();
-	ZoneServer* zoneServer = sceneObject->getZoneServer();
-
-	if (zoneServer == nullptr) {
-		return 1;
-	}
-
-	switch (terminalID) {
-		case 367432: // Corellia - Stronghold
-			building = cast<BuildingObject*>(zoneServer->getObject(2715899).get());
-			break;
-		case 923849: // Rori - Imperial Encampment
-			building = cast<BuildingObject*>(zoneServer->getObject(2935404).get());
-			break;
-		case 923861: // Rori - Rebel Military Base
-			building = cast<BuildingObject*>(zoneServer->getObject(7555646).get());
-			break;
-		default:
-			building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
-			break;
-	}
-
-	if (building == nullptr || player == nullptr) {
-		return 1;
-	}
-
-	if (player->isDead() || player->isIncapacitated() || selectedID != 20) {
-		return 1;
-	}
-
+	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 	ManagedReference<TangibleObject*> powerRegulator = cast<TangibleObject*>(sceneObject);
+
+	if (building == nullptr)
+		return 1;
 
 	Zone* zone = building->getZone();
 
@@ -119,12 +65,6 @@ int PowerRegulatorMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 	if (!gcwMan->areOpposingFactions(player->getFaction(), building->getFaction())) {
 		player->sendSystemMessage("@faction/faction_hq/faction_hq_response:no_tamper"); // You are not an enemy of this structure. Why would you want to tamper?
 		return 1;
-	} else if (!gcwMan->isProperFactionStatus(player)) {
-		StringIdChatParameter message("@faction_perk:prose_not_neutral"); // You cannot use %TT if you are neutral or on leave.
-		message.setTT(powerRegulator->getDisplayedName());
-		player->sendSystemMessage(message);
-
-		return 1;
 	} else if (gcwMan->isPowerOverloaded(building)) {
 		player->sendSystemMessage("@faction/faction_hq/faction_hq_response:already_overloading"); // The power regulator has already been set to overload.
 		return 1;
@@ -140,8 +80,8 @@ int PowerRegulatorMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 	} else if (powerRegulator->getDistanceTo(player) > 15) {
 		player->sendSystemMessage("@faction/faction_hq/faction_hq_response:power_too_far"); // You are too far away from the power regulator to continue the setup!
 		return 1;
-	} else if (!player->hasSkill("combat_commando_heavyweapon_speed_02")) {
-		player->sendSystemMessage("@faction/faction_hq/faction_hq_response:commando_only"); // Only an experienced commando with heavy weapons training could expect to rig the regulators for overload
+	} else if (!player->hasSkill("base_bust_power_disruptor_01")) {
+		player->sendSystemMessage("Only a Power Disruption Specialist could expect to rig the regulators for overload"); // Only an experienced commando with heavy weapons training could expect to rig the regulators for overload
 		return 1;
 	}
 

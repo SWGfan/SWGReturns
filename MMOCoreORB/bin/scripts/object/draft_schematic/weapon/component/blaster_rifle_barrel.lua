@@ -48,9 +48,10 @@ object_draft_schematic_weapon_component_blaster_rifle_barrel = object_draft_sche
    customObjectName = "Blaster-rifle Barrel",
 
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 1, 
+   complexity = 22, 
    size = 3, 
-
+   factoryCrateType = "object/factory/factory_crate_weapon.iff",
+   
    xpType = "crafting_weapons_general", 
    xp = 115, 
 

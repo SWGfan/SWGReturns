@@ -45,29 +45,26 @@ BleedingShotCommand = {
         name = "bleedingshot",
 
 	damageMultiplier = 2.0,
-  speedMultiplier = 1.5,
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 3,
-  mindCostMultiplier = 0,
-    visMod = 25,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 1,
+	actionCostMultiplier = 1,
+	mindCostMultiplier = 1,
 
 	animation = "fire_3_single", 
 	animType = GENERATE_RANGED,
 
 	combatSpam = "bleedingshot",
-	
-	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	dotEffects = {
 	  DotEffect( 
 		BLEEDING, 
 		{ "resistance_bleeding", "bleed_resist" },
-		ACTION,
+		MIND,
 		true,
 		0,
-    200,
-    200, 
-    20
+		100,
+		30, 
+		30
 	  )
 	},
 	

@@ -60,7 +60,7 @@ public:
 	 * @param notifyClient not used currently
 	 * @return returns true if the object has been successfully removed
 	 */
-	virtual bool removeObject(SceneObject* sceneObject, SceneObject* object, SceneObject* destination, bool notifyClient, bool nullifyParent) const;
+	virtual bool removeObject(SceneObject* sceneObject, SceneObject* object, SceneObject* destination, bool notifyClient) const;
 
 	/**
 	 * Evaluates if this object has the necessary free slots to be able to add the specified SceneObject
@@ -85,6 +85,7 @@ public:
 	 * @param object object that has been inserted
 	 */
 	virtual int notifyObjectRemoved(SceneObject* sceneObject, SceneObject* object, SceneObject* destination) const;
+
 };
 
 #endif /* CONTAINERCOMPONENT_H_ */

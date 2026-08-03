@@ -79,12 +79,9 @@ Luna<LuaPlayerObject>::RegType LuaPlayerObject::Register[] = {
 		{ "setFrsRank", &LuaPlayerObject::setFrsRank },
 		{ "getFrsRank", &LuaPlayerObject::getFrsRank },
 		{ "getFrsCouncil", &LuaPlayerObject::getFrsCouncil },
-		{ "addSkillPoints", &LuaPlayerObject::addSkillPoints },
-		{ "getSkillPoints", &LuaPlayerObject::getSkillPoints },
 		{ "startSlicingSession", &LuaPlayerObject::startSlicingSession },
 		{ "setVisibility", &LuaPlayerObject::setVisibility },
 		{ "getPlayedTimeString", &LuaPlayerObject::getPlayedTimeString },
-		{ "getAccountID", &LuaPlayerObject::getAccountID },
 		{ 0, 0 }
 };
 
@@ -713,20 +710,6 @@ int LuaPlayerObject::getFrsCouncil(lua_State* L) {
 	return 1;
 }
 
-int LuaPlayerObject::addSkillPoints(lua_State* L) {
-	int points = lua_tointeger(L, -1);
-
-	realObject->addSkillPoints(points);
-
-	return 0;
-}
-
-int LuaPlayerObject::getSkillPoints(lua_State* L) {
-	lua_pushinteger(L, realObject->getSkillPoints());
-
-	return 1;
-}
-
 int LuaPlayerObject::startSlicingSession(lua_State* L) {
 	TangibleObject* objToSlice = (TangibleObject*) lua_touserdata(L, -2);
 	bool isKeypadSlice = lua_toboolean(L, -1);
@@ -764,14 +747,6 @@ int LuaPlayerObject::getPlayedTimeString(lua_State* L) {
 	Locker locker(realObject);
 
 	lua_pushstring(L, realObject->getPlayedTimeString(verbose).toCharArray());
-
-	return 1;
-}
-
-int LuaPlayerObject::getAccountID(lua_State* L) {
-	Locker locker(realObject);
-
-	lua_pushinteger(L, realObject->getAccountID());
 
 	return 1;
 }

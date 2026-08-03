@@ -45,20 +45,18 @@ Melee2hLunge1Command = {
 	name = "melee2hlunge1",
 
 	damageMultiplier = 1.0,
-  speedMultiplier = 1.5,
-  accuracyBonus = 10,
-  
-  healthCostMultiplier = 0,
-  actionCostMultiplier = 1.75,
-  mindCostMultiplier = 0,
-  
-  poolsToDamage = HEALTH_ATTRIBUTE,
+	speedMultiplier = 1.5,
+	accuracyBonus = 10,
+	
+	healthCostMultiplier = 1.0,
+	actionCostMultiplier = 0.5,
+	mindCostMultiplier = 0.5,
 
 	animation = "lower_posture_2hmelee_1",
 
 	combatSpam = "lungeslam",
 
-	range = 15,
+	range = 20,
 	
 	weaponType = TWOHANDMELEEWEAPON,
 
@@ -67,8 +65,8 @@ Melee2hLunge1Command = {
 		POSTUREDOWN_EFFECT, 
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
-		{}, 
-		75, 
+		{},
+		100, 
 		0, 
 		0 
 	  )

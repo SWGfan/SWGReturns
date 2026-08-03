@@ -32,22 +32,20 @@ function ForceShrineMenuComponent:handleObjectMenuSelect(pObject, pPlayer, selec
 end
 
 function ForceShrineMenuComponent:doMeditate(pObject, pPlayer)
-
-        -- ==========================================================
-        -- PHASE720 KNIGHT FIX
-        -- Never restart Knight Trials for completed Jedi Knights.
-        -- ==========================================================
-        if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
-                CreatureObject(pPlayer):sendSystemMessage("@jedi_trials:force_shrine_wisdom_" .. getRandomNumber(1, 15))
-                return
-        end
-
 	if (tonumber(readScreenPlayData(pPlayer, "KnightTrials", "completedTrials")) == 1 and not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
 		KnightTrials:resetCompletedTrialsToStart(pPlayer)
 	end
 
-	if (not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and JediTrials:isEligibleForPadawanTrials(pPlayer)) then
-		PadawanTrials:startPadawanTrials(pObject, pPlayer)
+	if (not CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_02") and CreatureObject(pPlayer):hasScreenPlayState(32, "VillageJediProgression")) then
+		local currentTrial = JediTrials:getCurrentTrial(pPlayer)
+
+		if (not JediTrials:isOnPadawanTrials(pPlayer)) then
+			PadawanTrials:startPadawanTrials(pObject, pPlayer)
+		elseif (currentTrial == 0) then
+			PadawanTrials:startNextPadawanTrial(pObject, pPlayer)
+		else
+			PadawanTrials:showCurrentTrial(pObject, pPlayer)
+		end
 	elseif (JediTrials:isOnKnightTrials(pPlayer)) then
 		local pPlayerShrine = KnightTrials:getTrialShrine(pPlayer)
 
@@ -94,18 +92,24 @@ function ForceShrineMenuComponent:recoverRobe(pPlayer)
 	end
 
 	local robeTemplate
-	if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
-		local councilType = JediTrials:getJediCouncil(pPlayer)
+	--if (CreatureObject(pPlayer):hasSkill("force_title_jedi_rank_03")) then
+	--	local councilType = JediTrials:getJediCouncil(pPlayer)
 
-		if (councilType == JediTrials.COUNCIL_LIGHT) then
-			robeTemplate = "object/tangible/wearables/robe/robe_jedi_light_s01.iff"
-		else
-			robeTemplate = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
-		end
+--		if (councilType == JediTrials.COUNCIL_LIGHT) then
+--			robeTemplate = "object/tangible/wearables/robe/robe_jedi_light_s01.iff"
+--		else
+--			robeTemplate = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
+--		end
+--	else
+--		robeTemplate = "object/tangible/wearables/robe/robe_jedi_padawan.iff"
+--	end
+	if (CreatureObject(pPlayer):hasSkill("jedi_dark_side_master_master")) then
+		robeTemplate = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff"
+	elseif (CreatureObject(pPlayer):hasSkill("jedi_light_side_master_master")) then
+		robeTemplate = "object/tangible/wearables/robe/robe_jedi_light_s01.iff"
 	else
 		robeTemplate = "object/tangible/wearables/robe/robe_jedi_padawan.iff"
 	end
-
 	giveItem(pInventory, robeTemplate, -1)
 	CreatureObject(pPlayer):sendSystemMessage("@force_rank:items_recovered")
 end

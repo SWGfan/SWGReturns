@@ -48,8 +48,9 @@ object_draft_schematic_clothing_clothing_wke_hood_s02 = object_draft_schematic_c
    customObjectName = "Wookiee Sage\\\'s Hood",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 1, 
+   complexity = 19, 
    size = 3, 
+   factoryCrateType = "object/factory/factory_crate_clothing.iff",
 
    xpType = "crafting_clothing_general", 
    xp = 60, 
@@ -65,8 +66,8 @@ object_draft_schematic_clothing_clothing_wke_hood_s02 = object_draft_schematic_c
    ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
    ingredientTitleNames = {"shell_half", "shell_half2", "binding_and_weatherproofing", "liner_half", "liner_half2"},
    ingredientSlotType = {1, 1, 0, 1, 1},
-   resourceTypes = {"object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "hide", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff"},
-   resourceQuantities = {1, 1, 25, 1, 1},
+   resourceTypes = {"object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "hide", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
+   resourceQuantities = {1, 1, 25, 1, 2},
    contribution = {100, 100, 100, 100, 100},
 
 

@@ -24,25 +24,13 @@ public:
 
 	~DroidDataStorageModuleDataComponent();
 
-	void initialize(DroidObject* droid);
+	String getModuleName() const;
 
 	void initializeTransientMembers();
 
 	void fillAttributeList(AttributeListMessage* msg, CreatureObject* droid);
 
-	void copy(BaseDroidModuleComponent* other);
-
-	void addToStack(BaseDroidModuleComponent* other);
-
-	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
-
-	void fillObjectMenuResponse(SceneObject* droidObject, ObjectMenuResponse* menuResponse, CreatureObject* player);
-
-	int handleObjectMenuSelect(CreatureObject* player, byte selectedID, PetControlDevice* controller);
-
-	int getStorageRating();
-
-	String getModuleName() const;
+	int getBatteryDrain() { return 0;}
 
 	String toString() const;
 
@@ -50,17 +38,21 @@ public:
 
 	void onStore();
 
-	int getRating() {
-		return rating;
-	}
+	bool isStackable() { return true; }
 
-	int getBatteryDrain() {
-		return 0;
-	}
+	void copy(BaseDroidModuleComponent* other);
 
-	bool isStackable() {
-		return true;
-	}
+	void addToStack(BaseDroidModuleComponent* other);
+
+	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
+
+	int getStorageRating();
+
+	void fillObjectMenuResponse(SceneObject* droidObject, ObjectMenuResponse* menuResponse, CreatureObject* player);
+
+	int handleObjectMenuSelect(CreatureObject* player, byte selectedID, PetControlDevice* controller);
+
+	void initialize(DroidObject* droid);
 };
 
 } // droid

@@ -220,6 +220,8 @@ public:
 
 	void setAttackSpeed(float f);
 
+	bool isCamouflaged(CreatureObject* target);
+
 	bool hasPower();
 
 	/**
@@ -572,6 +574,8 @@ public:
 
 	void setAttackSpeed(float f);
 
+	bool isCamouflaged(CreatureObject* target);
+
 	bool hasPower();
 
 	/**
@@ -798,6 +802,8 @@ public:
 	void setMaximumHAM(int idx);
 
 	void setAttackSpeed(float f);
+
+	bool isCamouflaged(CreatureObject* target);
 
 	bool hasPower();
 

@@ -9,7 +9,7 @@
 #include "server/zone/objects/building/BuildingObject.h"
 
 void StructureZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* zone) const {
-	GroundZoneComponent::notifyInsertToZone(sceneObject, zone);
+	ZoneComponent::notifyInsertToZone(sceneObject, zone);
 
 	if (sceneObject->isBuildingObject()) {
 		ManagedReference<BuildingObject*> building = cast<BuildingObject*>(sceneObject);
@@ -19,7 +19,7 @@ void StructureZoneComponent::notifyInsertToZone(SceneObject* sceneObject, Zone* 
 }
 
 void StructureZoneComponent::notifyRemoveFromZone(SceneObject* sceneObject) const {
-	GroundZoneComponent::notifyRemoveFromZone(sceneObject);
+	ZoneComponent::notifyRemoveFromZone(sceneObject);
 
 	//moved to StructureManager::destroyStructure
 }

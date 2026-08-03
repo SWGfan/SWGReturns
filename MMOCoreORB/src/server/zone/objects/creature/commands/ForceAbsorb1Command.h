@@ -17,27 +17,33 @@ public:
 		skillMods.put("force_absorb", 1);
 	}
 
+	
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const override {
+			if (creature->hasBuff(BuffCRC::JEDI_AVOID_INCAPACITATION)) {
+				creature->sendSystemMessage("Force Absorb cannot be used with Avoid Incapacitation");
+				return GENERALERROR;
+			}
 		return doJediSelfBuffCommand(creature);
 	}
 
 	void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) const override {
 		ManagedReference<CreatureObject*> player = creature->asCreatureObject();
 
-		if (player == nullptr) {
+		if (player == nullptr)
 			return;
-		}
 
 		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 
-		if (ghost == nullptr) {
+		if (ghost == nullptr)
 			return;
-		}
 
 		// Client Effect upon hit (needed)
 		player->playEffect("clienteffect/pl_force_absorb_hit.cef", "");
 
-		ghost->setForcePower(ghost->getForcePower() + param);
+		int fCost = param * getFrsModifiedExtraForceCost(player, 0.15f);
+		ghost->setForcePower(ghost->getForcePower() + fCost);
+
+		CombatManager::instance()->sendMitigationCombatSpam(player, nullptr, fCost, CombatManager::FORCEABSORB);
 	}
 };
 

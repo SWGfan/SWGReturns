@@ -52,31 +52,13 @@ class NavAreaPOD;
 
 using namespace server::zone::objects::pathfinding;
 
-namespace server {
-namespace zone {
-namespace objects {
-namespace region {
-
-class Region;
-
-class RegionPOD;
-
-} // namespace region
-} // namespace objects
-} // namespace zone
-} // namespace server
-
-using namespace server::zone::objects::region;
+#include "gmock/gmock.h"
 
 #include "server/zone/objects/scene/SceneObject.h"
 
 #include "server/zone/objects/area/areashapes/AreaShape.h"
 
 #include "system/util/Vector.h"
-
-#include "engine/util/u3d/Vector3.h"
-
-#include "engine/util/u3d/Vector4.h"
 
 namespace server {
 namespace zone {
@@ -85,52 +67,6 @@ namespace area {
 
 class ActiveArea : public SceneObject {
 public:
-	static const int UNDEFINEDAREA = 0x000000;
-
-	static const int SPAWNAREA = 0x000001;
-
-	static const int NOSPAWNAREA = 0x000002;
-
-	static const int WORLDSPAWNAREA = 0x000004;
-
-	static const int NOWORLDSPAWNAREA = 0x000008;
-
-	static const int NOBUILDZONEAREA = 0x000010;
-
-	static const int CAMPINGAREA = 0x000020;
-
-	static const int CITY = 0x000040;
-
-	static const int NAVAREA = 0x000080;
-
-	static const int NAMEDREGION = 0x000100;
-
-	static const int LOCKEDAREA = 0x000200;
-
-	static const int NOCOMBATAREA = 0x000400;
-
-	static const int NODUELAREA = 0x000800;
-
-	static const int PVPAREA = 0x001000;
-
-	static const int OVERTAREA = 0x002000;
-
-	static const int REBELAREA = 0x004000;
-
-	static const int IMPERIALAREA = 0x008000;
-
-	static const int NOPETAREA = 0x010000;
-
-	static const int CIRCLE = 1;
-
-	static const int RECTANGLE = 2;
-
-	static const int RING = 3;
-
-	static const int SPHERE = 4;
-
-	static const int CUBOID = 5;
-
 	ActiveArea();
 
 	/**
@@ -142,139 +78,65 @@ public:
 	 */
 	void sendTo(SceneObject* player, bool doClose, bool forceLoadContainer = true);
 
-	void enqueueEnterEvent(SceneObject* obj);
+	virtual void enqueueEnterEvent(SceneObject* obj);
 
-	void enqueueExitEvent(SceneObject* obj);
+	virtual void enqueueExitEvent(SceneObject* obj);
 
 	void notifyEnter(SceneObject* object);
 
 	void notifyExit(SceneObject* object);
 
-	void sendDebugMessage(SceneObject* creature, bool entry);
-
 	void setZone(Zone* zone);
-
-	bool containsPoint(float x, float y, unsigned long long cellid) const;
-
-	bool containsPoint(float x, float y) const;
-
-	bool containsPoint(float x, float z, float y, unsigned long long cellid) const;
-
-	bool containsPoint(float x, float z, float y) const;
-
-	bool intersectsWith(ActiveArea* area) const;
-
-	NavArea* asNavArea();
-
-	Region* asRegion();
-
-	void setRegionFlags(unsigned int flags);
-
-	void setAreaName(const String& name);
 
 	bool isActiveArea();
 
 	bool isRegion();
 
+	bool isCityRegion();
+
 	bool isNavArea() const;
 
-	bool isCampArea();
-
-	bool isUndefinedRegion() const;
-
-	bool isCityRegion() const;
-
-	bool isSpawnArea() const;
-
-	bool isNoSpawnArea() const;
+	NavArea* asNavArea();
 
 	bool isNoBuildArea() const;
 
 	bool isCampingPermitted() const;
 
-	bool isMunicipalZone() const;
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
+
+	bool containsPoint(float x, float y) const;
+
+	float getRadius2() const;
 
 	void setNoBuildArea(bool val);
-
-	void setNoSpawnArea(bool val);
 
 	void setCampingPermitted(bool val);
 
 	void setMunicipalZone(bool val);
 
-	bool isWorldSpawnArea() const;
-
-	bool isNoWorldSpawnArea() const;
-
-	bool isNoBuildZone() const;
-
-	bool isCampingArea() const;
-
-	bool shouldBuildNavmesh() const;
-
-	bool isNamedRegion() const;
-
-	bool isLockedArea() const;
-
-	bool isPvpArea() const;
-
-	bool isOvertArea() const;
-
-	bool isRebelArea() const;
-
-	bool isImperialArea() const;
-
-	bool isNoCombatArea() const;
-
-	bool isNoDuelArea() const;
-
-	bool isNoPetArea() const;
-
-	bool isRectangularAreaShape() const;
-
-	bool isCuboidAreaShape() const;
-
-	bool isSphereAreaShape() const;
-
-	void addAreaFlag(unsigned int flag);
-
-	void removeAreaFlag(unsigned int flag);
-
 	void setRadius(float r);
+
+	bool isCampArea();
+
+	void setNoSpawnArea(bool val);
+
+	bool isNoSpawnArea() const;
+
+	bool isMunicipalZone() const;
+
+	unsigned long long getCellObjectID() const;
 
 	void setCellObjectID(unsigned long long celloid);
 
 	void setAreaShape(AreaShape* area);
 
-	int getAreaFlags() const;
-
-	Vector3 getAreaCenter() const;
-
-	float getRadius2() const;
-
-	float getRadius() const;
-
-	float getHeight() const;
-
-	float getWidth() const;
-
-	float getLength() const;
-
-	Vector4 getRectangularDimensions() const;
-
-	Vector3 getCuboidDimensions() const;
-
-	unsigned long long getCellObjectID() const;
-
 	AreaShape* getAreaShape() const;
 
-	String getAreaName() const;
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
 	void initializeChildObject(SceneObject* controllerObject);
-
-	bool ejectFromArea(SceneObject* object);
 
 	DistributedObjectServant* _getImplementation();
 	DistributedObjectServant* _getImplementationForRead() const;
@@ -305,69 +167,19 @@ class ActiveAreaImplementation : public SceneObjectImplementation {
 protected:
 	bool noBuildArea;
 
-	bool noSpawnArea;
-
 	bool campingPermitted;
 
 	bool municipalZone;
 
 	unsigned long long cellObjectID;
 
+	bool noSpawnArea;
+
 	ManagedReference<AreaShape* > areaShape;
 
 	Vector<ManagedReference<SceneObject* > > attachedScenery;
 
-	unsigned int areaFlags;
-
-	String areaName;
-
 public:
-	static const int UNDEFINEDAREA = 0x000000;
-
-	static const int SPAWNAREA = 0x000001;
-
-	static const int NOSPAWNAREA = 0x000002;
-
-	static const int WORLDSPAWNAREA = 0x000004;
-
-	static const int NOWORLDSPAWNAREA = 0x000008;
-
-	static const int NOBUILDZONEAREA = 0x000010;
-
-	static const int CAMPINGAREA = 0x000020;
-
-	static const int CITY = 0x000040;
-
-	static const int NAVAREA = 0x000080;
-
-	static const int NAMEDREGION = 0x000100;
-
-	static const int LOCKEDAREA = 0x000200;
-
-	static const int NOCOMBATAREA = 0x000400;
-
-	static const int NODUELAREA = 0x000800;
-
-	static const int PVPAREA = 0x001000;
-
-	static const int OVERTAREA = 0x002000;
-
-	static const int REBELAREA = 0x004000;
-
-	static const int IMPERIALAREA = 0x008000;
-
-	static const int NOPETAREA = 0x010000;
-
-	static const int CIRCLE = 1;
-
-	static const int RECTANGLE = 2;
-
-	static const int RING = 3;
-
-	static const int SPHERE = 4;
-
-	static const int CUBOID = 5;
-
 	ActiveAreaImplementation();
 
 	ActiveAreaImplementation(DummyConstructorParameter* param);
@@ -389,131 +201,57 @@ public:
 
 	virtual void notifyExit(SceneObject* object);
 
-	void sendDebugMessage(SceneObject* creature, bool entry);
-
 	void setZone(Zone* zone);
-
-	bool containsPoint(float x, float y, unsigned long long cellid) const;
-
-	virtual bool containsPoint(float x, float y) const;
-
-	bool containsPoint(float x, float z, float y, unsigned long long cellid) const;
-
-	virtual bool containsPoint(float x, float z, float y) const;
-
-	bool intersectsWith(ActiveArea* area) const;
-
-	virtual NavArea* asNavArea();
-
-	virtual Region* asRegion();
-
-	void setRegionFlags(unsigned int flags);
-
-	void setAreaName(const String& name);
 
 	bool isActiveArea();
 
 	virtual bool isRegion();
 
+	virtual bool isCityRegion();
+
 	virtual bool isNavArea() const;
 
-	virtual bool isCampArea();
-
-	bool isUndefinedRegion() const;
-
-	bool isCityRegion() const;
-
-	bool isSpawnArea() const;
-
-	bool isNoSpawnArea() const;
+	virtual NavArea* asNavArea();
 
 	bool isNoBuildArea() const;
 
 	bool isCampingPermitted() const;
 
-	bool isMunicipalZone() const;
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
+
+	virtual bool containsPoint(float x, float y) const;
+
+	float getRadius2() const;
 
 	void setNoBuildArea(bool val);
-
-	void setNoSpawnArea(bool val);
 
 	void setCampingPermitted(bool val);
 
 	void setMunicipalZone(bool val);
 
-	bool isWorldSpawnArea() const;
-
-	bool isNoWorldSpawnArea() const;
-
-	bool isNoBuildZone() const;
-
-	bool isCampingArea() const;
-
-	bool shouldBuildNavmesh() const;
-
-	bool isNamedRegion() const;
-
-	bool isLockedArea() const;
-
-	bool isPvpArea() const;
-
-	bool isOvertArea() const;
-
-	bool isRebelArea() const;
-
-	bool isImperialArea() const;
-
-	bool isNoCombatArea() const;
-
-	bool isNoDuelArea() const;
-
-	bool isNoPetArea() const;
-
-	bool isRectangularAreaShape() const;
-
-	bool isCuboidAreaShape() const;
-
-	bool isSphereAreaShape() const;
-
-	void addAreaFlag(unsigned int flag);
-
-	void removeAreaFlag(unsigned int flag);
-
 	void setRadius(float r);
+
+	virtual bool isCampArea();
+
+	void setNoSpawnArea(bool val);
+
+	bool isNoSpawnArea() const;
+
+	bool isMunicipalZone() const;
+
+	unsigned long long getCellObjectID() const;
 
 	void setCellObjectID(unsigned long long celloid);
 
 	void setAreaShape(AreaShape* area);
 
-	int getAreaFlags() const;
-
-	Vector3 getAreaCenter() const;
-
-	float getRadius2() const;
-
-	float getRadius() const;
-
-	float getHeight() const;
-
-	float getWidth() const;
-
-	float getLength() const;
-
-	Vector4 getRectangularDimensions() const;
-
-	Vector3 getCuboidDimensions() const;
-
-	unsigned long long getCellObjectID() const;
-
 	AreaShape* getAreaShape() const;
 
-	String getAreaName() const;
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
 	void initializeChildObject(SceneObject* controllerObject);
-
-	bool ejectFromArea(SceneObject* object);
 
 	WeakReference<ActiveArea*> _this;
 
@@ -569,115 +307,51 @@ public:
 
 	void notifyExit(SceneObject* object);
 
-	void sendDebugMessage(SceneObject* creature, bool entry);
-
 	void setZone(Zone* zone);
-
-	bool containsPoint(float x, float y, unsigned long long cellid) const;
-
-	bool containsPoint(float x, float y) const;
-
-	bool containsPoint(float x, float z, float y, unsigned long long cellid) const;
-
-	bool containsPoint(float x, float z, float y) const;
-
-	bool intersectsWith(ActiveArea* area) const;
-
-	void setRegionFlags(unsigned int flags);
-
-	void setAreaName(const String& name);
 
 	bool isActiveArea();
 
 	bool isRegion();
 
+	bool isCityRegion();
+
 	bool isNavArea() const;
-
-	bool isCampArea();
-
-	bool isUndefinedRegion() const;
-
-	bool isCityRegion() const;
-
-	bool isSpawnArea() const;
-
-	bool isNoSpawnArea() const;
 
 	bool isNoBuildArea() const;
 
 	bool isCampingPermitted() const;
 
-	bool isMunicipalZone() const;
+	bool containsPoint(float x, float y, unsigned long long cellid) const;
+
+	bool containsPoint(float x, float y) const;
+
+	float getRadius2() const;
 
 	void setNoBuildArea(bool val);
-
-	void setNoSpawnArea(bool val);
 
 	void setCampingPermitted(bool val);
 
 	void setMunicipalZone(bool val);
 
-	bool isWorldSpawnArea() const;
-
-	bool isNoWorldSpawnArea() const;
-
-	bool isNoBuildZone() const;
-
-	bool isCampingArea() const;
-
-	bool shouldBuildNavmesh() const;
-
-	bool isNamedRegion() const;
-
-	bool isLockedArea() const;
-
-	bool isPvpArea() const;
-
-	bool isOvertArea() const;
-
-	bool isRebelArea() const;
-
-	bool isImperialArea() const;
-
-	bool isNoCombatArea() const;
-
-	bool isNoDuelArea() const;
-
-	bool isNoPetArea() const;
-
-	bool isRectangularAreaShape() const;
-
-	bool isCuboidAreaShape() const;
-
-	bool isSphereAreaShape() const;
-
-	void addAreaFlag(unsigned int flag);
-
-	void removeAreaFlag(unsigned int flag);
-
 	void setRadius(float r);
+
+	bool isCampArea();
+
+	void setNoSpawnArea(bool val);
+
+	bool isNoSpawnArea() const;
+
+	bool isMunicipalZone() const;
+
+	unsigned long long getCellObjectID() const;
 
 	void setCellObjectID(unsigned long long celloid);
 
 	void setAreaShape(AreaShape* area);
 
-	int getAreaFlags() const;
-
-	float getRadius2() const;
-
-	float getRadius() const;
-
-	float getHeight() const;
-
-	float getWidth() const;
-
-	float getLength() const;
-
-	unsigned long long getCellObjectID() const;
-
 	AreaShape* getAreaShape() const;
 
-	String getAreaName() const;
+	bool intersectsWith(ActiveArea* area) const;
 
 	void attachScenery(SceneObject* scene);
 
@@ -704,6 +378,18 @@ public:
 	friend class Singleton<ActiveAreaHelper>;
 };
 
+class MockActiveArea : public ActiveArea {
+public:
+
+	MOCK_METHOD1(enqueueEnterEvent,void(SceneObject* obj));
+	MOCK_METHOD1(enqueueExitEvent,void(SceneObject* obj));
+	MOCK_METHOD0(getWorldPositionX,float());
+	MOCK_METHOD0(getWorldPositionY,float());
+	MOCK_METHOD0(getWorldPositionZ,float());
+	MOCK_METHOD0(getWorldPosition,Vector3());
+
+};
+
 } // namespace area
 } // namespace objects
 } // namespace zone
@@ -720,19 +406,15 @@ class ActiveAreaPOD : public SceneObjectPOD {
 public:
 	Optional<bool> noBuildArea;
 
-	Optional<bool> noSpawnArea;
-
 	Optional<bool> campingPermitted;
 
 	Optional<bool> municipalZone;
 
 	Optional<unsigned long long> cellObjectID;
 
+	Optional<bool> noSpawnArea;
+
 	Optional<ManagedReference<AreaShapePOD* >> areaShape;
-
-	Optional<unsigned int> areaFlags;
-
-	Optional<String> areaName;
 
 	String _className;
 	ActiveAreaPOD();

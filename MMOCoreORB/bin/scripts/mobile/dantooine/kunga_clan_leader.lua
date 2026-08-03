@@ -2,7 +2,6 @@ kunga_clan_leader = Creature:new {
 	objectName = "@mob/creature_names:kunga_clan_leader",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
-	mobType = MOB_NPC,
 	socialGroup = "kunga_tribe",
 	faction = "kunga_tribe",
 	level = 75,
@@ -32,26 +31,18 @@ kunga_clan_leader = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "kunga_common", chance = 3500000},
+				{group = "junk", chance = 3500000},
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_all", chance = 2000000},
-				{group = "power_crystals", chance = 500000}
+				{group = "kunga_rare", chance = 500000}
 			}
 		}
 	},
-
-	-- Primary and secondary weapon should be different types (rifle/carbine, carbine/pistol, rifle/unarmed, etc)
-	-- Unarmed should be put on secondary unless the mobile doesn't use weapons, in which case "unarmed" should be put primary and "none" as secondary
-	primaryWeapon = "primitive_weapons",
-	secondaryWeapon = "unarmed",
+	weapons = {"primitive_weapons"},
 	conversationTemplate = "",
-	
-	-- primaryAttacks and secondaryAttacks should be separate skill groups specific to the weapon type listed in primaryWeapon and secondaryWeapon
-	-- Use merge() to merge groups in creatureskills.lua together. If a weapon is set to "none", set the attacks variable to empty brackets
-	primaryAttacks = merge(pikemanmaster,fencermaster,brawlermaster),
-	secondaryAttacks = { }
+	attacks = merge(pikemanmaster,fencermaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(kunga_clan_leader, "kunga_clan_leader")

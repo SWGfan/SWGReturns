@@ -47,7 +47,7 @@ Intimidate2Command = {
 	damageMultiplier = 0,
 	speedMultiplier = 1,
 	healthCostMultiplier = 0,
-	actionCostMultiplier = 1,
+	actionCostMultiplier = 0,
 	mindCostMultiplier = 0,
 	
 	accuracySkillMod = "intimidate",
@@ -57,17 +57,17 @@ Intimidate2Command = {
 		INTIMIDATE_EFFECT, 
 		{}, 
 		{}, 
-		{}, 
+		{},
 		100, 
 		0, 
-		30 
+		120 
 	  )
 	},
 
 	combatSpam = "intim",
 	animation = "intimidate",
 	effectString = "clienteffect/combat_special_attacker_intimidate.cef",
-	range = 32,
+	range = 24,
 
 	poolsToDamage = NO_ATTRIBUTE
 }
