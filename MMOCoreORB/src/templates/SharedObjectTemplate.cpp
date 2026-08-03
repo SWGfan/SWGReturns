@@ -162,7 +162,7 @@ void SharedObjectTemplate::parseVariableData(const String& varName, LuaObject* t
 		}
 
 		luaItemList.pop();
-	} else if (varName == "groundZoneComponent") {
+	} else if (varName == "groundZoneComponent" || varName == "zoneComponent") {
 		groundZoneComponent = Lua::getStringParameter(state);
 	} else if (varName == "spaceZoneComponent") {
 		spaceZoneComponent = Lua::getStringParameter(state);
