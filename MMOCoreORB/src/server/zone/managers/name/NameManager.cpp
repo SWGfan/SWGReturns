@@ -325,6 +325,30 @@ int NameManager::validateName(const String& name, int species) const {
 	return validateReservedNames(name);
 }
 
+// Companion System (2026-07-16, per user request): see NameManager.h's doc
+// comment on this method. Allows letters, digits, apostrophe/hyphen, and
+// single spaces -- same "no double space" and "no backslash/newline/#"
+// rules as validateGuildName(), just with 0-9 added to the allowed set.
+int NameManager::validateCompanionName(const String& name) const {
+	if (name.isEmpty())
+		return NameManagerResult::DECLINED_EMPTY;
+
+	if (name.length() > 40)
+		return NameManagerResult::DECLINED_GUILD_LENGTH;
+
+	if (strspn(name.toCharArray(), "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'- ") != name.length())
+		return NameManagerResult::DECLINED_SYNTAX;
+
+	// Multiple consecutive spaces not allowed
+	if (name.indexOf("  ") != -1)
+		return NameManagerResult::DECLINED_SYNTAX;
+
+	if (name.contains("\\") || name.contains("\n") || name.contains("\r") || name.contains("#"))
+		return NameManagerResult::DECLINED_SYNTAX;
+
+	return checkNamingFilter(name);
+}
+
 int NameManager::validateGuildName(const String& name, int type) const {
 	if (name.isEmpty())
 		return NameManagerResult::DECLINED_EMPTY;

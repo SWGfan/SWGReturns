@@ -77,8 +77,11 @@ int DestroyStructureSessionImplementation::sendDestroyCode() {
 
 	CreatureObject* player = cast<CreatureObject*>( creatureObject.get());
 
-	destroyCode = System::random(899999) + 100000;
-
+	// Companion System (2026-07-29 fix, per Nick: "instead of making it so we
+	// need to add in numbers, lets just make it so a user types in 'yes'").
+	// destroyCode/isDestroyCode() (DestroyStructureSession.idl) are left in
+	// place, just unused now, rather than touching the .idl for a purely
+	// cosmetic change.
 	String no = "\\#FF6347 @player_structure:will_not_redeed_confirm \\#.";
 	String yes = "\\#32CD32 @player_structure:will_redeed_confirm \\#.";
 

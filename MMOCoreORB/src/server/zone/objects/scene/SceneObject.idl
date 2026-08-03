@@ -1977,6 +1977,13 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 		return false;
 	}
 
+	/** Companion System -- datapad control device, isolated from PetControlDevice
+	 * (see server/zone/objects/companion/CompanionControlDevice.idl). */
+	@dirty
+	public abstract boolean isCompanionControlDevice() {
+		return false;
+	}
+
 	@dirty
 	public abstract boolean isVehicleControlDevice() {
 		return false;
@@ -2121,6 +2128,13 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 
 	@read
 	public abstract boolean isPet() {
+		return false;
+	}
+
+	/** Companion System -- isolated companion actor, distinct from Pet/AiAgent
+	 * (see server/zone/objects/companion/CompanionObject.idl). */
+	@read
+	public abstract boolean isCompanionObject() {
 		return false;
 	}
 

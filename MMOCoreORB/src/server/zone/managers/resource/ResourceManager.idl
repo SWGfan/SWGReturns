@@ -75,6 +75,17 @@ class ResourceManager extends Observer implements Logger {
 	public native void givePlayerResource(CreatureObject playerCreature, final string restype, final int quantity);
 
 	public native ResourceSpawn getCurrentSpawn(final string restype, final string zoneName);
+
+	/** Companion System (2026-07-20): highest-quality in-spawn resource of
+	 * the given class on the zone -- see ResourceSpawner::getBestSpawnOfType(). */
+	public native ResourceSpawn getBestSpawnOfType(final string restype, final string zoneName);
+
+	/** Companion System (2026-07-20): best resource of the class scored by
+	 * one of the schematic's experimental weight lines -- see
+	 * ResourceSpawner::getBestSpawnOfTypeWeighted(). */
+	@local
+	public native ResourceSpawn getBestSpawnOfTypeWeighted(final string restype, DraftSchematic schematic, int lineIndex);
+
 	public native ResourceSpawn getResourceSpawn(final string spawnName);
 
 	private native boolean loadConfigData();

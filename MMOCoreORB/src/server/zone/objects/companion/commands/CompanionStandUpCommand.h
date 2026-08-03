@@ -36,7 +36,7 @@ scripts touch those same two shared files independently.
 #include "server/zone/objects/creature/commands/QueueCommand.h"
 #include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/ZoneServer.h"
-#include "server/zone/managers/chat/ChatManager.h"
+#include "server/chat/ChatManager.h"  // genesis port: ChatManager lives under server/chat/, not server/zone/managers/chat/
 
 // STANDUP_2026_07_31 -- 3s between lines, per Nick's explicit ask ("3
 // seconds should be enough time between texts").

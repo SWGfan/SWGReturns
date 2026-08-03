@@ -179,7 +179,8 @@ public:
 
 		Locker clocker(creatureTarget, creature);
 
-		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject() || creatureTarget->isVehicleObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
+		// Companion System (2026-07-19): companions tendable like pets -- see HealDamageCommand.h.
+		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet() && !creatureTarget->isCompanionObject()) || creatureTarget->isDroidObject() || creatureTarget->isVehicleObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
 			creatureTarget = creature;
 
 		if(!checkDistance(creature, creatureTarget, range))

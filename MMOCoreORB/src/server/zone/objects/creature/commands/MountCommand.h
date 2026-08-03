@@ -182,6 +182,15 @@ public:
 		creature->setAccelerationMultiplierMod(newAccel, true);
 		creature->addMountedCombatSlow();
 
+		// Companion System (2026-07-20): a mount-triggered companion
+		// ride-along hook lived here briefly but caused a live regression
+		// ("can't remount or store the vehicle after dismounting") and was
+		// reverted. Companions already pull out matching rides when the
+		// owner CALLS OUT their vehicle (VehicleControlDeviceImplementation
+		// generateObject -> startCompanionVehicleMimicry), which covers the
+		// travel-together case; re-add a mount hook only with live testing
+		// if that proves insufficient. See NOTES.md.
+
 		return SUCCESS;
 	}
 };

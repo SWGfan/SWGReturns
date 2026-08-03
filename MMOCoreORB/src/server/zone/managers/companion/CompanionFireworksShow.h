@@ -398,7 +398,7 @@ public:
 		companion->setPosture(CreaturePosture::UPRIGHT);
 		companion->setCompanionState(CompanionObject::FOLLOW);
 		companion->setFollowObject(owner);
-		companion->setMovementState(AiAgent::FOLLOWING);
+		companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		companion->clearPatrolPoints();
 	}
 
@@ -591,8 +591,11 @@ public:
 
 				if (donor->getPatrolPointSize() == 0) {
 					PatrolPoint point(companion->getPositionX(), companion->getPositionZ(), companion->getPositionY());
+					// genesis port: setMovementState() -> setFollowState(); genesis
+					// setFollowState() calls clearPatrolPoints(), so the state must be
+					// set BEFORE the point is queued (see PetPatrolCommand.h).
+					donor->setFollowState(AiAgent::PATROLLING);
 					donor->addPatrolPoint(point);
-					donor->setMovementState(AiAgent::PATROLLING);
 				}
 
 				scheduleStep(zoneServer, ownerRef, state, 400);
@@ -703,8 +706,11 @@ public:
 			companion->clearPatrolPoints();
 
 			PatrolPoint point(state->targetX, zone->getHeight(state->targetX, state->targetY), state->targetY);
+			// genesis port: setMovementState() -> setFollowState(); genesis
+			// setFollowState() calls clearPatrolPoints(), so the state must be
+			// set BEFORE the point is queued (see PetPatrolCommand.h).
+			companion->setFollowState(AiAgent::PATROLLING);
 			companion->addPatrolPoint(point);
-			companion->setMovementState(AiAgent::PATROLLING);
 
 			scheduleStep(zoneServer, ownerRef, state, 400);
 			return;
@@ -722,8 +728,11 @@ public:
 		if ((dx * dx + dy * dy) > 9.f) { // not there yet (3m)
 			if (companion->getPatrolPointSize() == 0) {
 				PatrolPoint point(state->targetX, zone->getHeight(state->targetX, state->targetY), state->targetY);
+				// genesis port: setMovementState() -> setFollowState(); genesis
+				// setFollowState() calls clearPatrolPoints(), so the state must be
+				// set BEFORE the point is queued (see PetPatrolCommand.h).
+				companion->setFollowState(AiAgent::PATROLLING);
 				companion->addPatrolPoint(point);
-				companion->setMovementState(AiAgent::PATROLLING);
 			}
 
 			scheduleStep(zoneServer, ownerRef, state, 400);
@@ -780,8 +789,11 @@ public:
 					comp->setFollowObject(nullptr);
 					comp->clearPatrolPoints();
 					PatrolPoint fleePoint(rx, fzone->getHeight(rx, ry), ry);
+					// genesis port: setMovementState() -> setFollowState(); genesis
+					// setFollowState() calls clearPatrolPoints(), so the state must be
+					// set BEFORE the point is queued (see PetPatrolCommand.h).
+					comp->setFollowState(AiAgent::PATROLLING);
 					comp->addPatrolPoint(fleePoint);
-					comp->setMovementState(AiAgent::PATROLLING);
 				}, "CompanionFireworkFleeLambda", 500);
 			}
 		}

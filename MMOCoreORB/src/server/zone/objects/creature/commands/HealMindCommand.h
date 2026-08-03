@@ -102,7 +102,8 @@ public:
 			return GENERALERROR;
 		}		
 
-		if (creatureTarget->isDead() || (creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject()) {
+		// Companion System (2026-07-19): companions healable like pets -- see HealDamageCommand.h.
+		if (creatureTarget->isDead() || (creatureTarget->isAiAgent() && !creatureTarget->isPet() && !creatureTarget->isCompanionObject()) || creatureTarget->isDroidObject()) {
 			creature->sendSystemMessage("@healing:heal_mind_invalid_target"); // Target must be a player or a creature pet in order to heal mind.
 			return GENERALERROR;
 		}

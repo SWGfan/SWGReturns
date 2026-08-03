@@ -245,7 +245,13 @@ int CombatManager::doCombatAction(CreatureObject* attacker, WeaponObject* weapon
 
 	// Update PvP TEF Duration
 	if (shouldGcwTef || shouldBhTef || shouldJediTef) {
-		ManagedReference<CreatureObject*> attackingCreature = attacker->isPet() ? attacker->getLinkedCreature() : attacker;
+		// Companion System (2026-07-13, TEF fix -- see docs/companion_system/NOTES.md):
+		// this block is what actually *applies* the TEF timestamp once one of the
+		// TEF booleans comes back true, and it repeats checkForTefs()' own owner
+		// resolution. A companion never registers a real PetControlDevice, so
+		// isPet() is always false for it and the owner was never TEF-flagged --
+		// resolve a companion attacker to its owner exactly like a pet.
+		ManagedReference<CreatureObject*> attackingCreature = (attacker->isPet() || attacker->isCompanionObject()) ? attacker->getLinkedCreature() : attacker;
 
 		if (attackingCreature != nullptr) {
 			PlayerObject* ghost = attackingCreature->getPlayerObject();
@@ -2920,8 +2926,14 @@ void CombatManager::checkForTefs(CreatureObject* attacker, CreatureObject* defen
 	if (*shouldGcwTef && *shouldBhTef)
 		return;
 
-	ManagedReference<CreatureObject*> attackingCreature = attacker->isPet() ? attacker->getLinkedCreature() : attacker;
-	ManagedReference<CreatureObject*> targetCreature = defender->isPet() || defender->isVehicleObject() ? defender->getLinkedCreature() : defender;
+	// Companion System (2026-07-13, TEF fix -- see docs/companion_system/NOTES.md):
+	// extended to isCompanionObject() on both sides. A companion never registers
+	// a real PetControlDevice, so isPet() is always false for it; without this a
+	// companion attacker resolved to itself (an AiAgent, never isPlayerCreature())
+	// and every TEF check below silently failed, and a companion defender likewise
+	// never resolved to its owner.
+	ManagedReference<CreatureObject*> attackingCreature = (attacker->isPet() || attacker->isCompanionObject()) ? attacker->getLinkedCreature() : attacker;
+	ManagedReference<CreatureObject*> targetCreature = defender->isPet() || defender->isVehicleObject() || defender->isCompanionObject() ? defender->getLinkedCreature() : defender;
 
 	if (attackingCreature != nullptr && targetCreature != nullptr && attackingCreature->isPlayerCreature() && targetCreature->isPlayerCreature() && !areInDuel(attackingCreature, targetCreature)) {	
 	

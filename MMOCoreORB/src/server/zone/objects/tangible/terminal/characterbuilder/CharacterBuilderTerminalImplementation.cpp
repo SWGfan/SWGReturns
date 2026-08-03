@@ -8,6 +8,8 @@
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/managers/jedi/JediManager.h"
 #include "server/zone/managers/director/DirectorManager.h"
+#include "server/zone/objects/companion/CompanionControlDevice.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 
 void CharacterBuilderTerminalImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	TangibleObjectImplementation::loadTemplateData(templateData);
@@ -75,6 +77,49 @@ void CharacterBuilderTerminalImplementation::enhanceCharacter(CreatureObject* pl
 			Locker crossLocker(pet, player);
 
 			pm->enhanceCharacter(pet, type);
+		}
+	}
+
+	// Companion System (2026-07-15, "Character Builder buffs companions too"
+	// pass -- see NOTES.md, user request). Companions are deliberately NOT
+	// part of PlayerObject::activePets (see the isolation rationale
+	// throughout docs/companion_system/NOTES.md/HANDOFF.md), so the loop
+	// above never reaches them -- resolved the same way every
+	// Companion*Command.h file already does, scanning the owner's datapad
+	// for a summoned, living CompanionControlDevice linked to them.
+	// enhanceCharacter(CreatureObject) works unmodified on a CompanionObject
+	// (extends AiAgent -> CreatureObject, same as a real pet), so no new
+	// PlayerManager-side code is needed -- just resolving the right targets
+	// to call it on.
+	ManagedReference<SceneObject*> datapad = player->getSlottedObject("datapad");
+
+	if (datapad != nullptr) {
+		for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
+			ManagedReference<SceneObject*> obj = datapad->getContainerObject(i);
+
+			if (obj == nullptr || !obj->isCompanionControlDevice()) {
+				continue;
+			}
+
+			CompanionControlDevice* device = cast<CompanionControlDevice*>(obj.get());
+
+			if (device->isCompanionDead()) {
+				continue;
+			}
+
+			ManagedReference<CompanionObject*> companion = device->getCompanionObject();
+
+			if (companion == nullptr || companion->getZone() == nullptr) {
+				continue;
+			}
+
+			if (companion->getLinkedCreature().get() != player) {
+				continue;
+			}
+
+			Locker crossLocker(companion, player);
+
+			pm->enhanceCharacter(companion, type);
 		}
 	}
 }

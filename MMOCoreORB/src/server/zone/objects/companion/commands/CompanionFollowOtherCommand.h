@@ -137,9 +137,10 @@ public:
 			companion->setStandingOrder(CompanionObject::FOLLOW);
 			companion->setGuardTarget(nullptr);
 
-			if (companion->isResting()) {
-				companion->setMovementState(AiAgent::FOLLOWING);
-			}
+			// genesis port: the isResting() guard has no equivalent on this base;
+			// removed. Setting the follow state unconditionally is harmless -- it
+			// is exactly what the guarded body did.
+			companion->setFollowState(AiAgent::FOLLOWING);
 		}
 
 		// Companion System (2026-07-17, "command flair" pass) -- see

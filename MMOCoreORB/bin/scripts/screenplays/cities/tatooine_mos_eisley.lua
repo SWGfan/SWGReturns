@@ -71,6 +71,19 @@ function TatooineMosEisleyScreenPlay:spawnSceneObjects()
 
 	--large house west A
 	spawnSceneObject(self.planet, "object/static/structure/general/droid_21bmedical_powerdown.iff", -24.2, 1.0, -9.2, 1188001, math.rad(70) )
+
+	-- Companion System: Hall of Records plaque (2026-07-16) -- public,
+	-- no-click, auto-cycling leaderboard display (Most Creature Kills /
+	-- Most PvP Kills). See docs/companion_system/NOTES.md for the design.
+	-- Uses the "scrolling screen" prop as its appearance, a real monitor-
+	-- style item already in the game, rather than a plain painting.
+	-- Z bumped from 5 to 6.5 -- the model's origin isn't at its visual base
+	-- (unlike NPCs, whose skeleton root sits at their feet), so spawning at
+	-- the same ground height you'd use for a person buries part of it.
+	-- May need another nudge after checking in-game again.
+	-- Heading rotated 180 degrees (math.rad(180)) -- was facing backwards.
+	local hallOfRecordsPlaque = spawnSceneObject(self.planet, "object/static/item/item_scrolling_screen.iff", 3534, 6.5, -4812, 0, math.rad(180))
+	startHallOfRecordsDisplay(hallOfRecordsPlaque)
 end
 
 function TatooineMosEisleyScreenPlay:spawnMobiles()
@@ -618,6 +631,20 @@ function TatooineMosEisleyScreenPlay:spawnMobiles()
 
 	--Trainers Outside
 	spawnMobile(self.planet, "trainer_artisan",0,3503,5,-4809,42,0)
+	-- Companion System: Companion Master trainer, placed next to the
+	-- character builder terminal outside the Mos Eisley Starport (spec:
+	-- "Mos Eisley Trainer Spawner Script"). See docs/companion_system/NOTES.md.
+	spawnMobile(self.planet, "trainer_companion_master",0,3498.5,5.0,-4856.2,0,0)
+	-- Companion System (2026-07-20, "companion kill token" pass, per
+	-- user request) -- Veteran Reward Vendor, 5 meters WEST of the
+	-- Companion Master trainer above (this engine's world convention:
+	-- +X east / -X west, matching every other compass-direction spawn
+	-- in this file -- trainer is at x=3498.5, so west is x=3493.5, same
+	-- y). Redeems Companion Killed Tokens -- see
+	-- VeteranRewardVendorSuiCallback.h and veteran_reward_vendor.lua.
+	-- May need a Z/heading nudge after checking in-game, same caveat as
+	-- the Hall of Records plaque placement above.
+	spawnMobile(self.planet, "veteran_reward_vendor",0,3493.5,5.0,-4856.2,0,0)
 	pNpc = spawnMobile(self.planet, "trainer_bountyhunter",0,3357.1,5,-4839.6,64,0)
 	self:setMoodString(pNpc, "npc_sitting_chair")
 	spawnMobile(self.planet, "trainer_brawler",0,3496,5,-4765,91,0)

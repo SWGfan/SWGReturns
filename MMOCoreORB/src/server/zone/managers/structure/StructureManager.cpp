@@ -311,8 +311,18 @@ int StructureManager::placeStructureFromDeed(CreatureObject* creature, Structure
 		return 1;
 	}
 
-	if (!planetManager->isBuildingPermittedAt(x, y, creature)) {
-		creature->sendSystemMessage("@player_structure:not_permitted"); //Building is not permitted here.
+	// Companion System (2026-07-29) -- admin-only no-build-zone bypass, SECOND copy.
+	// Deed-based placement (this function) is a separate code path from
+	// PlaceStructureCommand.h and needs its own copy of the same gate.
+	// Regular players are blocked from placing in a no-build zone; only
+	// privileged/admin accounts bypass -- ghost->isPrivileged(), the
+	// same idiom this file already uses elsewhere to gate the
+	// declare_residence cooldown bypass.
+	ManagedReference<PlayerObject*> ghostForBypass = creature->getPlayerObject();
+	bool bypassNoBuildZones = ghostForBypass != nullptr && ghostForBypass->isPrivileged();
+
+	if (!bypassNoBuildZones && !planetManager->isBuildingPermittedAt(x, y, creature)) {
+		creature->sendSystemMessage("@player_structure:not_permitted"); // Building is not permitted here.
 		return 1;
 	}
 
@@ -407,8 +417,14 @@ int StructureManager::placeStructureFromDeed(CreatureObject* creature, Structure
 	}
 
 	if (city != nullptr) {
-		if (city->isZoningEnabled() && !city->hasZoningRights(creature->getObjectID())) {
-			creature->sendSystemMessage("@player_structure:no_rights"); //You don't have the right to place that structure in this city. The mayor or one of the city milita must grant you zoning rights first.
+		// Companion System (2026-07-25, per user request "remove the no build
+		// zones temporarily, for all players") -- reuses the same
+		// bypassNoBuildZones flag declared earlier in this function. REMOVE
+		// after use. Fourth gate found in this chain -- zoning rights are a
+		// separate mechanic from no-build zones, but blocked placement the
+		// same way once the earlier three gates were cleared.
+		if (!bypassNoBuildZones && city->isZoningEnabled() && !city->hasZoningRights(creature->getObjectID())) {
+			creature->sendSystemMessage("@player_structure:no_rights"); // You don't have the right to place that structure in this city. The mayor or one of the city milita must grant you zoning rights first.
 			return 1;
 		}
 

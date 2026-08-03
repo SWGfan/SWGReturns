@@ -31,9 +31,14 @@ GroupManager::GroupManager() {
 }
 
 bool GroupManager::playerIsInvitingOwnPet(CreatureObject* inviter, CreatureObject* target) {
+	// Companion System (2026-07-15, "/invite groups the companion" -- see
+	// docs/companion_system/NOTES.md): a player's own summoned companion is
+	// groupable exactly like their own pet -- same linked-creature ownership
+	// check, isCompanionObject() alongside isPet() (a companion is deliberately
+	// never isPet()==true, per the system-isolation design).
 	return inviter != nullptr
 			&& target != nullptr
-			&& target->isPet()
+			&& (target->isPet() || target->isCompanionObject())
 			&& target->getCreatureLinkID() != 0
 			&& target->getCreatureLinkID() == inviter->getObjectID();
 }
@@ -48,6 +53,11 @@ void GroupManager::inviteToGroup(CreatureObject* leader, CreatureObject* target)
 		leader->sendSystemMessage("@group:invite_no_target_self");
 		return;
 	}
+
+	// Companion System (2026-07-15): a player's own companion rides the exact
+	// same invite/auto-join pipeline a pet does (see playerIsInvitingOwnPet()
+	// above; CompanionGroupCommand.h calls inviteToGroup() directly).
+	bool targetIsPet = target->isPet() || (target->isCompanionObject() && target->getCreatureLinkID() == leader->getObjectID());
 
 	if (leader->isGrouped()) {
 		ManagedReference<GroupObject*> group = leader->getGroup();
@@ -108,7 +118,7 @@ void GroupManager::inviteToGroup(CreatureObject* leader, CreatureObject* target)
 		stringId.setTT(leader->getDisplayedName());
 		target->sendSystemMessage(stringId);
 
-	} else if (target->isPet()) {
+	} else if (targetIsPet) {
 		unsigned long long ownerId = target->getCreatureLinkID();
 		ManagedReference<CreatureObject*> owner = target->getZoneServer()->getObject(ownerId).castTo<CreatureObject*>();
 

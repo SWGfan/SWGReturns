@@ -44,6 +44,7 @@
 
 --Children folder includes
 includeFile("intangible/base/serverobjects.lua")
+includeFile("intangible/companion/serverobjects.lua")
 includeFile("intangible/data_item/serverobjects.lua")
 includeFile("intangible/faction_perk/serverobjects.lua")
 includeFile("intangible/holocron/serverobjects.lua")

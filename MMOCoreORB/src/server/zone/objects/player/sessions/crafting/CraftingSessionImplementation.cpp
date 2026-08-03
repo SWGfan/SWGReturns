@@ -1207,7 +1207,12 @@ void CraftingSessionImplementation::createPrototype(int clientCounter, bool crea
 		int xp = manufactureSchematic->getDraftSchematic()->getXpAmount();
 
 		if (createItem) {
-
+			// Companion System (2026-07-20, per user request "remove the
+			// crafting time from all items -- we'll add them back later, keep
+			// that data"): the countdown is bypassed server-wide; schematic
+			// complexity data itself is untouched everywhere. To restore
+			// crafting times, swap these calls back to the preserved
+			// originals:
 			//startCreationTasks(manufactureSchematic->getComplexity() * 2, false);
 			startCreationTasks(0, false);
 

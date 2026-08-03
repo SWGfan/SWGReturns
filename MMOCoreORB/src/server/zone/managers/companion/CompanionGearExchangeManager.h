@@ -591,8 +591,11 @@ public:
 
 			if (recipient->getPatrolPointSize() == 0) {
 				PatrolPoint point(smith->getPositionX(), smith->getPositionZ(), smith->getPositionY());
+				// genesis port: setMovementState() -> setFollowState(); genesis
+				// setFollowState() calls clearPatrolPoints(), so the state must be
+				// set BEFORE the point is queued (see PetPatrolCommand.h).
+				recipient->setFollowState(AiAgent::PATROLLING);
 				recipient->addPatrolPoint(point);
-				recipient->setMovementState(AiAgent::PATROLLING);
 			}
 
 			scheduleGearStep(zoneServer, ownerRef, state, 400);

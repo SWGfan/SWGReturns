@@ -37,6 +37,15 @@ public:
 			return INVALIDTARGET;
 		}
 
+		// Companion System (2026-07-15, per user request): the Companion
+		// Loadout backpack keeps its system name -- the client's default
+		// Set Name radial can't be removed for this container type, so the
+		// action is refused here instead.
+		if (targetObj->getServerObjectCRC() == STRING_HASHCODE("object/tangible/inventory/companion_loadout_backpack.iff")) {
+			creature->sendSystemMessage("The Companion Loadout cannot be renamed.");
+			return GENERALERROR;
+		}
+
 		Locker clocker(targetObj, creature);
 
 		String newName = arguments.toString();

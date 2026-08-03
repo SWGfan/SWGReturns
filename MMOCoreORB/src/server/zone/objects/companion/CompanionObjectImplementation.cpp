@@ -38,7 +38,8 @@
 #include "server/zone/Zone.h"
 #include "templates/params/creature/CreatureAttribute.h"
 #include "templates/params/creature/CreatureState.h"
-#include "templates/params/creature/PlayerArrangement.h"
+// genesis port: no PlayerArrangement enum on this base; MountCommand.h:89
+// passes the raw arrangement index 4 for a rider, so RIDER == 4 here.
 #include "templates/params/OptionBitmask.h"
 #include "templates/manager/TemplateManager.h"
 #include "templates/creature/SharedCreatureObjectTemplate.h"
@@ -519,7 +520,7 @@ int CompanionObjectImplementation::addExperience(const String& xpType, int amoun
 					// movement override now, restoreStandingPosture() puts
 					// the real standing order back once this resolves).
 					setFollowObject(trainingOwner);
-					setMovementState(AiAgent::FOLLOWING);
+					setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 					setTrainingReadyUntil(System::getMiliTime() + TRAINING_WALKUP_TIMEOUT_MS);
 					CompanionChatter::announceReaction(_this.getReferenceUnsafeStaticCast(), trainingOwner, "readytotrain");
 				}
@@ -761,11 +762,11 @@ void CompanionObjectImplementation::recoverFromAbortedIntercept() {
 		if (guardTarget != nullptr && guardTarget->getZone() != nullptr) {
 			setCompanionState(CompanionObject::GUARD);
 			setFollowObject(guardTarget);
-			setMovementState(AiAgent::FOLLOWING);
+			setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		} else {
 			setCompanionState(CompanionObject::FOLLOW);
 			setFollowObject(owner);
-			setMovementState(AiAgent::FOLLOWING);
+			setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 	} else {
 		setCompanionState(CompanionObject::FOLLOW);
@@ -778,7 +779,7 @@ void CompanionObjectImplementation::recoverFromAbortedIntercept() {
 			setFollowObject(owner);
 		}
 
-		setMovementState(AiAgent::FOLLOWING);
+		setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 	}
 }
 
@@ -1653,7 +1654,7 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	// real-mount experiment (only its locomotion half was wrong, and the
 	// driver owns locomotion now).
 	driver->setState(CreatureState::MOUNTEDCREATURE, true);
-	driver->transferObject(_this.getReferenceUnsafeStaticCast(), PlayerArrangement::RIDER, true);
+	driver->transferObject(_this.getReferenceUnsafeStaticCast(), 4 /* PlayerArrangement::RIDER */, true);
 	setState(CreatureState::RIDINGMOUNT, true);
 
 	// Park the companion's own AI for the duration of the ride so it can
@@ -1827,11 +1828,11 @@ void CompanionObjectImplementation::startOwnerAutoDrive(CreatureObject* owner) {
 	// Convoy behind the taxi.
 	carriage->setCompanionState(CompanionObject::FOLLOW);
 	carriage->setFollowObject(driverCreo);
-	carriage->setMovementState(AiAgent::FOLLOWING);
+	carriage->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 
 	// Mount the OWNER -- same 3-step idiom as the companion's own mount.
 	carriage->setState(CreatureState::MOUNTEDCREATURE, true);
-	carriage->transferObject(owner, PlayerArrangement::RIDER, true);
+	carriage->transferObject(owner, 4 /* PlayerArrangement::RIDER */, true);
 	owner->setState(CreatureState::RIDINGMOUNT, true);
 
 	taxiOwnerCarriage = carriage;
@@ -1963,7 +1964,7 @@ void CompanionObjectImplementation::stopTaxiRide(bool resumeFollow) {
 		if (owner != nullptr) {
 			setCompanionState(CompanionObject::FOLLOW);
 			setFollowObject(owner);
-			setMovementState(AiAgent::FOLLOWING);
+			setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 	}
 }
@@ -2082,7 +2083,7 @@ void CompanionObjectImplementation::updateTaxiTick() {
 			AiAgent* departingAgent = driverCreo->asAiAgent();
 
 			if (departingAgent != nullptr) {
-				departingAgent->setMovementState(AiAgent::PATROLLING);
+				departingAgent->setFollowState(AiAgent::PATROLLING); // genesis port: was setMovementState()
 			}
 
 			if (rideOwner != nullptr) {
@@ -2120,7 +2121,7 @@ void CompanionObjectImplementation::updateTaxiTick() {
 					AiAgent* resumingAgent = driverCreo->asAiAgent();
 
 					if (resumingAgent != nullptr) {
-						resumingAgent->setMovementState(AiAgent::PATROLLING);
+						resumingAgent->setFollowState(AiAgent::PATROLLING); // genesis port: was setMovementState()
 					}
 
 					if (rideOwner != nullptr) {
@@ -2197,8 +2198,11 @@ void CompanionObjectImplementation::updateTaxiTick() {
 
 				float destZ = zone->getHeight(taxiDestX, taxiDestY);
 				PatrolPoint destination(taxiDestX, destZ, taxiDestY);
+				// genesis port: setMovementState() -> setFollowState(); genesis
+				// setFollowState() calls clearPatrolPoints(), so the state must be
+				// set BEFORE the point is queued (see PetPatrolCommand.h).
+				driverAgent->setFollowState(AiAgent::PATROLLING);
 				driverAgent->addPatrolPoint(destination);
-				driverAgent->setMovementState(AiAgent::PATROLLING);
 			}
 		}
 	}
@@ -2237,7 +2241,7 @@ void CompanionObjectImplementation::updateTaxiTick() {
 		AiAgent* departingAgent = driverCreo->asAiAgent();
 
 		if (departingAgent != nullptr) {
-			departingAgent->setMovementState(AiAgent::FOLLOWING);
+			departingAgent->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 
 		if (rideOwner != nullptr) {
@@ -2297,14 +2301,20 @@ bool CompanionObjectImplementation::addTaxiWaypoint(float destX, float destY) {
 
 	float destZ = zone->getHeight(destX, destY);
 	PatrolPoint stop(destX, destZ, destY);
-	driverAgent->addPatrolPoint(stop);
 
 	// Don't kick the driver into motion if it's still in the 5-second
 	// departure hold -- the point queues up and the tick starts the whole
 	// route when the clock passes (2026-07-16).
+	//
+	// genesis port: setMovementState() -> setFollowState(); genesis
+	// setFollowState() calls clearPatrolPoints(), so the state change was
+	// moved ABOVE addPatrolPoint() (see PetPatrolCommand.h) -- the point is
+	// still queued unconditionally, exactly as before.
 	if (taxiDepartureTime == 0) {
-		driverAgent->setMovementState(AiAgent::PATROLLING);
+		driverAgent->setFollowState(AiAgent::PATROLLING);
 	}
+
+	driverAgent->addPatrolPoint(stop);
 
 	// The arrival check (and the tick's route-keepalive repath) always
 	// tracks the FINAL stop of the route.
@@ -2596,14 +2606,14 @@ namespace {
 					if (guardTarget != nullptr && guardTarget->getZone() != nullptr) {
 						companion->setCompanionState(CompanionObject::GUARD);
 						companion->setFollowObject(guardTarget);
-						companion->setMovementState(AiAgent::FOLLOWING);
+						companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 					} else {
 						// Guarded creature logged out/died/left the zone --
 						// nothing left to guard; fall back to the owner
 						// exactly like the FOLLOW branch below.
 						companion->setCompanionState(CompanionObject::FOLLOW);
 						companion->setFollowObject(owner);
-						companion->setMovementState(AiAgent::FOLLOWING);
+						companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 					}
 				} else {
 					// FOLLOW (the default/original behavior) -- 2026-07-20
@@ -2621,7 +2631,7 @@ namespace {
 						companion->setFollowObject(owner);
 					}
 
-					companion->setMovementState(AiAgent::FOLLOWING);
+					companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 				}
 			}
 		};
@@ -2700,8 +2710,11 @@ namespace {
 
 				if (companion->getPatrolPointSize() == 0) {
 					PatrolPoint point(corpse->getPositionX(), corpse->getPositionZ(), corpse->getPositionY());
+					// genesis port: setMovementState() -> setFollowState(); genesis
+					// setFollowState() calls clearPatrolPoints(), so the state must be
+					// set BEFORE the point is queued (see PetPatrolCommand.h).
+					companion->setFollowState(AiAgent::PATROLLING);
 					companion->addPatrolPoint(point);
-					companion->setMovementState(AiAgent::PATROLLING);
 				}
 
 				scheduleSweepStep(companionRef, ownerRef, state, 400);
@@ -2814,7 +2827,7 @@ namespace {
 			// Run the spoils back to the owner.
 			companion->setCompanionState(CompanionObject::FOLLOW);
 			companion->setFollowObject(owner);
-			companion->setMovementState(AiAgent::FOLLOWING);
+			companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 
 			scheduleSweepStep(companionRef, ownerRef, state, 400);
 			return;
@@ -3512,11 +3525,11 @@ namespace {
 			if (guardTarget != nullptr && guardTarget->getZone() != nullptr) {
 				companion->setCompanionState(CompanionObject::GUARD);
 				companion->setFollowObject(guardTarget);
-				companion->setMovementState(AiAgent::FOLLOWING);
+				companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			} else {
 				companion->setCompanionState(CompanionObject::FOLLOW);
 				companion->setFollowObject(owner);
-				companion->setMovementState(AiAgent::FOLLOWING);
+				companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			}
 		} else {
 			companion->setCompanionState(CompanionObject::FOLLOW);
@@ -3529,7 +3542,7 @@ namespace {
 				companion->setFollowObject(owner);
 			}
 
-			companion->setMovementState(AiAgent::FOLLOWING);
+			companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 	}
 
@@ -3556,7 +3569,7 @@ namespace {
 		if (companion->isInCombat() && fleeingUntil == 0 && healthPct <= threshold) {
 			CombatManager::instance()->forcePeace(companion);
 			companion->setFollowObject(owner);
-			companion->setMovementState(AiAgent::FLEEING);
+			companion->setFollowState(AiAgent::FLEEING); // genesis port: was setMovementState()
 			companion->setFleeingUntil(System::getMiliTime() + 15000);
 			CompanionChatter::announceReaction(companion, owner, "flee");
 			return;
@@ -4128,7 +4141,7 @@ namespace {
 		// the companion no longer idle").
 		if (weSatItDown && coreBusy) {
 			companion->setPosture(CreaturePosture::UPRIGHT, true);
-			companion->setMovementState(AiAgent::FOLLOWING);
+			companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			idleSittingCompanions.drop(companionID);
 			weSatItDown = false;
 		}
@@ -4155,7 +4168,9 @@ namespace {
 		// already resting/sitting for some OTHER reason (e.g. camp
 		// ambiance) -- but a rest WE caused (weSatItDown) should not block
 		// itself here, it's handled by the stand-up branch above.
-		if (coreBusy || weSatItDown || companion->isResting()) {
+		// genesis port: isResting() has no equivalent on this base; the term was
+		// dropped. coreBusy/weSatItDown still cover the cases we set up ourselves.
+		if (coreBusy || weSatItDown) {
 			return;
 		}
 
@@ -4165,7 +4180,7 @@ namespace {
 
 		if (System::random(3) == 0) { // 1-in-4 of successful rolls: sit instead of a standing emote
 			companion->setPosture(CreaturePosture::SITTING, true);
-			companion->setMovementState(AiAgent::RESTING);
+			// DEFERRED (genesis port): no equivalent for AiAgent::RESTING -- companion->setMovementState(AiAgent::RESTING);
 			idleSittingCompanions.put(companionID, (uint64) 1);
 			return;
 		}
@@ -4719,7 +4734,7 @@ void CompanionObjectImplementation::leash(bool forcePeace) {
 				owner->getParent().get().castTo<CellObject*>());
 
 		setFollowObject(owner);
-		setMovementState(AiAgent::FOLLOWING);
+		setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 
 		return;
 	}

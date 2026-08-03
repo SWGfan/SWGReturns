@@ -130,7 +130,19 @@ public:
 		if (group == nullptr)
 			return 0;
 
-		float modifier = 1.0f + ((float)(group->getGroupSize()) / 20.0f);
+		// Companion System (2026-07-27, per Nick's group-size-100 change):
+		// this formula was calibrated for the old 20-member cap (exactly
+		// 2.0x HAM cost at max group). Clamping the input at 20 keeps every
+		// command that uses this modifier (Boostmorale/Formup/Rally/Retreat/
+		// Steadyaim/VolleyFire) costing exactly what it always cost,
+		// regardless of how large a group can now get.
+		int groupSizeForModifier = group->getGroupSize();
+
+		if (groupSizeForModifier > 20) {
+			groupSizeForModifier = 20;
+		}
+
+		float modifier = 1.0f + ((float)(groupSizeForModifier) / 20.0f);
 
 			return modifier;
 	}

@@ -16,6 +16,8 @@
 #include "server/zone/objects/intangible/IntangibleObject.h"
 #include "server/zone/objects/intangible/VehicleControlDevice.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
+#include "server/zone/objects/companion/CompanionControlDevice.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/objects/intangible/ShipControlDevice.h"
 #include "server/zone/objects/intangible/StructureControlDevice.h"
 #include "server/zone/objects/intangible/TheaterObject.h"

@@ -46,6 +46,18 @@ public:
 	void sendDraftSlotsTo(CreatureObject* player, uint32 schematicID);
 	void sendResourceWeightsTo(CreatureObject* player, uint32 schematicID);
 
+	/** Companion System (2026-07-20, artisan craft picker -- see
+	 * CompanionCraftPickSuiCallback.h): read-only group lookup so the
+	 * companion crafting UI can enumerate what a skill's schematic groups
+	 * actually contain. */
+	DraftSchematicGroup* getGroup(const String& groupName) {
+		if (!groupMap.contains(groupName)) {
+			return nullptr;
+		}
+
+		return groupMap.get(groupName);
+	}
+
 	DraftSchematic* get(uint32 schemid) {
 		return schematicCrcMap.get(schemid);
 	}

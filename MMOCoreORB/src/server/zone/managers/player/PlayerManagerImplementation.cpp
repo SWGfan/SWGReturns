@@ -99,6 +99,7 @@
 #include "server/zone/managers/gcw/GCWManager.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/managers/creature/PetManager.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/objects/creature/events/BurstRunNotifyAvailableEvent.h"
 #include "server/zone/objects/creature/ai/DroidObject.h"
 #include "server/zone/objects/tangible/components/droid/DroidPlaybackModuleDataComponent.h"
@@ -1781,6 +1782,50 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 			awardExperience(owner, "creaturehandler", xpAmount);
 
+		} else if (attacker->isCompanionObject()) {
+			// Companion System (2026-07-14, combat-XP gap fix -- see NOTES.md):
+			// a companion attacker is neither a real isPet() (no
+			// PetControlDevice -- see the friendly-fire/TEF writeups earlier
+			// this project) nor an isPlayerCreature(), so before this branch
+			// existed it fell through both of the above and simply never
+			// earned anything for its own damage share -- confirmed
+			// CompanionObject::addExperience() has no call sites anywhere in
+			// the codebase prior to this fix. Deliberately NOT reusing the
+			// isPet() branch above: that awards "creaturehandler" skill xp to
+			// the *owner*, which is the wrong xp type/recipient for a
+			// companion (CombatManager.cpp's own xpType selection already
+			// treats a companion's attacks as weapon-based, not
+			// creaturehandler -- see that fix's writeup). Instead, credit the
+			// companion's own isolated xp ledger directly, split by the same
+			// per-xpType damage-share weighting the real-player branch below
+			// uses, minus the group/squad-leader machinery that doesn't apply
+			// to a companion.
+			CreatureObject* attackerCreo = attacker->asCreatureObject();
+
+			if (attackerCreo == nullptr) {
+				continue;
+			}
+
+			CompanionObject* companion = cast<CompanionObject*>(attackerCreo);
+
+			if (companion == nullptr) {
+				continue;
+			}
+
+			Locker companionLocker(companion, destructedObject);
+
+			for (int j = 0; j < entry->size(); ++j) {
+				uint32 damage = entry->elementAt(j).getValue();
+				String xpType = entry->elementAt(j).getKey();
+
+				if (xpType == "dotDMG") { // same DoT exclusion the real-player branch applies
+					continue;
+				}
+
+				float xpAmount = baseXp * (float) damage / totalDamage;
+
+				companion->addExperience(xpType, (int) xpAmount);
+			}
 		} else if (attacker->isPlayerCreature()) {
 			if (!(attacker->getZone() == zone && destructedObject->isInRangeZoneless(attacker, 80))) {
 				continue;

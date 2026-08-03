@@ -147,6 +147,30 @@ public:
 	 * @param container the target container
 	 */
 	void addStartingItemsInto(CreatureObject* creature, SceneObject* container) const;
+
+	/**
+	 * Companion System -- grants the same starting equipment + inventory
+	 * clutter a real new character gets for the given profession, directly
+	 * onto a non-player CreatureObject (a companion). Reuses the same
+	 * professionDefaultsInfo/defaultCharacterEquipment/commonStartingItems
+	 * data every real character creation reads, but -- unlike
+	 * addStartingItemsInto()/addStartingWeaponsInto() -- takes
+	 * profession/clientTemplate as explicit parameters instead of deriving
+	 * them from creature->getPlayerObject()->getStarterProfession() /
+	 * creature->getObjectTemplate() cast to PlayerCreatureTemplate*, neither
+	 * of which a companion has (both those methods hard-require
+	 * creature->isPlayerCreature() and bail out immediately for anything
+	 * else).
+	 * @param creature the (non-player) creature to grant equipment to
+	 * @param container destination for non-equipment starting items --
+	 *        pass the same object as creature for an actor with no separate
+	 *        inventory bag child object, like a companion
+	 * @param profession the profession root name to look up in
+	 *        professionDefaultsInfo (e.g. "marksman", "medic")
+	 * @param clientTemplate the appearance template string used to pick a
+	 *        matching gear set (e.g. "human_male")
+	 */
+	void grantStartingGearTo(CreatureObject* creature, SceneObject* container, const String& profession, const String& clientTemplate) const;
 };
 
 }

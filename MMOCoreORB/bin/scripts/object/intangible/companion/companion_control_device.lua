@@ -58,7 +58,7 @@
 -- companion_patch.tre (unused). A human datapad model needs a different
 -- technique -- flagged in NOTES.md as attempted/reverted.
 object_intangible_companion_companion_control_device = object_intangible_pet_shared_pet_control:new {
-	gameObjectType = 2061 -- SceneObjectType::COMPANIONCONTROLDEVICE (0x80D)
+	gameObjectType = 2062 -- SceneObjectType::COMPANIONCONTROLDEVICE (0x80E)
 }
 
 ObjectTemplates:addTemplate(object_intangible_companion_companion_control_device, "object/intangible/companion/companion_control_device.iff")

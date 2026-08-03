@@ -109,6 +109,11 @@
 #include "server/zone/objects/creature/components/TrainerMenuComponent.h"
 #include "server/zone/objects/creature/components/SarlaccMenuComponent.h"
 #include "server/zone/objects/creature/components/PetMenuComponent.h"
+#include "server/zone/objects/companion/components/CompanionMenuComponent.h"
+#include "server/zone/objects/tangible/components/PocketBoyMenuComponent.h"
+#include "server/zone/objects/companion/components/CompanionContainerComponent.h"
+#include "server/zone/objects/companion/components/CompanionBagContainerComponent.h"
+#include "server/zone/objects/companion/components/CompanionLoadoutContainerComponent.h"
 #include "server/zone/objects/tangible/components/FireHeavyWeaponMenuComponent.h"
 #include "server/zone/objects/tangible/components/ThrowGrenadeMenuComponent.h"
 #include "server/zone/objects/tangible/components/GogglesObjectMenuComponent.h"
@@ -279,6 +284,11 @@ ComponentManager::ComponentManager() {
 
 	components.put("TrainerMenuComponent", new TrainerMenuComponent());
 	components.put("PetMenuComponent", new PetMenuComponent());
+	components.put("CompanionMenuComponent", new CompanionMenuComponent());
+	components.put("PocketBoyMenuComponent", new PocketBoyMenuComponent());
+	components.put("CompanionContainerComponent", new CompanionContainerComponent());
+	components.put("CompanionBagContainerComponent", new CompanionBagContainerComponent());
+	components.put("CompanionLoadoutContainerComponent", new CompanionLoadoutContainerComponent());
 
 	components.put("FireHeavyWeaponMenuComponent", new FireHeavyWeaponMenuComponent());
 	components.put("ThrowGrenadeMenuComponent", new ThrowGrenadeMenuComponent());

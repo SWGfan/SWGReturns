@@ -74,6 +74,42 @@ public:
 			}
 		}
 
+		// Companion System (2026-07-25, per user request "i cant delete these
+		// bags from the test resources") -- GMs can bypass both special-item
+		// protections below. Root cause of the bug report: the "Test
+		// Resources" bags share the SAME underlying template/CRC as the real
+		// Companion Loadout Backpack (companion_loadout_backpack.iff), so the
+		// 2026-07-15 protection meant only for real companion gear was also
+		// catching these unrelated test items. Regular players still can't
+		// destroy either protected item.
+		ManagedReference<PlayerObject*> ghostForDestroyBypass = creature->getPlayerObject();
+		bool gmDestroyBypass = (ghostForDestroyBypass != nullptr && ghostForDestroyBypass->hasGodMode());
+
+		// Prevent destruction of Sorosuub Yacht Reward
+		if (!gmDestroyBypass && object->getServerObjectCRC() == STRING_HASHCODE("object/tangible/space/veteran_reward/sorosuub_space_yacht_deed.iff")) {
+			StringIdChatParameter message("error_message", "unable_to_destroy"); // "The object %TT is a special item and cannot be destroyed."
+			message.setTT(object->getDisplayedName());
+
+			creature->sendSystemMessage(message);
+
+			return GENERALERROR;
+		}
+
+		// Companion System (2026-07-15, per user request): the Companion
+		// Loadout backpack is a system container (created once at
+		// companion recruitment, drives auto-equip/auto-feed) -- the
+		// client's default Destroy radial can't be removed for a wearable
+		// container type, so the action is refused here instead. Same
+		// pattern as the Sorosuub yacht block above.
+		if (!gmDestroyBypass && object->getServerObjectCRC() == STRING_HASHCODE("object/tangible/inventory/companion_loadout_backpack.iff")) {
+			StringIdChatParameter message("error_message", "unable_to_destroy"); // "The object %TT is a special item and cannot be destroyed."
+			message.setTT(object->getDisplayedName());
+
+			creature->sendSystemMessage(message);
+
+			return GENERALERROR;
+		}
+
 		TransactionLog trx(creature, TrxCode::SERVERDESTROYOBJECT, object);
 
 		if (object->isASubChildOf(creature)){

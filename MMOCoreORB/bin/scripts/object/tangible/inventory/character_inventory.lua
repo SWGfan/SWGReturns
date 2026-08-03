@@ -42,7 +42,13 @@
 
 
 object_tangible_inventory_character_inventory = object_tangible_inventory_shared_character_inventory:new {
-
+	-- Companion System (2026-07-15, per user request): raised from the
+	-- stock 80 -- companion gear/loadout management needs the headroom.
+	-- Server-side enforcement; the client's own capacity display comes from
+	-- its TRE copy of shared_character_inventory.iff, patched to match in
+	-- companion_patch.tre (see docs/companion_system/tools/
+	-- build_inventory_patch.py).
+	containerVolumeLimit = 150,
 }
 
 ObjectTemplates:addTemplate(object_tangible_inventory_character_inventory, "object/tangible/inventory/character_inventory.iff")

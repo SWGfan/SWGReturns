@@ -425,7 +425,11 @@ public:
 
 		Locker clocker(targetCreature, creature);
 
-		if ((targetCreature->isAiAgent() && !targetCreature->isPet()) || targetCreature->isDroidObject() || targetCreature->isVehicleObject() || targetCreature->isDead() || targetCreature->isRidingMount() || targetCreature->isAttackableBy(creature))
+		// Companion System (2026-07-19, "can't heal my companion -- non-player
+		// entity" fix): companions are AiAgents but never isPet() -- exempt
+		// them the same way pets are, here and in the Wound/State/Mind
+		// variants (see NOTES.md).
+		if ((targetCreature->isAiAgent() && !targetCreature->isPet() && !targetCreature->isCompanionObject()) || targetCreature->isDroidObject() || targetCreature->isVehicleObject() || targetCreature->isDead() || targetCreature->isRidingMount() || targetCreature->isAttackableBy(creature))
 			targetCreature = creature;
 
 		uint64 pharmaceuticalObjectID = 0;

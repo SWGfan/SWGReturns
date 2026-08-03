@@ -115,7 +115,11 @@ public:
 			return false;
 		}
 
-		if (!patient->isPlayerCreature() && !(patient->isCreature() && patient->isPet())) {
+		// Companion System (2026-07-15, per user request): companions accept
+		// enhancements exactly like creature pets do -- isCompanionObject()
+		// alongside the pet check (deliberately never isPet(), per the
+		// system-isolation design).
+		if (!patient->isPlayerCreature() && !(patient->isCreature() && patient->isPet()) && !patient->isCompanionObject()) {
 			enhancer->sendSystemMessage("@healing_response:healing_response_77"); //Target must be a player or a creature pet in order to apply enhancements.
 			return false;
 		}

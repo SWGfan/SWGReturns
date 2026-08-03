@@ -26,28 +26,40 @@ int LuaSkill::_setObject(lua_State* L) {
 	return 0;
 }
 
+// Companion System (2026-07-15, live SIGSEGV hardening -- see NOTES.md):
+// every method below dereferenced realObject unguarded. A Lua caller (e.g.
+// the trainer conversation handler) that wraps a NULL Skill -- which
+// happens whenever a skill name referenced by script data isn't present in
+// the loaded skills.iff (live-confirmed: a server booted without
+// companion_patch.tre in its TreFiles crashed in getSkillsRequired() the
+// moment the Companion Handler trainer conversation opened) -- was a
+// guaranteed server crash. Null-guard everything: scripts get nil/empty
+// values instead, and the conversation degrades gracefully.
 int LuaSkill::getName(lua_State* L) {
+	if (realObject == nullptr) {
+		lua_pushstring(L, "");
+		return 1;
+	}
+
 	String text = realObject->getSkillName();
 	lua_pushstring(L, text.toCharArray());
 	return 1;
 }
 
 int LuaSkill::getMoneyRequired(lua_State* L) {
-	int amount = realObject->getMoneyRequired();
-	lua_pushinteger(L, amount);
+	lua_pushinteger(L, realObject != nullptr ? realObject->getMoneyRequired() : 0);
 	return 1;
 }
 
 int LuaSkill::getSkillPointsRequired(lua_State* L) {
-	int amount = realObject->getSkillPointsRequired();
-	lua_pushinteger(L, amount);
+	lua_pushinteger(L, realObject != nullptr ? realObject->getSkillPointsRequired() : 0);
 	return 1;
 }
 
 int LuaSkill::getSkillsRequired(lua_State* L) {
-	auto requiredSkills = realObject->getSkillsRequired();
+	const Vector<String>* requiredSkills = realObject != nullptr ? realObject->getSkillsRequired() : nullptr;
 
-	if (requiredSkills->size() == 0) {
+	if (requiredSkills == nullptr || requiredSkills->size() == 0) {
 		lua_pushnil(L);
 	} else {
 		lua_newtable(L);

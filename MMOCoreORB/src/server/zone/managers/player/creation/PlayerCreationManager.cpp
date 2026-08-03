@@ -12,8 +12,10 @@
 #include "server/login/account/Account.h"
 #include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
 #include "server/zone/objects/player/PlayerObject.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/packets/charcreation/ClientCreateCharacterCallback.h"
 #include "server/zone/packets/charcreation/ClientCreateCharacterSuccess.h"
+#include "server/zone/packets/charcreation/ClientCreateCharacterFailed.h"
 #include "templates/manager/TemplateManager.h"
 #include "templates/datatables/DataTableIff.h"
 #include "templates/datatables/DataTableRow.h"
@@ -642,6 +644,20 @@ void PlayerCreationManager::addStartingItems(CreatureObject* creature,
 				error("could not create common starting item " + itemTemplate + " hash=" + String::valueOf(itemTemplate.hashCode()));
 			}
 		}
+
+		// COMPANION_FIX_2026_07_29_REMOVE_CHARACTER_BUILDER_STARTING_GRANT --
+		// removed unconditional Character Builder terminal starting-inventory
+		// grant, added in sandbox mode 2026-07-18. Nick, 2026-07-29: "remove
+		// the character builder terminal from non admin inventory, it
+		// should no longer spawn in to a new players inventory." It was an
+		// unconditional grant with no admin/gm check at all -- every freshly
+		// created character got one, per the original comment: "per user
+		// request" (character builder terminal in everyone's inventory upon
+		// creating). Admins still have a real, already-existing way to get
+		// this exact terminal on demand: the stock GM/dev command
+		// "/object characterbuilder" (ObjectCommand.h) spawns the same
+		// object/tangible/terminal/terminal_character_builder.iff template,
+		// gated by Core3.CharacterBuilderEnabled -- nothing new was added here.
 	}
 }
 
@@ -968,6 +984,155 @@ void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 				item->destroyObjectFromDatabase(true);
 			}
 		} else if (item != nullptr) {
+			item->destroyObjectFromDatabase(true);
+		}
+	}
+}
+
+void PlayerCreationManager::grantStartingGearTo(CreatureObject* creature,
+		SceneObject* container, const String& profession,
+		const String& clientTemplate) const {
+
+	if (creature == nullptr || container == nullptr) {
+		return;
+	}
+
+	// Companion System (2026-07-20 fix, "artisan has the outfit but no
+	// tools"): this grant now runs PRE-SPAWN (see
+	// CompanionStarterProfessionSuiCallback), before
+	// CompanionControlDeviceImplementation::spawnObject()'s own
+	// unconditional setContainerVolumeLimit(80) has ever run for a brand
+	// new companion -- so its top-level container still had the template
+	// default limit of 0 and every loose-item transferObject(-1) below
+	// (the profession tools, the starting clutter) failed CONTAINERFULL
+	// and destroyed the item. Equip-slot transfers (containmentType 4,
+	// the clothing) don't consume volume, which is why only the outfit
+	// survived. Same value, same idempotence as the summon-time call.
+	if (creature->isCompanionObject()) {
+		creature->setContainerVolumeLimit(80);
+	}
+
+	// Base default clothing for the appearance template -- same table
+	// addStartingItems() reads for a real new character's starting look,
+	// equipped directly (containmentType 4, same canAddObject() gate every
+	// other equip path in this codebase uses).
+	const SortedVector<String>* baseItems = nullptr;
+
+	if (!defaultCharacterEquipment.contains(clientTemplate))
+		baseItems = &defaultCharacterEquipment.get(0);
+	else
+		baseItems = &defaultCharacterEquipment.get(clientTemplate);
+
+	for (int i = 0; i < baseItems->size(); ++i) {
+		String itemTemplate = baseItems->get(i);
+		ManagedReference<SceneObject*> item = zoneServer->createObject(itemTemplate.hashCode(), 1);
+
+		if (item == nullptr) {
+			continue;
+		}
+
+		String error;
+
+		if (creature->canAddObject(item, 4, error) == 0) {
+			creature->transferObject(item, 4, false);
+		} else {
+			item->destroyObjectFromDatabase(true);
+		}
+	}
+
+	// Profession-specific equipment (weapon + profession clothing/armor)
+	// plus profession-specific starting clutter -- same data
+	// addProfessionStartingItems() reads for a real new character, just
+	// looked up by an explicit profession string instead of
+	// creature->getPlayerObject()->getStarterProfession() (a companion has
+	// no PlayerObject ghost to read that from).
+	ProfessionDefaultsInfo* professionData = professionDefaultsInfo.get(profession);
+
+	if (professionData == nullptr) {
+		professionData = professionDefaultsInfo.get(0);
+	}
+
+	if (professionData != nullptr) {
+		const SortedVector<String>* itemTemplates = professionData->getProfessionItems(clientTemplate);
+
+		if (itemTemplates != nullptr) {
+			for (int i = 0; i < itemTemplates->size(); ++i) {
+				String itemTemplate = itemTemplates->get(i);
+				ManagedReference<SceneObject*> item;
+
+				try {
+					item = zoneServer->createObject(itemTemplate.hashCode(), 1);
+				} catch (Exception& e) {
+				}
+
+				if (item == nullptr) {
+					continue;
+				}
+
+				String error;
+
+				if (creature->canAddObject(item, 4, error) == 0) {
+					creature->transferObject(item, 4, false);
+
+					// Companion System (2026-07-17 bug fix, per user report:
+					// "companion starts with a knife instead of a rifle") --
+					// unlike the manual in-game equip path
+					// (CompanionObjectImplementation::equipItemFromInventory(),
+					// which explicitly calls setWeapon()+refreshCombatAttacks()
+					// right after transferring a weapon in), this loop only
+					// ever moved the item into the equip slot at the raw
+					// SceneObject level -- it never told the companion's OWN
+					// `weapon`/attack-map state that a new weapon showed up.
+					// getWeapon() therefore kept returning whatever it fell
+					// back to before any real weapon existed (the innate
+					// unarmed/default_weapon placeholder), regardless of which
+					// profession weapon actually ended up in the slot. Mirror
+					// the manual-equip call here so the companion's starting
+					// weapon actually matches its profession (e.g. a rifle/
+					// carbine/pistol for marksman) the moment it's granted,
+					// not just after the owner manually re-equips it once.
+					if (item->isWeaponObject() && creature->isCompanionObject()) {
+						CompanionObject* companion = cast<CompanionObject*>(creature);
+						WeaponObject* weapon = cast<WeaponObject*>(item.get());
+
+						if (companion != nullptr && weapon != nullptr) {
+							companion->setWeapon(weapon, true);
+							companion->refreshCombatAttacks(weapon);
+						}
+					}
+				} else {
+					item->destroyObjectFromDatabase(true);
+				}
+			}
+		}
+
+		const Vector<String>* profStartingItems = professionData->getStartingItems();
+
+		if (profStartingItems != nullptr) {
+			for (int i = 0; i < profStartingItems->size(); ++i) {
+				ManagedReference<SceneObject*> item = zoneServer->createObject(profStartingItems->get(i).hashCode(), 1);
+
+				if (item == nullptr) {
+					continue;
+				}
+
+				if (!container->transferObject(item, -1, true)) {
+					item->destroyObjectFromDatabase(true);
+				}
+			}
+		}
+	}
+
+	// Common starting clutter every new character gets regardless of
+	// profession/race.
+	for (int i = 0; i < commonStartingItems.size(); ++i) {
+		ManagedReference<SceneObject*> item = zoneServer->createObject(commonStartingItems.get(i).hashCode(), 1);
+
+		if (item == nullptr) {
+			continue;
+		}
+
+		if (!container->transferObject(item, -1, true)) {
 			item->destroyObjectFromDatabase(true);
 		}
 	}

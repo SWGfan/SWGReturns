@@ -740,8 +740,11 @@ public:
 
 			if (de->getPatrolPointSize() == 0) {
 				PatrolPoint point(crafter->getPositionX(), crafter->getPositionZ(), crafter->getPositionY());
+				// genesis port: setMovementState() -> setFollowState(); genesis
+				// setFollowState() calls clearPatrolPoints(), so the state must be
+				// set BEFORE the point is queued (see PetPatrolCommand.h).
+				de->setFollowState(AiAgent::PATROLLING);
 				de->addPatrolPoint(point);
-				de->setMovementState(AiAgent::PATROLLING);
 			}
 
 			scheduleHandoffConverge(zoneServer, ownerRef, state, 400);

@@ -390,6 +390,102 @@ void ConsumableImplementation::setModifiers(Buff* buff, bool skillModifiers) {
 	}
 }
 
+// Companion System (2026-07-14, "player-side loadout backpack" consume path
+// -- see CompanionLoadoutContainerComponent and Consumable.idl). Mirrors the
+// EFFECT_* handling of handleObjectMenuSelect() above, applied to `consumer`
+// (the companion) instead of the activating player, minus player-only
+// mechanics: no stomach filling (companions have no PlayerObject), no spice
+// (SpiceBuff downer chain is player-oriented), no EFFECT_INSTANT specials
+// (burst run etc. route through PlayerManager), no EFFECT_DELAYED (those
+// buffs trigger off player action events). Unsupported types return false
+// and the item simply stays in the backpack.
+bool ConsumableImplementation::consumeByCreature(CreatureObject* consumer, CreatureObject* owner) {
+	if (consumer == nullptr || owner == nullptr)
+		return false;
+
+	if (consumer->isDead() || consumer->isIncapacitated())
+		return false;
+
+	// "pets"-restricted food is exactly what a companion SHOULD be able to
+	// eat, so it's allowed here (unlike in handleObjectMenuSelect); the
+	// trandoshan-only ("2") and wookiee-only ("4") foods stay species-checked
+	// against the companion itself.
+	String raceName = consumer->getSpeciesName();
+
+	if ((speciesRestriction == "2" && raceName != "trandoshan") || (speciesRestriction == "4" && raceName != "wookiee"))
+		return false;
+
+	if (consumer->hasBuff(buffCRC) && (!isAttributeEffect() || isForagedFood()))
+		return false;
+
+	ManagedReference<Buff*> buff = nullptr;
+
+	switch (effectType) {
+	case EFFECT_ATTRIBUTE: {
+		buff = new Buff(consumer, buffName.hashCode(), duration, BuffType::FOOD);
+
+		Locker locker(buff);
+
+		setModifiers(buff, false);
+		break;
+	}
+	case EFFECT_SKILL: {
+		buff = new Buff(consumer, buffName.hashCode(), duration, BuffType::FOOD);
+
+		Locker locker(buff);
+
+		setModifiers(buff, true);
+		break;
+	}
+	case EFFECT_DURATION: {
+		buff = new DurationBuff(consumer, buffName.hashCode(), duration);
+
+		Locker locker(buff);
+
+		setModifiers(buff, true);
+		break;
+	}
+	case EFFECT_HEALING: {
+		int totalHealed = 0;
+
+		for (int i = 0; i < modifiers.size(); ++i) {
+			String key = modifiers.elementAt(i).getKey();
+
+			if (key == "health") {
+				totalHealed += consumer->healDamage(consumer, 0, newNutrition);
+			} else if (key == "action") {
+				totalHealed += consumer->healDamage(consumer, 3, newNutrition);
+			} else if (key == "mind") {
+				totalHealed += consumer->healDamage(consumer, 6, newNutrition);
+			}
+		}
+
+		// Nothing to heal -- don't waste a charge, leave it in the backpack.
+		if (totalHealed <= 0)
+			return false;
+
+		break;
+	}
+	default:
+		return false;
+	}
+
+	if (buff != nullptr) {
+		Locker locker(buff);
+
+		consumer->addBuff(buff);
+	}
+
+	StringBuffer msg;
+	msg << consumer->getDisplayedName() << " consumes " << getDisplayedName() << ".";
+	owner->sendSystemMessage(msg.toString());
+
+	// Consume a charge from the item, destroy it if it reaches 0 charges.
+	decreaseUseCount();
+
+	return true;
+}
+
 void ConsumableImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* player) {
 
 	if (maxCondition > 0) {

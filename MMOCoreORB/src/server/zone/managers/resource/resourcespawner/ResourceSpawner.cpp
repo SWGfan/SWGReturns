@@ -1172,6 +1172,67 @@ void ResourceSpawner::sendSampleResults(TransactionLog& trx, CreatureObject* pla
 	}
 }
 
+// Master Survey Tool (2026-07-29, Companion -- see NOTES.md "Master Survey
+// Tool"). Copy-adapted from sendResourceListForSurvey()'s zoneMap loop
+// above, minus the toolType filter -- this is the "any resource" list.
+void ResourceSpawner::getActiveResourceNames(const String& zoneName, Vector<String>& names) const {
+	ZoneResourceMap* zoneMap = resourceMap->getZoneResourceList(zoneName);
+
+	if (zoneMap == nullptr)
+		return;
+
+	for (int i = 0; i < zoneMap->size(); ++i) {
+		auto resourceSpawn = zoneMap->get(i);
+
+		if (resourceSpawn == nullptr || !resourceSpawn->inShift())
+			continue;
+
+		names.add(resourceSpawn->getName());
+	}
+}
+
+// Master Survey Tool (2026-07-29, Companion -- see NOTES.md "Master Survey
+// Tool"). Copy-adapted from sendSurvey()'s grid-scan loop above: same
+// spacer math, same nested loop shape, but every point is kept instead of
+// only the single highest-density one.
+void ResourceSpawner::scanForHotspots(const String& resname, const String& zoneName, float centerX, float centerY, int range, int gridPoints, Vector<float>& outX, Vector<float>& outY, Vector<float>& outDensity) const {
+	if (!resourceMap->contains(resname.toLowerCase()))
+		return;
+
+	// PLANET-WIDE two-phase scan (2026-08-01, Companion -- see NOTES.md).
+	// Ceilings widened from 1024/12 so the Master Survey Tool can sweep a
+	// whole 16km x 16km ground map (-8192..+8192) instead of a 1024m box,
+	// and so its phase-2 refinement pass can request a small fine grid.
+	// The DEFAULT fallbacks below are intentionally unchanged, so a caller
+	// passing junk still gets the old conservative scan. Only the Master
+	// Survey Tool calls this method, so no stock survey path is affected.
+	if (range <= 0 || range > 16384)
+		range = 1024;
+
+	if (gridPoints <= 1 || gridPoints > 64)
+		gridPoints = 9;
+
+	float spacer = float(range) / float(gridPoints - 1);
+
+	float posX = centerX - (((gridPoints - 1) / 2.0f) * spacer);
+	float posY = centerY + (((gridPoints - 1) / 2.0f) * spacer);
+
+	for (int i = 0; i < gridPoints; i++) {
+		for (int j = 0; j < gridPoints; j++) {
+			float density = resourceMap->getDensityAt(resname, zoneName, posX, posY);
+
+			outX.add(posX);
+			outY.add(posY);
+			outDensity.add(density);
+
+			posX += spacer;
+		}
+
+		posY -= spacer;
+		posX -= (gridPoints * spacer);
+	}
+}
+
 bool ResourceSpawner::addResourceToPlayerInventory(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, int unitsExtracted) const {
 	// Add resource to inventory
 	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");
@@ -1287,6 +1348,125 @@ ResourceSpawn* ResourceSpawner::getCurrentSpawn(const String& restype, const Str
 	}
 
 	return nullptr;
+}
+
+ResourceSpawn* ResourceSpawner::getBestSpawnOfType(const String& restype, const String& zoneName) const {
+	// 2026-07-20 revision (per user spec: the free-resource crate "is for
+	// claiming any resource that was EVER in spawn, past or present, any
+	// planet"): search the ENTIRE resource map -- ResourceMap is itself
+	// the full VectorMap of every resource the server has ever tracked,
+	// active or despawned, all zones -- instead of the zone's active list.
+	// zoneName is kept in the signature for compatibility but unused.
+	ManagedReference<ResourceSpawn*> best;
+	int bestScore = -1;
+
+	for (int i = 0; i < resourceMap->size(); ++i) {
+		ManagedReference<ResourceSpawn*> spawn = resourceMap->get(i);
+
+		if (spawn == nullptr) {
+			continue;
+		}
+
+		// Companion System (2026-07-27 FIX): live bug -- a companion claimed a
+		// resource deed for "Kyinayst" as the "best steel ever in spawn," but
+		// Kyinayst's real Resource Class is Polysteel Copper, never steel.
+		// Root cause: the "|| spawn->getType().indexOf(restype) == -1" fallback
+		// below let a spawn through on a plain NAME-SUBSTRING match ("polysteel"
+		// literally contains "steel") regardless of real class membership.
+		// isType() alone is already a correct, exact-match walk of the resource's
+		// real class ancestry (confirmed via ResourceSpawn.idl -- no substring
+		// matching there), so the fallback was redundant at best and actively
+		// wrong here -- removed. Only real category membership decides a match
+		// now, not whether the type name happens to contain the search word.
+		if (!spawn->isType(restype)) {
+			continue;
+		}
+
+		// Overall quality weighted 10x; every other attribute adds raw.
+		// 2026-07-20 FIX (live silent-death root cause): the first version
+		// read getAttributeValue(0..10) -- an UNCHECKED index into
+		// spawnAttributes, which frequently holds fewer entries; the
+		// out-of-range throw killed the whole calling task silently.
+		// getAttributeAndValue() is the BOUNDS-SAFE accessor (returns 0
+		// past the end -- see ResourceSpawnImplementation.cpp:35).
+		int score = 0;
+
+		for (int a = 0; a < 20; ++a) {
+			String attrib;
+			int value = spawn->getAttributeAndValue(attrib, a);
+
+			if (attrib == "res_quality") {
+				value *= 10;
+			}
+
+			score += value;
+		}
+
+		if (score > bestScore) {
+			bestScore = score;
+			best = spawn;
+		}
+	}
+
+	return best;
+}
+
+ResourceSpawn* ResourceSpawner::getBestSpawnOfTypeWeighted(const String& restype, DraftSchematic* schematic, int lineIndex) const {
+	if (schematic == nullptr || lineIndex < 0 || lineIndex >= schematic->getResourceWeightCount()) {
+		return getBestSpawnOfType(restype, "");
+	}
+
+	ResourceWeight* weight = schematic->getResourceWeight(lineIndex);
+
+	if (weight == nullptr) {
+		return getBestSpawnOfType(restype, "");
+	}
+
+	ManagedReference<ResourceSpawn*> best;
+	float bestScore = -1.f;
+
+	for (int i = 0; i < resourceMap->size(); ++i) {
+		ManagedReference<ResourceSpawn*> spawn = resourceMap->get(i);
+
+		if (spawn == nullptr) {
+			continue;
+		}
+
+		// Companion System (2026-07-27 FIX): live bug -- a companion claimed a
+		// resource deed for "Kyinayst" as the "best steel ever in spawn," but
+		// Kyinayst's real Resource Class is Polysteel Copper, never steel.
+		// Root cause: the "|| spawn->getType().indexOf(restype) == -1" fallback
+		// below let a spawn through on a plain NAME-SUBSTRING match ("polysteel"
+		// literally contains "steel") regardless of real class membership.
+		// isType() alone is already a correct, exact-match walk of the resource's
+		// real class ancestry (confirmed via ResourceSpawn.idl -- no substring
+		// matching there), so the fallback was redundant at best and actively
+		// wrong here -- removed. Only real category membership decides a match
+		// now, not whether the type name happens to contain the search word.
+		if (!spawn->isType(restype)) {
+			continue;
+		}
+
+		// The crafting system's own weighted-attribute math, per line.
+		float score = 0.f;
+
+		for (int p = 0; p < weight->getPropertyListSize(); ++p) {
+			int propertyCode = weight->getTypeAndWeight(p) >> 4;
+
+			if (propertyCode == 0) {
+				continue;
+			}
+
+			score += spawn->getValueOf(propertyCode) * weight->getPropertyPercentage(p);
+		}
+
+		if (score > bestScore) {
+			bestScore = score;
+			best = spawn;
+		}
+	}
+
+	return best;
 }
 
 ResourceSpawn* ResourceSpawner::getFromRandomPool(const String& type) {

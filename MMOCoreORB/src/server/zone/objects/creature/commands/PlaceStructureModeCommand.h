@@ -40,9 +40,18 @@ public:
 			return GENERALERROR;
 		}
 
+		// Companion System (2026-07-25, per user request "remove the no build
+		// zones temporarily, for all players") -- unconditional, single-owner
+		// dev server, REMOVE after use. Root cause of the placement bug: this
+		// is the FIRST gate, checked before the overhead ghost/ruler view ever
+		// opens -- earlier bypasses added to PlaceStructureCommand.h and
+		// StructureManager.cpp were never even reached because execution
+		// never got past this check.
 		ManagedReference<CityRegion*> city = creature->getCityRegion().get();
 
-		if (city != nullptr && city->isClientRegion()) {
+		bool bypassNoBuildZonesForModeEntry = true;
+
+		if (!bypassNoBuildZonesForModeEntry && city != nullptr && city->isClientRegion()) {
 			creature->sendSystemMessage("@player_structure:not_permitted"); //Building is not permitted here.
 			return INVALIDPARAMETERS;
 		}

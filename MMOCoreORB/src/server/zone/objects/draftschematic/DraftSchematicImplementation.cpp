@@ -174,7 +174,22 @@ int DraftSchematicImplementation::getLabratory() {
 }
 
 int DraftSchematicImplementation::getFactoryCrateSize() {
-	return schematicTemplate->getFactoryCrateSize();
+	// 2026-07-28 (Nick): "all crates can hold 10,000 items", server-wide.
+	// The real per-schematic template value is authoritative for whether
+	// this item can be mass-produced at ALL -- a value <= 0 means "never
+	// factory-producible" (sliced/unique items; see the allowFactoryRun-
+	// style gate in CompanionCraftingManager.cpp: "if (crateSize <= 0) ...
+	// can't be mass-produced"). That semantic MUST be preserved, so only the
+	// > 0 case is raised (flat-set to 10000 -- every real stock schematic's
+	// crate size is already far below that, so this is a pure increase);
+	// anything <= 0 passes through completely unchanged.
+	int templateCrateSize = schematicTemplate->getFactoryCrateSize();
+
+	if (templateCrateSize <= 0) {
+		return templateCrateSize;
+	}
+
+	return 10000;
 }
 
 String DraftSchematicImplementation::getFactoryCrateType() {

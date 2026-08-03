@@ -38,6 +38,15 @@ void SurveyToolImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuRe
 	TangibleObjectImplementation::fillObjectMenuResponse(menuResponse, player);
 	menuResponse->addRadialMenuItem(135, 3, "@sui:tool_options");
 	menuResponse->addRadialMenuItemToRadialID(135,133, 3, "@sui:survey_range");
+	// Master Survey Tool (2026-07-29, Companion -- see NOTES.md "Master
+	// Survey Tool"): only a tool whose surveyType is this exact sentinel
+	// ever reaches here -- every stock survey tool's surveyType is one of
+	// "mineral"/"chemical"/"gas"/"water"/"flora"/"solar"/"wind"/"fusion"/
+	// "geothermal"/"inorganic"/"droid", never "master_survey", so this is
+	// fully inert for them.
+	if (surveyType == "master_survey") {
+		menuResponse->addRadialMenuItemToRadialID(135, 134, 3, "Master Survey: Scan for Hotspots");
+	}
 }
 
 int SurveyToolImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {

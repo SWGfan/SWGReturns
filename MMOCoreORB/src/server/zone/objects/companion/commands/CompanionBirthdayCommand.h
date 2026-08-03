@@ -135,8 +135,11 @@ public:
 		member->setFollowObject(nullptr);
 		member->clearPatrolPoints();
 		PatrolPoint point(x, zone->getHeight(x, y), y);
+		// genesis port: setMovementState() -> setFollowState(); genesis
+		// setFollowState() calls clearPatrolPoints(), so the state must be
+		// set BEFORE the point is queued (see PetPatrolCommand.h).
+		member->setFollowState(AiAgent::PATROLLING);
 		member->addPatrolPoint(point);
-		member->setMovementState(AiAgent::PATROLLING);
 	}
 
 	/** Copied verbatim from CompanionTheLandingCommand.h's identical
@@ -158,11 +161,11 @@ public:
 			if (guardTarget != nullptr && guardTarget->getZone() != nullptr) {
 				companion->setCompanionState(CompanionObject::GUARD);
 				companion->setFollowObject(guardTarget);
-				companion->setMovementState(AiAgent::FOLLOWING);
+				companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			} else {
 				companion->setCompanionState(CompanionObject::FOLLOW);
 				companion->setFollowObject(owner);
-				companion->setMovementState(AiAgent::FOLLOWING);
+				companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			}
 		} else {
 			companion->setCompanionState(CompanionObject::FOLLOW);
@@ -175,7 +178,7 @@ public:
 				companion->setFollowObject(owner);
 			}
 
-			companion->setMovementState(AiAgent::FOLLOWING);
+			companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 	}
 

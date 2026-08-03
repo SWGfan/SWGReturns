@@ -363,6 +363,30 @@
 #include "server/zone/objects/creature/commands/HealthShot2Command.h"
 #include "server/zone/objects/creature/commands/HealWoundCommand.h"
 #include "server/zone/objects/creature/commands/HobbleStrikeCommand.h"
+#include "server/zone/objects/creature/commands/HpetCommand.h" // Companion System (spec 4B) -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionFollowCommand.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionJenkinsCommand.h" // Companion System -- Muster Call, see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionStayCommand.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionPatrolCommand.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionStoreCommand.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionAttackCommand.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionTheLandingCommand.h" // Companion System (2026-07-30, "The Landing") -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionBattleTheaterCommand.h" // Companion System (2026-07-30, "BATTLE_THEATER_2026_07_30") -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionBirthdayCommand.h" // Companion System (2026-07-30, "BIRTHDAY_SHOW_2026_07_30") -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionFormupCommand.h" // Companion System (2026-07-14, "Form Up" macro pass) -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionAbilityCommand.h" // Companion System (2026-07-13, "macro list" pass) -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionGuardCommand.h" // Companion System (2026-07-17, "pet command port" pass) -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/companion/commands/CompanionFollowOtherCommand.h" // Companion System (2026-07-17, "pet command port" pass)
+#include "server/zone/objects/companion/commands/CompanionRangedAttackCommand.h" // Companion System (2026-07-17, "pet command port" pass)
+#include "server/zone/objects/companion/commands/CompanionSpecialAttackCommand.h" // Companion System (2026-07-17, "pet command port" pass)
+#include "server/zone/objects/companion/commands/CompanionGroupCommand.h" // Companion System (2026-07-17, "pet command port" pass)
+#include "server/zone/objects/companion/commands/CompanionFriendCommand.h" // Companion System (2026-07-17, "pet command port" pass)
+#include "server/zone/objects/companion/commands/CompanionReturnCommand.h" // Companion System (2026-07-20, "massive battlefield" pass)
+#include "server/zone/objects/companion/commands/CompanionCraftCommand.h" // Companion System (2026-07-20, "crafting theater" pass)
+#include "server/zone/objects/companion/commands/CompanionResyncAbilitiesCommand.h" // Companion System (2026-07-31, "ability registry" hotfix pass, COMPANION_RESYNC_COMMAND_REGISTRATION_2026_07_31)
+#include "server/zone/objects/companion/commands/CompanionRequestArmorCommand.h"
+#include "server/zone/objects/companion/commands/CompanionEndDanceCommand.h" // Entertainer Dance/Watch (2026-07-29)
+#include "server/zone/objects/companion/commands/CompanionMusterCommand.h" // Companion System (2026-07-29, "Muster Call" ship-and-summon spine) -- see docs/companion_system/NOTES.md
 #include "server/zone/objects/creature/commands/HoloEmoteCommand.h"
 #include "server/zone/objects/creature/commands/ImagedesignCommand.h"
 #include "server/zone/objects/creature/commands/InitializeComponentCommand.h"
@@ -770,6 +794,131 @@ void CommandConfigManager::registerCommands2() {
 	commandFactory.registerCommand<HealWoundCommand>(String("healWound").toLowerCase());
 	commandFactory.registerCommand<HobbleStrikeCommand>(String("hobbleStrike").toLowerCase());
 	commandFactory.registerCommand<HoloEmoteCommand>(String("holoEmote").toLowerCase());
+	commandFactory.registerCommand<HpetCommand>(String("hpet").toLowerCase()); // Companion System (spec 4B) -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionFollowCommand>(String("companionfollow").toLowerCase()); // Companion System -- see docs/companion_system/NOTES.md
+    commandFactory.registerCommand<CompanionJenkinsCommand>(String("jenkins").toLowerCase()); // Companion System -- Muster Call, see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionStayCommand>(String("companionstay").toLowerCase()); // Companion System -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionPatrolCommand>(String("companionpatrol").toLowerCase()); // Companion System -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionStoreCommand>(String("companionstore").toLowerCase()); // Companion System -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionAttackCommand>(String("companionattack").toLowerCase()); // Companion System -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionTheLandingCommand>(String("companionthelanding").toLowerCase()); // Companion System (2026-07-30, "The Landing") -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionBattleTheaterCommand>(String("companionbattletheater").toLowerCase()); // Companion System (2026-07-30, "BATTLE_THEATER_2026_07_30") -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionBirthdayCommand>(String("companionbirthday").toLowerCase()); // Companion System (2026-07-30, "BIRTHDAY_SHOW_2026_07_30") -- see docs/companion_system/NOTES.md
+	commandFactory.registerCommand<CompanionFormupCommand>(String("companionformup").toLowerCase()); // Companion System (2026-07-14, "Form Up" macro pass) -- see docs/companion_system/NOTES.md
+	// Companion System (2026-07-17, "pet command port" pass, per user request) --
+	// the remaining Creature Handler pet orders that make sense for companions,
+	// as their own isolated companion equivalents (same design direction as the
+	// original five). CompanionSpecialAttackCommand is registered under BOTH
+	// special-attack names; the name suffix picks the slot (mirrors how the pet
+	// system reuses PetSpecialAttackCommand for both its slots).
+	commandFactory.registerCommand<CompanionGuardCommand>(String("companionguard").toLowerCase());
+	commandFactory.registerCommand<CompanionFollowOtherCommand>(String("companionfollowother").toLowerCase());
+	commandFactory.registerCommand<CompanionRangedAttackCommand>(String("companionrangedattack").toLowerCase());
+	commandFactory.registerCommand<CompanionSpecialAttackCommand>(String("companionspecialone").toLowerCase());
+	commandFactory.registerCommand<CompanionSpecialAttackCommand>(String("companionspecialtwo").toLowerCase());
+	commandFactory.registerCommand<CompanionGroupCommand>(String("companiongroup").toLowerCase());
+	commandFactory.registerCommand<CompanionFriendCommand>(String("companionfriend").toLowerCase());
+	// Companion System (2026-07-20, "massive battlefield" pass, per user request)
+	// -- recalls a posted companion back to its last Stay/Guard position. See
+	// CompanionReturnCommand.h and docs/companion_system/NOTES.md.
+	commandFactory.registerCommand<CompanionReturnCommand>(String("companionreturn").toLowerCase());
+	// Companion System (2026-07-20, "crafting theater" pass, per user request)
+	// -- first testable entry point for CompanionCraftingManager. See
+	// CompanionCraftCommand.h and docs/companion_system/NOTES.md.
+	commandFactory.registerCommand<CompanionCraftCommand>(String("companioncraft").toLowerCase());
+	// Companion System (2026-07-31, "ability registry" hotfix pass) -- re-grants
+	// every companion ability macro the owner should currently have (fixes
+	// abilities silently dropped by a past server restart -- see
+	// CompanionResyncAbilitiesCommand.h and docs/companion_system/NOTES.md).
+	commandFactory.registerCommand<CompanionResyncAbilitiesCommand>(String("companionresync").toLowerCase()); // COMPANION_RESYNC_COMMAND_REGISTRATION_2026_07_31
+	commandFactory.registerCommand<CompanionRequestArmorCommand>(String("companionrequestarmor").toLowerCase());
+	// Entertainer Dance/Watch (2026-07-29) -- third of three independent stop
+	// paths (see CompanionEndDanceCommand.h's doc comment for why this is
+	// NOT named companionstopdance -- that name is already taken).
+	commandFactory.registerCommand<CompanionEndDanceCommand>(String("companionenddance").toLowerCase());
+	// Companion System (2026-07-29, "Muster Call" ship-and-summon spine) --
+	// ship lands, mass-summons + groups + escort-formups the datapad squad,
+	// departs ~10s after landing. Confirmed non-colliding name (grepped this
+	// file for "companionmuster" before adding -- zero prior matches).
+	commandFactory.registerCommand<CompanionMusterCommand>(String("companionmuster").toLowerCase());
+	// Companion System (2026-07-13, "macro list" pass) -- one CompanionAbilityCommand
+	// instance per real, invokable skill-granted ability across the 11 supported combat
+	// professions (see resolveProfessionToken() in CompanionSkillTrainer, and the
+	// extraction script docs/companion_system/tools/build_command_table_rows.py, which
+	// filters skills.iff's COMMANDS column down to only strings that already have a real
+	// registered QueueCommand elsewhere in this file -- certs/private_rifle_*/
+	// ranged_damage_mitigation_*/droid_find/droid_track/place_hospital/sneak are passive
+	// skill mods or utility tokens with no underlying dispatchable action and are
+	// deliberately excluded). Gated centrally by PlayerObject::hasAbility() via each
+	// generated companion_table.iff row's characterAbility column -- see
+	// CompanionAbilityCommand.h and CompanionSkillTrainer::trainSkill()/untrainSkill().
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionapplydisease").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionapplypoison").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionbleedingshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionconcealshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionconfusionshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companioneyeshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfastblast").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfireacidcone1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfireacidcone2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfireacidsingle1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfireacidsingle2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfirelightningcone1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfirelightningcone2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfirelightningsingle1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionfirelightningsingle2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflamecone1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflamecone2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflamesingle1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflamesingle2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflurryshot1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflurryshot2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflushingshot1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionflushingshot2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionheadshot3").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionhealmind").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionknockdownfire").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionmindshot2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionsnipershot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionsprayshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstartleshot1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstartleshot2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstrafeshot1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstrafeshot2").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionsurpriseshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companiontorsoshot").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionunderhandshot").toLowerCase());
+	// Companion System (2026-07-13, "starter profession macro list" pass) --
+	// same generic dispatcher, extended to the 6 starter (non-badge-gated)
+	// professions' own real invokable commands -- closes the follow-up
+	// flagged in the prior pass's NOTES.md entry. See
+	// docs/companion_system/tools/build_command_table_rows.py's
+	// _STARTER_ABILITY_NAMES list for the exact filtering discipline used.
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionhealdamage").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionhealwound").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companiontendwound").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companiontenddamage").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companiondiagnose").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionmedicalforage").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionharvestcorpse").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstartdance").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstopdance").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstartmusic").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionstopmusic").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionsample").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionsurvey").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionwarcry1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionintimidate1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionberserk1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companiontaunt").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionpolearmlunge1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionunarmedlunge1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionmelee1hlunge1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionmelee2hlunge1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companioncenterofbeing").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionpointblankarea1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionpointblanksingle1").toLowerCase());
+	commandFactory.registerCommand<CompanionAbilityCommand>(String("companionoverchargeshot1").toLowerCase());
 	commandFactory.registerCommand<ImagedesignCommand>(String("imagedesign").toLowerCase());
 	commandFactory.registerCommand<InitializeComponentCommand>(String("initializeComponent").toLowerCase());
 	commandFactory.registerCommand<InnateCommand>(String("innate").toLowerCase());

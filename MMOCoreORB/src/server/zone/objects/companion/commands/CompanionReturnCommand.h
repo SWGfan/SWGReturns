@@ -172,7 +172,7 @@ public:
 				if (guardTarget != nullptr && guardTarget->getZone() != nullptr) {
 					companion->setCompanionState(CompanionObject::GUARD);
 					companion->setFollowObject(guardTarget);
-					companion->setMovementState(AiAgent::FOLLOWING);
+					companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 					recalled.add(companion);
 					continue;
 				}
@@ -191,7 +191,7 @@ public:
 			companion->setCompanionState(CompanionObject::STAY);
 			companion->setFollowObject(nullptr);
 			companion->clearPatrolPoints();
-			companion->setMovementState(AiAgent::LEASHING);
+			companion->setFollowState(AiAgent::LEASHING); // genesis port: was setMovementState()
 			recalled.add(companion);
 		}
 

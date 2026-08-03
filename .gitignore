@@ -50,3 +50,4 @@ build.out.prev
 bin/screenlog*
 compile_commands.json
 utils/engine3
+_companion_baks/

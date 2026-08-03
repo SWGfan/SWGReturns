@@ -326,7 +326,7 @@ namespace {
 
 		comp->setCompanionState(CompanionObject::FOLLOW);
 		comp->setFollowObject(owner);
-		comp->setMovementState(AiAgent::FOLLOWING);
+		comp->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		comp->clearPatrolPoints();
 	}
 
@@ -396,8 +396,11 @@ namespace {
 
 				if (walker->getPatrolPointSize() == 0) {
 					PatrolPoint point(target->getPositionX(), target->getPositionZ(), target->getPositionY());
+					// genesis port: setMovementState() -> setFollowState(); genesis
+					// setFollowState() calls clearPatrolPoints(), so the state must be
+					// set BEFORE the point is queued (see PetPatrolCommand.h).
+					walker->setFollowState(AiAgent::PATROLLING);
 					walker->addPatrolPoint(point);
-					walker->setMovementState(AiAgent::PATROLLING);
 				}
 			};
 
@@ -2147,7 +2150,7 @@ void CampDeploymentManager::stopEntertainerDanceWatch(uint64 ownerID) {
 					entertainer->setFollowObject(owner);
 				}
 
-				entertainer->setMovementState(AiAgent::FOLLOWING);
+				entertainer->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			} else {
 				CreatureObject* escortTarget = entertainer->getEscortTarget().get();
 
@@ -2157,7 +2160,7 @@ void CampDeploymentManager::stopEntertainerDanceWatch(uint64 ownerID) {
 					entertainer->setFollowObject(owner);
 				}
 
-				entertainer->setMovementState(AiAgent::FOLLOWING);
+				entertainer->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 			}
 		} else {
 			Locker entLocker(entertainer);

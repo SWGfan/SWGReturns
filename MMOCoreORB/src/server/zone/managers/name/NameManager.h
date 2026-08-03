@@ -140,6 +140,17 @@ public:
 	int validateGuildName(const String& name, int type = NameManagerType::GUILD_NAME) const;
 	int validateCityName(const String& name) const;
 	int validateVendorName(const String& name) const;
+	// Companion System (2026-07-16, per user request): companions aren't
+	// real characters, so the strict single/double-alphabetic-word
+	// character-name rules (validateName(), species-keyed first/last name
+	// rules with no digits and no free-form spacing) are the wrong fit here
+	// -- players specifically want to be able to use numbers and spaces
+	// (e.g. "Unit 7", "R2 Backup"). Modeled on validateGuildName() (which
+	// already allows free-form spaces) with digits added to the allowed
+	// character set. Still runs the same profanity/reserved-word
+	// checkNamingFilter() every other naming path uses -- only the
+	// structural (letters-only) restriction is relaxed, not the filter.
+	int validateCompanionName(const String& name) const;
 	int validateChatRoomName(const String& name) const;
 	int validateReservedNames(const String& name, int resultType = -1) const;
 

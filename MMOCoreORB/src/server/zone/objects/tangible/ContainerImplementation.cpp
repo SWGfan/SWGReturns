@@ -263,7 +263,15 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 
 		ManagedReference<SceneObject*> otherParent = object->getParent().get();
 
-		if (myParent != nullptr && otherParent != nullptr) {
+		// Companion System (2026-07-15, "Take From Companion -> 'You can not
+		// loot that'" fix -- see NOTES.md): when the incoming item's parent
+		// IS this container's own parent, the item is moving from a creature
+		// into that SAME creature's own inventory bag (e.g. un-equipping a
+		// companion's worn item into its bag) -- that's not looting, so the
+		// corpse-loot ownership gate below must not apply. Any cross-creature
+		// pull (a real loot attempt, or companion -> player inventory) still
+		// goes through the ownership check unchanged.
+		if (myParent != nullptr && otherParent != nullptr && otherParent != myParent) {
 			if (otherParent->isCreatureObject()) {
 				AiAgent* ai = dynamic_cast<AiAgent*>(otherParent.get());
 
@@ -274,9 +282,31 @@ int ContainerImplementation::canAddObject(SceneObject* object, int containmentTy
 						uint64 lootOwnerID = creatureInventory->getContainerPermissions()->getOwnerID();
 
 						if (lootOwnerID != myParent->getObjectID()) {
-							errorDescription = "@group:no_loot_permission";
+							// Companion System (2026-07-18, post-combat
+							// auto-loot -- see NOTES.md): a COMPANION's bag
+							// may receive loot ON BEHALF of its linked
+							// owner -- the loot permission holder. Without
+							// this, the sweeping companion hits the same
+							// gate a stranger would.
+							bool companionLootingForOwner = false;
 
-							return TransferErrorCode::NOLOOTPERMISSION;
+							if (myParent->isCreatureObject()) {
+								CreatureObject* parentCreo = myParent->asCreatureObject();
+
+								if (parentCreo != nullptr && parentCreo->isCompanionObject()) {
+									CreatureObject* linked = parentCreo->getLinkedCreature().get();
+
+									if (linked != nullptr && (linked->getObjectID() == lootOwnerID || (linked->getGroupID() != 0 && linked->getGroupID() == lootOwnerID))) {
+										companionLootingForOwner = true;
+									}
+								}
+							}
+
+							if (!companionLootingForOwner) {
+								errorDescription = "@group:no_loot_permission";
+
+								return TransferErrorCode::NOLOOTPERMISSION;
+							}
 						}
 					}
 

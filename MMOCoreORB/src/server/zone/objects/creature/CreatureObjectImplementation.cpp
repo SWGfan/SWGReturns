@@ -517,8 +517,25 @@ void CreatureObjectImplementation::setWeapon(WeaponObject* weao,
 
 		broadcastMessage(msg, true);
 
-		WeaponRanges* ranges = new WeaponRanges(asCreatureObject(), getWeapon());
-		sendMessage(ranges);
+		// Bug fix (2026-07-14, real SIGSEGV -- see NOTES.md): `weapon` can still
+		// be nullptr at this point. A real player character always has a
+		// persisted "default_weapon" slot object from character creation, so
+		// the default_weapon slot lookup above never actually returned null for
+		// them -- this path was never reachable in practice. A companion has no
+		// such slot (it's never created through the normal character-creation
+		// pipeline -- see docs/companion_system/NOTES.md), so calling
+		// setWeapon(nullptr, true) on a companion (the "Take Off Companion"
+		// unequip radial's un-equip-current-weapon case) leaves `weapon`
+		// genuinely null here for the first time. WeaponRanges' own constructor
+		// unconditionally dereferences its weapon argument
+		// (WeaponRanges.h:17, weao->getObjectID()) -- crashed the server
+		// (SIGSEGV) the moment this was actually exercised. Skip sending
+		// weapon-range info entirely when there's truly no weapon to describe --
+		// a bare-handed creature has no ranges to report anyway.
+		if (getWeapon() != nullptr) {
+			WeaponRanges* ranges = new WeaponRanges(asCreatureObject(), getWeapon());
+			sendMessage(ranges);
+		}
 	}
 }
 
@@ -3110,7 +3127,19 @@ bool CreatureObjectImplementation::isAttackableBy(CreatureObject* object, bool b
 
 	if (object->isAiAgent()) {
 
-		if (object->isPet()) {
+		// Companion System (2026-07-13, "companion fired on owner" fix -- see
+		// docs/companion_system/NOTES.md): this pet-owner redirect is extended
+		// to isCompanionObject(). A companion never registers a real
+		// PetControlDevice (it uses its own separate CompanionControlDevice),
+		// so object->isPet() alone was always false for one and execution fell
+		// all the way through the unrelated faction/PvP branches below to this
+		// function's default `return true` -- meaning a companion's own owner
+		// was always a legally attackable target for it. getControlDevice()
+		// stays null for a companion, so the FACTIONPET sub-check safely
+		// no-ops; getLinkedCreature() IS the companion's owner link, so the
+		// recursive isAttackableBy(owner) hits the `object == asCreatureObject()`
+		// self-check at the top of this function and correctly returns false.
+		if (object->isPet() || object->isCompanionObject()) {
 			ManagedReference<PetControlDevice*> pcd = object->getControlDevice().get().castTo<PetControlDevice*>();
 			if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral()) {
 				return false;

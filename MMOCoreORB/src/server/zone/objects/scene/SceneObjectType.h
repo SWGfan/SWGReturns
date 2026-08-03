@@ -69,6 +69,8 @@ public:
 	const static int TRAINERCREATURE = 0x40A;
 	const static int INFORMANTCREATURE = 0x40D;
 	const static int VENDORCREATURE = 0x40E;
+	const static int HELPERDROIDCREATURE = 0x40F;	// Companion System -- see docs/companion_system/NOTES.md
+	const static int COMPANIONCREATURE = 0x405;	// Companion System -- see docs/companion_system/NOTES.md
 	/// End not in client ************
 
 	const static int INTANGIBLE = 0x800;  // DATA
@@ -86,6 +88,11 @@ public:
 
 	/// Not in client **********
 	const static int THEATEROBJECT = 0x80D;
+	// Companion System -- see docs/companion_system/NOTES.md
+	// NOTE: the Companion fork used 0x80D here and pushed THEATEROBJECT to 0x80C.
+	// On genesis 0x80C is already STRUCTURECONTROLDEVICE and 0x80D is THEATEROBJECT,
+	// so this device is assigned the next free intangible id, 0x80E (2062).
+	const static int COMPANIONCONTROLDEVICE = 0x80E;
 	/// End not in client ************
 
 	const static int INSTALLATION = 0x1000;

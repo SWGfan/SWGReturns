@@ -929,4 +929,30 @@ trainerSkills = {
 		"base_bust_power_disruptor_01",
 		"base_bust_destruction_sequencer_01",
 	},
+
+	-- Companion System -- see docs/companion_system/NOTES.md. Every entry in
+	-- this table must have a matching trainer_<x> registration in
+	-- bin/scripts/mobile/conversations/trainer/trainer_conv.lua, or
+	-- SkillTrainer:getPrerequisiteTrainerSkills() (skillTrainer.lua:154)
+	-- indexes a nil 'skills' table and crashes the conversation.
+	trainer_companion_master = {
+		"companion_master_novice",
+		"companion_master_master",
+		"companion_master_husbandry_01",
+		"companion_master_husbandry_02",
+		"companion_master_husbandry_03",
+		"companion_master_husbandry_04",
+		"companion_master_resilience_01",
+		"companion_master_resilience_02",
+		"companion_master_resilience_03",
+		"companion_master_resilience_04",
+		"companion_master_discipline_01",
+		"companion_master_discipline_02",
+		"companion_master_discipline_03",
+		"companion_master_discipline_04",
+		"companion_master_vigilance_01",
+		"companion_master_vigilance_02",
+		"companion_master_vigilance_03",
+		"companion_master_vigilance_04"
+	},
 }

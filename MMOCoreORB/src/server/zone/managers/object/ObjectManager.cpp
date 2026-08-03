@@ -104,6 +104,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<NavArea>(SceneObjectType::NAVMESHAREA);
 	objectFactory.registerObject<StaticObject>(SceneObjectType::STATICOBJECT);
 	objectFactory.registerObject<Creature>(SceneObjectType::CREATURE);
+	objectFactory.registerObject<CompanionObject>(SceneObjectType::COMPANIONCREATURE); // Companion System -- see docs/companion_system/NOTES.md
 	objectFactory.registerObject<NonPlayerCreatureObject>(SceneObjectType::NPCCREATURE);
 	objectFactory.registerObject<NonPlayerCreatureObject>(SceneObjectType::PROBOTCREATURE);
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::VENDOR);
@@ -276,6 +277,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<VehicleControlDevice>(SceneObjectType::VEHICLECONTROLDEVICE);
 	objectFactory.registerObject<PetControlDevice>(SceneObjectType::PETCONTROLDEVICE);
 	objectFactory.registerObject<PetControlDevice>(SceneObjectType::DROIDCONTROLDEVICE);
+	objectFactory.registerObject<CompanionControlDevice>(SceneObjectType::COMPANIONCONTROLDEVICE); // Companion System -- see docs/companion_system/NOTES.md
 	objectFactory.registerObject<ShipControlDevice>(SceneObjectType::SHIPCONTROLDEVICE);
 	objectFactory.registerObject<StructureControlDevice>(SceneObjectType::STRUCTURECONTROLDEVICE);
 	objectFactory.registerObject<VehicleObject>(SceneObjectType::VEHICLE);

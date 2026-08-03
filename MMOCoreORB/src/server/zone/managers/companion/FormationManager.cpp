@@ -330,7 +330,7 @@ void FormationManager::arrangeFollowers(CreatureObject* owner, const String& for
 		}
 
 		follower->setFollowObject(owner);
-		follower->setMovementState(AiAgent::FOLLOWING);
+		follower->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 	}
 
 	if (snapTeleport) {

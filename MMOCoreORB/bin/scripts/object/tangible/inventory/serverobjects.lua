@@ -47,6 +47,12 @@
 -- Server Objects
 includeFile("tangible/inventory/character_inventory.lua")
 includeFile("tangible/inventory/creature_inventory.lua")
+-- Companion System (2026-07-14, "bag item-loss root cause" fix) -- see
+-- companion_inventory.lua and NOTES.md.
+includeFile("tangible/inventory/companion_inventory.lua")
+-- Companion System (2026-07-14, "player-side loadout backpack" redesign) --
+-- see companion_loadout_backpack.lua and NOTES.md.
+includeFile("tangible/inventory/companion_loadout_backpack.lua")
 includeFile("tangible/inventory/creature_inventory_1.lua")
 includeFile("tangible/inventory/creature_inventory_2.lua")
 includeFile("tangible/inventory/creature_inventory_3.lua")

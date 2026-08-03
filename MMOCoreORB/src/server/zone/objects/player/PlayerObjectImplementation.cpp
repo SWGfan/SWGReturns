@@ -57,6 +57,8 @@
 #include "templates/intangible/SharedPlayerObjectTemplate.h"
 #include "server/zone/objects/player/sessions/TradeSession.h"
 #include "server/zone/objects/player/events/StoreSpawnedChildrenTask.h"
+#include "server/zone/objects/companion/CompanionControlDevice.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/objects/player/events/RemoveSpouseTask.h"
 #include "server/zone/objects/player/events/PvpTefRemovalTask.h"
 #include "server/zone/managers/visibility/VisibilityManager.h"
@@ -243,7 +245,43 @@ void PlayerObjectImplementation::unloadSpawnedChildren() {
 		}
 	}
 
-	StoreSpawnedChildrenTask* task = new StoreSpawnedChildrenTask(creo, std::move(childrenToStore));
+	// Companion System bug fix (2026-07-15, "companion left behind on
+	// logout" -- see docs/companion_system/NOTES.md and HANDOFF.md's
+	// earlier cross-zone-transfer research, which root-caused this same
+	// gap for zone transfers). CompanionControlDevice deliberately extends
+	// IntangibleObject directly rather than ControlDevice (so the
+	// companion system stays isolated from the real pet/vehicle/ship
+	// system), so the `object->isControlDevice()` filter above always
+	// skips it -- a summoned companion was never force-stored on logout,
+	// left standing in the world indefinitely with no owner around.
+	// Scanned separately here, same isCompanionControlDevice()/
+	// getLinkedCreature() ownership check every Companion*Command.h file
+	// already duplicates.
+	Vector<ManagedReference<CompanionControlDevice*> > companionDevicesToStore;
+
+	for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
+		ManagedReference<SceneObject*> object = datapad->getContainerObject(i);
+
+		if (object == nullptr || !object->isCompanionControlDevice())
+			continue;
+
+		CompanionControlDevice* companionDevice = cast<CompanionControlDevice*>(object.get());
+
+		if (companionDevice == nullptr || companionDevice->isCompanionDead())
+			continue;
+
+		CompanionObject* companion = companionDevice->getCompanionObject();
+
+		if (companion == nullptr || companion->getZone() == nullptr)
+			continue;
+
+		if (companion->getLinkedCreature().get() != creo)
+			continue;
+
+		companionDevicesToStore.add(companionDevice);
+	}
+
+	StoreSpawnedChildrenTask* task = new StoreSpawnedChildrenTask(creo, std::move(childrenToStore), std::move(companionDevicesToStore));
 	task->execute();
 }
 

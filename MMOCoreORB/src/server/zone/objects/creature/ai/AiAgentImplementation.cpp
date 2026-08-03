@@ -88,6 +88,8 @@
 #include "server/zone/packets/ui/CreateClientPathMessage.h"
 #include "server/zone/objects/staticobject/StaticObject.h"
 #include "server/zone/objects/building/BuildingObject.h"
+#include "server/zone/managers/companion/callbacks/CompanionTrainerServicesSuiCallback.h"
+#include "server/zone/managers/companion/callbacks/VeteranRewardVendorSuiCallback.h"
 
 //#define SHOW_WALK_PATH
 //#define DEBUG
@@ -2752,6 +2754,34 @@ bool AiAgentImplementation::sendConversationStartTo(SceneObject* player) {
 			playerCreature->sendSystemMessage("@city/city:banned_services"); // You are banned from using this city's services.
 			return false;
 		}
+
+		// Companion System (2026-07-18 revision, per user request "don't
+		// just give a new one if a user clicks on the trainer" -- see
+		// CompanionTrainerServicesSuiCallback.h and NOTES.md; supersedes
+		// the 2026-07-15 auto-claim): conversing with the Companion Master
+		// trainer now OFFERS a services menu alongside the normal training
+		// conversation -- explicit "Claim a new companion" and "Permanently
+		// dismiss a companion" (with yes/no confirmation) options. Narrow,
+		// template-name-gated carve-out, and only for players who actually
+		// hold the profession.
+		const CreatureTemplate* companionTrainerTemplate = npcTemplate.get();
+
+		if (companionTrainerTemplate != nullptr && companionTrainerTemplate->getTemplateName() == "trainer_companion_master"
+				&& playerCreature->hasSkill("companion_master_novice")) {
+			CompanionTrainerServicesSuiCallback::sendServicesMenu(playerCreature);
+		}
+
+		// Companion System (2026-07-20, "companion kill token" pass, per
+		// user request) -- the veteran reward vendor deliberately reuses
+		// the Companion Master trainer's own proven-working conversation
+		// template (see veteran_reward_vendor.lua's conversationTemplate
+		// field) purely as the carrier that makes Converse dispatch into
+		// this trainerConvHandler branch at all; the actual interaction is
+		// our own SUI menu, same shape as the trainer services menu just
+		// above. See VeteranRewardVendorSuiCallback.h.
+		if (companionTrainerTemplate != nullptr && companionTrainerTemplate->getTemplateName() == "veteran_reward_vendor") {
+			VeteranRewardVendorSuiCallback::sendPurchaseMenu(playerCreature);
+		}
 	}
 
 	StartNpcConversation* conv = new StartNpcConversation(playerCreature, getObjectID(), "");
@@ -2797,6 +2827,35 @@ bool AiAgentImplementation::isAggressiveTo(CreatureObject* target) {
 				}
 			}
 		}
+	}
+
+	// Companion System (2026-07-13, "companion fired on owner" fix): a
+	// companion is not registered through the PetControlDevice/isPet()
+	// mechanism, so without these explicit isCompanionObject() checks both
+	// sides fell through to the generic faction/pvpStatusBitmask logic
+	// below -- which has zero owner-awareness -- letting a companion
+	// register as aggressive toward anything nearby, including its own
+	// owner. A companion's PlayerObject ghost is ALWAYS null, so these
+	// must be resolved via isCompanionObject() and getLinkedCreature()
+	// before any ghost-based logic runs.
+	if (target->isAiAgent() && target->isCompanionObject()) {
+		ManagedReference<CreatureObject*> targetOwner = target->getLinkedCreature().get();
+
+		if (targetOwner == nullptr)
+			return false;
+
+		return isAggressiveTo(targetOwner);
+	}
+
+	if (isCompanionObject()) {
+		ManagedReference<CreatureObject*> owner = getLinkedCreature().get();
+
+		// This is the protection that stops a companion from ever being
+		// aggressive toward its own owner.
+		if (owner == nullptr || target == owner)
+			return false;
+
+		return owner->isAggressiveTo(target);
 	}
 
 	// grab the GCW faction
@@ -3219,7 +3278,9 @@ bool AiAgentImplementation::isAttackableBy(TangibleObject* object) {
 		return false;
 	}
 
-	if (isPet()) {
+	// Companion System: isPet() is always false for a companion (separate
+	// CompanionControlDevice), so this owner-deferral was being skipped.
+	if (isPet() || isCompanionObject()) {
 		ManagedReference<PetControlDevice*> pcd = getControlDevice().get().castTo<PetControlDevice*>();
 		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && object->isNeutral()) {
 			return false;
@@ -3259,7 +3320,9 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* object) {
 		return false;
 	}
 
-	if (isPet()) {
+	// Companion System: isPet() is always false for a companion (separate
+	// CompanionControlDevice), so this owner-deferral was being skipped.
+	if (isPet() || isCompanionObject()) {
 		ManagedReference<PetControlDevice*> pcd = getControlDevice().get().castTo<PetControlDevice*>();
 		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && object->isNeutral()) {
 			return false;
@@ -3274,7 +3337,10 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* object) {
 		return owner->isAttackableBy(object, true);
 	}
 
-	if (object->isPet() || object->isVehicleObject()) {
+	// Companion System: a companion never registers a real PetControlDevice
+	// (it uses its own CompanionControlDevice), so isPet() alone silently
+	// skipped this owner-deferral. Defer to the owner for companions too.
+	if (object->isPet() || object->isCompanionObject() || object->isVehicleObject()) {
 		ManagedReference<PetControlDevice*> pcd = object->getControlDevice().get().castTo<PetControlDevice*>();
 		if (pcd != nullptr && pcd->getPetType() == PetManager::FACTIONPET && isNeutral()) {
 			return false;

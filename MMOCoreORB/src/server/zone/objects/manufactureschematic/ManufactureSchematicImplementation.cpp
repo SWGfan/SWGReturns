@@ -342,6 +342,14 @@ void ManufactureSchematicImplementation::initializeIngredientSlots() {
 	}
 }
 
+// Companion System (2026-07-20, "crafting theater" pass) -- see the doc
+// comment on initializeSlotsForHeadlessCraft() in ManufactureSchematic.idl.
+void ManufactureSchematicImplementation::initializeSlotsForHeadlessCraft() {
+	if (!initialized) {
+		initializeIngredientSlots();
+	}
+}
+
 int ManufactureSchematicImplementation::addIngredientToSlot(CreatureObject* player, SceneObject* satchel, TangibleObject* tano, int slot) {
 	if (slot >= ingredientSlots.size())
 		return IngredientSlot::INVALID;

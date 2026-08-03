@@ -14,6 +14,28 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/loot/LootManager.h"
 #include "server/zone/managers/loot/LootGroupMap.h"
+#include "server/zone/objects/companion/CompanionObject.h"
+#include "server/zone/objects/companion/CompanionControlDevice.h"
+
+namespace {
+	// Companion System (2026-07-13, "manual equip radial" pass) -- walks up
+	// the container hierarchy to find a CompanionObject ancestor, same
+	// resolveCompanion() helper shape as CompanionContainerComponent.cpp's
+	// (kept as a separate local copy since that one is file-local too).
+	CompanionObject* resolveCompanionAncestor(SceneObject* sceneObject) {
+		SceneObject* current = sceneObject;
+
+		for (int i = 0; i < 8 && current != nullptr; ++i) {
+			if (current->isCompanionObject()) {
+				return cast<CompanionObject*>(current);
+			}
+
+			current = current->getParent().get();
+		}
+
+		return nullptr;
+	}
+}
 
 void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
 	ObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player);
@@ -75,6 +97,73 @@ void TangibleObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 	ManagedReference<SceneObject*> parent = tano->getParent().get();
 	if (parent != nullptr && parent->getGameObjectType() == SceneObjectType::STATICLOOTCONTAINER) {
 		menuResponse->addRadialMenuItem(10, 3, "@ui_radial:item_pickup"); //Pick up
+	}
+
+	// Companion System (2026-07-15, "loadout backpack should show what the
+	// companion has equipped" -- see NOTES.md): equipped items are children
+	// of the companion CREATURE, so they can never be listed inside the
+	// backpack container itself -- instead the backpack gets a one-click
+	// radial that opens the companion's equipment view. Plain-text label
+	// (no TRE change), radial 84 (82/83 are the companion equip/pickup pair
+	// below).
+	if (tano->getServerObjectCRC() == STRING_HASHCODE("object/tangible/inventory/companion_loadout_backpack.iff")) {
+		menuResponse->addRadialMenuItem(84, 3, "View Companion Equipment");
+		menuResponse->addRadialMenuItem(85, 3, "Retrieve Companion Gear"); // 2026-07-15, per user request: unequip-all straight from the backpack radial
+	}
+
+	// Companion System -- "Equip on Companion" manual override. Only offered
+	// for weapons/wearables sitting loose in a companion's own inventory, and
+	// only to that companion's owner -- mirrors the auto-equip eligibility
+	// check in CompanionContainerComponent.cpp's attemptAutoEquip(), but as
+	// an explicit player-triggered action instead of an automatic reaction,
+	// so the player can override whatever auto-equip already picked (e.g.
+	// swap out an auto-equipped starter weapon for a better one they gave
+	// the companion).
+	//
+	// Bug fix (2026-07-14, see NOTES.md): this used to show regardless of
+	// the item's current containmentType, including on an item that's
+	// ALREADY equipped (>= 4) -- clicking it there always failed
+	// equipItemFromInventory()'s isLooseInCompanionInventory check with the
+	// confusing "@companion:equip_not_in_inventory" ("that item isn't in
+	// your companion's inventory") message, even though the item was
+	// plainly visible and equipped. Gated to containmentType == -1 (loose)
+	// so this radial and "Pick Up" (>= 4, below) are now mutually
+	// exclusive on any one item, exactly mirroring how equip/unequip work
+	// for a real player's own gear.
+	if ((tano->isWeaponObject() || tano->isWearableObject()) && tano->getArrangementDescriptorSize() > 0
+			&& (int) tano->getContainmentType() == -1) {
+		CompanionObject* companion = resolveCompanionAncestor(parent);
+
+		if (companion != nullptr && companion->isAuthorizedActor(player)) {
+			menuResponse->addRadialMenuItem(82, 3, "@companion:equip_on_companion"); // Equip on Companion
+		}
+	}
+
+	// Companion System (2026-07-13, "Take Off Companion" radial pass;
+	// relabeled "Pick Up" 2026-07-14 per user request -- see NOTES.md) --
+	// the missing counterpart: an item currently equipped (a real slot,
+	// containmentType >= 4) directly on a companion. Unsigned
+	// getContainmentType(), so cast to signed before comparing (same fix
+	// already applied elsewhere in this feature -- a stored -1 sentinel
+	// would otherwise always satisfy ">= 4" as an unsigned value). Equipped
+	// gear always lives directly on the companion (never in its
+	// "inventory" bag), so parent here IS the companion itself in the
+	// normal case -- resolveCompanionAncestor() still handles it correctly
+	// either way via its walk-up loop. Still radial ID 83 and still backed
+	// by unequipItemToInventory() (name unchanged -- see that method's own
+	// doc comment for why) -- only the STF label text and the destination
+	// the item lands in changed, not the wiring here.
+	if ((int) tano->getContainmentType() >= 4) {
+		CompanionObject* companion = resolveCompanionAncestor(parent);
+
+		if (companion != nullptr && companion->isAuthorizedActor(player)) {
+			// Relabeled from the @companion:unequip_from_companion STF key
+			// ("Pick Up") to distinguish it from the CLIENT's own built-in
+			// Pick Up radial, which shows on the same items and (since the
+			// loot-permission fix) also works -- two identical labels were
+			// confusing (2026-07-15 live report). Plain text, no TRE change.
+			menuResponse->addRadialMenuItem(83, 3, "Take From Companion");
+		}
 	}
 }
 
@@ -202,6 +291,116 @@ int TangibleObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 
 		
 	return 0;
+	} else if (selectedID == 82) { // Equip on Companion
+		ManagedReference<SceneObject*> parent = tano->getParent().get();
+		CompanionObject* companion = resolveCompanionAncestor(parent);
+
+		if (companion != nullptr && companion->isAuthorizedActor(player)) {
+			companion->equipItemFromInventory(tano, player);
+		}
+
+		return 0;
+	} else if (selectedID == 83) { // Pick Up (was "Take Off Companion")
+		ManagedReference<SceneObject*> parent = tano->getParent().get();
+		CompanionObject* companion = resolveCompanionAncestor(parent);
+
+		if (companion != nullptr && companion->isAuthorizedActor(player)) {
+			companion->unequipItemToInventory(tano, player);
+		}
+
+		return 0;
+	} else if (selectedID == 84 || selectedID == 85) { // View Companion Equipment / Retrieve Companion Gear (loadout backpack shortcuts, 2026-07-15)
+		if (tano->getServerObjectCRC() != STRING_HASHCODE("object/tangible/inventory/companion_loadout_backpack.iff")) {
+			return 0;
+		}
+
+		// The backpack lives in the PLAYER's inventory, so the companion is
+		// found via the same datapad scan every /companion* command uses.
+		ManagedReference<SceneObject*> datapad = player->getSlottedObject("datapad");
+
+		if (datapad == nullptr) {
+			return 0;
+		}
+
+		for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
+			ManagedReference<SceneObject*> obj = datapad->getContainerObject(i);
+
+			if (obj == nullptr || !obj->isCompanionControlDevice()) {
+				continue;
+			}
+
+			CompanionControlDevice* device = cast<CompanionControlDevice*>(obj.get());
+
+			if (device == nullptr || device->isCompanionDead()) {
+				continue;
+			}
+
+			CompanionObject* companion = device->getCompanionObject();
+
+			if (companion == nullptr || companion->getZone() == nullptr) {
+				continue;
+			}
+
+			if (companion->getLinkedCreature().get() != player) {
+				continue;
+			}
+
+			if (selectedID == 84) { // View Companion Equipment
+				companion->openContainerTo(player);
+				return 0;
+			}
+
+			// 85: Retrieve Companion Gear -- unequip everything onto the
+			// owner, per item through the proven unequipItemToInventory()
+			// path (same collection loop as the companion's own Retrieve
+			// Gear radial in CompanionMenuComponent.cpp).
+			Locker companionLocker(companion, player);
+
+			SceneObject* bag = companion->getSlottedObject("inventory");
+
+			// Port note (genesis base): this base has no
+			// CreatureObject::getDefaultWeapon() -- the innate weapon is
+			// resolved straight out of the "default_weapon" slot, exactly
+			// as CompanionObjectImplementation.cpp already does on this
+			// base. Same object, API that actually exists here.
+			SceneObject* defaultWeapon = companion->getSlottedObject("default_weapon");
+
+			SortedVector<ManagedReference<SceneObject*> > gear;
+			gear.setNoDuplicateInsertPlan();
+
+			for (int j = 0; j < companion->getSlottedObjectsSize(); ++j) {
+				SceneObject* slotted = companion->getSlottedObject(j);
+
+				if (slotted == nullptr || slotted == bag || slotted == defaultWeapon) {
+					continue;
+				}
+
+				if (!slotted->isWeaponObject() && !slotted->isWearableObject()) {
+					continue;
+				}
+
+				gear.put(slotted);
+			}
+
+			if (gear.size() == 0) {
+				player->sendSystemMessage("Your companion has no removable gear equipped.");
+				return 0;
+			}
+
+			for (int j = 0; j < gear.size(); ++j) {
+				TangibleObject* gearItem = gear.get(j)->asTangibleObject();
+
+				if (gearItem != nullptr) {
+					companion->unequipItemToInventory(gearItem, player);
+				}
+			}
+
+			return 0;
+		}
+
+		player->sendSystemMessage("@companion:no_active_companion"); // You have no active companion.
+
+		return 0;
 	} else
 		return ObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 

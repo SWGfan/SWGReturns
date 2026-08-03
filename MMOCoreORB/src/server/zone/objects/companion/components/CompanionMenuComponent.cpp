@@ -1288,7 +1288,12 @@ int CompanionMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 		// two-handers, some armor) appear in several slots. Skip the storage
 		// bag and the creature's built-in default weapon.
 		SceneObject* bag = companion->getSlottedObject("inventory");
-		WeaponObject* defaultWeapon = companion->getDefaultWeapon();
+		// genesis port: CreatureObject::getDefaultWeapon() does not exist on this
+		// base -- the innate weapon lives in the "default_weapon" slot (same idiom
+		// as CompanionObjectImplementation.cpp's refreshCombatAttacks()). Only used
+		// for pointer identity against getSlottedObject(i) below, so SceneObject*
+		// is sufficient.
+		SceneObject* defaultWeapon = companion->getSlottedObject("default_weapon");
 
 		SortedVector<ManagedReference<SceneObject*> > gear;
 		gear.setNoDuplicateInsertPlan();

@@ -10,7 +10,27 @@
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/objects/player/sui/callbacks/ColorArmorSuiCallback.h"
 #include "server/zone/ZoneServer.h"
+#include "server/zone/objects/companion/CompanionObject.h"
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
+
+namespace {
+	// Companion System (2026-07-15, "no option to wear armor" fix) -- same
+	// walk-up helper as TangibleObjectMenuComponent.cpp's (per-file copy,
+	// project convention).
+	CompanionObject* resolveArmorCompanionAncestor(SceneObject* sceneObject) {
+		SceneObject* current = sceneObject;
+
+		for (int i = 0; i < 8 && current != nullptr; ++i) {
+			if (current->isCompanionObject()) {
+				return cast<CompanionObject*>(current);
+			}
+
+			current = current->getParent().get();
+		}
+
+		return nullptr;
+	}
+}
 
 void ArmorObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
 
@@ -31,8 +51,20 @@ void ArmorObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, 
 	}
 	else
 	{
-		if (!sceneObject->isASubChildOf(player))
-			return;
+		if (!sceneObject->isASubChildOf(player)) {
+			// Companion System (2026-07-15, "no option to wear armor" fix --
+			// see NOTES.md): armor held by the player's OWN companion (in
+			// its storage bag or equipped on it) is not a subchild of the
+			// player, so this gate silently suppressed the whole radial
+			// menu -- including the "Equip on Companion"/"Pick Up" items
+			// TangibleObjectMenuComponent adds further down the chain.
+			// Companion-held armor is menu-eligible for its owner.
+			CompanionObject* companion = resolveArmorCompanionAncestor(sceneObject->getParent().get());
+
+			if (companion == nullptr || !companion->isAuthorizedActor(player)) {
+				return;
+			}
+		}
 	}
 
 	if (!parent->isPlayerCreature()) {

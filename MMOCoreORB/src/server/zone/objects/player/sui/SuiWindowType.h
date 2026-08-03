@@ -274,7 +274,69 @@ public:
 		FIELD_FACTION_CHANGE				= 1040,
 		GOTO_LIST							= 1041,
 		FS_EXP_CONVERT						= 1042,
-		REPAIR_TOOL_DIALOG					= 1043
+		REPAIR_TOOL_DIALOG					= 1043,
+
+		//Companion System 1200-1211 (see docs/companion_system/NOTES.md)
+		COMPANION_DIALOG					= 1200,
+		COMPANION_SKILL_SHEET				= 1201,
+		COMPANION_INSPECT					= 1202,
+		COMPANION_TRAIN_LIST				= 1203,
+		COMPANION_UNTRAIN_LIST				= 1204,
+		COMPANION_HELP_SHEET				= 1205,
+		COMPANION_FORMUP_SELECT				= 1206,
+		COMPANION_STARTER_PROFESSION			= 1207,
+		COMPANION_STATS_SHEET				= 1208,
+		COMPANION_RENAME					= 1209,
+		COMPANION_TAXI_WAYPOINT				= 1210,
+		COMPANION_HARVEST_CHOICE			= 1211,
+		COMPANION_CAMP_CHOICE				= 1212,
+		COMPANION_TRAINER_SERVICES			= 1213,
+		COMPANION_DELETE_SELECT				= 1214,
+		COMPANION_DELETE_CONFIRM			= 1215,
+		POCKET_BOY_SLOTS				= 1216,
+		// Companion System (2026-07-20, "massive battlefield" pass, per user
+		// request) -- veteran reward vendor's token purchase menu. See
+		// VeteranRewardVendorSuiCallback.h.
+		COMPANION_KILL_TOKEN_VENDOR			= 1217,
+		COMPANION_CRAFT_PICK				= 1218,
+		COMPANION_CRAFT_OPTIMIZE			= 1219,
+		COMPANION_SKILL_TREE				= 1220,
+		COMPANION_ARMOR_TYPE_PICK			= 1221,
+		COMPANION_ARMOR_PIECE_PICK			= 1222,
+		COMPANION_TEST_RESOURCE_PICK                     = 1224,
+		// Companion System (2026-07-24, per user request "can we place the
+		// items into sub categories" -- the craft list's 400-item cap made a
+		// category picker worth adding). Next free ID confirmed live against
+		// this file before adding (1223 was unused).
+		COMPANION_CRAFT_CATEGORY_PICK			= 1223,
+		// Companion System (2026-07-27, "factory runs" per Nick). Next free
+		// IDs confirmed live against this file before adding (1225/1226 were
+		// unused).
+		COMPANION_CRAFT_BATCH_PICK			= 1225,
+		COMPANION_CRAFT_BATCH_QUANTITY			= 1226,
+		// Companion System (2026-07-30, "The Landing" GO-button confirm --
+		// per Nick). Next free ID confirmed live against this file before
+		// adding (1227 was unused). NOTE: a separate, concurrently-built
+		// patch may add its own new value for an unrelated companion-taxi
+		// "press GO" popup around this same time -- if both land, re-verify
+		// this literal value is still free / not reused by that patch before
+		// assuming it's safe.
+		COMPANION_THEATER_GO_CONFIRM			= 1227,
+		// Companion System (2026-07-30, "GO button" pass, per user request:
+		// "so the vehicle only starts moving once the player actually
+		// clicks it"). Companion Taxi departure confirmation popup -- see
+		// CompanionTaxiGoSuiCallback.h. Value 1228, NOT 1227 -- 1227 is
+		// independently claimed the same day by "The Landing" theater
+		// show's own GO-popup enum; bumped to avoid two different SUI
+		// windows sharing one numeric ID.
+		COMPANION_TAXI_GO_CONFIRM			= 1228,
+		// Companion System (2026-07-30, "Theater Mode" dialog section, per
+		// Nick: "add a section here called Theater Mode and put our plays
+		// in there"). The submenu listing available scripted companion
+		// shows (The Landing, and any future ones) -- see
+		// CompanionDialogMenuSuiCallback.h's case 14 and the new
+		// CompanionTheaterModeSuiCallback.h.
+		COMPANION_THEATER_MODE_LIST			= 1229,
 	};
 };
 

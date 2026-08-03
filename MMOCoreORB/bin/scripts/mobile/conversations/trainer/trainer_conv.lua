@@ -149,3 +149,6 @@ createTrainerConversationTemplate("weaponsmithTrainerConvoTemplate", "trainer_we
 createTrainerConversationTemplate("fsTrainerConvoTemplate", "trainer_fs")
 createTrainerConversationTemplate("jediTrainerConvoTemplate", "trainer_jedi")
 createTrainerConversationTemplate("basebusterTrainerConvoTemplate", "trainer_basebuster")
+
+-- Companion System (spec: Mos Eisley Trainer Spawner) -- see docs/companion_system/NOTES.md
+createTrainerConversationTemplate("companionMasterTrainerConvoTemplate", "trainer_companion_master")

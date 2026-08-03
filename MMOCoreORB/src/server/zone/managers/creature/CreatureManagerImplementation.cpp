@@ -38,8 +38,109 @@
 #include "server/zone/objects/building/PoiBuilding.h"
 #include "server/zone/objects/intangible/TheaterObject.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
+#include "server/zone/objects/companion/CompanionObject.h"
+#include "server/zone/managers/companion/CompanionChatter.h" // Companion System -- see docs/companion_system/NOTES.md
+#include "server/zone/objects/tangible/TangibleObject.h"
 
 Mutex CreatureManagerImplementation::loadMutex;
+
+namespace {
+
+/**
+ * Companion System (2026-07-20, "companion kill token" -- per user
+ * request): "for every single companion that lands the killing blow,
+ * [the owner] gets a token" -- one per kill, non-tradable, redeemable at
+ * a veteran-reward vendor (see tatooine_mos_eisley.lua). Reuses the real
+ * stock "Mark of Courage" item (object/tangible/loot/quest/
+ * hero_of_tatooine/mark_courage.iff, see loot/items/hero_of_tatooine/
+ * mark_of_courage.lua) as the token's visual/base template -- a small,
+ * real, already-shipped commemorative badge with no questline dependency
+ * on its own, same "reuse a proven existing asset, override name/
+ * behavior" move already used elsewhere in this system (trainer_companion_
+ * master reusing a stock NPC template, the Hall of Records plaque reusing
+ * the scrolling-screen prop). Made non-tradable via TangibleObject::
+ * setForceNoTrade() (SceneObject.idl) rather than relying on the mark_
+ * courage template's own trade flags, which aren't under our control and
+ * may differ.
+ */
+void grantCompanionKillToken(ZoneServer* zoneServer, CreatureObject* destructor, CreatureObject* owner) {
+	if (zoneServer == nullptr || owner == nullptr || !owner->isPlayerCreature()) {
+		return;
+	}
+
+	Locker ownerLocker(owner, destructor);
+
+	ManagedReference<SceneObject*> inventory = owner->getSlottedObject("inventory");
+
+	if (inventory == nullptr) {
+		return;
+	}
+
+	// Companion System (2026-07-20 follow-up, per user request "tokens
+	// should stack, 1000 max, so there's not a full inventory of these"):
+	// find an existing token stack with room and bump its use count
+	// instead of creating a new object every kill. Only when no stack has
+	// room (or none exists) is a fresh token object created.
+	constexpr int TOKEN_STACK_MAX = 1000;
+
+	for (int i = 0; i < inventory->getContainerObjectsSize(); ++i) {
+		ManagedReference<SceneObject*> obj = inventory->getContainerObject(i);
+
+		if (obj == nullptr || !obj->isTangibleObject()) {
+			continue;
+		}
+
+		TangibleObject* stack = cast<TangibleObject*>(obj.get());
+
+		if (stack == nullptr || stack->getCustomObjectName().toString() != "Companion Killed Token") {
+			continue;
+		}
+
+		int current = Math::max(1, (int) stack->getUseCount());
+
+		if (current >= TOKEN_STACK_MAX) {
+			continue; // full stack -- keep looking / fall through to a new one
+		}
+
+		Locker stackLocker(stack, owner);
+		stack->setUseCount(current + 1, true);
+
+		owner->sendSystemMessage("Your companion claimed the killing blow! Companion Killed Tokens: " + String::valueOf(current + 1));
+		return;
+	}
+
+	ManagedReference<SceneObject*> tokenObj = zoneServer->createObject(
+			STRING_HASHCODE("object/tangible/loot/quest/hero_of_tatooine/mark_courage.iff"), 1);
+
+	if (tokenObj == nullptr) {
+		return;
+	}
+
+	TangibleObject* token = tokenObj.castTo<TangibleObject*>();
+
+	if (token == nullptr) {
+		tokenObj->destroyObjectFromDatabase(true);
+		return;
+	}
+
+	Locker tokenLocker(token);
+
+	token->createChildObjects();
+	token->setCustomObjectName(String("Companion Killed Token"), false);
+	token->setForceNoTrade(true);
+	token->setUseCount(1, false);
+
+	if (!inventory->transferObject(token, -1, true)) {
+		token->destroyObjectFromDatabase(true);
+		return;
+	}
+
+	inventory->broadcastObject(token, true);
+
+	owner->sendSystemMessage("Your companion claimed the killing blow! You received a Companion Killed Token.");
+}
+
+}
 
 void CreatureManagerImplementation::setCreatureTemplateManager() {
 	creatureTemplateManager = CreatureTemplateManager::instance();
@@ -505,6 +606,22 @@ void CreatureManagerImplementation::unloadSpawnAreas() {
 int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor, AiAgent* destructedObject, int condition, bool isCombatAction) {
 	if (destructedObject->isDead())
 		return 1;
+
+	// Companion System (2026-07-20, "companion kill token" -- per user
+	// request): destructor here is the literal object whose damage zeroed
+	// destructedObject's HAM -- passed straight through from
+	// CreatureObjectImplementation::inflictDamage() -> ...
+	// notifyObjectDestructionObservers() -> here -- i.e. "landed the
+	// killing blow," not an aggregate/threat-map credit (that's a
+	// separate, PLAYER-only mechanism further down this function). Grant
+	// the owner one token per kill their companion actually finishes.
+	if (destructor != nullptr && destructor->isCompanionObject()) {
+		CompanionObject* companion = cast<CompanionObject*>(destructor);
+		CreatureObject* companionOwner = companion != nullptr ? companion->getLinkedCreature().get() : nullptr;
+
+		grantCompanionKillToken(zoneServer, destructor->asCreatureObject(), companionOwner);
+		CompanionChatter::announceReaction(companion, companionOwner, "kill");
+	}
 
 	destructedObject->clearOptionBit(OptionBitmask::INTERESTING);
 	destructedObject->clearOptionBit(OptionBitmask::JTLINTERESTING);

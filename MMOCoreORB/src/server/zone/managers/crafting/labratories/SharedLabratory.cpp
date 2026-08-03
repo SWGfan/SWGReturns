@@ -120,8 +120,19 @@ float SharedLabratory::getWeightedValue(ManufactureSchematic* manufactureSchemat
 		ManagedReference<ResourceSpawn* > spawn = resSlot->getCurrentSpawn();
 
 		if (spawn == nullptr) {
+			// Companion System (2026-07-29, real-roll hardening -- empty-optional-slot fix): this used to
+			// `return 0.0f` immediately, discarding every OTHER slot's
+			// already-summed contribution the instant it hit one resource
+			// slot with no spawn assigned -- reachable via the companion
+			// system's own 2026-07-24 fix that lets an OPTIONAL
+			// identical/mixed slot be left completely unfilled. The
+			// sibling component-slot branch a few lines above already
+			// `continue`s past missing data instead of aborting the whole
+			// average -- this matches that existing convention. Affects
+			// real player crafting too (any manual craft that leaves an
+			// optional RESOURCE slot empty), not just companion crafting.
 			error("Spawn object is null when running getWeightedValue");
-			return 0.0f;
+			continue;
 		}
 
 		n = draftslot->getQuantity();

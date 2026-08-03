@@ -10,6 +10,7 @@ includeFile("trainer/trainer_carbine.lua")
 includeFile("trainer/trainer_chef.lua")
 includeFile("trainer/trainer_combatmedic.lua")
 includeFile("trainer/trainer_commando.lua")
+includeFile("trainer/trainer_companion_master.lua")
 includeFile("trainer/trainer_creaturehandler.lua")
 includeFile("trainer/trainer_dancer.lua")
 includeFile("trainer/trainer_doctor.lua")
@@ -35,6 +36,10 @@ includeFile("trainer/trainer_squadleader.lua")
 includeFile("trainer/trainer_tailor.lua")
 includeFile("trainer/trainer_unarmed.lua")
 includeFile("trainer/trainer_weaponsmith.lua")
+-- Companion System (2026-07-20, "companion kill token" pass) -- Veteran
+-- Reward Vendor NPC; MUST be included here or addCreatureTemplate never
+-- runs and the spawn name resolves to nothing, silently.
+includeFile("trainer/veteran_reward_vendor.lua")
 includeFile("trainer/trainer_basebuster.lua")
 includeFile("trainer/trainer_imperial.lua")
 includeFile("trainer/trainer_rebel.lua")

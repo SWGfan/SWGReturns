@@ -140,7 +140,7 @@ public:
 
 		companion->setCompanionState(CompanionObject::FOLLOW);
 		companion->setFollowObject(owner);
-		companion->setMovementState(AiAgent::FOLLOWING);
+		companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		companion->clearPatrolPoints();
 	}
 
@@ -413,8 +413,11 @@ public:
 
 			if (donor->getPatrolPointSize() == 0) {
 				PatrolPoint point(crafter->getPositionX(), crafter->getPositionZ(), crafter->getPositionY());
+				// genesis port: setMovementState() -> setFollowState(); genesis
+				// setFollowState() calls clearPatrolPoints(), so the state must be
+				// set BEFORE the point is queued (see PetPatrolCommand.h).
+				donor->setFollowState(AiAgent::PATROLLING);
 				donor->addPatrolPoint(point);
-				donor->setMovementState(AiAgent::PATROLLING);
 			}
 
 			scheduleStep(zoneServer, ownerRef, state, 400);
@@ -514,8 +517,11 @@ public:
 		walker->setFollowObject(nullptr);
 		walker->clearPatrolPoints();
 		PatrolPoint awayPoint(tx, tz, ty);
+		// genesis port: setMovementState() -> setFollowState(); genesis
+		// setFollowState() calls clearPatrolPoints(), so the state must be
+		// set BEFORE the point is queued (see PetPatrolCommand.h).
+		walker->setFollowState(AiAgent::PATROLLING);
 		walker->addPatrolPoint(awayPoint);
-		walker->setMovementState(AiAgent::PATROLLING);
 
 		ManagedReference<CompanionObject*> walkerRef = walker;
 		ManagedReference<CreatureObject*> ownerRef = owner;

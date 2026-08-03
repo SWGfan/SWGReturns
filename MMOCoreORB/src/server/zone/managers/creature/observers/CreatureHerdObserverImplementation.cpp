@@ -130,7 +130,7 @@ bool CreatureHerdObserverImplementation::restHerd() {
 
 		Locker clocker(member, &herdLock);
 
-		member->setMovementState(AiAgent::RESTING);
+		// DEFERRED (genesis port): no equivalent for AiAgent::RESTING -- member->setMovementState(AiAgent::RESTING);
 
 		// Chance to stop resting from 45s up to 90s stored in ms
 		int delay = 300 * 1000;
@@ -183,9 +183,9 @@ bool CreatureHerdObserverImplementation::stopHerdRest() {
 
 		// Leader patrols, followers follow
 		if (i == 0) {
-			member->setMovementState(AiAgent::PATROLLING);
+			member->setFollowState(AiAgent::PATROLLING); // genesis port: was setMovementState()
 		} else {
-			member->setMovementState(AiAgent::FOLLOWING);
+			member->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
 		}
 
 		anyWoken = true;
