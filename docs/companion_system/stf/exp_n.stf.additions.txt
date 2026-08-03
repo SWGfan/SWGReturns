@@ -1,0 +1,19 @@
+SUPERSEDED: see docs/companion_system/NOTES.md, "Datatable patch:
+companion_patch.tre" -- the real binary exp_n.stf addition now ships in
+companion_patch.tre, built by docs/companion_system/tools/build_companion_content.py.
+=======================================================
+
+Companion System -- additions for string/en/exp_n.stf
+=======================================================
+
+exp_n.stf maps xp type keys (as passed to PlayerManager::awardExperience /
+displayed via the "prose_grant_xp" %TO token) to their display names. Add the
+following row to the existing compiled exp_n.stf:
+
+	companion_master_xp   = Companion Master Experience
+
+No other xp type strings are required -- combat xp types awarded to a
+CompanionObject (e.g. "marksman_xp") reuse the existing exp_n.stf rows
+already shipped for the equivalent player professions, since
+CompanionObjectImplementation::addExperience() accepts the same xpType
+strings players use (spec 3A).

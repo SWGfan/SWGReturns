@@ -170,8 +170,6 @@ class NavAreaPOD;
 
 using namespace server::zone::objects::pathfinding;
 
-#include "gmock/gmock.h"
-
 #include "server/chat/room/ChatRoom.h"
 
 #include "server/zone/ZoneServer.h"
@@ -209,9 +207,6 @@ class Zone : public SceneObject {
 public:
 	Zone(ZoneProcessServer* processor, const String& zoneName);
 
-protected:
-	Zone() { }
-public:
 	void initializeTransientMembers();
 
 	Reference<SceneObject* > getNearestPlanetaryObject(SceneObject* object, const String& mapObjectLocationType);
@@ -258,9 +253,9 @@ public:
 
 	void clearZone();
 
-	virtual float getHeight(float x, float y);
+	float getHeight(float x, float y);
 
-	virtual float getHeightNoCache(float x, float y);
+	float getHeightNoCache(float x, float y);
 
 	void addSceneObject(SceneObject* object);
 
@@ -438,9 +433,9 @@ public:
 
 	void clearZone();
 
-	virtual float getHeight(float x, float y);
+	float getHeight(float x, float y);
 
-	virtual float getHeightNoCache(float x, float y);
+	float getHeightNoCache(float x, float y);
 
 	void addSceneObject(SceneObject* object);
 
@@ -645,18 +640,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<ZoneHelper>;
-};
-
-class MockZone : public Zone {
-public:
-
-	MOCK_METHOD2(getHeight,float(float x, float y));
-	MOCK_METHOD2(getHeightNoCache,float(float x, float y));
-	MOCK_METHOD0(getWorldPositionX,float());
-	MOCK_METHOD0(getWorldPositionY,float());
-	MOCK_METHOD0(getWorldPositionZ,float());
-	MOCK_METHOD0(getWorldPosition,Vector3());
-
 };
 
 } // namespace zone

@@ -198,8 +198,6 @@ class AiAgentPOD;
 
 using namespace server::zone::objects::creature::ai;
 
-#include "gmock/gmock.h"
-
 #include "server/zone/QuadTreeEntry.h"
 
 #include "engine/log/LoggerHelperStream.h"
@@ -875,13 +873,13 @@ public:
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
 
-	virtual float getWorldPositionX();
+	float getWorldPositionX();
 
-	virtual float getWorldPositionY();
+	float getWorldPositionY();
 
-	virtual float getWorldPositionZ();
+	float getWorldPositionZ();
 
-	virtual Vector3 getWorldPosition();
+	Vector3 getWorldPosition();
 
 	float getDirectionX() const;
 
@@ -2128,13 +2126,13 @@ public:
 
 	Vector3 getWorldCoordinate(float distance, float angleDegrees, bool includeZ);
 
-	virtual float getWorldPositionX();
+	float getWorldPositionX();
 
-	virtual float getWorldPositionY();
+	float getWorldPositionY();
 
-	virtual float getWorldPositionZ();
+	float getWorldPositionZ();
 
-	virtual Vector3 getWorldPosition();
+	Vector3 getWorldPosition();
 
 	float getDirectionX() const;
 
@@ -3255,16 +3253,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<SceneObjectHelper>;
-};
-
-class MockSceneObject : public SceneObject {
-public:
-
-	MOCK_METHOD0(getWorldPositionX,float());
-	MOCK_METHOD0(getWorldPositionY,float());
-	MOCK_METHOD0(getWorldPositionZ,float());
-	MOCK_METHOD0(getWorldPosition,Vector3());
-
 };
 
 } // namespace scene

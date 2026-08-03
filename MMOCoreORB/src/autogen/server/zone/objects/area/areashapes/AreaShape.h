@@ -24,8 +24,6 @@
 #endif
 #include "engine/util/json_utils.h"
 
-#include "gmock/gmock.h"
-
 #include "engine/core/ManagedObject.h"
 
 #include "engine/util/u3d/Vector3.h"
@@ -67,7 +65,7 @@ public:
 	 * @param point the point to check if it is within the area shape.
 	 * @return true if the coordinate is within the area shape.
 	 */
-	virtual bool containsPoint(const Vector3& point) const;
+	bool containsPoint(const Vector3& point) const;
 
 	/**
 	 * Get the minimum radius of a circle bounding the area shape.
@@ -316,13 +314,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<AreaShapeHelper>;
-};
-
-class MockAreaShape : public AreaShape {
-public:
-
-	MOCK_METHOD1(containsPoint,bool(const Vector3& point));
-
 };
 
 } // namespace areashapes

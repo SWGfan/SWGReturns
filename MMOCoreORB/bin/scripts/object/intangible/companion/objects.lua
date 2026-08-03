@@ -1,0 +1,10 @@
+-- Companion System -- intentionally unused/not included from anywhere.
+-- The CompanionControlDevice template is defined directly in
+-- companion_control_device.lua (loaded via serverobjects.lua) as a :new{}
+-- of the real object_intangible_pet_shared_pet_control table, which is only
+-- guaranteed to exist by the time the *serverobjects* load chain runs
+-- (object/main.lua loads allobjects.lua fully before serverobjects.lua).
+-- A separate companion "shared" class here would have executed too early
+-- (companion/ sorts before pet/ in the objects.lua include chain) and had
+-- no real backing .iff to register via addClientTemplate. See
+-- docs/companion_system/NOTES.md.

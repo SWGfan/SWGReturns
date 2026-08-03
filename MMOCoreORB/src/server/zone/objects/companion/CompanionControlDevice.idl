@@ -1,0 +1,203 @@
+/*
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.
+
+	Companion System -- spec 2A ("Datapad Lifecycle & Control Device") and 2C
+	("Creature Handler-Style Death Loop & Vitality"). Deliberately extends
+	IntangibleObject directly (NOT ControlDevice, the Creature Handler / Droid
+	base class) so the two systems cannot cross-recognize or share state --
+	see docs/companion_system/NOTES.md.
+*/
+
+package server.zone.objects.companion;
+
+import server.zone.objects.intangible.IntangibleObject;
+import server.zone.objects.creature.CreatureObject;
+import server.zone.objects.companion.CompanionObject;
+import server.zone.objects.companion.CompanionThreatObserver;
+import server.zone.objects.scene.SceneObject;
+import server.zone.packets.scene.AttributeListMessage;
+include system.lang.Time;
+
+@json
+class CompanionControlDevice extends IntangibleObject {
+
+	/** The live companion actor while summoned; null while stored. */
+	protected CompanionObject companionObject;
+
+	/** True once the companion has died and not yet been revived (spec 2A/2C). */
+	protected boolean isDead;
+
+	/** Authoritative, persisted vitality (spec 2C). The live CompanionObject
+	 * keeps a fast-access mirror that is written back here on every change. */
+	protected int vitality;
+	protected int maxVitality;
+
+	/** companion_master skill string identifying which companion "kind"/tier
+	 * this device was recruited as -- used by the summon gate to compare
+	 * against the owner's companion_master skill rank (spec 2A). */
+	protected string requiredMasterSkillBox;
+
+	protected CompanionThreatObserver threatObserver;
+
+	@dereferenced
+	protected Time lastDeathTime;
+
+	public CompanionControlDevice() {
+		Logger.setLoggingName("CompanionSystem");
+		Logger.setLogging(false);
+		Logger.setGlobalLogging(true);
+
+		isDead = false;
+		vitality = 100;
+		maxVitality = 100;
+		requiredMasterSkillBox = "companion_master_novice";
+	}
+
+	@dirty
+	public boolean isCompanionControlDevice() {
+		return true;
+	}
+
+	@read
+	public boolean isCompanionDead() {
+		return isDead;
+	}
+
+	@read
+	public int getVitality() {
+		return vitality;
+	}
+
+	@read
+	public int getMaxVitality() {
+		return maxVitality;
+	}
+
+	@preLocked
+	public native void setVitality(int value);
+
+	@preLocked
+	public void setMaxVitality(int value) {
+		maxVitality = value;
+	}
+
+	@local
+	@dirty
+	public CompanionObject getCompanionObject() {
+		return companionObject;
+	}
+
+	/**
+	 * Companion System -- links a freshly-created CompanionObject to this
+	 * device. Used exactly once, by the grant-on-unlock flow (spec 2A/3A)
+	 * when a player first learns companion_master_novice -- see
+	 * SkillManager::awardSkill() and docs/companion_system/NOTES.md. Not
+	 * used afterward; spawnObject()/storeObject() reuse the same
+	 * companionObject reference for the lifetime of the device.
+	 * @pre { this object is locked }
+	 */
+	@preLocked
+	public void setCompanionObject(CompanionObject companion) {
+		companionObject = companion;
+	}
+
+	@read
+	public string getRequiredMasterSkillBox() {
+		return requiredMasterSkillBox;
+	}
+
+	@preLocked
+	public void setRequiredMasterSkillBox(final string skillBox) {
+		requiredMasterSkillBox = skillBox;
+	}
+
+	/**
+	 * Handles both the "Summon" and "Store" radial selections (spec 2A).
+	 * @pre { this object is locked }
+	 * @post { this object is locked }
+	 */
+	@preLocked
+	@arg1preLocked
+	/**
+	 * Companion System (2026-07-15, "invisible datapad device" fix -- see
+	 * companion_control_device.lua's revert comment): clientObjectCRC is
+	 * persisted per object, and devices created while the (reverted)
+	 * custom human-appearance client template was live carry a CRC the
+	 * client can't render -- an invisible, unclickable datapad entry.
+	 * Since an invisible device can never be summoned, the summon-time
+	 * self-heal pattern doesn't work here: re-stamp the proven pet-control
+	 * client CRC on every load instead (visible after next relog).
+	 */
+	public native void initializeTransientMembers();
+
+	public native int handleObjectMenuSelect(CreatureObject player, byte selectedID);
+
+	/**
+	 * Summoning: gates on companion_master skill rank vs. the companion's
+	 * requirement, and on isDead. Spawns the CompanionObject at the owner's
+	 * exact coordinates, links object IDs, initializes the AI/threat observer.
+	 * @pre { this object is locked }
+	 * @post { this object is locked }
+	 */
+	@preLocked
+	@arg1preLocked
+	public native void spawnObject(CreatureObject player);
+
+	/**
+	 * Storing: serializes stats/skills/inventory (handled implicitly by @json
+	 * persistence once companionObject is despawned -- see NOTES.md,
+	 * "Database persistence"), despawns the companion, and clears the
+	 * temporary world object.
+	 * @pre { this object is locked }
+	 * @post { this object is locked }
+	 */
+	@preLocked
+	@arg1preLocked
+	public native void storeObject(CreatureObject player, boolean force = false);
+
+	/**
+	 * Called from CompanionObjectImplementation death handling (spec 2C). Sets
+	 * isDead = true, applies the (Resilience-branch-reduced) vitality penalty,
+	 * persists, and despawns.
+	 * @pre { this object is locked }
+	 */
+	/**
+	 * Companion System (2026-07-19 rewrite, per user request) -- no longer
+	 * takes a penalty argument: death is no longer a permanent stat
+	 * reduction (see the file's own doc comment / NOTES.md). Marks the
+	 * companion dead-until-resummoned and stores it; reviveCompanion() (now
+	 * called automatically from spawnObject()) restores it to full max HAM
+	 * but minimal CURRENT HAM on the next summon, so it has to regen back
+	 * up like a real player recovering from being downed, rather than
+	 * either staying dead forever or popping back in at full health.
+	 * @pre { this object is locked }
+	 */
+	@preLocked
+	public native void handleCompanionDeath(CreatureObject owner);
+
+	/**
+	 * Clears isDead and resets base HAM to baseline while keeping the
+	 * permanently reduced max vitality intact (spec 2C).
+	 * @pre { this object is locked }
+	 */
+	@preLocked
+	public native void reviveCompanion();
+
+	/**
+	 * UX-parity fix (spec 2A): a real PetControlDevice's examine tooltip is a
+	 * rich stat sheet (vitality, level, HAM, commands -- see
+	 * PetControlDeviceImplementation::fillAttributeList()); ours previously
+	 * fell back to the near-empty default IntangibleObjectImplementation
+	 * version, showing nothing useful. Overrides with vitality/level/HAM
+	 * using the same real, client-recognized attribute keys the pet system
+	 * already uses ("creature_vitality", "challenge_level", "creature_health",
+	 * etc.) so no new client-side obj_attr_n.stf entries are required. See
+	 * docs/companion_system/NOTES.md.
+	 * @pre { this object is locked }
+	 */
+	@dirty
+	@local
+	public native void fillAttributeList(AttributeListMessage msg, CreatureObject object);
+
+}

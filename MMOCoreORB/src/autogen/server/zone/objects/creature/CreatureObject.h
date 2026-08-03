@@ -194,8 +194,6 @@ class AuctionSearchTask;
 
 using namespace server::zone::managers::auction;
 
-#include "gmock/gmock.h"
-
 #include "server/zone/objects/group/GroupObject.h"
 
 #include "server/zone/objects/intangible/ControlDevice.h"
@@ -3610,16 +3608,6 @@ public:
 	DistributedObjectAdapter* createAdapter(DistributedObjectStub* obj);
 
 	friend class Singleton<CreatureObjectHelper>;
-};
-
-class MockCreatureObject : public CreatureObject {
-public:
-
-	MOCK_METHOD0(getWorldPositionX,float());
-	MOCK_METHOD0(getWorldPositionY,float());
-	MOCK_METHOD0(getWorldPositionZ,float());
-	MOCK_METHOD0(getWorldPosition,Vector3());
-
 };
 
 } // namespace creature

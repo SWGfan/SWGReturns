@@ -1,0 +1,31 @@
+# PHASE 1 base-command list for build_companion_skill_mirror.py (~20 rows).
+# Selection method: common low/mid-tier combat specials across the ranged
+# (rifle/carbine/pistol) and melee (unarmed/1h/2h/polearm) trees, taken from
+# real stock command_table.iff command names, EXCLUDING every base command
+# already mirrored by build_command_table_rows.py's existing 61
+# companion<Ability> rows (headShot3, warcry1, intimidate1, berserk1,
+# mindShot2, torsoShot, unarmedLunge1, melee1hLunge1, melee2hLunge1,
+# polearmLunge1, pointBlankSingle1, pointBlankArea1, overchargeShot1, etc.)
+# so no duplicate mirrors are created. Names are validated against the live
+# table at runtime; unknown names warn + skip. Keeps this phase well inside
+# the proven 848-row ceiling (~868 total).
+headShot1
+headShot2
+mindShot1
+fullAutoSingle1
+bodyShot1
+bodyShot2
+bodyShot3
+legShot1
+legShot2
+legShot3
+warcry2
+intimidate2
+berserk2
+unarmedLunge2
+melee1hLunge2
+melee2hLunge2
+polearmLunge2
+pointBlankSingle2
+pointBlankArea2
+overchargeShot2

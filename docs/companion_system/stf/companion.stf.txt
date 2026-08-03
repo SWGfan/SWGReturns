@@ -1,0 +1,71 @@
+SUPERSEDED: this file predates companion_patch.tre. The real binary
+string/en/companion.stf is now built and shipped -- see
+docs/companion_system/NOTES.md, "Datatable patch: companion_patch.tre",
+and docs/companion_system/tools/build_companion_content.py (COMPANION_STF_ENTRIES)
+for the authoritative content. Left here only for historical reference.
+=====================================================================
+
+Companion System -- string table source for string/en/companion.stf
+=====================================================================
+
+IMPORTANT: .stf files are a compiled binary format (string/en/*.stf) read by
+both the client and TemplateManager::instance()->getStringId(...) server-side
+via StringIdManager. There is no plaintext .stf source in this repository --
+these tables are normally authored and compiled with the community STF editor
+tooling (e.g. "SWG StfEditor" / the stf compiler bundled with the client dev
+tools) and dropped into string/en/ (and mirrored per-locale as needed).
+
+The key/value pairs below are every @companion:xxx string referenced by the
+C++/Lua code in this deliverable. Import them into string/en/companion.stf
+(new file) using your STF tooling of choice.
+
+	menu_open_inventory        = Open Companion Inventory
+	menu_skill_sheet           = Companion Skill Sheet
+	menu_revive                = Revive Companion
+	menu_inspect               = Inspect Companion
+
+	dead_summon_error          = Your companion has fallen and cannot be summoned. Revive it first.
+	no_companion_loaded        = This datapad has no companion loaded.
+	cant_summon_now            = You cannot summon or store your companion right now.
+	insufficient_rank          = Your Companion Master rank is not high enough to summon this companion.
+	summoned                   = Your companion has been summoned.
+	cant_store_now             = You cannot store your companion while in combat.
+	stored                     = Your companion has been stored.
+	companion_died             = Your companion has fallen and permanently lost vitality.
+
+	jedi_not_eligible          = This companion has not mastered every baseline combat profession.
+	missing_master_badge       = You must have earned this profession's Master Badge to train your companion in it.
+	skill_trained              = Your companion has learned a new skill.
+	skill_untrained            = Your companion has forgotten a skill.
+
+	skill_sheet_title          = Companion Skill Sheet
+	skill_sheet_text           = Skills this companion has learned:
+	inspect_title               = Inspect Companion
+	inspect_text                = Public equipment & skill summary:
+
+	dialog_title                = Companion Options
+	dialog_text                 = What would you like your companion to do?
+	dialog_follow                = Follow
+	dialog_stay                  = Stay
+	dialog_patrol                 = Patrol
+	dialog_skill_sheet             = Skill Sheet
+	dialog_train                    = Train a Skill
+	dialog_untrain                   = Untrain a Skill
+	dialog_help                       = Help / Macro Reference
+
+	train_title                 = Train Companion
+	train_text                  = Select a skill to train (0 Skill Points required):
+	untrain_title                = Untrain Companion
+	untrain_text                 = Select a skill to remove:
+	help_title                    = Companion Macro Reference
+	help_text                     = /hpet <macro> -- readiness shown per row:
+
+	no_active_companion         = You have no active companion.
+	ability_locked               = Your companion has not learned that ability.
+	no_valid_target               = You must have a valid hostile target selected.
+
+	formup_no_followers          = You have no active pets, droids, or companions to form up.
+	formup_complete               = Your followers have assumed formation.
+
+	camp_not_trained              = Your companion has not been trained in the Ranger or Scout skill trees.
+	no_camp_tent                   = Your companion is not carrying a camp tent.

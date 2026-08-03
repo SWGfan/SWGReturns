@@ -1,0 +1,94 @@
+/*
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions.
+
+	Companion System -- owner-status threat listener (spec 4A: "Dynamic Combat
+	Assist & Retention"). Modeled directly on
+	server/zone/objects/intangible/PetControlObserver.idl, the equivalent hook
+	used by the (isolated) Creature Handler pet system.
+*/
+
+package server.zone.objects.companion;
+
+include engine.core.ManagedObject;
+
+import engine.util.Observer;
+import engine.util.Observable;
+import server.zone.objects.creature.CreatureObject;
+import server.zone.objects.companion.CompanionObject;
+include templates.params.ObserverEventType;
+
+class CompanionThreatObserver extends Observer {
+
+	@weakReference
+	CompanionObject companion;
+
+	public CompanionThreatObserver(CompanionObject companionObject) {
+		companion = companionObject;
+	}
+
+	/**
+	 * Fires on DAMAGERECEIVED (owner took damage) and STARTCOMBAT (owner
+	 * committed a hostile action) -- both are registered against the owner's
+	 * observable in CompanionControlDeviceImplementation::spawnObject.
+	 */
+	@dirty
+	public int notifyObserverEvent(unsigned int eventType, Observable observable, ManagedObject arg1, long arg2) {
+		if (eventType != ObserverEventType.DAMAGERECEIVED && eventType != ObserverEventType.STARTCOMBAT) {
+			return 0;
+		}
+
+		CompanionObject strongRef = companion;
+
+		// Truthy check, not "== null" -- comparing a ManagedReference<T*> against
+		// NULL is ambiguous in this engine (two overloaded operator== candidates
+		// on Reference.h); PetControlObserver.idl uses the same "if (strongRef)"
+		// idiom for this exact reason.
+		if (!strongRef) {
+			return 1;
+		}
+
+		CreatureObject owner = (CreatureObject) observable;
+
+		if (!owner) {
+			return 0;
+		}
+
+		// Post-combat auto-loot (2026-07-18, see NOTES.md): every fight the
+		// owner gets into arms the loot/harvest sweep -- it polls until the
+		// fight fully ends, then the nearest companion collects the spoils.
+		// Idempotent while already armed, safe from this (unlocked) thread.
+		strongRef.deferredStartPostCombatSweep();
+
+		if (eventType == ObserverEventType.DAMAGERECEIVED) {
+			// arg1 = the object that is doing the damage (per ObserverEventType.h).
+			// Cast-and-null-check instead of an isCreatureObject() type-check call --
+			// that check method is only exposed on SceneObject-and-below (see
+			// GamblingManager.idl's notify(SceneObject)), not on the bare
+			// ManagedObject type arg1 is declared as here. This mirrors the
+			// (CreatureObject) observable cast already used above.
+			CreatureObject attacker = (CreatureObject) arg1;
+
+			if (attacker) {
+				// Bug fix (2026-07-13, real live SIGABRT -- see NOTES.md):
+				// interceptThreatToOwner() is @preLocked (requires the
+				// companion locked), but this observer fires on whatever
+				// thread is processing the *owner's* own combat-state
+				// change -- never guaranteed to have the companion locked.
+				// deferredInterceptThreatToOwner() is the safe, non-locked
+				// entry point that defers to a locked task internally; see
+				// its doc comment on CompanionObject.idl.
+				strongRef.deferredInterceptThreatToOwner(attacker);
+			}
+		} else {
+			// STARTCOMBAT: resolve the owner's current target in native code
+			// (needs ZoneServer object lookup, not expressible cleanly here).
+			// Same locking fix as above -- deferredInterceptOwnerHostileAction()
+			// is the safe entry point.
+			strongRef.deferredInterceptOwnerHostileAction(owner);
+		}
+
+		return 0;
+	}
+
+}

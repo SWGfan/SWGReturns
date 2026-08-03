@@ -1,0 +1,30 @@
+SUPERSEDED: see docs/companion_system/NOTES.md, "Datatable patch:
+companion_patch.tre" -- the real binary skl_n.stf additions now ship in
+companion_patch.tre, built by docs/companion_system/tools/build_companion_content.py
+(SKL_NAMES).
+=========================================================================
+
+Companion System -- additions for string/en/skl_n.stf (and skl_t.stf for
+"you have learned..." toast text, if your install splits the two)
+=========================================================================
+
+skl_n.stf maps skill box names to their display names, shown in the skill
+tree UI and character sheet. Add the following rows for the new
+companion_master profession skill tree (a corresponding row must also exist
+in datatables/skill/skills.iff for each box -- see NOTES.md, "Datatable
+authoring required").
+
+	companion_master_novice          = Novice Companion Master
+	companion_master_husbandry_01    = Companion Husbandry I
+	companion_master_husbandry_02    = Companion Husbandry II
+	companion_master_husbandry_03    = Companion Husbandry III
+	companion_master_husbandry_04    = Companion Husbandry IV
+	companion_master_resilience_01   = Companion Resilience I
+	companion_master_resilience_02   = Companion Resilience II
+	companion_master_resilience_03   = Companion Resilience III
+	companion_master_resilience_04   = Companion Resilience IV
+	companion_master_master          = Master Companion Master
+
+Also add, to string/en/mob/creature_names.stf:
+
+	trainer_companion_master         = Companion Master Trainer

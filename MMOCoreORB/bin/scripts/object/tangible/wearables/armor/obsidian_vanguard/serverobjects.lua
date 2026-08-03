@@ -1,0 +1,11 @@
+--Companion System (2026-07-20) -- Obsidian Vanguard set.
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_helmet.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_chest_plate.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_l.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_r.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_l.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_r.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_gloves.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_leggings.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_boots.lua")
+includeFile("tangible/wearables/armor/obsidian_vanguard/obsidian_belt.lua")
