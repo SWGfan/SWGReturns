@@ -776,72 +776,6 @@ def act_pull():
     print("shipped code that does not compile. Review before merging.")
 
 
-def act_remote_set(url, force=False):
-    """Point pushes at a different GitHub repo, persistently.
-
-    The default lives in git's own config (the `origin` remote URL) rather than
-    a side file, because that is already what act_push() uses and what
-    `git remote -v` reports -- one source of truth instead of two that can
-    drift apart.
-    """
-    url = (url or "").strip()
-
-    if not url:
-        print("Usage: remote_set --url https://github.com/<owner>/<repo>.git")
-        return 1
-
-    if not (url.startswith("https://") or url.startswith("git@") or url.startswith("ssh://")):
-        print("That does not look like a git remote URL: %s" % url)
-        print("Expected something like:")
-        print("  https://github.com/SWGfan/SWGReturns.git")
-        print("  git@github.com:SWGfan/SWGReturns.git")
-        return 1
-
-    # The project's standing rule, in the user's own words: "lets not upload to
-    # their github directly, we should only use swgfan github and if the other
-    # server wants it, they can pull my edits." A speed bump, not a lock.
-    if "bfitzgit23" in url.lower() and not force:
-        print("REFUSED: that is the other server's upstream repo (bfitzgit23).")
-        print("")
-        print("Your standing rule for this project is to push only to SWGfan and")
-        print("let them pull your edits, and the panel's GitHub box says the same.")
-        print("If you really mean it, re-run with --force.")
-        return 1
-
-    rc, old = sh("cd %s && git remote get-url origin 2>/dev/null" % REPO)
-    had_origin = rc == 0 and old.strip()
-
-    if had_origin:
-        rc, out = sh("cd %s && git remote set-url origin '%s'" % (REPO, url))
-    else:
-        rc, out = sh("cd %s && git remote add origin '%s'" % (REPO, url))
-
-    if rc != 0:
-        print("FAILED to set the remote:\n" + out.strip())
-        return 1
-
-    print("Push target updated.")
-    if had_origin:
-        print("  was : %s" % old.strip())
-    print("  now : %s" % url)
-    print("")
-    print("Saved in git's own config, so it is the default from here on and")
-    print("survives reboots and pulls. Change it any time from the panel or with")
-    print("  remote_set --url <other-url>")
-    print("")
-
-    rc, out = sh("cd %s && git ls-remote --heads '%s' 2>&1 | head -3" % (REPO, url))
-    if rc == 0 and out.strip():
-        print("Reachable -- remote branches found:\n" + out.strip())
-    else:
-        print("NOTE: could not list branches on that remote yet. That is fine if")
-        print("      the repo is new or empty; it also shows up when credentials")
-        print("      are not cached yet. The first push will prompt for them.")
-        if out.strip():
-            print("      git said: " + out.strip()[:200])
-    return 0
-
-
 def act_push(msgfile=None):
     msg = "Genesis updates from DESKTOP-2MI669I"
     if msgfile and os.path.exists(msgfile):
@@ -1741,9 +1675,6 @@ ACTIONS = """SWGReturn server control -- actions:
   tune_set --key K --value V     write one whitelisted knob, with a backup
   tune_file           path of the lua file the knobs live in
   remote              where a push would go
-  remote_set --url U  change where pushes go, and make it the default
-                      (stored as git's own origin URL). --force to allow
-                      the other server's repo, which is refused otherwise
   diff / pull / push [--msgfile PATH]
 """
 
@@ -1809,14 +1740,6 @@ def main():
     elif a == "tune_file":         act_tune_file()
     elif a == "tune_set":          act_tune_set(_flag(args, "--key"), _flag(args, "--value"))
     elif a == "remote":            act_remote()
-    elif a == "remote_set":
-        _url = ""
-        if "--url" in args:
-            try:
-                _url = args[args.index("--url") + 1]
-            except IndexError:
-                pass
-        act_remote_set(_url, force="--force" in args)
     elif a == "diff":              act_diff()
     elif a == "pull":              act_pull()
     elif a == "push":

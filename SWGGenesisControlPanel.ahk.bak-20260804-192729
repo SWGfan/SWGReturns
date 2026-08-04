@@ -380,7 +380,6 @@ MyGui.Add("Text", "x+16 yp+8 w110", "Commit message:")
 CommitEdit     := MyGui.Add("Edit", "x+8 y+-8 w318 h24 vCommitEdit", "Genesis updates from DESKTOP-2MI669I")
 BtnConfirmPush := MyGui.Add("Button", "x+10 yp-4 w130 h32", "Confirm && Push")
 BtnRemote      := MyGui.Add("Button", "x+8 w70 h32", "Target")
-BtnRemoteSet   := MyGui.Add("Button", "x+6 w86 h32", "Change...")
 BtnConfirmPush.Enabled := false
 RemoteLabel    := MyGui.Add("Text", "xm+16 y+14 w940 vRemoteLabel cGray", "Push target: (checking...)")
 
@@ -1730,58 +1729,6 @@ ClearBackupSchedule(*) {
         RunCmdCapture('schtasks /Delete /F /TN "SWGGenesisBackup_' . StrReplace(t, ":", "") . '"')
     SchedLV.Delete()
     SchedMsg.Value := "All " . old.Length . " scheduled backup(s) removed."
-}
-
-
-
-; ---- push target ------------------------------------------------------------
-; The destination lives in git's own origin URL -- the same thing the label
-; above reads and the same thing push uses. Setting it here therefore changes
-; ONE thing and it persists; there is no second config file to drift out of
-; sync with git.
-BtnRemoteSet.OnEvent("Click", ChangePushTarget)
-
-ChangePushTarget(*) {
-    global PushUrl
-
-    cur := PushUrl = "" ? "(none set)" : PushUrl
-
-    ib := InputBox(
-        "Where should Confirm && Push upload to?`n`n"
-        . "Current target:`n" . cur . "`n`n"
-        . "Paste a full git URL, for example:`n"
-        . "    https://github.com/SWGfan/SWGReturns.git`n"
-        . "    git@github.com:YourName/YourFork.git`n`n"
-        . "Whatever you set becomes the default and stays until you change it`n"
-        . "again -- it is saved as git's origin URL, so it survives reboots.",
-        "Change push target", "w560 h300", PushUrl)
-
-    if (ib.Result != "OK")
-        return
-
-    url := TrimAll(ib.Value)
-    if (url = "")
-        return
-
-    ; The standing rule on this project, in your words: push only to SWGfan and
-    ; let the other server pull. The menu enforces it; this just explains the
-    ; refusal here rather than making you read the log to find out why.
-    if InStr(url, "bfitzgit23") {
-        ans := MsgBox(
-            "That is the OTHER server's upstream repo (bfitzgit23).`n`n"
-            . "Your standing rule for this project is to push only to SWGfan and let`n"
-            . "them pull your edits -- it is why the box above says 'never to bfitzgit23'.`n`n"
-            . "Set it anyway?",
-            "That is the upstream repo", "YesNo Icon!")
-        if (ans != "Yes")
-            return
-        SetLog(RunCapture('remote_set --url "' . url . '" --force'))
-        RefreshRemote()
-        return
-    }
-
-    SetLog(RunCapture('remote_set --url "' . url . '"'))
-    RefreshRemote()
 }
 
 
