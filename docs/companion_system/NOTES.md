@@ -9314,3 +9314,132 @@ Nick reversed an earlier decision: he now wants apostrophes across the whole lin
 - Survey tool rename to "Jenkin's Survey Tool" via `setCustomObjectName()` at craft completion.
 - Crafting Range Indicator raw STF flytext.
 - Large uncommitted working tree — commit and push.
+
+---
+
+## 2026-08-04 — Three companion defects, all in the same layer (genesis port)
+
+### 1. "The companion never moves" — the AiMoveEvent self-destruct clause
+
+An `AiAgent` only acts because an `AiMoveEvent` keeps re-firing its behaviour tree.
+`AiAgentImplementation::activateMovementEvent()` is the only thing that creates and
+schedules that event, and it opens with:
+
+```cpp
+if ((waitTime < 0 || numberOfPlayersInRange.get() <= 0)
+    && getFollowObject().get() == nullptr
+    && !isRetreating()) {
+        if (moveEvent != nullptr) { moveEvent->clearCreatureObject(); moveEvent = nullptr; }
+        return;
+}
+```
+
+`CompanionControlDeviceImplementation::spawnObject()` called `setHomeLocation()`
+(which sets `homeLocation.reached = **true**`, AiAgent.idl:609 — not false), then
+`activateLoad("companionfollow")` — whose `AiLoadTask` ends in
+`activateMovementEvent()` — and only then, eleven lines later, `setFollowObject()`.
+At the `activateLoad()` point both halves of the clause held, so the move event was
+created and destroyed in consecutive statements.
+
+Nothing re-arms it. `activateMovementEvent()` is commented out in `setOblivious`
+(652), `setWatchObject` (664), `setStalkObject` (676), `setFollowObject` (688) and
+`setCurrentBehavior`.
+
+Symptom fingerprint: the companion stands still but springs to life after the owner
+loots or fights, because those engine paths call `activateMovementEvent()` themselves.
+
+**Fix:** call `activateMovementEvent()` AFTER `setFollowObject()`, plus a defensive
+re-arm in the existing 2000 ms `runKeepUpTick()` (idempotent — it only schedules when
+the event is not already scheduled).
+
+**Rule to remember: fixing what a behaviour tree would do is not the same as making
+it tick.** Any companion feature depending on autonomous movement needs a live
+`AiMoveEvent`, and this engine will silently drop it.
+
+### 2. Credits-only corpses were never candidates, and that also kept the bodies
+
+The sweep's corpse-candidate filter required items in the bag:
+
+```cpp
+bool lootable = corpseLootableBy(corpse, owner)
+             && corpse->getSlottedObject("inventory") != nullptr
+             && corpse->getSlottedObject("inventory")->getContainerObjectsSize() > 0;
+```
+
+A corpse carrying only credits has an empty bag, failed the test, and was never added
+to `state->corpseIDs`. The at-the-corpse cash handling (added 2026-07-18: force_luck
+bonus, NPCLOOTCLAIM transaction, `prose_coin_loot`, credited straight to the owner)
+was correct all along — just unreachable.
+
+Knock-on: `PlayerManagerImplementation::shouldRescheduleCorpseDestruction()` returns
+false while `getCashCredits() > 0`, so uncollected credits keep the corpse "still
+lootable" and it sits out its full despawn timer. The sweep also never called
+`rescheduleCorpseDestruction()` at all — stock `lootAll()` calls it on both exit
+paths (3733, 3749).
+
+**Fix:** lootable if the bag has items OR the corpse carries credits; and call
+`rescheduleCorpseDestruction()` after looting — **from a scheduled task with no locks
+held**, because it takes `Locker(player, ai)` and the sweep already holds the
+companion and the corpse. Three-way locking is how Core3 deadlocks.
+
+### 3. Ordered attacks had no cooldown, and profession attack speed was discarded
+
+`CompanionAttackCommand.h`, `CompanionRangedAttackCommand.h` and
+`interceptThreatToOwner()` all used:
+
+```cpp
+companion->executeObjectControllerAction(STRING_HASHCODE("attack"), targetID, "");
+```
+
+`CreatureObjectImplementation::executeObjectControllerAction()` calls
+`ObjectController::activateCommand()` directly, bypassing the command queue — and the
+queue is the ONLY writer of `nextAction`, the weapon-speed cooldown stamp:
+
+```cpp
+// CreatureObjectImplementation::activateQueueAction()
+float time = objectController->activateCommand(...);
+nextAction.updateToCurrentTime();
+if (time > 0) nextAction.addMiliTime((uint32)(time * 1000));
+```
+
+So one button press = one immediate swing, with no cooldown, forever.
+
+This is also why profession attack speed appeared to do nothing. `attack` is
+registered as `AttackCommand` (CommandConfigManager2.cpp:482), a `CombatQueueCommand`,
+so its duration comes from `CombatManager::calculateWeaponAttackSpeed()`:
+
+```
+attackSpeed = (1 - speedMod/100) * skillSpeedRatio * weapon->getAttackSpeed()
+```
+
+with `speedMod` from `getSpeedModifier()` — the weapon's declared speed mods plus
+`melee_speed`/`ranged_speed`. Companions learn real SWG skill boxes through
+`CompanionSkillTrainer`, so those mods were already present; the computed duration was
+simply being thrown away.
+
+**Fix:** `enqueueCommand(STRING_HASHCODE("attack"), 0, targetID, "")` — the same path
+`AiAgentImplementation::enqueueAttack()` uses — behind an `isNextActionPast()` guard so
+a mashed button cannot stack a backlog. The order still lands every press; the
+behaviour tree's `SelectAttack` sustains the fight.
+
+**Also fixed:** `interceptThreatToOwner()` did `setFollowObject(nullptr)`, the same
+OBLIVIOUS bug already corrected in `CompanionAttackCommand.h`. On the Lua
+behaviour-tree base the follow object IS the movement system
+(`MovePetBase:checkConditions` requires `followState ~= OBLIVIOUS`), and
+`enqueueAttack()` no-ops when `getFollowObject()` is null — so auto-defence could
+neither move nor swing. Now targets the attacker, as stock `GetTargetBase` does.
+
+### Corrections to two earlier diagnoses in this project
+
+- **Icons are NOT a base-vs-aftermath `ui_styles.inc` mismatch.** A palette diff proved
+  aftermath adds exactly one style (`hobblestrike`) and changes/removes nothing; our TRE
+  preserves it perfectly (0 missing, 0 altered, 129 companion styles in both the plain
+  and `ui_shader_add` palettes). Still open. Live hypothesis:
+  `build_ui_styles_patch.py` clones source `ImageStyle` entries *by name*, so if
+  aftermath moved a source `SourceRect` the palette verifies "correct" while drawing the
+  wrong pixels.
+- **Companion commands were registered all along.** `addCommand()` only *configures* an
+  existing command (`if (command == nullptr) return 0;`, silently). Creation comes from
+  `command_tables_shared.iff` -> `command_table.iff`, which IS our patched file and the
+  server does resolve it from `companion_patch.tre`. The real gate is
+  `characterAbility = companion_attack` requiring the granting skill on the player.
