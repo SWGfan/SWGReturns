@@ -171,7 +171,16 @@ public:
 
 			companion->setCompanionState(CompanionObject::ATTACK);
 			companion->addDefender(hostileTarget);
-			companion->setFollowObject(nullptr);
+			// genesis port FIX (2026-08-04). This was setFollowObject(nullptr), which is
+			// fatal on the Lua-BT base: the follow object IS the movement system.
+			// MovePetBase:checkConditions requires followState ~= OBLIVIOUS, and clearing
+			// the follow object is exactly how you become OBLIVIOUS -- so the companion
+			// had nothing to move toward and fell through to WaitDefault. Ordering an
+			// out-of-range target made it permanent: deferredStartPostCombatSweep() below
+			// restores FOLLOW when combat ENDS, and combat never started.
+			// Stock AI does the opposite -- GetTargetBase acquires a target with
+			// setFollowObject(target); setDefender(target).
+			companion->setFollowObject(hostileTarget);
 
 			// Companion System (2026-07-29 fix, per Nick: "sometimes they run
 			// off and never return unless i press follow"). Unlike

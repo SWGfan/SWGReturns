@@ -795,6 +795,13 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		companion->getHomeLocation()->setReached(true);
 	companion->activateRecovery();
 	companion->setFollowObject(player);
+	// genesis port FIX (2026-08-04). restoreFollowObject() restores whatever
+	// storeFollowObject() last saved, and storeFollowObject() was called NOWHERE
+	// in the companion code -- so every restore in the stock terminate handlers
+	// (CombatMoveCreaturePet, GetTargetCreaturePet) has been restoring NULL, and
+	// a companion that finished a fight had nothing to go back to. Stock pets do
+	// exactly this, in PetFollowCommand, right after setFollowObject.
+	companion->storeFollowObject();
 	companion->setCompanionState(CompanionObject::FOLLOW);
 	companion->faceObject(player, true);
 
