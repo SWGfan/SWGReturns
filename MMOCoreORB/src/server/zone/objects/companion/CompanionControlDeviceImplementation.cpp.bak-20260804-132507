@@ -802,34 +802,6 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	// a companion that finished a fight had nothing to go back to. Stock pets do
 	// exactly this, in PetFollowCommand, right after setFollowObject.
 	companion->storeFollowObject();
-
-	// COMPANION_MOVEMENT_EVENT_FIX_2026_08_04 -- THE "companion never moves" FIX.
-	//
-	// activateLoad() above already called activateMovementEvent() once, but it
-	// ran while followObject was still nullptr and isRetreating() was false
-	// (setHomeLocation() sets homeLocation.reached = true, AiAgent.idl:609).
-	// That is precisely the self-destruct clause at the top of
-	// AiAgentImplementation::activateMovementEvent():
-	//
-	//     if ((waitTime < 0 || numberOfPlayersInRange <= 0)
-	//         && getFollowObject().get() == nullptr && !isRetreating()) {
-	//             moveEvent = nullptr; return;
-	//     }
-	//
-	// ...so the move event was created by AiLoadTask and immediately destroyed.
-	// The companion ended up with a correct behaviour tree and a correct follow
-	// object and no clock to tick either of them, which is exactly the reported
-	// "companion stands still / only moves after I loot something" symptom
-	// (loot + combat go through engine paths that re-arm the event themselves).
-	//
-	// Nothing else re-arms it: activateMovementEvent() is commented out in
-	// setOblivious/setWatchObject/setStalkObject/setFollowObject
-	// (AiAgent.idl:652/664/676/688) and in setCurrentBehavior.
-	//
-	// Calling it HERE -- after setFollowObject() -- means getFollowObject() is
-	// non-null, the clause cannot fire, and the AiMoveEvent is created and
-	// scheduled for real.
-	companion->activateMovementEvent();
 	companion->setCompanionState(CompanionObject::FOLLOW);
 	companion->faceObject(player, true);
 

@@ -4374,24 +4374,6 @@ void CompanionObjectImplementation::runKeepUpTick() {
 	// MEDIC_AUTOHEAL_RESTOCK_FEATURE: runs every tick regardless of
 	// FOLLOW/combat state -- healing and restocking must not depend on the
 	// keep-up speed-boost's own FOLLOW-only applicability gate below.
-	// COMPANION_MOVEMENT_EVENT_SELFHEAL_2026_08_04 -- defensive re-arm.
-	//
-	// An AiAgent stops acting the moment its AiMoveEvent goes away, and
-	// AiAgentImplementation::activateMovementEvent() destroys that event
-	// whenever it is entered with no follow object and no retreat in progress.
-	// spawnObject() now arms it correctly at summon time, but any later engine
-	// path that transiently clears the follow object can tear it down again and
-	// nothing in the AI code re-arms it (the calls are commented out in
-	// AiAgent.idl:652/664/676/688).
-	//
-	// activateMovementEvent() only schedules when the event is not already
-	// scheduled, so calling it once per 2000ms tick costs a mutex and a null
-	// check and makes a dead move event self-heal within one tick instead of
-	// stranding the companion until the owner loots or fights something.
-	if (owner != nullptr && getFollowObject().get() != nullptr) {
-		activateMovementEvent();
-	}
-
 	runMedicAutoCareTick(companionRef.get(), owner);
 
 	// CRAFTING_RANGE_INDICATOR_FEATURE (2026-08-01 re-anchor -- the original 2026-07-29
