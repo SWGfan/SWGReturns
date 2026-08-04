@@ -691,27 +691,14 @@ void CompanionObjectImplementation::interceptThreatToOwner(CreatureObject* attac
 	companionState = CompanionObject::ATTACK;
 
 	addDefender(attacker);
-	// COMPANION_INTERCEPT_FIX_2026_08_04 -- was setFollowObject(nullptr), the
-	// identical bug already fixed in CompanionAttackCommand.h. On the Lua
-	// behaviour-tree base the follow object IS the movement system
-	// (MovePetBase:checkConditions requires followState ~= OBLIVIOUS, and
-	// clearing the follow object is exactly how you become OBLIVIOUS), and
-	// AiAgentImplementation::enqueueAttack() silently no-ops when
-	// getFollowObject() is null. So auto-defence could neither move nor swing.
-	// Stock GetTargetBase does setFollowObject(target); setDefender(target).
-	setFollowObject(attacker);
+	setFollowObject(nullptr);
 
 	info(true) << "Companion " << getObjectID() << " intercepting threat " << attacker->getObjectID() << " to protect owner";
 
 	// Route through the standard combat pipeline exactly as if the companion
 	// itself had queued a basic attack -- this reuses all of the engine's
 	// existing pool/HAM/cooldown handling instead of re-implementing it.
-	// COMPANION_ATTACK_SPEED_FIX_2026_08_04_INTERCEPT -- see CompanionAttackCommand.h.
-	// executeObjectControllerAction() bypasses the command queue, which is the
-	// only writer of `nextAction`, so auto-defence had no attack cooldown either.
-	if (isNextActionPast()) {
-		enqueueCommand(STRING_HASHCODE("attack"), 0, attacker->getObjectID(), "");
-	}
+	executeObjectControllerAction(STRING_HASHCODE("attack"), attacker->getObjectID(), "");
 
 	// Companion System (2026-07-29 fix, per Nick: "companion runs back to
 	// where i spawned it out" after battle, and his own hypothesis "sent
@@ -2857,46 +2844,6 @@ namespace {
 				}
 
 				corpse->notifyObservers(ObserverEventType::LOOTCREATURE, owner, 0);
-
-				// COMPANION_CORPSE_DESPAWN_FIX_2026_08_04 -- bring the corpse's
-				// despawn forward, exactly as PlayerManagerImplementation::
-				// lootAll() does in both of its exit paths (3733 and 3749). The
-				// sweep never did this, so a corpse the companion had fully
-				// emptied still sat out its whole timer.
-				//
-				// Deliberately deferred to a scheduled task with NO locks held:
-				// shouldRescheduleCorpseDestruction() takes Locker(player, ai)
-				// and we are currently holding BOTH the companion and the corpse.
-				// A three-way lock is exactly how Core3 deadlocks. Same
-				// scheduled-task idiom as CompanionLootResendLambda below. The
-				// engine decides whether the corpse actually qualifies --
-				// shouldRescheduleCorpseDestruction() still refuses while loot,
-				// cash or an unharvested carcass remains.
-				{
-					ManagedReference<CreatureObject*> corpseRef = corpse;
-					ManagedReference<CreatureObject*> looterRef = owner;
-
-					Core::getTaskManager()->scheduleTask([corpseRef, looterRef] () {
-						CreatureObject* deadOne = corpseRef.get();
-						CreatureObject* looter = looterRef.get();
-
-						if (deadOne == nullptr || looter == nullptr) {
-							return;
-						}
-
-						ZoneServer* zs = deadOne->getZoneServer();
-
-						if (zs == nullptr) {
-							return;
-						}
-
-						ManagedReference<PlayerManager*> pm = zs->getPlayerManager();
-
-						if (pm != nullptr) {
-							pm->rescheduleCorpseDestruction(looter, deadOne);
-						}
-					}, "CompanionCorpseDespawnLambda", 250);
-				}
 			}
 
 			// Ranger harvest (chosen resource; ask once if never chosen).
@@ -4785,18 +4732,7 @@ void CompanionObjectImplementation::runPostCombatSweepCheck() {
 			continue;
 		}
 
-		// COMPANION_CREDIT_LOOT_FIX_2026_08_04 -- a corpse carrying nothing but
-		// credits has an EMPTY bag, so the old "getContainerObjectsSize() > 0"
-		// test excluded it here and the companion never walked to it. The
-		// at-the-corpse code has looted cash correctly since 2026-07-18
-		// (force_luck, NPCLOOTCLAIM, prose_coin_loot, credited straight to the
-		// owner) -- it was simply never reached. Uncollected credits also keep
-		// shouldRescheduleCorpseDestruction() returning false, which is why
-		// those bodies sat out their full despawn timer.
-		SceneObject* corpseBag = corpse->getSlottedObject("inventory");
-		bool corpseHasItems = corpseBag != nullptr && corpseBag->getContainerObjectsSize() > 0;
-		bool corpseHasCash = corpse->getCashCredits() > 0;
-		bool lootable = corpseLootableBy(corpse, owner) && (corpseHasItems || corpseHasCash);
+		bool lootable = corpseLootableBy(corpse, owner) && corpse->getSlottedObject("inventory") != nullptr && corpse->getSlottedObject("inventory")->getContainerObjectsSize() > 0;
 		bool harvestable = companionHasRangerTraining(self) && corpseHarvestableBy(corpse, owner);
 
 		if (!lootable && !harvestable) {

@@ -202,28 +202,7 @@ public:
 			// requires no trained/unlocked special ability, matching how a
 			// stock Creature Handler pet can always be told to attack even
 			// before it's learned any tricks.
-			// COMPANION_ATTACK_SPEED_FIX_2026_08_04 -- was
-			// executeObjectControllerAction(), which calls
-			// ObjectController::activateCommand() DIRECTLY and so bypasses the
-			// command queue. The queue is the only place `nextAction` -- the
-			// weapon-speed cooldown stamp -- is ever written
-			// (CreatureObjectImplementation::activateQueueAction() takes
-			// activateCommand()'s returned duration and does
-			// nextAction.addMiliTime(time * 1000)). So the ordered attack path
-			// had NO cooldown at all: one button press = one immediate swing,
-			// and the profession/weapon attack speed that
-			// CombatManager::calculateWeaponAttackSpeed() computes was simply
-			// discarded.
-			//
-			// enqueueCommand() is the same path the engine's own AI uses
-			// (AiAgentImplementation::enqueueAttack()) and it honours nextAction.
-			// The isNextActionPast() guard stops a mashed button from stacking a
-			// backlog of swings that all land at once -- the ORDER still lands
-			// every press (state, defender and follow object are set above) and
-			// the behaviour tree's SelectAttack keeps the fight going by itself.
-			if (companion->isNextActionPast()) {
-				companion->enqueueCommand(STRING_HASHCODE("attack"), 0, targetID, "");
-			}
+			companion->executeObjectControllerAction(STRING_HASHCODE("attack"), targetID, "");
 
 			++orderedCount;
 		}
