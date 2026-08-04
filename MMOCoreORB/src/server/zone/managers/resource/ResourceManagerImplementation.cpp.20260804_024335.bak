@@ -258,14 +258,6 @@ ResourceSpawn* ResourceManagerImplementation::getCurrentSpawn(const String& rest
 	return resourceSpawner->getCurrentSpawn(restype, zoneName);
 }
 
-ResourceSpawn* ResourceManagerImplementation::getBestSpawnOfType(const String& restype, const String& zoneName) {
-	return resourceSpawner->getBestSpawnOfType(restype, zoneName);
-}
-
-ResourceSpawn* ResourceManagerImplementation::getBestSpawnOfTypeWeighted(const String& restype, DraftSchematic* schematic, int lineIndex) {
-	return resourceSpawner->getBestSpawnOfTypeWeighted(restype, schematic, lineIndex);
-}
-
 void ResourceManagerImplementation::getResourceListByType(Vector<ManagedReference<ResourceSpawn*> >& list, int type, const String& zoneName) {
 	list.removeAll();
 
