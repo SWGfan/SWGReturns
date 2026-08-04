@@ -783,7 +783,7 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		// activateLoad() runs its AiLoadTask immediately (clearBehaviorList() ->
 		// setupBehaviorTree(named template) -> activateMovementEvent()), so the
 		// tree is in place before the setFollowObject() below.
-		companion->activateLoad("stationarynoleash");
+		companion->activateLoad("companionfollow");
 
 		// setFollowObject() is SILENTLY a no-op while isRetreating(), and
 		// isRetreating() is literally !homeLocation.isReached() (AiAgent.idl:794,

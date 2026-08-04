@@ -42,7 +42,7 @@ _TRE_DIR_CANDIDATES = [
     "C:\\Companion\\tre",
 ]
 TRE_DIR = next((p for p in _TRE_DIR_CANDIDATES if os.path.isdir(p)), _TRE_DIR_CANDIDATES[0])
-BASE_TRE = os.path.join(TRE_DIR, "patch_14_00.tre")
+BASE_TRE = os.path.join(TRE_DIR, "aftermath_1.tre")
 
 _COMPANION_ABILITY_NAMES = [
     "applyDisease", "applyPoison", "bleedingShot", "concealShot", "confusionShot",
