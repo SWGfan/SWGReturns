@@ -769,7 +769,30 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	// "companion" AI map (follow-at-a-run, no leash-home) is not applied.
 	// genesis port: setAITemplate() -> setupBehaviorTree() (AiAgent.idl:1178,
 	// autogen/.../AiAgent.h:805) -- same no-arg "assemble the default trees" call.
-	companion->setupBehaviorTree();
+		// genesis port FIX (2026-08-04) -- supersedes the DEFERRED note above.
+		// That note concluded no leash-free option existed on this base. It was
+		// wrong: leashing lives in exactly ONE place on the Lua-BT era codebase,
+		// MoveBase:checkConditions in bin/scripts/ai/actions/movebase.lua, which
+		// calls shouldRetreat(256) then leash(). MovePetBase OVERRIDES that method
+		// and omits the check, so any template whose mover is MoveCreaturePet can
+		// never leash. Genesis already ships one: templates/stationarynoleash.lua
+		// is a selector with a full attack sequence plus {"idle0",
+		// "MoveCreaturePet", "root", BEHAVIOR} -- follows, fights, never goes
+		// home. Stock quest code uses exactly this (quest_tasks/encounter.lua).
+		//
+		// activateLoad() runs its AiLoadTask immediately (clearBehaviorList() ->
+		// setupBehaviorTree(named template) -> activateMovementEvent()), so the
+		// tree is in place before the setFollowObject() below.
+		companion->activateLoad("stationarynoleash");
+
+		// setFollowObject() is SILENTLY a no-op while isRetreating(), and
+		// isRetreating() is literally !homeLocation.isReached() (AiAgent.idl:794,
+		// guarding the setters at 658/670/682). setHomeLocation() ran a few lines
+		// above, so if a fresh PatrolPoint starts unreached, every spawn-time
+		// follow request was being discarded -- which is why companions did not
+		// move at all rather than merely getting yanked back. Clearing it here is
+		// idempotent and costs nothing if setHomeLocation() already did it.
+		companion->getHomeLocation()->setReached(true);
 	companion->activateRecovery();
 	companion->setFollowObject(player);
 	companion->setCompanionState(CompanionObject::FOLLOW);

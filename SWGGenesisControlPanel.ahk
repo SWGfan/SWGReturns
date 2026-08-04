@@ -1,11 +1,32 @@
-#Requires AutoHotkey v2.0
+﻿#Requires AutoHotkey v2.0
 #SingleInstance Force
 
 ; ============================================================================
 ; SWG Genesis Server Control Panel  (AutoHotkey v2, native Windows GUI)
 ;
-; 2026-08-03. Forked from SWGReturnControlPanel_2.ahk for the genesis base
-; (upstream 3f445ff1f2 "swap to genesis code as base").
+; 2026-08-04 revision -- LIVE CONSOLE + RESIZE FIX.
+;
+; WHAT WAS WRONG BEFORE
+; The window carried "+Resize" but had no Size handler, so dragging the edge
+; resized the frame and left every control exactly where it was. Worse, the
+; fixed layout added up to roughly 1180px of content, which does not fit a
+; 1080p work area -- so the console pane at the bottom was cut off with no way
+; to reach it. Both are fixed here:
+;   * the window opens clamped to the monitor's work area, and
+;   * GuiSize() re-lays-out the two big panes so they absorb all spare height
+;     instead of the bottom falling off the screen.
+;
+; NEW
+;   * The console pane auto-scrolls to the newest line and uses a monospace
+;     font, so it reads like a terminal instead of a wall of proportional text.
+;   * "Live Console" opens a big, resizable, dedicated window that refreshes
+;     every 2s with Pause and Auto-scroll toggles -- the actual "watch the
+;     server work" view.
+;   * Console polling is ASYNC. It used to be RunWait on a 4s timer, which
+;     froze the whole GUI for the length of every wsl.exe round-trip.
+;   * The backend now widens the screen window to 200 columns at start, so
+;     output stops wrapping mid-word at 78 characters. "Fix Console Width"
+;     applies that to an already-running server.
 ;
 ; Shells out to WSL to run /mnt/d/SWGGenesis/swggenesis_menu.py, which holds
 ; all the real logic. This file is only a front end.
@@ -92,9 +113,21 @@ SERVER
                        a fresh clone cannot configure with default options.
                        Does NOT git pull and does NOT build any .tre.
 
-LOGS
-  View Live Console -- attaches to the live console. Detach with Ctrl+A
-                       then D -- that does NOT stop the server.
+LOGS & LIVE VIEW
+  Live Console      -- big resizable window, refreshes every 2 seconds,
+                       auto-scrolls to the newest line. READ-ONLY: there is
+                       no code path from it to the server's keyboard, so
+                       nothing you do in it can disturb a boot. 'Pause'
+                       freezes the view so you can read something that
+                       would otherwise scroll away.
+  Attach Console    -- attaches a REAL terminal where you CAN type. Detach
+                       with Ctrl+A then D -- that does NOT stop the server.
+                       Use Live Console unless you actually need to type.
+  Fix Console Width -- screen wraps output at the window's column count and
+                       a detached session defaults to 80, which is why older
+                       lines break mid-word around column 78. This widens a
+                       RUNNING console to 200 columns. New starts already do
+                       it. Lines already in the scrollback stay wrapped.
   Show Errors       -- error-class lines from core3.log plus counts.
   Console Errors    -- errors Core3 prints ONLY to stdout and never writes
                        to core3.log: MySQL schema errors, unregistered
@@ -113,7 +146,7 @@ DATABASE & ADMIN
   Show Ports        -- genesis 46xxx, plus Companion 44xxx and old
                        SWGReturn 45xxx for comparison.
 
-PLANETS
+PLANETS & TRE
   Planets...        -- every zone name known to config.lua, with a
                        checkbox. Writes to config-local.lua, never to
                        config.lua: bin/conf/* is gitignored, so the
@@ -124,6 +157,41 @@ PLANETS
                        A timestamped backup is made first. Takes effect on
                        the NEXT SERVER START. Refuses to disable every
                        ground zone, and refuses unknown names.
+  TRE Check         -- READ-ONLY. Is companion_patch.tre FIRST in the load
+                       order, has the override drifted from config.lua, and
+                       is every listed archive actually present in TrePath.
+                       Order matters: the FIRST matching archive wins, so a
+                       patch that isn't first is a patch that does nothing.
+  TRE Sync          -- regenerates the load order as companion_patch.tre
+                       followed by config.lua's list verbatim. Idempotent.
+                       Run it after any pull that changes the TRE list.
+
+SERVER TUNING
+  Server Tuning...  -- gameplay knobs: XP multiplier, group XP bonus, the
+                       strength and duration of the buffs the terminals hand
+                       out, characters online per account, stored pets and
+                       vehicles. All of these are top-level assignments in
+                       bin/scripts/managers/player_manager.lua, which the C++
+                       reads at load time -- so a change costs a RESTART and
+                       nothing else. No rebuild, no TRE.
+
+                       Each row has its own Default button. 'Default' means
+                       the value genesis ACTUALLY SHIPS, read live from
+                       `git show genesis:...` rather than a list typed into
+                       this tool -- so it can never drift from upstream.
+
+                       Nothing is written until you press Apply. Every write
+                       makes a timestamped backup, refuses a key it doesn't
+                       know, refuses a non-numeric value, refuses a value
+                       outside its sanity range, and refuses outright if the
+                       key is assigned twice in the file (the last assignment
+                       would win at load time, so editing the first would
+                       silently do nothing).
+
+                       NOT included: player run/walk speed. It has no config
+                       key and is not exposed to Lua -- setRunSpeed and
+                       setSpeedMultiplierBase are C++ only, so changing it
+                       means a ~1 hour rebuild rather than a restart.
 
 GITHUB
   ⚠ PROJECT POLICY: nothing is ever pushed to bfitzgit23/Returns-EMU.
@@ -143,8 +211,8 @@ GITHUB
 ; ---- shell helpers -----------------------------------------------------------
 ; --exec bypasses the login shell; without it wsl.exe can fall back to an
 ; interactive shell when output is redirected, and the GUI receives a menu
-; instead of a result. Every call gets its own temp file so the 5s status
-; refresh can never clobber a long-running action's output.
+; instead of a result. Every call gets its own temp file so the status refresh
+; can never clobber a long-running action's output.
 NewTempPath() {
     global WIN_USER
     return "C:\Users\" . WIN_USER . "\AppData\Local\Temp\genesis_gui_" . A_TickCount . "_" . Random(1, 999999) . ".txt"
@@ -153,6 +221,14 @@ NewTempPath() {
 BuildCmd(actionArgs, tmpPath) {
     global WSL_DISTRO, WSL_PY
     return 'cmd.exe /c wsl.exe -d ' . WSL_DISTRO . ' --exec python3 ' . WSL_PY . ' ' . actionArgs . ' > "' . tmpPath . '" 2>&1'
+}
+
+; AHK v2's Trim() strips spaces and tabs ONLY. Every value that comes back from
+; a WSL round-trip has a trailing newline, so anywhere output is PARSED rather
+; than just displayed, use this. (The Save World counter shipped broken for
+; exactly this reason -- see BackupCount().)
+TrimAll(s) {
+    return Trim(s, " `t`r`n")
 }
 
 RunCapture(actionArgs) {
@@ -173,7 +249,7 @@ RunAsync(actionArgs, cb) {
     fn := () => (
         ProcessExist(pid) ? 0 : (SetTimer(fn, 0), FinishAsync(tmp, cb))
     )
-    SetTimer(fn, 500)
+    SetTimer(fn, 300)
 }
 
 FinishAsync(tmp, cb) {
@@ -190,8 +266,21 @@ SendConsoleCommand(cmdText) {
     RunWait("cmd.exe /c wsl.exe -d " . WSL_DISTRO . " --exec bash -c `"screen -S " . SCREEN_SESSION . " -p 0 -X stuff $'" . cmdText . "\r'`"", , "Hide")
 }
 
+; Scroll a read-only Edit to its last line WITHOUT stealing focus. Setting the
+; selection to the very end and then asking the control to scroll the caret
+; into view is the reliable way to do this while the control is not focused --
+; sending WM_VSCROLL/SB_BOTTOM moves the scrollbar thumb but not dependably
+; the content.
+ScrollToEnd(ctrl) {
+    n := StrLen(ctrl.Value)
+    try {
+        SendMessage(0x00B1, n, n, ctrl)     ; EM_SETSEL -> caret to end
+        SendMessage(0x00B7, 0, 0, ctrl)     ; EM_SCROLLCARET -> bring it into view
+    }
+}
+
 ; ---- GUI --------------------------------------------------------------------
-MyGui := Gui("+Resize", "SWG Genesis Server Control Panel")
+MyGui := Gui("+Resize +MinSize880x560", "SWG Genesis Server Control Panel")
 MyGui.MarginX := 14
 MyGui.MarginY := 12
 MyGui.SetFont("s10", "Segoe UI")
@@ -225,26 +314,32 @@ BtnShutdown := MyGui.Add("Button", "x+10 w180 h32", "Save && Shut Down")
 BtnRestart  := MyGui.Add("Button", "x+10 w180 h32", "Restart")
 BtnRebuild  := MyGui.Add("Button", "x+10 w180 h32", "Update && Rebuild")
 
-; --- logs row
-BtnConsole  := MyGui.Add("Button", "xm y+8 w155 h32", "View Live Console")
-BtnErrors   := MyGui.Add("Button", "x+10 w155 h32", "Show Errors")
-BtnConErr   := MyGui.Add("Button", "x+10 w155 h32", "Console Errors")
-BtnLogTail  := MyGui.Add("Button", "x+10 w155 h32", "Show Log Tail")
-BtnRefresh  := MyGui.Add("Button", "x+10 w155 h32", "Refresh Status")
-BtnHelp     := MyGui.Add("Button", "x+10 w155 h32", "Help")
+; --- logs row. Widths trimmed from 155 to 130 to fit the two new buttons.
+BtnBigCon   := MyGui.Add("Button", "xm y+8 w130 h32", "Live Console")
+BtnConsole  := MyGui.Add("Button", "x+8 w130 h32", "Attach Console")
+BtnConWidth := MyGui.Add("Button", "x+8 w130 h32", "Fix Console Width")
+BtnErrors   := MyGui.Add("Button", "x+8 w130 h32", "Show Errors")
+BtnConErr   := MyGui.Add("Button", "x+8 w130 h32", "Console Errors")
+BtnLogTail  := MyGui.Add("Button", "x+8 w130 h32", "Show Log Tail")
+BtnRefresh  := MyGui.Add("Button", "x+8 w130 h32", "Refresh")
 
 ; --- database & admin
-MyGui.Add("GroupBox", "xm y+16 w980 h80 vDbBox", "Database, Admin && Planets")
-BtnBackup   := MyGui.Add("Button", "xm+16 yp+30 w150 h32", "Backup Database")
-BtnAccounts := MyGui.Add("Button", "x+8 w130 h32", "List Accounts")
-MyGui.Add("Text", "x+12 yp+8 w62", "Account:")
-AdminEdit   := MyGui.Add("Edit", "x+4 y+-8 w150 h24 vAdminEdit", "nickwill86")
-BtnSetAdmin := MyGui.Add("Button", "x+8 yp-4 w100 h32", "Set Admin")
-BtnPorts    := MyGui.Add("Button", "x+8 w110 h32", "Show Ports")
-BtnPlanets  := MyGui.Add("Button", "x+8 w110 h32", "Planets...")
+DbBox := MyGui.Add("GroupBox", "xm y+16 w980 h122 vDbBox", "Database, Admin, Planets, TRE && Tuning")
+BtnBackup   := MyGui.Add("Button", "xm+16 yp+30 w132 h32", "Backup Database")
+BtnAccounts := MyGui.Add("Button", "x+8 w118 h32", "List Accounts")
+MyGui.Add("Text", "x+10 yp+8 w62", "Account:")
+AdminEdit   := MyGui.Add("Edit", "x+4 y+-8 w140 h24 vAdminEdit", "nickwill86")
+BtnSetAdmin := MyGui.Add("Button", "x+8 yp-4 w92 h32", "Set Admin")
+BtnPorts    := MyGui.Add("Button", "x+8 w96 h32", "Show Ports")
+BtnPlanets  := MyGui.Add("Button", "x+8 w96 h32", "Planets...")
+BtnTreCheck := MyGui.Add("Button", "x+8 w96 h32", "TRE Check")
+BtnTreSync  := MyGui.Add("Button", "x+8 w96 h32", "TRE Sync")
+BtnTuning   := MyGui.Add("Button", "xm+16 y+8 w170 h32", "Server Tuning...")
+MyGui.Add("Text", "x+12 yp+8 w600 cGray",
+    "XP rate, terminal buff strength, buff duration, stored pets/vehicles -- restart only, no rebuild.")
 
 ; --- github
-MyGui.Add("GroupBox", "xm y+16 w980 h112 vPushBox", "GitHub  --  pushes go to SWGfan ONLY, never to bfitzgit23")
+PushBox := MyGui.Add("GroupBox", "xm y+16 w980 h112 vPushBox", "GitHub  --  pushes go to SWGfan ONLY, never to bfitzgit23")
 BtnShowChanges := MyGui.Add("Button", "xm+16 yp+30 w150 h32", "Show Changes")
 BtnPull        := MyGui.Add("Button", "x+10 w150 h32", "Fetch Upstream")
 MyGui.Add("Text", "x+16 yp+8 w110", "Commit message:")
@@ -254,13 +349,74 @@ BtnRemote      := MyGui.Add("Button", "x+8 w70 h32", "Target")
 BtnConfirmPush.Enabled := false
 RemoteLabel    := MyGui.Add("Text", "xm+16 y+14 w940 vRemoteLabel cGray", "Push target: (checking...)")
 
-LogBox := MyGui.Add("Edit", "xm y+18 w980 h240 ReadOnly VScroll", Trim(HELP_TEXT))
+BtnHelp := MyGui.Add("Button", "xm y+14 w130 h28", "Help")
+LogBox  := MyGui.Add("Edit", "xm y+8 w980 h180 ReadOnly VScroll", Trim(HELP_TEXT))
 
-MyGui.Add("Text", "xm y+14", "Live Server Console (auto-refreshes every 4s, read-only snapshot -- does not send keystrokes):")
-ConsoleBox := MyGui.Add("Edit", "xm y+6 w980 h220 ReadOnly VScroll", "(checking...)")
+ConsoleLabel := MyGui.Add("Text", "xm y+12 w760 vConsoleLabel",
+    "Live Server Console (read-only, refreshes every 4s -- press Live Console for a bigger view):")
+ConsoleAuto  := MyGui.Add("Checkbox", "x+10 yp-2 w100 vConsoleAuto Checked", "auto-scroll")
+MyGui.SetFont("s9", "Consolas")
+ConsoleBox := MyGui.Add("Edit", "xm y+6 w980 h200 ReadOnly VScroll HScroll", "(checking...)")
+MyGui.SetFont("s10", "Segoe UI")
 
+; ---- resize ------------------------------------------------------------------
+; Capture the fixed geometry ONCE, before any user resize, so the Size handler
+; has a stable reference. Everything above LogBox is fixed height; the two big
+; panes below it absorb all spare vertical space.
+LogBox.GetPos(, &LogTopY)
+ConsoleLabel.GetPos(, , , &ConLabelH)
+
+GuiSize(thisGui, MinMax, W, H) {
+    global MyGui, LogTopY, ConLabelH
+    global StatusText, PlayHint, TargetLabel, DbBox, PushBox, RemoteLabel
+    global LogBox, ConsoleLabel, ConsoleBox, ConsoleAuto
+
+    if (MinMax = -1)          ; minimised -- W/H are meaningless, don't lay out
+        return
+
+    m := MyGui.MarginX
+    innerW := W - (m * 2)
+    if (innerW < 400)
+        innerW := 400
+
+    ; Full-width elements simply stretch.
+    StatusText.Move(, , innerW)
+    TargetLabel.Move(, , innerW)
+    DbBox.Move(, , innerW)
+    PushBox.Move(, , innerW)
+    RemoteLabel.Move(, , innerW - 32)
+    PlayHint.Move(, , innerW - 320)
+
+    ; Split the remaining height between the log pane and the console pane.
+    ; The console gets the larger share -- it is the thing you actually watch.
+    avail := H - LogTopY - MyGui.MarginY - ConLabelH - 26
+    if (avail < 140)
+        avail := 140
+    logH := Round(avail * 0.40)
+    conH := avail - logH
+    if (logH < 60)
+        logH := 60
+    if (conH < 60)
+        conH := 60
+
+    LogBox.Move(, , innerW, logH)
+    labelY := LogTopY + logH + 12
+    ConsoleLabel.Move(, labelY, innerW - 120)
+    ConsoleAuto.Move(m + innerW - 105, labelY - 2)
+    ConsoleBox.Move(, labelY + ConLabelH + 6, innerW, conH)
+}
+MyGui.OnEvent("Size", GuiSize)
 MyGui.OnEvent("Close", (*) => ExitApp())
-MyGui.Show()
+
+; Open clamped to the monitor's WORK AREA (i.e. excluding the taskbar). The old
+; version asked for its full natural height, which on a 1080p screen pushed the
+; console pane below the bottom edge with no way to reach it.
+MonitorGetWorkArea(, &waL, &waT, &waR, &waB)
+wantW := 1010
+wantH := 1180
+maxW := waR - waL - 20
+maxH := waB - waT - 20
+MyGui.Show("w" . (wantW > maxW ? maxW : wantW) . " h" . (wantH > maxH ? maxH : wantH))
 
 SetLog(text) {
     LogBox.Value := text
@@ -268,7 +424,7 @@ SetLog(text) {
 
 RefreshStatus(*) {
     out := RunCapture("status")
-    line := Trim(out)
+    line := TrimAll(out)
     parts := StrSplit(line, "|")
     kind := parts.Length ? parts[1] : ""
     if (kind = "RUNNING") {
@@ -374,7 +530,7 @@ StartDone(out) {
 
 BtnStart.OnEvent("Click", (*) => (
     SetBusy(true),
-    SetLog("Starting genesis...`n`nIt boots in the background -- the status line above will go`norange (booting) and then green once the login port opens.`n`nCold boot after a database wipe ~15 minutes, warm boot ~7."),
+    SetLog("Starting genesis...`n`nIt boots in the background -- the status line above will go`norange (booting) and then green once the login port opens.`n`nCold boot after a database wipe ~15 minutes, warm boot ~7.`n`nPress Live Console to watch it work."),
     RunAsync(ReloadCB.Value ? "start --reloadstrings" : "start", StartDone)
 ))
 
@@ -410,7 +566,7 @@ PlayClick(*) {
     ; Only warn about our server being down when the client would actually be
     ; trying to reach it. Pointed at LIVE, our server's state is irrelevant.
     if (ClientTarget != "LIVE") {
-        st := Trim(RunCapture("status"))
+        st := TrimAll(RunCapture("status"))
         if !InStr(st, "RUNNING|") {
             detail := StrReplace(StrReplace(st, "STOPPED|", ""), "SESSION_NO_PROC|", "")
             r := MsgBox("The client is pointed at your LOCAL server, but it isn't ready.`n`n"
@@ -437,12 +593,28 @@ PlayClick(*) {
 }
 
 BtnHelp.OnEvent("Click", (*) => SetLog(Trim(HELP_TEXT)))
-BtnRefresh.OnEvent("Click", (*) => (RefreshStatus(), RefreshTarget()))
+BtnRefresh.OnEvent("Click", (*) => (RefreshStatus(), RefreshTarget(), RefreshConsole()))
 BtnErrors.OnEvent("Click", (*) => SetLog(RunCapture("log_errors")))
 BtnConErr.OnEvent("Click", (*) => SetLog(RunCapture("console_errors")))
 BtnLogTail.OnEvent("Click", (*) => SetLog(RunCapture("log_tail 120")))
 BtnPorts.OnEvent("Click", (*) => SetLog(RunCapture("ports")))
 BtnAccounts.OnEvent("Click", (*) => SetLog(RunCapture("accounts")))
+BtnTreCheck.OnEvent("Click", (*) => SetLog(RunCapture("tre_check")))
+BtnConWidth.OnEvent("Click", (*) => SetLog(RunCapture("console_width 200")))
+
+BtnTreSync.OnEvent("Click", TreSyncClick)
+TreSyncClick(*) {
+    r := MsgBox("Regenerate the TRE load order in config-local.lua?"
+              . "`n`nWrites companion_patch.tre FIRST, then config.lua's list"
+              . "`nverbatim. A timestamped backup is made first, and it refuses"
+              . "`nto write if the patch isn't actually present in TrePath."
+              . "`n`nSafe to re-run any time -- it is idempotent."
+              . "`n`nTakes effect on the NEXT SERVER START, and that start should"
+              . "`nhave 'reloadstrings' ticked.", "TRE Sync", "YesNo Icon?")
+    if (r != "Yes")
+        return
+    SetLog(RunCapture("tre_sync") . "`n----------------------------------------`n" . RunCapture("tre_check"))
+}
 
 BtnConsole.OnEvent("Click", (*) => (
     Run('cmd.exe /c wsl.exe -d ' . WSL_DISTRO . ' -- python3 ' . WSL_PY . ' console & echo. & echo (window closed -- press any key) & pause >nul')
@@ -465,6 +637,280 @@ SetAdminClick(*) {
     if (r != "Yes")
         return
     SetLog(RunCapture("set_admin " . u . " 15"))
+}
+
+; ---- BIG LIVE CONSOLE -------------------------------------------------------
+; A dedicated window, because the pane in the main GUI is always a compromise.
+; Read-only by construction: it calls console_live, which is a hardcopy of the
+; screen buffer. There is no code path from this window to `screen -X stuff`,
+; so nothing done here can reach a booting server.
+BigGui := 0
+BigBox := 0
+BigAuto := 0
+BigPause := 0
+BigStatus := 0
+BigBusy := false
+
+BtnBigCon.OnEvent("Click", ShowBigConsole)
+
+ShowBigConsole(*) {
+    global BigGui, BigBox, BigAuto, BigPause, BigStatus
+
+    ; Re-show rather than rebuild, so Pause/Auto-scroll and the scroll position
+    ; survive closing and reopening the window.
+    if IsObject(BigGui) {
+        try {
+            BigGui.Show()
+            return
+        }
+    }
+
+    BigGui := Gui("+Resize +MinSize640x400", "Genesis -- Live Server Console")
+    BigGui.MarginX := 10
+    BigGui.MarginY := 8
+    BigGui.SetFont("s10", "Segoe UI")
+
+    BigStatus := BigGui.Add("Text", "w900 vBigStatus cGray", "Refreshing every 2 seconds...")
+    BigAuto   := BigGui.Add("Checkbox", "xm y+6 w170 vBigAuto Checked", "auto-scroll to newest")
+    BigPause  := BigGui.Add("Checkbox", "x+16 w190 vBigPause", "pause (freeze the view)")
+    BigClose  := BigGui.Add("Button", "x+16 yp-4 w90 h26", "Close")
+
+    BigGui.SetFont("s9", "Consolas")
+    BigBox := BigGui.Add("Edit", "xm y+8 w900 h520 ReadOnly VScroll HScroll", "(loading...)")
+    BigGui.SetFont("s10", "Segoe UI")
+
+    BigClose.OnEvent("Click", (*) => BigGui.Hide())
+    BigGui.OnEvent("Close", HideBig)
+    BigGui.OnEvent("Size", BigSize)
+
+    ; Open large but never larger than the work area.
+    MonitorGetWorkArea(, &l, &t, &r2, &b)
+    w := r2 - l - 80
+    h := b - t - 80
+    if (w > 1200)
+        w := 1200
+    if (h > 900)
+        h := 900
+    BigGui.Show("w" . w . " h" . h)
+
+    RefreshBigConsole()
+    SetTimer(RefreshBigConsole, 2000)
+}
+
+HideBig(thisGui) {
+    thisGui.Hide()
+    return true          ; true = we handled it; do NOT destroy the window
+}
+
+BigSize(thisGui, MinMax, W, H) {
+    global BigBox, BigStatus, BigGui
+    if (MinMax = -1)
+        return
+    m := BigGui.MarginX
+    innerW := W - (m * 2)
+    if (innerW < 300)
+        innerW := 300
+    BigStatus.Move(, , innerW)
+    BigBox.GetPos(, &by)
+    newH := H - by - BigGui.MarginY
+    if (newH < 100)
+        newH := 100
+    BigBox.Move(, , innerW, newH)
+}
+
+RefreshBigConsole() {
+    global BigGui, BigPause, BigBusy
+    if !IsObject(BigGui)
+        return
+    if !DllCall("IsWindowVisible", "Ptr", BigGui.Hwnd)
+        return                                  ; hidden -- don't spend a wsl call
+    if (BigPause.Value)
+        return
+    if (BigBusy)
+        return                                  ; a slow call is still out; don't stack
+    BigBusy := true
+    RunAsync("console_live 400", BigConsoleDone)
+}
+
+BigConsoleDone(out) {
+    global BigBox, BigAuto, BigStatus, BigBusy
+    BigBusy := false
+    out := TrimAll(out)
+    if (out = "")
+        out := "(no console output -- is the server running?)"
+    ; Only rewrite when the text actually changed. Assigning to an Edit resets
+    ; its scroll position, so refreshing identical text every 2s would yank the
+    ; view away from whatever you were reading.
+    if (BigBox.Value != out) {
+        BigBox.Value := out
+        if (BigAuto.Value)
+            ScrollToEnd(BigBox)
+    }
+    BigStatus.Value := "Last refresh: " . FormatTime(, "HH:mm:ss")
+                     . "     read-only -- this window cannot send keystrokes to the server"
+}
+
+; ---- SERVER TUNING ----------------------------------------------------------
+; Rows are built from whatever `tune_get` reports, not from a list duplicated
+; here. If the backend's whitelist grows, this window grows with it and there
+; is no second place to keep in sync.
+TuneGui := 0
+TuneRows := []
+TuneMsg := 0
+
+BtnTuning.OnEvent("Click", ShowTuning)
+
+ShowTuning(*) {
+    global TuneGui, TuneRows, TuneMsg, MyGui
+
+    if IsObject(TuneGui) {
+        try TuneGui.Destroy()
+    }
+    TuneRows := []
+
+    out := RunCapture("tune_get")
+
+    TuneGui := Gui("+Owner" . MyGui.Hwnd, "Genesis -- Server Tuning")
+    TuneGui.MarginX := 14
+    TuneGui.MarginY := 12
+    TuneGui.SetFont("s10", "Segoe UI")
+
+    TuneGui.Add("Text", "w720",
+        "Gameplay knobs. Nothing is written until you press Apply Changes.")
+    TuneGui.Add("Text", "w720 cGray",
+        "All of these live in bin/scripts/managers/player_manager.lua and are read at load time,"
+      . "`nso changes take effect on the NEXT SERVER START -- no rebuild needed."
+      . "`n'Default' is the value genesis actually ships, read from the git branch, not a hardcoded list.")
+
+    ; Column headings
+    TuneGui.SetFont("s9 Bold", "Segoe UI")
+    TuneGui.Add("Text", "xm y+14 w300", "Setting")
+    TuneGui.Add("Text", "x+8 w90", "Value")
+    TuneGui.Add("Text", "x+8 w150", "Genesis default")
+    TuneGui.SetFont("s10 Norm", "Segoe UI")
+
+    n := 0
+    Loop Parse, out, "`n", "`r" {
+        line := Trim(A_LoopField)
+        if (SubStr(line, 1, 5) != "TUNE|")
+            continue
+        p := StrSplit(line, "|")
+        if (p.Length < 8)
+            continue
+        ; p: 1 TUNE | 2 key | 3 label | 4 current | 5 default | 6 kind | 7 min | 8 max
+        n++
+        TuneGui.Add("Text", "xm y+10 w300 h22 +0x200", p[3])
+        ed  := TuneGui.Add("Edit", "x+8 yp-2 w90 h24", p[4])
+        TuneGui.Add("Text", "x+8 yp+3 w150 h22", p[5] = "" ? "(unknown)" : p[5])
+        btn := TuneGui.Add("Button", "x+4 yp-5 w80 h28", "Default")
+        btn.OnEvent("Click", TuneRowDefault.Bind(n))
+        TuneRows.Push({key: p[2], label: p[3], edit: ed, orig: p[4], def: p[5],
+                       kind: p[6], min: p[7], max: p[8]})
+    }
+
+    if (n = 0) {
+        TuneGui.Add("Text", "xm y+14 w720 cRed",
+            "No tunables came back from the backend."
+          . "`nIs the updated swggenesis_menu.py in place at /mnt/d/SWGGenesis/?"
+          . "`nRaw output: " . SubStr(TrimAll(out), 1, 300))
+    }
+
+    BtnTApply   := TuneGui.Add("Button", "xm y+18 w150 h32", "Apply Changes")
+    BtnTAllDef  := TuneGui.Add("Button", "x+10 w170 h32", "Fill All Defaults")
+    BtnTReload  := TuneGui.Add("Button", "x+10 w130 h32", "Reload")
+    BtnTClose   := TuneGui.Add("Button", "x+10 w110 h32", "Close")
+
+    TuneMsg := TuneGui.Add("Text", "xm y+12 w720 r3 vTuneMsg cGray",
+        n . " setting(s) read from player_manager.lua.")
+
+    BtnTApply.OnEvent("Click", ApplyTuning)
+    BtnTAllDef.OnEvent("Click", TuneAllDefaults)
+    BtnTReload.OnEvent("Click", (*) => ShowTuning())
+    BtnTClose.OnEvent("Click", (*) => TuneGui.Destroy())
+
+    TuneGui.Show()
+}
+
+; Fills the box only -- deliberately does NOT write. You still press Apply, so
+; "Default" can never be a one-click irreversible change.
+TuneRowDefault(idx, *) {
+    global TuneRows, TuneMsg
+    if (idx > TuneRows.Length)
+        return
+    r := TuneRows[idx]
+    if (r.def = "") {
+        TuneMsg.Value := "No shipped default known for " . r.label
+                       . " -- the git branch didn't report one. Nothing changed."
+        return
+    }
+    r.edit.Value := r.def
+    TuneMsg.Value := r.label . " set to genesis's default (" . r.def . "). "
+                   . "Press Apply Changes to write it."
+}
+
+TuneAllDefaults(*) {
+    global TuneRows, TuneMsg
+    c := 0
+    for r in TuneRows {
+        if (r.def != "") {
+            r.edit.Value := r.def
+            c++
+        }
+    }
+    TuneMsg.Value := "Filled " . c . " field(s) with genesis's shipped values. "
+                   . "Nothing is written until you press Apply Changes."
+}
+
+ApplyTuning(*) {
+    global TuneRows, TuneMsg
+
+    changed := []
+    for r in TuneRows {
+        v := TrimAll(r.edit.Value)
+        if (v != "" && v != r.orig)
+            changed.Push({key: r.key, label: r.label, from: r.orig, to: v})
+    }
+
+    if (!changed.Length) {
+        TuneMsg.Value := "Nothing changed -- no writes attempted."
+        return
+    }
+
+    summary := ""
+    for c in changed
+        summary .= "    " . c.label . ":  " . c.from . "  ->  " . c.to . "`n"
+
+    r := MsgBox("Write " . changed.Length . " change(s) to player_manager.lua?`n`n"
+              . summary
+              . "`nA timestamped backup is made before each write."
+              . "`nTakes effect on the NEXT SERVER START.",
+              "Server Tuning", "YesNo Icon?")
+    if (r != "Yes")
+        return
+
+    log := ""
+    ok := 0, bad := 0
+    for c in changed {
+        res := TrimAll(RunCapture("tune_set --key " . c.key . " --value " . c.to))
+        log .= res . "`n`n"
+        ; The backend prints REFUSED and changes nothing when it disagrees, so
+        ; trust its word rather than assuming the write happened.
+        if InStr(res, "REFUSED")
+            bad++
+        else
+            ok++
+    }
+
+    SetLog(log)
+    TuneMsg.Value := ok . " applied, " . bad . " refused. Full detail is in the main window's log pane."
+    if (bad > 0)
+        MsgBox("The backend refused " . bad . " change(s).`n`nSee the log pane in the main window for the reason -- "
+             . "usually a value outside its sanity range.", "Server Tuning", "Icon!")
+    else
+        MsgBox("Applied " . ok . " change(s).`n`nRestart the server for them to take effect.",
+               "Server Tuning", "Iconi")
+
+    ShowTuning()      ; re-read, so the boxes show what is actually in the file
 }
 
 ; ---- PLANETS ----------------------------------------------------------------
@@ -615,9 +1061,17 @@ SaveBaseline := -1
 SaveStartTick := 0
 
 BackupCount() {
-    out := Trim(RunCapture("backup_count"))
-    if RegExMatch(out, "^\d+$")
-        return Integer(out)
+    ; Do NOT do `Trim(out)` then `RegExMatch(out, "^\d+$")` then `Integer(out)`.
+    ; AHK v2's Trim() strips spaces and TABS only -- the trailing newline from
+    ; the WSL round-trip survives it. PCRE's "$" then happily matches before
+    ; that newline, so the guard says "pure digits" and Integer() immediately
+    ; throws TypeError on "5`n". The guard passes and the conversion fails on
+    ; the same string, which is why the error looked impossible.
+    ; Matching a digits-only LINE and converting the CAPTURE avoids the whole
+    ; class of problem, whatever whitespace the shell adds.
+    out := RunCapture("backup_count")
+    if RegExMatch(out, "m)^[ \t]*(\d+)[ \t]*$", &m)
+        return Integer(m[1])
     return -1
 }
 
@@ -625,7 +1079,7 @@ BtnSaveNow.OnEvent("Click", StartSaveNow)
 
 StartSaveNow(*) {
     global SaveBaseline, SaveStartTick
-    st := Trim(RunCapture("status"))
+    st := TrimAll(RunCapture("status"))
     if !InStr(st, "RUNNING|") {
         MsgBox("Genesis isn't running -- there's nothing to save.", "Save World", "Icon!")
         return
@@ -766,15 +1220,36 @@ PushDone(out) {
     RefreshRemote()
 }
 
+; ---- inline console pane ----------------------------------------------------
+; ASYNC. The previous version used RunWait on a 4s timer, so every refresh
+; froze the entire GUI for the length of a wsl.exe round-trip -- which is what
+; made the panel feel unresponsive while the server was doing anything.
+ConsoleBusy := false
+
 RefreshConsole(*) {
-    out := RunCapture("console_snapshot")
-    out := Trim(out)
-    ConsoleBox.Value := out = "" ? "(no output)" : out
+    global ConsoleBusy
+    if (ConsoleBusy)
+        return
+    ConsoleBusy := true
+    RunAsync("console_live 150", ConsoleDone)
+}
+
+ConsoleDone(out) {
+    global ConsoleBox, ConsoleAuto, ConsoleBusy
+    ConsoleBusy := false
+    out := TrimAll(out)
+    if (out = "")
+        out := "(no output)"
+    if (ConsoleBox.Value != out) {
+        ConsoleBox.Value := out
+        if (ConsoleAuto.Value)
+            ScrollToEnd(ConsoleBox)
+    }
 }
 
 ; ---- startup + auto-refresh --------------------------------------------------
 ; Target is NOT polled: it only changes when you change it, or when their
-; launcher runs. Refreshed at startup, after a switch, and on Refresh Status.
+; launcher runs. Refreshed at startup, after a switch, and on Refresh.
 RefreshStatus()
 RefreshConsole()
 RefreshRemote()

@@ -68,7 +68,7 @@ expensiveMedicalSubBuff = 3200
 groupExpMultiplier = 1.5
 
 --Sets a global experience multiplier
-globalExpMultiplier = 6
+globalExpMultiplier = 60
 
 --Sets the base number of control devices of each type that a player can have in their datapad at once
 --For creature pets, A Creature Handler will have the base number + their stored pets skill mod as limit

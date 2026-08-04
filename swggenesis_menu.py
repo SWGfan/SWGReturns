@@ -133,8 +133,13 @@ def stuff(text):
     return sh("screen -S %s -p 0 -X stuff $'%s\\r'" % (SCREEN, safe))
 
 
-def snapshot():
-    """Read the server console's current screen + scrollback."""
+def snapshot(tail=0):
+    """Read the server console's current screen + scrollback.
+
+    tail > 0 returns only the last N non-blank lines, which is what a live view
+    wants: the whole scrollback is tens of thousands of lines and re-sending it
+    every few seconds is what made the GUI's console pane sluggish and always
+    scrolled to the wrong place."""
     tmp = "/tmp/genesis_hardcopy_%d.txt" % int(time.time() * 1000)
     sh("screen -S %s -p 0 -X hardcopy -h %s" % (SCREEN, tmp))
     if not os.path.exists(tmp):
@@ -147,7 +152,22 @@ def snapshot():
             os.remove(tmp)
         except OSError:
             pass
-    return "\n".join([l for l in data.splitlines() if l.strip()])
+    lines = [l.rstrip() for l in data.splitlines() if l.strip()]
+    if tail > 0:
+        lines = lines[-tail:]
+    return "\n".join(lines)
+
+
+# screen wraps every line at the window's column count, and a detached
+# `screen -dmS` defaults to 80. That is why console output arrives broken
+# mid-word at ~78 characters and is painful to read in the GUI. Widening the
+# window makes subsequent output wrap at WIDE_COLS instead. It does not
+# retroactively fix lines already in the scrollback.
+WIDE_COLS = 200
+
+
+def set_console_width(cols=WIDE_COLS):
+    sh("screen -S %s -p 0 -X width %d" % (SCREEN, cols))
 
 
 def uptime_of_last(pattern, text):
@@ -242,6 +262,7 @@ def act_start(reloadstrings=False):
     rc, out = sh("cd %s && screen -dmS %s -L -Logfile %s gdb -q -ex '%s' ./core3"
                  % (BIN, SCREEN, CONSOLE_LOG, runcmd))
     time.sleep(3)
+    set_console_width()          # before any real output, so nothing wraps at 80
     print("Server launching in screen session '%s'%s." %
           (SCREEN, " with reloadstrings" if reloadstrings else ""))
     print("")
@@ -335,6 +356,23 @@ def act_rebuild():
 def act_console_snapshot():
     s = snapshot()
     print(s if s.strip() else "(no console output -- server not running?)")
+
+
+def act_console_live(n=60):
+    """Last N console lines. What the GUI's live pane polls -- cheap enough to
+    call every couple of seconds, unlike the full scrollback."""
+    s = snapshot(tail=n)
+    print(s if s.strip() else "(no console output -- server not running?)")
+
+
+def act_console_width(cols=WIDE_COLS):
+    """Widen the running console so new output stops wrapping at 80 columns."""
+    if not screen_exists():
+        print("No '%s' screen session -- start the server first." % SCREEN)
+        return
+    set_console_width(cols)
+    print("Console window width set to %d columns." % cols)
+    print("Affects NEW output only; lines already in the scrollback stay wrapped.")
 
 
 def act_console():
@@ -1045,6 +1083,152 @@ def act_tre_sync():
     print("tables, start once with reloadstrings.")
 
 
+# ------------------------------------------------------------------ server tuning
+# Gameplay knobs the GUI can edit. Every one of these is a top-level assignment
+# in bin/scripts/managers/player_manager.lua, read by the C++ at load time via
+# lua->getGlobalFloat(), so a change costs a RESTART and nothing more -- no
+# rebuild, no TRE.
+#
+# WHY A WHITELIST
+# The alternative is letting the GUI hand a key and a value to a regex loose in
+# the script tree. This list is the entire contract: an unknown key is refused,
+# a non-numeric value is refused, and a value outside the range is refused. The
+# ranges are sanity rails, not balance opinions -- they exist to stop a typo
+# (60000 instead of 6) writing something that makes the server unplayable and
+# is then hard to attribute.
+#
+# WHY THE DEFAULT IS NOT HARDCODED HERE
+# "Default" means the value genesis actually ships, read from
+# `git show genesis:<path>` at call time. A hardcoded table would silently rot
+# the next time upstream retunes something, and the Default button would then
+# quietly restore a number nobody chose.
+TUNE_REL  = "MMOCoreORB/bin/scripts/managers/player_manager.lua"
+TUNE_FILE = BIN + "/scripts/managers/player_manager.lua"
+
+# key, label, kind, min, max
+TUNABLES = [
+    ("globalExpMultiplier",        "XP multiplier (all XP types)",     "float", 0.1,  100.0),
+    ("groupExpMultiplier",         "Group XP bonus",                   "float", 1.0,   10.0),
+    ("performanceBuff",            "Entertainer buff strength",        "int",     0,  20000),
+    ("medicalBuff",                "Doctor buff strength",             "int",     0,  20000),
+    ("performanceDuration",        "Entertainer buff duration (sec)",  "int",    60, 604800),
+    ("medicalDuration",            "Doctor buff duration (sec)",       "int",    60, 604800),
+    ("cheapPerformanceBuff",       "Cheap entertainer buff",           "int",     0,  20000),
+    ("cheapMedicalBuff",           "Cheap doctor buff",                "int",     0,  20000),
+    ("expensivePerformanceBuff",   "Expensive entertainer buff",       "int",     0,  20000),
+    ("expensiveMedicalBuff",       "Expensive doctor buff",            "int",     0,  20000),
+    ("onlineCharactersPerAccount", "Characters online per account",    "int",     1,     10),
+    ("baseStoredVehicles",         "Stored vehicles",                  "int",     0,     20),
+    ("baseStoredCreaturePets",     "Stored creature pets",             "int",     0,     20),
+    ("baseStoredFactionPets",      "Stored faction pets",              "int",     0,     20),
+    ("baseStoredDroids",           "Stored droids",                    "int",     0,     20),
+]
+
+TUNE_BY_KEY = {t[0]: t for t in TUNABLES}
+
+
+def _tune_pattern(key):
+    """An UNCOMMENTED top-level `key = <number>`.
+
+    The (?![ \\t]*--) guard matters: player_manager.lua carries commented-out
+    example values, and rewriting one of those would look like it worked while
+    changing nothing the server reads."""
+    return re.compile(r'^(?![ \t]*--)([ \t]*' + re.escape(key)
+                      + r'[ \t]*=[ \t]*)(-?\d+(?:\.\d+)?)', re.M)
+
+
+def _tune_read(text, key):
+    m = _tune_pattern(key).search(text)
+    return m.group(2) if m else None
+
+
+def _tune_defaults():
+    """The values genesis ships, straight from the branch."""
+    rc, out = sh("cd %s && git show genesis:%s 2>/dev/null" % (REPO, TUNE_REL))
+    return out if rc == 0 else ""
+
+
+def act_tune_get():
+    """TUNE|key|label|current|default|kind|min|max per line, for the GUI."""
+    live = _read(TUNE_FILE)
+    if not live:
+        print("Could not read %s" % TUNE_FILE)
+        return
+    shipped = _tune_defaults()
+
+    for key, label, kind, lo, hi in TUNABLES:
+        cur = _tune_read(live, key)
+        if cur is None:
+            continue                       # not present on this base; just skip
+        dflt = _tune_read(shipped, key) if shipped else ""
+        print("TUNE|%s|%s|%s|%s|%s|%s|%s"
+              % (key, label, cur, dflt if dflt is not None else "", kind, lo, hi))
+
+
+def act_tune_set(key, value):
+    t = TUNE_BY_KEY.get(key)
+    if not t:
+        print("REFUSED: '%s' is not a tunable this tool knows about." % key)
+        return
+    _, label, kind, lo, hi = t
+
+    try:
+        num = float(value)
+    except (TypeError, ValueError):
+        print("REFUSED: '%s' is not a number." % value)
+        return
+    if num < lo or num > hi:
+        print("REFUSED: %s must be between %s and %s (got %s)." % (label, lo, hi, value))
+        return
+
+    text = _read(TUNE_FILE)
+    if not text:
+        print("REFUSED: could not read %s" % TUNE_FILE)
+        return
+
+    pat = _tune_pattern(key)
+    hits = pat.findall(text)
+    if len(hits) == 0:
+        print("REFUSED: no uncommented top-level '%s = <number>' found." % key)
+        return
+    if len(hits) > 1:
+        # Two live assignments means the last one wins at load time and editing
+        # the first would change nothing observable. Refuse rather than guess.
+        print("REFUSED: '%s' is assigned %d times in the file. Fix that by hand "
+              "first -- editing the wrong one would silently do nothing."
+              % (key, len(hits)))
+        return
+
+    old = pat.search(text).group(2)
+    new_val = str(int(num)) if kind == "int" else ("%g" % num)
+    if old == new_val:
+        print("%s is already %s -- nothing to do." % (label, new_val))
+        return
+
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    bak = "%s.%s.bak" % (TUNE_FILE, stamp)
+    n = 1
+    while os.path.exists(bak):
+        bak = "%s.%s_%d.bak" % (TUNE_FILE, stamp, n)
+        n += 1
+    with open(bak, "w", encoding="utf-8") as f:
+        f.write(text)
+
+    # Only the number is replaced. Indentation and any trailing `-- comment`
+    # on the line are left exactly as they were.
+    with open(TUNE_FILE, "w", encoding="utf-8") as f:
+        f.write(pat.sub(lambda m: m.group(1) + new_val, text, count=1))
+
+    print("%s: %s -> %s" % (label, old, new_val))
+    print("Backup: %s" % bak)
+    print("Takes effect on the NEXT SERVER START.")
+
+
+def act_tune_file():
+    """Where the tunables live, for the GUI's info line."""
+    print(TUNE_FILE)
+
+
 def act_remote():
     """REMOTE|url|branch|upstream|ahead|behind -- so the GUI can show the push
     target before you press anything, instead of asking you to remember it."""
@@ -1082,7 +1266,9 @@ ACTIONS = """SWGReturn server control -- actions:
   restart
   rebuild             cmake + make with the required flags
   console             attach to the live console (interactive)
-  console_snapshot    read-only snapshot of the console
+  console_snapshot    read-only snapshot of the console (full scrollback)
+  console_live [N]    last N console lines (default 60) -- cheap, for a live view
+  console_width [N]   stop the console wrapping at 80 columns (default 200)
   log_tail [N]        last N lines of core3.log (default 80)
   log_errors          error-class lines + counts
   accounts            list accounts and character count
@@ -1099,6 +1285,9 @@ ACTIONS = """SWGReturn server control -- actions:
   planets_set --ground a,b --space c,d
   tre_check           READ-ONLY: is companion_patch.tre first, has the list drifted
   tre_sync            regenerate the TRE load order, patch first (run after a pull)
+  tune_get            TUNE|key|label|current|default|kind|min|max  (gameplay knobs)
+  tune_set --key K --value V     write one whitelisted knob, with a backup
+  tune_file           path of the lua file the knobs live in
   remote              where a push would go
   diff / pull / push [--msgfile PATH]
 """
@@ -1126,6 +1315,8 @@ def main():
     elif a == "rebuild":           act_rebuild()
     elif a == "console":           act_console()
     elif a == "console_snapshot":  act_console_snapshot()
+    elif a == "console_live":      act_console_live(int(args[1]) if len(args) > 1 else 60)
+    elif a == "console_width":     act_console_width(int(args[1]) if len(args) > 1 else WIDE_COLS)
     elif a == "log_tail":          act_log_tail(int(args[1]) if len(args) > 1 else 80)
     elif a == "log_errors":        act_log_errors()
     elif a == "console_errors":    act_console_errors()
@@ -1147,6 +1338,9 @@ def main():
     elif a == "planets_set":       act_planets_set(_flag(args, "--ground"), _flag(args, "--space"))
     elif a == "tre_check":         act_tre_check()
     elif a == "tre_sync":          act_tre_sync()
+    elif a == "tune_get":          act_tune_get()
+    elif a == "tune_file":         act_tune_file()
+    elif a == "tune_set":          act_tune_set(_flag(args, "--key"), _flag(args, "--value"))
     elif a == "remote":            act_remote()
     elif a == "diff":              act_diff()
     elif a == "pull":              act_pull()
