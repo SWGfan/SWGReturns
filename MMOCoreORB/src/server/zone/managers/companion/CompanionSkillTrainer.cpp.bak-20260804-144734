@@ -9,7 +9,6 @@
 #include "server/zone/objects/companion/CompanionObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
-#include "server/zone/objects/player/variables/AbilityList.h"
 #include "server/zone/managers/player/BadgeList.h"
 #include "server/zone/objects/player/sui/listbox/SuiListBox.h"
 #include "server/zone/objects/player/sui/SuiWindowType.h"
@@ -739,78 +738,8 @@ void CompanionSkillTrainer::grantBaselineOwnerOrderAbilities(CreatureObject* own
 		"companion_jenkins"
 	};
 
-	// COMPANION_ABILITYLIST_DEDUPE_FIX_2026_08_04 -- the 2026-07-25 change
-	// above removed this loop's hasAbility() guard. That was correct on the
-	// Companion fork's newer base, where addAbility() keeps TWO lists
-	// (abilityList + activeAbilities) and guards each one internally, so an
-	// outer check suppressed the client notification forever.
-	//
-	// Genesis is not that base. Here there is no activeAbilities list at all,
-	// and AbilityList::add() blindly appends:
-	//
-	//     bool AbilityList::add(Ability* const& ability, DeltaMessage* message, int updates) {
-	//         bool val = vector.add(ability);      // no duplicate check
-	//
-	// So the unguarded loop added 16 MORE duplicate entries to the player's
-	// persisted, client-replicated ability list on every single summon, and
-	// sent a delta message for each. That bloat is what buries the 61 genuine
-	// companion ability macros -- which grantAllAbilitiesForTesting() grants
-	// correctly and exactly once -- in the owner's Command Browser.
-	//
-	// Step 1: strip the duplicates already accumulated. Nothing else will
-	// ever clean them up, and existing characters are already polluted.
-	// getAbilityList() is declared `public final AbilityList getAbilityList()`
-	// in PlayerObject.idl, so the generated accessor hands back a CONST
-	// pointer -- every existing caller (PlayerInfoCommand, StartDanceCommand,
-	// StartMusicCommand) binds it to `const AbilityList*`. Read through the
-	// const pointer and cast only the individual entries we hand to
-	// removeAbility(), which needs a mutable Ability*.
-	const AbilityList* abilities = ghost->getAbilityList();
-
-	if (abilities != nullptr) {
-		int before = abilities->size();
-
-		Vector<Ability*> duplicates;
-		SortedVector<String> seen;
-
-		for (int i = 0; i < abilities->size(); ++i) {
-			Ability* entry = const_cast<Ability*>(abilities->get(i));
-
-			if (entry == nullptr) {
-				continue;
-			}
-
-			String key = entry->getAbilityName().toLowerCase();
-
-			if (seen.contains(key)) {
-				duplicates.add(entry);
-			} else {
-				seen.put(key);
-			}
-		}
-
-		// Collect first, remove second -- removeAbility() mutates the same
-		// vector we would otherwise be iterating.
-		for (int i = 0; i < duplicates.size(); ++i) {
-			ghost->removeAbility(duplicates.get(i));
-		}
-
-		if (duplicates.size() > 0) {
-			info(true) << "CompanionSystem: stripped " << duplicates.size()
-					<< " duplicate ability entries from player " << owner->getObjectID()
-					<< " (" << before << " -> " << abilities->size() << ")";
-		} else {
-			info(true) << "CompanionSystem: player " << owner->getObjectID()
-					<< " ability list clean, " << before << " entries";
-		}
-	}
-
-	// Step 2: grant, guarded. On this base the guard is not an optimisation --
-	// it is the only thing standing between this loop and unbounded growth.
 	for (int i = 0; i < 16; ++i) {
-		if (!ghost->hasAbility(baselineAbilities[i])) {
-			ghost->addAbility(new Ability(baselineAbilities[i]));
-		}
+		ghost->addAbility(new Ability(baselineAbilities[i]));
 	}
 }
 
