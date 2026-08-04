@@ -22,7 +22,6 @@ companionfollow = {
 	{"root", "CompositeDefault", "none", SELECTORBEHAVIOR},
 	{"attack", "CompositeDefault", "root", SEQUENCEBEHAVIOR},
 	{"attack0", "GetTarget", "attack", BEHAVIOR},
-	{"attack1", "SelectWeapon", "attack", BEHAVIOR},
 	{"attack2", "SelectAttack", "attack", BEHAVIOR},
 	{"attack3", "CombatMoveCreaturePet", "attack", BEHAVIOR},
 	{"idle0", "MoveCreaturePet", "root", BEHAVIOR},
