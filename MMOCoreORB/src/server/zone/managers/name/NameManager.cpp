@@ -346,7 +346,11 @@ int NameManager::validateCompanionName(const String& name) const {
 	if (name.contains("\\") || name.contains("\n") || name.contains("\r") || name.contains("#"))
 		return NameManagerResult::DECLINED_SYNTAX;
 
-	return checkNamingFilter(name);
+	// genesis port: no checkNamingFilter() on this base. Both
+	// validateGuildName() and validateVendorName() end with
+	// validateReservedNames(), which is the same filter this was
+	// modelled on -- use genesis's own idiom.
+	return validateReservedNames(name);
 }
 
 int NameManager::validateGuildName(const String& name, int type) const {

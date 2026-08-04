@@ -291,11 +291,14 @@ void FormationManager::arrangeFollowers(CreatureObject* owner, const String& for
 		// reinforcements for the stock precedent), so the follower HOLDS
 		// this slot continuously while the owner moves instead of stacking
 		// on the owner's own position.
-		Vector3 blackboardOffset;
-		blackboardOffset.setX(rightOffset);
-		blackboardOffset.setY(forwardOffset);
-		blackboardOffset.setZ(0);
-		follower->writeBlackboard("formationOffset", blackboardOffset);
+		// genesis port: dropped the writeBlackboard("formationOffset", Vector3) call (and the
+		// Vector3 it built) -- genesis has NO AI blackboard at all (none of the blackboard
+		// write/read/peek/erase accessors exist anywhere in this tree, and genesis's
+		// AiAgentImplementation::setDestination() FOLLOWING branch has no formation-offset
+		// lookup to read it back). DEFERRED: formations are therefore a one-shot snap rather
+		// than a continuously-held slot -- the snapTeleport block below still places every
+		// follower at its computed forwardOffset/rightOffset, and setFollowObject(owner) +
+		// setFollowState(FOLLOWING) below still keep the squad together afterwards.
 
 		if (follower->isCompanionObject()) {
 			CompanionObject* companionFollower = cast<CompanionObject*>(follower);

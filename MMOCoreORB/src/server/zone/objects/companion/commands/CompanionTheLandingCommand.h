@@ -938,7 +938,11 @@ public:
 				member->setPosture(CreaturePosture::UPRIGHT, true, true);
 			}
 
-			member->setPerformanceType(PerformanceType::DANCE, true);
+			// genesis port: dropped ->setPerformanceType(PerformanceType::DANCE, true) -- genesis's
+			// CreatureObject.idl has no performanceType field (only performanceAnimation /
+			// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+			// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+			// carries this beat on its own.
 			member->setPerformanceAnimation("exotic4", true);
 			member->doAnimation("skill_action_1");
 		}
@@ -963,7 +967,11 @@ public:
 			Locker clocker(member, owner);
 
 			// End the dance performance mode before the closing pose.
-			member->setPerformanceType(0, true);
+			// genesis port: dropped ->setPerformanceType(0, true) -- genesis's
+			// CreatureObject.idl has no performanceType field (only performanceAnimation /
+			// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+			// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+			// carries this beat on its own.
 			member->setPerformanceAnimation("", true);
 
 			member->faceObject(owner, true);
@@ -1057,7 +1065,11 @@ public:
 			}
 
 			companion->setPosture(posture, true, true);
-			companion->setPerformanceType(0, true);
+			// genesis port: dropped ->setPerformanceType(0, true) -- genesis's
+			// CreatureObject.idl has no performanceType field (only performanceAnimation /
+			// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+			// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+			// carries this beat on its own.
 			companion->setPerformanceAnimation("", true);
 			restoreStanding(companion, owner);
 

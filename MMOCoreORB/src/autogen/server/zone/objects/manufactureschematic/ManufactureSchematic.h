@@ -191,6 +191,18 @@ public:
 
 	void setDraftSchematic(DraftSchematic* schematic);
 
+	/**
+	 * Companion System (2026-07-20, "crafting theater" pass) -- thin public
+	 * forwarder to initializeIngredientSlots(). Real players only ever reach
+	 * that private method through synchronizedUIListen(), which itself
+	 * early-returns for anything that isn't isPlayerCreature() -- a
+	 * companion-driven headless craft (CompanionCraftingManager) has no
+	 * PlayerObject/SUI round-trip to go through synchronizedUIListen() at
+	 * all, so it needs a direct, public way to populate ingredientSlots from
+	 * the draft schematic before it can start filling them.
+	 */
+	void initializeSlotsForHeadlessCraft();
+
 	int addIngredientToSlot(CreatureObject* player, SceneObject* satchel, TangibleObject* tano, int slot);
 
 	int removeIngredientFromSlot(CreatureObject* player, TangibleObject* tano, int slot);
@@ -407,6 +419,18 @@ private:
 	void initializeIngredientSlots();
 
 public:
+	/**
+	 * Companion System (2026-07-20, "crafting theater" pass) -- thin public
+	 * forwarder to initializeIngredientSlots(). Real players only ever reach
+	 * that private method through synchronizedUIListen(), which itself
+	 * early-returns for anything that isn't isPlayerCreature() -- a
+	 * companion-driven headless craft (CompanionCraftingManager) has no
+	 * PlayerObject/SUI round-trip to go through synchronizedUIListen() at
+	 * all, so it needs a direct, public way to populate ingredientSlots from
+	 * the draft schematic before it can start filling them.
+	 */
+	void initializeSlotsForHeadlessCraft();
+
 	int addIngredientToSlot(CreatureObject* player, SceneObject* satchel, TangibleObject* tano, int slot);
 
 	int removeIngredientFromSlot(CreatureObject* player, TangibleObject* tano, int slot);
@@ -542,6 +566,8 @@ public:
 	bool isManufactureSchematic();
 
 	void setDraftSchematic(DraftSchematic* schematic);
+
+	void initializeSlotsForHeadlessCraft();
 
 	int addIngredientToSlot(CreatureObject* player, SceneObject* satchel, TangibleObject* tano, int slot);
 

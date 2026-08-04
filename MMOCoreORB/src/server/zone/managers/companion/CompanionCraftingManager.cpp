@@ -422,7 +422,11 @@ bool CompanionCraftingManager::craftItem(CreatureObject* owner, CompanionObject*
 	// for this schematic if one is set, otherwise round-robin evenly across
 	// every visible attribute row so no stat is left completely untouched.
 	int worstExperimentResult = -1;
-	int numberOfExperimentRows = craftingValues->getTotalVisibleAttributeGroups();
+	// genesis port: getTotalVisibleAttributeGroups() does not exist on genesis's
+	// CraftingValues (that is the newer base's AttributesMap API). Genesis's own
+	// experimentation loop uses getVisibleExperimentalPropertyTitleSize() for exactly
+	// this row count -- see CraftingSessionImplementation.cpp:905. Nothing lost.
+	int numberOfExperimentRows = craftingValues->getVisibleExperimentalPropertyTitleSize();
 
 	if (numberOfExperimentRows > 0) {
 		String experimentationSkillName = draftSchematic->getExperimentationSkill();
@@ -504,7 +508,10 @@ bool CompanionCraftingManager::craftItem(CreatureObject* owner, CompanionObject*
 	// can't bind directly to a temporary -- needs a named local first.
 	String crafterName = companion->getDisplayedName();
 	prototype->setCraftersName(crafterName);
-	prototype->setCraftersID(companion->getObjectID());
+	// genesis port: dropped prototype->setCraftersID(companion->getObjectID()) -- genesis's
+	// TangibleObject records the crafter by NAME only (craftersName, TangibleObject.idl:67
+	// / setCraftersName() :690); there is no craftersID field. setCraftersName(crafterName)
+	// immediately above already stamps the companion as the crafter.
 	prototype->setCustomObjectName(prototype->getDisplayedName() + " (Crafted by " + crafterName + ")", false);
 	prototype->setSerialNumber(craftingManager->generateSerial());
 	prototype->updateToDatabase();
@@ -746,7 +753,9 @@ bool CompanionCraftingManager::craftBatch(CreatureObject* owner, CompanionObject
 	// happens before the single updateCraftingValues() call below --
 	// calling it twice is an ordering hazard (same note as the
 	// craftItem() fix).
-	int experimentationRowCount = craftingValues->getTotalVisibleAttributeGroups();
+	// genesis port: getTotalVisibleAttributeGroups() -> getVisibleExperimentalPropertyTitleSize()
+	// (same row count; genesis's CraftingSessionImplementation.cpp:905 precedent). Nothing lost.
+	int experimentationRowCount = craftingValues->getVisibleExperimentalPropertyTitleSize();
 	int experimentationPoints = int(companion->getSkillMod(draftSchematic->getExperimentationSkill()) / 10);
 
 	if (experimentationRowCount > 0 && experimentationPoints > 0) {
@@ -790,7 +799,10 @@ bool CompanionCraftingManager::craftBatch(CreatureObject* owner, CompanionObject
 
 	String crafterName = companion->getDisplayedName();
 	prototype->setCraftersName(crafterName);
-	prototype->setCraftersID(companion->getObjectID());
+	// genesis port: dropped prototype->setCraftersID(companion->getObjectID()) -- genesis's
+	// TangibleObject records the crafter by NAME only (craftersName, TangibleObject.idl:67
+	// / setCraftersName() :690); there is no craftersID field. setCraftersName(crafterName)
+	// immediately above already stamps the companion as the crafter.
 	prototype->setCustomObjectName(prototype->getDisplayedName() + " (Crafted by " + crafterName + ")", false);
 	prototype->setSerialNumber(craftingManager->generateSerial());
 	prototype->updateToDatabase();
@@ -1519,11 +1531,17 @@ int CompanionCraftingManager::withdrawFromOwnerHarvester(CreatureObject* owner, 
 		return 0;
 	}
 
-	SortedVector<ManagedReference<TreeEntry*>> nearbyObjects;
+	// genesis port: QuadTreeEntry (genesis predates the QuadTreeEntry -> TreeEntry
+	// rename) and the 6-arg 2D Zone::getInRangeObjects(x, y, range, objects,
+	// readLockZone, includeBuildingObjects) -- the newer base's 3D overload took
+	// (x, z, y, range, ...). Dropped the z argument. LOST: the query is now a
+	// cylinder around (x, y) instead of a sphere around (x, z, y), so objects far
+	// above/below the caller that the 3D form excluded can now match.
+	SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
 	// 512m is a generous "somewhere on the owner's homestead" radius -- a
 	// placed harvester can legitimately be well outside normal interaction
 	// range of wherever the owner happens to be standing right now.
-	zone->getInRangeObjects(owner->getPositionX(), owner->getPositionZ(), owner->getPositionY(), 512, &nearbyObjects, true, true);
+	zone->getInRangeObjects(owner->getPositionX(), owner->getPositionY(), 512, &nearbyObjects, true, true);
 
 	int withdrawn = 0;
 

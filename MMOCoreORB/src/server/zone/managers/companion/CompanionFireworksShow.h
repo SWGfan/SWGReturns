@@ -173,7 +173,12 @@ public:
 				int take = Math::min(amount, rc->getQuantity());
 
 				Locker rlocker(rc, companion);
-				rc->setQuantity(rc->getQuantity() - take, true, false, true);
+				// genesis port: dropped the 4th argument (destroyEmpty = true) -- genesis's
+				// ResourceContainer::setQuantity(quantity, notifyClient, ignoreMax) has only 3
+				// parameters. Nothing is lost: the newer base's destroyEmpty defaults to true and
+				// this call passed true, and genesis unconditionally destroys the container when
+				// stackQuantity drops below 1 -- identical behaviour.
+				rc->setQuantity(rc->getQuantity() - take, true, false);
 				amount -= take;
 			}
 		};

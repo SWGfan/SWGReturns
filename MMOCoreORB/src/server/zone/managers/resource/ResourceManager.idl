@@ -13,6 +13,7 @@ import server.zone.objects.resource.ResourceContainer;
 import engine.util.Observer;
 import engine.util.Observable;
 import server.zone.objects.player.sui.listbox.SuiListBox;
+import server.zone.objects.draftschematic.DraftSchematic;  // genesis port: required by getBestSpawnOfTypeWeighted()
 
 include server.zone.managers.resource.resourcespawner.ResourceSpawner;
 include server.zone.objects.resource.ResourceSpawn;

@@ -33,7 +33,15 @@ with open(SRC, "rb") as f:
 
 dt, end = DataTable.parse(data)
 assert end == len(data)
-assert len(dt.rows) == 771 and len(dt.columns) == 75, (len(dt.rows), len(dt.columns))
+# Base row count is NOT fixed: it depends which client content the base
+# command_table.iff came from. SWGEmu stock has 771 rows; aftermath_1.tre's
+# has 779 (8 extra commands). What must hold is the COLUMN layout -- 75
+# columns -- because every row this script appends is built positionally
+# against that schema. Guard the schema, not the row count.
+assert len(dt.columns) == 75, f"unexpected column count {len(dt.columns)} (expected 75)"
+assert len(dt.rows) >= 771, f"suspiciously small base table: {len(dt.rows)} rows"
+BASE_ROWS = len(dt.rows)
+print(f"base command_table.iff: {BASE_ROWS} rows, {len(dt.columns)} columns")
 
 colnames = [c[0] for c in dt.columns]
 baseTypes = [t[0] for (_, t) in dt.columns]
@@ -450,7 +458,11 @@ assert [r[0] for r in _afterBaseline[:len(_COMPANION_ABILITY_NAMES)]] == ["compa
 assert [r[0] for r in _afterBaseline[len(_COMPANION_ABILITY_NAMES):]] == ["companion" + a for a in _STARTER_ABILITY_NAMES]
 
 dt.rows.extend(new_rows)
-assert len(dt.rows) == 771 + len(new_rows)  # 771 base + 18 baseline + 36 + 25 = 850
+# Compare against the base this run actually read, not a baked-in 771 --
+# the base differs per client content (SWGEmu 771, aftermath 779).
+assert len(dt.rows) == BASE_ROWS + len(new_rows), \
+    f"expected {BASE_ROWS} + {len(new_rows)} rows, got {len(dt.rows)}"
+print(f"final command_table.iff: {len(dt.rows)} rows ({BASE_ROWS} base + {len(new_rows)} companion)")
 
 rebuilt = dt.serialize()
 
@@ -467,7 +479,8 @@ print(f"wrote {OUT}: {len(dt.rows)} rows, {len(rebuilt)} bytes")
 # separately.
 dt2, end2 = DataTable.parse(rebuilt)
 assert end2 == len(rebuilt)
-assert len(dt2.rows) == 771 + len(new_rows)
+assert len(dt2.rows) == BASE_ROWS + len(new_rows), \
+    f"re-parse mismatch: {len(dt2.rows)} vs {BASE_ROWS}+{len(new_rows)}"
 assert dt2.rows[:771] == dt.rows[:771]
 names2 = [r[0] for r in dt2.rows]
 expected_names = list(_BASELINE_ROW_NAMES) + ["companion" + a for a in _COMPANION_ABILITY_NAMES] + ["companion" + a for a in _STARTER_ABILITY_NAMES]

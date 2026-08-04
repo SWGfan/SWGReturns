@@ -268,8 +268,10 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 
 	// Companion System (2026-07-29, "unarmed companion lands no hits" fix)
 	// -- root cause: a companion's real combat weapon is whatever
-	// AiAgent::getCurrentWeapon() returns (CreatureObjectImplementation::
-	// getWeapon() substitutes this for any isAiAgent() object). The only
+	// CreatureObjectImplementation::getWeapon() returns (genesis port: the newer
+	// fork's AiAgent current-weapon accessor does not exist here -- genesis's
+	// getWeapon() itself falls back to the "default_weapon" slot,
+	// CreatureObjectImplementation.cpp:3411). The only
 	// place that ever gets set for an unarmed companion is
 	// refreshCombatAttacks()'s getSlottedObject("default_weapon") fallback
 	// -- but nothing ever creates an object in that slot for a companion,
@@ -290,7 +292,7 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	// and slot it into containment 4 (matching createDefaultWeapon()'s own
 	// transferObject(defaultWeap, 4) call) if nothing is there yet. Only
 	// call refreshCombatAttacks() to pick it up as the active weapon if the
-	// companion has no real weapon equipped right now (getCurrentWeapon()
+	// companion has no real weapon equipped right now (getWeapon()
 	// == nullptr) -- never touches a companion that already has a real
 	// weapon in hand.
 	if (companion->getSlottedObject("default_weapon") == nullptr) {
@@ -309,7 +311,11 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		}
 	}
 
-	if (companion->getCurrentWeapon() == nullptr) {
+	// genesis port: was companion->getCurrentWeapon() -- genesis has no
+	// AiAgent current-weapon accessor; CreatureObject::getWeapon() (CreatureObject.idl:1719,
+	// impl CreatureObjectImplementation.cpp:3411) is the equivalent and already falls
+	// back to the "default_weapon" slot when no weapon is held.
+	if (companion->getWeapon() == nullptr) {
 		companion->refreshCombatAttacks(nullptr);
 	}
 
@@ -337,7 +343,14 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		companion->setRunSpeed(companionRunSpeed, true);
 	}
 
-	companion->setWalkSpeed(companionRunSpeed, true);
+	// genesis port: dropped companion->setWalkSpeed(companionRunSpeed, true) -- genesis's
+	// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed() :1676);
+	// setRunSpeed() (:468) is the only speed setter there is, and it cannot express
+	// "walk as fast as you run". DEFERRED: the companion's walking pace stays at whatever
+	// the appearance template shipped, so it can still lag while the default behavior tree
+	// is in WALK moveMode; the run-speed self-heal just above and
+	// CompanionObjectImplementation's keep-up boost tick (which raises setRunSpeed when the
+	// companion falls >25m behind) remain in force.
 
 	// Companion System (2026-07-15, "equipped gear never renders on the
 	// companion" fix -- see companion_actor.lua's rebase comment and
@@ -747,9 +760,16 @@ void CompanionControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	// follows"). The companion map overrides only AWARE/IDLE/MOVE
 	// (follow-at-a-run, pet-style); all other slots fall back to the
 	// default trees already proven for companion combat.
-	companion->setCustomAiMap(STRING_HASHCODE("companion"));
-
-	companion->setAITemplate();
+	// genesis port: DEFERRED -- setCustomAiMap()/customAiMap does not exist on this
+	// base and adding it would require an AiAgent.idl change (out of scope). Dropped
+	// the setCustomAiMap(STRING_HASHCODE("companion")) call; the companion falls back
+	// to the default AiMap trees selected from creatureBitmask. This is part of the
+	// already-known behaviour-tree gap: genesis drives AI from Lua behaviour trees and
+	// the native leaf classes the Companion System expects do not exist here, so the
+	// "companion" AI map (follow-at-a-run, no leash-home) is not applied.
+	// genesis port: setAITemplate() -> setupBehaviorTree() (AiAgent.idl:1178,
+	// autogen/.../AiAgent.h:805) -- same no-arg "assemble the default trees" call.
+	companion->setupBehaviorTree();
 	companion->activateRecovery();
 	companion->setFollowObject(player);
 	companion->setCompanionState(CompanionObject::FOLLOW);

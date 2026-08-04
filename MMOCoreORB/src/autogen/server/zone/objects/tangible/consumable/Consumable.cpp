@@ -14,7 +14,7 @@
  *	ConsumableStub
  */
 
-enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_ = 877540444,RPC_SETMODIFIERS__BUFF_BOOL_,RPC_ISSPICEEFFECT__,RPC_ISATTRIBUTEEFFECT__,RPC_ISDRINK__,RPC_ISFOOD__,RPC_ISFORAGEDFOOD__,RPC_ISSPICE__,RPC_ISCONSUMABLE__,RPC_GETDURATION__,RPC_GETSPECIESRESTRICTION__};
+enum {RPC_HANDLEOBJECTMENUSELECT__CREATUREOBJECT_BYTE_ = 877540444,RPC_CONSUMEBYCREATURE__CREATUREOBJECT_CREATUREOBJECT_,RPC_SETMODIFIERS__BUFF_BOOL_,RPC_ISSPICEEFFECT__,RPC_ISATTRIBUTEEFFECT__,RPC_ISDRINK__,RPC_ISFOOD__,RPC_ISFORAGEDFOOD__,RPC_ISSPICE__,RPC_ISCONSUMABLE__,RPC_GETDURATION__,RPC_GETSPECIESRESTRICTION__};
 
 Consumable::Consumable() : TangibleObject(DummyConstructorParameter::instance()) {
 	ConsumableImplementation* _implementation = new ConsumableImplementation();
@@ -45,6 +45,22 @@ int Consumable::handleObjectMenuSelect(CreatureObject* player, byte selectedID) 
 		return method.executeWithSignedIntReturn();
 	} else {
 		return _implementation->handleObjectMenuSelect(player, selectedID);
+	}
+}
+
+bool Consumable::consumeByCreature(CreatureObject* consumer, CreatureObject* owner) {
+	ConsumableImplementation* _implementation = static_cast<ConsumableImplementation*>(_getImplementation());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_CONSUMEBYCREATURE__CREATUREOBJECT_CREATUREOBJECT_);
+		method.addObjectParameter(consumer);
+		method.addObjectParameter(owner);
+
+		return method.executeWithBooleanReturn();
+	} else {
+		return _implementation->consumeByCreature(consumer, owner);
 	}
 }
 
@@ -754,6 +770,15 @@ void ConsumableAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 			resp->insertSignedInt(_m_res);
 		}
 		break;
+	case RPC_CONSUMEBYCREATURE__CREATUREOBJECT_CREATUREOBJECT_:
+		{
+			CreatureObject* consumer = static_cast<CreatureObject*>(inv->getObjectParameter());
+			CreatureObject* owner = static_cast<CreatureObject*>(inv->getObjectParameter());
+			
+			bool _m_res = consumeByCreature(consumer, owner);
+			resp->insertBoolean(_m_res);
+		}
+		break;
 	case RPC_SETMODIFIERS__BUFF_BOOL_:
 		{
 			Buff* buff = static_cast<Buff*>(inv->getObjectParameter());
@@ -833,6 +858,10 @@ void ConsumableAdapter::invokeMethod(uint32 methid, DistributedMethod* inv) {
 
 int ConsumableAdapter::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
 	return (static_cast<Consumable*>(stub))->handleObjectMenuSelect(player, selectedID);
+}
+
+bool ConsumableAdapter::consumeByCreature(CreatureObject* consumer, CreatureObject* owner) {
+	return (static_cast<Consumable*>(stub))->consumeByCreature(consumer, owner);
 }
 
 void ConsumableAdapter::setModifiers(Buff* buff, bool skillModifiers) {

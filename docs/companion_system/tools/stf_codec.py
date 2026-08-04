@@ -38,19 +38,32 @@ import struct
 
 class StfTable:
     def __init__(self):
+        self.version = 1
+        self.nextIndex = 1
         self.values = []  # list of (idx:int, flags:int, value:str), VALUE TABLE file order
         self.keys = []     # list of (idx:int, key:str), KEY TABLE file order
 
     @staticmethod
     def parse(data):
+        # Real STF header layout (13 bytes):
+        #   [0..3]  u32 magic 0x0000ABCD
+        #   [4]     u8  version
+        #   [5..8]  u32 nextIndex     -- next free value index, NOT count+1
+        #   [9..12] u32 numEntries
+        #
+        # This used to read u32s at offsets 4 and 8 and assert
+        #   fieldA == (declaredCount + 1) * 256 + 1
+        # Those reads straddle the version/nextIndex and nextIndex/numEntries
+        # boundaries, which is why both values appeared multiplied by 256, and
+        # the "formula" only held when nextIndex happened to equal count+1.
+        # It does not: aftermath_1.tre's exp_n.stf has nextIndex=74 with 75
+        # entries (indices are reused), and the assert rejected the file
+        # outright. Read the real fields instead.
         assert data[0:2] == b"\xcd\xab", "bad STF magic"
         assert data[2:4] == b"\x00\x00"
-        (fieldA,) = struct.unpack_from("<I", data, 4)
-        (fieldB,) = struct.unpack_from("<I", data, 8)
-        assert data[12] == 0
-        assert fieldB % 256 == 0, f"unexpected fieldB {fieldB}"
-        declaredCount = fieldB // 256
-        assert fieldA == (declaredCount + 1) * 256 + 1, f"fieldA/fieldB mismatch: {fieldA} vs {fieldB}"
+        version = data[4]
+        (nextIndex,) = struct.unpack_from("<I", data, 5)
+        (declaredCount,) = struct.unpack_from("<I", data, 9)
 
         pos = 13
         values = []
@@ -79,19 +92,26 @@ class StfTable:
         table = StfTable()
         table.values = values
         table.keys = keys
+        table.version = version
+        table.nextIndex = nextIndex
         return table
 
     def serialize(self):
         count = len(self.values)
         assert count == len(self.keys)
-        fieldA = (count + 1) * 256 + 1
-        fieldB = count * 256
+
+        # PRESERVE nextIndex exactly as parsed. Do not recompute it: these
+        # files are not densely indexed (aftermath's cmd_n.stf carries 1677
+        # entries with nextIndex=1651), so any formula derived from the entry
+        # count rewrites the field and breaks byte-for-byte round-trip. add()
+        # is responsible for raising it when it allocates a new index.
+        nextIndex = getattr(self, "nextIndex", len(self.values) + 1)
 
         out = bytearray()
         out += b"\xcd\xab\x00\x00"
-        out += struct.pack("<I", fieldA)
-        out += struct.pack("<I", fieldB)
-        out += b"\x00"
+        out += bytes([getattr(self, "version", 1)])
+        out += struct.pack("<I", nextIndex)
+        out += struct.pack("<I", count)
 
         for idx, flags, value in self.values:
             out += struct.pack("<I", idx)
@@ -125,6 +145,9 @@ class StfTable:
 
         nextIdx = (max((i for i, _f, _v in self.values), default=0)) + 1
         self.values.append((nextIdx, flags, value))
+        # keep the header's nextIndex above every index now in use
+        if getattr(self, "nextIndex", 0) <= nextIdx:
+            self.nextIndex = nextIdx + 1
 
         insertAt = len(self.keys)
         for pos, (i, k) in enumerate(self.keys):

@@ -120,6 +120,22 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
+	/**
+	 * Companion System (2026-07-14, "player-side loadout backpack" consume
+	 * path -- see CompanionLoadoutContainerComponent). Applies this
+	 * consumable's effect to an arbitrary creature (the player's companion)
+	 * instead of the player who activated it. Mirrors the EFFECT_* handling
+	 * of handleObjectMenuSelect() minus the player-only mechanics (stomach
+	 * filling, spice downers, EFFECT_INSTANT specials, delayed
+	 * action-triggered buffs), which are unsupported and return false.
+	 * @pre { this object is locked, consumer is locked, owner is locked }
+	 * @post { this object is locked, consumer is locked, owner is locked }
+	 * @param consumer creature receiving the effect (the companion)
+	 * @param owner player who owns the consumable, receives the sysmsg
+	 * @returns true if consumed (use count was decremented)
+	 */
+	bool consumeByCreature(CreatureObject* consumer, CreatureObject* owner);
+
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
 	/**
@@ -259,6 +275,22 @@ public:
 	 */
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
 
+	/**
+	 * Companion System (2026-07-14, "player-side loadout backpack" consume
+	 * path -- see CompanionLoadoutContainerComponent). Applies this
+	 * consumable's effect to an arbitrary creature (the player's companion)
+	 * instead of the player who activated it. Mirrors the EFFECT_* handling
+	 * of handleObjectMenuSelect() minus the player-only mechanics (stomach
+	 * filling, spice downers, EFFECT_INSTANT specials, delayed
+	 * action-triggered buffs), which are unsupported and return false.
+	 * @pre { this object is locked, consumer is locked, owner is locked }
+	 * @post { this object is locked, consumer is locked, owner is locked }
+	 * @param consumer creature receiving the effect (the companion)
+	 * @param owner player who owns the consumable, receives the sysmsg
+	 * @returns true if consumed (use count was decremented)
+	 */
+	bool consumeByCreature(CreatureObject* consumer, CreatureObject* owner);
+
 	void updateCraftingValues(CraftingValues* values, bool firstUpdate);
 
 	/**
@@ -343,6 +375,8 @@ public:
 	void invokeMethod(sys::uint32 methid, DistributedMethod* method);
 
 	int handleObjectMenuSelect(CreatureObject* player, byte selectedID);
+
+	bool consumeByCreature(CreatureObject* consumer, CreatureObject* owner);
 
 	void setModifiers(Buff* buff, bool skillModifiers);
 

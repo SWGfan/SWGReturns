@@ -60,6 +60,11 @@
 
 namespace {
 
+	// genesis port: PerformanceManager::HEAL_RANGE does not exist on this base.
+	// Upstream's value is 60. Genesis's own entertainer code uses bare literals
+	// (10.0f patron, 40.0f group), so this keeps upstream behaviour explicitly.
+	static constexpr float COMPANION_HEAL_RANGE = 60.0f;
+
 	// The six real camp kit tiers (c3r chat's camp catalog, NOTES.md
 	// 2026-07-14), ordered worst -> best, each with its crafting recipe.
 	// Recipe classes are resource-tree tokens (ResourceSpawn::isType() --
@@ -209,7 +214,12 @@ namespace {
 			Locker rlocker(rc, companion);
 
 			String spawnName = rc->getSpawnName();
-			rc->setQuantity(rc->getQuantity() - take, true, false, true);
+			// genesis port: dropped the 4th argument (destroyEmpty = true) -- genesis's
+			// ResourceContainer::setQuantity(quantity, notifyClient, ignoreMax) has only 3
+			// parameters. Nothing is lost: the newer base's destroyEmpty defaults to true and
+			// this call passed true, and genesis unconditionally destroys the container when
+			// stackQuantity drops below 1 -- identical behaviour.
+			rc->setQuantity(rc->getQuantity() - take, true, false);
 
 			remaining -= take;
 
@@ -669,8 +679,14 @@ void CampDeploymentManager::deployCampFromKit(CreatureObject* owner, CompanionOb
 	}
 
 	// Nearby camps / buildings (condensed from CampKitMenuComponent).
-	SortedVector<ManagedReference<TreeEntry*>> nearbyObjects;
-	zone->getInRangeObjects(x, companion->getPositionZ(), y, 512, &nearbyObjects, true, true);
+	// genesis port: QuadTreeEntry (genesis predates the QuadTreeEntry -> TreeEntry
+	// rename) and the 6-arg 2D Zone::getInRangeObjects(x, y, range, objects,
+	// readLockZone, includeBuildingObjects) -- the newer base's 3D overload took
+	// (x, z, y, range, ...). Dropped the z argument. LOST: the query is now a
+	// cylinder around (x, y) instead of a sphere around (x, z, y), so objects far
+	// above/below the caller that the 3D form excluded can now match.
+	SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
+	zone->getInRangeObjects(x, y, 512, &nearbyObjects, true, true);
 
 	for (int i = 0; i < nearbyObjects.size(); ++i) {
 		SceneObject* scno = cast<SceneObject*>(nearbyObjects.get(i).get());
@@ -699,7 +715,17 @@ void CampDeploymentManager::deployCampFromKit(CreatureObject* owner, CompanionOb
 
 	owner->sendSystemMessage("@camp:starting_camp"); // You start setting up camp.
 
-	StructureObject* campObject = StructureManager::instance()->placeCamp(owner, nullptr, campStructurePath, x, y, (int) companion->getDirectionAngle());
+	// genesis port: StructureManager::placeCamp() is a newer-base addition and does not
+	// exist here. Genesis places camps through the generic
+	// placeStructure(creature, templatePath, x, y, angle, persistenceLevel = 1) -- that is
+	// exactly what genesis's own CampKitMenuComponent.cpp:202 calls for a camp kit, with
+	// the same arguments. The dropped 2nd argument was CustomizationVariables* customVars,
+	// which this call already passed as nullptr (and which placeCamp only used inside a
+	// commented-out block upstream), so no customization is lost.
+	// LOST: placeCamp created the object with the "playerstructures" database table and
+	// resolved the template as a CampStructureTemplate; genesis's placeStructure resolves a
+	// SharedStructureObjectTemplate and additionally does terrain snapping / flora clearing.
+	StructureObject* campObject = StructureManager::instance()->placeStructure(owner, campStructurePath, x, y, (int) companion->getDirectionAngle());
 
 	if (campObject == nullptr) {
 		owner->sendSystemMessage("@camp:error_cmd_fail"); // Unable to build camp here.
@@ -761,7 +787,11 @@ void CampDeploymentManager::deployCampFromKit(CreatureObject* owner, CompanionOb
 	campArea->setOwner(owner);
 	campArea->setAbandoned(false);
 
-	campArea->addAreaFlag(ActiveArea::NOBUILDZONEAREA);
+	// genesis port: was campArea->addAreaFlag(ActiveArea::NOBUILDZONEAREA) -- genesis's
+	// ActiveArea has a plain boolean noBuildArea field (ActiveArea.idl:17 /
+	// setNoBuildArea() :129), not an area-flag bitmask. This is exactly what stock
+	// camp deployment does (CampKitMenuComponent.cpp:252).
+	campArea->setNoBuildArea(true);
 	campArea->initializePosition(x, 0, y);
 
 	if (!zone->transferObject(campArea, -1, true)) {
@@ -1402,7 +1432,11 @@ void CampDeploymentManager::runCampAmbianceTick(uint64 ownerID) {
 					companion->setPosture(CreaturePosture::UPRIGHT, true);
 				}
 
-				companion->setPerformanceType(PerformanceType::DANCE, true);
+				// genesis port: dropped ->setPerformanceType(PerformanceType::DANCE, true) -- genesis's
+				// CreatureObject.idl has no performanceType field (only performanceAnimation /
+				// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+				// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+				// carries this beat on its own.
 				companion->setPerformanceAnimation("exotic4", true);
 				companion->doAnimation("skill_action_1"); // flourish
 
@@ -1777,7 +1811,7 @@ void CampDeploymentManager::startEntertainerDanceWatch(CreatureObject* owner, Co
 	// range gate (PerformanceManager::HEAL_RANGE, the same distance
 	// EntertainingSessionImplementation::doEntertainerPatronEffects()
 	// already uses every tick to decide who's still watching).
-	if (!owner->isInRange(entertainer, PerformanceManager::HEAL_RANGE)) {
+	if (!owner->isInRange(entertainer, COMPANION_HEAL_RANGE) /* genesis port: was PerformanceManager::HEAL_RANGE */) {
 		owner->sendSystemMessage(entertainer->getDisplayedName() + " is too far away to dance for you.");
 		return;
 	}
@@ -1866,7 +1900,11 @@ void CampDeploymentManager::startEntertainerDanceWatch(CreatureObject* owner, Co
 
 		// Kick off the first dance+flourish immediately rather than
 		// waiting a full 3s for the first tick.
-		entertainer->setPerformanceType(PerformanceType::DANCE, true);
+		// genesis port: dropped ->setPerformanceType(PerformanceType::DANCE, true) -- genesis's
+		// CreatureObject.idl has no performanceType field (only performanceAnimation /
+		// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+		// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+		// carries this beat on its own.
 		entertainer->setPerformanceAnimation("exotic4", true);
 		entertainer->doAnimation("skill_action_1"); // flourish
 	}
@@ -1935,7 +1973,7 @@ void CampDeploymentManager::runEntertainerDanceWatchTick(uint64 ownerID) {
 		if (entertainer->getLinkedCreature().get() != owner || entertainer->isDead() || entertainer->isIncapacitated()
 				|| entertainer->isInCombat() || owner->isInCombat()) {
 			shouldStop = true;
-		} else if (!owner->isInRange(entertainer, PerformanceManager::HEAL_RANGE) || !CollisionManager::checkLineOfSight(owner, entertainer)) {
+		} else if (!owner->isInRange(entertainer, COMPANION_HEAL_RANGE) /* genesis port: was PerformanceManager::HEAL_RANGE */ || !CollisionManager::checkLineOfSight(owner, entertainer)) {
 			shouldStop = true;
 		} else {
 			// Dance + flourish (or Play Music + flourish for a music
@@ -1948,10 +1986,18 @@ void CampDeploymentManager::runEntertainerDanceWatchTick(uint64 ownerID) {
 			int tickPerformanceMode = entertainerPerformanceMode.contains(ownerID) ? entertainerPerformanceMode.get(ownerID) : PerformanceType::DANCE;
 
 			if (tickPerformanceMode == PerformanceType::MUSIC) {
-				entertainer->setPerformanceType(PerformanceType::MUSIC, true);
+				// genesis port: dropped ->setPerformanceType(PerformanceType::MUSIC, true) -- genesis's
+				// CreatureObject.idl has no performanceType field (only performanceAnimation /
+				// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+				// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+				// carries this beat on its own.
 				entertainer->setPerformanceAnimation("music_3", true);
 			} else {
-				entertainer->setPerformanceType(PerformanceType::DANCE, true);
+				// genesis port: dropped ->setPerformanceType(PerformanceType::DANCE, true) -- genesis's
+				// CreatureObject.idl has no performanceType field (only performanceAnimation /
+				// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+				// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+				// carries this beat on its own.
 				entertainer->setPerformanceAnimation("exotic4", true);
 			}
 
@@ -2126,7 +2172,11 @@ void CampDeploymentManager::stopEntertainerDanceWatch(uint64 ownerID) {
 		// otherwise (owner logged off/despawned mid-dance).
 		if (owner != nullptr) {
 			Locker entLocker(entertainer, owner);
-			entertainer->setPerformanceType(0, true);
+			// genesis port: dropped ->setPerformanceType(0, true) -- genesis's
+			// CreatureObject.idl has no performanceType field (only performanceAnimation /
+			// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+			// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+			// carries this beat on its own.
 			entertainer->setPerformanceAnimation("", true);
 
 			// Bug #2 movement-freeze fix companion piece -- restore normal movement now
@@ -2164,7 +2214,11 @@ void CampDeploymentManager::stopEntertainerDanceWatch(uint64 ownerID) {
 			}
 		} else {
 			Locker entLocker(entertainer);
-			entertainer->setPerformanceType(0, true);
+			// genesis port: dropped ->setPerformanceType(0, true) -- genesis's
+			// CreatureObject.idl has no performanceType field (only performanceAnimation /
+			// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+			// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+			// carries this beat on its own.
 			entertainer->setPerformanceAnimation("", true);
 
 			// Owner gone -- just stop dancing/moving cleanly rather
@@ -2272,7 +2326,7 @@ void CampDeploymentManager::startEntertainerMusicWatch(CreatureObject* owner, Co
 		return;
 	}
 
-	if (!owner->isInRange(entertainer, PerformanceManager::HEAL_RANGE)) {
+	if (!owner->isInRange(entertainer, COMPANION_HEAL_RANGE) /* genesis port: was PerformanceManager::HEAL_RANGE */) {
 		owner->sendSystemMessage(entertainer->getDisplayedName() + " is too far away to play music for you.");
 		return;
 	}
@@ -2336,7 +2390,11 @@ void CampDeploymentManager::startEntertainerMusicWatch(CreatureObject* owner, Co
 		// waiting a full 3s for the first tick -- "music_3", the single
 		// most common real instrument-animation literal (see the header
 		// doc comment on this method for why).
-		entertainer->setPerformanceType(PerformanceType::MUSIC, true);
+		// genesis port: dropped ->setPerformanceType(PerformanceType::MUSIC, true) -- genesis's
+		// CreatureObject.idl has no performanceType field (only performanceAnimation /
+		// performanceCounter). setPerformanceAnimation() is genesis's real dance-visual
+		// API (EntertainingSessionImplementation::sendEntertainingUpdate()) and already
+		// carries this beat on its own.
 		entertainer->setPerformanceAnimation("music_3", true);
 		entertainer->doAnimation("skill_action_1"); // flourish
 	}

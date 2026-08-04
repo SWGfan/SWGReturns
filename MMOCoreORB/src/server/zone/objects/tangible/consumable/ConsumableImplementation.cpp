@@ -446,17 +446,21 @@ bool ConsumableImplementation::consumeByCreature(CreatureObject* consumer, Creat
 		break;
 	}
 	case EFFECT_HEALING: {
+		// genesis port: Companion's base renamed this member to nutrition
+		// as part of a float-nutrition refactor genesis does not have. Genesis
+		// declares `protected int nutrition` (Consumable.idl:20) and uses it in
+		// the identical healDamage() positions at lines 218/220/222.
 		int totalHealed = 0;
 
 		for (int i = 0; i < modifiers.size(); ++i) {
 			String key = modifiers.elementAt(i).getKey();
 
 			if (key == "health") {
-				totalHealed += consumer->healDamage(consumer, 0, newNutrition);
+				totalHealed += consumer->healDamage(consumer, 0, nutrition);
 			} else if (key == "action") {
-				totalHealed += consumer->healDamage(consumer, 3, newNutrition);
+				totalHealed += consumer->healDamage(consumer, 3, nutrition);
 			} else if (key == "mind") {
-				totalHealed += consumer->healDamage(consumer, 6, newNutrition);
+				totalHealed += consumer->healDamage(consumer, 6, nutrition);
 			}
 		}
 

@@ -14,11 +14,13 @@
 
 #include "server/zone/objects/player/sui/listbox/SuiListBox.h"
 
+#include "server/zone/objects/draftschematic/DraftSchematic.h"
+
 /*
  *	ResourceManagerStub
  */
 
-enum {RPC_STOP__ = 1114213504,RPC_INITIALIZE__,RPC_SHIFTRESOURCES__,RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_GETRESOURCERECYCLETYPE__RESOURCESPAWN_,RPC_SENDRESOURCELISTFORSURVEY__CREATUREOBJECT_INT_STRING_,RPC_SENDSURVEY__CREATUREOBJECT_STRING_,RPC_SENDSAMPLE__CREATUREOBJECT_STRING_STRING_,RPC_HARVESTRESOURCE__CREATUREOBJECT_STRING_INT_,RPC_GETAVAILABLEPOWERFROMPLAYER__CREATUREOBJECT_,RPC_REMOVEPOWERFROMPLAYER__CREATUREOBJECT_INT_,RPC_CREATERESOURCESPAWN__CREATUREOBJECT_UNICODESTRING_,RPC_GIVEPLAYERRESOURCE__CREATUREOBJECT_STRING_INT_,RPC_GETCURRENTSPAWN__STRING_STRING_,RPC_GETRESOURCESPAWN__STRING_,RPC_ISRECYCLEDRESOURCE__RESOURCESPAWN_,RPC_GETRECYCLEDVERSION__RESOURCESPAWN_,RPC_ADDNODETOLISTBOX__SUILISTBOX_STRING_,RPC_ADDPARENTNODETOLISTBOX__SUILISTBOX_STRING_,RPC_LISTRESOURCESFORPLANETONSCREEN__CREATUREOBJECT_STRING_,RPC_HEALTHCHECK__,RPC_DUMPRESOURCES__,RPC_GHDUMP__,RPC_DESPAWNRESOURCE__STRING_,RPC_ADDPLANETSTOLISTBOX__SUILISTBOX_,RPC_GETPLANETBYINDEX__INT_,RPC_GETZONESERVER__};
+enum {RPC_STOP__ = 1114213504,RPC_INITIALIZE__,RPC_SHIFTRESOURCES__,RPC_NOTIFYOBSERVEREVENT__INT_OBSERVABLE_MANAGEDOBJECT_LONG_,RPC_GETRESOURCERECYCLETYPE__RESOURCESPAWN_,RPC_SENDRESOURCELISTFORSURVEY__CREATUREOBJECT_INT_STRING_,RPC_SENDSURVEY__CREATUREOBJECT_STRING_,RPC_SENDSAMPLE__CREATUREOBJECT_STRING_STRING_,RPC_HARVESTRESOURCE__CREATUREOBJECT_STRING_INT_,RPC_GETAVAILABLEPOWERFROMPLAYER__CREATUREOBJECT_,RPC_REMOVEPOWERFROMPLAYER__CREATUREOBJECT_INT_,RPC_CREATERESOURCESPAWN__CREATUREOBJECT_UNICODESTRING_,RPC_GIVEPLAYERRESOURCE__CREATUREOBJECT_STRING_INT_,RPC_GETCURRENTSPAWN__STRING_STRING_,RPC_GETBESTSPAWNOFTYPE__STRING_STRING_,RPC_GETRESOURCESPAWN__STRING_,RPC_ISRECYCLEDRESOURCE__RESOURCESPAWN_,RPC_GETRECYCLEDVERSION__RESOURCESPAWN_,RPC_ADDNODETOLISTBOX__SUILISTBOX_STRING_,RPC_ADDPARENTNODETOLISTBOX__SUILISTBOX_STRING_,RPC_LISTRESOURCESFORPLANETONSCREEN__CREATUREOBJECT_STRING_,RPC_HEALTHCHECK__,RPC_DUMPRESOURCES__,RPC_GHDUMP__,RPC_DESPAWNRESOURCE__STRING_,RPC_ADDPLANETSTOLISTBOX__SUILISTBOX_,RPC_GETPLANETBYINDEX__INT_,RPC_GETZONESERVER__};
 
 ResourceManager::ResourceManager(ZoneServer* server, ZoneProcessServer* impl) : Observer(DummyConstructorParameter::instance()) {
 	ResourceManagerImplementation* _implementation = new ResourceManagerImplementation(server, impl);
@@ -275,6 +277,32 @@ ResourceSpawn* ResourceManager::getCurrentSpawn(const String& restype, const Str
 		return static_cast<ResourceSpawn*>(method.executeWithObjectReturn());
 	} else {
 		return _implementation->getCurrentSpawn(restype, zoneName);
+	}
+}
+
+ResourceSpawn* ResourceManager::getBestSpawnOfType(const String& restype, const String& zoneName) {
+	ResourceManagerImplementation* _implementation = static_cast<ResourceManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		if (!deployed)
+			throw ObjectNotDeployedException(this);
+
+		DistributedMethod method(this, RPC_GETBESTSPAWNOFTYPE__STRING_STRING_);
+		method.addAsciiParameter(restype);
+		method.addAsciiParameter(zoneName);
+
+		return static_cast<ResourceSpawn*>(method.executeWithObjectReturn());
+	} else {
+		return _implementation->getBestSpawnOfType(restype, zoneName);
+	}
+}
+
+ResourceSpawn* ResourceManager::getBestSpawnOfTypeWeighted(const String& restype, DraftSchematic* schematic, int lineIndex) {
+	ResourceManagerImplementation* _implementation = static_cast<ResourceManagerImplementation*>(_getImplementationForRead());
+	if (unlikely(_implementation == NULL)) {
+		throw ObjectNotLocalException(this);
+
+	} else {
+		return _implementation->getBestSpawnOfTypeWeighted(restype, schematic, lineIndex);
 	}
 }
 
@@ -794,6 +822,15 @@ void ResourceManagerAdapter::invokeMethod(uint32 methid, DistributedMethod* inv)
 			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
 		}
 		break;
+	case RPC_GETBESTSPAWNOFTYPE__STRING_STRING_:
+		{
+			 String restype; inv->getAsciiParameter(restype);
+			 String zoneName; inv->getAsciiParameter(zoneName);
+			
+			DistributedObject* _m_res = getBestSpawnOfType(restype, zoneName);
+			resp->insertLong(_m_res == NULL ? 0 : _m_res->_getObjectID());
+		}
+		break;
 	case RPC_GETRESOURCESPAWN__STRING_:
 		{
 			 String spawnName; inv->getAsciiParameter(spawnName);
@@ -956,6 +993,10 @@ void ResourceManagerAdapter::givePlayerResource(CreatureObject* playerCreature, 
 
 ResourceSpawn* ResourceManagerAdapter::getCurrentSpawn(const String& restype, const String& zoneName) {
 	return (static_cast<ResourceManager*>(stub))->getCurrentSpawn(restype, zoneName);
+}
+
+ResourceSpawn* ResourceManagerAdapter::getBestSpawnOfType(const String& restype, const String& zoneName) {
+	return (static_cast<ResourceManager*>(stub))->getBestSpawnOfType(restype, zoneName);
 }
 
 ResourceSpawn* ResourceManagerAdapter::getResourceSpawn(const String& spawnName) {

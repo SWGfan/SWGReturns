@@ -1307,6 +1307,10 @@ public:
 
 	bool isPetControlDevice();
 
+	/** Companion System -- datapad control device, isolated from PetControlDevice
+	 * (see server/zone/objects/companion/CompanionControlDevice.idl). */
+	bool isCompanionControlDevice();
+
 	bool isVehicleControlDevice();
 
 	bool isShipControlDevice();
@@ -1374,6 +1378,10 @@ public:
 	void setSendToClient(bool val);
 
 	bool isPet() const;
+
+	/** Companion System -- isolated companion actor, distinct from Pet/AiAgent
+	 * (see server/zone/objects/companion/CompanionObject.idl). */
+	bool isCompanionObject() const;
 
 	bool isMount();
 
@@ -2560,6 +2568,10 @@ public:
 
 	virtual bool isPetControlDevice();
 
+	/** Companion System -- datapad control device, isolated from PetControlDevice
+	 * (see server/zone/objects/companion/CompanionControlDevice.idl). */
+	virtual bool isCompanionControlDevice();
+
 	virtual bool isVehicleControlDevice();
 
 	virtual bool isShipControlDevice();
@@ -2627,6 +2639,10 @@ public:
 	void setSendToClient(bool val);
 
 	virtual bool isPet() const;
+
+	/** Companion System -- isolated companion actor, distinct from Pet/AiAgent
+	 * (see server/zone/objects/companion/CompanionObject.idl). */
+	virtual bool isCompanionObject() const;
 
 	virtual bool isMount();
 
@@ -3174,6 +3190,8 @@ public:
 
 	bool isPetControlDevice();
 
+	bool isCompanionControlDevice();
+
 	bool isVehicleControlDevice();
 
 	bool isShipControlDevice();
@@ -3213,6 +3231,8 @@ public:
 	void setSendToClient(bool val);
 
 	bool isPet() const;
+
+	bool isCompanionObject() const;
 
 	bool isMount();
 

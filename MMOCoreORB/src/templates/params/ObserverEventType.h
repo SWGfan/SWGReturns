@@ -90,6 +90,10 @@ public:
 		BHTEFCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		FACTIONCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		SLICED,						// ManagedObject arg1 = player doing slicing, long arg2 = result (1/0)
+		// genesis port: appended for the Companion System (upstream event ids).
+		// Appended at the END of the enum so no existing value is renumbered.
+		DEPLOYEDCAMP,				// ManagedObject arg1 = camp structure, long arg2 = 0
+		HARVESTEDCREATURE,			// ManagedObject arg1 = creature harvested, long arg2 = 0
 	};
 };
 

@@ -100,6 +100,22 @@ class SuiListBoxPOD;
 
 using namespace server::zone::objects::player::sui::listbox;
 
+namespace server {
+namespace zone {
+namespace objects {
+namespace draftschematic {
+
+class DraftSchematic;
+
+class DraftSchematicPOD;
+
+} // namespace draftschematic
+} // namespace objects
+} // namespace zone
+} // namespace server
+
+using namespace server::zone::objects::draftschematic;
+
 #include "server/zone/managers/resource/resourcespawner/ResourceSpawner.h"
 
 #include "server/zone/objects/resource/ResourceSpawn.h"
@@ -162,6 +178,15 @@ public:
 	void givePlayerResource(CreatureObject* playerCreature, const String& restype, const int quantity);
 
 	ResourceSpawn* getCurrentSpawn(const String& restype, const String& zoneName);
+
+	/** Companion System (2026-07-20): highest-quality in-spawn resource of
+	 * the given class on the zone -- see ResourceSpawner::getBestSpawnOfType(). */
+	ResourceSpawn* getBestSpawnOfType(const String& restype, const String& zoneName);
+
+	/** Companion System (2026-07-20): best resource of the class scored by
+	 * one of the schematic's experimental weight lines -- see
+	 * ResourceSpawner::getBestSpawnOfTypeWeighted(). */
+	ResourceSpawn* getBestSpawnOfTypeWeighted(const String& restype, DraftSchematic* schematic, int lineIndex);
 
 	ResourceSpawn* getResourceSpawn(const String& spawnName);
 
@@ -263,6 +288,15 @@ public:
 	void givePlayerResource(CreatureObject* playerCreature, const String& restype, const int quantity);
 
 	ResourceSpawn* getCurrentSpawn(const String& restype, const String& zoneName);
+
+	/** Companion System (2026-07-20): highest-quality in-spawn resource of
+	 * the given class on the zone -- see ResourceSpawner::getBestSpawnOfType(). */
+	ResourceSpawn* getBestSpawnOfType(const String& restype, const String& zoneName);
+
+	/** Companion System (2026-07-20): best resource of the class scored by
+	 * one of the schematic's experimental weight lines -- see
+	 * ResourceSpawner::getBestSpawnOfTypeWeighted(). */
+	ResourceSpawn* getBestSpawnOfTypeWeighted(const String& restype, DraftSchematic* schematic, int lineIndex);
 
 	ResourceSpawn* getResourceSpawn(const String& spawnName);
 
@@ -372,6 +406,8 @@ public:
 	void givePlayerResource(CreatureObject* playerCreature, const String& restype, const int quantity);
 
 	ResourceSpawn* getCurrentSpawn(const String& restype, const String& zoneName);
+
+	ResourceSpawn* getBestSpawnOfType(const String& restype, const String& zoneName);
 
 	ResourceSpawn* getResourceSpawn(const String& spawnName);
 

@@ -398,7 +398,10 @@ void ShipObjectTransform::broadcastTransform(ShipObject* ship) {
 		rateR.set(rR);
 	}
 
-	SortedVector<ManagedReference<TreeEntry*>> closeObjects;
+	// genesis port: QuadTreeEntry -- genesis predates the QuadTreeEntry -> TreeEntry
+	// rename; CloseObjectsVector::safeCopyReceiversTo() takes
+	// Vector<ManagedReference<QuadTreeEntry*>>& here. Type-name change only.
+	SortedVector<ManagedReference<QuadTreeEntry*>> closeObjects;
 	shipCov->safeCopyReceiversTo(closeObjects, CloseObjectsVector::PLAYERTYPE);
 
 	const auto& currentPosition = currentTransform.getPosition();

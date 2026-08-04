@@ -33,6 +33,8 @@ _TRE_DIR_CANDIDATES = [
     # device-bridge listing: Nick's real client install is C:\SWGEmu,
     # i.e. /mnt/c/SWGEmu from WSL. Kept first since it's the verified path;
     # the rest are left as fallbacks in case this runs from a different box.
+    os.environ.get("SWG_TRE_DIR", "/mnt/d/Launcher/newreturnbenserver"),
+    "/mnt/d/Launcher/newreturnbenserver",   # genesis port: aftermath content
     "/mnt/c/SWGEmu",
     "/sessions/inspiring-lucid-noether/mnt/Companion/tre",
     "/sessions/elegant-fervent-carson/mnt/Companion/tre",

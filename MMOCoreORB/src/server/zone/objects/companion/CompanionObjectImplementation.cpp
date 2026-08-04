@@ -171,7 +171,12 @@ namespace {
 // initializeTransientMembers() assembles the behavior trees via
 // setAITemplate().
 void CompanionObjectImplementation::initializeTransientMembers() {
-	customAiMap = STRING_HASHCODE("companion");
+	// genesis port: DEFERRED -- the customAiMap field does not exist on genesis's
+	// AiAgent and adding it would require an AiAgent.idl change (out of scope), so
+	// the per-load re-assignment of the dedicated "companion" AI map is dropped.
+	// Part of the already-known behaviour-tree gap: genesis uses Lua behaviour trees
+	// and the native leaf classes the Companion System expects do not exist here.
+	// customAiMap = STRING_HASHCODE("companion");
 
 	// Companion Taxi (2026-07-15): a ride never survives a despawn/reload --
 	// defensive reset alongside the constructor's own initialization.
@@ -1002,16 +1007,40 @@ void CompanionObjectImplementation::refreshCombatAttacks(WeaponObject* weapon) {
 		newAttacks = nullptr;
 	}
 
-	// primaryAttackMap/defaultAttackMap are both pointed at the same map --
-	// setPrimaryWeapon()+setCurrentWeapon() below make
-	// AiAgent::getAttackMap()'s "currentWeapon == primaryWeapon" branch
-	// resolve to primaryAttackMap, but defaultAttackMap is set too as a
-	// safety net for any other engine code that reads it directly.
-	primaryAttackMap = newAttacks;
+	// genesis port: upstream's primaryAttackMap / setPrimaryWeapon() /
+	// setCurrentWeapon() do not exist on this base. Genesis's AiAgent has
+	// exactly two maps -- `attackMap` and `defaultAttackMap`
+	// (AiAgent.idl:78-79) -- and getAttackMap() (AiAgent.idl:1080-1086)
+	// picks between them with `getWeapon() == readyWeapon ? attackMap :
+	// defaultAttackMap`. Upstream's setPrimaryWeapon()+setCurrentWeapon()
+	// pair existed only to force that branch to resolve to the map we just
+	// built; pointing BOTH genesis maps at the same CreatureAttackMap makes
+	// the branch irrelevant, so getAttackMap() returns `newAttacks` either
+	// way. That is the same end state the original comment described
+	// ("both pointed at the same map ... defaultAttackMap is set too as a
+	// safety net"), expressed with genesis's real fields.
+	//
+	// NOT ported: readyWeapon is deliberately left alone. On genesis it is a
+	// PERSISTED, AI-owned weapon created by loadTemplateData() from an
+	// npcTemplate (AiAgentImplementation.cpp:199), and selectWeapon()
+	// (AiAgentImplementation.cpp:1066-1121) transfers it into the hand slot
+	// and destroyObjectFromWorld()s whatever it replaces -- assigning a
+	// player-given weapon to it risks destroying the player's item.
+	// setupAttackMaps() (AiAgentImplementation.cpp:354) is likewise unusable
+	// here: it dereferences npcTemplate, which a companion never has (see
+	// the comment at the top of this function).
+	// DEFERRED / capability lost: the companion's equipped weapon is not
+	// registered as the AI's readyWeapon, so genesis's own weapon-selection
+	// logic still treats the companion as having only its default_weapon.
+	// Concretely: selectWeapon()'s ranged/ideal-range weapon swap and
+	// hasRangedWeapon() (AiAgent.idl:1325, AiAgentImplementation.cpp:3234)
+	// will not see the equipped weapon. Neither is reachable from any
+	// companion code path today -- selectWeapon()/selectDefaultWeapon() are
+	// only called from LuaAiAgent.cpp:465,470 and PetRangedAttackCommand.h:61
+	// -- so combat attack selection, which reads getAttackMap(), is
+	// unaffected.
+	attackMap = newAttacks;
 	defaultAttackMap = newAttacks;
-
-	setPrimaryWeapon(effectiveWeapon);
-	setCurrentWeapon(effectiveWeapon);
 }
 
 void CompanionObjectImplementation::equipItemFromInventory(TangibleObject* item, CreatureObject* requester) {
@@ -1549,7 +1578,12 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	driver->clearOptionBit(OptionBitmask::CONVERSE, false);
 
 	driver->setRunSpeed(boostedRunSpeed, true);
-	driver->setWalkSpeed(boostedWalkSpeed, true);
+	// genesis port: dropped driver->setWalkSpeed(boostedWalkSpeed, true) -- genesis's
+	// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+	// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+	// called on the line(s) directly above with the matching run-speed value, so
+	// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+	// pacing cannot be tuned on this base.
 
 	driver->initializePosition(getPositionX(), getPositionZ(), getPositionY());
 	driver->setDirection(getDirectionW(), getDirectionX(), getDirectionY(), getDirectionZ());
@@ -1558,8 +1592,16 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	// Same activation order as the companion's own spawnObject(): home
 	// anchor, then AI map, then tree assembly.
 	driver->setHomeLocation(getPositionX(), getPositionZ(), getPositionY(), nullptr);
-	driver->setCustomAiMap(STRING_HASHCODE("companion"));
-	driver->setAITemplate();
+	// genesis port: DEFERRED -- setCustomAiMap()/customAiMap does not exist on this
+	// base and adding it would require an AiAgent.idl change (out of scope). Dropped
+	// the setCustomAiMap(STRING_HASHCODE("companion")) call; the companion falls back
+	// to the default AiMap trees selected from creatureBitmask. This is part of the
+	// already-known behaviour-tree gap: genesis drives AI from Lua behaviour trees and
+	// the native leaf classes the Companion System expects do not exist here, so the
+	// "companion" AI map (follow-at-a-run, no leash-home) is not applied.
+	// genesis port: setAITemplate() -> setupBehaviorTree() (AiAgent.idl:1178,
+	// autogen/.../AiAgent.h:805) -- same no-arg "assemble the default trees" call.
+	driver->setupBehaviorTree();
 	driver->activateRecovery();
 
 	// Companion System (2026-07-20, "taxi greeting" pass, per user
@@ -1814,15 +1856,28 @@ void CompanionObjectImplementation::startOwnerAutoDrive(CreatureObject* owner) {
 	carriage->clearOptionBit(OptionBitmask::CONVERSE, false);
 
 	carriage->setRunSpeed(taxiBoostedRunSpeed > 0.f ? taxiBoostedRunSpeed : COMPANION_TAXI_SPEED, true);
-	carriage->setWalkSpeed(taxiBoostedWalkSpeed > 0.f ? taxiBoostedWalkSpeed : COMPANION_TAXI_SPEED, true);
+	// genesis port: dropped carriage->setWalkSpeed(taxiBoostedWalkSpeed > 0.f ? taxiBoostedWalkSpeed : COMPANION_TAXI_SPEED, true) -- genesis's
+	// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+	// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+	// called on the line(s) directly above with the matching run-speed value, so
+	// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+	// pacing cannot be tuned on this base.
 
 	carriage->initializePosition(owner->getPositionX(), owner->getPositionZ(), owner->getPositionY());
 	carriage->setDirection(owner->getDirectionW(), owner->getDirectionX(), owner->getDirectionY(), owner->getDirectionZ());
 	zone->transferObject(carriage, -1, true);
 
 	carriage->setHomeLocation(owner->getPositionX(), owner->getPositionZ(), owner->getPositionY(), nullptr);
-	carriage->setCustomAiMap(STRING_HASHCODE("companion"));
-	carriage->setAITemplate();
+	// genesis port: DEFERRED -- setCustomAiMap()/customAiMap does not exist on this
+	// base and adding it would require an AiAgent.idl change (out of scope). Dropped
+	// the setCustomAiMap(STRING_HASHCODE("companion")) call; the companion falls back
+	// to the default AiMap trees selected from creatureBitmask. This is part of the
+	// already-known behaviour-tree gap: genesis drives AI from Lua behaviour trees and
+	// the native leaf classes the Companion System expects do not exist here, so the
+	// "companion" AI map (follow-at-a-run, no leash-home) is not applied.
+	// genesis port: setAITemplate() -> setupBehaviorTree() (AiAgent.idl:1178,
+	// autogen/.../AiAgent.h:805) -- same no-arg "assemble the default trees" call.
+	carriage->setupBehaviorTree();
 	carriage->activateRecovery();
 
 	// Convoy behind the taxi.
@@ -2161,7 +2216,12 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				if (targetRun > 0.f && driverCreo->getRunSpeed() != targetRun) {
 					Locker driverLocker(driverCreo, _this.getReferenceUnsafeStaticCast());
 					driverCreo->setRunSpeed(targetRun, true);
-					driverCreo->setWalkSpeed(targetWalk > 0.f ? targetWalk : targetRun, true);
+					// genesis port: dropped driverCreo->setWalkSpeed(targetWalk > 0.f ? targetWalk : targetRun, true) -- genesis's
+					// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+					// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+					// called on the line(s) directly above with the matching run-speed value, so
+					// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+					// pacing cannot be tuned on this base.
 				}
 			}
 		}
@@ -3330,7 +3390,13 @@ namespace {
 
 			StimPack* protoStim = cast<StimPack*>(protoPharma);
 
-			if (protoStim->getMedicineClass() != medicineClassRank || proto->getCraftersID() != medic->getObjectID()) {
+			// genesis port: was proto->getCraftersID() != medic->getObjectID() -- genesis's
+			// TangibleObject stores the crafter by NAME (craftersName, TangibleObject.idl:67 /
+			// getCraftersName() :695); there is no craftersID field. Compared against
+			// getDisplayedName() rather than getFirstName() because getDisplayedName() is
+			// exactly what CompanionCraftingManager stamps into setCraftersName() on the
+			// prototype, so this stays an exact round-trip match.
+			if (protoStim->getMedicineClass() != medicineClassRank || proto->getCraftersName() != medic->getDisplayedName()) {
 				continue;
 			}
 
@@ -4122,7 +4188,11 @@ namespace {
 		}
 
 		uint64 companionID = companion->getObjectID();
-		unsigned int movementState = companion->getMovementState();
+		// genesis port: was companion->getMovementState() -- genesis has no movement-state
+		// machine. AiAgent::getFollowState() (AiAgent.idl:724) is the equivalent and holds
+		// the very OBLIVIOUS/WATCHING/STALKING/FOLLOWING/PATROLLING/FLEEING constants
+		// (AiAgent.idl:156-161) this tick compares against below.
+		unsigned int movementState = companion->getFollowState();
 
 		bool coreBusy = companion->isInCombat()
 				|| companion->isIncapacitated()
@@ -4361,7 +4431,12 @@ void CompanionObjectImplementation::runKeepUpTick() {
 		if (chaseWalkSpeedActive) {
 			if (preChaseRunSpeed > 0.f) {
 				setRunSpeed(preChaseRunSpeed, true);
-				setWalkSpeed(preChaseWalkSpeed > 0.f ? preChaseWalkSpeed : preChaseRunSpeed, true);
+				// genesis port: dropped setWalkSpeed(preChaseWalkSpeed > 0.f ? preChaseWalkSpeed : preChaseRunSpeed, true) -- genesis's
+				// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+				// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+				// called on the line(s) directly above with the matching run-speed value, so
+				// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+				// pacing cannot be tuned on this base.
 			}
 
 			chaseWalkSpeedActive = false;
@@ -4378,14 +4453,24 @@ void CompanionObjectImplementation::runKeepUpTick() {
 				preChaseWalkSpeed = getWalkSpeed();
 
 				setRunSpeed(ownerWalk, true);
-				setWalkSpeed(ownerWalk, true);
+				// genesis port: dropped setWalkSpeed(ownerWalk, true) -- genesis's
+				// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+				// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+				// called on the line(s) directly above with the matching run-speed value, so
+				// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+				// pacing cannot be tuned on this base.
 				chaseWalkSpeedActive = true;
 			}
 		}
 	} else if (chaseWalkSpeedActive) {
 		if (preChaseRunSpeed > 0.f) {
 			setRunSpeed(preChaseRunSpeed, true);
-			setWalkSpeed(preChaseWalkSpeed > 0.f ? preChaseWalkSpeed : preChaseRunSpeed, true);
+			// genesis port: dropped setWalkSpeed(preChaseWalkSpeed > 0.f ? preChaseWalkSpeed : preChaseRunSpeed, true) -- genesis's
+			// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+			// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+			// called on the line(s) directly above with the matching run-speed value, so
+			// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+			// pacing cannot be tuned on this base.
 		}
 
 		chaseWalkSpeedActive = false;
@@ -4404,7 +4489,12 @@ void CompanionObjectImplementation::runKeepUpTick() {
 
 			if (keepUpBaseRunSpeed > 0.f) {
 				setRunSpeed(keepUpBaseRunSpeed, true);
-				setWalkSpeed(keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed, true);
+				// genesis port: dropped setWalkSpeed(keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed, true) -- genesis's
+				// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+				// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+				// called on the line(s) directly above with the matching run-speed value, so
+				// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+				// pacing cannot be tuned on this base.
 			}
 		}
 
@@ -4423,13 +4513,23 @@ void CompanionObjectImplementation::runKeepUpTick() {
 		keepUpBaseWalkSpeed = getWalkSpeed();
 
 		setRunSpeed(keepUpBaseRunSpeed * 1.8f, true);
-		setWalkSpeed((keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed) * 1.8f, true);
+		// genesis port: dropped setWalkSpeed((keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed) * 1.8f, true) -- genesis's
+		// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+		// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+		// called on the line(s) directly above with the matching run-speed value, so
+		// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+		// pacing cannot be tuned on this base.
 	} else if (keepUpBoosted && distSq <= 100.0f) { // caught back up to 10m
 		keepUpBoosted = false;
 
 		if (keepUpBaseRunSpeed > 0.f) {
 			setRunSpeed(keepUpBaseRunSpeed, true);
-			setWalkSpeed(keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed, true);
+			// genesis port: dropped setWalkSpeed(keepUpBaseWalkSpeed > 0.f ? keepUpBaseWalkSpeed : keepUpBaseRunSpeed, true) -- genesis's
+			// CreatureObject.idl exposes walkSpeed READ-ONLY (field :100, getWalkSpeed()
+			// :1676); setRunSpeed() (:468) is the only speed setter, and it is already
+			// called on the line(s) directly above with the matching run-speed value, so
+			// the pace change still takes effect for RUN movement. DEFERRED: walk-mode
+			// pacing cannot be tuned on this base.
 		}
 	}
 
@@ -4589,8 +4689,14 @@ void CompanionObjectImplementation::runPostCombatSweepCheck() {
 	Vector<CompanionObject*> siblings;
 	resolveOwnersCompanions(owner, siblings);
 
-	SortedVector<ManagedReference<TreeEntry*>> nearbyObjects;
-	zone->getInRangeObjects(getPositionX(), getPositionZ(), getPositionY(), LOOT_SWEEP_SCAN_RANGE, &nearbyObjects, true, true);
+	// genesis port: QuadTreeEntry (genesis predates the QuadTreeEntry -> TreeEntry
+	// rename) and the 6-arg 2D Zone::getInRangeObjects(x, y, range, objects,
+	// readLockZone, includeBuildingObjects) -- the newer base's 3D overload took
+	// (x, z, y, range, ...). Dropped the z argument. LOST: the query is now a
+	// cylinder around (x, y) instead of a sphere around (x, z, y), so objects far
+	// above/below the caller that the 3D form excluded can now match.
+	SortedVector<ManagedReference<QuadTreeEntry*>> nearbyObjects;
+	zone->getInRangeObjects(getPositionX(), getPositionY(), LOOT_SWEEP_SCAN_RANGE, &nearbyObjects, true, true);
 
 	Reference<CompanionSweepState*> state = new CompanionSweepState();
 	bool anyEligibleCorpse = false;
@@ -4739,7 +4845,16 @@ void CompanionObjectImplementation::leash(bool forcePeace) {
 		return;
 	}
 
-	AiAgentImplementation::leash(forcePeace);
+	// genesis port: genesis's AiAgentImplementation::leash() takes NO parameters
+	// (the newer base added leash(bool forcePeace)). Dropped the argument.
+	// LOST: the forcePeace == false path -- genesis's leash() unconditionally calls
+	// CombatManager::instance()->forcePeace(asAiAgent()), so a leash requested with
+	// forcePeace = false now still drops the companion out of combat.
+	// NOTE (not fixable here, needs an .idl decision): CompanionObject.idl declares
+	// leash(boolean forcePeace = true), which HIDES rather than overrides genesis's
+	// 0-arg AiAgent::leash() -- engine-internal leash() calls will therefore run the
+	// stock wild-mobile leash, not this override.
+	AiAgentImplementation::leash();
 }
 
 // Companion System (2026-07-15, "Converse should act like Talk to

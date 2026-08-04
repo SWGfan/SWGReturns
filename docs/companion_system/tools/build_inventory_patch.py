@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 """
 Companion System (2026-07-15, "increase player inventory space" -- see
@@ -13,8 +14,28 @@ import sys, os, struct
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tre_reader import TreArchive
 
+# --- genesis port: TRE source directory ------------------------------------
+# These scripts carried hardcoded paths from earlier Cowork sessions
+# (/sessions/<name>/mnt/Companion/tre) plus C:\SWGEmu. On genesis the client
+# content is the launcher's aftermath install. Resolve at runtime, and allow
+# an override, so this works from any shell without further edits.
+def _tre_dir():
+    import os
+    cands = [os.environ.get("SWG_TRE_DIR", "")]
+    cands += [
+        "/mnt/d/Launcher/newreturnbenserver",          # WSL
+        "/mnt/c/SWGEmu",
+    ]
+    import glob
+    for d in cands:
+        if d and os.path.isdir(d) and glob.glob(os.path.join(d, "*.tre")):
+            return d
+    raise SystemExit("no TRE directory found; set SWG_TRE_DIR")
+TRE_DIR = _tre_dir()
+# ---------------------------------------------------------------------------
+
 NEW_LIMIT = 150
-SRC_TRE = "/sessions/elegant-fervent-carson/mnt/Companion/tre/patch_13_00.tre"
+SRC_TRE = os.path.join(TRE_DIR, "patch_13_00.tre")
 TARGET = "object/tangible/inventory/shared_character_inventory.iff"
 
 arc = TreArchive(SRC_TRE)

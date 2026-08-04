@@ -1292,7 +1292,8 @@ inline bool CompanionCraftPickSuiCallback::maybeAskOptimizeLine(CreatureObject* 
 	manufactureSchematic->initializeSlotsForHeadlessCraft();
 
 	CraftingValues* craftingValues = manufactureSchematic->getCraftingValues();
-	int lineCount = craftingValues != nullptr ? craftingValues->getTotalVisibleAttributeGroups() : 0;
+	// genesis port: getTotalVisibleAttributeGroups() -> getVisibleExperimentalPropertyTitleSize().
+	int lineCount = craftingValues != nullptr ? craftingValues->getVisibleExperimentalPropertyTitleSize() : 0;
 
 	if (lineCount < 2) {
 		manuLocker.release();
@@ -1304,7 +1305,9 @@ inline bool CompanionCraftPickSuiCallback::maybeAskOptimizeLine(CreatureObject* 
 	Vector<String> lineTitles;
 
 	for (int i = 0; i < lineCount; ++i) {
-		String title = craftingValues->getVisibleAttributeGroup(i);
+		// genesis port: getVisibleAttributeGroup(i) -> getVisibleExperimentalPropertyTitle(i)
+		// (genesis returns const String&; same visible experimental-property row label).
+		String title = craftingValues->getVisibleExperimentalPropertyTitle(i);
 
 		if (title.isEmpty()) {
 			title = "Property line " + String::valueOf(i + 1);

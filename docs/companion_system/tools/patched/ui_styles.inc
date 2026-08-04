@@ -9620,12 +9620,12 @@
 					SourceRect='462,117,486,141'
 				/>
 				<ImageStyle
-					Name='companionapplyPoison'
+					Name='companionapplypoison'
 					Source='ui_rebel_icons'
 					SourceRect='462,117,486,141'
 				/>
 				<ImageStyle
-					Name='companionapplypoison'
+					Name='companionapplyPoison'
 					Source='ui_rebel_icons'
 					SourceRect='462,117,486,141'
 				/>
@@ -9687,12 +9687,12 @@
 					SourceRect='233,210,256,234'
 				/>
 				<ImageStyle
-					Name='companionbleedingShot'
+					Name='companionbleedingshot'
 					Source='ui_rebel_icons'
 					SourceRect='233,210,256,234'
 				/>
 				<ImageStyle
-					Name='companionbleedingshot'
+					Name='companionbleedingShot'
 					Source='ui_rebel_icons'
 					SourceRect='233,210,256,234'
 				/>
@@ -9822,12 +9822,12 @@
 					SourceRect='439,2,463,26'
 				/>
 				<ImageStyle
-					Name='companionconcealshot'
+					Name='companionconcealShot'
 					Source='ui_rebel_icons'
 					SourceRect='439,2,463,26'
 				/>
 				<ImageStyle
-					Name='companionconcealShot'
+					Name='companionconcealshot'
 					Source='ui_rebel_icons'
 					SourceRect='439,2,463,26'
 				/>
@@ -9837,12 +9837,12 @@
 					SourceRect='119,163,142,187'
 				/>
 				<ImageStyle
-					Name='companionconfusionshot'
+					Name='companionconfusionShot'
 					Source='ui_rebel_icons'
 					SourceRect='119,163,142,187'
 				/>
 				<ImageStyle
-					Name='companionconfusionShot'
+					Name='companionconfusionshot'
 					Source='ui_rebel_icons'
 					SourceRect='119,163,142,187'
 				/>
@@ -10022,12 +10022,12 @@
 					SourceRect='232,117,255,141'
 				/>
 				<ImageStyle
-					Name='companioneyeShot'
+					Name='companioneyeshot'
 					Source='ui_rebel_icons'
 					SourceRect='232,117,255,141'
 				/>
 				<ImageStyle
-					Name='companioneyeshot'
+					Name='companioneyeShot'
 					Source='ui_rebel_icons'
 					SourceRect='232,117,255,141'
 				/>
@@ -10042,12 +10042,12 @@
 					SourceRect='302,325,325,349'
 				/>
 				<ImageStyle
-					Name='companionfastBlast'
+					Name='companionfastblast'
 					Source='ui_rebel_icons'
 					SourceRect='302,325,325,349'
 				/>
 				<ImageStyle
-					Name='companionfastblast'
+					Name='companionfastBlast'
 					Source='ui_rebel_icons'
 					SourceRect='302,325,325,349'
 				/>
@@ -10097,12 +10097,12 @@
 					SourceRect='164,209,187,233'
 				/>
 				<ImageStyle
-					Name='companionfireacidsingle1'
+					Name='companionfireAcidSingle1'
 					Source='ui_rebel_icons'
 					SourceRect='164,209,187,233'
 				/>
 				<ImageStyle
-					Name='companionfireAcidSingle1'
+					Name='companionfireacidsingle1'
 					Source='ui_rebel_icons'
 					SourceRect='164,209,187,233'
 				/>
@@ -10112,12 +10112,12 @@
 					SourceRect='164,209,187,233'
 				/>
 				<ImageStyle
-					Name='companionfireAcidSingle2'
+					Name='companionfireacidsingle2'
 					Source='ui_rebel_icons'
 					SourceRect='164,209,187,233'
 				/>
 				<ImageStyle
-					Name='companionfireacidsingle2'
+					Name='companionfireAcidSingle2'
 					Source='ui_rebel_icons'
 					SourceRect='164,209,187,233'
 				/>
@@ -10137,12 +10137,12 @@
 					SourceRect='49,209,72,233'
 				/>
 				<ImageStyle
-					Name='companionfireLightningCone1'
+					Name='companionfirelightningcone1'
 					Source='ui_rebel_icons'
 					SourceRect='49,209,72,233'
 				/>
 				<ImageStyle
-					Name='companionfirelightningcone1'
+					Name='companionfireLightningCone1'
 					Source='ui_rebel_icons'
 					SourceRect='49,209,72,233'
 				/>
@@ -10182,12 +10182,12 @@
 					SourceRect='49,163,72,187'
 				/>
 				<ImageStyle
-					Name='companionfirelightningsingle2'
+					Name='companionfireLightningSingle2'
 					Source='ui_rebel_icons'
 					SourceRect='49,163,72,187'
 				/>
 				<ImageStyle
-					Name='companionfireLightningSingle2'
+					Name='companionfirelightningsingle2'
 					Source='ui_rebel_icons'
 					SourceRect='49,163,72,187'
 				/>
@@ -10202,12 +10202,12 @@
 					SourceRect='186,186,209,210'
 				/>
 				<ImageStyle
-					Name='companionflamecone1'
+					Name='companionflameCone1'
 					Source='ui_rebel_icons'
 					SourceRect='186,186,209,210'
 				/>
 				<ImageStyle
-					Name='companionflameCone1'
+					Name='companionflamecone1'
 					Source='ui_rebel_icons'
 					SourceRect='186,186,209,210'
 				/>
@@ -10282,12 +10282,12 @@
 					SourceRect='140,278,164,302'
 				/>
 				<ImageStyle
-					Name='companionflurryShot2'
+					Name='companionflurryshot2'
 					Source='ui_rebel_icons'
 					SourceRect='140,278,164,302'
 				/>
 				<ImageStyle
-					Name='companionflurryshot2'
+					Name='companionflurryShot2'
 					Source='ui_rebel_icons'
 					SourceRect='140,278,164,302'
 				/>
@@ -10482,12 +10482,12 @@
 					SourceRect='416,186,440,210'
 				/>
 				<ImageStyle
-					Name='companionheadshot3'
+					Name='companionheadShot3'
 					Source='ui_rebel_icons'
 					SourceRect='416,186,440,210'
 				/>
 				<ImageStyle
-					Name='companionheadShot3'
+					Name='companionheadshot3'
 					Source='ui_rebel_icons'
 					SourceRect='416,186,440,210'
 				/>
@@ -10497,12 +10497,12 @@
 					SourceRect='371,348,395,372'
 				/>
 				<ImageStyle
-					Name='companionhealDamage'
+					Name='companionhealdamage'
 					Source='ui_rebel_icons'
 					SourceRect='371,348,395,372'
 				/>
 				<ImageStyle
-					Name='companionhealdamage'
+					Name='companionhealDamage'
 					Source='ui_rebel_icons'
 					SourceRect='371,348,395,372'
 				/>
@@ -10547,12 +10547,12 @@
 					SourceRect='370,324,394,348'
 				/>
 				<ImageStyle
-					Name='companionhealwound'
+					Name='companionhealWound'
 					Source='ui_rebel_icons'
 					SourceRect='370,324,394,348'
 				/>
 				<ImageStyle
-					Name='companionhealWound'
+					Name='companionhealwound'
 					Source='ui_rebel_icons'
 					SourceRect='370,324,394,348'
 				/>
@@ -10607,12 +10607,12 @@
 					SourceRect='209,117,232,141'
 				/>
 				<ImageStyle
-					Name='companionknockdownfire'
+					Name='companionknockdownFire'
 					Source='ui_rebel_icons'
 					SourceRect='209,117,232,141'
 				/>
 				<ImageStyle
-					Name='companionknockdownFire'
+					Name='companionknockdownfire'
 					Source='ui_rebel_icons'
 					SourceRect='209,117,232,141'
 				/>
@@ -10742,12 +10742,12 @@
 					SourceRect='163,393,187,417'
 				/>
 				<ImageStyle
-					Name='companionmelee1hlunge1'
+					Name='companionmelee1hLunge1'
 					Source='ui_rebel_icons'
 					SourceRect='163,393,187,417'
 				/>
 				<ImageStyle
-					Name='companionmelee1hLunge1'
+					Name='companionmelee1hlunge1'
 					Source='ui_rebel_icons'
 					SourceRect='163,393,187,417'
 				/>
@@ -10827,12 +10827,12 @@
 					SourceRect='485,278,509,302'
 				/>
 				<ImageStyle
-					Name='companionmelee2hLunge1'
+					Name='companionmelee2hlunge1'
 					Source='ui_rebel_icons'
 					SourceRect='485,278,509,302'
 				/>
 				<ImageStyle
-					Name='companionmelee2hlunge1'
+					Name='companionmelee2hLunge1'
 					Source='ui_rebel_icons'
 					SourceRect='485,278,509,302'
 				/>
@@ -10932,12 +10932,12 @@
 					SourceRect='393,393,417,417'
 				/>
 				<ImageStyle
-					Name='companionmindShot2'
+					Name='companionmindshot2'
 					Source='ui_rebel_icons'
 					SourceRect='393,393,417,417'
 				/>
 				<ImageStyle
-					Name='companionmindshot2'
+					Name='companionmindShot2'
 					Source='ui_rebel_icons'
 					SourceRect='393,393,417,417'
 				/>
@@ -11007,12 +11007,12 @@
 					SourceRect='416,48,440,72'
 				/>
 				<ImageStyle
-					Name='companionpointblankarea1'
+					Name='companionpointBlankArea1'
 					Source='ui_rebel_icons'
 					SourceRect='416,48,440,72'
 				/>
 				<ImageStyle
-					Name='companionpointBlankArea1'
+					Name='companionpointblankarea1'
 					Source='ui_rebel_icons'
 					SourceRect='416,48,440,72'
 				/>
@@ -11027,12 +11027,12 @@
 					SourceRect='416,94,440,118'
 				/>
 				<ImageStyle
-					Name='companionpointblanksingle1'
+					Name='companionpointBlankSingle1'
 					Source='ui_rebel_icons'
 					SourceRect='416,94,440,118'
 				/>
 				<ImageStyle
-					Name='companionpointBlankSingle1'
+					Name='companionpointblanksingle1'
 					Source='ui_rebel_icons'
 					SourceRect='416,94,440,118'
 				/>
@@ -11127,12 +11127,12 @@
 					SourceRect='256,370,280,394'
 				/>
 				<ImageStyle
-					Name='companionpolearmlunge1'
+					Name='companionpolearmLunge1'
 					Source='ui_rebel_icons'
 					SourceRect='256,370,280,394'
 				/>
 				<ImageStyle
-					Name='companionpolearmLunge1'
+					Name='companionpolearmlunge1'
 					Source='ui_rebel_icons'
 					SourceRect='256,370,280,394'
 				/>
@@ -11387,12 +11387,12 @@
 					SourceRect='71,462,95,486'
 				/>
 				<ImageStyle
-					Name='companionstartdance'
+					Name='companionstartDance'
 					Source='ui_rebel_icons'
 					SourceRect='71,462,95,486'
 				/>
 				<ImageStyle
-					Name='companionstartDance'
+					Name='companionstartdance'
 					Source='ui_rebel_icons'
 					SourceRect='71,462,95,486'
 				/>
@@ -11412,12 +11412,12 @@
 					SourceRect='163,278,187,302'
 				/>
 				<ImageStyle
-					Name='companionstartleshot1'
+					Name='companionstartleShot1'
 					Source='ui_rebel_icons'
 					SourceRect='163,278,187,302'
 				/>
 				<ImageStyle
-					Name='companionstartleShot1'
+					Name='companionstartleshot1'
 					Source='ui_rebel_icons'
 					SourceRect='163,278,187,302'
 				/>
@@ -11442,12 +11442,12 @@
 					SourceRect='26,438,50,462'
 				/>
 				<ImageStyle
-					Name='companionstartMusic'
+					Name='companionstartmusic'
 					Source='ui_rebel_icons'
 					SourceRect='26,438,50,462'
 				/>
 				<ImageStyle
-					Name='companionstartmusic'
+					Name='companionstartMusic'
 					Source='ui_rebel_icons'
 					SourceRect='26,438,50,462'
 				/>
@@ -11492,12 +11492,12 @@
 					SourceRect='302,439,326,463'
 				/>
 				<ImageStyle
-					Name='companionstopMusic'
+					Name='companionstopmusic'
 					Source='ui_rebel_icons'
 					SourceRect='302,439,326,463'
 				/>
 				<ImageStyle
-					Name='companionstopmusic'
+					Name='companionstopMusic'
 					Source='ui_rebel_icons'
 					SourceRect='302,439,326,463'
 				/>
@@ -11542,12 +11542,12 @@
 					SourceRect='415,417,439,441'
 				/>
 				<ImageStyle
-					Name='companionstrafeShot2'
+					Name='companionstrafeshot2'
 					Source='ui_rebel_icons'
 					SourceRect='415,417,439,441'
 				/>
 				<ImageStyle
-					Name='companionstrafeshot2'
+					Name='companionstrafeShot2'
 					Source='ui_rebel_icons'
 					SourceRect='415,417,439,441'
 				/>
@@ -11917,12 +11917,12 @@
 					SourceRect='210,486,233,510'
 				/>
 				<ImageStyle
-					Name='companionunderHandShot'
+					Name='companionunderhandshot'
 					Source='ui_rebel_icons'
 					SourceRect='210,486,233,510'
 				/>
 				<ImageStyle
-					Name='companionunderhandshot'
+					Name='companionunderHandShot'
 					Source='ui_rebel_icons'
 					SourceRect='210,486,233,510'
 				/>
@@ -12478,12 +12478,12 @@
 					SourceRect='371,348,395,372'
 				/>
 				<ImageStyle
-					Name='companionhealDamage'
+					Name='companionhealdamage'
 					Source='ui_rebel_icons'
 					SourceRect='371,348,395,372'
 				/>
 				<ImageStyle
-					Name='companionhealdamage'
+					Name='companionhealDamage'
 					Source='ui_rebel_icons'
 					SourceRect='371,348,395,372'
 				/>
@@ -12493,12 +12493,12 @@
 					SourceRect='370,324,394,348'
 				/>
 				<ImageStyle
-					Name='companionhealwound'
+					Name='companionhealWound'
 					Source='ui_rebel_icons'
 					SourceRect='370,324,394,348'
 				/>
 				<ImageStyle
-					Name='companionhealWound'
+					Name='companionhealwound'
 					Source='ui_rebel_icons'
 					SourceRect='370,324,394,348'
 				/>
@@ -45926,12 +45926,12 @@
 						SourceRect='462,117,486,141'
 					/>
 				<ImageStyle
-						Name='companionapplyPoison'
+						Name='companionapplypoison'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='462,117,486,141'
 					/>
 				<ImageStyle
-						Name='companionapplypoison'
+						Name='companionapplyPoison'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='462,117,486,141'
 					/>
@@ -45993,12 +45993,12 @@
 						SourceRect='233,210,256,234'
 					/>
 				<ImageStyle
-						Name='companionbleedingShot'
+						Name='companionbleedingshot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='233,210,256,234'
 					/>
 				<ImageStyle
-						Name='companionbleedingshot'
+						Name='companionbleedingShot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='233,210,256,234'
 					/>
@@ -46138,12 +46138,12 @@
 						SourceRect='439,2,463,26'
 					/>
 				<ImageStyle
-						Name='companionconcealshot'
+						Name='companionconcealShot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='439,2,463,26'
 					/>
 				<ImageStyle
-						Name='companionconcealShot'
+						Name='companionconcealshot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='439,2,463,26'
 					/>
@@ -46153,12 +46153,12 @@
 						SourceRect='119,163,142,187'
 					/>
 				<ImageStyle
-						Name='companionconfusionshot'
+						Name='companionconfusionShot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='119,163,142,187'
 					/>
 				<ImageStyle
-						Name='companionconfusionShot'
+						Name='companionconfusionshot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='119,163,142,187'
 					/>
@@ -46368,12 +46368,12 @@
 						SourceRect='232,117,255,141'
 					/>
 				<ImageStyle
-						Name='companioneyeShot'
+						Name='companioneyeshot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='232,117,255,141'
 					/>
 				<ImageStyle
-						Name='companioneyeshot'
+						Name='companioneyeShot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='232,117,255,141'
 					/>
@@ -46388,12 +46388,12 @@
 						SourceRect='302,325,325,349'
 					/>
 				<ImageStyle
-						Name='companionfastBlast'
+						Name='companionfastblast'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='302,325,325,349'
 					/>
 				<ImageStyle
-						Name='companionfastblast'
+						Name='companionfastBlast'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='302,325,325,349'
 					/>
@@ -46443,12 +46443,12 @@
 						SourceRect='164,209,187,233'
 					/>
 				<ImageStyle
-						Name='companionfireacidsingle1'
+						Name='companionfireAcidSingle1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='164,209,187,233'
 					/>
 				<ImageStyle
-						Name='companionfireAcidSingle1'
+						Name='companionfireacidsingle1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='164,209,187,233'
 					/>
@@ -46458,12 +46458,12 @@
 						SourceRect='164,209,187,233'
 					/>
 				<ImageStyle
-						Name='companionfireAcidSingle2'
+						Name='companionfireacidsingle2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='164,209,187,233'
 					/>
 				<ImageStyle
-						Name='companionfireacidsingle2'
+						Name='companionfireAcidSingle2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='164,209,187,233'
 					/>
@@ -46483,12 +46483,12 @@
 						SourceRect='49,209,72,233'
 					/>
 				<ImageStyle
-						Name='companionfireLightningCone1'
+						Name='companionfirelightningcone1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='49,209,72,233'
 					/>
 				<ImageStyle
-						Name='companionfirelightningcone1'
+						Name='companionfireLightningCone1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='49,209,72,233'
 					/>
@@ -46528,12 +46528,12 @@
 						SourceRect='49,163,72,187'
 					/>
 				<ImageStyle
-						Name='companionfirelightningsingle2'
+						Name='companionfireLightningSingle2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='49,163,72,187'
 					/>
 				<ImageStyle
-						Name='companionfireLightningSingle2'
+						Name='companionfirelightningsingle2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='49,163,72,187'
 					/>
@@ -46548,12 +46548,12 @@
 						SourceRect='186,186,209,210'
 					/>
 				<ImageStyle
-						Name='companionflamecone1'
+						Name='companionflameCone1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='186,186,209,210'
 					/>
 				<ImageStyle
-						Name='companionflameCone1'
+						Name='companionflamecone1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='186,186,209,210'
 					/>
@@ -46628,12 +46628,12 @@
 						SourceRect='140,278,164,302'
 					/>
 				<ImageStyle
-						Name='companionflurryShot2'
+						Name='companionflurryshot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='140,278,164,302'
 					/>
 				<ImageStyle
-						Name='companionflurryshot2'
+						Name='companionflurryShot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='140,278,164,302'
 					/>
@@ -46828,12 +46828,12 @@
 						SourceRect='416,186,440,210'
 					/>
 				<ImageStyle
-						Name='companionheadshot3'
+						Name='companionheadShot3'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,186,440,210'
 					/>
 				<ImageStyle
-						Name='companionheadShot3'
+						Name='companionheadshot3'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,186,440,210'
 					/>
@@ -46843,12 +46843,12 @@
 						SourceRect='371,348,395,372'
 					/>
 				<ImageStyle
-						Name='companionhealDamage'
+						Name='companionhealdamage'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='371,348,395,372'
 					/>
 				<ImageStyle
-						Name='companionhealdamage'
+						Name='companionhealDamage'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='371,348,395,372'
 					/>
@@ -46893,12 +46893,12 @@
 						SourceRect='370,324,394,348'
 					/>
 				<ImageStyle
-						Name='companionhealwound'
+						Name='companionhealWound'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='370,324,394,348'
 					/>
 				<ImageStyle
-						Name='companionhealWound'
+						Name='companionhealwound'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='370,324,394,348'
 					/>
@@ -46988,12 +46988,12 @@
 						SourceRect='209,117,232,141'
 					/>
 				<ImageStyle
-						Name='companionknockdownfire'
+						Name='companionknockdownFire'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='209,117,232,141'
 					/>
 				<ImageStyle
-						Name='companionknockdownFire'
+						Name='companionknockdownfire'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='209,117,232,141'
 					/>
@@ -47123,12 +47123,12 @@
 						SourceRect='163,393,187,417'
 					/>
 				<ImageStyle
-						Name='companionmelee1hlunge1'
+						Name='companionmelee1hLunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='163,393,187,417'
 					/>
 				<ImageStyle
-						Name='companionmelee1hLunge1'
+						Name='companionmelee1hlunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='163,393,187,417'
 					/>
@@ -47208,12 +47208,12 @@
 						SourceRect='485,278,509,302'
 					/>
 				<ImageStyle
-						Name='companionmelee2hLunge1'
+						Name='companionmelee2hlunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='485,278,509,302'
 					/>
 				<ImageStyle
-						Name='companionmelee2hlunge1'
+						Name='companionmelee2hLunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='485,278,509,302'
 					/>
@@ -47313,12 +47313,12 @@
 						SourceRect='393,393,417,417'
 					/>
 				<ImageStyle
-						Name='companionmindShot2'
+						Name='companionmindshot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='393,393,417,417'
 					/>
 				<ImageStyle
-						Name='companionmindshot2'
+						Name='companionmindShot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='393,393,417,417'
 					/>
@@ -47393,12 +47393,12 @@
 						SourceRect='416,48,440,72'
 					/>
 				<ImageStyle
-						Name='companionpointblankarea1'
+						Name='companionpointBlankArea1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,48,440,72'
 					/>
 				<ImageStyle
-						Name='companionpointBlankArea1'
+						Name='companionpointblankarea1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,48,440,72'
 					/>
@@ -47413,12 +47413,12 @@
 						SourceRect='416,94,440,118'
 					/>
 				<ImageStyle
-						Name='companionpointblanksingle1'
+						Name='companionpointBlankSingle1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,94,440,118'
 					/>
 				<ImageStyle
-						Name='companionpointBlankSingle1'
+						Name='companionpointblanksingle1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='416,94,440,118'
 					/>
@@ -47513,12 +47513,12 @@
 						SourceRect='256,370,280,394'
 					/>
 				<ImageStyle
-						Name='companionpolearmlunge1'
+						Name='companionpolearmLunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='256,370,280,394'
 					/>
 				<ImageStyle
-						Name='companionpolearmLunge1'
+						Name='companionpolearmlunge1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='256,370,280,394'
 					/>
@@ -47773,12 +47773,12 @@
 						SourceRect='71,462,95,486'
 					/>
 				<ImageStyle
-						Name='companionstartdance'
+						Name='companionstartDance'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='71,462,95,486'
 					/>
 				<ImageStyle
-						Name='companionstartDance'
+						Name='companionstartdance'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='71,462,95,486'
 					/>
@@ -47798,12 +47798,12 @@
 						SourceRect='163,278,187,302'
 					/>
 				<ImageStyle
-						Name='companionstartleshot1'
+						Name='companionstartleShot1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='163,278,187,302'
 					/>
 				<ImageStyle
-						Name='companionstartleShot1'
+						Name='companionstartleshot1'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='163,278,187,302'
 					/>
@@ -47828,12 +47828,12 @@
 						SourceRect='26,438,50,462'
 					/>
 				<ImageStyle
-						Name='companionstartMusic'
+						Name='companionstartmusic'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='26,438,50,462'
 					/>
 				<ImageStyle
-						Name='companionstartmusic'
+						Name='companionstartMusic'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='26,438,50,462'
 					/>
@@ -47878,12 +47878,12 @@
 						SourceRect='302,439,326,463'
 					/>
 				<ImageStyle
-						Name='companionstopMusic'
+						Name='companionstopmusic'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='302,439,326,463'
 					/>
 				<ImageStyle
-						Name='companionstopmusic'
+						Name='companionstopMusic'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='302,439,326,463'
 					/>
@@ -47928,12 +47928,12 @@
 						SourceRect='415,417,439,441'
 					/>
 				<ImageStyle
-						Name='companionstrafeShot2'
+						Name='companionstrafeshot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='415,417,439,441'
 					/>
 				<ImageStyle
-						Name='companionstrafeshot2'
+						Name='companionstrafeShot2'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='415,417,439,441'
 					/>
@@ -48283,12 +48283,12 @@
 						SourceRect='210,486,233,510'
 					/>
 				<ImageStyle
-						Name='companionunderHandShot'
+						Name='companionunderhandshot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='210,486,233,510'
 					/>
 				<ImageStyle
-						Name='companionunderhandshot'
+						Name='companionunderHandShot'
 						Source='ui_shader_add:ui_rebel_icons'
 						SourceRect='210,486,233,510'
 					/>
@@ -48880,12 +48880,12 @@
 						SourceRect='371,348,395,372'
 					/>
 				<ImageStyle
-						Name='companionhealDamage'
+						Name='companionhealdamage'
 						Source='ui_rebel_icons'
 						SourceRect='371,348,395,372'
 					/>
 				<ImageStyle
-						Name='companionhealdamage'
+						Name='companionhealDamage'
 						Source='ui_rebel_icons'
 						SourceRect='371,348,395,372'
 					/>
@@ -48895,12 +48895,12 @@
 						SourceRect='370,324,394,348'
 					/>
 				<ImageStyle
-						Name='companionhealwound'
+						Name='companionhealWound'
 						Source='ui_rebel_icons'
 						SourceRect='370,324,394,348'
 					/>
 				<ImageStyle
-						Name='companionhealWound'
+						Name='companionhealwound'
 						Source='ui_rebel_icons'
 						SourceRect='370,324,394,348'
 					/>

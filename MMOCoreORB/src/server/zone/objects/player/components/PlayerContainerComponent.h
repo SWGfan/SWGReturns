@@ -5,6 +5,13 @@
  *      Author: victor
  */
 
+#ifndef PLAYERCONTAINERCOMPONENT_H_
+#define PLAYERCONTAINERCOMPONENT_H_
+// genesis port: this header had no include guard. Nothing included it
+// twice until CompanionContainerComponent.h did, which made
+// ComponentManager.cpp pull it in via two paths and fail with
+// "redefinition of class PlayerContainerComponent".
+
 #include "server/zone/objects/scene/components/ContainerComponent.h"
 
 class PlayerContainerComponent : public ContainerComponent {
@@ -32,3 +39,5 @@ public:
 	int notifyObjectRemoved(SceneObject* sceneObject, SceneObject* object, SceneObject* destination) const;
 
 };
+
+#endif /* PLAYERCONTAINERCOMPONENT_H_ */
