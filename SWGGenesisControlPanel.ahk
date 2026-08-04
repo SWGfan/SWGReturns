@@ -356,6 +356,7 @@ BtnRefresh  := MyGui.Add("Button", "x+8 w130 h32", "Refresh")
 ; --- database & admin
 DbBox := MyGui.Add("GroupBox", "xm y+16 w980 h122 vDbBox", "Database, Admin, Planets, TRE && Tuning")
 BtnBackup   := MyGui.Add("Button", "xm+16 yp+30 w132 h32", "Backup Database")
+BtnBackupAll := MyGui.Add("Button", "x+8 w142 h32", "Backup Everything")
 BtnAccounts := MyGui.Add("Button", "x+8 w118 h32", "List Accounts")
 MyGui.Add("Text", "x+10 yp+8 w62", "Account:")
 AdminEdit   := MyGui.Add("Edit", "x+4 y+-8 w140 h24 vAdminEdit", "nickwill86")
@@ -539,12 +540,14 @@ PointLive(*) {
 
 SetBusy(isBusy) {
     global BtnRebuild, BtnStart, BtnShutdown, BtnSaveNow, BtnRestart, BtnBackup
+    global BtnBackupAll
     BtnRebuild.Enabled  := !isBusy
     BtnStart.Enabled    := !isBusy
     BtnShutdown.Enabled := !isBusy
     BtnSaveNow.Enabled  := !isBusy
     BtnRestart.Enabled  := !isBusy
     BtnBackup.Enabled   := !isBusy
+    BtnBackupAll.Enabled := !isBusy
 }
 
 ActionDone(out) {
@@ -667,6 +670,57 @@ TreSyncClick(*) {
 BtnConsole.OnEvent("Click", (*) => (
     Run('cmd.exe /c wsl.exe -d ' . WSL_DISTRO . ' -- python3 ' . WSL_PY . ' console & echo. & echo (window closed -- press any key) & pause >nul')
 ))
+
+BtnBackupAll.OnEvent("Click", BackupAllClick)
+BackupAllClick(*) {
+    ; The object database is the half that actually matters -- every character,
+    ; companion, item and structure. But a Berkeley DB copied while the server
+    ; is writing to it is not reliably restorable, so never do that silently.
+    st := TrimAll(RunCapture("status"))
+
+    if (InStr(st, "RUNNING") || InStr(st, "SESSION_NO_PROC")) {
+        ans := MsgBox(
+            "The server is running.`n`n"
+            . "A full backup includes the object database -- every character, companion,`n"
+            . "item and structure. Copying it while the server is writing to it produces`n"
+            . "a snapshot that may not restore, so it needs the server stopped.`n`n"
+            . "YES     Save the world, shut down, back up, and leave it stopped.`n"
+            . "            (~1-2 min to stop, then about a minute to copy ~309 MB)`n`n"
+            . "NO       Back up MySQL only and keep playing.`n"
+            . "            Accounts and galaxy data only -- NOT your characters.`n`n"
+            . "CANCEL  Do nothing.",
+            "Backup Everything", "YesNoCancel Icon?")
+
+        if (ans = "Cancel")
+            return
+
+        if (ans = "Yes") {
+            SetBusy(true)
+            SetLog("Saving the world, shutting down, then backing up.`n`n"
+                . "Object database (excluding the __db.* region files the engine`n"
+                . "rebuilds anyway) plus a MySQL dump, into D:\SWGGenesis\backups\<timestamp>.`n`n"
+                . "The server is left STOPPED so the copy stays consistent -- press`n"
+                . "Start when it finishes.")
+            RunAsync("backup_all --stop-first", ActionDone)
+            return
+        }
+
+        SetBusy(true)
+        SetLog("Backing up MySQL only -- the server keeps running.`n`n"
+            . "This covers accounts and galaxy data. It does NOT cover your`n"
+            . "characters, companions or items: those live in the object database,`n"
+            . "which needs the server stopped to copy safely.")
+        RunAsync("backup_all --mysql-only", ActionDone)
+        return
+    }
+
+    SetBusy(true)
+    SetLog("Server is stopped -- taking a full backup.`n`n"
+        . "Object database (excluding the __db.* region files the engine rebuilds`n"
+        . "anyway) plus a MySQL dump, into D:\SWGGenesis\backups\<timestamp>.`n`n"
+        . "About 309 MB and roughly a minute. A RESTORE.txt goes in beside it.")
+    RunAsync("backup_all", ActionDone)
+}
 
 BtnBackup.OnEvent("Click", (*) => (
     SetBusy(true),

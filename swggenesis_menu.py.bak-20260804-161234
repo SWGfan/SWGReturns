@@ -25,7 +25,6 @@ Forked 2026-08-03 from swgreturn_menu.py v2 for the genesis base
 """
 
 import os
-import shutil
 import re
 import subprocess
 import sys
@@ -467,142 +466,6 @@ def act_db_backup():
     print("      %s/databases and is a separate Berkeley DB store." % BIN)
     rc, out = sh("ls -1t %s | head -10" % BACKUPS)
     print("\nMost recent backups:\n" + out.strip())
-
-
-def _backup_prune(keep=6):
-    """Keep only the newest `keep` backup folders."""
-    try:
-        entries = [d for d in os.listdir(BACKUPS)
-                   if os.path.isdir(os.path.join(BACKUPS, d))]
-    except OSError:
-        return
-    entries.sort(reverse=True)          # names are timestamps -> newest first
-    for old in entries[keep:]:
-        path = os.path.join(BACKUPS, old)
-        print("  pruning old backup %s" % old)
-        shutil.rmtree(path, ignore_errors=True)
-
-
-RESTORE_NOTE = """SWGGenesis backup -- taken %s
-
-CONTENTS
-  databases/       the object database: every character, companion, item,
-                   structure and waypoint. Berkeley DB.
-  genesis.sql.gz   MySQL: accounts, galaxy metadata, schema version.
-
-__db.001/002/003 are DELIBERATELY NOT INCLUDED. Those are Berkeley DB
-environment region files -- shared-memory scratch that the engine recreates on
-every startup. Restoring stale ones alongside good data can make the engine
-open an environment that disagrees with the databases it points at. The real
-data is the .db files plus log.*, which is what you see here.
-
-TO RESTORE
-  1. Stop the server:
-       python3 /mnt/d/SWGGenesis/swggenesis_menu.py shutdown
-
-  2. Move the current object database aside (do NOT delete it until the
-     restore is proven good):
-       mv /mnt/d/SWGGenesis/MMOCoreORB/bin/databases \
-          /mnt/d/SWGGenesis/MMOCoreORB/bin/databases.before-restore
-
-  3. Put this one back:
-       cp -a %s/databases /mnt/d/SWGGenesis/MMOCoreORB/bin/databases
-
-  4. MySQL:
-       gunzip -c %s/genesis.sql.gz | mysql -u %s -p%s %s
-
-  5. Start, and log in to check a character before deleting the folder from
-     step 2:
-       python3 /mnt/d/SWGGenesis/swggenesis_menu.py start
-"""
-
-
-def act_backup_all(stop_first=False, mysql_only=False):
-    """Back up BOTH halves of the server state. See the module docstring."""
-    if stop_first and core3_pid():
-        print("Server is up -- saving the world and shutting down first.")
-        act_shutdown()
-        for _ in range(40):
-            if not core3_pid():
-                break
-            time.sleep(5)
-
-    running = core3_pid()
-
-    if running and not mysql_only:
-        print("REFUSED: the server is running (pid %s)." % running)
-        print("")
-        print("A Berkeley DB copied while it is being written is not reliably")
-        print("restorable -- you would get a torn snapshot that may or may not")
-        print("open. Rather than hand you a backup that might not work, pick one:")
-        print("")
-        print("  backup_all --stop-first    save, shut down, back up, stay down")
-        print("  backup_all --mysql-only    skip the object DB, dump MySQL only")
-        return 1
-
-    os.makedirs(BACKUPS, exist_ok=True)
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    dest = os.path.join(BACKUPS, stamp)
-    os.makedirs(dest, exist_ok=True)
-    print("Backing up into %s" % dest)
-    print("")
-
-    ok = True
-
-    if not mysql_only:
-        print("1/2  object database (excluding __db.* region files) ...")
-        rc, out = sh("mkdir -p '%s/databases' && cd '%s/databases' && "
-                     "tar -cf - --exclude='__db.*' . | (cd '%s/databases' && tar -xf -)"
-                     % (dest, BIN, dest), timeout=3600)
-        if rc != 0:
-            print("     FAILED:\n" + out.strip())
-            ok = False
-        else:
-            rc, sz = sh("du -sh '%s/databases' | cut -f1" % dest)
-            rc2, n = sh("ls -1 '%s/databases'/*.db 2>/dev/null | wc -l" % dest)
-            print("     wrote %s (%s .db files)" % (sz.strip(), n.strip()))
-    else:
-        print("1/2  object database SKIPPED (--mysql-only)")
-
-    print("2/2  MySQL ...")
-    sqlgz = os.path.join(dest, "%s.sql.gz" % DB_NAME)
-    rc, out = sh("mysqldump -u %s -p%s --single-transaction --routines %s | gzip > '%s'"
-                 % (DB_USER, DB_PASS, DB_NAME, sqlgz), timeout=1800)
-    size = os.path.getsize(sqlgz) if os.path.exists(sqlgz) else 0
-
-    # A failed mysqldump still produces a valid, EMPTY gzip (~20 bytes) -- which
-    # is exactly how a bad-credentials backup went unnoticed on 2026-08-04.
-    # Treat anything that small as a failure, loudly.
-    if rc != 0 or size < 1024:
-        print("     FAILED -- %d bytes. An empty gzip means the dump produced" % size)
-        print("     nothing, which is almost always wrong credentials.")
-        print("     " + out.strip()[:400])
-        ok = False
-    else:
-        rc, sz = sh("du -h '%s' | cut -f1" % sqlgz)
-        print("     wrote %s" % sz.strip())
-
-    with open(os.path.join(dest, "RESTORE.txt"), "w") as fh:
-        fh.write(RESTORE_NOTE % (stamp, dest, dest, DB_USER, DB_PASS, DB_NAME))
-
-    print("")
-    _backup_prune()
-
-    rc, total = sh("du -sh '%s' | cut -f1" % dest)
-    rc, free = sh("df -h '%s' | tail -1 | awk '{print $4}'" % BACKUPS)
-    print("")
-    print("Backup %s: %s   (%s free on the drive)"
-          % ("COMPLETE" if ok else "INCOMPLETE -- see errors above", total.strip(), free.strip()))
-    print("Restore instructions are in %s/RESTORE.txt" % dest)
-    print("")
-    print("NOTE: backups live on the SAME physical disk as the server. That")
-    print("      protects you from a bad patch or a corrupted save -- it does")
-    print("      NOT protect you from this drive failing. Copy a folder to")
-    print("      another drive periodically.")
-    print("")
-    rc, out = sh("ls -1t '%s' | head -8" % BACKUPS)
-    print("Backups on disk (newest first):\n" + out.strip())
-    return 0 if ok else 1
 
 
 def wsl_ip():
@@ -1637,11 +1500,7 @@ ACTIONS = """SWGReturn server control -- actions:
   set_admin USER [LEVEL]
   console_errors      stdout-only errors Core3 never writes to core3.log
   backup_count        integer: completed world saves seen in core3.log
-  db_backup           gzip mysqldump into D:\\SWGGenesis\\backups (MySQL only)
-  backup_all          FULL backup: object DB + MySQL + restore notes
-      --stop-first    save and shut the server down first (needed for a
-                      consistent object-DB copy), leaves it stopped
-      --mysql-only    skip the object DB, dump MySQL only
+  db_backup           gzip mysqldump into D:\\SWGGenesis\\backups
   target_local        point the client at THIS server (writes client cfgs + galaxy)
   target_live         point the client back at THEIR live server
   show_target         READ-ONLY: which server the client currently points at
@@ -1696,8 +1555,6 @@ def main():
             act_set_admin(args[1], args[2] if len(args) > 2 else "15")
     elif a == "backup_count":      act_backup_count()
     elif a == "db_backup":         act_db_backup()
-    elif a == "backup_all":        act_backup_all(
-        stop_first="--stop-first" in args, mysql_only="--mysql-only" in args)
     elif a == "fix_ip":            act_fix_ip()
     elif a == "show_ip":           act_show_ip()
     elif a == "target_local":      act_target_local()

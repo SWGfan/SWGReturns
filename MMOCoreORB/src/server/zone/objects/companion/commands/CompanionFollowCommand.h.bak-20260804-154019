@@ -19,7 +19,6 @@
 
 #include "server/zone/objects/creature/commands/QueueCommand.h"
 #include "server/zone/objects/companion/CompanionObject.h"
-#include "templates/params/creature/CreaturePosture.h"
 #include "server/zone/objects/companion/CompanionControlDevice.h"
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/companion/FormationManager.h"
@@ -135,34 +134,8 @@ public:
 				companion->stopTaxiRide(false);
 			}
 
-			// COMPANION_SIT_FOLLOW_FIX_2026_08_04 -- a sitting companion could
-			// never be recalled. The idle mover in the behaviour tree is
-			// MoveCreaturePet, and MovePetBase:checkConditions (movebase.lua)
-			// gates on posture:
-			//
-			//     if (creature:getPosture() == UPRIGHT
-			//         and agent:getFollowState() ~= OBLIVIOUS) then
-			//
-			// UPRIGHT is a hard requirement, so a seated companion failed that
-			// test on every tick forever, however many follow orders it got.
-			// Nothing else in the companion tree resets posture -- setPosture()
-			// appears only in the scripted show commands (BattleTheater,
-			// Birthday, Jenkins, Muster), never in a movement order.
-			if (companion->getPosture() != CreaturePosture::UPRIGHT) {
-				companion->setPosture(CreaturePosture::UPRIGHT, true, true);
-			}
-
 			companion->setCompanionState(CompanionObject::FOLLOW);
 			companion->setFollowObject(creature);
-			companion->storeFollowObject();
-
-			// Re-arm the movement clock for the same reason spawnObject() has
-			// to (COMPANION_MOVEMENT_EVENT_FIX_2026_08_04):
-			// setFollowObject()'s own activateMovementEvent() call is
-			// commented out in AiAgent.idl:688, so ordering a follow does not
-			// by itself guarantee an AiMoveEvent is scheduled. Idempotent --
-			// it only schedules when one is not already pending.
-			companion->activateMovementEvent();
 
 			// Companion System (2026-07-20, "return to escort target after
 			// the loot/harvest sweep" -- per user request): an explicit

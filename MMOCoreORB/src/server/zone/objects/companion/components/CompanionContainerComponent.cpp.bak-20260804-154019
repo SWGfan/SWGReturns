@@ -562,51 +562,6 @@ int CompanionContainerComponent::notifyObjectRemoved(SceneObject* sceneObject, S
 			}
 		}, "CompanionUnequipSideEffectsLambda");
 
-		// COMPANION_UNEQUIP_RESEND_FIX_2026_08_04 -- dragging an item out of a
-		// companion's equipment slot into their inventory bumped the container
-		// count but left the item INVISIBLE until the owner relogged: the
-		// container delta reaches the client, the item itself never does, so
-		// nothing draws it in its new home until a fresh scene build.
-		//
-		// Same fix the two neighbouring paths already use --
-		// CompanionAutoEquipDisplaceResendLambda (an item displaced out of a
-		// slot by auto-equip, a few hundred lines above) and
-		// CompanionLootResendLambda (loot moved into the owner's inventory).
-		// The unequip path was the one place it was never applied.
-		//
-		// 400ms matches both of those: late enough that the client has
-		// finished processing the container delta, early enough to read as
-		// instant.
-		{
-			Reference<SceneObject*> resendItemRef = object;
-			Reference<SceneObject*> resendHolderRef = sceneObject;
-
-			Core::getTaskManager()->scheduleTask([resendItemRef, resendHolderRef] () {
-				SceneObject* moved = resendItemRef.get();
-				SceneObject* holder = resendHolderRef.get();
-
-				if (moved == nullptr || holder == nullptr || !holder->isCompanionObject()) {
-					return;
-				}
-
-				CompanionObject* companion = cast<CompanionObject*>(holder);
-
-				if (companion == nullptr) {
-					return;
-				}
-
-				ManagedReference<CreatureObject*> viewer = companion->getLinkedCreature().get();
-
-				if (viewer == nullptr) {
-					return;
-				}
-
-				Locker locker(moved);
-
-				moved->sendTo(viewer, true);
-			}, "CompanionUnequipResendLambda", 400);
-		}
-
 		return 0;
 	}
 
