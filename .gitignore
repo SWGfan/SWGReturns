@@ -52,3 +52,5 @@ compile_commands.json
 utils/engine3
 _companion_baks/
 *.bak
+console.log
+console.log.prev

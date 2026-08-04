@@ -1,36 +1,0 @@
-Reading symbols from [32m./core3[m...
-Starting program: [32m/mnt/d/SWGGenesis/MMOCoreORB/bin/core3[m reloadstrings
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "[32m/lib/x86_64-linux-gnu/libthread_db.so.1[m".
-[New Thread 0x7ffff67ff6c0 (LWP 23766)]
-[New Thread 0x7ffff59ff6c0 (LWP 23767)]
-[New Thread 0x7ffff51fe6c0 (LWP 23768)]
-[New Thread 0x7ffff49fd6c0 (LWP 23769)]
-[New Thread 0x7ffff41fc6c0 (LWP 23770)]
-[New Thread 0x7ffff39fb6c0 (LWP 23771)]
-[New Thread 0x7ffff31fa6c0 (LWP 23772)]
-[New Thread 0x7ffff29f96c0 (LWP 23773)]
-[New Thread 0x7ffff21f86c0 (LWP 23774)]
-[New Thread 0x7ffff19f76c0 (LWP 23775)]
-[New Thread 0x7ffff11f66c0 (LWP 23776)]
-[New Thread 0x7ffff09f56c0 (LWP 23777)]
-[New Thread 0x7ffff01f46c0 (LWP 23778)]
-[New Thread 0x7fffef9f36c0 (LWP 23779)]
-[New Thread 0x7fffef1f26c0 (LWP 23780)]
-[New Thread 0x7fffee9f16c0 (LWP 23781)]
-[New Thread 0x7fffee1f06c0 (LWP 23782)]
-[New Thread 0x7fffed9ef6c0 (LWP 23783)]
-[New Thread 0x7fffed1ee6c0 (LWP 23784)]
-[New Thread 0x7fffec9ed6c0 (LWP 23785)]
-(0 s) [Core] Server start, pid: 23763, time: Tue Aug  4 02:54:27 2026
-(0 s) [ConfigManager] ERROR - setStringFromFile(Core3.Revision, conf/rev.txt) File Not Found.
-[New Thread 0x7fffebeec6c0 (LWP 23786)]
-[New Thread 0x7fffeb6eb6c0 (LWP 23787)]
-[New Thread 0x7fffeaeea6c0 (LWP 23788)]
-[New Thread 0x7fff9deff6c0 (LWP 23789)]
-[New Thread 0x7fff9cfff6c0 (LWP 23790)]
-[New Thread 0x7fff9b9ff6c0 (LWP 23791)]
-[New Thread 0x7fff9a7ff6c0 (LWP 23792)]
-(8 s) [TreeArchive] ERROR - Invalid path: skills.iff
-(10 s) [TemplateManager] Loading object templates
-        Loading templates: [0%]         Loading templates: [1%]         Loading templates: [2%]         Loading templates: [3%]         Loading templates: [4%]         Loading templates: [5%]         Loading templates: [6%]         Loading templates: [7%]         Loading templates: [8%]         Loading templates: [9%] 
