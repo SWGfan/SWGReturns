@@ -104,7 +104,7 @@ MAPPING = {
     # Replaced with combatTarget / chargeShot1 / setwarcry respectively --
     # each independently verified to have exactly one plain + one
     # ui_shader_add definition at the same SourceRect, no Size override.
-    "companionguard": "defend",
+    "companionguard": "assist",
     "companionfollowother": "combatTarget",
     "companionrangedattack": "overchargeShot1",
     "companionspecialone": "chargeShot1",
@@ -115,7 +115,7 @@ MAPPING = {
     # request) -- return -> areaTrack (same "walk back to a marked spot"
     # visual already used for patrol; no dedicated "rally point" style
     # exists in the palette).
-    "companionreturn": "callRetreat",
+    "companionreturn": "areaTrack",
     # Companion System (2026-07-25, "Jenkins" pass, per user request "i also
     # want a icon macro i can use") -- went through two wrong picks before
     # this one: "callRetreat" (no ui_shader_add copy -- silently fell back
@@ -126,17 +126,6 @@ MAPPING = {
     # and fits the theme (a war cry before charging in).
     "jenkins": "setwarcry",
 }
-
-# ICON_COLLISION_FIX_2026_08_04 -- two entries above were changed because they
-# resolved to pixels another companion command was already drawing:
-#   companionguard  was "assist", whose SourceRect is IDENTICAL to "pethigh"
-#                   (the icon /hpet uses) in aftermath's palette -> now "defend"
-#   companionreturn was "areaTrack", the same style /companionpatrol uses
-#                   -> now "callRetreat"
-# Both replacements were verified present in aftermath_1.tre's palette and
-# unused by any other companion command. When adding a NEW hand-picked mapping,
-# check the chosen style's SourceRect against every other entry here first --
-# distinct style NAMES do not guarantee distinct PIXELS.
 for a in _COMPANION_ABILITY_NAMES + _STARTER_ABILITY_NAMES:
     MAPPING["companion" + a] = "warcry1" if a == "berserk1" else a
 

@@ -1,7 +1,7 @@
 # Companion client patch
 
 `companion_patch.tre` — the one custom client archive this server uses.
-**3,121,967 bytes, 16 records.** Generated 2026-08-04 06:42:30.
+**3,121,943 bytes, 16 records.** Generated 2026-08-04 14:46:00.
 
 See `companion_patch.manifest.txt` for exactly what is inside; GitHub cannot
 render a `.tre`, so the manifest is the only way to inspect it without
