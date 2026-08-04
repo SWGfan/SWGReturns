@@ -221,6 +221,12 @@ def act_start(reloadstrings=False):
               "databases", "navmeshes", "exports"]:
         os.makedirs(os.path.join(BIN, d), exist_ok=True)
 
+    # A TreFiles override that lists an archive no longer shipped upstream kills
+    # the boot ~90 seconds in, with an error that reads like a content problem
+    # rather than a config one. Cheap to check here; warn, don't block, since a
+    # deliberate hand-edit is legitimate.
+    _warn_tre_drift()
+
     # screen -L -Logfile captures EVERYTHING the console prints to a real file.
     # Core3 writes some errors only to stdout and never to core3.log -- the MySQL
     # schema errors (1054/1364) and the ObjectManager "unknown objectcrc /
@@ -814,6 +820,231 @@ def act_planets_set(ground_csv, space_csv):
         print("the backup above and start again.")
 
 
+# ------------------------------------------------------------------ TRE load order
+# The Companion client patch (companion_patch.tre) overrides base archives --
+# skills.iff, the command tables, several .stf string files. In SWG the FIRST
+# matching archive in TreFiles wins, so the patch is only in effect if it sits
+# at the TOP of the list. Being present in the folder is not enough.
+#
+# Genesis owns that list in config.lua (56 entries as of 2026-08-04) and
+# config-local.lua does not override it. Three ways to get our entry first:
+#
+#   A. Edit config.lua directly       -- one line, but collides with every
+#                                        upstream content update, and this fork
+#                                        deliberately tracks upstream closely.
+#   B. Hand-copy all 56 into          -- works today, silently goes stale the
+#      config-local.lua                  moment upstream adds or removes a TRE.
+#                                        A missing archive is a boot failure;
+#                                        a stale EXTRA one is a silent content
+#                                        mismatch, which is worse.
+#   C. Regenerate the override from   -- what this does. Idempotent, so it is
+#      config.lua on demand              safe to re-run after every `pull`, and
+#                                        upstream TRE changes are picked up
+#                                        automatically. config.lua stays pristine.
+#
+# bin/conf/* is gitignored, so the generated override survives a pull; it just
+# needs regenerating if the upstream list changed. `tre_check` reports that
+# without writing anything.
+PATCH_TRE  = "companion_patch.tre"
+LOCAL_TRE_KEY = "Core3.TreFiles"
+TRE_NAME   = re.compile(r'"([^"]+)"')
+
+
+def _tre_path():
+    """TrePath as the server will resolve it: local override beats config.lua."""
+    for path, keys in ((CONF, ("Core3.TrePath", "TrePath")),
+                       (CONF_MAIN, ("TrePath",))):
+        text = _read(path)
+        for key in keys:
+            m = re.search(r'^(?![ \t]*--)[ \t]*' + re.escape(key)
+                          + r'[ \t]*=[ \t]*"([^"]*)"', text, re.M)
+            if m:
+                return m.group(1)
+    return ""
+
+
+def _tre_list(text, key):
+    """Entries of an uncommented `key = { ... }`, in order, or None."""
+    blk = _zone_block(text, key)      # same brace-matching rules; no nested braces
+    if blk is None:
+        return None
+    out = []
+    for line in blk.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("--"):
+            continue                  # a commented-out archive is not loaded
+        out.extend(TRE_NAME.findall(stripped.split("--", 1)[0]))
+    return out
+
+
+def _local_tre_list(text):
+    for key in (LOCAL_TRE_KEY, "TreFiles"):
+        got = _tre_list(text, key)
+        if got is not None:
+            return got, key
+    return None, None
+
+
+def _warn_tre_drift():
+    """Called from act_start. Silent when there is nothing to say -- a warning
+    printed on every single start is a warning nobody reads."""
+    live, _ = _local_tre_list(_read(CONF))
+    if live is None:
+        return                       # no override at all; config.lua governs
+    upstream = _tre_list(_read(CONF_MAIN), "TreFiles")
+    if not upstream:
+        return
+    mine = [t for t in live if t != PATCH_TRE]
+    missing = [t for t in upstream if t not in mine]
+    extra = [t for t in mine if t not in upstream]
+    tre_dir = _tre_path()
+    absent = [t for t in live
+              if tre_dir and not os.path.exists(os.path.join(tre_dir, t))]
+    if not (missing or extra or absent):
+        return
+    print("WARNING -- TRE load order in config-local.lua looks wrong:")
+    if len(absent) == len(live):
+        # Every entry missing means the folder is wrong, not the list. Saying
+        # "12 archives are missing" would send you editing the wrong file.
+        print("   NONE of the %d listed archives exist in TrePath:" % len(live))
+        print("     %s" % (tre_dir or "(TrePath not set)"))
+        print("   That is a TrePath problem, not a load-order one.")
+        absent = []
+    for t in absent[:5]:
+        print("   listed but NOT in TrePath : %s   <-- this WILL abort the boot" % t)
+    if len(absent) > 5:
+        print("   ... and %d more not in TrePath" % (len(absent) - 5))
+    for t in extra:
+        print("   upstream no longer ships  : %s" % t)
+    for t in missing:
+        print("   upstream added, missing   : %s" % t)
+    print("   Fix with:  tre_sync    (then start again)")
+    print("")
+
+
+def act_tre_check():
+    """Read-only. Says whether the patch is first, and whether the override has
+    drifted from config.lua -- which is the failure mode that bites after a pull."""
+    upstream = _tre_list(_read(CONF_MAIN), "TreFiles")
+    if upstream is None:
+        print("Could not read TreFiles from %s." % CONF_MAIN)
+        return
+    live, key = _local_tre_list(_read(CONF))
+    tre_dir = _tre_path()
+
+    print("config.lua       : %d archive(s)" % len(upstream))
+    if live is None:
+        print("config-local.lua : no TreFiles override -- config.lua's list is what loads.")
+        print("")
+        print("=> %s is NOT in the load order. Run:  tre_sync" % PATCH_TRE)
+    else:
+        print("config-local.lua : %d archive(s), key `%s`" % (len(live), key))
+        print("")
+        if live and live[0] == PATCH_TRE:
+            print("Load order       : OK -- %s is FIRST." % PATCH_TRE)
+        elif PATCH_TRE in live:
+            print("Load order       : WRONG -- %s is at position %d, not first."
+                  % (PATCH_TRE, live.index(PATCH_TRE) + 1))
+            print("                   Base archives ahead of it win. Run:  tre_sync")
+        else:
+            print("Load order       : %s is absent from the override. Run:  tre_sync"
+                  % PATCH_TRE)
+
+        # Drift is the whole reason tre_check exists. Compare against upstream
+        # ignoring our own prepended entry.
+        mine = [t for t in live if t != PATCH_TRE]
+        missing = [t for t in upstream if t not in mine]
+        extra = [t for t in mine if t not in upstream]
+        if missing or extra:
+            print("")
+            print("DRIFT vs config.lua -- the override is stale, re-run tre_sync:")
+            for t in missing:
+                print("   upstream added, we are missing : %s" % t)
+            for t in extra:
+                print("   upstream removed, we still list: %s   <-- server will fail to boot"
+                      % t)
+        elif mine:
+            print("Drift            : none, override matches config.lua.")
+
+    if tre_dir:
+        print("")
+        print("TrePath          : %s" % tre_dir)
+        p = os.path.join(tre_dir, PATCH_TRE)
+        if os.path.exists(p):
+            print("%-17s: present, %s bytes" % (PATCH_TRE, format(os.path.getsize(p), ",")))
+        else:
+            print("%-17s: NOT FOUND in TrePath -- listing it would abort the boot."
+                  % PATCH_TRE)
+
+
+def act_tre_sync():
+    """Regenerate Core3.TreFiles in config-local.lua = patch first, then
+    config.lua's list verbatim. Idempotent; run it after every upstream pull."""
+    upstream = _tre_list(_read(CONF_MAIN), "TreFiles")
+    if upstream is None:
+        print("REFUSED: could not read TreFiles from %s -- nothing to base the "
+              "override on." % CONF_MAIN)
+        return
+    if len(upstream) < 10:
+        # A regex that half-matched would produce a short list, and writing that
+        # override would leave the server unable to find most of its content.
+        print("REFUSED: only parsed %d archive(s) from config.lua. That is too few "
+              "to be real -- refusing to write a truncated load order." % len(upstream))
+        return
+
+    tre_dir = _tre_path()
+    if tre_dir and not os.path.exists(os.path.join(tre_dir, PATCH_TRE)):
+        print("REFUSED: %s is not in %s." % (PATCH_TRE, tre_dir))
+        print("A TreFiles entry with no file behind it aborts the boot. Copy the")
+        print("patch into TrePath first, then run tre_sync again.")
+        return
+
+    text = _read(CONF)
+    if not text:
+        print("REFUSED: %s is missing. Not creating it from scratch -- it holds "
+              "the database credentials." % CONF)
+        return
+
+    ordered = [PATCH_TRE] + [t for t in upstream if t != PATCH_TRE]
+
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    bak = "%s.%s.bak" % (CONF, stamp)
+    n = 1
+    while os.path.exists(bak):
+        bak = "%s.%s_%d.bak" % (CONF, stamp, n)
+        n += 1
+    with open(bak, "w", encoding="utf-8") as f:
+        f.write(text)
+
+    body = "\n".join('    "%s",' % t for t in ordered).rstrip(",")
+    block = ("-- Generated by `swggenesis_menu.py tre_sync` on %s.\n"
+             "-- = %s first, then config.lua's list verbatim. Re-run after any pull.\n"
+             "%s = {\n%s\n}\n" % (stamp, PATCH_TRE, LOCAL_TRE_KEY, body))
+
+    existing = None
+    for key in (LOCAL_TRE_KEY, "TreFiles"):
+        if _zone_block(text, key) is not None:
+            existing = key
+            break
+
+    if existing:
+        new = re.sub(r'^(?:[ \t]*--[^\n]*\n)*(?![ \t]*--)[ \t]*' + re.escape(existing)
+                     + r'[ \t]*=[ \t]*\{.*?\}[ \t]*\n?',
+                     block, text, count=1, flags=re.S | re.M)
+    else:
+        new = text.rstrip() + "\n\n" + block
+
+    with open(CONF, "w", encoding="utf-8") as f:
+        f.write(new)
+
+    print("Wrote %d archive(s) to config-local.lua, %s first."
+          % (len(ordered), PATCH_TRE))
+    print("Backup: %s" % bak)
+    print("")
+    print("Takes effect on the NEXT SERVER START. Because this changes string")
+    print("tables, start once with reloadstrings.")
+
+
 def act_remote():
     """REMOTE|url|branch|upstream|ahead|behind -- so the GUI can show the push
     target before you press anything, instead of asking you to remember it."""
@@ -866,6 +1097,8 @@ ACTIONS = """SWGReturn server control -- actions:
   ports               what is listening
   planets_get         TYPE|zone|0or1 for every known zone
   planets_set --ground a,b --space c,d
+  tre_check           READ-ONLY: is companion_patch.tre first, has the list drifted
+  tre_sync            regenerate the TRE load order, patch first (run after a pull)
   remote              where a push would go
   diff / pull / push [--msgfile PATH]
 """
@@ -912,6 +1145,8 @@ def main():
     elif a == "ports":             act_ports()
     elif a == "planets_get":       act_planets_get()
     elif a == "planets_set":       act_planets_set(_flag(args, "--ground"), _flag(args, "--space"))
+    elif a == "tre_check":         act_tre_check()
+    elif a == "tre_sync":          act_tre_sync()
     elif a == "remote":            act_remote()
     elif a == "diff":              act_diff()
     elif a == "pull":              act_pull()
