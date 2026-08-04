@@ -165,6 +165,36 @@ PLANETS & TRE
   TRE Sync          -- regenerates the load order as companion_patch.tre
                        followed by config.lua's list verbatim. Idempotent.
                        Run it after any pull that changes the TRE list.
+  Publish TRE       -- copies the built archive to the repo's tre/ folder,
+                       where players can find it, and regenerates the
+                       manifest and README beside it. GitHub renders a .tre
+                       as "not displayed", so the manifest is the only way
+                       to see what is inside one without downloading it.
+
+                       It COPIES what is currently built -- it does not
+                       rebuild. If content changed, run
+                       build_companion_content.py then build_tre_patch.py
+                       in docs/companion_system/tools/ first, then publish.
+
+                       Nothing is pushed until you press Confirm && Push.
+
+PLAYERS & ADMIN
+  Players && Admin  -- every account with its admin level, character count and
+                       whether it looks online, plus the characters on the
+                       account you select. Make Full Admin / Remove Admin act
+                       on the selected row, so you never type a username.
+
+                       ONLINE IS BEST-EFFORT. Core3 has no authoritative
+                       who-is-logged-in table. This reads the newest
+                       account_ips row per account: a login writes logout=0, a
+                       logout writes logout=1. A server killed rather than shut
+                       down cleanly never writes the logout row, so an account
+                       can look online until it next logs in.
+
+                       Also note those rows only exist from 2026-08-04: before
+                       that account_ips was missing the galaxy_id and
+                       online_count columns the server inserts, so every login
+                       and logout insert was failing.
 
 SERVER TUNING
   Server Tuning...  -- gameplay knobs: XP multiplier, group XP bonus, the
@@ -334,9 +364,11 @@ BtnPorts    := MyGui.Add("Button", "x+8 w96 h32", "Show Ports")
 BtnPlanets  := MyGui.Add("Button", "x+8 w96 h32", "Planets...")
 BtnTreCheck := MyGui.Add("Button", "x+8 w96 h32", "TRE Check")
 BtnTreSync  := MyGui.Add("Button", "x+8 w96 h32", "TRE Sync")
+BtnTrePub   := MyGui.Add("Button", "x+8 w110 h32", "Publish TRE")
 BtnTuning   := MyGui.Add("Button", "xm+16 y+8 w170 h32", "Server Tuning...")
-MyGui.Add("Text", "x+12 yp+8 w600 cGray",
-    "XP rate, terminal buff strength, buff duration, stored pets/vehicles -- restart only, no rebuild.")
+BtnPlayers  := MyGui.Add("Button", "x+8 w170 h32", "Players && Admin...")
+MyGui.Add("Text", "x+12 yp+8 w420 cGray",
+    "Tuning: XP rate, buff strength/duration -- restart only, no rebuild.")
 
 ; --- github
 PushBox := MyGui.Add("GroupBox", "xm y+16 w980 h112 vPushBox", "GitHub  --  pushes go to SWGfan ONLY, never to bfitzgit23")
@@ -602,6 +634,22 @@ BtnAccounts.OnEvent("Click", (*) => SetLog(RunCapture("accounts")))
 BtnTreCheck.OnEvent("Click", (*) => SetLog(RunCapture("tre_check")))
 BtnConWidth.OnEvent("Click", (*) => SetLog(RunCapture("console_width 200")))
 
+BtnTrePub.OnEvent("Click", TrePublishClick)
+TrePublishClick(*) {
+    r := MsgBox("Publish the built TRE to the repo's tre/ folder?"
+              . "`n`nCopies docs/companion_system/tools/companion_patch.tre to"
+              . "`n    tre/companion_patch.tre"
+              . "`nand regenerates tre/companion_patch.manifest.txt + tre/README.md."
+              . "`n`nThis is a COPY of whatever is currently built -- it does NOT"
+              . "`nrebuild the archive. If you have changed content, run"
+              . "`nbuild_companion_content.py and build_tre_patch.py first."
+              . "`n`nNothing is pushed until you press Confirm && Push.",
+              "Publish TRE", "YesNo Icon?")
+    if (r != "Yes")
+        return
+    SetLog(RunCapture("tre_publish"))
+}
+
 BtnTreSync.OnEvent("Click", TreSyncClick)
 TreSyncClick(*) {
     r := MsgBox("Regenerate the TRE load order in config-local.lua?"
@@ -748,6 +796,170 @@ BigConsoleDone(out) {
     }
     BigStatus.Value := "Last refresh: " . FormatTime(, "HH:mm:ss")
                      . "     read-only -- this window cannot send keystrokes to the server"
+}
+
+; ---- PLAYERS & ADMIN --------------------------------------------------------
+; Set Admin used to make you type a username blind, with no way to see what
+; accounts exist or what level they already had. This is that, with the list.
+;
+; ONLINE is best-effort and deliberately labelled as such in the window. Core3
+; keeps no authoritative "who is logged in" table; the closest signal is
+; account_ips, where a login writes logout=0 and a logout writes logout=1, so
+; the newest row per account is the last thing that happened. A server killed
+; with SIGKILL never writes the logout row, which leaves an account looking
+; online until it next logs in.
+PlayersGui := 0
+PlayersLV := 0
+CharsLV := 0
+PlayersMsg := 0
+PlayerChars := []
+
+BtnPlayers.OnEvent("Click", ShowPlayers)
+
+ShowPlayers(*) {
+    global PlayersGui, PlayersLV, CharsLV, PlayersMsg, MyGui
+
+    if IsObject(PlayersGui) {
+        try PlayersGui.Destroy()
+    }
+
+    PlayersGui := Gui("+Owner" . MyGui.Hwnd . " +Resize +MinSize700x500",
+                      "Genesis -- Players && Admin")
+    PlayersGui.MarginX := 14
+    PlayersGui.MarginY := 12
+    PlayersGui.SetFont("s10", "Segoe UI")
+
+    PlayersGui.Add("Text", "w760",
+        "Click an account to see its characters. Admin level 15 is full admin, 0 is a normal player.")
+
+    PlayersLV := PlayersGui.Add("ListView", "xm y+8 w760 h260 -Multi Grid",
+                                ["Username", "Admin", "Characters", "Online", "Active", "Acct"])
+
+    BtnMkAdmin := PlayersGui.Add("Button", "xm y+10 w150 h32", "Make Full Admin (15)")
+    BtnRmAdmin := PlayersGui.Add("Button", "x+8 w150 h32", "Remove Admin (0)")
+    BtnSetLvl  := PlayersGui.Add("Button", "x+8 w130 h32", "Set Level...")
+    BtnPlRef   := PlayersGui.Add("Button", "x+8 w110 h32", "Refresh")
+    BtnPlClose := PlayersGui.Add("Button", "x+8 w110 h32", "Close")
+
+    PlayersGui.Add("Text", "xm y+12 w760", "Characters on the selected account:")
+    CharsLV := PlayersGui.Add("ListView", "xm y+6 w760 h150 -Multi Grid",
+                              ["Character", "Object ID"])
+
+    PlayersMsg := PlayersGui.Add("Text", "xm y+10 w760 r2 cGray", "")
+
+    BtnMkAdmin.OnEvent("Click", (*) => SetAdminFromList("15"))
+    BtnRmAdmin.OnEvent("Click", (*) => SetAdminFromList("0"))
+    BtnSetLvl.OnEvent("Click", SetAdminCustom)
+    BtnPlRef.OnEvent("Click", (*) => LoadPlayers())
+    BtnPlClose.OnEvent("Click", (*) => PlayersGui.Destroy())
+    PlayersLV.OnEvent("ItemSelect", (*) => ShowCharsForSelected())
+
+    PlayersGui.Show()
+    LoadPlayers()
+}
+
+LoadPlayers() {
+    global PlayersLV, CharsLV, PlayersMsg, PlayerChars
+
+    PlayersMsg.Value := "Reading the database..."
+    out := RunCapture("players")
+
+    PlayersLV.Opt("-Redraw")
+    PlayersLV.Delete()
+    CharsLV.Delete()
+    PlayerChars := []
+    nAcc := 0, nOnline := 0, nAdmin := 0
+
+    Loop Parse, out, "`n", "`r" {
+        line := Trim(A_LoopField)
+        p := StrSplit(line, "|")
+        if (p.Length >= 7 && p[1] = "ACC") {
+            ; ACC | id | username | admin_level | active | charcount | online
+            nAcc++
+            if (p[4] != "0")
+                nAdmin++
+            if (p[7] = "1")
+                nOnline++
+            PlayersLV.Add("", p[3], p[4], p[6], p[7] = "1" ? "YES" : "", p[5] = "1" ? "yes" : "NO", p[2])
+        } else if (p.Length >= 4 && p[1] = "CHR") {
+            ; CHR | account_id | character_oid | name
+            PlayerChars.Push({acct: p[2], oid: p[3], name: p[4]})
+        }
+    }
+
+    Loop 6
+        PlayersLV.ModifyCol(A_Index, "AutoHdr")
+    PlayersLV.Opt("+Redraw")
+
+    if (nAcc = 0) {
+        PlayersMsg.Value := "No accounts came back. Is the updated swggenesis_menu.py in place?"
+                          . "`nRaw output: " . SubStr(TrimAll(out), 1, 200)
+        return
+    }
+
+    PlayersMsg.Value := nAcc . " account(s), " . nAdmin . " with admin, " . nOnline . " online, "
+                      . PlayerChars.Length . " character(s) on galaxy 3."
+                      . "`nOnline is best-effort: it reads the newest account_ips row, so a server killed rather than shut down cleanly can leave an account looking online."
+}
+
+ShowCharsForSelected() {
+    global PlayersLV, CharsLV, PlayerChars
+    row := PlayersLV.GetNext()
+    CharsLV.Delete()
+    if (!row)
+        return
+    acct := PlayersLV.GetText(row, 6)
+    for c in PlayerChars {
+        if (c.acct = acct)
+            CharsLV.Add("", c.name, c.oid)
+    }
+    CharsLV.ModifyCol(1, 380)
+    CharsLV.ModifyCol(2, 200)
+}
+
+SelectedUser() {
+    global PlayersLV, PlayersMsg
+    row := PlayersLV.GetNext()
+    if (!row) {
+        PlayersMsg.Value := "Select an account in the list first."
+        return ""
+    }
+    return PlayersLV.GetText(row, 1)
+}
+
+SetAdminFromList(level) {
+    global PlayersMsg
+    u := SelectedUser()
+    if (u = "")
+        return
+    verb := (level = "0") ? "REMOVE admin from" : "give admin level " . level . " to"
+    r := MsgBox("Really " . verb . " account '" . u . "' on GENESIS?", "Players && Admin", "YesNo Icon?")
+    if (r != "Yes")
+        return
+    out := RunCapture("set_admin " . u . " " . level)
+    SetLog(out)
+    PlayersMsg.Value := TrimAll(out)
+    LoadPlayers()
+}
+
+SetAdminCustom(*) {
+    global PlayersMsg
+    u := SelectedUser()
+    if (u = "")
+        return
+    ib := InputBox("Admin level for '" . u . "'?`n`n15 = full admin, 0 = normal player.",
+                   "Set Admin Level", "w320 h150", "15")
+    if (ib.Result != "OK")
+        return
+    lvl := TrimAll(ib.Value)
+    if !RegExMatch(lvl, "^\d+$") {
+        MsgBox("Admin level must be a whole number.", "Set Admin Level", "Icon!")
+        return
+    }
+    out := RunCapture("set_admin " . u . " " . lvl)
+    SetLog(out)
+    PlayersMsg.Value := TrimAll(out)
+    LoadPlayers()
 }
 
 ; ---- SERVER TUNING ----------------------------------------------------------

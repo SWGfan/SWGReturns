@@ -1083,6 +1083,230 @@ def act_tre_sync():
     print("tables, start once with reloadstrings.")
 
 
+# ------------------------------------------------------------------ TRE publishing
+# The archive players actually download lives at the repo root in tre/, not
+# buried in docs/companion_system/tools/. GitHub renders a .tre as "not
+# displayed", so a generated manifest sits beside it -- that is the only way to
+# see what is inside one without downloading it.
+#
+# This is a COPY step, deliberately. The build pipeline
+# (build_companion_content.py -> build_tre_patch.py) keeps writing to tools/ as
+# it always has; publishing is a separate, explicit action so a half-finished
+# rebuild never lands in front of players.
+TRE_BUILT = REPO + "/docs/companion_system/tools/companion_patch.tre"
+TRE_PUB_DIR = REPO + "/tre"
+TRE_TOOLS = REPO + "/docs/companion_system/tools"
+
+
+def _tre_records(path):
+    """[(path, bytes, checksum)] from an archive, using the project's own reader."""
+    import importlib
+    sys.path.insert(0, TRE_TOOLS)
+    try:
+        tre_reader = importlib.import_module("tre_reader")
+        arc = tre_reader.TreArchive(path)
+    except Exception as e:
+        return None, str(e)
+    out = []
+    for rec in arc.records:
+        p = rec.path
+        if isinstance(p, bytes):
+            p = p.decode("utf-8", "replace")
+        p = (p or "").replace("\\", "/").strip("\x00").strip()
+        out.append((p, rec.uncompressedSize, rec.checksum))
+    out.sort(key=lambda r: r[0])
+    return out, None
+
+
+def act_tre_publish():
+    """Copy the built TRE to <repo>/tre/ with a manifest and a README."""
+    if not os.path.exists(TRE_BUILT):
+        print("REFUSED: %s does not exist." % TRE_BUILT)
+        print("Build it first, from inside docs/companion_system/tools/:")
+        print("    python3 build_companion_content.py && python3 build_tre_patch.py")
+        return
+
+    size = os.path.getsize(TRE_BUILT)
+    recs, err = _tre_records(TRE_BUILT)
+    if recs is None:
+        # No manifest is better than a wrong one -- but the archive itself is
+        # still worth publishing, so this is a warning, not a refusal.
+        print("WARNING: could not read the archive for a manifest (%s)." % err)
+        print("         Publishing the .tre without one.")
+
+    os.makedirs(TRE_PUB_DIR, exist_ok=True)
+    dst = os.path.join(TRE_PUB_DIR, "companion_patch.tre")
+
+    same = os.path.exists(dst) and os.path.getsize(dst) == size
+    with open(TRE_BUILT, "rb") as f:
+        data = f.read()
+    if same:
+        with open(dst, "rb") as f:
+            same = f.read() == data
+    if same:
+        print("tre/companion_patch.tre is already identical -- archive not rewritten.")
+    else:
+        with open(dst, "wb") as f:
+            f.write(data)
+        print("Published tre/companion_patch.tre  (%s bytes)" % format(size, ","))
+
+    stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    if recs:
+        lines = [
+            "companion_patch.tre -- contents",
+            "=" * 62,
+            "",
+            "Generated %s by `swggenesis_menu.py tre_publish`." % stamp,
+            "Archive: %s bytes, %d records." % (format(size, ","), len(recs)),
+            "",
+            "A .tre is a binary archive, so GitHub shows it as \"not displayed\".",
+            "This manifest exists so you can see what is inside without downloading.",
+            "",
+            "%-58s %12s  %s" % ("path", "bytes", "checksum"),
+            "%-58s %12s  %s" % ("-" * 58, "-" * 12, "-" * 10),
+        ]
+        for p, n, c in recs:
+            lines.append("%-58s %12s  0x%08x" % (p, format(n, ","), c))
+        lines.append("")
+        with open(os.path.join(TRE_PUB_DIR, "companion_patch.manifest.txt"),
+                  "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+        print("Wrote tre/companion_patch.manifest.txt  (%d records)" % len(recs))
+
+    readme = README_TRE % {"stamp": stamp, "size": format(size, ","),
+                           "count": len(recs) if recs else 0}
+    with open(os.path.join(TRE_PUB_DIR, "README.md"), "w", encoding="utf-8") as f:
+        f.write(readme)
+    print("Wrote tre/README.md")
+    print("")
+    print("Not committed. Use Confirm && Push (or `push`) to send it to SWGfan.")
+
+
+README_TRE = """# Companion client patch
+
+`companion_patch.tre` — the one custom client archive this server uses.
+**%(size)s bytes, %(count)d records.** Generated %(stamp)s.
+
+See `companion_patch.manifest.txt` for exactly what is inside; GitHub cannot
+render a `.tre`, so the manifest is the only way to inspect it without
+downloading.
+
+## What it does
+
+Adds the Companion Handler profession's client-side content: skill tables,
+command definitions, string tables, the companion control device template, and
+the icon styles its commands use.
+
+## Installing it (players)
+
+1. Put `companion_patch.tre` in your SWG client folder, beside the other
+   `.tre` files.
+2. Open `swgemu_live.cfg`, find the `[SharedFile]` section, and add a line:
+
+   ```
+   searchTree_00_29=companion_patch.tre
+   ```
+
+3. **Fully close and relaunch the client.** It caches TRE contents, so
+   reconnecting is not enough.
+
+### The two things that go wrong
+
+**Priority.** The client loads the archive with the HIGHEST `searchTree_XX_NN`
+number first, and the first archive holding a path wins. This patch must be
+above every archive it overrides. Pick a number higher than any already in the
+file — and check `maxSearchPriority` at the top of `[SharedFile]`: an entry
+above that cap is **silently ignored**, the game loads normally, and nothing
+anywhere logs a reason.
+
+**Content packs.** If your client has a content pack (aftermath, etc.), this
+patch is built against it. Installing it over a *different* pack will revert
+that pack's version of any file listed in the manifest.
+
+## Installing it (server operators)
+
+Put it in your `TrePath` and list it **first** in `TreFiles`. Order is the
+whole point — the first matching archive wins, so a patch that is not first
+does nothing at all.
+
+Start once with `reloadstrings` after installing, or item names render as raw
+`.iff` paths and flytext shows unresolved STF keys.
+
+## Rebuilding
+
+From `docs/companion_system/tools/`:
+
+```bash
+python3 build_companion_content.py
+python3 build_tre_patch.py          # prints ARCHIVE VERIFIED OK
+```
+
+then publish it here with `swggenesis_menu.py tre_publish`.
+"""
+
+
+# ------------------------------------------------------------------ players / admin
+def mysql_rows(sql, timeout=60):
+    """Rows as lists of strings. -B -N gives tab-separated output with no box
+    drawing and no header, which is the only form worth parsing. The password
+    on the command line makes mysql warn on stderr every time, hence 2>/dev/null
+    -- without it the warning becomes the first 'row'."""
+    q = sql.replace('"', '\\"')
+    rc, out = sh('mysql -B -N -u %s -p%s %s -e "%s" 2>/dev/null'
+                 % (DB_USER, DB_PASS, DB_NAME, q), timeout)
+    rows = []
+    for line in out.splitlines():
+        if line.strip():
+            rows.append(line.split("\t"))
+    return rc, rows
+
+
+def act_players():
+    """ACC|id|username|admin_level|active|charcount|online   then
+       CHR|account_id|character_oid|name                     for the GUI.
+
+    'online' is best-effort. Core3 has no authoritative "who is logged in"
+    table; the closest signal is account_ips, where a login writes logout=0 and
+    a logout writes logout=1. So the newest row per account tells us the last
+    thing that happened. A server killed with SIGKILL never writes the logout
+    row, which leaves an account looking online until its next login -- that is
+    a known limitation, not a bug to chase.
+
+    NOTE those rows only exist from 2026-08-04 onward: account_ips was missing
+    the galaxy_id and online_count columns the code inserts, so EVERY login and
+    logout insert failed before then."""
+    rc, rows = mysql_rows(
+        "SELECT a.account_id, a.username, a.admin_level, a.active,"
+        " (SELECT COUNT(*) FROM characters c"
+        "    WHERE c.account_id = a.account_id AND c.galaxy_id = %d),"
+        " COALESCE((SELECT ai.logout FROM account_ips ai"
+        "    WHERE ai.account_id = a.account_id"
+        "    ORDER BY ai.idaccount_ips DESC LIMIT 1), 1)"
+        " FROM accounts a ORDER BY a.username;" % GALAXY_ID)
+
+    if rc != 0 or not rows:
+        print("Could not read the accounts table (rc=%d)." % rc)
+        return
+
+    for r in rows:
+        if len(r) < 6:
+            continue
+        acct, user, lvl, active, chars, lastlogout = r[0], r[1], r[2], r[3], r[4], r[5]
+        online = "1" if lastlogout == "0" else "0"
+        print("ACC|%s|%s|%s|%s|%s|%s" % (acct, user, lvl, active, chars, online))
+
+    rc2, crows = mysql_rows(
+        "SELECT c.account_id, c.character_oid, c.firstname,"
+        " IFNULL(c.surname,'') FROM characters c"
+        " WHERE c.galaxy_id = %d ORDER BY c.firstname;" % GALAXY_ID)
+    for r in crows:
+        if len(r) < 4:
+            continue
+        name = (r[2] + " " + r[3]).strip()
+        print("CHR|%s|%s|%s" % (r[0], r[1], name))
+
+
 # ------------------------------------------------------------------ server tuning
 # Gameplay knobs the GUI can edit. Every one of these is a top-level assignment
 # in bin/scripts/managers/player_manager.lua, read by the C++ at load time via
@@ -1272,6 +1496,7 @@ ACTIONS = """SWGReturn server control -- actions:
   log_tail [N]        last N lines of core3.log (default 80)
   log_errors          error-class lines + counts
   accounts            list accounts and character count
+  players             ACC|/CHR| rows for the GUI: admin level, chars, online
   set_admin USER [LEVEL]
   console_errors      stdout-only errors Core3 never writes to core3.log
   backup_count        integer: completed world saves seen in core3.log
@@ -1285,6 +1510,7 @@ ACTIONS = """SWGReturn server control -- actions:
   planets_set --ground a,b --space c,d
   tre_check           READ-ONLY: is companion_patch.tre first, has the list drifted
   tre_sync            regenerate the TRE load order, patch first (run after a pull)
+  tre_publish         copy the built TRE to <repo>/tre/ with a manifest + README
   tune_get            TUNE|key|label|current|default|kind|min|max  (gameplay knobs)
   tune_set --key K --value V     write one whitelisted knob, with a backup
   tune_file           path of the lua file the knobs live in
@@ -1321,6 +1547,7 @@ def main():
     elif a == "log_errors":        act_log_errors()
     elif a == "console_errors":    act_console_errors()
     elif a == "accounts":          act_accounts()
+    elif a == "players":           act_players()
     elif a == "set_admin":
         if len(args) < 2:
             print("Usage: set_admin USERNAME [LEVEL]")
@@ -1338,6 +1565,7 @@ def main():
     elif a == "planets_set":       act_planets_set(_flag(args, "--ground"), _flag(args, "--space"))
     elif a == "tre_check":         act_tre_check()
     elif a == "tre_sync":          act_tre_sync()
+    elif a == "tre_publish":       act_tre_publish()
     elif a == "tune_get":          act_tune_get()
     elif a == "tune_file":         act_tune_file()
     elif a == "tune_set":          act_tune_set(_flag(args, "--key"), _flag(args, "--value"))

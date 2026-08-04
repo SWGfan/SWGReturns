@@ -1,0 +1,27 @@
+companion_patch.tre -- contents
+==============================================================
+
+Generated 2026-08-04 06:42:30 by `swggenesis_menu.py tre_publish`.
+Archive: 3,121,967 bytes, 16 records.
+
+A .tre is a binary archive, so GitHub shows it as "not displayed".
+This manifest exists so you can see what is inside without downloading.
+
+path                                                              bytes  checksum
+---------------------------------------------------------- ------------  ----------
+datatables/command/command_table.iff                            276,117  0xd5eb3129
+datatables/skill/skills.iff                                     318,557  0xbbcc65ed
+datatables/skill/xp_limits.iff                                    1,278  0x400712ac
+object/intangible/companion/shared_companion_control_device.iff          999  0xc729f206
+object/tangible/inventory/shared_character_inventory.iff          1,454  0x3969e83b
+string/en/cmd_n.stf                                             119,079  0xb3480c3b
+string/en/companion.stf                                           7,410  0xa5eef709
+string/en/exp_n.stf                                               5,117  0xd51895a0
+string/en/mob/creature_names.stf                                215,953  0xd79b1b95
+string/en/skill_teacher.stf                                      16,034  0xc6de05a8
+string/en/skl_d.stf                                             420,453  0xd6c27317
+string/en/skl_n.stf                                             169,465  0x0531bb0b
+string/en/skl_t.stf                                              27,161  0x55107d1b
+string/en/stat_d.stf                                             85,254  0x356cb533
+string/en/stat_n.stf                                             34,635  0xe69f7d2f
+ui/ui_styles.inc                                              1,421,864  0x6c61a831
