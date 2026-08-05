@@ -46,13 +46,6 @@
 WSL_DISTRO := "Debian"
 WIN_USER   := "nickw"
 WSL_PY     := "/mnt/d/SWGGenesis/swggenesis_menu.py"
-
-; PANEL_FOOTER_2026_08_04 -- the "why" behind the most recent change to this
-; file. Set by docs/companion_system/tools/stamp_panel_update.py so a patch job
-; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
-; from this file's own mtime, which cannot drift out of date the way a
-; hand-written string does.
-PANEL_UPDATE_NOTE := "backup everything + nightly schedule + push target + build progress + status pulse"
 SCREEN_SESSION := "genesis"                        ; NOT 'swgemu', NOT 'swgreturns'
 CLIENT_DIR := "D:\Launcher\newreturnbenserver"     ; the launcher's install
 CLIENT_EXE := CLIENT_DIR . "\SWGEmu.exe"
@@ -401,11 +394,6 @@ ConsoleLabel := MyGui.Add("Text", "xm y+12 w760 vConsoleLabel",
 ConsoleAuto  := MyGui.Add("Checkbox", "x+10 yp-2 w100 vConsoleAuto Checked", "auto-scroll")
 MyGui.SetFont("s9", "Consolas")
 ConsoleBox := MyGui.Add("Edit", "xm y+6 w980 h200 ReadOnly VScroll HScroll", "(checking...)")
-
-; PANEL_FOOTER_2026_08_04 -- when this panel last changed, and why.
-MyGui.SetFont("s8", "Segoe UI")
-UpdatedText := MyGui.Add("Text", "xm y+6 w980 vUpdatedText cGray", BuildFooterText())
-MyGui.SetFont("s10", "Segoe UI")
 MyGui.SetFont("s10", "Segoe UI")
 
 ; ---- resize ------------------------------------------------------------------
@@ -418,7 +406,7 @@ ConsoleLabel.GetPos(, , , &ConLabelH)
 GuiSize(thisGui, MinMax, W, H) {
     global MyGui, LogTopY, ConLabelH
     global StatusText, PlayHint, TargetLabel, DbBox, PushBox, RemoteLabel
-    global LogBox, ConsoleLabel, ConsoleBox, ConsoleAuto, UpdatedText
+    global LogBox, ConsoleLabel, ConsoleBox, ConsoleAuto
 
     if (MinMax = -1)          ; minimised -- W/H are meaningless, don't lay out
         return
@@ -438,9 +426,7 @@ GuiSize(thisGui, MinMax, W, H) {
 
     ; Split the remaining height between the log pane and the console pane.
     ; The console gets the larger share -- it is the thing you actually watch.
-    ; PANEL_FOOTER_2026_08_04 -- reserve room for the footer, or the console
-    ; simply grows over it on the first resize.
-    avail := H - LogTopY - MyGui.MarginY - ConLabelH - 26 - 22
+    avail := H - LogTopY - MyGui.MarginY - ConLabelH - 26
     if (avail < 140)
         avail := 140
     logH := Round(avail * 0.40)
@@ -455,7 +441,6 @@ GuiSize(thisGui, MinMax, W, H) {
     ConsoleLabel.Move(, labelY, innerW - 120)
     ConsoleAuto.Move(m + innerW - 105, labelY - 2)
     ConsoleBox.Move(, labelY + ConLabelH + 6, innerW, conH)
-    UpdatedText.Move(, labelY + ConLabelH + 6 + conH + 5, innerW)
 }
 MyGui.OnEvent("Size", GuiSize)
 MyGui.OnEvent("Close", (*) => ExitApp())
@@ -1916,28 +1901,6 @@ PulseStep() {
 
     StatusText.Opt("c" . Format("{:02X}{:02X}{:02X}", r, g, b))
     try StatusText.Redraw()
-}
-
-
-
-; PANEL_FOOTER_2026_08_04
-BuildFooterText() {
-    global PANEL_UPDATE_NOTE
-
-    ; Read the time from the file itself rather than storing it. A stamped date
-    ; can be wrong -- hand-edit the script, or restore an older copy, and a
-    ; hardcoded string still claims today. An mtime always describes the code
-    ; that is actually running.
-    stamp := ""
-    try {
-        raw := FileGetTime(A_ScriptFullPath, "M")
-        stamp := FormatTime(raw, "yyyy-MM-dd HH:mm:ss")
-    } catch {
-        stamp := "unknown"
-    }
-
-    note := PANEL_UPDATE_NOTE = "" ? "no note recorded" : PANEL_UPDATE_NOTE
-    return "Updated " . stamp . "   --   " . note
 }
 
 
