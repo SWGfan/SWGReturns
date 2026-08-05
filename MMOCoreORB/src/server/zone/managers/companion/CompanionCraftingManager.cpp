@@ -18,6 +18,7 @@
 #include "server/zone/objects/manufactureschematic/ingredientslots/ResourceSlot.h"
 #include "server/zone/objects/manufactureschematic/craftingvalues/CraftingValues.h"
 #include "server/zone/managers/crafting/CraftingManager.h"
+#include "server/zone/managers/player/PlayerManager.h" // COMPANION_XP_PARITY_2026_08_05
 #include "server/zone/objects/tangible/TangibleObject.h"
 #include "server/zone/objects/tangible/deed/resource/ResourceDeed.h"
 #include "server/zone/objects/resource/ResourceContainer.h"
@@ -548,7 +549,24 @@ bool CompanionCraftingManager::craftItem(CreatureObject* owner, CompanionObject*
 	// ~1407), which pulls the same native, stock-data-driven
 	// getXpType()/getXpAmount() off the draft schematic.
 	if (awardXp) {
-		companion->addExperience(draftSchematic->getXpType(), draftSchematic->getXpAmount());
+		// COMPANION_XP_PARITY_2026_08_05 -- this already mirrored the player
+		// crafting path's BASE amount correctly (same getXpType()/
+		// getXpAmount() off the same draft schematic), but skipped the
+		// multiplier player crafting XP gets through
+		// PlayerManagerImplementation::awardExperience() -- most concretely
+		// the 6x category bonus every "crafting_"-prefixed xpType receives
+		// there. Same scaleXpForCompanion() helper the combat fix uses, so
+		// crafting and combat share one formula.
+		int scaledXp = draftSchematic->getXpAmount();
+
+		PlayerManager* playerManager = owner->getZoneServer() != nullptr
+				? owner->getZoneServer()->getPlayerManager() : nullptr;
+
+		if (playerManager != nullptr) {
+			scaledXp = playerManager->scaleXpForCompanion(draftSchematic->getXpType(), scaledXp);
+		}
+
+		companion->addExperience(draftSchematic->getXpType(), scaledXp);
 	}
 
 	protoLocker.release();

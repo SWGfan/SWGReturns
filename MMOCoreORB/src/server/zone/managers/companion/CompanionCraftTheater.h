@@ -138,6 +138,21 @@ public:
 			return;
 		}
 
+		// COMPANION_TAXI_ARRIVAL_WAIT_2026_08_05 -- this was the one restore path in the whole
+		// companion system that forced FOLLOW without checking standingOrder
+		// first (every other one, restoreStandingPosture() included, already
+		// has this branch). A companion explicitly parked with STAY -- most
+		// concretely, one waiting at a taxi destination for its owner -- could
+		// get yanked back to the owner by an unrelated periodic gear-exchange
+		// check that happens to call this when it gives up. Respecting STAY
+		// here matches every other helper and closes that gap.
+		if (companion->getStandingOrder() == CompanionObject::STAY) {
+			companion->setCompanionState(CompanionObject::STAY);
+			companion->setFollowObject(nullptr);
+			companion->setOblivious();
+			return;
+		}
+
 		companion->setCompanionState(CompanionObject::FOLLOW);
 		companion->setFollowObject(owner);
 		companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()

@@ -167,6 +167,71 @@ namespace {
 		}, "CompanionTaxiTickLambda", COMPANION_TAXI_TICK_MS);
 	}
 
+	// COMPANION_TAXI_ARRIVAL_WAIT_2026_08_05 -- watches a taxi-parked companion for the owner
+	// catching up, then resumes following on its own so the player never has
+	// to remember to press Follow. Same idiom as scheduleCompanionTaxiTick
+	// just above. Bails out at the first sign anything more specific already
+	// happened -- a manual order, a new ride, the companion or owner gone --
+	// so it can never fight a more recent action.
+#define COMPANION_TAXI_PICKUP_WATCH_MS 2000
+#define COMPANION_TAXI_PICKUP_WATCH_MAX_TICKS 300 // 300 * 2s = 10 minutes
+
+	void scheduleTaxiPickupWatch(CompanionObject* companion, int elapsed = 0) {
+		if (companion == nullptr) {
+			return;
+		}
+
+		Reference<CompanionObject*> companionRef = companion;
+
+		Core::getTaskManager()->scheduleTask([companionRef, elapsed] () {
+			CompanionObject* companion = companionRef.get();
+
+			if (companion == nullptr) {
+				return;
+			}
+
+			Locker locker(companion);
+
+			if (companion->isDead() || companion->getZone() == nullptr) {
+				return;
+			}
+
+			// Something else already handled this companion since arrival --
+			// a manual /follow, a new order, a fresh taxi ride. Don't
+			// second-guess it.
+			if (companion->getStandingOrder() != CompanionObject::STAY || companion->isTaxiActive()) {
+				return;
+			}
+
+			CreatureObject* owner = companion->getLinkedCreature().get();
+
+			if (owner == nullptr || owner->getZone() == nullptr) {
+				return;
+			}
+
+			float dx = owner->getPositionX() - companion->getPositionX();
+			float dy = owner->getPositionY() - companion->getPositionY();
+
+			if ((dx * dx + dy * dy) <= COMPANION_TAXI_RESUME_DISTANCE_SQ) {
+				companion->setStandingOrder(CompanionObject::FOLLOW);
+				companion->setCompanionState(CompanionObject::FOLLOW);
+				companion->setFollowObject(owner);
+				companion->setFollowState(AiAgent::FOLLOWING);
+				companion->activateMovementEvent();
+				return;
+			}
+
+			if (elapsed >= COMPANION_TAXI_PICKUP_WATCH_MAX_TICKS) {
+				// Owner never showed up -- stop polling forever rather than
+				// ticking indefinitely. The companion stays exactly where the
+				// ride left it; /follow still works normally at any time.
+				return;
+			}
+
+			scheduleTaxiPickupWatch(companion, elapsed + 1);
+		}, "CompanionTaxiPickupWatchLambda", COMPANION_TAXI_PICKUP_WATCH_MS);
+	}
+
 }
 
 // Companion System (2026-07-15, "companion stops following / leashes back
@@ -1665,9 +1730,17 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	// here since this file's own companionSweepSay() helper (identical
 	// pattern) isn't declared until later in the file.
 	{
+		// COMPANION_TAXI_ESCORT_SILENT_BARK_FIX_2026_08_05 -- this used to fire unconditionally, including
+		// for escort/mimicry rides (every time the owner calls out their own
+		// vehicle, once per summoned companion). Escort mode is already
+		// documented a few lines below as "SILENT cosmetic mimicry" -- it
+		// auto-follows on its own after a short hold, nothing to click -- so
+		// the bark was both wrong there and, because mimicry re-arms on every
+		// vehicle call-out, endlessly repetitive. Only a real destination ride
+		// (a waypoint the owner actually picked) gets it now.
 		ChatManager* chatManager = zoneServer->getChatManager();
 
-		if (chatManager != nullptr) {
+		if (hasDestination && chatManager != nullptr) {
 			chatManager->broadcastChatMessage(driver, UnicodeString("Click on me and follow! I'll bring us there."), 0, 0, 0, 0, 1);
 		}
 	}
@@ -2356,6 +2429,16 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				rideOwner->sendSystemMessage("Your companion has arrived at the waypoint and is waiting for you.");
 			}
 
+			// COMPANION_TAXI_ARRIVAL_WAIT_2026_08_05 -- make the wait authoritative. standingOrder
+			// defaults to FOLLOW and nothing here ever touched it, so any of the
+			// several background helpers that restore a companion's standing
+			// order (flee recovery, training SUI, skill-train walkup/abandon,
+			// the post-combat sweep straggler check) would drag a parked,
+			// waiting taxi companion straight back to the owner. They already
+			// have a STAY branch that does the right thing -- it just was never
+			// armed for a taxi arrival until now.
+			setStandingOrder(CompanionObject::STAY);
+
 			// 2026-07-16 (user request): WAIT at the destination instead of
 			// driving back toward the owner -- resumeFollow=false leaves the
 			// companion exactly as the ride parked it (STAY, home anchored
@@ -2363,6 +2446,10 @@ void CompanionObjectImplementation::updateTaxiTick() {
 			// stands at the waypoint until the owner arrives and orders it
 			// to follow again (or its leash logic intervenes).
 			stopTaxiRide(false);
+
+			// COMPANION_TAXI_ARRIVAL_WAIT_2026_08_05 -- and actually come back once the owner
+			// catches up, instead of waiting forever for a manual /follow.
+			scheduleTaxiPickupWatch(_this.getReferenceUnsafeStaticCast());
 			return;
 		}
 

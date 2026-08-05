@@ -57,6 +57,10 @@ includeFile("tangible/wearables/armor/mandalorian/serverobjects.lua")
 includeFile("tangible/wearables/armor/marauder/serverobjects.lua")
 includeFile("tangible/wearables/armor/marine/serverobjects.lua")
 includeFile("tangible/wearables/armor/nightsister/serverobjects.lua")
+-- COMPANION_BUILDER_TERMINAL_ADDITIONS_2026_08_05 -- this project's own Obsidian Vanguard
+-- set (2026-07-20) had its own serverobjects.lua all along but was never
+-- included HERE, so none of its 10 templates were ever registered.
+includeFile("tangible/wearables/armor/obsidian_vanguard/serverobjects.lua")
 includeFile("tangible/wearables/armor/padded/serverobjects.lua")
 includeFile("tangible/wearables/armor/ris/serverobjects.lua")
 includeFile("tangible/wearables/armor/singing_mountain_clan/serverobjects.lua")

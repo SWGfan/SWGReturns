@@ -1814,6 +1814,27 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 			Locker companionLocker(companion, destructedObject);
 
+			// COMPANION_XP_PARITY_2026_08_05 -- two gaps closed here, per Nick: "a
+			// companion should get the same xp bonus as a player... same amount
+			// as a normal player's xp gain."
+			//
+			// 1. The divisor used to be totalDamage -- the WHOLE FIGHT's damage,
+			//    from every attacker present. The player branch just below
+			//    normalizes against its OWN damage total instead (playerTotal),
+			//    so a player's share is close to the full baseXp; a companion's
+			//    share shrank with every other attacker on the kill, including
+			//    its own owner. Mirrored here the same way (companionTotal).
+			// 2. companion->addExperience() applied the raw amount with none of
+			//    the multipliers a player gets through awardExperience() --
+			//    most concretely the 6x crafting/harvesting category bonus and
+			//    the server's globalExpMultiplier. Both now run through
+			//    scaleXpForCompanion(), the same helper the crafting fix uses.
+			uint32 companionTotal = 0;
+
+			for (int v = 0; v < entry->size(); ++v) {
+				companionTotal += entry->elementAt(v).getValue();
+			}
+
 			for (int j = 0; j < entry->size(); ++j) {
 				uint32 damage = entry->elementAt(j).getValue();
 				String xpType = entry->elementAt(j).getKey();
@@ -1822,9 +1843,9 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 					continue;
 				}
 
-				float xpAmount = baseXp * (float) damage / totalDamage;
+				float xpAmount = baseXp * (float) damage / companionTotal;
 
-				companion->addExperience(xpType, (int) xpAmount);
+				companion->addExperience(xpType, scaleXpForCompanion(xpType, (int) xpAmount));
 			}
 		} else if (attacker->isPlayerCreature()) {
 			if (!(attacker->getZone() == zone && destructedObject->isInRangeZoneless(attacker, 80))) {
@@ -2217,6 +2238,28 @@ int PlayerManagerImplementation::awardExperience(CreatureObject* player, const S
 	}
 
 	return xp;
+}
+
+// COMPANION_XP_PARITY_2026_08_05. See this file's own patch script for the full writeup.
+// Both call sites that bypassed the player XP multipliers entirely --
+// companion combat share and companion crafting -- now route their
+// pre-computed per-xpType amount through here before handing off to
+// CompanionObjectImplementation::addExperience(). Deliberately does NOT
+// touch awardExperience() above: that function is the one every player
+// action in the game goes through, and giving it a companion branch would
+// be a much larger change than this needed for a companion, which has no
+// PlayerObject ghost to award into in the first place.
+int PlayerManagerImplementation::scaleXpForCompanion(const String& xpType, int amount) {
+	if (amount <= 0) {
+		return amount;
+	}
+
+	float categoryMultiplier = 1.f;
+
+	if (xpType.beginsWith("crafting_") || xpType == "resource_harvesting_inorganic")
+		categoryMultiplier = 6.f;
+
+	return (int) (amount * globalExpMultiplier * categoryMultiplier);
 }
 
 void PlayerManagerImplementation::sendLoginMessage(CreatureObject* creature) {

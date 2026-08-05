@@ -6,6 +6,7 @@
 
 #include "server/zone/ZoneProcessServer.h"
 #include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/objects/tangible/TangibleObject.h" // COMPANION_BUILDER_TERMINAL_ADDITIONS_2026_08_05
 #include "server/zone/objects/player/sui/SuiWindowType.h"
 #include "server/zone/objects/player/sui/banktransferbox/SuiBankTransferBox.h"
 #include "server/zone/objects/player/sui/characterbuilderbox/SuiCharacterBuilderBox.h"
@@ -886,6 +887,87 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 			} else if (templatePath == "unlock_jedi_initiate") {
 				bluefrog->grantJediInitiate(player);
+
+			} else if (templatePath == "grant_companion_token") {
+				// COMPANION_BUILDER_TERMINAL_ADDITIONS_2026_08_05 -- one Companion Killed Token, made the same
+				// way the generic Items branch below creates every other item;
+				// only the three properties that make it recognized are set
+				// afterward (same three the real in-combat grant sets).
+				ManagedReference<SceneObject*> tokenInventory = player->getSlottedObject("inventory");
+
+				if (tokenInventory != nullptr) {
+					ManagedReference<SceneObject*> tokenObj = zserv->createObject(
+							STRING_HASHCODE("object/tangible/loot/quest/hero_of_tatooine/mark_courage.iff"), 1);
+
+					if (tokenObj == nullptr) {
+						player->sendSystemMessage("There was an error creating the token. Please report this issue.");
+					} else {
+						TangibleObject* token = tokenObj.castTo<TangibleObject*>();
+
+						if (token != nullptr) {
+							Locker tokenLocker(token);
+
+							token->createChildObjects();
+							token->setCustomObjectName(String("Companion Killed Token"), false);
+							token->setForceNoTrade(true);
+							token->setUseCount(1, false);
+
+							if (tokenInventory->transferObject(token, -1, true)) {
+								tokenInventory->broadcastObject(token, true);
+								player->sendSystemMessage("You received a Companion Killed Token. Make sure you have the Novice Companion profession learned -- without it, summoning a companion will be rejected even with a token in hand.");
+							} else {
+								token->destroyObjectFromDatabase(true);
+								player->sendSystemMessage("Your inventory is full.");
+							}
+						}
+					}
+				}
+
+			} else if (templatePath == "grant_obsidian_vanguard_set") {
+				// COMPANION_BUILDER_TERMINAL_ADDITIONS_2026_08_05 -- all 10 Obsidian Vanguard pieces, one click.
+				// Same create+Locker+transfer shape as a single Items entry,
+				// looped. Deliberately NOT all-or-nothing (unlike the vendor's
+				// token-spending grantArmorSet()) -- this is a free admin
+				// convenience grant, so a full inventory just means some pieces
+				// didn't fit, reported plainly rather than rolled back.
+				static const char* OBSIDIAN_VANGUARD_PIECES[] = {
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_helmet.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_chest_plate.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_leggings.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_boots.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_gloves.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_belt.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_l.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_r.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_l.iff",
+					"object/tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_r.iff",
+				};
+
+				ManagedReference<SceneObject*> setInventory = player->getSlottedObject("inventory");
+				int setDelivered = 0;
+
+				if (setInventory != nullptr) {
+					for (const char* piecePath : OBSIDIAN_VANGUARD_PIECES) {
+						ManagedReference<SceneObject*> piece = zserv->createObject(STRING_HASHCODE(piecePath), 1);
+
+						if (piece == nullptr) {
+							continue;
+						}
+
+						Locker pieceLocker(piece);
+
+						piece->createChildObjects();
+
+						if (setInventory->transferObject(piece, -1, true)) {
+							setInventory->broadcastObject(piece, true);
+							setDelivered++;
+						} else {
+							piece->destroyObjectFromDatabase(true);
+						}
+					}
+				}
+
+				player->sendSystemMessage("Obsidian Vanguard set: " + String::valueOf(setDelivered) + "/10 pieces delivered.");
 
 			} else if (templatePath == "unlock_jedi_master") {
 				PlayerManager* pman = zserv->getPlayerManager();

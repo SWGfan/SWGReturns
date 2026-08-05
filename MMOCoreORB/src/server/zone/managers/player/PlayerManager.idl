@@ -200,6 +200,13 @@ class PlayerManager extends Observer implements Logger {
 	public native void setExperienceMultiplier(float globalMultiplier);
 	public native int awardExperience(CreatureObject player, final string xpType, int amount, boolean sendSystemMessage = true, float localMultiplier = 1.0f, boolean applyModifiers = true);
 
+	/** COMPANION_XP_PARITY_2026_08_05 -- companions have no PlayerObject
+	 * ghost, so they can never go through awardExperience() itself. This
+	 * applies the same category bonus and server-wide rate players get
+	 * there, without the player-only species modifier / level cap / GCW
+	 * bonus, which don't have a companion equivalent. */
+	public native int scaleXpForCompanion(final string xpType, int amount);
+
 	@local @dereferenced
 	public native SortedVector<SceneObject> getInsurableItems(CreatureObject player, boolean onlyInsurable = true);
 
