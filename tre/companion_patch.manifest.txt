@@ -1,8 +1,8 @@
 companion_patch.tre -- contents
 ==============================================================
 
-Generated 2026-08-04 15:40:19 by `swggenesis_menu.py tre_publish`.
-Archive: 3,071,269 bytes, 16 records.
+Generated 2026-08-04 21:48:59 by `swggenesis_menu.py tre_publish`.
+Archive: 3,071,267 bytes, 16 records.
 
 A .tre is a binary archive, so GitHub shows it as "not displayed".
 This manifest exists so you can see what is inside without downloading.
@@ -24,4 +24,4 @@ string/en/skl_n.stf                                             169,465  0x0531b
 string/en/skl_t.stf                                              27,161  0x55107d1b
 string/en/stat_d.stf                                             85,254  0x356cb533
 string/en/stat_n.stf                                             34,635  0xe69f7d2f
-ui/ui_styles.inc                                              1,371,166  0x6c61a831
+ui/ui_styles.inc                                              1,371,164  0x6c61a831
