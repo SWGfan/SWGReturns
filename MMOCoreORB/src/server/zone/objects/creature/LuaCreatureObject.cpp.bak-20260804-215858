@@ -18,8 +18,6 @@
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/objects/tangible/threat/ThreatMap.h"
 #include "server/zone/objects/transaction/TransactionLog.h"
-#include "server/zone/objects/companion/CompanionControlDevice.h"
-#include "server/zone/objects/companion/CompanionObject.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
@@ -131,7 +129,6 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "healDamage", &LuaCreatureObject::healDamage },
 		{ "getGroupID", &LuaCreatureObject::getGroupID },
 		{ "enhanceCharacter", &LuaCreatureObject::enhanceCharacter },
-		{ "enhanceCompanions", &LuaCreatureObject::enhanceCompanions },
 		{ "setWounds", &LuaCreatureObject::setWounds },
 		{ "setShockWounds", &LuaCreatureObject::setShockWounds },
 		{ "getForceSensitiveSkillCount", &LuaCreatureObject::getForceSensitiveSkillCount },
@@ -1018,79 +1015,6 @@ int LuaCreatureObject::enhanceCharacter(lua_State* L) {
 	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
 	int type = lua_tointeger(L, -1);
 	playerManager->enhanceCharacter(realObject, type);
-
-	return 0;
-}
-
-int LuaCreatureObject::enhanceCompanions(lua_State* L) {
-	// Apply the same terminal buffs to every summoned companion.
-	//
-	// PlayerManager::enhanceCharacter() takes a CreatureObject*, and
-	// CompanionObject extends AiAgent extends CreatureObject -- so the engine
-	// could always buff a companion; nothing had ever handed it one.
-	//
-	// Kept separate from enhanceCharacter() rather than folded into it because
-	// that is shared engine surface (GmReviveCommand and others call it), and
-	// none of those callers should quietly start buffing pets as a side effect.
-	// The terminal asks for both, explicitly.
-	int type = lua_tointeger(L, -1);
-
-	if (realObject == nullptr) {
-		return 0;
-	}
-
-	ManagedReference<SceneObject*> datapad = realObject->getSlottedObject("datapad");
-
-	if (datapad == nullptr) {
-		return 0;
-	}
-
-	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
-
-	if (playerManager == nullptr) {
-		return 0;
-	}
-
-	int buffed = 0;
-
-	// Same datapad walk every Companion*Command uses -- summoned, alive, and
-	// linked to this player. See CompanionAttackCommand.h::resolveActiveCompanions.
-	for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
-		ManagedReference<SceneObject*> obj = datapad->getContainerObject(i);
-
-		if (obj == nullptr || !obj->isCompanionControlDevice()) {
-			continue;
-		}
-
-		CompanionControlDevice* device = cast<CompanionControlDevice*>(obj.get());
-
-		if (device == nullptr || device->isCompanionDead()) {
-			continue;
-		}
-
-		ManagedReference<CompanionObject*> companion = device->getCompanionObject();
-
-		if (companion == nullptr || companion->getZone() == nullptr || companion->isDead()) {
-			continue;
-		}
-
-		if (companion->getLinkedCreature().get() != realObject) {
-			continue;
-		}
-
-		Locker clocker(companion, realObject);
-
-		playerManager->enhanceCharacter(companion, type);
-		++buffed;
-	}
-
-	// doEnhanceCharacter() gates its own system message on isPlayerCreature(),
-	// so a companion produces no chat of its own. One summary line instead.
-	if (buffed > 0) {
-		realObject->sendSystemMessage(buffed == 1
-				? "Your companion is strengthened as well."
-				: "Your companions are strengthened as well.");
-	}
 
 	return 0;
 }

@@ -47,18 +47,6 @@ WSL_DISTRO := "Debian"
 WIN_USER   := "nickw"
 WSL_PY     := "/mnt/d/SWGGenesis/swggenesis_menu.py"
 
-; PULSE_INIT_ORDER_FIX -- these MUST be assigned before the first RefreshStatus()
-; call, which happens further down at file scope. AHK v2 throws when a global is
-; READ before it has ever been assigned, and StopPulse()/StartPulse() read
-; PulseOn on their very first call. Declaring them next to the pulse functions at
-; the BOTTOM of the file was too late: file-scope code runs top to bottom, and
-; RefreshStatus() was already running by then. Same mistake as SchedGui earlier.
-PulseFrom := [255, 0, 0]
-PulseTo   := [255, 255, 0]
-PulseT    := 0.0
-PulseDir  := 1
-PulseOn   := false
-
 ; PANEL_FOOTER_2026_08_04 -- the "why" behind the most recent change to this
 ; file. Set by docs/companion_system/tools/stamp_panel_update.py so a patch job
 ; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
@@ -1874,7 +1862,11 @@ ChangePushTarget(*) {
 ;
 ;   building  red <-> yellow      booting  yellow <-> green
 ;   running   solid green         stopped  solid red
-; (moved to the top -- see PULSE_INIT_ORDER_FIX)
+PulseFrom := [255, 0, 0]
+PulseTo   := [255, 255, 0]
+PulseT    := 0.0
+PulseDir  := 1
+PulseOn   := false
 
 StartPulse(fromRGB, toRGB) {
     global PulseFrom, PulseTo, PulseOn
