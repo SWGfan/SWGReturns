@@ -1636,21 +1636,7 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	// Works for both ride modes: MovePetBase:checkConditions only requires that
 	// the follow state is not OBLIVIOUS, which the destination ride's PATROLLING
 	// satisfies as readily as the escort ride's FOLLOWING.
-	// TAXI_DRIVER_TREE_CORRECTION_2026_08_04 -- companionfollow was wrong for a
-	// DRIVER. Its root selector puts the combat branch (GetTarget ->
-	// SelectAttack -> CombatMoveCreaturePet) ahead of the idle mover, and
-	// GetTargetBase acquires a target and calls setFollowObject(target) -- so a
-	// driver heading for a waypoint grabbed the first hostile it saw and drove
-	// at that instead. Escort mode was unaffected, because chasing the owner is
-	// what the mover does anyway; that is exactly the split observed in game
-	// (mounted follow fine, waypoint driving broken).
-	//
-	// Stock `follow` is the right template for this job:
-	//     follow = { {"root", "MoveCreaturePet", "none", BEHAVIOR} }
-	// the pure mover and nothing else. It honours the follow object in escort
-	// mode and patrol points in destination mode, and MovePetBase carries no
-	// leash check -- which was the whole reason idlewander could not be used.
-	driver->activateLoad("follow");
+	driver->activateLoad("companionfollow");
 	driver->activateRecovery();
 
 	// Companion System (2026-07-20, "taxi greeting" pass, per user
