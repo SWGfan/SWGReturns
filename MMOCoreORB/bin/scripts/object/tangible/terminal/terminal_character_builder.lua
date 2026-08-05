@@ -1637,6 +1637,24 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			--		"Singing Mountain Clan Bicep", "object/tangible/wearables/armor/bone/armor_smc_s01_bicep_l.iff"
 			--	}
 			},
+			"Companion Tokens",
+			{
+				"\\#3399FFCompanion Killed Token\\#FFFFFF", "grant_companion_token",
+			},
+			"Obsidian Vanguard (Custom)",
+			{
+				"\\#3399FFGet Full Set (1 click)\\#FFFFFF", "grant_obsidian_vanguard_set",
+				"\\#FF8800Helmet\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_helmet.iff",
+				"\\#FF8800Chest Plate\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_chest_plate.iff",
+				"\\#FF8800Leggings\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_leggings.iff",
+				"\\#FF8800Boots\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_boots.iff",
+				"\\#FF8800Gloves\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_gloves.iff",
+				"\\#FF8800Belt\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_belt.iff",
+				"\\#FF8800Left Bicep\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_l.iff",
+				"\\#FF8800Right Bicep\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_bicep_r.iff",
+				"\\#FF8800Left Bracer\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_l.iff",
+				"\\#FF8800Right Bracer\\#FFFFFF", "object/tangible/wearables/armor/obsidian_vanguard/obsidian_bracer_r.iff",
+			},
 			"Clothes",
 			{
 				"Crafting Aprons",
