@@ -64,7 +64,7 @@ PulseOn   := false
 ; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
 ; from this file's own mtime, which cannot drift out of date the way a
 ; hand-written string does.
-PANEL_UPDATE_NOTE := "build/boot countdown estimated from this machine's own history"
+PANEL_UPDATE_NOTE := "backup everything + nightly schedule + push target + build progress + status pulse"
 SCREEN_SESSION := "genesis"                        ; NOT 'swgemu', NOT 'swgreturns'
 CLIENT_DIR := "D:\Launcher\newreturnbenserver"     ; the launcher's install
 CLIENT_EXE := CLIENT_DIR . "\SWGEmu.exe"
@@ -512,21 +512,14 @@ RefreshStatus(*) {
         bstate := bp.Length >= 2 ? bp[2] : ""
         bpct   := bp.Length >= 3 ? bp[3] : "0"
         bwhat  := bp.Length >= 4 ? bp[4] : ""
-        ; PANEL_ETA_2026_08_04 -- fifth field: the countdown, measured from this
-        ; machine's own past builds rather than a hardcoded guess.
-        beta   := bp.Length >= 5 ? bp[5] : ""
-        etaTail := beta = "" ? "" : "   --   " . beta
-        overdue := InStr(beta, "OVERDUE") > 0
 
         if (bstate = "BUILDING") {
-            BuildText.Value := "⚙ BUILDING  " . bpct . "%  --  " . bwhat . etaTail
-            ; Past its usual time is the cheapest possible "this may be stuck"
-            ; signal -- two jobs hung tonight and looked exactly like healthy ones.
-            BuildText.Opt(overdue ? "cFF3030" : "cFFA500")
+            BuildText.Value := "⚙ BUILDING  " . bpct . "%  --  " . bwhat
+            BuildText.Opt("cFFA500")
             StartPulse([255, 40, 40], [255, 220, 0])     ; red <-> yellow
         } else if (bstate = "LINKING") {
-            BuildText.Value := "⚙ LINKING core3 -- almost done" . etaTail
-            BuildText.Opt(overdue ? "cFF3030" : "cFFA500")
+            BuildText.Value := "⚙ LINKING core3 -- almost done"
+            BuildText.Opt("cFFA500")
             StartPulse([255, 40, 40], [255, 220, 0])
         } else if (bstate = "DONE") {
             BuildText.Value := "✔ Build finished (" . bwhat . ")"

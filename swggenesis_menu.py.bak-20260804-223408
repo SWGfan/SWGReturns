@@ -213,10 +213,6 @@ def act_status():
     sess = screen_exists()
 
     if pid and ports:
-        # GENESIS_TIMING_2026_08_04 -- first sighting of a fully-open server
-        # closes the boot timer that act_start() opened.
-        if LOGIN_PORT in ports:
-            timing_mark_done("boot")
         extra = "pid %s, listening on %s" % (pid, ", ".join(str(p) for p in ports))
         if LOGIN_PORT not in ports:
             print("SESSION_NO_PROC|pid %s but login port %d is NOT listening "
@@ -224,8 +220,8 @@ def act_status():
             return
         print("RUNNING|" + extra)
     elif pid and not ports:
-        print("SESSION_NO_PROC|pid %s alive but no ports listening yet -- still booting "
-              "-- %s" % (pid, timing_phrase("boot")))
+        print("SESSION_NO_PROC|pid %s alive but no ports listening yet -- still booting, "
+              "or crashed into gdb" % pid)
     elif sess and not pid:
         print("SESSION_NO_PROC|screen session '%s' exists but no core3 process "
               "(likely crashed -- View Live Console to see the gdb prompt)" % SCREEN)
@@ -239,146 +235,6 @@ def act_status():
 
     if build:
         print(build)
-
-
-# GENESIS_TIMING_2026_08_04 -- measure how long builds and boots really take on
-# this machine and show a countdown, rather than hardcoding a number that is
-# wrong the moment a header change turns a 2-file rebuild into a 200-file one.
-TIMING_MARKS = REPO + "/.genesis_timing_marks"
-TIMING_LOG   = REPO + "/.genesis_timings"
-TIMING_KEEP  = 20
-
-
-def _timing_marks():
-    marks = {}
-    try:
-        with open(TIMING_MARKS) as fh:
-            for line in fh:
-                if "=" in line:
-                    k, v = line.strip().split("=", 1)
-                    try:
-                        marks[k] = float(v)
-                    except ValueError:
-                        pass
-    except OSError:
-        pass
-    return marks
-
-
-def _timing_write_marks(marks):
-    try:
-        with open(TIMING_MARKS, "w") as fh:
-            for k, v in marks.items():
-                fh.write("%s=%f\n" % (k, v))
-    except OSError:
-        pass
-
-
-def timing_mark_start(kind):
-    """Record that `kind` just began, unless it is already running."""
-    marks = _timing_marks()
-    if kind not in marks:
-        marks[kind] = time.time()
-        _timing_write_marks(marks)
-
-
-def timing_mark_done(kind):
-    """Close out `kind` and append its duration. Returns the duration, or None."""
-    marks = _timing_marks()
-    started = marks.pop(kind, None)
-    _timing_write_marks(marks)
-
-    if started is None:
-        return None
-
-    elapsed = time.time() - started
-
-    # A 3-second "build" is a no-op make, not a data point worth learning from.
-    if elapsed < 20 or elapsed > 4 * 3600:
-        return elapsed
-
-    try:
-        rows = []
-        if os.path.exists(TIMING_LOG):
-            rows = [l.strip() for l in open(TIMING_LOG) if l.strip()]
-        rows.append("%s %d" % (kind, int(elapsed)))
-
-        kept, seen = [], {}
-        for row in reversed(rows):
-            k = row.split()[0]
-            seen[k] = seen.get(k, 0) + 1
-            if seen[k] <= TIMING_KEEP:
-                kept.append(row)
-
-        with open(TIMING_LOG, "w") as fh:
-            fh.write("\n".join(reversed(kept)) + "\n")
-    except (OSError, IndexError):
-        pass
-
-    return elapsed
-
-
-def timing_typical(kind):
-    """Median of recent durations for `kind`, or None with no history.
-
-    Median rather than mean: one 40-minute full rebuild among a dozen 6-minute
-    incrementals should not drag every later estimate upward.
-    """
-    try:
-        vals = sorted(int(l.split()[1]) for l in open(TIMING_LOG)
-                      if l.strip().startswith(kind + " "))
-    except (OSError, ValueError, IndexError):
-        return None
-
-    if not vals:
-        return None
-
-    mid = len(vals) // 2
-    return vals[mid] if len(vals) % 2 else (vals[mid - 1] + vals[mid]) // 2
-
-
-def timing_eta(kind):
-    """(elapsed, typical, remaining) -- remaining is negative when overdue."""
-    marks = _timing_marks()
-    started = marks.get(kind)
-
-    if started is None:
-        return None, timing_typical(kind), None
-
-    elapsed = int(time.time() - started)
-    typical = timing_typical(kind)
-
-    if typical is None:
-        return elapsed, None, None
-
-    return elapsed, typical, typical - elapsed
-
-
-def timing_phrase(kind):
-    """Human tail for the status line."""
-    elapsed, typical, remaining = timing_eta(kind)
-
-    if typical is None:
-        return "no estimate yet (first run)"
-
-    if remaining is None:
-        return "usually %s" % fmt_secs(typical)
-
-    if remaining > 0:
-        return "~%s left (usually %s)" % (fmt_secs(remaining), fmt_secs(typical))
-
-    # Past the estimate. Say so plainly -- twice tonight a wedged job looked
-    # exactly like a healthy one, and "overdue" is the cheapest possible warning.
-    return "OVERDUE by %s (usually %s)" % (fmt_secs(-remaining), fmt_secs(typical))
-
-
-def fmt_secs(s):
-    s = int(s)
-    if s < 60:
-        return "%ds" % s
-    if s < 3600:
-        return "%dm %02ds" % (s // 60, s % 60)
-    return "%dh %02dm" % (s // 3600, (s % 3600) // 60)
 
 
 def _build_progress_line():
@@ -406,10 +262,7 @@ def _build_progress_line():
     compiling = rc == 0
 
     if newest is None:
-        if compiling:
-            timing_mark_start("build")
-            return "BUILD|BUILDING|0|starting|" + timing_phrase("build")
-        return None
+        return "BUILD|BUILDING|0|starting" if compiling else None
 
     fresh = newest_age is not None and newest_age < 180
 
@@ -419,11 +272,7 @@ def _build_progress_line():
         if newest_age is not None and newest_age < 900:
             rc, tail = sh("tail -3 '%s' 2>/dev/null" % newest)
             state = "DONE" if "Built target core3" in tail else "STOPPED"
-            took = timing_mark_done("build")
-            detail = "%d min ago" % int(newest_age // 60)
-            if took:
-                detail += ", took " + fmt_secs(took)
-            return "BUILD|%s|100|%s|" % (state, detail)
+            return "BUILD|%s|100|%d min ago" % (state, int(newest_age // 60))
         return None
 
     rc, tail = sh("tail -40 '%s' 2>/dev/null" % newest)
@@ -452,22 +301,10 @@ def _build_progress_line():
             detail = rest[:60]
         break
 
-    timing_mark_start("build")
-
-    if state == "DONE":
-        took = timing_mark_done("build")
-        if took:
-            detail += " (took %s)" % fmt_secs(took)
-        return "BUILD|DONE|100|%s|" % detail
-
-    return "BUILD|%s|%d|%s|%s" % (state, pct, detail, timing_phrase("build"))
+    return "BUILD|%s|%d|%s" % (state, pct, detail)
 
 
 def act_start(reloadstrings=False):
-    # GENESIS_TIMING_2026_08_04 -- start the boot clock; the first RUNNING status
-    # closes it and records how long this machine actually takes.
-    timing_mark_start("boot")
-
     if core3_pid():
         print("Already running (pid %s). Nothing to do." % core3_pid())
         return

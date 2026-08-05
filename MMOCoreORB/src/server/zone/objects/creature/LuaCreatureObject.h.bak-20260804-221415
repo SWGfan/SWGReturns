@@ -114,7 +114,6 @@ namespace creature {
 		int getGroupID(lua_State* L);
 		int enhanceCharacter(lua_State* L);
 		int enhanceCompanions(lua_State* L);
-		int getCompanionIDs(lua_State* L);
 		int setWounds(lua_State* L);
 		int setShockWounds(lua_State* L);
 		int getForceSensitiveSkillCount(lua_State* L);

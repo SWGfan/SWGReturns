@@ -131,14 +131,9 @@
 //   companion should always keep up with the user."
 // - Departure: the driver holds at the pickup spot until BOTH the 5-second
 //   click-and-follow window has passed AND the owner is within 35m.
-#define COMPANION_TAXI_SPEED_MULTIPLIER 1.02f   // COMPANION_TAXI_PACING_2026_08_04: owner's speed +2%
-#define COMPANION_TAXI_LEASH_DISTANCE_SQ 8100.0f // 90m, squared
-// How hard to throttle once past the leash. NOT a full stop: the old
-// behaviour called setOblivious(), and MovePetBase refuses to move at all
-// while OBLIVIOUS, so recovery depended on the resume branch firing --
-// the same fragile shape behind several bugs found on 2026-08-04.
-#define COMPANION_TAXI_THROTTLED_MULTIPLIER 0.30f
-#define COMPANION_TAXI_RESUME_DISTANCE_SQ 2500.0f // 50m, squared
+#define COMPANION_TAXI_SPEED_MULTIPLIER 1.05f
+#define COMPANION_TAXI_LEASH_DISTANCE_SQ 7225.0f // 85m, squared
+#define COMPANION_TAXI_RESUME_DISTANCE_SQ 1225.0f // 35m, squared
 #define COMPANION_TAXI_CATCHUP_MULTIPLIER 1.2f
 
 namespace {
@@ -2251,16 +2246,9 @@ void CompanionObjectImplementation::updateTaxiTick() {
 			if (taxiThrottled) {
 				// Paused at the 85m leash -- wait for the owner.
 				if (ownerDistSq <= COMPANION_TAXI_RESUME_DISTANCE_SQ) {
-					// COMPANION_TAXI_PACING_2026_08_04 -- owner back inside 50m,
-					// so return to full speed. The driver never stopped and never
-					// went OBLIVIOUS, so this only has to undo the crawl.
 					taxiThrottled = false;
 
 					Locker driverLocker(driverCreo, _this.getReferenceUnsafeStaticCast());
-
-					if (taxiBoostedRunSpeed > 0.f) {
-						driverCreo->setRunSpeed(taxiBoostedRunSpeed, true);
-					}
 
 					CompanionObject* driverCompanion = driverCreo->isCompanionObject() ? cast<CompanionObject*>(driverCreo) : nullptr;
 
@@ -2280,51 +2268,27 @@ void CompanionObjectImplementation::updateTaxiTick() {
 					}
 				}
 			} else if (driverAhead && ownerDistSq > COMPANION_TAXI_LEASH_DISTANCE_SQ) {
-				// COMPANION_TAXI_PACING_2026_08_04 -- 90m leash tripped: SLOW
-				// DOWN, do not stop, until the owner is back inside 50m.
-				//
-				// This used to setCompanionState(STAY) + setOblivious(), and
-				// MovePetBase:checkConditions refuses to move at all while
-				// OBLIVIOUS -- so getting going again depended entirely on the
-				// resume branch firing correctly, the same fragile shape behind
-				// several bugs found today. A crawl keeps the driver moving and
-				// keeps its follow object, so there is nothing to recover from.
-				// Patrol points stay queued either way, so the route continues.
+				// 85m leash tripped -- full stop until the owner closes
+				// back to 35m. Patrol points stay queued; only the state
+				// flips, so resuming continues the same route.
 				taxiThrottled = true;
 
 				Locker driverLocker(driverCreo, _this.getReferenceUnsafeStaticCast());
 
-				float crawl = taxiBoostedRunSpeed * COMPANION_TAXI_THROTTLED_MULTIPLIER;
+				CompanionObject* driverCompanion = driverCreo->isCompanionObject() ? cast<CompanionObject*>(driverCreo) : nullptr;
 
-				if (crawl > 0.f && driverCreo->getRunSpeed() != crawl) {
-					driverCreo->setRunSpeed(crawl, true);
+				if (driverCompanion != nullptr) {
+					driverCompanion->setCompanionState(CompanionObject::STAY);
+					driverCompanion->setOblivious();
 				}
 
 				if (rideOwner != nullptr) {
-					rideOwner->sendSystemMessage("Your companion eases off to let you catch up.");
+					rideOwner->sendSystemMessage("Your companion pulls over and waits for you to catch up.");
 				}
 			} else {
-				// COMPANION_TAXI_PACING_2026_08_04 -- pace off the OWNER, live.
-				//
-				// taxiBoostedRunSpeed was derived from the VEHICLE TEMPLATE's own
-				// speed row and fixed once at ride start, so a slow template made
-				// the taxi crawl regardless of what the player was riding, and it
-				// never adapted when the player's speed changed (mount, dismount,
-				// buff, or the control panel's speed knobs). Recomputing from the
-				// owner every tick keeps the driver just ahead of whatever the
-				// player is actually doing.
-				//
-				// Still 20% extra on top whenever the owner has overtaken it and
-				// pulled beyond the resume distance ("always keep up").
-				if (rideOwner != nullptr) {
-					float ownerRun = rideOwner->getRunSpeed();
-
-					if (ownerRun > 0.f) {
-						taxiBoostedRunSpeed = ownerRun * COMPANION_TAXI_SPEED_MULTIPLIER;
-						taxiBoostedWalkSpeed = taxiBoostedRunSpeed;
-					}
-				}
-
+				// Driving normally: 5% over the owner's vehicle pace while
+				// ahead; 20% extra whenever the owner has overtaken it and
+				// pulled more than 35m away ("always keep up").
 				float targetRun = taxiBoostedRunSpeed;
 				float targetWalk = taxiBoostedWalkSpeed;
 

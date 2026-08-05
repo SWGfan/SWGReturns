@@ -132,7 +132,6 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getGroupID", &LuaCreatureObject::getGroupID },
 		{ "enhanceCharacter", &LuaCreatureObject::enhanceCharacter },
 		{ "enhanceCompanions", &LuaCreatureObject::enhanceCompanions },
-		{ "getCompanionIDs", &LuaCreatureObject::getCompanionIDs },
 		{ "setWounds", &LuaCreatureObject::setWounds },
 		{ "setShockWounds", &LuaCreatureObject::setShockWounds },
 		{ "getForceSensitiveSkillCount", &LuaCreatureObject::getForceSensitiveSkillCount },
@@ -1021,63 +1020,6 @@ int LuaCreatureObject::enhanceCharacter(lua_State* L) {
 	playerManager->enhanceCharacter(realObject, type);
 
 	return 0;
-}
-
-int LuaCreatureObject::getCompanionIDs(lua_State* L) {
-	// Every summoned, living companion linked to this player, as a Lua table of
-	// object IDs.
-	//
-	// Deliberately generic. Everything else a companion needs -- wounds, dots,
-	// buffs, whatever comes next -- is already reachable from Lua once you have
-	// the object: getCreatureObject(oid) hands back a CreatureObject and a
-	// CompanionObject IS one. The ONLY thing Lua could not do was recognise a
-	// companion control device, because isCompanionControlDevice() has no
-	// binding. Fixing that once beats adding a C++ function per feature.
-	lua_newtable(L);
-
-	if (realObject == nullptr) {
-		return 1;
-	}
-
-	ManagedReference<SceneObject*> datapad = realObject->getSlottedObject("datapad");
-
-	if (datapad == nullptr) {
-		return 1;
-	}
-
-	int n = 0;
-
-	// Same datapad walk every Companion*Command uses; see
-	// CompanionAttackCommand.h::resolveActiveCompanions.
-	for (int i = 0; i < datapad->getContainerObjectsSize(); ++i) {
-		ManagedReference<SceneObject*> obj = datapad->getContainerObject(i);
-
-		if (obj == nullptr || !obj->isCompanionControlDevice()) {
-			continue;
-		}
-
-		CompanionControlDevice* device = cast<CompanionControlDevice*>(obj.get());
-
-		if (device == nullptr || device->isCompanionDead()) {
-			continue;
-		}
-
-		ManagedReference<CompanionObject*> companion = device->getCompanionObject();
-
-		if (companion == nullptr || companion->getZone() == nullptr || companion->isDead()) {
-			continue;
-		}
-
-		if (companion->getLinkedCreature().get() != realObject) {
-			continue;
-		}
-
-		lua_pushinteger(L, ++n);
-		lua_pushinteger(L, companion->getObjectID());
-		lua_settable(L, -3);
-	}
-
-	return 1;
 }
 
 int LuaCreatureObject::enhanceCompanions(lua_State* L) {
