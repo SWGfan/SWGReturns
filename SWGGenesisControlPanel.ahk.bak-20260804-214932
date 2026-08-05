@@ -489,11 +489,9 @@ RefreshStatus(*) {
         if (bstate = "BUILDING") {
             BuildText.Value := "⚙ BUILDING  " . bpct . "%  --  " . bwhat
             BuildText.Opt("cFFA500")
-            StartPulse([255, 40, 40], [255, 220, 0])     ; red <-> yellow
         } else if (bstate = "LINKING") {
             BuildText.Value := "⚙ LINKING core3 -- almost done"
             BuildText.Opt("cFFA500")
-            StartPulse([255, 40, 40], [255, 220, 0])
         } else if (bstate = "DONE") {
             BuildText.Value := "✔ Build finished (" . bwhat . ")"
             BuildText.Opt("cGreen")
@@ -510,16 +508,13 @@ RefreshStatus(*) {
     kind := parts.Length ? parts[1] : ""
     if (kind = "RUNNING") {
         StatusText.Value := "● GENESIS RUNNING   " . StrReplace(line, "RUNNING|", "")
-        StopPulse("008000")                              ; settled: solid green
+        StatusText.Opt("cGreen")
     } else if (kind = "SESSION_NO_PROC") {
-        StatusText.Value := "◐ BOOTING   " . StrReplace(line, "SESSION_NO_PROC|", "")
-        StartPulse([255, 220, 0], [0, 200, 0])           ; yellow <-> green
+        StatusText.Value := "◐ BOOTING / PROBLEM   " . StrReplace(line, "SESSION_NO_PROC|", "")
+        StatusText.Opt("cFFA500")
     } else if (kind = "STOPPED") {
         StatusText.Value := "○ GENESIS STOPPED   " . StrReplace(line, "STOPPED|", "")
-        ; Only go still if nothing is building -- a stopped server mid-build
-        ; keeps the red/yellow pulse the BUILD branch above just set.
-        if (buildLine = "")
-            StopPulse("FF0000")
+        StatusText.Opt("cRed")
     } else {
         StatusText.Value := "Status unknown -- raw output: " . line
         StatusText.Opt("cRed")
@@ -1836,71 +1831,6 @@ ChangePushTarget(*) {
 
     SetLog(RunCapture('remote_set --url "' . url . '"'))
     RefreshRemote()
-}
-
-
-
-; ============================ STATUS PULSE ===================================
-; STATUS_PULSE_2026_08_04 -- the status colour animates only while something is
-; actually CHANGING (building, booting) and goes still once it is not. Motion
-; therefore always means "this is in progress", never decoration.
-;
-;   building  red <-> yellow      booting  yellow <-> green
-;   running   solid green         stopped  solid red
-PulseFrom := [255, 0, 0]
-PulseTo   := [255, 255, 0]
-PulseT    := 0.0
-PulseDir  := 1
-PulseOn   := false
-
-StartPulse(fromRGB, toRGB) {
-    global PulseFrom, PulseTo, PulseOn
-    ; Restarting with the same endpoints must not reset the wave, or the colour
-    ; visibly jumps every time RefreshStatus fires (every 5 seconds).
-    if (PulseOn && PulseFrom[1] = fromRGB[1] && PulseFrom[2] = fromRGB[2]
-            && PulseFrom[3] = fromRGB[3] && PulseTo[1] = toRGB[1]
-            && PulseTo[2] = toRGB[2] && PulseTo[3] = toRGB[3])
-        return
-
-    PulseFrom := fromRGB
-    PulseTo   := toRGB
-    PulseOn   := true
-    SetTimer(PulseStep, 100)
-}
-
-StopPulse(solidHex) {
-    global PulseOn, StatusText
-    if (PulseOn) {
-        PulseOn := false
-        SetTimer(PulseStep, 0)
-    }
-    StatusText.Opt("c" . solidHex)
-    try StatusText.Redraw()
-}
-
-PulseStep() {
-    global PulseFrom, PulseTo, PulseT, PulseDir, PulseOn, StatusText
-
-    if (!PulseOn) {
-        SetTimer(PulseStep, 0)
-        return
-    }
-
-    PulseT += PulseDir * 0.06
-    if (PulseT >= 1.0) {
-        PulseT := 1.0
-        PulseDir := -1
-    } else if (PulseT <= 0.0) {
-        PulseT := 0.0
-        PulseDir := 1
-    }
-
-    r := Round(PulseFrom[1] + (PulseTo[1] - PulseFrom[1]) * PulseT)
-    g := Round(PulseFrom[2] + (PulseTo[2] - PulseFrom[2]) * PulseT)
-    b := Round(PulseFrom[3] + (PulseTo[3] - PulseFrom[3]) * PulseT)
-
-    StatusText.Opt("c" . Format("{:02X}{:02X}{:02X}", r, g, b))
-    try StatusText.Redraw()
 }
 
 
