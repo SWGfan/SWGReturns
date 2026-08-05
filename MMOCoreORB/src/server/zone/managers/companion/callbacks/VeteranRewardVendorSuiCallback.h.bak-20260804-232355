@@ -28,8 +28,7 @@
 	Jedi" companion (light or dark side) instead of a plain item: full real
 	Jedi mastery + a legendary lightsaber, via CompanionSkillTrainer::
 	recruitMasterJediCompanion(). Their original 1-token TESTING price was
-	raised to 10000 on 2026-08-01 along with everything else, then to 1000000 on
-	2026-08-04 -- see JEDI_COMPANION_PRICE_2026_08_04 at the price table.
+	raised to 10000 on 2026-08-01 along with everything else.
 
 	2026-08-01 ORDERING RULE, now uniform across all three reward kinds:
 	the reward is created and delivered FIRST, and tokens are consumed only
@@ -438,12 +437,8 @@ const VeteranRewardVendorSuiCallback::RewardEntry VeteranRewardVendorSuiCallback
 	{ "500 Credits", 10000, "", 500, false, false, false },
 	{ "5,000 Credits", 10000, "", 5000, false, false, false },
 	// --- Master Jedi companions ---
-	// JEDI_COMPANION_PRICE_2026_08_04 -- 10000 -> 1000000 per Nick: "they need
-	// to be difficult to obtain". At 10000 the rarest reward in the list cost
-	// the same as a survey tool, which made it read as a sidegrade rather than
-	// a goal. Every other entry stays at 10000.
-	{ "Master Jedi Companion (Light Side)", 1000000, "", 0, true, false, false },
-	{ "Master Jedi Companion (Dark Side)", 1000000, "", 0, true, true, false },
+	{ "Master Jedi Companion (Light Side)", 10000, "", 0, true, false, false },
+	{ "Master Jedi Companion (Dark Side)", 10000, "", 0, true, true, false },
 };
 
 #endif // VETERANREWARDVENDORSUICALLBACK_H_

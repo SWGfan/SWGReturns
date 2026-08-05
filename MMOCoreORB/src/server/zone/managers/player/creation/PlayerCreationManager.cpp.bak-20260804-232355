@@ -325,54 +325,6 @@ void PlayerCreationManager::loadLuaStartingItems(Lua* lua) {
 	}
 }
 
-/**
- * ADMIN_BUILDER_TERMINAL_2026_08_04 -- drop a Character Builder terminal into a
- * new admin's inventory.
- *
- * The terminal is normally a fixed object you have to travel to. Carrying one
- * means it can be dropped wherever testing is happening, which removes a trip to
- * the starport from every test cycle on a server under active development.
- *
- * Failure here must never cost the character: a new player object has already
- * been built and committed by the time this runs, so every path logs and returns
- * rather than aborting creation over a convenience item.
- */
-void PlayerCreationManager::giveAdminBuilderTerminal(CreatureObject* playerCreature) const {
-	if (playerCreature == nullptr) {
-		return;
-	}
-
-	ZoneServer* zoneServer = playerCreature->getZoneServer();
-
-	if (zoneServer == nullptr) {
-		return;
-	}
-
-	SceneObject* inventory = playerCreature->getSlottedObject("inventory");
-
-	if (inventory == nullptr) {
-		return;
-	}
-
-	ManagedReference<SceneObject*> terminal = zoneServer->createObject(
-			STRING_HASHCODE("object/tangible/terminal/terminal_character_builder.iff"), 1);
-
-	if (terminal == nullptr) {
-		instance()->error("ADMIN_BUILDER_TERMINAL: could not create the character builder terminal");
-		return;
-	}
-
-	Locker terminalLocker(terminal, playerCreature);
-
-	if (!inventory->transferObject(terminal, -1, false)) {
-		terminal->destroyObjectFromDatabase(true);
-		instance()->error("ADMIN_BUILDER_TERMINAL: could not place the terminal into the new admin's inventory");
-		return;
-	}
-
-	terminal->setCustomObjectName("Character Builder Terminal (admin)", false);
-}
-
 bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callback) const {
 	TemplateManager* templateManager = TemplateManager::instance();
 
@@ -517,12 +469,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 				if (accountPermissionLevel > 0 && (accountPermissionLevel == 9 || accountPermissionLevel == 10 || accountPermissionLevel == 12 || accountPermissionLevel == 15)) {
 					playerManager->updatePermissionLevel(playerCreature, accountPermissionLevel);
-
-					// ADMIN_BUILDER_TERMINAL_2026_08_04 -- hooked here because the
-					// admin question is already answered on this line; asking it a
-					// second time somewhere else would just be another thing to keep
-					// in sync.
-					giveAdminBuilderTerminal(playerCreature);
 				}
 
 			} catch (Exception& e) {
@@ -530,9 +476,6 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 			}
 		} else {
 			playerManager->updatePermissionLevel(playerCreature, PermissionLevelList::instance()->getLevelNumber("admin"));
-
-			// freeGodMode: everyone is an admin, so everyone gets one.
-			giveAdminBuilderTerminal(playerCreature);
 		}
 
 		if (doTutorial)

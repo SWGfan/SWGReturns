@@ -4562,31 +4562,6 @@ void CompanionObjectImplementation::runKeepUpTick() {
 		activateMovementEvent();
 	}
 
-	// COMPANION_SEATED_FOLLOW_FIX_2026_08_04 -- a companion that has sat down
-	// cannot move again on its own. MovePetBase:checkConditions gates on
-	// posture == UPRIGHT, so a seated companion fails it on every tick forever;
-	// pressing follow works only because CompanionFollowCommand now stands it up
-	// first (COMPANION_SIT_FOLLOW_FIX). Nothing did that automatically, so
-	// walking away from a seated companion just left it behind, silently.
-	//
-	// Only fires when it is SUPPOSED to be coming along -- FOLLOW state, a live
-	// follow object, not mid-loot-sweep, and the owner genuinely out of reach. A
-	// companion told to STAY, or seated in a theater show, is left alone (this
-	// tick already returns early for THEATER further up).
-	{
-		CompanionObject* self = companionRef.get();
-
-		if (self != nullptr && owner != nullptr
-				&& self->getCompanionState() == CompanionObject::FOLLOW
-				&& !self->isLootSweepActive()
-				&& self->getPosture() != CreaturePosture::UPRIGHT
-				&& self->getFollowObject().get() != nullptr
-				&& self->getDistanceTo(owner) > 8.f) {
-			self->setPosture(CreaturePosture::UPRIGHT, true, true);
-			self->activateMovementEvent();
-		}
-	}
-
 	runMedicAutoCareTick(companionRef.get(), owner);
 
 	// CRAFTING_RANGE_INDICATOR_FEATURE (2026-08-01 re-anchor -- the original 2026-07-29

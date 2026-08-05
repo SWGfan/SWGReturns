@@ -146,9 +146,6 @@ public:
 	 * @param creature the player creature
 	 * @param container the target container
 	 */
-	// ADMIN_BUILDER_TERMINAL_2026_08_04
-	void giveAdminBuilderTerminal(CreatureObject* playerCreature) const;
-
 	void addStartingItemsInto(CreatureObject* creature, SceneObject* container) const;
 
 	/**
