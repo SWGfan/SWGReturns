@@ -769,9 +769,8 @@ BackupAllClick(*) {
             . "A full backup includes the object database -- every character, companion,`n"
             . "item and structure. Copying it while the server is writing to it produces`n"
             . "a snapshot that may not restore, so it needs the server stopped.`n`n"
-            . "YES     Save the world, shut down, back up, then start it again.`n"
-            . "            (~1-2 min to stop, a minute to copy ~309 MB, then the`n"
-            . "            usual few minutes to boot. The whole thing is hands-off.)`n`n"
+            . "YES     Save the world, shut down, back up, and leave it stopped.`n"
+            . "            (~1-2 min to stop, then about a minute to copy ~309 MB)`n`n"
             . "NO       Back up MySQL only and keep playing.`n"
             . "            Accounts and galaxy data only -- NOT your characters.`n`n"
             . "CANCEL  Do nothing.",
@@ -782,13 +781,12 @@ BackupAllClick(*) {
 
         if (ans = "Yes") {
             SetBusy(true)
-            SetLog("Saving the world, shutting down, backing up, then starting again.`n`n"
+            SetLog("Saving the world, shutting down, then backing up.`n`n"
                 . "Object database (excluding the __db.* region files the engine`n"
                 . "rebuilds anyway) plus a MySQL dump, into D:\SWGGenesis\backups\<timestamp>.`n`n"
-                . "The server has to be stopped for the copy to be consistent, so it`n"
-                . "is stopped, copied, and brought back up automatically. Nothing for`n"
-                . "you to press -- give it several minutes and watch for GENESIS RUNNING.")
-            RunAsync("backup_all --stop-first --restart-after", ActionDone)
+                . "The server is left STOPPED so the copy stays consistent -- press`n"
+                . "Start when it finishes.")
+            RunAsync("backup_all --stop-first", ActionDone)
             return
         }
 

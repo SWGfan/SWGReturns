@@ -755,14 +755,8 @@ TO RESTORE
 """
 
 
-def act_backup_all(stop_first=False, mysql_only=False, auto=False, keep=6,
-                   restart_after=False):
+def act_backup_all(stop_first=False, mysql_only=False, auto=False, keep=6):
     """Back up BOTH halves of the server state. See the module docstring."""
-    # BACKUP_RESTART_AFTER_2026_08_05 -- only restart a server we stopped ourselves.
-    # If it was already down when the backup started, it stays down: taking a
-    # backup is not a reason to boot a server nobody asked to run.
-    we_stopped_it = False
-
     if stop_first and core3_pid():
         print("Server is up -- saving the world and shutting down first.")
         act_shutdown()
@@ -770,7 +764,6 @@ def act_backup_all(stop_first=False, mysql_only=False, auto=False, keep=6,
             if not core3_pid():
                 break
             time.sleep(5)
-        we_stopped_it = not core3_pid()
 
     running = core3_pid()
 
@@ -798,8 +791,6 @@ def act_backup_all(stop_first=False, mysql_only=False, auto=False, keep=6,
         print("open. Rather than hand you a backup that might not work, pick one:")
         print("")
         print("  backup_all --stop-first    save, shut down, back up, stay down")
-        print("  backup_all --stop-first --restart-after")
-        print("                             the same, then start it again")
         print("  backup_all --mysql-only    skip the object DB, dump MySQL only")
         return 1
 
@@ -865,17 +856,6 @@ def act_backup_all(stop_first=False, mysql_only=False, auto=False, keep=6,
     print("")
     rc, out = sh("ls -1t '%s' | head -8" % BACKUPS)
     print("Backups on disk (newest first):\n" + out.strip())
-
-    # BACKUP_RESTART_AFTER_2026_08_05 -- put it back the way we found it.
-    # Deliberately restarts even when the backup reported problems: a bad backup
-    # is something to go and look at, but a server silently left offline is
-    # something that costs players. The return code below still reports the
-    # backup honestly, so nothing downstream is misled.
-    if restart_after and we_stopped_it:
-        print("")
-        print("Backup finished -- starting the server again.")
-        act_start()
-
     return 0 if ok else 1
 
 
@@ -2094,8 +2074,7 @@ def main():
                 pass
         act_backup_all(stop_first="--stop-first" in args,
                        mysql_only="--mysql-only" in args,
-                       auto="--auto" in args, keep=_keep,
-                       restart_after="--restart-after" in args)
+                       auto="--auto" in args, keep=_keep)
     elif a == "fix_ip":            act_fix_ip()
     elif a == "show_ip":           act_show_ip()
     elif a == "target_local":      act_target_local()
