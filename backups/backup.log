@@ -1,0 +1,28 @@
+
+==== 2026-08-04 20:30:00.09 ====
+AUTO: server is UP (pid 7937) -- backing up MySQL only.
+      The object database (characters, companions, items) needs
+      the server stopped to copy safely, so it is SKIPPED tonight.
+      Shut the server down before the scheduled time, or press
+      Backup Everything by hand, to capture it.
+
+Backing up into /mnt/d/SWGGenesis/backups/20260804_203000
+
+1/2  object database SKIPPED (--mysql-only)
+2/2  MySQL ...
+     wrote 476K
+
+
+Backup COMPLETE: 480K   (1.8T free on the drive)
+Restore instructions are in /mnt/d/SWGGenesis/backups/20260804_203000/RESTORE.txt
+
+NOTE: backups live on the SAME physical disk as the server. That
+      protects you from a bad patch or a corrupted save -- it does
+      NOT protect you from this drive failing. Copy a folder to
+      another drive periodically.
+
+Backups on disk (newest first):
+20260804_203000
+backup.log
+20260804_193656
+20260804_161633

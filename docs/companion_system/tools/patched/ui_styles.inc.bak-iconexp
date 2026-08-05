@@ -9657,7 +9657,7 @@
 				<ImageStyle
 					Name='assist'
 					Source='ui_rebel_icons'
-					SourceRect='301,3,325,27'
+					SourceRect='26,140,50,164'
 				/>
 				<ImageStyle
 					Name='attack'
@@ -46333,7 +46333,7 @@
 					<ImageStyle
 						Name='assist'
 						Source='ui_shader_add:ui_rebel_icons'
-						SourceRect='301,3,325,27'
+						SourceRect='26,140,50,164'
 					/>
 					<ImageStyle
 						Name='attack'

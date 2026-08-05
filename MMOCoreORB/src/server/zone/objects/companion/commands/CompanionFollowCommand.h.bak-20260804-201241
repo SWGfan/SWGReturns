@@ -20,7 +20,6 @@
 #include "server/zone/objects/creature/commands/QueueCommand.h"
 #include "server/zone/objects/companion/CompanionObject.h"
 #include "templates/params/creature/CreaturePosture.h"
-#include "templates/params/creature/CreatureState.h"
 #include "server/zone/objects/companion/CompanionControlDevice.h"
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/companion/FormationManager.h"
@@ -149,16 +148,7 @@ public:
 			// Nothing else in the companion tree resets posture -- setPosture()
 			// appears only in the scripted show commands (BattleTheater,
 			// Birthday, Jenkins, Muster), never in a movement order.
-			// COMPANION_RIDING_POSTURE_GUARD_2026_08_04 -- only stand a companion
-			// up when it is actually on its feet to begin with. A companion on
-			// its taxi vehicle is a RIDER child of that vehicle with
-			// CreatureState::RIDINGMOUNT set (CompanionObjectImplementation.cpp
-			// :1711-1713) and is moved BY the vehicle, not by its own behaviour
-			// tree -- forcing a posture change on it is not something a movement
-			// order should do as a side effect.
-			if (!companion->isTaxiActive()
-					&& !companion->hasState(CreatureState::RIDINGMOUNT)
-					&& companion->getPosture() != CreaturePosture::UPRIGHT) {
+			if (companion->getPosture() != CreaturePosture::UPRIGHT) {
 				companion->setPosture(CreaturePosture::UPRIGHT, true, true);
 			}
 

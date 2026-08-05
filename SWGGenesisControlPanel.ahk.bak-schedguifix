@@ -1590,11 +1590,6 @@ ListBackupTasks() {
     return uniq
 }
 
-; Pre-initialise, exactly as PlayersGui/TuneGui/PlanetsGui do above (867,
-; 1025, 1185). AHK v2 THROWS when a global is read before assignment, so
-; the IsObject() guard inside the function cannot be the first touch.
-SchedGui := 0
-
 ShowBackupSchedule(*) {
     global SchedGui, SchedLV, SchedMsg, SchedHour, SchedMin, SchedKeep, SchedMode, MyGui
 

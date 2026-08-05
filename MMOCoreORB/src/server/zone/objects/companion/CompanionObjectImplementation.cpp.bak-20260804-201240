@@ -1698,42 +1698,9 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 
 		ManagedReference<PlayerObject*> ownerGhost = owner->getPlayerObject();
 
-		// COMPANION_TAXI_GO_POPUP_DEFER_2026_08_04 -- this box used to land on
-		// top of the waypoint picker. startTaxiRide() is called from INSIDE the
-		// waypoint SuiListBox's own callback, so the GO box was generated and
-		// sent while the client was still showing the list that launched it,
-		// and the two stacked. A new player has no way to know one window is
-		// hiding behind another.
-		//
-		// SWG's SUI protocol gives the server no way to position a window, so
-		// "centre it" is not on the table. Not having two on screen at once is:
-		// send this one from a short scheduled task, by which time the client
-		// has processed the list box closing. Same deferred-task idiom as
-		// CompanionLootResendLambda and CompanionAutoEquipDisplaceResendLambda
-		// elsewhere in this file.
 		if (ownerGhost != nullptr) {
-			ManagedReference<SuiMessageBox*> deferredBox = goSuiBox;
-			ManagedReference<CreatureObject*> deferredOwner = owner;
-
-			Core::getTaskManager()->scheduleTask([deferredBox, deferredOwner] () {
-				SuiMessageBox* box = deferredBox.get();
-				CreatureObject* who = deferredOwner.get();
-
-				if (box == nullptr || who == nullptr) {
-					return;
-				}
-
-				Locker locker(who);
-
-				ManagedReference<PlayerObject*> ghost = who->getPlayerObject();
-
-				if (ghost == nullptr) {
-					return;
-				}
-
-				ghost->addSuiBox(box);
-				who->sendMessage(box->generateMessage());
-			}, "CompanionTaxiGoPopupLambda", 700);
+			ownerGhost->addSuiBox(goSuiBox);
+			owner->sendMessage(goSuiBox->generateMessage());
 		}
 	}
 
@@ -2185,7 +2152,6 @@ void CompanionObjectImplementation::updateTaxiTick() {
 
 			if (departingAgent != nullptr) {
 				departingAgent->setFollowState(AiAgent::PATROLLING); // genesis port: was setMovementState()
-				departingAgent->activateMovementEvent(); // see COMPANION_TAXI_MOVEMENT_EVENT_FIX_2026_08_04
 			}
 
 			if (rideOwner != nullptr) {
@@ -2224,7 +2190,6 @@ void CompanionObjectImplementation::updateTaxiTick() {
 
 					if (resumingAgent != nullptr) {
 						resumingAgent->setFollowState(AiAgent::PATROLLING); // genesis port: was setMovementState()
-						resumingAgent->activateMovementEvent(); // see COMPANION_TAXI_MOVEMENT_EVENT_FIX_2026_08_04
 					}
 
 					if (rideOwner != nullptr) {
@@ -2311,7 +2276,6 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				// set BEFORE the point is queued (see PetPatrolCommand.h).
 				driverAgent->setFollowState(AiAgent::PATROLLING);
 				driverAgent->addPatrolPoint(destination);
-				driverAgent->activateMovementEvent(); // see COMPANION_TAXI_MOVEMENT_EVENT_FIX_2026_08_04
 			}
 		}
 	}
@@ -2351,15 +2315,6 @@ void CompanionObjectImplementation::updateTaxiTick() {
 
 		if (departingAgent != nullptr) {
 			departingAgent->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
-			// COMPANION_TAXI_MOVEMENT_EVENT_FIX_2026_08_04 -- the driver had a
-			// correct follow object and a correct follow state and NO CLOCK.
-			// An AiAgent only moves because an AiMoveEvent keeps re-firing its
-			// behaviour tree, and setFollowState/setFollowObject no longer arm
-			// one (the calls are commented out in AiAgent.idl:652/664/676/688).
-			// There was not a single activateMovementEvent() anywhere in the
-			// taxi system, which is exactly why a mounted companion sat still.
-			// Idempotent -- it only schedules when nothing is pending.
-			departingAgent->activateMovementEvent();
 		}
 
 		if (rideOwner != nullptr) {
