@@ -1614,29 +1614,7 @@ bool CompanionObjectImplementation::startTaxiRide(CreatureObject* owner, float d
 	// "companion" AI map (follow-at-a-run, no leash-home) is not applied.
 	// genesis port: setAITemplate() -> setupBehaviorTree() (AiAgent.idl:1178,
 	// autogen/.../AiAgent.h:805) -- same no-arg "assemble the default trees" call.
-	// COMPANION_TAXI_DRIVER_TREE_FIX_2026_08_04 -- closes the deferral the
-	// comment above describes.
-	//
-	// setupBehaviorTree() with no arguments composes the tree from the creature
-	// bitmask. The driver never gets CreatureFlag::PET (nothing in the companion
-	// tree calls setCreatureBitmask at all), so the idle slot fell to the NONE
-	// row of templates.lua -- `idlewander`: GeneratePatrol, Walk, Wait. No
-	// follow behaviour anywhere in it, so nothing consumed the follow object the
-	// way MoveCreaturePet does; and its mover is WalkBase, which inherits
-	// MoveBase:checkConditions and therefore the leash. The driver ended up with
-	// a correct follow object, a correct FOLLOWING state, a live move event, and
-	// a tree that could only wander near home and go home if it strayed.
-	//
-	// The comment above calls the missing piece "the 'companion' AI map
-	// (follow-at-a-run, no leash-home)". That is exactly what companionfollow is
-	// -- MoveCreaturePet in the idle slot, CombatMoveCreaturePet in the combat
-	// slot, neither carrying MoveBase's leash check. It did not exist when this
-	// was deferred; it was written on 2026-08-04 for this same class of bug.
-	//
-	// Works for both ride modes: MovePetBase:checkConditions only requires that
-	// the follow state is not OBLIVIOUS, which the destination ride's PATROLLING
-	// satisfies as readily as the escort ride's FOLLOWING.
-	driver->activateLoad("companionfollow");
+	driver->setupBehaviorTree();
 	driver->activateRecovery();
 
 	// Companion System (2026-07-20, "taxi greeting" pass, per user
