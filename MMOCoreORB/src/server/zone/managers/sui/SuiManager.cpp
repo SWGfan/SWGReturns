@@ -948,7 +948,7 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 				if (setInventory != nullptr) {
 					for (const char* piecePath : OBSIDIAN_VANGUARD_PIECES) {
-						ManagedReference<SceneObject*> piece = zserv->createObject(STRING_HASHCODE(piecePath), 1);
+						ManagedReference<SceneObject*> piece = zserv->createObject(String::hashCode(piecePath), 1); // FIX_2026_08_05: STRING_HASHCODE needs a compile-time constant; piecePath is a runtime loop variable here.
 
 						if (piece == nullptr) {
 							continue;
