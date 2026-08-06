@@ -4969,6 +4969,16 @@ void CompanionObjectImplementation::runPostCombatSweepCheck() {
 		}
 
 		if (owner->isInCombat()) {
+			// FIX_2026_08_06: forcePeace() asserts "attacker must be locked"
+			// (CombatManager::forcePeace -> fatal(attacker->isLockedByCurrentThread()...)).
+			// This scope only holds a lock on companion (via the caller's
+			// Locker locker(companion) in the scheduleTask lambda above), never
+			// on owner -- calling forcePeace(owner) unlocked hit that fatal
+			// assertion and SIGABRT'd the whole server. Same cross-lock idiom
+			// already used elsewhere in this file for this exact companion/owner
+			// pair (see the corpse-cash Locker ownerLocker(owner, companion) a
+			// few hundred lines up).
+			Locker ownerLocker(owner, companionRef.get());
 			CombatManager::instance()->forcePeace(owner);
 		}
 	}
