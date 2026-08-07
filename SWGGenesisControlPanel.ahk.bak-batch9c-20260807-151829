@@ -64,7 +64,7 @@ PulseOn   := false
 ; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
 ; from this file's own mtime, which cannot drift out of date the way a
 ; hand-written string does.
-PANEL_UPDATE_NOTE := "added Activity Log pane (tails menu_activity.log live) + dropped console HScroll"
+PANEL_UPDATE_NOTE := "build/boot countdown estimated from this machine's own history"
 SCREEN_SESSION := "genesis"                        ; NOT 'swgemu', NOT 'swgreturns'
 CLIENT_DIR := "D:\Launcher\newreturnbenserver"     ; the launcher's install
 CLIENT_EXE := CLIENT_DIR . "\SWGEmu.exe"

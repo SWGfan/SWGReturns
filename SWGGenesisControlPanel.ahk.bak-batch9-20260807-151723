@@ -64,7 +64,7 @@ PulseOn   := false
 ; updates it in passing. The WHEN is deliberately NOT stored here -- it comes
 ; from this file's own mtime, which cannot drift out of date the way a
 ; hand-written string does.
-PANEL_UPDATE_NOTE := "added Activity Log pane (tails menu_activity.log live) + dropped console HScroll"
+PANEL_UPDATE_NOTE := "build/boot countdown estimated from this machine's own history"
 SCREEN_SESSION := "genesis"                        ; NOT 'swgemu', NOT 'swgreturns'
 CLIENT_DIR := "D:\Launcher\newreturnbenserver"     ; the launcher's install
 CLIENT_EXE := CLIENT_DIR . "\SWGEmu.exe"
@@ -412,19 +412,7 @@ ConsoleLabel := MyGui.Add("Text", "xm y+12 w760 vConsoleLabel",
     "Live Server Console (read-only, refreshes every 4s -- press Live Console for a bigger view):")
 ConsoleAuto  := MyGui.Add("Checkbox", "x+10 yp-2 w100 vConsoleAuto Checked", "auto-scroll")
 MyGui.SetFont("s9", "Consolas")
-ConsoleBox := MyGui.Add("Edit", "xm y+6 w980 h200 ReadOnly VScroll", "(checking...)")  ; 2026-08-07: HScroll removed, it sat over the last line
-
-; ACTIVITY_LOG_2026_08_07 -- every real action (rebuild, push, restart, backup,
-; ...), whether started from a button or typed straight into a terminal, tees
-; live into a shared log file (see swggenesis_menu.py's _open_activity_log /
-; sh_stream). This just tails that file -- a plain local FileRead, no wsl.exe
-; round trip needed since it's on the same D: drive.
-MyGui.SetFont("s10", "Segoe UI")
-ActivityLabel := MyGui.Add("Text", "xm y+12 w760 vActivityLabel",
-    "Activity Log (every rebuild/push/restart/backup -- from this panel OR a terminal):")
-ActivityAuto  := MyGui.Add("Checkbox", "x+10 yp-2 w100 vActivityAuto Checked", "auto-scroll")
-MyGui.SetFont("s9", "Consolas")
-ActivityBox := MyGui.Add("Edit", "xm y+6 w980 h90 ReadOnly VScroll", "(no activity yet)")
+ConsoleBox := MyGui.Add("Edit", "xm y+6 w980 h200 ReadOnly VScroll HScroll", "(checking...)")
 
 ; PANEL_FOOTER_2026_08_04 -- when this panel last changed, and why.
 MyGui.SetFont("s8", "Segoe UI")
@@ -443,8 +431,6 @@ GuiSize(thisGui, MinMax, W, H) {
     global MyGui, LogTopY, ConLabelH
     global StatusText, PlayHint, TargetLabel, DbBox, PushBox, RemoteLabel
     global LogBox, ConsoleLabel, ConsoleBox, ConsoleAuto, UpdatedText
-    global ActivityLabel, ActivityAuto, ActivityBox
-    static ACTIVITY_H := 90, ACTIVITY_GAP := 14
 
     if (MinMax = -1)          ; minimised -- W/H are meaningless, don't lay out
         return
@@ -466,11 +452,7 @@ GuiSize(thisGui, MinMax, W, H) {
     ; The console gets the larger share -- it is the thing you actually watch.
     ; PANEL_FOOTER_2026_08_04 -- reserve room for the footer, or the console
     ; simply grows over it on the first resize.
-    ; ACTIVITY_LOG_2026_08_07 -- the activity pane below adds a fixed
-    ; ConLabelH + 6 + ACTIVITY_H + ACTIVITY_GAP px of its own; reserve that
-    ; here too or the footer gets pushed past the bottom of the window on a
-    ; 1080p screen, same overflow bug the 2026-08-04 revision fixed once.
-    avail := H - LogTopY - MyGui.MarginY - ConLabelH - 26 - 22 - (ConLabelH + 6 + ACTIVITY_H + ACTIVITY_GAP)
+    avail := H - LogTopY - MyGui.MarginY - ConLabelH - 26 - 22
     if (avail < 140)
         avail := 140
     logH := Round(avail * 0.40)
@@ -485,16 +467,7 @@ GuiSize(thisGui, MinMax, W, H) {
     ConsoleLabel.Move(, labelY, innerW - 120)
     ConsoleAuto.Move(m + innerW - 105, labelY - 2)
     ConsoleBox.Move(, labelY + ConLabelH + 6, innerW, conH)
-
-    ; ACTIVITY_LOG_2026_08_07 -- fixed-height strip below the console pane,
-    ; not part of the log/console proportional split above (keeps that math
-    ; untouched). Stretches width only.
-    actLabelY := labelY + ConLabelH + 6 + conH + ACTIVITY_GAP
-    ActivityLabel.Move(, actLabelY, innerW - 120)
-    ActivityAuto.Move(m + innerW - 105, actLabelY - 2)
-    ActivityBox.Move(, actLabelY + ConLabelH + 6, innerW, ACTIVITY_H)
-
-    UpdatedText.Move(, actLabelY + ConLabelH + 6 + ACTIVITY_H + 5, innerW)
+    UpdatedText.Move(, labelY + ConLabelH + 6 + conH + 5, innerW)
 }
 MyGui.OnEvent("Size", GuiSize)
 MyGui.OnEvent("Close", (*) => ExitApp())
@@ -1987,38 +1960,3 @@ BuildFooterText() {
 
 SetTimer(RefreshStatus, 5000)
 SetTimer(RefreshConsole, 4000)
-SetTimer(RefreshActivityLog, 3000)
-
-; ACTIVITY_LOG_2026_08_07 -- local file, no wsl.exe shell-out needed (the log
-; lives on the same D: drive, at the WSL path /mnt/d/SWGGenesis/menu_activity.log
-; -- see swggenesis_menu.py). Tails the last ~200 lines.
-RefreshActivityLog(*) {
-    global ActivityBox, ActivityAuto
-    static path := "D:\SWGGenesis\menu_activity.log"
-
-    if !FileExist(path) {
-        newText := "(no activity yet -- this fills in the first time anyone runs a rebuild, backup, restart, push, etc., either from this panel or a terminal)"
-    } else {
-        try {
-            text := FileRead(path)
-        } catch {
-            return  ; transient share/lock while something else is writing -- just skip this tick
-        }
-        lines := StrSplit(text, "`n")
-        if (lines.Length > 200) {
-            newText := ""
-            start := lines.Length - 200 + 1
-            loop 200 {
-                newText .= lines[start + A_Index - 1] . "`n"
-            }
-        } else {
-            newText := text
-        }
-    }
-
-    if (ActivityBox.Value != newText) {
-        ActivityBox.Value := newText
-        if (ActivityAuto.Value)
-            ScrollToEnd(ActivityBox)
-    }
-}

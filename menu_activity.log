@@ -1,0 +1,40 @@
+
+==============================================================================
+[2026-08-07 11:20:18] $ swggenesis_menu.py shutdown
+------------------------------------------------------------------------------
+Asking the server to save the world before shutting down...
+Save confirmed.
+Sending shutdown to the console...
+
+Server stopped.
+[2026-08-07 11:21:11] -- done --
+
+==============================================================================
+[2026-08-07 11:21:24] $ swggenesis_menu.py backup_all
+------------------------------------------------------------------------------
+Backing up into /mnt/d/SWGGenesis/backups/20260807_112124
+
+1/2  object database (excluding __db.* region files) ...
+     wrote 309M (29 .db files)
+2/2  MySQL ...
+     wrote 480K
+
+  pruning old backup 20260804_193656
+
+Backup COMPLETE: 310M   (1.8T free on the drive)
+Restore instructions are in /mnt/d/SWGGenesis/backups/20260807_112124/RESTORE.txt
+
+NOTE: backups live on the SAME physical disk as the server. That
+      protects you from a bad patch or a corrupted save -- it does
+      NOT protect you from this drive failing. Copy a folder to
+      another drive periodically.
+
+Backups on disk (newest first):
+20260807_112124
+backup.log
+20260806_203002
+20260805_203001
+20260805_091921
+20260804_231628
+20260804_203000
+[2026-08-07 11:21:36] -- done --

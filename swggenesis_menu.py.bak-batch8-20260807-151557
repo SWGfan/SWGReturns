@@ -39,7 +39,6 @@ BIN       = MMO + "/bin"
 BUILD     = MMO + "/build/unix"
 LOG       = BIN + "/log/core3.log"
 CONSOLE_LOG = "/mnt/d/SWGGenesis/console.log"  # stdout-only errors land here
-ACTIVITY_LOG = "/mnt/d/SWGGenesis/menu_activity.log"  # 2026-08-07: every real action, tee'd live -- see act_rebuild()/main()
 CONF      = BIN + "/conf/config-local.lua"
 CONF_MAIN = BIN + "/conf/config.lua"
 CLIENT    = "/mnt/d/Launcher/newreturnbenserver"
@@ -90,119 +89,6 @@ def sh(cmd, timeout=None):
         return p.returncode, p.stdout.decode("utf-8", "replace")
     except subprocess.TimeoutExpired:
         return 124, "(timed out after %ss)" % timeout
-
-
-ACTIVITY_LOG_MAX_LINES = 4000  # trimmed on each open so the GUI's tail never loads an unbounded file
-
-# High-frequency, read-only actions the GUI itself polls every few seconds
-# (status/console/players/...) -- excluded from the activity log, or every
-# real action (a rebuild, a push, a restart) would scroll off within seconds
-# of the panel just sitting open.
-_NOISY_READONLY_ACTIONS = {
-    "status", "console_live", "console_snapshot", "console_errors",
-    "log_tail", "log_errors", "players", "accounts", "backup_count",
-    "remote", "planets_get", "tune_get", "tune_file", "show_target",
-    "show_ip", "ports", "diff",
-}
-
-# Set by main() for the life of one action; module-level so deep helpers like
-# sh_stream() can tee into it without every act_* function needing a
-# parameter that exists only for this.
-_current_activity_log = None
-
-
-class _Tee:
-    """Mirrors everything written to one stream into several. Used to send
-    every print() in an action to both real stdout (so a CLI/WSL caller still
-    sees it) and the shared activity log (so the GUI's Activity Log pane
-    shows it too) -- live, per line, not just once the action finishes.
-    """
-    def __init__(self, *streams):
-        self.streams = streams
-
-    def write(self, data):
-        for s in self.streams:
-            s.write(data)
-            s.flush()
-
-    def flush(self):
-        for s in self.streams:
-            s.flush()
-
-
-def _open_activity_log(action, rest_args):
-    """2026-08-07: open the shared activity log for append and write a start
-    banner, so ANY invocation of this script -- button or terminal -- shows
-    up in the control panel's Activity Log pane. Trims the file to its last
-    ACTIVITY_LOG_MAX_LINES first so it never grows without bound. Never
-    raises -- a logging problem must never block the real action.
-    """
-    try:
-        os.makedirs(os.path.dirname(ACTIVITY_LOG) or ".", exist_ok=True)
-        if os.path.exists(ACTIVITY_LOG):
-            with open(ACTIVITY_LOG, "r", encoding="utf-8", errors="replace") as f:
-                lines = f.readlines()
-            if len(lines) > ACTIVITY_LOG_MAX_LINES:
-                with open(ACTIVITY_LOG, "w", encoding="utf-8") as f:
-                    f.writelines(lines[-ACTIVITY_LOG_MAX_LINES:])
-
-        f = open(ACTIVITY_LOG, "a", encoding="utf-8")
-        stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        f.write("\n" + "=" * 78 + "\n")
-        f.write("[%s] $ swggenesis_menu.py %s\n" % (stamp, " ".join([action] + list(rest_args))))
-        f.write("-" * 78 + "\n")
-        f.flush()
-        return f
-    except OSError:
-        return None
-
-
-def sh_stream(cmd, timeout=None, tee_file=None, echo=True):
-    """Like sh(), but reads output line by line as it is produced instead of
-    capturing silently until the process exits. If tee_file is given, every
-    line is ALSO written there immediately (flushed) -- used so the shared
-    activity log gets full, live detail (e.g. every file make compiles) even
-    when the caller only prints a short summary to stdout/the GUI's own
-    captured output. Pass echo=False to suppress per-line stdout printing
-    entirely (tee_file-only, for very verbose steps like `make`) -- the
-    caller is still free to print its own summary from the returned text.
-
-    Returns (rc, full combined output), same shape as sh().
-    """
-    start = time.time()
-    lines = []
-    try:
-        p = subprocess.Popen(cmd, shell=True, executable="/bin/bash",
-                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                             bufsize=1, universal_newlines=True)
-    except OSError as e:
-        return 1, "(failed to start: %s)" % e
-
-    def _emit(text):
-        if echo:
-            print(text, end="")
-        if tee_file is not None:
-            try:
-                tee_file.write(text)
-                tee_file.flush()
-            except OSError:
-                pass
-
-    try:
-        for line in p.stdout:
-            lines.append(line)
-            _emit(line)
-            if timeout is not None and (time.time() - start) > timeout:
-                p.kill()
-                extra = "(timed out after %ss)\n" % timeout
-                lines.append(extra)
-                _emit(extra)
-                break
-    finally:
-        p.stdout.close()
-        rc = p.wait()
-
-    return rc, "".join(lines)
 
 
 def mysql(sql, timeout=60):
@@ -688,19 +574,16 @@ def act_rebuild():
         print("The server is RUNNING. Stop it first -- a build while it runs will fight for RAM.")
         return
     print("Configuring (cmake)...")
-    rc, out = sh_stream("cd %s && cmake %s ../.. 2>&1" % (BUILD, " ".join(CMAKE_FLAGS)),
-                        timeout=900, tee_file=_current_activity_log, echo=False)
-    print("\n".join(out.strip().splitlines()[-5:]))
+    rc, out = sh("cd %s && cmake %s ../.. 2>&1 | tail -5" % (BUILD, " ".join(CMAKE_FLAGS)),
+                 timeout=900)
+    print(out.strip())
     if rc != 0:
         print("\nCMAKE FAILED -- stopping here.")
         return
 
-    print("\nCompiling (make -j4). A full rebuild takes about an hour on the D: drive -- "
-          "watch the control panel's Activity Log pane (or `tail -f menu_activity.log`) "
-          "for live per-file progress...")
-    rc, out = sh_stream("cd %s && make -j4 2>&1" % BUILD, timeout=14400,
-                        tee_file=_current_activity_log, echo=False)
-    print("\n".join(out.strip().splitlines()[-25:]))
+    print("\nCompiling (make -j4). A full rebuild takes about an hour on the D: drive...")
+    rc, out = sh("cd %s && make -j4 2>&1 | tail -25" % BUILD, timeout=14400)
+    print(out.strip())
     if rc == 0:
         print("\n=== BUILD OK ===")
     else:
@@ -2181,12 +2064,6 @@ def main():
         return
     a = args[0]
 
-    global _current_activity_log
-    logf = None if a in _NOISY_READONLY_ACTIONS else _open_activity_log(a, args[1:])
-    if logf is not None:
-        _current_activity_log = logf
-        sys.stdout = _Tee(sys.stdout, logf)
-
     if a == "status":              act_status()
     elif a == "start":             act_start("--reloadstrings" in args)
     elif a == "shutdown":          act_shutdown()
@@ -2253,11 +2130,6 @@ def main():
         act_push(mf)
     else:
         print("Unknown action: %s\n\n%s" % (a, ACTIONS))
-
-    if logf is not None:
-        print("[%s] -- done --" % datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-        _current_activity_log = None
-        logf.close()
 
 
 if __name__ == "__main__":

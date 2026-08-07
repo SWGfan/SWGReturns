@@ -1,4 +1,4 @@
-SWGGenesis backup -- taken 20260804_193656
+SWGGenesis backup -- taken 20260807_112124
 
 CONTENTS
   databases/       the object database: every character, companion, item,
@@ -20,10 +20,10 @@ TO RESTORE
        mv /mnt/d/SWGGenesis/MMOCoreORB/bin/databases           /mnt/d/SWGGenesis/MMOCoreORB/bin/databases.before-restore
 
   3. Put this one back:
-       cp -a /mnt/d/SWGGenesis/backups/20260804_193656/databases /mnt/d/SWGGenesis/MMOCoreORB/bin/databases
+       cp -a /mnt/d/SWGGenesis/backups/20260807_112124/databases /mnt/d/SWGGenesis/MMOCoreORB/bin/databases
 
   4. MySQL:
-       gunzip -c /mnt/d/SWGGenesis/backups/20260804_193656/genesis.sql.gz | mysql -u returns -pReturnsDB2026 genesis
+       gunzip -c /mnt/d/SWGGenesis/backups/20260807_112124/genesis.sql.gz | mysql -u returns -pReturnsDB2026 genesis
 
   5. Start, and log in to check a character before deleting the folder from
      step 2:
