@@ -117,6 +117,23 @@ public:
 		return skillMap.get(hashCode).get();
 	}
 
+	/** Companion System (2026-08-07): read-only lookup into defaultXpLimits,
+	 * the same real per-xpType XP cap table (loaded from skills.iff via
+	 * Skill::xpCap) that updateXpLimits() uses for real players when nothing
+	 * the player has learned yet defines a higher cap for that type. Exposed
+	 * so other systems (the companion isolated XP ledger -- see
+	 * CompanionObjectImplementation.cpp's computeCompanionRealXpCap()) can
+	 * mirror the same real numbers without duplicating this table. Returns 0
+	 * if no default is defined for xpType -- callers should treat 0 as "no
+	 * known default", not "hard cap of zero". */
+	int getDefaultXpLimit(const String& xpType) const {
+		if (defaultXpLimits.contains(xpType)) {
+			return defaultXpLimits.get(xpType);
+		}
+
+		return 0;
+	}
+
 	Ability* getAbility(const String& abilityName) const {
 		return abilityMap.get(abilityName).get();
 	}

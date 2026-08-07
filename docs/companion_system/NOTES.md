@@ -9474,3 +9474,16 @@ neither move nor swing. Now targets the attacker, as stock `GetTargetBase` does.
 **Audited, not touched (confirmed already correctly locked):** the other 4 `forcePeace()` call sites under `objects/companion/` — flee-tick (`CompanionObjectImplementation.cpp:~3893`, self-locked via `runKeepUpTick()`'s caller lambda), the companion-side call in the same stuck-combat block (`~4968`), `CompanionFollowCommand.h:123`, `CompanionControlDeviceImplementation.cpp:964`.
 
 **Open question, not investigated tonight:** whether this crash and the still-unresolved "`<companion> stops fighting.`" log-spam bug (see `notes-to-companion.md`, 2026-08-01) share a root trigger — both run through the same `combatStuckPollCount`/`lootSweepActive` stuck-combat path. The XP-parity fix from job 048 may be making companions win/lose fights faster, surfacing this crash more often than before. Also still open, unrelated: companion trainable in skill tiers the owner hasn't unlocked (Carbines I/II reported tonight) — not yet looked into.
+
+## 2026-08-07 — Fencer/Swordsman/Pikeman/Squadleader were real all along, just misfiled
+
+Follow-up to the Carbine/Pistol/Smuggler naming fix earlier tonight. The remaining 4 professions in `jediGateMasterSkills` that didn't match anything in skills.iff turned out to be real content under different names (Nick supplied the correct ones from memory, confirmed against skills.iff before applying):
+
+- Fencer → `combat_1hsword_master`
+- Swordsman → `combat_2hsword_master`
+- Pikeman → `combat_polearm_master`
+- Squadleader → `outdoors_squadleader_master` (category prefix `outdoors_`, not `social_`)
+
+Updated `jediGateMasterSkills`' literal strings and `resolveProfessionToken()`'s prefix matching for all 4. All 11 professions gating `isJediEligible()` now resolve to real skills.iff rows — Jedi companion eligibility through the normal (non-vendor-bypass) path should now actually be reachable, which it likely never was before tonight. Worth a live playtest with a fully-mastered companion to confirm.
+
+**Noted, not built:** 1hsword/2hsword/polearm are gated behind a `combat_brawler_*_04` prereq, not a `combat_marksman_` branch the way Carbine/Rifle/Pistol are — so the "mastered the elite tier also covers the feeder branch" bridge built for Marksman doesn't extend to these. A parallel "Brawler bridge" would be the equivalent fix if ever wanted.

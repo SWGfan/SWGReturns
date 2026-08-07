@@ -171,16 +171,28 @@ CompanionSkillTrainer::CompanionSkillTrainer() : Logger("CompanionSkillTrainer")
 	// skill-tree naming convention (<profession>_master) -- cross-check
 	// against the live skills.iff / skill_manager Lua config if profession
 	// tree names differ on this install. See NOTES.md, "Skill string keys".
-	jediGateMasterSkills.add("combat_fencer_master");
-	jediGateMasterSkills.add("combat_swordsman_master");
-	jediGateMasterSkills.add("combat_pikeman_master");
+	// Companion System (2026-08-07, per Nick: "swordsman might be under 2h
+	// or 2 handed, pikeman might go by polearm, fencer might go by 1h or 1
+	// handed" -- all three confirmed correct against this project's own
+	// extracted skills.iff, plus a bonus find: Squadleader is real too, just
+	// filed under "outdoors_" not "social_"). These 11 strings now all
+	// resolve to real skills.iff rows -- see resolveProfessionToken() below
+	// for the matching prefix corrections. Previously 4 of these 11 pointed
+	// at skill names that don't exist anywhere in this deployment's data,
+	// which meant isJediEligible()'s all-11-badges requirement was very
+	// likely permanently unsatisfiable through the normal path (flagged to
+	// c3rr 2026-08-07 before this correction was found -- worth a follow-up
+	// note once this ships and gets tested).
+	jediGateMasterSkills.add("combat_1hsword_master"); // Fencer
+	jediGateMasterSkills.add("combat_2hsword_master"); // Swordsman
+	jediGateMasterSkills.add("combat_polearm_master"); // Pikeman
 	jediGateMasterSkills.add("combat_rifleman_master");
-	jediGateMasterSkills.add("combat_carbineer_master");
-	jediGateMasterSkills.add("combat_pistoleer_master");
-	jediGateMasterSkills.add("outdoors_smuggler_master");
+	jediGateMasterSkills.add("combat_carbine_master");
+	jediGateMasterSkills.add("combat_pistol_master");
+	jediGateMasterSkills.add("combat_smuggler_master");
 	jediGateMasterSkills.add("combat_commando_master");
 	jediGateMasterSkills.add("combat_bountyhunter_master");
-	jediGateMasterSkills.add("social_squadleader_master");
+	jediGateMasterSkills.add("outdoors_squadleader_master"); // Squadleader
 	jediGateMasterSkills.add("science_combatmedic_master");
 }
 
@@ -211,28 +223,66 @@ bool CompanionSkillTrainer::isAutoGrantable(const String& skillName) const {
 }
 
 String CompanionSkillTrainer::resolveProfessionToken(const String& skillName) const {
+	// Companion System (2026-08-07, verified against this project's own
+	// extracted skills.iff -- docs/companion_system/tools/extracted/
+	// skills.iff -- before touching this, since three of these mappings
+	// were silently wrong):
+	//
+	// - "combat_carbineer_"/"combat_pistoleer_" do not exist ANYWHERE in
+	//   this deployment's skill data (zero matches). The real elite skills
+	//   are "combat_carbine_master"/"combat_pistol_master" -- corrected
+	//   below. This means the master-badge fallback (owner mastered it
+	//   before but doesn't currently hold the exact skill) has been
+	//   silently broken for Carbine/Pistol since this function was written;
+	//   the "owner currently holds the exact skill" path masked it.
+	// - "outdoors_smuggler_" is also wrong -- the real skill is
+	//   "combat_smuggler_master" (confirmed real, unlike carbineer/
+	//   pistoleer) -- corrected below.
+	// - "combat_fencer_"/"combat_swordsman_"/"combat_pikeman_"/
+	//   "social_squadleader_" -- CORRECTED 2026-08-07, per Nick: these 4
+	//   professions ARE real in this deployment, just filed under different
+	//   names than the classic ones this function was originally written
+	//   against. Confirmed against skills.iff: Fencer -> combat_1hsword_,
+	//   Swordsman -> combat_2hsword_, Pikeman -> combat_polearm_, Squadleader
+	//   -> outdoors_squadleader_ (not social_). jediGateMasterSkills updated
+	//   to match -- see its own comment. Token names (the badge keys
+	//   returned below) are unchanged, only the skill PREFIX that triggers
+	//   each one moved to the real one.
+	// - "combat_marksman_carbine_"/"combat_marksman_rifle_"/
+	//   "combat_marksman_pistol_" added (2026-08-07, per user request to
+	//   let an owner who has mastered Carbine/Rifleman/Pistol train their
+	//   companion in the matching Marksman specialization branch even
+	//   without currently holding that exact box) -- these three branches
+	//   are real, confirmed prerequisites of their matching elite novice
+	//   tier (e.g. combat_carbine_novice's own SKILLS_REQUIRED includes
+	//   combat_marksman_carbine_04), so mastering the elite tier is real
+	//   proof the branch was already fully completed. Note: 1hsword/2hsword/
+	//   polearm are gated behind a combat_brawler_*_04 prereq instead (not
+	//   a combat_marksman_ branch), so no marksman bridge applies to them --
+	//   a parallel "brawler bridge" would be the analogous fix if ever
+	//   wanted, not built here (not what was asked for today).
 	if (skillName.beginsWith("combat_bountyhunter_")) {
 		return String("bountyhunter");
-	} else if (skillName.beginsWith("outdoors_smuggler_")) {
+	} else if (skillName.beginsWith("combat_smuggler_")) {
 		return String("smuggler");
 	} else if (skillName.beginsWith("science_combatmedic_")) {
 		return String("combatmedic");
-	} else if (skillName.beginsWith("social_squadleader_")) {
+	} else if (skillName.beginsWith("outdoors_squadleader_")) {
 		return String("squadleader");
 	} else if (skillName.beginsWith("combat_commando_")) {
 		return String("commando");
-	} else if (skillName.beginsWith("combat_fencer_")) {
+	} else if (skillName.beginsWith("combat_1hsword_")) {
 		return String("fencer");
-	} else if (skillName.beginsWith("combat_swordsman_")) {
+	} else if (skillName.beginsWith("combat_2hsword_")) {
 		return String("swordsman");
-	} else if (skillName.beginsWith("combat_pikeman_")) {
+	} else if (skillName.beginsWith("combat_polearm_")) {
 		return String("pikeman");
-	} else if (skillName.beginsWith("combat_rifleman_")) {
+	} else if (skillName.beginsWith("combat_rifleman_") || skillName.beginsWith("combat_marksman_rifle_")) {
 		return String("rifleman");
-	} else if (skillName.beginsWith("combat_carbineer_")) {
-		return String("carbineer");
-	} else if (skillName.beginsWith("combat_pistoleer_")) {
-		return String("pistoleer");
+	} else if (skillName.beginsWith("combat_carbine_") || skillName.beginsWith("combat_marksman_carbine_")) {
+		return String("carbine");
+	} else if (skillName.beginsWith("combat_pistol_") || skillName.beginsWith("combat_marksman_pistol_")) {
+		return String("pistol");
 	}
 
 	// jedi_*, companion_master_*, and anything else unmapped.
@@ -327,6 +377,48 @@ bool CompanionSkillTrainer::isJediEligible(CompanionObject* companion) const {
 	return true;
 }
 
+namespace {
+	bool isCombatProfessionSkill(const String& skillName) {
+		// outdoors_smuggler_ kept here even though the real skill turned out
+		// to be combat_smuggler_ (which the "combat_" prefix below already
+		// covers) -- harmless leftover, not worth a separate edit. squadleader
+		// corrected 2026-08-07: real prefix is outdoors_squadleader_, not
+		// social_squadleader_ (see resolveProfessionToken()'s doc comment).
+		return skillName.beginsWith("combat_")
+				|| skillName.beginsWith("outdoors_smuggler_")
+				|| skillName.beginsWith("science_combatmedic_")
+				|| skillName.beginsWith("outdoors_squadleader_");
+	}
+
+	bool hasAllPrereqsMet(CompanionObject* companion, const String& skillName) {
+		if (companion == nullptr) {
+			return false;
+		}
+
+		Skill* skill = SkillManager::instance()->getSkill(skillName);
+
+		if (skill == nullptr) {
+			return true;
+		}
+
+		const Vector<String>* required = skill->getSkillsRequired();
+
+		if (required == nullptr) {
+			return true;
+		}
+
+		for (int i = 0; i < required->size(); ++i) {
+			const String& prereq = required->get(i);
+
+			if (!prereq.isEmpty() && !companion->hasLearnedSkill(prereq)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+}
+
 bool CompanionSkillTrainer::trainSkill(CreatureObject* owner, CompanionObject* companion, const String& skillName) {
 	if (owner == nullptr || companion == nullptr || skillName.isEmpty()) {
 		return false;
@@ -389,16 +481,26 @@ bool CompanionSkillTrainer::trainSkill(CreatureObject* owner, CompanionObject* c
 
 	// 2026-07-20 (user request "enable all profession trees, do not block
 	// them off" -- the survey branch of Master Artisan was gated off): the
-	// master-badge/owner-skill block below is DISABLED so EVERY profession
-	// tree and every branch (incl. non-combat lines like crafting survey,
-	// which resolveProfessionToken() couldn't map and failed closed) is
-	// fully trainable onto companions. Only the jedi_ eligibility gate
-	// above still applies (that's the deliberate Force-unlock progression).
-	// Original block kept commented for easy restore:
-	//if (!isAutoGrantable(skillName) && !ownerHasRequiredMasterBadge(owner, skillName)) {
-	//	owner->sendSystemMessage("@companion:missing_master_badge");
-	//	return false;
-	//}
+	// master-badge/owner-skill block was DISABLED for ALL professions,
+	// combat and non-combat alike.
+	//
+	// 2026-08-07 (user request: companion trained Carbines I/II with the
+	// owner never having held either box -- "i shouldnt have been able to
+	// train the companion"): re-enabled, but SCOPED to combat professions
+	// only, via isCombatProfessionSkill() above -- non-combat trees
+	// (crafting/artisan/architect/etc.) stay exactly as open as the
+	// 2026-07-20 request made them; nothing about that fix is reverted.
+	// ownerHasRequiredMasterBadge() itself is unchanged: it already accepts
+	// either the profession's master badge OR the owner simply holding that
+	// exact skill (see its own doc comment, "teach your companion anything
+	// YOU know"), and already fails closed for combat_marksman_*
+	// (resolveProfessionToken() doesn't map it, and it's not one of the 11
+	// badge-gated elite professions) -- so an owner without Carbine
+	// training themselves is correctly denied with no change needed there.
+	if (isCombatProfessionSkill(skillName) && !isAutoGrantable(skillName) && !ownerHasRequiredMasterBadge(owner, skillName)) {
+		owner->sendSystemMessage("@companion:missing_master_badge");
+		return false;
+	}
 
 	// Companion System (2026-07-28, real per-skill XP cost pass -- see
 	// NOTES.md): Spec 1 + 3A/3B's old "cost is always 0" design is GONE.
@@ -1924,6 +2026,24 @@ void CompanionSkillTrainer::sendTrainList(CreatureObject* player, CompanionObjec
 			}
 
 			candidates.add(childName);
+		}
+	}
+
+	// Companion System (2026-08-07, per user request "only show skills they
+	// can learn at that time, do not show skills if the companion doesnt
+	// have the prerequisite"): all three candidate passes above can each
+	// surface a skill whose own Skill::getSkillsRequired() chain isn't
+	// fully satisfied yet -- "teach what you know" can jump straight to a
+	// tier the owner holds while the companion has none of that tree yet,
+	// and the tree-walk pass above already documented its own multi-prereq
+	// gap ("may appear... before every one of its prerequisites is met").
+	// trainSkill() itself still correctly recurses and backfills any of
+	// this if selected -- this filter only changes what's SHOWN, not what's
+	// grantable, so nothing about that backfill-on-train behavior changes;
+	// the list just now matches "ready right now."
+	for (int i = candidates.size() - 1; i >= 0; --i) {
+		if (!hasAllPrereqsMet(companion, candidates.get(i))) {
+			candidates.remove(i);
 		}
 	}
 

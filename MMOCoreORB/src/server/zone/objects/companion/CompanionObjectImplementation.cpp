@@ -482,6 +482,7 @@ void CompanionObjectImplementation::setCompanionState(int state) {
 namespace {
 	bool isCompanionBusyForTraining(CompanionObject* companion);
 	bool findReadyUntrainedSkill(CompanionObject* companion, String& outSkillName);
+	bool tryInitiateSkillTrainWalkup(CompanionObject* companion, CreatureObject* owner);
 
 	// Build fix (2026-07-30, build-fix-2) -- TRAINING_WALKUP_TIMEOUT_MS
 	// (marker: TRAINING_WALKUP_TIMEOUT_MS_MOVED_2026_07_30_BUILD_FIX_2)
@@ -496,6 +497,52 @@ namespace {
 	// documented where this used to sit.
 	extern const uint64 TRAINING_WALKUP_TIMEOUT_MS_MOVED_2026_07_30_BUILD_FIX_2;
 	const uint64 TRAINING_WALKUP_TIMEOUT_MS = 75000;
+
+	// Companion System (2026-08-07, per user request "their xp needs to cap
+	// out like a real character's xp"): the flat COMPANION_MAX_XP_PER_TYPE
+	// ceiling (see its #define near the top of this file) was an arbitrary
+	// placeholder never tied to real game data. Real players are capped per
+	// xpType by SkillManager::updateXpLimits(), which takes the MAX
+	// Skill::getXpCap() among the player's own currently-learned skills for
+	// that xpType (real data straight from skills.iff), falling back to
+	// SkillManager's defaultXpLimits table when nothing they've learned yet
+	// defines one. Mirrored here against the companion's OWN learnedSkills
+	// list -- companions never touch a real PlayerObject's skill list or
+	// updateXpLimits() itself (this file's "skill point isolation"
+	// convention) -- so a companion's real ceiling tracks the exact same
+	// numbers a player would see for that xpType, recomputed on demand (same
+	// cost class as findReadyUntrainedSkill()'s scan below) rather than
+	// persisted. Falls back to the old flat constant only if NEITHER the
+	// companion's own skills nor SkillManager's defaults define a real cap
+	// at all (e.g. this project's own companion-only xp types with no live
+	// skills.iff equivalent, such as "companion_master_xp").
+	int computeCompanionRealXpCap(CompanionObject* companion, const String& xpType) {
+		int cap = 0;
+
+		if (companion != nullptr) {
+			for (int i = 0; i < companion->getLearnedSkillCount(); ++i) {
+				Skill* learned = SkillManager::instance()->getSkill(companion->getLearnedSkill(i));
+
+				if (learned == nullptr || learned->getXpType() != xpType || learned->getXpCap() == 0) {
+					continue;
+				}
+
+				if (learned->getXpCap() > cap) {
+					cap = learned->getXpCap();
+				}
+			}
+		}
+
+		if (cap == 0) {
+			cap = SkillManager::instance()->getDefaultXpLimit(xpType);
+		}
+
+		if (cap == 0) {
+			cap = COMPANION_MAX_XP_PER_TYPE;
+		}
+
+		return cap;
+	}
 }
 
 int CompanionObjectImplementation::addExperience(const String& xpType, int amount) {
@@ -506,8 +553,10 @@ int CompanionObjectImplementation::addExperience(const String& xpType, int amoun
 	int current = experiencePools.get(xpType);
 	int newTotal = current + amount;
 
-	if (newTotal > COMPANION_MAX_XP_PER_TYPE) {
-		newTotal = COMPANION_MAX_XP_PER_TYPE;
+	int realXpCap = computeCompanionRealXpCap(_this.getReferenceUnsafeStaticCast(), xpType);
+
+	if (newTotal > realXpCap) {
+		newTotal = realXpCap;
 	}
 
 	if (newTotal < 0) {
@@ -573,35 +622,17 @@ int CompanionObjectImplementation::addExperience(const String& xpType, int amoun
 	// Auto Skill-Training Walkup (AUTO_SKILL_TRAIN_WALKUP_2026_07_30, spec: walk to owner +
 	// auto-open the trainer Skill Tree SUI once a newly-granted XP
 	// amount pushes an untrained skill in the companion's current tree
-	// to 100%+ of its real cost). One-shot per trainingReadyUntil (see
-	// CompanionObject.idl doc comment) -- do nothing if a walk-over is
+	// to 100%+ of its real cost). Extracted into tryInitiateSkillTrainWalkup()
+	// (2026-08-07, per user request "as soon as the user and companions are
+	// out of battle, they walk up... right away") so the SAME check also
+	// runs from the regular keep-up tick, not just here -- see that
+	// function's doc comment for why the event-only trigger could miss a
+	// skill that became ready mid-combat. One-shot per trainingReadyUntil
+	// (see CompanionObject.idl doc comment) -- do nothing if a walk-over is
 	// already pending; runSkillTrainWalkupTick() (called from the 2s
-	// keep-up tick) owns the rest of the lifecycle (busy-abandon,
-	// arrival, timeout).
-	if (getTrainingReadyUntil() == 0) {
-		CompanionObject* trainingSelf = _this.getReferenceUnsafeStaticCast();
-
-		if (!isCompanionBusyForTraining(trainingSelf)) {
-			String readySkill;
-
-			if (findReadyUntrainedSkill(trainingSelf, readySkill)) {
-				CreatureObject* trainingOwner = getLinkedCreature().get();
-
-				if (trainingOwner != nullptr && trainingOwner->getZone() == getZone()) {
-					// Same movement mechanism /companionfollow uses --
-					// setFollowObject()+setMovementState(FOLLOWING) only,
-					// deliberately NOT touching companionState/standingOrder
-					// (mirrors runFleeCheckTick()'s flee-entry: temporary
-					// movement override now, restoreStandingPosture() puts
-					// the real standing order back once this resolves).
-					setFollowObject(trainingOwner);
-					setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
-					setTrainingReadyUntil(System::getMiliTime() + TRAINING_WALKUP_TIMEOUT_MS);
-					CompanionChatter::announceReaction(_this.getReferenceUnsafeStaticCast(), trainingOwner, "readytotrain");
-				}
-			}
-		}
-	}
+	// keep-up tick) owns the rest of the lifecycle (busy-abandon, arrival,
+	// timeout).
+	tryInitiateSkillTrainWalkup(_this.getReferenceUnsafeStaticCast(), getLinkedCreature().get());
 
 	return granted;
 }
@@ -4387,6 +4418,71 @@ namespace {
 	 * (dx*dx+dy*dy <= 100.0f, i.e. 10m) as runIdleEmoteTick()'s arrival
 	 * greet -- not a shared function call (that tick is oriented
 	 * around emotes, not a walk state machine), but the identical
+	/**
+	 * Companion System (2026-08-07, per user request "as soon as the user
+	 * and companions are out of battle, they walk up to the owner and
+	 * request training and a pop up right away"): the ORIGINAL Auto
+	 * Skill-Training Walkup design (2026-07-30) only checked for a newly-
+	 * ready skill at the exact moment addExperience() granted XP -- if the
+	 * companion was still busy (almost always true, since combat XP is the
+	 * common trigger) the walk-up was abandoned outright and nothing
+	 * re-checked it until the NEXT XP grant, which may never arrive once
+	 * the fight that made the skill ready is already over. Polled from the
+	 * keep-up tick (see the call site next to runSkillTrainWalkupTick())
+	 * in addition to addExperience(), so this now also catches "became
+	 * eligible while busy" within one 2s tick of combat actually ending.
+	 * No-op (returns false) if a walk-over is already pending, the
+	 * companion is busy, or nothing is ready -- runSkillTrainWalkupTick()
+	 * owns everything past initiation.
+	 */
+	bool tryInitiateSkillTrainWalkup(CompanionObject* companion, CreatureObject* owner) {
+		if (companion == nullptr || owner == nullptr) {
+			return false;
+		}
+
+		if (companion->getTrainingReadyUntil() != 0) {
+			return false; // already pending -- runSkillTrainWalkupTick() owns it
+		}
+
+		if (isCompanionBusyForTraining(companion)) {
+			return false;
+		}
+
+		String readySkill;
+
+		if (!findReadyUntrainedSkill(companion, readySkill)) {
+			return false;
+		}
+
+		if (owner->getZone() != companion->getZone()) {
+			return false;
+		}
+
+		// Same movement mechanism /companionfollow uses --
+		// setFollowObject()+setMovementState(FOLLOWING) only, deliberately NOT
+		// touching companionState/standingOrder (mirrors runFleeCheckTick()'s
+		// flee-entry: temporary movement override now, restoreStandingPosture()
+		// puts the real standing order back once this resolves).
+		companion->setFollowObject(owner);
+		companion->setFollowState(AiAgent::FOLLOWING); // genesis port: was setMovementState()
+		companion->setTrainingReadyUntil(System::getMiliTime() + TRAINING_WALKUP_TIMEOUT_MS);
+		CompanionChatter::announceReaction(companion, owner, "readytotrain");
+		return true;
+	}
+
+	/**
+	 * Runs every ~2000ms keep-up tick (finer-grained than the 20s
+	 * idle-emote tick, needed so a busy-abandon mid-walk -- e.g. pulled
+	 * into combat -- is noticed promptly, same cadence runFleeCheckTick()
+	 * already uses for the same reason). Only MANAGES an
+	 * already-triggered walk-over (trainingReadyUntil != 0); the trigger
+	 * itself lives in tryInitiateSkillTrainWalkup() just below, called both
+	 * from addExperience() (event-driven) and from the keep-up tick
+	 * (state-driven -- see its own doc comment for why). Arrival check
+	 * reuses the EXACT same squared-distance formula/threshold
+	 * (dx*dx+dy*dy <= 100.0f, i.e. 10m) as runIdleEmoteTick()'s arrival
+	 * greet -- not a shared function call (that tick is oriented
+	 * around emotes, not a walk state machine), but the identical
 	 * idiom, deliberately not reinvented.
 	 */
 	void runSkillTrainWalkupTick(CompanionObject* companion, CreatureObject* owner) {
@@ -4697,7 +4793,13 @@ void CompanionObjectImplementation::runKeepUpTick() {
 	// regardless of FOLLOW/combat state" rationale as the calls above
 	// (it needs to notice combat/busy transitions promptly to abandon a
 	// walk-over cleanly, and needs to keep checking arrival distance
-	// while genuinely eligible).
+	// while genuinely eligible). tryInitiateSkillTrainWalkup() added here
+	// too (2026-08-07) so a skill that becomes ready WHILE busy (e.g.
+	// mid-combat, the common case since combat XP is what usually crosses
+	// the threshold) gets caught within one tick of no longer being busy,
+	// instead of waiting for a fresh addExperience() event that may never
+	// come once the fight that made it ready is already over.
+	tryInitiateSkillTrainWalkup(companionRef.get(), owner);
 	runSkillTrainWalkupTick(companionRef.get(), owner);
 
 	// Chase movement-speed throttle (2026-07-30, per Nick: companions

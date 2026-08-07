@@ -134,21 +134,36 @@ public:
 	 * one schematic group -- same enumeration
 	 * CompanionCraftingManager::findSchematicForComponent() already uses
 	 * (CompanionCraftingManager.cpp ~1265-1275). */
+	// Companion System (2026-08-07, per user request "this should only
+	// appear if the companion is a master artisan or any of the other
+	// master crafts like armorsmith architect chef droid engineer
+	// tailor"): previously fired for ANY companion holding so much as one
+	// low-tier skill that grants any schematic group at all -- the original
+	// design doc actually specified master-only (see
+	// claude/design-crafting-quality-batch-2026-07-24.md section 5); this
+	// was a gap between that spec and what got built, not a design change.
+	// Real master-tier skill box names confirmed against this project's own
+	// extracted skills.iff (docs/companion_system/tools/extracted/
+	// skills.iff): "crafting_<profession>_master", mirroring the same
+	// "<profession>_master" pattern CompanionSkillTrainer.cpp's
+	// combat-profession badge gate already uses. Companions never earn
+	// crafting badges (badges are a combat-profession-only mechanic in this
+	// deployment -- see CompanionSkillTrainer::trainSkill()'s "badge
+	// tracking" pass), so this checks the master skill box directly via
+	// hasLearnedSkill() rather than hasCompanionBadge().
 	static bool isCraftingCapable(CompanionObject* comp) {
 		if (comp == nullptr) {
 			return false;
 		}
 
-		for (int s = 0; s < comp->getLearnedSkillCount(); ++s) {
-			Skill* skill = SkillManager::instance()->getSkill(comp->getLearnedSkill(s));
+		static const char* CRAFTING_MASTER_SKILLS[] = {
+			"crafting_artisan_master", "crafting_armorsmith_master", "crafting_architect_master",
+			"crafting_chef_master", "crafting_droidengineer_master", "crafting_tailor_master",
+			"crafting_weaponsmith_master", "crafting_shipwright_master", "crafting_merchant_master"
+		};
 
-			if (skill == nullptr) {
-				continue;
-			}
-
-			const Vector<String>* groups = skill->getSchematicsGranted();
-
-			if (groups != nullptr && groups->size() > 0) {
+		for (uint32 i = 0; i < sizeof(CRAFTING_MASTER_SKILLS) / sizeof(CRAFTING_MASTER_SKILLS[0]); ++i) {
+			if (comp->hasLearnedSkill(String(CRAFTING_MASTER_SKILLS[i]))) {
 				return true;
 			}
 		}
