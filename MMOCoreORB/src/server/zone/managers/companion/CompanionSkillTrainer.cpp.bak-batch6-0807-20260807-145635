@@ -332,63 +332,10 @@ bool CompanionSkillTrainer::ownerHasRequiredMasterBadge(CreatureObject* owner, c
 		return false;
 	}
 
-	// Companion System (2026-08-07, live bug found while chasing "why don't
-	// I see any companion attack icons": the console was spamming "no badge
-	// registered for 'carbine_master'" -- verified against a live extraction
-	// of the real datatables/badge/badge_map.iff): `profession + "_master"`
-	// was NEVER a real badge key for ANY of the 11 combat professions here --
-	// the real keys are domain-prefixed ("combat_carbine_master", not
-	// "carbine_master"; "outdoors_squadleader_master", not
-	// "squadleader_master"; "science_combatmedic_master", not
-	// "combatmedic_master"), and for Fencer/Swordsman/Pikeman the REAL key's
-	// middle segment is the internal weapon name, not the classic profession
-	// name ("combat_1hsword_master"/"combat_2hsword_master"/
-	// "combat_polearm_master", never "fencer"/"swordsman"/"pikeman" at all --
-	// same class of naming gap the 2026-08-07 resolveProfessionToken() fix
-	// found and fixed for the SKILL prefix, just not yet for this badge
-	// lookup). This means the "owner mastered it before but no longer holds
-	// the exact box" fallback has been completely dead for all 11 combat
-	// professions since this function was written -- every check silently
-	// fell through to the "owner currently holds the exact skill" path
-	// instead, with no visible symptom besides a log warning. All 11 keys
-	// below confirmed present in a live badge_map.iff extraction and
-	// double-checked against this file's own jediGateMasterSkills list,
-	// which already had them right.
-	String realBadgeKey;
-
-	if (profession == "bountyhunter") {
-		realBadgeKey = "combat_bountyhunter_master";
-	} else if (profession == "smuggler") {
-		realBadgeKey = "combat_smuggler_master";
-	} else if (profession == "combatmedic") {
-		realBadgeKey = "science_combatmedic_master";
-	} else if (profession == "squadleader") {
-		realBadgeKey = "outdoors_squadleader_master";
-	} else if (profession == "commando") {
-		realBadgeKey = "combat_commando_master";
-	} else if (profession == "fencer") {
-		realBadgeKey = "combat_1hsword_master";
-	} else if (profession == "swordsman") {
-		realBadgeKey = "combat_2hsword_master";
-	} else if (profession == "pikeman") {
-		realBadgeKey = "combat_polearm_master";
-	} else if (profession == "rifleman") {
-		realBadgeKey = "combat_rifleman_master";
-	} else if (profession == "carbine") {
-		realBadgeKey = "combat_carbine_master";
-	} else if (profession == "pistol") {
-		realBadgeKey = "combat_pistol_master";
-	}
-
-	if (realBadgeKey.isEmpty()) {
-		// Unknown token -- fail closed.
-		return false;
-	}
-
-	const Badge* badge = BadgeList::instance()->get(realBadgeKey);
+	const Badge* badge = BadgeList::instance()->get(profession + "_master");
 
 	if (badge == nullptr) {
-		warning("CompanionSkillTrainer: no badge registered for '" + realBadgeKey + "' -- denying by default. "
+		warning("CompanionSkillTrainer: no badge registered for '" + profession + "_master' -- denying by default. "
 				"Verify the badge string key against the live badges table (see NOTES.md).");
 		return false;
 	}

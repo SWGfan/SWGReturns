@@ -41,21 +41,7 @@ client might do the lookup:
     companionattack     lowercase, if it differs
     companion_attack    the characterAbility string
 
-A backup is written first. Idempotent: re-running with an unchanged
-MAPPING is a no-op.
-
-BUG FIX (2026-08-07, live report: "2 icons still using the old icons" --
-Companion Guard and Companion Return were showing a generic default,
-confirmed to actually be cloned from animalControl/guildMove, styles that
-predate even the pre-2026-08-04 assist/areaTrack picks): the original
-"already present -> skip" check only asked whether a name existed at all,
-never whether it still pointed at the CURRENT MAPPING's base style. Once
-build_ui_styles_patch.py's MAPPING changes for a name already cloned into
-this loose file, re-running this script silently left the OLD pixels in
-place forever -- a real, previously-unnoticed staleness bug, not a one-off.
-Now compares each existing entry's SourceRect against the current target
-and refreshes it in place if they differ, instead of only ever appending
-brand-new names.
+A backup is written first. Idempotent: re-running is a no-op.
 
 ⚠ The SWG Returns launcher owns this file and may overwrite it on a client
 update. If the companion icons ever revert, re-run this.
@@ -132,12 +118,8 @@ def main():
     for ab in ABILITY_NAMES:
         wanted["companion" + ab] = ab
 
-    def source_rect(block_text):
-        m = re.search(r"SourceRect='([^']*)'", block_text)
-        return m.group(1) if m else None
-
     have = set(blocks)
-    added, updated, missing_base, already = [], [], [], 0
+    added, missing_base, already = [], [], 0
     out = text
 
     for new_name, base in sorted(wanted.items()):
@@ -146,7 +128,6 @@ def main():
             continue
 
         block, real_base_name = blocks[base.lower()]
-        target_rect = source_rect(block)
 
         # every name the client might plausibly look up
         variants = [new_name, new_name.lower()]
@@ -157,33 +138,18 @@ def main():
 
         clones = ""
         for v in dict.fromkeys(variants):          # de-dupe, keep order
-            vlow = v.lower()
-
-            if vlow in have:
-                existing_block, existing_real_name = blocks[vlow]
-
-                if source_rect(existing_block) == target_rect:
-                    already += 1
-                    continue
-
-                # STALE -- this name was cloned from a base style that has
-                # since changed in MAPPING (e.g. a collision fix). Refresh
-                # it in place rather than leaving the old pixels forever.
-                refreshed = block.replace("Name='%s'" % real_base_name, "Name='%s'" % existing_real_name, 1)
-                out = out.replace(existing_block, refreshed, 1)
-                blocks[vlow] = (refreshed, existing_real_name)
-                updated.append(v)
+            if v.lower() in have:
+                already += 1
                 continue
-
             clones += block.replace("Name='%s'" % real_base_name, "Name='%s'" % v, 1)
-            have.add(vlow)
+            have.add(v.lower())
             added.append(v)
 
         if clones:
             out = out.replace(block, block + clones, 1)
 
-    if not added and not updated:
-        print("nothing to add or refresh -- already patched.")
+    if not added:
+        print("nothing to add -- already patched.")
         return 0
 
     stamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -192,11 +158,7 @@ def main():
     open(loose, "w", encoding="latin-1").write(out)
 
     print("")
-    print("added %d style names, refreshed %d stale ones (%d already present)" % (len(added), len(updated), already))
-    if updated:
-        print("REFRESHED (were pointing at an old/removed MAPPING base style):")
-        for n in updated[:8]:
-            print("    %-26s" % n)
+    print("added %d style names (%d already present)" % (len(added), already))
     if missing_base:
         print("SKIPPED %d with no base style in this file:" % len(missing_base))
         for n, b in missing_base[:8]:

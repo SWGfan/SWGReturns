@@ -9548,3 +9548,33 @@ XP-cost check commented out on 2026-07-18 ("no skills require xp"), which was me
 scope to the Companion Handler tree but disabled it for every profession server-wide.
 Restored the check, scoped correctly: companion_master_ stays free, every other profession
 (Marksman, Carbine, Rifle, Pistol, etc.) requires real banked XP again.
+
+## 2026-08-07 (batch 7) -- icon-patch tool self-heals stale variant clones; fixed 2 stale companion command icons live
+Root cause of "still using the old icons": patch_loose_ui_styles.py's idempotency
+check only asked "does an entry with this name already exist," never "does it still
+point at the CURRENT correct SourceRect" -- so a later MAPPING fix in
+build_ui_styles_patch.py would silently never propagate on re-run. Fixed the tool
+(added source_rect() helper, compares existing block's SourceRect against the
+target base style's, refreshes in place if mismatched, reports `updated` count
+separately from `added`) so future mapping changes self-heal, AND directly patched
+the 4 stale entries on the live client file (ui/ui_styles.inc): companionguard/
+companion_guard now correctly clone "defend", companionreturn/companion_return now
+correctly clone "callRetreat". Verified via grep post-patch. Client-relaunch only,
+no server/TRE rebuild needed for this half.
+
+## 2026-08-07 (batch 6) -- CompanionSkillTrainer's "historical master badge" fallback was silently dead for all 11 combat professions
+Explains the recurring console warning ("no badge registered for 'carbine_master'
+-- denying by default") and likely the "not seeing companion attack icons"
+complaint from the same playtest. ownerHasRequiredMasterBadge() looked up
+BadgeList::instance()->get(profession + "_master") with bare tokens
+("carbine_master"), but every real key in badge_map.iff is domain-prefixed
+("combat_carbine_master", "outdoors_squadleader_master",
+"science_combatmedic_master"), and Fencer/Swordsman/Pikeman use their internal
+weapon name instead of the classic profession name ("combat_1hsword_master", not
+"fencer_master"). Confirmed all 11 real keys via a live badge_map.iff extraction.
+The "owner mastered it before but no longer holds the skill" training fallback --
+which gates whether a companion can learn an attack-granting skill in that case --
+has been dead since the function was written; every check silently fell through to
+"owner currently holds the exact skill" with no visible symptom besides the log
+warning. Fixed with an explicit real-key mapping for all 11 professions. File:
+CompanionSkillTrainer.cpp.
