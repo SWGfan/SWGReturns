@@ -481,7 +481,7 @@ void CompanionObjectImplementation::setCompanionState(int state) {
 // change) is defined much earlier in this file.
 namespace {
 	bool isCompanionBusyForTraining(CompanionObject* companion);
-	bool findReadyUntrainedSkill(CompanionObject* companion, String& outSkillName);
+	bool findReadyUntrainedSkill(CompanionObject* companion, CreatureObject* owner, String& outSkillName);
 	bool tryInitiateSkillTrainWalkup(CompanionObject* companion, CreatureObject* owner);
 
 	// Build fix (2026-07-30, build-fix-2) -- TRAINING_WALKUP_TIMEOUT_MS
@@ -4202,8 +4202,8 @@ namespace {
 	 * Read-only -- no lock beyond whatever the caller already holds on
 	 * companion.
 	 */
-	bool findReadyUntrainedSkill(CompanionObject* companion, String& outSkillName) {
-		if (companion == nullptr) {
+	bool findReadyUntrainedSkill(CompanionObject* companion, CreatureObject* owner, String& outSkillName) {
+		if (companion == nullptr || owner == nullptr) {
 			return false;
 		}
 
@@ -4253,6 +4253,14 @@ namespace {
 				}
 
 				if (!eligible || CompanionSkillTrainer::instance()->isAutoGrantable(name)) {
+					continue;
+				}
+
+				// Companion System (2026-08-07, per user report of the walk-up
+				// nagging loop -- see canOwnerTeachSkill()'s doc comment in
+				// CompanionSkillTrainer.h): never advertise a skill as "ready" if
+				// trainSkill() would just reject it anyway once selected.
+				if (!CompanionSkillTrainer::instance()->canOwnerTeachSkill(owner, name)) {
 					continue;
 				}
 
@@ -4358,7 +4366,7 @@ namespace {
 		if (distSq <= 100.0f) { // still within the same ~10m arrival envelope
 			String readySkill;
 
-			if (findReadyUntrainedSkill(companion, readySkill)) {
+			if (findReadyUntrainedSkill(companion, owner, readySkill)) {
 				Locker ownerLocker(owner, companion);
 				CompanionSkillTrainer::instance()->sendSkillTree(owner, companion);
 				ownerLocker.release();
@@ -4450,7 +4458,7 @@ namespace {
 
 		String readySkill;
 
-		if (!findReadyUntrainedSkill(companion, readySkill)) {
+		if (!findReadyUntrainedSkill(companion, owner, readySkill)) {
 			return false;
 		}
 

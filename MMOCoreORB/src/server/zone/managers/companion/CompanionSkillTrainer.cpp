@@ -419,6 +419,10 @@ namespace {
 	}
 }
 
+bool CompanionSkillTrainer::canOwnerTeachSkill(CreatureObject* owner, const String& skillName) const {
+	return !isCombatProfessionSkill(skillName) || isAutoGrantable(skillName) || ownerHasRequiredMasterBadge(owner, skillName);
+}
+
 bool CompanionSkillTrainer::trainSkill(CreatureObject* owner, CompanionObject* companion, const String& skillName) {
 	if (owner == nullptr || companion == nullptr || skillName.isEmpty()) {
 		return false;
@@ -497,7 +501,7 @@ bool CompanionSkillTrainer::trainSkill(CreatureObject* owner, CompanionObject* c
 	// (resolveProfessionToken() doesn't map it, and it's not one of the 11
 	// badge-gated elite professions) -- so an owner without Carbine
 	// training themselves is correctly denied with no change needed there.
-	if (isCombatProfessionSkill(skillName) && !isAutoGrantable(skillName) && !ownerHasRequiredMasterBadge(owner, skillName)) {
+	if (!canOwnerTeachSkill(owner, skillName)) {
 		owner->sendSystemMessage("@companion:missing_master_badge");
 		return false;
 	}

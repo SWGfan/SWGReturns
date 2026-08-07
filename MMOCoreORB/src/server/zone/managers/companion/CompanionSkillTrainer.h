@@ -93,6 +93,21 @@ public:
 	 */
 	bool ownerHasRequiredMasterBadge(CreatureObject* owner, const String& skillName) const;
 
+	/** Companion System (2026-08-07, per user report: the Auto Skill-Training
+	 * Walkup feature kept nagging the owner to train a companion in a combat
+	 * skill the owner wasn't actually allowed to teach -- trainSkill()'s
+	 * combat-profession gate rejected it every time, but nothing upstream of
+	 * that (the walk-up trigger, the arrival SUI) knew to stop offering it,
+	 * so the companion just walked up and popped the same dead-end SUI again
+	 * on the next XP tick, forever). Single source of truth for "is owner
+	 * currently allowed to teach companion this skill" -- exactly the
+	 * condition trainSkill() gates the actual grant on. Used by trainSkill()
+	 * itself AND by CompanionObjectImplementation.cpp's
+	 * findReadyUntrainedSkill() (the walk-up/SUI-offer trigger), so both
+	 * stay in lockstep -- a skill nothing here ever advertises as "ready" and
+	 * a skill trainSkill() will actually grant are now the same set. */
+	bool canOwnerTeachSkill(CreatureObject* owner, const String& skillName) const;
+
 	/** Companion System (2026-07-12, "badge tracking" pass) -- true once the
 	 * companion itself holds every baseline Master Combat Profession badge
 	 * (awarded by trainSkill() the moment each corresponding "_master" skill
