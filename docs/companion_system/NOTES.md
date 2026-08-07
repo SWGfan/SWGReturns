@@ -9595,3 +9595,49 @@ several dozen older .bak-YYYYMMDD-* files already committed since 08-04 under
 MMOCoreORB/ (scripts/lua and companion managers) -- harmless (git rm --cached them
 whenever convenient, no history rewrite needed, they just stop showing up in future
 `git status`/diffs), left alone for now since it's unrelated to tonight's actual bugs.
+
+## 2026-08-07 (batch 12) -- training SUI was resending every ~2s tick, replacing itself before it could be clicked
+Live bug report right after training worked for the first time: "the pop up box is
+popping up a new box every 2 seconds and making it difficult to click." Root cause:
+fireTrainingSuiSend() unconditionally cleared companion->trainingReadyUntil the
+moment it sent the SUI, but if the same skill was STILL ready (the player hadn't
+acted on the box yet -- the whole point of the complaint), the very next ~2000ms
+keep-up tick's tryInitiateSkillTrainWalkup() saw trainingReadyUntil == 0 again,
+re-armed it, and runSkillTrainWalkupTick()/scheduleTrainingSuiSend() resent the SUI,
+replacing the one the player was mid-click on. Repeated indefinitely until the race
+was won or the skill got trained. Fixed with a new per-companion cooldown map,
+trainSuiLastShownMs() -- once the SUI is actually shown, tryInitiateSkillTrainWalkup()
+refuses to re-arm for TRAIN_SUI_RESHOW_COOLDOWN_MS (60s), matching the user's own
+request ("don't reappear for another 1 minute"). File: CompanionObjectImplementation.cpp.
+
+## 2026-08-07 (batch 13) -- companion never earned combat_general xp
+Live report: "i noticed my companion is not getting combat xp." Root cause: the
+2026-07-14 companion-XP branch in PlayerManagerImplementation.cpp copied the real
+player branch's per-weapon-xpType loop but left out the trailing aggregate award
+(awardExperience(attacker, "combat_general", combatXp, true, 0.1f) in the player
+branch) -- so a companion banked combat_rangedspecialize_carbine/etc. but never
+combat_general, which several companion-trainable skills also cost real xp in.
+Fixed: companion branch now accumulates the same per-xpType sum (excluding dotDMG
+and jedi_general, matching the player branch) and awards it once after the loop at
+the same 10% rate via scaleXpForCompanion(). File: PlayerManagerImplementation.cpp.
+
+## 2026-08-07 (batch 14/15) -- 142 missing companion attack/utility abilities: full combat-tree icon coverage
+Explains "how come im not seeing any of my companion's attack icons" far more
+completely than the earlier badge-key fix alone. The companion ability-icon system
+(command_table.iff row + cmd_n.stf display name + ui_styles.inc icon, all three
+needed) was only ever built for the 11 professions' MASTER-tier skills (36
+abilities) -- every ordinary tier (Carbines/Rifle/Pistol/1h-2hsword/Polearm/Unarmed
+I-IV, Accuracy/Speed/Ability/Support branches, Medic, Squad Leader) was never
+scanned. Confirmed via direct skills.iff COMMANDS extraction across every in-scope
+profession/starter prefix: 144 additional real, dispatchable abilities found (2
+excluded: "formup" collides with the existing baseline /companionformup order
+command; "registerWithLocation" has a real command but makes no sense as a
+companion ability). Added the remaining 142 to build_command_table_rows.py's and
+build_ui_styles_patch.py's _COMPANION_ABILITY_NAMES, and their real display names
+to build_companion_content.py's CMD_N_ENTRIES (verified against live cmd_n.stf,
+142/142 found). 3 of the 142 (berserk2, rally, takeCover) have no real icon
+anywhere in the palette (same class of gap as the pre-existing berserk1 case) --
+mapped to the closest thematic real icon (warcry2/boostmorale/tumbleToProne
+respectively). Full build chain run and verified clean: ARCHIVE VERIFIED OK, no
+WARNING lines. Files: build_command_table_rows.py, build_ui_styles_patch.py,
+build_companion_content.py.

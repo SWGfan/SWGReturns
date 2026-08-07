@@ -377,6 +377,58 @@ _COMPANION_ABILITY_NAMES = [
     "strafeShot2", "surpriseShot", "torsoShot", "underHandShot",
 ]
 
+# Companion System (2026-08-07, "full combat tree ability coverage" pass, per
+# live bug report: "how come im not seeing any of my companion's attack
+# icons?"). The original 36 above only covered the 11 profession MASTER-tier
+# skill.iff COMMANDS entries (the "badge-gated" set). Every ORDINARY tier
+# skill in the same 11 professions' Accuracy/Speed/Ability/Support/weapon-
+# tier I-IV branches -- i.e. almost everything a companion actually trains
+# via normal xp, since master tier requires the whole tree first -- was never
+# scanned at all. Confirmed by direct skills.iff COMMANDS extraction across
+# every in-scope profession/starter prefix (combat_marksman/carbine/rifle/
+# pistol/brawler/1hsword/2hsword/polearm/unarmed/bountyhunter/smuggler/
+# commando, science_doctor/medic, outdoors_squadleader/scout, social_
+# entertainer): 144 additional real, dispatchable ability tokens found (each
+# verified to have a real command_table.iff row to clone, same discipline as
+# the original 36/25). 2 excluded from that raw count: "formup" (collides
+# with the existing hand-authored baseline /companionformup order command --
+# a completely different feature, not an ability clone) and
+# "registerWithLocation" (real command exists, but it registers a location
+# on the planetary map -- a one-time character-progression side effect of
+# learning Doctor novice, not a sensible companion combat ability).
+_NEW_COMPANION_ABILITY_NAMES_2026_08_07 = [
+    "actionShot1", "actionShot2", "aim", "berserk2", "bodyShot1",
+    "bodyShot2", "bodyShot3", "boostmorale", "burstShot1", "burstShot2",
+    "chargeShot1", "chargeShot2", "cripplingShot", "cureDisease", "curePoison",
+    "dazzle", "disarmingShot1", "disarmingShot2", "diveShot", "doubleTap",
+    "dragIncapacitatedPlayer", "extinguishFire", "fanShot", "feignDeath", "firstAid",
+    "forage", "forceOfWill", "fullAutoArea1", "fullAutoArea2", "fullAutoSingle1",
+    "fullAutoSingle2", "headShot1", "headShot2", "healEnhance", "healState",
+    "healthShot1", "healthShot2", "intimidate2", "kipUpShot", "lastDitch",
+    "legShot1", "legShot2", "legShot3", "lowBlow", "maskscent",
+    "meditate", "melee1hBlindHit1", "melee1hBlindHit2", "melee1hBodyHit1", "melee1hBodyHit2",
+    "melee1hBodyHit3", "melee1hDizzyHit1", "melee1hDizzyHit2", "melee1hHealthHit1", "melee1hHealthHit2",
+    "melee1hHit1", "melee1hHit2", "melee1hHit3", "melee1hLunge2", "melee1hScatterHit1",
+    "melee1hScatterHit2", "melee1hSpinAttack1", "melee1hSpinAttack2", "melee2hArea1", "melee2hArea2",
+    "melee2hArea3", "melee2hHeadHit1", "melee2hHeadHit2", "melee2hHeadHit3", "melee2hHit1",
+    "melee2hHit2", "melee2hHit3", "melee2hLunge2", "melee2hMindHit1", "melee2hMindHit2",
+    "melee2hSpinAttack1", "melee2hSpinAttack2", "melee2hSweep1", "melee2hSweep2", "mindShot1",
+    "multiTargetPistolShot", "overChargeShot2", "panicShot", "pistolMeleeDefense1", "pistolMeleeDefense2",
+    "pointBlankArea2", "pointBlankSingle2", "polearmActionHit1", "polearmActionHit2", "polearmArea1",
+    "polearmArea2", "polearmHit1", "polearmHit2", "polearmHit3", "polearmLegHit1",
+    "polearmLegHit2", "polearmLegHit3", "polearmLunge2", "polearmSpinAttack1", "polearmSpinAttack2",
+    "polearmStun1", "polearmStun2", "polearmSweep1", "polearmSweep2", "powerBoost",
+    "quickHeal", "rally", "retreat", "revivePlayer", "rollShot",
+    "scatterShot1", "scatterShot2", "steadyaim", "stoppingShot", "suppressionFire1",
+    "suppressionFire2", "takeCover", "threatenShot", "tumbleToKneeling", "tumbleToProne",
+    "tumbleToStanding", "unarmedBlind1", "unarmedBodyHit1", "unarmedCombo1", "unarmedCombo2",
+    "unarmedDizzy1", "unarmedHeadHit1", "unarmedHit1", "unarmedHit2", "unarmedHit3",
+    "unarmedKnockdown1", "unarmedKnockdown2", "unarmedLegHit1", "unarmedLunge2", "unarmedSpinAttack1",
+    "unarmedSpinAttack2", "unarmedStun1", "volleyFire", "warcry2", "warningShot",
+    "wildShot1", "wildShot2",
+]
+_COMPANION_ABILITY_NAMES = _COMPANION_ABILITY_NAMES + _NEW_COMPANION_ABILITY_NAMES_2026_08_07
+
 
 def get_row_ci(name):
     for r in dt.rows:

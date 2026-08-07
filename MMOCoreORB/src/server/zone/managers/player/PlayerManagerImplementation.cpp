@@ -1835,6 +1835,29 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				companionTotal += entry->elementAt(v).getValue();
 			}
 
+			// COMPANION_COMBAT_GENERAL_XP_FIX_2026_08_07 -- live report: "my
+			// companion is not getting combat xp". Root cause: this branch was
+			// ported from the real-player branch just below (see the
+			// COMPANION_XP_PARITY_2026_08_05 writeup above), but only the
+			// per-weapon-xpType loop was copied -- the player branch's
+			// trailing aggregate award, `awardExperience(attacker,
+			// "combat_general", combatXp, true, 0.1f)`, was left out. A
+			// companion therefore banked combat_rangedspecialize_carbine/
+			// _pistol/_rifle/etc. (whatever the entry->getKey() values were)
+			// but never combat_general itself, which several companion-
+			// trainable skills also cost real xp in (skills.iff XP_TYPE).
+			// Mirrored here the same way: companionCombatXp accumulates the
+			// same per-xpType amounts as the loop below awards individually
+			// (excluding dotDMG, same as this branch already does, and
+			// jedi_general, matching the player branch's own "Jedi
+			// experience doesn't count towards combat experience" rule --
+			// relevant here too since companions can be Jedi-eligible, see
+			// isJediEligible()), then awarded once after the loop at the
+			// same 10% rate via scaleXpForCompanion() so it picks up the
+			// same globalExpMultiplier/category-bonus treatment every other
+			// companion xp grant already gets.
+			uint32 companionCombatXp = 0;
+
 			for (int j = 0; j < entry->size(); ++j) {
 				uint32 damage = entry->elementAt(j).getValue();
 				String xpType = entry->elementAt(j).getKey();
@@ -1846,7 +1869,13 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				float xpAmount = baseXp * (float) damage / companionTotal;
 
 				companion->addExperience(xpType, scaleXpForCompanion(xpType, (int) xpAmount));
+
+				if (xpType != "jedi_general") {
+					companionCombatXp += (uint32) xpAmount;
+				}
 			}
+
+			companion->addExperience("combat_general", scaleXpForCompanion("combat_general", (int) (companionCombatXp * 0.1f)));
 		} else if (attacker->isPlayerCreature()) {
 			if (!(attacker->getZone() == zone && destructedObject->isInRangeZoneless(attacker, 80))) {
 				continue;

@@ -508,6 +508,22 @@ namespace {
 	extern const uint64 TRAINING_WALKUP_TIMEOUT_MS_MOVED_2026_07_30_BUILD_FIX_2;
 	const uint64 TRAINING_WALKUP_TIMEOUT_MS = 75000;
 
+	// Companion System (2026-08-07, live bug report: "the pop up box is
+	// popping up a new box every 2 seconds and making it difficult to
+	// click"): fireTrainingSuiSend() unconditionally clears
+	// trainingReadyUntil once it sends the SUI, so if the same skill is
+	// STILL "ready" (the player hasn't acted on the box yet -- which is
+	// exactly the point of the complaint), the very next ~2000ms keep-up
+	// tick's tryInitiateSkillTrainWalkup() sees trainingReadyUntil == 0
+	// again, re-arms it, and the walkup tick resends the SUI, replacing
+	// the one the player was just trying to click -- repeating forever
+	// until they win the race or the skill gets trained. Fixed via
+	// trainSuiLastShownMs() below: once the SUI has actually been shown,
+	// suppress re-triggering for this long, so the box stays put until
+	// the player closes it (or trains) instead of getting yanked out
+	// from under them every tick.
+	const uint64 TRAIN_SUI_RESHOW_COOLDOWN_MS = 60000;
+
 	// Companion System (2026-08-07, per user request "their xp needs to cap
 	// out like a real character's xp"): the flat COMPANION_MAX_XP_PER_TYPE
 	// ceiling (see its #define near the top of this file) was an arbitrary
@@ -4340,6 +4356,17 @@ namespace {
 		return map;
 	}
 
+	/** 2026-08-07 -- companion objectID -> mili time the training SUI was
+	 * last actually shown to the owner. tryInitiateSkillTrainWalkup()
+	 * refuses to re-arm within TRAIN_SUI_RESHOW_COOLDOWN_MS of this, so a
+	 * skill that's still "ready" (player hasn't trained it yet) doesn't
+	 * cause the box to be resent -- and thus visually replaced -- every
+	 * single keep-up tick. */
+	VectorMap<uint64, uint64>& trainSuiLastShownMs() {
+		static VectorMap<uint64, uint64> map;
+		return map;
+	}
+
 	/**
 	 * Fires once, at (or after) this companion's reserved stagger slot.
 	 * Re-verifies EVERYTHING under lock at fire time (zone/dead, still
@@ -4393,6 +4420,14 @@ namespace {
 				Locker ownerLocker(owner, companion);
 				CompanionSkillTrainer::instance()->sendSkillTree(owner, companion);
 				ownerLocker.release();
+
+				// 2026-08-07 -- mark it shown so tryInitiateSkillTrainWalkup()
+				// won't re-arm and resend this for TRAIN_SUI_RESHOW_COOLDOWN_MS,
+				// even though the skill itself is still "ready" until the
+				// player actually acts on the box.
+				auto& lastShown = trainSuiLastShownMs();
+				lastShown.drop(companion->getObjectID());
+				lastShown.put(companion->getObjectID(), System::getMiliTime());
 			}
 		}
 
@@ -4473,6 +4508,22 @@ namespace {
 
 		if (companion->getTrainingReadyUntil() != 0) {
 			return false; // already pending -- runSkillTrainWalkupTick() owns it
+		}
+
+		// 2026-08-07 -- don't re-show the training SUI for a while after it
+		// was last actually displayed (see TRAIN_SUI_RESHOW_COOLDOWN_MS's
+		// doc comment above): otherwise a skill that's still ready re-arms
+		// the walkup every ~2s tick and the box keeps getting replaced
+		// before the player can click it.
+		auto& lastShown = trainSuiLastShownMs();
+		uint64 companionID = companion->getObjectID();
+
+		if (lastShown.contains(companionID)) {
+			uint64 sinceShown = System::getMiliTime() - lastShown.get(companionID);
+
+			if (sinceShown < TRAIN_SUI_RESHOW_COOLDOWN_MS) {
+				return false;
+			}
 		}
 
 		if (isCompanionBusyForTraining(companion)) {
