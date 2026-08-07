@@ -9528,3 +9528,23 @@ player profession. Restored the XP check, scoped correctly this time: companion_
 Rifle, Pistol, etc.) requires real banked XP of the skill's own xpType again, confirmed distinct per
 weapon branch (combat_rangedspecialize_carbine/_rifle/_pistol) via direct skills.iff inspection.
 File: MMOCoreORB/src/server/zone/managers/skill/SkillManager.cpp.
+
+## 2026-08-07 (batch 2) — 3 live bug fixes from a fresh-character playtest
+- Silenced the "Your companion sets off -- follow it!" system message: it only ever
+  fired from escort/mimicry mode, never from a real player-chosen taxi ride.
+- Reworded @companion:missing_master_badge and @companion:companion_granted STF strings.
+- INVESTIGATED, NOT A BUG: /companionfollow "hostile target" error was a stale hotbar icon.
+- Still open: (a) companion stores its mimicry vehicle on dismount, doesn't resume on
+  remount; (b) companion "walks in place" while mounted during an explicit taxi ride.
+
+## 2026-08-07 (batch 3) — taxi picker shows mission waypoints; tighter 20m driving escort
+- Taxi destination picker now also scans mission_bag and lists active mission waypoints.
+- Added a dedicated 20m catch-up trigger for the live driving-escort pace (was 50m,
+  shared with 3 unrelated checks -- now split out to its own constant).
+
+## 2026-08-07 (batch 5) — real player skill trainer: XP-cost gate was disabled server-wide
+Root cause: SkillManager::canLearnSkill() and fulfillsSkillPrerequisitesAndXp() had their
+XP-cost check commented out on 2026-07-18 ("no skills require xp"), which was meant to
+scope to the Companion Handler tree but disabled it for every profession server-wide.
+Restored the check, scoped correctly: companion_master_ stays free, every other profession
+(Marksman, Carbine, Rifle, Pistol, etc.) requires real banked XP again.
