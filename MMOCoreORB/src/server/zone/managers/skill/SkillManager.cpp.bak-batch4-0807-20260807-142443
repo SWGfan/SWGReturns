@@ -1029,28 +1029,22 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 
 	ManagedReference<PlayerObject* > ghost = creature->getPlayerObject();
 	if (ghost != nullptr) {
+		//Companion System (2026-07-18, per user request "no skills require
+		//xp"): the XP-cost gate is disabled server-wide -- training any
+		//skill (including the Companion Handler tree) never requires the
+		//player to have earned the XP first. The original check is kept
+		//here, commented, for easy re-enabling:
+		//if (!noXpRequired) {
+		//	if (ghost->getExperience(skill->getXpType()) < skill->getXpCost()) {
+		//		return false;
+		//	}
+		//}
+
 		//Companion System (spec: Core3 Registry Patches): the companion_master
 		//profession always costs 0 Skill Points, regardless of the value
 		//authored in the skill tree data -- see docs/companion_system/NOTES.md,
 		//"Skill point isolation / companion_master player profession".
 		bool isCompanionMasterSkill = skillName.beginsWith("companion_master_");
-
-		//Companion System (2026-08-07, per live bug report: "the trainer is
-		//allowing me to train in skills i dont have xp for ... pistols and
-		//rifles were also available ... but i have 0 xp for those skills,
-		//that should not be allowed"): RESTORES the real XP-cost gate this
-		//function had before 2026-07-18's "no skills require xp" change,
-		//which disabled it SERVER-WIDE for every profession when the actual
-		//ask was specifically about the Companion Handler tree (see
-		//isCompanionMasterSkill just above -- the correctly-scoped version of
-		//that same intent for skill points). companion_master_ stays free of
-		//both XP and skill-point costs; every real profession (Marksman,
-		//Carbine, Rifle, Pistol, etc.) is gated on real XP again.
-		if (!noXpRequired && !isCompanionMasterSkill) {
-			if (ghost->getExperience(skill->getXpType()) < skill->getXpCost()) {
-				return false;
-			}
-		}
 
 		//Check if player has enough skill points to learn the skill.
 		if (!isCompanionMasterSkill && ghost->getSkillPoints() < skill->getSkillPointsRequired()) {
@@ -1094,13 +1088,12 @@ bool SkillManager::fulfillsSkillPrerequisitesAndXp(const String& skillName, Crea
 
 	ManagedReference<PlayerObject* > ghost = creature->getPlayerObject();
 	if (ghost != nullptr) {
-		//Companion System (2026-08-07, per live bug report -- see
-		//canLearnSkill()'s matching fix just above for the full rationale):
-		//restores the real XP-cost gate, scoped the same way -- free for
-		//companion_master_, real XP required for everything else.
-		if (!skillName.beginsWith("companion_master_") && skill->getXpCost() > 0 && ghost->getExperience(skill->getXpType()) < skill->getXpCost()) {
-			return false;
-		}
+		//Companion System (2026-07-18, "no skills require xp" -- see
+		//canLearnSkill() above): XP gate disabled server-wide. Original
+		//check kept for easy re-enabling:
+		//if (skill->getXpCost() > 0 && ghost->getExperience(skill->getXpType()) < skill->getXpCost()) {
+		//	return false;
+		//}
 	}
 
 	//Check for precluded skills.

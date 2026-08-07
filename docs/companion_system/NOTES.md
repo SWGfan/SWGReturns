@@ -9491,3 +9491,40 @@ Updated `jediGateMasterSkills`' literal strings and `resolveProfessionToken()`'s
 ## 2026-08-07 — Fixed: Auto Skill-Training Walkup nagging loop for un-teachable combat skills
 
 Reported live: a companion kept walking up and popping the training SUI for a combat skill Nick didn't personally hold or have mastered — got rejected every time he tried to actually train it, then popped up again on the next tick. Root cause: `findReadyUntrainedSkill()` (the walk-up trigger) only checked whether the companion had enough banked XP, never whether the owner was actually allowed to teach it — that check lived one step later, inside `trainSkill()` itself. Fixed by extracting the ownership condition into one shared method, `CompanionSkillTrainer::canOwnerTeachSkill()`, now called by both `trainSkill()` (the actual grant) and `findReadyUntrainedSkill()` (the walk-up/SUI-offer trigger) — a skill is only ever advertised as "ready" if it's also one the owner would actually be allowed to train. `findReadyUntrainedSkill()` picked up a new `owner` parameter to support this; both its call sites (the walk-up-arrival SUI open and the tick-driven initiator) updated to pass it through.
+
+## 2026-08-07 (batch 2) — 3 live bug fixes from a fresh-character playtest
+- Silenced the "Your companion sets off -- follow it!" system message: it only ever
+  fired from escort/mimicry mode (companion mirroring the OWNER's own vehicle), never
+  from a real player-chosen taxi ride -- same bug class as the 2026-08-05
+  COMPANION_TAXI_ESCORT_SILENT_BARK_FIX. File: CompanionObjectImplementation.cpp.
+- Reworded @companion:missing_master_badge to "You must have the skill learned, or
+  have the profession's Master Badge, to train your companion in it." (client STF,
+  regen required).
+- Reworded @companion:companion_granted (fires on first Novice Companion Handler
+  learn) to explicitly tell the player to open their datapad and spawn the companion
+  -- the grant only drops the device in, it never auto-summons, and new players had
+  no obvious next step.
+- INVESTIGATED, NOT A BUG: "/companionfollow throws 'must have a valid hostile
+  target selected'" turned out to be a stale/wrong hotbar icon, not a server issue --
+  confirmed live. That message string only exists in the 3 Attack-family commands
+  (CompanionAttackCommand.h/CompanionRangedAttackCommand.h/
+  CompanionSpecialAttackCommand.h); CompanionFollowCommand.h and the radial Follow
+  menu option never send it. No code change made.
+- Still open from the same playtest, NOT YET FIXED: (a) companion incorrectly stores
+  its own mimicry vehicle on owner dismount and doesn't resume on remount -- needs a
+  real pause/resume state, not a one-line fix; (b) companion appears to "walk in
+  place" while mounted during an explicit taxi ride -- hypothesis is the rider's
+  speed/turn/accel never get synced to the driver's the way real MountCommand.h does
+  it for players, unverified.
+
+## 2026-08-07 (batch 5) — real player skill trainer: XP-cost gate was disabled server-wide
+Live bug report: "the trainer is allowing me to train in skills i dont have xp for... pistols and
+rifles were also available... but i have 0 xp for those skills, that should not be allowed." Root
+cause: SkillManager::canLearnSkill() and fulfillsSkillPrerequisitesAndXp() both had their XP-cost
+check commented out on 2026-07-18 ("no skills require xp") -- the change was meant to scope to the
+Companion Handler tree but was implemented as a blanket server-wide disable, affecting every real
+player profession. Restored the XP check, scoped correctly this time: companion_master_ stays free
+(matching the existing skill-point bypass just above it), every other profession (Marksman, Carbine,
+Rifle, Pistol, etc.) requires real banked XP of the skill's own xpType again, confirmed distinct per
+weapon branch (combat_rangedspecialize_carbine/_rifle/_pistol) via direct skills.iff inspection.
+File: MMOCoreORB/src/server/zone/managers/skill/SkillManager.cpp.

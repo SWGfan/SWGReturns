@@ -26,3 +26,63 @@ Backups on disk (newest first):
 backup.log
 20260804_193656
 20260804_161633
+
+==== 2026-08-05 20:30:01.77 ====
+AUTO: server is stopped -- taking a full backup.
+
+Backing up into /mnt/d/SWGGenesis/backups/20260805_203001
+
+1/2  object database (excluding __db.* region files) ...
+     wrote 309M (29 .db files)
+2/2  MySQL ...
+     wrote 480K
+
+
+Backup COMPLETE: 310M   (1.8T free on the drive)
+Restore instructions are in /mnt/d/SWGGenesis/backups/20260805_203001/RESTORE.txt
+
+NOTE: backups live on the SAME physical disk as the server. That
+      protects you from a bad patch or a corrupted save -- it does
+      NOT protect you from this drive failing. Copy a folder to
+      another drive periodically.
+
+Backups on disk (newest first):
+20260805_203001
+backup.log
+20260805_091921
+20260804_231628
+20260804_203000
+20260804_193656
+20260804_161633
+
+==== 2026-08-06 20:30:02.13 ====
+AUTO: server is UP (pid 1034) -- backing up MySQL only.
+      The object database (characters, companions, items) needs
+      the server stopped to copy safely, so it is SKIPPED tonight.
+      Shut the server down before the scheduled time, or press
+      Backup Everything by hand, to capture it.
+
+Backing up into /mnt/d/SWGGenesis/backups/20260806_203002
+
+1/2  object database SKIPPED (--mysql-only)
+2/2  MySQL ...
+     wrote 480K
+
+  pruning old backup 20260804_161633
+
+Backup COMPLETE: 484K   (1.8T free on the drive)
+Restore instructions are in /mnt/d/SWGGenesis/backups/20260806_203002/RESTORE.txt
+
+NOTE: backups live on the SAME physical disk as the server. That
+      protects you from a bad patch or a corrupted save -- it does
+      NOT protect you from this drive failing. Copy a folder to
+      another drive periodically.
+
+Backups on disk (newest first):
+20260806_203002
+backup.log
+20260805_203001
+20260805_091921
+20260804_231628
+20260804_203000
+20260804_193656

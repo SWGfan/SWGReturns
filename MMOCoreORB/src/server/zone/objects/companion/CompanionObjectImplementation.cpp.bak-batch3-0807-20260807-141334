@@ -140,16 +140,6 @@
 #define COMPANION_TAXI_THROTTLED_MULTIPLIER 0.30f
 #define COMPANION_TAXI_RESUME_DISTANCE_SQ 2500.0f // 50m, squared
 #define COMPANION_TAXI_CATCHUP_MULTIPLIER 1.2f
-// Companion System (2026-08-07, per user request "the companion is
-// falling too far behind while i drive, have them speed up to always be
-// within 20 meters"): deliberately a SEPARATE constant from
-// COMPANION_TAXI_RESUME_DISTANCE_SQ above -- that one is shared by 3
-// unrelated checks (the post-arrival pickup-watch proximity test, the
-// departure-hold "is the owner close enough to depart" gate, and the
-// 85m-leash throttle-resume check), so retargeting it to 20m would have
-// tightened all four behaviors at once instead of just the live driving
-// catch-up pace below.
-#define COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ 400.0f // 20m, squared
 
 namespace {
 
@@ -2442,7 +2432,7 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				float targetRun = taxiBoostedRunSpeed;
 				float targetWalk = taxiBoostedWalkSpeed;
 
-				if (!driverAhead && ownerDistSq > COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ) {
+				if (!driverAhead && ownerDistSq > COMPANION_TAXI_RESUME_DISTANCE_SQ) {
 					targetRun *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
 					targetWalk *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
 				}

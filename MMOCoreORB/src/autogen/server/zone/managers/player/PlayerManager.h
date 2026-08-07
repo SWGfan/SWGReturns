@@ -376,6 +376,13 @@ public:
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage = true, float localMultiplier = 1.0f, bool applyModifiers = true);
 
+	/** COMPANION_XP_PARITY_2026_08_05 -- companions have no PlayerObject
+	 * ghost, so they can never go through awardExperience() itself. This
+	 * applies the same category bonus and server-wide rate players get
+	 * there, without the player-only species modifier / level cap / GCW
+	 * bonus, which don't have a companion equivalent. */
+	int scaleXpForCompanion(const String& xpType, int amount);
+
 	SortedVector<ManagedReference<SceneObject* > > getInsurableItems(CreatureObject* player, bool onlyInsurable = true);
 
 	/**
@@ -912,6 +919,13 @@ public:
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage = true, float localMultiplier = 1.0f, bool applyModifiers = true);
 
+	/** COMPANION_XP_PARITY_2026_08_05 -- companions have no PlayerObject
+	 * ghost, so they can never go through awardExperience() itself. This
+	 * applies the same category bonus and server-wide rate players get
+	 * there, without the player-only species modifier / level cap / GCW
+	 * bonus, which don't have a companion equivalent. */
+	int scaleXpForCompanion(const String& xpType, int amount);
+
 	SortedVector<ManagedReference<SceneObject* > > getInsurableItems(CreatureObject* player, bool onlyInsurable = true);
 
 	/**
@@ -1358,6 +1372,8 @@ public:
 	void setExperienceMultiplier(float globalMultiplier);
 
 	int awardExperience(CreatureObject* player, const String& xpType, int amount, bool sendSystemMessage, float localMultiplier, bool applyModifiers);
+
+	int scaleXpForCompanion(const String& xpType, int amount);
 
 	void handleAbortTradeMessage(CreatureObject* player);
 

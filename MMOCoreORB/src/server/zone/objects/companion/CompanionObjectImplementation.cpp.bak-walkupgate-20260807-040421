@@ -140,16 +140,6 @@
 #define COMPANION_TAXI_THROTTLED_MULTIPLIER 0.30f
 #define COMPANION_TAXI_RESUME_DISTANCE_SQ 2500.0f // 50m, squared
 #define COMPANION_TAXI_CATCHUP_MULTIPLIER 1.2f
-// Companion System (2026-08-07, per user request "the companion is
-// falling too far behind while i drive, have them speed up to always be
-// within 20 meters"): deliberately a SEPARATE constant from
-// COMPANION_TAXI_RESUME_DISTANCE_SQ above -- that one is shared by 3
-// unrelated checks (the post-arrival pickup-watch proximity test, the
-// departure-hold "is the owner close enough to depart" gate, and the
-// 85m-leash throttle-resume check), so retargeting it to 20m would have
-// tightened all four behaviors at once instead of just the live driving
-// catch-up pace below.
-#define COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ 400.0f // 20m, squared
 
 namespace {
 
@@ -491,7 +481,7 @@ void CompanionObjectImplementation::setCompanionState(int state) {
 // change) is defined much earlier in this file.
 namespace {
 	bool isCompanionBusyForTraining(CompanionObject* companion);
-	bool findReadyUntrainedSkill(CompanionObject* companion, CreatureObject* owner, String& outSkillName);
+	bool findReadyUntrainedSkill(CompanionObject* companion, String& outSkillName);
 	bool tryInitiateSkillTrainWalkup(CompanionObject* companion, CreatureObject* owner);
 
 	// Build fix (2026-07-30, build-fix-2) -- TRAINING_WALKUP_TIMEOUT_MS
@@ -2442,7 +2432,7 @@ void CompanionObjectImplementation::updateTaxiTick() {
 				float targetRun = taxiBoostedRunSpeed;
 				float targetWalk = taxiBoostedWalkSpeed;
 
-				if (!driverAhead && ownerDistSq > COMPANION_TAXI_CATCHUP_TRIGGER_DISTANCE_SQ) {
+				if (!driverAhead && ownerDistSq > COMPANION_TAXI_RESUME_DISTANCE_SQ) {
 					targetRun *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
 					targetWalk *= COMPANION_TAXI_CATCHUP_MULTIPLIER;
 				}
@@ -2562,22 +2552,9 @@ void CompanionObjectImplementation::updateTaxiTick() {
 			departingAgent->activateMovementEvent();
 		}
 
-		// COMPANION_TAXI_ESCORT_SILENT_SETOFF_FIX_2026_08_07 -- same bug class as
-		// COMPANION_TAXI_ESCORT_SILENT_BARK_FIX_2026_08_05 above (the "Click on me
-		// and follow!" bark): this whole code path only runs when
-		// !taxiHasDestination (see the enclosing "if (!taxiHasDestination &&
-		// taxiDepartureTime != 0)" a few lines up) -- i.e. it is ONLY reachable
-		// from escort/mimicry mode, never from a real, player-chosen taxi ride
-		// (destination rides go through the GO-button path instead, see above).
-		// Escort mode is documented a few lines below as "SILENT cosmetic
-		// mimicry" -- it starts automatically the instant the owner calls out
-		// their OWN real vehicle (see VehicleControlDeviceImplementation.cpp's
-		// startCompanionVehicleMimicry()), so this system message fired on every
-		// single vehicle call-out even though the owner never asked for a taxi
-		// (2026-08-07, live bug report on a brand-new character: "i never asked
-		// for a taxi, the companion is still with me and following me"). No
-		// message needed here -- the state transitions above (FOLLOW +
-		// activateMovementEvent()) already do the actual work silently.
+		if (rideOwner != nullptr) {
+			rideOwner->sendSystemMessage("Your companion sets off -- follow it!");
+		}
 	}
 
 	// No destination (general escort mode): the driver keeps following the
@@ -4225,8 +4202,8 @@ namespace {
 	 * Read-only -- no lock beyond whatever the caller already holds on
 	 * companion.
 	 */
-	bool findReadyUntrainedSkill(CompanionObject* companion, CreatureObject* owner, String& outSkillName) {
-		if (companion == nullptr || owner == nullptr) {
+	bool findReadyUntrainedSkill(CompanionObject* companion, String& outSkillName) {
+		if (companion == nullptr) {
 			return false;
 		}
 
@@ -4276,14 +4253,6 @@ namespace {
 				}
 
 				if (!eligible || CompanionSkillTrainer::instance()->isAutoGrantable(name)) {
-					continue;
-				}
-
-				// Companion System (2026-08-07, per user report of the walk-up
-				// nagging loop -- see canOwnerTeachSkill()'s doc comment in
-				// CompanionSkillTrainer.h): never advertise a skill as "ready" if
-				// trainSkill() would just reject it anyway once selected.
-				if (!CompanionSkillTrainer::instance()->canOwnerTeachSkill(owner, name)) {
 					continue;
 				}
 
@@ -4389,7 +4358,7 @@ namespace {
 		if (distSq <= 100.0f) { // still within the same ~10m arrival envelope
 			String readySkill;
 
-			if (findReadyUntrainedSkill(companion, owner, readySkill)) {
+			if (findReadyUntrainedSkill(companion, readySkill)) {
 				Locker ownerLocker(owner, companion);
 				CompanionSkillTrainer::instance()->sendSkillTree(owner, companion);
 				ownerLocker.release();
@@ -4481,7 +4450,7 @@ namespace {
 
 		String readySkill;
 
-		if (!findReadyUntrainedSkill(companion, owner, readySkill)) {
+		if (!findReadyUntrainedSkill(companion, readySkill)) {
 			return false;
 		}
 

@@ -962,7 +962,7 @@ COMPANION_STF_ENTRIES = [
     ("cant_store_now", "You cannot store your companion while in combat."),
     ("stored", "Your companion has been stored."),
     ("companion_died", "Your companion has fallen and permanently lost vitality."),
-    ("companion_granted", "A companion has been added to your datapad. Open your datapad and spawn your companion to summon it."),
+    ("companion_granted", "A companion has been added to your datapad. Use it to call your companion out whenever you like."),
     ("starter_profession_title", "Choose a Starting Profession"),
     ("starter_profession_text", "Select the profession your companion will start as. This choice can only be made once, on your companion's first launch."),
     ("starter_profession_chosen", "Your companion has chosen its starting profession."),

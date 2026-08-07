@@ -29,9 +29,6 @@
 #include "server/zone/managers/companion/callbacks/CompanionRenameSuiCallback.h"
 #include "server/zone/managers/companion/callbacks/CompanionTaxiWaypointSuiCallback.h"
 #include "server/zone/managers/companion/callbacks/CompanionTheaterModeSuiCallback.h"
-#include "server/zone/objects/mission/MissionObject.h"
-#include "server/zone/objects/scene/variables/StringId.h"
-#include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/objects/creature/buffs/PrivateBuff.h"
 #include "server/zone/objects/creature/buffs/BuffType.h"
 #include "templates/params/creature/CreatureAttribute.h"
@@ -485,59 +482,8 @@ CompanionDialogMenuSuiCallback(ZoneServer* server, CompanionObject* comp)
 				waypointLabels.add(waypoint->getDisplayedName());
 			}
 
-			// Companion System (2026-08-07, per user request "i would like to
-			// be able to taxi to a mission waypoint, but the taxi doesnt show
-			// them"): active missions carry their OWN WaypointObject
-			// (MissionObject::getWaypointToMission()) rather than living in
-			// the player's personal ghost->getWaypoint() list -- that's why
-			// the loop above alone never surfaced them (confirmed against
-			// MissionManagerImplementation.cpp's own
-			// player->getSlottedObject("mission_bag") scans and
-			// MissionObjectMessage3.h's identical getWaypointToMission()
-			// read, the same data source that feeds the client's own quest
-			// tracker HUD). Prefixed "Mission: " so a player can tell a
-			// quest destination apart from a personal waypoint at a glance.
-			ManagedReference<SceneObject*> missionBag = player->getSlottedObject("mission_bag");
-
-			if (missionBag != nullptr) {
-				for (int i = 0; i < missionBag->getContainerObjectsSize(); ++i) {
-					ManagedReference<SceneObject*> obj = missionBag->getContainerObject(i);
-
-					if (obj == nullptr || !obj->isMissionObject()) {
-						continue;
-					}
-
-					MissionObject* mission = cast<MissionObject*>(obj.get());
-					WaypointObject* missionWaypoint = mission->getWaypointToMission();
-
-					if (missionWaypoint == nullptr || missionWaypoint->getPlanetCRC() != planetCRC) {
-						continue;
-					}
-
-					StringId* titleId = mission->getMissionTitle();
-					String label;
-
-					if (titleId != nullptr) {
-						String fullPath = "@" + titleId->getFile() + ":" + titleId->getStringID();
-						label = StringIdManager::instance()->getStringId(fullPath.hashCode()).toString();
-					}
-
-					if (label.isEmpty()) {
-						label = mission->getTargetName();
-					}
-
-					if (label.isEmpty()) {
-						label = "Mission";
-					}
-
-					waypointX.add(missionWaypoint->getPositionX());
-					waypointY.add(missionWaypoint->getPositionY());
-					waypointLabels.add("Mission: " + label);
-				}
-			}
-
 			if (waypointX.size() == 0) {
-				player->sendSystemMessage("You have no waypoints on this planet yet -- create one from your datapad or accept a mission first.");
+				player->sendSystemMessage("You have no waypoints on this planet yet -- create one from your datapad first.");
 				break;
 			}
 

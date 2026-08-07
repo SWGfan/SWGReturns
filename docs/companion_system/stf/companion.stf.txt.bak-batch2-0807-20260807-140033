@@ -37,7 +37,6 @@ C++/Lua code in this deliverable. Import them into string/en/companion.stf
 	missing_master_badge       = You must have the skill learned, or have the profession's Master Badge, to train your companion in it.
 	skill_trained              = Your companion has learned a new skill.
 	skill_untrained            = Your companion has forgotten a skill.
-	companion_granted          = A companion has been added to your datapad. Open your datapad and spawn your companion to summon it.
 
 	skill_sheet_title          = Companion Skill Sheet
 	skill_sheet_text           = Skills this companion has learned:
