@@ -2183,9 +2183,10 @@ def main():
 
     global _current_activity_log
     logf = None if a in _NOISY_READONLY_ACTIONS else _open_activity_log(a, args[1:])
+    real_stdout = sys.stdout
     if logf is not None:
         _current_activity_log = logf
-        sys.stdout = _Tee(sys.stdout, logf)
+        sys.stdout = _Tee(real_stdout, logf)
 
     if a == "status":              act_status()
     elif a == "start":             act_start("--reloadstrings" in args)
@@ -2256,6 +2257,13 @@ def main():
 
     if logf is not None:
         print("[%s] -- done --" % datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        # 2026-08-07 bugfix: restore stdout to the plain, still-open stream
+        # BEFORE closing logf -- otherwise Python's own interpreter-exit flush
+        # of sys.stdout finds it's still the Tee, calls flush() on the now-
+        # closed log handle, and prints a "ValueError: I/O operation on
+        # closed file" traceback after every single logged action (confirmed
+        # live, 2026-08-07 -- harmless to the action itself, but noisy).
+        sys.stdout = real_stdout
         _current_activity_log = None
         logf.close()
 

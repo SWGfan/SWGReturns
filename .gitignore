@@ -52,5 +52,17 @@ compile_commands.json
 utils/engine3
 _companion_baks/
 *.bak
+# 2026-08-07: *.bak only matches files that END in .bak -- every
+# "foo.cpp.bak-batch6-20260807-145635"-style timestamped patch backup (the
+# pattern used throughout companion_system/ and by every Claude session doing
+# a verified find/replace) has been slipping through and getting committed
+# since 2026-08-04. Does not retroactively untrack ones already committed --
+# see NOTES.md for the git rm --cached cleanup.
+*.bak-*
+__pycache__/
+*.pyc
+# 2026-08-07: shared control-panel Activity Log (swggenesis_menu.py) --
+# rewritten on every real action, would just be commit-noise forever.
+menu_activity.log
 console.log
 console.log.prev

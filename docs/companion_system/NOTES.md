@@ -9578,3 +9578,20 @@ has been dead since the function was written; every check silently fell through 
 "owner currently holds the exact skill" with no visible symptom besides the log
 warning. Fixed with an explicit real-key mapping for all 11 professions. File:
 CompanionSkillTrainer.cpp.
+
+## 2026-08-07 (batch 10/11) -- stdout-flush traceback fix; .gitignore gap for timestamped .bak files
+Live bug from the Activity Log feature (batch 8/9): every logged action ended with a
+"ValueError: I/O operation on closed file" traceback on interpreter exit -- main()
+left sys.stdout pointed at the (now-closed) activity log handle instead of restoring
+it first. Fixed: sys.stdout is restored to the real stream before logf.close().
+Separately, found while reviewing what those two commits picked up: .gitignore has
+had `*.bak` since 2026-08-04, but that pattern only matches filenames that literally
+END in .bak -- every "foo.cpp.bak-batch6-20260807-145635"-style timestamped patch
+backup (the convention used throughout companion_system/ and by every Claude session
+doing a verified find/replace) has been slipping through and getting committed since
+then. Added `*.bak-*`, `__pycache__/`, `*.pyc`, and `menu_activity.log` to .gitignore
+and untracked this session's instances. NOT retroactively cleaned up: there are
+several dozen older .bak-YYYYMMDD-* files already committed since 08-04 under
+MMOCoreORB/ (scripts/lua and companion managers) -- harmless (git rm --cached them
+whenever convenient, no history rewrite needed, they just stop showing up in future
+`git status`/diffs), left alone for now since it's unrelated to tonight's actual bugs.
